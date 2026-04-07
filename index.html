@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuizTool</title>
+<title>MU61 Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
@@ -189,25 +189,21 @@ button, a { cursor: pointer; font-family: inherit; border: none; outline: none; 
 .btn-take-quiz:active { transform: translateY(0); }
 
 /* ═══════════════════════════════════════════
-   GITHUB BUTTON
+   FOOTNOTE
 ═══════════════════════════════════════════ */
-.github-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.2rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all var(--transition);
+.footer-note {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
-.github-btn:hover {
-  border-color: var(--accent);
+.footer-note a {
   color: var(--accent);
-  transform: translateY(-2px);
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+.footer-note a:hover {
+  opacity: 0.8;
 }
 </style>
 </head>
@@ -215,7 +211,7 @@ button, a { cursor: pointer; font-family: inherit; border: none; outline: none; 
 
   <!-- TOP NAVIGATION -->
   <div class="topbar">
-    <div class="topbar-title">QuizTool</div>
+    <div class="topbar-title">MU61 Quiz</div>
     <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
   </div>
 
@@ -231,14 +227,9 @@ button, a { cursor: pointer; font-family: inherit; border: none; outline: none; 
       <!-- Cards are generated here via JavaScript -->
     </div>
 
-    <!-- GITHUB BUTTON -->
-    <div style="margin-top: 3rem; text-align: center;">
-      <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer" class="github-btn">
-        <svg style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-2.461 0-.542.195-.994.514-1.409-.512-1.582-1.19-2.017-1.19-2.017-.973-.665.073-.652.073-.652 1.076.075 1.641 1.106 1.641 1.106.95 1.622 2.495 1.155 3.101.881.096-.687.372-1.155.677-1.419-2.353-.267-4.822-1.175-4.822-2.183 0-.481.173-.929.459-1.294-.464-1.584-1.075-2.017-1.075-2.017-.967-.665.07-.652.07-.652 1.075.075 1.639 1.106 1.639 1.106.95 1.622 2.495 1.155 3.101.881.096-.687.372-1.155.677-1.419-2.353-.267-4.822-1.175-4.822-2.183 0-.481.173-.929.459-1.294"/>
-        </svg>
-        View on GitHub
-      </a>
+    <!-- FOOTNOTE -->
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
     </div>
   </div>
 
@@ -248,27 +239,12 @@ button, a { cursor: pointer; font-family: inherit; border: none; outline: none; 
 ──────────────────────────────────────────────────────────────────*/
 const QUIZZES =[
   {
-    title: "🔧 Quiz Maker",
-    description: "Create your own custom quizzes with this easy tool",
-    icon: "⚙️",
-    tags: ["Tool", "Create"],
-    url: "quiz-maker.html"
-  },
-  {
-    title: "📱 Quiz Maker JS",
-    description: "JavaScript-based quiz maker for interactive quizzes",
-    icon: "💻",
-    tags: ["Tool", "JavaScript"],
-    url: "quiz-maker-js.html"
-  },
-  {
-    title: "General Knowledge Quiz",
-    description: "Test your knowledge across science, history, geography, and more.",
-    icon: "🌍",
-    tags: ["10 Questions", "General"],
-    url: "quizes/quiz-template.html"
+    title: "📁 Cardiology",
+    description: "Cardiology quizzes and resources",
+    icon: "❤️",
+    tags: ["Folder"],
+    url: "#"
   }
-  // To add a new exam, just duplicate a block above, change the text, and link the new file!
 ];
 
 /* ─────────────────────────────────────────────────────────────────
