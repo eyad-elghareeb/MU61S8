@@ -437,6 +437,7 @@ input[type=radio]:checked + .option-label .option-key {
   width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
 }
 .dot.answered  { background: var(--correct); }
+.dot.wrong     { background: var(--wrong); }
 .dot.flagged   { background: var(--flagged); }
 .dot.current   { background: var(--accent); }
 .dot.unanswered{ background: var(--surface2); border: 1.5px solid var(--border); }
@@ -917,7 +918,8 @@ input[type=radio]:checked + .option-label .option-key {
         <h3>Navigation</h3>
         <div class="legend">
           <div class="legend-item"><div class="dot current"></div> Current</div>
-          <div class="legend-item"><div class="dot answered"></div> Answered</div>
+          <div class="legend-item"><div class="dot answered"></div> <span id="legend-text-answered">Answered</span></div>
+          <div class="legend-item" id="legend-wrong" style="display: none;"><div class="dot wrong"></div> Wrong</div>
           <div class="legend-item"><div class="dot flagged"></div> Flagged</div>
           <div class="legend-item"><div class="dot unanswered"></div> Skipped</div>
         </div>
@@ -1949,8 +1951,16 @@ function startQuiz() {
   if(state.mode === 'learning') {
     // Hide timer in learning mode
     document.getElementById('timer-display').classList.add('hidden');
+    const legendAns = document.getElementById('legend-text-answered');
+    if(legendAns) legendAns.textContent = 'Correct';
+    const legendWr = document.getElementById('legend-wrong');
+    if(legendWr) legendWr.style.display = 'flex';
   } else {
     document.getElementById('timer-display').classList.remove('hidden');
+    const legendAns = document.getElementById('legend-text-answered');
+    if(legendAns) legendAns.textContent = 'Answered';
+    const legendWr = document.getElementById('legend-wrong');
+    if(legendWr) legendWr.style.display = 'none';
   }
   
   buildNavGrid();
