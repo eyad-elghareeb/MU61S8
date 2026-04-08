@@ -1850,16 +1850,12 @@ function confirmResetProgress() {
     state.elapsed = 0;
     state.timerSecs = (QUESTIONS.length + 5) * 60;
     state.submitted = false;
+    state.mode = 'exam'; // Reset to default mode
     
     showToast('🔄 Progress reset! Starting fresh...');
     
     setTimeout(() => {
-      showScreen('quiz-screen');
-      buildNavGrid();
-      renderQuestion(state.current);
-      if(state.mode !== 'learning') {
-        startTimer();
-      }
+      showScreen('start-screen');
     }, 1000);
   }
 }
