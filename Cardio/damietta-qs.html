@@ -467,6 +467,7 @@ input[type=radio]:checked + .option-label .option-key {
 }
 .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
 .nav-btn.answered { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); }
+.nav-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong); color: var(--wrong); }
 .nav-btn.flagged  { background: var(--flagged-bg); border-color: var(--flagged); color: var(--flagged); }
 .nav-btn.current  { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim); }
 .nav-btn .flag-dot {
@@ -2374,6 +2375,50 @@ function renderQuestion(idx) {
   updateNavGrid();
   updateNavStats();
   area.scrollTop = 0;
+
+  // Persistent learning mode UI
+  if(state.mode === 'learning' && sel !== undefined) {
+    const isCorrect = sel === q.correct;
+    
+    // Highlight selected answer
+    const selectedLabel = document.querySelector(`label[for="opt_${sel}"]`);
+    if(selectedLabel) {
+      if(isCorrect) {
+        selectedLabel.style.borderColor = 'var(--correct)';
+        selectedLabel.style.background = 'var(--correct-bg)';
+        selectedLabel.querySelector('.option-key').style.background = 'var(--correct)';
+        selectedLabel.querySelector('.option-key').style.color = 'white';
+      } else {
+        selectedLabel.style.borderColor = 'var(--wrong)';
+        selectedLabel.style.background = 'var(--wrong-bg)';
+        selectedLabel.querySelector('.option-key').style.background = 'var(--wrong)';
+        selectedLabel.querySelector('.option-key').style.color = 'white';
+        
+        const correctLabel = document.querySelector(`label[for="opt_${q.correct}"]`);
+        if(correctLabel) {
+          correctLabel.style.borderColor = 'var(--correct)';
+          correctLabel.style.background = 'var(--correct-bg)';
+          correctLabel.querySelector('.option-key').style.background = 'var(--correct)';
+          correctLabel.querySelector('.option-key').style.color = 'white';
+        }
+      }
+    }
+    
+    // Show explanation
+    const explBox = document.createElement('div');
+    explBox.className = 'explanation-box';
+    explBox.style.marginTop = '1rem';
+    explBox.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect'}</strong>${q.explanation || ''}`;
+    document.getElementById('options-list').after(explBox);
+    
+    // Disable inputs
+    document.querySelectorAll('.option-label').forEach(label => {
+      label.style.pointerEvents = 'none';
+    });
+    document.querySelectorAll('input[name="q_opt"]').forEach(input => {
+      input.disabled = true;
+    });
+  }
 }
 
 /* ── ANSWER SELECTION ────────────────────────────────────── */
@@ -2473,7 +2518,10 @@ function updateNavGrid() {
     if(!btn) return;
     btn.className = 'nav-btn';
     if(i === state.current)   btn.classList.add('current');
-    else if(state.answers[i] !== undefined) btn.classList.add('answered');
+    else if(state.answers[i] !== undefined) {
+      if(state.mode === 'learning' && state.answers[i] !== QUESTIONS[i].correct) btn.classList.add('wrong');
+      else btn.classList.add('answered');
+    }
 
     // Add flag dot
     const existing = btn.querySelector('.flag-dot');
