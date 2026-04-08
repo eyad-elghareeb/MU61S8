@@ -1679,7 +1679,8 @@ function saveProgress() {
     elapsed: state.elapsed,
     timerSecs: state.timerSecs,
     mode: state.mode,
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    savedAt: Date.now()
   };
   
   try {
@@ -1803,7 +1804,18 @@ function restoreProgress() {
     state.answers = data.answers;
     state.flagged = data.flagged || {};
     state.elapsed = data.elapsed || 0;
-    state.timerSecs = Math.max(0, data.timerSecs);
+    
+    // Calculate timerSecs based on whether savedAt exists (new format) or not (old format)
+    if (data.savedAt !== undefined) {
+      // New format: recalculate timerSecs from total time minus elapsed
+      // This ensures time only accumulates while user is actively on the page
+      const totalTime = (QUESTIONS.length + 5) * 60;
+      state.timerSecs = Math.max(0, totalTime - state.elapsed);
+    } else {
+      // Old format: use stored timerSecs for backward compatibility
+      state.timerSecs = Math.max(0, data.timerSecs);
+    }
+    
     state.mode = data.mode;
     state.submitted = false;
     
