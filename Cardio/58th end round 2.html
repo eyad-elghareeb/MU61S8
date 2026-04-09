@@ -1,9 +1,11 @@
-<html lang="en" data-theme="dark" style="--q-count: 10;"><head>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>58th End Round 2</title>
+<title>Quiz Engine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════
    CSS VARIABLES & THEME
@@ -468,7 +470,7 @@ input[type=radio]:checked + .option-label .option-key {
 }
 .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
 .nav-btn.answered { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); }
-.nav-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong); color: var(--wrong); }
+.nav-btn.wrong    { background: var(--wrong-bg); border-color: var(--wrong); color: var(--wrong); }
 .nav-btn.flagged  { background: var(--flagged-bg); border-color: var(--flagged); color: var(--flagged); }
 .nav-btn.current  { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim); }
 .nav-btn .flag-dot {
@@ -741,8 +743,12 @@ input[type=radio]:checked + .option-label .option-key {
   font-weight: 500;
   box-shadow: var(--shadow);
   z-index: 9999;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 90%;
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
@@ -821,21 +827,12 @@ input[type=radio]:checked + .option-label .option-key {
 ═══════════════════════════════════════════ */
 .hidden { display: none !important; }
 </style>
-<!-- Meta tags for preview and favicon -->
-<meta name="description" content="Cardio 58th Batch End Round 2 Examination">
-<meta property="og:title" content="58th End Round 2">
-<meta property="og:description" content="Cardio 58th Batch End Round 2 Examination">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="58th End Round 2">
-<meta name="twitter:description" content="Cardio 58th Batch End Round 2 Examination">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
 </head>
 <body>
 
 <!-- ═══════════════════════════ START ═══════════════════════════ -->
 <div id="start-screen" class="screen active">
-  <a href="../index.html" class="hub-back-btn">
+  <a href="../index.html" class="hub-back-btn" onclick="navigateToIndex(event); return false;">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
       <line x1="19" y1="12" x2="5" y2="12"></line>
       <polyline points="12 19 5 12 12 5"></polyline>
@@ -845,15 +842,15 @@ input[type=radio]:checked + .option-label .option-key {
 
   <div class="start-card">
     <div class="start-icon">📝</div>
-    <h1 id="quiz-title">General Knowledge Quiz</h1>
-    <p class="subtitle" id="quiz-desc">Test your knowledge across science, history, geography, and more.</p>
+    <h1 id="quiz-title">Loading Quiz…</h1>
+    <p class="subtitle" id="quiz-desc">Answer all questions before the timer runs out.</p>
     <div class="meta-grid">
       <div class="meta-item">
-        <span class="val" id="meta-questions">10</span>
+        <span class="val" id="meta-questions">—</span>
         <span class="lbl">Questions</span>
       </div>
       <div class="meta-item">
-        <span class="val" id="meta-time">15</span>
+        <span class="val" id="meta-time">—</span>
         <span class="lbl">Minutes</span>
       </div>
     </div>
@@ -863,8 +860,8 @@ input[type=radio]:checked + .option-label .option-key {
       <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem; font-weight: 500;">Quiz Mode</p>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
         <label style="cursor: pointer;">
-          <input type="radio" name="quiz-mode" value="exam" checked="" style="display: none;">
-          <div style="padding: 0.85rem; border-radius: var(--radius); border-top-width: ; border-top-style: ; border-color: var(--accent); border-right-width: ; border-right-style: ; border-bottom-width: ; border-bottom-style: ; border-left-width: ; border-left-style: ; border-image-outset: ; border-image-repeat: ; border-image-slice: ; border-image-source: ; border-image-width: ; background: var(--accent-dim); transition: all var(--transition); text-align: center;" class="mode-option mode-selected">
+          <input type="radio" name="quiz-mode" value="exam" checked style="display: none;">
+          <div style="padding: 0.85rem; border-radius: var(--radius); border: 1.5px solid var(--border); background: var(--surface2); transition: all var(--transition); text-align: center;" class="mode-option mode-selected">
             <div style="font-weight: 600; font-size: 0.95rem;">📝 Exam Mode</div>
             <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Timer + Normal Quiz</div>
           </div>
@@ -887,15 +884,15 @@ input[type=radio]:checked + .option-label .option-key {
 <div id="quiz-screen" class="screen">
   <!-- Top bar -->
   <div class="topbar">
-    <div class="topbar-title" id="topbar-title">General Knowledge Quiz</div>
+    <div class="topbar-title" id="topbar-title">Quiz</div>
     <div class="timer-wrap" id="timer-display">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
       </svg>
       <span id="timer-text">00:00</span>
     </div>
     <div class="topbar-actions">
-      <a href="../index.html" class="icon-btn" title="Back to Hub">🏠</a>
+      <a href="#" class="icon-btn" title="Back to Hub" onclick="navigateToIndex(event); return false;">🏠</a>
       <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
       <button class="icon-btn danger" onclick="confirmResetProgress()" title="Reset Progress">↻</button>
     </div>
@@ -929,7 +926,7 @@ input[type=radio]:checked + .option-label .option-key {
       </div>
       <div class="nav-stats">
         <div class="stat-item"><div class="sv green" id="stat-answered">0</div><div class="sl">Done</div></div>
-        <div class="stat-item"><div class="sv blue" id="stat-flagged">0</div><div class="sl">Flagged</div></div>
+        <div class="stat-item"><div class="sv blue"  id="stat-flagged">0</div><div class="sl">Flagged</div></div>
         <div class="stat-item"><div class="sv muted" id="stat-skipped">0</div><div class="sl">Skipped</div></div>
       </div>
     </div>
@@ -941,7 +938,7 @@ input[type=radio]:checked + .option-label .option-key {
   <div class="result-topbar">
     <h2>📊 Quiz Results</h2>
     <div class="topbar-actions">
-      <a href="../index.html" class="icon-btn" title="Back to Hub">🏠</a>
+      <a href="#" class="icon-btn" title="Back to Hub" onclick="navigateToIndex(event); return false;">🏠</a>
       <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
       <button class="icon-btn danger" onclick="confirmResetProgress()" title="Reset Progress">↻</button>
     </div>
@@ -957,8 +954,8 @@ input[type=radio]:checked + .option-label .option-key {
         <h3 id="res-grade">Loading…</h3>
         <div class="score-grid">
           <div class="score-stat"><div class="n green" id="res-correct">0</div><div class="t">Correct</div></div>
-          <div class="score-stat"><div class="n red" id="res-wrong">0</div><div class="t">Wrong</div></div>
-          <div class="score-stat"><div class="n blue" id="res-flagged">0</div><div class="t">Flagged</div></div>
+          <div class="score-stat"><div class="n red"   id="res-wrong">0</div><div class="t">Wrong</div></div>
+          <div class="score-stat"><div class="n blue"  id="res-flagged">0</div><div class="t">Flagged</div></div>
           <div class="score-stat"><div class="n muted" id="res-skipped">0</div><div class="t">Skipped</div></div>
           <div class="score-stat"><div class="n" id="res-time">—</div><div class="t">Time Used</div></div>
         </div>
@@ -979,7 +976,7 @@ input[type=radio]:checked + .option-label .option-key {
 
     <div class="result-actions">
       <button class="btn-restart" onclick="restartQuiz()">↺ Retake Quiz</button>
-      <a href="../index.html" class="btn-restart btn-secondary">🏠 Return to Hub</a>
+      <a href="#" class="btn-restart btn-secondary" onclick="navigateToIndex(event); return false;">🏠 Return to Hub</a>
     </div>
   </div>
 </div>
@@ -1362,6 +1359,10 @@ function renderQuestion(idx) {
   const isLast = idx === QUESTIONS.length - 1;
   const sel = state.answers[idx];
 
+  // In learning mode, check if answered
+  const isLearning = state.mode === 'learning';
+  const isAnswered = sel !== undefined;
+
   // progress
   const done = Object.keys(state.answers).length;
   document.getElementById('progress-fill').style.width = (done / QUESTIONS.length * 100) + '%';
@@ -1380,14 +1381,36 @@ function renderQuestion(idx) {
     </div>
 
     <div class="options-list" id="options-list">
-      ${q.options.map((opt, i) => `
-        <input type="radio" name="q_opt" id="opt_${i}" value="${i}" ${sel===i?'checked':''} onchange="selectAnswer(${idx},${i})">
-        <label class="option-label" for="opt_${i}">
-          <span class="option-key">${KEYS[i]}</span>
+      ${q.options.map((opt, i) => {
+        let extraStyle = '';
+        let keyStyle = '';
+        if (isLearning && isAnswered) {
+          if (i === q.correct) {
+            extraStyle = 'border-color: var(--correct) !important; background: var(--correct-bg) !important; pointer-events: none;';
+            keyStyle = 'background: var(--correct) !important; color: white !important; border-color: var(--correct) !important;';
+          } else if (sel === i) {
+            extraStyle = 'border-color: var(--wrong) !important; background: var(--wrong-bg) !important; pointer-events: none;';
+            keyStyle = 'background: var(--wrong) !important; color: white !important; border-color: var(--wrong) !important;';
+          } else {
+            extraStyle = 'pointer-events: none;';
+          }
+        }
+        return `
+        <input type="radio" name="q_opt" id="opt_${i}" value="${i}" ${sel===i?'checked':''} ${isLearning && isAnswered ? 'disabled' : ''} onchange="selectAnswer(${idx},${i})">
+        <label class="option-label" for="opt_${i}" style="${extraStyle}">
+          <span class="option-key" style="${keyStyle}">${KEYS[i]}</span>
           <span class="option-text">${opt}</span>
         </label>
-      `).join('')}
+        `;
+      }).join('')}
     </div>
+
+    ${(isLearning && isAnswered) ? `
+      <div class="explanation-box" style="margin-top: 1rem;">
+        <strong>${sel === q.correct ? '✅ Correct!' : '❌ Incorrect'}</strong>
+        ${q.explanation}
+      </div>
+    ` : ''}
 
     <div class="q-nav-btns">
       ${idx > 0 ? `<button class="btn-nav" onclick="goTo(${idx-1})">← Previous</button>` : ''}
@@ -1399,54 +1422,12 @@ function renderQuestion(idx) {
   updateNavGrid();
   updateNavStats();
   area.scrollTop = 0;
-
-  // Persistent learning mode UI
-  if(state.mode === 'learning' && sel !== undefined) {
-    const isCorrect = sel === q.correct;
-    
-    // Highlight selected answer
-    const selectedLabel = document.querySelector(`label[for="opt_${sel}"]`);
-    if(selectedLabel) {
-      if(isCorrect) {
-        selectedLabel.style.borderColor = 'var(--correct)';
-        selectedLabel.style.background = 'var(--correct-bg)';
-        selectedLabel.querySelector('.option-key').style.background = 'var(--correct)';
-        selectedLabel.querySelector('.option-key').style.color = 'white';
-      } else {
-        selectedLabel.style.borderColor = 'var(--wrong)';
-        selectedLabel.style.background = 'var(--wrong-bg)';
-        selectedLabel.querySelector('.option-key').style.background = 'var(--wrong)';
-        selectedLabel.querySelector('.option-key').style.color = 'white';
-        
-        const correctLabel = document.querySelector(`label[for="opt_${q.correct}"]`);
-        if(correctLabel) {
-          correctLabel.style.borderColor = 'var(--correct)';
-          correctLabel.style.background = 'var(--correct-bg)';
-          correctLabel.querySelector('.option-key').style.background = 'var(--correct)';
-          correctLabel.querySelector('.option-key').style.color = 'white';
-        }
-      }
-    }
-    
-    // Show explanation
-    const explBox = document.createElement('div');
-    explBox.className = 'explanation-box';
-    explBox.style.marginTop = '1rem';
-    explBox.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect'}</strong>${q.explanation || ''}`;
-    document.getElementById('options-list').after(explBox);
-    
-    // Disable inputs
-    document.querySelectorAll('.option-label').forEach(label => {
-      label.style.pointerEvents = 'none';
-    });
-    document.querySelectorAll('input[name="q_opt"]').forEach(input => {
-      input.disabled = true;
-    });
-  }
 }
 
 /* ── ANSWER SELECTION ────────────────────────────────────── */
 function selectAnswer(qIdx, optIdx) {
+  if (state.mode === 'learning' && state.answers[qIdx] !== undefined) return;
+  
   state.answers[qIdx] = optIdx;
   updateNavGrid();
   updateNavStats();
@@ -1454,53 +1435,11 @@ function selectAnswer(qIdx, optIdx) {
   const done = Object.keys(state.answers).length;
   document.getElementById('progress-fill').style.width = (done / QUESTIONS.length * 100) + '%';
   
-  // In learning mode: show correct answer and feedback after user selects option
+  // In learning mode: re-render to show explanation and highlights
   if(state.mode === 'learning') {
-    const q = QUESTIONS[qIdx];
-    const isCorrect = optIdx === q.correct;
-    
-    // Highlight selected answer
-    const selectedLabel = document.querySelector(`label[for="opt_${optIdx}"]`);
-    if(selectedLabel) {
-      if(isCorrect) {
-        selectedLabel.style.borderColor = 'var(--correct)';
-        selectedLabel.style.background = 'var(--correct-bg)';
-        selectedLabel.querySelector('.option-key').style.background = 'var(--correct)';
-        selectedLabel.querySelector('.option-key').style.color = 'white';
-      } else {
-        selectedLabel.style.borderColor = 'var(--wrong)';
-        selectedLabel.style.background = 'var(--wrong-bg)';
-        selectedLabel.querySelector('.option-key').style.background = 'var(--wrong)';
-        selectedLabel.querySelector('.option-key').style.color = 'white';
-        
-        // Also show correct answer
-        const correctLabel = document.querySelector(`label[for="opt_${q.correct}"]`);
-        if(correctLabel) {
-          correctLabel.style.borderColor = 'var(--correct)';
-          correctLabel.style.background = 'var(--correct-bg)';
-          correctLabel.querySelector('.option-key').style.background = 'var(--correct)';
-          correctLabel.querySelector('.option-key').style.color = 'white';
-        }
-      }
-    }
-    
-    // Show explanation
-    const existingExpl = document.querySelector('.explanation-box');
-    if(!existingExpl) {
-      const explBox = document.createElement('div');
-      explBox.className = 'explanation-box';
-      explBox.style.marginTop = '1rem';
-      explBox.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect'}</strong>${q.explanation}`;
-      document.getElementById('options-list').after(explBox);
-    }
-    
-    // Disable all options after selection
-    document.querySelectorAll('.option-label').forEach(label => {
-      label.style.pointerEvents = 'none';
-    });
+    renderQuestion(qIdx);
   }
 }
-
 /* ── NAVIGATION ──────────────────────────────────────────── */
 function nextQuestion() {
   if(state.current < QUESTIONS.length - 1) renderQuestion(state.current + 1);
@@ -1541,10 +1480,15 @@ function updateNavGrid() {
     const btn = document.getElementById(`nav-btn-${i}`);
     if(!btn) return;
     btn.className = 'nav-btn';
-    if(i === state.current)   btn.classList.add('current');
-    else if(state.answers[i] !== undefined) {
-      if(state.mode === 'learning' && state.answers[i] !== QUESTIONS[i].correct) btn.classList.add('wrong');
-      else btn.classList.add('answered');
+    
+    if(i === state.current) {
+      btn.classList.add('current');
+    } else if(state.answers[i] !== undefined) {
+      if (state.mode === 'learning' && state.answers[i] !== QUESTIONS[i].correct) {
+        btn.classList.add('wrong');
+      } else {
+        btn.classList.add('answered');
+      }
     }
 
     // Add flag dot
@@ -1723,6 +1667,51 @@ function toggleTheme() {
   
   updateThemeIcon();
 }
+
+/* ── NAVIGATE TO INDEX.HTML IN SAME DIRECTORY (WITH FALLBACK) ───────────────────────────────────────────────── */
+function navigateToIndex(event) {
+  event.preventDefault();
+  // Get the current page's path
+  const currentPath = window.location.pathname;
+  // Extract the directory portion
+  const lastSlashIndex = currentPath.lastIndexOf('/');
+  const directory = lastSlashIndex !== -1 ? currentPath.substring(0, lastSlashIndex + 1) : '/';
+  
+  // First, try to navigate to index.html in the same directory (PRIORITY)
+  const sameDirIndex = directory + 'index.html';
+  
+  // Create a temporary link to test navigation
+  // We'll attempt to load the same directory index.html first
+  // If it results in a 404, the browser will show the error page
+  // For a more graceful fallback, we use an iframe to test existence
+  const testFrame = document.createElement('iframe');
+  testFrame.style.display = 'none';
+  testFrame.src = sameDirIndex;
+  document.body.appendChild(testFrame);
+  
+  testFrame.onload = function() {
+    // Successfully loaded - index.html exists in same directory
+    document.body.removeChild(testFrame);
+    window.location.href = sameDirIndex;
+  };
+  
+  testFrame.onerror = function() {
+    // Failed to load - fallback to parent directory
+    document.body.removeChild(testFrame);
+    const parentDir = directory.substring(0, directory.lastIndexOf('/', directory.length - 2) + 1) || '/';
+    window.location.href = parentDir + 'index.html';
+  };
+  
+  // Timeout fallback in case neither onload nor onerror fires (e.g., CORS)
+  setTimeout(function() {
+    if (document.body.contains(testFrame)) {
+      document.body.removeChild(testFrame);
+      // If we get here, assume same directory didn't work, try parent
+      const parentDir = directory.substring(0, directory.lastIndexOf('/', directory.length - 2) + 1) || '/';
+      window.location.href = parentDir + 'index.html';
+    }
+  }, 3000);
+}
 function updateThemeIcon() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   
@@ -1734,12 +1723,71 @@ function updateThemeIcon() {
 
 /* ── TOAST ───────────────────────────────────────────────── */
 let toastTimer;
-function showToast(msg) {
+let pendingRestoreData = null; // Store pending restore data for optional restore
+
+function showToast(msg, actions = []) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
+  
+  // Clear any existing content
+  t.innerHTML = '';
+  
+  // Create message span
+  const msgSpan = document.createElement('span');
+  msgSpan.textContent = msg;
+  msgSpan.style.flex = '1';
+  t.appendChild(msgSpan);
+  
+  // Add action buttons if provided
+  if (actions.length > 0) {
+    const actionsContainer = document.createElement('div');
+    actionsContainer.style.display = 'flex';
+    actionsContainer.style.gap = '0.5rem';
+    actionsContainer.style.marginLeft = '0.75rem';
+    
+    actions.forEach(action => {
+      const btn = document.createElement('button');
+      btn.textContent = action.label;
+      btn.style.cssText = `
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: ${action.primary ? 'var(--accent)' : 'var(--surface2)'};
+        color: ${action.primary ? '#000' : 'var(--text)'};
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition);
+      `;
+      btn.onclick = () => {
+        action.onClick();
+        t.classList.remove('show');
+      };
+      btn.onmouseenter = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--accent)';
+          btn.style.color = 'var(--accent)';
+        }
+      };
+      btn.onmouseleave = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--border)';
+          btn.style.color = 'var(--text)';
+        }
+      };
+      actionsContainer.appendChild(btn);
+    });
+    
+    t.appendChild(actionsContainer);
+  }
+  
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  
+  // Auto-hide only if no actions (for simple toasts)
+  if (actions.length === 0) {
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+  // If there are actions, don't auto-hide - let user dismiss manually
 }
 
 /* ── LOCAL STORAGE SAVE/RESTORE ──────────────────────────── */
@@ -1765,7 +1813,7 @@ function saveProgress() {
     timerSecs: state.timerSecs,
     mode: state.mode,
     timestamp: Date.now(),
-    savedAt: Date.now()
+    savedAt: Date.now() // Separate field for time calculation
   };
   
   try {
@@ -1802,6 +1850,7 @@ function isValidSaveData(data) {
   if (!data.flagged || typeof data.flagged !== 'object') return false;
   if (typeof data.timerSecs !== 'number' || data.timerSecs < 0) return false;
   if (!['exam', 'learning'].includes(data.mode)) return false;
+  // savedAt is optional now since we don't use it for time calculation
   return true;
 }
 
@@ -1832,10 +1881,12 @@ function clearOldSaves() {
 }
 
 /**
- * Restore quiz progress from localStorage
- * Includes validation and compatibility checks
+ * Restore quiz progress from localStorage (deprecated - kept for compatibility)
+ * Use checkSavedProgress() instead which shows optional restore toast
  */
 function restoreProgress() {
+  // This function is now deprecated in favor of checkSavedProgress() + doRestoreProgress()
+  // Kept for backward compatibility if called elsewhere
   const saved = localStorage.getItem(STORAGE_KEY);
   if (!saved) return false;
   
@@ -1871,38 +1922,8 @@ function restoreProgress() {
       return false;
     }
     
-    // Validate all answer indices are still valid
-    for (const [qIdx, optIdx] of Object.entries(data.answers)) {
-      const qIndex = parseInt(qIdx);
-      if (qIndex >= 0 && qIndex < QUESTIONS.length) {
-        const optCount = QUESTIONS[qIndex].options.length;
-        if (optIdx < 0 || optIdx >= optCount) {
-          delete data.answers[qIdx];
-        }
-      } else {
-        delete data.answers[qIdx];
-      }
-    }
-    
-    // Restore state - elapsed remains exactly as saved (time only accumulates while active)
-    state.current = Math.min(data.current, QUESTIONS.length - 1);
-    state.answers = data.answers;
-    state.flagged = data.flagged || {};
-    state.elapsed = data.elapsed || 0;
-    
-    // Calculate timerSecs from original total time minus elapsed to ensure consistency
-    // If savedAt exists, recalculate based on original duration to avoid time drift
-    if (data.savedAt !== undefined) {
-      const totalTime = (QUESTIONS.length + 5) * 60;
-      state.timerSecs = Math.max(0, totalTime - state.elapsed);
-    } else {
-      // Backward compatibility: use stored timerSecs for old saves without savedAt
-      state.timerSecs = Math.max(0, data.timerSecs);
-    }
-    
-    state.mode = data.mode;
-    state.submitted = false;
-    
+    // Do the actual restore
+    doRestoreProgress(data);
     return true;
   } catch(e) {
     console.error('Error restoring progress:', e);
@@ -1960,27 +1981,134 @@ window.addEventListener('beforeunload', function() {
 });
 
 // Check for saved progress on init
+let restoreToastTimeout = null;
+
 function checkSavedProgress() {
-  if (restoreProgress()) {
-    showToast("📂 Previous progress found! Resuming quiz...");
-    setTimeout(() => {
-      if(state.mode === 'learning') {
-        document.getElementById('timer-display').classList.add('hidden');
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+  
+  try {
+    const data = JSON.parse(saved);
+    
+    // Validate the saved data
+    if (data.version !== STORAGE_VERSION) {
+      console.log('Incompatible save version, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    
+    if (data.quizTitle !== QUIZ_CONFIG.title) {
+      console.log('Save is for a different quiz, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    
+    if (data.totalQuestions !== QUESTIONS.length) {
+      console.log('Quiz structure has changed, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    
+    const maxAge = 7 * 24 * 60 * 60 * 1000;
+    if (Date.now() - data.timestamp > maxAge) {
+      console.log('Save is too old, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    
+    // Store pending restore data
+    pendingRestoreData = data;
+    
+    // Show toast with optional restore button
+    showToast("📂 Previous progress found!", [
+      {
+        label: "Restore",
+        primary: true,
+        onClick: () => {
+          clearTimeout(restoreToastTimeout);
+          doRestoreProgress(pendingRestoreData);
+        }
+      },
+      {
+        label: "Dismiss",
+        primary: false,
+        onClick: () => {
+          clearTimeout(restoreToastTimeout);
+          pendingRestoreData = null;
+          clearProgress();
+        }
       }
-      showScreen('quiz-screen');
-      buildNavGrid();
-      renderQuestion(state.current);
-      updateTimerDisplay(); // Ensure timer display is correct on restore
-      if(state.mode !== 'learning') {
-        startTimer();
+    ]);
+    
+    // Auto-dismiss after 15 seconds if user hasn't interacted
+    restoreToastTimeout = setTimeout(() => {
+      console.log('Auto-dismissing restore toast after 15 seconds');
+      pendingRestoreData = null;
+      clearProgress();
+      // Hide the toast if it's still visible
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.classList.remove('show');
       }
-    }, 1000);
+    }, 15000);
+    
+  } catch(e) {
+    console.error('Error checking saved progress:', e);
+    localStorage.removeItem(STORAGE_KEY);
   }
+}
+
+/**
+ * Actually perform the restore with validated data
+ */
+function doRestoreProgress(data) {
+  // Handle backward compatibility: if savedAt doesn't exist, use timestamp
+  if (!data.savedAt) {
+    data.savedAt = data.timestamp;
+  }
+  
+  // Validate all answer indices are still valid
+  for (const [qIdx, optIdx] of Object.entries(data.answers)) {
+    const qIndex = parseInt(qIdx);
+    if (qIndex >= 0 && qIndex < QUESTIONS.length) {
+      const optCount = QUESTIONS[qIndex].options.length;
+      if (optIdx < 0 || optIdx >= optCount) {
+        delete data.answers[qIdx];
+      }
+    } else {
+      delete data.answers[qIdx];
+    }
+  }
+  
+  // Restore state
+  state.current = Math.min(data.current, QUESTIONS.length - 1);
+  state.answers = data.answers;
+  state.flagged = data.flagged || {};
+  
+  // Restore timer values exactly as saved (time doesn't count while page is closed)
+  state.elapsed = data.elapsed || 0;
+  state.timerSecs = data.timerSecs || 0;
+  
+  state.mode = data.mode;
+  state.submitted = false;
+  
+  setTimeout(() => {
+    if(state.mode === 'learning') {
+      document.getElementById('timer-display').classList.add('hidden');
+    }
+    showScreen('quiz-screen');
+    buildNavGrid();
+    renderQuestion(state.current);
+    updateTimerDisplay(); // Ensure timer display is correct on restore
+    if(state.mode !== 'learning') {
+      startTimer();
+    }
+  }, 500);
 }
 
 /* ── BOOT ────────────────────────────────────────────────── */
 initUI();
 checkSavedProgress();
 </script>
-
-</body></html>
+</body>
+</html>
