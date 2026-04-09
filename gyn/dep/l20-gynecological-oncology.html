@@ -1,0 +1,3978 @@
+<html lang="en" data-theme="dark" style="--q-count: 10;"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Knowledge Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   CSS VARIABLES & THEME
+═══════════════════════════════════════════ */
+:root {
+  --bg:         #0d1117;
+  --surface:    #161b22;
+  --surface2:   #1c2330;
+  --border:     #30363d;
+  --text:       #e6edf3;
+  --text-muted: #8b949e;
+  --accent:     #f0a500;
+  --accent-dim: rgba(240,165,0,0.12);
+  --correct:    #2ea043;
+  --correct-bg: rgba(46,160,67,0.12);
+  --wrong:      #da3633;
+  --wrong-bg:   rgba(218,54,51,0.12);
+  --flagged:    #58a6ff;
+  --flagged-bg: rgba(88,166,255,0.12);
+  --skip:       #6e7681;
+  --radius:     12px;
+  --shadow:     0 4px 24px rgba(0,0,0,0.4);
+  --transition: 0.2s ease;
+  --nav-size:   280px;
+  --nav-size-sm:72px;
+}
+[data-theme="light"] {
+  --bg:         #f3f0eb;
+  --surface:    #ffffff;
+  --surface2:   #f8f6f1;
+  --border:     #d0ccc5;
+  --text:       #1c1917;
+  --text-muted: #78716c;
+  --accent:     #c27803;
+  --accent-dim: rgba(194,120,3,0.10);
+  --correct:    #16a34a;
+  --correct-bg: rgba(22,163,74,0.10);
+  --wrong:      #dc2626;
+  --wrong-bg:   rgba(220,38,38,0.10);
+  --flagged:    #2563eb;
+  --flagged-bg: rgba(37,99,235,0.10);
+  --shadow:     0 4px 24px rgba(0,0,0,0.10);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  overflow: hidden;
+}
+button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+input[type=radio] { display: none; }
+
+/* ═══════════════════════════════════════════
+   SCREENS
+═══════════════════════════════════════════ */
+.screen { display: none; width: 100%; height: 100%; position: relative; }
+.screen.active { display: flex; }
+
+/* ═══════════════════════════════════════════
+   START SCREEN
+═══════════════════════════════════════════ */
+#start-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
+  overflow-y: auto;
+}
+.hub-back-btn {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color var(--transition);
+  z-index: 10;
+}
+.hub-back-btn:hover { color: var(--text); }
+.hub-back-btn svg { transition: transform var(--transition); }
+.hub-back-btn:hover svg { transform: translateX(-3px); }
+
+.start-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.start-icon {
+  width: 72px; height: 72px;
+  background: var(--accent-dim);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+}
+.start-card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.start-card .subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.meta-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+}
+.meta-item .val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: block;
+}
+.meta-item .lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.btn-start {
+  width: 100%;
+  padding: 0.95rem 2rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  transition: opacity var(--transition), transform var(--transition);
+}
+.btn-start:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-start:active { transform: translateY(0); }
+
+/* Mode options - ensure equal height on mobile */
+.mode-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+}
+
+@media (max-width: 480px) {
+  .mode-option {
+    min-height: 90px;
+  }
+  .start-card {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   QUIZ SCREEN LAYOUT
+═══════════════════════════════════════════ */
+#quiz-screen {
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* TOP BAR */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  z-index: 10;
+}
+.topbar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 90px;
+  justify-content: center;
+}
+.timer-wrap svg { flex-shrink: 0; }
+.timer-wrap.warn { border-color: #da3633; color: #da3633; animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{ opacity:1 } 50%{ opacity:0.6 } }
+
+.topbar-actions { display: flex; gap: 0.5rem; align-items: center; }
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition);
+  font-size: 1rem;
+  text-decoration: none;
+}
+.icon-btn:hover { color: var(--text); border-color: var(--accent); }
+.icon-btn.danger:hover { border-color: var(--wrong); color: var(--wrong); }
+
+/* MAIN BODY */
+.quiz-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* QUESTION AREA */
+.question-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.question-area::-webkit-scrollbar { width: 6px; }
+.question-area::-webkit-scrollbar-track { background: transparent; }
+.question-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.q-number-badge {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.q-actions { margin-left: auto; display: flex; gap: 0.5rem; }
+.flag-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 7px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex; align-items: center; gap: 0.35rem;
+  transition: all var(--transition);
+}
+.flag-btn:hover, .flag-btn.active {
+  background: var(--flagged-bg);
+  border-color: var(--flagged);
+  color: var(--flagged);
+}
+.flag-btn svg { transition: transform 0.2s; }
+.flag-btn.active svg { transform: scale(1.1); }
+
+.q-text {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* OPTIONS */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.option-label::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--accent-dim);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.option-label:hover { border-color: var(--accent); }
+.option-label:hover::before { opacity: 1; }
+input[type=radio]:checked + .option-label {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.option-key {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all var(--transition);
+  z-index: 1;
+  text-transform: uppercase;
+}
+input[type=radio]:checked + .option-label .option-key {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+.option-text { font-size: 0.95rem; line-height: 1.5; z-index: 1; padding-top: 0.05rem; }
+
+/* NAVIGATION BUTTONS */
+.q-nav-btns {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.btn-nav {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all var(--transition);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+.btn-nav:hover { border-color: var(--accent); color: var(--accent); }
+.btn-nav.primary {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  margin-left: auto;
+}
+.btn-nav.primary:hover { opacity: 0.85; }
+.btn-nav.submit-btn {
+  background: var(--correct);
+  border-color: var(--correct);
+  color: #fff;
+  margin-left: auto;
+}
+.btn-nav.submit-btn:hover { opacity: 0.85; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION PANE
+═══════════════════════════════════════════ */
+.nav-pane {
+  width: var(--nav-size);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.nav-pane-header {
+  padding: 1rem 1.1rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.nav-pane-header h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+  font-weight: 600;
+}
+.legend {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 0.75rem;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; color: var(--text-muted);
+}
+.dot {
+  width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
+}
+.dot.answered  { background: var(--correct); }
+.dot.wrong     { background: var(--wrong); }
+.dot.flagged   { background: var(--flagged); }
+.dot.current   { background: var(--accent); }
+.dot.unanswered{ background: var(--surface2); border: 1.5px solid var(--border); }
+
+.nav-grid-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.85rem;
+}
+.nav-grid-wrap::-webkit-scrollbar { width: 4px; }
+.nav-grid-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+  gap: 6px;
+}
+.nav-btn {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+  position: relative;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn.answered { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); }
+.nav-btn.wrong    { background: var(--wrong-bg); border-color: var(--wrong); color: var(--wrong); }
+.nav-btn.flagged  { background: var(--flagged-bg); border-color: var(--flagged); color: var(--flagged); }
+.nav-btn.current  { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim); }
+.nav-btn .flag-dot {
+  position: absolute; top: 2px; right: 2px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--flagged);
+}
+
+/* Nav pane bottom stats */
+.nav-stats {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.stat-item { text-align: center; }
+.stat-item .sv { font-size: 1rem; font-weight: 700; }
+.stat-item .sl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.sv.green { color: var(--correct); }
+.sv.blue  { color: var(--flagged); }
+.sv.muted { color: var(--text-muted); }
+
+/* ═══════════════════════════════════════════
+   PORTRAIT / BOTTOM NAV PANE
+═══════════════════════════════════════════ */
+@media (orientation: portrait) {
+  .quiz-body { flex-direction: column; }
+  .nav-pane {
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    max-height: 200px;
+  }
+  .nav-pane-header {
+    padding: 0.6rem 1rem 0.5rem;
+  }
+  .nav-grid-wrap {
+    padding: 0.5rem 0.85rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .nav-grid {
+    grid-template-columns: repeat(var(--q-count, 20), 38px);
+    grid-template-rows: 38px;
+    grid-auto-flow: column;
+    gap: 5px;
+  }
+  .nav-btn { width: 38px; height: 38px; aspect-ratio: unset; }
+  .nav-stats { padding: 0.5rem 1rem; }
+  .stat-item .sv { font-size: 0.9rem; }
+}
+
+/* ═══════════════════════════════════════════
+   RESULTS SCREEN
+═══════════════════════════════════════════ */
+#result-screen {
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.result-topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.result-topbar h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+}
+.result-topbar .topbar-actions { margin-left: auto; }
+
+.result-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 820px;
+  margin: 0 auto;
+  width: 100%;
+}
+.result-body::-webkit-scrollbar { width: 6px; }
+.result-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Score banner */
+.score-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+.score-circle {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 4px solid var(--accent);
+  flex-shrink: 0;
+  position: relative;
+  background: var(--accent-dim);
+}
+.score-circle .pct { font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+.score-circle .lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+.score-details { flex: 1; min-width: 180px; }
+.score-details h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.65rem;
+}
+.score-stat {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+}
+.score-stat .n { font-size: 1.2rem; font-weight: 700; }
+.score-stat .t { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.n.green { color: var(--correct); }
+.n.red   { color: var(--wrong); }
+.n.blue  { color: var(--flagged); }
+
+/* Result filter tabs */
+.result-tabs {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+.tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+.tab-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+/* Result items */
+.result-list { display: flex; flex-direction: column; gap: 1rem; }
+.result-item {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.result-item.correct { border-color: var(--correct); }
+.result-item.wrong   { border-color: var(--wrong); }
+.result-item.skipped { border-color: var(--skip); }
+
+.result-item-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+}
+.result-status-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.9rem; font-weight: 700;
+  margin-top: 0.15rem;
+}
+.result-item.correct .result-status-icon { background: var(--correct-bg); color: var(--correct); }
+.result-item.wrong   .result-status-icon { background: var(--wrong-bg);   color: var(--wrong); }
+.result-item.skipped .result-status-icon { background: var(--surface2);   color: var(--skip); }
+
+.result-q-meta { flex: 1; }
+.result-q-num  { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; font-weight: 600; }
+.result-q-text { font-size: 0.95rem; font-weight: 500; line-height: 1.5; }
+.expand-arrow { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.2rem; transition: transform 0.2s; }
+.result-item-header.open .expand-arrow { transform: rotate(180deg); }
+
+.result-item-body {
+  display: none;
+  padding: 0 1.25rem 1.1rem;
+  border-top: 1px solid var(--border);
+}
+.result-item-body.open { display: block; }
+
+.answer-row {
+  display: flex; align-items: flex-start; gap: 0.65rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+}
+.answer-row.your-answer { background: var(--wrong-bg); }
+.answer-row.correct-answer { background: var(--correct-bg); }
+.answer-row.your-answer.is-correct { background: var(--correct-bg); }
+.answer-row .ar-label {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em;
+  font-weight: 700; white-space: nowrap; margin-top: 0.1rem; opacity: 0.7;
+}
+.explanation-box {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.explanation-box strong { color: var(--text); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 0.25rem; }
+
+/* Result Actions (Bottom buttons) */
+.result-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.btn-restart {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 1.5px solid var(--accent);
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.btn-restart:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.btn-secondary {
+  background: var(--surface2);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+.toast {
+  position: fixed;
+  bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  z-index: 9999;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 90%;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ═══════════════════════════════════════════
+   MODAL (Confirm submit)
+═══════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  animation: slideUp 0.25s ease;
+}
+@keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+.modal h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.75rem; }
+.modal p  { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; }
+.modal-unanswered { font-weight: 600; color: var(--wrong); }
+.modal-actions { display: flex; gap: 0.75rem; }
+.modal-actions .btn-cancel {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition);
+}
+.modal-actions .btn-cancel:hover { border-color: var(--accent); }
+.modal-actions .btn-confirm {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: var(--correct);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all var(--transition);
+}
+.modal-actions .btn-confirm:hover { opacity: 0.85; }
+
+/* ═══════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════ */
+.progress-bar-wrap {
+  height: 3px;
+  background: var(--surface2);
+  position: relative;
+  flex-shrink: 0;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.4s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ═══════════════════════════════════════════
+   MISC
+═══════════════════════════════════════════ */
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ START ═══════════════════════════ -->
+<div id="start-screen" class="screen active">
+  <a href="#" class="hub-back-btn" onclick="navigateToIndex(event); return false;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Back to Hub
+  </a>
+
+  <div class="start-card">
+    <div class="start-icon">📝</div>
+    <h1 id="quiz-title">General Knowledge Quiz</h1>
+    <p class="subtitle" id="quiz-desc">Test your knowledge across science, history, geography, and more.</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="val" id="meta-questions">10</span>
+        <span class="lbl">Questions</span>
+      </div>
+      <div class="meta-item">
+        <span class="val" id="meta-time">15</span>
+        <span class="lbl">Minutes</span>
+      </div>
+    </div>
+    
+    <!-- Mode Selection -->
+    <div style="margin-bottom: 1.5rem;">
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem; font-weight: 500;">Quiz Mode</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <label style="cursor: pointer;">
+          <input type="radio" name="quiz-mode" value="exam" checked="" style="display: none;">
+          <div style="padding: 0.85rem; border-radius: var(--radius); border-top-width: ; border-top-style: ; border-color: var(--accent); border-right-width: ; border-right-style: ; border-bottom-width: ; border-bottom-style: ; border-left-width: ; border-left-style: ; border-image-outset: ; border-image-repeat: ; border-image-slice: ; border-image-source: ; border-image-width: ; background: var(--accent-dim); transition: all var(--transition); text-align: center;" class="mode-option mode-selected">
+            <div style="font-weight: 600; font-size: 0.95rem;">📝 Exam Mode</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Timer + Normal Quiz</div>
+          </div>
+        </label>
+        <label style="cursor: pointer;">
+          <input type="radio" name="quiz-mode" value="learning" style="display: none;">
+          <div style="padding: 0.85rem; border-radius: var(--radius); border: 1.5px solid var(--border); background: var(--surface2); transition: all var(--transition); text-align: center;" class="mode-option">
+            <div style="font-weight: 600; font-size: 0.95rem;">📚 Learning Mode</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">No timer, show answers</div>
+          </div>
+        </label>
+      </div>
+    </div>
+    
+    <button class="btn-start" onclick="startQuiz()">Start Quiz →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ QUIZ ════════════════════════════ -->
+<div id="quiz-screen" class="screen">
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-title" id="topbar-title">General Knowledge Quiz</div>
+    <div class="timer-wrap" id="timer-display">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <span id="timer-text">00:00</span>
+    </div>
+    <div class="topbar-actions">
+      <a href="#" class="icon-btn" title="Back to Hub" onclick="navigateToIndex(event); return false;">🏠</a>
+      <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
+      <button class="icon-btn danger" onclick="confirmResetProgress()" title="Reset Progress">↻</button>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+
+  <div class="quiz-body">
+    <!-- Question area -->
+    <div class="question-area" id="question-area">
+      <!-- Dynamically filled -->
+    </div>
+
+    <!-- Navigation pane -->
+    <div class="nav-pane" id="nav-pane">
+      <div class="nav-pane-header">
+        <h3>Navigation</h3>
+        <div class="legend">
+          <div class="legend-item"><div class="dot current"></div> Current</div>
+          <div class="legend-item"><div class="dot answered"></div> <span id="legend-text-answered">Answered</span></div>
+          <div class="legend-item" id="legend-wrong" style="display: none;"><div class="dot wrong"></div> Wrong</div>
+          <div class="legend-item"><div class="dot flagged"></div> Flagged</div>
+          <div class="legend-item"><div class="dot unanswered"></div> Skipped</div>
+        </div>
+      </div>
+      <div class="nav-grid-wrap">
+        <div class="nav-grid" id="nav-grid"></div>
+      </div>
+      <div class="nav-stats">
+        <div class="stat-item"><div class="sv green" id="stat-answered">0</div><div class="sl">Done</div></div>
+        <div class="stat-item"><div class="sv blue" id="stat-flagged">0</div><div class="sl">Flagged</div></div>
+        <div class="stat-item"><div class="sv muted" id="stat-skipped">0</div><div class="sl">Skipped</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ RESULTS ═════════════════════════ -->
+<div id="result-screen" class="screen">
+  <div class="result-topbar">
+    <h2>📊 Quiz Results</h2>
+    <div class="topbar-actions">
+      <a href="#" class="icon-btn" title="Back to Hub" onclick="navigateToIndex(event); return false;">🏠</a>
+      <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
+      <button class="icon-btn danger" onclick="confirmResetProgress()" title="Reset Progress">↻</button>
+    </div>
+  </div>
+  <div class="result-body">
+    <!-- Score banner -->
+    <div class="score-banner">
+      <div class="score-circle">
+        <div class="pct" id="res-pct">0%</div>
+        <div class="lbl">Score</div>
+      </div>
+      <div class="score-details">
+        <h3 id="res-grade">Loading…</h3>
+        <div class="score-grid">
+          <div class="score-stat"><div class="n green" id="res-correct">0</div><div class="t">Correct</div></div>
+          <div class="score-stat"><div class="n red" id="res-wrong">0</div><div class="t">Wrong</div></div>
+          <div class="score-stat"><div class="n blue" id="res-flagged">0</div><div class="t">Flagged</div></div>
+          <div class="score-stat"><div class="n muted" id="res-skipped">0</div><div class="t">Skipped</div></div>
+          <div class="score-stat"><div class="n" id="res-time">—</div><div class="t">Time Used</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="result-tabs">
+      <button class="tab-btn active" onclick="filterResults('all', this)">All Questions</button>
+      <button class="tab-btn" onclick="filterResults('correct', this)">✓ Correct</button>
+      <button class="tab-btn" onclick="filterResults('wrong', this)">✗ Wrong</button>
+      <button class="tab-btn" onclick="filterResults('skipped', this)">— Skipped</button>
+      <button class="tab-btn" onclick="filterResults('flagged', this)">⚑ Flagged</button>
+    </div>
+
+    <!-- Result items -->
+    <div class="result-list" id="result-list"></div>
+
+    <div class="result-actions">
+      <button class="btn-restart" onclick="restartQuiz()">↺ Retake Quiz</button>
+      <a href="#" class="btn-restart btn-secondary" onclick="navigateToIndex(event); return false;">🏠 Return to Hub</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CONFIRM MODAL ════════════════ -->
+<div class="modal-overlay" id="submit-modal">
+  <div class="modal">
+    <h3>Submit Quiz?</h3>
+    <p>You have <span class="modal-unanswered" id="modal-unanswered">—</span> unanswered question(s). Are you sure you want to submit?</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Go Back</button>
+      <button class="btn-confirm" onclick="confirmSubmit()">Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ TOAST ════════════════ -->
+<div class="toast show" id="toast"><span style="flex: 1 1 0%;">📂 Previous progress found!</span><div style="display: flex; gap: 0.5rem; margin-left: 0.75rem;"><button style="padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--border); background: var(--accent); color: rgb(0, 0, 0); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all var(--transition);">Restore</button><button style="padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all var(--transition);">Dismiss</button></div></div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     ▼ DROP IN YOUR QUESTIONS HERE ▼
+═══════════════════════════════════════════════════════════════════ -->
+<script>
+/* ─────────────────────────────────────────────────────────────────
+   QUIZ CONFIGURATION  — Edit this section to customise your quiz
+──────────────────────────────────────────────────────────────────*/
+const QUIZ_CONFIG = {
+  title: "L20 Gynecological Oncology",
+  description: "Department Book MCQs ",
+};
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options:["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct (shown in results).",
+   }
+──────────────────────────────────────────────────────────────────*/
+const QUESTIONS = [
+  {
+    "question": "What is the primary route of spread for most gynecologic tumors except choriocarcinoma?",
+    "options": [
+      "Blood",
+      "Lymphatic",
+      "Direct",
+      "Trans-cavitary"
+    ],
+    "correct": 1,
+    "explanation": "With the exception of choriocarcinoma which is highly vascular, most gynecologic malignancies spread primarily through the lymphatic system."
+  },
+  {
+    "question": "Which of the following is a characteristic of malignant cells under microscopic examination?",
+    "options": [
+      "Mitotic figures 2 or less",
+      "Large nuclei of various sizes and shapes",
+      "Hyperplasia and hypertrophy",
+      "Uniform nuclear size"
+    ],
+    "correct": 1,
+    "explanation": "Pleomorphism (variation in size and shape) of nuclei and increased nuclear-to-cytoplasmic ratios are hallmarks of malignancy."
+  },
+  {
+    "question": "What does Stage 0 (CIS) indicate in gynecologic tumor staging?",
+    "options": [
+      "Tumor confined to the organ of origin",
+      "Tumor not invading the basement membrane",
+      "Distant metastasis",
+      "Lymph node involvement"
+    ],
+    "correct": 1,
+    "explanation": "Stage 0 or Carcinoma in Situ (CIS) represents a pre-invasive state where malignant cells have not yet penetrated the epithelial basement membrane."
+  },
+  {
+    "question": "Which symptom is part of the 'ABCDM' clinical diagnosis for gynecologic tumors?",
+    "options": [
+      "Fever",
+      "Bleeding",
+      "Jaundice",
+      "Ascites"
+    ],
+    "correct": 1,
+    "explanation": "The ABCDM mnemonic for clinical assessment includes Age, Bleeding, Category, Discharge, and Mass."
+  },
+  {
+    "question": "Which investigation is NOT typically used for diagnosing gynecologic tumors?",
+    "options": [
+      "Tumor markers",
+      "Electrocardiogram (ECG)",
+      "CT scan",
+      "Hysteroscopy"
+    ],
+    "correct": 1,
+    "explanation": "While an ECG is part of pre-operative workup for general health, it is not a diagnostic tool for identifying or staging gynecologic tumors."
+  },
+  {
+    "question": "What is the most common gynecologic cancer in developed countries?",
+    "options": [
+      "Cervical carcinoma",
+      "Endometrial carcinoma",
+      "Ovarian carcinoma",
+      "Vulvar carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "In developed nations, endometrial cancer is the most frequent gynecologic malignancy, often associated with obesity and longevity."
+  },
+  {
+    "question": "What is the median age for endometrial carcinoma diagnosis?",
+    "options": [
+      "40 years",
+      "50 years",
+      "60 years",
+      "70 years"
+    ],
+    "correct": 2,
+    "explanation": "Endometrial cancer is primarily a disease of postmenopausal women, with a peak incidence around age 60."
+  },
+  {
+    "question": "Which condition is NOT associated with endometrial carcinoma etiology?",
+    "options": [
+      "Chronic unopposed estrogen stimulation",
+      "Tamoxifen therapy",
+      "HPV infection",
+      "Lynch II syndrome"
+    ],
+    "correct": 2,
+    "explanation": "HPV is the primary cause of cervical cancer; endometrial cancer is more closely linked to hormonal imbalances and genetic syndromes like Lynch II."
+  },
+  {
+    "question": "What is the most common presenting symptom of endometrial carcinoma?",
+    "options": [
+      "Pelvic pain",
+      "Postmenopausal bleeding",
+      "Ascites",
+      "Weight gain"
+    ],
+    "correct": 1,
+    "explanation": "Postmenopausal bleeding (PMB) is the classic red-flag symptom that leads to the diagnosis of endometrial cancer in most cases."
+  },
+  {
+    "question": "What is the standard primary treatment for endometrial carcinoma?",
+    "options": [
+      "Chemotherapy",
+      "Radiotherapy",
+      "Total abdominal hysterectomy with bilateral salpingo-oophorectomy (TAH & BSO)",
+      "Hormonal therapy"
+    ],
+    "correct": 2,
+    "explanation": "Surgical removal of the uterus, tubes, and ovaries (TAH & BSO) is the cornerstone of treatment for endometrial carcinoma."
+  },
+  {
+    "question": "What is the incidence of choriocarcinoma in the Far East?",
+    "options": [
+      "1/5000",
+      "1/10000",
+      "1/20000",
+      "1/50000"
+    ],
+    "correct": 0,
+    "explanation": "Gestational trophoblastic disease, including choriocarcinoma, has a significantly higher incidence in Southeast Asian populations compared to Western nations."
+  },
+  {
+    "question": "What is the primary route of spread for choriocarcinoma?",
+    "options": [
+      "Lymphatic",
+      "Blood",
+      "Direct",
+      "Trans-cavitary"
+    ],
+    "correct": 1,
+    "explanation": "Choriocarcinoma is highly invasive of blood vessels, leading to early and rapid hematogenous (blood-borne) metastasis."
+  },
+  {
+    "question": "Which risk factor is associated with choriocarcinoma?",
+    "options": [
+      "Smoking",
+      "Maternal age >35 years",
+      "High socioeconomic status",
+      "Obesity"
+    ],
+    "correct": 1,
+    "explanation": "Women at the extremes of reproductive age, particularly those over 35, are at an increased risk for trophoblastic malignancies."
+  },
+  {
+    "question": "What is the main treatment for non-metastatic choriocarcinoma when fertility is desired?",
+    "options": [
+      "Hysterectomy",
+      "Single agent chemotherapy (Methotrexate)",
+      "Radiotherapy",
+      "Combination chemotherapy"
+    ],
+    "correct": 1,
+    "explanation": "Methotrexate is highly effective for low-risk choriocarcinoma, allowing for a cure while preserving the woman's ability to have children."
+  },
+  {
+    "question": "What is a pathognomonic feature of choriocarcinoma on microscopic examination?",
+    "options": [
+      "Presence of intact villi",
+      "Absence of intact villi",
+      "Psammoma bodies",
+      "Call–Exner bodies"
+    ],
+    "correct": 1,
+    "explanation": "Unlike hydatidiform moles, choriocarcinoma is characterized by a complete absence of chorionic villi and sheets of malignant trophoblasts."
+  },
+  {
+    "question": "What is the age group most commonly affected by CIN?",
+    "options": [
+      "15–25 years",
+      "25–35 years",
+      "35–45 years",
+      "45–55 years"
+    ],
+    "correct": 1,
+    "explanation": "Cervical Intraepithelial Neoplasia (CIN) typically develops in young women, often 10-15 years before the peak age of invasive cancer."
+  },
+  {
+    "question": "Which HPV types are most associated with CIN?",
+    "options": [
+      "6 and 11",
+      "16 and 18",
+      "31 and 33",
+      "45 and 56"
+    ],
+    "correct": 1,
+    "explanation": "HPV types 16 and 18 are the highest-risk oncogenic types, responsible for the majority of cervical cancers and high-grade dysplasias."
+  },
+  {
+    "question": "What is the primary symptom of CIN?",
+    "options": [
+      "Pelvic pain",
+      "Asymptomatic",
+      "Heavy menstrual bleeding",
+      "Fever"
+    ],
+    "correct": 1,
+    "explanation": "CIN usually produces no symptoms and is detected primarily through routine screening tests like the Pap smear."
+  },
+  {
+    "question": "Which treatment has a failure rate of less than 5% for CIN?",
+    "options": [
+      "Cryotherapy",
+      "Loop electrosurgical excision procedure (LEEP)",
+      "Laser ablation",
+      "Diathermy coagulation"
+    ],
+    "correct": 1,
+    "explanation": "LEEP is a highly effective excisional procedure that both treats the lesion and provides a specimen for histopathology."
+  },
+  {
+    "question": "What is the regression rate of CIN-1?",
+    "options": [
+      "33%",
+      "40%",
+      "60%",
+      "55%"
+    ],
+    "correct": 2,
+    "explanation": "Most low-grade lesions (CIN-1) will resolve spontaneously as the body's immune system clears the transient HPV infection."
+  },
+  {
+    "question": "What is the second most common female cancer according to the document?",
+    "options": [
+      "Endometrial carcinoma",
+      "Cervical carcinoma",
+      "Ovarian carcinoma",
+      "Vulvar carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Globally, cervical cancer remains a leading cause of cancer death among women, second only to breast cancer in many regions."
+  },
+  {
+    "question": "What is the median age at diagnosis for cervical carcinoma?",
+    "options": [
+      "35–40 years",
+      "45–50 years",
+      "55–60 years",
+      "65–70 years"
+    ],
+    "correct": 1,
+    "explanation": "Cervical cancer typically affects women in mid-life, with the highest incidence occurring between ages 45 and 50."
+  },
+  {
+    "question": "What is the most common type of cervical carcinoma?",
+    "options": [
+      "Adenocarcinoma",
+      "Squamous cell carcinoma",
+      "Adeno-squamous carcinoma",
+      "Malignant melanoma"
+    ],
+    "correct": 1,
+    "explanation": "Approximately 80-90% of all cervical cancers are squamous cell carcinomas originating from the transformation zone."
+  },
+  {
+    "question": "What is the main treatment modality for cervical carcinoma across all stages?",
+    "options": [
+      "Surgery",
+      "Chemotherapy",
+      "Radiotherapy",
+      "Hormonal therapy"
+    ],
+    "correct": 2,
+    "explanation": "Radiotherapy is a primary treatment option for all stages and is the standard of care for advanced or bulky cervical tumors."
+  },
+  {
+    "question": "What is the most common cause of death in cervical carcinoma?",
+    "options": [
+      "Hemorrhage",
+      "Renal failure",
+      "Infection",
+      "Cachexia"
+    ],
+    "correct": 1,
+    "explanation": "Ureteric obstruction leading to hydronephrosis and uremia (renal failure) is the most frequent terminal event in cervical cancer."
+  },
+  {
+    "question": "What is the most common symptom of vulvar intra-epithelial neoplasia (VIN)?",
+    "options": [
+      "Bleeding",
+      "Pruritus",
+      "Pain",
+      "Asymptomatic"
+    ],
+    "correct": 1,
+    "explanation": "Persistent vulvar itching (pruritus) is the most common complaint in women with VIN."
+  },
+  {
+    "question": "What is the most common type of vulvar carcinoma?",
+    "options": [
+      "Malignant melanoma",
+      "Squamous cell carcinoma",
+      "Basal cell carcinoma",
+      "Adenocarcinoma"
+    ],
+    "correct": 1,
+    "explanation": "The vast majority of vulvar cancers are squamous cell carcinomas, often occurring in older women."
+  },
+  {
+    "question": "What is the primary treatment for Stages I and II vulvar cancer?",
+    "options": [
+      "Chemotherapy",
+      "Surgery",
+      "Radiotherapy alone",
+      "Hormonal therapy"
+    ],
+    "correct": 1,
+    "explanation": "Early-stage vulvar cancer is primarily treated with surgical excision, often involving radical vulvectomy or wide local excision with lymphadenectomy."
+  },
+  {
+    "question": "What is the most common type of ovarian tumor?",
+    "options": [
+      "Germ cell tumors",
+      "Sex cord-stromal tumors",
+      "Surface epithelial tumors",
+      "Metastatic tumors"
+    ],
+    "correct": 2,
+    "explanation": "Surface epithelial-stromal tumors account for the majority (60-70%) of all ovarian neoplasms."
+  },
+  {
+    "question": "What is the most common cause of death from ovarian cancer?",
+    "options": [
+      "Renal failure",
+      "Intestinal obstruction",
+      "Hemorrhage",
+      "Cachexia"
+    ],
+    "correct": 1,
+    "explanation": "Extensive peritoneal spread in ovarian cancer often leads to bowel compression and terminal intestinal obstruction."
+  },
+  {
+    "question": "Which of the following is a component of the corpus cancer triad associated with endometrial carcinoma?",
+    "options": [
+      "Asthma",
+      "Diabetes mellitus",
+      "Hypothyroidism",
+      "Osteoporosis"
+    ],
+    "correct": 1,
+    "explanation": "The classic triad for endometrial cancer risk consists of Obesity, Hypertension, and Diabetes Mellitus."
+  },
+  {
+    "question": "What is the most common histological type of endometrial carcinoma?",
+    "options": [
+      "Adenoacanthoma",
+      "Endometrial adenocarcinoma",
+      "Clear cell carcinoma",
+      "Papillary serous carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Endometrioid adenocarcinoma is the standard histological type, accounting for the vast majority of cases."
+  },
+  {
+    "question": "Which FIGO stage of endometrial carcinoma involves invasion of the cervical stroma with no extrauterine extension?",
+    "options": [
+      "Stage I",
+      "Stage II",
+      "Stage III",
+      "Stage IV"
+    ],
+    "correct": 1,
+    "explanation": "FIGO Stage II is defined as the tumor invading the cervical stroma but remaining confined to the uterus."
+  },
+  {
+    "question": "What is the 5-year survival rate for Stage I endometrial carcinoma?",
+    "options": [
+      "52–60%",
+      "71–78%",
+      "81–91%",
+      "14–17%"
+    ],
+    "correct": 2,
+    "explanation": "Early detection (Stage I) of endometrial cancer carries an excellent prognosis with survival rates exceeding 80%."
+  },
+  {
+    "question": "Which diagnostic method is considered the best for endometrial carcinoma?",
+    "options": [
+      "Office endometrial biopsy",
+      "Fractional dilation and curettage (D&C)",
+      "Hysteroscopic guided biopsy",
+      "Endo-cervical curettage"
+    ],
+    "correct": 2,
+    "explanation": "Hysteroscopy allows direct visualization of the cavity and targeted biopsy of suspicious areas, making it more accurate than 'blind' procedures."
+  },
+  {
+    "question": "Which of the following is a common clinical sign of choriocarcinoma?",
+    "options": [
+      "Symmetrically enlarged, soft, tender uterus",
+      "Cervical erosion",
+      "Ascites without metastasis",
+      "Normal uterus size"
+    ],
+    "correct": 0,
+    "explanation": "Due to rapid growth and internal hemorrhage, the uterus in choriocarcinoma is often enlarged, soft, and tender."
+  },
+  {
+    "question": "What is the primary treatment for metastatic choriocarcinoma with high-risk features?",
+    "options": [
+      "Single agent chemotherapy",
+      "Multimodal approach with combination chemotherapy, surgery, and radiotherapy",
+      "Hysterectomy alone",
+      "Radiotherapy alone"
+    ],
+    "correct": 1,
+    "explanation": "High-risk gestational trophoblastic neoplasia requires aggressive multi-drug chemotherapy (such as EMA-CO) sometimes combined with other modalities."
+  },
+  {
+    "question": "Which laboratory test is critical for diagnosing choriocarcinoma?",
+    "options": [
+      "Serum CA-125",
+      "Serum hCG",
+      "Serum AFP",
+      "Serum LDH"
+    ],
+    "correct": 1,
+    "explanation": "The beta-hCG is a highly sensitive tumor marker for choriocarcinoma; its levels correlate directly with tumor burden and response to treatment."
+  },
+  {
+    "question": "What is a common radiological finding in choriocarcinoma with lung metastasis?",
+    "options": [
+      "Pleural effusion",
+      "Canon ball appearance",
+      "Ground-glass opacity",
+      "Pulmonary edema"
+    ],
+    "correct": 1,
+    "explanation": "Lungs are the most common site of metastasis; on X-ray, these typically appear as multiple well-defined 'cannonball' opacities."
+  },
+  {
+    "question": "What percentage of choriocarcinoma cases follow a vesicular mole?",
+    "options": [
+      "20%",
+      "25%",
+      "50%",
+      "75%"
+    ],
+    "correct": 2,
+    "explanation": "Roughly 50% of choriocarcinomas develop after a hydatidiform (vesicular) mole, while the rest follow abortions, ectopic pregnancies, or term deliveries."
+  },
+  {
+    "question": "Which of the following is a risk factor for CIN?",
+    "options": [
+      "High parity",
+      "Prolonged hormonal contraception with HPV infection",
+      "Obesity",
+      "Diabetes mellitus"
+    ],
+    "correct": 1,
+    "explanation": "Long-term use of combined oral contraceptives (over 5 years) in the presence of HPV infection is associated with an increased risk of CIN."
+  },
+  {
+    "question": "What does CIN-3 indicate on microscopic examination?",
+    "options": [
+      "Infiltration of the lower 1/3 of the epithelium",
+      "Infiltration of the middle 1/3 of the epithelium",
+      "Infiltration of the upper 1/3 of the epithelium",
+      "Full thickness infiltration"
+    ],
+    "correct": 3,
+    "explanation": "CIN-3 represents severe dysplasia where the atypical cells occupy more than two-thirds or the full thickness of the epithelium."
+  },
+  {
+    "question": "Which screening test is used for CIN diagnosis?",
+    "options": [
+      "Ultrasound",
+      "Cervical cytology with Pap stain",
+      "MRI",
+      "Tumor marker CA-125"
+    ],
+    "correct": 1,
+    "explanation": "The Pap smear (cervical cytology) is the standard global screening test used to detect pre-malignant changes in the cervix."
+  },
+  {
+    "question": "What is the progression rate of CIN-3 to invasive cancer?",
+    "options": [
+      ">12%",
+      "10%",
+      "20%",
+      "33%"
+    ],
+    "correct": 0,
+    "explanation": "CIN-3 is considered a high-grade lesion with a significant risk of progressing to invasive carcinoma if left untreated."
+  },
+  {
+    "question": "What is the recommended follow-up interval after treatment for CIN?",
+    "options": [
+      "Every 3–6 months for 5 years",
+      "Every 3–6 months for the first 2 years",
+      "Annually for 2 years",
+      "Every 6 months for 10 years"
+    ],
+    "correct": 1,
+    "explanation": "To ensure there is no recurrence, patients are typically followed with Pap smears every 3 to 6 months for the first two years post-treatment."
+  },
+  {
+    "question": "Which of the following is the most common symptom of cervical carcinoma?",
+    "options": [
+      "Pelvic pain",
+      "Contact bleeding",
+      "Asymptomatic",
+      "Fever"
+    ],
+    "correct": 1,
+    "explanation": "Contact bleeding, particularly after sexual intercourse (post-coital bleeding), is the hallmark clinical presentation of invasive cervical cancer."
+  },
+  {
+    "question": "What is a characteristic feature of a malignant ulcer in cervical carcinoma?",
+    "options": [
+      "Soft base",
+      "Indurated base",
+      "Smooth surface",
+      "Non-friable tissue"
+    ],
+    "correct": 1,
+    "explanation": "Malignant ulcers of the cervix are typically hard (indurated) to the touch and bleed easily when manipulated (friable)."
+  },
+  {
+    "question": "Which FIGO stage of cervical carcinoma involves pelvic lymph node metastasis only?",
+    "options": [
+      "Stage IIIC1",
+      "Stage IIIC2",
+      "Stage IVA",
+      "Stage IVB"
+    ],
+    "correct": 0,
+    "explanation": "According to the updated FIGO staging, Stage IIIC1 denotes metastasis to the pelvic lymph nodes only."
+  },
+  {
+    "question": "What is an indication for conservative surgery (e.g., LLETZ) in cervical carcinoma?",
+    "options": [
+      "Stage IB1",
+      "Stage IA1 in young women wishing to preserve fertility",
+      "Stage IIB",
+      "Stage IIIA"
+    ],
+    "correct": 1,
+    "explanation": "For very early (micro-invasive) cancer (Stage IA1), fertility-sparing procedures like LLETZ or conization may be sufficient."
+  },
+  {
+    "question": "What is a common complication of radical hysterectomy for cervical carcinoma?",
+    "options": [
+      "Ovarian failure",
+      "Fistula formation",
+      "Pulmonary edema",
+      "Hypertension"
+    ],
+    "correct": 1,
+    "explanation": "Extensive pelvic dissection in radical surgery carries a risk of ureteric injury and subsequent fistula formation."
+  },
+  {
+    "question": "Which age group is most commonly affected by VIN?",
+    "options": [
+      "20 years",
+      "30 years",
+      "40 years",
+      "50 years"
+    ],
+    "correct": 2,
+    "explanation": "Vulvar Intraepithelial Neoplasia (VIN) is frequently diagnosed in women in their 40s, often associated with HPV or smoking."
+  },
+  {
+    "question": "What is a characteristic naked-eye finding of VIN after acetic acid application?",
+    "options": [
+      "Red lesions",
+      "Acetowhite lesions",
+      "Ulcerative lesions",
+      "Pigmented nodules"
+    ],
+    "correct": 1,
+    "explanation": "Applying acetic acid during vulvoscopy turns dysplastic areas white (acetowhite), helping to identify the extent of the lesion."
+  },
+  {
+    "question": "What is the most common site of vulvar carcinoma?",
+    "options": [
+      "Labia minora",
+      "Labia majora",
+      "Clitoris",
+      "Perineum"
+    ],
+    "correct": 1,
+    "explanation": "The labia majora are the most frequent site of origin for invasive vulvar squamous cell carcinoma."
+  },
+  {
+    "question": "Which type of vulvar carcinoma accounts for 5–10% of cases?",
+    "options": [
+      "Squamous cell carcinoma",
+      "Malignant melanoma",
+      "Basal cell carcinoma",
+      "Adenocarcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Melanoma is the second most common type of vulvar cancer after squamous cell carcinoma."
+  },
+  {
+    "question": "What is the primary route of lymphatic spread for vulvar carcinoma affecting the clitoris?",
+    "options": [
+      "Superficial inguinal lymph nodes",
+      "Deep femoral lymph node (gland of Cloquet)",
+      "Para-aortic lymph nodes",
+      "Common iliac lymph nodes"
+    ],
+    "correct": 1,
+    "explanation": "Cancers involving the clitoris or midline structures can drain directly to the deep femoral lymph nodes (Cloquet’s node)."
+  },
+  {
+    "question": "What is the most common predisposing factor for surface epithelial ovarian tumors?",
+    "options": [
+      "HPV infection",
+      "Ovulation trauma",
+      "Smoking",
+      "Obesity"
+    ],
+    "correct": 1,
+    "explanation": "Fathalla's 'incessant ovulation' theory suggests that repeated rupture and repair of the ovarian surface during ovulation increases the risk of malignant transformation."
+  },
+  {
+    "question": "Which ovarian tumor is associated with pseudomyxoma peritonei?",
+    "options": [
+      "Serous cystadenoma",
+      "Mucinous cystadenoma",
+      "Brenner tumor",
+      "Granulosa cell tumor"
+    ],
+    "correct": 1,
+    "explanation": "Pseudomyxoma peritonei is a condition where the abdomen fills with gelatinous material, often due to a ruptured mucinous ovarian or appendiceal tumor."
+  },
+  {
+    "question": "What is a characteristic microscopic feature of serous cystadenocarcinoma?",
+    "options": [
+      "Schiller-Duval bodies",
+      "Psammoma bodies",
+      "Call-Exner bodies",
+      "Signet ring cells"
+    ],
+    "correct": 1,
+    "explanation": "Psammoma bodies (concentric calcified structures) are a classic finding in serous epithelial tumors."
+  },
+  {
+    "question": "Which ovarian tumor is most likely to cause Meigs' syndrome?",
+    "options": [
+      "Dermoid cyst",
+      "Fibroma",
+      "Mucinous cystadenocarcinoma",
+      "Endometrioid tumor"
+    ],
+    "correct": 1,
+    "explanation": "Meigs' syndrome is the triad of a benign ovarian tumor (usually a fibroma), ascites, and pleural effusion."
+  },
+  {
+    "question": "What is the most common germ cell tumor before age 20 years?",
+    "options": [
+      "Dermoid cyst",
+      "Dysgerminoma",
+      "Endodermal sinus tumor",
+      "Choriocarcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Dysgerminoma is the most common malignant germ cell tumor in adolescents and young women."
+  },
+  {
+    "question": "What is the purpose of using a Hegar dilator during cervical dilatation?",
+    "options": [
+      "To measure endometrial thickness",
+      "To dilate the cervical canal",
+      "To remove endometrial polyps",
+      "To perform endometrial ablation"
+    ],
+    "correct": 1,
+    "explanation": "Hegar dilators are a set of metal rods used to progressively widen the cervical canal for various intrauterine procedures."
+  },
+  {
+    "question": "Which procedure is indicated for spasmodic dysmenorrhea using cervical dilatation?",
+    "options": [
+      "Dilatation up to number 8",
+      "Dilatation up to number 12",
+      "Dilatation up to number 14",
+      "Dilatation up to number 10"
+    ],
+    "correct": 2,
+    "explanation": "Vigorous cervical dilatation (up to Hegar 14) was historically used as a treatment to provide relief from severe spasmodic dysmenorrhea."
+  },
+  {
+    "question": "Which of the following is a common complication of gynecologic tumors?",
+    "options": [
+      "Hypertension",
+      "Hemorrhage",
+      "Diabetes mellitus",
+      "Osteoporosis"
+    ],
+    "correct": 1,
+    "explanation": "Chronic or acute bleeding (hemorrhage) is a frequent and serious complication of female reproductive tract cancers."
+  },
+  {
+    "question": "Which staging category indicates distant metastasis in gynecologic tumors?",
+    "options": [
+      "Stage I",
+      "Stage II",
+      "Stage III",
+      "Stage IV"
+    ],
+    "correct": 3,
+    "explanation": "In almost all cancer staging systems, Stage IV represents the most advanced disease with spread to distant organs."
+  },
+  {
+    "question": "Which investigation is used to assess bone involvement in gynecologic tumors?",
+    "options": [
+      "Ultrasound",
+      "Bone survey",
+      "Hysteroscopy",
+      "Colposcopy"
+    ],
+    "correct": 1,
+    "explanation": "A bone survey (skeletal X-rays) or bone scan is used to detect the spread of cancer to the skeleton."
+  },
+  {
+    "question": "What is a key clinical sign of advanced gynecologic tumors?",
+    "options": [
+      "Weight gain",
+      "Cachexia",
+      "Fever",
+      "Hypertension"
+    ],
+    "correct": 1,
+    "explanation": "Cancer cachexia (significant weight loss, muscle wasting, and fatigue) is a hallmark of advanced systemic malignancy."
+  },
+  {
+    "question": "Which factor is NOT associated with an increased risk of endometrial carcinoma?",
+    "options": [
+      "Nulliparity",
+      "High socioeconomic status",
+      "HPV infection",
+      "Obesity"
+    ],
+    "correct": 2,
+    "explanation": "While HPV causes cervical cancer, it is not a risk factor for endometrial carcinoma, which is mostly hormone-related."
+  },
+  {
+    "question": "What is the primary naked-eye appearance of endometrial carcinoma?",
+    "options": [
+      "Hard, fixed mass",
+      "Pale, friable, necrotic mass",
+      "Cystic lesion",
+      "Smooth, encapsulated tumor"
+    ],
+    "correct": 1,
+    "explanation": "The tumor typically appears as a crumbly, pale, and often necrotic growth within the uterine cavity."
+  },
+  {
+    "question": "Which histological type of endometrial carcinoma includes benign squamous elements?",
+    "options": [
+      "Endometrial adenocarcinoma",
+      "Adenoacanthoma",
+      "Clear cell carcinoma",
+      "Mucinous carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Adenoacanthoma is a variant of endometrioid adenocarcinoma that contains areas of benign squamous differentiation."
+  },
+  {
+    "question": "What is a rare route of spread for endometrial carcinoma?",
+    "options": [
+      "Direct spread",
+      "Lymphatic spread",
+      "Blood spread",
+      "Trans-cavitary spread"
+    ],
+    "correct": 2,
+    "explanation": "Endometrial cancer primarily spreads locally and through lymphatics; distant spread via the bloodstream is relatively rare."
+  },
+  {
+    "question": "What is a common complication of endometrial carcinoma?",
+    "options": [
+      "Pulmonary embolism",
+      "Pyometra",
+      "Renal failure",
+      "Thyroid dysfunction"
+    ],
+    "correct": 1,
+    "explanation": "Obstruction of the cervical canal by the tumor can lead to an accumulation of pus in the uterus (pyometra)."
+  },
+  {
+    "question": "Which FIGO stage of endometrial carcinoma involves spread to the bladder mucosa?",
+    "options": [
+      "Stage IIIA",
+      "Stage IVA",
+      "Stage IVB",
+      "Stage IIIC"
+    ],
+    "correct": 1,
+    "explanation": "Stage IVA is defined by the involvement of the bladder or bowel mucosa."
+  },
+  {
+    "question": "What is a clinical symptom of endometrial carcinoma in premenopausal women?",
+    "options": [
+      "Postmenopausal bleeding",
+      "Irregular bleeding",
+      "Ascites",
+      "Fever"
+    ],
+    "correct": 1,
+    "explanation": "In women who have not yet reached menopause, endometrial cancer usually presents as heavy or irregular menstrual bleeding."
+  },
+  {
+    "question": "Which radiological investigation is used to assess endometrial thickness?",
+    "options": [
+      "Chest X-ray",
+      "Ultrasonography",
+      "Bone survey",
+      "Barium enema"
+    ],
+    "correct": 1,
+    "explanation": "Transvaginal ultrasound is the primary tool for measuring endometrial thickness to screen for abnormalities in postmenopausal women."
+  },
+  {
+    "question": "What is the follow-up interval for endometrial carcinoma after the first year?",
+    "options": [
+      "Every 3 months",
+      "Every 6 months",
+      "Annually",
+      "Every 2 years"
+    ],
+    "correct": 1,
+    "explanation": "Following the first year of intensive follow-up, visits are usually spaced to every 6 months for the next several years."
+  },
+  {
+    "question": "Which adjuvant therapy is used for Stage III endometrial carcinoma?",
+    "options": [
+      "Hormonal therapy",
+      "Chemotherapy",
+      "Vaginal cuff irradiation",
+      "Single agent chemotherapy"
+    ],
+    "correct": 1,
+    "explanation": "Advanced-stage disease (Stage III and IV) typically requires systemic chemotherapy to treat potential micro-metastases."
+  },
+  {
+    "question": "What is a risk factor for choriocarcinoma related to diet?",
+    "options": [
+      "High-fat diet",
+      "Rice-eating population",
+      "Low-protein diet",
+      "High-sugar diet"
+    ],
+    "correct": 1,
+    "explanation": "Epidemiological studies have shown a higher incidence of trophoblastic disease in populations where rice is the primary staple, possibly linked to nutritional factors."
+  },
+  {
+    "question": "What is the naked-eye appearance of metastatic choriocarcinoma?",
+    "options": [
+      "Hard, encapsulated mass",
+      "Soft, dark red nodule or polypoidal mass",
+      "Cystic lesion",
+      "Smooth, white tumor"
+    ],
+    "correct": 1,
+    "explanation": "Metastatic lesions of choriocarcinoma are typically soft and hemorrhagic, appearing dark red or purple due to their high vascularity."
+  },
+  {
+    "question": "What stage of choriocarcinoma involves the lungs with or without genital metastasis?",
+    "options": [
+      "Stage I",
+      "Stage II",
+      "Stage III",
+      "Stage IV"
+    ],
+    "correct": 2,
+    "explanation": "In the FIGO staging system for trophoblastic tumors, Stage III refers to lung involvement."
+  },
+  {
+    "question": "What is a clinical symptom of choriocarcinoma with lung metastasis?",
+    "options": [
+      "Hemoptysis",
+      "Dysuria",
+      "Constipation",
+      "Pruritus"
+    ],
+    "correct": 0,
+    "explanation": "Coughing up blood (hemoptysis) is a common symptom when choriocarcinoma spreads to the lungs."
+  },
+  {
+    "question": "What is the treatment for placental site choriocarcinoma?",
+    "options": [
+      "Single agent chemotherapy",
+      "Hysterectomy",
+      "Radiotherapy",
+      "Combination chemotherapy"
+    ],
+    "correct": 1,
+    "explanation": "Placental site trophoblastic tumors (PSTT) are relatively resistant to chemotherapy, so surgical removal (hysterectomy) is the primary treatment."
+  },
+  {
+    "question": "Which infection, besides HPV, is associated with CIN?",
+    "options": [
+      "Hepatitis B",
+      "Herpes simplex virus (HSV) II",
+      "Cytomegalovirus",
+      "Epstein-Barr virus"
+    ],
+    "correct": 1,
+    "explanation": "While HPV is the main cause, co-infection with HSV-II is often cited as a contributing factor in the development of cervical dysplasia."
+  },
+  {
+    "question": "What is the naked-eye appearance of CIN?",
+    "options": [
+      "Cauliflower mass",
+      "Normal or red cervix",
+      "Ulcerative lesion",
+      "Pigmented patches"
+    ],
+    "correct": 1,
+    "explanation": "Pre-malignant changes (CIN) are usually invisible to the naked eye; the cervix often appears completely normal or slightly inflamed."
+  },
+  {
+    "question": "What does a satisfactory colposcopy result indicate?",
+    "options": [
+      "Lesion not visualized",
+      "Entire transformation zone visualized with the lesion seen",
+      "Cervical stenosis present",
+      "Endocervical curettage required"
+    ],
+    "correct": 1,
+    "explanation": "A colposcopy is considered 'satisfactory' only when the entire squamocolumnar junction (transformation zone) can be fully inspected."
+  },
+  {
+    "question": "What is the treatment for recurrent CIN-II?",
+    "options": [
+      "Cryotherapy",
+      "Hysterectomy",
+      "Laser ablation",
+      "Diathermy coagulation"
+    ],
+    "correct": 1,
+    "explanation": "If high-grade CIN recurs after conservative treatment, especially in women who have completed their families, hysterectomy may be considered."
+  },
+  {
+    "question": "What is the persistence rate of CIN-2?",
+    "options": [
+      "30%",
+      "40%",
+      "55%",
+      "60%"
+    ],
+    "correct": 1,
+    "explanation": "Roughly 40% of CIN-2 lesions will persist without treatment, while others may regress or progress to CIN-3."
+  },
+  {
+    "question": "Which risk factor is associated with cervical carcinoma?",
+    "options": [
+      "High parity",
+      "Obesity",
+      "Diabetes mellitus",
+      "Hypertension"
+    ],
+    "correct": 0,
+    "explanation": "A history of multiple full-term pregnancies (high parity) is a recognized risk factor for the development of cervical cancer."
+  },
+  {
+    "question": "What is the typical naked-eye appearance of ectocervical carcinoma?",
+    "options": [
+      "Barrel-shaped cervix",
+      "Exophytic cauliflower mass",
+      "Cystic lesion",
+      "Smooth surface"
+    ],
+    "correct": 1,
+    "explanation": "Invasive cancer on the outer cervix often grows outward as a friable, bulky 'cauliflower-like' mass."
+  },
+  {
+    "question": "Which FIGO stage of cervical carcinoma involves hydronephrosis or non-functioning kidney?",
+    "options": [
+      "Stage IIA",
+      "Stage IIIB",
+      "Stage IIIC",
+      "Stage IVB"
+    ],
+    "correct": 1,
+    "explanation": "Stage IIIB includes cases with extension to the pelvic wall and/or hydronephrosis/kidney dysfunction caused by the tumor."
+  },
+  {
+    "question": "What is a common radiation-associated morbidity in cervical carcinoma treatment?",
+    "options": [
+      "Renal failure",
+      "Vaginal fibrosis",
+      "Pulmonary embolism",
+      "Thyroid dysfunction"
+    ],
+    "correct": 1,
+    "explanation": "Pelvic radiotherapy can cause scarring and shortening (fibrosis) of the vaginal canal, which may impact sexual function."
+  },
+  {
+    "question": "Which surgical modality is indicated for Stage IA2 cervical carcinoma in young women wishing to preserve fertility?",
+    "options": [
+      "Radical hysterectomy",
+      "Radical trachelectomy",
+      "Total abdominal hysterectomy",
+      "Conization of the cervix"
+    ],
+    "correct": 1,
+    "explanation": "Radical trachelectomy involves removing the cervix and upper vagina while keeping the uterus, allowing for future pregnancy."
+  },
+  {
+    "question": "Which group is more likely to have HPV-positive multifocal VIN?",
+    "options": [
+      "Postmenopausal women",
+      "Premenopausal women",
+      "Nulliparous women",
+      "Elderly women"
+    ],
+    "correct": 1,
+    "explanation": "In younger, premenopausal women, VIN is frequently associated with HPV infection and often presents as multiple lesions."
+  },
+  {
+    "question": "What is a naked-eye feature of VIN lesions?",
+    "options": [
+      "Smooth, encapsulated mass",
+      "Sharply demarcated, raised patches",
+      "Ulcerative craters",
+      "Soft, cystic lesions"
+    ],
+    "correct": 1,
+    "explanation": "VIN often appears as distinct, raised areas of skin that can be white, red, or dark-colored."
+  },
+  {
+    "question": "Which risk factor is associated with vulvar carcinoma?",
+    "options": [
+      "High parity",
+      "Low socioeconomic status",
+      "Nulliparity",
+      "Young age"
+    ],
+    "correct": 0,
+    "explanation": "As noted in the document provided, high parity is listed as a recognized risk factor for vulvar carcinoma."
+  },
+  {
+    "question": "What is the FIGO stage for vulvar carcinoma with tumor size ≤2 cm and stromal invasion ≤1 mm?",
+    "options": [
+      "Stage IA",
+      "Stage IB",
+      "Stage II",
+      "Stage IIIA"
+    ],
+    "correct": 0,
+    "explanation": "Stage IA is defined by limited tumor size and very shallow micro-invasion (≤1 mm)."
+  },
+  {
+    "question": "What is a treatment option for Stage III vulvar cancer?",
+    "options": [
+      "Single agent chemotherapy",
+      "Modified radical vulvectomy with lymph node removal",
+      "Hormonal therapy",
+      "Cryotherapy"
+    ],
+    "correct": 1,
+    "explanation": "Advanced-stage vulvar cancer requires extensive surgery, often including the removal of the groin lymph nodes."
+  },
+  {
+    "question": "Which non-neoplastic ovarian swelling is typically asymptomatic and resolves spontaneously?",
+    "options": [
+      "Endometriotic cyst",
+      "Follicular cyst",
+      "Tubo-ovarian abscess",
+      "Polycystic ovary syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Follicular cysts are functional cysts that occur as part of the normal menstrual cycle and usually disappear within 60 days."
+  },
+  {
+    "question": "What is the most common type of surface epithelial ovarian tumor?",
+    "options": [
+      "Mucinous cystadenoma",
+      "Serous cystadenoma",
+      "Endometrioid tumor",
+      "Brenner tumor"
+    ],
+    "correct": 1,
+    "explanation": "Serous cystadenoma is the most frequent variety of epithelial ovarian tumor."
+  },
+  {
+    "question": "Which syndrome increases the risk of endometrial carcinoma?",
+    "options": [
+      "Turner syndrome",
+      "Polycystic ovary syndrome (PCOS)",
+      "Down syndrome",
+      "Klinefelter syndrome"
+    ],
+    "correct": 1,
+    "explanation": "PCOS leads to chronic anovulation and unopposed estrogen, which significantly increases the risk of endometrial hyperplasia and cancer."
+  },
+  {
+    "question": "What is a microscopic feature of endometrial adenocarcinoma?",
+    "options": [
+      "Psammoma bodies",
+      "Glandular pattern with malignant cells",
+      "Schiller-Duval bodies",
+      "Call-Exner bodies"
+    ],
+    "correct": 1,
+    "explanation": "The hallmark of adenocarcinoma is the presence of malignant cells arranged in an abnormal, crowded glandular structure."
+  },
+  {
+    "question": "Which FIGO stage of endometrial carcinoma involves adnexal invasion?",
+    "options": [
+      "Stage IIIA",
+      "Stage IIIB",
+      "Stage IIIC",
+      "Stage IVB"
+    ],
+    "correct": 0,
+    "explanation": "Stage IIIA refers to the involvement of the uterine serosa and/or adnexa (ovaries and tubes)."
+  },
+  {
+    "question": "What is a clinical sign of endometrial carcinoma on bimanual examination?",
+    "options": [
+      "Fixed uterus",
+      "Normal uterus mobility",
+      "Cervical stenosis",
+      "Vaginal atrophy"
+    ],
+    "correct": 0,
+    "explanation": "In advanced stages, the uterus may become fixed to surrounding structures due to cancerous spread."
+  },
+  {
+    "question": "Which treatment is used for endometrial carcinoma in medically unfit patients?",
+    "options": [
+      "Chemotherapy alone",
+      "Radiotherapy alone",
+      "Hormonal therapy with progesterone",
+      "Hysterectomy"
+    ],
+    "correct": 2,
+    "explanation": "High-dose progestins can be used to treat endometrial cancer in women who are too frail for major surgery or radiation."
+  },
+  {
+    "question": "What is a complication of radiotherapy for endometrial carcinoma?",
+    "options": [
+      "Vaginal stenosis",
+      "Pulmonary embolism",
+      "Renal failure",
+      "Thyroid dysfunction"
+    ],
+    "correct": 0,
+    "explanation": "Vaginal shortening and narrowing (stenosis) is a known side effect of pelvic radiation therapy."
+  },
+  {
+    "question": "Which tumor marker is occasionally elevated in endometrial carcinoma?",
+    "options": [
+      "CA-125",
+      "AFP",
+      "hCG",
+      "PSA"
+    ],
+    "correct": 0,
+    "explanation": "While primarily used for ovarian cancer, CA-125 can be elevated in advanced or metastatic endometrial carcinoma."
+  },
+  {
+    "question": "What is the 5-year survival rate for Stage II endometrial carcinoma?",
+    "options": [
+      "14–17%",
+      "52–60%",
+      "71–78%",
+      "81–91%"
+    ],
+    "correct": 2,
+    "explanation": "Stage II endometrial cancer has a good prognosis, with 5-year survival rates typically between 70% and 80%."
+  },
+  {
+    "question": "Which surgical procedure is included in the staging of endometrial carcinoma?",
+    "options": [
+      "Radical trachelectomy",
+      "Pelvic and para-aortic lymph node dissection",
+      "Radical vulvectomy",
+      "Conization of the cervix"
+    ],
+    "correct": 1,
+    "explanation": "Full surgical staging for endometrial cancer includes the evaluation of pelvic and para-aortic lymph nodes for metastasis."
+  },
+  {
+    "question": "What is a symptom of endometrial carcinoma with metastasis?",
+    "options": [
+      "Hemoptysis",
+      "Post-coital bleeding",
+      "Pruritus",
+      "Fever"
+    ],
+    "correct": 0,
+    "explanation": "If the cancer spreads to the lungs, a patient may present with hemoptysis (coughing up blood)."
+  },
+  {
+    "question": "Which site is the second most common for choriocarcinoma metastasis?",
+    "options": [
+      "Liver",
+      "Brain",
+      "Vagina",
+      "Bone"
+    ],
+    "correct": 2,
+    "explanation": "After the lungs, the vagina is the most frequent site of metastasis for choriocarcinoma, often appearing as purple nodules."
+  },
+  {
+    "question": "What is a naked-eye feature of choriocarcinoma in the uterus?",
+    "options": [
+      "Hard, fixed mass",
+      "Soft, hemorrhagic mass",
+      "Cystic lesion",
+      "Smooth, white tumor"
+    ],
+    "correct": 1,
+    "explanation": "Because it destroys blood vessels, the primary tumor is often a soft, intensely bloody (hemorrhagic) mass."
+  },
+  {
+    "question": "Which FIGO stage of choriocarcinoma involves metastasis to the brain?",
+    "options": [
+      "Stage I",
+      "Stage II",
+      "Stage III",
+      "Stage IV"
+    ],
+    "correct": 3,
+    "explanation": "Stage IV trophoblastic disease includes metastasis to distant sites like the brain or liver."
+  },
+  {
+    "question": "What is a clinical symptom of choriocarcinoma with brain metastasis?",
+    "options": [
+      "Seizures",
+      "Dysuria",
+      "Constipation",
+      "Pruritus"
+    ],
+    "correct": 0,
+    "explanation": "Brain metastasis often presents with neurological symptoms, including severe headaches or seizures."
+  },
+  {
+    "question": "Which chemotherapy regimen is used for low-risk choriocarcinoma?",
+    "options": [
+      "EMACO",
+      "Methotrexate alone",
+      "BEP",
+      "Cisplatin alone"
+    ],
+    "correct": 1,
+    "explanation": "Methotrexate is the standard single-agent treatment for low-risk gestational trophoblastic neoplasia."
+  },
+  {
+    "question": "What is a diagnostic criterion for choriocarcinoma?",
+    "options": [
+      "Serum CA-125 >35 U/ml",
+      "Beta-hCG plateau or rise",
+      "Serum AFP >10 ng/ml",
+      "Serum LDH >500 U/L"
+    ],
+    "correct": 1,
+    "explanation": "The diagnosis of GTN is made when beta-hCG levels plateau or rise over several consecutive measurements after a pregnancy."
+  },
+  {
+    "question": "What is a complication of chemotherapy for choriocarcinoma?",
+    "options": [
+      "Vaginal stenosis",
+      "Bone marrow suppression",
+      "Renal failure",
+      "Pulmonary embolism"
+    ],
+    "correct": 1,
+    "explanation": "Chemotherapy drugs can lower blood counts (leukopenia, anemia, thrombocytopenia), known as bone marrow suppression."
+  },
+  {
+    "question": "What is a prophylactic measure for choriocarcinoma after molar pregnancy?",
+    "options": [
+      "Routine hysterectomy",
+      "Serial hCG monitoring",
+      "Annual chemotherapy",
+      "Radiotherapy"
+    ],
+    "correct": 1,
+    "explanation": "Close monitoring of hCG levels is essential to detect early malignant change (GTN) following a molar pregnancy."
+  },
+  {
+    "question": "What is the cure rate for low-risk choriocarcinoma with single-agent chemotherapy?",
+    "options": [
+      "50%",
+      "70%",
+      "90%",
+      "100%"
+    ],
+    "correct": 2,
+    "explanation": "Low-risk trophoblastic tumors are highly curable, with success rates often reaching 90-100%."
+  },
+  {
+    "question": "Which colposcopic finding is suggestive of CIN?",
+    "options": [
+      "Smooth epithelium",
+      "Mosaic pattern",
+      "Cystic lesions",
+      "Red patches"
+    ],
+    "correct": 1,
+    "explanation": "Mosaicism and punctation are hallmark vascular patterns seen during colposcopy that indicate underlying dysplasia."
+  },
+  {
+    "question": "What is a risk factor for CIN related to smoking?",
+    "options": [
+      "Passive smoking",
+      "Cigarette smoking",
+      "Pipe smoking",
+      "Chewing tobacco"
+    ],
+    "correct": 1,
+    "explanation": "Tobacco byproducts are concentrated in cervical mucus and are known to damage DNA and suppress local immunity, increasing CIN risk."
+  },
+  {
+    "question": "Which treatment is preferred for CIN in young women wishing to preserve fertility?",
+    "options": [
+      "Hysterectomy",
+      "LEEP",
+      "Radiotherapy",
+      "Chemotherapy"
+    ],
+    "correct": 1,
+    "explanation": "LEEP is a conservative excisional treatment that effectively treats CIN while preserving the uterus and cervix for childbearing."
+  },
+  {
+    "question": "What is the regression rate of CIN-2?",
+    "options": [
+      "33%",
+      "40%",
+      "55%",
+      "60%"
+    ],
+    "correct": 1,
+    "explanation": "Approximately 40% of CIN-2 lesions will regress spontaneously, though they are usually treated to prevent progression."
+  },
+  {
+    "question": "Which screening interval is recommended for CIN prevention?",
+    "options": [
+      "Every 6 months",
+      "Every 1–3 years",
+      "Every 5 years",
+      "Every 10 years"
+    ],
+    "correct": 1,
+    "explanation": "Standard guidelines generally recommend routine Pap screening every 1 to 3 years depending on age and previous history."
+  },
+  {
+    "question": "Which FIGO stage of cervical carcinoma involves the upper two-thirds of the vagina?",
+    "options": [
+      "Stage IIA",
+      "Stage IIB",
+      "Stage IIIA",
+      "Stage IIIB"
+    ],
+    "correct": 0,
+    "explanation": "Stage IIA involves the upper two-thirds of the vagina without involvement of the parametrium."
+  },
+  {
+    "question": "What is a naked-eye feature of a malignant cervical ulcer?",
+    "options": [
+      "Smooth base",
+      "Necrotic floor",
+      "Soft edges",
+      "Non-indurated base"
+    ],
+    "correct": 1,
+    "explanation": "Malignant ulcers typically have a dirty, gray-looking floor consisting of dead (necrotic) tissue."
+  },
+  {
+    "question": "Which complication is associated with advanced cervical carcinoma?",
+    "options": [
+      "Pulmonary edema",
+      "Ureteric obstruction",
+      "Thyroid dysfunction",
+      "Osteoporosis"
+    ],
+    "correct": 1,
+    "explanation": "The tumor can grow laterally and compress the ureters, leading to kidney failure."
+  },
+  {
+    "question": "What is a treatment for Stage IIB cervical carcinoma?",
+    "options": [
+      "Radical trachelectomy",
+      "Radiotherapy with cisplatin",
+      "Conization of the cervix",
+      "Hormonal therapy"
+    ],
+    "correct": 1,
+    "explanation": "For Stage IIB (parametrial involvement), the standard treatment is concurrent chemoradiation (radiotherapy + cisplatin)."
+  },
+  {
+    "question": "Which follow-up method is used after cervical carcinoma treatment?",
+    "options": [
+      "Serum CA-125",
+      "Cervical cytology",
+      "Serum hCG",
+      "Bone scan"
+    ],
+    "correct": 1,
+    "explanation": "Regular Pap smears (cervical cytology) are used to detect local recurrence in the vaginal vault after treatment."
+  },
+  {
+    "question": "Which treatment is used for unifocal VIN?",
+    "options": [
+      "Radical vulvectomy",
+      "Wide local excision",
+      "Chemotherapy",
+      "Radiotherapy"
+    ],
+    "correct": 1,
+    "explanation": "A single lesion (unifocal) of VIN is best treated by removing the affected area with a margin of healthy tissue."
+  },
+  {
+    "question": "What is a clinical symptom of vulvar carcinoma?",
+    "options": [
+      "Postmenopausal bleeding",
+      "Groin mass",
+      "Hemoptysis",
+      "Dysuria"
+    ],
+    "correct": 1,
+    "explanation": "Spread to the inguinal lymph nodes may cause a palpable lump or mass in the groin area."
+  },
+  {
+    "question": "Which FIGO stage of vulvar carcinoma involves adjacent perineal structures?",
+    "options": [
+      "Stage I",
+      "Stage II",
+      "Stage III",
+      "Stage IV"
+    ],
+    "correct": 1,
+    "explanation": "Stage II includes tumor growth that extends to the lower third of the urethra, lower third of the vagina, or the anus."
+  },
+  {
+    "question": "What is a microscopic feature of squamous cell vulvar carcinoma?",
+    "options": [
+      "Psammoma bodies",
+      "Keratin pearls",
+      "Schiller-Duval bodies",
+      "Call-Exner bodies"
+    ],
+    "correct": 1,
+    "explanation": "Keratin pearls are a characteristic histological feature of well-differentiated squamous cell carcinomas."
+  },
+  {
+    "question": "Which lymph node is the first site of metastasis in most vulvar carcinomas?",
+    "options": [
+      "Deep femoral lymph node",
+      "Superficial inguinal lymph nodes",
+      "Para-aortic lymph nodes",
+      "Common iliac lymph nodes"
+    ],
+    "correct": 1,
+    "explanation": "Vulvar cancer typically spreads first to the superficial inguinal lymph nodes in the groin."
+  },
+  {
+    "question": "Which ovarian tumor is associated with Call-Exner bodies?",
+    "options": [
+      "Serous cystadenocarcinoma",
+      "Granulosa cell tumor",
+      "Endodermal sinus tumor",
+      "Brenner tumor"
+    ],
+    "correct": 1,
+    "explanation": "Call-Exner bodies (small fluid-filled spaces between granulosa cells) are pathognomonic for Granulosa cell tumors."
+  },
+  {
+    "question": "What is a naked-eye feature of multilocular cyst with papillae?",
+    "options": [
+      "Unilocular cyst",
+      "Multilocular cyst with papillae",
+      "Solid, hard mass",
+      "Smooth, soft mass"
+    ],
+    "correct": 1,
+    "explanation": "Serous cystadenocarcinomas are frequently multiloculated and contain complex papillary growths."
+  },
+  {
+    "question": "Which FIGO stage of ovarian cancer involves pelvic extension?",
+    "options": [
+      "Stage I",
+      "Stage II",
+      "Stage III",
+      "Stage IV"
+    ],
+    "correct": 1,
+    "explanation": "Stage II ovarian cancer is defined by growth involving one or both ovaries with pelvic extension."
+  },
+  {
+    "question": "What is a clinical symptom of ovarian tumors with ascites?",
+    "options": [
+      "Abdominal distension",
+      "Post-coital bleeding",
+      "Pruritus",
+      "Hemoptysis"
+    ],
+    "correct": 0,
+    "explanation": "Fluid accumulation in the abdomen (ascites) causes significant bloating and abdominal distension."
+  },
+  {
+    "question": "Which treatment is used for Stage IC ovarian cancer?",
+    "options": [
+      "Unilateral oophorectomy",
+      "Total hysterectomy with BSO and chemotherapy",
+      "Radiotherapy alone",
+      "Hormonal therapy"
+    ],
+    "correct": 1,
+    "explanation": "Standard treatment for Stage I epithelial ovarian cancer (except low-grade IA/IB) is full surgical debulking followed by chemotherapy."
+  },
+  {
+    "question": "What is a complication of ovarian tumors with rupture?",
+    "options": [
+      "Pulmonary embolism",
+      "Chemical peritonitis",
+      "Renal failure",
+      "Vaginal stenosis"
+    ],
+    "correct": 1,
+    "explanation": "Rupture of a cyst (like a dermoid or mucinous cyst) can leak irritating contents into the peritoneum, causing chemical inflammation."
+  },
+  {
+    "question": "Which tumor marker is elevated in endodermal sinus tumors?",
+    "options": [
+      "CA-125",
+      "Alpha-fetoprotein (AFP)",
+      "hCG",
+      "CEA"
+    ],
+    "correct": 1,
+    "explanation": "Endodermal sinus (yolk sac) tumors characteristically produce high levels of AFP."
+  },
+  {
+    "question": "What is a naked-eye feature of dermoid cysts?",
+    "options": [
+      "Clear fluid content",
+      "Hair, teeth, and sebaceous material",
+      "Multilocular cysts",
+      "Solid, hard mass"
+    ],
+    "correct": 1,
+    "explanation": "Dermoid cysts (mature cystic teratomas) are germ cell tumors that can contain various tissues including fat, hair, and teeth."
+  },
+  {
+    "question": "Which ovarian tumor is associated with virilization?",
+    "options": [
+      "Serous cystadenoma",
+      "Androblastoma (Sertoli-Leydig cell tumor)",
+      "Mucinous cystadenocarcinoma",
+      "Brenner tumor"
+    ],
+    "correct": 1,
+    "explanation": "Sertoli-Leydig cell tumors secrete androgens, which can cause symptoms of masculinization (virilization)."
+  },
+  {
+    "question": "What is a diagnostic investigation for ovarian tumors?",
+    "options": [
+      "Cervical cytology",
+      "Transvaginal ultrasound",
+      "Hysteroscopy",
+      "Colposcopy"
+    ],
+    "correct": 1,
+    "explanation": "Transvaginal ultrasound is the primary imaging modality used to evaluate the size and characteristics of an ovarian mass."
+  },
+  {
+    "question": "Which instrument is used for endometrial biopsy?",
+    "options": [
+      "Hegar dilator",
+      "Karman cannula",
+      "Biopsy curette",
+      "Flushing curette"
+    ],
+    "correct": 2,
+    "explanation": "A specialized biopsy curette (like a Pipelle) is used to obtain a sample of the endometrial lining."
+  },
+  {
+    "question": "What is a complication of vaginal hysterectomy?",
+    "options": [
+      "Pulmonary embolism",
+      "Vault prolapse",
+      "Ovarian failure",
+      "Cervical stenosis"
+    ],
+    "correct": 1,
+    "explanation": "Following any hysterectomy, there is a long-term risk of the top of the vagina (the vault) descending due to loss of support."
+  },
+  {
+    "question": "Which procedure is used to diagnose tubal patency?",
+    "options": [
+      "Hysteroscopy",
+      "Hysterosalpingography",
+      "Laparoscopy",
+      "Cervical biopsy"
+    ],
+    "correct": 1,
+    "explanation": "Hysterosalpingography (HSG) is an X-ray test using dye to check if the fallopian tubes are open."
+  },
+  {
+    "question": "What is an indication for radical hysterectomy?",
+    "options": [
+      "Uterine prolapse",
+      "Stage IB cervical carcinoma",
+      "Endometrial hyperplasia",
+      "Ovarian cysts"
+    ],
+    "correct": 1,
+    "explanation": "Radical hysterectomy (Wertheim's) is the standard surgical treatment for early-stage invasive cervical cancer."
+  },
+  {
+    "question": "Which catheter is used for short-term bladder drainage?",
+    "options": [
+      "Foley's catheter",
+      "Metal catheter",
+      "S-shaped catheter",
+      "Neleton catheter"
+    ],
+    "correct": 1,
+    "explanation": "A metal catheter is traditionally used for quick, one-time emptying of the bladder."
+  },
+  {
+    "question": "What is a contraindication for cervical dilatation?",
+    "options": [
+      "Dysmenorrhea",
+      "Cervical incompetence",
+      "Endometrial polyps",
+      "Infertility"
+    ],
+    "correct": 1,
+    "explanation": "Mechanical dilatation should be avoided in women with a history of cervical incompetence to prevent further structural damage."
+  },
+  {
+    "question": "Which procedure is used to treat submucous myomas?",
+    "options": [
+      "Cervical dilatation",
+      "Hysteroscopic resection",
+      "Radical vulvectomy",
+      "Oophorectomy"
+    ],
+    "correct": 1,
+    "explanation": "Hysteroscopy allows for the minimally invasive removal (resection) of fibroids that protrude into the uterine cavity."
+  },
+  {
+    "question": "What is a complication of laparoscopy?",
+    "options": [
+      "Vaginal stenosis",
+      "Injury to bowel or vessels",
+      "Cervical hyperplasia",
+      "Endometrial ablation"
+    ],
+    "correct": 1,
+    "explanation": "The insertion of laparoscopic trocars or needles carries a risk of accidental puncture of the bowel or major blood vessels."
+  },
+  {
+    "question": "Which ultrasound is used to diagnose polycystic ovary syndrome?",
+    "options": [
+      "Trans-abdominal ultrasound",
+      "Trans-vaginal ultrasound",
+      "Doppler ultrasound",
+      "3D ultrasound"
+    ],
+    "correct": 1,
+    "explanation": "Transvaginal ultrasound provides the high resolution needed to count and measure small follicles in the ovaries."
+  },
+  {
+    "question": "What is the purpose of a fractional curettage?",
+    "options": [
+      "To treat ovarian cysts",
+      "To diagnose endometrial from cervical malignancy",
+      "To correct uterine prolapse",
+      "To remove ovarian tumors"
+    ],
+    "correct": 1,
+    "explanation": "Fractional curettage involves sampling the endocervical canal separately from the endometrial cavity to pinpoint the origin of a cancer."
+  },
+  {
+    "question": "Which of the following is a risk factor for most gynecologic tumors?",
+    "options": [
+      "Obesity",
+      "Hypothyroidism",
+      "Asthma",
+      "Osteoporosis"
+    ],
+    "correct": 0,
+    "explanation": "Obesity is a major risk factor for several cancers, especially endometrial and breast, due to higher peripheral estrogen production."
+  },
+  {
+    "question": "What is a clinical symptom of gynecologic tumors due to pressure effects?",
+    "options": [
+      "Dysuria",
+      "Fever",
+      "Weight gain",
+      "Hypertension"
+    ],
+    "correct": 0,
+    "explanation": "A large pelvic tumor can press against the bladder or urethra, causing difficult or painful urination (dysuria)."
+  },
+  {
+    "question": "Which tumor depends on hormonal factors for its etiology?",
+    "options": [
+      "Cervical carcinoma",
+      "Endometrial carcinoma",
+      "Vulvar carcinoma",
+      "Choriocarcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Endometrial carcinoma is strongly linked to 'unopposed estrogen'—estrogen stimulation without the balancing effect of progesterone."
+  },
+  {
+    "question": "Which investigation is used to diagnose metastasis to the rectum in gynecologic tumors?",
+    "options": [
+      "Proctosigmoidoscopy",
+      "Ultrasound",
+      "Hysteroscopy",
+      "Cervical biopsy"
+    ],
+    "correct": 0,
+    "explanation": "Direct visualization of the rectum and sigmoid colon via proctosigmoidoscopy can confirm if a tumor has invaded the bowel."
+  },
+  {
+    "question": "Which is a key aspect of active treatment for gynecologic tumors?",
+    "options": [
+      "Routine screening",
+      "Surgery or radiotherapy",
+      "Annual vaccination",
+      "Hormonal therapy"
+    ],
+    "correct": 1,
+    "explanation": "Surgery and radiation are the primary active (curative-intent) treatment modalities for most invasive gynecologic cancers."
+  },
+  {
+    "question": "Which histological subtype of endometrial carcinoma has a worse prognosis?",
+    "options": [
+      "Endometrial adenocarcinoma",
+      "Papillary serous carcinoma",
+      "Adenoacanthoma",
+      "Mucinous carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Serous and clear-cell subtypes of endometrial cancer are much more aggressive and have poorer outcomes than the endometrioid type."
+  },
+  {
+    "question": "What is a naked-eye feature of endometrial carcinoma with cervical metastasis?",
+    "options": [
+      "Smooth cervix",
+      "Hard, friable cervix",
+      "Cystic ovary",
+      "Normal uterus"
+    ],
+    "correct": 1,
+    "explanation": "If the endometrial cancer spreads to the cervix, the cervix may become hard and bleed easily on contact."
+  },
+  {
+    "question": "Which FIGO stage involves metastasis to distant organs in endometrial carcinoma?",
+    "options": [
+      "Stage IIIA",
+      "Stage IIIB",
+      "Stage IIIC",
+      "Stage IVB"
+    ],
+    "correct": 3,
+    "explanation": "Stage IVB denotes spread to distant organs, including intra-abdominal or inguinal lymph nodes."
+  },
+  {
+    "question": "What is a diagnostic method for detecting endometrial carcinoma recurrence?",
+    "options": [
+      "Cervical cytology",
+      "CT scan",
+      "Hysteroscopy",
+      "Bone scan"
+    ],
+    "correct": 1,
+    "explanation": "CT or MRI scans are used during follow-up to detect the return of cancer in the pelvis or other distant sites."
+  },
+  {
+    "question": "Which adjuvant therapy is used for Stage IV endometrial carcinoma?",
+    "options": [
+      "Radiotherapy alone",
+      "Chemotherapy with radiotherapy",
+      "Hormonal therapy alone",
+      "Single-agent chemotherapy"
+    ],
+    "correct": 1,
+    "explanation": "Stage IV disease is treated with a combination of systemic chemotherapy and local radiation for symptom control."
+  },
+  {
+    "question": "Which is a clinical sign of choriocarcinoma with vaginal metastasis?",
+    "options": [
+      "Blue-black vaginal lesions",
+      "Smooth vaginal mucosa",
+      "Cervical erosion",
+      "Vaginal atrophy"
+    ],
+    "correct": 0,
+    "explanation": "Metastatic choriocarcinoma nodules in the vagina are highly vascular and typically appear purple or blue-black."
+  },
+  {
+    "question": "What is a microscopic feature of placental site trophoblastic tumor?",
+    "options": [
+      "Absence of trophoblasts",
+      "Infiltration by intermediate trophoblasts",
+      "Psammoma bodies",
+      "Keratin pearls"
+    ],
+    "correct": 1,
+    "explanation": "PSTTs are composed primarily of intermediate trophoblastic cells that infiltrate the myometrium."
+  },
+  {
+    "question": "Which investigation confirms liver metastasis in choriocarcinoma?",
+    "options": [
+      "Ultrasound liver",
+      "Chest X-ray",
+      "Bone scan",
+      "Hysteroscopy"
+    ],
+    "correct": 0,
+    "explanation": "Ultrasound or CT imaging of the liver is used to identify metastatic nodules."
+  },
+  {
+    "question": "What is a risk factor for choriocarcinoma related to blood group?",
+    "options": [
+      "Blood group O",
+      "Blood group A",
+      "Blood group B",
+      "Blood group AB"
+    ],
+    "correct": 1,
+    "explanation": "Some evidence suggests that women with blood group A have a slightly higher risk of trophoblastic disease than those with blood group O."
+  },
+  {
+    "question": "What is the cure rate for high-risk metastatic choriocarcinoma with multimodal therapy?",
+    "options": [
+      "50%",
+      "70%",
+      "85%",
+      "95%"
+    ],
+    "correct": 1,
+    "explanation": "Even with widespread disease, high-risk GTN has a relatively high cure rate of approximately 70% with modern treatments."
+  },
+  {
+    "question": "Which factor increases the persistence rate of CIN?",
+    "options": [
+      "Young age",
+      "High parity",
+      "Immunosuppression",
+      "Obesity"
+    ],
+    "correct": 2,
+    "explanation": "Patients with weakened immune systems (e.g., HIV+ or transplant recipients) are much less likely to clear HPV and more likely to have persistent CIN."
+  },
+  {
+    "question": "What is a colposcopic finding suggestive of high-grade CIN?",
+    "options": [
+      "Smooth epithelium",
+      "Punctation with thick irregular vessels",
+      "Cystic lesions",
+      "Red patches"
+    ],
+    "correct": 1,
+    "explanation": "Coarse punctation and irregular 'corkscrew' vessels are signs of higher-grade dysplasia or early invasion."
+  },
+  {
+    "question": "What is the treatment for CIN-III in postmenopausal women?",
+    "options": [
+      "Cryotherapy",
+      "Hysterectomy",
+      "Laser ablation",
+      "Diathermy coagulation"
+    ],
+    "correct": 1,
+    "explanation": "In older women who no longer wish to preserve fertility, hysterectomy is a definitive treatment for high-grade CIN-III."
+  },
+  {
+    "question": "What is the progression rate of CIN-1 to CIN-3?",
+    "options": [
+      "1%",
+      "10%",
+      "20%",
+      "33%"
+    ],
+    "correct": 0,
+    "explanation": "Only about 1% of low-grade CIN-1 cases will eventually progress to the high-grade CIN-3 stage."
+  },
+  {
+    "question": "Which is a follow-up interval for CIN after treatment with LEEP?",
+    "options": [
+      "Every month",
+      "Every 3 months",
+      "Every year",
+      "Every 2 years"
+    ],
+    "correct": 1,
+    "explanation": "After a LEEP procedure, a patient usually returns every 3-4 months for a Pap smear for the first year or two."
+  },
+  {
+    "question": "Which is a risk factor for cervical carcinoma related to sexual behavior?",
+    "options": [
+      "Late sexual debut",
+      "Multiple sexual partners",
+      "Monogamy",
+      "Abstinence"
+    ],
+    "correct": 1,
+    "explanation": "Having multiple partners increases the lifetime risk of exposure to high-risk strains of HPV."
+  },
+  {
+    "question": "What is a microscopic feature of squamous cell cervical carcinoma?",
+    "options": [
+      "Psammoma bodies",
+      "Keratinization",
+      "Call-Exner bodies",
+      "Signet ring cells"
+    ],
+    "correct": 1,
+    "explanation": "Squamous cell cancers typically show evidence of keratin production (keratinization) within the tumor nests."
+  },
+  {
+    "question": "Which FIGO stage of cervical carcinoma involves bladder mucosa invasion?",
+    "options": [
+      "Stage IIIA",
+      "Stage IIIB",
+      "Stage IVA",
+      "Stage IVB"
+    ],
+    "correct": 2,
+    "explanation": "Stage IVA represents the spread of cervical cancer to the mucosa of the bladder or rectum."
+  },
+  {
+    "question": "What is a clinical symptom of cervical carcinoma with lymph node metastasis?",
+    "options": [
+      "Groin mass",
+      "Post-coital bleeding",
+      "Pruritus",
+      "Hemoptysis"
+    ],
+    "correct": 0,
+    "explanation": "Metastasis to the inguinal lymph nodes may present as a visible or palpable swelling in the groin."
+  },
+  {
+    "question": "Which surgical technique is used for Stage IA1 cervical carcinoma?",
+    "options": [
+      "Radical hysterectomy",
+      "Conization of the cervix",
+      "Radical vulvectomy",
+      "Total oophorectomy"
+    ],
+    "correct": 1,
+    "explanation": "Stage IA1 (micro-invasive) can often be managed with a simple cold-knife cone biopsy if margins are clear."
+  },
+  {
+    "question": "Which is a naked-eye feature of VIN lesions?",
+    "options": [
+      "Smooth, soft mass",
+      "Hyperpigmented patches",
+      "Cystic lesion",
+      "Ulcerative craters"
+    ],
+    "correct": 1,
+    "explanation": "VIN can present as areas of skin that are darker (hyperpigmented) than the surrounding tissue."
+  },
+  {
+    "question": "What is a clinical symptom of VIN?",
+    "options": [
+      "Postmenopausal bleeding",
+      "Painful urination",
+      "Asymptomatic",
+      "Hemorrhage"
+    ],
+    "correct": 2,
+    "explanation": "VIN is frequently asymptomatic and may only be discovered during a routine physical exam or vulvoscopy."
+  },
+  {
+    "question": "Which FIGO stage of vulvar carcinoma involves lymph node metastasis with extracapsular spread?",
+    "options": [
+      "Stage IIIA",
+      "Stage IIIB",
+      "Stage IIIC",
+      "Stage IVB"
+    ],
+    "correct": 2,
+    "explanation": "Stage IIIC is defined by positive lymph nodes with extracapsular spread (the cancer has grown outside the node capsule)."
+  },
+  {
+    "question": "What is a complication of radiotherapy for vulvar carcinoma?",
+    "options": [
+      "Pulmonary embolism",
+      "Skin ulceration",
+      "Renal failure",
+      "Vaginal hyperplasia"
+    ],
+    "correct": 1,
+    "explanation": "Radiation to the vulvar area can cause severe skin irritation, breakdown, and ulceration."
+  },
+  {
+    "question": "Which treatment is used for recurrent vulvar carcinoma?",
+    "options": [
+      "Cryotherapy",
+      "Re-excision with radiotherapy",
+      "Hormonal therapy",
+      "Laser ablation"
+    ],
+    "correct": 1,
+    "explanation": "Recurrent vulvar cancer often requires further surgery to remove the recurrence, often followed by radiation."
+  },
+  {
+    "question": "Which ovarian tumor is associated with Reinke ovarian crystals?",
+    "options": [
+      "Granulosa cell tumor",
+      "Sertoli-Leydig cell tumor",
+      "Serous cystadenocarcinoma",
+      "Mucinous cystadenoma"
+    ],
+    "correct": 1,
+    "explanation": "Reinke crystals are characteristic cytoplasmic inclusions found in Leydig cell tumors."
+  },
+  {
+    "question": "What is a naked-eye feature of mucinous cystadenocarcinoma?",
+    "options": [
+      "Solid areas with necrosis",
+      "Unilocular cyst",
+      "Smooth, soft mass",
+      "Clear fluid content"
+    ],
+    "correct": 0,
+    "explanation": "Malignant mucinous tumors often show complex solid areas and regions of tissue death (necrosis)."
+  },
+  {
+    "question": "Which FIGO stage of ovarian cancer involves distant metastasis?",
+    "options": [
+      "Stage II",
+      "Stage III",
+      "Stage IV",
+      "Stage I"
+    ],
+    "correct": 2,
+    "explanation": "Stage IV ovarian cancer indicates metastasis to distant organs like the liver (parenchyma), lungs, or spleen."
+  },
+  {
+    "question": "What is a clinical symptom of ovarian tumors with torsion?",
+    "options": [
+      "Chronic back pain",
+      "Acute abdomen",
+      "Postmenopausal bleeding",
+      "Pruritis"
+    ],
+    "correct": 1,
+    "explanation": "Torsion (twisting) of an ovarian mass cuts off blood supply, leading to sudden, severe pelvic pain known as an acute abdomen."
+  }
+];
+/* ─────────────────────────────────────────────────────────────────
+   END OF QUESTIONS — Do not edit below unless you know what you're doing
+──────────────────────────────────────────────────────────────────*/
+</script>
+
+<!-- ENGINE -->
+<script>
+/* ════════════════════════════════════════════════════════════════
+   QUIZ ENGINE
+════════════════════════════════════════════════════════════════ */
+const KEYS =['A','B','C','D','E','F','G','H'];
+let state = {
+  current:   0,
+  answers:   {},   // { qIndex: optionIndex }
+  flagged:   {},   // { qIndex: true }
+  timerSecs: 0,
+  elapsed:   0,
+  timerID:   null,
+  submitted: false,
+  mode:      'exam', // 'exam' or 'learning'
+};
+let timerPaused = false;
+let lastTime = Date.now();
+
+/* ── MODE SELECTION HANDLERS ───────────────────────────────── */
+document.querySelectorAll('input[name="quiz-mode"]').forEach(input => {
+  input.addEventListener('change', function() {
+    document.querySelectorAll('.mode-option').forEach(opt => {
+      opt.classList.remove('mode-selected');
+      opt.style.borderColor = 'var(--border)';
+      opt.style.background = 'var(--surface2)';
+    });
+    const selected = this.closest('label').querySelector('.mode-option');
+    selected.classList.add('mode-selected');
+    selected.style.borderColor = 'var(--accent)';
+    selected.style.background = 'var(--accent-dim)';
+  });
+});
+
+// Init first selected state
+document.querySelector('.mode-selected').style.borderColor = 'var(--accent)';
+document.querySelector('.mode-selected').style.background = 'var(--accent-dim)';
+
+/* ── INIT ─────────────────────────────────────────────────── */
+function initUI() {
+  document.title = QUIZ_CONFIG.title;
+  document.getElementById('quiz-title').textContent  = QUIZ_CONFIG.title;
+  document.getElementById('quiz-desc').textContent   = QUIZ_CONFIG.description;
+  document.getElementById('meta-questions').textContent = QUESTIONS.length;
+  const mins = QUESTIONS.length + 5;
+  document.getElementById('meta-time').textContent   = mins;
+  document.getElementById('topbar-title').textContent = QUIZ_CONFIG.title;
+
+  // set CSS var for portrait nav scroll
+  document.documentElement.style.setProperty('--q-count', QUESTIONS.length);
+
+  // Check saved theme preference
+  const savedTheme = localStorage.getItem('quiz-theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+
+  // Theme icon
+  updateThemeIcon();
+}
+
+/* ── START ────────────────────────────────────────────────── */
+function startQuiz() {
+  // Clear any existing progress when starting a new quiz
+  clearProgress();
+  
+  state.current  = 0;
+  state.answers  = {};
+  state.flagged  = {};
+  state.elapsed  = 0;
+  state.submitted= false;
+  state.timerSecs= (QUESTIONS.length + 5) * 60;
+  state.mode     = document.querySelector('input[name="quiz-mode"]:checked').value;
+
+  showScreen('quiz-screen');
+  
+  if(state.mode === 'learning') {
+    // Hide timer in learning mode
+    document.getElementById('timer-display').classList.add('hidden');
+    const legendAns = document.getElementById('legend-text-answered');
+    if(legendAns) legendAns.textContent = 'Correct';
+    const legendWr = document.getElementById('legend-wrong');
+    if(legendWr) legendWr.style.display = 'flex';
+  } else {
+    document.getElementById('timer-display').classList.remove('hidden');
+    const legendAns = document.getElementById('legend-text-answered');
+    if(legendAns) legendAns.textContent = 'Answered';
+    const legendWr = document.getElementById('legend-wrong');
+    if(legendWr) legendWr.style.display = 'none';
+  }
+  
+  buildNavGrid();
+  renderQuestion(0);
+  
+  if(state.mode !== 'learning') {
+    startTimer();
+  }
+}
+
+/* ── SCREENS ──────────────────────────────────────────────── */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+/* ── TIMER ────────────────────────────────────────────────── */
+function startTimer() {
+  if(state.timerID) clearInterval(state.timerID);
+  timerPaused = false;
+  lastTime = Date.now();
+  state.timerID = setInterval(() => {
+    if (!timerPaused && state.timerSecs > 0) {
+      const now = Date.now();
+      const delta = Math.floor((now - lastTime) / 1000);
+      if (delta >= 1) {
+        state.elapsed += delta;
+        state.timerSecs -= delta;
+        lastTime = now;
+        updateTimerDisplay();
+        if(state.timerSecs <= 0) {
+          stopTimer();
+          showToast("⏰ Time's up! Submitting…");
+          setTimeout(confirmSubmit, 1500);
+        }
+      }
+    }
+  }, 100);
+}
+
+function stopTimer() {
+  if(state.timerID) {
+    clearInterval(state.timerID);
+    state.timerID = null;
+  }
+  timerPaused = true;
+}
+
+function updateTimerDisplay() {
+  const secs = Math.max(0, state.timerSecs || 0);
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  document.getElementById('timer-text').textContent =
+    String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  const el = document.getElementById('timer-display');
+  if(secs < 120) el.classList.add('warn'); else el.classList.remove('warn');
+}
+
+/* ── RENDER QUESTION ─────────────────────────────────────── */
+function renderQuestion(idx) {
+  state.current = idx;
+  const q   = QUESTIONS[idx];
+  const isLast = idx === QUESTIONS.length - 1;
+  const sel = state.answers[idx];
+
+  // In learning mode, check if answered
+  const isLearning = state.mode === 'learning';
+  const isAnswered = sel !== undefined;
+
+  // progress
+  const done = Object.keys(state.answers).length;
+  document.getElementById('progress-fill').style.width = (done / QUESTIONS.length * 100) + '%';
+
+  const area = document.getElementById('question-area');
+  area.innerHTML = `
+    <div class="q-header">
+      <span class="q-number-badge">Q ${idx+1} / ${QUESTIONS.length}</span>
+      <div class="q-text">${q.question}</div>
+      <div class="q-actions">
+        <button class="flag-btn ${state.flagged[idx]?'active':''}" onclick="toggleFlag(${idx})" id="flag-btn-${idx}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="${state.flagged[idx]?'currentColor':'none'}" stroke="currentColor" stroke-width="2.2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          ${state.flagged[idx] ? 'Flagged' : 'Flag'}
+        </button>
+      </div>
+    </div>
+
+    <div class="options-list" id="options-list">
+      ${q.options.map((opt, i) => {
+        let extraStyle = '';
+        let keyStyle = '';
+        if (isLearning && isAnswered) {
+          if (i === q.correct) {
+            extraStyle = 'border-color: var(--correct) !important; background: var(--correct-bg) !important; pointer-events: none;';
+            keyStyle = 'background: var(--correct) !important; color: white !important; border-color: var(--correct) !important;';
+          } else if (sel === i) {
+            extraStyle = 'border-color: var(--wrong) !important; background: var(--wrong-bg) !important; pointer-events: none;';
+            keyStyle = 'background: var(--wrong) !important; color: white !important; border-color: var(--wrong) !important;';
+          } else {
+            extraStyle = 'pointer-events: none;';
+          }
+        }
+        return `
+        <input type="radio" name="q_opt" id="opt_${i}" value="${i}" ${sel===i?'checked':''} ${isLearning && isAnswered ? 'disabled' : ''} onchange="selectAnswer(${idx},${i})">
+        <label class="option-label" for="opt_${i}" style="${extraStyle}">
+          <span class="option-key" style="${keyStyle}">${KEYS[i]}</span>
+          <span class="option-text">${opt}</span>
+        </label>
+        `;
+      }).join('')}
+    </div>
+
+    ${(isLearning && isAnswered) ? `
+      <div class="explanation-box" style="margin-top: 1rem;">
+        <strong>${sel === q.correct ? '✅ Correct!' : '❌ Incorrect'}</strong>
+        ${q.explanation}
+      </div>
+    ` : ''}
+
+    <div class="q-nav-btns">
+      ${idx > 0 ? `<button class="btn-nav" onclick="goTo(${idx-1})">← Previous</button>` : ''}
+      ${!isLast ? `<button class="btn-nav primary" onclick="nextQuestion()">Next →</button>` : ''}
+      ${isLast  ? `<button class="btn-nav submit-btn" onclick="attemptSubmit()">✓ Submit Quiz</button>` : ''}
+    </div>
+  `;
+
+  updateNavGrid();
+  updateNavStats();
+  area.scrollTop = 0;
+}
+
+/* ── ANSWER SELECTION ────────────────────────────────────── */
+function selectAnswer(qIdx, optIdx) {
+  if (state.mode === 'learning' && state.answers[qIdx] !== undefined) return;
+  
+  state.answers[qIdx] = optIdx;
+  updateNavGrid();
+  updateNavStats();
+  // update progress
+  const done = Object.keys(state.answers).length;
+  document.getElementById('progress-fill').style.width = (done / QUESTIONS.length * 100) + '%';
+  
+  // In learning mode: re-render to show explanation and highlights
+  if(state.mode === 'learning') {
+    renderQuestion(qIdx);
+  }
+}
+/* ── NAVIGATION ──────────────────────────────────────────── */
+function nextQuestion() {
+  if(state.current < QUESTIONS.length - 1) renderQuestion(state.current + 1);
+}
+function goTo(idx) {
+  renderQuestion(idx);
+}
+
+/* ── FLAG ────────────────────────────────────────────────── */
+function toggleFlag(idx) {
+  state.flagged[idx] = !state.flagged[idx];
+  const btn = document.getElementById(`flag-btn-${idx}`);
+  if(btn) {
+    btn.classList.toggle('active', state.flagged[idx]);
+    const svgEl = btn.querySelector('svg');
+    if(svgEl) svgEl.setAttribute('fill', state.flagged[idx] ? 'currentColor' : 'none');
+    btn.innerHTML = `
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="${state.flagged[idx]?'currentColor':'none'}" stroke="currentColor" stroke-width="2.2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+      ${state.flagged[idx] ? 'Flagged' : 'Flag'}
+    `;
+    btn.classList.toggle('active', state.flagged[idx]);
+  }
+  updateNavGrid();
+  updateNavStats();
+  showToast(state.flagged[idx] ? `⚑ Question ${idx+1} flagged` : `Question ${idx+1} unflagged`);
+}
+
+/* ── NAV GRID ────────────────────────────────────────────── */
+function buildNavGrid() {
+  const grid = document.getElementById('nav-grid');
+  grid.innerHTML = QUESTIONS.map((_, i) => `
+    <button class="nav-btn" id="nav-btn-${i}" onclick="goTo(${i})">${i+1}</button>
+  `).join('');
+}
+
+function updateNavGrid() {
+  QUESTIONS.forEach((_, i) => {
+    const btn = document.getElementById(`nav-btn-${i}`);
+    if(!btn) return;
+    btn.className = 'nav-btn';
+    
+    if(i === state.current) {
+      btn.classList.add('current');
+    } else if(state.answers[i] !== undefined) {
+      if (state.mode === 'learning' && state.answers[i] !== QUESTIONS[i].correct) {
+        btn.classList.add('wrong');
+      } else {
+        btn.classList.add('answered');
+      }
+    }
+
+    // Add flag dot
+    const existing = btn.querySelector('.flag-dot');
+    if(existing) existing.remove();
+    if(state.flagged[i]) {
+      const dot = document.createElement('span');
+      dot.className = 'flag-dot';
+      btn.appendChild(dot);
+      if(i !== state.current) btn.classList.add('flagged');
+    }
+  });
+}
+
+function updateNavStats() {
+  const answered = Object.keys(state.answers).length;
+  const flagged  = Object.values(state.flagged).filter(Boolean).length;
+  const skipped  = QUESTIONS.length - answered;
+  document.getElementById('stat-answered').textContent = answered;
+  document.getElementById('stat-flagged').textContent  = flagged;
+  document.getElementById('stat-skipped').textContent  = skipped;
+}
+
+/* ── SUBMIT ──────────────────────────────────────────────── */
+function attemptSubmit() {
+  // Skip confirm modal in learning mode
+  if(state.mode === 'learning') {
+    confirmSubmit();
+    return;
+  }
+  
+  const unanswered = QUESTIONS.length - Object.keys(state.answers).length;
+  if(unanswered > 0) {
+    document.getElementById('modal-unanswered').textContent = unanswered;
+    document.getElementById('submit-modal').classList.add('open');
+  } else {
+    confirmSubmit();
+  }
+}
+function closeModal() {
+  document.getElementById('submit-modal').classList.remove('open');
+}
+function confirmSubmit() {
+  closeModal();
+  stopTimer();
+  state.submitted = true;
+  clearProgress(); // Clear saved progress after successful submission
+  buildResults();
+  showScreen('result-screen');
+}
+
+/* ── BUILD RESULTS ───────────────────────────────────────── */
+function buildResults() {
+  let correct = 0, wrong = 0, skipped = 0;
+  QUESTIONS.forEach((q, i) => {
+    const ans = state.answers[i];
+    if(ans === undefined) skipped++;
+    else if(ans === q.correct) correct++;
+    else wrong++;
+  });
+  const total   = QUESTIONS.length;
+  const pct     = Math.round(correct / total * 100);
+  const flagged = Object.values(state.flagged).filter(Boolean).length;
+
+  // elapsed time
+  const em = Math.floor(state.elapsed/60), es = state.elapsed%60;
+  const timeStr = String(em).padStart(2,'0') + ':' + String(es).padStart(2,'0');
+
+  document.getElementById('res-pct').textContent    = pct + '%';
+  document.getElementById('res-correct').textContent= correct;
+  document.getElementById('res-wrong').textContent  = wrong;
+  document.getElementById('res-flagged').textContent= flagged;
+  document.getElementById('res-skipped').textContent= skipped;
+  document.getElementById('res-time').textContent   = timeStr;
+
+  let grade = '';
+  if(pct>=90) grade = '🏆 Outstanding!';
+  else if(pct>=75) grade = '🌟 Great Work!';
+  else if(pct>=60) grade = '👍 Good Effort!';
+  else if(pct>=40) grade = '📚 Keep Studying!';
+  else grade = '💪 Don\'t Give Up!';
+  document.getElementById('res-grade').textContent = grade;
+
+  renderResultItems('all');
+}
+
+function renderResultItems(filter) {
+  const list = document.getElementById('result-list');
+  list.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const ans = state.answers[i];
+    const isCorrect = ans === q.correct;
+    const isSkipped = ans === undefined;
+    const isFlagged = state.flagged[i];
+
+    let statusClass = isSkipped ? 'skipped' : (isCorrect ? 'correct' : 'wrong');
+    let showItem = filter === 'all'
+      || (filter === 'correct'  && isCorrect && !isSkipped)
+      || (filter === 'wrong'    && !isCorrect && !isSkipped)
+      || (filter === 'skipped'  && isSkipped)
+      || (filter === 'flagged'  && isFlagged);
+
+    if(!showItem) return;
+
+    const statusIcon = isSkipped ? '—' : (isCorrect ? '✓' : '✗');
+    const userOptText = ans !== undefined ? q.options[ans] : 'Not answered';
+    const correctOptText = q.options[q.correct];
+
+    const el = document.createElement('div');
+    el.className = `result-item ${statusClass}`;
+    el.dataset.idx = i;
+
+    el.innerHTML = `
+      <div class="result-item-header" onclick="toggleResultItem(this)">
+        <div class="result-status-icon">${statusIcon}</div>
+        <div class="result-q-meta">
+          <div class="result-q-num">Question ${i+1}${isFlagged ? ' · ⚑ Flagged' : ''}</div>
+          <div class="result-q-text">${q.question}</div>
+        </div>
+        <div class="expand-arrow">▼</div>
+      </div>
+      <div class="result-item-body">
+        ${!isSkipped ? `
+          <div class="answer-row your-answer ${isCorrect?'is-correct':''}">
+            <span class="ar-label">Your Answer</span>
+            <span>${KEYS[ans]}. ${userOptText}</span>
+          </div>
+        ` : ''}
+        ${!isCorrect ? `
+          <div class="answer-row correct-answer">
+            <span class="ar-label">Correct Answer</span>
+            <span>${KEYS[q.correct]}. ${correctOptText}</span>
+          </div>
+        ` : ''}
+        <div class="explanation-box">
+          <strong>Explanation</strong>
+          ${q.explanation}
+        </div>
+      </div>
+    `;
+    list.appendChild(el);
+  });
+
+  if(list.children.length === 0) {
+    list.innerHTML = `<div style="color:var(--text-muted);font-size:0.9rem;padding:1rem 0;">No questions in this category.</div>`;
+  }
+}
+
+function toggleResultItem(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function filterResults(filter, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderResultItems(filter);
+}
+
+/* ── RESTART ─────────────────────────────────────────────── */
+function restartQuiz() {
+  clearProgress();
+  showScreen('start-screen');
+}
+
+/* ── THEME ───────────────────────────────────────────────── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  
+  // Save preference to localStorage so it persists when returning to index.html
+  localStorage.setItem('quiz-theme', newTheme); 
+  
+  updateThemeIcon();
+}
+
+/* ── NAVIGATE TO INDEX.HTML IN SAME DIRECTORY (WITH FALLBACK) ───────────────────────────────────────────────── */
+function navigateToIndex(event) {
+  event.preventDefault();
+  // Get the current page's path
+  const currentPath = window.location.pathname;
+  // Extract the directory portion
+  const lastSlashIndex = currentPath.lastIndexOf('/');
+  const directory = lastSlashIndex !== -1 ? currentPath.substring(0, lastSlashIndex + 1) : '/';
+  
+  // First, try to navigate to index.html in the same directory (PRIORITY)
+  const sameDirIndex = directory + 'index.html';
+  
+  // Create a temporary link to test navigation
+  // We'll attempt to load the same directory index.html first
+  // If it results in a 404, the browser will show the error page
+  // For a more graceful fallback, we use an iframe to test existence
+  const testFrame = document.createElement('iframe');
+  testFrame.style.display = 'none';
+  testFrame.src = sameDirIndex;
+  document.body.appendChild(testFrame);
+  
+  testFrame.onload = function() {
+    // Successfully loaded - index.html exists in same directory
+    document.body.removeChild(testFrame);
+    window.location.href = sameDirIndex;
+  };
+  
+  testFrame.onerror = function() {
+    // Failed to load - fallback to parent directory
+    document.body.removeChild(testFrame);
+    const parentDir = directory.substring(0, directory.lastIndexOf('/', directory.length - 2) + 1) || '/';
+    window.location.href = parentDir + 'index.html';
+  };
+  
+  // Timeout fallback in case neither onload nor onerror fires (e.g., CORS)
+  setTimeout(function() {
+    if (document.body.contains(testFrame)) {
+      document.body.removeChild(testFrame);
+      // If we get here, assume same directory didn't work, try parent
+      const parentDir = directory.substring(0, directory.lastIndexOf('/', directory.length - 2) + 1) || '/';
+      window.location.href = parentDir + 'index.html';
+    }
+  }, 3000);
+}
+function updateThemeIcon() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  
+  // Note: Added .theme-toggle-btn specifically so we don't accidentally overwrite the Home 🏠 button!
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    btn.textContent = isDark ? '☀' : '☾';
+  });
+}
+
+/* ── TOAST ───────────────────────────────────────────────── */
+let toastTimer;
+let pendingRestoreData = null; // Store pending restore data for optional restore
+
+function showToast(msg, actions = []) {
+  const t = document.getElementById('toast');
+  
+  // Clear any existing content
+  t.innerHTML = '';
+  
+  // Create message span
+  const msgSpan = document.createElement('span');
+  msgSpan.textContent = msg;
+  msgSpan.style.flex = '1';
+  t.appendChild(msgSpan);
+  
+  // Add action buttons if provided
+  if (actions.length > 0) {
+    const actionsContainer = document.createElement('div');
+    actionsContainer.style.display = 'flex';
+    actionsContainer.style.gap = '0.5rem';
+    actionsContainer.style.marginLeft = '0.75rem';
+    
+    actions.forEach(action => {
+      const btn = document.createElement('button');
+      btn.textContent = action.label;
+      btn.style.cssText = `
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: ${action.primary ? 'var(--accent)' : 'var(--surface2)'};
+        color: ${action.primary ? '#000' : 'var(--text)'};
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition);
+      `;
+      btn.onclick = () => {
+        action.onClick();
+        t.classList.remove('show');
+      };
+      btn.onmouseenter = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--accent)';
+          btn.style.color = 'var(--accent)';
+        }
+      };
+      btn.onmouseleave = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--border)';
+          btn.style.color = 'var(--text)';
+        }
+      };
+      actionsContainer.appendChild(btn);
+    });
+    
+    t.appendChild(actionsContainer);
+  }
+  
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  
+  // Auto-hide only if no actions (for simple toasts)
+  if (actions.length === 0) {
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+  // If there are actions, don't auto-hide - let user dismiss manually
+}
+
+/* ── LOCAL STORAGE SAVE/RESTORE ──────────────────────────── */
+// Improved storage key generation that handles special characters safely
+const STORAGE_VERSION = 'v1';
+const STORAGE_KEY = `quiz_progress_${STORAGE_VERSION}_${QUIZ_CONFIG.title.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30)}`;
+
+/**
+ * Safely save quiz progress to localStorage
+ * Handles quota errors and validates data before saving
+ */
+function saveProgress() {
+  if (state.submitted) return;
+  
+  const saveData = {
+    version: STORAGE_VERSION,
+    quizTitle: QUIZ_CONFIG.title,
+    totalQuestions: QUESTIONS.length,
+    current: state.current,
+    answers: state.answers,
+    flagged: state.flagged,
+    elapsed: state.elapsed,
+    timerSecs: state.timerSecs,
+    mode: state.mode,
+    timestamp: Date.now(),
+    savedAt: Date.now() // Separate field for time calculation
+  };
+  
+  try {
+    // Validate data before saving
+    if (!isValidSaveData(saveData)) {
+      console.warn('Invalid save data, skipping save');
+      return;
+    }
+    
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+    console.log('Progress saved successfully');
+  } catch (e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      console.warn('LocalStorage quota exceeded, clearing old saves...');
+      clearOldSaves();
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+      } catch (retryError) {
+        console.error('Failed to save progress even after cleanup:', retryError);
+      }
+    } else {
+      console.error('Error saving progress:', e);
+    }
+  }
+}
+
+/**
+ * Validate save data structure
+ */
+function isValidSaveData(data) {
+  if (!data || typeof data !== 'object') return false;
+  if (typeof data.current !== 'number' || data.current < 0 || data.current >= data.totalQuestions) return false;
+  if (!data.answers || typeof data.answers !== 'object') return false;
+  if (!data.flagged || typeof data.flagged !== 'object') return false;
+  if (typeof data.timerSecs !== 'number' || data.timerSecs < 0) return false;
+  if (!['exam', 'learning'].includes(data.mode)) return false;
+  // savedAt is optional now since we don't use it for time calculation
+  return true;
+}
+
+/**
+ * Clear old saves from other quizzes to free up space
+ */
+function clearOldSaves() {
+  try {
+    const now = Date.now();
+    const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
+    
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith('quiz_progress_')) {
+        try {
+          const data = JSON.parse(localStorage.getItem(key));
+          if (now - data.timestamp > maxAge) {
+            localStorage.removeItem(key);
+          }
+        } catch (e) {
+          // Invalid JSON, remove it
+          localStorage.removeItem(key);
+        }
+      }
+    });
+  } catch (e) {
+    console.error('Error clearing old saves:', e);
+  }
+}
+
+/**
+ * Restore quiz progress from localStorage (deprecated - kept for compatibility)
+ * Use checkSavedProgress() instead which shows optional restore toast
+ */
+function restoreProgress() {
+  // This function is now deprecated in favor of checkSavedProgress() + doRestoreProgress()
+  // Kept for backward compatibility if called elsewhere
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return false;
+  
+  try {
+    const data = JSON.parse(saved);
+    
+    // Check if data is from a compatible version
+    if (data.version !== STORAGE_VERSION) {
+      console.log('Incompatible save version, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
+    
+    // Verify this save is for the same quiz
+    if (data.quizTitle !== QUIZ_CONFIG.title) {
+      console.log('Save is for a different quiz, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
+    
+    // Verify question count hasn't changed
+    if (data.totalQuestions !== QUESTIONS.length) {
+      console.log('Quiz structure has changed, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
+    
+    // Only restore if less than 7 days old
+    const maxAge = 7 * 24 * 60 * 60 * 1000;
+    if (Date.now() - data.timestamp > maxAge) {
+      console.log('Save is too old, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
+    
+    // Do the actual restore
+    doRestoreProgress(data);
+    return true;
+  } catch(e) {
+    console.error('Error restoring progress:', e);
+    localStorage.removeItem(STORAGE_KEY);
+    return false;
+  }
+}
+
+function clearProgress() {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+/**
+ * Confirm and reset quiz progress
+ */
+function confirmResetProgress() {
+  if (confirm('Are you sure you want to reset your quiz progress? This cannot be undone.')) {
+    clearProgress();
+    // Reset state
+    state.current = 0;
+    state.answers = {};
+    state.flagged = {};
+    state.elapsed = 0;
+    state.timerSecs = (QUESTIONS.length + 5) * 60;
+    state.submitted = false;
+    state.mode = 'exam';
+    
+    showToast('🔄 Progress reset! Starting fresh...');
+    
+    setTimeout(() => {
+      showScreen('start-screen');
+    }, 1000);
+  }
+}
+
+// Stop timer when user leaves the page/tab
+window.addEventListener('visibilitychange', function() {
+  if (document.hidden && !state.submitted && state.mode !== 'learning') {
+    stopTimer();
+  } else if (!document.hidden && !state.submitted && state.mode !== 'learning' && state.timerID === null) {
+    // Resume timer when user comes back (only if it was stopped due to visibility change)
+    lastTime = Date.now();
+    timerPaused = false;
+  }
+});
+
+// Auto-save every 5 seconds
+setInterval(saveProgress, 5000);
+
+// Save progress before page unload (tab close, refresh, navigation)
+window.addEventListener('beforeunload', function() {
+  if (!state.submitted) {
+    saveProgress();
+  }
+});
+
+// Check for saved progress on init
+let restoreToastTimeout = null;
+
+function checkSavedProgress() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+  
+  try {
+    const data = JSON.parse(saved);
+    
+    // Validate the saved data
+    if (data.version !== STORAGE_VERSION) {
+      console.log('Incompatible save version, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    
+    if (data.quizTitle !== QUIZ_CONFIG.title) {
+      console.log('Save is for a different quiz, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    
+    if (data.totalQuestions !== QUESTIONS.length) {
+      console.log('Quiz structure has changed, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    
+    const maxAge = 7 * 24 * 60 * 60 * 1000;
+    if (Date.now() - data.timestamp > maxAge) {
+      console.log('Save is too old, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+    
+    // Store pending restore data
+    pendingRestoreData = data;
+    
+    // Show toast with optional restore button
+    showToast("📂 Previous progress found!", [
+      {
+        label: "Restore",
+        primary: true,
+        onClick: () => {
+          clearTimeout(restoreToastTimeout);
+          doRestoreProgress(pendingRestoreData);
+        }
+      },
+      {
+        label: "Dismiss",
+        primary: false,
+        onClick: () => {
+          clearTimeout(restoreToastTimeout);
+          pendingRestoreData = null;
+          clearProgress();
+        }
+      }
+    ]);
+    
+    // Auto-dismiss after 15 seconds if user hasn't interacted
+    restoreToastTimeout = setTimeout(() => {
+      console.log('Auto-dismissing restore toast after 15 seconds');
+      pendingRestoreData = null;
+      clearProgress();
+      // Hide the toast if it's still visible
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.classList.remove('show');
+      }
+    }, 15000);
+    
+  } catch(e) {
+    console.error('Error checking saved progress:', e);
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+/**
+ * Actually perform the restore with validated data
+ */
+function doRestoreProgress(data) {
+  // Handle backward compatibility: if savedAt doesn't exist, use timestamp
+  if (!data.savedAt) {
+    data.savedAt = data.timestamp;
+  }
+  
+  // Validate all answer indices are still valid
+  for (const [qIdx, optIdx] of Object.entries(data.answers)) {
+    const qIndex = parseInt(qIdx);
+    if (qIndex >= 0 && qIndex < QUESTIONS.length) {
+      const optCount = QUESTIONS[qIndex].options.length;
+      if (optIdx < 0 || optIdx >= optCount) {
+        delete data.answers[qIdx];
+      }
+    } else {
+      delete data.answers[qIdx];
+    }
+  }
+  
+  // Restore state
+  state.current = Math.min(data.current, QUESTIONS.length - 1);
+  state.answers = data.answers;
+  state.flagged = data.flagged || {};
+  
+  // Restore timer values exactly as saved (time doesn't count while page is closed)
+  state.elapsed = data.elapsed || 0;
+  state.timerSecs = data.timerSecs || 0;
+  
+  state.mode = data.mode;
+  state.submitted = false;
+  
+  setTimeout(() => {
+    if(state.mode === 'learning') {
+      document.getElementById('timer-display').classList.add('hidden');
+    }
+    showScreen('quiz-screen');
+    buildNavGrid();
+    renderQuestion(state.current);
+    updateTimerDisplay(); // Ensure timer display is correct on restore
+    if(state.mode !== 'learning') {
+      startTimer();
+    }
+  }, 500);
+}
+
+/* ── BOOT ────────────────────────────────────────────────── */
+initUI();
+checkSavedProgress();
+</script>
+
+</body></html>
