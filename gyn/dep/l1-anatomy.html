@@ -1696,77 +1696,12 @@ function updateThemeIcon() {
 
 /* ── TOAST ───────────────────────────────────────────────── */
 let toastTimer;
-let pendingRestoreData = null; // Store pending restore data for optional restore
-
-function showToast(msg, actions = []) {
-  const t = document.getElementById('toast');
-  
-  // Clear any existing content
-  t.innerHTML = '';
-  
-  // Create message span
-  const msgSpan = document.createElement('span');
-  msgSpan.textContent = msg;
-  msgSpan.style.flex = '1';
-  t.appendChild(msgSpan);
-  
-  // Add action buttons if provided
-  if (actions.length > 0) {
-    const actionsContainer = document.createElement('div');
-    actionsContainer.style.display = 'flex';
-    actionsContainer.style.gap = '0.5rem';
-    actionsContainer.style.marginLeft = '0.75rem';
-    
-    actions.forEach(action => {
-      const btn = document.createElement('button');
-      btn.textContent = action.label;
-      btn.style.cssText = `
-        padding: 0.35rem 0.75rem;
-        border-radius: 6px;
-        border: 1px solid var(--border);
-        background: ${action.primary ? 'var(--accent)' : 'var(--surface2)'};
-        color: ${action.primary ? '#000' : 'var(--text)'};
-        font-size: 0.75rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all var(--transition);
-      `;
-      btn.onclick = () => {
-        action.onClick();
-        t.classList.remove('show');
-      };
-      btn.onmouseenter = () => {
-        if (!action.primary) {
-          btn.style.borderColor = 'var(--accent)';
-          btn.style.color = 'var(--accent)';
-        }
-      };
-      btn.onmouseleave = () => {
-        if (!action.primary) {
-          btn.style.borderColor = 'var(--border)';
-          btn.style.color = 'var(--text)';
-        }
-      };
-      actionsContainer.appendChild(btn);
-    });
-    
-    t.appendChild(actionsContainer);
-  }
-  
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  
-  // Auto-hide only if no actions (for simple toasts)
-  if (actions.length === 0) {
-    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
-  }
-  // If there are actions, don't auto-hide - let user dismiss manually
-}
+let pendingRestoreData = null;
 
 /* ── LOCAL STORAGE SAVE/RESTORE ──────────────────────────── */
 // Improved storage key generation that handles special characters safely
 const STORAGE_VERSION = 'v1';
-const STORAGE_KEY = `quiz_progress_${STORAGE_VERSION}_${(QUIZ_CONFIG.uid || window.location.pathname).replace(/[^a-zA-Z0-9]/g, "_")}`;
+const STORAGE_KEY = `quiz_progress_${STORAGE_VERSION}_${(QUIZ_CONFIG.uid || window.location.pathname).replace(/[^a-zA-Z0-9]/g, '_')}`;
 
 /**
  * Safely save quiz progress to localStorage
@@ -1968,7 +1903,6 @@ function checkSavedProgress() {
   
   try {
     const data = JSON.parse(saved);
-
     
     // Validate the saved data
     if (data.version !== STORAGE_VERSION) {
@@ -1996,18 +1930,6 @@ function checkSavedProgress() {
       return;
     }
     
-    
-    // Only show toast if there's actual progress (at least one answer, one flag, or 10s of time)
-    const hasAnswers = Object.keys(data.answers || {}).length > 0;
-    const hasFlags = Object.values(data.flagged || {}).some(v => v === true);
-    const hasTime = (data.elapsed || 0) > 10;
-
-    if (!hasAnswers && !hasFlags && !hasTime) {
-      console.log('No meaningful progress to restore');
-      localStorage.removeItem(STORAGE_KEY);
-      return;
-    }
-
     // Store pending restore data
     pendingRestoreData = data;
     
