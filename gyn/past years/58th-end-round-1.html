@@ -1,10 +1,11 @@
-<html lang="en" data-theme="dark" style="--q-count: 10;"><head>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gynecology - 58Th End Round 1</title>
+<title>Gynecology - Quiz Loading...</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════
    CSS VARIABLES & THEME
@@ -841,15 +842,15 @@ input[type=radio]:checked + .option-label .option-key {
 
   <div class="start-card">
     <div class="start-icon">📝</div>
-    <h1 id="quiz-title">General Knowledge Quiz</h1>
-    <p class="subtitle" id="quiz-desc">Test your knowledge across science, history, geography, and more.</p>
+    <h1 id="quiz-title">Quiz Loading...</h1>
+    <p class="subtitle" id="quiz-desc">Answer all questions before the timer runs out.</p>
     <div class="meta-grid">
       <div class="meta-item">
-        <span class="val" id="meta-questions">10</span>
+        <span class="val" id="meta-questions">—</span>
         <span class="lbl">Questions</span>
       </div>
       <div class="meta-item">
-        <span class="val" id="meta-time">15</span>
+        <span class="val" id="meta-time">—</span>
         <span class="lbl">Minutes</span>
       </div>
     </div>
@@ -859,8 +860,8 @@ input[type=radio]:checked + .option-label .option-key {
       <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem; font-weight: 500;">Quiz Mode</p>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
         <label style="cursor: pointer;">
-          <input type="radio" name="quiz-mode" value="exam" checked="" style="display: none;">
-          <div style="padding: 0.85rem; border-radius: var(--radius); border-top-width: ; border-top-style: ; border-color: var(--accent); border-right-width: ; border-right-style: ; border-bottom-width: ; border-bottom-style: ; border-left-width: ; border-left-style: ; border-image-outset: ; border-image-repeat: ; border-image-slice: ; border-image-source: ; border-image-width: ; background: var(--accent-dim); transition: all var(--transition); text-align: center;" class="mode-option mode-selected">
+          <input type="radio" name="quiz-mode" value="exam" checked style="display: none;">
+          <div style="padding: 0.85rem; border-radius: var(--radius); border: 1.5px solid var(--border); background: var(--surface2); transition: all var(--transition); text-align: center;" class="mode-option mode-selected">
             <div style="font-weight: 600; font-size: 0.95rem;">📝 Exam Mode</div>
             <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Timer + Normal Quiz</div>
           </div>
@@ -883,10 +884,10 @@ input[type=radio]:checked + .option-label .option-key {
 <div id="quiz-screen" class="screen">
   <!-- Top bar -->
   <div class="topbar">
-    <div class="topbar-title" id="topbar-title">General Knowledge Quiz</div>
+    <div class="topbar-title" id="topbar-title">Quiz Loading...</div>
     <div class="timer-wrap" id="timer-display">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
       </svg>
       <span id="timer-text">00:00</span>
     </div>
@@ -925,7 +926,7 @@ input[type=radio]:checked + .option-label .option-key {
       </div>
       <div class="nav-stats">
         <div class="stat-item"><div class="sv green" id="stat-answered">0</div><div class="sl">Done</div></div>
-        <div class="stat-item"><div class="sv blue" id="stat-flagged">0</div><div class="sl">Flagged</div></div>
+        <div class="stat-item"><div class="sv blue"  id="stat-flagged">0</div><div class="sl">Flagged</div></div>
         <div class="stat-item"><div class="sv muted" id="stat-skipped">0</div><div class="sl">Skipped</div></div>
       </div>
     </div>
@@ -953,8 +954,8 @@ input[type=radio]:checked + .option-label .option-key {
         <h3 id="res-grade">Loading…</h3>
         <div class="score-grid">
           <div class="score-stat"><div class="n green" id="res-correct">0</div><div class="t">Correct</div></div>
-          <div class="score-stat"><div class="n red" id="res-wrong">0</div><div class="t">Wrong</div></div>
-          <div class="score-stat"><div class="n blue" id="res-flagged">0</div><div class="t">Flagged</div></div>
+          <div class="score-stat"><div class="n red"   id="res-wrong">0</div><div class="t">Wrong</div></div>
+          <div class="score-stat"><div class="n blue"  id="res-flagged">0</div><div class="t">Flagged</div></div>
           <div class="score-stat"><div class="n muted" id="res-skipped">0</div><div class="t">Skipped</div></div>
           <div class="score-stat"><div class="n" id="res-time">—</div><div class="t">Time Used</div></div>
         </div>
@@ -993,7 +994,7 @@ input[type=radio]:checked + .option-label .option-key {
 </div>
 
 <!-- ═══════════════ TOAST ════════════════ -->
-<div class="toast show" id="toast"><span style="flex: 1 1 0%;">📂 Previous progress found!</span><div style="display: flex; gap: 0.5rem; margin-left: 0.75rem;"><button style="padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--border); background: var(--accent); color: rgb(0, 0, 0); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all var(--transition);">Restore</button><button style="padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all var(--transition);">Dismiss</button></div></div>
+<div class="toast" id="toast"></div>
 
 <!-- ════════════════════════════════════════════════════════════════
      ▼ DROP IN YOUR QUESTIONS HERE ▼
@@ -1003,6 +1004,7 @@ input[type=radio]:checked + .option-label .option-key {
    QUIZ CONFIGURATION  — Edit this section to customise your quiz
 ──────────────────────────────────────────────────────────────────*/
 const QUIZ_CONFIG = {
+  uid: "gyn_past_years_58th_end_round_1",
   title: "58Th End Round 1",
   description: "Past Years Exams",
 };
@@ -1018,7 +1020,7 @@ const QUIZ_CONFIG = {
    }
 ──────────────────────────────────────────────────────────────────*/
 const QUESTIONS = [
-  {
+{
     "question": "Arterial blood supply to the uterus is derived from what arteries?",
     "options": [
       "Ovarian arteries alone.",
@@ -2022,7 +2024,72 @@ function updateThemeIcon() {
 
 /* ── TOAST ───────────────────────────────────────────────── */
 let toastTimer;
-let pendingRestoreData = null;
+let pendingRestoreData = null; // Store pending restore data for optional restore
+
+function showToast(msg, actions = []) {
+  const t = document.getElementById('toast');
+  
+  // Clear any existing content
+  t.innerHTML = '';
+  
+  // Create message span
+  const msgSpan = document.createElement('span');
+  msgSpan.textContent = msg;
+  msgSpan.style.flex = '1';
+  t.appendChild(msgSpan);
+  
+  // Add action buttons if provided
+  if (actions.length > 0) {
+    const actionsContainer = document.createElement('div');
+    actionsContainer.style.display = 'flex';
+    actionsContainer.style.gap = '0.5rem';
+    actionsContainer.style.marginLeft = '0.75rem';
+    
+    actions.forEach(action => {
+      const btn = document.createElement('button');
+      btn.textContent = action.label;
+      btn.style.cssText = `
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: ${action.primary ? 'var(--accent)' : 'var(--surface2)'};
+        color: ${action.primary ? '#000' : 'var(--text)'};
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition);
+      `;
+      btn.onclick = () => {
+        action.onClick();
+        t.classList.remove('show');
+      };
+      btn.onmouseenter = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--accent)';
+          btn.style.color = 'var(--accent)';
+        }
+      };
+      btn.onmouseleave = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--border)';
+          btn.style.color = 'var(--text)';
+        }
+      };
+      actionsContainer.appendChild(btn);
+    });
+    
+    t.appendChild(actionsContainer);
+  }
+  
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  
+  // Auto-hide only if no actions (for simple toasts)
+  if (actions.length === 0) {
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+  // If there are actions, don't auto-hide - let user dismiss manually
+}
 
 /* ── LOCAL STORAGE SAVE/RESTORE ──────────────────────────── */
 // Improved storage key generation that handles special characters safely
@@ -2350,5 +2417,5 @@ function doRestoreProgress(data) {
 initUI();
 checkSavedProgress();
 </script>
-
-</body></html>
+</body>
+</html>

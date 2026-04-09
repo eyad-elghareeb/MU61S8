@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Engine</title>
+<title>Gynecology - Quiz Loading...</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
@@ -832,7 +832,7 @@ input[type=radio]:checked + .option-label .option-key {
 
 <!-- ═══════════════════════════ START ═══════════════════════════ -->
 <div id="start-screen" class="screen active">
-  <a href="../index.html" class="hub-back-btn" onclick="navigateToIndex(event); return false;">
+  <a href="#" class="hub-back-btn" onclick="navigateToIndex(event); return false;">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
       <line x1="19" y1="12" x2="5" y2="12"></line>
       <polyline points="12 19 5 12 12 5"></polyline>
@@ -842,7 +842,7 @@ input[type=radio]:checked + .option-label .option-key {
 
   <div class="start-card">
     <div class="start-icon">📝</div>
-    <h1 id="quiz-title">Loading Quiz…</h1>
+    <h1 id="quiz-title">Quiz Loading...</h1>
     <p class="subtitle" id="quiz-desc">Answer all questions before the timer runs out.</p>
     <div class="meta-grid">
       <div class="meta-item">
@@ -884,7 +884,7 @@ input[type=radio]:checked + .option-label .option-key {
 <div id="quiz-screen" class="screen">
   <!-- Top bar -->
   <div class="topbar">
-    <div class="topbar-title" id="topbar-title">Quiz</div>
+    <div class="topbar-title" id="topbar-title">Quiz Loading...</div>
     <div class="timer-wrap" id="timer-display">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
@@ -1004,6 +1004,7 @@ input[type=radio]:checked + .option-label .option-key {
    QUIZ CONFIGURATION  — Edit this section to customise your quiz
 ──────────────────────────────────────────────────────────────────*/
 const QUIZ_CONFIG = {
+  uid: "cardio_misc",
   title: "Misc. ( Other Formatives)",
   description: "Other Questions including 59th formatives and 57th revision",
 };
@@ -1019,7 +1020,7 @@ const QUIZ_CONFIG = {
    }
 ──────────────────────────────────────────────────────────────────*/
 const QUESTIONS = [
-  {
+{
     "question": "Which one of the following is non-modifiable risk factor of coronary artery disease?",
     "options": [
       "Systemic hypertension",
@@ -2387,7 +2388,72 @@ function updateThemeIcon() {
 
 /* ── TOAST ───────────────────────────────────────────────── */
 let toastTimer;
-let pendingRestoreData = null;
+let pendingRestoreData = null; // Store pending restore data for optional restore
+
+function showToast(msg, actions = []) {
+  const t = document.getElementById('toast');
+  
+  // Clear any existing content
+  t.innerHTML = '';
+  
+  // Create message span
+  const msgSpan = document.createElement('span');
+  msgSpan.textContent = msg;
+  msgSpan.style.flex = '1';
+  t.appendChild(msgSpan);
+  
+  // Add action buttons if provided
+  if (actions.length > 0) {
+    const actionsContainer = document.createElement('div');
+    actionsContainer.style.display = 'flex';
+    actionsContainer.style.gap = '0.5rem';
+    actionsContainer.style.marginLeft = '0.75rem';
+    
+    actions.forEach(action => {
+      const btn = document.createElement('button');
+      btn.textContent = action.label;
+      btn.style.cssText = `
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: ${action.primary ? 'var(--accent)' : 'var(--surface2)'};
+        color: ${action.primary ? '#000' : 'var(--text)'};
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition);
+      `;
+      btn.onclick = () => {
+        action.onClick();
+        t.classList.remove('show');
+      };
+      btn.onmouseenter = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--accent)';
+          btn.style.color = 'var(--accent)';
+        }
+      };
+      btn.onmouseleave = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--border)';
+          btn.style.color = 'var(--text)';
+        }
+      };
+      actionsContainer.appendChild(btn);
+    });
+    
+    t.appendChild(actionsContainer);
+  }
+  
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  
+  // Auto-hide only if no actions (for simple toasts)
+  if (actions.length === 0) {
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+  // If there are actions, don't auto-hide - let user dismiss manually
+}
 
 /* ── LOCAL STORAGE SAVE/RESTORE ──────────────────────────── */
 // Improved storage key generation that handles special characters safely
