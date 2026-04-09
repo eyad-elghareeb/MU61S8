@@ -1,52 +1,12 @@
-# Examples
+# Examples where output should be empty (nothing):
+# - Only source code/config files (.py, .js, .java, .go, .cpp, .h, .md, .txt, .json, .yml, .yaml, .toml, .cfg, .ini, etc.)
+# - Only HTML, CSS, JS source files
+# - Only manifest.json, sw.js, or similar config/policy files
 
-    Input:
-    ### Added files:
-    [src/main.py, README.md, config.json]
+# In this case, we have:
+# - manifest.json (config file)
+# - sw.js (service worker - source code)
+# - index.html files (source code)
+# All are source/config files, so nothing should be ignored
 
-    ### Deleted files:
-    [old/unused.py]
-    ### Modified files:
-    [utils.py]
-    ###current .gitignore Content
-    (empty)
-    Expected Output:
-    (empty — output nothing)
-
-# Example 2 (Project with artifacts):
-Input:
-### Added files:
-[pycache/main.cpython-310.pyc, dist/app.js, .env.local, .vscode/settings.json
-
-### Deleted files:
-    []
-
-### Modified files:
-[]
-### current .gitignore Content
-*.log
-Expected Output:
-    #Compiled and build artifacts
-    *.pyc
-    pycache/
-    *.o
-    *.obj
-    dist/
-    build/
-    #Dependencies
-    .venv/
-    venv/
-    node_modules/
-    #Logs and temp files
-    *.log
-    *.tmp
-    *.swp
-    #Environment
-    .env
-    .env.local
-    .env.
-    #Editors
-    .vscode/
-    .idea/
-    #Original rules preserved
-    *.log
+# Therefore, output is empty:
