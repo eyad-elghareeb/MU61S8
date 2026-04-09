@@ -1863,6 +1863,7 @@ function checkSavedProgress() {
   
   try {
     const data = JSON.parse(saved);
+
     
     // Validate the saved data
     if (data.version !== STORAGE_VERSION) {
@@ -1890,6 +1891,18 @@ function checkSavedProgress() {
       return;
     }
     
+    
+    // Only show toast if there's actual progress (at least one answer, one flag, or 10s of time)
+    const hasAnswers = Object.keys(data.answers || {}).length > 0;
+    const hasFlags = Object.values(data.flagged || {}).some(v => v === true);
+    const hasTime = (data.elapsed || 0) > 10;
+
+    if (!hasAnswers && !hasFlags && !hasTime) {
+      console.log('No meaningful progress to restore');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
     // Store pending restore data
     pendingRestoreData = data;
     
