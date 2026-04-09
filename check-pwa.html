@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Diagnostic</title>
+  <style>
+    body { font-family: monospace; padding: 20px; background: #0d1117; color: #e6edf3; }
+    .ok { color: #4caf50; }
+    .error { color: #f44336; }
+    .warn { color: #ff9800; }
+    h1 { border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+    .section { margin: 20px 0; padding: 15px; background: #161b22; border-radius: 8px; }
+  </style>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0d1117">
+</head>
+<body>
+  <h1>🔍 PWA Diagnostic Tool</h1>
+  
+  <div class="section">
+    <h2>1. Service Worker Support</h2>
+    <div id="sw-check">Checking...</div>
+  </div>
+  
+  <div class="section">
+    <h2>2. Manifest Check</h2>
+    <div id="manifest-check">Checking...</div>
+  </div>
+  
+  <div class="section">
+    <h2>3. Cache Status</h2>
+    <div id="cache-check">Checking...</div>
+  </div>
+  
+  <div class="section">
+    <h2>4. Install Status</h2>
+    <div id="install-check">Checking...</div>
+    <button id="install-btn" style="display:none; margin-top:10px; padding:10px 20px; background:#f0a500; border:none; border-radius:8px; cursor:pointer;">📲 Install App</button>
+  </div>
+  
+  <div class="section">
+    <h2>5. Console Logs</h2>
+    <div id="logs" style="max-height:200px; overflow-y:auto; font-size:12px;"></div>
+  </div>
+
+  <script>
+    function log(msg, type = 'info') {
+      const logs = document.getElementById('logs');
+      const className = type === 'error' ? 'error' : type === 'warn' ? 'warn' : 'ok';
+      logs.innerHTML += `<div class="${className}">[${new Date().toLocaleTimeString()}] ${msg}</div>`;
+    }
+
+    // Check Service Worker
+    if ('serviceWorker' in navigator) {
+      document.getElementById('sw-check').innerHTML = '<span class="ok">✓ Service Workers supported</span>';
+      
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then(reg => {
+          log('Service Worker registered! Scope: ' + reg.scope);
+          document.getElementById('sw-check').innerHTML += 
+            `<br><span class="ok">✓ Registered at: ${reg.scope}</span>` +
+            `<br>State: ${reg.installing ? 'Installing' : reg.waiting ? 'Waiting' : reg.active ? 'Active' : 'Unknown'}`;
+          
+          // Listen for updates
+          reg.addEventListener('updatefound', () => {
+            log('Service Worker update found');
+          });
+        })
+        .catch(err => {
+          log('Service Worker registration failed: ' + err, 'error');
+          document.getElementById('sw-check').innerHTML = `<span class="error">✗ Error: ${err}</span>`;
+        });
+        
+      // Check current registration
+      navigator.serviceWorker.getRegistration('/').then(reg => {
+        if (reg) {
+          log('Existing Service Worker found: ' + reg.scope);
+        } else {
+          log('No existing Service Worker', 'warn');
+        }
+      });
+    } else {
+      document.getElementById('sw-check').innerHTML = '<span class="error">✗ Service Workers NOT supported</span>';
+      log('Service Workers not supported in this browser', 'error');
+    }
+
+    // Check Manifest
+    fetch('/manifest.json')
+      .then(res => res.json())
+      .then(manifest => {
+        log('Manifest loaded successfully');
+        let html = '<span class="ok">✓ Manifest loaded</span><br>';
+        html += `Name: ${manifest.name}<br>`;
+        html += `Start URL: ${manifest.start_url}<br>`;
+        html += `Display: ${manifest.display}<br>`;
+        html += `Icons: ${manifest.icons ? manifest.icons.length : 0} icon(s)`;
+        document.getElementById('manifest-check').innerHTML = html;
+      })
+      .catch(err => {
+        log('Manifest load failed: ' + err, 'error');
+        document.getElementById('manifest-check').innerHTML = `<span class="error">✗ Error: ${err}</span>`;
+      });
+
+    // Check Caches
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        if (names.length > 0) {
+          document.getElementById('cache-check').innerHTML = 
+            '<span class="ok">✓ Found caches:</span><br>' + 
+            names.map(n => `• ${n}`).join('<br>');
+          log('Found ' + names.length + ' cache(s)');
+        } else {
+          document.getElementById('cache-check').innerHTML = 
+            '<span class="warn">⚠ No caches yet (will appear after first visit)</span>';
+          log('No caches found yet', 'warn');
+        }
+      });
+    }
+
+    // Install prompt handling
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      log('Install prompt ready');
+      document.getElementById('install-btn').style.display = 'block';
+      document.getElementById('install-check').innerHTML = 
+        '<span class="ok">✓ App is installable</span>';
+    });
+
+    window.addEventListener('appinstalled', () => {
+      log('App installed!');
+      document.getElementById('install-check').innerHTML = 
+        '<span class="ok">✓ App is installed</span>';
+      document.getElementById('install-btn').style.display = 'none';
+    });
+
+    document.getElementById('install-btn').addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(result => {
+          log('User choice: ' + result.outcome);
+          deferredPrompt = null;
+          document.getElementById('install-btn').style.display = 'none';
+        });
+      }
+    });
+
+    // Check if already installed
+    if (window.matchMedia('(display-mode: standalone)').matches || 
+        window.navigator.standalone === true) {
+      document.getElementById('install-check').innerHTML = 
+        '<span class="ok">✓ App is running as PWA</span>';
+      log('Already running as PWA');
+    } else {
+      document.getElementById('install-check').innerHTML = 
+        '<span class="warn">⚠ Not installed yet</span>';
+    }
+
+    log('Diagnostic page loaded');
+  </script>
+</body>
+</html>

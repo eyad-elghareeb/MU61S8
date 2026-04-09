@@ -1,12 +1,12 @@
 // Service Worker for MU61 Quiz - Full Offline Caching
-const CACHE_NAME = 'mu61-quiz-v2';
+const CACHE_NAME = 'mu61-quiz-v4';
 
-// Install event - cache core assets and all HTML pages
+// Install event - cache core assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Caching core assets');
+        console.log('[SW] Caching core assets');
         return cache.addAll([
           '/',
           '/index.html',
@@ -16,7 +16,7 @@ self.addEventListener('install', (event) => {
         ]);
       })
       .catch((error) => {
-        console.error('Failed to cache core assets:', error);
+        console.error('[SW] Failed to cache core assets:', error);
       })
   );
   self.skipWaiting();
@@ -29,12 +29,13 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
+            console.log('[SW] Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
+      console.log('[SW] Claiming clients');
       return self.clients.claim();
     })
   );
@@ -57,9 +58,11 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request)
       .then((cachedResponse) => {
         if (cachedResponse) {
+          console.log('[SW] Cache HIT:', event.request.url);
           return cachedResponse;
         }
 
+        console.log('[SW] Cache MISS, fetching:', event.request.url);
         return fetch(event.request)
           .then((networkResponse) => {
             if (!networkResponse || networkResponse.status !== 200) {
@@ -76,7 +79,8 @@ self.addEventListener('fetch', (event) => {
             return networkResponse;
           })
           .catch((error) => {
-            console.error('Fetch failed:', error);
+            console.error('[SW] Fetch failed:', error);
+            // Return offline fallback for navigation requests
             if (event.request.mode === 'navigate' || 
                 (event.request.headers.get('accept') && 
                  event.request.headers.get('accept').includes('text/html'))) {
