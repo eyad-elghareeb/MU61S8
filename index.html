@@ -215,6 +215,9 @@ button, a { cursor: pointer; font-family: inherit; border: none; outline: none; 
 <meta name="twitter:title" content="MU61 Quiz">
 <meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
+<!-- PWA Manifest -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0d1117">
 </head>
 <body>
 
@@ -312,6 +315,19 @@ function init() {
 }
 
 init();
+
+// PWA Service Worker Registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      })
+      .catch((error) => {
+        console.log('ServiceWorker registration failed: ', error);
+      });
+  });
+}
 </script>
 </body>
 </html>
