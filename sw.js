@@ -1,12 +1,12 @@
 // Service Worker for MU61 Quiz - Full Offline Caching
-const CACHE_NAME = 'mu61-quiz-v1';
+const CACHE_NAME = 'mu61-quiz-v4';
 
 // Install event - cache core assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Caching core assets');
+        console.log('[SW] Caching core assets');
         return cache.addAll([
           '/',
           '/index.html',
@@ -16,10 +16,9 @@ self.addEventListener('install', (event) => {
         ]);
       })
       .catch((error) => {
-        console.error('Failed to cache core assets:', error);
+        console.error('[SW] Failed to cache core assets:', error);
       })
   );
-  // Force activation of new service worker
   self.skipWaiting();
 });
 
@@ -30,27 +29,27 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
+            console.log('[SW] Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
+    }).then(() => {
+      console.log('[SW] Claiming clients');
+      return self.clients.claim();
     })
   );
-  // Claim all clients immediately
-  self.clients.claim();
 });
 
-// Fetch event - cache-first strategy with network fallback and dynamic caching
+// Fetch event - cache-first strategy with network fallback
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests
   if (event.request.method !== 'GET') {
     return;
   }
 
   const requestUrl = new URL(event.request.url);
   
-  // Skip cross-origin requests (like Google Fonts, external resources)
+  // Skip cross-origin requests
   if (requestUrl.origin !== location.origin) {
     return;
   }
@@ -59,22 +58,19 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request)
       .then((cachedResponse) => {
         if (cachedResponse) {
-          // Return cached response
+          console.log('[SW] Cache HIT:', event.request.url);
           return cachedResponse;
         }
 
-        // Not in cache - fetch from network
+        console.log('[SW] Cache MISS, fetching:', event.request.url);
         return fetch(event.request)
           .then((networkResponse) => {
-            // Check if valid response
             if (!networkResponse || networkResponse.status !== 200) {
               return networkResponse;
             }
 
-            // Clone the response for caching
             const responseToCache = networkResponse.clone();
 
-            // Cache the new resource dynamically
             caches.open(CACHE_NAME)
               .then((cache) => {
                 cache.put(event.request, responseToCache);
@@ -83,9 +79,11 @@ self.addEventListener('fetch', (event) => {
             return networkResponse;
           })
           .catch((error) => {
-            console.error('Fetch failed:', error);
-            // Return offline page for navigation requests
-            if (event.request.mode === 'navigate' || event.request.headers.get('accept').includes('text/html')) {
+            console.error('[SW] Fetch failed:', error);
+            // Return offline fallback for navigation requests
+            if (event.request.mode === 'navigate' || 
+                (event.request.headers.get('accept') && 
+                 event.request.headers.get('accept').includes('text/html'))) {
               return caches.match('/index.html');
             }
           });
