@@ -7734,12 +7734,13 @@ function saveProgress() {
  */
 function isValidSaveData(data) {
   if (!data || typeof data !== 'object') return false;
-  if (typeof data.current !== 'number' || data.current < 0 || data.current >= data.totalQuestions) return false;
+  if (typeof data.current !== 'number' || data.current < 0) return false;
   if (!data.answers || typeof data.answers !== 'object') return false;
   if (!data.flagged || typeof data.flagged !== 'object') return false;
   if (typeof data.timerSecs !== 'number' || data.timerSecs < 0) return false;
   if (!['exam', 'learning'].includes(data.mode)) return false;
   if (typeof data.questionCount !== 'number' || data.questionCount < 1) return false;
+  if (typeof data.totalQuestions !== 'number' || data.totalQuestions < 1) return false;
   return true;
 }
 
@@ -7794,9 +7795,9 @@ function checkSavedProgress() {
       return;
     }
 
-    // Check if question count matches the saved session
-    if (data.questionCount !== selectedCount) {
-      console.log('Question count has changed, starting fresh');
+    // Validate basic structure before showing restore option
+    if (!isValidSaveData(data)) {
+      console.log('Invalid save data structure, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return;
     }
@@ -7804,6 +7805,13 @@ function checkSavedProgress() {
     const maxAge = 7 * 24 * 60 * 60 * 1000;
     if (Date.now() - data.timestamp > maxAge) {
       console.log('Save is too old, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    // Check if question count matches the saved session
+    if (data.questionCount !== selectedCount) {
+      console.log('Question count has changed, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return;
     }
@@ -7853,6 +7861,16 @@ function doRestoreProgress(data) {
   if (!data.savedAt) {
     data.savedAt = data.timestamp;
   }
+
+  // Restore the selectedCount from saved data
+  selectedCount = data.questionCount || 20;
+  
+  // Update the input field to reflect restored count
+  const inp = document.getElementById('q-count-input');
+  if (inp) inp.value = selectedCount;
+
+  // Select questions using the restored count BEFORE restoring state
+  SESSION_QUESTIONS = selectSessionQuestions(selectedCount);
 
   // Validate all answer indices are still valid
   for (const [qIdx, optIdx] of Object.entries(data.answers)) {
