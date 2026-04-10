@@ -179,21 +179,27 @@ def extract_quiz_description(quiz_text: str) -> str:
 
 
 def extract_quiz_config(quiz_text: str) -> dict[str, object]:
-    config_literal, _, _ = extract_assigned_literal(quiz_text, "QUIZ_CONFIG", "{", "}")
-    config = parse_js_literal(config_literal)
-
-    if not isinstance(config, dict):
-        raise ValueError("QUIZ_CONFIG did not parse into an object.")
-
-    return config
+    for var_name in ("QUIZ_CONFIG", "BANK_CONFIG"):
+        try:
+            config_literal, _, _ = extract_assigned_literal(quiz_text, var_name, "{", "}")
+            config = parse_js_literal(config_literal)
+            if isinstance(config, dict):
+                return config
+        except ValueError:
+            continue
+    raise ValueError("Neither QUIZ_CONFIG nor BANK_CONFIG found in file.")
 
 
 def extract_question_count(quiz_text: str) -> int:
-    questions_literal, _, _ = extract_assigned_literal(quiz_text, "QUESTIONS", "[", "]")
-    matches = re.findall(r'"question"\s*:', questions_literal)
-    if not matches:
-        raise ValueError("QUESTIONS array did not contain any question entries.")
-    return len(matches)
+    for var_name in ("QUESTIONS", "QUESTION_BANK"):
+        try:
+            questions_literal, _, _ = extract_assigned_literal(quiz_text, var_name, "[", "]")
+            matches = re.findall(r'"question"\s*:', questions_literal)
+            if matches:
+                return len(matches)
+        except ValueError:
+            continue
+    raise ValueError("Neither QUESTIONS nor QUESTION_BANK found in file.")
 
 
 def extract_assigned_literal(text: str, variable_name: str, open_char: str, close_char: str) -> tuple[str, int, int]:
