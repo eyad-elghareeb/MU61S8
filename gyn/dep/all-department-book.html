@@ -7739,6 +7739,7 @@ function isValidSaveData(data) {
   if (!data.flagged || typeof data.flagged !== 'object') return false;
   if (typeof data.timerSecs !== 'number' || data.timerSecs < 0) return false;
   if (!['exam', 'learning'].includes(data.mode)) return false;
+  if (typeof data.questionCount !== 'number' || data.questionCount < 1) return false;
   return true;
 }
 
@@ -7796,13 +7797,6 @@ function checkSavedProgress() {
     // Check if question count matches the saved session
     if (data.questionCount !== selectedCount) {
       console.log('Question count has changed, starting fresh');
-      localStorage.removeItem(STORAGE_KEY);
-      return;
-    }
-
-    // Check if total questions matches (session questions may vary)
-    if (data.totalQuestions !== SESSION_QUESTIONS.length) {
-      console.log('Quiz structure has changed, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return;
     }
@@ -7993,6 +7987,9 @@ function adjustCount(delta) {
   inp.value = newVal;
   selectedCount = newVal;
   autoSetTime(newVal);
+  
+  // Clear any saved progress if question count changes
+  clearProgress();
 }
 
 function setCount(n) {
@@ -8003,6 +8000,9 @@ function setCount(n) {
 
   document.getElementById('q-count-input').value = n;
   autoSetTime(n);
+  
+  // Clear any saved progress if question count changes
+  clearProgress();
 }
 
 function onCustomCount(val) {
@@ -8011,6 +8011,9 @@ function onCustomCount(val) {
   n = Math.max(1, Math.min(n, bankSize));
   selectedCount = n;
   autoSetTime(n);
+  
+  // Clear any saved progress if question count changes
+  clearProgress();
 }
 
 function autoSetTime(n) {
@@ -8105,7 +8108,7 @@ function startQuiz() {
   renderQuestion(0);
   if (mode !== 'learning') startTimer();
   
-  // Clear any saved progress when starting a new quiz
+  // Clear any saved progress when starting a new quiz session
   clearProgress();
 }
 
