@@ -81,20 +81,22 @@ input[type=radio] { display: none; }
   padding-top: 3rem;
 }
 .hub-back-btn {
-  position: fixed;
-  top: 1.25rem;
-  left: 1.25rem;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   color: var(--text-muted);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: color var(--transition);
   z-index: 10;
 }
 .hub-back-btn:hover { color: var(--text); }
+.hub-back-btn svg { transition: transform var(--transition); }
+.hub-back-btn:hover svg { transform: translateX(-3px); }
 .theme-btn-fixed {
   position: fixed;
   top: 1.1rem;
@@ -663,7 +665,7 @@ input[type=radio]:checked + .option-label .option-key { background: var(--accent
 <!-- ═══════════════════════════ START SCREEN ═══════════════════════════ -->
 <div id="start-screen" class="screen active">
   <a href="#" class="hub-back-btn" onclick="navigateToIndex(event); return false;">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
       <line x1="19" y1="12" x2="5" y2="12"></line>
       <polyline points="12 19 5 12 12 5"></polyline>
     </svg>
@@ -705,24 +707,22 @@ input[type=radio]:checked + .option-label .option-key { background: var(--accent
 
     <!-- Question count -->
     <div class="q-count-section">
-      <div class="section-label">Number of Questions</div>
+      <div class="section-label">Number of Questions <span style="color:var(--text-muted);font-size:0.75rem;font-weight:400;margin-left:0.35rem">(qs)</span></div>
       <div class="time-controls">
         <button class="time-adj-btn" onclick="adjustCount(-5)">−5</button>
         <input type="number" id="q-count-input" class="time-input" min="1" value="20" oninput="onCustomCount(this.value)">
         <button class="time-adj-btn" onclick="adjustCount(5)">+5</button>
-        <span style="color:var(--text-muted);font-size:0.85rem;white-space:nowrap">qs</span>
       </div>
       <p class="time-hint" id="count-hint">Set your desired question count</p>
     </div>
 
     <!-- Time selector (exam mode only) -->
     <div class="time-section" id="time-section">
-      <div class="section-label">Time Limit</div>
+      <div class="section-label">Time Limit <span style="color:var(--text-muted);font-size:0.75rem;font-weight:400;margin-left:0.35rem">(min)</span></div>
       <div class="time-controls">
         <button class="time-adj-btn" onclick="adjustTime(-5)">−5</button>
         <input type="number" id="time-input" class="time-input" min="1" max="300" value="30">
         <button class="time-adj-btn" onclick="adjustTime(5)">+5</button>
-        <span style="color:var(--text-muted);font-size:0.85rem;white-space:nowrap">min</span>
       </div>
       <p class="time-hint" id="time-hint">Auto-calculated · adjust freely</p>
     </div>
@@ -8211,7 +8211,7 @@ function updateThemeIcon() {
 /* ─── NAVIGATE ───────────────────────────────────────────────── */
 function navigateToIndex(event) {
   event.preventDefault();
-    window.location.href = '../../index.html';
+  window.location.href = 'index.html';
 }
 
 /* ─── TOAST ──────────────────────────────────────────────────── */
