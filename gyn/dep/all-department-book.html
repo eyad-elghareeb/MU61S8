@@ -7651,6 +7651,11 @@ const KEYS = ['A','B','C','D','E','F','G','H'];
 
 // Session questions (selected subset from bank for this session)
 let SESSION_QUESTIONS = [];
+// Bank indices corresponding to SESSION_QUESTIONS — saved so restore skips re-selection
+let SESSION_QUESTION_INDICES = [];
+// Set to true after initUI() completes — prevents adjustCount/setCount/onCustomCount
+// from wiping saved progress during page initialisation
+let uiReady = false;
 
 // Quiz state
 let state = {
@@ -7696,6 +7701,7 @@ function saveProgress() {
     quizTitle: BANK_CONFIG.title,
     totalQuestions: SESSION_QUESTIONS.length,
     questionCount: selectedCount, // Store the selected question count for validation
+    sessionIndices: SESSION_QUESTION_INDICES, // Exact bank indices — lets restore skip re-selection
     current: state.current,
     answers: state.answers,
     flagged: state.flagged,
@@ -7741,6 +7747,9 @@ function isValidSaveData(data) {
   if (!['exam', 'learning'].includes(data.mode)) return false;
   if (typeof data.questionCount !== 'number' || data.questionCount < 1) return false;
   if (typeof data.totalQuestions !== 'number' || data.totalQuestions < 1) return false;
+  // sessionIndices must exist and every index must be a valid bank index
+  if (!Array.isArray(data.sessionIndices) || data.sessionIndices.length === 0) return false;
+  if (data.sessionIndices.some(i => typeof i !== 'number' || i < 0 || i >= QUESTION_BANK.length)) return false;
   return true;
 }
 
@@ -7809,13 +7818,6 @@ function checkSavedProgress() {
       return;
     }
 
-    // Check if question count matches the saved session
-    if (data.questionCount !== selectedCount) {
-      console.log('Question count has changed, starting fresh');
-      localStorage.removeItem(STORAGE_KEY);
-      return;
-    }
-
     pendingRestoreData = data;
 
     showToast("📂 Previous progress found!", [
@@ -7869,8 +7871,11 @@ function doRestoreProgress(data) {
   const inp = document.getElementById('q-count-input');
   if (inp) inp.value = selectedCount;
 
-  // Select questions using the restored count BEFORE restoring state
-  SESSION_QUESTIONS = selectSessionQuestions(selectedCount);
+  // Restore session questions DIRECTLY from saved indices — do NOT call
+  // selectSessionQuestions() here because that would pick NEW questions,
+  // corrupt bank progress (double-count the session), and mismatch answers.
+  SESSION_QUESTION_INDICES = data.sessionIndices;
+  SESSION_QUESTIONS = data.sessionIndices.map(i => QUESTION_BANK[i]);
 
   // Validate all answer indices are still valid
   for (const [qIdx, optIdx] of Object.entries(data.answers)) {
@@ -7894,8 +7899,17 @@ function doRestoreProgress(data) {
   state.submitted = false;
 
   setTimeout(() => {
+    // Set CSS variable for portrait nav grid (same as startQuiz does)
+    document.documentElement.style.setProperty('--q-count', SESSION_QUESTIONS.length);
+
     if(state.mode === 'learning') {
       document.getElementById('timer-display').classList.add('hidden');
+      document.getElementById('legend-text-answered').textContent = 'Correct';
+      document.getElementById('legend-wrong').style.display = 'flex';
+    } else {
+      document.getElementById('timer-display').classList.remove('hidden');
+      document.getElementById('legend-text-answered').textContent = 'Answered';
+      document.getElementById('legend-wrong').style.display = 'none';
     }
     showScreen('quiz-screen');
     buildNavGrid();
@@ -7980,6 +7994,7 @@ function selectSessionQuestions(count) {
   progress.totalSessions++;
   saveBankProgress(progress);
 
+  SESSION_QUESTION_INDICES = picked;
   return picked.map(i => QUESTION_BANK[i]);
 }
 
@@ -8006,8 +8021,8 @@ function adjustCount(delta) {
   selectedCount = newVal;
   autoSetTime(newVal);
   
-  // Clear any saved progress if question count changes
-  clearProgress();
+  // Only clear saved progress when user actively changes the count (not during init)
+  if (uiReady) clearProgress();
 }
 
 function setCount(n) {
@@ -8019,8 +8034,8 @@ function setCount(n) {
   document.getElementById('q-count-input').value = n;
   autoSetTime(n);
   
-  // Clear any saved progress if question count changes
-  clearProgress();
+  // Only clear saved progress when user actively changes the count (not during init)
+  if (uiReady) clearProgress();
 }
 
 function onCustomCount(val) {
@@ -8030,8 +8045,8 @@ function onCustomCount(val) {
   selectedCount = n;
   autoSetTime(n);
   
-  // Clear any saved progress if question count changes
-  clearProgress();
+  // Only clear saved progress when user actively changes the count (not during init)
+  if (uiReady) clearProgress();
 }
 
 function autoSetTime(n) {
@@ -8088,6 +8103,9 @@ function initUI() {
   const savedTheme = localStorage.getItem('quiz-theme');
   if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon();
+
+  // Mark UI as fully initialised — count-change handlers may now clear saved progress
+  uiReady = true;
 }
 
 /* ─── START QUIZ ─────────────────────────────────────────────── */
@@ -8095,6 +8113,9 @@ function startQuiz() {
   const mode = document.querySelector('input[name="quiz-mode"]:checked').value;
   const timeMins = parseInt(document.getElementById('time-input').value) || 30;
   const count = selectedCount;
+
+  // Clear any existing saved progress before starting a new session
+  clearProgress();
 
   // Select questions from bank
   SESSION_QUESTIONS = selectSessionQuestions(count);
@@ -8125,9 +8146,6 @@ function startQuiz() {
   buildNavGrid();
   renderQuestion(0);
   if (mode !== 'learning') startTimer();
-  
-  // Clear any saved progress when starting a new quiz session
-  clearProgress();
 }
 
 /* ─── SCREEN MANAGER ─────────────────────────────────────────── */
@@ -8332,8 +8350,8 @@ function confirmSubmit() {
   stopTimer();
   state.submitted = true;
   
-  // Save final progress before showing results
-  saveProgress();
+  // Clear saved progress — session is done, no restore needed
+  clearProgress();
   
   buildResults();
   showScreen('result-screen');
