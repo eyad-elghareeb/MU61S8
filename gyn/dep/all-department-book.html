@@ -208,50 +208,6 @@ input[type=radio] { display: none; }
 
 /* Question count selector */
 .q-count-section { margin-bottom: 1.1rem; }
-.q-count-presets {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.preset-btn {
-  padding: 0.45rem 1rem;
-  border-radius: 8px;
-  background: var(--surface2);
-  border: 1.5px solid var(--border);
-  color: var(--text-muted);
-  font-size: 0.88rem;
-  font-weight: 600;
-  transition: all var(--transition);
-  min-width: 48px;
-}
-.preset-btn:hover { border-color: var(--accent); color: var(--text); }
-.preset-btn.active {
-  background: var(--accent-dim);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.custom-count-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-left: auto;
-}
-.custom-count-wrap label { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
-.count-input {
-  width: 68px;
-  padding: 0.45rem 0.6rem;
-  border-radius: 8px;
-  border: 1.5px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-align: center;
-  transition: border-color var(--transition);
-}
-.count-input:focus { outline: none; border-color: var(--accent); }
 
 /* Time selector */
 .time-section { margin-bottom: 1.1rem; }
@@ -750,17 +706,13 @@ input[type=radio]:checked + .option-label .option-key { background: var(--accent
     <!-- Question count -->
     <div class="q-count-section">
       <div class="section-label">Number of Questions</div>
-      <div class="q-count-presets">
-        <button class="preset-btn" id="preset-10"  onclick="setCount(10)">10</button>
-        <button class="preset-btn" id="preset-20"  onclick="setCount(20)">20</button>
-        <button class="preset-btn" id="preset-30"  onclick="setCount(30)">30</button>
-        <button class="preset-btn" id="preset-all" onclick="setCount(-1)">All</button>
-        <div class="custom-count-wrap">
-          <label for="q-count-input">Custom:</label>
-          <input type="number" id="q-count-input" class="count-input" min="1" value="20"
-                 oninput="onCustomCount(this.value)">
-        </div>
+      <div class="time-controls">
+        <button class="time-adj-btn" onclick="adjustCount(-5)">−5</button>
+        <input type="number" id="q-count-input" class="time-input" min="1" value="20" oninput="onCustomCount(this.value)">
+        <button class="time-adj-btn" onclick="adjustCount(5)">+5</button>
+        <span style="color:var(--text-muted);font-size:0.85rem;white-space:nowrap">qs</span>
       </div>
+      <p class="time-hint" id="count-hint">Set your desired question count</p>
     </div>
 
     <!-- Time selector (exam mode only) -->
@@ -7810,20 +7762,21 @@ function updateStartScreenStats() {
   document.getElementById('coverage-pct').textContent  = pct + '%';
 }
 
+function adjustCount(delta) {
+  const inp = document.getElementById('q-count-input');
+  const bankSize = QUESTION_BANK.length;
+  const cur = parseInt(inp.value) || selectedCount || 20;
+  const newVal = Math.max(1, Math.min(bankSize, cur + delta));
+  inp.value = newVal;
+  selectedCount = newVal;
+  autoSetTime(newVal);
+}
+
 function setCount(n) {
   const bankSize = QUESTION_BANK.length;
   if (n === -1) n = bankSize; // "All"
   n = Math.max(1, Math.min(n, bankSize));
   selectedCount = n;
-
-  // Update preset button states
-  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-  const presetMap = { 10: 'preset-10', 20: 'preset-20', 30: 'preset-30' };
-  if (n === bankSize) {
-    document.getElementById('preset-all').classList.add('active');
-  } else if (presetMap[n]) {
-    document.getElementById(presetMap[n]).classList.add('active');
-  }
 
   document.getElementById('q-count-input').value = n;
   autoSetTime(n);
@@ -7834,8 +7787,6 @@ function onCustomCount(val) {
   let n = parseInt(val) || 1;
   n = Math.max(1, Math.min(n, bankSize));
   selectedCount = n;
-
-  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
   autoSetTime(n);
 }
 
@@ -7885,7 +7836,7 @@ function initUI() {
 
   // Default count
   const defaultCount = Math.min(20, bankSize);
-  setCount(defaultCount);
+  adjustCount(0); // Initialize with default value
 
   updateStartScreenStats();
 
