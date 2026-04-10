@@ -7695,6 +7695,7 @@ function saveProgress() {
     version: STORAGE_VERSION,
     quizTitle: BANK_CONFIG.title,
     totalQuestions: SESSION_QUESTIONS.length,
+    questionCount: selectedCount, // Store the selected question count for validation
     current: state.current,
     answers: state.answers,
     flagged: state.flagged,
@@ -7792,7 +7793,14 @@ function checkSavedProgress() {
       return;
     }
 
-    // Check if question count matches (session questions may vary)
+    // Check if question count matches the saved session
+    if (data.questionCount !== selectedCount) {
+      console.log('Question count has changed, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    // Check if total questions matches (session questions may vary)
     if (data.totalQuestions !== SESSION_QUESTIONS.length) {
       console.log('Quiz structure has changed, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
