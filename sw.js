@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-72262adad17d';
+const CACHE_VERSION = 'mu61-quiz-e552a36b9d3f';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -23,6 +23,22 @@ var PRECACHE_REL_PATHS = [
   'Cardio/damietta-qs.html',
   'Cardio/index.html',
   'Cardio/Misc.html',
+  'gyn/ai/index.html',
+  'gyn/ai/l1-anatomy.html',
+  'gyn/ai/l2-physiology.html',
+  'gyn/ai/l3-embryology.html',
+  'gyn/ai/l4-puberty.html',
+  'gyn/ai/l5-menopause.html',
+  'gyn/ai/l6-abnormal-menstruation.html',
+  'gyn/ai/l7-amenorrhea.html',
+  'gyn/ai/l8-hyperprolactinemia.html',
+  'gyn/ai/l9-fgm.html',
+  'gyn/ai/l10-pcos.html',
+  'gyn/ai/l11-aub.html',
+  'gyn/ai/l12-fibroid.html',
+  'gyn/ai/l13-endometriosis-adenomyosis.html',
+  'gyn/ai/l14-endometrial-hyperplasia.html',
+  'gyn/ai/l15-infertility.html',
   'gyn/dep/index.html',
   'gyn/dep/l1-anatomy.html',
   'gyn/dep/l2-physiology.html',
