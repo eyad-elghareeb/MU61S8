@@ -1,6 +1,6 @@
-/* MU61 Quiz — install precaches all HTML + fonts; online navigations refresh cache; offline uses cache.
-   Bump CACHE_VERSION after deploy; add new paths to PRECACHE_REL_PATHS. */
-const CACHE_VERSION = 'mu61-quiz-v4';
+/* MU61 Quiz — generated precache manifest for all quiz and hub pages.
+   CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
+const CACHE_VERSION = 'mu61-quiz-349a9e88328d';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -20,11 +20,19 @@ var PRECACHE_REL_PATHS = [
   'Cardio/60th final.html',
   'Cardio/60th mid.html',
   'Cardio/61th mid.html',
-  'Cardio/Misc.html',
   'Cardio/damietta-qs.html',
   'Cardio/index.html',
+  'Cardio/Misc.html',
   'gyn/dep/index.html',
   'gyn/dep/l1-anatomy.html',
+  'gyn/dep/l2-physiology.html',
+  'gyn/dep/l3-embryology.html',
+  'gyn/dep/l4-puberty.html',
+  'gyn/dep/l5-menopause.html',
+  'gyn/dep/l6-abnormal-menstruation.html',
+  'gyn/dep/l7-amenorrhea.html',
+  'gyn/dep/l8-hyperprolactinemia.html',
+  'gyn/dep/l9-female-genital-mutilation-.html',
   'gyn/dep/l10-pcos.html',
   'gyn/dep/l11-aub.html',
   'gyn/dep/l12-fibroid.html',
@@ -34,15 +42,7 @@ var PRECACHE_REL_PATHS = [
   'gyn/dep/l17-urinary-incontinence-.html',
   'gyn/dep/l18-genital-fistula.html',
   'gyn/dep/l19-genital-infections-&-stis.html',
-  'gyn/dep/l2-physiology.html',
   'gyn/dep/l20-gynecological-oncology.html',
-  'gyn/dep/l3-embryology.html',
-  'gyn/dep/l4-puberty.html',
-  'gyn/dep/l5-menopause.html',
-  'gyn/dep/l6-abnormal-menstruation.html',
-  'gyn/dep/l7-amenorrhea.html',
-  'gyn/dep/l8-hyperprolactinemia.html',
-  'gyn/dep/l9-female-genital-mutilation-.html',
   'gyn/dep/misc-mcq.html',
   'gyn/index.html',
   'gyn/past years/55th-final.html',
