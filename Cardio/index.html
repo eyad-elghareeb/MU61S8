@@ -215,7 +215,11 @@ button, a { cursor: pointer; font-family: inherit; border: none; outline: none; 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MU61 Quiz - Cardiology">
 <meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../favicon.svg">
 </head>
 <body>
 
@@ -398,6 +402,13 @@ function init() {
 }
 
 init();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../sw.js').catch(function () {});
+  });
+}
 </script>
 </body>
 </html>
