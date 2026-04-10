@@ -7669,6 +7669,224 @@ let lastTime = Date.now();
 // Start screen config
 let selectedCount = 20;
 
+/* ─── SESSION PROGRESS STORAGE ─────────────────────────────────────
+   Tracks quiz session progress (answers, flags, timer) across page reloads.
+   Uses same pattern as misc-mcq.html for consistency.
+──────────────────────────────────────────────────────────────── */
+const STORAGE_VERSION = 'v1';
+const STORAGE_KEY = `quiz_progress_${STORAGE_VERSION}_${(BANK_CONFIG.uid || window.location.pathname).replace(/[^a-zA-Z0-9]/g, '_')}`;
+let pendingRestoreData = null;
+let restoreToastTimeout = null;
+
+/**
+ * Safely save quiz progress to localStorage
+ * Handles quota errors and validates data before saving
+ */
+function saveProgress() {
+  if (state.submitted) return;
+
+  // Don't save if there's no progress yet (prevents blank saves on first load/exit)
+  const hasAnswers = Object.keys(state.answers || {}).length > 0;
+  const hasFlags = Object.values(state.flagged || {}).some(v => v === true);
+  const hasTime = (state.elapsed || 0) > 10;
+  if (!hasAnswers && !hasFlags && !hasTime) return;
+
+  const saveData = {
+    version: STORAGE_VERSION,
+    quizTitle: BANK_CONFIG.title,
+    totalQuestions: SESSION_QUESTIONS.length,
+    current: state.current,
+    answers: state.answers,
+    flagged: state.flagged,
+    elapsed: state.elapsed,
+    timerSecs: state.timerSecs,
+    mode: state.mode,
+    timestamp: Date.now(),
+    savedAt: Date.now()
+  };
+
+  try {
+    if (!isValidSaveData(saveData)) {
+      console.warn('Invalid save data, skipping save');
+      return;
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+    console.log('Progress saved successfully');
+  } catch (e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      console.warn('LocalStorage quota exceeded, clearing old saves...');
+      clearOldSaves();
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+      } catch (retryError) {
+        console.error('Failed to save progress even after cleanup:', retryError);
+      }
+    } else {
+      console.error('Error saving progress:', e);
+    }
+  }
+}
+
+/**
+ * Validate save data structure
+ */
+function isValidSaveData(data) {
+  if (!data || typeof data !== 'object') return false;
+  if (typeof data.current !== 'number' || data.current < 0 || data.current >= data.totalQuestions) return false;
+  if (!data.answers || typeof data.answers !== 'object') return false;
+  if (!data.flagged || typeof data.flagged !== 'object') return false;
+  if (typeof data.timerSecs !== 'number' || data.timerSecs < 0) return false;
+  if (!['exam', 'learning'].includes(data.mode)) return false;
+  return true;
+}
+
+/**
+ * Clear old saves from other quizzes to free up space
+ */
+function clearOldSaves() {
+  try {
+    const now = Date.now();
+    const maxAge = 7 * 24 * 60 * 60 * 1000;
+
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith('quiz_progress_')) {
+        try {
+          const data = JSON.parse(localStorage.getItem(key));
+          if (now - data.timestamp > maxAge) {
+            localStorage.removeItem(key);
+          }
+        } catch (e) {
+          localStorage.removeItem(key);
+        }
+      }
+    });
+  } catch (e) {
+    console.error('Error clearing old saves:', e);
+  }
+}
+
+function clearProgress() {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+/**
+ * Check for saved progress on init and show optional restore toast
+ */
+function checkSavedProgress() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+
+  try {
+    const data = JSON.parse(saved);
+
+    if (data.version !== STORAGE_VERSION) {
+      console.log('Incompatible save version, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    if (data.quizTitle !== BANK_CONFIG.title) {
+      console.log('Save is for a different quiz, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    // Check if question count matches (session questions may vary)
+    if (data.totalQuestions !== SESSION_QUESTIONS.length) {
+      console.log('Quiz structure has changed, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    const maxAge = 7 * 24 * 60 * 60 * 1000;
+    if (Date.now() - data.timestamp > maxAge) {
+      console.log('Save is too old, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    pendingRestoreData = data;
+
+    showToast("📂 Previous progress found!", [
+      {
+        label: "Restore",
+        primary: true,
+        onClick: () => {
+          clearTimeout(restoreToastTimeout);
+          doRestoreProgress(pendingRestoreData);
+        }
+      },
+      {
+        label: "Dismiss",
+        primary: false,
+        onClick: () => {
+          clearTimeout(restoreToastTimeout);
+          pendingRestoreData = null;
+          clearProgress();
+        }
+      }
+    ]);
+
+    restoreToastTimeout = setTimeout(() => {
+      console.log('Auto-dismissing restore toast after 15 seconds');
+      pendingRestoreData = null;
+      clearProgress();
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.classList.remove('show');
+      }
+    }, 15000);
+
+  } catch(e) {
+    console.error('Error checking saved progress:', e);
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+/**
+ * Actually perform the restore with validated data
+ */
+function doRestoreProgress(data) {
+  if (!data.savedAt) {
+    data.savedAt = data.timestamp;
+  }
+
+  // Validate all answer indices are still valid
+  for (const [qIdx, optIdx] of Object.entries(data.answers)) {
+    const qIndex = parseInt(qIdx);
+    if (qIndex >= 0 && qIndex < SESSION_QUESTIONS.length) {
+      const optCount = SESSION_QUESTIONS[qIndex].options.length;
+      if (optIdx < 0 || optIdx >= optCount) {
+        delete data.answers[qIdx];
+      }
+    } else {
+      delete data.answers[qIdx];
+    }
+  }
+
+  state.current = Math.min(data.current, SESSION_QUESTIONS.length - 1);
+  state.answers = data.answers;
+  state.flagged = data.flagged || {};
+  state.elapsed = data.elapsed || 0;
+  state.timerSecs = data.timerSecs || 0;
+  state.mode = data.mode;
+  state.submitted = false;
+
+  setTimeout(() => {
+    if(state.mode === 'learning') {
+      document.getElementById('timer-display').classList.add('hidden');
+    }
+    showScreen('quiz-screen');
+    buildNavGrid();
+    renderQuestion(state.current);
+    updateTimerDisplay();
+    if(state.mode !== 'learning') {
+      startTimer();
+    }
+  }, 500);
+}
+
 /* ─── BANK PROGRESS STORAGE ─────────────────────────────────────
    Tracks which questions from the bank have been shown across sessions.
    Structure: { shownIndices: number[], totalSessions: number, cycleCount: number }
@@ -7878,6 +8096,9 @@ function startQuiz() {
   buildNavGrid();
   renderQuestion(0);
   if (mode !== 'learning') startTimer();
+  
+  // Clear any saved progress when starting a new quiz
+  clearProgress();
 }
 
 /* ─── SCREEN MANAGER ─────────────────────────────────────────── */
@@ -8081,6 +8302,10 @@ function confirmSubmit() {
   closeModal();
   stopTimer();
   state.submitted = true;
+  
+  // Save final progress before showing results
+  saveProgress();
+  
   buildResults();
   showScreen('result-screen');
 }
@@ -8187,6 +8412,10 @@ function confirmResetProgress() {
   if (!confirm('End this session and go back to start?')) return;
   stopTimer();
   state.submitted = false;
+  
+  // Clear saved progress when manually resetting
+  clearProgress();
+  
   showScreen('start-screen');
 }
 
@@ -8213,13 +8442,80 @@ function navigateToIndex(event) {
 
 /* ─── TOAST ──────────────────────────────────────────────────── */
 let toastTimer;
-function showToast(msg) {
+
+function showToast(msg, actions = []) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
+
+  // Clear any existing content
+  t.innerHTML = '';
+
+  // Create message span
+  const msgSpan = document.createElement('span');
+  msgSpan.textContent = msg;
+  msgSpan.style.flex = '1';
+  t.appendChild(msgSpan);
+
+  // Add action buttons if provided
+  if (actions.length > 0) {
+    const actionsContainer = document.createElement('div');
+    actionsContainer.style.display = 'flex';
+    actionsContainer.style.gap = '0.5rem';
+    actionsContainer.style.marginLeft = '0.75rem';
+
+    actions.forEach(action => {
+      const btn = document.createElement('button');
+      btn.textContent = action.label;
+      btn.style.cssText = `
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: ${action.primary ? 'var(--accent)' : 'var(--surface2)'};
+        color: ${action.primary ? '#000' : 'var(--text)'};
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition);
+      `;
+      btn.onclick = () => {
+        action.onClick();
+        t.classList.remove('show');
+      };
+      btn.onmouseenter = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--accent)';
+          btn.style.color = 'var(--accent)';
+        }
+      };
+      btn.onmouseleave = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--border)';
+          btn.style.color = 'var(--text)';
+        }
+      };
+      actionsContainer.appendChild(btn);
+    });
+
+    t.appendChild(actionsContainer);
+  }
+
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+
+  // Auto-hide only if no actions (for simple toasts)
+  if (actions.length === 0) {
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
 }
+
+// Auto-save every 5 seconds
+setInterval(saveProgress, 5000);
+
+// Save progress before page unload (tab close, refresh, navigation)
+window.addEventListener('beforeunload', function() {
+  if (!state.submitted) {
+    saveProgress();
+  }
+});
 
 /* ─── VISIBILITY CHANGE ──────────────────────────────────────── */
 window.addEventListener('visibilitychange', () => {
@@ -8233,6 +8529,7 @@ window.addEventListener('visibilitychange', () => {
 
 /* ─── BOOT ───────────────────────────────────────────────────── */
 initUI();
+checkSavedProgress();
 </script>
 <script>
 if ('serviceWorker' in navigator) {
