@@ -170,7 +170,7 @@ input[type=radio] { display: none; }
 .btn-start:hover { opacity: 0.88; transform: translateY(-1px); }
 .btn-start:active { transform: translateY(0); }
 
-/* Time selector */
+/* Time selector (exam mode) */
 .section-label {
   font-size: 0.78rem;
   font-weight: 600;
@@ -214,6 +214,13 @@ input[type=radio] { display: none; }
   text-align: center;
   transition: border-color var(--transition);
 }
+.time-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  text-align: left;
+}
+
 .time-input:focus { outline: none; border-color: var(--accent); }
 
 /* Mode options - ensure equal height on mobile */
@@ -888,7 +895,7 @@ input[type=radio]:checked + .option-label .option-key {
 
   <div class="start-card">
     <div class="start-icon">📝</div>
-    <h1 id="quiz-title">Quiz Loading...</h1>
+    <h1 id="quiz-title">Quiz Title</h1>
     <p class="subtitle" id="quiz-desc">Answer all questions before the timer runs out.</p>
     <div class="meta-grid">
       <div class="meta-item">
@@ -936,7 +943,7 @@ input[type=radio]:checked + .option-label .option-key {
 <div id="quiz-screen" class="screen">
   <!-- Top bar -->
   <div class="topbar">
-    <div class="topbar-title" id="topbar-title">Quiz Loading...</div>
+    <div class="topbar-title" id="topbar-title">Quiz</div>
     <div class="timer-wrap" id="timer-display">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
@@ -1055,11 +1062,13 @@ input[type=radio]:checked + .option-label .option-key {
 /* ─────────────────────────────────────────────────────────────────
    QUIZ CONFIGURATION  — Edit this section to customise your quiz
 ──────────────────────────────────────────────────────────────────*/
+/* [QUIZ_CONFIG_START] */
 const QUIZ_CONFIG = {
   uid: "gyn_past_years_59th_final",
   title: "59Th Final",
   description: "Past Years Exams",
 };
+/* [QUIZ_CONFIG_END] */
 
 /* ─────────────────────────────────────────────────────────────────
    QUESTIONS ARRAY
@@ -1071,6 +1080,7 @@ const QUIZ_CONFIG = {
      explanation: "Why this answer is correct (shown in results).",
    }
 ──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
 const QUESTIONS = [
 {
     "question": "A 52-year-old lady presents for her annual examination and gives a history that she has not had a menstrual period in 2 years. Which of the following is least likely to be associated with menopause?",
@@ -1493,6 +1503,7 @@ const QUESTIONS = [
     "explanation": "Simple hyperplasia without atypia has a very low risk of progression to endometrial cancer (approximately 1% over 20 years). It is often managed with progestins or observation, but the key counseling point is the low malignant potential compared to atypical hyperplasia."
   }
 ];
+/* [QUESTIONS_END] */
 /* ─────────────────────────────────────────────────────────────────
    END OF QUESTIONS — Do not edit below unless you know what you're doing
 ──────────────────────────────────────────────────────────────────*/
@@ -1594,7 +1605,7 @@ function startQuiz() {
   state.mode     = document.querySelector('input[name="quiz-mode"]:checked').value;
 
   showScreen('quiz-screen');
-  
+
   if(state.mode === 'learning') {
     // Hide timer in learning mode
     document.getElementById('timer-display').classList.add('hidden');
@@ -1609,10 +1620,10 @@ function startQuiz() {
     const legendWr = document.getElementById('legend-wrong');
     if(legendWr) legendWr.style.display = 'none';
   }
-  
+
   buildNavGrid();
   renderQuestion(0);
-  
+
   if(state.mode !== 'learning') {
     startTimer();
   }
@@ -1741,14 +1752,14 @@ function renderQuestion(idx) {
 /* ── ANSWER SELECTION ────────────────────────────────────── */
 function selectAnswer(qIdx, optIdx) {
   if (state.mode === 'learning' && state.answers[qIdx] !== undefined) return;
-  
+
   state.answers[qIdx] = optIdx;
   updateNavGrid();
   updateNavStats();
   // update progress
   const done = Object.keys(state.answers).length;
   document.getElementById('progress-fill').style.width = (done / QUESTIONS.length * 100) + '%';
-  
+
   // In learning mode: re-render to show explanation and highlights
   if(state.mode === 'learning') {
     renderQuestion(qIdx);
@@ -1794,7 +1805,7 @@ function updateNavGrid() {
     const btn = document.getElementById(`nav-btn-${i}`);
     if(!btn) return;
     btn.className = 'nav-btn';
-    
+
     if(i === state.current) {
       btn.classList.add('current');
     } else if(state.answers[i] !== undefined) {
@@ -1833,7 +1844,7 @@ function attemptSubmit() {
     confirmSubmit();
     return;
   }
-  
+
   const unanswered = QUESTIONS.length - Object.keys(state.answers).length;
   if(unanswered > 0) {
     document.getElementById('modal-unanswered').textContent = unanswered;
@@ -1975,10 +1986,10 @@ function toggleTheme() {
   const isDark = html.getAttribute('data-theme') === 'dark';
   const newTheme = isDark ? 'light' : 'dark';
   html.setAttribute('data-theme', newTheme);
-  
+
   // Save preference to localStorage so it persists when returning to index.html
-  localStorage.setItem('quiz-theme', newTheme); 
-  
+  localStorage.setItem('quiz-theme', newTheme);
+
   updateThemeIcon();
 }
 
@@ -1989,7 +2000,7 @@ function navigateToIndex(event) {
 }
 function updateThemeIcon() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  
+
   // Note: Added .theme-toggle-btn specifically so we don't accidentally overwrite the Home 🏠 button!
   document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
     btn.textContent = isDark ? '☀' : '☾';
@@ -2002,23 +2013,23 @@ let pendingRestoreData = null; // Store pending restore data for optional restor
 
 function showToast(msg, actions = []) {
   const t = document.getElementById('toast');
-  
+
   // Clear any existing content
   t.innerHTML = '';
-  
+
   // Create message span
   const msgSpan = document.createElement('span');
   msgSpan.textContent = msg;
   msgSpan.style.flex = '1';
   t.appendChild(msgSpan);
-  
+
   // Add action buttons if provided
   if (actions.length > 0) {
     const actionsContainer = document.createElement('div');
     actionsContainer.style.display = 'flex';
     actionsContainer.style.gap = '0.5rem';
     actionsContainer.style.marginLeft = '0.75rem';
-    
+
     actions.forEach(action => {
       const btn = document.createElement('button');
       btn.textContent = action.label;
@@ -2051,13 +2062,13 @@ function showToast(msg, actions = []) {
       };
       actionsContainer.appendChild(btn);
     });
-    
+
     t.appendChild(actionsContainer);
   }
-  
+
   t.classList.add('show');
   clearTimeout(toastTimer);
-  
+
   // Auto-hide only if no actions (for simple toasts)
   if (actions.length === 0) {
     toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
@@ -2076,13 +2087,13 @@ const STORAGE_KEY = `quiz_progress_${STORAGE_VERSION}_${(QUIZ_CONFIG.uid || wind
  */
 function saveProgress() {
   if (state.submitted) return;
-  
+
   // Don't save if there's no progress yet (prevents blank saves on first load/exit)
   const hasAnswers = Object.keys(state.answers || {}).length > 0;
   const hasFlags = Object.values(state.flagged || {}).some(v => v === true);
   const hasTime = (state.elapsed || 0) > 10;
   if (!hasAnswers && !hasFlags && !hasTime) return;
-  
+
   const saveData = {
     version: STORAGE_VERSION,
     quizTitle: QUIZ_CONFIG.title,
@@ -2096,14 +2107,14 @@ function saveProgress() {
     timestamp: Date.now(),
     savedAt: Date.now() // Separate field for time calculation
   };
-  
+
   try {
     // Validate data before saving
     if (!isValidSaveData(saveData)) {
       console.warn('Invalid save data, skipping save');
       return;
     }
-    
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
     console.log('Progress saved successfully');
   } catch (e) {
@@ -2142,7 +2153,7 @@ function clearOldSaves() {
   try {
     const now = Date.now();
     const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
-    
+
     Object.keys(localStorage).forEach(key => {
       if (key.startsWith('quiz_progress_')) {
         try {
@@ -2170,31 +2181,31 @@ function restoreProgress() {
   // Kept for backward compatibility if called elsewhere
   const saved = localStorage.getItem(STORAGE_KEY);
   if (!saved) return false;
-  
+
   try {
     const data = JSON.parse(saved);
-    
+
     // Check if data is from a compatible version
     if (data.version !== STORAGE_VERSION) {
       console.log('Incompatible save version, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return false;
     }
-    
+
     // Verify this save is for the same quiz
     if (data.quizTitle !== QUIZ_CONFIG.title) {
       console.log('Save is for a different quiz, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return false;
     }
-    
+
     // Verify question count hasn't changed
     if (data.totalQuestions !== QUESTIONS.length) {
       console.log('Quiz structure has changed, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return false;
     }
-    
+
     // Only restore if less than 7 days old
     const maxAge = 7 * 24 * 60 * 60 * 1000;
     if (Date.now() - data.timestamp > maxAge) {
@@ -2202,7 +2213,7 @@ function restoreProgress() {
       localStorage.removeItem(STORAGE_KEY);
       return false;
     }
-    
+
     // Do the actual restore
     doRestoreProgress(data);
     return true;
@@ -2231,9 +2242,9 @@ function confirmResetProgress() {
     state.timerSecs = (parseInt(document.getElementById('time-input').value) || 30) * 60;
     state.submitted = false;
     state.mode = 'exam';
-    
+
     showToast('🔄 Progress reset! Starting fresh...');
-    
+
     setTimeout(() => {
       showScreen('start-screen');
     }, 1000);
@@ -2267,39 +2278,39 @@ let restoreToastTimeout = null;
 function checkSavedProgress() {
   const saved = localStorage.getItem(STORAGE_KEY);
   if (!saved) return;
-  
+
   try {
     const data = JSON.parse(saved);
-    
+
     // Validate the saved data
     if (data.version !== STORAGE_VERSION) {
       console.log('Incompatible save version, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return;
     }
-    
+
     if (data.quizTitle !== QUIZ_CONFIG.title) {
       console.log('Save is for a different quiz, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return;
     }
-    
+
     if (data.totalQuestions !== QUESTIONS.length) {
       console.log('Quiz structure has changed, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return;
     }
-    
+
     const maxAge = 7 * 24 * 60 * 60 * 1000;
     if (Date.now() - data.timestamp > maxAge) {
       console.log('Save is too old, starting fresh');
       localStorage.removeItem(STORAGE_KEY);
       return;
     }
-    
+
     // Store pending restore data
     pendingRestoreData = data;
-    
+
     // Show toast with optional restore button
     showToast("📂 Previous progress found!", [
       {
@@ -2320,7 +2331,7 @@ function checkSavedProgress() {
         }
       }
     ]);
-    
+
     // Auto-dismiss after 15 seconds if user hasn't interacted
     restoreToastTimeout = setTimeout(() => {
       console.log('Auto-dismissing restore toast after 15 seconds');
@@ -2332,7 +2343,7 @@ function checkSavedProgress() {
         toast.classList.remove('show');
       }
     }, 15000);
-    
+
   } catch(e) {
     console.error('Error checking saved progress:', e);
     localStorage.removeItem(STORAGE_KEY);
@@ -2347,7 +2358,7 @@ function doRestoreProgress(data) {
   if (!data.savedAt) {
     data.savedAt = data.timestamp;
   }
-  
+
   // Validate all answer indices are still valid
   for (const [qIdx, optIdx] of Object.entries(data.answers)) {
     const qIndex = parseInt(qIdx);
@@ -2360,19 +2371,19 @@ function doRestoreProgress(data) {
       delete data.answers[qIdx];
     }
   }
-  
+
   // Restore state
   state.current = Math.min(data.current, QUESTIONS.length - 1);
   state.answers = data.answers;
   state.flagged = data.flagged || {};
-  
+
   // Restore timer values exactly as saved (time doesn't count while page is closed)
   state.elapsed = data.elapsed || 0;
   state.timerSecs = data.timerSecs || 0;
-  
+
   state.mode = data.mode;
   state.submitted = false;
-  
+
   setTimeout(() => {
     if(state.mode === 'learning') {
       document.getElementById('timer-display').classList.add('hidden');
