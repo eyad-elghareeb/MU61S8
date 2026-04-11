@@ -210,7 +210,7 @@ input[type=radio] { display: none; }
 /* Question count selector */
 .q-count-section { margin-bottom: 1.1rem; }
 
-/* Time selector */
+/* Time selector (exam mode) */
 .time-section { margin-bottom: 1.1rem; }
 .time-controls {
   display: flex;
@@ -7890,7 +7890,7 @@ function doRestoreProgress(data) {
 
   // Restore the selectedCount from saved data
   selectedCount = data.questionCount || 20;
-  
+
   // Update the input field to reflect restored count
   const inp = document.getElementById('q-count-input');
   if (inp) inp.value = selectedCount;
@@ -8044,7 +8044,7 @@ function adjustCount(delta) {
   inp.value = newVal;
   selectedCount = newVal;
   autoSetTime(newVal);
-  
+
   // Only clear saved progress when user actively changes the count (not during init)
   if (uiReady) clearProgress();
 }
@@ -8057,7 +8057,7 @@ function setCount(n) {
 
   document.getElementById('q-count-input').value = n;
   autoSetTime(n);
-  
+
   // Only clear saved progress when user actively changes the count (not during init)
   if (uiReady) clearProgress();
 }
@@ -8068,7 +8068,7 @@ function onCustomCount(val) {
   n = Math.max(1, Math.min(n, bankSize));
   selectedCount = n;
   autoSetTime(n);
-  
+
   // Only clear saved progress when user actively changes the count (not during init)
   if (uiReady) clearProgress();
 }
@@ -8415,10 +8415,10 @@ function confirmSubmit() {
   closeModal();
   stopTimer();
   state.submitted = true;
-  
+
   // Clear saved progress — session is done, no restore needed
   clearProgress();
-  
+
   buildResults();
   showScreen('result-screen');
 }
@@ -8525,10 +8525,10 @@ function confirmResetProgress() {
   if (!confirm('End this session and go back to start?')) return;
   stopTimer();
   state.submitted = false;
-  
+
   // Clear saved progress when manually resetting
   clearProgress();
-  
+
   showScreen('start-screen');
 }
 
