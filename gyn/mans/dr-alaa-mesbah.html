@@ -1,0 +1,2698 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Alaa Mesbah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   CSS VARIABLES & THEME
+═══════════════════════════════════════════ */
+:root {
+  --bg:         #0d1117;
+  --surface:    #161b22;
+  --surface2:   #1c2330;
+  --border:     #30363d;
+  --text:       #e6edf3;
+  --text-muted: #8b949e;
+  --accent:     #f0a500;
+  --accent-dim: rgba(240,165,0,0.12);
+  --correct:    #2ea043;
+  --correct-bg: rgba(46,160,67,0.12);
+  --wrong:      #da3633;
+  --wrong-bg:   rgba(218,54,51,0.12);
+  --flagged:    #58a6ff;
+  --flagged-bg: rgba(88,166,255,0.12);
+  --skip:       #6e7681;
+  --radius:     12px;
+  --shadow:     0 4px 24px rgba(0,0,0,0.4);
+  --transition: 0.2s ease;
+  --nav-size:   280px;
+}
+[data-theme="light"] {
+  --bg:         #f3f0eb;
+  --surface:    #ffffff;
+  --surface2:   #f8f6f1;
+  --border:     #d0ccc5;
+  --text:       #1c1917;
+  --text-muted: #78716c;
+  --accent:     #c27803;
+  --accent-dim: rgba(194,120,3,0.10);
+  --correct:    #16a34a;
+  --correct-bg: rgba(22,163,74,0.10);
+  --wrong:      #dc2626;
+  --wrong-bg:   rgba(220,38,38,0.10);
+  --flagged:    #2563eb;
+  --flagged-bg: rgba(37,99,235,0.10);
+  --shadow:     0 4px 24px rgba(0,0,0,0.10);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  overflow: hidden;
+}
+button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+input[type=radio] { display: none; }
+
+/* ═══════════════════════════════════════════
+   SCREENS
+═══════════════════════════════════════════ */
+.screen { display: none; width: 100%; height: 100%; position: relative; }
+.screen.active { display: flex; }
+
+/* ═══════════════════════════════════════════
+   START SCREEN
+═══════════════════════════════════════════ */
+#start-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  gap: 1rem;
+  overflow-y: auto;
+}
+.hub-back-btn {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color var(--transition);
+  z-index: 10;
+}
+.hub-back-btn:hover { color: var(--text); }
+.hub-back-btn svg { transition: transform var(--transition); }
+.hub-back-btn:hover svg { transform: translateX(-3px); }
+.theme-btn-fixed {
+  position: fixed;
+  top: 1.1rem;
+  right: 1.25rem;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition);
+  font-size: 1rem;
+  z-index: 10;
+}
+.theme-btn-fixed:hover { color: var(--text); border-color: var(--accent); }
+
+.start-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem 2rem 1.75rem;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+.start-icon {
+  width: 60px; height: 60px;
+  background: var(--accent-dim);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-size: 1.7rem;
+}
+.start-card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  color: var(--text);
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+  text-align: center;
+}
+.start-card .subtitle {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+/* Bank coverage stats */
+.bank-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+.bank-stat-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
+.bank-stat-box .bsv {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.bank-stat-box .bsl {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.coverage-wrap {
+  margin-bottom: 1.25rem;
+}
+.coverage-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+.coverage-bar {
+  height: 6px;
+  background: var(--surface2);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.coverage-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Section heading */
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+}
+
+/* Question count selector */
+.q-count-section { margin-bottom: 1.1rem; }
+
+/* Time selector */
+.time-section { margin-bottom: 1.1rem; }
+.time-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.time-adj-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.time-adj-btn:hover { border-color: var(--accent); color: var(--accent); }
+.time-input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  transition: border-color var(--transition);
+}
+.time-input:focus { outline: none; border-color: var(--accent); }
+.time-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* Mode selection */
+.mode-section { margin-bottom: 1.25rem; }
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+.mode-label { cursor: pointer; }
+.mode-option {
+  padding: 0.8rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  transition: all var(--transition);
+  text-align: center;
+}
+.mode-option .mo-title { font-weight: 600; font-size: 0.9rem; }
+.mode-option .mo-sub  { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
+.mode-selected { border-color: var(--accent) !important; background: var(--accent-dim) !important; }
+
+.btn-start {
+  width: 100%;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  transition: opacity var(--transition), transform var(--transition);
+}
+.btn-start:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* Order selection */
+.order-section { margin-bottom: 1.25rem; }
+
+/* Reset bank button */
+.reset-bank-btn {
+  width: 100%;
+  margin-top: 0.65rem;
+  padding: 0.65rem;
+  border-radius: var(--radius);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+.reset-bank-btn:hover { border-color: var(--wrong); color: var(--wrong); }
+
+/* ═══════════════════════════════════════════
+   QUIZ SCREEN (same as quiz-template.html)
+═══════════════════════════════════════════ */
+#quiz-screen { flex-direction: column; height: 100%; overflow: hidden; }
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  z-index: 10;
+}
+.topbar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 90px;
+  justify-content: center;
+}
+.timer-wrap.warn { border-color: var(--wrong); color: var(--wrong); animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{ opacity:1 } 50%{ opacity:0.6 } }
+
+.topbar-actions { display: flex; gap: 0.5rem; align-items: center; }
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition);
+  font-size: 1rem;
+  text-decoration: none;
+}
+.icon-btn:hover { color: var(--text); border-color: var(--accent); }
+.icon-btn.danger:hover { border-color: var(--wrong); color: var(--wrong); }
+
+.quiz-body { display: flex; flex: 1; overflow: hidden; position: relative; }
+.question-area {
+  flex: 1; overflow-y: auto;
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+.question-area::-webkit-scrollbar { width: 6px; }
+.question-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.q-header { display: flex; align-items: flex-start; gap: 0.75rem; }
+.q-number-badge {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.q-actions { margin-left: auto; display: flex; gap: 0.5rem; }
+.flag-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 7px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex; align-items: center; gap: 0.35rem;
+  transition: all var(--transition);
+}
+.flag-btn:hover, .flag-btn.active { background: var(--flagged-bg); border-color: var(--flagged); color: var(--flagged); }
+
+.q-text { font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 500; color: var(--text); line-height: 1.7; flex: 1; }
+
+.options-list { display: flex; flex-direction: column; gap: 0.65rem; }
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.option-label::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--accent-dim);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.option-label:hover { border-color: var(--accent); }
+.option-label:hover::before { opacity: 1; }
+input[type=radio]:checked + .option-label { border-color: var(--accent); background: var(--accent-dim); }
+.option-key {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+  transition: all var(--transition);
+  z-index: 1; text-transform: uppercase;
+}
+input[type=radio]:checked + .option-label .option-key { background: var(--accent); border-color: var(--accent); color: #000; }
+.option-text { font-size: 0.95rem; line-height: 1.5; z-index: 1; padding-top: 0.05rem; }
+
+.q-nav-btns { display: flex; gap: 0.75rem; padding-top: 0.5rem; flex-wrap: wrap; }
+.btn-nav {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem; font-weight: 600;
+  transition: all var(--transition);
+  border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--text);
+}
+.btn-nav:hover { border-color: var(--accent); color: var(--accent); }
+.btn-nav.primary { background: var(--accent); color: #000; border-color: var(--accent); margin-left: auto; }
+.btn-nav.primary:hover { opacity: 0.85; }
+.btn-nav.submit-btn { background: var(--correct); border-color: var(--correct); color: #fff; margin-left: auto; }
+.btn-nav.submit-btn:hover { opacity: 0.85; }
+
+/* Nav pane */
+.nav-pane {
+  width: var(--nav-size);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column; flex-shrink: 0; overflow: hidden;
+}
+.nav-pane-header { padding: 1rem 1.1rem 0.75rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.nav-pane-header h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.65rem; font-weight: 600; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.4rem 0.75rem; }
+.legend-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; color: var(--text-muted); }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.dot.answered  { background: var(--correct); }
+.dot.wrong     { background: var(--wrong); }
+.dot.flagged   { background: var(--flagged); }
+.dot.current   { background: var(--accent); }
+.dot.unanswered{ background: var(--surface2); border: 1.5px solid var(--border); }
+
+.nav-grid-wrap { flex: 1; overflow-y: auto; padding: 0.85rem; }
+.nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 6px; }
+.nav-btn {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text-muted);
+  font-size: 0.78rem; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+  position: relative;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn.answered { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); }
+.nav-btn.wrong    { background: var(--wrong-bg);   border-color: var(--wrong);   color: var(--wrong); }
+.nav-btn.flagged  { background: var(--flagged-bg); border-color: var(--flagged); color: var(--flagged); }
+.nav-btn.current  { background: var(--accent-dim); border-color: var(--accent);  color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim); }
+.nav-btn .flag-dot { position: absolute; top: 2px; right: 2px; width: 6px; height: 6px; border-radius: 50%; background: var(--flagged); }
+
+.nav-stats { padding: 0.75rem 1rem; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; flex-shrink: 0; }
+.stat-item { text-align: center; }
+.stat-item .sv { font-size: 1rem; font-weight: 700; }
+.stat-item .sl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.sv.green { color: var(--correct); }
+.sv.blue  { color: var(--flagged); }
+.sv.muted { color: var(--text-muted); }
+
+/* Portrait layout */
+@media (orientation: portrait) {
+  .quiz-body { flex-direction: column; }
+  .nav-pane { width: 100%; height: auto; border-left: none; border-top: 1px solid var(--border); max-height: 200px; }
+  .nav-pane-header { padding: 0.6rem 1rem 0.5rem; }
+  .nav-grid-wrap { padding: 0.5rem 0.85rem; overflow-x: auto; overflow-y: hidden; }
+  .nav-grid { grid-template-columns: repeat(var(--q-count, 20), 38px); grid-template-rows: 38px; grid-auto-flow: column; gap: 5px; }
+  .nav-btn { width: 38px; height: 38px; aspect-ratio: unset; }
+  .nav-stats { padding: 0.5rem 1rem; }
+  .stat-item .sv { font-size: 0.9rem; }
+}
+
+/* Progress bar */
+.progress-bar-wrap { height: 3px; background: var(--surface2); position: relative; flex-shrink: 0; }
+.progress-bar-fill { height: 100%; background: var(--accent); transition: width 0.4s ease; border-radius: 0 2px 2px 0; }
+
+/* ═══════════════════════════════════════════
+   RESULTS SCREEN
+═══════════════════════════════════════════ */
+#result-screen { flex-direction: column; height: 100%; overflow: hidden; }
+.result-topbar {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--surface); border-bottom: 1px solid var(--border); flex-shrink: 0;
+}
+.result-topbar h2 { font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+.result-topbar .topbar-actions { margin-left: auto; }
+
+.result-body {
+  flex: 1; overflow-y: auto;
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+  max-width: 820px; margin: 0 auto; width: 100%;
+}
+.result-body::-webkit-scrollbar { width: 6px; }
+.result-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.score-banner {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 1.75rem 2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; box-shadow: var(--shadow);
+}
+.score-circle {
+  width: 110px; height: 110px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 4px solid var(--accent); flex-shrink: 0; background: var(--accent-dim);
+}
+.score-circle .pct { font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+.score-circle .lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+.score-details { flex: 1; min-width: 180px; }
+.score-details h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; }
+.score-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.65rem; }
+.score-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; }
+.score-stat .n { font-size: 1.2rem; font-weight: 700; }
+.score-stat .t { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.n.green { color: var(--correct); }
+.n.red   { color: var(--wrong); }
+.n.blue  { color: var(--flagged); }
+
+.result-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tab-btn {
+  padding: 0.45rem 1rem; border-radius: 8px;
+  background: var(--surface); border: 1.5px solid var(--border);
+  color: var(--text-muted); font-size: 0.85rem; font-weight: 500;
+  transition: all var(--transition);
+}
+.tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+.tab-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+.result-list { display: flex; flex-direction: column; gap: 1rem; }
+.result-item { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.result-item.correct { border-color: var(--correct); }
+.result-item.wrong   { border-color: var(--wrong); }
+.result-item.skipped { border-color: var(--skip); }
+
+.result-item-header { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem 1.25rem; cursor: pointer; }
+.result-status-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.9rem; font-weight: 700; margin-top: 0.15rem; }
+.result-item.correct .result-status-icon { background: var(--correct-bg); color: var(--correct); }
+.result-item.wrong   .result-status-icon { background: var(--wrong-bg);   color: var(--wrong); }
+.result-item.skipped .result-status-icon { background: var(--surface2);   color: var(--skip); }
+
+.result-q-meta { flex: 1; }
+.result-q-num  { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; font-weight: 600; }
+.result-q-text { font-size: 0.95rem; font-weight: 500; line-height: 1.5; }
+.expand-arrow  { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.2rem; transition: transform 0.2s; }
+.result-item-header.open .expand-arrow { transform: rotate(180deg); }
+
+.result-item-body { display: none; padding: 0 1.25rem 1.1rem; border-top: 1px solid var(--border); }
+.result-item-body.open { display: block; }
+
+.answer-row {
+  display: flex; align-items: flex-start; gap: 0.65rem;
+  padding: 0.6rem 0.75rem; border-radius: 8px; margin-top: 0.5rem; font-size: 0.88rem;
+}
+.answer-row.your-answer { background: var(--wrong-bg); }
+.answer-row.correct-answer { background: var(--correct-bg); }
+.answer-row.your-answer.is-correct { background: var(--correct-bg); }
+.answer-row .ar-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; white-space: nowrap; margin-top: 0.1rem; opacity: 0.7; }
+.explanation-box {
+  margin-top: 0.75rem; padding: 0.75rem 1rem;
+  background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0;
+  font-size: 0.875rem; line-height: 1.6; color: var(--text-muted);
+}
+.explanation-box strong { color: var(--text); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 0.25rem; }
+
+.result-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.btn-restart {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius);
+  background: var(--accent); color: #000;
+  font-weight: 700; font-size: 0.95rem;
+  border: 1.5px solid var(--accent);
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.btn-restart:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-secondary { background: var(--surface2); color: var(--text); border-color: var(--border); }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 0.65rem 1.2rem;
+  font-size: 0.88rem; font-weight: 500; box-shadow: var(--shadow);
+  z-index: 9999; transition: transform 0.3s ease, opacity 0.3s ease;
+  white-space: nowrap; display: flex; align-items: center; gap: 0.5rem; max-width: 90%;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 2rem; max-width: 420px; width: 100%; box-shadow: var(--shadow);
+  animation: slideUp 0.25s ease;
+}
+@keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+.modal h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.75rem; }
+.modal p  { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; }
+.modal-unanswered { font-weight: 600; color: var(--wrong); }
+.modal-actions { display: flex; gap: 0.75rem; }
+.modal-actions .btn-cancel {
+  flex: 1; padding: 0.75rem; border-radius: 10px;
+  background: var(--surface2); border: 1.5px solid var(--border);
+  color: var(--text); font-weight: 600; font-size: 0.9rem; transition: all var(--transition);
+}
+.modal-actions .btn-cancel:hover { border-color: var(--accent); }
+.modal-actions .btn-confirm {
+  flex: 1; padding: 0.75rem; border-radius: 10px;
+  background: var(--correct); border: none;
+  color: #fff; font-weight: 700; font-size: 0.9rem; transition: all var(--transition);
+}
+.modal-actions .btn-confirm:hover { opacity: 0.85; }
+
+.hidden { display: none !important; }
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+<body>
+
+<!-- ═══════════════════════════ START SCREEN ═══════════════════════════ -->
+<div id="start-screen" class="screen active">
+  <a href="#" class="hub-back-btn" onclick="navigateToIndex(event); return false;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Back to Hub
+  </a>
+  <button class="theme-btn-fixed theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
+
+  <div class="start-card">
+    <div class="start-icon" id="start-icon">🗃️</div>
+    <h1 id="bank-title">Question Bank</h1>
+    <p class="subtitle" id="bank-subtitle">A smart question bank that shows you fresh questions every session.</p>
+
+    <!-- Coverage stats -->
+    <div class="bank-stats-row">
+      <div class="bank-stat-box">
+        <span class="bsv" id="stat-covered">0</span>
+        <span class="bsl">Covered</span>
+      </div>
+      <div class="bank-stat-box">
+        <span class="bsv" id="stat-total">0</span>
+        <span class="bsl">In Bank</span>
+      </div>
+      <div class="bank-stat-box">
+        <span class="bsv" id="stat-sessions">0</span>
+        <span class="bsl">Sessions</span>
+      </div>
+    </div>
+
+    <!-- Coverage bar -->
+    <div class="coverage-wrap">
+      <div class="coverage-label">
+        <span>Bank Coverage</span>
+        <span id="coverage-pct">0%</span>
+      </div>
+      <div class="coverage-bar">
+        <div class="coverage-fill" id="coverage-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Question count -->
+    <div class="q-count-section">
+      <div class="section-label">Number of Questions <span style="color:var(--text-muted);font-size:0.75rem;font-weight:400;margin-left:0.35rem">(qs)</span></div>
+      <div class="time-controls">
+        <button class="time-adj-btn" onclick="adjustCount(-5)">−5</button>
+        <input type="number" id="q-count-input" class="time-input" min="1" value="20" oninput="onCustomCount(this.value)">
+        <button class="time-adj-btn" onclick="adjustCount(5)">+5</button>
+      </div>
+    </div>
+
+    <!-- Time selector (exam mode only) -->
+    <div class="time-section" id="time-section">
+      <div class="section-label">Time Limit <span style="color:var(--text-muted);font-size:0.75rem;font-weight:400;margin-left:0.35rem">(min)</span></div>
+      <div class="time-controls">
+        <button class="time-adj-btn" onclick="adjustTime(-5)">−5</button>
+        <input type="number" id="time-input" class="time-input" min="1" max="300" value="30">
+        <button class="time-adj-btn" onclick="adjustTime(5)">+5</button>
+      </div>
+    </div>
+
+    <!-- Mode selection -->
+    <div class="mode-section">
+      <div class="section-label">Quiz Mode</div>
+      <div class="mode-grid">
+        <label class="mode-label">
+          <input type="radio" name="quiz-mode" value="exam" checked>
+          <div class="mode-option mode-selected">
+            <div class="mo-title">📝 Exam Mode</div>
+            <div class="mo-sub">Timer + blind answers</div>
+          </div>
+        </label>
+        <label class="mode-label">
+          <input type="radio" name="quiz-mode" value="learning">
+          <div class="mode-option">
+            <div class="mo-title">📚 Learning Mode</div>
+            <div class="mo-sub">Instant feedback</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Question order -->
+    <div class="order-section">
+      <div class="section-label">Question Order</div>
+      <div class="mode-grid">
+        <label class="mode-label">
+          <input type="radio" name="quiz-order" value="random" checked>
+          <div class="mode-option mode-order-selected">
+            <div class="mo-title">🔀 Random</div>
+            <div class="mo-sub">Fresh shuffle every session</div>
+          </div>
+        </label>
+        <label class="mode-label">
+          <input type="radio" name="quiz-order" value="sequential">
+          <div class="mode-option">
+            <div class="mo-title">📋 Sequential</div>
+            <div class="mo-sub">Bank order, top to bottom</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <button class="btn-start" onclick="startQuiz()">Start Session →</button>
+    <button class="reset-bank-btn" onclick="resetBankProgress()">🗑 Reset Bank Progress</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ QUIZ SCREEN ═══════════════════════════ -->
+<div id="quiz-screen" class="screen">
+  <div class="topbar">
+    <div class="topbar-title" id="topbar-title">Question Bank</div>
+    <div class="timer-wrap" id="timer-display">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+      <span id="timer-text">00:00</span>
+    </div>
+    <div class="topbar-actions">
+      <a href="#" class="icon-btn" title="Back to Hub" onclick="navigateToIndex(event); return false;">🏠</a>
+      <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
+      <button class="icon-btn danger" onclick="confirmResetProgress()" title="Reset Progress">↻</button>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+  <div class="quiz-body">
+    <div class="question-area" id="question-area"></div>
+    <div class="nav-pane" id="nav-pane">
+      <div class="nav-pane-header">
+        <h3>Navigation</h3>
+        <div class="legend">
+          <div class="legend-item"><div class="dot current"></div> Current</div>
+          <div class="legend-item"><div class="dot answered"></div> <span id="legend-text-answered">Answered</span></div>
+          <div class="legend-item" id="legend-wrong" style="display:none;"><div class="dot wrong"></div> Wrong</div>
+          <div class="legend-item"><div class="dot flagged"></div> Flagged</div>
+          <div class="legend-item"><div class="dot unanswered"></div> Skipped</div>
+        </div>
+      </div>
+      <div class="nav-grid-wrap"><div class="nav-grid" id="nav-grid"></div></div>
+      <div class="nav-stats">
+        <div class="stat-item"><div class="sv green" id="stat-answered">0</div><div class="sl">Done</div></div>
+        <div class="stat-item"><div class="sv blue"  id="stat-flagged-q">0</div><div class="sl">Flagged</div></div>
+        <div class="stat-item"><div class="sv muted" id="stat-skipped">0</div><div class="sl">Skipped</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ RESULTS SCREEN ═══════════════════════════ -->
+<div id="result-screen" class="screen">
+  <div class="result-topbar">
+    <h2>📊 Session Results</h2>
+    <div class="topbar-actions">
+      <a href="#" class="icon-btn" title="Back to Hub" onclick="navigateToIndex(event); return false;">🏠</a>
+      <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
+    </div>
+  </div>
+  <div class="result-body">
+    <div class="score-banner">
+      <div class="score-circle">
+        <div class="pct" id="res-pct">0%</div>
+        <div class="lbl">Score</div>
+      </div>
+      <div class="score-details">
+        <h3 id="res-grade">Loading…</h3>
+        <div class="score-grid">
+          <div class="score-stat"><div class="n green" id="res-correct">0</div><div class="t">Correct</div></div>
+          <div class="score-stat"><div class="n red"   id="res-wrong">0</div><div class="t">Wrong</div></div>
+          <div class="score-stat"><div class="n blue"  id="res-flagged">0</div><div class="t">Flagged</div></div>
+          <div class="score-stat"><div class="n muted" id="res-skipped">0</div><div class="t">Skipped</div></div>
+          <div class="score-stat"><div class="n" id="res-time">—</div><div class="t">Time Used</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="result-tabs">
+      <button class="tab-btn active" onclick="filterResults('all', this)">All Questions</button>
+      <button class="tab-btn" onclick="filterResults('correct', this)">✓ Correct</button>
+      <button class="tab-btn" onclick="filterResults('wrong', this)">✗ Wrong</button>
+      <button class="tab-btn" onclick="filterResults('skipped', this)">— Skipped</button>
+      <button class="tab-btn" onclick="filterResults('flagged', this)">⚑ Flagged</button>
+    </div>
+    <div class="result-list" id="result-list"></div>
+    <div class="result-actions">
+      <button class="btn-restart" onclick="showScreen('start-screen')">↺ New Session</button>
+      <a href="#" class="btn-restart btn-secondary" onclick="navigateToIndex(event); return false;">🏠 Return to Hub</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="submit-modal">
+  <div class="modal">
+    <h3>Submit Quiz?</h3>
+    <p>You have <span class="modal-unanswered" id="modal-unanswered">—</span> unanswered question(s). Are you sure?</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Go Back</button>
+      <button class="btn-confirm" onclick="confirmSubmit()">Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     ▼ BANK CONFIGURATION — Edit below
+═══════════════════════════════════════════════════════════════════ -->
+<script>
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mnu3fsmraviwl",
+  "title": "Dr. Alaa Mesbah",
+  "description": "Alaa Mesbah Qs bank",
+  "icon": "🗃️"
+};
+/* [BANK_CONFIG_END] */
+
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A 60-year-old woman undergoes a laparotomy because of a unilateral ovarian neoplasm accompanied by omental metastasis. The most appropriate intraoperative course of action would be:",
+    "options": [
+      "Omental biopsy",
+      "Omentectomy, total abdominal hysterectomy, and bilateral salpingo-oophorectomy",
+      "Excision of the omental metastasis and unilateral oophorectomy",
+      "Omentectomy and bilateral salpingo-oophorectomy",
+      "Ovarian biopsy"
+    ],
+    "correct": 1,
+    "explanation": "In a postmenopausal woman with an ovarian neoplasm and apparent metastasis (e.g., to the omentum), the standard surgical approach is comprehensive staging and optimal cytoreduction. This includes removing the bulk of the disease: Total Abdominal Hysterectomy (TAH), Bilateral Salpingo-Oophorectomy (BSO), and omentectomy."
+  },
+  {
+    "question": "Which of the following would be the most effective means of determining the presence of a growing tumor in patient who has gestational trophoblastic disease?",
+    "options": [
+      "Serial chest x-rays",
+      "Size of adnexal masses",
+      "Evaluation of menstrual function",
+      "Presence of lactation",
+      "Serial HCG titres"
+    ],
+    "correct": 4,
+    "explanation": "Gestational trophoblastic disease (GTD) secretes human chorionic gonadotropin (hCG). Serial quantitative measurements of beta-hCG titers are the most sensitive and specific biomarker for detecting the persistence, growth, or recurrence of the tumor."
+  },
+  {
+    "question": "The incidence of sarcomatous degeneration in uterine leiomyoma is what percentage?",
+    "options": [
+      "<1%",
+      "3%",
+      "10%",
+      "15%",
+      "30%"
+    ],
+    "correct": 0,
+    "explanation": "Malignant transformation of a benign uterine leiomyoma (fibroid) into a leiomyosarcoma is extremely rare, occurring in less than 1% (often cited as ~0.1% to 0.5%) of cases."
+  },
+  {
+    "question": "Which of the following postmenopausal women is most protected from ovarian epithelial carcinoma?",
+    "options": [
+      "a married woman using perineal talc powder",
+      "an unmarried woman with a history of breast cancer",
+      "a history of late menopause",
+      "a nulliparous woman with a history of regular menses",
+      "a multiparous woman who used oral contraceptive pills (OCPs) and now postmenopausal"
+    ],
+    "correct": 4,
+    "explanation": "Factors that suppress ovulation reduce the risk of ovarian epithelial cancer. Multiparity and the use of Oral Contraceptive Pills (OCPs) both significantly suppress ovulation, providing cumulative and long-lasting protection."
+  },
+  {
+    "question": "Which of the following is the most important principle in the treatment of ovarian cancer?",
+    "options": [
+      "removal of all resectable disease",
+      "examination of tumor cells cultured in vitro",
+      "choice of chemotherapy",
+      "calculation of radiation dose",
+      "measurement of tumor hormone receptors"
+    ],
+    "correct": 0,
+    "explanation": "The cornerstone of ovarian cancer treatment is surgical 'cytoreduction' or 'debulking'. Survival is directly correlated with the surgeon's ability to remove all macroscopic, resectable disease before initiating chemotherapy."
+  },
+  {
+    "question": "Which of the following is the most important prognostic indicator of survival from ovarian carcinoma?",
+    "options": [
+      "stage of disease",
+      "grade of tumor differentiation",
+      "nutritional status",
+      "body mass index",
+      "presence of sex steroid receptors"
+    ],
+    "correct": 0,
+    "explanation": "While tumor grade and optimal surgical debulking are important, the FIGO stage of the disease at the time of diagnosis remains the single most significant prognostic factor for overall survival."
+  },
+  {
+    "question": "The most widely used classification of ovarian neoplasia is based upon which of the following?",
+    "options": [
+      "cell of origin",
+      "hormonal activity",
+      "degree of malignancy",
+      "long-term prognosis",
+      "severity of symptoms"
+    ],
+    "correct": 0,
+    "explanation": "Ovarian tumors are primarily classified by the World Health Organization (WHO) based on their cell of embryologic origin: Surface Epithelial cells, Germ cells, or Sex cord-stromal cells."
+  },
+  {
+    "question": "The ovarian tumor that is most common during childhood is:",
+    "options": [
+      "dermoid cyst",
+      "theca-lutein cyst",
+      "giant follicle cyst",
+      "granulosa cell tumor",
+      "immature teratoma"
+    ],
+    "correct": 0,
+    "explanation": "A dermoid cyst (mature cystic teratoma) is a benign germ cell tumor and is the most common ovarian neoplasm found in children and adolescents."
+  },
+  {
+    "question": "For postmenopausal women in whom hyperplasia with atypia of the endometrium has been diagnosed by fractional dilatation and curettage, the usual management is:",
+    "options": [
+      "hysterectomy",
+      "hysterectomy preceded by radiation",
+      "hysterectomy followed by radiation",
+      "hysterectomy and bilateral salpingo-oophorectomy"
+    ],
+    "correct": 3,
+    "explanation": "Atypical endometrial hyperplasia is a direct precursor to, and often coexists with, endometrial cancer. In a postmenopausal woman, the definitive and safest treatment is Total Hysterectomy with Bilateral Salpingo-Oophorectomy (BSO)."
+  },
+  {
+    "question": "What is the most common germ cell tumor?",
+    "options": [
+      "dysgerminoma",
+      "endodermal sinus tumor",
+      "embryonal carcinoma",
+      "choriocarcinoma",
+      "Mature cystic teratoma"
+    ],
+    "correct": 4,
+    "explanation": "The mature cystic teratoma (commonly known as a dermoid cyst) is by far the most common of all ovarian germ cell tumors."
+  },
+  {
+    "question": "Which of the following Granulosa cell tumors may be associated with?",
+    "options": [
+      "endometrial hyperplasia",
+      "congenital adrenal hyperplasia (CAH)",
+      "Cushing's syndrome",
+      "PCOS",
+      "dysgenetic gonads"
+    ],
+    "correct": 0,
+    "explanation": "Granulosa cell tumors are sex-cord stromal tumors that frequently secrete estrogen. This chronic, unopposed estrogen production often leads to endometrial hyperplasia or even endometrial carcinoma."
+  },
+  {
+    "question": "Adenoacanthoma of the uterus is considered to represent:",
+    "options": [
+      "a combination malignancy from two separate sources",
+      "an adenocarcinoma with squamous metaplasia",
+      "an extension of extrauterine adeno-acanthoma",
+      "a neoplastic transformation of \"indifferent\" cells beneath normal uterine epithelium",
+      "adenocarcinoma only"
+    ],
+    "correct": 1,
+    "explanation": "An adenoacanthoma is a specific histological variant of endometrial adenocarcinoma where the malignant glandular cells are mixed with benign squamous metaplasia."
+  },
+  {
+    "question": "The most common HPV types associated with CIN (Cervical Intraepithelial Neoplasia) and cervical cancer are:",
+    "options": [
+      "HPV 6 and 11",
+      "HPV 16 and 18",
+      "HPV 31 and 32",
+      "HPV 51 and 53",
+      "HPV 59 and 60"
+    ],
+    "correct": 1,
+    "explanation": "Human Papillomavirus (HPV) types 16 and 18 are the high-risk, oncogenic strains responsible for approximately 70% of all cervical cancers and high-grade CIN."
+  },
+  {
+    "question": "A recently married, 24-year-old female is requesting contraception for one year. She is known to have polycystic ovary syndrome and struggles with acne and hirsutism. She has no other medical conditions. What would be the best contraceptive option for her?",
+    "options": [
+      "Intrauterine device.",
+      "Progestogen-only implant.",
+      "Combined contraceptive pills.",
+      "Progestogen-only injectable.",
+      "Levonorgestrel intrauterine system."
+    ],
+    "correct": 2,
+    "explanation": "Combined Oral Contraceptive Pills (COCs) are ideal for PCOS patients. They provide contraception while the estrogen component increases Sex Hormone Binding Globulin (SHBG), which lowers free testosterone, improving acne and hirsutism."
+  },
+  {
+    "question": "If a suspicious lesion is seen on the cervix, it is best evaluated by which of the following methods?",
+    "options": [
+      "Repeat examination",
+      "Pap smear",
+      "Colposcopy and biopsy",
+      "Cervical conization",
+      "VIA test"
+    ],
+    "correct": 2,
+    "explanation": "A grossly suspicious lesion on the cervix must be biopsied for histological diagnosis. Colposcopy provides magnification to identify the most abnormal areas to biopsy accurately."
+  },
+  {
+    "question": "The predominant mode of spread of ovarian cancer is by way of:",
+    "options": [
+      "ovarian veins",
+      "ovarian lymphatics",
+      "pelvic lymphatics",
+      "local extension",
+      "transcoelomic route of peritoneal dissemination"
+    ],
+    "correct": 4,
+    "explanation": "While lymphatic spread occurs, ovarian epithelial cancers primarily spread by exfoliating cells into the peritoneal cavity, where they implant on peritoneal surfaces and omentum (transcoelomic spread)."
+  },
+  {
+    "question": "A patient has a ruptured mucinous cystadenoma, is more likely to develop:",
+    "options": [
+      "Pulmonary metastases",
+      "Cerebral metastases",
+      "Liver metastases",
+      "Pseudomyxoma peritonei",
+      "Septic peritonitis"
+    ],
+    "correct": 3,
+    "explanation": "Rupture of a mucinous tumor can spill mucus-secreting cells into the abdominal cavity, leading to the massive accumulation of gelatinous ascites known as pseudomyxoma peritonei ('jelly belly')."
+  },
+  {
+    "question": "The superficial perineal pouch in the female is anatomically characterized by:",
+    "options": [
+      "Lies between the two layers of the urogenital diaphragm.",
+      "Contains branches of the uterine artery.",
+      "Contains the ischiocavernosus muscles.",
+      "Contains the external sphincter of the urethra.",
+      "Contains the levator ani muscle."
+    ],
+    "correct": 2,
+    "explanation": "The superficial perineal pouch lies inferior to the perineal membrane and contains the erectile tissues (crura and bulbs) and their associated muscles: the ischiocavernosus and bulbospongiosus."
+  },
+  {
+    "question": "The syndrome of vaginismus is described by which of the following statements?",
+    "options": [
+      "It involves involuntary reflex contraction of the vaginal and perineal musculature",
+      "It is associated with concomitant dysfunction in the male partner",
+      "Vaginal dilators have no role in the treatment",
+      "Diagnosis can be definitely established by history",
+      "Most cases can be treated by counseling"
+    ],
+    "correct": 0,
+    "explanation": "Vaginismus is characterized by the involuntary, spasmodic contraction of the pelvic floor muscles (specifically the pubococcygeus) surrounding the outer third of the vagina, making penetration painful or impossible."
+  },
+  {
+    "question": "What is the major estrogenic substance in postmenopausal women?",
+    "options": [
+      "Estradiol",
+      "Mestranol",
+      "Estriol",
+      "Estrone",
+      "Ethinyl estradiol"
+    ],
+    "correct": 3,
+    "explanation": "After menopause, the ovaries stop producing estradiol. The primary circulating estrogen becomes Estrone, which is produced by the peripheral aromatization of adrenal androstenedione in adipose (fat) tissue."
+  },
+  {
+    "question": "Which of the following are homologous organs in the male and female respectively?",
+    "options": [
+      "Prostate and Bartholin's glands.",
+      "Scrotum and labia minora.",
+      "Cowper's gland and Skene's gland.",
+      "Corpus spongiosum and labia majora.",
+      "Gubernaculum of testis and round ligament"
+    ],
+    "correct": 4,
+    "explanation": "The embryonic gubernaculum guides testicular descent into the scrotum in males. In females, it attaches to the uterus, its upper part becoming the ovarian ligament and its lower part becoming the round ligament of the uterus."
+  },
+  {
+    "question": "Which of the following statements is true about the round ligament?",
+    "options": [
+      "The round ligament lies posterior to the uterus.",
+      "The round ligament supports the fundus of the uterus.",
+      "The round ligament is a vestigial structure.",
+      "The round ligament ends distally in the inguinal canal.",
+      "The round ligament contains the neuromuscular bundle supplying the ovary."
+    ],
+    "correct": 3,
+    "explanation": "The round ligament originates at the uterine cornu, passes through the deep inguinal ring, travels through the inguinal canal, and ultimately inserts into the labia majora."
+  },
+  {
+    "question": "As regard to menstruation, which of the following is true?",
+    "options": [
+      "During menstruation the stratum basalis is shed.",
+      "During menstruation the stratum compactum is shed.",
+      "During menstruation fibrinolysis is enhanced.",
+      "Endometrial regeneration begins after ovulation.",
+      "Vasodilation of the spiral arterioles precedes menstruation."
+    ],
+    "correct": 1,
+    "explanation": "The endometrium consists of a basal layer and a functional layer (which includes the stratum compactum and stratum spongiosum). It is the functional layer, including the stratum compactum, that undergoes necrosis and is shed during menses."
+  },
+  {
+    "question": "A 57-year-old woman presents with postmenopausal bleeding. An endometrial biopsy shows moderately differentiated adenocarcinoma cells. What is the most appropriate staging investigation?",
+    "options": [
+      "Chest X-ray.",
+      "CT scan of her pelvis.",
+      "Hysteroscopy.",
+      "MRI scan of her pelvis.",
+      "Transabdominal ultrasound scan."
+    ],
+    "correct": 3,
+    "explanation": "While endometrial cancer is staged surgically, MRI of the pelvis is the most accurate pre-operative imaging modality for assessing the depth of myometrial invasion and cervical stromal involvement, which helps plan the surgery."
+  },
+  {
+    "question": "Signet ring cells are characteristic findings in which tumor of the ovary?",
+    "options": [
+      "Brenner tumor",
+      "Krukenberg's tumor",
+      "Dermoid cyst",
+      "Endometrioid carcinoma",
+      "Dysgerminoma"
+    ],
+    "correct": 1,
+    "explanation": "A Krukenberg tumor is a metastatic ovarian cancer, most commonly originating from the gastrointestinal tract (stomach), characterized microscopically by mucin-filled 'signet-ring' cells."
+  },
+  {
+    "question": "The cilia of the fallopian tube has the following function:",
+    "options": [
+      "remove the zona pellucida which surrounds the ovum.",
+      "transport the ovum towards the uterus.",
+      "enhance the rapid division of the zygote.",
+      "transport the ovum towards the peritoneal cavity.",
+      "has a bactericidal function"
+    ],
+    "correct": 1,
+    "explanation": "The fallopian tubes are lined with ciliated columnar epithelium. The coordinated beating of these cilia creates a current that transports the ovum or fertilized embryo toward the uterine cavity."
+  },
+  {
+    "question": "The most important muscle for pelvic floor function is:",
+    "options": [
+      "Bulbo cavernosus.",
+      "Ischio-cavernosus.",
+      "Levator ani.",
+      "Superficial transverse Perineal muscle.",
+      "Deep transverse Perineal muscle."
+    ],
+    "correct": 2,
+    "explanation": "The Levator ani muscle complex (pubococcygeus, puborectalis, and iliococcygeus) forms a broad muscular sling that acts as the primary dynamic support for the pelvic organs, preventing prolapse."
+  },
+  {
+    "question": "A woman with bilateral proximal tubal blockage which was diagnosed by Hysterosalpingiogram and her husband have normal semen analysis. What is the best management choice for this couple?",
+    "options": [
+      "Doing a laparoscopic opening of the tube and then expectant management.",
+      "Giving the woman clomid for 3 months and expectant management.",
+      "Doing controlled ovarian hyperstimulation.",
+      "Doing ICSI.",
+      "Doing IVF."
+    ],
+    "correct": 4,
+    "explanation": "In cases of bilateral proximal tubal occlusion, the sperm cannot reach the egg, and the egg cannot reach the uterus. In Vitro Fertilization (IVF) completely bypasses the fallopian tubes, offering the best chance of conception."
+  },
+  {
+    "question": "An infertile woman was given 30 ampoules of human menopausal gonadotrophins (HMG), then she acutely developed ascites and abdominal pain, she mostly likely has:",
+    "options": [
+      "Ovarian hyperstimulation syndrome",
+      "Severe liver impairment",
+      "Ovarian failure",
+      "Ovarian thecoma",
+      "Ovarian fibroma"
+    ],
+    "correct": 0,
+    "explanation": "Ovarian Hyperstimulation Syndrome (OHSS) is an iatrogenic complication of aggressive ovulation induction. It causes massive ovarian enlargement and a vascular leak leading to rapid ascites and abdominal pain."
+  },
+  {
+    "question": "The second meiotic division of the oocyte is normally completed:",
+    "options": [
+      "at the stage of the primary follicle.",
+      "at the stage of the Graafian follicle.",
+      "in the peritoneal cavity.",
+      "in the uterus at the time of implantation.",
+      "after the sperm penetrates the secondary oocyte"
+    ],
+    "correct": 4,
+    "explanation": "The secondary oocyte is arrested in Metaphase II at the time of ovulation. The second meiotic division is only completed if and when a sperm successfully penetrates the oocyte (fertilization)."
+  },
+  {
+    "question": "Recognized feature of postmenopausal women is:",
+    "options": [
+      "Low FSH & LH.",
+      "Increased bone mineral density.",
+      "High FSH.",
+      "High level of estrogen.",
+      "Increase the incidence of uterine fibroid."
+    ],
+    "correct": 2,
+    "explanation": "Menopause is characterized by ovarian follicular depletion, leading to low estrogen levels. The lack of negative feedback from estrogen causes the pituitary to secrete highly elevated levels of FSH."
+  },
+  {
+    "question": "The staging of ovarian carcinoma is based upon which of the following?",
+    "options": [
+      "Pelvic examination.",
+      "CT imaging of the abdomen & pelvis.",
+      "Paracentesis of ascetic fluid.",
+      "Surgical evaluation of the extent of intraabdominal diseases.",
+      "Barium enema"
+    ],
+    "correct": 3,
+    "explanation": "Unlike cervical cancer (which is clinically staged), ovarian cancer is surgically staged. Accurate staging requires exploratory laparotomy to visually and pathologically assess the extent of disease spread throughout the abdomen."
+  },
+  {
+    "question": "Which of the following is the metabolic end product estrogens?",
+    "options": [
+      "Estriol",
+      "Estrone",
+      "Estradiol",
+      "Ethinyl estradiol",
+      "Diethyl stilbosterol"
+    ],
+    "correct": 0,
+    "explanation": "Estriol is a weak estrogen that is the primary terminal metabolic end product of both estradiol and estrone before they are excreted in the urine."
+  },
+  {
+    "question": "The leading cause of gynecologic/reproductive cancer death in women is:",
+    "options": [
+      "Cervical cancer",
+      "Uterine cancer",
+      "Ovarian cancer",
+      "Vulval cancer",
+      "Fallopian tube cancer"
+    ],
+    "correct": 2,
+    "explanation": "While endometrial cancer is the most common, ovarian cancer is the most lethal gynecologic malignancy because it lacks early symptoms and effective screening, so it is usually diagnosed at an advanced stage."
+  },
+  {
+    "question": "Which nerve provides sensation to the skin over the suprapubic area?",
+    "options": [
+      "Superior hypogastric plexus",
+      "Iliohypogastric nerve",
+      "Ilioinguinal nerve",
+      "Pudendal nerve",
+      "Femoral nerve"
+    ],
+    "correct": 1,
+    "explanation": "The iliohypogastric nerve (L1) provides cutaneous sensation to the skin over the hypogastric (suprapubic) region and part of the gluteal region. It is vulnerable to injury during transverse lower abdominal incisions (e.g., Pfannenstiel)."
+  },
+  {
+    "question": "A 65-year-old woman is found to have a solid/cystic adnexal mass, omental cake and ascites. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Endometrial carcinoma",
+      "Ovarian carcinoma",
+      "Cervical carcinoma",
+      "Ovarian fibroma",
+      "Theca lutein cysts"
+    ],
+    "correct": 1,
+    "explanation": "The triad of a complex adnexal mass, ascites, and 'omental caking' (massive metastatic infiltration of the omentum) in a postmenopausal woman is the classic radiological and clinical presentation of advanced ovarian carcinoma."
+  },
+  {
+    "question": "A 57-year-old woman suffers urinary incontinence when she has a desire to void urine. This pattern is defined as:",
+    "options": [
+      "Stress incontinence",
+      "Urge incontinence",
+      "Combined stress and urge incontinence",
+      "Vesico-vaginal fistula",
+      "Uretheral diverticulum"
+    ],
+    "correct": 1,
+    "explanation": "Urge incontinence (associated with an overactive bladder/detrusor overactivity) is defined as the involuntary leakage of urine immediately preceded by or accompanied by a sudden, compelling desire to void (urgency)."
+  },
+  {
+    "question": "What change is expected to occur in the basal temperature during ovulation?",
+    "options": [
+      "Slight drop and then rises",
+      "Sudden rise and then drops",
+      "Marked rise and remains high",
+      "Marked drop and remains lower"
+    ],
+    "correct": 0,
+    "explanation": "Basal Body Temperature (BBT) typically shows a slight dip immediately prior to ovulation, followed by a sustained rise of 0.4 to 0.8 °F caused by the thermogenic effect of progesterone from the newly formed corpus luteum."
+  },
+  {
+    "question": "Timing of measuring serum progesterone to detect ovulation in relation to the menstrual cycle:",
+    "options": [
+      "Day 3 of the cycle.",
+      "Day 8 of the cycle.",
+      "Day 14 of the cycle.",
+      "Day 21 of the cycle.",
+      "Day 26 of the cycle."
+    ],
+    "correct": 3,
+    "explanation": "In a standard 28-day cycle, ovulation occurs around day 14. Progesterone levels peak in the mid-luteal phase, approximately 7 days after ovulation. Therefore, testing on day 21 provides the most accurate confirmation of ovulation."
+  },
+  {
+    "question": "A 29-year-old woman with confirmed diagnosis of pelvic inflammatory disease (PID) presents with right upper quadrant pain. What is the most likely etiology?",
+    "options": [
+      "Cholecystitis",
+      "Nephrolithiasis",
+      "Perihepatic abscess",
+      "Asherman syndrome",
+      "Fitz-Hugh-Curtis syndrome"
+    ],
+    "correct": 4,
+    "explanation": "Fitz-Hugh-Curtis syndrome occurs when PID (often Chlamydia or Gonorrhea) spreads up the right paracolic gutter to cause inflammation of the liver capsule (perihepatitis), resulting in right upper quadrant pain that mimics gallbladder disease."
+  },
+  {
+    "question": "Which of the following adnexal masses is derived from all three germ cell layers?",
+    "options": [
+      "Ovarian fibroma",
+      "Gartner's cyst",
+      "Hydrosalpinx",
+      "Endometrioma",
+      "Mature cystic teratoma"
+    ],
+    "correct": 4,
+    "explanation": "A mature cystic teratoma (dermoid cyst) is a germ cell tumor that differentiates into mature tissues derived from all three embryonic germ layers: ectoderm (hair, skin), mesoderm (bone, cartilage), and endoderm (thyroid, GI tissue)."
+  },
+  {
+    "question": "Identify which of the following is true with regard to pubertal development?",
+    "options": [
+      "Pregnancy is not possible until regular menstruation occurs.",
+      "Adrenarche is the beginning of breast development.",
+      "Menarche is the first manifestation of puberty in the female.",
+      "Development of a menstrual cycle is dependent upon GnRH pulses increasing in amplitude and frequency."
+    ],
+    "correct": 3,
+    "explanation": "The onset of puberty is driven by the awakening of the hypothalamic-pituitary-ovarian axis, specifically marked by an increase in the amplitude and frequency of pulsatile GnRH secretion from the hypothalamus."
+  },
+  {
+    "question": "As regard to heavy menstrual bleeding (HMB). Which of the following statements is true?",
+    "options": [
+      "Clinically, HMB can be defined as excessive menstrual blood loss that interferes with a woman's physical, emotional, social quality of life.",
+      "It is necessary to demonstrate that a woman loses >40 mL/menstrual cycle to diagnose HMB.",
+      "Endometrial and cervical malignancy are common causes of HMB.",
+      "First-line medical treatment is the levonorgestrel intrauterine system."
+    ],
+    "correct": 0,
+    "explanation": "Modern clinical guidelines have moved away from strict volumetric definitions (like >80mL) and now define Heavy Menstrual Bleeding subjectively as bleeding severe enough to impact a woman's physical, emotional, or material quality of life."
+  },
+  {
+    "question": "Gynaecological examination should include examination of?",
+    "options": [
+      "General health",
+      "Breast examination",
+      "Abdomen examination",
+      "Pelvic digital examination",
+      "All of the above (Implied by options in standard MCQ structure, correct answer marked is D in source, but contextually pelvic digital is the core specialized exam)"
+    ],
+    "correct": 3,
+    "explanation": "While general, breast, and abdominal exams are important, the pelvic digital (bimanual) examination is the defining, specific component required in a gynaecological examination to assess the uterus and adnexa."
+  },
+  {
+    "question": "An 18-year-old girl presents with a fever (39°C), nausea, generalized malaise and pelvic pain a few days after unprotected intercourse. What is the most likely diagnosis?",
+    "options": [
+      "Trichomoniasis",
+      "Primary herpes simplex infection",
+      "Syphilis",
+      "Bartholin gland abscess",
+      "Lymphogranuloma venereum"
+    ],
+    "correct": 1,
+    "explanation": "A primary (initial) infection with Herpes Simplex Virus often presents with severe systemic symptoms (high fever, malaise, myalgias) alongside painful genital lesions and pelvic/urinary discomfort, especially shortly after first exposure."
+  },
+  {
+    "question": "What is the usual order of appearance of the signs of normal puberty?",
+    "options": [
+      "Pubic hair, breast buds, menarche and axillary hair",
+      "Breast buds, axillary hair, pubic hair, and menarche",
+      "Breast buds, pubic hair, axillary hair, and menarche",
+      "Pubic hair menarche, breast buds and axillary hair",
+      "Axillary hair, breast buds, pubic hair, and menarche"
+    ],
+    "correct": 2,
+    "explanation": "The normal sequence of pubertal development in girls usually follows: Thelarche (breast buds), then Adrenarche/Pubarche (pubic/axillary hair), and finally Menarche (first period) occurring about 2-2.5 years after breast budding."
+  },
+  {
+    "question": "Which one of the following statements about endometriosis is true?",
+    "options": [
+      "malignant changes are common",
+      "it is less common in women in their reproductive years than in postmenopausal women",
+      "affected women may present with infertility",
+      "the most common site of involvement is the rectovaginal septum"
+    ],
+    "correct": 2,
+    "explanation": "Endometriosis is a major cause of female infertility due to pelvic adhesions, distorted tubal anatomy, and an inflammatory environment hostile to sperm and embryos. It is an estrogen-dependent disease of reproductive years, and the ovary is the most common site."
+  },
+  {
+    "question": "An ovarian tumor has an increased likelihood of being malignant if examination reveals that it is?",
+    "options": [
+      "mobile",
+      "bilateral",
+      "cystic",
+      "less than 6 cm in diameter"
+    ],
+    "correct": 1,
+    "explanation": "Characteristics suggesting malignancy in an ovarian mass include being solid, fixed/immobile, large size, accompanied by ascites, and being bilateral (present in both ovaries)."
+  },
+  {
+    "question": "Congenital uterine anomalies are commonly associated with anomalies of which of the followings?",
+    "options": [
+      "Digestive system",
+      "Skeletal system",
+      "Nervous system",
+      "Urinary system",
+      "Cardiovascular system"
+    ],
+    "correct": 3,
+    "explanation": "Because the Mullerian (paramesonephric) ducts develop in close proximity to and interact with the Wolffian (mesonephric) ducts during embryogenesis, uterine anomalies frequently coexist with urinary tract defects, such as a missing kidney."
+  },
+  {
+    "question": "What is the treatment of choice for syphilis?",
+    "options": [
+      "tetracycline",
+      "doxycycline",
+      "erythromycin",
+      "penicillin"
+    ],
+    "correct": 3,
+    "explanation": "Parenteral Penicillin G remains the absolute treatment of choice for all stages of syphilis. Treponema pallidum is highly sensitive to penicillin."
+  },
+  {
+    "question": "A woman infected with gonorrhea frequently have concurrent infection with which of the following?",
+    "options": [
+      "Herpes simplex virus",
+      "Chlamydia trachomatis",
+      "Trichomonas vaginalis",
+      "Haemophilus ducreyi"
+    ],
+    "correct": 1,
+    "explanation": "Coinfection with Neisseria gonorrhoeae and Chlamydia trachomatis is extremely common due to shared risk factors and routes of transmission. Patients diagnosed with gonorrhea are typically treated empirically for Chlamydia as well."
+  },
+  {
+    "question": "The growth of coarse hair in androgen dependent body regions is referred to as which of the following?",
+    "options": [
+      "masculinization",
+      "defeminization",
+      "androgenization",
+      "hirsutism"
+    ],
+    "correct": 3,
+    "explanation": "Hirsutism is the clinical term for excessive terminal hair growth in women occurring in typical male-pattern distributions (face, chest, abdomen), driven by excess androgens."
+  },
+  {
+    "question": "Premature thelarche is associated with which of the following?",
+    "options": [
+      "axillary hair development",
+      "isolated breast development",
+      "pubic hair development",
+      "voice changes",
+      "spontaneous ovulations"
+    ],
+    "correct": 1,
+    "explanation": "Premature thelarche refers specifically and solely to the early, isolated development of breast tissue in young girls without the presence of other secondary sexual characteristics."
+  },
+  {
+    "question": "Ovarian neoplasms most commonly arise from which of the following?",
+    "options": [
+      "ovarian epithelium",
+      "ovarian stroma",
+      "ovarian germ cells",
+      "ovarian sex cords",
+      "metastatic disease"
+    ],
+    "correct": 0,
+    "explanation": "Epithelial ovarian tumors, which arise from the surface epithelium (mesothelium) covering the ovary, account for approximately 80-90% of all primary ovarian malignancies."
+  },
+  {
+    "question": "Which one of the following neoplasms may cause androgen excess?",
+    "options": [
+      "non gestational choriocarcinoma",
+      "embryonal carcinoma",
+      "mixed germ cell tumor",
+      "granulosa cell tumor",
+      "gonadoblastoma"
+    ],
+    "correct": 4,
+    "explanation": "While Sertoli-Leydig tumors are the classic androgen producers, Gonadoblastomas (rare tumors found in dysgenetic gonads) contain sex cord cells that can also secrete androgens, causing virilization."
+  },
+  {
+    "question": "Where do most cervical cancers arise?",
+    "options": [
+      "on the portio vaginalis",
+      "at the internal os",
+      "in the endocervix",
+      "at the transformation zone"
+    ],
+    "correct": 3,
+    "explanation": "The vast majority of cervical cancers and precancers (CIN) originate at the squamocolumnar junction within the transformation zone, where active squamous metaplasia makes cells vulnerable to HPV infection."
+  },
+  {
+    "question": "A locally invasive vaginal cancer in the lower third of patient's vagina. Which of the following lymph nodes would be primarily involved?",
+    "options": [
+      "inguinal",
+      "aortic",
+      "sacral",
+      "internal iliac"
+    ],
+    "correct": 0,
+    "explanation": "The lymphatic drainage of the vagina is divided: the upper two-thirds drains like the cervix into the pelvic nodes (internal/external iliac), while the lower one-third drains like the vulva into the superficial inguinal lymph nodes."
+  },
+  {
+    "question": "The uterine artery is a main branch of which of the following arteries?",
+    "options": [
+      "aorta",
+      "common iliac artery",
+      "external iliac artery",
+      "internal iliac artery"
+    ],
+    "correct": 3,
+    "explanation": "The uterine artery branches off the anterior division of the internal iliac (hypogastric) artery, descending to reach the uterus at the level of the internal os."
+  },
+  {
+    "question": "The ovarian artery is a main branch of which of the following arteries?",
+    "options": [
+      "external iliac artery",
+      "internal iliac artery",
+      "aorta",
+      "common iliac artery"
+    ],
+    "correct": 2,
+    "explanation": "Because the ovaries originate high in the abdomen embryologically, their blood supply (the ovarian arteries) branches directly off the abdominal aorta, just below the renal arteries."
+  },
+  {
+    "question": "The left ovarian vein empties into which of the following veins?",
+    "options": [
+      "renal vein",
+      "inferior vena cava",
+      "internal iliac vein",
+      "external iliac vein"
+    ],
+    "correct": 0,
+    "explanation": "The venous drainage of the gonads is asymmetric. The left ovarian vein drains perpendicularly into the left renal vein, while the right drains directly into the inferior vena cava."
+  },
+  {
+    "question": "The right ovarian vein empties into which of the following veins?",
+    "options": [
+      "renal vein",
+      "inferior vena cava",
+      "internal iliac vein",
+      "external iliac vein"
+    ],
+    "correct": 1,
+    "explanation": "The right ovarian vein drains directly into the anterior aspect of the inferior vena cava at an acute angle."
+  },
+  {
+    "question": "From which embryonic structure does the vestibule arise?",
+    "options": [
+      "genital ridge",
+      "mesonephric ducts",
+      "müllerian ducts",
+      "urogenital sinus"
+    ],
+    "correct": 3,
+    "explanation": "The urogenital sinus gives rise to the lower one-third of the vagina, the urethra, and the vestibule (the area between the labia minora into which the vagina and urethra open)."
+  },
+  {
+    "question": "From which embryonic structure does the upper vagina arise?",
+    "options": [
+      "mesonephric ducts",
+      "urogenital sinus",
+      "müllerian ducts",
+      "genital ridge"
+    ],
+    "correct": 2,
+    "explanation": "The paramesonephric (Mullerian) ducts fuse and grow downward to form the fallopian tubes, uterus, cervix, and the upper two-thirds of the vagina."
+  },
+  {
+    "question": "What is the estimated number of oocytes present at puberty?",
+    "options": [
+      "50,000 to 100,000",
+      "200,000 to 400,000",
+      "800,000 to 1,000,000",
+      "2 to 4 million"
+    ],
+    "correct": 1,
+    "explanation": "A female is born with 1-2 million oocytes. Due to continuous atresia throughout childhood, by the onset of puberty, the reserve has dwindled to approximately 300,000 to 400,000."
+  },
+  {
+    "question": "The granulosa cell aromatase enzyme allows conversion of androstenedione to which of the following?",
+    "options": [
+      "estradiol",
+      "dehydroepiandrosterone",
+      "17-hydroxyprogesterone",
+      "progesterone"
+    ],
+    "correct": 0,
+    "explanation": "Under the influence of FSH, the aromatase enzyme in granulosa cells converts androgens (like androstenedione and testosterone) produced by the theca cells into estrogens (estrone and estradiol)."
+  },
+  {
+    "question": "LH levels typically peak approximately how many hours prior to ovulation?",
+    "options": [
+      "12",
+      "24",
+      "48",
+      "72",
+      "96"
+    ],
+    "correct": 1,
+    "explanation": "The LH surge triggers the final maturation and release of the egg. The peak of this surge generally occurs about 10-12 hours before ovulation, and the surge begins about 34-36 (or around 24-36) hours before."
+  },
+  {
+    "question": "Which of the following is the most potent of the naturally occurring estrogens?",
+    "options": [
+      "estriol",
+      "estrone",
+      "estradiol",
+      "ethinyl estradiol"
+    ],
+    "correct": 2,
+    "explanation": "Estradiol (E2), produced by the functioning ovaries during reproductive years, is the most biologically potent natural estrogen. Estrone is weaker, and Estriol is the weakest."
+  },
+  {
+    "question": "An enterocele is characterized by which of the following statements?",
+    "options": [
+      "It is a herniation of the rectal and vaginal wall into the vagina",
+      "It is a herniation of the bladder floor into the vagina",
+      "It is a prolapse of the uterus and vaginal wall outside the body",
+      "It is a protrusion of the cul-de-sac and vaginal wall in to the vagina"
+    ],
+    "correct": 3,
+    "explanation": "An enterocele occurs when the Pouch of Douglas (cul-de-sac) elongates and herniates downwards between the rectum and posterior vaginal wall, often containing loops of small bowel."
+  },
+  {
+    "question": "The uterus and fallopian tubes develop embryologically from which of the following?",
+    "options": [
+      "Urogenital sinus",
+      "Wolffian ducts",
+      "Müllerian ducts",
+      "Genital folds"
+    ],
+    "correct": 2,
+    "explanation": "The paired paramesonephric (Mullerian) ducts are the precursor structures for the female upper reproductive tract, specifically the fallopian tubes, uterus, cervix, and upper vagina."
+  },
+  {
+    "question": "What is the correct order of the four parts of the fallopian tubes from the ovary to the uterus?",
+    "options": [
+      "Ampulla, isthmus, infundibulum and interstitium",
+      "Interstitium, isthmus, ampulla and infundibulum",
+      "Infundibulum, ampulla, isthmus and interstitium",
+      "Infundibulum, isthmus, ampulla and interstitium",
+      "Interstitium, ampulla, isthmus and infundibulum"
+    ],
+    "correct": 2,
+    "explanation": "Starting from the ovary and moving toward the uterus, the segments are: the fimbriated Infundibulum (catches the egg), the wide Ampulla (site of fertilization), the narrow Isthmus, and the Interstitial (intramural) part passing through the uterine wall."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+
+<!-- ════════════════ BANK ENGINE ════════════════ -->
+<script>
+/* ══════════════════════════════════════════════════
+   QUESTION BANK ENGINE
+══════════════════════════════════════════════════ */
+const KEYS = ['A','B','C','D','E','F','G','H'];
+
+// Session questions (selected subset from bank for this session)
+let SESSION_QUESTIONS = [];
+// Bank indices corresponding to SESSION_QUESTIONS — saved so restore skips re-selection
+let SESSION_QUESTION_INDICES = [];
+// Set to true after initUI() completes — prevents adjustCount/setCount/onCustomCount
+// from wiping saved progress during page initialisation
+let uiReady = false;
+
+// Quiz state
+let state = {
+  current:   0,
+  answers:   {},
+  flagged:   {},
+  timerSecs: 0,
+  elapsed:   0,
+  timerID:   null,
+  submitted: false,
+  mode:      'exam',
+};
+let timerPaused = false;
+let lastTime = Date.now();
+
+// Start screen config
+let selectedCount = 20;
+
+/* ─── SESSION PROGRESS STORAGE ─────────────────────────────────────
+   Tracks quiz session progress (answers, flags, timer) across page reloads.
+   Uses same pattern as misc-mcq.html for consistency.
+──────────────────────────────────────────────────────────────── */
+const STORAGE_VERSION = 'v1';
+const STORAGE_KEY = `quiz_progress_${STORAGE_VERSION}_${(BANK_CONFIG.uid || window.location.pathname).replace(/[^a-zA-Z0-9]/g, '_')}`;
+let pendingRestoreData = null;
+let restoreToastTimeout = null;
+
+/**
+ * Safely save quiz progress to localStorage
+ * Handles quota errors and validates data before saving
+ */
+function saveProgress() {
+  if (state.submitted) return;
+
+  // Don't save if there's no progress yet (prevents blank saves on first load/exit)
+  const hasAnswers = Object.keys(state.answers || {}).length > 0;
+  const hasFlags = Object.values(state.flagged || {}).some(v => v === true);
+  const hasTime = (state.elapsed || 0) > 10;
+  if (!hasAnswers && !hasFlags && !hasTime) return;
+
+  const saveData = {
+    version: STORAGE_VERSION,
+    quizTitle: BANK_CONFIG.title,
+    totalQuestions: SESSION_QUESTIONS.length,
+    questionCount: selectedCount, // Store the selected question count for validation
+    sessionIndices: SESSION_QUESTION_INDICES, // Exact bank indices — lets restore skip re-selection
+    current: state.current,
+    answers: state.answers,
+    flagged: state.flagged,
+    elapsed: state.elapsed,
+    timerSecs: state.timerSecs,
+    mode: state.mode,
+    timestamp: Date.now(),
+    savedAt: Date.now()
+  };
+
+  try {
+    if (!isValidSaveData(saveData)) {
+      console.warn('Invalid save data, skipping save');
+      return;
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+    console.log('Progress saved successfully');
+  } catch (e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      console.warn('LocalStorage quota exceeded, clearing old saves...');
+      clearOldSaves();
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+      } catch (retryError) {
+        console.error('Failed to save progress even after cleanup:', retryError);
+      }
+    } else {
+      console.error('Error saving progress:', e);
+    }
+  }
+}
+
+/**
+ * Validate save data structure
+ */
+function isValidSaveData(data) {
+  if (!data || typeof data !== 'object') return false;
+  if (typeof data.current !== 'number' || data.current < 0) return false;
+  if (!data.answers || typeof data.answers !== 'object') return false;
+  if (!data.flagged || typeof data.flagged !== 'object') return false;
+  if (typeof data.timerSecs !== 'number' || data.timerSecs < 0) return false;
+  if (!['exam', 'learning'].includes(data.mode)) return false;
+  if (typeof data.questionCount !== 'number' || data.questionCount < 1) return false;
+  if (typeof data.totalQuestions !== 'number' || data.totalQuestions < 1) return false;
+  // sessionIndices must exist and every index must be a valid bank index
+  if (!Array.isArray(data.sessionIndices) || data.sessionIndices.length === 0) return false;
+  if (data.sessionIndices.some(i => typeof i !== 'number' || i < 0 || i >= QUESTION_BANK.length)) return false;
+  return true;
+}
+
+/**
+ * Clear old saves from other quizzes to free up space
+ */
+function clearOldSaves() {
+  try {
+    const now = Date.now();
+    const maxAge = 7 * 24 * 60 * 60 * 1000;
+
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith('quiz_progress_')) {
+        try {
+          const data = JSON.parse(localStorage.getItem(key));
+          if (now - data.timestamp > maxAge) {
+            localStorage.removeItem(key);
+          }
+        } catch (e) {
+          localStorage.removeItem(key);
+        }
+      }
+    });
+  } catch (e) {
+    console.error('Error clearing old saves:', e);
+  }
+}
+
+function clearProgress() {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+/**
+ * Check for saved progress on init and show optional restore toast
+ */
+function checkSavedProgress() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+
+  try {
+    const data = JSON.parse(saved);
+
+    if (data.version !== STORAGE_VERSION) {
+      console.log('Incompatible save version, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    if (data.quizTitle !== BANK_CONFIG.title) {
+      console.log('Save is for a different quiz, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    // Validate basic structure before showing restore option
+    if (!isValidSaveData(data)) {
+      console.log('Invalid save data structure, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    const maxAge = 7 * 24 * 60 * 60 * 1000;
+    if (Date.now() - data.timestamp > maxAge) {
+      console.log('Save is too old, starting fresh');
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    pendingRestoreData = data;
+
+    showToast("📂 Previous progress found!", [
+      {
+        label: "Restore",
+        primary: true,
+        onClick: () => {
+          clearTimeout(restoreToastTimeout);
+          doRestoreProgress(pendingRestoreData);
+        }
+      },
+      {
+        label: "Dismiss",
+        primary: false,
+        onClick: () => {
+          clearTimeout(restoreToastTimeout);
+          pendingRestoreData = null;
+          clearProgress();
+        }
+      }
+    ]);
+
+    restoreToastTimeout = setTimeout(() => {
+      console.log('Auto-dismissing restore toast after 15 seconds');
+      pendingRestoreData = null;
+      clearProgress();
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.classList.remove('show');
+      }
+    }, 15000);
+
+  } catch(e) {
+    console.error('Error checking saved progress:', e);
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+/**
+ * Actually perform the restore with validated data
+ */
+function doRestoreProgress(data) {
+  if (!data.savedAt) {
+    data.savedAt = data.timestamp;
+  }
+
+  // Restore the selectedCount from saved data
+  selectedCount = data.questionCount || 20;
+  
+  // Update the input field to reflect restored count
+  const inp = document.getElementById('q-count-input');
+  if (inp) inp.value = selectedCount;
+
+  // Restore session questions DIRECTLY from saved indices — do NOT call
+  // selectSessionQuestions() here because that would pick NEW questions,
+  // corrupt bank progress (double-count the session), and mismatch answers.
+  SESSION_QUESTION_INDICES = data.sessionIndices;
+  SESSION_QUESTIONS = data.sessionIndices.map(i => QUESTION_BANK[i]);
+
+  // Validate all answer indices are still valid
+  for (const [qIdx, optIdx] of Object.entries(data.answers)) {
+    const qIndex = parseInt(qIdx);
+    if (qIndex >= 0 && qIndex < SESSION_QUESTIONS.length) {
+      const optCount = SESSION_QUESTIONS[qIndex].options.length;
+      if (optIdx < 0 || optIdx >= optCount) {
+        delete data.answers[qIdx];
+      }
+    } else {
+      delete data.answers[qIdx];
+    }
+  }
+
+  state.current = Math.min(data.current, SESSION_QUESTIONS.length - 1);
+  state.answers = data.answers;
+  state.flagged = data.flagged || {};
+  state.elapsed = data.elapsed || 0;
+  state.timerSecs = data.timerSecs || 0;
+  state.mode = data.mode;
+  state.submitted = false;
+
+  setTimeout(() => {
+    // Set CSS variable for portrait nav grid (same as startQuiz does)
+    document.documentElement.style.setProperty('--q-count', SESSION_QUESTIONS.length);
+
+    if(state.mode === 'learning') {
+      document.getElementById('timer-display').classList.add('hidden');
+      document.getElementById('legend-text-answered').textContent = 'Correct';
+      document.getElementById('legend-wrong').style.display = 'flex';
+    } else {
+      document.getElementById('timer-display').classList.remove('hidden');
+      document.getElementById('legend-text-answered').textContent = 'Answered';
+      document.getElementById('legend-wrong').style.display = 'none';
+    }
+    showScreen('quiz-screen');
+    buildNavGrid();
+    renderQuestion(state.current);
+    updateTimerDisplay();
+    if(state.mode !== 'learning') {
+      startTimer();
+    }
+  }, 500);
+}
+
+/* ─── BANK PROGRESS STORAGE ─────────────────────────────────────
+   Tracks which questions from the bank have been shown across sessions.
+   Structure: { shownIndices: number[], totalSessions: number, cycleCount: number }
+──────────────────────────────────────────────────────────────── */
+const BANK_PROGRESS_KEY = `bank_progress_v1_${(BANK_CONFIG.uid || 'default').replace(/[^a-zA-Z0-9]/g,'_')}`;
+
+function getBankProgress() {
+  try {
+    const raw = localStorage.getItem(BANK_PROGRESS_KEY);
+    if (!raw) return { shownIndices: [], totalSessions: 0, cycleCount: 0 };
+    const p = JSON.parse(raw);
+    return {
+      shownIndices:   Array.isArray(p.shownIndices)   ? p.shownIndices   : [],
+      totalSessions:  typeof p.totalSessions === 'number' ? p.totalSessions : 0,
+      cycleCount:     typeof p.cycleCount    === 'number' ? p.cycleCount    : 0,
+    };
+  } catch(e) {
+    return { shownIndices: [], totalSessions: 0, cycleCount: 0 };
+  }
+}
+
+function saveBankProgress(progress) {
+  try {
+    localStorage.setItem(BANK_PROGRESS_KEY, JSON.stringify(progress));
+  } catch(e) {
+    console.error('Failed to save bank progress:', e);
+  }
+}
+
+function resetBankProgress() {
+  if (!confirm('Reset all bank progress? This will forget which questions you have already seen.')) return;
+  localStorage.removeItem(BANK_PROGRESS_KEY);
+  updateStartScreenStats();
+  showToast('🔄 Bank progress reset!');
+}
+
+/* ─── QUESTION SELECTION ─────────────────────────────────────
+   Picks `count` questions preferring unshown ones.
+   When all questions have been shown, starts a new coverage cycle.
+──────────────────────────────────────────────────────────────── */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function selectSessionQuestions(count) {
+  const bankSize = QUESTION_BANK.length;
+  const n = Math.min(count, bankSize);
+  const progress = getBankProgress();
+
+  const allIndices = Array.from({ length: bankSize }, (_, i) => i);
+  let unshown = allIndices.filter(i => !progress.shownIndices.includes(i));
+
+  // If we've exhausted the bank (or nearly so), reset cycle
+  if (unshown.length < n) {
+    progress.shownIndices = [];
+    progress.cycleCount++;
+    unshown = [...allIndices];
+    saveBankProgress(progress);
+    showToast(`🎉 Full cycle complete! Starting fresh — cycle ${progress.cycleCount + 1}`);
+  }
+
+  const picked = shuffle(unshown).slice(0, n);
+
+  // Update shown indices
+  progress.shownIndices = [...new Set([...progress.shownIndices, ...picked])];
+  progress.totalSessions++;
+  saveBankProgress(progress);
+
+  SESSION_QUESTION_INDICES = picked;
+  return picked.map(i => QUESTION_BANK[i]);
+}
+
+/* ─── START SCREEN LOGIC ────────────────────────────────────── */
+function updateStartScreenStats() {
+  const progress = getBankProgress();
+  const bankSize = QUESTION_BANK.length;
+  const covered  = progress.shownIndices.length;
+  const pct      = bankSize > 0 ? Math.round(covered / bankSize * 100) : 0;
+
+  document.getElementById('stat-covered').textContent  = covered;
+  document.getElementById('stat-total').textContent    = bankSize;
+  document.getElementById('stat-sessions').textContent = progress.totalSessions;
+  document.getElementById('coverage-fill').style.width = pct + '%';
+  document.getElementById('coverage-pct').textContent  = pct + '%';
+}
+
+function adjustCount(delta) {
+  const inp = document.getElementById('q-count-input');
+  const bankSize = QUESTION_BANK.length;
+  const cur = parseInt(inp.value) || selectedCount || 20;
+  const newVal = Math.max(1, Math.min(bankSize, cur + delta));
+  inp.value = newVal;
+  selectedCount = newVal;
+  autoSetTime(newVal);
+  
+  // Only clear saved progress when user actively changes the count (not during init)
+  if (uiReady) clearProgress();
+}
+
+function setCount(n) {
+  const bankSize = QUESTION_BANK.length;
+  if (n === -1) n = bankSize; // "All"
+  n = Math.max(1, Math.min(n, bankSize));
+  selectedCount = n;
+
+  document.getElementById('q-count-input').value = n;
+  autoSetTime(n);
+  
+  // Only clear saved progress when user actively changes the count (not during init)
+  if (uiReady) clearProgress();
+}
+
+function onCustomCount(val) {
+  const bankSize = QUESTION_BANK.length;
+  let n = parseInt(val) || 1;
+  n = Math.max(1, Math.min(n, bankSize));
+  selectedCount = n;
+  autoSetTime(n);
+  
+  // Only clear saved progress when user actively changes the count (not during init)
+  if (uiReady) clearProgress();
+}
+
+function autoSetTime(n) {
+  const autoMins = Math.max(5, Math.ceil(n * 1.5));
+  document.getElementById('time-input').value = autoMins;
+}
+
+function adjustTime(delta) {
+  const inp = document.getElementById('time-input');
+  const cur = parseInt(inp.value) || 10;
+  inp.value = Math.max(1, Math.min(300, cur + delta));
+}
+
+/* ─── MODE SELECTION ────────────────────────────────────────── */
+document.querySelectorAll('input[name="quiz-mode"]').forEach(input => {
+  input.addEventListener('change', function() {
+    document.querySelectorAll('input[name="quiz-mode"]').forEach(r => {
+      const opt = r.closest('label').querySelector('.mode-option');
+      opt.classList.remove('mode-selected');
+      opt.style.borderColor = '';
+      opt.style.background  = '';
+    });
+    const selected = this.closest('label').querySelector('.mode-option');
+    selected.classList.add('mode-selected');
+    // Show/hide time selector
+    const timeSec = document.getElementById('time-section');
+    timeSec.style.display = this.value === 'exam' ? '' : 'none';
+  });
+});
+// Init mode selection visuals
+(function() {
+  const checked = document.querySelector('input[name="quiz-mode"]:checked');
+  if (checked) {
+    const opt = checked.closest('label').querySelector('.mode-option');
+    opt.classList.add('mode-selected');
+    opt.style.borderColor = 'var(--accent)';
+    opt.style.background  = 'var(--accent-dim)';
+  }
+})();
+
+/* ─── ORDER SELECTION ───────────────────────────────────────── */
+document.querySelectorAll('input[name="quiz-order"]').forEach(input => {
+  input.addEventListener('change', function() {
+    document.querySelectorAll('input[name="quiz-order"]').forEach(r => {
+      const opt = r.closest('label').querySelector('.mode-option');
+      opt.classList.remove('mode-order-selected');
+      opt.style.borderColor = '';
+      opt.style.background  = '';
+    });
+    const selected = this.closest('label').querySelector('.mode-option');
+    selected.classList.add('mode-order-selected');
+    selected.style.borderColor = 'var(--accent)';
+    selected.style.background  = 'var(--accent-dim)';
+  });
+});
+// Init order selection visuals
+(function() {
+  const checked = document.querySelector('input[name="quiz-order"]:checked');
+  if (checked) {
+    const opt = checked.closest('label').querySelector('.mode-option');
+    opt.classList.add('mode-order-selected');
+    opt.style.borderColor = 'var(--accent)';
+    opt.style.background  = 'var(--accent-dim)';
+  }
+})();
+
+/* ─── INIT UI ────────────────────────────────────────────────── */
+function initUI() {
+  document.title = BANK_CONFIG.title;
+  document.getElementById('bank-title').textContent    = BANK_CONFIG.title;
+  document.getElementById('bank-subtitle').textContent = BANK_CONFIG.description;
+  document.getElementById('topbar-title').textContent  = BANK_CONFIG.title;
+  if (BANK_CONFIG.icon) {
+    document.getElementById('start-icon').textContent = BANK_CONFIG.icon;
+  }
+
+  const bankSize = QUESTION_BANK.length;
+  const capCount = document.getElementById('q-count-input');
+  capCount.max = bankSize;
+
+  // Default count
+  const defaultCount = Math.min(20, bankSize);
+  adjustCount(0); // Initialize with default value
+
+  updateStartScreenStats();
+
+  // Theme
+  const savedTheme = localStorage.getItem('quiz-theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon();
+
+  // Mark UI as fully initialised — count-change handlers may now clear saved progress
+  uiReady = true;
+}
+
+/* ─── START QUIZ ─────────────────────────────────────────────── */
+function startQuiz() {
+  const mode = document.querySelector('input[name="quiz-mode"]:checked').value;
+  const order = document.querySelector('input[name="quiz-order"]:checked').value;
+  const timeMins = parseInt(document.getElementById('time-input').value) || 30;
+  const count = selectedCount;
+
+  // Clear any existing saved progress before starting a new session
+  clearProgress();
+
+  // Select questions from bank (always picks randomly first for fair coverage)
+  SESSION_QUESTIONS = selectSessionQuestions(count);
+
+  // If sequential order is chosen, sort by original bank index
+  if (order === 'sequential') {
+    const paired = SESSION_QUESTION_INDICES.map((bankIdx, pos) => ({ bankIdx, q: SESSION_QUESTIONS[pos] }));
+    paired.sort((a, b) => a.bankIdx - b.bankIdx);
+    SESSION_QUESTION_INDICES = paired.map(p => p.bankIdx);
+    SESSION_QUESTIONS = paired.map(p => p.q);
+  }
+
+  state.current   = 0;
+  state.answers   = {};
+  state.flagged   = {};
+  state.elapsed   = 0;
+  state.submitted = false;
+  state.mode      = mode;
+  state.timerSecs = timeMins * 60;
+
+  // Set CSS variable for portrait nav grid
+  document.documentElement.style.setProperty('--q-count', SESSION_QUESTIONS.length);
+
+  showScreen('quiz-screen');
+
+  if (mode === 'learning') {
+    document.getElementById('timer-display').classList.add('hidden');
+    document.getElementById('legend-text-answered').textContent = 'Correct';
+    document.getElementById('legend-wrong').style.display = 'flex';
+  } else {
+    document.getElementById('timer-display').classList.remove('hidden');
+    document.getElementById('legend-text-answered').textContent = 'Answered';
+    document.getElementById('legend-wrong').style.display = 'none';
+  }
+
+  buildNavGrid();
+  renderQuestion(0);
+  if (mode !== 'learning') startTimer();
+}
+
+/* ─── SCREEN MANAGER ─────────────────────────────────────────── */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'start-screen') updateStartScreenStats();
+}
+
+/* ─── TIMER ──────────────────────────────────────────────────── */
+function startTimer() {
+  if (state.timerID) clearInterval(state.timerID);
+  timerPaused = false;
+  lastTime = Date.now();
+  state.timerID = setInterval(() => {
+    if (!timerPaused && state.timerSecs > 0) {
+      const now = Date.now();
+      const delta = Math.floor((now - lastTime) / 1000);
+      if (delta >= 1) {
+        state.elapsed   += delta;
+        state.timerSecs -= delta;
+        lastTime = now;
+        updateTimerDisplay();
+        if (state.timerSecs <= 0) {
+          stopTimer();
+          showToast("⏰ Time's up! Submitting…");
+          setTimeout(confirmSubmit, 1500);
+        }
+      }
+    }
+  }, 100);
+}
+
+function stopTimer() {
+  if (state.timerID) { clearInterval(state.timerID); state.timerID = null; }
+  timerPaused = true;
+}
+
+function updateTimerDisplay() {
+  const secs = Math.max(0, state.timerSecs || 0);
+  const m = Math.floor(secs / 60), s = secs % 60;
+  document.getElementById('timer-text').textContent =
+    String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  const el = document.getElementById('timer-display');
+  if (secs < 120) el.classList.add('warn'); else el.classList.remove('warn');
+}
+
+/* ─── RENDER QUESTION ────────────────────────────────────────── */
+function renderQuestion(idx) {
+  state.current = idx;
+  const q        = SESSION_QUESTIONS[idx];
+  const isLast   = idx === SESSION_QUESTIONS.length - 1;
+  const sel      = state.answers[idx];
+  const isLearning  = state.mode === 'learning';
+  const isAnswered  = sel !== undefined;
+
+  const done = Object.keys(state.answers).length;
+  document.getElementById('progress-fill').style.width =
+    (done / SESSION_QUESTIONS.length * 100) + '%';
+
+  const area = document.getElementById('question-area');
+  area.innerHTML = `
+    <div class="q-header">
+      <span class="q-number-badge">Q ${idx+1} / ${SESSION_QUESTIONS.length}</span>
+      <div class="q-text">${q.question}</div>
+      <div class="q-actions">
+        <button class="flag-btn ${state.flagged[idx]?'active':''}" onclick="toggleFlag(${idx})" id="flag-btn-${idx}">
+          <svg width="13" height="13" viewBox="0 0 24 24"
+               fill="${state.flagged[idx]?'currentColor':'none'}"
+               stroke="currentColor" stroke-width="2.2">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+            <line x1="4" y1="22" x2="4" y2="15"/>
+          </svg>
+          ${state.flagged[idx] ? 'Flagged' : 'Flag'}
+        </button>
+      </div>
+    </div>
+
+    <div class="options-list">
+      ${q.options.map((opt, i) => {
+        let extra = '', keyStyle = '';
+        if (isLearning && isAnswered) {
+          if (i === q.correct) {
+            extra = 'border-color: var(--correct) !important; background: var(--correct-bg) !important; pointer-events: none;';
+            keyStyle = 'background: var(--correct) !important; color: white !important; border-color: var(--correct) !important;';
+          } else if (sel === i) {
+            extra = 'border-color: var(--wrong) !important; background: var(--wrong-bg) !important; pointer-events: none;';
+            keyStyle = 'background: var(--wrong) !important; color: white !important; border-color: var(--wrong) !important;';
+          } else {
+            extra = 'pointer-events: none;';
+          }
+        }
+        return `
+          <input type="radio" name="q_opt" id="opt_${i}" value="${i}"
+                 ${sel===i?'checked':''} ${isLearning && isAnswered ? 'disabled' : ''}
+                 onchange="selectAnswer(${idx},${i})">
+          <label class="option-label" for="opt_${i}" style="${extra}">
+            <span class="option-key" style="${keyStyle}">${KEYS[i]}</span>
+            <span class="option-text">${opt}</span>
+          </label>`;
+      }).join('')}
+    </div>
+
+    ${(isLearning && isAnswered) ? `
+      <div class="explanation-box" style="margin-top: 1rem;">
+        <strong>${sel === q.correct ? '✅ Correct!' : '❌ Incorrect'}</strong>
+        ${q.explanation}
+      </div>` : ''}
+
+    <div class="q-nav-btns">
+      ${idx > 0         ? `<button class="btn-nav" onclick="goTo(${idx-1})">← Previous</button>` : ''}
+      ${!isLast         ? `<button class="btn-nav primary" onclick="nextQuestion()">Next →</button>` : ''}
+      ${isLast          ? `<button class="btn-nav submit-btn" onclick="attemptSubmit()">✓ Submit</button>` : ''}
+    </div>`;
+
+  updateNavGrid();
+  updateNavStats();
+  area.scrollTop = 0;
+}
+
+/* ─── ANSWER SELECTION ───────────────────────────────────────── */
+function selectAnswer(qIdx, optIdx) {
+  if (state.mode === 'learning' && state.answers[qIdx] !== undefined) return;
+  state.answers[qIdx] = optIdx;
+  updateNavGrid();
+  updateNavStats();
+  const done = Object.keys(state.answers).length;
+  document.getElementById('progress-fill').style.width =
+    (done / SESSION_QUESTIONS.length * 100) + '%';
+  if (state.mode === 'learning') renderQuestion(qIdx);
+}
+
+/* ─── NAVIGATION ─────────────────────────────────────────────── */
+function nextQuestion() {
+  if (state.current < SESSION_QUESTIONS.length - 1) renderQuestion(state.current + 1);
+}
+function goTo(idx) { renderQuestion(idx); }
+
+/* ─── FLAG ───────────────────────────────────────────────────── */
+function toggleFlag(idx) {
+  state.flagged[idx] = !state.flagged[idx];
+  renderQuestion(idx);
+  showToast(state.flagged[idx] ? `⚑ Question ${idx+1} flagged` : `Question ${idx+1} unflagged`);
+}
+
+/* ─── NAV GRID ───────────────────────────────────────────────── */
+function buildNavGrid() {
+  const grid = document.getElementById('nav-grid');
+  grid.innerHTML = SESSION_QUESTIONS.map((_, i) =>
+    `<button class="nav-btn" id="nav-btn-${i}" onclick="goTo(${i})">${i+1}</button>`
+  ).join('');
+}
+
+function updateNavGrid() {
+  SESSION_QUESTIONS.forEach((_, i) => {
+    const btn = document.getElementById(`nav-btn-${i}`);
+    if (!btn) return;
+    btn.className = 'nav-btn';
+    if (i === state.current) {
+      btn.classList.add('current');
+    } else if (state.answers[i] !== undefined) {
+      if (state.mode === 'learning' && state.answers[i] !== SESSION_QUESTIONS[i].correct) {
+        btn.classList.add('wrong');
+      } else {
+        btn.classList.add('answered');
+      }
+    }
+    const existing = btn.querySelector('.flag-dot');
+    if (existing) existing.remove();
+    if (state.flagged[i]) {
+      const dot = document.createElement('span');
+      dot.className = 'flag-dot';
+      btn.appendChild(dot);
+      if (i !== state.current) btn.classList.add('flagged');
+    }
+  });
+}
+
+function updateNavStats() {
+  const answered = Object.keys(state.answers).length;
+  const flagged  = Object.values(state.flagged).filter(Boolean).length;
+  const skipped  = SESSION_QUESTIONS.length - answered;
+  document.getElementById('stat-answered').textContent  = answered;
+  document.getElementById('stat-flagged-q').textContent = flagged;
+  document.getElementById('stat-skipped').textContent   = skipped;
+}
+
+/* ─── SUBMIT ─────────────────────────────────────────────────── */
+function attemptSubmit() {
+  if (state.mode === 'learning') { confirmSubmit(); return; }
+  const unanswered = SESSION_QUESTIONS.length - Object.keys(state.answers).length;
+  if (unanswered > 0) {
+    document.getElementById('modal-unanswered').textContent = unanswered;
+    document.getElementById('submit-modal').classList.add('open');
+  } else {
+    confirmSubmit();
+  }
+}
+function closeModal() { document.getElementById('submit-modal').classList.remove('open'); }
+function confirmSubmit() {
+  closeModal();
+  stopTimer();
+  state.submitted = true;
+  
+  // Clear saved progress — session is done, no restore needed
+  clearProgress();
+  
+  buildResults();
+  showScreen('result-screen');
+}
+
+/* ─── BUILD RESULTS ──────────────────────────────────────────── */
+function buildResults() {
+  let correct = 0, wrong = 0, skipped = 0;
+  SESSION_QUESTIONS.forEach((q, i) => {
+    const ans = state.answers[i];
+    if (ans === undefined) skipped++;
+    else if (ans === q.correct) correct++;
+    else wrong++;
+  });
+  const total   = SESSION_QUESTIONS.length;
+  const pct     = Math.round(correct / total * 100);
+  const flagged = Object.values(state.flagged).filter(Boolean).length;
+  const em = Math.floor(state.elapsed/60), es = state.elapsed%60;
+  const timeStr = String(em).padStart(2,'0') + ':' + String(es).padStart(2,'0');
+
+  document.getElementById('res-pct').textContent     = pct + '%';
+  document.getElementById('res-correct').textContent = correct;
+  document.getElementById('res-wrong').textContent   = wrong;
+  document.getElementById('res-flagged').textContent = flagged;
+  document.getElementById('res-skipped').textContent = skipped;
+  document.getElementById('res-time').textContent    = timeStr;
+
+  let grade = '';
+  if (pct>=90) grade='🏆 Outstanding!';
+  else if(pct>=75) grade='🌟 Great Work!';
+  else if(pct>=60) grade='👍 Good Effort!';
+  else if(pct>=40) grade='📚 Keep Studying!';
+  else grade='💪 Don\'t Give Up!';
+  document.getElementById('res-grade').textContent = grade;
+
+  renderResultItems('all');
+}
+
+function renderResultItems(filter) {
+  const list = document.getElementById('result-list');
+  list.innerHTML = '';
+  SESSION_QUESTIONS.forEach((q, i) => {
+    const ans = state.answers[i];
+    const isCorrect = ans === q.correct;
+    const isSkipped = ans === undefined;
+    const isFlagged = state.flagged[i];
+    let statusClass = isSkipped ? 'skipped' : (isCorrect ? 'correct' : 'wrong');
+    let show = filter === 'all'
+      || (filter === 'correct' && isCorrect && !isSkipped)
+      || (filter === 'wrong'   && !isCorrect && !isSkipped)
+      || (filter === 'skipped' && isSkipped)
+      || (filter === 'flagged' && isFlagged);
+    if (!show) return;
+
+    const icon = isSkipped ? '—' : (isCorrect ? '✓' : '✗');
+    const userOpt = ans !== undefined ? q.options[ans] : 'Not answered';
+    const corrOpt = q.options[q.correct];
+
+    const el = document.createElement('div');
+    el.className = `result-item ${statusClass}`;
+    el.innerHTML = `
+      <div class="result-item-header" onclick="toggleResultItem(this)">
+        <div class="result-status-icon">${icon}</div>
+        <div class="result-q-meta">
+          <div class="result-q-num">Question ${i+1}${isFlagged?' · ⚑ Flagged':''}</div>
+          <div class="result-q-text">${q.question}</div>
+        </div>
+        <div class="expand-arrow">▼</div>
+      </div>
+      <div class="result-item-body">
+        ${!isSkipped ? `
+          <div class="answer-row your-answer ${isCorrect?'is-correct':''}">
+            <span class="ar-label">Your Answer</span>
+            <span>${KEYS[ans]}. ${userOpt}</span>
+          </div>` : ''}
+        ${!isCorrect ? `
+          <div class="answer-row correct-answer">
+            <span class="ar-label">Correct Answer</span>
+            <span>${KEYS[q.correct]}. ${corrOpt}</span>
+          </div>` : ''}
+        <div class="explanation-box">
+          <strong>Explanation</strong>
+          ${q.explanation}
+        </div>
+      </div>`;
+    list.appendChild(el);
+  });
+  if (!list.children.length) {
+    list.innerHTML = `<div style="color:var(--text-muted);font-size:0.9rem;padding:1rem 0;">No questions in this category.</div>`;
+  }
+}
+
+function toggleResultItem(header) {
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
+}
+function filterResults(filter, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderResultItems(filter);
+}
+
+/* ─── CONFIRM RESET (mid-quiz) ───────────────────────────────── */
+function confirmResetProgress() {
+  if (!confirm('End this session and go back to start?')) return;
+  stopTimer();
+  state.submitted = false;
+  
+  // Clear saved progress when manually resetting
+  clearProgress();
+  
+  showScreen('start-screen');
+}
+
+/* ─── THEME ──────────────────────────────────────────────────── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('quiz-theme', newTheme);
+  updateThemeIcon();
+}
+function updateThemeIcon() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.querySelectorAll('.theme-toggle-btn').forEach(b => {
+    b.textContent = isDark ? '☀' : '☾';
+  });
+}
+
+/* ─── NAVIGATE ───────────────────────────────────────────────── */
+function navigateToIndex(event) {
+  event.preventDefault();
+  window.location.href = 'index.html';
+}
+
+/* ─── TOAST ──────────────────────────────────────────────────── */
+let toastTimer;
+
+function showToast(msg, actions = []) {
+  const t = document.getElementById('toast');
+
+  // Clear any existing content
+  t.innerHTML = '';
+
+  // Create message span
+  const msgSpan = document.createElement('span');
+  msgSpan.textContent = msg;
+  msgSpan.style.flex = '1';
+  t.appendChild(msgSpan);
+
+  // Add action buttons if provided
+  if (actions.length > 0) {
+    const actionsContainer = document.createElement('div');
+    actionsContainer.style.display = 'flex';
+    actionsContainer.style.gap = '0.5rem';
+    actionsContainer.style.marginLeft = '0.75rem';
+
+    actions.forEach(action => {
+      const btn = document.createElement('button');
+      btn.textContent = action.label;
+      btn.style.cssText = `
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: ${action.primary ? 'var(--accent)' : 'var(--surface2)'};
+        color: ${action.primary ? '#000' : 'var(--text)'};
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition);
+      `;
+      btn.onclick = () => {
+        action.onClick();
+        t.classList.remove('show');
+      };
+      btn.onmouseenter = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--accent)';
+          btn.style.color = 'var(--accent)';
+        }
+      };
+      btn.onmouseleave = () => {
+        if (!action.primary) {
+          btn.style.borderColor = 'var(--border)';
+          btn.style.color = 'var(--text)';
+        }
+      };
+      actionsContainer.appendChild(btn);
+    });
+
+    t.appendChild(actionsContainer);
+  }
+
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+
+  // Auto-hide only if no actions (for simple toasts)
+  if (actions.length === 0) {
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+}
+
+// Auto-save every 5 seconds
+setInterval(saveProgress, 5000);
+
+// Save progress before page unload (tab close, refresh, navigation)
+window.addEventListener('beforeunload', function() {
+  if (!state.submitted) {
+    saveProgress();
+  }
+});
+
+/* ─── VISIBILITY CHANGE ──────────────────────────────────────── */
+window.addEventListener('visibilitychange', () => {
+  if (document.hidden && !state.submitted && state.mode !== 'learning') {
+    stopTimer();
+  } else if (!document.hidden && !state.submitted && state.mode !== 'learning' && state.timerID === null) {
+    lastTime = Date.now();
+    timerPaused = false;
+  }
+});
+
+/* ─── BOOT ───────────────────────────────────────────────────── */
+initUI();
+checkSavedProgress();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
