@@ -30,6 +30,12 @@ ACRONYMS = {
 def main() -> int:
     changed_files: list[Path] = []
 
+    # Update root index.html with subfolder entries
+    root_index = REPO_ROOT / "index.html"
+    if root_index.exists():
+        if update_root_index_with_folders(root_index):
+            changed_files.append(root_index)
+
     for index_path in discover_index_files():
         if update_index_file(index_path):
             changed_files.append(index_path)
@@ -45,6 +51,87 @@ def main() -> int:
         print("No generated updates were needed.")
 
     return 0
+
+
+def update_root_index_with_folders(index_path: Path) -> bool:
+    """Update root index.html with folder entries based on subfolders containing index.html"""
+    text = index_path.read_text(encoding="utf-8")
+    
+    try:
+        array_literal, start, end = extract_assigned_literal(text, "QUIZZES", "[", "]")
+    except ValueError:
+        # Root index doesn't have QUIZZES array, nothing to do
+        return False
+    
+    existing_entries = parse_js_literal(array_literal)
+
+    if not isinstance(existing_entries, list):
+        raise ValueError(f"{index_path} has a QUIZZES assignment that is not an array.")
+
+    # Track existing folder URLs to avoid duplicates
+    existing_urls = {
+        entry.get("url")
+        for entry in existing_entries
+        if isinstance(entry, dict) and isinstance(entry.get("url"), str)
+    }
+
+    # Discover subfolders that have their own index.html
+    new_entries: list[dict[str, object]] = []
+    
+    for subfolder in sorted(REPO_ROOT.iterdir(), key=lambda p: natural_key(p.name)):
+        # Skip if not a directory or in skip list
+        if not subfolder.is_dir():
+            continue
+        if subfolder.name in SKIP_DIRS or subfolder.name.startswith("."):
+            continue
+        
+        # Check if this subfolder has an index.html
+        subfolder_index = subfolder / "index.html"
+        if not subfolder_index.exists():
+            continue
+        
+        # Build the relative URL for the folder
+        folder_url = f"{subfolder.name}/index.html"
+        
+        # Skip if already exists
+        if folder_url in existing_urls:
+            continue
+        
+        # Build folder entry
+        icon = default_icon(subfolder.relative_to(REPO_ROOT))
+        folder_name = subfolder.name
+        
+        # Create better folder names based on common abbreviations
+        folder_titles = {
+            "gyn": "Gynecology",
+            "cardio": "Internal Medicine",
+            "ai": "AI",
+            "dep": "Department",
+            "mans": "Mansoura",
+        }
+        
+        title = folder_titles.get(folder_name.lower(), folder_name.capitalize())
+        
+        # Count HTML files in the subfolder (excluding index.html)
+        html_count = len([f for f in subfolder.glob("*.html") if f.name != "index.html"])
+        
+        entry = {
+            "title": f"📁 {title}",
+            "description": f"{title} quizzes and resources",
+            "icon": icon,
+            "tags": ["Folder"],
+            "url": folder_url,
+        }
+        new_entries.append(entry)
+
+    if not new_entries:
+        return False
+
+    new_entry_literals = [serialize_quiz_entry(entry) for entry in new_entries]
+    updated_array_literal = append_entries_to_array_literal(array_literal, new_entry_literals)
+    updated_text = text[:start] + updated_array_literal + text[end:]
+    index_path.write_text(updated_text, encoding="utf-8")
+    return True
 
 
 def discover_index_files() -> list[Path]:
@@ -69,7 +156,13 @@ def discover_html_files() -> list[Path]:
 
 def update_index_file(index_path: Path) -> bool:
     text = index_path.read_text(encoding="utf-8")
-    array_literal, start, end = extract_assigned_literal(text, "QUIZZES", "[", "]")
+    
+    try:
+        array_literal, start, end = extract_assigned_literal(text, "QUIZZES", "[", "]")
+    except ValueError:
+        # Skip index files without QUIZZES array (e.g., minimal redirect pages)
+        return False
+    
     existing_entries = parse_js_literal(array_literal)
 
     if not isinstance(existing_entries, list):
