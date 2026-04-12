@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Loading...</title>
+<title>L20 Oncology</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
@@ -214,14 +214,13 @@ input[type=radio] { display: none; }
   text-align: center;
   transition: border-color var(--transition);
 }
+.time-input:focus { outline: none; border-color: var(--accent); }
 .time-hint {
   font-size: 0.75rem;
   color: var(--text-muted);
   margin-top: 0.35rem;
   text-align: left;
 }
-
-.time-input:focus { outline: none; border-color: var(--accent); }
 
 /* Mode options - ensure equal height on mobile */
 .mode-option {
@@ -782,102 +781,37 @@ input[type=radio]:checked + .option-label .option-key {
   opacity: 1;
 }
 
-/* ═══════════════════════════════════════════
-   TOAST
-═══════════════════════════════════════════ */
-.toast {
-  position: fixed;
-  bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(80px);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0.65rem 1.2rem;
-  font-size: 0.88rem;
-  font-weight: 500;
-  box-shadow: var(--shadow);
-  z-index: 9999;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  max-width: 90%;
+/* PDF Export Section */
+.pdf-export-section {
+  margin-top: 1.5rem; margin-bottom: 1rem; padding: 1rem;
+  border-radius: var(--radius); background: var(--surface); border: 1.5px solid var(--border);
 }
-.toast.show { transform: translateX(-50%) translateY(0); }
+.export-options { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 0.85rem; }
+.export-option {
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.65rem;
+  border-radius: 6px; background: var(--surface2); border: 1.5px solid var(--border);
+  cursor: pointer; transition: all var(--transition); flex: 1; min-width: 120px;
+}
+.export-option:hover { border-color: var(--accent); background: var(--accent-dim); }
+.export-option input[type="checkbox"] { display: none; }
+.export-option input[type="checkbox"]:checked + .export-checkbox-visual { border-color: var(--accent); background: var(--accent); }
+.export-option input[type="checkbox"]:checked + .export-checkbox-visual svg { display: block; }
+.export-checkbox-visual {
+  width: 16px; height: 16px; border-radius: 4px; border: 2px solid var(--border);
+  background: var(--surface); transition: all var(--transition); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.export-checkbox-visual svg { display: none; width: 10px; height: 10px; stroke: #000; stroke-width: 3; fill: none; }
+.export-label { font-size: 0.82rem; font-weight: 500; color: var(--text); flex: 1; }
+.export-badge { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 3px; background: var(--accent-dim); color: var(--accent); font-weight: 600; }
+.btn-export-pdf {
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.75rem;
+  border-radius: var(--radius); background: var(--surface2); color: var(--text);
+  border: 1.5px solid var(--border); font-weight: 700; font-size: 0.95rem;
+  transition: all var(--transition); text-decoration: none; width: 100%; justify-content: center;
+}
+.btn-export-pdf:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
 
-/* ═══════════════════════════════════════════
-   MODAL (Confirm submit)
-═══════════════════════════════════════════ */
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 420px;
-  width: 100%;
-  box-shadow: var(--shadow);
-  animation: slideUp 0.25s ease;
-}
-@keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
-.modal h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.75rem; }
-.modal p  { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; }
-.modal-unanswered { font-weight: 600; color: var(--wrong); }
-.modal-actions { display: flex; gap: 0.75rem; }
-.modal-actions .btn-cancel {
-  flex: 1;
-  padding: 0.75rem;
-  border-radius: 10px;
-  background: var(--surface2);
-  border: 1.5px solid var(--border);
-  color: var(--text);
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all var(--transition);
-}
-.modal-actions .btn-cancel:hover { border-color: var(--accent); }
-.modal-actions .btn-confirm {
-  flex: 1;
-  padding: 0.75rem;
-  border-radius: 10px;
-  background: var(--correct);
-  border: none;
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9rem;
-  transition: all var(--transition);
-}
-.modal-actions .btn-confirm:hover { opacity: 0.85; }
-
-/* ═══════════════════════════════════════════
-   PROGRESS BAR
-═══════════════════════════════════════════ */
-.progress-bar-wrap {
-  height: 3px;
-  background: var(--surface2);
-  position: relative;
-  flex-shrink: 0;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: var(--accent);
-  transition: width 0.4s ease;
-  border-radius: 0 2px 2px 0;
-}
-
-/* ═══════════════════════════════════════════
-   MISC
-═══════════════════════════════════════════ */
 .hidden { display: none !important; }
 </style>
 </head>
@@ -903,7 +837,7 @@ input[type=radio]:checked + .option-label .option-key {
         <span class="lbl">Questions</span>
       </div>
     </div>
-
+    
     <!-- Time Limit (exam mode only) -->
     <div class="time-section" id="time-section">
       <div class="section-label">Time Limit <span style="color:var(--text-muted);font-size:0.75rem;font-weight:400;margin-left:0.35rem">(min)</span></div>
@@ -934,7 +868,7 @@ input[type=radio]:checked + .option-label .option-key {
         </label>
       </div>
     </div>
-
+    
     <button class="btn-start" onclick="startQuiz()">Start Quiz →</button>
   </div>
 </div>
@@ -1021,6 +955,46 @@ input[type=radio]:checked + .option-label .option-key {
       </div>
     </div>
 
+    <!-- PDF Export Section -->
+    <div class="pdf-export-section">
+      <div class="export-options">
+        <label class="export-option">
+          <input type="checkbox" name="export-all" checked onchange="onExportFilterChange(this)">
+          <span class="export-checkbox-visual">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          <span class="export-label">All</span>
+          <span class="export-badge" id="badge-all">0</span>
+        </label>
+        <label class="export-option">
+          <input type="checkbox" name="export-wrong" onchange="onExportFilterChange(this)">
+          <span class="export-checkbox-visual">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          <span class="export-label">Wrong</span>
+          <span class="export-badge" id="badge-wrong">0</span>
+        </label>
+        <label class="export-option">
+          <input type="checkbox" name="export-flagged" onchange="onExportFilterChange(this)">
+          <span class="export-checkbox-visual">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          <span class="export-label">Flagged</span>
+          <span class="export-badge" id="badge-flagged">0</span>
+        </label>
+      </div>
+      <button class="btn-export-pdf" onclick="exportToPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        Export to PDF
+      </button>
+    </div>
+
     <!-- Tabs -->
     <div class="result-tabs">
       <button class="tab-btn active" onclick="filterResults('all', this)">All Questions</button>
@@ -1064,9 +1038,9 @@ input[type=radio]:checked + .option-label .option-key {
 ──────────────────────────────────────────────────────────────────*/
 /* [QUIZ_CONFIG_START] */
 const QUIZ_CONFIG = {
-  uid: "gyn_dep_l20_gynecological_oncology",
-  title: "L20 Gynecological Oncology",
-  description: "Department Book MCQs",
+  "uid": "mnvueet7lqvvg",
+  "title": "L20 Oncology",
+  "description": "Gynecological Cancers"
 };
 /* [QUIZ_CONFIG_END] */
 
@@ -1082,7 +1056,7 @@ const QUIZ_CONFIG = {
 ──────────────────────────────────────────────────────────────────*/
 /* [QUESTIONS_START] */
 const QUESTIONS = [
-{
+  {
     "question": "What is the primary route of spread for most gynecologic tumors except choriocarcinoma?",
     "options": [
       "Blood",
@@ -1091,7 +1065,7 @@ const QUESTIONS = [
       "Trans-cavitary"
     ],
     "correct": 1,
-    "explanation": "With the exception of choriocarcinoma which is highly vascular, most gynecologic malignancies spread primarily through the lymphatic system."
+    "explanation": "Lymphatic spread is the primary route for most gynecologic tumors as lymphatic vessels provide a pathway for cancer cells to drain from the primary site to regional lymph nodes."
   },
   {
     "question": "Which of the following is a characteristic of malignant cells under microscopic examination?",
@@ -1102,7 +1076,7 @@ const QUESTIONS = [
       "Uniform nuclear size"
     ],
     "correct": 1,
-    "explanation": "Pleomorphism (variation in size and shape) of nuclei and increased nuclear-to-cytoplasmic ratios are hallmarks of malignancy."
+    "explanation": "Malignant cells exhibit large nuclei of various sizes and shapes due to abnormal nuclear division and genetic instability, which are hallmarks of cancer."
   },
   {
     "question": "What does Stage 0 (CIS) indicate in gynecologic tumor staging?",
@@ -1113,18 +1087,7 @@ const QUESTIONS = [
       "Lymph node involvement"
     ],
     "correct": 1,
-    "explanation": "Stage 0 or Carcinoma in Situ (CIS) represents a pre-invasive state where malignant cells have not yet penetrated the epithelial basement membrane."
-  },
-  {
-    "question": "Which symptom is part of the 'ABCDM' clinical diagnosis for gynecologic tumors?",
-    "options": [
-      "Fever",
-      "Bleeding",
-      "Jaundice",
-      "Ascites"
-    ],
-    "correct": 1,
-    "explanation": "The ABCDM mnemonic for clinical assessment includes Age, Bleeding, Category, Discharge, and Mass."
+    "explanation": "Stage 0 (CIS) indicates tumor cells are confined to the epithelium without invasion through the basement membrane, representing the earliest stage of malignancy."
   },
   {
     "question": "Which investigation is NOT typically used for diagnosing gynecologic tumors?",
@@ -1135,7 +1098,7 @@ const QUESTIONS = [
       "Hysteroscopy"
     ],
     "correct": 1,
-    "explanation": "While an ECG is part of pre-operative workup for general health, it is not a diagnostic tool for identifying or staging gynecologic tumors."
+    "explanation": "Electrocardiogram (ECG) assesses cardiac electrical activity and is not used for diagnosing gynecologic tumors, which require imaging, biopsy, or tumor marker analysis."
   },
   {
     "question": "What is the most common gynecologic cancer in developed countries?",
@@ -1146,7 +1109,7 @@ const QUESTIONS = [
       "Vulvar carcinoma"
     ],
     "correct": 1,
-    "explanation": "In developed nations, endometrial cancer is the most frequent gynecologic malignancy, often associated with obesity and longevity."
+    "explanation": "Endometrial carcinoma is the most common gynecologic cancer in developed countries due to risk factors like obesity, nulliparity, and hormone replacement therapy."
   },
   {
     "question": "What is the median age for endometrial carcinoma diagnosis?",
@@ -1157,7 +1120,7 @@ const QUESTIONS = [
       "70 years"
     ],
     "correct": 2,
-    "explanation": "Endometrial cancer is primarily a disease of postmenopausal women, with a peak incidence around age 60."
+    "explanation": "The median age for endometrial carcinoma diagnosis is 60 years, reflecting its association with postmenopausal estrogen exposure and longer cumulative estrogen exposure."
   },
   {
     "question": "Which condition is NOT associated with endometrial carcinoma etiology?",
@@ -1168,7 +1131,7 @@ const QUESTIONS = [
       "Lynch II syndrome"
     ],
     "correct": 2,
-    "explanation": "HPV is the primary cause of cervical cancer; endometrial cancer is more closely linked to hormonal imbalances and genetic syndromes like Lynch II."
+    "explanation": "HPV infection is not associated with endometrial carcinoma etiology, as endometrial cancer is primarily linked to estrogen exposure rather than viral etiology."
   },
   {
     "question": "What is the most common presenting symptom of endometrial carcinoma?",
@@ -1179,7 +1142,7 @@ const QUESTIONS = [
       "Weight gain"
     ],
     "correct": 1,
-    "explanation": "Postmenopausal bleeding (PMB) is the classic red-flag symptom that leads to the diagnosis of endometrial cancer in most cases."
+    "explanation": "Postmenopausal bleeding is the most common presenting symptom of endometrial carcinoma due to the tumor's vascularity and its location in the uterine cavity."
   },
   {
     "question": "What is the standard primary treatment for endometrial carcinoma?",
@@ -1190,7 +1153,7 @@ const QUESTIONS = [
       "Hormonal therapy"
     ],
     "correct": 2,
-    "explanation": "Surgical removal of the uterus, tubes, and ovaries (TAH & BSO) is the cornerstone of treatment for endometrial carcinoma."
+    "explanation": "Total abdominal hysterectomy with bilateral salpingo-oophorectomy (TAH & BSO) is the standard primary treatment for endometrial carcinoma as it removes the primary tumor and provides staging information."
   },
   {
     "question": "What is the incidence of choriocarcinoma in the Far East?",
@@ -1201,7 +1164,7 @@ const QUESTIONS = [
       "1/50000"
     ],
     "correct": 0,
-    "explanation": "Gestational trophoblastic disease, including choriocarcinoma, has a significantly higher incidence in Southeast Asian populations compared to Western nations."
+    "explanation": "The incidence of choriocarcinoma in the Far East is 1/5000, higher than in Western countries, possibly due to genetic and environmental factors."
   },
   {
     "question": "What is the primary route of spread for choriocarcinoma?",
@@ -1212,7 +1175,7 @@ const QUESTIONS = [
       "Trans-cavitary"
     ],
     "correct": 1,
-    "explanation": "Choriocarcinoma is highly invasive of blood vessels, leading to early and rapid hematogenous (blood-borne) metastasis."
+    "explanation": "Choriocarcinoma primarily spreads via blood vessels due to its highly invasive nature and tendency to invade venous structures early in its course."
   },
   {
     "question": "Which risk factor is associated with choriocarcinoma?",
@@ -1223,7 +1186,7 @@ const QUESTIONS = [
       "Obesity"
     ],
     "correct": 1,
-    "explanation": "Women at the extremes of reproductive age, particularly those over 35, are at an increased risk for trophoblastic malignancies."
+    "explanation": "Maternal age >35 years is associated with choriocarcinoma as advanced maternal age increases the risk of molar pregnancies, which can progress to choriocarcinoma."
   },
   {
     "question": "What is the main treatment for non-metastatic choriocarcinoma when fertility is desired?",
@@ -1234,7 +1197,7 @@ const QUESTIONS = [
       "Combination chemotherapy"
     ],
     "correct": 1,
-    "explanation": "Methotrexate is highly effective for low-risk choriocarcinoma, allowing for a cure while preserving the woman's ability to have children."
+    "explanation": "Single agent chemotherapy (Methotrexate) is used for non-metastatic choriocarcoma when fertility is desired as it effectively treats the disease while preserving the uterus."
   },
   {
     "question": "What is a pathognomonic feature of choriocarcinoma on microscopic examination?",
@@ -1245,7 +1208,7 @@ const QUESTIONS = [
       "Call–Exner bodies"
     ],
     "correct": 1,
-    "explanation": "Unlike hydatidiform moles, choriocarcinoma is characterized by a complete absence of chorionic villi and sheets of malignant trophoblasts."
+    "explanation": "The absence of intact villi is pathognomonic for choriocarcinoma, distinguishing it from hydatidiform mole which contains abnormal villi."
   },
   {
     "question": "What is the age group most commonly affected by CIN?",
@@ -1256,7 +1219,7 @@ const QUESTIONS = [
       "45–55 years"
     ],
     "correct": 1,
-    "explanation": "Cervical Intraepithelial Neoplasia (CIN) typically develops in young women, often 10-15 years before the peak age of invasive cancer."
+    "explanation": "CIN most commonly affects women aged 25-35 years, corresponding to the peak age of sexual activity and HPV exposure."
   },
   {
     "question": "Which HPV types are most associated with CIN?",
@@ -1267,7 +1230,7 @@ const QUESTIONS = [
       "45 and 56"
     ],
     "correct": 1,
-    "explanation": "HPV types 16 and 18 are the highest-risk oncogenic types, responsible for the majority of cervical cancers and high-grade dysplasias."
+    "explanation": "HPV types 16 and 18 are most associated with CIN as they are high-risk types that can integrate into host DNA and promote malignant transformation."
   },
   {
     "question": "What is the primary symptom of CIN?",
@@ -1278,7 +1241,7 @@ const QUESTIONS = [
       "Fever"
     ],
     "correct": 1,
-    "explanation": "CIN usually produces no symptoms and is detected primarily through routine screening tests like the Pap smear."
+    "explanation": "CIN is typically asymptomatic as it represents a pre-invasive lesion that doesn't cause symptoms until it progresses to invasive cancer."
   },
   {
     "question": "Which treatment has a failure rate of less than 5% for CIN?",
@@ -1289,7 +1252,7 @@ const QUESTIONS = [
       "Diathermy coagulation"
     ],
     "correct": 1,
-    "explanation": "LEEP is a highly effective excisional procedure that both treats the lesion and provides a specimen for histopathology."
+    "explanation": "Loop electrosurgical excision procedure (LEEP) has a failure rate of less than 5% for CIN as it provides precise excision of the affected tissue with clear margins."
   },
   {
     "question": "What is the regression rate of CIN-1?",
@@ -1300,7 +1263,7 @@ const QUESTIONS = [
       "55%"
     ],
     "correct": 2,
-    "explanation": "Most low-grade lesions (CIN-1) will resolve spontaneously as the body's immune system clears the transient HPV infection."
+    "explanation": "CIN-1 has a regression rate of 60% as it represents a low-grade lesion that often resolves spontaneously without intervention."
   },
   {
     "question": "What is the second most common female cancer according to the document?",
@@ -1311,7 +1274,7 @@ const QUESTIONS = [
       "Vulvar carcinoma"
     ],
     "correct": 1,
-    "explanation": "Globally, cervical cancer remains a leading cause of cancer death among women, second only to breast cancer in many regions."
+    "explanation": "Cervical carcinoma is the second most common female cancer globally, though it ranks lower in developed countries due to screening programs."
   },
   {
     "question": "What is the median age at diagnosis for cervical carcinoma?",
@@ -1322,7 +1285,7 @@ const QUESTIONS = [
       "65–70 years"
     ],
     "correct": 1,
-    "explanation": "Cervical cancer typically affects women in mid-life, with the highest incidence occurring between ages 45 and 50."
+    "explanation": "The median age at diagnosis for cervical carcinoma is 45-50 years, reflecting the typical age at which persistent HPV infection progresses to invasive cancer."
   },
   {
     "question": "What is the most common type of cervical carcinoma?",
@@ -1333,7 +1296,7 @@ const QUESTIONS = [
       "Malignant melanoma"
     ],
     "correct": 1,
-    "explanation": "Approximately 80-90% of all cervical cancers are squamous cell carcinomas originating from the transformation zone."
+    "explanation": "Squamous cell carcinoma is the most common type of cervical carcinoma, accounting for approximately 80% of cases, and is strongly associated with HPV infection."
   },
   {
     "question": "What is the main treatment modality for cervical carcinoma across all stages?",
@@ -1344,7 +1307,7 @@ const QUESTIONS = [
       "Hormonal therapy"
     ],
     "correct": 2,
-    "explanation": "Radiotherapy is a primary treatment option for all stages and is the standard of care for advanced or bulky cervical tumors."
+    "explanation": "Radiotherapy is the main treatment modality for cervical carcinoma across all stages as it can be used for both local control and treatment of metastatic disease."
   },
   {
     "question": "What is the most common cause of death in cervical carcinoma?",
@@ -1355,7 +1318,7 @@ const QUESTIONS = [
       "Cachexia"
     ],
     "correct": 1,
-    "explanation": "Ureteric obstruction leading to hydronephrosis and uremia (renal failure) is the most frequent terminal event in cervical cancer."
+    "explanation": "Renal failure is the most common cause of death in cervical carcinoma due to ureteral obstruction from advanced disease leading to hydronephrosis and uremia."
   },
   {
     "question": "What is the most common symptom of vulvar intra-epithelial neoplasia (VIN)?",
@@ -1366,7 +1329,7 @@ const QUESTIONS = [
       "Asymptomatic"
     ],
     "correct": 1,
-    "explanation": "Persistent vulvar itching (pruritus) is the most common complaint in women with VIN."
+    "explanation": "Pruritus is the most common symptom of vulvar intra-epithelial neoplasia (VIN) due to the inflammatory response to abnormal epithelial cells."
   },
   {
     "question": "What is the most common type of vulvar carcinoma?",
@@ -1377,7 +1340,7 @@ const QUESTIONS = [
       "Adenocarcinoma"
     ],
     "correct": 1,
-    "explanation": "The vast majority of vulvar cancers are squamous cell carcinomas, often occurring in older women."
+    "explanation": "Squamous cell carcinoma is the most common type of vulvar carcinoma, accounting for approximately 80% of cases, often associated with HPV infection or lichen sclerosus."
   },
   {
     "question": "What is the primary treatment for Stages I and II vulvar cancer?",
@@ -1388,7 +1351,7 @@ const QUESTIONS = [
       "Hormonal therapy"
     ],
     "correct": 1,
-    "explanation": "Early-stage vulvar cancer is primarily treated with surgical excision, often involving radical vulvectomy or wide local excision with lymphadenectomy."
+    "explanation": "Surgery is the primary treatment for Stages I and II vulvar cancer as it allows for local excision with adequate margins and lymph node assessment."
   },
   {
     "question": "What is the most common type of ovarian tumor?",
@@ -1399,7 +1362,7 @@ const QUESTIONS = [
       "Metastatic tumors"
     ],
     "correct": 2,
-    "explanation": "Surface epithelial-stromal tumors account for the majority (60-70%) of all ovarian neoplasms."
+    "explanation": "Surface epithelial tumors are the most common type of ovarian tumor, accounting for approximately 60% of cases, and include serous, mucinous, and endometrioid subtypes."
   },
   {
     "question": "What is the most common cause of death from ovarian cancer?",
@@ -1410,7 +1373,7 @@ const QUESTIONS = [
       "Cachexia"
     ],
     "correct": 1,
-    "explanation": "Extensive peritoneal spread in ovarian cancer often leads to bowel compression and terminal intestinal obstruction."
+    "explanation": "Intestinal obstruction is the most common cause of death from ovarian cancer due to peritoneal carcinomatosis and adhesion formation causing bowel dysfunction."
   },
   {
     "question": "Which of the following is a component of the corpus cancer triad associated with endometrial carcinoma?",
@@ -1421,7 +1384,7 @@ const QUESTIONS = [
       "Osteoporosis"
     ],
     "correct": 1,
-    "explanation": "The classic triad for endometrial cancer risk consists of Obesity, Hypertension, and Diabetes Mellitus."
+    "explanation": "Diabetes mellitus is a component of the corpus cancer triad associated with endometrial carcinoma, along with hypertension and obesity, reflecting the metabolic syndrome's role in its pathogenesis."
   },
   {
     "question": "What is the most common histological type of endometrial carcinoma?",
@@ -1432,7 +1395,7 @@ const QUESTIONS = [
       "Papillary serous carcinoma"
     ],
     "correct": 1,
-    "explanation": "Endometrioid adenocarcinoma is the standard histological type, accounting for the vast majority of cases."
+    "explanation": "Endometrial adenocarcinoma is the most common histological type, accounting for approximately 80% of all endometrial cancers, arising from the endometrial glands."
   },
   {
     "question": "Which FIGO stage of endometrial carcinoma involves invasion of the cervical stroma with no extrauterine extension?",
@@ -1443,7 +1406,7 @@ const QUESTIONS = [
       "Stage IV"
     ],
     "correct": 1,
-    "explanation": "FIGO Stage II is defined as the tumor invading the cervical stroma but remaining confined to the uterus."
+    "explanation": "Stage II endometrial carcinoma is defined by cervical stromal invasion without extrauterine extension, representing local spread beyond the uterus."
   },
   {
     "question": "What is the 5-year survival rate for Stage I endometrial carcinoma?",
@@ -1454,7 +1417,7 @@ const QUESTIONS = [
       "14–17%"
     ],
     "correct": 2,
-    "explanation": "Early detection (Stage I) of endometrial cancer carries an excellent prognosis with survival rates exceeding 80%."
+    "explanation": "Stage I endometrial carcinoma has a 5-year survival rate of 81-91% due to early detection and limited disease confined to the uterus."
   },
   {
     "question": "Which diagnostic method is considered the best for endometrial carcinoma?",
@@ -1465,7 +1428,7 @@ const QUESTIONS = [
       "Endo-cervical curettage"
     ],
     "correct": 2,
-    "explanation": "Hysteroscopy allows direct visualization of the cavity and targeted biopsy of suspicious areas, making it more accurate than 'blind' procedures."
+    "explanation": "Hysteroscopic guided biopsy is considered the best diagnostic method as it allows direct visualization and targeted sampling of suspicious areas with high accuracy."
   },
   {
     "question": "Which of the following is a common clinical sign of choriocarcinoma?",
@@ -1476,7 +1439,7 @@ const QUESTIONS = [
       "Normal uterus size"
     ],
     "correct": 0,
-    "explanation": "Due to rapid growth and internal hemorrhage, the uterus in choriocarcinoma is often enlarged, soft, and tender."
+    "explanation": "A symmetrically enlarged, soft, tender uterus is a common clinical sign of choriocarcinoma due to rapid tumor growth and hemorrhage within the uterine wall."
   },
   {
     "question": "What is the primary treatment for metastatic choriocarcinoma with high-risk features?",
@@ -1487,7 +1450,7 @@ const QUESTIONS = [
       "Radiotherapy alone"
     ],
     "correct": 1,
-    "explanation": "High-risk gestational trophoblastic neoplasia requires aggressive multi-drug chemotherapy (such as EMA-CO) sometimes combined with other modalities."
+    "explanation": "A multimodal approach with combination chemotherapy, surgery, and radiotherapy is the primary treatment for metastatic choriocarcinoma with high-risk features to address widespread disease."
   },
   {
     "question": "Which laboratory test is critical for diagnosing choriocarcinoma?",
@@ -1498,7 +1461,7 @@ const QUESTIONS = [
       "Serum LDH"
     ],
     "correct": 1,
-    "explanation": "The beta-hCG is a highly sensitive tumor marker for choriocarcinoma; its levels correlate directly with tumor burden and response to treatment."
+    "explanation": "Serum hCG is critical for diagnosing choriocarcinoma as this tumor produces high levels of human chorionic gonadotropin."
   },
   {
     "question": "What is a common radiological finding in choriocarcinoma with lung metastasis?",
@@ -1509,7 +1472,7 @@ const QUESTIONS = [
       "Pulmonary edema"
     ],
     "correct": 1,
-    "explanation": "Lungs are the most common site of metastasis; on X-ray, these typically appear as multiple well-defined 'cannonball' opacities."
+    "explanation": "The canon ball appearance is a common radiological finding in choriocarcinoma with lung metastasis, representing well-defined rounded nodules."
   },
   {
     "question": "What percentage of choriocarcinoma cases follow a vesicular mole?",
@@ -1520,7 +1483,7 @@ const QUESTIONS = [
       "75%"
     ],
     "correct": 2,
-    "explanation": "Roughly 50% of choriocarcinomas develop after a hydatidiform (vesicular) mole, while the rest follow abortions, ectopic pregnancies, or term deliveries."
+    "explanation": "50% of choriocarcinoma cases follow a vesicular mole, as trophoblastic proliferation can persist and become malignant after a complete mole."
   },
   {
     "question": "Which of the following is a risk factor for CIN?",
@@ -1531,7 +1494,7 @@ const QUESTIONS = [
       "Diabetes mellitus"
     ],
     "correct": 1,
-    "explanation": "Long-term use of combined oral contraceptives (over 5 years) in the presence of HPV infection is associated with an increased risk of CIN."
+    "explanation": "Prolonged hormonal contraception with HPV infection is a risk factor for CIN as both factors contribute to cervical epithelial changes and dysplasia."
   },
   {
     "question": "What does CIN-3 indicate on microscopic examination?",
@@ -1542,7 +1505,7 @@ const QUESTIONS = [
       "Full thickness infiltration"
     ],
     "correct": 3,
-    "explanation": "CIN-3 represents severe dysplasia where the atypical cells occupy more than two-thirds or the full thickness of the epithelium."
+    "explanation": "CIN-3 indicates full thickness infiltration of the cervical epithelium, representing carcinoma in situ with all layers showing atypical changes."
   },
   {
     "question": "Which screening test is used for CIN diagnosis?",
@@ -1553,7 +1516,7 @@ const QUESTIONS = [
       "Tumor marker CA-125"
     ],
     "correct": 1,
-    "explanation": "The Pap smear (cervical cytology) is the standard global screening test used to detect pre-malignant changes in the cervix."
+    "explanation": "Cervical cytology with Pap stain is the primary screening test for CIN diagnosis, detecting abnormal cells before invasive cancer develops."
   },
   {
     "question": "What is the progression rate of CIN-3 to invasive cancer?",
@@ -1564,7 +1527,7 @@ const QUESTIONS = [
       "33%"
     ],
     "correct": 0,
-    "explanation": "CIN-3 is considered a high-grade lesion with a significant risk of progressing to invasive carcinoma if left untreated."
+    "explanation": "The progression rate of CIN-3 to invasive cancer is >12%, as these high-grade lesions have significant malignant potential without intervention."
   },
   {
     "question": "What is the recommended follow-up interval after treatment for CIN?",
@@ -1575,7 +1538,7 @@ const QUESTIONS = [
       "Every 6 months for 10 years"
     ],
     "correct": 1,
-    "explanation": "To ensure there is no recurrence, patients are typically followed with Pap smears every 3 to 6 months for the first two years post-treatment."
+    "explanation": "The recommended follow-up interval after treatment for CIN is every 3-6 months for the first 2 years to monitor for recurrence or persistent disease."
   },
   {
     "question": "Which of the following is the most common symptom of cervical carcinoma?",
@@ -1586,7 +1549,7 @@ const QUESTIONS = [
       "Fever"
     ],
     "correct": 1,
-    "explanation": "Contact bleeding, particularly after sexual intercourse (post-coital bleeding), is the hallmark clinical presentation of invasive cervical cancer."
+    "explanation": "Contact bleeding is the most common symptom of cervical carcinoma, occurring due to tumor erosion of fragile cervical blood vessels."
   },
   {
     "question": "What is a characteristic feature of a malignant ulcer in cervical carcinoma?",
@@ -1597,7 +1560,7 @@ const QUESTIONS = [
       "Non-friable tissue"
     ],
     "correct": 1,
-    "explanation": "Malignant ulcers of the cervix are typically hard (indurated) to the touch and bleed easily when manipulated (friable)."
+    "explanation": "A characteristic feature of a malignant ulcer in cervical carcinoma is an indurated base, indicating tissue infiltration and desmoplastic response."
   },
   {
     "question": "Which FIGO stage of cervical carcinoma involves pelvic lymph node metastasis only?",
@@ -1608,7 +1571,7 @@ const QUESTIONS = [
       "Stage IVB"
     ],
     "correct": 0,
-    "explanation": "According to the updated FIGO staging, Stage IIIC1 denotes metastasis to the pelvic lymph nodes only."
+    "explanation": "Stage IIIC1 cervical carcinoma involves pelvic lymph node metastasis only, representing regional spread without distant metastasis."
   },
   {
     "question": "What is an indication for conservative surgery (e.g., LLETZ) in cervical carcinoma?",
@@ -1619,7 +1582,7 @@ const QUESTIONS = [
       "Stage IIIA"
     ],
     "correct": 1,
-    "explanation": "For very early (micro-invasive) cancer (Stage IA1), fertility-sparing procedures like LLETZ or conization may be sufficient."
+    "explanation": "Conservative surgery (e.g., LLETZ) is indicated for Stage IA1 cervical carcinoma in young women wishing to preserve fertility, as it allows fertility-sparing treatment."
   },
   {
     "question": "What is a common complication of radical hysterectomy for cervical carcinoma?",
@@ -1630,7 +1593,7 @@ const QUESTIONS = [
       "Hypertension"
     ],
     "correct": 1,
-    "explanation": "Extensive pelvic dissection in radical surgery carries a risk of ureteric injury and subsequent fistula formation."
+    "explanation": "Fistula formation is a common complication of radical hysterectomy for cervical carcinoma due to tissue damage and impaired healing in the surgical field."
   },
   {
     "question": "Which age group is most commonly affected by VIN?",
@@ -1641,7 +1604,7 @@ const QUESTIONS = [
       "50 years"
     ],
     "correct": 2,
-    "explanation": "Vulvar Intraepithelial Neoplasia (VIN) is frequently diagnosed in women in their 40s, often associated with HPV or smoking."
+    "explanation": "The age group most commonly affected by VIN is 40 years, typically occurring in women with chronic inflammatory conditions or HPV infection."
   },
   {
     "question": "What is a characteristic naked-eye finding of VIN after acetic acid application?",
@@ -1652,7 +1615,7 @@ const QUESTIONS = [
       "Pigmented nodules"
     ],
     "correct": 1,
-    "explanation": "Applying acetic acid during vulvoscopy turns dysplastic areas white (acetowhite), helping to identify the extent of the lesion."
+    "explanation": "Acetowhite lesions are a characteristic naked-eye finding of VIN after acetic acid application, as the abnormal epithelium turns white due to protein coagulation."
   },
   {
     "question": "What is the most common site of vulvar carcinoma?",
@@ -1663,7 +1626,7 @@ const QUESTIONS = [
       "Perineum"
     ],
     "correct": 1,
-    "explanation": "The labia majora are the most frequent site of origin for invasive vulvar squamous cell carcinoma."
+    "explanation": "The labia majora is the most common site of vulvar carcinoma, accounting for approximately 50% of cases due to exposure to irritants and HPV."
   },
   {
     "question": "Which type of vulvar carcinoma accounts for 5–10% of cases?",
@@ -1674,7 +1637,7 @@ const QUESTIONS = [
       "Adenocarcinoma"
     ],
     "correct": 1,
-    "explanation": "Melanoma is the second most common type of vulvar cancer after squamous cell carcinoma."
+    "explanation": "Malignant melanoma accounts for 5-10% of vulvar carcinoma cases, representing the second most common type after squamous cell carcinoma."
   },
   {
     "question": "What is the primary route of lymphatic spread for vulvar carcinoma affecting the clitoris?",
@@ -1685,7 +1648,7 @@ const QUESTIONS = [
       "Common iliac lymph nodes"
     ],
     "correct": 1,
-    "explanation": "Cancers involving the clitoris or midline structures can drain directly to the deep femoral lymph nodes (Cloquet’s node)."
+    "explanation": "The deep femoral lymph node (gland of Cloquet) is the primary route of lymphatic spread for vulvar carcinoma affecting the clitoris due to its central location."
   },
   {
     "question": "What is the most common predisposing factor for surface epithelial ovarian tumors?",
@@ -1696,7 +1659,7 @@ const QUESTIONS = [
       "Obesity"
     ],
     "correct": 1,
-    "explanation": "Fathalla's 'incessant ovulation' theory suggests that repeated rupture and repair of the ovarian surface during ovulation increases the risk of malignant transformation."
+    "explanation": "Ovulation trauma is the most common predisposing factor for surface epithelial ovarian tumors, as repeated repair of ovarian epithelium increases mutation risk."
   },
   {
     "question": "Which ovarian tumor is associated with pseudomyxoma peritonei?",
@@ -1707,7 +1670,7 @@ const QUESTIONS = [
       "Granulosa cell tumor"
     ],
     "correct": 1,
-    "explanation": "Pseudomyxoma peritonei is a condition where the abdomen fills with gelatinous material, often due to a ruptured mucinous ovarian or appendiceal tumor."
+    "explanation": "Mucinous cystadenoma is associated with pseudomyxoma peritonei, as the ruptured tumor can release mucin into the peritoneal cavity."
   },
   {
     "question": "What is a characteristic microscopic feature of serous cystadenocarcinoma?",
@@ -1718,7 +1681,7 @@ const QUESTIONS = [
       "Signet ring cells"
     ],
     "correct": 1,
-    "explanation": "Psammoma bodies (concentric calcified structures) are a classic finding in serous epithelial tumors."
+    "explanation": "Psammoma bodies are a characteristic microscopic feature of serous cystadenocarcinoma, representing calcified psammoma bodies formed in the stroma."
   },
   {
     "question": "Which ovarian tumor is most likely to cause Meigs' syndrome?",
@@ -1729,7 +1692,7 @@ const QUESTIONS = [
       "Endometrioid tumor"
     ],
     "correct": 1,
-    "explanation": "Meigs' syndrome is the triad of a benign ovarian tumor (usually a fibroma), ascites, and pleural effusion."
+    "explanation": "Fibroma is the ovarian tumor most likely to cause Meigs' syndrome, characterized by ascites and pleural effusion that resolve after tumor removal."
   },
   {
     "question": "What is the most common germ cell tumor before age 20 years?",
@@ -1740,7 +1703,7 @@ const QUESTIONS = [
       "Choriocarcinoma"
     ],
     "correct": 1,
-    "explanation": "Dysgerminoma is the most common malignant germ cell tumor in adolescents and young women."
+    "explanation": "Dysgerminoma is the most common germ cell tumor before age 20 years, representing approximately 50% of ovarian germ cell tumors in this age group."
   },
   {
     "question": "What is the purpose of using a Hegar dilator during cervical dilatation?",
@@ -1751,7 +1714,7 @@ const QUESTIONS = [
       "To perform endometrial ablation"
     ],
     "correct": 1,
-    "explanation": "Hegar dilators are a set of metal rods used to progressively widen the cervical canal for various intrauterine procedures."
+    "explanation": "The purpose of using a Hegar dilator during cervical dilatation is to dilate the cervical canal, allowing access to the uterine cavity for procedures."
   },
   {
     "question": "Which procedure is indicated for spasmodic dysmenorrhea using cervical dilatation?",
@@ -1762,7 +1725,7 @@ const QUESTIONS = [
       "Dilatation up to number 10"
     ],
     "correct": 2,
-    "explanation": "Vigorous cervical dilatation (up to Hegar 14) was historically used as a treatment to provide relief from severe spasmodic dysmenorrhea."
+    "explanation": "Dilatation up to number 14 is indicated for spasmodic dysmenorrhea as it provides adequate cervical opening to relieve obstruction and reduce pain."
   },
   {
     "question": "Which of the following is a common complication of gynecologic tumors?",
@@ -1773,7 +1736,7 @@ const QUESTIONS = [
       "Osteoporosis"
     ],
     "correct": 1,
-    "explanation": "Chronic or acute bleeding (hemorrhage) is a frequent and serious complication of female reproductive tract cancers."
+    "explanation": "Hemorrhage is a common complication of gynecologic tumors due to tumor erosion into blood vessels or fragile neovascularization."
   },
   {
     "question": "Which staging category indicates distant metastasis in gynecologic tumors?",
@@ -1784,7 +1747,7 @@ const QUESTIONS = [
       "Stage IV"
     ],
     "correct": 3,
-    "explanation": "In almost all cancer staging systems, Stage IV represents the most advanced disease with spread to distant organs."
+    "explanation": "Stage IV indicates distant metastasis in gynecologic tumors, which is the most advanced stage in cancer staging systems."
   },
   {
     "question": "Which investigation is used to assess bone involvement in gynecologic tumors?",
@@ -1795,7 +1758,7 @@ const QUESTIONS = [
       "Colposcopy"
     ],
     "correct": 1,
-    "explanation": "A bone survey (skeletal X-rays) or bone scan is used to detect the spread of cancer to the skeleton."
+    "explanation": "Bone survey is used to assess bone involvement in gynecologic tumors as it can detect lytic or blastic lesions throughout the skeleton."
   },
   {
     "question": "What is a key clinical sign of advanced gynecologic tumors?",
@@ -1806,7 +1769,7 @@ const QUESTIONS = [
       "Hypertension"
     ],
     "correct": 1,
-    "explanation": "Cancer cachexia (significant weight loss, muscle wasting, and fatigue) is a hallmark of advanced systemic malignancy."
+    "explanation": "Cachexia is a key clinical sign of advanced gynecologic tumors representing severe metabolic derangement and malnutrition."
   },
   {
     "question": "Which factor is NOT associated with an increased risk of endometrial carcinoma?",
@@ -1817,7 +1780,7 @@ const QUESTIONS = [
       "Obesity"
     ],
     "correct": 2,
-    "explanation": "While HPV causes cervical cancer, it is not a risk factor for endometrial carcinoma, which is mostly hormone-related."
+    "explanation": "HPV infection is not associated with increased risk of endometrial carcinoma, unlike nulliparity, high socioeconomic status, and obesity."
   },
   {
     "question": "What is the primary naked-eye appearance of endometrial carcinoma?",
@@ -1828,7 +1791,7 @@ const QUESTIONS = [
       "Smooth, encapsulated tumor"
     ],
     "correct": 1,
-    "explanation": "The tumor typically appears as a crumbly, pale, and often necrotic growth within the uterine cavity."
+    "explanation": "Pale, friable, necrotic mass is the primary naked-eye appearance of endometrial carcinoma due to its rapid growth and poor blood supply."
   },
   {
     "question": "Which histological type of endometrial carcinoma includes benign squamous elements?",
@@ -1839,7 +1802,7 @@ const QUESTIONS = [
       "Mucinous carcinoma"
     ],
     "correct": 1,
-    "explanation": "Adenoacanthoma is a variant of endometrioid adenocarcinoma that contains areas of benign squamous differentiation."
+    "explanation": "Adenoacanthoma includes benign squamous elements as part of its histological classification, distinguishing it from other endometrial carcinomas."
   },
   {
     "question": "What is a rare route of spread for endometrial carcinoma?",
@@ -1850,7 +1813,7 @@ const QUESTIONS = [
       "Trans-cavitary spread"
     ],
     "correct": 2,
-    "explanation": "Endometrial cancer primarily spreads locally and through lymphatics; distant spread via the bloodstream is relatively rare."
+    "explanation": "Blood spread is a rare route of spread for endometrial carcinoma, with lymphatic and direct spread being more common."
   },
   {
     "question": "What is a common complication of endometrial carcinoma?",
@@ -1861,7 +1824,7 @@ const QUESTIONS = [
       "Thyroid dysfunction"
     ],
     "correct": 1,
-    "explanation": "Obstruction of the cervical canal by the tumor can lead to an accumulation of pus in the uterus (pyometra)."
+    "explanation": "Pyometra is a common complication of endometrial carcinoma resulting from cervical obstruction leading to accumulation of pus."
   },
   {
     "question": "Which FIGO stage of endometrial carcinoma involves spread to the bladder mucosa?",
@@ -1872,7 +1835,7 @@ const QUESTIONS = [
       "Stage IIIC"
     ],
     "correct": 1,
-    "explanation": "Stage IVA is defined by the involvement of the bladder or bowel mucosa."
+    "explanation": "Stage IVA involves spread to the bladder mucosa in endometrial carcinoma, representing local extension beyond the uterus."
   },
   {
     "question": "What is a clinical symptom of endometrial carcinoma in premenopausal women?",
@@ -1883,7 +1846,7 @@ const QUESTIONS = [
       "Fever"
     ],
     "correct": 1,
-    "explanation": "In women who have not yet reached menopause, endometrial cancer usually presents as heavy or irregular menstrual bleeding."
+    "explanation": "Irregular bleeding is a clinical symptom of endometrial carcinoma in premenopausal women, while postmenopausal bleeding is more typical in postmenopausal women."
   },
   {
     "question": "Which radiological investigation is used to assess endometrial thickness?",
@@ -1894,7 +1857,7 @@ const QUESTIONS = [
       "Barium enema"
     ],
     "correct": 1,
-    "explanation": "Transvaginal ultrasound is the primary tool for measuring endometrial thickness to screen for abnormalities in postmenopausal women."
+    "explanation": "Ultrasonography is used to assess endometrial thickness as it provides accurate measurement without radiation exposure."
   },
   {
     "question": "What is the follow-up interval for endometrial carcinoma after the first year?",
@@ -1905,7 +1868,7 @@ const QUESTIONS = [
       "Every 2 years"
     ],
     "correct": 1,
-    "explanation": "Following the first year of intensive follow-up, visits are usually spaced to every 6 months for the next several years."
+    "explanation": "Every 6 months is the follow-up interval for endometrial carcinoma after the first year to monitor for recurrence."
   },
   {
     "question": "Which adjuvant therapy is used for Stage III endometrial carcinoma?",
@@ -1916,7 +1879,7 @@ const QUESTIONS = [
       "Single agent chemotherapy"
     ],
     "correct": 1,
-    "explanation": "Advanced-stage disease (Stage III and IV) typically requires systemic chemotherapy to treat potential micro-metastases."
+    "explanation": "Chemotherapy is used as adjuvant therapy for Stage III endometrial carcinoma to address microscopic metastatic disease."
   },
   {
     "question": "What is a risk factor for choriocarcinoma related to diet?",
@@ -1927,7 +1890,7 @@ const QUESTIONS = [
       "High-sugar diet"
     ],
     "correct": 1,
-    "explanation": "Epidemiological studies have shown a higher incidence of trophoblastic disease in populations where rice is the primary staple, possibly linked to nutritional factors."
+    "explanation": "Rice-eating population is a risk factor for choriocarcinoma possibly related to nutritional deficiencies affecting trophoblastic tissue."
   },
   {
     "question": "What is the naked-eye appearance of metastatic choriocarcinoma?",
@@ -1938,10 +1901,10 @@ const QUESTIONS = [
       "Smooth, white tumor"
     ],
     "correct": 1,
-    "explanation": "Metastatic lesions of choriocarcinoma are typically soft and hemorrhagic, appearing dark red or purple due to their high vascularity."
+    "explanation": "Soft, dark red nodule or polypoidal mass is the naked-eye appearance of metastatic choriocarcinoma due to its vascular nature."
   },
   {
-    "question": "What stage of choriocarcinoma involves the lungs with or without genital metastasis?",
+    "question": "Which stage of choriocarcinoma involves the lungs with or without genital metastasis?",
     "options": [
       "Stage I",
       "Stage II",
@@ -1949,7 +1912,7 @@ const QUESTIONS = [
       "Stage IV"
     ],
     "correct": 2,
-    "explanation": "In the FIGO staging system for trophoblastic tumors, Stage III refers to lung involvement."
+    "explanation": "Stage III of choriocarcinoma involves the lungs with or without genital metastasis, representing hematogenous spread."
   },
   {
     "question": "What is a clinical symptom of choriocarcinoma with lung metastasis?",
@@ -1960,7 +1923,7 @@ const QUESTIONS = [
       "Pruritus"
     ],
     "correct": 0,
-    "explanation": "Coughing up blood (hemoptysis) is a common symptom when choriocarcinoma spreads to the lungs."
+    "explanation": "Hemoptysis is a clinical symptom of choriocarcinoma with lung metastasis due to tumor invasion into pulmonary vasculature."
   },
   {
     "question": "What is the treatment for placental site choriocarcinoma?",
@@ -1971,7 +1934,7 @@ const QUESTIONS = [
       "Combination chemotherapy"
     ],
     "correct": 1,
-    "explanation": "Placental site trophoblastic tumors (PSTT) are relatively resistant to chemotherapy, so surgical removal (hysterectomy) is the primary treatment."
+    "explanation": "Hysterectomy is the treatment for placental site choriocarcinoma as it removes the primary site of trophoblastic tissue."
   },
   {
     "question": "Which infection, besides HPV, is associated with CIN?",
@@ -1982,7 +1945,7 @@ const QUESTIONS = [
       "Epstein-Barr virus"
     ],
     "correct": 1,
-    "explanation": "While HPV is the main cause, co-infection with HSV-II is often cited as a contributing factor in the development of cervical dysplasia."
+    "explanation": "Herpes simplex virus (HSV) II is associated with CIN besides HPV, contributing to cervical epithelial changes."
   },
   {
     "question": "What is the naked-eye appearance of CIN?",
@@ -1993,7 +1956,7 @@ const QUESTIONS = [
       "Pigmented patches"
     ],
     "correct": 1,
-    "explanation": "Pre-malignant changes (CIN) are usually invisible to the naked eye; the cervix often appears completely normal or slightly inflamed."
+    "explanation": "Normal or red cervix is the naked-eye appearance of CIN, as it often lacks visible changes without colposcopy."
   },
   {
     "question": "What does a satisfactory colposcopy result indicate?",
@@ -2004,7 +1967,7 @@ const QUESTIONS = [
       "Endocervical curettage required"
     ],
     "correct": 1,
-    "explanation": "A colposcopy is considered 'satisfactory' only when the entire squamocolumnar junction (transformation zone) can be fully inspected."
+    "explanation": "Satisfactory colposcopy result indicates the entire transformation zone is visualized with the lesion seen for accurate assessment."
   },
   {
     "question": "What is the treatment for recurrent CIN-II?",
@@ -2015,7 +1978,7 @@ const QUESTIONS = [
       "Diathermy coagulation"
     ],
     "correct": 1,
-    "explanation": "If high-grade CIN recurs after conservative treatment, especially in women who have completed their families, hysterectomy may be considered."
+    "explanation": "Hysterectomy is the treatment for recurrent CIN-II as it removes the entire cervix to prevent further recurrence."
   },
   {
     "question": "What is the persistence rate of CIN-2?",
@@ -2026,7 +1989,7 @@ const QUESTIONS = [
       "60%"
     ],
     "correct": 1,
-    "explanation": "Roughly 40% of CIN-2 lesions will persist without treatment, while others may regress or progress to CIN-3."
+    "explanation": "40% is the persistence rate of CIN-2, representing the likelihood of the lesion remaining without regression."
   },
   {
     "question": "Which risk factor is associated with cervical carcinoma?",
@@ -2037,7 +2000,7 @@ const QUESTIONS = [
       "Hypertension"
     ],
     "correct": 0,
-    "explanation": "A history of multiple full-term pregnancies (high parity) is a recognized risk factor for the development of cervical cancer."
+    "explanation": "High parity is associated with cervical carcinoma due to increased exposure to risk factors and cervical trauma."
   },
   {
     "question": "What is the typical naked-eye appearance of ectocervical carcinoma?",
@@ -2048,10 +2011,10 @@ const QUESTIONS = [
       "Smooth surface"
     ],
     "correct": 1,
-    "explanation": "Invasive cancer on the outer cervix often grows outward as a friable, bulky 'cauliflower-like' mass."
+    "explanation": "Exophytic cauliflower mass is the typical naked-eye appearance of ectocervical carcinoma due to its exophytic growth pattern."
   },
   {
-    "question": "Which FIGO stage of cervical carcinoma involves hydronephrosis or non-functioning kidney?",
+    "question": "Which FIGO stage of cervical carcinoma involves hydronephrosis or non- functioning kidney?",
     "options": [
       "Stage IIA",
       "Stage IIIB",
@@ -2059,7 +2022,7 @@ const QUESTIONS = [
       "Stage IVB"
     ],
     "correct": 1,
-    "explanation": "Stage IIIB includes cases with extension to the pelvic wall and/or hydronephrosis/kidney dysfunction caused by the tumor."
+    "explanation": "Stage IIIB involves hydronephrosis or non-functioning kidney in cervical carcinoma, representing ureteral obstruction."
   },
   {
     "question": "What is a common radiation-associated morbidity in cervical carcinoma treatment?",
@@ -2070,7 +2033,7 @@ const QUESTIONS = [
       "Thyroid dysfunction"
     ],
     "correct": 1,
-    "explanation": "Pelvic radiotherapy can cause scarring and shortening (fibrosis) of the vaginal canal, which may impact sexual function."
+    "explanation": "Vaginal fibrosis is a common radiation-associated morbidity in cervical carcinoma treatment due to tissue damage from radiation."
   },
   {
     "question": "Which surgical modality is indicated for Stage IA2 cervical carcinoma in young women wishing to preserve fertility?",
@@ -2081,7 +2044,7 @@ const QUESTIONS = [
       "Conization of the cervix"
     ],
     "correct": 1,
-    "explanation": "Radical trachelectomy involves removing the cervix and upper vagina while keeping the uterus, allowing for future pregnancy."
+    "explanation": "Radical trachelectomy is indicated for Stage IA2 cervical carcinoma in young women wishing to preserve fertility."
   },
   {
     "question": "Which group is more likely to have HPV-positive multifocal VIN?",
@@ -2092,7 +2055,7 @@ const QUESTIONS = [
       "Elderly women"
     ],
     "correct": 1,
-    "explanation": "In younger, premenopausal women, VIN is frequently associated with HPV infection and often presents as multiple lesions."
+    "explanation": "Premenopausal women have higher estrogen levels, which promote HPV infection and multifocal VIN development."
   },
   {
     "question": "What is a naked-eye feature of VIN lesions?",
@@ -2103,7 +2066,7 @@ const QUESTIONS = [
       "Soft, cystic lesions"
     ],
     "correct": 1,
-    "explanation": "VIN often appears as distinct, raised areas of skin that can be white, red, or dark-colored."
+    "explanation": "VIN lesions typically present as sharply demarcated, raised patches due to the abnormal proliferation of squamous cells."
   },
   {
     "question": "Which risk factor is associated with vulvar carcinoma?",
@@ -2114,7 +2077,7 @@ const QUESTIONS = [
       "Young age"
     ],
     "correct": 0,
-    "explanation": "As noted in the document provided, high parity is listed as a recognized risk factor for vulvar carcinoma."
+    "explanation": "High parity is associated with increased risk of vulvar carcinoma due to chronic irritation and hormonal changes."
   },
   {
     "question": "What is the FIGO stage for vulvar carcinoma with tumor size ≤2 cm and stromal invasion ≤1 mm?",
@@ -2125,7 +2088,7 @@ const QUESTIONS = [
       "Stage IIIA"
     ],
     "correct": 0,
-    "explanation": "Stage IA is defined by limited tumor size and very shallow micro-invasion (≤1 mm)."
+    "explanation": "Stage IA vulvar carcinoma is defined by tumor size ≤2 cm and stromal invasion ≤1 mm according to FIGO staging."
   },
   {
     "question": "What is a treatment option for Stage III vulvar cancer?",
@@ -2136,7 +2099,7 @@ const QUESTIONS = [
       "Cryotherapy"
     ],
     "correct": 1,
-    "explanation": "Advanced-stage vulvar cancer requires extensive surgery, often including the removal of the groin lymph nodes."
+    "explanation": "Stage III vulvar cancer requires modified radical vulvectomy with lymph node removal for adequate local control and staging."
   },
   {
     "question": "Which non-neoplastic ovarian swelling is typically asymptomatic and resolves spontaneously?",
@@ -2147,7 +2110,7 @@ const QUESTIONS = [
       "Polycystic ovary syndrome"
     ],
     "correct": 1,
-    "explanation": "Follicular cysts are functional cysts that occur as part of the normal menstrual cycle and usually disappear within 60 days."
+    "explanation": "Follicular cysts are functional ovarian cysts that typically resolve spontaneously within 1-2 menstrual cycles."
   },
   {
     "question": "What is the most common type of surface epithelial ovarian tumor?",
@@ -2158,7 +2121,7 @@ const QUESTIONS = [
       "Brenner tumor"
     ],
     "correct": 1,
-    "explanation": "Serous cystadenoma is the most frequent variety of epithelial ovarian tumor."
+    "explanation": "Serous cystadenomas are the most common surface epithelial ovarian tumors, accounting for approximately 50% of cases."
   },
   {
     "question": "Which syndrome increases the risk of endometrial carcinoma?",
@@ -2169,7 +2132,7 @@ const QUESTIONS = [
       "Klinefelter syndrome"
     ],
     "correct": 1,
-    "explanation": "PCOS leads to chronic anovulation and unopposed estrogen, which significantly increases the risk of endometrial hyperplasia and cancer."
+    "explanation": "PCOS increases endometrial carcinoma risk due to chronic anovulation and unopposed estrogen stimulation."
   },
   {
     "question": "What is a microscopic feature of endometrial adenocarcinoma?",
@@ -2180,7 +2143,7 @@ const QUESTIONS = [
       "Call-Exner bodies"
     ],
     "correct": 1,
-    "explanation": "The hallmark of adenocarcinoma is the presence of malignant cells arranged in an abnormal, crowded glandular structure."
+    "explanation": "Endometrial adenocarcinoma microscopically shows glandular patterns with malignant cells invading the stroma."
   },
   {
     "question": "Which FIGO stage of endometrial carcinoma involves adnexal invasion?",
@@ -2191,7 +2154,7 @@ const QUESTIONS = [
       "Stage IVB"
     ],
     "correct": 0,
-    "explanation": "Stage IIIA refers to the involvement of the uterine serosa and/or adnexa (ovaries and tubes)."
+    "explanation": "Stage IIIA endometrial carcinoma involves adnexal invasion according to FIGO staging criteria."
   },
   {
     "question": "What is a clinical sign of endometrial carcinoma on bimanual examination?",
@@ -2202,7 +2165,7 @@ const QUESTIONS = [
       "Vaginal atrophy"
     ],
     "correct": 0,
-    "explanation": "In advanced stages, the uterus may become fixed to surrounding structures due to cancerous spread."
+    "explanation": "A fixed uterus on bimanual examination suggests possible parametrial involvement by endometrial carcinoma."
   },
   {
     "question": "Which treatment is used for endometrial carcinoma in medically unfit patients?",
@@ -2213,7 +2176,7 @@ const QUESTIONS = [
       "Hysterectomy"
     ],
     "correct": 2,
-    "explanation": "High-dose progestins can be used to treat endometrial cancer in women who are too frail for major surgery or radiation."
+    "explanation": "Hormonal therapy with progesterone is used for endometrial carcinoma in medically unfit patients to preserve fertility."
   },
   {
     "question": "What is a complication of radiotherapy for endometrial carcinoma?",
@@ -2224,7 +2187,7 @@ const QUESTIONS = [
       "Thyroid dysfunction"
     ],
     "correct": 0,
-    "explanation": "Vaginal shortening and narrowing (stenosis) is a known side effect of pelvic radiation therapy."
+    "explanation": "Vaginal stenosis is a common complication of radiotherapy for endometrial carcinoma due to fibrosis and scarring."
   },
   {
     "question": "Which tumor marker is occasionally elevated in endometrial carcinoma?",
@@ -2235,7 +2198,7 @@ const QUESTIONS = [
       "PSA"
     ],
     "correct": 0,
-    "explanation": "While primarily used for ovarian cancer, CA-125 can be elevated in advanced or metastatic endometrial carcinoma."
+    "explanation": "CA-125 is occasionally elevated in endometrial carcinoma, particularly in advanced disease or serous subtypes."
   },
   {
     "question": "What is the 5-year survival rate for Stage II endometrial carcinoma?",
@@ -2246,7 +2209,7 @@ const QUESTIONS = [
       "81–91%"
     ],
     "correct": 2,
-    "explanation": "Stage II endometrial cancer has a good prognosis, with 5-year survival rates typically between 70% and 80%."
+    "explanation": "The 5-year survival rate for Stage II endometrial carcinoma is 71-78% according to SEER data."
   },
   {
     "question": "Which surgical procedure is included in the staging of endometrial carcinoma?",
@@ -2257,7 +2220,7 @@ const QUESTIONS = [
       "Conization of the cervix"
     ],
     "correct": 1,
-    "explanation": "Full surgical staging for endometrial cancer includes the evaluation of pelvic and para-aortic lymph nodes for metastasis."
+    "explanation": "Pelvic and para-aortic lymph node dissection is included in surgical staging of endometrial carcinoma."
   },
   {
     "question": "What is a symptom of endometrial carcinoma with metastasis?",
@@ -2268,7 +2231,7 @@ const QUESTIONS = [
       "Fever"
     ],
     "correct": 0,
-    "explanation": "If the cancer spreads to the lungs, a patient may present with hemoptysis (coughing up blood)."
+    "explanation": "Hemoptysis can occur with endometrial carcinoma metastasis to the lungs, a common site for distant spread."
   },
   {
     "question": "Which site is the second most common for choriocarcinoma metastasis?",
@@ -2279,7 +2242,7 @@ const QUESTIONS = [
       "Bone"
     ],
     "correct": 2,
-    "explanation": "After the lungs, the vagina is the most frequent site of metastasis for choriocarcinoma, often appearing as purple nodules."
+    "explanation": "The vagina is the second most common site for choriocarcinoma metastasis after the lungs."
   },
   {
     "question": "What is a naked-eye feature of choriocarcinoma in the uterus?",
@@ -2290,7 +2253,7 @@ const QUESTIONS = [
       "Smooth, white tumor"
     ],
     "correct": 1,
-    "explanation": "Because it destroys blood vessels, the primary tumor is often a soft, intensely bloody (hemorrhagic) mass."
+    "explanation": "Choriocarcinoma typically presents as a soft, hemorrhagic mass due to its highly vascular nature."
   },
   {
     "question": "Which FIGO stage of choriocarcinoma involves metastasis to the brain?",
@@ -2301,7 +2264,7 @@ const QUESTIONS = [
       "Stage IV"
     ],
     "correct": 3,
-    "explanation": "Stage IV trophoblastic disease includes metastasis to distant sites like the brain or liver."
+    "explanation": "Stage IV choriocarcinoma involves metastasis to the brain according to FIGO staging criteria."
   },
   {
     "question": "What is a clinical symptom of choriocarcinoma with brain metastasis?",
@@ -2312,7 +2275,7 @@ const QUESTIONS = [
       "Pruritus"
     ],
     "correct": 0,
-    "explanation": "Brain metastasis often presents with neurological symptoms, including severe headaches or seizures."
+    "explanation": "Seizures can occur with choriocarcinoma brain metastasis due to increased intracranial pressure."
   },
   {
     "question": "Which chemotherapy regimen is used for low-risk choriocarcinoma?",
@@ -2323,7 +2286,7 @@ const QUESTIONS = [
       "Cisplatin alone"
     ],
     "correct": 1,
-    "explanation": "Methotrexate is the standard single-agent treatment for low-risk gestational trophoblastic neoplasia."
+    "explanation": "Methotrexate alone is used for low-risk choriocarcinoma with cure rates exceeding 90%."
   },
   {
     "question": "What is a diagnostic criterion for choriocarcinoma?",
@@ -2334,7 +2297,7 @@ const QUESTIONS = [
       "Serum LDH >500 U/L"
     ],
     "correct": 1,
-    "explanation": "The diagnosis of GTN is made when beta-hCG levels plateau or rise over several consecutive measurements after a pregnancy."
+    "explanation": "A beta-hCG plateau or rise is a diagnostic criterion for choriocarcinoma, indicating persistent trophoblastic disease."
   },
   {
     "question": "What is a complication of chemotherapy for choriocarcinoma?",
@@ -2345,7 +2308,7 @@ const QUESTIONS = [
       "Pulmonary embolism"
     ],
     "correct": 1,
-    "explanation": "Chemotherapy drugs can lower blood counts (leukopenia, anemia, thrombocytopenia), known as bone marrow suppression."
+    "explanation": "Bone marrow suppression is a common complication of chemotherapy for choriocarcinoma due to its effect on rapidly dividing cells."
   },
   {
     "question": "What is a prophylactic measure for choriocarcinoma after molar pregnancy?",
@@ -2356,7 +2319,7 @@ const QUESTIONS = [
       "Radiotherapy"
     ],
     "correct": 1,
-    "explanation": "Close monitoring of hCG levels is essential to detect early malignant change (GTN) following a molar pregnancy."
+    "explanation": "Serial hCG monitoring is the standard prophylactic measure for choriocarcinoma after molar pregnancy to detect persistent disease."
   },
   {
     "question": "What is the cure rate for low-risk choriocarcinoma with single-agent chemotherapy?",
@@ -2367,7 +2330,7 @@ const QUESTIONS = [
       "100%"
     ],
     "correct": 2,
-    "explanation": "Low-risk trophoblastic tumors are highly curable, with success rates often reaching 90-100%."
+    "explanation": "The cure rate for low-risk choriocarcinoma with single-agent chemotherapy is approximately 90%."
   },
   {
     "question": "Which colposcopic finding is suggestive of CIN?",
@@ -2378,7 +2341,7 @@ const QUESTIONS = [
       "Red patches"
     ],
     "correct": 1,
-    "explanation": "Mosaicism and punctation are hallmark vascular patterns seen during colposcopy that indicate underlying dysplasia."
+    "explanation": "A mosaic pattern on colposcopy is suggestive of CIN due to abnormal vascular patterns and epithelial changes."
   },
   {
     "question": "What is a risk factor for CIN related to smoking?",
@@ -2389,7 +2352,7 @@ const QUESTIONS = [
       "Chewing tobacco"
     ],
     "correct": 1,
-    "explanation": "Tobacco byproducts are concentrated in cervical mucus and are known to damage DNA and suppress local immunity, increasing CIN risk."
+    "explanation": "Cigarette smoking increases the risk of CIN by reducing local immune response to HPV infection."
   },
   {
     "question": "Which treatment is preferred for CIN in young women wishing to preserve fertility?",
@@ -2400,7 +2363,7 @@ const QUESTIONS = [
       "Chemotherapy"
     ],
     "correct": 1,
-    "explanation": "LEEP is a conservative excisional treatment that effectively treats CIN while preserving the uterus and cervix for childbearing."
+    "explanation": "LEEP is preferred for CIN in young women wishing to preserve fertility as it removes the abnormal tissue while conserving the uterus."
   },
   {
     "question": "What is the regression rate of CIN-2?",
@@ -2411,7 +2374,7 @@ const QUESTIONS = [
       "60%"
     ],
     "correct": 1,
-    "explanation": "Approximately 40% of CIN-2 lesions will regress spontaneously, though they are usually treated to prevent progression."
+    "explanation": "The regression rate of CIN-2 is approximately 40%, with spontaneous resolution occurring in some cases."
   },
   {
     "question": "Which screening interval is recommended for CIN prevention?",
@@ -2422,7 +2385,7 @@ const QUESTIONS = [
       "Every 10 years"
     ],
     "correct": 1,
-    "explanation": "Standard guidelines generally recommend routine Pap screening every 1 to 3 years depending on age and previous history."
+    "explanation": "Regular cervical screening every 1-3 years allows for early detection of precancerous changes (CIN) before they progress to invasive cancer, enabling timely intervention."
   },
   {
     "question": "Which FIGO stage of cervical carcinoma involves the upper two-thirds of the vagina?",
@@ -2433,7 +2396,7 @@ const QUESTIONS = [
       "Stage IIIB"
     ],
     "correct": 0,
-    "explanation": "Stage IIA involves the upper two-thirds of the vagina without involvement of the parametrium."
+    "explanation": "Stage IIA cervical carcinoma is defined by extension to the upper two-thirds of the vagina without parametrial involvement, according to FIGO staging criteria."
   },
   {
     "question": "What is a naked-eye feature of a malignant cervical ulcer?",
@@ -2444,7 +2407,7 @@ const QUESTIONS = [
       "Non-indurated base"
     ],
     "correct": 1,
-    "explanation": "Malignant ulcers typically have a dirty, gray-looking floor consisting of dead (necrotic) tissue."
+    "explanation": "A necrotic floor is characteristic of malignant cervical ulcers due to tumor outgrowth exceeding blood supply, resulting in tissue death and necrosis."
   },
   {
     "question": "Which complication is associated with advanced cervical carcinoma?",
@@ -2455,7 +2418,7 @@ const QUESTIONS = [
       "Osteoporosis"
     ],
     "correct": 1,
-    "explanation": "The tumor can grow laterally and compress the ureters, leading to kidney failure."
+    "explanation": "Ureteric obstruction commonly occurs in advanced cervical carcinoma due to tumor compression or invasion of the parametrium, leading to hydronephrosis and potential renal failure."
   },
   {
     "question": "What is a treatment for Stage IIB cervical carcinoma?",
@@ -2466,7 +2429,7 @@ const QUESTIONS = [
       "Hormonal therapy"
     ],
     "correct": 1,
-    "explanation": "For Stage IIB (parametrial involvement), the standard treatment is concurrent chemoradiation (radiotherapy + cisplatin)."
+    "explanation": "Stage IIB cervical carcinoma requires radiotherapy with concurrent cisplatin as the standard treatment, as it has extended beyond the cervix into parametrial tissues."
   },
   {
     "question": "Which follow-up method is used after cervical carcinoma treatment?",
@@ -2477,7 +2440,7 @@ const QUESTIONS = [
       "Bone scan"
     ],
     "correct": 1,
-    "explanation": "Regular Pap smears (cervical cytology) are used to detect local recurrence in the vaginal vault after treatment."
+    "explanation": "Cervical cytology is the recommended follow-up method after cervical carcinoma treatment to monitor for recurrence or persistent disease."
   },
   {
     "question": "Which treatment is used for unifocal VIN?",
@@ -2488,7 +2451,7 @@ const QUESTIONS = [
       "Radiotherapy"
     ],
     "correct": 1,
-    "explanation": "A single lesion (unifocal) of VIN is best treated by removing the affected area with a margin of healthy tissue."
+    "explanation": "Wide local excision is the preferred treatment for unifocal VIN, preserving vulvar anatomy while removing the affected tissue with clear margins."
   },
   {
     "question": "What is a clinical symptom of vulvar carcinoma?",
@@ -2499,7 +2462,7 @@ const QUESTIONS = [
       "Dysuria"
     ],
     "correct": 1,
-    "explanation": "Spread to the inguinal lymph nodes may cause a palpable lump or mass in the groin area."
+    "explanation": "A groin mass is a clinical symptom of vulvar carcinoma resulting from metastatic spread to the inguinal lymph nodes, which are the first drainage site."
   },
   {
     "question": "Which FIGO stage of vulvar carcinoma involves adjacent perineal structures?",
@@ -2510,7 +2473,7 @@ const QUESTIONS = [
       "Stage IV"
     ],
     "correct": 1,
-    "explanation": "Stage II includes tumor growth that extends to the lower third of the urethra, lower third of the vagina, or the anus."
+    "explanation": "Stage II vulvar carcinoma involves adjacent perineal structures (lower urethra, vagina, or anus) without lymph node metastasis, according to FIGO staging."
   },
   {
     "question": "What is a microscopic feature of squamous cell vulvar carcinoma?",
@@ -2521,7 +2484,7 @@ const QUESTIONS = [
       "Call-Exner bodies"
     ],
     "correct": 1,
-    "explanation": "Keratin pearls are a characteristic histological feature of well-differentiated squamous cell carcinomas."
+    "explanation": "Keratin pearls are a microscopic feature of squamous cell vulvar carcinoma, representing keratinized tumor cells forming concentric layers."
   },
   {
     "question": "Which lymph node is the first site of metastasis in most vulvar carcinomas?",
@@ -2532,7 +2495,7 @@ const QUESTIONS = [
       "Common iliac lymph nodes"
     ],
     "correct": 1,
-    "explanation": "Vulvar cancer typically spreads first to the superficial inguinal lymph nodes in the groin."
+    "explanation": "Superficial inguinal lymph nodes are the first site of metastasis in most vulvar carcinomas due to the lymphatic drainage pattern of the vulva."
   },
   {
     "question": "Which ovarian tumor is associated with Call-Exner bodies?",
@@ -2543,10 +2506,10 @@ const QUESTIONS = [
       "Brenner tumor"
     ],
     "correct": 1,
-    "explanation": "Call-Exner bodies (small fluid-filled spaces between granulosa cells) are pathognomonic for Granulosa cell tumors."
+    "explanation": "Call-Exner bodies are characteristic microscopic features of granulosa cell tumors, representing small follicle-like structures with eosinophilic material."
   },
   {
-    "question": "What is a naked-eye feature of multilocular cyst with papillae?",
+    "question": "What is a naked-eye feature of serous cystadenocarcinoma?",
     "options": [
       "Unilocular cyst",
       "Multilocular cyst with papillae",
@@ -2554,7 +2517,7 @@ const QUESTIONS = [
       "Smooth, soft mass"
     ],
     "correct": 1,
-    "explanation": "Serous cystadenocarcinomas are frequently multiloculated and contain complex papillary growths."
+    "explanation": "Serous cystadenocarcinoma typically presents as a multilocular cyst with papillae on gross examination, reflecting its papillary growth pattern."
   },
   {
     "question": "Which FIGO stage of ovarian cancer involves pelvic extension?",
@@ -2565,7 +2528,7 @@ const QUESTIONS = [
       "Stage IV"
     ],
     "correct": 1,
-    "explanation": "Stage II ovarian cancer is defined by growth involving one or both ovaries with pelvic extension."
+    "explanation": "Stage II ovarian cancer involves pelvic extension (other than just the ovaries) but does not extend to the abdomen, according to FIGO staging."
   },
   {
     "question": "What is a clinical symptom of ovarian tumors with ascites?",
@@ -2576,7 +2539,7 @@ const QUESTIONS = [
       "Hemoptysis"
     ],
     "correct": 0,
-    "explanation": "Fluid accumulation in the abdomen (ascites) causes significant bloating and abdominal distension."
+    "explanation": "Abdominal distension is a common clinical symptom of ovarian tumors with ascites, resulting from fluid accumulation in the peritoneal cavity."
   },
   {
     "question": "Which treatment is used for Stage IC ovarian cancer?",
@@ -2587,7 +2550,7 @@ const QUESTIONS = [
       "Hormonal therapy"
     ],
     "correct": 1,
-    "explanation": "Standard treatment for Stage I epithelial ovarian cancer (except low-grade IA/IB) is full surgical debulking followed by chemotherapy."
+    "explanation": "Stage IC ovarian cancer requires total hysterectomy with bilateral salpingo-oophorectomy and adjuvant chemotherapy due to higher risk of recurrence."
   },
   {
     "question": "What is a complication of ovarian tumors with rupture?",
@@ -2598,7 +2561,7 @@ const QUESTIONS = [
       "Vaginal stenosis"
     ],
     "correct": 1,
-    "explanation": "Rupture of a cyst (like a dermoid or mucinous cyst) can leak irritating contents into the peritoneum, causing chemical inflammation."
+    "explanation": "Chemical peritonitis is a complication of ovarian tumor rupture, as the cyst contents (including blood or mucin) irritate the peritoneum."
   },
   {
     "question": "Which tumor marker is elevated in endodermal sinus tumors?",
@@ -2609,7 +2572,7 @@ const QUESTIONS = [
       "CEA"
     ],
     "correct": 1,
-    "explanation": "Endodermal sinus (yolk sac) tumors characteristically produce high levels of AFP."
+    "explanation": "Alpha-fetoprotein (AFP) is elevated in endodermal sinus tumors (yolk sac tumors), serving as a valuable tumor marker for diagnosis and monitoring."
   },
   {
     "question": "What is a naked-eye feature of dermoid cysts?",
@@ -2620,7 +2583,7 @@ const QUESTIONS = [
       "Solid, hard mass"
     ],
     "correct": 1,
-    "explanation": "Dermoid cysts (mature cystic teratomas) are germ cell tumors that can contain various tissues including fat, hair, and teeth."
+    "explanation": "Dermoid cysts (mature cystic teratomas) typically contain hair, teeth, and sebaceous material on gross examination, reflecting their germ cell origin."
   },
   {
     "question": "Which ovarian tumor is associated with virilization?",
@@ -2631,7 +2594,7 @@ const QUESTIONS = [
       "Brenner tumor"
     ],
     "correct": 1,
-    "explanation": "Sertoli-Leydig cell tumors secrete androgens, which can cause symptoms of masculinization (virilization)."
+    "explanation": "Androblastoma (Sertoli-Leydig cell tumor) is associated with virilization due to its production of androgens, leading to masculinizing features."
   },
   {
     "question": "What is a diagnostic investigation for ovarian tumors?",
@@ -2642,7 +2605,7 @@ const QUESTIONS = [
       "Colposcopy"
     ],
     "correct": 1,
-    "explanation": "Transvaginal ultrasound is the primary imaging modality used to evaluate the size and characteristics of an ovarian mass."
+    "explanation": "Transvaginal ultrasound is the primary diagnostic investigation for ovarian tumors, providing detailed assessment of ovarian morphology and structure."
   },
   {
     "question": "Which instrument is used for endometrial biopsy?",
@@ -2653,7 +2616,7 @@ const QUESTIONS = [
       "Flushing curette"
     ],
     "correct": 2,
-    "explanation": "A specialized biopsy curette (like a Pipelle) is used to obtain a sample of the endometrial lining."
+    "explanation": "A biopsy curette is specifically designed for endometrial biopsy, allowing for collection of tissue samples for histological examination."
   },
   {
     "question": "What is a complication of vaginal hysterectomy?",
@@ -2664,7 +2627,7 @@ const QUESTIONS = [
       "Cervical stenosis"
     ],
     "correct": 1,
-    "explanation": "Following any hysterectomy, there is a long-term risk of the top of the vagina (the vault) descending due to loss of support."
+    "explanation": "Vault prolapse is a recognized complication of vaginal hysterectomy, occurring due to weakening of the supporting structures of the vaginal vault."
   },
   {
     "question": "Which procedure is used to diagnose tubal patency?",
@@ -2675,7 +2638,7 @@ const QUESTIONS = [
       "Cervical biopsy"
     ],
     "correct": 1,
-    "explanation": "Hysterosalpingography (HSG) is an X-ray test using dye to check if the fallopian tubes are open."
+    "explanation": "Hysterosalpingography is used to diagnose tubal patency by injecting contrast medium and visualizing its flow through the fallopian tubes."
   },
   {
     "question": "What is an indication for radical hysterectomy?",
@@ -2686,7 +2649,7 @@ const QUESTIONS = [
       "Ovarian cysts"
     ],
     "correct": 1,
-    "explanation": "Radical hysterectomy (Wertheim's) is the standard surgical treatment for early-stage invasive cervical cancer."
+    "explanation": "Radical hysterectomy is indicated for Stage IB cervical carcinoma to remove the uterus, cervix, parametrium, and upper vagina with lymph nodes."
   },
   {
     "question": "Which catheter is used for short-term bladder drainage?",
@@ -2697,7 +2660,7 @@ const QUESTIONS = [
       "Neleton catheter"
     ],
     "correct": 1,
-    "explanation": "A metal catheter is traditionally used for quick, one-time emptying of the bladder."
+    "explanation": "A metal catheter is used for short-term bladder drainage as it provides better drainage and is less likely to cause urethral trauma."
   },
   {
     "question": "What is a contraindication for cervical dilatation?",
@@ -2708,7 +2671,7 @@ const QUESTIONS = [
       "Infertility"
     ],
     "correct": 1,
-    "explanation": "Mechanical dilatation should be avoided in women with a history of cervical incompetence to prevent further structural damage."
+    "explanation": "Cervical incompetence is a contraindication for cervical dilatation as it may lead to preterm delivery or pregnancy loss due to cervical weakness."
   },
   {
     "question": "Which procedure is used to treat submucous myomas?",
@@ -2719,7 +2682,7 @@ const QUESTIONS = [
       "Oophorectomy"
     ],
     "correct": 1,
-    "explanation": "Hysteroscopy allows for the minimally invasive removal (resection) of fibroids that protrude into the uterine cavity."
+    "explanation": "Hysteroscopic resection is the procedure of choice for treating submucous myomas, allowing for precise removal while preserving the uterus."
   },
   {
     "question": "What is a complication of laparoscopy?",
@@ -2730,7 +2693,7 @@ const QUESTIONS = [
       "Endometrial ablation"
     ],
     "correct": 1,
-    "explanation": "The insertion of laparoscopic trocars or needles carries a risk of accidental puncture of the bowel or major blood vessels."
+    "explanation": "Injury to bowel or vessels is a significant complication of laparoscopy, occurring during trocar insertion or surgical manipulation."
   },
   {
     "question": "Which ultrasound is used to diagnose polycystic ovary syndrome?",
@@ -2741,7 +2704,7 @@ const QUESTIONS = [
       "3D ultrasound"
     ],
     "correct": 1,
-    "explanation": "Transvaginal ultrasound provides the high resolution needed to count and measure small follicles in the ovaries."
+    "explanation": "Trans-vaginal ultrasound is used to diagnose polycystic ovary syndrome by visualizing the characteristic 'string of pearls' appearance of multiple small follicles."
   },
   {
     "question": "What is the purpose of a fractional curettage?",
@@ -2752,7 +2715,7 @@ const QUESTIONS = [
       "To remove ovarian tumors"
     ],
     "correct": 1,
-    "explanation": "Fractional curettage involves sampling the endocervical canal separately from the endometrial cavity to pinpoint the origin of a cancer."
+    "explanation": "Fractional curettage allows for separate sampling of the endometrial and cervical canal to differentiate between endometrial and cervical malignancies."
   },
   {
     "question": "Which of the following is a risk factor for most gynecologic tumors?",
@@ -2763,7 +2726,7 @@ const QUESTIONS = [
       "Osteoporosis"
     ],
     "correct": 0,
-    "explanation": "Obesity is a major risk factor for several cancers, especially endometrial and breast, due to higher peripheral estrogen production."
+    "explanation": "Obesity is a well-established risk factor for most gynecologic tumors due to chronic inflammation and hormonal imbalances associated with excess adipose tissue."
   },
   {
     "question": "What is a clinical symptom of gynecologic tumors due to pressure effects?",
@@ -2774,7 +2737,7 @@ const QUESTIONS = [
       "Hypertension"
     ],
     "correct": 0,
-    "explanation": "A large pelvic tumor can press against the bladder or urethra, causing difficult or painful urination (dysuria)."
+    "explanation": "Dysuria is a common symptom of gynecologic tumors when they involve or compress the bladder, causing irritation and urinary symptoms."
   },
   {
     "question": "Which tumor depends on hormonal factors for its etiology?",
@@ -2785,7 +2748,7 @@ const QUESTIONS = [
       "Choriocarcinoma"
     ],
     "correct": 1,
-    "explanation": "Endometrial carcinoma is strongly linked to 'unopposed estrogen'—estrogen stimulation without the balancing effect of progesterone."
+    "explanation": "Endometrial carcinoma is hormone-dependent, with estrogen exposure being a key factor in its development and progression."
   },
   {
     "question": "Which investigation is used to diagnose metastasis to the rectum in gynecologic tumors?",
@@ -2796,7 +2759,7 @@ const QUESTIONS = [
       "Cervical biopsy"
     ],
     "correct": 0,
-    "explanation": "Direct visualization of the rectum and sigmoid colon via proctosigmoidoscopy can confirm if a tumor has invaded the bowel."
+    "explanation": "Proctosigmoidoscopy directly visualizes the rectal mucosa to detect metastatic involvement from gynecologic tumors."
   },
   {
     "question": "Which is a key aspect of active treatment for gynecologic tumors?",
@@ -2807,7 +2770,7 @@ const QUESTIONS = [
       "Hormonal therapy"
     ],
     "correct": 1,
-    "explanation": "Surgery and radiation are the primary active (curative-intent) treatment modalities for most invasive gynecologic cancers."
+    "explanation": "Active treatment for gynecologic tumors primarily involves definitive local therapies such as surgery or radiotherapy to eradicate the disease."
   },
   {
     "question": "Which histological subtype of endometrial carcinoma has a worse prognosis?",
@@ -2818,7 +2781,7 @@ const QUESTIONS = [
       "Mucinous carcinoma"
     ],
     "correct": 1,
-    "explanation": "Serous and clear-cell subtypes of endometrial cancer are much more aggressive and have poorer outcomes than the endometrioid type."
+    "explanation": "Papillary serous carcinoma is a high-risk histological subtype of endometrial carcinoma with a worse prognosis due to its aggressive behavior and early metastasis."
   },
   {
     "question": "What is a naked-eye feature of endometrial carcinoma with cervical metastasis?",
@@ -2829,7 +2792,7 @@ const QUESTIONS = [
       "Normal uterus"
     ],
     "correct": 1,
-    "explanation": "If the endometrial cancer spreads to the cervix, the cervix may become hard and bleed easily on contact."
+    "explanation": "A hard, friable cervix is a characteristic naked-eye finding in endometrial carcinoma with cervical metastasis due to tumor infiltration."
   },
   {
     "question": "Which FIGO stage involves metastasis to distant organs in endometrial carcinoma?",
@@ -2840,7 +2803,7 @@ const QUESTIONS = [
       "Stage IVB"
     ],
     "correct": 3,
-    "explanation": "Stage IVB denotes spread to distant organs, including intra-abdominal or inguinal lymph nodes."
+    "explanation": "Stage IVB in endometrial carcinoma represents metastasis to distant organs beyond the pelvis, including lungs, liver, or bones."
   },
   {
     "question": "What is a diagnostic method for detecting endometrial carcinoma recurrence?",
@@ -2851,7 +2814,7 @@ const QUESTIONS = [
       "Bone scan"
     ],
     "correct": 1,
-    "explanation": "CT or MRI scans are used during follow-up to detect the return of cancer in the pelvis or other distant sites."
+    "explanation": "CT scan is the most effective diagnostic method for detecting recurrence of endometrial carcinoma by identifying metastatic disease."
   },
   {
     "question": "Which adjuvant therapy is used for Stage IV endometrial carcinoma?",
@@ -2862,7 +2825,7 @@ const QUESTIONS = [
       "Single-agent chemotherapy"
     ],
     "correct": 1,
-    "explanation": "Stage IV disease is treated with a combination of systemic chemotherapy and local radiation for symptom control."
+    "explanation": "For Stage IV endometrial carcinoma, multimodal therapy with chemotherapy combined with radiotherapy is the standard approach to improve outcomes."
   },
   {
     "question": "Which is a clinical sign of choriocarcinoma with vaginal metastasis?",
@@ -2873,7 +2836,7 @@ const QUESTIONS = [
       "Vaginal atrophy"
     ],
     "correct": 0,
-    "explanation": "Metastatic choriocarcinoma nodules in the vagina are highly vascular and typically appear purple or blue-black."
+    "explanation": "Blue-black vaginal lesions are a characteristic clinical sign of choriocarcinoma with vaginal metastasis due to hemorrhagic tumor deposits."
   },
   {
     "question": "What is a microscopic feature of placental site trophoblastic tumor?",
@@ -2884,7 +2847,7 @@ const QUESTIONS = [
       "Keratin pearls"
     ],
     "correct": 1,
-    "explanation": "PSTTs are composed primarily of intermediate trophoblastic cells that infiltrate the myometrium."
+    "explanation": "Placental site trophoblastic tumor is characterized by infiltration by intermediate trophoblasts, which are distinctive microscopic features."
   },
   {
     "question": "Which investigation confirms liver metastasis in choriocarcinoma?",
@@ -2895,7 +2858,7 @@ const QUESTIONS = [
       "Hysteroscopy"
     ],
     "correct": 0,
-    "explanation": "Ultrasound or CT imaging of the liver is used to identify metastatic nodules."
+    "explanation": "Ultrasound of the liver is the primary investigation to confirm liver metastasis in choriocarcinoma by detecting focal lesions."
   },
   {
     "question": "What is a risk factor for choriocarcinoma related to blood group?",
@@ -2906,7 +2869,7 @@ const QUESTIONS = [
       "Blood group AB"
     ],
     "correct": 1,
-    "explanation": "Some evidence suggests that women with blood group A have a slightly higher risk of trophoblastic disease than those with blood group O."
+    "explanation": "Blood group A is associated with an increased risk of choriocarcinoma, possibly related to antigenic factors influencing trophoblastic invasion."
   },
   {
     "question": "What is the cure rate for high-risk metastatic choriocarcinoma with multimodal therapy?",
@@ -2917,7 +2880,7 @@ const QUESTIONS = [
       "95%"
     ],
     "correct": 1,
-    "explanation": "Even with widespread disease, high-risk GTN has a relatively high cure rate of approximately 70% with modern treatments."
+    "explanation": "The cure rate for high-risk metastatic choriocarcinoma with multimodal therapy is approximately 70% with appropriate chemotherapy regimens."
   },
   {
     "question": "Which factor increases the persistence rate of CIN?",
@@ -2928,7 +2891,7 @@ const QUESTIONS = [
       "Obesity"
     ],
     "correct": 2,
-    "explanation": "Patients with weakened immune systems (e.g., HIV+ or transplant recipients) are much less likely to clear HPV and more likely to have persistent CIN."
+    "explanation": "Immunosuppression increases the persistence rate of CIN by impairing the immune system's ability to clear HPV infection and dysplastic cells."
   },
   {
     "question": "What is a colposcopic finding suggestive of high-grade CIN?",
@@ -2939,10 +2902,10 @@ const QUESTIONS = [
       "Red patches"
     ],
     "correct": 1,
-    "explanation": "Coarse punctation and irregular 'corkscrew' vessels are signs of higher-grade dysplasia or early invasion."
+    "explanation": "Punctation with thick irregular vessels is a colposcopic finding suggestive of high-grade CIN due to abnormal vascular patterns."
   },
   {
-    "question": "What is the treatment for CIN-III in postmenopausal women?",
+    "question": "Which treatment is used for CIN-III in postmenopausal women?",
     "options": [
       "Cryotherapy",
       "Hysterectomy",
@@ -2950,7 +2913,7 @@ const QUESTIONS = [
       "Diathermy coagulation"
     ],
     "correct": 1,
-    "explanation": "In older women who no longer wish to preserve fertility, hysterectomy is a definitive treatment for high-grade CIN-III."
+    "explanation": "Hysterectomy is the treatment of choice for CIN-III in postmenopausal women as it provides definitive removal of the dysplastic tissue."
   },
   {
     "question": "What is the progression rate of CIN-1 to CIN-3?",
@@ -2961,7 +2924,7 @@ const QUESTIONS = [
       "33%"
     ],
     "correct": 0,
-    "explanation": "Only about 1% of low-grade CIN-1 cases will eventually progress to the high-grade CIN-3 stage."
+    "explanation": "The progression rate of CIN-1 to CIN-3 is approximately 1% per year, with most low-grade lesions regressing spontaneously."
   },
   {
     "question": "Which is a follow-up interval for CIN after treatment with LEEP?",
@@ -2972,7 +2935,7 @@ const QUESTIONS = [
       "Every 2 years"
     ],
     "correct": 1,
-    "explanation": "After a LEEP procedure, a patient usually returns every 3-4 months for a Pap smear for the first year or two."
+    "explanation": "Follow-up every 3 months after LEEP treatment for CIN is recommended to monitor for recurrence and ensure adequate treatment."
   },
   {
     "question": "Which is a risk factor for cervical carcinoma related to sexual behavior?",
@@ -2983,7 +2946,7 @@ const QUESTIONS = [
       "Abstinence"
     ],
     "correct": 1,
-    "explanation": "Having multiple partners increases the lifetime risk of exposure to high-risk strains of HPV."
+    "explanation": "Multiple sexual partners is a risk factor for cervical carcinoma as it increases exposure to high-risk HPV types."
   },
   {
     "question": "What is a microscopic feature of squamous cell cervical carcinoma?",
@@ -2994,7 +2957,7 @@ const QUESTIONS = [
       "Signet ring cells"
     ],
     "correct": 1,
-    "explanation": "Squamous cell cancers typically show evidence of keratin production (keratinization) within the tumor nests."
+    "explanation": "Keratinization is a microscopic feature of squamous cell cervical carcinoma, representing the tumor's differentiation towards squamous epithelium."
   },
   {
     "question": "Which FIGO stage of cervical carcinoma involves bladder mucosa invasion?",
@@ -3005,7 +2968,7 @@ const QUESTIONS = [
       "Stage IVB"
     ],
     "correct": 2,
-    "explanation": "Stage IVA represents the spread of cervical cancer to the mucosa of the bladder or rectum."
+    "explanation": "Stage IVA cervical carcinoma involves bladder mucosa invasion, indicating locally advanced disease with urinary tract involvement."
   },
   {
     "question": "What is a clinical symptom of cervical carcinoma with lymph node metastasis?",
@@ -3016,7 +2979,7 @@ const QUESTIONS = [
       "Hemoptysis"
     ],
     "correct": 0,
-    "explanation": "Metastasis to the inguinal lymph nodes may present as a visible or palpable swelling in the groin."
+    "explanation": "A groin mass is a clinical sign of cervical carcinoma with lymph node metastasis, representing enlarged metastatic lymph nodes."
   },
   {
     "question": "Which surgical technique is used for Stage IA1 cervical carcinoma?",
@@ -3027,7 +2990,7 @@ const QUESTIONS = [
       "Total oophorectomy"
     ],
     "correct": 1,
-    "explanation": "Stage IA1 (micro-invasive) can often be managed with a simple cold-knife cone biopsy if margins are clear."
+    "explanation": "Conization of the cervix is the surgical technique used for Stage IA1 cervical carcinoma to remove the tumor while preserving fertility."
   },
   {
     "question": "Which is a naked-eye feature of VIN lesions?",
@@ -3038,7 +3001,7 @@ const QUESTIONS = [
       "Ulcerative craters"
     ],
     "correct": 1,
-    "explanation": "VIN can present as areas of skin that are darker (hyperpigmented) than the surrounding tissue."
+    "explanation": "VIN lesions typically present as hyperpigmented patches on the vulvar skin, which may be white, red, or brown in appearance."
   },
   {
     "question": "What is a clinical symptom of VIN?",
@@ -3049,7 +3012,7 @@ const QUESTIONS = [
       "Hemorrhage"
     ],
     "correct": 2,
-    "explanation": "VIN is frequently asymptomatic and may only be discovered during a routine physical exam or vulvoscopy."
+    "explanation": "VIN is often asymptomatic, with lesions frequently detected during routine gynecologic examination rather than causing symptoms."
   },
   {
     "question": "Which FIGO stage of vulvar carcinoma involves lymph node metastasis with extracapsular spread?",
@@ -3060,7 +3023,7 @@ const QUESTIONS = [
       "Stage IVB"
     ],
     "correct": 2,
-    "explanation": "Stage IIIC is defined by positive lymph nodes with extracapsular spread (the cancer has grown outside the node capsule)."
+    "explanation": "Stage IIIC vulvar carcinoma involves lymph node metastasis with extracapsular spread, indicating more advanced regional disease."
   },
   {
     "question": "What is a complication of radiotherapy for vulvar carcinoma?",
@@ -3071,7 +3034,7 @@ const QUESTIONS = [
       "Vaginal hyperplasia"
     ],
     "correct": 1,
-    "explanation": "Radiation to the vulvar area can cause severe skin irritation, breakdown, and ulceration."
+    "explanation": "Skin ulceration is a common complication of radiotherapy for vulvar carcinoma due to the radiosensitivity of vulvar skin and mucosa."
   },
   {
     "question": "Which treatment is used for recurrent vulvar carcinoma?",
@@ -3082,7 +3045,7 @@ const QUESTIONS = [
       "Laser ablation"
     ],
     "correct": 1,
-    "explanation": "Recurrent vulvar cancer often requires further surgery to remove the recurrence, often followed by radiation."
+    "explanation": "Re-excision with radiotherapy is the standard treatment for recurrent vulvar carcinoma as it addresses both local recurrence and potential microscopic disease spread."
   },
   {
     "question": "Which ovarian tumor is associated with Reinke ovarian crystals?",
@@ -3093,7 +3056,7 @@ const QUESTIONS = [
       "Mucinous cystadenoma"
     ],
     "correct": 1,
-    "explanation": "Reinke crystals are characteristic cytoplasmic inclusions found in Leydig cell tumors."
+    "explanation": "Reinke crystals are pathognomonic for Sertoli-Leydig cell tumors, which are rare sex cord-stromal tumors of the ovary."
   },
   {
     "question": "What is a naked-eye feature of mucinous cystadenocarcinoma?",
@@ -3104,7 +3067,7 @@ const QUESTIONS = [
       "Clear fluid content"
     ],
     "correct": 0,
-    "explanation": "Malignant mucinous tumors often show complex solid areas and regions of tissue death (necrosis)."
+    "explanation": "Mucinous cystadenocarcinomas often exhibit solid areas with necrosis due to their higher grade and more aggressive nature compared to benign mucinous tumors."
   },
   {
     "question": "Which FIGO stage of ovarian cancer involves distant metastasis?",
@@ -3115,7 +3078,7 @@ const QUESTIONS = [
       "Stage I"
     ],
     "correct": 2,
-    "explanation": "Stage IV ovarian cancer indicates metastasis to distant organs like the liver (parenchyma), lungs, or spleen."
+    "explanation": "Stage IV ovarian cancer is defined by distant metastasis, which includes parenchymal liver metastasis greater than 2cm and/or extra-abdominal metastasis."
   },
   {
     "question": "What is a clinical symptom of ovarian tumors with torsion?",
@@ -3126,7 +3089,7 @@ const QUESTIONS = [
       "Pruritis"
     ],
     "correct": 1,
-    "explanation": "Torsion (twisting) of an ovarian mass cuts off blood supply, leading to sudden, severe pelvic pain known as an acute abdomen."
+    "explanation": "Ovarian tumor torsion typically presents as an acute abdomen due to sudden onset of severe pain caused by compromised blood flow to the ovary."
   }
 ];
 /* [QUESTIONS_END] */
@@ -3524,6 +3487,7 @@ function buildResults() {
   document.getElementById('res-grade').textContent = grade;
 
   renderResultItems('all');
+  updateExportBadges();
 }
 
 function renderResultItems(filter) {
@@ -4024,9 +3988,167 @@ function doRestoreProgress(data) {
   }, 500);
 }
 
+
+/* ── PDF EXPORT ─────────────────────────────────────────────── */
+function onExportFilterChange(checkbox) {
+  const allCb     = document.querySelector('input[name="export-all"]');
+  const wrongCb   = document.querySelector('input[name="export-wrong"]');
+  const flaggedCb = document.querySelector('input[name="export-flagged"]');
+  if (checkbox.name === 'export-all' && checkbox.checked) {
+    wrongCb.checked = false; flaggedCb.checked = false;
+  } else if (checkbox.name !== 'export-all' && checkbox.checked) {
+    allCb.checked = false;
+  }
+  if (!allCb.checked && !wrongCb.checked && !flaggedCb.checked) allCb.checked = true;
+}
+
+function updateExportBadges() {
+  const qs = (typeof SESSION_QUESTIONS !== 'undefined' && SESSION_QUESTIONS && SESSION_QUESTIONS.length)
+    ? SESSION_QUESTIONS : QUESTIONS;
+  let allC = 0, wrongC = 0, flaggedC = 0;
+  qs.forEach((q, i) => {
+    const ans = state.answers[i];
+    allC++;
+    if (ans !== undefined && ans !== q.correct) wrongC++;
+    if (state.flagged[i]) flaggedC++;
+  });
+  document.getElementById('badge-all').textContent     = allC;
+  document.getElementById('badge-wrong').textContent   = wrongC;
+  document.getElementById('badge-flagged').textContent = flaggedC;
+}
+
+function exportToPDF() {
+  const allCb     = document.querySelector('input[name="export-all"]');
+  const wrongCb   = document.querySelector('input[name="export-wrong"]');
+  const flaggedCb = document.querySelector('input[name="export-flagged"]');
+
+  let filter = 'all';
+  if (!allCb.checked) {
+    if (wrongCb.checked && !flaggedCb.checked)      filter = 'wrong';
+    else if (flaggedCb.checked && !wrongCb.checked) filter = 'flagged';
+    else if (wrongCb.checked && flaggedCb.checked)  filter = 'wrong+flagged';
+  }
+
+  showToast('Generating PDF...');
+
+  const qs      = (typeof SESSION_QUESTIONS !== 'undefined' && SESSION_QUESTIONS && SESSION_QUESTIONS.length)
+    ? SESSION_QUESTIONS : QUESTIONS;
+  const title   = document.title || 'Quiz Results';
+  const pct     = document.getElementById('res-pct').textContent;
+  const grade   = document.getElementById('res-grade').textContent;
+  const correct = document.getElementById('res-correct').textContent;
+  const wrongN  = document.getElementById('res-wrong').textContent;
+  const skipped = document.getElementById('res-skipped').textContent;
+  const timeEl  = document.getElementById('res-time');
+  const timeUsed = timeEl ? timeEl.textContent : '--';
+
+  const filterLabels = {
+    'all':          'All Questions',
+    'wrong':        'Wrong Answers',
+    'flagged':      'Flagged Questions',
+    'wrong+flagged':'Wrong + Flagged'
+  };
+
+  const toExport = [];
+  qs.forEach((q, i) => {
+    const ans       = state.answers[i];
+    const isCorrect = ans === q.correct;
+    const isSkipped = ans === undefined;
+    const isFlagged = !!state.flagged[i];
+    const show = filter === 'all'
+      || (filter === 'wrong'         && !isCorrect && !isSkipped)
+      || (filter === 'flagged'       && isFlagged)
+      || (filter === 'wrong+flagged' && ((!isCorrect && !isSkipped) || isFlagged));
+    if (show) toExport.push({ q, i, ans, isCorrect, isSkipped, isFlagged });
+  });
+
+  let html = '<div style="font-family:Arial,sans-serif;max-width:780px;margin:0 auto;padding:20px;color:#1c1917;">'
+    + '<h1 style="font-size:22px;margin:0 0 4px;font-family:Georgia,serif;">' + title + '</h1>'
+    + '<p style="color:#78716c;margin:0 0 16px;font-size:13px;">Quiz Results &mdash; ' + new Date().toLocaleDateString() + '</p>'
+    + '<div style="background:#f8f6f1;border-radius:12px;padding:18px 20px;margin-bottom:22px;border:1px solid #d0ccc5;display:flex;gap:18px;align-items:center;flex-wrap:wrap;">'
+    +   '<div style="width:84px;height:84px;border-radius:50%;border:4px solid #c27803;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;background:rgba(194,120,3,.10);">'
+    +     '<div style="font-size:20px;font-weight:700;color:#c27803;line-height:1;">' + pct + '</div>'
+    +     '<div style="font-size:9px;color:#78716c;text-transform:uppercase;letter-spacing:.04em;">Score</div>'
+    +   '</div>'
+    +   '<div style="flex:1;min-width:180px;">'
+    +     '<h2 style="font-family:Georgia,serif;font-size:17px;margin:0 0 10px;">' + grade + '</h2>'
+    +     '<div style="display:flex;gap:8px;flex-wrap:wrap;">'
+    +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#16a34a;">' + correct + '</div><div style="font-size:10px;color:#78716c;">Correct</div></div>'
+    +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#dc2626;">' + wrongN  + '</div><div style="font-size:10px;color:#78716c;">Wrong</div></div>'
+    +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#78716c;">' + skipped + '</div><div style="font-size:10px;color:#78716c;">Skipped</div></div>'
+    +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;">' + timeUsed + '</div><div style="font-size:10px;color:#78716c;">Time</div></div>'
+    +     '</div>'
+    +   '</div>'
+    + '</div>'
+    + '<h3 style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#78716c;margin:0 0 12px;">'
+    +   (filterLabels[filter] || 'Questions') + ' (' + toExport.length + ')'
+    + '</h3>';
+
+  toExport.forEach(function(item) {
+    var q = item.q, i = item.i, ans = item.ans;
+    var isCorrect = item.isCorrect, isSkipped = item.isSkipped, isFlagged = item.isFlagged;
+    var sc   = isSkipped ? '#78716c' : (isCorrect ? '#16a34a' : '#dc2626');
+    var icon = isSkipped ? '-' : (isCorrect ? 'OK' : 'X');
+    var bgH  = isSkipped ? '#f8f6f1' : (isCorrect ? 'rgba(22,163,74,.06)' : 'rgba(220,38,38,.06)');
+    var uAns = ans !== undefined ? (KEYS[ans] + '. ' + q.options[ans]) : 'Not answered';
+    var cAns = KEYS[q.correct] + '. ' + q.options[q.correct];
+    html += '<div style="border:1.5px solid ' + sc + ';border-radius:10px;margin-bottom:14px;overflow:hidden;page-break-inside:avoid;">'
+      +   '<div style="padding:12px 15px;background:' + bgH + ';">'
+      +     '<div style="display:flex;gap:10px;align-items:flex-start;">'
+      +       '<div style="width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;background:rgba(0,0,0,.06);color:' + sc + ';">' + icon + '</div>'
+      +       '<div>'
+      +         '<div style="font-size:10px;color:#78716c;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Q' + (i+1) + (isFlagged ? ' &bull; Flagged' : '') + '</div>'
+      +         '<div style="font-size:14px;font-weight:500;line-height:1.5;">' + q.question + '</div>'
+      +       '</div>'
+      +     '</div>'
+      +   '</div>'
+      +   '<div style="padding:10px 15px 12px;border-top:1px solid #e5e0db;">';
+    if (!isSkipped) {
+      html += '<div style="background:' + (isCorrect ? 'rgba(22,163,74,.08)' : 'rgba(220,38,38,.08)') + ';border-radius:6px;padding:7px 11px;margin-bottom:7px;font-size:12px;"><span style="font-size:10px;text-transform:uppercase;font-weight:700;opacity:.6;margin-right:8px;">Your Answer</span>' + uAns + '</div>';
+    }
+    if (!isCorrect) {
+      html += '<div style="background:rgba(22,163,74,.08);border-radius:6px;padding:7px 11px;margin-bottom:7px;font-size:12px;"><span style="font-size:10px;text-transform:uppercase;font-weight:700;opacity:.6;margin-right:8px;">Correct Answer</span>' + cAns + '</div>';
+    }
+    if (q.explanation) {
+      html += '<div style="background:#f8f6f1;border-left:3px solid #c27803;border-radius:0 6px 6px 0;padding:9px 11px;font-size:12px;color:#44403c;line-height:1.6;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#1c1917;margin-bottom:3px;">Explanation</div>' + q.explanation + '</div>';
+    }
+    html += '</div></div>';
+  });
+  html += '</div>';
+
+  var filename = title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_results.pdf';
+  var opt = {
+    margin:      [10, 10, 10, 10],
+    filename:    filename,
+    image:       { type: 'jpeg', quality: 0.97 },
+    html2canvas: { scale: 2, useCORS: true, logging: false },
+    jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  var container = document.createElement('div');
+  container.innerHTML = html;
+
+  function runExport() {
+    html2pdf().set(opt).from(container).save()
+      .then(function() { showToast('PDF downloaded!'); })
+      .catch(function() { showToast('PDF failed - try again'); });
+  }
+
+  if (typeof html2pdf !== 'undefined') {
+    runExport();
+  } else {
+    var s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    s.onload  = runExport;
+    s.onerror = function() { showToast('Failed to load PDF library'); };
+    document.head.appendChild(s);
+  }
+}
+
 /* ── BOOT ────────────────────────────────────────────────── */
 initUI();
 checkSavedProgress();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 </body>
 </html>

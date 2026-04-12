@@ -878,6 +878,72 @@ input[type=radio]:checked + .option-label .option-key {
 /* ═══════════════════════════════════════════
    MISC
 ═══════════════════════════════════════════ */
+.pdf-export-section {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+}
+.export-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+.export-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all var(--transition);
+  flex: 1;
+  min-width: 120px;
+}
+.export-option:hover { border-color: var(--accent); background: var(--accent-dim); }
+.export-option input[type="checkbox"] { display: none; }
+.export-option input[type="checkbox"]:checked + .export-checkbox-visual {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.export-option input[type="checkbox"]:checked + .export-checkbox-visual svg { display: block; }
+.export-checkbox-visual {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  transition: all var(--transition);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.export-checkbox-visual svg {
+  display: none; width: 10px; height: 10px;
+  stroke: #000; stroke-width: 3; fill: none;
+}
+.export-label { font-size: 0.82rem; font-weight: 500; color: var(--text); flex: 1; }
+.export-badge {
+  font-size: 0.65rem; padding: 0.1rem 0.4rem;
+  border-radius: 3px; background: var(--accent-dim);
+  color: var(--accent); font-weight: 600;
+}
+.btn-export-pdf {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius);
+  background: var(--surface2); color: var(--text);
+  border: 1.5px solid var(--border);
+  font-weight: 700; font-size: 0.95rem;
+  transition: all var(--transition);
+  text-decoration: none; width: 100%; justify-content: center;
+}
+.btn-export-pdf:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
 .hidden { display: none !important; }
 </style>
 </head>
@@ -1019,6 +1085,46 @@ input[type=radio]:checked + .option-label .option-key {
           <div class="score-stat"><div class="n" id="res-time">—</div><div class="t">Time Used</div></div>
         </div>
       </div>
+    </div>
+
+    <!-- PDF Export Section -->
+    <div class="pdf-export-section">
+      <div class="export-options">
+        <label class="export-option">
+          <input type="checkbox" name="export-all" checked onchange="onExportFilterChange(this)">
+          <span class="export-checkbox-visual">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          <span class="export-label">All</span>
+          <span class="export-badge" id="badge-all">0</span>
+        </label>
+        <label class="export-option">
+          <input type="checkbox" name="export-wrong" onchange="onExportFilterChange(this)">
+          <span class="export-checkbox-visual">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          <span class="export-label">Wrong</span>
+          <span class="export-badge" id="badge-wrong">0</span>
+        </label>
+        <label class="export-option">
+          <input type="checkbox" name="export-flagged" onchange="onExportFilterChange(this)">
+          <span class="export-checkbox-visual">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          <span class="export-label">Flagged</span>
+          <span class="export-badge" id="badge-flagged">0</span>
+        </label>
+      </div>
+      <button class="btn-export-pdf" onclick="exportToPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        Export to PDF
+      </button>
     </div>
 
     <!-- Tabs -->
@@ -1863,6 +1969,7 @@ function buildResults() {
   document.getElementById('res-grade').textContent = grade;
 
   renderResultItems('all');
+  updateExportBadges();
 }
 
 function renderResultItems(filter) {
@@ -2363,9 +2470,167 @@ function doRestoreProgress(data) {
   }, 500);
 }
 
+
+/* ── PDF EXPORT ─────────────────────────────────────────────── */
+function onExportFilterChange(checkbox) {
+  const allCb     = document.querySelector('input[name="export-all"]');
+  const wrongCb   = document.querySelector('input[name="export-wrong"]');
+  const flaggedCb = document.querySelector('input[name="export-flagged"]');
+  if (checkbox.name === 'export-all' && checkbox.checked) {
+    wrongCb.checked = false; flaggedCb.checked = false;
+  } else if (checkbox.name !== 'export-all' && checkbox.checked) {
+    allCb.checked = false;
+  }
+  if (!allCb.checked && !wrongCb.checked && !flaggedCb.checked) allCb.checked = true;
+}
+
+function updateExportBadges() {
+  const qs = (typeof SESSION_QUESTIONS !== 'undefined' && SESSION_QUESTIONS && SESSION_QUESTIONS.length)
+    ? SESSION_QUESTIONS : QUESTIONS;
+  let allC = 0, wrongC = 0, flaggedC = 0;
+  qs.forEach((q, i) => {
+    const ans = state.answers[i];
+    allC++;
+    if (ans !== undefined && ans !== q.correct) wrongC++;
+    if (state.flagged[i]) flaggedC++;
+  });
+  document.getElementById('badge-all').textContent     = allC;
+  document.getElementById('badge-wrong').textContent   = wrongC;
+  document.getElementById('badge-flagged').textContent = flaggedC;
+}
+
+function exportToPDF() {
+  const allCb     = document.querySelector('input[name="export-all"]');
+  const wrongCb   = document.querySelector('input[name="export-wrong"]');
+  const flaggedCb = document.querySelector('input[name="export-flagged"]');
+
+  let filter = 'all';
+  if (!allCb.checked) {
+    if (wrongCb.checked && !flaggedCb.checked)      filter = 'wrong';
+    else if (flaggedCb.checked && !wrongCb.checked) filter = 'flagged';
+    else if (wrongCb.checked && flaggedCb.checked)  filter = 'wrong+flagged';
+  }
+
+  showToast('Generating PDF...');
+
+  const qs      = (typeof SESSION_QUESTIONS !== 'undefined' && SESSION_QUESTIONS && SESSION_QUESTIONS.length)
+    ? SESSION_QUESTIONS : QUESTIONS;
+  const title   = document.title || 'Quiz Results';
+  const pct     = document.getElementById('res-pct').textContent;
+  const grade   = document.getElementById('res-grade').textContent;
+  const correct = document.getElementById('res-correct').textContent;
+  const wrongN  = document.getElementById('res-wrong').textContent;
+  const skipped = document.getElementById('res-skipped').textContent;
+  const timeEl  = document.getElementById('res-time');
+  const timeUsed = timeEl ? timeEl.textContent : '--';
+
+  const filterLabels = {
+    'all':          'All Questions',
+    'wrong':        'Wrong Answers',
+    'flagged':      'Flagged Questions',
+    'wrong+flagged':'Wrong + Flagged'
+  };
+
+  const toExport = [];
+  qs.forEach((q, i) => {
+    const ans       = state.answers[i];
+    const isCorrect = ans === q.correct;
+    const isSkipped = ans === undefined;
+    const isFlagged = !!state.flagged[i];
+    const show = filter === 'all'
+      || (filter === 'wrong'         && !isCorrect && !isSkipped)
+      || (filter === 'flagged'       && isFlagged)
+      || (filter === 'wrong+flagged' && ((!isCorrect && !isSkipped) || isFlagged));
+    if (show) toExport.push({ q, i, ans, isCorrect, isSkipped, isFlagged });
+  });
+
+  let html = '<div style="font-family:Arial,sans-serif;max-width:780px;margin:0 auto;padding:20px;color:#1c1917;">'
+    + '<h1 style="font-size:22px;margin:0 0 4px;font-family:Georgia,serif;">' + title + '</h1>'
+    + '<p style="color:#78716c;margin:0 0 16px;font-size:13px;">Quiz Results &mdash; ' + new Date().toLocaleDateString() + '</p>'
+    + '<div style="background:#f8f6f1;border-radius:12px;padding:18px 20px;margin-bottom:22px;border:1px solid #d0ccc5;display:flex;gap:18px;align-items:center;flex-wrap:wrap;">'
+    +   '<div style="width:84px;height:84px;border-radius:50%;border:4px solid #c27803;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;background:rgba(194,120,3,.10);">'
+    +     '<div style="font-size:20px;font-weight:700;color:#c27803;line-height:1;">' + pct + '</div>'
+    +     '<div style="font-size:9px;color:#78716c;text-transform:uppercase;letter-spacing:.04em;">Score</div>'
+    +   '</div>'
+    +   '<div style="flex:1;min-width:180px;">'
+    +     '<h2 style="font-family:Georgia,serif;font-size:17px;margin:0 0 10px;">' + grade + '</h2>'
+    +     '<div style="display:flex;gap:8px;flex-wrap:wrap;">'
+    +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#16a34a;">' + correct + '</div><div style="font-size:10px;color:#78716c;">Correct</div></div>'
+    +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#dc2626;">' + wrongN  + '</div><div style="font-size:10px;color:#78716c;">Wrong</div></div>'
+    +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#78716c;">' + skipped + '</div><div style="font-size:10px;color:#78716c;">Skipped</div></div>'
+    +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;">' + timeUsed + '</div><div style="font-size:10px;color:#78716c;">Time</div></div>'
+    +     '</div>'
+    +   '</div>'
+    + '</div>'
+    + '<h3 style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#78716c;margin:0 0 12px;">'
+    +   (filterLabels[filter] || 'Questions') + ' (' + toExport.length + ')'
+    + '</h3>';
+
+  toExport.forEach(function(item) {
+    var q = item.q, i = item.i, ans = item.ans;
+    var isCorrect = item.isCorrect, isSkipped = item.isSkipped, isFlagged = item.isFlagged;
+    var sc   = isSkipped ? '#78716c' : (isCorrect ? '#16a34a' : '#dc2626');
+    var icon = isSkipped ? '-' : (isCorrect ? 'OK' : 'X');
+    var bgH  = isSkipped ? '#f8f6f1' : (isCorrect ? 'rgba(22,163,74,.06)' : 'rgba(220,38,38,.06)');
+    var uAns = ans !== undefined ? (KEYS[ans] + '. ' + q.options[ans]) : 'Not answered';
+    var cAns = KEYS[q.correct] + '. ' + q.options[q.correct];
+    html += '<div style="border:1.5px solid ' + sc + ';border-radius:10px;margin-bottom:14px;overflow:hidden;page-break-inside:avoid;">'
+      +   '<div style="padding:12px 15px;background:' + bgH + ';">'
+      +     '<div style="display:flex;gap:10px;align-items:flex-start;">'
+      +       '<div style="width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;background:rgba(0,0,0,.06);color:' + sc + ';">' + icon + '</div>'
+      +       '<div>'
+      +         '<div style="font-size:10px;color:#78716c;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Q' + (i+1) + (isFlagged ? ' &bull; Flagged' : '') + '</div>'
+      +         '<div style="font-size:14px;font-weight:500;line-height:1.5;">' + q.question + '</div>'
+      +       '</div>'
+      +     '</div>'
+      +   '</div>'
+      +   '<div style="padding:10px 15px 12px;border-top:1px solid #e5e0db;">';
+    if (!isSkipped) {
+      html += '<div style="background:' + (isCorrect ? 'rgba(22,163,74,.08)' : 'rgba(220,38,38,.08)') + ';border-radius:6px;padding:7px 11px;margin-bottom:7px;font-size:12px;"><span style="font-size:10px;text-transform:uppercase;font-weight:700;opacity:.6;margin-right:8px;">Your Answer</span>' + uAns + '</div>';
+    }
+    if (!isCorrect) {
+      html += '<div style="background:rgba(22,163,74,.08);border-radius:6px;padding:7px 11px;margin-bottom:7px;font-size:12px;"><span style="font-size:10px;text-transform:uppercase;font-weight:700;opacity:.6;margin-right:8px;">Correct Answer</span>' + cAns + '</div>';
+    }
+    if (q.explanation) {
+      html += '<div style="background:#f8f6f1;border-left:3px solid #c27803;border-radius:0 6px 6px 0;padding:9px 11px;font-size:12px;color:#44403c;line-height:1.6;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#1c1917;margin-bottom:3px;">Explanation</div>' + q.explanation + '</div>';
+    }
+    html += '</div></div>';
+  });
+  html += '</div>';
+
+  var filename = title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_results.pdf';
+  var opt = {
+    margin:      [10, 10, 10, 10],
+    filename:    filename,
+    image:       { type: 'jpeg', quality: 0.97 },
+    html2canvas: { scale: 2, useCORS: true, logging: false },
+    jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  var container = document.createElement('div');
+  container.innerHTML = html;
+
+  function runExport() {
+    html2pdf().set(opt).from(container).save()
+      .then(function() { showToast('PDF downloaded!'); })
+      .catch(function() { showToast('PDF failed - try again'); });
+  }
+
+  if (typeof html2pdf !== 'undefined') {
+    runExport();
+  } else {
+    var s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    s.onload  = runExport;
+    s.onerror = function() { showToast('Failed to load PDF library'); };
+    document.head.appendChild(s);
+  }
+}
+
 /* ── BOOT ────────────────────────────────────────────────── */
 initUI();
 checkSavedProgress();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 </body>
 </html>
