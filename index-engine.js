@@ -279,8 +279,8 @@
   /* ── Extract a clean folder display name from a full HTML <title> ── */
   function cleanTitle(raw) {
     if (!raw) return '';
-    // Strip common prefixes like "MU61 Quiz - " or "MU61 Quiz"
-    return raw.replace(/^MU61\s+Quiz\s*[-–—]\s*/i, '').trim();
+    // Strip common prefixes like "MU61 Quiz - ", "Mansoura MCQ - ", etc.
+    return raw.replace(/^(?:MU61\s+Quiz|Mansoura\s+MCQ)\s*[-–—]\s*/i, '').trim();
   }
 
   /* ── Open dashboard ────────────────────────────────────────── */
