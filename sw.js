@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-0deb36e012b4';
+const CACHE_VERSION = 'mu61-quiz-2e61f36f1a99';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -103,8 +103,7 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/60th-midterm.html',
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
-  'quiz-engine-test.html',
-  'simple-test.html'
+  'quiz-engine-test.html'
 ];
 
 function hrefFromScope(scope, relPath) {
