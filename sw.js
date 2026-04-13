@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-f2b67edd89e3';
+const CACHE_VERSION = 'mu61-quiz-601b667fbf9f';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -64,6 +64,7 @@ var PRECACHE_REL_PATHS = [
   'gyn/dep/l19-genital-infections-and-stis.html',
   'gyn/dep/l20-gynecological-oncology.html',
   'gyn/dep/misc-mcq.html',
+  'gyn/extra-mcqs---gyn.html',
   'gyn/index.html',
   'gyn/mans/1---anatomy-physiology-embryology.html',
   'gyn/mans/2---amenorrhea-aub-ovulation.html',
