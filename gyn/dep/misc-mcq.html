@@ -6,21 +6,36 @@
 <script>
 (function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
 </script>
-<title>Quiz</title>
+<title>Misc Mcq</title>
 </head>
 <body>
 <script>
-/* [QUIZ_CONFIG_START] */
-const QUIZ_CONFIG = {
-  uid: "gyn_dep_misc_mcq",
-  title: "Misc Mcq",
-  description: "Department Book MCQs",
-};
-/* [QUIZ_CONFIG_END] */
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
 
-/* [QUESTIONS_START] */
-const QUESTIONS = [
-{
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mnxaate91io1y",
+  "title": "Misc Mcq",
+  "description": "Department Book MCQ",
+  "icon": "🤰"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
     "question": "What is the primary function of Bartholins glands in the female external genitalia?",
     "options": [
       "Produce estrogen",
@@ -1011,12 +1026,15 @@ const QUESTIONS = [
     "explanation": "The success of pelvic reconstructive surgery is measured by both the anatomical correction of the bulge and the restoration of normal bowel, bladder, and sexual function."
   }
 ];
-/* [QUESTIONS_END] */
+/* [QUESTION_BANK_END] */
 </script>
 <script>
-(function(){
-  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
-  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
 })();
 </script>
 </body>
