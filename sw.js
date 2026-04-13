@@ -1,16 +1,34 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-f5e7402450e5';
+const CACHE_VERSION = 'mu61-quiz-v2-offline-fix';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
   'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap';
 
+const HTML2PDF_CDN =
+  'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+
 var PRECACHE_REL_PATHS = [
+  /* ── Core engines (all three must be cached for offline) ── */
   'quiz-engine.js',
   'bank-engine.js',
+  'index-engine.js',
+  /* ── Hub / tool pages ── */
   'index.html',
   'bank-maker.html',
+  'quiz-engine-test.html',
+  'quiz-maker-js.html',
+  /* ── Manifest & icons (needed for PWA install on offline) ── */
+  'manifest.webmanifest',
+  'favicon.svg',
+  'icon-48.png',
+  'icon-72.png',
+  'icon-96.png',
+  'icon-144.png',
+  'icon-192.png',
+  'icon-512.png',
+  /* ── Cardio ── */
   'Cardio/57th-end-round-1.html',
   'Cardio/57th-end-round-2.html',
   'Cardio/57th-end-round-3.html',
@@ -26,6 +44,7 @@ var PRECACHE_REL_PATHS = [
   'Cardio/damietta-qs.html',
   'Cardio/index.html',
   'Cardio/Misc.html',
+  /* ── Gyn — AI quizzes ── */
   'gyn/ai/index.html',
   'gyn/ai/l1-anatomy.html',
   'gyn/ai/l2-physiology.html',
@@ -42,6 +61,7 @@ var PRECACHE_REL_PATHS = [
   'gyn/ai/l13-endometriosis-adenomyosis.html',
   'gyn/ai/l14-endometrial-hyperplasia.html',
   'gyn/ai/l15-infertility.html',
+  /* ── Gyn — Department ── */
   'gyn/dep/all-department-book.html',
   'gyn/dep/index.html',
   'gyn/dep/l1-anatomy.html',
@@ -64,18 +84,21 @@ var PRECACHE_REL_PATHS = [
   'gyn/dep/l19-genital-infections-and-stis.html',
   'gyn/dep/l20-gynecological-oncology.html',
   'gyn/dep/misc-mcq.html',
+  /* ── Gyn — Extra MCQs & index ── */
   'gyn/extra-mcqs---gyn.html',
   'gyn/index.html',
+  /* ── Gyn — Mansoura ── */
   'gyn/mans/1---anatomy-physiology-embryology.html',
   'gyn/mans/2---amenorrhea-aub-ovulation.html',
   'gyn/mans/3---infertility.html',
   'gyn/mans/4---fibroid-endometriosis-adenomyosis.html',
   'gyn/mans/5---prolapse-infection.html',
   'gyn/mans/6---oncology.html',
-  'gyn/mans/7---dd.html',
+  'gyn/mans/7-dd.html',
   'gyn/mans/dr-alaa-mesbah.html',
   'gyn/mans/index.html',
   'gyn/mans/mans-mcq-bank.html',
+  /* ── Gyn — Past years ── */
   'gyn/past-years/55th-final.html',
   'gyn/past-years/57th-end-round-1.html',
   'gyn/past-years/57th-end-round-2.html',
@@ -91,30 +114,26 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/60th-midterm.html',
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
+  /* ── Pediatrics ── */
   'ped/index.html',
   'ped/pediactric---chapter-1-cardio.html',
   'ped/pediactric---chapter-2-chest.html',
   'ped/pediactric---chapter-3-emergency.html',
-  'quiz-engine-test.html',
-  'quiz-maker-js.html',
+  /* ── Surgery ── */
   'surg/dr-magdy-questions-breast.html',
   'surg/index.html'
 ];
 
+/* ── Build a full URL from scope + relative path ── */
 function hrefFromScope(scope, relPath) {
-  var parts = relPath.split('/');
-  var enc = parts
-    .map(function (p) {
-      return encodeURIComponent(p);
-    })
-    .join('/');
-  return new URL(enc, scope).href;
+  return new URL(relPath, scope).href;
 }
 
 function shouldStore(res) {
   return res && (res.ok || res.type === 'opaque');
 }
 
+/* ── Precache Google Fonts (CSS + @font-face files) ── */
 function precacheGoogleFonts(cache) {
   return fetch(GOOGLE_FONT_CSS, { mode: 'cors', credentials: 'omit' })
     .then(function (res) {
@@ -149,22 +168,32 @@ function precacheGoogleFonts(cache) {
     .catch(function () {});
 }
 
+/* ── Precache html2pdf.js CDN bundle for offline PDF export ── */
+function precacheHtml2Pdf(cache) {
+  return fetch(HTML2PDF_CDN, { mode: 'cors', credentials: 'omit' })
+    .then(function (res) {
+      if (res.ok) return cache.put(HTML2PDF_CDN, res);
+    })
+    .catch(function () {});
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INSTALL — precache everything
+   ══════════════════════════════════════════════════════════════ */
 self.addEventListener('install', function (event) {
   event.waitUntil(
     (async function () {
       var scope = self.registration.scope;
       var cache = await caches.open(CACHE_NAME);
 
-      var coreOnly = [
-        hrefFromScope(scope, 'manifest.webmanifest'),
-        hrefFromScope(scope, 'favicon.svg')
-      ];
+      /* Core assets (manifest + favicon) */
       await Promise.all(
-        coreOnly.map(function (u) {
-          return cache.add(u).catch(function () {});
+        ['manifest.webmanifest', 'favicon.svg'].map(function (f) {
+          return cache.add(hrefFromScope(scope, f)).catch(function () {});
         })
       );
 
+      /* All HTML + JS files */
       await Promise.all(
         PRECACHE_REL_PATHS.map(function (rel) {
           var u = hrefFromScope(scope, rel);
@@ -172,12 +201,18 @@ self.addEventListener('install', function (event) {
         })
       );
 
+      /* Cross-origin CDN resources */
       await precacheGoogleFonts(cache);
+      await precacheHtml2Pdf(cache);
+
       await self.skipWaiting();
     })()
   );
 });
 
+/* ══════════════════════════════════════════════════════════════
+   ACTIVATE — clean old caches, claim clients immediately
+   ══════════════════════════════════════════════════════════════ */
 self.addEventListener('activate', function (event) {
   event.waitUntil(
     (async function () {
@@ -192,7 +227,11 @@ self.addEventListener('activate', function (event) {
   );
 });
 
-/** HTML: network first (fresh when online, updates cache), then cache, then hub fallback. */
+/* ══════════════════════════════════════════════════════════════
+   FETCH — routing strategy
+   ══════════════════════════════════════════════════════════════ */
+
+/** Navigation requests (HTML pages): network-first with cache fallback + hub fallback. */
 function handleNavigate(event, request) {
   return (async function () {
     var cache = await caches.open(CACHE_NAME);
@@ -205,16 +244,24 @@ function handleNavigate(event, request) {
       }
       return res;
     } catch (err) {
+      /* Offline: try exact match first */
       var cached = await cache.match(request);
       if (cached) return cached;
-      var fb = await cache.match(new URL('index.html', self.registration.scope));
+
+      /* Try matching without query/hash (some browsers append them) */
+      var cleanUrl = request.url.split('?')[0].split('#')[0];
+      cached = await cache.match(cleanUrl);
+      if (cached) return cached;
+
+      /* Last resort: serve the main hub page */
+      var fb = await cache.match(hrefFromScope(self.registration.scope, 'index.html'));
       if (fb) return fb;
       throw err;
     }
   })();
 }
 
-/** Assets & cross-origin: cache first, then network (populate cache). */
+/** Assets & cross-origin: cache-first, then network (populates cache on miss). */
 function handleAsset(event, request) {
   return (async function () {
     var cache = await caches.open(CACHE_NAME);
@@ -229,11 +276,16 @@ function handleAsset(event, request) {
       }
       return res;
     } catch (err) {
+      /* Offline miss for asset — try matching without query string */
+      var cleanUrl = request.url.split('?')[0].split('#')[0];
+      var cachedClean = await cache.match(cleanUrl);
+      if (cachedClean) return cachedClean;
       throw err;
     }
   })();
 }
 
+/** Decide whether to use network-first (HTML) or cache-first (everything else). */
 function shouldNetworkFirst(req) {
   if (req.mode === 'navigate') return true;
   try {
