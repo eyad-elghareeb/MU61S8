@@ -2,15 +2,11 @@
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
-  # Deploy whenever Sync Quiz Assets completes successfully
+  # Deploy only after Sync Quiz Assets completes successfully
   workflow_run:
     workflows: ["Sync Quiz Assets"]
     types:
       - completed
-
-  # Also deploy on direct pushes to main (e.g. README-only changes that skip sync)
-  push:
-    branches: ["main"]
 
   workflow_dispatch:
 
@@ -29,13 +25,13 @@ concurrency:
 jobs:
   # Build job
   build:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'workflow_run' && 'refs/heads/main' || github.ref }}
+          ref: refs/heads/main
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll
@@ -48,7 +44,7 @@ jobs:
 
   # Deployment job
   deploy:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
