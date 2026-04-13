@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-2c1fd6fc095c';
+const CACHE_VERSION = 'mu61-quiz-d85ba293d025';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -91,6 +91,10 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/60th-midterm.html',
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
+  'ped/index.html',
+  'ped/pediactric---chapter-1-cardio.html',
+  'ped/pediactric---chapter-2-chest.html',
+  'ped/pediactric---chapter-3-emergency.html',
   'quiz-engine-test.html',
   'quiz-maker-js.html',
   'surg/dr-magdy-questions-breast.html',
