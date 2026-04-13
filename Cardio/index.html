@@ -470,84 +470,84 @@ const QUIZZES =[
     description: "Cardiology 61th Mid Exam",
     icon: "🫀",
     tags: ["Mid", "15 Questions"],
-    url: "61th mid.html"
+    url: "61th-mid.html"
   },
   {
     title: "60th Mid",
     description: "Cardiology 60th Mid Exam",
     icon: "🫀",
     tags: ["Mid", "15 Questions"],
-    url: "60th mid.html"
+    url: "60th-mid.html"
   },
   {
     title: "60th Final",
     description: "Cardiology 60th Final Exam",
     icon: "🫀",
     tags: ["Final", "15 Questions"],
-    url: "60th final.html"
+    url: "60th-final.html"
   },
   {
     title: "59th Mid",
     description: "Cardiology 59th Mid Exam",
     icon: "🫀",
     tags: ["Mid", "15 Questions"],
-    url: "59th mid.html"
+    url: "59th-mid.html"
   },
   {
     title: "59th Final",
     description: "Cardiology 59th Final Exam",
     icon: "🫀",
     tags: ["Final", "15 Questions"],
-    url: "59th final.html"
+    url: "59th-final.html"
   },
   {
     title: "58th Final",
     description: "Cardiology 58th Final Exam",
     icon: "🫀",
     tags: ["Final", "15 Questions"],
-    url: "58th final.html"
+    url: "58th-final.html"
   },
   {
     title: "58th End Round 1",
     description: "Cardiology 58th End Round 1",
     icon: "🫀",
     tags: ["End Round", "15 Questions"],
-    url: "58th end round 1.html"
+    url: "58th-end-round-1.html"
   },
   {
     title: "58th End Round 2",
     description: "Cardiology 58th End Round 2",
     icon: "🫀",
     tags: ["End Round", "15 Questions"],
-    url: "58th end round 2.html"
+    url: "58th-end-round-2.html"
   },
   {
     title: "57th Final",
     description: "Cardiology 57th Final Exam",
     icon: "🫀",
     tags: ["Final", "15 Questions"],
-    url: "57th final.html"
+    url: "57th-final.html"
   },
   {
     title: "57th End Round 1",
     description: "Cardiology 57th End Round 1",
     icon: "🫀",
     tags: ["End Round", "15 Questions"],
-    url: "57th end round 1.html"
+    url: "57th-end-round-1.html"
   },
   {
     title: "57th End Round 2",
     description: "Cardiology 57th End Round 2",
     icon: "🫀",
     tags: ["End Round", "15 Questions"],
-    url: "57th end round 2.html"
+    url: "57th-end-round-2.html"
   },
   {
     title: "57th End Round 3",
     description: "Cardiology 57th End Round 3",
     icon: "🫀",
     tags: ["End Round", "15 Questions"],
-    url: "57th end round 3.html"
+    url: "57th-end-round-3.html"
   },
   {
     title: "Misc",
@@ -570,17 +570,18 @@ const QUIZZES =[
 ──────────────────────────────────────────────────────────────────*/
 
 // 1. Render the Quiz Cards dynamically
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function renderQuizzes() {
   const grid = document.getElementById('quiz-grid');
   grid.innerHTML = QUIZZES.map(quiz => `
     <div class="quiz-card">
-      <div class="card-icon">${quiz.icon}</div>
-      <h2 class="card-title">${quiz.title}</h2>
-      <p class="card-desc">${quiz.description}</p>
+      <div class="card-icon">${escHtml(quiz.icon)}</div>
+      <h2 class="card-title">${escHtml(quiz.title)}</h2>
+      <p class="card-desc">${escHtml(quiz.description)}</p>
       <div class="card-meta">
-        ${quiz.tags.map(tag => `<span class="meta-badge">${tag}</span>`).join('')}
+        ${quiz.tags.map(tag => `<span class="meta-badge">${escHtml(tag)}</span>`).join('')}
       </div>
-      <a href="${quiz.url}" class="btn-take-quiz">Start Exam →</a>
+      <a href="${escHtml(quiz.url)}" class="btn-take-quiz">Start Exam →</a>
     </div>
   `).join('');
 }

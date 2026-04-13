@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_57th_final",
+  title: "57Th Final",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "The following IS NOT a component of the normal vaginal fluid:",
+    "options": [
+      "Cervical Mucus",
+      "Desquamated epithelial cells",
+      "Vaginal wall transudate.",
+      "Vaginal wall secretions.",
+      "Doderlein's bacilli."
+    ],
+    "correct": 3,
+    "explanation": "The vaginal wall does not contain glands; therefore, it produces a transudate rather than active secretions. Most vaginal moisture comes from the cervix and transudation."
+  },
+  {
+    "question": "The shape of hymenal opening in normal individuals include the following EXCEPT:",
+    "options": [
+      "Annular.",
+      "Crescentic.",
+      "Septate.",
+      "Cribriform.",
+      "Sigmoid."
+    ],
+    "correct": 4,
+    "explanation": "Normal variations of the hymen include annular, crescentic, septate, and cribriform shapes. A 'sigmoid' shape is not a recognized anatomical variant of the hymen."
+  },
+  {
+    "question": "The vulval blood supply is via the:",
+    "options": [
+      "Internal pudendal artery.",
+      "Vaginal artery.",
+      "Azygos artery.",
+      "Superior vesical artery.",
+      "Middle rectal artery."
+    ],
+    "correct": 0,
+    "explanation": "The internal pudendal artery is the main source of blood for the external genitalia (vulva) and the perineum."
+  },
+  {
+    "question": "The commonest presentation of endometrial carcinoma is:",
+    "options": [
+      "Abdominal distention.",
+      "Weight loss.",
+      "Postmenopausal bleeding.",
+      "Vaginal discharge.",
+      "Premenopausal bleeding"
+    ],
+    "correct": 2,
+    "explanation": "Postmenopausal bleeding is the hallmark symptom of endometrial cancer and must be investigated urgently to rule out malignancy."
+  },
+  {
+    "question": "If a suspicious lesion is seen on the cervix, it is best evaluated by which of the following methods?",
+    "options": [
+      "Repeat examination",
+      "Pap smear",
+      "Colposcopy and biopsy",
+      "Cervical conization",
+      "Vaginal steroid cream"
+    ],
+    "correct": 2,
+    "explanation": "When a visible lesion is present, colposcopy guided biopsy is the definitive step to obtain a histological diagnosis."
+  },
+  {
+    "question": "Which IS NOT derived from the internal iliac artery:",
+    "options": [
+      "The uterine artery.",
+      "The vaginal artery.",
+      "The middle vesical artery.",
+      "The middle hemorroidal artery.",
+      "The ovarian artery"
+    ],
+    "correct": 4,
+    "explanation": "The ovarian arteries arise directly from the abdominal aorta, just below the renal arteries, reflecting the embryological descent of the ovaries."
+  },
+  {
+    "question": "The INCORRECT statement regarding the pelvi-abdominal swelling in cases of imperforate hymen:",
+    "options": [
+      "It is a distended vagina full of menstrual fluid",
+      "it is a distended uterine cavity full of menstrual fluid.",
+      "is soft and cystic",
+      "Clinically it may resemble an ovarian cyst.",
+      "Could result in acute retention of urine."
+    ],
+    "correct": 2,
+    "explanation": "Swelling from hematocolpos or hematometra is typically tense, firm, and tender rather than soft and cystic."
+  },
+  {
+    "question": "The presence of a uterus in a phenotypically normal male is due to:",
+    "options": [
+      "Lack of mullerian inhibiting factor.",
+      "Lack of testosterone",
+      "Increased levels of estrogens.",
+      "46. XX karyotype",
+      "Presence of ovarian tissue early in embryonic development."
+    ],
+    "correct": 0,
+    "explanation": "Persistent Müllerian Duct Syndrome occurs in males when there is a deficiency in Müllerian Inhibiting Factor (MIF), allowing the uterus and tubes to develop."
+  },
+  {
+    "question": "Anomalies of the following system are commonly associated with mullerian deformities:",
+    "options": [
+      "Cardiovascular system",
+      "urinary system",
+      "Gastrointestinal system",
+      "musculoskeletal system",
+      "Respiratory system."
+    ],
+    "correct": 1,
+    "explanation": "Because the renal and reproductive systems share a common mesodermal origin, up to 30-40% of women with Müllerian anomalies also have renal anomalies."
+  },
+  {
+    "question": "Ultrasound IS NOT useful in the following condition:",
+    "options": [
+      "Suspected ectopic pregnancy.",
+      "Suspected missed abortion.",
+      "Pelvic swelling",
+      "diagnosis of rectocele",
+      "diagnosis of polycystic ovarian disease"
+    ],
+    "correct": 3,
+    "explanation": "A rectocele is a clinical diagnosis made during a physical exam (Valsalva maneuver); ultrasound is rarely used or needed for this purpose."
+  },
+  {
+    "question": "A 43-year-old woman is complaining of chronic pelvic pain and menorrhagia that is unresponsive to hormonal therapy. The uterus is symmetrically enlarged and tender. The most likely diagnosis is:",
+    "options": [
+      "Endometriosis",
+      "Adenomyosis",
+      "Endometrial Carcinoma",
+      "Ovarian Carcinoma",
+      "uterine sub serous fibroid"
+    ],
+    "correct": 1,
+    "explanation": "The clinical triad of menorrhagia, dysmenorrhea, and a symmetrically enlarged, 'globular,' tender uterus is highly suggestive of adenomyosis."
+  },
+  {
+    "question": "The most common site of uterine myoma is:",
+    "options": [
+      "Sub serous.",
+      "Interstitial",
+      "Sub mucous.",
+      "Cornual.",
+      "Cervical."
+    ],
+    "correct": 1,
+    "explanation": "Interstitial (intramural) fibroids are the most common type, located within the thick muscular wall of the uterus."
+  },
+  {
+    "question": "The portio vaginalis is what part of the cervix:",
+    "options": [
+      "That which extends cephalad from the vagina",
+      "That which protrudes into the vagina",
+      "That which forms an internal isthmus",
+      "That which is normally covered with end cervical epithelium",
+      "That which opens into the uterus"
+    ],
+    "correct": 1,
+    "explanation": "The portio vaginalis is the distal portion of the cervix that projects into the upper end of the vaginal canal."
+  },
+  {
+    "question": "Surgical removal of benign ovarian tumors is essential if any of the following diagnosed EXCEPT:",
+    "options": [
+      "Malignant transformation.",
+      "Torsion.",
+      "Incarceration.",
+      "Vaginal bleeding.",
+      "Rupture."
+    ],
+    "correct": 3,
+    "explanation": "Benign ovarian tumors do not typically cause vaginal bleeding; bleeding usually indicates uterine pathology or hormonal issues."
+  },
+  {
+    "question": "A 34-year-old woman seeks consultation for menorrhagia and dysmenorrhea have developed during the past year. Her pelvic examination reveals an 8-week- uterus with no evidence of an adnexal mass. A pregnancy test is negative, and the hematocrit is 31.2%. Which of the following is the FIRST DIAGNOSTIC test to perform?",
+    "options": [
+      "Ultrasound.",
+      "Hysterosalpingography (HSG).",
+      "Magnetic resonance imaging of the pelvis.",
+      "Endometrial biopsy.",
+      "Computed tomography scanning."
+    ],
+    "correct": 0,
+    "explanation": "Pelvic ultrasound is the first-line imaging modality to evaluate uterine size, shape, and the presence of fibroids or adenomyosis."
+  },
+  {
+    "question": "The abnormal pattern of bleeding that appears in conjunction with a short phase is called:",
+    "options": [
+      "Menorrhagia.",
+      "Menometrorrhagia.",
+      "Polymenorrhea.",
+      "Anovulatory bleeding.",
+      "Metrorrhagia."
+    ],
+    "correct": 2,
+    "explanation": "Polymenorrhea refers to frequent menstrual cycles occurring at intervals of less than 21 days."
+  },
+  {
+    "question": "Persistent vaginal discharge in a pediatric patient should prompt a search for which of the following?",
+    "options": [
+      "Foreign body.",
+      "Pinworms.",
+      "Illicit drug use.",
+      "Vaginal lacerations.",
+      "Ectopic ureter."
+    ],
+    "correct": 0,
+    "explanation": "In children, a persistent, foul-smelling, often bloody vaginal discharge is most commonly caused by a retained foreign body."
+  },
+  {
+    "question": "The following statements about trichomonas vaginalis are correct EXCEPT:",
+    "options": [
+      "Trichomonas vaginalis (TV) may be a sexually transmitted",
+      "Most patients, having TV have symptoms.",
+      "The disease may cause vulval itching",
+      "Unlike bacterial vaginosis, metronidazole is an ineffective therapy",
+      "It may cause a strawberry appearance of the cervix."
+    ],
+    "correct": 3,
+    "explanation": "Metronidazole is actually the treatment of choice for Trichomoniasis, as well as for Bacterial Vaginosis."
+  },
+  {
+    "question": "The most important suspensory mechanism of the urethra is:",
+    "options": [
+      "Anterior pubourethral ligaments.",
+      "Intermediate pubourethral ligaments.",
+      "Posterior pubourethral ligaments.",
+      "White line",
+      "Pubocervical fascia"
+    ],
+    "correct": 0,
+    "explanation": "The anterior pubourethral ligaments provide critical anatomical support to the distal urethra, maintaining its position during stress."
+  },
+  {
+    "question": "Uterovesical fistula usually presents with:",
+    "options": [
+      "Amenorrhea.",
+      "Menuria.",
+      "Dysmenorrhea.",
+      "Terminal hematuria.",
+      "True incontinence."
+    ],
+    "correct": 1,
+    "explanation": "Menuria (the presence of blood in the urine during menstruation) is a characteristic symptom of a fistula between the uterus and the bladder (Youssef syndrome)."
+  },
+  {
+    "question": "Continence of urine depends on the following:",
+    "options": [
+      "Positive urethral closure pressure.",
+      "Negative urethral closure pressure.",
+      "Reversal of the controlled intraurethral",
+      "Negative intraperitoneal pressure.",
+      "Relaxed detrusor muscle."
+    ],
+    "correct": 0,
+    "explanation": "Urinary continence is maintained as long as the pressure within the urethra exceeds the pressure within the bladder (positive closure pressure)."
+  },
+  {
+    "question": "Invasive cancer of the cervix:",
+    "options": [
+      "Worldwide, it is the commonest malignant tumor in women.",
+      "It occurs most commonly in women under the age of 40 years.",
+      "It is usually of squamous type.",
+      "It occurs less commonly in smokers.",
+      "It is uncommon in developing countries."
+    ],
+    "correct": 2,
+    "explanation": "Squamous cell carcinoma accounts for about 80-90% of all invasive cervical cancers."
+  },
+  {
+    "question": "Pelvic examination of a 19-year old woman who complains of lower abdominal discomfort reveals mobile, six-centimeter mass in the anterior cul-de-sac. The most likely diagnosis is what?",
+    "options": [
+      "Serous carcinoma.",
+      "Urachal cyst.",
+      "Benign cystic teratoma.",
+      "Intra-ligamentous fibroid.",
+      "Cervical carcinoma"
+    ],
+    "correct": 2,
+    "explanation": "In a young woman, a mobile mass in the anterior cul-de-sac (above the bladder) is most frequently a dermoid cyst (benign cystic teratoma)."
+  },
+  {
+    "question": "The major mode of spread of ovarian neoplasms is by:",
+    "options": [
+      "Ovarian vein",
+      "Ovarian lymphatic",
+      "Pelvic Lymphatics",
+      "Local Extension",
+      "Trans-peritoneal spread"
+    ],
+    "correct": 4,
+    "explanation": "The most common and characteristic way ovarian cancer spreads is through trans-coelomic/peritoneal seeding (exfoliation of cells)."
+  },
+  {
+    "question": "Cancer ovary commonly presents by:",
+    "options": [
+      "Menorrhagia",
+      "Metrorrhagia",
+      "Gastrointestinal Upset",
+      "Urinary retention",
+      "change in voice"
+    ],
+    "correct": 1,
+    "explanation": "While GI upset is common, the provided answer key indicates metrorrhagia for this specific examination context."
+  },
+  {
+    "question": "Which tumor of the ovary is commonly hormone secreting?",
+    "options": [
+      "Serous cyst adenomas.",
+      "Granulosa cell tumors.",
+      "Transitional cell tumors.",
+      "Clear cell adenocarcinoma.",
+      "Mature cystic teratomas."
+    ],
+    "correct": 1,
+    "explanation": "Granulosa cell tumors are sex-cord stromal tumors that characteristically produce high levels of estrogen."
+  },
+  {
+    "question": "A tumor marker that is useful in screening for epithelial cancer:",
+    "options": [
+      "CA 19.9",
+      "CA 125",
+      "Alkaline phosphatase.",
+      "Alpha feto-protein.",
+      "LDH"
+    ],
+    "correct": 1,
+    "explanation": "CA-125 is the primary tumor marker used for monitoring epithelial ovarian cancer, though its use in general screening is limited due to low specificity."
+  },
+  {
+    "question": "Bicornuate uterus might predispose to:",
+    "options": [
+      "Recurrent preterm labor.",
+      "Primary amenorrhea.",
+      "Recurrent oblique lie.",
+      "Retention of the placenta after delivery.",
+      "Menorrhagia"
+    ],
+    "correct": 4,
+    "explanation": "Based on the exam key provided, menorrhagia is the indicated answer, although malpresentation and preterm labor are also major clinical risks."
+  },
+  {
+    "question": "What is the correct order of the four sections of the uterus?",
+    "options": [
+      "Ampulla, isthmus, infundibulum and interstitium",
+      "interstitium, isthmus, ampulla and infundibulum",
+      "interstitium, ampulla, isthmus and infundibulum",
+      "infundibulum, isthmus, ampulla and interstitium",
+      "infundibulum, ampulla, isthmus and interstitium"
+    ],
+    "correct": 4,
+    "explanation": "This question refers to the fallopian tube segments from lateral to medial: Infundibulum, Ampulla, Isthmus, and Interstitial (interstitium) part."
+  },
+  {
+    "question": "The average blood loss resulting from menstruation is:",
+    "options": [
+      "10 to 15ml",
+      "25 to 50 ml",
+      "75 to 100ml",
+      "101 to 125ml",
+      "130 to 150ml"
+    ],
+    "correct": 1,
+    "explanation": "The typical blood loss during a normal menstrual period is estimated between 25 and 50 mL; loss exceeding 80 mL is considered abnormal."
+  },
+  {
+    "question": "The morula leaves the fallopian tube and enters the uterine cavity after approximately what period of time post-fertilization?",
+    "options": [
+      "1 day",
+      "3 days",
+      "5 days",
+      "7 days",
+      "35%"
+    ],
+    "correct": 2,
+    "explanation": "After fertilization in the ampulla, the developing morula reaches the uterine cavity about 3 to 5 days later."
+  },
+  {
+    "question": "According to WHO (world health organization), routine criteria the percentage of normal morphology of normal semen analysis is:",
+    "options": [
+      ">30%",
+      "<30%",
+      ">50%",
+      ">70%",
+      ">90%"
+    ],
+    "correct": 0,
+    "explanation": "According to older WHO guidelines cited in this document, a normal semen sample should contain more than 30% sperm with normal morphology."
+  },
+  {
+    "question": "Which of the following would be the most effective means of determining the presence of a growing or in patient who has gestational trophoblastic disease??",
+    "options": [
+      "Serial chest x-rays",
+      "Size of adnexal masses",
+      "Evaluation of menstrual function",
+      "Presence of lactation",
+      "Serial HCG titre"
+    ],
+    "correct": 4,
+    "explanation": "Serial measurements of serum beta-HCG are the gold standard for monitoring progress and detecting recurrence or malignancy in gestational trophoblastic disease."
+  },
+  {
+    "question": "Endometriosis characteristically occurs in women who are:",
+    "options": [
+      "In lower socio-economic group.",
+      "Perimenopausal.",
+      "Nulliparous.",
+      "Using IUCD.",
+      "Using Oral contraceptives."
+    ],
+    "correct": 2,
+    "explanation": "Endometriosis is more frequently diagnosed in women who have not had children (nulliparous), often nicknamed 'the career woman's disease' in older literature."
+  },
+  {
+    "question": "For postmenopausal women in whom hyperplasia with atypia of the endometrium has been diagnosed by fractional dilatation and curettage, what is the appropriate management?",
+    "options": [
+      "Endometrial ablation.",
+      "Hysterectomy preceded by radiation",
+      "Hysterectomy followed by radiation",
+      "Hysterectomy and bilateral salpingo-oophorectomy",
+      "Oophorectomy."
+    ],
+    "correct": 3,
+    "explanation": "Atypical endometrial hyperplasia is a high-risk precursor to cancer; in a postmenopausal woman, the definitive treatment is TAH and BSO."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

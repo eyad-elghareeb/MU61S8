@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "cardio_60th_final",
+  title: "60th Final Exam",
+  description: "Cardio 60th Batch Final Examination",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "A 55-year-old male ceramic factory worker presents with dry cough, progressive breathlessness, and bilateral infra-scapular Velcro crackles. PFTs show restrictive changes (decreased TLC, DLCO, and VC) with an FEV1/FVC ratio of 98%. What is the most probable diagnosis?",
+    "options": [
+      "COPD",
+      "Silicosis",
+      "Pneumonia",
+      "Asbestosis",
+      "TB"
+    ],
+    "correct": 1,
+    "explanation": "The patient's occupation in a ceramic factory is a classic risk factor for Silicosis[cite: 45]. The clinical findings of dry cough, exertional dyspnea, Velcro crackles, and a restrictive pattern on lung function tests (high FEV1/FVC ratio and low volumes/DLCO) are characteristic of pneumoconiosis[cite: 45]."
+  },
+  {
+    "question": "Which of the following medications is classified as a Long-Acting Beta2-Agonist (LABA)?",
+    "options": [
+      "Indacaterol",
+      "Ipratropium bromide",
+      "Oxytropium bromide",
+      "Salbutamol",
+      "Tiotropium bromide"
+    ],
+    "correct": 0,
+    "explanation": "Indacaterol is a Long-Acting Beta2-Agonist (LABA)[cite: 45]. In contrast, Salbutamol is short-acting (SABA), while Ipratropium and Tiotropium are muscarinic antagonists (SAMA and LAMA respectively)[cite: 45]."
+  },
+  {
+    "question": "In the treatment regimen for smear-positive pulmonary tuberculosis, which drugs are used during the Continuation phase?",
+    "options": [
+      "Amikacin plus Ofloxacin",
+      "Ethambutol plus INH",
+      "Ethambutol plus Pyrazinamide",
+      "Rifampicin plus INH",
+      "Streptomycin plus INH"
+    ],
+    "correct": 3,
+    "explanation": "The standard continuation phase for tuberculosis treatment typically consists of Rifampicin and Isoniazid (INH)[cite: 45]."
+  },
+  {
+    "question": "Which of the following is considered the investigation of choice for an undiagnosed pleural effusion?",
+    "options": [
+      "CT chest with contrast",
+      "Medical thoracoscopy",
+      "Bronchoscopy",
+      "PET scan",
+      "V/Q scan"
+    ],
+    "correct": 1,
+    "explanation": "Medical thoracoscopy is the gold standard for investigating undiagnosed pleural effusions as it allows for direct visualization of the pleura and targeted biopsies[cite: 45]."
+  },
+  {
+    "question": "The 'Signet ring sign' on a high-resolution CT chest is a characteristic finding of which disease?",
+    "options": [
+      "Bronchiectasis",
+      "COPD",
+      "Interstitial lung disease",
+      "Empyema with bronchopleural fistula",
+      "Lung abscess"
+    ],
+    "correct": 0,
+    "explanation": "The Signet ring sign is a classic CT finding in bronchiectasis[cite: 49]. It represents a dilated bronchus seen in cross-section alongside its smaller accompanying pulmonary artery[cite: 49]."
+  },
+  {
+    "question": "A 30-year-old female with epilepsy presents with fever and foetid sputum related to specific postures. What would you expect to find on her chest X-ray?",
+    "options": [
+      "Bilateral pulmonary infiltrates",
+      "Cavitary lesion with air fluid level",
+      "Honey comb appearance",
+      "Obliterated costophrenic angle",
+      "Lobar consolidation"
+    ],
+    "correct": 1,
+    "explanation": "The history of epilepsy (risk for aspiration) and foetid sputum suggests a lung abscess[cite: 49]. The characteristic X-ray finding for a lung abscess is a cavitary lesion containing an air-fluid level[cite: 49]."
+  },
+  {
+    "question": "A patient with severe COPD has the following ABG results: pH 7.36, PaCO2 65 mmHg, PaO2 50 mmHg, and HCO3 36 mEq/L. What is the acid-base disturbance?",
+    "options": [
+      "Uncompensated respiratory acidosis",
+      "Fully compensated respiratory acidosis",
+      "Metabolic alkalosis with respiratory compensation",
+      "Mixed respiratory and metabolic acidosis",
+      "Partially compensated respiratory acidosis"
+    ],
+    "correct": 1,
+    "explanation": "The pH is within the normal range (7.35-7.45) despite a high PaCO2 (respiratory acidosis), and the HCO3 is significantly elevated[cite: 49]. This indicates that the kidneys have fully compensated for the chronic respiratory acidosis[cite: 49]."
+  },
+  {
+    "question": "What is the most feared complication associated with atrial fibrillation?",
+    "options": [
+      "Systemic embolization",
+      "Bronchopulmonary infections",
+      "Hypertension",
+      "Left atrial dilatation",
+      "Cardiac rupture"
+    ],
+    "correct": 0,
+    "explanation": "Systemic embolization, particularly leading to ischemic stroke, is the most dangerous and feared complication of atrial fibrillation due to blood stasis in the left atrium[cite: 49]."
+  },
+  {
+    "question": "Alcohol septal ablation is a specialized treatment intervention for which condition?",
+    "options": [
+      "Dilated cardiomyopathy",
+      "Ischemic cardiomyopathy",
+      "Hypertrophic cardiomyopathy",
+      "Restrictive cardiomyopathy",
+      "Aortic stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Alcohol septal ablation is used to treat symptomatic Hypertrophic Cardiomyopathy (HCM) by inducing a small, controlled myocardial infarction in the septal wall to reduce outflow tract obstruction[cite: 53]."
+  },
+  {
+    "question": "Which congenital heart defect is most commonly associated with Down syndrome?",
+    "options": [
+      "TGA",
+      "PDA",
+      "Coarctation of the aorta",
+      "Atrioventricular septal defect (AVSD)",
+      "ASD"
+    ],
+    "correct": 3,
+    "explanation": "Atrioventricular septal defect (AVSD), also known as an endocardial cushion defect, is the most common cardiac anomaly found in patients with Down syndrome[cite: 53]."
+  },
+  {
+    "question": "Which of the following is NOT an indication for a permanent pacemaker?",
+    "options": [
+      "Complete heart block without reversible cause",
+      "Symptomatic chronotropic incompetence",
+      "Asymptomatic Mobitz II without reversible cause",
+      "Mobitz I without symptoms",
+      "Symptomatic sinus bradycardia < 40 BPM"
+    ],
+    "correct": 3,
+    "explanation": "Mobitz Type I (Wenckebach) second-degree AV block is often benign and, if asymptomatic, does not typically require a permanent pacemaker[cite: 53]."
+  },
+  {
+    "question": "A 63-year-old woman presents with exertional angina, syncope, a systolic ejection murmur radiating to the carotids, and a soft S2. What is the most likely diagnosis?",
+    "options": [
+      "Mitral stenosis",
+      "Mitral insufficiency",
+      "Aortic stenosis",
+      "Aortic insufficiency",
+      "Tricuspid stenosis"
+    ],
+    "correct": 2,
+    "explanation": "The classic triad of angina, syncope, and heart failure (SAD) combined with a systolic ejection murmur radiating to the carotids is diagnostic of Aortic Stenosis[cite: 53]."
+  },
+  {
+    "question": "A 35-year-old female presents with progressive dyspnea, BP 90/60 mmHg, congested neck veins, and an ECG showing electrical alternans. What is the diagnosis?",
+    "options": [
+      "Myocardial infarction",
+      "Aortic stenosis",
+      "Pericardial effusion",
+      "Infective endocarditis",
+      "Atrial fibrillation"
+    ],
+    "correct": 2,
+    "explanation": "Electrical alternans on ECG, coupled with hypotension and congested neck veins (part of Beck's triad), is highly suggestive of a large pericardial effusion or cardiac tamponade[cite: 57]."
+  },
+  {
+    "question": "Which of the following drugs is NOT considered one of the 'four pillars' of modern heart failure treatment?",
+    "options": [
+      "Digoxin",
+      "Carvedilol",
+      "Sacubitril/valsartan",
+      "Spironolactone",
+      "Empagliflozin"
+    ],
+    "correct": 0,
+    "explanation": "The four pillars are: 1. ARNI (Sacubitril/valsartan) or ACEi/ARB; 2. Beta-blockers (e.g., Carvedilol); 3. Mineralocorticoid receptor antagonists (e.g., Spironolactone); and 4. SGLT2 inhibitors (e.g., Empagliflozin). Digoxin is used for symptom control but is not a primary pillar[cite: 57]."
+  },
+  {
+    "question": "A 50-year-old male has chest pain during exercise, ST depression on ECG, and a positive troponin test. What is the most likely diagnosis?",
+    "options": [
+      "Streptokinase should be given",
+      "NSTEMI is likely diagnosis",
+      "He has class IV angina",
+      "Immediate coronary angiography is needed",
+      "Unstable angina is a likely diagnosis"
+    ],
+    "correct": 1,
+    "explanation": "The presence of positive troponins (myocardial necrosis) with ST depression (rather than ST elevation) confirms the diagnosis of NSTEMI[cite: 57]. Fibrinolytics like Streptokinase are contraindicated in NSTEMI[cite: 57]."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

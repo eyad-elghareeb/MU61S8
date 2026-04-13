@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_58th_end_round_3",
+  title: "58Th End Round 3",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "Which of the following characteristics of the normal ovary is correct?",
+    "options": [
+      "They normally remain constant in size throughout a woman's lifetime",
+      "They are supported by the round ligaments",
+      "They are exocrine glands and store germ cells",
+      "They lie in the true pelvis",
+      "They are immobile"
+    ],
+    "correct": 3,
+    "explanation": "The ovaries are located within the true pelvis, attached to the broad ligament by the mesovarium."
+  },
+  {
+    "question": "Most of the cervical cancers are described histopathologically as which of the following types?",
+    "options": [
+      "Adenocarcinoma",
+      "Malignant melanoma",
+      "Sarcoma",
+      "Neuroendocrinal tumours",
+      "Squamous cell carcinoma"
+    ],
+    "correct": 4,
+    "explanation": "Approximately 70-80% of cervical cancers are squamous cell carcinomas, arising from the transformation zone of the cervix."
+  },
+  {
+    "question": "The absence of the vagina is common in which of the following?",
+    "options": [
+      "Congenital adrenal hyperplasia in a female infant",
+      "Turner's syndrome",
+      "Association with an absent or rudimentary uterus",
+      "Medication-induced fetal masculinization of a female infant",
+      "Gonadal dysgenesis"
+    ],
+    "correct": 2,
+    "explanation": "Müllerian agenesis (MRKH syndrome) is characterized by the congenital absence of the vagina and is frequently associated with an absent or rudimentary uterus."
+  },
+  {
+    "question": "The procedure most suitable for the investigation of chronic pelvic pain is:",
+    "options": [
+      "Cystoscopy",
+      "Hysteroscopy",
+      "Hysterosalpingogram",
+      "Laparoscopy",
+      "Colonoscopy"
+    ],
+    "correct": 3,
+    "explanation": "Laparoscopy is the gold standard for investigating chronic pelvic pain, allowing direct visualization of conditions like endometriosis and pelvic adhesions."
+  },
+  {
+    "question": "A 40-year-old woman is found on pelvic examination to have an enlarged uterus. Ultrasound reveals a well-circumscribed intramural mass consistent with the leiomyoma. What is the incidence of sarcomatous degeneration in a uterine leiomyoma?",
+    "options": [
+      "<1%",
+      "3%",
+      "10%",
+      "15%",
+      "30%"
+    ],
+    "correct": 0,
+    "explanation": "Malignant transformation of a benign leiomyoma into a leiomyosarcoma is extremely rare, occurring in less than 1% of cases."
+  },
+  {
+    "question": "The colposcope permits one to do which of the following?",
+    "options": [
+      "View the cervix at 1-4 power magnification",
+      "See the entire transition zone in all patients",
+      "Choose the most suspicious areas on the cervical portio to biopsy",
+      "Treat invasive cancer with a biopsy",
+      "Make the diagnosis of cancer"
+    ],
+    "correct": 2,
+    "explanation": "Colposcopy allows the clinician to visualize the cervix under magnification and identify the most suspicious areas for targeted biopsy."
+  },
+  {
+    "question": "The clitoris is a major sensory sexual organ. Where does it get its major nerve supply from?",
+    "options": [
+      "Lumbar spinal nerve",
+      "Pudendal nerve",
+      "Femoral nerve",
+      "Ilioinguinal nerve",
+      "Anterior gluteal nerve"
+    ],
+    "correct": 1,
+    "explanation": "The primary sensory innervation of the clitoris is provided by the dorsal nerve of the clitoris, which is a terminal branch of the pudendal nerve."
+  },
+  {
+    "question": "A procedure that detects ovum release from the follicle;",
+    "options": [
+      "Colposcopy",
+      "Laparoscopy",
+      "Hysteroscopy",
+      "HSG",
+      "Ultrasound"
+    ],
+    "correct": 4,
+    "explanation": "Serial transvaginal ultrasound can monitor the growth of a follicle and document its sudden disappearance or collapse, which indicates ovulation."
+  },
+  {
+    "question": "Which of the following is not a risk factor for endometrial cancer?",
+    "options": [
+      "Polycystic ovarian disease",
+      "Tamoxifen therapy",
+      "Smoking",
+      "Use of vegetables and fruits in excess in postmenopausal period",
+      "Hereditary non-polyposis colorectal cancer"
+    ],
+    "correct": 3,
+    "explanation": "A diet high in fruits and vegetables is generally protective or neutral; interestingly, smoking is often associated with a decreased risk of endometrial cancer, though it is not a recommended health behavior."
+  },
+  {
+    "question": "Meiosis I of the oocytes is completed at which of the following times?",
+    "options": [
+      "Birth",
+      "Ovulation",
+      "Puberty",
+      "Fertilization",
+      "2 years old"
+    ],
+    "correct": 1,
+    "explanation": "Primary oocytes remain arrested in prophase I until the LH surge, which triggers the completion of the first meiotic division just prior to ovulation."
+  },
+  {
+    "question": "Premenstrual syndrome has a constellation of possible symptoms. Which of the following would not be expected?",
+    "options": [
+      "Weight loss",
+      "Constipation",
+      "Abdominal bloating",
+      "Breast tenderness",
+      "Anxiety"
+    ],
+    "correct": 0,
+    "explanation": "PMS is typically characterized by fluid retention and weight gain rather than weight loss."
+  },
+  {
+    "question": "With regard to the lower genital tract: which of the following is correct?",
+    "options": [
+      "Lower genital tract is lined by stratified squamous epithelium throughout life",
+      "Vaginal pH is increased under the influence of oestrogen",
+      "The pH after the menopause is around 7.0.",
+      "Embryologically derived from cloaca",
+      "Candida is the commonest cause of abnormal vaginal discharge in women of childbearing age"
+    ],
+    "correct": 2,
+    "explanation": "In the absence of estrogen after menopause, the vaginal pH rises from acidic levels to a more neutral range, approximately 6.0 to 7.0."
+  },
+  {
+    "question": "A 6-year-old girl experiences irregular vaginal bleeding. She is taller than her peers and has early breast development. Serum gonadotropin levels are low and remain unchanged after IV administration of GnRH. What is the most likely diagnosis?",
+    "options": [
+      "Corpus luteum cyst",
+      "Endometrioma",
+      "Epoophoron",
+      "Fibroma",
+      "Granulosa cell tumour."
+    ],
+    "correct": 4,
+    "explanation": "The combination of precocious puberty and suppressed gonadotropins suggests a peripheral source of estrogen, such as an estrogen-secreting granulosa cell tumor."
+  },
+  {
+    "question": "After menopause increased facial hair growth occurs due to",
+    "options": [
+      "Fall in FSH level",
+      "Increase in LH level",
+      "Decrease estrogen androgen ratio",
+      "Decrease androgen level",
+      "Constitutional effect"
+    ],
+    "correct": 2,
+    "explanation": "Postmenopausal hair growth is caused by the significant drop in estrogen, which decreases the estrogen-to-androgen ratio and allows androgens to have a more pronounced effect."
+  },
+  {
+    "question": "A 22-year-old woman experiences amenorrhea of 6 months' duration. Physical examination demonstrates normal breast development and normal pelvic organs. Serum TSH and prolactin levels are normal. A serum pregnancy test is negative. What would be the next course of action?",
+    "options": [
+      "Administer progesterone.",
+      "Administer estrogen followed by progesterone",
+      "Measure circulating estrogen levels",
+      "Measure circulating testosterone levels",
+      "Obtain radiologic evaluation of the sella turcica"
+    ],
+    "correct": 0,
+    "explanation": "A progesterone challenge test is the standard next step to determine if there is sufficient endogenous estrogen to prime the endometrium."
+  },
+  {
+    "question": "Where do the Bartholin's glands' ducts open?",
+    "options": [
+      "Into the midline of the posterior fourchette",
+      "Bilaterally, beneath the urethra",
+      "Bilaterally, on the inner surface of the labia majora",
+      "Bilaterally, into the posterior part of vaginal vestibule",
+      "Bilaterally, approximately 1 cm lateral to the clitoris"
+    ],
+    "correct": 3,
+    "explanation": "Bartholin's gland ducts open into the vaginal vestibule at the 4 and 8 o'clock positions, outside the hymenal ring."
+  },
+  {
+    "question": "An 18-year-old lady presents for evaluation of disabling pain with her menstrual periods. History is otherwise unremarkable, and pelvic examination is normal. You diagnose primary dysmenorrhea and recommend initial treatment with which of the following?",
+    "options": [
+      "Combined oral contraceptives containing levonorgestrel.",
+      "Anti prostaglandin",
+      "Gonadotropin-releasing hormone (GnRH) analogues",
+      "Danazol",
+      "Codeine"
+    ],
+    "correct": 1,
+    "explanation": "NSAIDs (anti-prostaglandins) are first-line therapy for primary dysmenorrhea because they inhibit the prostaglandin production responsible for the pain."
+  },
+  {
+    "question": "Which of the following statements are true regarding Turner syndrome?",
+    "options": [
+      "There are no classic physical stigmata of the syndrome",
+      "They comprise the minority of patients with gonadal dysgenesis.",
+      "Although the uterus and vagina are normal, patients with the syndrome have streak gonads and subsequently present with primary amenorrhea.",
+      "It is an example of hypogonadotropic hypogonadism",
+      "It is due to partial or complete loss of autosome"
+    ],
+    "correct": 2,
+    "explanation": "In Turner syndrome (45,X), the external and internal female genitalia are present, but the ovaries fail to develop properly, resulting in streak gonads."
+  },
+  {
+    "question": "A 46-year-old, non-pregnant, morbidly obese woman presents with irregular periods over the past 6 months. Which of the following represents the most appropriate initial management in this setting?",
+    "options": [
+      "Oral contraceptives",
+      "Endometrial biopsy",
+      "Office hysteroscopy",
+      "Dilation and curettage",
+      "Endometrial ablation"
+    ],
+    "correct": 1,
+    "explanation": "In an obese woman over age 45 with abnormal bleeding, an endometrial biopsy is necessary to rule out endometrial hyperplasia or carcinoma."
+  },
+  {
+    "question": "Hysterosalpingography is a procedure used in basic evaluation of infertile lady. Which of the following regarding this procedure is correct?",
+    "options": [
+      "The procedure is done premenstrually",
+      "Distorted cavity could be diagnosed appropriately",
+      "Lipiodol is a commonly used water soluble iodinated contrast material",
+      "Employing Lipiodol, delayed film isessential to appropriately interpreting the test results",
+      "Subserus fibroid may be diagnosed with this procedure"
+    ],
+    "correct": 3,
+    "explanation": "When using oil-based contrast (Lipiodol), a 24-hour delayed film is required to assess for the presence of peritoneal spill."
+  },
+  {
+    "question": "Which of the following is a cornerstone for detection of ovarian neoplasia?",
+    "options": [
+      "CA-125",
+      "Human chorionic gonadotropin",
+      "Pelvic examination.",
+      "Pelvic ultrasound",
+      "Alpha-fetoprotein"
+    ],
+    "correct": 3,
+    "explanation": "Pelvic ultrasound is the primary diagnostic cornerstone for evaluating and detecting ovarian masses after physical exam suspicion."
+  },
+  {
+    "question": "Using WHO classification for Semen Analysis interpretation, choose the false statement is:",
+    "options": [
+      "The normal lower limit for normal morphology is 4%",
+      "The normal lower limit for sperm motility is 32%",
+      "Viability should be at least 58%",
+      "The normal lower limit for sperm concentration is 39 million/mL",
+      "Seminal fluid has alkaline PH and liquefy within 20 min"
+    ],
+    "correct": 3,
+    "explanation": "Per WHO guidelines, 39 million is the lower limit for the total sperm count per ejaculate, whereas the limit for concentration is 15 million/mL."
+  },
+  {
+    "question": "A 24-year old G0 has history of unprotected intercourse. Her examination is notable only for the presence of abnormal vaginal discharge. Which of the following is not a part of your comprehensive assessment?",
+    "options": [
+      "Contraceptive management",
+      "Cervical cultures",
+      "Sexually transmitted infection counselling",
+      "Cervical smear screening",
+      "Saline wet mount test/slide preparation"
+    ],
+    "correct": 4,
+    "explanation": "According to the provided exam key, the saline wet mount is not considered a part of the 'comprehensive assessment' in this specific multiple-choice context."
+  },
+  {
+    "question": "Regarding the pathophysiology of pelvic organ prolapse, which of the following is correct?",
+    "options": [
+      "Pelvic organ prolapse is commoner in nulliparous women",
+      "Pelvic organ prolapse is never seen in nulliparous women.",
+      "Prolapse is commoner after the menopause partly due to oestrogen deficiency.",
+      "Epidural in labour is a risk factor",
+      "Forceps delivery is not a risk factor"
+    ],
+    "correct": 2,
+    "explanation": "Postmenopausal estrogen deficiency leads to the thinning and weakening of pelvic support tissues, increasing the risk of prolapse."
+  },
+  {
+    "question": "Which of the following is the most common pelvic mass in a postmenopausal woman?",
+    "options": [
+      "Leiomyoma.",
+      "Corpus luteum cyst",
+      "Germ-cell tumor",
+      "Follicular cyst",
+      "Endometrioma"
+    ],
+    "correct": 0,
+    "explanation": "Uterine leiomyomas (fibroids) are the most common pelvic masses found in adult women, including those who are postmenopausal."
+  },
+  {
+    "question": "Kegel exercises were designed to do which of the following?",
+    "options": [
+      "Strengthen the abdominal muscles after childbirth",
+      "Increase the blood flow to the perineum",
+      "Improve the tone of the muscles surrounding the bladder base and proximal bladder neck.",
+      "Prevent denervation of pelvic muscles",
+      "Decrease the muscle atrophy associated with aging"
+    ],
+    "correct": 2,
+    "explanation": "Kegel exercises strengthen the levator ani muscles, which helps improve the support of the bladder neck and proximal urethra to prevent incontinence."
+  },
+  {
+    "question": "What is the fate of most of the ovarian follicles that begin to develop at each cycle?",
+    "options": [
+      "They develop and ovulate at some time during the person's life",
+      "They continue to grow, forming follicle cysts",
+      "They regress to primordial follicles",
+      "They remain to continue their development in the next cycle",
+      "They undergo atresia"
+    ],
+    "correct": 4,
+    "explanation": "In each cycle, multiple follicles begin to develop, but usually only one becomes dominant and ovulates while the others undergo atresia."
+  },
+  {
+    "question": "Involuntary urine loss accompanied by or immediately preceded by a strong desire to void:",
+    "options": [
+      "Urinary urge incontinence.",
+      "Genuine stress incontinence (or urodynamic stress incontinence)",
+      "Incontinence",
+      "Overflow incontinence",
+      "Detrusor instability (or over-activity)"
+    ],
+    "correct": 0,
+    "explanation": "Urge incontinence is defined as involuntary leakage of urine associated with a sudden, strong need to urinate."
+  },
+  {
+    "question": "Which of the following is the most likely etiology for infertility in women with endometriosis?",
+    "options": [
+      "abnormalities of endocervical mucus.",
+      "Implantation defect",
+      "Ovulatory dysfunction",
+      "Tubal obstruction",
+      "Dyspareunia"
+    ],
+    "correct": 3,
+    "explanation": "Endometriosis often causes pelvic inflammation and adhesions that lead to mechanical tubal obstruction or anatomical distortion."
+  },
+  {
+    "question": "A 16-year-old G0P0 patient reports delayed onset of menses, the sudden onset of severe pain, and syncope. A serum pregnancy test is negative. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Ectopic pregnancy",
+      "Pelvic inflammatory disease",
+      "Endometriosis",
+      "Appendicitis",
+      "Ruptured corpus luteum cyst of the ovary."
+    ],
+    "correct": 4,
+    "explanation": "A negative pregnancy test rules out ectopic pregnancy. Sudden pain and syncope in this age group are commonly associated with a ruptured ovarian cyst."
+  },
+  {
+    "question": "A 2-year-old girl is brought in for evaluation of vaginal bleeding. Physical examination shows grape-like lesions protruding from the vaginal introitus. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Condyloma acuminata",
+      "Hymenal tags",
+      "Sarcoma botryoides",
+      "Urethral prolapse",
+      "Vaginal polyps"
+    ],
+    "correct": 2,
+    "explanation": "Sarcoma botryoides (embryonal rhabdomyosarcoma) is a rare vaginal tumor in young children that classically presents with 'bunch of grapes' appearance."
+  },
+  {
+    "question": "Which of the following pubertal events in girls is not estrogen-dependent?",
+    "options": [
+      "Menses",
+      "Vaginal cornification",
+      "Reaching adult height.",
+      "Hair growth.",
+      "Production of cervical mucus"
+    ],
+    "correct": 2,
+    "explanation": "Reaching adult height is primarily influenced by growth hormone and insulin-like growth factors, though estrogen eventually causes epiphyseal closure."
+  },
+  {
+    "question": "A 42-year old lady presented with contact bleeding for the past 6 months. After examination, Severe cervical dysplasia was diagnosed by Pap smear followed by colonoscopies confirmation. Which of the following is the most appropriate next action?",
+    "options": [
+      "Simple hysterectomy",
+      "Loop electrical excision procedure (LEEP)",
+      "Radical trachelectomy",
+      "Follow up with Pap smear after 6 month",
+      "pelvic radiation treatment"
+    ],
+    "correct": 1,
+    "explanation": "LEEP is the preferred excisional procedure to treat high-grade cervical dysplasia (CIN 2 or CIN 3) and provide a specimen for pathology."
+  },
+  {
+    "question": "In an amenorrheic patient who has had pituitary ablation for a craniopharyngioma, which of the following regimens is most likely to result in an ovulatory cycle?",
+    "options": [
+      "Clomiphene citrate",
+      "Pulsatile infusion of gonadotropin-releasing hormone (GnRH)",
+      "Continuous infusion of GnRH",
+      "Human menopausal or recombinant gonadotropin",
+      "Human menopausal or recombinant gonadotropin followed by human chorionic gonadotropin"
+    ],
+    "correct": 4,
+    "explanation": "In the absence of a pituitary gland, ovulation induction requires exogenous gonadotropins to grow follicles, followed by hCG to mimic the LH surge."
+  },
+  {
+    "question": "Regarding the menstrual cycle, which is the true statement?",
+    "options": [
+      "Menstruation occurs with vasodilation of the spiral arteries",
+      "The LH surge triggers menstruation",
+      "The Graafian follicle develops during the luteal phase",
+      "Both the follicle and the corpus luteum secrete oestradiol.",
+      "Progesterone levels fall after the onset of menstruation."
+    ],
+    "correct": 3,
+    "explanation": "Estradiol is produced by the granulosa cells of the developing follicle and subsequently by the corpus luteum during the luteal phase."
+  },
+  {
+    "question": "A patient has unilateral ovarian carcinoma. What is the most common site of metastases from this tumor?",
+    "options": [
+      "Contralateral ovary",
+      "Peritoneum.",
+      "Uterus",
+      "Liver",
+      "Lung"
+    ],
+    "correct": 0,
+    "explanation": "Ovarian cancer cells frequently travel across the peritoneal cavity and involve the contralateral ovary."
+  },
+  {
+    "question": "A 36-year-old morbidly obese woman presents by heavy menstruation. An office endometrial biopsy shows complex hyperplasia of the endometrium without atypia. The hyperplasia is most likely related to the excess formation in the patient's adipose tissue of which of the following hormones?",
+    "options": [
+      "Estriol",
+      "Estradiol",
+      "Estrone",
+      "Androstenedione",
+      "Dehydroepiandrosterone"
+    ],
+    "correct": 2,
+    "explanation": "Adipose tissue contains the enzyme aromatase, which converts androstenedione into estrone, a weak estrogen that can cause endometrial hyperplasia."
+  },
+  {
+    "question": "According to the FIGO fibroid classification system type 3 is;",
+    "options": [
+      "50% or more of the fibroid diameter within the myometrium.",
+      "Intramural and entirely within the myometrium, without extension to either the endometrial surface or to the serosa",
+      "Touch the endometrium without any intra-cavitary component",
+      "Located in cervix or broad ligament",
+      "Could be appropriately treated by hysteroscopic procedure"
+    ],
+    "correct": 2,
+    "explanation": "FIGO Type 3 leiomyomas are intramural and reach the endometrial surface but do not extend into the uterine cavity."
+  },
+  {
+    "question": "Different sex hormones have different effects on the cervical mucus. Which of the following statements accurately describes the effect of estrogen?",
+    "options": [
+      "It decreases the water content of cervical mucus.",
+      "It decreases the palm leaf crystallization pattern of mucus upon drying (ferning).",
+      "It decreases formation of glycoprotein channels, which favor sperm penetration.",
+      "It increases cervical mucus stretchability (spinnbarkeit).",
+      "It increases the amount of potassium chloride in the cervical mucus."
+    ],
+    "correct": 3,
+    "explanation": "Under the influence of estrogen, cervical mucus becomes thin, watery, and very elastic (high spinnbarkeit) to facilitate sperm passage."
+  },
+  {
+    "question": "During the evaluation of secondary amenorrhea in a 24-year-old woman, hyperprolactinemia is diagnosed. Which of the following conditions could cause increased circulating prolactin concentration and amenorrhea in this patient?",
+    "options": [
+      "Stress.",
+      "Primary hyperthyroidism",
+      "Anorexia nervosa",
+      "Congenital adrenal hyperplasia",
+      "Polycystic ovarian disease"
+    ],
+    "correct": 0,
+    "explanation": "Stress (physical or emotional) is a known physiological cause that can lead to transient increases in prolactin levels."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

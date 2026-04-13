@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_58th_final",
+  title: "58Th Final",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "The uterus and adnexa have some relatively fixed anatomic characteristics that can be noted on pelvic examination or laparoscopic observation. Which of the following characteristics would you most likely find in a normal patient?",
+    "options": [
+      "Retroflexion of the uterus.",
+      "Ovaries caudal to the cervix",
+      "Round ligaments attached to the uterus posterior to the insertion of the fallopian tube",
+      "Immobility of the uterus",
+      "Cervix not palpable on rectal examination"
+    ],
+    "correct": 0,
+    "explanation": "According to the provided exam key, retroflexion of the uterus is the selected answer. While anteversion-anteflexion is the most common position, retroflexion is a recognized normal variant found in a significant portion of women."
+  },
+  {
+    "question": "Hysterosalpingography is least helpful on detecting which of the following?",
+    "options": [
+      "Tubal patency",
+      "Pelvic adhesions.",
+      "Asherman syndrome",
+      "Congenital uterine anomalies",
+      "FIGO type(1-2) fibroids"
+    ],
+    "correct": 1,
+    "explanation": "Hysterosalpingography (HSG) visualizes the uterine cavity and tubal lumen. It cannot directly visualize pelvic adhesions unless they cause tubal occlusion or distortion. Laparoscopy is the gold standard for diagnosing pelvic adhesions."
+  },
+  {
+    "question": "Control of blood loss during menstruation does not appropriately involve which of the following mechanisms?",
+    "options": [
+      "Thrombus formation",
+      "Platelet aggregation",
+      "Vasoconstriction of spiral arteries",
+      "Myometrial contractions",
+      "Regeneration of endometrium"
+    ],
+    "correct": 3,
+    "explanation": "According to the provided answer key, myometrial contractions are the selected answer. However, physiologically, myometrial contractions (living ligatures) are crucial for hemostasis. The regeneration of the endometrium is a repair mechanism, not a hemostatic one. Please note the discrepancy with standard physiology, but this reflects the provided key."
+  },
+  {
+    "question": "A 7-year-old girl is brought in to see you by her mother because the girl has developed breasts and has a few pubic hairs starting to show up. Which of the following is the best treatment for the girl's condition?",
+    "options": [
+      "Exogenous gonadotropins",
+      "Low dose combined oral contraceptive.",
+      "GnRH agonists.",
+      "Danazol inhibit.",
+      "No treatment； reassure the mother that pubertal symptoms at age 7 are normal"
+    ],
+    "correct": 2,
+    "explanation": "Precocious puberty is defined as the onset of secondary sexual characteristics before age 8 in girls. If central precocious puberty is diagnosed, GnRH agonists are the treatment of choice to halt progression and preserve adult height potential."
+  },
+  {
+    "question": "Which of the following is the most commonly diagnosed ovarian malignancy during pregnancy?",
+    "options": [
+      "Dysgerminoma",
+      "Choriocarcinoma",
+      "Immature teratoma",
+      "Granulosa cell tumour",
+      "Mucinous adenocarcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Dysgerminoma is the most common malignant germ cell tumor and the most common ovarian malignancy diagnosed during pregnancy."
+  },
+  {
+    "question": "To decrease the risk of uterine perforation during sharp dilatation and curettage, which of the following is the first surgical step?",
+    "options": [
+      "Uterine sounding",
+      "Uterine dilation",
+      "Bimanual examination",
+      "Transvaginal sonography",
+      "Traction applied on posterior lip of the cervix"
+    ],
+    "correct": 2,
+    "explanation": "A bimanual examination is essential before any instrumentation to determine the size, shape, and position (anteverted/retroverted) of the uterus to guide the instruments correctly and avoid perforation."
+  },
+  {
+    "question": "A 16-year-old girl presents with a fever (39℃), nausea, pelvic pain, and generalized malaise a few days after unprotected intercourse. What is the most likely diagnosis?",
+    "options": [
+      "Primary herpes simplex infection",
+      "Syphilis",
+      "Lymphogranuloma venereum",
+      "Bartholin gland abscess",
+      "Trichomoniasis"
+    ],
+    "correct": 0,
+    "explanation": "Primary HSV infection can present with systemic symptoms like fever, malaise, and nausea, along with painful genital lesions. While PID is a strong differential, the specific combination of high fever and systemic malaise shortly after exposure is characteristic of primary HSV in this context according to the key."
+  },
+  {
+    "question": "The conservative non-surgical management of uterine fibroid is a good alternative when indicated. Which of the following is the best to control the volume/ growth of that pathology?",
+    "options": [
+      "Progestin- releasing intrauterine system",
+      "Tranexamic acid",
+      "Gonadotropin releasing hormone agonists.",
+      "Mefenamic acid",
+      "Low dose combined oral contraceptives"
+    ],
+    "correct": 2,
+    "explanation": "GnRH agonists induce a hypoestrogenic state, which leads to a significant reduction in fibroid volume (shrinkage). Other options mainly manage bleeding symptoms without significantly reducing fibroid size."
+  },
+  {
+    "question": "Infertility secondary to anovulation is most often attributed to which of the following disorders?",
+    "options": [
+      "Hypothyroidism",
+      "Hyperprolactinemia",
+      "Ovarian hyperthecosis",
+      "Hypogonadotropic hypogonadism",
+      "Polycystic ovarian syndrome"
+    ],
+    "correct": 4,
+    "explanation": "Polycystic Ovarian Syndrome (PCOS) is the most common cause of anovulatory infertility."
+  },
+  {
+    "question": "Urinary incontinence is a major problem for some women. Which of the following characteristics of the female urethra helps prevent incontinence?",
+    "options": [
+      "Its 15- to 20-cm length",
+      "Its junction with the bladder at the level of the midtrigone",
+      "Its true anatomic sphincter",
+      "Its intrinsic resting tone.",
+      "Its upper two-thirds integration with the anterior vaginal wall"
+    ],
+    "correct": 3,
+    "explanation": "The intrinsic resting tone of the urethral smooth muscle and the vascular submucosal plexus contribute significantly to urethral closure pressure at rest, helping to prevent incontinence."
+  },
+  {
+    "question": "What are the classic risk factors for primary dysmenorrhea?",
+    "options": [
+      "Age more than 30, BMI more than 30 & smoker",
+      "Age more than 25, BMI more than 25 & non smoker",
+      "Age more than 30, BMI less than 30 & non smoker",
+      "Age less than 30, BMI less than 30 & non smoker",
+      "Age<30 years, BMI<20 kg/m2, smoking"
+    ],
+    "correct": 4,
+    "explanation": "Risk factors for primary dysmenorrhea include young age, low BMI, and smoking. It typically affects adolescents and young women."
+  },
+  {
+    "question": "Which symptom of leiomyomas is not correctly paired with its common pathophysiology?",
+    "options": [
+      "Asymptomatic- FIGO. (0) fibroid",
+      "Menorrhagia-dilatation of venules",
+      "Pelvic pressure-mechanical compression",
+      "Acute pelvic pain-leiomyoma degeneration",
+      "Infertility-bilateral cornual FIGO (2-5) fibroids"
+    ],
+    "correct": 0,
+    "explanation": "FIGO Type 0 fibroids are submucosal and pedunculated within the cavity. They are highly symptomatic, typically causing heavy menstrual bleeding, rather than being asymptomatic."
+  },
+  {
+    "question": "Which of the following hormones 'rescues' the corpus luteum from luteolysis?",
+    "options": [
+      "Luteinizing hormone",
+      "Human placental lactogen",
+      "Follicle-stimulating hormone",
+      "Human chorionic gonadotropin",
+      "Gonadotropin releasing hormone"
+    ],
+    "correct": 3,
+    "explanation": "Human Chorionic Gonadotropin (hCG), produced by the syncytiotrophoblast of the developing embryo, binds to LH receptors on the corpus luteum, maintaining its function and progesterone production during early pregnancy."
+  },
+  {
+    "question": "An infertile couple presents to you for evaluation. A semen analysis from the husband is ordered. The sample of 2.5 cc contains 25 million sperm per milliliter; 65% of the sperm show normal morphology; 20% of the sperm show progressive forward mobility. You should tell the couple which of the following?",
+    "options": [
+      "The sample is normal but of no clinical value because of the low sample volume",
+      "The sample is normal and should not be a factor in the couple's infertility",
+      "The sample is abnormal because the percentage of sperm with normal morphology is too low",
+      "The sample is abnormal due to an inadequate number of sperm per milliliter",
+      "The sample is abnormal due to a low percentage of forwardly mobile sperm"
+    ],
+    "correct": 4,
+    "explanation": "According to WHO criteria, progressive motility should be ≥32% (or total motility ≥40%). While 20% is low, the key indicates this is the abnormality. Note: Morphology of 65% is very high (normal is ≥4%), and count of 25 million/mL is normal (≥15 million/mL)."
+  },
+  {
+    "question": "A 37-year-old woman with an eating disorder (chronic bulimia) presents for infertility evaluation. Your work-up identifies ovulatory dysfunction with low levels of estrogen and gonadotropins. What is the best method of ovulation induction?",
+    "options": [
+      "Clomiphene citrate",
+      "Human menopausal gonadotropin",
+      "Bromocryptine mesylate",
+      "Aromatase inhibitors",
+      "Continuous GnRH analogue therapy"
+    ],
+    "correct": 1,
+    "explanation": "In hypothalamic amenorrhea (low GnRH leading to low FSH/LH and low estrogen), the ovaries are intact but not stimulated. Clomiphene requires an intact HPO axis feedback loop. Therefore, direct stimulation with gonadotropins (hMG) is required."
+  },
+  {
+    "question": "Performance of which component of the routine pelvic examination varies most among health providers and is more often performed on specific indications?",
+    "options": [
+      "Perineal inspection",
+      "Rectovaginal examination",
+      "Bimanual palpation of the uterus and adnexa",
+      "Speculum examination of the cervix and vagina",
+      "Palpation of the Bartholin gland"
+    ],
+    "correct": 1,
+    "explanation": "The rectovaginal examination is not routinely performed in all asymptomatic women but is indicated for specific conditions like evaluating the uterosacral ligaments, rectovaginal septum, or posterior pelvic masses."
+  },
+  {
+    "question": "In premenarchal girls, which of the following is the most common source of abnormal bleeding?",
+    "options": [
+      "Ovary",
+      "Uterus",
+      "Vagina",
+      "Urethra",
+      "Anus"
+    ],
+    "correct": 2,
+    "explanation": "In premenarchal girls, vaginal bleeding is most commonly due to local vaginal causes such as vaginitis, foreign bodies, or trauma, rather than uterine hormonal shedding."
+  },
+  {
+    "question": "The lateral boundary of Pouch of Douglas is formed of:",
+    "options": [
+      "Round ligament",
+      "Cardinal ligament",
+      "Posterior aspect of cervix",
+      "Rectum",
+      "Uterosacral ligament"
+    ],
+    "correct": 4,
+    "explanation": "The Pouch of Douglas (rectouterine pouch) is bounded anteriorly by the posterior fornix of the vagina and posterior surface of the uterus/cervix, posteriorly by the rectum, and laterally by the uterosacral ligaments."
+  },
+  {
+    "question": "A 68-year-old woman presents for her examination and complains vulvar pruritus. A thickened, white plaque is noted on her vulvar skin. What is the most appropriate next?",
+    "options": [
+      "Biopsy the lesion in the office",
+      "Prescribe steroid cream and reevaluate in 3 months",
+      "Prescribe estrogen cream and reevaluate in 3 months",
+      "Perform a wide local excision in the operating room",
+      "Perform VIA test"
+    ],
+    "correct": 0,
+    "explanation": "Any suspicious vulvar lesion, especially a thickened white plaque (leukoplakia) in a postmenopausal woman, requires biopsy to rule out Vulvar Intraepithelial Neoplasia (VIN) or squamous cell carcinoma before initiating treatment."
+  },
+  {
+    "question": "Which of the following statements concerning endometriosis is true?",
+    "options": [
+      "Malignant changes are common",
+      "Accurate diagnosis is established by history and physical examination",
+      "It is more common in perimenopausal women",
+      "Affected women may present with subfertility",
+      "The ovary is the least affected site"
+    ],
+    "correct": 3,
+    "explanation": "Endometriosis is strongly associated with infertility/subfertility. Malignant change is rare, diagnosis is confirmed by laparoscopy/histology, it is most common in reproductive years, and the ovary is one of the most common sites."
+  },
+  {
+    "question": "Which of the following is not a contraindication of estrogen replacement therapy in women?",
+    "options": [
+      "Vasomotor symptoms",
+      "Active liver disease",
+      "Known or suspected breast carcinoma",
+      "Abnormal genital bleeding of unknown etiology",
+      "Active or history of thromboembolic disease"
+    ],
+    "correct": 0,
+    "explanation": "Vasomotor symptoms (hot flashes) are the primary indication for estrogen replacement therapy, not a contraindication. The other options are absolute or relative contraindications."
+  },
+  {
+    "question": "The risk of untreated cervical intraepithelial neoplasia (CIN) 3 lesions progressing over 30 years to invasive cancer approximates what percentage?",
+    "options": [
+      "10 percent",
+      "20 percent",
+      "65 percent",
+      "50 percent",
+      "30 percent."
+    ],
+    "correct": 4,
+    "explanation": "Studies suggest that approximately 30% (or more, depending on the study, up to 50%) of untreated CIN 3 lesions may progress to invasive cancer over a long period (e.g., 30 years). The key selects 30%."
+  },
+  {
+    "question": "What are the effects of increased intrauterine pressures in hysteroscopy?",
+    "options": [
+      "Increased bleeding",
+      "Increased intravasation",
+      "Limited visualization",
+      "Limited operating space",
+      "Decrease the circulating fluid load"
+    ],
+    "correct": 1,
+    "explanation": "High intrauterine pressure during hysteroscopy can force distension media into open venous channels, leading to increased fluid intravasation, which can cause fluid overload and electrolyte disturbances."
+  },
+  {
+    "question": "Regarding cervical cancer, which of the following is incorrect?",
+    "options": [
+      "Cervical cancer is the fourth commonest cancer in women worldwide.",
+      "Cervical cancer is decreasing in mortality worldwide",
+      "Human papilloma virus (HPV) types 14 and 18 are the most commonly associated with cervical cancer",
+      "Cervical cancer is so rare in women under 25 years that screening is not necessary before this age",
+      "Cervical cancer could be a preventable disease"
+    ],
+    "correct": 2,
+    "explanation": "The statement is incorrect because HPV types **16** and 18 are the most commonly associated with cervical cancer, not 14 and 18. HPV 14 is not a high-risk type in this context."
+  },
+  {
+    "question": "According to the Rotterdam criteria, which of the following is not a criterion for sonographic findings in PCOS?",
+    "options": [
+      "Ovarian volume >10 ml",
+      "At least 12 follicles per ovary",
+      "Follicles 2-9 mm in mean diameter",
+      "Only one ovary with findings is sufficient to define",
+      "Hyperdense stroma"
+    ],
+    "correct": 4,
+    "explanation": "The Rotterdam criteria for PCOS ultrasound include ovarian volume >10 mL and/or 12 or more follicles measuring 2-9 mm. Increased stromal density/echogenicity is a feature but is not part of the strict Rotterdam diagnostic criteria definition."
+  },
+  {
+    "question": "A 60-year-old woman has abnormal uterine bleeding. Transvaginal sonography reveals a 15- mm endometrial thickness and an 8-cm, solid right adnexal mass. Office endometrial biopsy reveals grade 1 endometrioid adenocarcinoma of the uterus arising in a background of complex atypical hyperplasia. What is the most likely diagnosis?",
+    "options": [
+      "Endometrial cancer metastatic to the ovary",
+      "Synchronous ovarian and endometrial cancer",
+      "Pedunculated leiomyoma and endometrial cancer",
+      "Ovarian granulosa cell tumor and endometrial cancer",
+      "Brenner Tumor of the ovary and endometrial cancer"
+    ],
+    "correct": 3,
+    "explanation": "Granulosa cell tumors are sex cord-stromal tumors that secrete estrogen. This unopposed estrogen stimulation can cause endometrial hyperplasia and endometrial carcinoma. The presence of a solid adnexal mass and endometrial cancer suggests this association."
+  },
+  {
+    "question": "Which circumstance best describes the typical candidate of the Le Fort's obliterative procedure used in treating genital descent?",
+    "options": [
+      "Desires future fertility",
+      "Desires future coital activity",
+      "Is medically compromised or elderly",
+      "Has abnormal uterine bleeding requiring concomitant hysterectomy",
+      "Patient refusing surgical intervention"
+    ],
+    "correct": 2,
+    "explanation": "Le Fort's colpocleisis is an obliterative procedure that closes the vagina. It is reserved for elderly, medically frail women who are not sexually active and are poor candidates for extensive reconstructive surgery."
+  },
+  {
+    "question": "Which of the following is least likely to aid the diagnosis of a rectovaginal fistula?",
+    "options": [
+      "Vaginoscopy",
+      "Barium enema",
+      "Noncontrast computed tomography",
+      "Tampon in the vagina with methylene blue instilled in the rectum",
+      "Proctoscopy"
+    ],
+    "correct": 2,
+    "explanation": "Noncontrast CT provides poor soft tissue detail for identifying small fistulous tracts compared to contrast studies (barium enema), direct visualization (proctoscopy/vaginoscopy), or dye tests."
+  },
+  {
+    "question": "A 49-year-old woman experiences irregular vaginal bleeding of 3 months' duration. You perform an endometrial biopsy, and the pathologist report reveals a simple hyperplasia with absent cytologic atypia. Which of the following is the best way to advise the patient?",
+    "options": [
+      "She should be treated to estrogen and progestin hormone therapy.",
+      "The tissue will progress to cancer in approximately 10% of cases.",
+      "No further therapy is needed.",
+      "She requires a hysterectomy.",
+      "The tissue may be weakly premalignant and progresses to cancer in approximately 1% of cases."
+    ],
+    "correct": 4,
+    "explanation": "Simple hyperplasia without atypia has a very low risk of progression to endometrial cancer (approximately 1% over 20 years). It is often managed with progestins or observation, but the key counseling point is the low risk."
+  },
+  {
+    "question": "A 60-year-old postmenopausal woman presents for evaluation of genital tract bleeding, which is confirmed as uterine in origin by physical examination. Which diagnostic procedure is logical for her evaluation?",
+    "options": [
+      "Colposcopy",
+      "Transvaginal sonography.",
+      "Saline infusion sonography",
+      "Diagnostic hysteroscopy",
+      "Computed tomography"
+    ],
+    "correct": 1,
+    "explanation": "Transvaginal sonography is the initial imaging modality of choice for postmenopausal bleeding to measure endometrial thickness. If the endometrium is thin (<4-5mm), further evaluation may not be needed. If thick, biopsy/hysteroscopy follows."
+  },
+  {
+    "question": "Dyspareunia is a frequent gynecologic complaint reported by up to 20 percent of reproductive aged women. It can be sub classified as insertional (superficial) or deep. Which of the following is most commonly associated with deep dyspareunia?",
+    "options": [
+      "Vaginitis",
+      "Endometriosis",
+      "Uterine malposition",
+      "Insufficient vaginal lubrication",
+      "Chronic PID"
+    ],
+    "correct": 1,
+    "explanation": "Deep dyspareunia is characteristically associated with endometriosis, particularly when implants are present in the uterosacral ligaments or pouch of Douglas. Superficial dyspareunia is more associated with vaginitis or lubrication issues."
+  },
+  {
+    "question": "In which of the following patients is karyotyping most strongly indicated?",
+    "options": [
+      "A 22-year-old woman with secondary amenorrhea and hirsutism",
+      "A 25-year-old woman with secondary amenorrhea and elevated prolactin level",
+      "A 20-year-old woman with primary amenorrhea and Mullerian structures present on exam w sonography",
+      "A 16-year-old woman with primary amenorrhea and a persistently elevated follicle-stimulating hormone level of 80 mIU/mL",
+      "A 15-year old women with absent flow with secondary sex characters exist."
+    ],
+    "correct": 3,
+    "explanation": "Primary amenorrhea with hypergonadotropic hypogonadism (high FSH) suggests gonadal dysgenesis (e.g., Turner syndrome or Swyer syndrome). Karyotyping is essential to determine the genetic sex and presence of Y chromosome material."
+  },
+  {
+    "question": "Which of the following is the only class of hormones relevant to the embryogenesis of the external genitalia?",
+    "options": [
+      "Androgens.",
+      "Estrogens",
+      "Cortisol",
+      "Human chorionic gonadotropin",
+      "Progesterone"
+    ],
+    "correct": 0,
+    "explanation": "Differentiation of the external genitalia into male structures requires the presence of dihydrotestosterone (an androgen). In the absence of androgens, the external genitalia develop along female lines regardless of genetic sex."
+  },
+  {
+    "question": "A 23-year-old G1P1 patient is using barrier contraception and is 1 week past onset of her last menses. She is found to have bilaterally equal adnexal pain; cervical motion tenderness, direct abdominal tenderness; temperature, 101.3°F; and WBC, 12,000. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Ectopic pregnancy",
+      "PID.",
+      "Endometriosis",
+      "Urinary tract infection",
+      "Ruptured corpus luteum cyst of the Ovary"
+    ],
+    "correct": 1,
+    "explanation": "The triad of lower abdominal pain, cervical motion tenderness (chandelier sign), and adnexal tenderness, accompanied by fever and leukocytosis, is the classic clinical presentation of Pelvic Inflammatory Disease (PID)."
+  },
+  {
+    "question": "A 16-year-old phenotypic girl is seen for primary amenorrhea. Karyotyping shows 46, XY. In counseling, you advise gonadectomy under which of the following circumstances?",
+    "options": [
+      "when she is finished growing.",
+      "if the gonads are not in the normal location in the pelvis",
+      "primarily because of the risk of malignancy.",
+      "primarily because there is no chance of pregnancy",
+      "primarily because she will become virilized"
+    ],
+    "correct": 2,
+    "explanation": "In patients with Androgen Insensitivity Syndrome (46,XY), the intra-abdominal testes have a significant risk of developing germ cell tumors (gonadoblastoma/dysgerminoma). Gonadectomy is recommended primarily to prevent malignancy, often after puberty to allow for spontaneous breast development."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

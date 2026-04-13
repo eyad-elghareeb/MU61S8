@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "cardio_60th_mid",
+  title: "60th Mid Exam",
+  description: "Cardio 60th Batch Mid Examination",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "Which of the following is true regarding a positive reversibility test in asthma?",
+    "options": [
+      "An increase of ≥12% and 200 ml in FEV1 after inhaling budesonide",
+      "An increase of ≥12% and 200 ml in FEV1 after inhaling a short acting β2 agonist",
+      "An increase of ≥20% and 200 ml in FEV1 after inhaling a short acting β2 agonist",
+      "An increase of ≥30% and 200 ml in FEV1 after inhaling budesonide",
+      "An increase of ≥15% and 200 ml in FEV1 after inhaling a short acting β2 agonist"
+    ],
+    "correct": 1,
+    "explanation": "A positive bronchodilator reversibility test is defined as an increase in FEV1 of >12% and >200 mL from the baseline, typically measured 10-15 minutes after inhaling a short-acting β2 agonist (SABA) like salbutamol."
+  },
+  {
+    "question": "According to GINA guidelines 2024, which of the following is recommended as a rescue medication for asthma?",
+    "options": [
+      "Inhaled budesonide",
+      "Leukotriene modifiers",
+      "Long acting β2 agonist",
+      "Long acting β2 agonist / Budesonide",
+      "Long-acting Muscarinic antagonist"
+    ],
+    "correct": 3,
+    "explanation": "Modern GINA guidelines favor the use of a combined ICS-formoterol (Inhaled Corticosteroid/LABA) inhaler as the preferred reliever/rescue medication across all steps to reduce the risk of severe exacerbations."
+  },
+  {
+    "question": "Which genetic disorder is characterized by the triad of bronchiectasis, sinusitis, and situs inversus (often presenting as dextrocardia)?",
+    "options": [
+      "Marfan syndrome",
+      "Alpha-1 antitrypsin deficiency",
+      "Kartagener syndrome",
+      "Ehlers-Danlos syndrome",
+      "Allergic bronchopulmonary Aspergillosis"
+    ],
+    "correct": 2,
+    "explanation": "Kartagener syndrome is a subset of primary ciliary dyskinesia characterized by the clinical triad of bronchiectasis, chronic sinusitis, and situs inversus (dextrocardia)."
+  },
+  {
+    "question": "A 47-year-old patient with bronchiectasis presents with fever and green sputum; culture confirms Pseudomonas aeruginosa. What is the most appropriate antibiotic?",
+    "options": [
+      "Amoxicillin-clavulanate",
+      "Doxycycline",
+      "Ciprofloxacin",
+      "Clarithromycin",
+      "Trimethoprim-sulfamethoxazole"
+    ],
+    "correct": 2,
+    "explanation": "Ciprofloxacin is a fluoroquinolone and is one of the few oral antibiotics with reliable activity against Pseudomonas aeruginosa, making it a standard choice for treating such exacerbations in bronchiectasis."
+  },
+  {
+    "question": "What is considered the gold standard for the definitive diagnosis of Interstitial Lung Disease (ILD)?",
+    "options": [
+      "Chest X-ray",
+      "Bronchoalveolar lavage",
+      "High-resolution CT chest (HRCT)",
+      "Lung biopsy",
+      "Spirometry"
+    ],
+    "correct": 3,
+    "explanation": "While HRCT is essential for suggesting the pattern of ILD, a lung biopsy (surgical or cryobiopsy) remains the gold standard for a definitive histopathological diagnosis when imaging is not conclusive."
+  },
+  {
+    "question": "What is the primary anatomical cause of hoarseness of voice in patients with lung cancer?",
+    "options": [
+      "Recurrent laryngeal nerve infiltration",
+      "Sympathetic chain infiltration",
+      "Vagus nerve infiltration",
+      "Brachial plexus infiltration",
+      "Phrenic nerve infiltration"
+    ],
+    "correct": 0,
+    "explanation": "Hoarseness in lung cancer often results from the tumor (especially left-sided) infiltrating or compressing the recurrent laryngeal nerve, which supplies the intrinsic muscles of the larynx."
+  },
+  {
+    "question": "A 23-year-old male with liver cirrhosis and emphysematous changes/bullae on X-ray most likely suffers from which condition?",
+    "options": [
+      "Chronic bronchitis",
+      "Bronchial asthma",
+      "Bronchiectasis",
+      "Alpha1-antitrypsin deficiency",
+      "Interstitial lung fibrosis"
+    ],
+    "correct": 3,
+    "explanation": "Alpha1-antitrypsin deficiency (AATD) commonly affects both the lungs (leading to early-onset panacinar emphysema) and the liver (leading to cirrhosis or hepatitis)."
+  },
+  {
+    "question": "A 59-year-old smoker with COPD (FEV1 39%), SpO2 87%, and an eosinophil count of 500 cells/µl should be treated with which regimen?",
+    "options": [
+      "Salbutamol + Ipratropium bromide",
+      "Vilanterol + Umeclidinium + Fluticasone Furoate",
+      "Salmeterol + Fluticasone proprionate",
+      "Indacterol + Glycopyrenium bromide",
+      "Tiotropium bromide + Budesonide"
+    ],
+    "correct": 1,
+    "explanation": "Patients with advanced COPD, frequent symptoms, and high blood eosinophils (≥300 cells/µl) benefit most from triple therapy (LABA + LAMA + ICS) to reduce exacerbations."
+  },
+  {
+    "question": "Which of the following is a common electrolyte-related side effect of ACE inhibitors?",
+    "options": [
+      "Bradycardia",
+      "Hyperkalemia",
+      "Hypokalemia",
+      "Reflex tachycardia",
+      "Gingival hyperplasia"
+    ],
+    "correct": 1,
+    "explanation": "ACE inhibitors reduce aldosterone secretion, which can lead to the retention of potassium, resulting in hyperkalemia."
+  },
+  {
+    "question": "A diabetic patient presents with anginal pain but a coronary angiogram shows normal epicardial vessels. What is the most likely cause?",
+    "options": [
+      "Pericarditis",
+      "Musculoskeletal pain",
+      "Microvascular coronary dysfunction",
+      "Cardiac neurosis",
+      "Gastroesophageal reflux disease"
+    ],
+    "correct": 2,
+    "explanation": "Microvascular coronary dysfunction (often called Cardiac Syndrome X) involves dysfunction of the small intramural coronary arteries and is common in diabetic patients, causing ischemia despite 'clean' large arteries."
+  },
+  {
+    "question": "Which of the following is a major criterion for the diagnosis of infective endocarditis according to the Modified Duke Criteria?",
+    "options": [
+      "Fever > 38°C",
+      "Osler nodes",
+      "Positive echocardiographic finding of vegetation",
+      "Septic pulmonary emboli",
+      "Arthritis"
+    ],
+    "correct": 2,
+    "explanation": "Major criteria include positive blood cultures and evidence of endocardial involvement on echocardiography (such as vegetations, abscesses, or new valvular regurgitation)."
+  },
+  {
+    "question": "A patient with hypotension, distended neck veins, muffled heart sounds, and a 'flask-shaped' heart on X-ray requires which immediate intervention?",
+    "options": [
+      "ICU admission and start IV diuretics",
+      "Echocardiography guided pericardiocentesis",
+      "Discharge on anti-inflammatory drugs",
+      "Ask for cardiac enzymes",
+      "IV fluids to correct hypotension"
+    ],
+    "correct": 1,
+    "explanation": "This patient presents with Beck's triad (hypotension, JVD, muffled sounds), indicating cardiac tamponade. Urgent pericardiocentesis is life-saving to remove the fluid compressing the heart."
+  },
+  {
+    "question": "Which of the following is a cause of secondary tricuspid regurgitation?",
+    "options": [
+      "Infective endocarditis of tricuspid valve",
+      "Carcinoid syndrome",
+      "Rheumatic tricuspid regurge",
+      "Left sided heart disease resulting in pulmonary hypertension",
+      "Iatrogenic affection by pacemaker lead"
+    ],
+    "correct": 3,
+    "explanation": "Secondary (functional) tricuspid regurgitation occurs when the valve itself is normal, but the right ventricle or annulus dilates, often due to pulmonary hypertension resulting from left-sided heart disease."
+  },
+  {
+    "question": "Which of the following conditions does NOT typically cause aortic stenosis?",
+    "options": [
+      "Rheumatic affection",
+      "Bicuspid aortic valve",
+      "Subaortic membrane",
+      "Degenerative calcification",
+      "Aortic root dilatation"
+    ],
+    "correct": 4,
+    "explanation": "Aortic root dilatation typically causes aortic regurgitation (insufficiency) by pulling the valve leaflets apart, rather than causing a narrowing (stenosis) of the valve orifice."
+  },
+  {
+    "question": "Identify the correct anatomical statement from the options below:",
+    "options": [
+      "Coronary arteries are filled with blood during systole",
+      "Pulmonary veins carry oxygenated blood",
+      "Epicardium is continuous with heart valves",
+      "Mitral valve is composed of three leaflets",
+      "Cardiac output is determined only by contractility"
+    ],
+    "correct": 1,
+    "explanation": "In the human circulatory system, pulmonary veins are unique because they carry oxygenated blood from the lungs back to the left atrium of the heart."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

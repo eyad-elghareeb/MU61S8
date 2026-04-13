@@ -1,13 +1,47 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>60th Final</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>
-/* ═══════════════════════════════════════════
+/* ================================================================
+   quiz-engine.js  —  Shared quiz engine for all quiz files.
+   Load this after defining QUIZ_CONFIG and QUESTIONS globals.
+   Auto-detects its own base URL so it works at any folder depth.
+   ================================================================ */
+(function () {
+  'use strict';
+
+  /* ── Compute base path from our own script URL ──────────────── */
+  var _cs  = document.currentScript;
+  var ENGINE_BASE = _cs ? _cs.src.replace(/[^\/]*$/, '') : (window.__QUIZ_ENGINE_BASE || '');
+
+  /* ── Inject <head> assets ────────────────────────────────────── */
+  function _addLink(rel, href, extra) {
+    var el = document.createElement('link');
+    el.rel = rel; el.href = href;
+    if (extra) Object.assign(el, extra);
+    document.head.appendChild(el);
+  }
+  function _addMeta(name, content) {
+    var m = document.createElement('meta'); m.name = name; m.content = content;
+    document.head.appendChild(m);
+  }
+
+  _addMeta('theme-color', '#0d1117');
+  _addLink('preconnect', 'https://fonts.googleapis.com');
+  _addLink('preconnect', 'https://fonts.gstatic.com', {crossOrigin: ''});
+  _addLink('stylesheet', 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+  _addLink('manifest',   ENGINE_BASE + 'manifest.webmanifest');
+  _addLink('icon',       ENGINE_BASE + 'favicon.svg', {type: 'image/svg+xml'});
+  _addLink('apple-touch-icon', ENGINE_BASE + 'favicon.svg');
+
+  /* ── Inject CSS ──────────────────────────────────────────────── */
+  
+  // Set background immediately to prevent flash of white
+  var savedTheme = localStorage.getItem('quiz-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  document.body.style.background = savedTheme === 'light' ? '#f3f0eb' : '#0d1117';
+  document.body.style.color = savedTheme === 'light' ? '#1c1917' : '#e6edf3';
+  document.body.style.transition = 'background 0.2s ease, color 0.2s ease';
+  document.body.style.overflow = 'hidden';
+  
+  var _style = document.createElement('style');
+  _style.textContent = `/* ═══════════════════════════════════════════
    CSS VARIABLES & THEME
 ═══════════════════════════════════════════ */
 :root {
@@ -30,7 +64,6 @@
   --shadow:     0 4px 24px rgba(0,0,0,0.4);
   --transition: 0.2s ease;
   --nav-size:   280px;
-  --nav-size-sm:72px;
 }
 [data-theme="light"] {
   --bg:         #f3f0eb;
@@ -102,6 +135,7 @@ input[type=radio] { display: none; }
 .hub-back-btn:hover svg { transform: translateX(-3px); }
 
 .start-card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -284,7 +318,7 @@ input[type=radio] { display: none; }
   justify-content: center;
 }
 .timer-wrap svg { flex-shrink: 0; }
-.timer-wrap.warn { border-color: #da3633; color: #da3633; animation: pulse 1s infinite; }
+.timer-wrap.warn { border-color: var(--wrong); color: var(--wrong); animation: pulse 1s infinite; }
 @keyframes pulse { 0%,100%{ opacity:1 } 50%{ opacity:0.6 } }
 
 .topbar-actions { display: flex; gap: 0.5rem; align-items: center; }
@@ -579,6 +613,10 @@ input[type=radio]:checked + .option-label .option-key {
   .stat-item .sv { font-size: 0.9rem; }
 }
 
+/* Progress bar */
+.progress-bar-wrap { height: 3px; background: var(--surface2); position: relative; flex-shrink: 0; }
+.progress-bar-fill { height: 100%; background: var(--accent); transition: width 0.4s ease; border-radius: 0 2px 2px 0; }
+
 /* ═══════════════════════════════════════════
    RESULTS SCREEN
 ═══════════════════════════════════════════ */
@@ -782,165 +820,34 @@ input[type=radio]:checked + .option-label .option-key {
   opacity: 1;
 }
 
-/* ═══════════════════════════════════════════
-   TOAST
-═══════════════════════════════════════════ */
-.toast {
-  position: fixed;
-  bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(80px);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0.65rem 1.2rem;
-  font-size: 0.88rem;
-  font-weight: 500;
-  box-shadow: var(--shadow);
-  z-index: 9999;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  max-width: 90%;
-}
-.toast.show { transform: translateX(-50%) translateY(0); }
-
-/* ═══════════════════════════════════════════
-   MODAL (Confirm submit)
-═══════════════════════════════════════════ */
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 420px;
-  width: 100%;
-  box-shadow: var(--shadow);
-  animation: slideUp 0.25s ease;
-}
-@keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
-.modal h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.75rem; }
-.modal p  { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; }
-.modal-unanswered { font-weight: 600; color: var(--wrong); }
-.modal-actions { display: flex; gap: 0.75rem; }
-.modal-actions .btn-cancel {
-  flex: 1;
-  padding: 0.75rem;
-  border-radius: 10px;
-  background: var(--surface2);
-  border: 1.5px solid var(--border);
-  color: var(--text);
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all var(--transition);
-}
-.modal-actions .btn-cancel:hover { border-color: var(--accent); }
-.modal-actions .btn-confirm {
-  flex: 1;
-  padding: 0.75rem;
-  border-radius: 10px;
-  background: var(--correct);
-  border: none;
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9rem;
-  transition: all var(--transition);
-}
-.modal-actions .btn-confirm:hover { opacity: 0.85; }
-
-/* ═══════════════════════════════════════════
-   PROGRESS BAR
-═══════════════════════════════════════════ */
-.progress-bar-wrap {
-  height: 3px;
-  background: var(--surface2);
-  position: relative;
-  flex-shrink: 0;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: var(--accent);
-  transition: width 0.4s ease;
-  border-radius: 0 2px 2px 0;
-}
-
-/* ═══════════════════════════════════════════
-   MISC
-═══════════════════════════════════════════ */
+/* PDF Export Section */
 .pdf-export-section {
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: var(--radius);
-  background: var(--surface);
-  border: 1.5px solid var(--border);
+  margin-top: 1.5rem; margin-bottom: 1rem; padding: 1rem;
+  border-radius: var(--radius); background: var(--surface); border: 1.5px solid var(--border);
 }
-.export-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
-  margin-bottom: 0.85rem;
-}
+.export-options { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 0.85rem; }
 .export-option {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.65rem;
-  border-radius: 6px;
-  background: var(--surface2);
-  border: 1.5px solid var(--border);
-  cursor: pointer;
-  transition: all var(--transition);
-  flex: 1;
-  min-width: 120px;
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.65rem;
+  border-radius: 6px; background: var(--surface2); border: 1.5px solid var(--border);
+  cursor: pointer; transition: all var(--transition); flex: 1; min-width: 120px;
 }
 .export-option:hover { border-color: var(--accent); background: var(--accent-dim); }
 .export-option input[type="checkbox"] { display: none; }
-.export-option input[type="checkbox"]:checked + .export-checkbox-visual {
-  border-color: var(--accent);
-  background: var(--accent);
-}
+.export-option input[type="checkbox"]:checked + .export-checkbox-visual { border-color: var(--accent); background: var(--accent); }
 .export-option input[type="checkbox"]:checked + .export-checkbox-visual svg { display: block; }
 .export-checkbox-visual {
-  width: 16px; height: 16px;
-  border-radius: 4px;
-  border: 2px solid var(--border);
-  background: var(--surface);
-  transition: all var(--transition);
-  flex-shrink: 0;
+  width: 16px; height: 16px; border-radius: 4px; border: 2px solid var(--border);
+  background: var(--surface); transition: all var(--transition); flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
 }
-.export-checkbox-visual svg {
-  display: none; width: 10px; height: 10px;
-  stroke: #000; stroke-width: 3; fill: none;
-}
+.export-checkbox-visual svg { display: none; width: 10px; height: 10px; stroke: #000; stroke-width: 3; fill: none; }
 .export-label { font-size: 0.82rem; font-weight: 500; color: var(--text); flex: 1; }
-.export-badge {
-  font-size: 0.65rem; padding: 0.1rem 0.4rem;
-  border-radius: 3px; background: var(--accent-dim);
-  color: var(--accent); font-weight: 600;
-}
+.export-badge { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 3px; background: var(--accent-dim); color: var(--accent); font-weight: 600; }
 .btn-export-pdf {
-  display: flex; align-items: center; gap: 0.5rem;
-  padding: 0.85rem 1.75rem;
-  border-radius: var(--radius);
-  background: var(--surface2); color: var(--text);
-  border: 1.5px solid var(--border);
-  font-weight: 700; font-size: 0.95rem;
-  transition: all var(--transition);
-  text-decoration: none; width: 100%; justify-content: center;
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.75rem;
+  border-radius: var(--radius); background: var(--surface2); color: var(--text);
+  border: 1.5px solid var(--border); font-weight: 700; font-size: 0.95rem;
+  transition: all var(--transition); text-decoration: none; width: 100%; justify-content: center;
 }
 .btn-export-pdf:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
 
@@ -1119,13 +1026,53 @@ input[type=radio]:checked + .option-label .option-key {
   .dash-body { padding: 0.75rem 1rem; }
 }
 
-</style>
-<link rel="manifest" href="../../../manifest.webmanifest">
-<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../../../favicon.svg">
-</head>
-<body>
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 0.65rem 1.2rem;
+  font-size: 0.88rem; font-weight: 500; box-shadow: var(--shadow);
+  z-index: 9999; transition: transform 0.3s ease, opacity 0.3s ease;
+  white-space: nowrap; display: flex; align-items: center; gap: 0.5rem; max-width: 90%;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
 
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 2rem; max-width: 420px; width: 100%; box-shadow: var(--shadow);
+  animation: slideUp 0.25s ease;
+}
+@keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+.modal h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.75rem; }
+.modal p  { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; }
+.modal-unanswered { font-weight: 600; color: var(--wrong); }
+.modal-actions { display: flex; gap: 0.75rem; }
+.modal-actions .btn-cancel {
+  flex: 1; padding: 0.75rem; border-radius: 10px;
+  background: var(--surface2); border: 1.5px solid var(--border);
+  color: var(--text); font-weight: 600; font-size: 0.9rem; transition: all var(--transition);
+}
+.modal-actions .btn-cancel:hover { border-color: var(--accent); }
+.modal-actions .btn-confirm {
+  flex: 1; padding: 0.75rem; border-radius: 10px;
+  background: var(--correct); border: none;
+  color: #fff; font-weight: 700; font-size: 0.9rem; transition: all var(--transition);
+}
+.modal-actions .btn-confirm:hover { opacity: 0.85; }
+`;
+  document.head.appendChild(_style);
+
+  /* ── Build DOM ───────────────────────────────────────────────── */
+  try {
+    document.body.innerHTML = `
 <!-- ═══════════════════════════ START ═══════════════════════════ -->
 <div id="start-screen" class="screen active">
   <a href="#" class="hub-back-btn" onclick="navigateToIndex(event); return false;">
@@ -1150,7 +1097,7 @@ input[type=radio]:checked + .option-label .option-key {
         <span class="lbl">Questions</span>
       </div>
     </div>
-
+    
     <!-- Time Limit (exam mode only) -->
     <div class="time-section" id="time-section">
       <div class="section-label">Time Limit <span style="color:var(--text-muted);font-size:0.75rem;font-weight:400;margin-left:0.35rem">(min)</span></div>
@@ -1181,7 +1128,7 @@ input[type=radio]:checked + .option-label .option-key {
         </label>
       </div>
     </div>
-
+    
     <button class="btn-start" onclick="startQuiz()">Start Quiz →</button>
   </div>
 </div>
@@ -1344,460 +1291,24 @@ input[type=radio]:checked + .option-label .option-key {
 
 <!-- ════════════════════════════════════════════════════════════════
      ▼ DROP IN YOUR QUESTIONS HERE ▼
-═══════════════════════════════════════════════════════════════════ -->
-<script>
-/* ─────────────────────────────────────────────────────────────────
-   QUIZ CONFIGURATION  — Edit this section to customise your quiz
-──────────────────────────────────────────────────────────────────*/
-/* [QUIZ_CONFIG_START] */
-const QUIZ_CONFIG = {
-  "uid": "mnu33acbf86c4",
-  "title": "60th Final",
-  "description": "Past Years Exams"
-};
-/* [QUIZ_CONFIG_END] */
-
-/* ─────────────────────────────────────────────────────────────────
-   QUESTIONS ARRAY
-   Format for each question:
-   {
-     question:    "Your question text",
-     options:["Option A", "Option B", "Option C", "Option D"],
-     correct:     0,   // index of the correct option (0-based)
-     explanation: "Why this answer is correct (shown in results).",
-   }
-──────────────────────────────────────────────────────────────────*/
-/* [QUESTIONS_START] */
-const QUESTIONS = [
-  {
-    "question": "A 14-year-old girl is experiencing severe lower abdominal pain that recurs monthly. Physical developments are normal, with Tanner stage 3 breast, and pubic hair development. She had never menstruated before. During an abdominal examination, a firm, tender midline mass is detected below the umbilicus. What is the most likely diagnosis?",
-    "options": [
-      "Pregnancy",
-      "Fibroid uterus",
-      "Hematocolpos",
-      "Endometriosis",
-      "Ovarian cyst"
-    ],
-    "correct": 2,
-    "explanation": "Hematocolpos is a collection of menstrual blood in the vagina due to an imperforate hymen or transverse vaginal septum. It presents with primary amenorrhea, cyclical pelvic pain, and a palpable midline pelvic mass in an adolescent."
-  },
-  {
-    "question": "Which of the following tumors is LEAST likely to be hormonally active:",
-    "options": [
-      "Sertoli-Leydig cell tumor.",
-      "Granulosa cell tumor.",
-      "Struma ovarii.",
-      "Fibroma.",
-      "Thecoma."
-    ],
-    "correct": 3,
-    "explanation": "Ovarian fibromas are benign, solid sex-cord stromal tumors that do not secrete hormones. In contrast, Sertoli-Leydig tumors secrete androgens, Granulosa/Thecomas secrete estrogen, and Struma ovarii contains thyroid tissue."
-  },
-  {
-    "question": "A 36-year-old nulligravida with abnormal uterine bleeding due to complex endometrial hyperplasia with atypia. What is the most suitable management?",
-    "options": [
-      "Induction of ovulation.",
-      "Administration of GRH analogues to induce menopause.",
-      "Repeated gestagens followed by follow up.",
-      "Selective embolization of uterine vessels.",
-      "Total hysterectomy."
-    ],
-    "correct": 2,
-    "explanation": "While total hysterectomy is the definitive treatment for complex atypical hyperplasia, this patient is a 36-year-old nulligravida who likely wants to preserve fertility. Progestin (gestagen) therapy with strict biopsy follow-up is the appropriate fertility-sparing approach."
-  },
-  {
-    "question": "The most common HPV types associated with vulval warts are:",
-    "options": [
-      "HPV 6 and 11",
-      "HPV 16 and 18",
-      "HPV 31 and 32",
-      "HPV 51 and 53",
-      "HPV 59 and 60"
-    ],
-    "correct": 0,
-    "explanation": "HPV types 6 and 11 are the primary low-risk strains responsible for causing around 90% of genital warts (condylomata acuminata)."
-  },
-  {
-    "question": "A 20-year-old presented with left lower abdominal pain. Pregnancy test is negative. Ultrasound shows an 8 cm left ovarian cystic mass with solid components and calcifications and teeth. The next step is:",
-    "options": [
-      "Repeat US in 6weeks.",
-      "Exploratory laparotomy, TAH+ BSO.",
-      "Left ovarian cystectomy.",
-      "Left salpingo-oophorectomy.",
-      "Expectant management."
-    ],
-    "correct": 2,
-    "explanation": "The ultrasound findings of solid components, calcifications, and teeth are classic for a mature cystic teratoma (dermoid cyst). In a young woman, ovarian cystectomy is the standard treatment to preserve fertility."
-  },
-  {
-    "question": "Which of the following is not a risk factor for uterine prolapse?",
-    "options": [
-      "Multiparity",
-      "Chronic smoking",
-      "History of large babies",
-      "Hyperestrogenism",
-      "Postmenopausal status"
-    ],
-    "correct": 3,
-    "explanation": "Hypoestrogenism (low estrogen), such as in postmenopause, causes atrophy and weakening of pelvic support structures, leading to prolapse. Hyperestrogenism is not a risk factor."
-  },
-  {
-    "question": "A 50-year-old patient had abnormal uterine bleeding associated with hot flushes. Ultrasound reveals a fundal myoma 7 x 7 cm intramural to subserous with calcifications. What is your recommended management?",
-    "options": [
-      "Follow up.",
-      "Endometrial ablation.",
-      "Hysterectomy.",
-      "Myomectomy.",
-      "Uterine artery embolization."
-    ],
-    "correct": 2,
-    "explanation": "In a peri/postmenopausal 50-year-old woman with abnormal bleeding, hot flushes, and a large, symptomatic fibroid, a hysterectomy provides definitive treatment."
-  },
-  {
-    "question": "The gold standard for endometrial polyp diagnosis is:",
-    "options": [
-      "CT scan of pelvis.",
-      "Hysteroscopy.",
-      "Pelvic US.",
-      "MRI.",
-      "TVS."
-    ],
-    "correct": 1,
-    "explanation": "Hysteroscopy is the gold standard because it allows direct visualization of the endometrial cavity and enables targeted biopsy or immediate removal of the polyp."
-  },
-  {
-    "question": "A 32-year-old sexually active woman comes for gynecological examination. On speculum examination: A small raised 5 mm smooth lesion, light-bluish and looks like a bubble under the cervical epithelium. Most likely diagnosis is:",
-    "options": [
-      "Bartholin cyst.",
-      "Cervical dysplasia.",
-      "Nabothian cyst.",
-      "Skene gland cyst.",
-      "Chlamydial cervicitis."
-    ],
-    "correct": 2,
-    "explanation": "A Nabothian cyst is a benign, mucus-filled retention cyst on the cervix that occurs when squamous epithelium grows over columnar endocervical glands. It typically looks like a smooth, translucent, or bluish bubble."
-  },
-  {
-    "question": "What is the commonest cause of postmenopausal bleeding:",
-    "options": [
-      "Endometrial polyp.",
-      "Endometrial hyperplasia.",
-      "Endometrial cancer.",
-      "Endometrial atrophy.",
-      "Endometritis."
-    ],
-    "correct": 3,
-    "explanation": "While endometrial cancer must always be ruled out first, the most frequent overall cause of postmenopausal bleeding is atrophic vaginitis/endometrial atrophy due to estrogen deficiency."
-  },
-  {
-    "question": "A 21-year-old woman has a profuse, malodorous vaginal discharge. Vaginal examination shows a greenish gray frothy discharge with a fishy odor and petechial lesions on the cervix. There is no cervical motion tenderness. Microscopic evaluation of the discharge is most likely to show:",
-    "options": [
-      "Clue cells.",
-      "Gram-negative diplococci.",
-      "Gram-positive diplococci.",
-      "Motile flagellated organisms.",
-      "Pseudo hyphae or hyphae."
-    ],
-    "correct": 3,
-    "explanation": "The presentation of a greenish-gray frothy discharge and a 'strawberry cervix' (petechial lesions) is pathognomonic for Trichomoniasis, caused by the motile flagellated protozoan Trichomonas vaginalis."
-  },
-  {
-    "question": "The normal vagina is richly colonized by bacterial flora mainly consisting of:",
-    "options": [
-      "Mycoplasma hominis.",
-      "Gardnerella.",
-      "Actinomyces viscous.",
-      "Chlamydia trachomatis.",
-      "Lactobacillus."
-    ],
-    "correct": 4,
-    "explanation": "Lactobacilli are the predominant normal flora of a healthy vagina. They produce lactic acid to maintain an acidic environment (pH 3.8-4.5) that inhibits pathogens."
-  },
-  {
-    "question": "A 32-year-old woman presented with fever, headache, malaise, acute lower abdominal pain with increased vaginal discharge after 3 days of hysterosalpingography (HSG). Pelvic ultrasound revealed a tubo-ovarian complex with small amount of turbid fluid in Douglas pouch. Most appropriate diagnosis is:",
-    "options": [
-      "Torsion ovary and adnexae.",
-      "Ectopic pregnancy.",
-      "Ovarian endometrioma.",
-      "Acute PID.",
-      "Rupture ovarian cyst."
-    ],
-    "correct": 3,
-    "explanation": "The recent history of an intrauterine procedure (HSG) followed by fever, pelvic pain, discharge, and a tubo-ovarian complex strongly indicates Acute Pelvic Inflammatory Disease (PID) due to ascending infection."
-  },
-  {
-    "question": "Which one of the following is not considered test to detect of ovulation?",
-    "options": [
-      "Midluteal serum progesterone.",
-      "Basal body temperature.",
-      "Detection of LH surge in urine dipstick.",
-      "Folliculometry.",
-      "Postmenstrual Endometrial biopsy"
-    ],
-    "correct": 4,
-    "explanation": "A postmenstrual endometrial biopsy shows proliferative phase endometrium and cannot confirm ovulation. A premenstrual (luteal phase) biopsy showing secretory changes is required to retrospectively confirm ovulation."
-  },
-  {
-    "question": "What is the first line of treatment of a patient complaining of primary infertility of 4 years. She had BMI 34 with irregular cycles and polycystic ovary morphology on ultrasound?",
-    "options": [
-      "Advice on weight loss and review in 6 months.",
-      "Intrauterine insemination for six cycles.",
-      "Laparoscopic ovarian drilling",
-      "Ovulation induction with clomiphene 50 mg.",
-      "Recommend one cycle of IVF treatment."
-    ],
-    "correct": 0,
-    "explanation": "In obese women with PCOS (BMI 34), weight loss of even 5-10% is the recommended first-line intervention as it can often restore spontaneous ovulation and improve pregnancy rates."
-  },
-  {
-    "question": "A 16-year-old adolescent female presented with excess facial hair growth. Ultrasound showed a bilateral increase in ovarian size with dense stroma and peripherally arranged equal size small follicles. The most suitable treatment for her is:",
-    "options": [
-      "Medical induction of ovulation.",
-      "Laparoscopic ovarian drilling.",
-      "Prolonged corticosteroid therapy.",
-      "GnRH analogues.",
-      "COCs for 6 months to one year."
-    ],
-    "correct": 4,
-    "explanation": "The presentation is classic for PCOS. Combined oral contraceptives (COCs) are the first-line treatment for an adolescent not seeking pregnancy, as they regulate cycles and suppress ovarian androgen production, improving hirsutism."
-  },
-  {
-    "question": "The gold standard for tubal evaluation for an infertile couple:",
-    "options": [
-      "HSG",
-      "Laparoscopy.",
-      "Hysteroscopy.",
-      "SIS (saline infusion sonography).",
-      "MRI."
-    ],
-    "correct": 0,
-    "explanation": "Based on the provided key, Hysterosalpingography (HSG) is considered the standard initial, practical diagnostic test (often referred to clinically as a working standard) to evaluate fallopian tube patency in infertile couples."
-  },
-  {
-    "question": "What is the FIGO staging of cervical cancer that the lesion is confined to the cervix and its size more than 4 cm in greatest dimension?",
-    "options": [
-      "IB1",
-      "IB2",
-      "IB3",
-      "IIA1",
-      "IIA2"
-    ],
-    "correct": 2,
-    "explanation": "Under the 2018 FIGO staging for cervical cancer, a clinically visible lesion confined to the cervix that is 4.0 cm or larger in its greatest dimension is classified as Stage IB3."
-  },
-  {
-    "question": "Which of the following conditions is suitable for clomiphene citrate stimulation:",
-    "options": [
-      "Asherman's syndrome",
-      "Polycystic ovarian syndrome",
-      "Premature ovarian insufficiency",
-      "Sheehan syndrome",
-      "Turner syndrome"
-    ],
-    "correct": 1,
-    "explanation": "Clomiphene citrate requires an intact HPO axis with normal estrogen levels. It is highly effective for ovulation induction in normogonadotropic normoestrogenic women (WHO Group II), such as those with PCOS."
-  },
-  {
-    "question": "A 21-year-old woman complains of headache, breast pain, tenderness and galactorrhea. Serum prolactin is 200ng/ml. Most valuable investigation:",
-    "options": [
-      "Karyotyping.",
-      "Soft tissue mammography.",
-      "FSH and LH levels.",
-      "Pelvic ultrasound.",
-      "CT brain."
-    ],
-    "correct": 4,
-    "explanation": "A high prolactin level (>100-200 ng/mL) accompanied by headaches and galactorrhea strongly suggests a pituitary adenoma (prolactimoma). Neuroimaging, such as a CT or MRI of the brain, is essential for diagnosis."
-  },
-  {
-    "question": "A 30-year-old female had a Pap smear result of low grade squamous intraepithelial lesion (LSIL). Cervical biopsy shows CIN I. The most appropriate management is:",
-    "options": [
-      "Follow up.",
-      "Diathermy cautery.",
-      "Hysterectomy.",
-      "Cone excision.",
-      "Laser ablation."
-    ],
-    "correct": 0,
-    "explanation": "CIN I (mild dysplasia) frequently regresses spontaneously, particularly in younger women. The standard of care is conservative management with observation and cytological follow-up."
-  },
-  {
-    "question": "What is the most appropriate surgical procedure for a fit woman who has completed childbearing with a stage IA squamous cell carcinoma of the cervix?",
-    "options": [
-      "Cold knife conization.",
-      "Extrafascial hysterectomy.",
-      "Modified radical hysterectomy.",
-      "Pelvic excentration.",
-      "Extended irradiation."
-    ],
-    "correct": 2,
-    "explanation": "For stage IA cervical carcinoma in a patient who does not desire future fertility, a modified radical hysterectomy allows complete excision of the disease including surrounding parametrial tissues and lymph nodes if warranted."
-  },
-  {
-    "question": "What is the FIGO staging of endometrial carcinoma with more than 50% myometrial invasion with no lymph node metastasis?",
-    "options": [
-      "IA",
-      "IB",
-      "IIA",
-      "IIB",
-      "IIIA"
-    ],
-    "correct": 1,
-    "explanation": "According to FIGO staging for endometrial cancer, Stage IB is characterized by invasion equal to or greater than 50% (half) of the myometrium."
-  },
-  {
-    "question": "Risk factor for endometrial cancer include:",
-    "options": [
-      "Multiparity.",
-      "HSV infection.",
-      "HPV infection.",
-      "Diabetes mellitus.",
-      "Smoking."
-    ],
-    "correct": 3,
-    "explanation": "Type I endometrial cancer is strongly associated with metabolic syndrome factors such as obesity, hypertension, and diabetes mellitus, which often lead to unopposed estrogen exposure."
-  },
-  {
-    "question": "A 48-year-old woman complains of abnormal vaginal bleeding. Speculum examination reveals a suspicious cervix that bleeds on touch. The most appropriate initial investigation is:",
-    "options": [
-      "Cervical biopsy",
-      "LEEP (Loop Electrosurgical Excision Procedure)",
-      "Hysteroscopy",
-      "Colposcopy",
-      "Hysterectomy"
-    ],
-    "correct": 0,
-    "explanation": "A clinically suspicious, friable, or bleeding cervical lesion requires an immediate direct punch biopsy for histological diagnosis of potential invasive carcinoma."
-  },
-  {
-    "question": "The most frequent cause of dyspareunia is:",
-    "options": [
-      "Vaginismus.",
-      "Endometriosis.",
-      "Retroverted uterus.",
-      "Inadequate vaginal lubrication.",
-      "Pelvic inflammatory disease."
-    ],
-    "correct": 3,
-    "explanation": "The most common overall cause of superficial dyspareunia (pain on entry) across the general population is inadequate vaginal lubrication, frequently related to poor arousal or low estrogen."
-  },
-  {
-    "question": "What is the best treatment of submucous fibroid 4 x 4 cm in a patient with heavy menstrual bleeding?",
-    "options": [
-      "Medical treatment with GnRH analogue.",
-      "Medical treatment with gestagens.",
-      "Hysteroscopic myomectomy.",
-      "Laparoscopic myomectomy.",
-      "Endometrial ablation."
-    ],
-    "correct": 2,
-    "explanation": "Submucous fibroids protrude directly into the uterine cavity. Hysteroscopic myomectomy is the minimally invasive 'gold standard' for effectively removing them and resolving bleeding symptoms."
-  },
-  {
-    "question": "A 72-Year-old medically unfit lady diagnosed to have cysto-rectocele and third degree uterine decent. What is the best line of treatment?",
-    "options": [
-      "Anterior colporrhaphy",
-      "Posterior colporrhaphy",
-      "Vaginal hysterectomy",
-      "Pessary",
-      "Classical repair."
-    ],
-    "correct": 3,
-    "explanation": "In an elderly patient with significant comorbidities rendering her medically unfit for surgery, a vaginal pessary is a safe and effective conservative treatment for pelvic organ prolapse."
-  },
-  {
-    "question": "Which of the following is NOT a risk factor of epithelial ovarian cancer?",
-    "options": [
-      "Nulliparity",
-      "Late menopause",
-      "Oral contraceptive pills",
-      "Hereditary nonpolyposis colorectal cancer",
-      "Old age"
-    ],
-    "correct": 2,
-    "explanation": "Combined oral contraceptive pills (COCs) suppress ovulation, allowing the ovarian surface epithelium to rest. They are protective and significantly reduce the risk of epithelial ovarian cancer."
-  },
-  {
-    "question": "Which of the following sonographic characters of ovarian cyst suggest need for surgical exploration instead of following up and observation:",
-    "options": [
-      "Unilocular cyst",
-      "Absence of ascites",
-      "Papillary projection",
-      "Diameter of 3 cm",
-      "Presence of acoustic shadows"
-    ],
-    "correct": 2,
-    "explanation": "Solid components, septations, and especially papillary projections within a cyst are highly suspicious for malignancy and generally warrant surgical exploration."
-  },
-  {
-    "question": "What is the term used to describe the decent of the lower part of anterior vaginal wall?",
-    "options": [
-      "Cystocele",
-      "Rectocele",
-      "Enterocele",
-      "Complete procidentia",
-      "Urethrocele"
-    ],
-    "correct": 4,
-    "explanation": "An anterior vaginal wall prolapse is subdivided: a cystocele involves the upper portion supporting the bladder, while a urethrocele involves the lower portion supporting the urethra."
-  },
-  {
-    "question": "Screening is most effective in preventing which of the following cancers?",
-    "options": [
-      "Vulva.",
-      "Cervix.",
-      "Endometrial",
-      "Ovary",
-      "Fallopian tube."
-    ],
-    "correct": 1,
-    "explanation": "Cervical cancer has the most effective screening program (Pap smear and HPV testing), allowing the detection and removal of pre-cancerous lesions long before cancer develops."
-  },
-  {
-    "question": "A 21-year-old female diagnosed with dysgerminoma of right ovary 4 x 5 cm with intact capsule. Best treatment is:",
-    "options": [
-      "Ovarian cystectomy",
-      "Oophorectomy of affected ovary + biopsy from other ovary",
-      "Bilateral oophorectomy",
-      "Total hysterectomy + unilateral oophorectomy",
-      "Total hysterectomy + bilateral oophorectomy"
-    ],
-    "correct": 1,
-    "explanation": "Dysgerminomas in young women are highly responsive to treatment. A fertility-sparing unilateral oophorectomy is appropriate, but because 10-15% of dysgerminomas are bilateral, the contralateral ovary must be carefully inspected/biopsied."
-  },
-  {
-    "question": "What is the most common presentation of leiomyoma:",
-    "options": [
-      "Heavy menstrual bleeding.",
-      "Intermenstrual bleeding.",
-      "Pelvic pain.",
-      "Infertility.",
-      "Asymptomatic."
-    ],
-    "correct": 4,
-    "explanation": "While heavy menstrual bleeding is the most common symptom when fibroids cause issues, the vast majority of uterine leiomyomas are completely asymptomatic and found incidentally."
-  },
-  {
-    "question": "A 48-year-old patient had undergone an abdominal hysterectomy 3 months ago for a multiple uterine fibroids. Since the operation she complains of involuntary continuous urine leakage although she feels normal desire for micturition. Provisional cause for this incontinence is:",
-    "options": [
-      "Severe cystitis following surgery.",
-      "Detrusor instability following surgical manipulations.",
-      "Untreated stress incontinence.",
-      "Vesico- vaginal fistula.",
-      "Uretro-vaginal fistula."
-    ],
-    "correct": 4,
-    "explanation": "A ureterovaginal fistula typically presents with continuous incontinence alongside normal voiding patterns, because one ureter leaks continuously into the vagina while the other intact ureter continues filling the bladder normally."
+═══════════════════════════════════════════════════════════════════ -->`;
+  } catch(e) {
+    console.error('[QuizEngine] Error building DOM:', e);
+    document.body.innerHTML = '<div style="padding:2rem;text-align:center;font-family:sans-serif;"><h1>❌ DOM Build Error</h1><p>' + e.message + '</p></div>';
   }
-];
-/* [QUESTIONS_END] */
-/* ─────────────────────────────────────────────────────────────────
-   END OF QUESTIONS — Do not edit below unless you know what you're doing
-──────────────────────────────────────────────────────────────────*/
-</script>
 
-<!-- ENGINE -->
-<script>
+  /* ── Register Service Worker ─────────────────────────────────── */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register(ENGINE_BASE + 'sw.js').catch(function () {});
+    });
+  }
+
+})();
+
+/* ================================================================
+   ENGINE — functions exposed globally so onclick="" attrs work.
+   ================================================================ */
 /* ════════════════════════════════════════════════════════════════
    QUIZ ENGINE
 ════════════════════════════════════════════════════════════════ */
@@ -2163,6 +1674,7 @@ function buildResults() {
     else wrong++;
   });
   const total   = QUESTIONS.length;
+  if (!total) { showToast('No questions loaded.'); return; }
   const pct     = Math.round(correct / total * 100);
   const flagged = Object.values(state.flagged).filter(Boolean).length;
 
@@ -2285,7 +1797,13 @@ function toggleTheme() {
 /* ── NAVIGATE BACK TO HUB ──────────────────────────────────── */
 function navigateToIndex(event) {
   event.preventDefault();
-  window.location.href = 'index.html';
+  // If we arrived from another page on this site, go back; otherwise fall
+  // back to the sibling index.html (correct for any subfolder depth).
+  if (document.referrer && new URL(document.referrer).origin === location.origin) {
+    history.back();
+  } else {
+    window.location.href = 'index.html';
+  }
 }
 function updateThemeIcon() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -2461,13 +1979,8 @@ function clearOldSaves() {
   }
 }
 
-/**
- * Restore quiz progress from localStorage (deprecated - kept for compatibility)
- * Use checkSavedProgress() instead which shows optional restore toast
- */
+/** @deprecated Use checkSavedProgress() — kept only so old bookmarks don't crash. */
 function restoreProgress() {
-  // This function is now deprecated in favor of checkSavedProgress() + doRestoreProgress()
-  // Kept for backward compatibility if called elsewhere
   const saved = localStorage.getItem(STORAGE_KEY);
   if (!saved) return false;
 
@@ -2844,38 +2357,32 @@ function exportToPDF() {
 }
 
 /* ── BOOT ────────────────────────────────────────────────── */
-initUI();
-checkSavedProgress();
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+try {
+  console.log('[QuizEngine] Initializing quiz engine...');
+  console.log('[QuizEngine] QUIZ_CONFIG defined:', typeof QUIZ_CONFIG !== 'undefined');
+  console.log('[QuizEngine] QUESTIONS defined:', typeof QUESTIONS !== 'undefined');
+  
+  if (typeof QUIZ_CONFIG === 'undefined') {
+    console.error('[QuizEngine] ERROR: QUIZ_CONFIG is not defined!');
+    document.body.innerHTML = '<div style="padding:2rem;text-align:center;font-family:sans-serif;"><h1>❌ Error</h1><p>QUIZ_CONFIG is not defined. Please check your quiz file.</p></div>';
+  } else if (typeof QUESTIONS === 'undefined') {
+    console.error('[QuizEngine] ERROR: QUESTIONS is not defined!');
+    document.body.innerHTML = '<div style="padding:2rem;text-align:center;font-family:sans-serif;"><h1>❌ Error</h1><p>QUESTIONS is not defined. Please check your quiz file.</p></div>';
+  } else {
+    console.log('[QuizEngine] Quiz config loaded:', QUIZ_CONFIG.title);
+    console.log('[QuizEngine] Questions count:', QUESTIONS.length);
+    initUI();
+    checkSavedProgress();
+    console.log('[QuizEngine] UI initialized successfully');
+  }
+} catch(e) {
+  console.error('[QuizEngine] Fatal error during initialization:', e);
+  document.body.innerHTML = '<div style="padding:2rem;text-align:center;font-family:sans-serif;"><h1>❌ Quiz Engine Error</h1><p>' + e.message + '</p><pre style="text-align:left;max-width:600px;margin:1rem auto;background:#f5f5f5;padding:1rem;">' + e.stack + '</pre></div>';
+}
 
-<!-- ═══════════════ TRACKER DASHBOARD ═══════════════ -->
-<div class="dash-overlay" id="tracker-dashboard">
-  <div class="dash-modal">
-    <div class="dash-header">
-      <h2 id="dash-title-text">📊 Question Tracker</h2>
-      <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
-    </div>
-    <div class="dash-scope-bar" id="dash-scope-bar">
-      <!-- Scope tabs injected dynamically -->
-    </div>
-    <div class="dash-summary">
-      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
-      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
-      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
-    </div>
-    <div class="dash-body" id="dash-body">
-      <!-- Dynamically filled -->
-    </div>
-    <div class="dash-footer">
-      <button class="btn-dash-action" onclick="exportTrackerToPDF()" title="Export tracked questions to PDF">📄 Export PDF</button>
-      <button class="btn-dash-action btn-dash-danger" onclick="clearAllTrackerData()">🗑 Clear All</button>
-      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
-    </div>
-  </div>
-</div>
-
-<script>
+/* ================================================================
+   TRACKER PANEL
+   ================================================================ */
 /* ════════════════════════════════════════════════════════════════
    QUESTION TRACKER DASHBOARD  v2
    ─────────────────────────────────────────────────────────────
@@ -2889,7 +2396,7 @@ checkSavedProgress();
   'use strict';
 
   /* ── Storage keys ── */
-  const STORAGE_VERSION = 'v2';
+  const TRACKER_VERSION = 'v2';
   const STORAGE_PREFIX = 'quiz_tracker_';
   const KEYS_LIST_KEY  = 'quiz_tracker_keys';
 
@@ -2917,7 +2424,7 @@ checkSavedProgress();
   }
 
   function getStorageKey(uid) {
-    return STORAGE_PREFIX + STORAGE_VERSION + '_' + uid;
+    return STORAGE_PREFIX + TRACKER_VERSION + '_' + uid;
   }
 
   /* ── Get path stored with a tracker entry ── */
@@ -3304,11 +2811,6 @@ checkSavedProgress();
   updateDashboardBadge();
 
 })();
-</script>
 
-
-<script>
-if('serviceWorker' in navigator){navigator.serviceWorker.register('../../../sw.js').catch(function(){});}
-</script>
-</body>
-</html>
+/* ── html2pdf (loaded lazily inside exportToPDF when needed) ────── */
+window.__HTML2PDF_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';

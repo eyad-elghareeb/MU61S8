@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "cardio_59th_mid",
+  title: "59th Mid Exam",
+  description: "Cardio 59th Batch Mid Examination",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "A patient with end-stage COPD, ankle edema, and P pulmonale requires therapy to improve survival. Which oxygen delivery method is most appropriate for long-term use?",
+    "options": [
+      "Long term oxygen 1-2 L by simple face mask",
+      "Long term oxygen 1-2 L by venturi mask",
+      "Long term oxygen 1-2 L by nasal cannula",
+      "Long term oxygen 1-2 L by non-rebreathing mask",
+      "Long term oxygen 1-2 L by partial rebreathing mask"
+    ],
+    "correct": 2,
+    "explanation": "For patients with end-stage COPD and signs of right heart strain (ankle edema, P pulmonale), Long-Term Oxygen Therapy (LTOT) via nasal cannula is the standard method shown to improve survival[cite: 61]."
+  },
+  {
+    "question": "A heavy smoker presents with persistent dyspnea. Spirometry shows FEV1/FVC 58% and FEV1 40% of predicted. What is the most likely diagnosis?",
+    "options": [
+      "Partially controlled bronchial asthma",
+      "Uncontrolled bronchial asthma",
+      "Moderate COPD",
+      "Severe COPD",
+      "Very severe COPD"
+    ],
+    "correct": 3,
+    "explanation": "According to GOLD criteria, an FEV1/FVC ratio < 70% confirms COPD. An FEV1 between 30% and 49% of predicted value categorizes the severity as Severe COPD[cite: 61]."
+  },
+  {
+    "question": "In a patient who has NOT received the BCG vaccination, what induration size on a tuberculin skin test (TST) is suggestive of a TB infection?",
+    "options": [
+      "≥5 mm",
+      "≥10 mm",
+      "≥15 mm",
+      "≥20 mm",
+      "≥25 mm"
+    ],
+    "correct": 1,
+    "explanation": "In general populations without high-risk factors and without prior BCG vaccination, an induration of ≥10 mm is typically considered a positive result for TB infection[cite: 61]."
+  },
+  {
+    "question": "A TB patient undergoing a 4-drug regimen for 6 weeks complains of visual disturbances and impaired color vision. Which drug is most likely responsible?",
+    "options": [
+      "Rifampicin",
+      "Pyrazinamide",
+      "Isoniazid (INH)",
+      "Ethambutol",
+      "Streptomycin"
+    ],
+    "correct": 3,
+    "explanation": "Ethambutol is well-known for causing optic neuritis, which presents as decreased visual acuity and loss of red-green color discrimination[cite: 61]."
+  },
+  {
+    "question": "Which of the following organisms is NOT a common primary cause of a lung abscess?",
+    "options": [
+      "Staphylococcus aureus",
+      "Klebsiella pneumoniae",
+      "Hemophilus influenzae",
+      "Pseudomonas aeruginosa",
+      "Anaerobic organisms"
+    ],
+    "correct": 2,
+    "explanation": "While Hemophilus influenzae can cause pneumonia, it is not a classic 'cavitating' organism commonly associated with the formation of a lung abscess compared to Staph, Klebsiella, or anaerobes[cite: 65]."
+  },
+  {
+    "question": "A 12-year-old male with recurrent chest infections, sinusitis, clubbing, poor weight gain, and a positive sweat chloride test likely has:",
+    "options": [
+      "Alpha 1 anti-trypsin deficiency",
+      "Cystic fibrosis",
+      "Kartagener syndrome",
+      "Tuberculosis",
+      "Allergic bronchopulmonary aspergillosis"
+    ],
+    "correct": 1,
+    "explanation": "A positive sweat chloride test is the diagnostic hallmark of Cystic Fibrosis, which commonly presents with chronic sinopulmonary disease and malabsorption (poor weight gain)[cite: 65]."
+  },
+  {
+    "question": "Which of the following medications is a Long-Acting Beta2-Agonist (LABA)?",
+    "options": [
+      "Salbutamol",
+      "Terbutaline",
+      "Bambuterol",
+      "Tiotropium bromide",
+      "Ipratropium bromide"
+    ],
+    "correct": 2,
+    "explanation": "Bambuterol is a prodrug of terbutaline and acts as a long-acting beta2-agonist. Tiotropium and Ipratropium are anticholinergics, while Salbutamol is short-acting[cite: 65]."
+  },
+  {
+    "question": "A patient with acute severe asthma develops a left hilar opacity, unilateral hypertranslucency, and tracheal shift to the right. What is the immediate management?",
+    "options": [
+      "Intercostal tube drainage with under water seal",
+      "IV antibiotics",
+      "Intubation and mechanical ventilation",
+      "IV Steroids",
+      "Nebulized salbutamol/Ipratropium bromide"
+    ],
+    "correct": 0,
+    "explanation": "The clinical and radiological signs (hypertranslucency and tracheal shift) indicate a tension pneumothorax, which requires immediate intercostal tube drainage[cite: 65]."
+  },
+  {
+    "question": "A 30-year-old woman presents with severe central chest pain relieved by leaning forward and diffuse concave ST elevation on ECG. What is the diagnosis?",
+    "options": [
+      "Pulmonary embolism",
+      "Acute coronary syndrome",
+      "Hypertrophic obstructive cardiomyopathy",
+      "Acute pericarditis",
+      "Arrhythmogenic right ventricular cardiomyopathy"
+    ],
+    "correct": 3,
+    "explanation": "Chest pain that improves with leaning forward (positional) and diffuse concave ST elevation on ECG are classic diagnostic features of acute pericarditis[cite: 69]."
+  },
+  {
+    "question": "A 50-year-old male has exertional chest pain, ST depression, and positive troponin but remains stable. What is the next treatment step?",
+    "options": [
+      "Streptokinase should be given",
+      "ICU admission and start parenteral anticoagulation",
+      "Refer the patient for stress ECG",
+      "Immediate coronary angiography",
+      "Discharge on antiplatelets"
+    ],
+    "correct": 1,
+    "explanation": "For an NSTEMI (positive troponin without ST elevation), the immediate management involves hospitalization and starting anticoagulation. Streptokinase is for STEMI only[cite: 69]."
+  },
+  {
+    "question": "Which pulse abnormality is characteristic of severe Aortic Regurgitation (AR)?",
+    "options": [
+      "Pulsus alternans",
+      "Pulsus paradoxus",
+      "Corrigan pulse",
+      "Pulsus parvus et tardus",
+      "Pulsus bigeminus"
+    ],
+    "correct": 2,
+    "explanation": "Corrigan pulse (also known as a water-hammer pulse) is a rapid upstroke and collapse of the carotid artery, highly suggestive of severe aortic regurgitation[cite: 69]."
+  },
+  {
+    "question": "What is the most common cause of Aortic Stenosis (AS)?",
+    "options": [
+      "Rheumatic affection",
+      "Bicuspid aortic valve",
+      "Degenerative calcification",
+      "Dilated aortic root",
+      "Congenital aortic stenosis"
+    ],
+    "correct": 2,
+    "explanation": "In developed countries and older populations, age-related degenerative calcification is the most common cause of aortic stenosis[cite: 69]."
+  },
+  {
+    "question": "Which of the following conditions is a known cause of unilateral lower limb edema?",
+    "options": [
+      "Congestive heart failure",
+      "Severe tricuspid regurge",
+      "Deep vein thrombosis",
+      "Hepatic cell failure",
+      "Hypoalbuminemia"
+    ],
+    "correct": 2,
+    "explanation": "While heart, liver, and kidney failure cause bilateral (generalized) edema, Deep Vein Thrombosis (DVT) typically presents with swelling in only one limb[cite: 73]."
+  },
+  {
+    "question": "A patient develops fever and malaise 38 days after a mitral valve replacement. Which organism is the most likely cause of early prosthetic valve endocarditis?",
+    "options": [
+      "Group A streptococci",
+      "Streptococci viridians",
+      "Staphylococcus epidermidis",
+      "Staphylococcus aureus",
+      "Enterococcus faecalis"
+    ],
+    "correct": 3,
+    "explanation": "Staphylococcus aureus and Staphylococcus epidermidis are the leading causes of early prosthetic valve endocarditis (occurring within the first year)[cite: 73]."
+  },
+  {
+    "question": "A patient presents with BP readings around 180/110 mmHg and evidence of retinal damage. What is the appropriate management?",
+    "options": [
+      "Refer for Ambulatory Blood Pressure Monitoring",
+      "Refer for Home Blood Pressure Monitoring",
+      "Start on antihypertensive treatment straight away",
+      "Review in 24h",
+      "Discharge for OPD"
+    ],
+    "correct": 2,
+    "explanation": "If a patient has severely elevated BP (Grade 3 hypertension) and evidence of end-organ damage (like retinopathy), treatment should be started immediately without waiting for further monitoring[cite: 73]."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

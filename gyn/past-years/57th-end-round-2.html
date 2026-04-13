@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_57th_end_round_2",
+  title: "57Th End Round 2",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "The initial evaluation in an infertile couple should include:",
+    "options": [
+      "Ovarian biopsy.",
+      "Semen analysis.",
+      "D&C.",
+      "Laparoscopy.",
+      "Sperm penetration assay."
+    ],
+    "correct": 1,
+    "explanation": "Semen analysis is one of the three fundamental, non-invasive pillars of the initial infertility workup, alongside confirming ovulation and tubal patency."
+  },
+  {
+    "question": "Induction of ovulation agents:",
+    "options": [
+      "Clomiphene citrate is an anti-androgen.",
+      "Clomiphene citrate is given by injection.",
+      "Gonadotropins is given orally.",
+      "Ultrasound scan is not needed with induction.",
+      "Causes multiple follicles."
+    ],
+    "correct": 4,
+    "explanation": "Ovulation induction agents, particularly gonadotropins, often stimulate the development of multiple follicles, which increases the risk of multiple pregnancies."
+  },
+  {
+    "question": "In Secondary infertility:",
+    "options": [
+      "Is frequently due to tubal problems",
+      "The problem is often a chromosomal defect in women.",
+      "Is frequently due to male factor",
+      "Commonly associated with endometriosis+",
+      "May be due to hypoprolactinemia"
+    ],
+    "correct": 0,
+    "explanation": "Secondary infertility is most commonly caused by tubal damage or pelvic adhesions resulting from infections following a previous pregnancy or abortion."
+  },
+  {
+    "question": "The test used to diagnose ovulation on day 21 in a 28 days menstrual cycle is:",
+    "options": [
+      "Estrogen.",
+      "FSH.",
+      "Progestrone.",
+      "LH.",
+      "Prolactin."
+    ],
+    "correct": 2,
+    "explanation": "Serum progesterone levels peak during the mid-luteal phase; a level above 3 ng/mL on day 21 of a 28-day cycle confirms that ovulation has occurred."
+  },
+  {
+    "question": "A 26 years old lady presented with secondary amenorrhea and FSH and LH are found to be high, your diagnosis will be?",
+    "options": [
+      "Sheehan syndrome",
+      "Asherman syndrome",
+      "Premature ovarian failure.",
+      "Imperforated hymen",
+      "Pituitary adenoma"
+    ],
+    "correct": 2,
+    "explanation": "Elevated gonadotropins (FSH/LH) in a woman under 40 with amenorrhea indicates hypergonadotropic hypogonadism, characteristic of premature ovarian failure."
+  },
+  {
+    "question": "Patients with the following condition present with primary amenorrhea:",
+    "options": [
+      "Bicornuate uterus",
+      "Polycystic ovary syndrome",
+      "Imperforate hymen",
+      "Sheehan's Syndrome",
+      "Anorexia nervosa"
+    ],
+    "correct": 2,
+    "explanation": "Imperforate hymen presents with primary amenorrhea (specifically cryptomenorrhea) because the menstrual blood is trapped behind the intact hymen."
+  },
+  {
+    "question": "Secondary amenorrhea is a recognized feature of:",
+    "options": [
+      "Imperforated hymen.",
+      "Testicular feminization syndrome.",
+      "Pregnancy.",
+      "Sickle cell anemia.",
+      "Müllerian agenesis."
+    ],
+    "correct": 2,
+    "explanation": "Pregnancy is the most common cause of secondary amenorrhea in women of reproductive age who were previously menstruating."
+  },
+  {
+    "question": "Feature characteristically associated with imperforated hymen in a 16-year-old girl include:",
+    "options": [
+      "Acute retention of the urine",
+      "Absence of secondary sexual characteristics.",
+      "Hirsutism.",
+      "Short stature.",
+      "Present with secondary amenorrhea"
+    ],
+    "correct": 0,
+    "explanation": "The accumulation of blood in the vagina (hematocolpos) can compress the urethra, causing acute urinary retention."
+  },
+  {
+    "question": "The ovary in polycystic ovarian syndrome characteristically shows:",
+    "options": [
+      "Fibrosis.",
+      "Theca cells hyperplasia.",
+      "Granulosa cells hyperplasia.",
+      "Increased fatty infiltration",
+      "Capsular thinning."
+    ],
+    "correct": 1,
+    "explanation": "In PCOS, high LH levels lead to hyperplasia of the ovarian theca cells, which results in excessive androgen production."
+  },
+  {
+    "question": "A Feature of Polycystic ovarian syndrome:",
+    "options": [
+      "Elevated level of serum FSH.",
+      "Endometrial hyperplasia.",
+      "Breast atrophy.",
+      "Loss of androgen level.",
+      "Regular ovulation"
+    ],
+    "correct": 1,
+    "explanation": "Chronic anovulation in PCOS leads to unopposed estrogen, causing continuous endometrial proliferation and increasing the risk of hyperplasia."
+  },
+  {
+    "question": "Urinary stress incontinence is:",
+    "options": [
+      "The loss is of large amount of urine when intra-abdominal pressure increases.",
+      "The loss is of small amount of urine when intra-abdominal pressure increases.",
+      "Inability to control the bladder of all urine",
+      "Inability to pass urine",
+      "Constant loss of small amounts of urine."
+    ],
+    "correct": 1,
+    "explanation": "Stress urinary incontinence (SUI) is the involuntary leakage of small amounts of urine during activities that increase intra-abdominal pressure."
+  },
+  {
+    "question": "38 years old multigravida women complains of the painless loss of urine, beginning immediately after coughing, laughing, lifting, or straining. Immediate cessation of the activity stops the urine loss this history is must suggestive of:",
+    "options": [
+      "Fistula",
+      "Stress incontinence",
+      "Urge incontinence",
+      "Urethral incontinence.",
+      "UTI"
+    ],
+    "correct": 1,
+    "explanation": "The classic history of immediate leakage upon physical exertion or coughing that stops when the activity ends is diagnostic of Stress Urinary Incontinence."
+  },
+  {
+    "question": "Detrusor instability should be managed by:",
+    "options": [
+      "Drug therapy",
+      "Electrical therapy.",
+      "Operative therapy",
+      "Psychiatric therapy",
+      "No therapy."
+    ],
+    "correct": 0,
+    "explanation": "Detrusor instability, the cause of urge incontinence, is primarily managed with medications such as anticholinergics or beta-3 agonists."
+  },
+  {
+    "question": "The use of estrogen alone in menopausal women increase the risk of:",
+    "options": [
+      "Endometrial cancer",
+      "Ovarian cancer",
+      "Bone cancer",
+      "Bowel cancer",
+      "All of the above."
+    ],
+    "correct": 0,
+    "explanation": "Unopposed estrogen stimulation causes the endometrium to grow excessively, significantly increasing the risk of endometrial carcinoma in women with a uterus."
+  },
+  {
+    "question": "Postmenopausal women:",
+    "options": [
+      "Malignancy is the commonest cause of postmenopausal bleeding",
+      "FSH and LH are characteristically low",
+      "Fibroid uterus tends to grow bigger",
+      "Hormonal replacement therapy increases the risk of breast cancer",
+      "Endometrium is characteristically thick on USS +"
+    ],
+    "correct": 3,
+    "explanation": "Long-term use of combined Hormone Replacement Therapy (HRT) is associated with a slightly higher risk of developing breast cancer."
+  },
+  {
+    "question": "Which of the following is an indication for estrogen treatment?",
+    "options": [
+      "Fibroid.",
+      "Threatened abortion.",
+      "Endometriosis.",
+      "Postmenopausal atrophic vaginitis.",
+      "Induction of ovulation for anovulatory cycle."
+    ],
+    "correct": 3,
+    "explanation": "Estrogen is used to restore the integrity of the vaginal mucosa and pH in postmenopausal women suffering from atrophic vaginitis."
+  },
+  {
+    "question": "Recognized feature of postmenopausal women is",
+    "options": [
+      "Low FSH & LH.",
+      "Increased bone mineral density.",
+      "High FSH",
+      "High level of estrogen.",
+      "Increase the incidence of uterine fibroid."
+    ],
+    "correct": 2,
+    "explanation": "Following the depletion of ovarian follicles, the lack of negative feedback leads to characteristically high levels of Follicle Stimulating Hormone (FSH)."
+  },
+  {
+    "question": "After menopause: Which is true?",
+    "options": [
+      "There is increase in vaginal acidity,",
+      "Gonadotropins secretion falls",
+      "Recurrent vaginal bleeding should be investigated by endometrial biopsy,",
+      "Malignancy is the leading cause of postmenopausal bleeding y",
+      "Bone mineral density increases."
+    ],
+    "correct": 2,
+    "explanation": "Any postmenopausal bleeding (PMB) is considered a red flag and must be investigated via endometrial sampling to rule out malignancy."
+  },
+  {
+    "question": "Menorrhagia is:",
+    "options": [
+      "Intermittent irregular vaginal bleeding",
+      "Commonly presents as postmenopausal bleeding y",
+      "Heavy menstrual cycle more than 80 ml",
+      "Infrequent spaced cycles every 45 days",
+      "The main presentation in case of Asherman Syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Menorrhagia is defined as regular menstrual periods with excessively heavy or prolonged blood loss exceeding 80 mL per cycle."
+  },
+  {
+    "question": "The most common symptom of endometrial hyperplasia:",
+    "options": [
+      "Vaginal discharge & itching.",
+      "Vaginal bleeding.",
+      "Amenorrhea.",
+      "Pelvic paint",
+      "Abdominal distension"
+    ],
+    "correct": 1,
+    "explanation": "Endometrial hyperplasia most frequently presents as abnormal uterine bleeding, including heavy, prolonged, or irregular periods."
+  },
+  {
+    "question": "Endometriosis is:",
+    "options": [
+      "The presence of endometrial glands outside the uterus.",
+      "The presence of endometrial stroma outside the uterus.",
+      "The presence of endometrial glands & Stroma outside the uterus.",
+      "A disease of menopause.",
+      "Hyperplasia of normally located endometrium"
+    ],
+    "correct": 2,
+    "explanation": "The definitive diagnosis of endometriosis requires the presence of both ectopic endometrial glands and stroma."
+  },
+  {
+    "question": "The most common malignancy in the female reproductive organs:",
+    "options": [
+      "Carcinoma of the cervix.",
+      "Carcinoma of the ovary.",
+      "Carcinoma of the breast.",
+      "Carcinoma of the uterine corpus.",
+      "Leiomyosarcoma of the uterus"
+    ],
+    "correct": 0,
+    "explanation": "In many developing regions, cervical cancer is the most frequent malignancy of the female reproductive tract organs."
+  },
+  {
+    "question": "The Commonest uterine fibroid to cause excessive bleeding is:",
+    "options": [
+      "Submucous fibroid.",
+      "Subserous fibroid.",
+      "Intramural fibroid.",
+      "Cervical fibroid.",
+      "Broad ligament fibroid."
+    ],
+    "correct": 0,
+    "explanation": "Submucous fibroids directly distort the endometrial cavity and interfere with hemostasis, causing the most significant bleeding symptoms."
+  },
+  {
+    "question": "Fibromyoma of the uterus :all are true except",
+    "options": [
+      "Is pre malignant tumor",
+      "Symptoms are related to the site",
+      "Estrogen dependent tumor",
+      "Can be associated with endometriosis & endometrial hyperplasia",
+      "Can cause postpartum hemorrhage."
+    ],
+    "correct": 0,
+    "explanation": "Uterine fibroids (leiomyomas) are benign smooth muscle tumors; they are not considered pre-malignant lesions."
+  },
+  {
+    "question": "A patient with small submucous 3 cm uterine leiomyoma accompanied by excessive uterine bleeding should be initially evaluated and/or treated by:",
+    "options": [
+      "myomectomy",
+      "Hysterectomy",
+      "Irradiation",
+      "High dose of estrogen",
+      "Hysteroscopy"
+    ],
+    "correct": 4,
+    "explanation": "Hysteroscopy is the diagnostic and surgical modality of choice for managing submucous fibroids that are causing symptoms."
+  },
+  {
+    "question": "Ovarian neoplasm most commonly arise from:",
+    "options": [
+      "Ovarian epithelium",
+      "Ovarian stroma.",
+      "Ovarian germ cells.",
+      "Ovarian sex cords.",
+      "Metastatic disease."
+    ],
+    "correct": 0,
+    "explanation": "Approximately 90% of all malignant ovarian cancers originate from the surface epithelial-stromal cells."
+  },
+  {
+    "question": "Metastatic tumors to the ovary rarely originate from the:",
+    "options": [
+      "breast",
+      "stomach",
+      "Large intestine.",
+      "Uterus.",
+      "Vagina."
+    ],
+    "correct": 4,
+    "explanation": "While cancers of the GI tract, breast, and uterus frequently metastasize to the ovary, metastasis from primary vaginal cancer is very rare."
+  },
+  {
+    "question": "Which of the following tumors produces estrogen?",
+    "options": [
+      "Endodermal sinus tumors.",
+      "Choriocarcinoma...",
+      "Granulosa-cell tumors.",
+      "Dysgerminoma.",
+      "Serous cyst adenomas"
+    ],
+    "correct": 2,
+    "explanation": "Granulosa cell tumors are sex-cord stromal tumors that characteristically produce and secrete high levels of estrogen."
+  },
+  {
+    "question": "Which of the following types of cancer is the leading cause death form gynecologic neoplasm:",
+    "options": [
+      "Ovarian",
+      "Uterine",
+      "Cervical.",
+      "Vaginal.",
+      "Vulvar."
+    ],
+    "correct": 0,
+    "explanation": "Ovarian cancer has the highest mortality rate among gynecologic cancers because it is often detected at an advanced, metastatic stage."
+  },
+  {
+    "question": "which of the following ovarian tumors are thought to be derived from ovarian germinal epithelium:",
+    "options": [
+      "Dysgerminoma",
+      "Fibroma",
+      "Theca cell.",
+      "Endometrioid",
+      "Germ cell tumors."
+    ],
+    "correct": 3,
+    "explanation": "Endometrioid, serous, and mucinous ovarian tumors are derived from the surface epithelium (historically misnamed the germinal epithelium)."
+  },
+  {
+    "question": "The staging of Ovarian carcinoma is based upon which of the following",
+    "options": [
+      "Pelvic examination.",
+      "CT imaging of the abdomen & pelvis",
+      "Paracentesis of ascetic fluid.",
+      "Surgical evaluation of the extent of intraabdominal diseases.",
+      "Barium enema"
+    ],
+    "correct": 3,
+    "explanation": "Ovarian cancer is staged surgically; the final stage is determined by operative findings and the evaluation of spread within the abdomen."
+  },
+  {
+    "question": "Endometrial adenocarcinoma is most often preceded by:",
+    "options": [
+      "Cystic hyperplasia.",
+      "Endometrial hyperplasia.",
+      "Endometrial hyperplasia with cytological atypia.",
+      "Arias-stella phenomena.",
+      "Microcystic glandular hyperplasia."
+    ],
+    "correct": 2,
+    "explanation": "Endometrial hyperplasia with cytological atypia is the recognized pre-malignant precursor to endometrioid adenocarcinoma."
+  },
+  {
+    "question": "Screening is most effective in preventing which of the following cancers:",
+    "options": [
+      "Vulva.",
+      "Cervix.",
+      "Endometrial",
+      "Ovary.",
+      "Fallopian tube"
+    ],
+    "correct": 1,
+    "explanation": "Cervical cancer is the most preventable gynecologic cancer through effective cytological screening (Pap smear) for pre-malignant changes."
+  },
+  {
+    "question": "Untreated patients with cancer of the cervix usually die with:",
+    "options": [
+      "Cachexia and starvation.",
+      "Bowel obstruction.",
+      "Renal failure and uremia.",
+      "Multi organ failure.",
+      "Cerebrovascular accident primigravida"
+    ],
+    "correct": 2,
+    "explanation": "Invasive cervical cancer spreads into the parametria, often obstructing the ureters and leading to uremia and renal failure."
+  },
+  {
+    "question": "Choriocarcinomas can occur:",
+    "options": [
+      "After abortion",
+      "Spontaneously.",
+      "After Hydatiform mole.",
+      "After normal pregnancy.",
+      "All of the above."
+    ],
+    "correct": 4,
+    "explanation": "Choriocarcinoma is a gestational trophoblastic malignancy that can follow any type of pregnancy, most commonly a hydatidiform mole."
+  },
+  {
+    "question": "The terminology of pelvic inflammatory diseases indicates:",
+    "options": [
+      "Infection of the vagina.",
+      "Infection of Bartholin's glands",
+      "Infection of Skene's glands.",
+      "Infection of the urinary bladder.",
+      "Endometritis and salpingo-oophoritis."
+    ],
+    "correct": 4,
+    "explanation": "PID specifically involves the infection and inflammation of the upper genital tract structures, including the endometrium and fallopian tubes."
+  },
+  {
+    "question": "While evaluating a 30-year-old woman for infertility, you diagnosed a bicornuate uterus. You explain that additional testing is necessary because of the woman's increased risk of congenital anomalies in which system?",
+    "options": [
+      "Skeletal.",
+      "Hematopoietic.",
+      "Urinary.",
+      "Central nervous.",
+      "Tracheoesophageal."
+    ],
+    "correct": 2,
+    "explanation": "Müllerian duct anomalies are frequently associated with congenital renal and urinary tract anomalies due to their close embryological development."
+  },
+  {
+    "question": "What is the etiology of mucocutaneous external genital warts?",
+    "options": [
+      "Treponema pallidum",
+      "human papillomavirus",
+      "parvovirus",
+      "Hemophilus ducreyi",
+      "gonorhea."
+    ],
+    "correct": 1,
+    "explanation": "External genital warts (Condyloma acuminata) are caused by the Human Papillomavirus, predominantly types 6 and 11."
+  },
+  {
+    "question": "The most common cause of precocious puberty in girls is:",
+    "options": [
+      "idiopathic or constitutional",
+      "gonadal tumors",
+      "Albright's syndrome",
+      "hypothyroidism",
+      "central nervous system tumors"
+    ],
+    "correct": 0,
+    "explanation": "In the majority (80-90%) of female cases, the early activation of the hypothalamic-pituitary-gonadal axis is idiopathic (no organic cause found)."
+  },
+  {
+    "question": "The following patients with genital prolapse should preferably be treated conservatively:",
+    "options": [
+      "Patients who are within 3 months after childbirth.",
+      "Patients with a prolapse after total abdominal hysterectomy.",
+      "Patients with complete precedential",
+      "Patients with enterocele.",
+      "Patients with urinary incontinence"
+    ],
+    "correct": 0,
+    "explanation": "Prolapse observed shortly after childbirth often regresses as tissues recover; conservative management with pelvic floor exercises is preferred in the first few months."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

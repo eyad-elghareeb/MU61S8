@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_58th_end_round_2",
+  title: "58Th End Round 2",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "With regard to the vagina, which of the following is correct?",
+    "options": [
+      "Lined by stratified squamous keratinized epithelium with goblet cells",
+      "The pH of its fluid does not change throughout the female life",
+      "In direct relation to peritoneal cavity through anterior fornix",
+      "The middle portion of posterior vaginal wall is in contact with anal canal",
+      "It is potential space"
+    ],
+    "correct": 4,
+    "explanation": "The vagina is a fibromuscular tube that is normally collapsed, meaning its walls are in contact, making it a potential space rather than an open cavity."
+  },
+  {
+    "question": "Pelvic inflammatory disease occurs in women because of which of the following characteristics of the fallopian tube?",
+    "options": [
+      "It is a conduit from the peritoneal space to the uterine cavity",
+      "It is found in the utero-ovarian ligament",
+      "It as five separate parts",
+      "it is attached to the ipsilateral ovary by the mesosalpinx",
+      "it is entirely extra peritoneal"
+    ],
+    "correct": 0,
+    "explanation": "The fallopian tubes provide a direct open pathway between the external environment (via the vagina and uterus) and the sterile peritoneal cavity, allowing pathogens to ascend."
+  },
+  {
+    "question": "Which of the following is the result of lack of fusion of the Müllerian ducts system?",
+    "options": [
+      "Uterine didelphys",
+      "Transverse vaginal septum",
+      "Unilateral renal agenesis",
+      "imperforate hymen",
+      "Ovarian remnant syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Uterine didelphys results from the complete failure of the two Müllerian ducts to fuse, leading to two separate uterine bodies and two cervices."
+  },
+  {
+    "question": "With regard to menstrual flow, which of the following is incorrect?",
+    "options": [
+      "Its duration ranges from two to eight days",
+      "Endometrial regeneration is the only mechanism that controls menstrual loss",
+      "Alkaline hematin is the standard method used to assess menstrua! loss",
+      "Endometrial spiral artery is an end artery",
+      "Blood constitutes 50% of menstrual loss"
+    ],
+    "correct": 1,
+    "explanation": "Menstrual loss control is a complex process involving spiral artery vasoconstriction and myometrial contractions, not just the regeneration of the endometrium."
+  },
+  {
+    "question": "Which of the following potentiates the release of prolactin from the anterior pituitary gland?",
+    "options": [
+      "Dopamine",
+      "Follicle stimulating hormone",
+      "Gonadotropin-releasing hormone",
+      "Corticotropin-releasing hormone",
+      "Thyrotropin-releasing hormone"
+    ],
+    "correct": 4,
+    "explanation": "Thyrotropin-releasing hormone (TRH) acts as a prolactin-releasing factor, stimulating the pituitary to secrete prolactin."
+  },
+  {
+    "question": "A 9-year-old girl presents for evaluation of regular vaginal bleeding. History reveals thelarche at age 7 and adrenarche at age 8. Which of the following is the most common cause of this condition in girls?",
+    "options": [
+      "Idiopathic",
+      "Gonadal tumors",
+      "McCune-Albright syndrome",
+      "Hypothyroidism",
+      "Tumours of the central nervous system"
+    ],
+    "correct": 0,
+    "explanation": "In the vast majority of cases (approximately 80-90%), central precocious puberty in females is idiopathic, meaning no underlying organic cause is found."
+  },
+  {
+    "question": "Which of the following ovarian tumors is most likely to result in virilization of a 35-year-old woman?",
+    "options": [
+      "Brenner (transitional cell) tumour",
+      "Dysgerminoma",
+      "Sertoli-Leydic cell tumour",
+      "Mucinous cystadenomoma",
+      "Thecoma"
+    ],
+    "correct": 2,
+    "explanation": "Sertoli-Leydig cell tumors are sex-cord stromal tumors that secrete androgens, leading to symptoms of masculinization or virilization."
+  },
+  {
+    "question": "25-year-old woman experiences galactorrhea and delayed flow for 8 weeks' duration with irregular vaginal bleeding. Which of the following serum assays should initially be performed?",
+    "options": [
+      "Human chorionic gonadotropin",
+      "Progesterone",
+      "Prolactin",
+      "Follicle stimulating hormone",
+      "luteinizing hormone"
+    ],
+    "correct": 0,
+    "explanation": "Pregnancy must be the first condition excluded in any woman of reproductive age presenting with amenorrhea or irregular bleeding."
+  },
+  {
+    "question": "The treatment should include intravaginal estrogen therapy:",
+    "options": [
+      "Candidal vaginal infections",
+      "Trichomonas",
+      "Bacterial vaginosis",
+      "Atrophic vaginitis",
+      "Mucopurulent cervicitis"
+    ],
+    "correct": 3,
+    "explanation": "Atrophic vaginitis, caused by estrogen deficiency in menopause, is treated with local estrogen to restore the vaginal mucosa."
+  },
+  {
+    "question": "Which of the following is the most common symptom of vulvar carcinoma in elderly women?",
+    "options": [
+      "Abnormal genital bleeding",
+      "A foul smell",
+      "Pruritus",
+      "Vulvar atrophy",
+      "Painful intercourse"
+    ],
+    "correct": 2,
+    "explanation": "Chronic vulvar itching (pruritus) is the most frequent presenting symptom in patients with invasive vulvar cancer."
+  },
+  {
+    "question": "Which of the following should be recommended as first-line management for infertile and seeking pregnancy, obese PCOS women with anovulation?",
+    "options": [
+      "Gonadotropins",
+      "Anti-estrogen (Clomiphene citrate)",
+      "Weight loss and exercise",
+      "Insulin-sensitizing agents",
+      "Dopamine agonists"
+    ],
+    "correct": 2,
+    "explanation": "For obese women with PCOS, lifestyle modification including weight loss is the essential first step to improve metabolic health and restore ovulation."
+  },
+  {
+    "question": "The best treatment option for postmenopausal women with complex atypical endometrial hyperplasia:",
+    "options": [
+      "Danazol",
+      "Aromatase inhibitors",
+      "Endometrial ablation",
+      "Hysterectomy",
+      "Progesterone containing IUD"
+    ],
+    "correct": 3,
+    "explanation": "Due to the high risk of progression to or coexistence with endometrial cancer, hysterectomy is the recommended treatment for atypical hyperplasia."
+  },
+  {
+    "question": "With regard to the cervix uteri, during speculum examination, the examiner appropriately could comment on which of the followings:",
+    "options": [
+      "Consistency of the cervix",
+      "External os direction",
+      "Characters of cervical discharge",
+      "Level of external os",
+      "Cervical mobility"
+    ],
+    "correct": 1,
+    "explanation": "The direction of the external os can be directly observed during a speculum exam, which helps determine if the uterus is anteverted or retroverted."
+  },
+  {
+    "question": "Which of the following is the most common indication for treatment of uterine leiomyomata in a 42- year-old woman?",
+    "options": [
+      "Interference with reproductive function",
+      "Rapid enlargement",
+      "Pain",
+      "impingement on another organ",
+      "Excessive uterine bleeding"
+    ],
+    "correct": 4,
+    "explanation": "Heavy menstrual bleeding (menorrhagia) is the most common symptom that drives women to seek surgical or medical treatment for fibroids."
+  },
+  {
+    "question": "Treatments of primary dysmenorrhea are directed toward addressing the cause, which is associated with elevations in which of the following?",
+    "options": [
+      "Oestrogen",
+      "Progesterone",
+      "Follicle stimulation hormone",
+      "Prostaglandin F2 alpha",
+      "prostaglandin E2"
+    ],
+    "correct": 3,
+    "explanation": "Primary dysmenorrhea is caused by high levels of endometrial prostaglandins, specifically PGF2α, which stimulate painful uterine contractions."
+  },
+  {
+    "question": "Which of the following is the most common cause of rectovaginal fistula?",
+    "options": [
+      "Obstetrical trauma",
+      "Irradiation to the pelvis",
+      "Carcinoma of the vagina",
+      "Hemorrhoidectomy",
+      "Crohn's disease"
+    ],
+    "correct": 0,
+    "explanation": "Trauma during childbirth, such as poorly healed third or fourth-degree perineal tears, is the leading cause of rectovaginal fistulas worldwide."
+  },
+  {
+    "question": "The diagnosis of carcinoma of the cervix, FIGO stage III, is assigned when which of the following occurs?",
+    "options": [
+      "The carcinoma has infiltrated the bladder base",
+      "The carcinoma involves the distal vaginal mucosa",
+      "The carcinoma has extended into the parametria, but not to the pelvic sidewall",
+      "The tumour has pulmonary metastasis",
+      "Adenocarcinoma is present"
+    ],
+    "correct": 1,
+    "explanation": "FIGO Stage IIIA is defined by the involvement of the lower (distal) third of the vagina."
+  },
+  {
+    "question": "With regard to clinical examination of the gynecological patient, which statement is incorrect?",
+    "options": [
+      "Abdominal examination is mandatory as part of the gynecological examination",
+      "A chaperone is always needed for intimate examinations",
+      "Palpation below abdominal mass is possible",
+      "Bidigital examination can determine whether a pelvic mass is ovarian or uterine in origin",
+      "Shifting dullness and fluid thrill can be seen due to urinary retention"
+    ],
+    "correct": 4,
+    "explanation": "Shifting dullness is a sign of ascites. A full bladder (urinary retention) produces a midline dull mass that does not shift with the patient's position."
+  },
+  {
+    "question": "During early embryonic development the germ cells must migrate. If germ cells fail to enter the developing genital ridge, which of the following is most likely to occur?",
+    "options": [
+      "ovarian teratomas",
+      "Ectopic pregnancy",
+      "Ovarian choriocarcinoma",
+      "Gonadal agenesis",
+      "Testicular feminization"
+    ],
+    "correct": 3,
+    "explanation": "The presence of germ cells is required for the development of the gonads; failure of migration results in gonadal agenesis or 'streak' gonads."
+  },
+  {
+    "question": "Which of the following is not one of the clinical diagnostic criteria for bacterial vaginosis?",
+    "options": [
+      "Abnormally high vaginal pH",
+      "Presence of an abnormal discharge and erythema of the vagina",
+      "Clue cells seen on vaginal saline preparation by light microscopy",
+      "Characteristic fishy odor release with addition of potassium hydroxide to vaginal secretions",
+      "Enlarged tender inguinal lymph nodes"
+    ],
+    "correct": 4,
+    "explanation": "Bacterial Vaginosis is a non-inflammatory condition; it does not typically cause vaginal redness (erythema) or swollen lymph nodes."
+  },
+  {
+    "question": "When does ovulation take place in women monitoring with urinary luteinizing hormone kits?",
+    "options": [
+      "Day of positive results",
+      "Day after positive results",
+      "Day prior to positive results",
+      "Three days after positive results",
+      "Four days after positive results"
+    ],
+    "correct": 1,
+    "explanation": "The LH surge detected in urine typically precedes ovulation by 24-36 hours, meaning ovulation usually occurs the day after the first positive test."
+  },
+  {
+    "question": "A 39-year-old G3P3 complains of severe, progressive secondary dysmenorrhea and menorrhagia. Pelvic examination demonstrates a tender, diffusely enlarged uterus with no adnexal tenderness. Results of endometrial biopsy are normal. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Endometriosis",
+      "Endometritis",
+      "Adenomyosis",
+      "Uterine sarcoma",
+      "Leiomyoma"
+    ],
+    "correct": 2,
+    "explanation": "The presentation of progressive dysmenorrhea and heavy bleeding with a symmetrically enlarged, tender uterus is highly characteristic of adenomyosis."
+  },
+  {
+    "question": "What is the name of the operation combining anterior and posterior colporrhaphy with amputation of the cervix and use of the cardinal ligaments to support the anterior vaginal wall and bladder?",
+    "options": [
+      "Colposuspension",
+      "Classical repair",
+      "Mc Call Culdoplasty",
+      "Manchester-Fothergill",
+      "Le Fort operation/colpocleisis"
+    ],
+    "correct": 3,
+    "explanation": "The Manchester (Fothergill) operation is a uterus-sparing procedure designed to treat uterine prolapse and cervical elongation."
+  },
+  {
+    "question": "What is the most common cystic lesion of the vulva?",
+    "options": [
+      "Gartner cyst",
+      "Endometriotic cyst",
+      "Cyst of duct of Bartholin gland",
+      "Epidermal inclusion cyst",
+      "Hemangioma"
+    ],
+    "correct": 2,
+    "explanation": "Bartholin's duct cysts are the most common cystic growths found in the vulvar region."
+  },
+  {
+    "question": "You are counseling a couple about factors that can affect fertility. Which of the following factors adversely affect spermatogenesis?",
+    "options": [
+      "Swimming",
+      "Exposure to cold",
+      "Febrile illness",
+      "Boxer shorts",
+      "Weekly intercourse"
+    ],
+    "correct": 2,
+    "explanation": "High body temperature caused by a febrile illness can temporarily impair the production and quality of sperm."
+  },
+  {
+    "question": "A 14-year-old girl complains of irregular vaginal bleeding. Her general examination and pelvic organs are normal. Which of the following is the most likely cause of anovulatory bleeding in this patient?",
+    "options": [
+      "Hypothyroidism",
+      "Pituitary adenoma",
+      "Polycystic ovary syndrome",
+      "Congenital adrenal hyperplasia",
+      "Hypothalamic immaturity"
+    ],
+    "correct": 4,
+    "explanation": "In young adolescents, irregular cycles are most often due to the developmental immaturity of the hypothalamic-pituitary-ovarian axis."
+  },
+  {
+    "question": "What structure found in the labia majora is not found in the labia minora?",
+    "options": [
+      "Sebaceous glands",
+      "Hair follicles",
+      "Stratified squamous epithelium",
+      "Sweet glands",
+      "Specialised nerve endings."
+    ],
+    "correct": 1,
+    "explanation": "The labia majora are covered by skin containing hair follicles, whereas the labia minora are hairless."
+  },
+  {
+    "question": "Which of the following physical findings should prompt an evaluation of a pathologic process in a menopausal woman?",
+    "options": [
+      "Atrophic vaginal mucosa",
+      "Seborrheic cysts of the vulva",
+      "Small labia minora",
+      "Amenorrhea",
+      "Clitoromegaly"
+    ],
+    "correct": 4,
+    "explanation": "Clitoromegaly in a postmenopausal woman is an abnormal finding that suggests excessive androgen production from a tumor or other pathology."
+  },
+  {
+    "question": "A 48-year-old patient with uterine leiomyomata, found on pelvic examination complains of excessive uterine bleeding. Which of the following should be the next step in the management of this patient?",
+    "options": [
+      "Myomectomy",
+      "Hysterectomy",
+      "Ultrasonography",
+      "Endometrial biopsy",
+      "Hysterosalpingography"
+    ],
+    "correct": 3,
+    "explanation": "In a perimenopausal woman with abnormal bleeding, endometrial sampling is essential to rule out malignancy or hyperplasia before treating fibroids."
+  },
+  {
+    "question": "Simple test of urethral hypermobility:",
+    "options": [
+      "Bonney or Marshall test",
+      "Cystoscopy",
+      "Q-tip test",
+      "Urethral pressure profile study",
+      "Standing cough stress test"
+    ],
+    "correct": 2,
+    "explanation": "The Q-tip test is a simple clinical method used to assess the degree of urethral displacement/hypermobility."
+  },
+  {
+    "question": "During speculum examination, you notice the presence of suspicious cervical lesion, it is best evaluated by:",
+    "options": [
+      "Cervical conization",
+      "Pap smear",
+      "Repeat cervical examination",
+      "Visual acetic acid test",
+      "Colposcopic examination and directed biopsy"
+    ],
+    "correct": 4,
+    "explanation": "When a cervical lesion is visible, a colposcopy and targeted biopsy are necessary to establish a definitive histological diagnosis."
+  },
+  {
+    "question": "At what stage of the female life is the highest number of oocytes found in the ovary?",
+    "options": [
+      "At age 35",
+      "At birth",
+      "At puberty",
+      "In utero at 5 months' gestation",
+      "2 years old"
+    ],
+    "correct": 3,
+    "explanation": "The peak number of oocytes (about 6-7 million) is reached in the fetal ovaries at approximately 20 weeks of gestation."
+  },
+  {
+    "question": "Signet ring cells are characteristic findings in which tumor of the ovary?",
+    "options": [
+      "Brenner tumour",
+      "Krukenberg's tumour",
+      "Dermoid cyst",
+      "Endometrioid carcinoma",
+      "Dysgerminoma"
+    ],
+    "correct": 1,
+    "explanation": "Signet ring cells are the hallmark histological finding in Krukenberg tumors, which are metastatic cancers of the ovary."
+  },
+  {
+    "question": "Which of the following is the gold standard technique for tubal evaluation?",
+    "options": [
+      "Hysterosalpingography",
+      "Laparoscopic evaluation",
+      "Saline infusion sonography",
+      "Magnetic resonance imaging",
+      "Hysteroscopic evaluation"
+    ],
+    "correct": 1,
+    "explanation": "Laparoscopy with chromopertubation is considered the gold standard for assessing tubal patency and pelvic anatomy."
+  },
+  {
+    "question": "A 28-year-old nulligravida presents with primary amenorrhea. She is diagnosed with 46, XY gonadal dysgenesis. During pelvic laparoscopy, what is the expected finding?",
+    "options": [
+      "Streak gonads and male internal genitalia",
+      "Streak gonads and female internal genitalia",
+      "Empty pelvis (no gonads or internal genitalia)",
+      "Bilateral abdominal testes and male internal genitalia",
+      "Bilateral abdominal testes and no internal genitalia"
+    ],
+    "correct": 1,
+    "explanation": "In 46,XY gonadal dysgenesis (Swyer syndrome), the absence of testes means no AMH or testosterone is produced, allowing female internal structures to develop with streak gonads."
+  },
+  {
+    "question": "A neoplasm that histologically has more than 50% solid area and invades approximately three-fourths of the myometrial thickness, there is no other evidence of gross or microscopic disease, is what grade and stage?",
+    "options": [
+      "Grade 2, stage 1B",
+      "Grade 3, stage 2A",
+      "Grade 3, stage IC",
+      "Grade 1, stage 1C",
+      "Gracie 3. stage 1A",
+      "Grade 3, stage 1B"
+    ],
+    "correct": 5,
+    "explanation": "Grade 3 corresponds to >50% solid growth. Myometrial invasion >50% is FIGO Stage IB."
+  },
+  {
+    "question": "Which of the following is a sexually transmitted disease and therefore warrants treatment of sexual partners?",
+    "options": [
+      "First diagnosis of bacterial vaginosis",
+      "Recurrent diagnosis of vaginal trichomoniasis",
+      "First diagnosis of vaginal Candida glabrata infection",
+      "Postmenopausal genital lichen sclerosis",
+      "Recurrent secondary genital herpes infection"
+    ],
+    "correct": 1,
+    "explanation": "Trichomoniasis is a sexually transmitted infection, and treating the partner is mandatory to prevent reinfection."
+  },
+  {
+    "question": "The most common malignant germ cell tumor:",
+    "options": [
+      "Dysgerminoma",
+      "Teratoma",
+      "Endodermal sinus tumour",
+      "Embryonal carcinoma",
+      "Choriocarcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Dysgerminoma is the most frequent malignant ovarian germ cell tumor, accounting for about 50% of cases."
+  },
+  {
+    "question": "Patient complains of heavy but regular menstrual periods. An anatomic cause of the magnitude of her flow has been ruled out. Which of the following has been shown to be most effective in reducing rather than eliminating her menstrual flow?",
+    "options": [
+      "Tranexamic acid",
+      "Dilatation and curettage",
+      "Depot medroxyprogesterone acetate",
+      "Misoprostol",
+      "Ergonovine maleate"
+    ],
+    "correct": 0,
+    "explanation": "Tranexamic acid is a highly effective non-hormonal treatment for heavy menstrual bleeding, reducing flow by about 40-50%."
+  },
+  {
+    "question": "A 45-year-old woman who has two normal pregnancies 15 and 18 years old ago presents with the complaint of amenorrhea for 7 months. She expresses the desire to become pregnant again. After exclusion of pregnancy, which of the following tests is next indicated in the evaluation of this patient's amenorrhea?",
+    "options": [
+      "hysterosalpingogram",
+      "Endometrial biopsy",
+      "thyroid function tests",
+      "testosterone and DHEAS levels",
+      "LH and FSH levels"
+    ],
+    "correct": 4,
+    "explanation": "In a woman in her mid-40s with amenorrhea, checking FSH and LH levels is the next logical step to evaluate for the onset of menopause."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

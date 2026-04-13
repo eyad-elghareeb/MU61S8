@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_58th_end_round_1",
+  title: "58Th End Round 1",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "Arterial blood supply to the uterus is derived from what arteries?",
+    "options": [
+      "Ovarian arteries alone.",
+      "Uterine arteries alone.",
+      "Uterine and ovarian arteries.",
+      "Uterine and inferior rectal arteries.",
+      "Vaginal and uterine arteries."
+    ],
+    "correct": 2,
+    "explanation": "The uterus is primarily supplied by the uterine arteries (branches of the internal iliac) with significant collateral supply from the ovarian arteries."
+  },
+  {
+    "question": "Lymphatic drainage of the ovaries follows the course of the ovarian arteries to what groups of nodes?",
+    "options": [
+      "Lateral and preaortic lumbar nodes.",
+      "Paracervical nodes.",
+      "Deep inguinal nodes.",
+      "Internal iliac nodes.",
+      "Obturator nodes."
+    ],
+    "correct": 0,
+    "explanation": "Because the ovaries descend from the lumbar region during development, their lymphatic drainage follows the ovarian vessels back to the para-aortic (lumbar) lymph nodes."
+  },
+  {
+    "question": "During a speculum exam, you notice a lesion on the patient's cervix. It can be defined as a retention cyst of endocervical columnar cells. What do you call this lesion?",
+    "options": [
+      "Epidermoid inclusion cyst.",
+      "Gartner cyst.",
+      "Nabothian cyst.",
+      "Lymphocyst.",
+      "Dermoid cyst."
+    ],
+    "correct": 2,
+    "explanation": "Nabothian cysts are common, benign retention cysts that form when squamous epithelium blocks the ducts of mucus-secreting endocervical glands."
+  },
+  {
+    "question": "What best technique of examination is useful in distinguishing between enterocele, vaginal prolapse, and rectocele?",
+    "options": [
+      "Rectal examination in Sims' position.",
+      "Recto-vaginal examination with the patient standing.",
+      "Per-vaginal examination.",
+      "Bimanual examination.",
+      "Rectal examination in lithotomy position."
+    ],
+    "correct": 1,
+    "explanation": "A rectovaginal examination performed while the patient is standing is the most effective clinical method to distinguish an enterocele from a rectocele."
+  },
+  {
+    "question": "Which of the following anatomic structures is correctly paired with its embryologic origin?",
+    "options": [
+      "Genital tubercle-clitoris.",
+      "Urethral folds-labia majora.",
+      "Labioscrotal folds-labia minora.",
+      "The whole vagina-urogenital sinus.",
+      "Fallopian tubes-mesonephric duct."
+    ],
+    "correct": 0,
+    "explanation": "The genital tubercle is the embryonic precursor to the clitoris in females and the glans penis in males."
+  },
+  {
+    "question": "What is the preferred imaging modality when a congenital mullerian anomaly is suspected?",
+    "options": [
+      "Computed tomography.",
+      "Two diminished Trans-abdominal sonography.",
+      "Magnetic resonance imaging.",
+      "Abdomino-pelvic x-ray series.",
+      "Doppler ultrasonography."
+    ],
+    "correct": 2,
+    "explanation": "MRI is considered the gold standard for non-invasive evaluation of Müllerian duct anomalies due to its superior visualization of uterine anatomy."
+  },
+  {
+    "question": "A woman normally has 32-day cycles. In this woman, when does ovulation occur?",
+    "options": [
+      "It should occur at day 12.",
+      "It should occur at day 14.",
+      "It should occur at day 18.",
+      "It should occur at day 22.",
+      "It should occur at day 20."
+    ],
+    "correct": 2,
+    "explanation": "The luteal phase is consistently 14 days long. Subtracting 14 from a 32-day cycle places ovulation on day 18."
+  },
+  {
+    "question": "Which of the following generally occurs first among the major developmental events of female puberty?",
+    "options": [
+      "Menarche.",
+      "pubarche.",
+      "Thelarche.",
+      "Growth spurt.",
+      "Adrenarche."
+    ],
+    "correct": 3,
+    "explanation": "While thelarche is often the first visible sign, the pubertal growth spurt statistically begins before breast development in most girls."
+  },
+  {
+    "question": "What is the initial treatment of choice of primary dysmenorrhea?",
+    "options": [
+      "Assurance and prostaglandin synthetase inhibitors.",
+      "Assurance and combined oral contraceptives.",
+      "Assurance and progestins.",
+      "Transcutaneous electrical nerve stimulation.",
+      "Acupuncture/acupressure and relaxation."
+    ],
+    "correct": 0,
+    "explanation": "NSAIDs act as prostaglandin synthetase inhibitors and are the first-line pharmacological treatment for the pain of primary dysmenorrhea."
+  },
+  {
+    "question": "Which of the following is not appropriate medical treatments for adenomyosis?",
+    "options": [
+      "Copper intrauterine device.",
+      "Combination oral contraceptives.",
+      "Nonsteroidal anti-inflammatory drugs.",
+      "Levonorgestrel-releasing intrauterine system (LNG-IU).",
+      "Hormone containing vaginal ring."
+    ],
+    "correct": 0,
+    "explanation": "Copper IUDs are known to increase menstrual flow and cramping, which exacerbates the symptoms of adenomyosis."
+  },
+  {
+    "question": "Which of the following conditions is a risk factor for developing endometriosis?",
+    "options": [
+      "Multiparity.",
+      "Transverse vaginal septum.",
+      "Prior chemotherapy exposure.",
+      "Autoimmune connective tissue disorders.",
+      "Obesity."
+    ],
+    "correct": 1,
+    "explanation": "Outflow tract obstructions, such as a transverse vaginal septum, increase the volume of retrograde menstruation, which is a major risk factor for endometriosis."
+  },
+  {
+    "question": "What is the next step in the evaluation of abnormal uterine bleeding following the history and physical examination in a woman of reproductive age?",
+    "options": [
+      "Pelvic ultrasound.",
+      "Coagulation profile.",
+      "Pregnancy test.",
+      "Ovarian tumour markers.",
+      "Testing for chlamydia infection."
+    ],
+    "correct": 2,
+    "explanation": "Pregnancy must be the first condition excluded in any woman of reproductive age presenting with abnormal uterine bleeding."
+  },
+  {
+    "question": "What is the most common cause of postmenopausal bleeding?",
+    "options": [
+      "Endometrial cancer.",
+      "Estrogen replacement therapy.",
+      "Atrophic endometrium and/or atrophic vaginitis.",
+      "Anticoagulants therapy.",
+      "Endometrial polyps."
+    ],
+    "correct": 2,
+    "explanation": "While malignancy must always be ruled out, atrophy of the vaginal or endometrial mucosa is statistically the most common cause of postmenopausal bleeding."
+  },
+  {
+    "question": "Which of the following tools is not clinically useful to estimate menstrual blood loss?",
+    "options": [
+      "Pad counts.",
+      "Hemoglobin and hematocrit.",
+      "Pallor.",
+      "Sodium hydroxide extraction of hemoglobin.",
+      "Size of blood clots."
+    ],
+    "correct": 3,
+    "explanation": "The alkaline hematin method (sodium hydroxide extraction) is highly accurate for research but is too cumbersome for routine clinical practice."
+  },
+  {
+    "question": "Which of the following may be reasonably considered in the evaluation of postcoital vaginal bleeding?",
+    "options": [
+      "Conization.",
+      "Cystoscopy.",
+      "Colposcopy.",
+      "Proctoscopy.",
+      "Laparoscopy."
+    ],
+    "correct": 2,
+    "explanation": "Postcoital bleeding is a classic sign of cervical pathology; colposcopy is used to inspect the cervix under magnification for pre-malignant or malignant lesions."
+  },
+  {
+    "question": "Which one of the following symptoms would you expect in an infertile young patient diagnosed to have Asherman syndrome?",
+    "options": [
+      "Hypomenorrhea.",
+      "Oligomenorrhea.",
+      "Menorrhagia.",
+      "Metrorrhagia.",
+      "Dysmenorrhea."
+    ],
+    "correct": 0,
+    "explanation": "Intrauterine adhesions (Asherman syndrome) reduce the functional surface area of the endometrium, leading to scanty menstruation (hypomenorrhea)."
+  },
+  {
+    "question": "Precocious puberty is defined as initial pubertal changes occurring prior to what age?",
+    "options": [
+      "6.5 years.",
+      "8 years.",
+      "9.5 years.",
+      "10 years.",
+      "<5.5 years."
+    ],
+    "correct": 1,
+    "explanation": "Precocious puberty in girls is traditionally defined as the development of secondary sexual characteristics before the age of 8."
+  },
+  {
+    "question": "A primary goal of therapy for central precocious puberty includes prevention of which of the following consequences?",
+    "options": [
+      "Short stature.",
+      "Excessive breast size.",
+      "Learning disabilities.",
+      "Occurrence of pregnancy.",
+      "Psychological upset."
+    ],
+    "correct": 0,
+    "explanation": "Early exposure to sex hormones causes rapid bone maturation; the main clinical goal of treatment is to prevent premature epiphyseal closure and resulting short stature."
+  },
+  {
+    "question": "Secondary amenorrhea is absence of menstruation, in a previously menstruating woman, for:",
+    "options": [
+      "two previous cycle intervals.",
+      "12 month.",
+      "three previous cycle intervals or 4 month.",
+      "three previous cycle intervals or 6 month.",
+      "six previous cycle intervals or 6 month."
+    ],
+    "correct": 3,
+    "explanation": "Secondary amenorrhea is defined as the absence of menses for 3 months in women with regular cycles or 6 months in women with irregular cycles."
+  },
+  {
+    "question": "In primary amenorrhea, if FSH is elevated and no breast development is present, what is the diagnosis?",
+    "options": [
+      "Complete androgen insensitivity.",
+      "Kallmann syndrome.",
+      "Mullerian agenesis.",
+      "Hypothalamic dysfunction.",
+      "Gonadal dysgenesis."
+    ],
+    "correct": 4,
+    "explanation": "Elevated FSH indicates primary ovarian failure, and lack of breasts indicates lack of estrogen; this clinical picture is typical of gonadal dysgenesis (e.g., Turner syndrome)."
+  },
+  {
+    "question": "Which of the following is a significant symptom of Climacteric period?",
+    "options": [
+      "Obesity.",
+      "Premenstrual tension.",
+      "Hot flushes.",
+      "Abnormal uterine bleeding.",
+      "Urinary abnormalities."
+    ],
+    "correct": 2,
+    "explanation": "Hot flushes are the most characteristic and common vasomotor symptom associated with the menopausal transition (climacteric)."
+  },
+  {
+    "question": "The appearance of a \"strawberry cervix\" is a classic sign of what infection?",
+    "options": [
+      "Tuberculosis of the cervix.",
+      "Trichomonas vaginalis.",
+      "Bacterial vaginosis.",
+      "Herpes simplex infection.",
+      "Neisseria gonorrhea."
+    ],
+    "correct": 1,
+    "explanation": "Trichomonas vaginalis causes punctate mucosal hemorrhages on the cervix, giving it a characteristic 'strawberry' appearance."
+  },
+  {
+    "question": "What is the most practical method of diagnosing candidal vaginitis?",
+    "options": [
+      "Methylene blue stained film.",
+      "Culture on Nickerson media.",
+      "Vaginal pH less than 4.5.",
+      "Application of KOH on a wet smear.",
+      "PCR."
+    ],
+    "correct": 3,
+    "explanation": "Applying 10% KOH to a vaginal discharge sample (whiff test/wet mount) helps visualize the characteristic hyphae and spores of Candida."
+  },
+  {
+    "question": "Which of the following statements is true regarding polycystic ovarian syndrome?",
+    "options": [
+      "Patients typically present with amenorrhea.",
+      "It is the most common cause of chronic anovulation.",
+      "It is characterized by hypogonadotropic hypogonadism.",
+      "Persistently elevated follicle-stimulating hormone and estradiol levels.",
+      "Most of the patients are lean."
+    ],
+    "correct": 1,
+    "explanation": "PCOS is recognized as the single most common etiology for chronic anovulation and anovulatory infertility."
+  },
+  {
+    "question": "Which of the following medications is used for achieving a pregnancy in a patient with hypogonadotropic hypogonadism?",
+    "options": [
+      "Estradiol.",
+      "Aromatase inhibitors.",
+      "Gonadotropins.",
+      "Clomiphene citrate.",
+      "Continuous GnRH infusion."
+    ],
+    "correct": 2,
+    "explanation": "Patients with hypogonadotropic hypogonadism lack the pituitary drive for ovulation and require exogenous gonadotropins to stimulate the ovaries directly."
+  },
+  {
+    "question": "What is the treatment of primary hyper-prolactinemia?",
+    "options": [
+      "Aromatase inhibitors.",
+      "L-thyroxine.",
+      "Dopamine agonists.",
+      "Gonadotropin.",
+      "Serotonin re-uptake inhibitors."
+    ],
+    "correct": 2,
+    "explanation": "Dopamine agonists like bromocriptine or cabergoline are the first-line medical treatments used to inhibit prolactin secretion."
+  },
+  {
+    "question": "In couples attempting pregnancy, what percentage of women is expected to conceive within 1 year?",
+    "options": [
+      "15.",
+      "30.",
+      "60.",
+      "85.",
+      "50."
+    ],
+    "correct": 3,
+    "explanation": "Statistically, about 85% of couples with normal fertility will achieve pregnancy within one year of regular, unprotected intercourse."
+  },
+  {
+    "question": "Patients with severe oligospermia have sperm counts less than which of the following?",
+    "options": [
+      "< 5 million/mL.",
+      "< 15 million/mL.",
+      "< 25 million/mL.",
+      "< 30 million/mL.",
+      "< 40 million/mL."
+    ],
+    "correct": 0,
+    "explanation": "While oligospermia is defined as <15 million/mL, severe oligospermia is generally categorized as a count below 5 million/mL."
+  },
+  {
+    "question": "Which factor is not protective against ovarian carcinomas?",
+    "options": [
+      "Pregnancy.",
+      "Barrier methods of contraception.",
+      "Bilateral salpingectomy.",
+      "Hysterectomy.",
+      "Use of oral contraceptives."
+    ],
+    "correct": 1,
+    "explanation": "Barrier methods do not prevent ovulation or involve the removal of tissue, unlike pregnancy, OCPs, or surgery, which all reduce ovarian cancer risk."
+  },
+  {
+    "question": "A 21-year-old woman presents with left lower quadrant pain. An anterior 7-cm firm adnexal cyst is palpated. Ultrasound confirms a complex left adnexal mass with solid components that appear to contain bone and teeth. What percentage of these tumors are bilateral?",
+    "options": [
+      "<1%.",
+      "2-3%.",
+      "10-15%.",
+      "50%.",
+      "60%."
+    ],
+    "correct": 2,
+    "explanation": "Mature cystic teratomas (dermoids) are bilateral in approximately 10% to 15% of clinical cases."
+  },
+  {
+    "question": "A 7-year-old girl is seen by her pediatrician for left lower quadrant pain. You are consulted because an ovarian neoplasm is identified by ultrasound. Which of the following is the most common ovarian tumor in this type of patient?",
+    "options": [
+      "Germ cell.",
+      "Papillary serous epithelial.",
+      "Fibrosarcoma.",
+      "Brenner tumor.",
+      "Sarcoma botryoides."
+    ],
+    "correct": 0,
+    "explanation": "In the pediatric and adolescent population, the vast majority of ovarian neoplasms are germ cell tumors."
+  },
+  {
+    "question": "Which of the following is risk factor for the development of cervical cancer?",
+    "options": [
+      "Herpes simplex.",
+      "HPV types 16 and 18.",
+      "Family history of cervical cancer.",
+      "Obesity.",
+      "Previous chlamydial infection."
+    ],
+    "correct": 1,
+    "explanation": "Infection with high-risk human papillomavirus (HPV) types 16 and 18 is the primary cause of most cervical cancers."
+  },
+  {
+    "question": "An intravenous pyelogram (IVP) shows hydronephrosis in the workup of a patient with cervical cancer otherwise confined to a cervix of normal size. This indicates which one of the following stages?",
+    "options": [
+      "I.",
+      "II.",
+      "III.",
+      "IV.",
+      "Micro invasion stage."
+    ],
+    "correct": 2,
+    "explanation": "Regardless of visual tumor size, the presence of hydronephrosis or a non-functioning kidney automatically places the disease into FIGO Stage III."
+  },
+  {
+    "question": "The initial treatment option of 47 years lady with asymptomatic myoma 5 cm FIGO 5 is?",
+    "options": [
+      "Gonadotropin releasing hormone agonists",
+      "Assurance and follow up.",
+      "Combined oral contraceptives.",
+      "Selective progesterone receptor modulators.",
+      "Levonorgestrel intrauterine system."
+    ],
+    "correct": 1,
+    "explanation": "Small, asymptomatic intramural/subserosal fibroids in a woman approaching menopause typically only require observation, as they often shrink after menopause."
+  },
+  {
+    "question": "What is the risk of progression to malignancy with complex atypical hyperplasia of the endometrium without treatment?",
+    "options": [
+      "Approximately 5% of these cases progress to carcinoma.",
+      "Approximately 45% of these cases progress to carcinoma.",
+      "Approximately 10% of these cases progress to carcinoma.",
+      "Approximately 25% of these cases progress to carcinoma.",
+      "Approximately 2% of these cases progress to carcinoma."
+    ],
+    "correct": 3,
+    "explanation": "Complex atypical hyperplasia has a high malignant potential, with roughly 25-30% of untreated cases eventually progressing to adenocarcinoma."
+  },
+  {
+    "question": "What is the most common presenting complaint of a woman with endometrial cancer?",
+    "options": [
+      "Pelvic pain.",
+      "Postmenopausal / premenopausal uterine bleeding.",
+      "Excessive offensive vaginal discharge.",
+      "Weight loss.",
+      "Rectal symptoms."
+    ],
+    "correct": 1,
+    "explanation": "Abnormal uterine bleeding (postmenopausal bleeding or irregular premenopausal cycles) is the presenting symptom in 90% of women with endometrial cancer."
+  },
+  {
+    "question": "Which of the following is correct as regards management of cystocele?",
+    "options": [
+      "Pessaries.",
+      "Kegel exercises.",
+      "Obliteration of cull-de-sac.",
+      "Anterior colporrhaphy.",
+      "Estrogen."
+    ],
+    "correct": 3,
+    "explanation": "Anterior colporrhaphy is the standard surgical procedure performed to repair a cystocele (bladder prolapse)."
+  },
+  {
+    "question": "Urinary stress incontinence is?",
+    "options": [
+      "The loss is of large amount of urine when intra-abdominal pressure increases.",
+      "The loss is of small amount of urine with normal intra- abdominal pressure.",
+      "Inability to control urine with desire.",
+      "Inability to pass urine.",
+      "Constant loss of urine."
+    ],
+    "correct": 0,
+    "explanation": "According to the provided exam key, stress incontinence is defined here by the loss of urine during activities that increase intra-abdominal pressure."
+  },
+  {
+    "question": "Which location of uterine fibroid is typically the most symptomatic?",
+    "options": [
+      "FIGO 1.",
+      "FIGO 4.",
+      "FIGO 5.",
+      "FIGO 3.",
+      "FIGO 7."
+    ],
+    "correct": 0,
+    "explanation": "FIGO Type 1 (submucosal) fibroids are the most symptomatic because they distort the uterine cavity, leading to heavy bleeding and reproductive issues."
+  },
+  {
+    "question": "Second degree uterine descent is defined as?",
+    "options": [
+      "External os at ischial spine.",
+      "External os outside vaginal introitus.",
+      "External os below ischial spine.",
+      "Fundus of the uterus below vaginal introitus.",
+      "Fundus of the uterus below ischial spine."
+    ],
+    "correct": 1,
+    "explanation": "Second-degree uterine prolapse is generally defined as the cervix (external os) descending to or protruding slightly beyond the vaginal introitus."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

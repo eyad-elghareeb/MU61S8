@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_59th_midterm",
+  title: "59Th Midterm",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "In a 25-year-old woman, serum FSH is elevated more than 25 IU/L in which case?",
+    "options": [
+      "Polycystic ovarian syndrome",
+      "Mullerian agenesis",
+      "Ovarian agenesis",
+      "Medications like anti-estrogen and H2 blockers",
+      "Asherman syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Elevated FSH (>25 IU/L) indicates hypergonadotropic hypogonadism, which is characteristic of primary ovarian failure or agenesis. In PCOS, FSH is typically normal or low. In Mullerian agenesis and Asherman syndrome, ovarian function is preserved, so FSH levels are normal."
+  },
+  {
+    "question": "Control of blood loss during menstruation does not appropriately involve which of the following mechanisms?",
+    "options": [
+      "Thrombus formation",
+      "Decrease local endometrial production of PGI2",
+      "Vasoconstriction of spiral arteries",
+      "Myometrial contractions",
+      "Regeneration of endometrium"
+    ],
+    "correct": 3,
+    "explanation": "According to the provided answer key, myometrial contractions are the selected answer. However, physiologically, myometrial contractions act as 'living ligatures' to compress vessels and are crucial for hemostasis. Regeneration is a repair process, not a hemostatic one. The key likely points to a specific nuance or error in the source question, but based on the provided key, D is the answer."
+  },
+  {
+    "question": "Which of the following descriptions would you most likely NOT find in a normal patient during pelvic examination or laparotomy?",
+    "options": [
+      "Dextro rotation of the uterus",
+      "Ovaries cranial to the cervix",
+      "Round ligaments attached to the uterus anterior to the insertion of the fallopian tubes",
+      "Corpus is mobile in many directions",
+      "Cervix could be palpable on rectal examination"
+    ],
+    "correct": 0,
+    "explanation": "The uterus is typically anteverted and anteflexed. While some rotation can occur, significant dextrorotation is not a standard 'normal' fixed characteristic compared to the other options. Ovaries are typically located near the pelvic sidewall, often cranial/posterior to the cervix. Round ligaments insert anteriorly. The uterus is mobile. The cervix is palpable."
+  },
+  {
+    "question": "Which of the following statements accurately describes the effect of estrogen?",
+    "options": [
+      "It decreases the water content of cervical mucus",
+      "It decreases the palm-leaf crystallization pattern of mucus upon drying (ferning)",
+      "It decreases formation of glycoprotein channels, which favor sperm penetration",
+      "It decreases cervical mucus stretchability (spinnbarkeit)",
+      "It increases the amount of sodium chloride in the cervical mucus"
+    ],
+    "correct": 4,
+    "explanation": "Estrogen makes cervical mucus thin, watery, and alkaline. It increases the salt (sodium chloride) content, which leads to ferning upon drying. It also increases spinnbarkeit (stretchability) and facilitates sperm penetration."
+  },
+  {
+    "question": "Which of the following is true with most of the Mullerian duct anomalies?",
+    "options": [
+      "Associated with disordered function of the gonads",
+      "Usually diagnosed after onset of puberty",
+      "Often recognised in prepubertal period",
+      "Associated with age-inappropriate external genitalia",
+      "Mostly associated with lower gastrointestinal tract anomalies"
+    ],
+    "correct": 1,
+    "explanation": "Mullerian anomalies are often asymptomatic until puberty when menstrual issues (amenorrhea, dysmenorrhea) or obstetric complications arise. Gonadal function is usually normal. External genitalia are typically normal unless there is a concurrent disorder of sexual development."
+  },
+  {
+    "question": "The most accurate diagnosis of endometriosis is by:",
+    "options": [
+      "History and clinical examinations",
+      "Pelvic Ultrasound examination",
+      "Laparoscopy",
+      "Laparoscopic-guided biopsy",
+      "Magnetic resonance imaging"
+    ],
+    "correct": 3,
+    "explanation": "While laparoscopy allows visualization, the gold standard for definitive diagnosis is histological confirmation via laparoscopic-guided biopsy, which demonstrates endometrial glands and stroma outside the uterus."
+  },
+  {
+    "question": "Woman suffering multiple painful vesicles in vulva that later ulcerate after intercourse with no noted inguinal lymphadenopathy, most likely diagnosed:",
+    "options": [
+      "Herpes simplex",
+      "HPV infection",
+      "Syphilis",
+      "Chancroid",
+      "Lymphogranuloma venereum"
+    ],
+    "correct": 0,
+    "explanation": "Primary Herpes Simplex Virus (HSV) infection presents with painful vesicles that ulcerate. While primary HSV often has lymphadenopathy, recurrent episodes may not, or it might be mild. Syphilis chancre is painless. Chancroid ulcers are painful but not vesicular initially. HPV causes warts."
+  },
+  {
+    "question": "A 46-year-old, non-pregnant, morbidly obese woman presents with irregular menstrual cycles for several months. Which of the following represents the most appropriate initial management?",
+    "options": [
+      "Assessment of sex steroid hormones",
+      "Endometrial samples",
+      "Office hysteroscopy",
+      "Dilation and curettage",
+      "Endometrial ablation"
+    ],
+    "correct": 1,
+    "explanation": "In women over 45 (or younger with risk factors like obesity/PCOS) presenting with abnormal uterine bleeding, endometrial sampling is required to rule out endometrial hyperplasia or carcinoma before initiating treatment."
+  },
+  {
+    "question": "Urinary incontinence is a major problem for some women. Which of the following characteristics of the female urethra helps prevent incontinence?",
+    "options": [
+      "Its 15- to 20-cm length",
+      "Its junction with the bladder at the level of the midtrigone",
+      "Its true anatomic sphincter",
+      "Its intrinsic resting tone",
+      "Its upper two-thirds integration with the anterior vaginal wall"
+    ],
+    "correct": 3,
+    "explanation": "The female urethra is short (3-4 cm). Continence is maintained by the intrinsic resting tone of the urethral smooth muscle and the vascular submucosal plexus, along with the support of the pelvic floor."
+  },
+  {
+    "question": "Premenstrual syndrome has a cluster of possible symptoms. Which of the following would NOT be most expected?",
+    "options": [
+      "Non cyclic mastalgia",
+      "Constipation",
+      "Abdominal bloating",
+      "Temporary weight gain",
+      "Anxiety"
+    ],
+    "correct": 0,
+    "explanation": "PMS symptoms are cyclic, occurring in the luteal phase and resolving with menstruation. Mastalgia in PMS is cyclic. Non-cyclic mastalgia suggests other pathologies. Bloating, weight gain, and mood changes like anxiety are classic PMS symptoms."
+  },
+  {
+    "question": "A 7-year-old girl and her mother seek medical advice because the girl has developed breasts and has started to grow pubic hair. Which of the following is the best line of treatment for her condition?",
+    "options": [
+      "Exogenous gonadotropins for one year",
+      "GnRH agonists till usual age of puberty",
+      "GnRH agonists for 36 months",
+      "Low dose combined oral contraceptive for 2 years",
+      "No treatment; reassure the mother that pubertal symptoms at age 7 are normal"
+    ],
+    "correct": 1,
+    "explanation": "Precocious puberty is defined as onset before age 8 in girls. If central precocious puberty is confirmed, GnRH agonists are used to halt progression and preserve adult height potential until the normal age of puberty."
+  },
+  {
+    "question": "Which of the following characteristics of the normal ovary is correct?",
+    "options": [
+      "They are normally unchanged in size throughout a woman's lifetime",
+      "They are suspended only by the ovarian ligaments",
+      "They are exocrine glands and store germ cells",
+      "They lie in the true pelvis",
+      "They are completely mesodermal in origin and mobile"
+    ],
+    "correct": 3,
+    "explanation": "The ovaries are located in the ovarian fossa on the lateral pelvic wall within the true pelvis. They change size throughout life, are suspended by the mesovarium, ovarian ligament, and infundibulopelvic ligament, and are endocrine/exocrine glands."
+  },
+  {
+    "question": "To decrease the risk of uterine perforation during dilatation and curettage, which of the following is the first surgical step?",
+    "options": [
+      "Uterine sounding",
+      "Uterine dilation",
+      "Bimanual examination",
+      "Transvaginal sonography",
+      "Traction applied on posterior lip of the cervix in a retroverted uterus"
+    ],
+    "correct": 2,
+    "explanation": "A bimanual examination is crucial before any instrumentation to determine the position (anteverted/retroverted) and size of the uterus, guiding the direction of instruments to prevent perforation."
+  },
+  {
+    "question": "Commonly the vagina is maldeveloped in which of the following?",
+    "options": [
+      "Congenital adrenal hyperplasia in a female infant",
+      "Association with an absent or rudimentary uterus",
+      "Classic Turner's syndrome",
+      "Medication induced fetal masculinization of a female infant",
+      "Gonadal agenesis"
+    ],
+    "correct": 1,
+    "explanation": "Mullerian agenesis (MRKH syndrome) involves the absence or rudimentary development of the uterus and the upper portion of the vagina. CAH affects external genitalia. Turner's involves streak ovaries but normal Mullerian structures."
+  },
+  {
+    "question": "Regarding the menstrual cycle, which is the true statement?",
+    "options": [
+      "Menstruation occurs with vasodilation of the spiral arteries",
+      "The LH surge triggers menstruation",
+      "The Graafian follicle develops during the luteal phase",
+      "Both the follicle and the corpus luteum do not secrete oestradiol",
+      "Progesterone levels fall before the onset of menstruation"
+    ],
+    "correct": 4,
+    "explanation": "Menstruation is triggered by the withdrawal of progesterone and estrogen due to the degeneration of the corpus luteum. The fall in progesterone leads to spiral artery vasoconstriction, ischemia, and shedding."
+  },
+  {
+    "question": "A 28-year-old patient, regularly menstruating, complains of amenorrhea after dilation and curettage. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Asherman syndrome",
+      "Sheehan syndrome",
+      "Cervical stenosis",
+      "Traumatic vaginal atresia",
+      "Gonadal failure"
+    ],
+    "correct": 0,
+    "explanation": "Asherman syndrome (intrauterine adhesions) is a known complication of dilation and curettage (D&C), especially if performed postpartum or post-abortion, leading to amenorrhea or hypomenorrhea."
+  },
+  {
+    "question": "What are the classic risk factors for primary dysmenorrhea?",
+    "options": [
+      "Age more than 30, BMI more than 30 & smoker",
+      "Age more than 25, BMI more than 25 & non smoker",
+      "Age more than 30, BMI less than 30 & non smoker",
+      "Age less than 30, BMI less than 30 & non smoker",
+      "Age <30 years, BMI <20 kg/m2, smoking"
+    ],
+    "correct": 4,
+    "explanation": "Risk factors for primary dysmenorrhea include young age, low BMI, and smoking. It typically affects adolescents and young women."
+  },
+  {
+    "question": "Which circumstance best describes the typical candidate of the Le Fort's obliterative procedure used in treating genital descent?",
+    "options": [
+      "Desires future fertility",
+      "Desires future coital activity",
+      "Has abnormal uterine bleeding requiring concomitant hysterectomy",
+      "Is medically compromised or elderly",
+      "Patient refusing surgical intervention"
+    ],
+    "correct": 3,
+    "explanation": "Le Fort's colpocleisis is an obliterative procedure that closes the vagina. It is reserved for elderly, medically frail women who are not sexually active and are poor candidates for extensive reconstructive surgery."
+  },
+  {
+    "question": "In premenarchal girls, which of the following is the most common source of abnormal bleeding?",
+    "options": [
+      "Ovary",
+      "Uterus",
+      "Vagina",
+      "Urethra",
+      "Anus"
+    ],
+    "correct": 2,
+    "explanation": "In premenarchal girls, vaginal bleeding is most commonly due to local vaginal causes such as vaginitis, foreign bodies, or trauma, rather than uterine hormonal shedding."
+  },
+  {
+    "question": "A 20 years sexually active lady presented after end of menstruation with fever, tender lower abdomen, tender cervical motion and leucocytosis. The most likely diagnosis is:",
+    "options": [
+      "Ectopic pregnancy",
+      "Ruptured ovarian cyst",
+      "Acute pyelitis",
+      "Diverticulitis",
+      "Pelvic inflammatory disease"
+    ],
+    "correct": 4,
+    "explanation": "The triad of lower abdominal pain, cervical motion tenderness (chandelier sign), and adnexal tenderness, accompanied by fever and leukocytosis, is the classic clinical presentation of Pelvic Inflammatory Disease (PID)."
+  },
+  {
+    "question": "The floor of Pouch of Douglas is formed of:",
+    "options": [
+      "Peritoneum covering posterior fornix",
+      "Cardinal ligament",
+      "Posterior aspect of cervix",
+      "Rectum",
+      "Uterosacral ligament"
+    ],
+    "correct": 0,
+    "explanation": "The Pouch of Douglas (rectouterine pouch) is bounded anteriorly by the posterior fornix of the vagina and posterior surface of the uterus/cervix, posteriorly by the rectum, and laterally by the uterosacral ligaments. The 'floor' or deepest part is the peritoneum reflecting over these structures."
+  },
+  {
+    "question": "The hormones relevant to the embryogenesis/differentiation of the external genitalia include the following?",
+    "options": [
+      "Androstenedione",
+      "Estrogens",
+      "Human chorionic gonadotropin",
+      "Dihydrotestosterone",
+      "Progesterone"
+    ],
+    "correct": 3,
+    "explanation": "Differentiation of the external genitalia into male structures requires the presence of dihydrotestosterone (DHT), a potent androgen derived from testosterone. In the absence of androgens, the external genitalia develop along female lines."
+  },
+  {
+    "question": "What is the usual order of appearance of the signs of normal puberty?",
+    "options": [
+      "Menarche then Axillary & pubic hair, then breast buds",
+      "Breast buds then Axillary & pubic hair, then menarche",
+      "Breast buds, then menarche, then Axillary & pubic hair",
+      "Axillary & pubic hair, then menarche, then breast buds",
+      "Axillary & pubic hair, then breast buds, then menarche"
+    ],
+    "correct": 1,
+    "explanation": "The typical sequence of puberty in girls is: 1. Thelarche (breast budding), 2. Pubarche/Adrenarche (pubic and axillary hair), 3. Menarche (first menstrual period)."
+  },
+  {
+    "question": "With regard to the cervix uteri, during speculum examination, the examiner could comment on which of the followings:",
+    "options": [
+      "Consistency of the cervix",
+      "External os direction",
+      "Cervical mobility",
+      "Level of external os",
+      "Characters of cervical discharge"
+    ],
+    "correct": 4,
+    "explanation": "During a speculum examination, the examiner can directly visualize the cervix and note the character, amount, and color of any cervical discharge. Consistency, mobility, and level are typically assessed during bimanual examination."
+  },
+  {
+    "question": "A 30-year-old woman presents with primary infertility and inability to get pregnant over the past 18 months. She and her husband are in good health. Which test would NOT be part of the basic work-up?",
+    "options": [
+      "Diagnostic laparoscopy",
+      "Menstrual calendars",
+      "Day 3 FSH level",
+      "Semen analysis",
+      "Thyroid profile"
+    ],
+    "correct": 0,
+    "explanation": "Diagnostic laparoscopy is an invasive surgical procedure and is not part of the initial basic infertility work-up. Basic work-up includes semen analysis, assessment of ovulation (menstrual history, Day 3 FSH), and thyroid/prolactin levels. Laparoscopy is reserved for cases where pathology is suspected after initial testing."
+  },
+  {
+    "question": "A 28-year-old nulligravida presents with primary amenorrhea. She is diagnosed with 46,XY gonadal dysgenesis. During pelvic laparoscopy, what is the expected finding?",
+    "options": [
+      "Streak gonads and male internal genitalia",
+      "Empty pelvis (no gonads or internal genitalia)",
+      "Streak gonads and female internal genitalia",
+      "Bilateral abdominal testes and male internal genitalia",
+      "Bilateral abdominal testes and no internal genitalia"
+    ],
+    "correct": 2,
+    "explanation": "In 46,XY gonadal dysgenesis (Swyer syndrome), the gonads fail to differentiate into testes, so no Anti-Mullerian Hormone (AMH) or testosterone is produced. Consequently, Mullerian structures (uterus, tubes) develop (female internal genitalia), and the gonads remain as streak gonads."
+  },
+  {
+    "question": "Which of the following statements concerning endometriosis is true?",
+    "options": [
+      "Malignant changes are common",
+      "Cryptomenorrhea is not a risk factor for disease development",
+      "It is more common in perimenopausal women",
+      "Affected women may present with subfertility",
+      "The ovary is the least affected site"
+    ],
+    "correct": 3,
+    "explanation": "Endometriosis is strongly associated with infertility/subfertility. Malignant change is rare, diagnosis is confirmed by laparoscopy/histology, it is most common in reproductive years, and the ovary is one of the most common sites."
+  },
+  {
+    "question": "Which of the following is a sexually transmitted disease and therefore warrants treatment of sexual partner?",
+    "options": [
+      "First diagnosis of bacterial vaginosis",
+      "Recurrent secondary genital herpes infection",
+      "First diagnosis of vaginal Candida glabrata infection",
+      "Postmenopausal genital lichen sclerosis",
+      "Recurrent diagnosis of vaginal trichomoniasis"
+    ],
+    "correct": 4,
+    "explanation": "Trichomoniasis is a sexually transmitted infection, and sexual partners should be treated to prevent reinfection. Bacterial vaginosis and Candida are not typically considered STIs requiring partner treatment. Herpes partner treatment is not standard for recurrent episodes unless symptomatic."
+  },
+  {
+    "question": "An 18-year-old hirsute, non sexually active lady consults you for evaluation of disabling pain with her menstrual periods. The pain has been present since menarche and is accompanied by nausea and headache. History is otherwise unremarkable, and pelvic examination is normal. You diagnose primary dysmenorrhea and recommend initial treatment with which of the following?",
+    "options": [
+      "Combined oral contraceptives containing levonorgestrel",
+      "Cyclo-oxygenase inhibitors",
+      "Gonadotropin-releasing hormone (GnRH) analogues",
+      "Danazol",
+      "Codeine"
+    ],
+    "correct": 1,
+    "explanation": "The first-line treatment for primary dysmenorrhea is Non-Steroidal Anti-Inflammatory Drugs (NSAIDs), which are cyclo-oxygenase inhibitors. They reduce prostaglandin production, which is the cause of the pain."
+  },
+  {
+    "question": "A 22-year-old patient presents to the gynecology clinic with severe lower abdominal pain and vaginal discharge. She is not pregnant and the local Examination shows severe cervical and adnexal tenderness. There is abnormal purulent cervical discharge that is sent for culture and sensitivity. What are the most common microorganisms that can cause this condition?",
+    "options": [
+      "Chlamydia trachomatis and pseudomonas",
+      "Chlamydia trachomatis and Neisseria gonorrhoea",
+      "Neisseria gonorrhea and pseudomonas",
+      "Mixed anaerobic organisms",
+      "Neisseria gonorrhea and Trichomonas vaginalis"
+    ],
+    "correct": 1,
+    "explanation": "Pelvic Inflammatory Disease (PID) is most commonly caused by Chlamydia trachomatis and Neisseria gonorrhoea."
+  },
+  {
+    "question": "Kegel exercises were designed to do which of the following?",
+    "options": [
+      "Strengthen the abdominal muscles after childbirth",
+      "Increase the blood flow to the perineum to speed the healing of an episiotomy",
+      "Improve the tone of the muscles surrounding the bladder base, neck and proximal urethra",
+      "Prevent denervation of pelvic muscles after childbirth",
+      "Decrease the muscle atrophy associated with aging"
+    ],
+    "correct": 2,
+    "explanation": "Kegel exercises target the pelvic floor muscles, specifically the pubococcygeus, to improve support for the bladder, urethra, and uterus, helping to prevent or treat stress urinary incontinence."
+  },
+  {
+    "question": "Which of the following clinical scenarios meets the definition of amenorrhea?",
+    "options": [
+      "12-year-old with Tanner stage I breast development",
+      "16-year-old with Tanner stage II breast development",
+      "14-year-old with Tanner stage III breast development",
+      "18-year-old with Tanner stage V breast development and cessation of menses for the last two cycles",
+      "13 year-old with Tanner stage I breast development"
+    ],
+    "correct": 1,
+    "explanation": "Primary amenorrhea is defined as the absence of menarche by age 15 in the presence of normal secondary sexual characteristics, or by age 13 in the absence of secondary sexual characteristics. A 16-year-old with only Tanner stage II breast development (delayed puberty) meets the criteria for evaluation of primary amenorrhea/delayed puberty."
+  },
+  {
+    "question": "After menopause increased facial hair growth occurs due to:",
+    "options": [
+      "Fall in FSH level",
+      "Increase in LH level",
+      "Decrease estrogen to androgen ratio",
+      "Decrease androgen level",
+      "Constitutional effect"
+    ],
+    "correct": 2,
+    "explanation": "After menopause, estrogen levels drop significantly, while ovarian and adrenal androgen production continues (though also decreased, the relative drop in estrogen is greater). This results in a decreased estrogen-to-androgen ratio, leading to relative hyperandrogenism symptoms like hirsutism."
+  },
+  {
+    "question": "The area of the Bartholin's ducts should be inspected. Where do the Bartholin's glands' ducts open?",
+    "options": [
+      "into the midline of the posterior fourchette",
+      "Bilaterally beneath the external urethral opening",
+      "Bilaterally on the inner surface of the labia majora",
+      "Bilaterally in the anterior part of the vaginal vestibule",
+      "Bilaterally into the posterior part of vaginal vestibule"
+    ],
+    "correct": 4,
+    "explanation": "Bartholin's glands are located in the superficial perineal pouch and their ducts open into the vaginal vestibule at the 4 o'clock and 8 o'clock positions (posterior part)."
+  },
+  {
+    "question": "Which of the following pubertal events in girls is not estrogen-dependent?",
+    "options": [
+      "Menstruation",
+      "Maturation of the Vaginal epithelium",
+      "Reaching adult height",
+      "Hair growth",
+      "Growth of mammary gland and stroma of the breast"
+    ],
+    "correct": 3,
+    "explanation": "Pubic and axillary hair growth (adrenarche) is primarily driven by androgens (from the adrenal glands and ovaries), not estrogen. Menstruation, vaginal maturation, breast growth, and epiphyseal closure (adult height) are estrogen-dependent."
+  },
+  {
+    "question": "A 27-year-old woman with a chronic bulimia presents for infertility evaluation. Your work-up identifies ovulatory dysfunction with low levels of estrogen and gonadotropins. What is the best method of ovulation induction?",
+    "options": [
+      "Human menopausal gonadotropin",
+      "Human menopausal gonadotropin plus human chorionic gonadotropin",
+      "Dopamine agonists",
+      "Depot GnRH agonists",
+      "Ovum donation"
+    ],
+    "correct": 1,
+    "explanation": "In hypothalamic amenorrhea (low GnRH leading to low FSH/LH and low estrogen), the ovaries are intact but not stimulated. Clomiphene requires an intact HPO axis feedback loop. Therefore, direct stimulation with gonadotropins (hMG) followed by hCG to trigger ovulation is required."
+  },
+  {
+    "question": "A 26-year-old woman presented with first time secondary amenorrhea and during evaluation hyperprolactinemia is diagnosed. Which of the following conditions could cause increased circulating prolactin concentration and amenorrhea in this patient?",
+    "options": [
+      "Stress",
+      "Primary hyperthyroidism",
+      "Anorexia nervosa",
+      "Congenital adrenal hyperplasia",
+      "Polycystic ovarian disease"
+    ],
+    "correct": 0,
+    "explanation": "Stress is a known physiological cause of mild hyperprolactinemia. Primary hypothyroidism (not hyperthyroidism) can cause hyperprolactinemia. Anorexia typically causes hypogonadotropic hypogonadism with normal/low prolactin. PCOS usually has normal prolactin."
+  },
+  {
+    "question": "Which of the following is least likely to aid the diagnosis of a rectovaginal fistula?",
+    "options": [
+      "Vaginoscopy",
+      "Barium enema",
+      "Noncontrast computed tomography",
+      "Tampon in the vagina with methylene blue instilled in the rectum",
+      "Proctoscopy"
+    ],
+    "correct": 2,
+    "explanation": "Noncontrast CT provides poor soft tissue detail for identifying small fistulous tracts compared to contrast studies (barium enema), direct visualization (proctoscopy/vaginoscopy), or dye tests."
+  },
+  {
+    "question": "A 16-year-old phenotypic girl is seen for primary amenorrhea. Karyotyping shows 46, XY. In counseling, you advise gonadectomy under which of the following circumstances?",
+    "options": [
+      "When she is finished growing",
+      "If the gonads are not in the normal location in the pelvis",
+      "Primarily because she will become virilized",
+      "Primarily because there is no chance of pregnancy",
+      "Primarily because of the risk of malignancy"
+    ],
+    "correct": 4,
+    "explanation": "In patients with Androgen Insensitivity Syndrome (46,XY), the intra-abdominal testes have a significant risk of developing germ cell tumors (gonadoblastoma/dysgerminoma). Gonadectomy is recommended primarily to prevent malignancy, often after puberty to allow for spontaneous breast development."
+  },
+  {
+    "question": "Which of the following is not a contraindication of estrogen replacement therapy in women?",
+    "options": [
+      "Vasomotor symptoms",
+      "Active liver disease",
+      "Known or suspected breast carcinoma",
+      "Abnormal genital bleeding of unknown etiology",
+      "Active or history of thromboembolic disease"
+    ],
+    "correct": 0,
+    "explanation": "Vasomotor symptoms (hot flashes) are the primary indication for estrogen replacement therapy, not a contraindication. The other options are absolute or relative contraindications."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

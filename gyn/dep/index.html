@@ -590,7 +590,7 @@ const QUIZZES =[
     "title": "L13 Endometriosis & Adenomyosis",
     "description": "Diagnosis and management",
     "icon": "🤰",
-    "url": "l13-endometriosis-&-adenomyosis.html",
+    "url": "l13-endometriosis-and-adenomyosis.html",
     "tags": [
       "Lecture",
       "16 Questions"
@@ -640,7 +640,7 @@ const QUIZZES =[
     "title": "L19 Genital Infections & STIs",
     "description": "PID and various infections",
     "icon": "🤰",
-    "url": "l19-genital-infections-&-stis.html",
+    "url": "l19-genital-infections-and-stis.html",
     "tags": [
       "Lecture",
       "90 Questions"
@@ -684,17 +684,18 @@ const QUIZZES =[
 ──────────────────────────────────────────────────────────────────*/
 
 // 1. Render the Quiz Cards dynamically
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function renderQuizzes() {
   const grid = document.getElementById('quiz-grid');
   grid.innerHTML = QUIZZES.map(quiz => `
     <div class="quiz-card">
-      <div class="card-icon">${quiz.icon}</div>
-      <h2 class="card-title">${quiz.title}</h2>
-      <p class="card-desc">${quiz.description}</p>
+      <div class="card-icon">${escHtml(quiz.icon)}</div>
+      <h2 class="card-title">${escHtml(quiz.title)}</h2>
+      <p class="card-desc">${escHtml(quiz.description)}</p>
       <div class="card-meta">
-        ${quiz.tags.map(tag => `<span class="meta-badge">${tag}</span>`).join('')}
+        ${quiz.tags.map(tag => `<span class="meta-badge">${escHtml(tag)}</span>`).join('')}
       </div>
-      <a href="${quiz.url}" class="btn-take-quiz">Start Exam →</a>
+      <a href="${escHtml(quiz.url)}" class="btn-take-quiz">Start Exam →</a>
     </div>
   `).join('');
 }

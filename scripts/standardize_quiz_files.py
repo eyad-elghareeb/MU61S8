@@ -69,13 +69,21 @@ def standardize_file(file_path):
     print(f"✅ Completed: {file_path}")
 
 def main():
-    # Get all html files, exclude index and bank files
-    target_dirs = [
-        'Cardio/*.html',
-        'gyn/**/*.html'
-    ]
+    # Auto-discover all subject folders — no need to hard-code them
+    import pathlib
+    repo_root = pathlib.Path(__file__).resolve().parent.parent
+    skip = {'.git', '.github', '__pycache__', '_site', 'scripts', 'node_modules'}
     
-    exclude_patterns = ['index.html', '*bank*.html']
+    target_dirs = [
+        str(sub / '**' / '*.html')
+        for sub in repo_root.iterdir()
+        if sub.is_dir() and sub.name not in skip and not sub.name.startswith('.')
+    ]
+    # Fall back to current-directory globs when run from repo root
+    if not target_dirs:
+        target_dirs = ['**/*.html']
+    
+    exclude_patterns = ['index.html', '*bank*.html', 'all-*.html']
     
     all_files = []
     for pattern in target_dirs:

@@ -1,25 +1,27 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-4472540e3d1e';
+const CACHE_VERSION = 'mu61-quiz-b5b8118d4d8b';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
   'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap';
 
 var PRECACHE_REL_PATHS = [
+  'quiz-engine.js',
+  'bank-engine.js',
   'index.html',
-  'Cardio/57th end round 1.html',
-  'Cardio/57th end round 2.html',
-  'Cardio/57th end round 3.html',
-  'Cardio/57th final.html',
-  'Cardio/58th end round 1.html',
-  'Cardio/58th end round 2.html',
-  'Cardio/58th final.html',
-  'Cardio/59th final.html',
-  'Cardio/59th mid.html',
-  'Cardio/60th final.html',
-  'Cardio/60th mid.html',
-  'Cardio/61th mid.html',
+  'Cardio/57th-end-round-1.html',
+  'Cardio/57th-end-round-2.html',
+  'Cardio/57th-end-round-3.html',
+  'Cardio/57th-final.html',
+  'Cardio/58th-end-round-1.html',
+  'Cardio/58th-end-round-2.html',
+  'Cardio/58th-final.html',
+  'Cardio/59th-final.html',
+  'Cardio/59th-mid.html',
+  'Cardio/60th-final.html',
+  'Cardio/60th-mid.html',
+  'Cardio/61th-mid.html',
   'Cardio/damietta-qs.html',
   'Cardio/index.html',
   'Cardio/Misc.html',
@@ -53,12 +55,12 @@ var PRECACHE_REL_PATHS = [
   'gyn/dep/l10-pcos.html',
   'gyn/dep/l11-aub.html',
   'gyn/dep/l12-fibroid.html',
-  'gyn/dep/l13-endometriosis-&-adenomyosis.html',
+  'gyn/dep/l13-endometriosis-and-adenomyosis.html',
   'gyn/dep/l15-infertility-.html',
   'gyn/dep/l16-genital-displacement-.html',
   'gyn/dep/l17-urinary-incontinence-.html',
   'gyn/dep/l18-genital-fistula.html',
-  'gyn/dep/l19-genital-infections-&-stis.html',
+  'gyn/dep/l19-genital-infections-and-stis.html',
   'gyn/dep/l20-gynecological-oncology.html',
   'gyn/dep/misc-mcq.html',
   'gyn/index.html',
@@ -72,21 +74,21 @@ var PRECACHE_REL_PATHS = [
   'gyn/mans/dr-alaa-mesbah.html',
   'gyn/mans/index.html',
   'gyn/mans/mans-mcq-bank.html',
-  'gyn/past years/55th-final.html',
-  'gyn/past years/57th-end-round-1.html',
-  'gyn/past years/57th-end-round-2.html',
-  'gyn/past years/57th-end-round-3.html',
-  'gyn/past years/57th-final.html',
-  'gyn/past years/58th-end-round-1.html',
-  'gyn/past years/58th-end-round-2.html',
-  'gyn/past years/58th-end-round-3.html',
-  'gyn/past years/58th-final.html',
-  'gyn/past years/59th-final.html',
-  'gyn/past years/59th-midterm.html',
-  'gyn/past years/60th-final.html',
-  'gyn/past years/60th-midterm.html',
-  'gyn/past years/index.html',
-  'gyn/past years/past-years-question-bank.html'
+  'gyn/past-years/55th-final.html',
+  'gyn/past-years/57th-end-round-1.html',
+  'gyn/past-years/57th-end-round-2.html',
+  'gyn/past-years/57th-end-round-3.html',
+  'gyn/past-years/57th-final.html',
+  'gyn/past-years/58th-end-round-1.html',
+  'gyn/past-years/58th-end-round-2.html',
+  'gyn/past-years/58th-end-round-3.html',
+  'gyn/past-years/58th-final.html',
+  'gyn/past-years/59th-final.html',
+  'gyn/past-years/59th-midterm.html',
+  'gyn/past-years/60th-final.html',
+  'gyn/past-years/60th-midterm.html',
+  'gyn/past-years/index.html',
+  'gyn/past-years/past-years-question-bank.html'
 ];
 
 function hrefFromScope(scope, relPath) {

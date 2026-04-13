@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_57th_end_round_3",
+  title: "57Th End Round 3",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "The terminology of pelvic inflammatory diseases indicates what?",
+    "options": [
+      "Infection of the vagina.",
+      "Infection of Bartholin's glands",
+      "Infection of Skene's glands.",
+      "Infection of the urinary bladder.",
+      "Endometritis and salpingo-oophoritis."
+    ],
+    "correct": 4,
+    "explanation": "Pelvic Inflammatory Disease (PID) specifically refers to the infection and inflammation of the upper female genital tract structures, primarily the endometrium and fallopian tubes."
+  },
+  {
+    "question": "A woman with bilateral proximal tubal blockage which was diagnosed by Hysterosalpingogram and her husband have normal spermogram. What is the best management choice for this couple?",
+    "options": [
+      "Doing a laparoscopic opening of the tube and then expect management.",
+      "Giving the woman clomid for 6 months and expectant management.",
+      "Doing controlled ovarian hyperstimulation.",
+      "Doing IVF.",
+      "JUL"
+    ],
+    "correct": 3,
+    "explanation": "In-vitro fertilization (IVF) is the primary treatment for bilateral tubal obstruction as it bypasses the fallopian tubes entirely."
+  },
+  {
+    "question": "The staging of ovarian carcinoma is based upon which of the following?",
+    "options": [
+      "Pelvic examination.",
+      "CT imaging of the abdomen & pelvis.",
+      "Paracentesis of ascetic fluid.",
+      "Surgical evaluation of the extent of intraabdominal diseases.",
+      "Barium enema"
+    ],
+    "correct": 3,
+    "explanation": "Ovarian cancer is staged surgically through an exploratory laparotomy to determine the exact extent of spread within the abdominal cavity."
+  },
+  {
+    "question": "In patient with endometrial cancer and less than 50% myometrial invasion, the stage is at least:",
+    "options": [
+      "IA.",
+      "IB.",
+      "IC.",
+      "IIA.",
+      "IIL"
+    ],
+    "correct": 0,
+    "explanation": "According to FIGO staging, Stage IA endometrial cancer is defined as being confined to the endometrium or invading less than half of the myometrium."
+  },
+  {
+    "question": "The most common uterine tumors in reproductive age is:",
+    "options": [
+      "Sarcoma.",
+      "Adenocarcinoma.",
+      "Adenomyosis.",
+      "Choriocarcinoma.",
+      "Leiomyoma."
+    ],
+    "correct": 4,
+    "explanation": "Leiomyomas (fibroids) are the most frequent benign tumors found in the uterus during the reproductive years."
+  },
+  {
+    "question": "Screening is most effective in preventing which of the following cancers?",
+    "options": [
+      "Vulva.",
+      "Cervix.",
+      "Endometrial.",
+      "Ovary.",
+      "Fallopian tube"
+    ],
+    "correct": 1,
+    "explanation": "Cervical cancer screening (Pap smear) is highly effective at identifying pre-malignant changes, allowing for early treatment and prevention of invasive cancer."
+  },
+  {
+    "question": "What is the most common clinical presentation of early cervical cancer?",
+    "options": [
+      "Foul-smelling vaginal discharge.",
+      "Asymptomatic.",
+      "Post-coital Bleeding.",
+      "Pelvic pain with leg edema.",
+      "Lower back pain"
+    ],
+    "correct": 2,
+    "explanation": "Post-coital bleeding (contact bleeding) is the most frequent clinical sign that alerts patients and doctors to early invasive cervical cancer."
+  },
+  {
+    "question": "What is the etiology of genital warts?",
+    "options": [
+      "Treponema pallidum",
+      "Human papillomaviruses",
+      "Parvovirus",
+      "Hemophilus ducreyi.",
+      "Herpes simplex virus."
+    ],
+    "correct": 1,
+    "explanation": "Genital warts (condyloma acuminata) are caused by the Human Papillomavirus, predominantly low-risk types 6 and 11."
+  },
+  {
+    "question": "The most common ovarian tumors seen during childhood and adolescence periods are:",
+    "options": [
+      "Germ cell tumors",
+      "Sex-cord stromal tumors",
+      "Epithelial tumors",
+      "Secondary ovarian tumors",
+      "Ovarian lymphomas."
+    ],
+    "correct": 0,
+    "explanation": "Germ cell tumors, particularly mature cystic teratomas (dermoids), are the most frequent ovarian neoplasms in children and young adults."
+  },
+  {
+    "question": "Pelvic examination of a 39-year old woman who complains of menorrhagia reveals an asymmetrically enlarged uterus-felt at the umbilicus. The most likely-diagnosis is",
+    "options": [
+      "Multiple uterine fibroids",
+      "Uterine carcinoma",
+      "Uterine sarcoma",
+      "Broad ligamentary fibroid",
+      "Cervical carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Heavy menstrual bleeding combined with an asymmetrically enlarged uterus in a woman of reproductive age is a classic presentation of multiple uterine fibroids."
+  },
+  {
+    "question": "The leading cause of gynecologic/reproductive cancer death in women is:",
+    "options": [
+      "cancer cervix",
+      "Uterine cancer",
+      "Ovarian cancer",
+      "Vulval cancer",
+      "Fallopian tube cancer"
+    ],
+    "correct": 2,
+    "explanation": "Ovarian cancer is the most lethal gynecologic malignancy because it often remains asymptomatic until it has reached an advanced stage."
+  },
+  {
+    "question": "Cervical carcinoma of 3 cm diameter less than 7cm in-depth and limited to the cervix is classified according to the FIGO staging as:",
+    "options": [
+      "Stage la",
+      "Stage lb",
+      "Stage 2",
+      "Stage 3",
+      "Stage 4"
+    ],
+    "correct": 1,
+    "explanation": "Stage IB cervical cancer refers to clinically visible lesions confined to the cervix; lesions between 2 and 4 cm are categorized as IB2."
+  },
+  {
+    "question": "A patient has Ruptured mucinous cystadenoma is more likely to develop:",
+    "options": [
+      "Pulmonary metastases",
+      "Cerebral metastases",
+      "Liver metastases",
+      "Pseudomyxoma peritonei",
+      "Septic peritonitis"
+    ],
+    "correct": 3,
+    "explanation": "The rupture or leakage of a mucinous ovarian tumor can seed the peritoneum with mucin-secreting cells, leading to pseudomyxoma peritonei."
+  },
+  {
+    "question": "A 20-year old woman presents with an asymptomatic thin walled ovarian cyst 5 cm in diameter, detected accidentally on ultrasound scan. The best management for this patient is:",
+    "options": [
+      "Observation",
+      "Laparotomy",
+      "Ovarian cystectomy",
+      "Adnexectomy",
+      "Laproscopy"
+    ],
+    "correct": 0,
+    "explanation": "Simple, small cysts in women of reproductive age are often functional and usually resolve spontaneously, warranting expectant management (observation)."
+  },
+  {
+    "question": "An infertile woman was given 30 ampoules of human menopausal gonadotrophins (HMG), then she acutely developed ascites and abdominal pain, she mostly likely has:",
+    "options": [
+      "Severe ovarian hyper stimulation syndrome",
+      "Severe liver impairment",
+      "Ovarian failure",
+      "Ovarian thecoma",
+      "Ovarian fibroma"
+    ],
+    "correct": 0,
+    "explanation": "Ovarian Hyperstimulation Syndrome (OHSS) is a complication of ovulation induction characterized by fluid shifts resulting in ascites and abdominal pain."
+  },
+  {
+    "question": "A 2-year-old girl is brought in for evaluation of vaginal bleeding. Physical examination shows grape-like lesions protruding from the vaginal introitus. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Condyloma acuminata",
+      "Hymenal tags",
+      "Sarcoma botryoides",
+      "Urethral prolapse",
+      "Vaginal polyps"
+    ],
+    "correct": 2,
+    "explanation": "Sarcoma botryoides (embryonal rhabdomyosarcoma) is a rare vaginal malignancy in infants and young children that classically appears as grape-like masses."
+  },
+  {
+    "question": "Where do most cervical cancers arise?",
+    "options": [
+      "On the portio vaginalis",
+      "At the internal os",
+      "In the endocervix",
+      "At the transformation zone",
+      "At the external os"
+    ],
+    "correct": 3,
+    "explanation": "The transformation zone (where squamous and columnar epithelium meet) is the primary site where Human Papillomavirus triggers neoplastic changes."
+  },
+  {
+    "question": "Sarcomatous change in uterine fibroids occur in:",
+    "options": [
+      "0.05%",
+      "0.5%",
+      "1.5%",
+      "5%",
+      "15%"
+    ],
+    "correct": 1,
+    "explanation": "The malignant transformation of a benign leiomyoma into a leiomyosarcoma is extremely rare, occurring in approximately 0.5% or less of cases."
+  },
+  {
+    "question": "The commonest operative cause of recurrent prolapse is:",
+    "options": [
+      "Infection of the cervix.",
+      "Early subsequent pregnancy.",
+      "Missing hernia of Douglas pouch",
+      "Bronchial asthma.",
+      "Early ambulation."
+    ],
+    "correct": 2,
+    "explanation": "Failure to identify and surgically repair a concurrent enterocele (herniation of the pouch of Douglas) is a common cause of surgical failure and recurrence."
+  },
+  {
+    "question": "Hysteroscopy is important for the diagnosis of the following",
+    "options": [
+      "intrauterine adhesions",
+      "subserous fibroids",
+      "peritubal adhesions",
+      "polycystic ovarian disease",
+      "pelvic endometriosis"
+    ],
+    "correct": 0,
+    "explanation": "Hysteroscopy allows direct visualization of the uterine cavity, making it the gold standard for diagnosing intrauterine adhesions (Asherman's syndrome)."
+  },
+  {
+    "question": "Patients with the following condition present with primary amenorrhea:",
+    "options": [
+      "Bicornuate uterus",
+      "Polycystic ovary syndrome",
+      "Imperforate hymen",
+      "Sheehan's Syndrome",
+      "Anorexia nervosa"
+    ],
+    "correct": 2,
+    "explanation": "Imperforate hymen is a classic cause of primary amenorrhea, where menstruation occurs but the blood is trapped (cryptomenorrhea)."
+  },
+  {
+    "question": "The severity of menopausal vasomotor symptoms correlates best with:",
+    "options": [
+      "Mental status at the time if climacteric.",
+      "Rate of estrogen withdrawal.",
+      "Serum estrogen concentration.",
+      "Serum FSH concentration.",
+      "Serum LH Concentration"
+    ],
+    "correct": 1,
+    "explanation": "Hot flushes and night sweats are most severe when there is a rapid decline (withdrawal) in estrogen levels rather than a steady low level."
+  },
+  {
+    "question": "Which of the following is NOP'a physical finding associated with the climacteric:",
+    "options": [
+      "Atrophic vaginitis",
+      "Clitoromegaly.",
+      "Vaginal stenosis.",
+      "Small labia minora.",
+      "Amenorrhea."
+    ],
+    "correct": 1,
+    "explanation": "Menopause is characterized by atrophy and estrogen deficiency. Clitoromegaly is a sign of androgen excess (virilization) and is not typical of the climacteric."
+  },
+  {
+    "question": "Which of the following tumors produces estrogen?",
+    "options": [
+      "Endodermal sinus tumors.",
+      "Choriocarcinoma.",
+      "Granulosa-cell tumors.",
+      "Dysgerminoma.",
+      "Serous cyst adenoma"
+    ],
+    "correct": 2,
+    "explanation": "Granulosa cell tumors are sex-cord stromal tumors that characteristically secrete high levels of estrogen, often leading to postmenopausal bleeding."
+  },
+  {
+    "question": "Ovarian neoplasm most commonly arise from:",
+    "options": [
+      "Ovarian epithelium.",
+      "Ovarian stroma.",
+      "Ovarian germ cells.",
+      "Ovarian sex cords.",
+      "Metastatic disease"
+    ],
+    "correct": 0,
+    "explanation": "Approximately 90% of malignant ovarian tumors are derived from the surface epithelial-stromal cells of the ovary."
+  },
+  {
+    "question": "While evaluating a 30-year-old woman for infertility, you diagnosed a bicornuate uterus. You explain that additional testing is necessary because of the woman's increased risk of congenital anomalies in which system?",
+    "options": [
+      "Hematopoietic.",
+      "Urinary.",
+      "Central nervous.",
+      "Tracheoesophageal",
+      "Skeletal."
+    ],
+    "correct": 1,
+    "explanation": "The development of the Müllerian ducts is closely linked to the development of the mesonephric ducts; hence, uterine anomalies frequently coexist with renal/urinary tract anomalies."
+  },
+  {
+    "question": "Laparoscopy:",
+    "options": [
+      "is indicated in case of unexplained infertility.",
+      "is done only in immediate postmenstrual period",
+      "can accurately diagnose adenomyosis.",
+      "not accurate in diagnosis of endometriosis",
+      "used for treatment of Asherman syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Laparoscopy is an essential diagnostic tool for unexplained infertility to identify conditions like peritoneal endometriosis or pelvic adhesions."
+  },
+  {
+    "question": "The treatment of cystocele with stress incontinence in a 32 year old may include the following EXCEPT:",
+    "options": [
+      "pelvic floor exercise",
+      "weight loss",
+      "vaginal hysterectomy",
+      "anterior colporrhaphy",
+      "anterior colporrhaphy with Kelly sutures."
+    ],
+    "correct": 2,
+    "explanation": "In a young woman (32 years old), conservative management or anatomical repair is preferred; vaginal hysterectomy is usually avoided unless there is significant uterine pathology."
+  },
+  {
+    "question": "A 38 year old multigravida women complains of painless loss of urine beginning immediately with coughing, laughing lifting or straining which of the following in this history most suggestive of:",
+    "options": [
+      "fistula",
+      "stress incontinence",
+      "urge incontinence",
+      "urethral diverticulum",
+      "UTI"
+    ],
+    "correct": 1,
+    "explanation": "Involuntary urinary leakage that occurs immediately upon increased intra-abdominal pressure (stress) is the hallmark of stress urinary incontinence."
+  },
+  {
+    "question": "Malignant ovarian tumor have poor prognosis due to:",
+    "options": [
+      "specific premalignant lesion could be detected",
+      "lack of early specific symptoms",
+      "ovary has a complete peritoneal covering",
+      "delayed spread of the tumor",
+      "chemosensitive to anti-cancer therapy"
+    ],
+    "correct": 1,
+    "explanation": "The lack of early specific symptoms leads to most ovarian cancers being diagnosed at an advanced, metastatic stage."
+  },
+  {
+    "question": "Induction of ovulation agents:",
+    "options": [
+      "Clomiphene citrate is an anti-androgen.",
+      "Clomiphene citrate is given by injection.",
+      "Gonadotropins is given orally.",
+      "Ultrasound scan is not needed with induction.",
+      "Causes multiple follicles."
+    ],
+    "correct": 4,
+    "explanation": "Agents used to induce ovulation, particularly gonadotropins, stimulate the development of multiple ovarian follicles."
+  },
+  {
+    "question": "The most common cause of precocious puberty in girls is:",
+    "options": [
+      "Idiopathic or constitutional",
+      "gonadal tumors",
+      "Albright's syndrome",
+      "hypothyroidism",
+      "central nervous system tumor"
+    ],
+    "correct": 0,
+    "explanation": "In roughly 80-90% of female cases, the early activation of the hypothalamic-pituitary-ovarian axis is idiopathic (constitutional)."
+  },
+  {
+    "question": "Treatment of pelvic inflammatory disease don't include the following:",
+    "options": [
+      "oral doxycycline",
+      "removal of IUDS",
+      "clindamycin",
+      "tetracycline/",
+      "dilatation and curettage"
+    ],
+    "correct": 4,
+    "explanation": "D&C is not used to treat PID and is generally avoided during active infection as it can promote the upward spread of bacteria."
+  },
+  {
+    "question": "Which of the following conditions suitable for clomiphene citrate stimulation?",
+    "options": [
+      "Gonadal dysgenesis",
+      "Asherman's syndrome",
+      "Resistant ovary syndrome.",
+      "Polycystic ovarian syndrome.",
+      "Kallmann's syndrome."
+    ],
+    "correct": 3,
+    "explanation": "Clomiphene citrate is a first-line treatment for inducing ovulation in women with anovulatory infertility due to PCOS."
+  },
+  {
+    "question": "A 20-year-old lady pregnant in the first trimester came complaining of lower abdominal pain in examination a mass continued with the uterus was found what is the Diagnosis:",
+    "options": [
+      "Red degeneration",
+      "yellow degeneration",
+      "calcification",
+      "hyaline degeneration.",
+      "fatty degeneration"
+    ],
+    "correct": 0,
+    "explanation": "Red (carneous) degeneration is a common, painful complication of uterine leiomyomas occurring during pregnancy due to rapid growth and venous thrombosis."
+  },
+  {
+    "question": "The following are true regarding cervical myoma EXCEPT:",
+    "options": [
+      "solitary.",
+      "may be huge dimensions.",
+      "associated with pressure symptoms",
+      "myomectomy is both technically difficult and hazardous",
+      "Associated with menstrual disorders."
+    ],
+    "correct": 4,
+    "explanation": "Cervical fibroids typically cause pressure on the bladder or rectum; unlike fibroids in the uterine body, they are rarely associated with heavy menstrual bleeding."
+  },
+  {
+    "question": "Polycystic ovarian diseases all of the following can be seen EXCEPT:",
+    "options": [
+      "Acne",
+      "Streak ovaries",
+      "insulin resistance.",
+      "Hirsutism",
+      "Galactorrhea"
+    ],
+    "correct": 1,
+    "explanation": "Streak ovaries are a sign of gonadal dysgenesis (e.g., Turner syndrome), whereas PCOS is characterized by enlarged ovaries with multiple small follicles."
+  },
+  {
+    "question": "The general incidence of infertility is:",
+    "options": [
+      "5%",
+      "10-15%",
+      "25%",
+      "30%",
+      "35%"
+    ],
+    "correct": 1,
+    "explanation": "Globally, approximately 10–15% of couples of reproductive age experience difficulty achieving a successful pregnancy."
+  },
+  {
+    "question": "During evaluation of infertility in 25-year-old female a hysterosalpingogram showed evidence of Asherman syndrome. Which of the following symptoms would you expect this patient to have:",
+    "options": [
+      "hypo menorrhea",
+      "oligo menorrhea",
+      "menorrhagia",
+      "metrorrhagia",
+      "dysmenorrhea"
+    ],
+    "correct": 0,
+    "explanation": "Asherman's syndrome (intrauterine adhesions) results in a reduced functional endometrial area, leading to scanty menstruation (hypomenorrhea) or amenorrhea."
+  },
+  {
+    "question": "Which of the following semen parameters would not be evaluated in a semen analysis?",
+    "options": [
+      "sperm motility",
+      "sperm concentration",
+      "sperm morphology",
+      "sperm penetration.",
+      "semen fluid viscosity"
+    ],
+    "correct": 3,
+    "explanation": "Sperm penetration assays are specialized functional tests; the standard semen analysis focuses on concentration, motility, and morphology."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

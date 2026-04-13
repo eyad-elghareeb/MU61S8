@@ -10,7 +10,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SW_PATH = REPO_ROOT / "sw.js"
 ROOT_CACHE_ASSETS = ("manifest.webmanifest", "favicon.svg")
-SKIP_DIRS = {".git", ".github", "__pycache__", "_site", "scripts"}
+SKIP_DIRS = {".git", ".github", "__pycache__", "_site", "scripts", "node_modules"}
 GENERIC_DESCRIPTIONS = {"past years exams", "department book mcqs", "quiz loading..."}
 ACRONYMS = {
     "aub": "AUB",
@@ -90,8 +90,9 @@ def update_root_index_with_folders(index_path: Path) -> bool:
         if not subfolder_index.exists():
             continue
         
-        # Build the relative URL for the folder
-        folder_url = f"{subfolder.name}/index.html"
+        # Build the relative URL for the folder — URL-encode to handle spaces/special chars
+        import urllib.parse as _ul
+        folder_url = _ul.quote(subfolder.name, safe='') + "/index.html"
         
         # Skip if already exists
         if folder_url in existing_urls:
@@ -102,15 +103,16 @@ def update_root_index_with_folders(index_path: Path) -> bool:
         folder_name = subfolder.name
         
         # Create better folder names based on common abbreviations
+        # Add entries here when adding new subject folders
         folder_titles = {
             "gyn": "Gynecology",
-            "cardio": "Internal Medicine",
+            "cardio": "Cardiology",
             "ai": "AI",
             "dep": "Department",
             "mans": "Mansoura",
         }
         
-        title = folder_titles.get(folder_name.lower(), folder_name.capitalize())
+        title = folder_titles.get(folder_name.lower(), folder_name.replace('-', ' ').replace('_', ' ').capitalize())
         
         # Count HTML files in the subfolder (excluding index.html)
         html_count = len([f for f in subfolder.glob("*.html") if f.name != "index.html"])
@@ -194,7 +196,9 @@ def update_index_file(index_path: Path) -> bool:
         if rel_url in existing_urls:
             continue
 
-        new_entries.append(build_quiz_entry(quiz_path, dir_rel, str(existing_icon)))
+        entry = build_quiz_entry(quiz_path, dir_rel, str(existing_icon))
+        if entry is not None:  # Skip files without quiz config
+            new_entries.append(entry)
 
     if not new_entries:
         return False
@@ -208,6 +212,11 @@ def update_index_file(index_path: Path) -> bool:
 
 def build_quiz_entry(quiz_path: Path, dir_rel: Path, icon: str) -> dict[str, object]:
     quiz_text = quiz_path.read_text(encoding="utf-8")
+
+    # Skip files without quiz config
+    config = extract_quiz_config(quiz_text)
+    if not config:
+        return None  # Signal that this file should be skipped
 
     title = beautify_title(extract_quiz_title(quiz_text) or quiz_path.stem)
     description = infer_description(title, extract_quiz_description(quiz_text), dir_rel)
@@ -226,7 +235,10 @@ def build_quiz_entry(quiz_path: Path, dir_rel: Path, icon: str) -> dict[str, obj
 def update_service_worker() -> bool:
     text = SW_PATH.read_text(encoding="utf-8")
     html_paths = [path.relative_to(REPO_ROOT).as_posix() for path in discover_html_files()]
-    cache_version = build_cache_version(html_paths)
+    # Engine files must always be first in the precache list
+    engine_paths = ["quiz-engine.js", "bank-engine.js"]
+    all_cache_paths = engine_paths + html_paths
+    cache_version = build_cache_version(all_cache_paths)
 
     updated = re.sub(
         r"const CACHE_VERSION = '.*?';",
@@ -236,7 +248,7 @@ def update_service_worker() -> bool:
     )
 
     array_literal, start, end = extract_assigned_literal(updated, "PRECACHE_REL_PATHS", "[", "]")
-    new_array_literal = serialize_string_array(html_paths)
+    new_array_literal = serialize_string_array(all_cache_paths)
     updated = updated[:start] + new_array_literal + updated[end:]
 
     if updated == text:
@@ -246,10 +258,10 @@ def update_service_worker() -> bool:
     return True
 
 
-def build_cache_version(html_paths: list[str]) -> str:
+def build_cache_version(all_paths: list[str]) -> str:
     hasher = hashlib.sha256()
 
-    for rel_path in [*html_paths, *ROOT_CACHE_ASSETS]:
+    for rel_path in [*all_paths, *ROOT_CACHE_ASSETS]:
         path = REPO_ROOT / rel_path
         hasher.update(rel_path.encode("utf-8"))
         hasher.update(b"\0")
@@ -280,19 +292,19 @@ def extract_quiz_config(quiz_text: str) -> dict[str, object]:
                 return config
         except ValueError:
             continue
-    raise ValueError("Neither QUIZ_CONFIG nor BANK_CONFIG found in file.")
+    return {}  # Return empty dict instead of raising error
 
 
 def extract_question_count(quiz_text: str) -> int:
     for var_name in ("QUESTIONS", "QUESTION_BANK"):
         try:
             questions_literal, _, _ = extract_assigned_literal(quiz_text, var_name, "[", "]")
-            matches = re.findall(r'"question"\s*:', questions_literal)
+            matches = re.findall(r'["\']?question["\']?\s*:', questions_literal)
             if matches:
                 return len(matches)
         except ValueError:
             continue
-    raise ValueError("Neither QUESTIONS nor QUESTION_BANK found in file.")
+    return 0  # Return 0 instead of raising error
 
 
 def extract_assigned_literal(text: str, variable_name: str, open_char: str, close_char: str) -> tuple[str, int, int]:

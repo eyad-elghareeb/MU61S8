@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mnu33acbf86c4",
+  "title": "60th Final",
+  "description": "Past Years Exams"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "A 14-year-old girl is experiencing severe lower abdominal pain that recurs monthly. Physical developments are normal, with Tanner stage 3 breast, and pubic hair development. She had never menstruated before. During an abdominal examination, a firm, tender midline mass is detected below the umbilicus. What is the most likely diagnosis?",
+    "options": [
+      "Pregnancy",
+      "Fibroid uterus",
+      "Hematocolpos",
+      "Endometriosis",
+      "Ovarian cyst"
+    ],
+    "correct": 2,
+    "explanation": "Hematocolpos is a collection of menstrual blood in the vagina due to an imperforate hymen or transverse vaginal septum. It presents with primary amenorrhea, cyclical pelvic pain, and a palpable midline pelvic mass in an adolescent."
+  },
+  {
+    "question": "Which of the following tumors is LEAST likely to be hormonally active:",
+    "options": [
+      "Sertoli-Leydig cell tumor.",
+      "Granulosa cell tumor.",
+      "Struma ovarii.",
+      "Fibroma.",
+      "Thecoma."
+    ],
+    "correct": 3,
+    "explanation": "Ovarian fibromas are benign, solid sex-cord stromal tumors that do not secrete hormones. In contrast, Sertoli-Leydig tumors secrete androgens, Granulosa/Thecomas secrete estrogen, and Struma ovarii contains thyroid tissue."
+  },
+  {
+    "question": "A 36-year-old nulligravida with abnormal uterine bleeding due to complex endometrial hyperplasia with atypia. What is the most suitable management?",
+    "options": [
+      "Induction of ovulation.",
+      "Administration of GRH analogues to induce menopause.",
+      "Repeated gestagens followed by follow up.",
+      "Selective embolization of uterine vessels.",
+      "Total hysterectomy."
+    ],
+    "correct": 2,
+    "explanation": "While total hysterectomy is the definitive treatment for complex atypical hyperplasia, this patient is a 36-year-old nulligravida who likely wants to preserve fertility. Progestin (gestagen) therapy with strict biopsy follow-up is the appropriate fertility-sparing approach."
+  },
+  {
+    "question": "The most common HPV types associated with vulval warts are:",
+    "options": [
+      "HPV 6 and 11",
+      "HPV 16 and 18",
+      "HPV 31 and 32",
+      "HPV 51 and 53",
+      "HPV 59 and 60"
+    ],
+    "correct": 0,
+    "explanation": "HPV types 6 and 11 are the primary low-risk strains responsible for causing around 90% of genital warts (condylomata acuminata)."
+  },
+  {
+    "question": "A 20-year-old presented with left lower abdominal pain. Pregnancy test is negative. Ultrasound shows an 8 cm left ovarian cystic mass with solid components and calcifications and teeth. The next step is:",
+    "options": [
+      "Repeat US in 6weeks.",
+      "Exploratory laparotomy, TAH+ BSO.",
+      "Left ovarian cystectomy.",
+      "Left salpingo-oophorectomy.",
+      "Expectant management."
+    ],
+    "correct": 2,
+    "explanation": "The ultrasound findings of solid components, calcifications, and teeth are classic for a mature cystic teratoma (dermoid cyst). In a young woman, ovarian cystectomy is the standard treatment to preserve fertility."
+  },
+  {
+    "question": "Which of the following is not a risk factor for uterine prolapse?",
+    "options": [
+      "Multiparity",
+      "Chronic smoking",
+      "History of large babies",
+      "Hyperestrogenism",
+      "Postmenopausal status"
+    ],
+    "correct": 3,
+    "explanation": "Hypoestrogenism (low estrogen), such as in postmenopause, causes atrophy and weakening of pelvic support structures, leading to prolapse. Hyperestrogenism is not a risk factor."
+  },
+  {
+    "question": "A 50-year-old patient had abnormal uterine bleeding associated with hot flushes. Ultrasound reveals a fundal myoma 7 x 7 cm intramural to subserous with calcifications. What is your recommended management?",
+    "options": [
+      "Follow up.",
+      "Endometrial ablation.",
+      "Hysterectomy.",
+      "Myomectomy.",
+      "Uterine artery embolization."
+    ],
+    "correct": 2,
+    "explanation": "In a peri/postmenopausal 50-year-old woman with abnormal bleeding, hot flushes, and a large, symptomatic fibroid, a hysterectomy provides definitive treatment."
+  },
+  {
+    "question": "The gold standard for endometrial polyp diagnosis is:",
+    "options": [
+      "CT scan of pelvis.",
+      "Hysteroscopy.",
+      "Pelvic US.",
+      "MRI.",
+      "TVS."
+    ],
+    "correct": 1,
+    "explanation": "Hysteroscopy is the gold standard because it allows direct visualization of the endometrial cavity and enables targeted biopsy or immediate removal of the polyp."
+  },
+  {
+    "question": "A 32-year-old sexually active woman comes for gynecological examination. On speculum examination: A small raised 5 mm smooth lesion, light-bluish and looks like a bubble under the cervical epithelium. Most likely diagnosis is:",
+    "options": [
+      "Bartholin cyst.",
+      "Cervical dysplasia.",
+      "Nabothian cyst.",
+      "Skene gland cyst.",
+      "Chlamydial cervicitis."
+    ],
+    "correct": 2,
+    "explanation": "A Nabothian cyst is a benign, mucus-filled retention cyst on the cervix that occurs when squamous epithelium grows over columnar endocervical glands. It typically looks like a smooth, translucent, or bluish bubble."
+  },
+  {
+    "question": "What is the commonest cause of postmenopausal bleeding:",
+    "options": [
+      "Endometrial polyp.",
+      "Endometrial hyperplasia.",
+      "Endometrial cancer.",
+      "Endometrial atrophy.",
+      "Endometritis."
+    ],
+    "correct": 3,
+    "explanation": "While endometrial cancer must always be ruled out first, the most frequent overall cause of postmenopausal bleeding is atrophic vaginitis/endometrial atrophy due to estrogen deficiency."
+  },
+  {
+    "question": "A 21-year-old woman has a profuse, malodorous vaginal discharge. Vaginal examination shows a greenish gray frothy discharge with a fishy odor and petechial lesions on the cervix. There is no cervical motion tenderness. Microscopic evaluation of the discharge is most likely to show:",
+    "options": [
+      "Clue cells.",
+      "Gram-negative diplococci.",
+      "Gram-positive diplococci.",
+      "Motile flagellated organisms.",
+      "Pseudo hyphae or hyphae."
+    ],
+    "correct": 3,
+    "explanation": "The presentation of a greenish-gray frothy discharge and a 'strawberry cervix' (petechial lesions) is pathognomonic for Trichomoniasis, caused by the motile flagellated protozoan Trichomonas vaginalis."
+  },
+  {
+    "question": "The normal vagina is richly colonized by bacterial flora mainly consisting of:",
+    "options": [
+      "Mycoplasma hominis.",
+      "Gardnerella.",
+      "Actinomyces viscous.",
+      "Chlamydia trachomatis.",
+      "Lactobacillus."
+    ],
+    "correct": 4,
+    "explanation": "Lactobacilli are the predominant normal flora of a healthy vagina. They produce lactic acid to maintain an acidic environment (pH 3.8-4.5) that inhibits pathogens."
+  },
+  {
+    "question": "A 32-year-old woman presented with fever, headache, malaise, acute lower abdominal pain with increased vaginal discharge after 3 days of hysterosalpingography (HSG). Pelvic ultrasound revealed a tubo-ovarian complex with small amount of turbid fluid in Douglas pouch. Most appropriate diagnosis is:",
+    "options": [
+      "Torsion ovary and adnexae.",
+      "Ectopic pregnancy.",
+      "Ovarian endometrioma.",
+      "Acute PID.",
+      "Rupture ovarian cyst."
+    ],
+    "correct": 3,
+    "explanation": "The recent history of an intrauterine procedure (HSG) followed by fever, pelvic pain, discharge, and a tubo-ovarian complex strongly indicates Acute Pelvic Inflammatory Disease (PID) due to ascending infection."
+  },
+  {
+    "question": "Which one of the following is not considered test to detect of ovulation?",
+    "options": [
+      "Midluteal serum progesterone.",
+      "Basal body temperature.",
+      "Detection of LH surge in urine dipstick.",
+      "Folliculometry.",
+      "Postmenstrual Endometrial biopsy"
+    ],
+    "correct": 4,
+    "explanation": "A postmenstrual endometrial biopsy shows proliferative phase endometrium and cannot confirm ovulation. A premenstrual (luteal phase) biopsy showing secretory changes is required to retrospectively confirm ovulation."
+  },
+  {
+    "question": "What is the first line of treatment of a patient complaining of primary infertility of 4 years. She had BMI 34 with irregular cycles and polycystic ovary morphology on ultrasound?",
+    "options": [
+      "Advice on weight loss and review in 6 months.",
+      "Intrauterine insemination for six cycles.",
+      "Laparoscopic ovarian drilling",
+      "Ovulation induction with clomiphene 50 mg.",
+      "Recommend one cycle of IVF treatment."
+    ],
+    "correct": 0,
+    "explanation": "In obese women with PCOS (BMI 34), weight loss of even 5-10% is the recommended first-line intervention as it can often restore spontaneous ovulation and improve pregnancy rates."
+  },
+  {
+    "question": "A 16-year-old adolescent female presented with excess facial hair growth. Ultrasound showed a bilateral increase in ovarian size with dense stroma and peripherally arranged equal size small follicles. The most suitable treatment for her is:",
+    "options": [
+      "Medical induction of ovulation.",
+      "Laparoscopic ovarian drilling.",
+      "Prolonged corticosteroid therapy.",
+      "GnRH analogues.",
+      "COCs for 6 months to one year."
+    ],
+    "correct": 4,
+    "explanation": "The presentation is classic for PCOS. Combined oral contraceptives (COCs) are the first-line treatment for an adolescent not seeking pregnancy, as they regulate cycles and suppress ovarian androgen production, improving hirsutism."
+  },
+  {
+    "question": "The gold standard for tubal evaluation for an infertile couple:",
+    "options": [
+      "HSG",
+      "Laparoscopy.",
+      "Hysteroscopy.",
+      "SIS (saline infusion sonography).",
+      "MRI."
+    ],
+    "correct": 0,
+    "explanation": "Based on the provided key, Hysterosalpingography (HSG) is considered the standard initial, practical diagnostic test (often referred to clinically as a working standard) to evaluate fallopian tube patency in infertile couples."
+  },
+  {
+    "question": "What is the FIGO staging of cervical cancer that the lesion is confined to the cervix and its size more than 4 cm in greatest dimension?",
+    "options": [
+      "IB1",
+      "IB2",
+      "IB3",
+      "IIA1",
+      "IIA2"
+    ],
+    "correct": 2,
+    "explanation": "Under the 2018 FIGO staging for cervical cancer, a clinically visible lesion confined to the cervix that is 4.0 cm or larger in its greatest dimension is classified as Stage IB3."
+  },
+  {
+    "question": "Which of the following conditions is suitable for clomiphene citrate stimulation:",
+    "options": [
+      "Asherman's syndrome",
+      "Polycystic ovarian syndrome",
+      "Premature ovarian insufficiency",
+      "Sheehan syndrome",
+      "Turner syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Clomiphene citrate requires an intact HPO axis with normal estrogen levels. It is highly effective for ovulation induction in normogonadotropic normoestrogenic women (WHO Group II), such as those with PCOS."
+  },
+  {
+    "question": "A 21-year-old woman complains of headache, breast pain, tenderness and galactorrhea. Serum prolactin is 200ng/ml. Most valuable investigation:",
+    "options": [
+      "Karyotyping.",
+      "Soft tissue mammography.",
+      "FSH and LH levels.",
+      "Pelvic ultrasound.",
+      "CT brain."
+    ],
+    "correct": 4,
+    "explanation": "A high prolactin level (>100-200 ng/mL) accompanied by headaches and galactorrhea strongly suggests a pituitary adenoma (prolactimoma). Neuroimaging, such as a CT or MRI of the brain, is essential for diagnosis."
+  },
+  {
+    "question": "A 30-year-old female had a Pap smear result of low grade squamous intraepithelial lesion (LSIL). Cervical biopsy shows CIN I. The most appropriate management is:",
+    "options": [
+      "Follow up.",
+      "Diathermy cautery.",
+      "Hysterectomy.",
+      "Cone excision.",
+      "Laser ablation."
+    ],
+    "correct": 0,
+    "explanation": "CIN I (mild dysplasia) frequently regresses spontaneously, particularly in younger women. The standard of care is conservative management with observation and cytological follow-up."
+  },
+  {
+    "question": "What is the most appropriate surgical procedure for a fit woman who has completed childbearing with a stage IA squamous cell carcinoma of the cervix?",
+    "options": [
+      "Cold knife conization.",
+      "Extrafascial hysterectomy.",
+      "Modified radical hysterectomy.",
+      "Pelvic excentration.",
+      "Extended irradiation."
+    ],
+    "correct": 2,
+    "explanation": "For stage IA cervical carcinoma in a patient who does not desire future fertility, a modified radical hysterectomy allows complete excision of the disease including surrounding parametrial tissues and lymph nodes if warranted."
+  },
+  {
+    "question": "What is the FIGO staging of endometrial carcinoma with more than 50% myometrial invasion with no lymph node metastasis?",
+    "options": [
+      "IA",
+      "IB",
+      "IIA",
+      "IIB",
+      "IIIA"
+    ],
+    "correct": 1,
+    "explanation": "According to FIGO staging for endometrial cancer, Stage IB is characterized by invasion equal to or greater than 50% (half) of the myometrium."
+  },
+  {
+    "question": "Risk factor for endometrial cancer include:",
+    "options": [
+      "Multiparity.",
+      "HSV infection.",
+      "HPV infection.",
+      "Diabetes mellitus.",
+      "Smoking."
+    ],
+    "correct": 3,
+    "explanation": "Type I endometrial cancer is strongly associated with metabolic syndrome factors such as obesity, hypertension, and diabetes mellitus, which often lead to unopposed estrogen exposure."
+  },
+  {
+    "question": "A 48-year-old woman complains of abnormal vaginal bleeding. Speculum examination reveals a suspicious cervix that bleeds on touch. The most appropriate initial investigation is:",
+    "options": [
+      "Cervical biopsy",
+      "LEEP (Loop Electrosurgical Excision Procedure)",
+      "Hysteroscopy",
+      "Colposcopy",
+      "Hysterectomy"
+    ],
+    "correct": 0,
+    "explanation": "A clinically suspicious, friable, or bleeding cervical lesion requires an immediate direct punch biopsy for histological diagnosis of potential invasive carcinoma."
+  },
+  {
+    "question": "The most frequent cause of dyspareunia is:",
+    "options": [
+      "Vaginismus.",
+      "Endometriosis.",
+      "Retroverted uterus.",
+      "Inadequate vaginal lubrication.",
+      "Pelvic inflammatory disease."
+    ],
+    "correct": 3,
+    "explanation": "The most common overall cause of superficial dyspareunia (pain on entry) across the general population is inadequate vaginal lubrication, frequently related to poor arousal or low estrogen."
+  },
+  {
+    "question": "What is the best treatment of submucous fibroid 4 x 4 cm in a patient with heavy menstrual bleeding?",
+    "options": [
+      "Medical treatment with GnRH analogue.",
+      "Medical treatment with gestagens.",
+      "Hysteroscopic myomectomy.",
+      "Laparoscopic myomectomy.",
+      "Endometrial ablation."
+    ],
+    "correct": 2,
+    "explanation": "Submucous fibroids protrude directly into the uterine cavity. Hysteroscopic myomectomy is the minimally invasive 'gold standard' for effectively removing them and resolving bleeding symptoms."
+  },
+  {
+    "question": "A 72-Year-old medically unfit lady diagnosed to have cysto-rectocele and third degree uterine decent. What is the best line of treatment?",
+    "options": [
+      "Anterior colporrhaphy",
+      "Posterior colporrhaphy",
+      "Vaginal hysterectomy",
+      "Pessary",
+      "Classical repair."
+    ],
+    "correct": 3,
+    "explanation": "In an elderly patient with significant comorbidities rendering her medically unfit for surgery, a vaginal pessary is a safe and effective conservative treatment for pelvic organ prolapse."
+  },
+  {
+    "question": "Which of the following is NOT a risk factor of epithelial ovarian cancer?",
+    "options": [
+      "Nulliparity",
+      "Late menopause",
+      "Oral contraceptive pills",
+      "Hereditary nonpolyposis colorectal cancer",
+      "Old age"
+    ],
+    "correct": 2,
+    "explanation": "Combined oral contraceptive pills (COCs) suppress ovulation, allowing the ovarian surface epithelium to rest. They are protective and significantly reduce the risk of epithelial ovarian cancer."
+  },
+  {
+    "question": "Which of the following sonographic characters of ovarian cyst suggest need for surgical exploration instead of following up and observation:",
+    "options": [
+      "Unilocular cyst",
+      "Absence of ascites",
+      "Papillary projection",
+      "Diameter of 3 cm",
+      "Presence of acoustic shadows"
+    ],
+    "correct": 2,
+    "explanation": "Solid components, septations, and especially papillary projections within a cyst are highly suspicious for malignancy and generally warrant surgical exploration."
+  },
+  {
+    "question": "What is the term used to describe the decent of the lower part of anterior vaginal wall?",
+    "options": [
+      "Cystocele",
+      "Rectocele",
+      "Enterocele",
+      "Complete procidentia",
+      "Urethrocele"
+    ],
+    "correct": 4,
+    "explanation": "An anterior vaginal wall prolapse is subdivided: a cystocele involves the upper portion supporting the bladder, while a urethrocele involves the lower portion supporting the urethra."
+  },
+  {
+    "question": "Screening is most effective in preventing which of the following cancers?",
+    "options": [
+      "Vulva.",
+      "Cervix.",
+      "Endometrial",
+      "Ovary",
+      "Fallopian tube."
+    ],
+    "correct": 1,
+    "explanation": "Cervical cancer has the most effective screening program (Pap smear and HPV testing), allowing the detection and removal of pre-cancerous lesions long before cancer develops."
+  },
+  {
+    "question": "A 21-year-old female diagnosed with dysgerminoma of right ovary 4 x 5 cm with intact capsule. Best treatment is:",
+    "options": [
+      "Ovarian cystectomy",
+      "Oophorectomy of affected ovary + biopsy from other ovary",
+      "Bilateral oophorectomy",
+      "Total hysterectomy + unilateral oophorectomy",
+      "Total hysterectomy + bilateral oophorectomy"
+    ],
+    "correct": 1,
+    "explanation": "Dysgerminomas in young women are highly responsive to treatment. A fertility-sparing unilateral oophorectomy is appropriate, but because 10-15% of dysgerminomas are bilateral, the contralateral ovary must be carefully inspected/biopsied."
+  },
+  {
+    "question": "What is the most common presentation of leiomyoma:",
+    "options": [
+      "Heavy menstrual bleeding.",
+      "Intermenstrual bleeding.",
+      "Pelvic pain.",
+      "Infertility.",
+      "Asymptomatic."
+    ],
+    "correct": 4,
+    "explanation": "While heavy menstrual bleeding is the most common symptom when fibroids cause issues, the vast majority of uterine leiomyomas are completely asymptomatic and found incidentally."
+  },
+  {
+    "question": "A 48-year-old patient had undergone an abdominal hysterectomy 3 months ago for a multiple uterine fibroids. Since the operation she complains of involuntary continuous urine leakage although she feels normal desire for micturition. Provisional cause for this incontinence is:",
+    "options": [
+      "Severe cystitis following surgery.",
+      "Detrusor instability following surgical manipulations.",
+      "Untreated stress incontinence.",
+      "Vesico- vaginal fistula.",
+      "Uretro-vaginal fistula."
+    ],
+    "correct": 4,
+    "explanation": "A ureterovaginal fistula typically presents with continuous incontinence alongside normal voiding patterns, because one ureter leaks continuously into the vagina while the other intact ureter continues filling the bladder normally."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

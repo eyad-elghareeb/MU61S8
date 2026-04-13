@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mns1p53rjsx5i",
+  "title": "61th Mid",
+  "description": "Cardiology 61th Mid Exam"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is the most common precipitating cause of exacerbation of COPD?",
+    "options": [
+      "Pulmonary Embolism",
+      "Pneumothorax",
+      "Allergen exposure",
+      "Respiratory tract infection",
+      "Left Ventricular failure"
+    ],
+    "correct": 3,
+    "explanation": "Respiratory tract infections (viral or bacterial) are the most common trigger for acute exacerbations of COPD."
+  },
+  {
+    "question": "A 30-year-old male non-smoker presents with shortness of breath, wheezy chest, and scanty productive cough. Spirometry reveals an obstructive pattern with improved FEV1 >18% after nebulized short-acting B2 agonist. What is the most likely diagnosis?",
+    "options": [
+      "Bronchial asthma",
+      "Bronchiectasis",
+      "Chronic bronchitis",
+      "Interstitial lung disease",
+      "Pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "Reversible airflow obstruction (significant improvement in FEV1 after bronchodilator use) in a young non-smoker is characteristic of Bronchial Asthma."
+  },
+  {
+    "question": "A 30-year-old female with epilepsy presents with acute fever, cough, and expectoration of copious amounts of foul-smelling sputum related to specific posture. X-ray reveals a cavity with an air-fluid level. What is the most probable diagnosis?",
+    "options": [
+      "Bronchiectasis",
+      "Acute lung abscess",
+      "Empyema",
+      "Cystic fibrosis",
+      "Aspiration Pneumonia"
+    ],
+    "correct": 1,
+    "explanation": "The combination of foul-smelling sputum, fever, and a cavity with an air-fluid level on X-ray, particularly in a patient with risk factors for aspiration (epilepsy/seizures), points to an Acute Lung Abscess."
+  },
+  {
+    "question": "A 45-year-old construction worker with a history of asbestos exposure presents with progressive breathlessness and a restrictive pattern on pulmonary function tests. What is the best next step in diagnosis?",
+    "options": [
+      "Sputum Ziehl-Neelsen stain",
+      "Chest x-ray",
+      "High-resolution CT (HRCT)",
+      "CT Pulmonary angiography",
+      "Bronchoscopy"
+    ],
+    "correct": 2,
+    "explanation": "High-resolution CT (HRCT) is the most sensitive imaging modality for detecting early interstitial lung diseases, such as asbestosis, and characterizing the extent of fibrosis."
+  },
+  {
+    "question": "Which radiological sign is characteristic of advanced pulmonary fibrosis?",
+    "options": [
+      "Homogenous opacity obliterating costophrenic angle",
+      "Tree-in-bud pattern",
+      "Honeycombing and reticular opacities",
+      "Air Bronchogram",
+      "Cavity lesion with air fluid level"
+    ],
+    "correct": 2,
+    "explanation": "Honeycombing and reticular opacities are hallmark radiological findings of established/advanced pulmonary fibrosis (Usual Interstitial Pneumonia pattern)."
+  },
+  {
+    "question": "A 65-year-old heavy smoker presents with progressive shortness of breath, wheezes, hoarseness, weight loss, and blood-stained sputum. He has enlarged cervical lymph nodes and localized wheeze unresponsive to salbutamol. What is the provisional diagnosis?",
+    "options": [
+      "COPD",
+      "Endo-bronchial lesion due to Lung Cancer",
+      "Tuberculosis",
+      "Foreign body aspiration",
+      "Acute severe asthma"
+    ],
+    "correct": 1,
+    "explanation": "The constellation of symptoms in a heavy smoker (weight loss, hemoptysis, hoarseness indicating recurrent laryngeal nerve involvement, and fixed localized wheeze) strongly suggests Lung Cancer causing an endo-bronchial obstruction."
+  },
+  {
+    "question": "A 23-year-old male with liver cirrhosis is evaluated for cough and shortness of breath. Chest radiograph shows emphysematous changes with multiple lung bullae. What is the most likely diagnosis?",
+    "options": [
+      "Chronic bronchitis",
+      "Bronchial asthma",
+      "Bronchiectasis",
+      "Alpha-1 antitrypsin deficiency",
+      "Interstitial lung fibrosis"
+    ],
+    "correct": 3,
+    "explanation": "Alpha-1 antitrypsin deficiency causes panacinar emphysema (often in younger patients) and can also lead to liver cirrhosis due to the accumulation of misfolded protein in hepatocytes."
+  },
+  {
+    "question": "A 59-year-old smoker with advanced COPD (FEV1 39%) has daily productive cough, dyspnea, SpO2 87%, and an eosinophil count of 500 cells/ul. Which treatment is appropriate?",
+    "options": [
+      "Salbutamol + Ipratropium bromide",
+      "Vilanterol + Umeclidinium + Fluticasone Furoate",
+      "Salmeterol + Fluticasone propionate",
+      "Indacaterol + Glycopyrronium bromide",
+      "Tiotropium bromide + Budesonide"
+    ],
+    "correct": 1,
+    "explanation": "For patients with severe COPD and elevated eosinophils (>300 cells/ul), triple therapy (LABA/LAMA/ICS) is recommended to reduce exacerbations. Vilanterol/Umeclidinium/Fluticasone is a single-inhaler triple therapy."
+  },
+  {
+    "question": "A patient with STEMI presents to a PCI-capable center. The estimated time from diagnosis to balloon inflation is 95 minutes. A non-PCI hospital 20 minutes away could give thrombolytics immediately. What is the correct management decision?",
+    "options": [
+      "Transfer for thrombolytics immediately - speed is paramount",
+      "Perform primary PCI at this center - the 95-minute time is within the 120-minute threshold where PPCI is preferred over fibrinolysis",
+      "Give IV thrombolytics and then transfer for mandatory angiography",
+      "Observe for 2 hours and reassess if pain persists",
+      "Administer aspirin and clopidogrel only, without any reperfusion therapy"
+    ],
+    "correct": 1,
+    "explanation": "Primary PCI is preferred over fibrinolysis if it can be performed within 120 minutes of first medical contact. Since 95 minutes is within this window, PPCI is the correct choice."
+  },
+  {
+    "question": "Pulsus Paradoxus in cardiac tamponade is best explained by which mechanism?",
+    "options": [
+      "Direct compression of the aorta by pericardial fluid",
+      "Increased heart rate during inspiration",
+      "Ventricular interdependence: RV expands during inspiration, shifting the septum left and reducing LV output",
+      "Decreased venous return during inspiration",
+      "Increased systemic vascular resistance during inspiration"
+    ],
+    "correct": 2,
+    "explanation": "In cardiac tamponade, the fixed pericardial volume means that increased RV filling during inspiration pushes the interventricular septum into the LV, impairing LV filling and stroke volume, leading to a drop in systolic BP (Pulsus Paradoxus)."
+  },
+  {
+    "question": "In severe mitral stenosis with pulmonary hypertension and Atrial Fibrillation, which auscultatory finding is LOST or attenuated?",
+    "options": [
+      "Opening snap",
+      "Loud S1",
+      "Pre-systolic accentuation of the diastolic murmur",
+      "Mid-diastolic rumbling murmur",
+      "Accentuated P2"
+    ],
+    "correct": 2,
+    "explanation": "Pre-systolic accentuation is caused by atrial contraction pushing blood through the stenotic valve. In Atrial Fibrillation, effective atrial contraction is lost, so this accentuation disappears."
+  },
+  {
+    "question": "A 28-year-old IV drug user presents with right-sided heart failure and septic pulmonary emboli. Which valve is MOST LIKELY affected?",
+    "options": [
+      "Mitral valve",
+      "Aortic valve",
+      "Tricuspid valve",
+      "Pulmonary valve",
+      "Mitral and aortic valves equally"
+    ],
+    "correct": 2,
+    "explanation": "IV drug users are at high risk for infective endocarditis affecting the Tricuspid valve (right-sided). Septic emboli from the tricuspid valve travel to the lungs, causing pulmonary emboli."
+  },
+  {
+    "question": "A 45-year-old patient with severe aortic stenosis is asymptomatic but has an ejection fraction (EF) of 35%. What is the appropriate next step?",
+    "options": [
+      "Observe and repeat echo in 1 year",
+      "Start diuretics and ACE inhibitors",
+      "Proceed with aortic valve replacement",
+      "Balloon aortic valvuloplasty as definitive therapy",
+      "Wait until the patient develops symptoms before proceeding with surgery"
+    ],
+    "correct": 2,
+    "explanation": "Even if asymptomatic, severe aortic stenosis with left ventricular systolic dysfunction (EF < 50%) is a Class I indication for Aortic Valve Replacement (AVR)."
+  },
+  {
+    "question": "A 50-year-old woman with diabetes and CKD (eGFR 45 mL/min) has a BP of 138/88 mmHg. What is the most appropriate next step?",
+    "options": [
+      "Lifestyle changes only for 3-6 months before starting medication",
+      "Start antihypertensive medication immediately alongside lifestyle changes",
+      "Reassess BP in 1 month before deciding on therapy",
+      "No treatment as her BP is below 140/90 mmHg",
+      "Refer to nephrology before initiating any antihypertensive therapy"
+    ],
+    "correct": 1,
+    "explanation": "Patients with Diabetes and CKD have high cardiovascular risk. Guidelines generally recommend initiating pharmacological therapy (often ACEi/ARB) for BP > 130/80 mmHg to protect renal and cardiovascular health."
+  },
+  {
+    "question": "A 72-year-old woman with known heart failure is comfortable at rest but experiences breathlessness when walking on a flat surface at her normal pace or climbing one flight of stairs. Which NYHA class best describes her?",
+    "options": [
+      "NYHA Class I",
+      "NYHA Class II",
+      "NYHA Class III",
+      "NYHA Class IV",
+      "Cannot be classified without echocardiography results"
+    ],
+    "correct": 1,
+    "explanation": "NYHA Class II is defined as slight limitation of physical activity. Comfortable at rest, but ordinary physical activity (like walking on flat ground or climbing one flight of stairs) results in fatigue, palpitation, or dyspnea."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "gyn_past_years_60th_midterm",
+  title: "60Th Midterm",
+  description: "Past Years Exams",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "The upper 3/4 of the vagina develops from:",
+    "options": [
+      "Urogenital sinus",
+      "Cloacal membrane",
+      "Wolffian ducts",
+      "Mesonephric tubules",
+      "Mullerian ducts"
+    ],
+    "correct": 4,
+    "explanation": "The upper 3/4 of the vagina and the uterus develop from the fused Mullerian (paramesonephric) ducts. The lower 1/4 of the vagina develops from the urogenital sinus."
+  },
+  {
+    "question": "Which hormone is responsible for the proliferative phase of the endometrium?",
+    "options": [
+      "Progesterone",
+      "Estrogen",
+      "FSH",
+      "LH",
+      "Inhibin"
+    ],
+    "correct": 1,
+    "explanation": "Estrogen, produced by the developing follicles, stimulates the proliferation and regeneration of the endometrial lining after menstruation. Progesterone is responsible for the secretory phase."
+  },
+  {
+    "question": "Persistent FSH levels >40 IU/L are diagnostic for:",
+    "options": [
+      "PCOS",
+      "Menopause",
+      "Hyperprolactinemia",
+      "Hypothyroidism",
+      "Pregnancy"
+    ],
+    "correct": 1,
+    "explanation": "In menopause, the depletion of ovarian follicles leads to a lack of negative feedback on the pituitary, resulting in persistently elevated FSH levels, typically greater than 40 IU/L."
+  },
+  {
+    "question": "The first-line treatment for menopausal vasomotor symptoms is:",
+    "options": [
+      "SSRIs",
+      "Bisphosphonates",
+      "Estrogen therapy",
+      "Gabapentin",
+      "Clonidine"
+    ],
+    "correct": 2,
+    "explanation": "Estrogen therapy (Hormone Replacement Therapy) is the most effective and first-line treatment for moderate to severe vasomotor symptoms (hot flashes) associated with menopause."
+  },
+  {
+    "question": "Elevated FSH and LH levels indicate:",
+    "options": [
+      "Hypothalamic dysfunction",
+      "Ovarian failure",
+      "Pituitary tumor",
+      "PCOS",
+      "Hyperprolactinemia"
+    ],
+    "correct": 1,
+    "explanation": "Elevated gonadotropins (FSH and LH) indicate hypergonadotropic hypogonadism, which points to primary ovarian failure (the ovary is not responding, so the pituitary pumps out more stimulating hormones)."
+  },
+  {
+    "question": "The first-line medical treatment for acute abnormal uterine bleeding (AUB) is:",
+    "options": [
+      "Tranexamic acid",
+      "Hysterectomy",
+      "D&C",
+      "Antibiotics",
+      "NSAIDs"
+    ],
+    "correct": 0,
+    "explanation": "For acute heavy menstrual bleeding, tranexamic acid (an antifibrinolytic) or high-dose hormonal therapy (like combined oral contraceptives) are first-line medical treatments. D&C is surgical and usually reserved for cases where medical management fails or tissue diagnosis is urgently needed."
+  },
+  {
+    "question": "A fishy odor after adding KOH to vaginal discharge indicates:",
+    "options": [
+      "Candidiasis",
+      "Trichomoniasis",
+      "Bacterial vaginosis",
+      "Gonorrhea",
+      "Atrophic vaginitis"
+    ],
+    "correct": 2,
+    "explanation": "This is known as the 'Whiff test'. A positive result (fishy amine odor) upon adding 10% KOH to vaginal discharge is characteristic of Bacterial Vaginosis due to the release of amines."
+  },
+  {
+    "question": "The most common cause of pelvic inflammatory disease (PID) is:",
+    "options": [
+      "Chlamydia trachomatis",
+      "Neisseria gonorrhoeae",
+      "E. coli",
+      "Mycoplasma",
+      "Trichomonas vaginalis"
+    ],
+    "correct": 0,
+    "explanation": "While both Chlamydia and Gonorrhea are major causes, Chlamydia trachomatis is frequently cited as the most common identifiable cause of PID in many contexts, or they are co-pathogens. The provided key selects Chlamydia."
+  },
+  {
+    "question": "The First-line medical treatment for endometriosis is:",
+    "options": [
+      "NSAIDs",
+      "Combined oral contraceptives",
+      "Danazol",
+      "GnRH agonists",
+      "Progestins"
+    ],
+    "correct": 1,
+    "explanation": "Combined oral contraceptives (COCPs) are generally considered the first-line hormonal medical therapy for managing pain associated with endometriosis. NSAIDs are used for pain but do not treat the underlying disease process hormonally."
+  },
+  {
+    "question": "A 29-year-old female comes to gynecological clinic, is complaining of thick, curdy-like white vaginal discharge. This discharge is typical of:",
+    "options": [
+      "Candidiasis",
+      "Trichomoniasis",
+      "Bacterial vaginosis",
+      "Gonorrhea",
+      "Cervicitis"
+    ],
+    "correct": 0,
+    "explanation": "Thick, white, 'cottage cheese' or curd-like discharge accompanied by pruritus is the classic presentation of Vulvovaginal Candidiasis."
+  },
+  {
+    "question": "Dyspareunia is most strongly associated with:",
+    "options": [
+      "Vaginismus",
+      "Endometriosis",
+      "Cervicitis",
+      "Ovarian cysts",
+      "Uterine fibroids"
+    ],
+    "correct": 1,
+    "explanation": "Deep dyspareunia (pain during deep penetration) is a hallmark symptom of endometriosis, particularly when implants are present in the pouch of Douglas or uterosacral ligaments."
+  },
+  {
+    "question": "The lymphatic drainage of the vulva is primarily to the:",
+    "options": [
+      "Inguinal nodes",
+      "Pelvic nodes",
+      "Para-aortic nodes",
+      "Sacral nodes",
+      "Obturator nodes"
+    ],
+    "correct": 0,
+    "explanation": "The vulva drains primarily to the superficial and deep inguinal lymph nodes. The cervix and upper vagina drain to pelvic nodes."
+  },
+  {
+    "question": "The vaginal pH maintained by Diderlein's bacilli is approximately:",
+    "options": [
+      "3.5-4.5",
+      "5.0-6.0",
+      "6.5-7.0",
+      "7.5-8.0",
+      "8.5-9.0"
+    ],
+    "correct": 0,
+    "explanation": "Lactobacillus (Doderlein's) bacilli produce lactic acid from glycogen, maintaining an acidic vaginal pH of approximately 3.5 to 4.5, which protects against pathogens."
+  },
+  {
+    "question": "The endometrium's basal layer is responsible for:",
+    "options": [
+      "Menstrual shedding",
+      "Regeneration after menstruation",
+      "Implantation",
+      "Secretory changes",
+      "Decidualization"
+    ],
+    "correct": 1,
+    "explanation": "The endometrium consists of the functionalis (shed during menstruation) and the basalis. The basal layer remains intact and serves as the source for regeneration of the functional layer after each period."
+  },
+  {
+    "question": "Which congenital anomaly results from incomplete fusion of the Mullerian ducts?",
+    "options": [
+      "Unicornuate uterus",
+      "Uterus didelphys",
+      "Imperforate hymen",
+      "Vaginal atresia",
+      "Turner syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Uterus didelphys results from the complete failure of the two Mullerian ducts to fuse, leading to two separate uterine bodies and cervices. Unicornuate uterus results from the agenesis of one duct."
+  },
+  {
+    "question": "Menarche typically occurs during Tanner stage:",
+    "options": [
+      "I",
+      "II",
+      "III",
+      "IV",
+      "V"
+    ],
+    "correct": 3,
+    "explanation": "Menarche (first period) typically occurs late in puberty, usually around Tanner Stage IV of breast development, after the peak height velocity has passed."
+  },
+  {
+    "question": "The average duration of the luteal phase is:",
+    "options": [
+      "7 days",
+      "14 days",
+      "21 days",
+      "28 days",
+      "35 days"
+    ],
+    "correct": 1,
+    "explanation": "The luteal phase (post-ovulation) is relatively constant in length, averaging 14 days. Variations in cycle length are usually due to differences in the follicular phase."
+  },
+  {
+    "question": "The first sign of puberty in females is usually:",
+    "options": [
+      "Thelarche",
+      "Menarche",
+      "Pubarche",
+      "Growth spurt",
+      "Adrenarche"
+    ],
+    "correct": 0,
+    "explanation": "Thelarche (breast budding) is typically the first visible sign of central puberty in girls, followed by pubarche and then menarche."
+  },
+  {
+    "question": "The mean age of natural menopause is:",
+    "options": [
+      "45 years",
+      "51 years",
+      "55 years",
+      "60 years",
+      "65 years"
+    ],
+    "correct": 1,
+    "explanation": "The average age of natural menopause in developed countries is approximately 51 years."
+  },
+  {
+    "question": "The best treatment for menopausal symptoms in a woman with a uterus is:",
+    "options": [
+      "Estrogen-only therapy",
+      "Progesterone-only therapy",
+      "Combined estrogen-progesterone",
+      "Tibolone",
+      "Phytoestrogens"
+    ],
+    "correct": 2,
+    "explanation": "In women with an intact uterus, estrogen must be combined with progesterone (progestin) to protect the endometrium from hyperplasia and cancer. Estrogen-only therapy is reserved for women who have had a hysterectomy."
+  },
+  {
+    "question": "The primary source of estrogen in postmenopausal women is:",
+    "options": [
+      "Ovaries",
+      "Adrenal glands",
+      "Liver",
+      "Fat tissue",
+      "Peripheral conversion of androgens"
+    ],
+    "correct": 4,
+    "explanation": "After menopause, the ovaries stop producing significant amounts of estrogen. The primary source becomes the peripheral conversion (aromatization) of adrenal androgens (like androstenedione) into estrone in adipose (fat) tissue."
+  },
+  {
+    "question": "Primary amenorrhea is diagnosed if no menses occur by age:",
+    "options": [
+      "12",
+      "13",
+      "15",
+      "16",
+      "14"
+    ],
+    "correct": 2,
+    "explanation": "Primary amenorrhea is defined as the absence of menarche by age 15 in the presence of normal secondary sexual characteristics, or by age 13 if there are no secondary sexual characteristics."
+  },
+  {
+    "question": "A progesterone withdrawal test causing bleeding indicates:",
+    "options": [
+      "Ovarian failure",
+      "Uterine outflow obstruction",
+      "Anovulation",
+      "Estrogenized endometrium",
+      "Hypothalamic dysfunction"
+    ],
+    "correct": 3,
+    "explanation": "Bleeding after progesterone withdrawal indicates that the endometrium was previously primed by estrogen (estrogenized) and that the outflow tract is patent. It suggests anovulation (lack of endogenous progesterone) rather than ovarian failure or obstruction."
+  },
+  {
+    "question": "Testicular feminization syndrome results from:",
+    "options": [
+      "46,XX karyotype",
+      "Androgen insensitivity",
+      "Estrogen deficiency",
+      "Mullerian agenesis",
+      "Turner syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Testicular Feminization Syndrome, now called Complete Androgen Insensitivity Syndrome (CAIS), occurs in 46,XY individuals who have testes but lack functional androgen receptors, leading to a female phenotype."
+  },
+  {
+    "question": "AUB-O refers to:",
+    "options": [
+      "Ovulatory dysfunction",
+      "Ovarian tumor",
+      "Outflow obstruction",
+      "Obesity-related bleeding",
+      "Osteoporosis"
+    ],
+    "correct": 0,
+    "explanation": "In the PALM-COEIN classification system for Abnormal Uterine Bleeding, 'O' stands for Ovulatory dysfunction."
+  },
+  {
+    "question": "A 45-year-old with irregular bleeding and thickened endometrium on ultrasound should undergo:",
+    "options": [
+      "Endometrial biopsy",
+      "Hysterectomy",
+      "Hormonal therapy",
+      "Observation",
+      "MRI"
+    ],
+    "correct": 0,
+    "explanation": "In women over 45 (or younger with risk factors) presenting with abnormal uterine bleeding, endometrial sampling (biopsy) is required to rule out endometrial hyperplasia or carcinoma before initiating treatment."
+  },
+  {
+    "question": "The most common cause of postmenopausal bleeding is:",
+    "options": [
+      "Endometrial cancer",
+      "Atrophic endometritis",
+      "Endometrial hyperplasia",
+      "Cervical polyp",
+      "Hormone therapy"
+    ],
+    "correct": 1,
+    "explanation": "While endometrial cancer must be ruled out, the most common cause of postmenopausal bleeding is actually endometrial or vaginal atrophy (atrophic endometritis/vaginitis) due to low estrogen levels."
+  },
+  {
+    "question": "The gold standard for diagnosing endometriosis is:",
+    "options": [
+      "Ultrasound",
+      "MRI",
+      "Laparoscopy",
+      "CA-125",
+      "Biopsy"
+    ],
+    "correct": 2,
+    "explanation": "Laparoscopy with visual inspection (and ideally histological confirmation via biopsy) is considered the gold standard for diagnosing endometriosis."
+  },
+  {
+    "question": "Adenomyosis is best diagnosed by:",
+    "options": [
+      "Transvaginal ultrasound",
+      "MRI",
+      "Hysteroscopy",
+      "Endometrial biopsy",
+      "Laparoscopy"
+    ],
+    "correct": 1,
+    "explanation": "While Transvaginal Ultrasound is a good screening tool, MRI is generally considered superior and more accurate for diagnosing adenomyosis, especially in differentiating it from fibroids."
+  },
+  {
+    "question": "The definitive treatment for adenomyosis is:",
+    "options": [
+      "Hysterectomy",
+      "Hormonal intrauterine device",
+      "GnRH agonists",
+      "Endometrial ablation",
+      "Uterine artery embolization"
+    ],
+    "correct": 0,
+    "explanation": "Hysterectomy is the only definitive cure for adenomyosis. Other treatments manage symptoms but do not remove the disease."
+  },
+  {
+    "question": "A 35-year-old woman is suffering from breast tenderness, bloating, pelvic pain, nervousness and depression one week before her periods. This condition is known as:",
+    "options": [
+      "Spasmodic dysmenorrhea",
+      "Congestive dysmenorrhea",
+      "Postmenopausal syndrome",
+      "Premenopausal syndrome",
+      "Premenstrual syndrome"
+    ],
+    "correct": 4,
+    "explanation": "The cluster of physical and psychological symptoms occurring in the luteal phase (before menstruation) and resolving with the onset of flow is characteristic of Premenstrual Syndrome (PMS)."
+  },
+  {
+    "question": "The type of degeneration in uterine fibroid during pregnancy is:",
+    "options": [
+      "Hyaline",
+      "Fatty",
+      "Red",
+      "Cystic",
+      "Sarcomatous"
+    ],
+    "correct": 2,
+    "explanation": "Red degeneration (carneous degeneration) is a specific type of hemorrhagic infarction that commonly occurs in fibroids during pregnancy due to rapid growth outstripping blood supply."
+  },
+  {
+    "question": "Which FIGO classification type describes a fibroid that is completely within the uterine cavity?",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 0,
+    "explanation": "FIGO Type 0 leiomyomas are pedunculated intracavitary fibroids with no myometrial involvement. Type 1 and 2 are submucosal with varying degrees of myometrial invasion."
+  },
+  {
+    "question": "Hormone replacement therapy is contraindicated in which one of the followings?",
+    "options": [
+      "Controlled hypertension",
+      "Oophorectomy",
+      "Hysterectomy",
+      "Thromboembolism",
+      "Cervical cancer"
+    ],
+    "correct": 3,
+    "explanation": "A history of active or past venous thromboembolism (DVT/PE) is a strong contraindication for systemic Hormone Replacement Therapy due to the increased risk of clotting."
+  },
+  {
+    "question": "Which hormone is primarily responsible for initiation of the thelarche?",
+    "options": [
+      "Thyroxine",
+      "Progesterone",
+      "Testosterone",
+      "Inhibin",
+      "Estrogen"
+    ],
+    "correct": 4,
+    "explanation": "Thelarche (breast development) is driven by the production of estrogen by the ovaries as the hypothalamic-pituitary-gonadal axis activates."
+  },
+  {
+    "question": "Risk factors for developing uterine fibroids includes which of the following?",
+    "options": [
+      "Regular exercise",
+      "High fiber diet",
+      "Family history of fibroid",
+      "Non-smoker",
+      "Multiparity"
+    ],
+    "correct": 2,
+    "explanation": "Family history is a significant risk factor for uterine fibroids. Other risk factors include nulliparity, obesity, and African-American race. Multiparity and smoking are often associated with decreased risk."
+  },
+  {
+    "question": "\"Strawberry cervix\" is pathognomonic for:",
+    "options": [
+      "Candidiasis",
+      "Trichomoniasis",
+      "Bacterial vaginosis",
+      "Gonorrhea",
+      "Chlamydia"
+    ],
+    "correct": 1,
+    "explanation": "Colpitis macularis, or 'strawberry cervix' (punctate hemorrhages on the cervix), is a classic sign of Trichomoniasis."
+  },
+  {
+    "question": "Submucous fibroid is usually associated with what type of menstrual abnormalities?",
+    "options": [
+      "Oligomenorrhea",
+      "Amenorrhoea",
+      "Postcoital bleeding",
+      "Intermenstrual bleeding",
+      "Heavy menstrual flow"
+    ],
+    "correct": 4,
+    "explanation": "Submucosal fibroids distort the uterine cavity and increase the surface area of the endometrium, leading to Heavy Menstrual Bleeding (Menorrhagia)."
+  },
+  {
+    "question": "What is the first step to do for 52-year-old postmenopausal woman presented with vaginal bleeding?",
+    "options": [
+      "Assurance and follow up",
+      "Start gestagen therapy",
+      "Transvaginal sonography",
+      "Give non specific haemostatics",
+      "Hysteroscopic ablation"
+    ],
+    "correct": 2,
+    "explanation": "Transvaginal sonography is the appropriate initial diagnostic step to measure endometrial thickness. If the endometrium is thin (<4-5mm), malignancy is unlikely. If thick, biopsy is indicated."
+  },
+  {
+    "question": "Which of the following is considered a sure criterion of pelvic inflammatory disease (PID)?",
+    "options": [
+      "Abnormal vaginal discharge",
+      "Adnexal tenderness",
+      "Endometritis by histopathology",
+      "Tender cervical motion",
+      "Elevated erythrocyte sedimentation rate and high fever"
+    ],
+    "correct": 2,
+    "explanation": "According to CDC criteria, minimum criteria include cervical motion tenderness, uterine tenderness, or adnexal tenderness. However, 'specific' or 'sure' criteria include histopathologic evidence of endometritis on biopsy, imaging showing tubo-ovarian abscess, or laparoscopic abnormalities. Among the choices, histopathology is the most definitive 'sure' criterion listed."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

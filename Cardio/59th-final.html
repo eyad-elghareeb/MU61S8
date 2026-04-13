@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+</head>
+<body>
+<script>
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  uid: "cardio_59th_final",
+  title: "59th Final Exam",
+  description: "Cardio 59th Batch Final Examination",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+{
+    "question": "Which of the following medications is classified as a Long-Acting Muscarinic Antagonist (LAMA)?",
+    "options": [
+      "Formoterol",
+      "Ipratropium bromide",
+      "Oxytropium bromide",
+      "Salmeterol",
+      "Tiotropium bromide"
+    ],
+    "correct": 4,
+    "explanation": "Tiotropium bromide is a long-acting muscarinic antagonist (LAMA) used for maintenance treatment in COPD and asthma[cite: 77]. Ipratropium is short-acting, while Formoterol and Salmeterol are beta-agonists[cite: 77]."
+  },
+  {
+    "question": "What is the standard medication combination used during the continuation phase of the smear-positive pulmonary tuberculosis regimen?",
+    "options": [
+      "Amikacin plus Ofloxacin",
+      "Ethambutol plus INH",
+      "Ethambutol plus Pyrazinamide",
+      "Rifampicin plus INH",
+      "Streptomycin plus INH"
+    ],
+    "correct": 3,
+    "explanation": "The continuation phase for treating smear-positive pulmonary TB typically consists of Rifampicin and Isoniazid (INH)[cite: 77]."
+  },
+  {
+    "question": "A 30-year-old female with epilepsy presents with fever and foetid sputum related to posture. What characteristic finding would be seen on her chest X-ray?",
+    "options": [
+      "Bilateral pulmonary infiltrates",
+      "Cavitary lesion with air fluid level",
+      "Honey combing appearance",
+      "Obliterated costophrenic angle",
+      "Lobar consolidation"
+    ],
+    "correct": 1,
+    "explanation": "The clinical presentation of epilepsy (aspiration risk) and foetid sputum suggests a lung abscess, which characteristically appears as a cavitary lesion with an air-fluid level on an X-ray[cite: 77]."
+  },
+  {
+    "question": "The 'Signet ring sign' observed on a CT chest is a hallmark of which of the following diseases?",
+    "options": [
+      "Bronchiectasis",
+      "Chronic obstructive pulmonary diseases",
+      "Cystic fibrosis",
+      "Empyema with bronchopleural fistula",
+      "Lung abscess"
+    ],
+    "correct": 0,
+    "explanation": "The Signet ring sign is a classic radiological finding in bronchiectasis where the internal diameter of the bronchus is larger than that of the adjacent pulmonary artery[cite: 77]."
+  },
+  {
+    "question": "A 65-year-old male with fever (39°C) and cough is confused, has a respiratory rate of 36/min, and blood pressure of 88/65 mmHg. What is his CURB-65 score?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correct": 3,
+    "explanation": "The patient scores 4 points: Confusion (1), Respiratory rate ≥30 (1), Low Blood Pressure [SBP <90] (1), and Age ≥65 (1)[cite: 81]."
+  },
+  {
+    "question": "Which of the following is a manifestation of sympathetic chain infiltration (Horner's syndrome) in bronchial carcinoma?",
+    "options": [
+      "Anhydrosis",
+      "Exophthalmos",
+      "Hoarseness of voice",
+      "Palpitation",
+      "Puffiness of the face"
+    ],
+    "correct": 0,
+    "explanation": "Sympathetic chain infiltration in lung cancer leads to Horner's syndrome, which includes miosis, ptosis, and anhydrosis (lack of sweating)[cite: 81]."
+  },
+  {
+    "question": "What is the gold standard investigation for the definitive diagnosis and classification of respiratory failure?",
+    "options": [
+      "Chest X ray",
+      "ABG analysis",
+      "Spirometry",
+      "HRCT chest",
+      "ECHO"
+    ],
+    "correct": 1,
+    "explanation": "Arterial Blood Gas (ABG) analysis is the gold standard for diagnosing respiratory failure as it measures partial pressures of oxygen and carbon dioxide directly[cite: 81]."
+  },
+  {
+    "question": "Which of the following is considered a non-modifiable risk factor for atherosclerotic cardiovascular disease?",
+    "options": [
+      "Smoking",
+      "Obesity",
+      "Family history of coronary artery disease",
+      "Dyslipidemia",
+      "Diabetes Mellitus"
+    ],
+    "correct": 2,
+    "explanation": "Family history of CAD is a non-modifiable risk factor, whereas smoking, obesity, dyslipidemia, and DM can be managed or modified[cite: 81]."
+  },
+  {
+    "question": "Which of the following pain descriptions does NOT typically raise suspicion of ischemic chest pain?",
+    "options": [
+      "Compressing retrosternal pain radiating to the jaw",
+      "Epigastric pain in a diabetic old lady",
+      "Left shoulder pain radiating to the little finger after heavy work",
+      "Inframammary localized pricking pain",
+      "Persistent burning pain in upper chest radiating to the back"
+    ],
+    "correct": 3,
+    "explanation": "Localized, sharp, or pricking pain (often described as pleuritic or musculoskeletal) is less likely to be ischemic compared to radiating, compressing, or burning pressure[cite: 85]."
+  },
+  {
+    "question": "What is the primary clinical difference between a hypertensive urgency and a hypertensive emergency?",
+    "options": [
+      "Diastolic BP reaches 130 mmHg",
+      "The patient has no prior history of HTN",
+      "The patient is treated with oral medications",
+      "The patient has evidence of acute end-organ dysfunction",
+      "Systolic BP reaches 200 mmHg"
+    ],
+    "correct": 3,
+    "explanation": "Hypertensive emergencies are defined by the presence of acute, ongoing end-organ damage (e.g., encephalopathy, MI, or renal failure), regardless of the absolute BP number[cite: 85]."
+  },
+  {
+    "question": "A 17-year-old athlete with no prior history suffers cardiac arrest during a game. What is the most likely underlying cause?",
+    "options": [
+      "Pulmonary embolism",
+      "Severe aortic stenosis",
+      "Hypertrophic obstructive cardiomyopathy",
+      "Cardiac tamponade",
+      "Primary pulmonary HTN"
+    ],
+    "correct": 2,
+    "explanation": "Hypertrophic obstructive cardiomyopathy (HOCM) is the most common cause of sudden cardiac death in young athletes[cite: 85]."
+  },
+  {
+    "question": "A male patient with AF (180 BPM) presents with BP 70/40, dyspnea, and lung crepitations. What is the most appropriate management?",
+    "options": [
+      "IV amiodarone",
+      "IV digoxin",
+      "IV frusemide",
+      "Synchronized DC cardioversion",
+      "IV metoprolol"
+    ],
+    "correct": 3,
+    "explanation": "In an unstable patient with a rapid tachyarrhythmia (indicated here by hypotension and pulmonary edema), immediate synchronized DC cardioversion is the treatment of choice[cite: 85]."
+  },
+  {
+    "question": "What is the primary treatment of choice for managing hypertension associated with eclampsia?",
+    "options": [
+      "Diuretics",
+      "Magnesium sulfate",
+      "Captopril",
+      "Labetalol",
+      "Nitroprusside"
+    ],
+    "correct": 1,
+    "explanation": "Magnesium sulfate is the treatment of choice for the prevention and treatment of seizures in eclampsia, which is the primary concern alongside BP control[cite: 89]."
+  },
+  {
+    "question": "Which of the following conditions is most likely to lead to biventricular heart failure?",
+    "options": [
+      "Rheumatic mitral stenosis",
+      "Pulmonary embolism",
+      "Chronic severe Mitral regurgitation",
+      "Chronic obstructive pulmonary disease",
+      "Early stage of CAD"
+    ],
+    "correct": 2,
+    "explanation": "Chronic severe mitral regurgitation causes volume overload of the left side, which eventually leads to left heart failure and subsequent right heart failure (biventricular failure)[cite: 89]."
+  },
+  {
+    "question": "Which drug is NOT considered one of the primary pillars of guideline-directed medical therapy (GDMT) for Heart Failure with reduced ejection fraction (HFrEF)?",
+    "options": [
+      "Beta blockers",
+      "Angiotensin receptor blockers",
+      "Digoxin",
+      "SGLT2 inhibitors",
+      "Mineralocorticoid receptor inhibitors"
+    ],
+    "correct": 2,
+    "explanation": "While Digoxin can be used for symptom management, it is not one of the foundational pillars (Beta-blockers, ACEi/ARB/ARNI, MRA, and SGLT2i) that improve survival in HFrEF[cite: 89]."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

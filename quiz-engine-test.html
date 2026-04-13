@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Engine Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f0f2f5;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .test-section {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+        }
+        .test-section.success {
+            border-left-color: #28a745;
+            background: #f0fff4;
+        }
+        .test-section.error {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+        .test-section h3 {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .icon {
+            font-size: 1.2rem;
+        }
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+        .status.pass {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button.secondary {
+            background: #6c757d;
+        }
+        button.secondary:hover {
+            background: #545b62;
+        }
+        button.success {
+            background: #28a745;
+        }
+        button.success:hover {
+            background: #218838;
+        }
+        .links {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #e7f3ff;
+            border-radius: 4px;
+        }
+        .links h3 {
+            margin-bottom: 1rem;
+            color: #004085;
+        }
+        .link-item {
+            display: block;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: white;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .link-item:hover {
+            background: #f0f8ff;
+        }
+        .instructions {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+        }
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 0.75rem;
+        }
+        .instructions ol {
+            margin-left: 1.5rem;
+        }
+        .instructions li {
+            margin: 0.5rem 0;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Quiz Engine Diagnostic Tool</h1>
+        <p class="subtitle">Testing quiz engine initialization and functionality</p>
+
+        <div id="tests"></div>
+
+        <div style="margin-top: 1.5rem;">
+            <button onclick="runAllTests()">🔄 Run All Tests</button>
+            <button class="secondary" onclick="clearLocalStorage()">🗑️ Clear LocalStorage</button>
+            <button class="success" onclick="openRealQuiz()">📖 Open Real Quiz</button>
+        </div>
+
+        <div class="links">
+            <h3>📚 Quick Links</h3>
+            <a href="simple-test.html" class="link-item">Simple Test Quiz (Minimal)</a>
+            <a href="gyn/dep/l1-anatomy.html" class="link-item">L1 Anatomy Quiz (Real Quiz)</a>
+            <a href="index.html" class="link-item">Main Index Page</a>
+        </div>
+
+        <div class="instructions">
+            <h3>⚙️ If Tests Fail</h3>
+            <ol>
+                <li><strong>Don't use file:// protocol</strong> - Open files through a web server</li>
+                <li><strong>Check browser console</strong> - Press F12 and look for errors</li>
+                <li><strong>Clear cache</strong> - Press Ctrl+F5 to hard refresh</li>
+                <li><strong>Disable extensions</strong> - Try incognito mode</li>
+            </ol>
+            <p style="margin-top: 1rem;">
+                <strong>Quick Server Setup:</strong><br>
+                <code>python -m http.server 8000</code> (Python)<br>
+                <code>npx http-server</code> (Node.js)
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let testResults = [];
+
+        function addTest(title, status, details) {
+            testResults.push({ title, status, details });
+            renderTests();
+        }
+
+        function renderTests() {
+            const container = document.getElementById('tests');
+            container.innerHTML = testResults.map(test => {
+                const statusClass = test.status === 'pass' ? 'success' : test.status === 'fail' ? 'error' : '';
+                const statusLabel = test.status === 'pass' ? 'PASS' : test.status === 'fail' ? 'FAIL' : 'INFO';
+                const icon = test.status === 'pass' ? '✅' : test.status === 'fail' ? '❌' : 'ℹ️';
+                
+                return `
+                    <div class="test-section ${statusClass}">
+                        <h3>
+                            <span class="icon">${icon}</span>
+                            ${test.title}
+                            <span class="status ${test.status}">${statusLabel}</span>
+                        </h3>
+                        ${test.details ? `<pre>${test.details}</pre>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function runAllTests() {
+            testResults = [];
+            renderTests();
+
+            // Test 1: JavaScript Execution
+            addTest('JavaScript Execution', 'pass', 'JavaScript is running successfully');
+
+            // Test 2: QUIZ_CONFIG
+            try {
+                if (typeof QUIZ_CONFIG !== 'undefined') {
+                    addTest('QUIZ_CONFIG Defined', 'pass', JSON.stringify(QUIZ_CONFIG, null, 2));
+                } else {
+                    addTest('QUIZ_CONFIG Defined', 'fail', 'QUIZ_CONFIG is not defined in this page');
+                }
+            } catch(e) {
+                addTest('QUIZ_CONFIG Check', 'fail', 'Error: ' + e.message);
+            }
+
+            // Test 3: QUESTIONS
+            try {
+                if (typeof QUESTIONS !== 'undefined') {
+                    addTest('QUESTIONS Defined', 'pass', 'Questions count: ' + QUESTIONS.length);
+                } else {
+                    addTest('QUESTIONS Defined', 'fail', 'QUESTIONS is not defined in this page');
+                }
+            } catch(e) {
+                addTest('QUESTIONS Check', 'fail', 'Error: ' + e.message);
+            }
+
+            // Test 4: LocalStorage
+            try {
+                localStorage.setItem('test_key', 'test_value');
+                const value = localStorage.getItem('test_key');
+                localStorage.removeItem('test_key');
+                addTest('LocalStorage Working', 'pass', 'LocalStorage is accessibleible');
+            } catch(e) {
+                addTest('LocalStorage Working', 'fail', 'Error: ' + e.message);
+            }
+
+            // Test 5: DOM Manipulation
+            try {
+                const testDiv = document.createElement('div');
+                testDiv.id = 'dom-test';
+                testDiv.textContent = 'DOM test';
+                document.body.appendChild(testDiv);
+                const found = document.getElementById('dom-test');
+                if (found && found.textContent === 'DOM test') {
+                    addTest('DOM Manipulation', 'pass', 'Can create and modify DOM elements');
+                } else {
+                    addTest('DOM Manipulation', 'fail', 'DOM manipulation failed');
+                }
+                if (found) found.remove();
+            } catch(e) {
+                addTest('DOM Manipulation', 'fail', 'Error: ' + e.message);
+            }
+
+            // Test 6: Console Access
+            try {
+                console.log('[Diagnostic] Console test');
+                addTest('Console Access', 'pass', 'Console logging is working (check DevTools)');
+            } catch(e) {
+                addTest('Console Access', 'fail', 'Error: ' + e.message);
+            }
+
+            // Test 7: Protocol Check
+            if (window.location.protocol === 'file:') {
+                addTest('Protocol', 'fail', 
+                    'Using file:// protocol - This can cause issues!\n' +
+                    'Current URL: ' + window.location.href + '\n\n' +
+                    'Solution: Use a local web server instead.\n' +
+                    'Run: python -m http.server 8000\n' +
+                    'Then visit: http://localhost:8000'
+                );
+            } else {
+                addTest('Protocol', 'pass', 'Using ' + window.location.protocol + ' (recommended)');
+            }
+
+            // Test 8: Browser Info
+            addTest('Browser Info', 'info', 
+                'User Agent: ' + navigator.userAgent + '\n' +
+                'Platform: ' + navigator.platform + '\n' +
+                'Language: ' + navigator.language
+            );
+        }
+
+        function clearLocalStorage() {
+            if (confirm('Clear all saved quiz progress and settings?')) {
+                localStorage.clear();
+                alert('LocalStorage cleared! Refreshing page...');
+                location.reload();
+            }
+        }
+
+        function openRealQuiz() {
+            window.location.href = 'gyn/dep/l1-anatomy.html';
+        }
+
+        // Auto-run tests on page load
+        window.addEventListener('load', function() {
+            console.log('[Diagnostic] Page loaded, running tests...');
+            runAllTests();
+        });
+    </script>
+</body>
+</html>
