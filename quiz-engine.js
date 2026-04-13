@@ -2640,7 +2640,11 @@ checkSavedProgress();
     if (scope === 'folder' && scopePath) {
       return all.filter(function(d) {
         var _n = function(p) { return p.replace(/^\//, ''); };
-        return d.path && _n(d.path).indexOf(_n(scopePath)) === 0;
+        // Check both stored folderPath and d.path for backward compat
+        var fp = d.folderPath || '';
+        var dp = d.path || '';
+        var target = _n(scopePath);
+        return (fp && _n(fp).indexOf(target) === 0) || (dp && _n(dp).indexOf(target) === 0);
       });
     }
 
@@ -2671,6 +2675,25 @@ checkSavedProgress();
     var cfg = getConfig();
     var segments = getFolderSegments(location.pathname);
 
+    // Pre-populate folder title cache from existing tracker data so scope tabs
+    // can show clean titles instead of raw folder names
+    var _allData = getAllTrackerData();
+    _allData.forEach(function(d) {
+      if (d.folderTitle && d.folderPath) {
+        if (!_folderTitleCache[d.folderPath]) {
+          _folderTitleCache[d.folderPath] = d.folderTitle.replace(/^MU61\s+Quiz\s*[-–—]\s*/i, '').trim();
+        }
+      }
+    });
+    // Also cache from current page's own document.title
+    if (segments.length >= 2) {
+      var _pageFolder = segments[segments.length - 1] + '/';
+      if (!_folderTitleCache[_pageFolder]) {
+        var _cleaned = document.title.replace(/^MU61\s+Quiz\s*[-–—]\s*/i, '').trim();
+        if (_cleaned) _folderTitleCache[_pageFolder] = _cleaned;
+      }
+    }
+
     // Build scope tabs
     var scopeBar = document.getElementById('dash-scope-bar');
     var tabs = [];
@@ -2680,8 +2703,9 @@ checkSavedProgress();
 
     // Tab: nearest meaningful folder (skip the root project dir if only 1 segment)
     if (segments.length >= 2) {
-      var folderName = decodeURIComponent(segments[segments.length - 1]);
-      tabs.push({ id: 'folder', label: folderName, path: segments[segments.length - 1] });
+      var folderKey = segments[segments.length - 1] + '/';
+      var folderLabel = _folderTitleCache[folderKey] || decodeURIComponent(segments[segments.length - 1]);
+      tabs.push({ id: 'folder', label: folderLabel, path: segments[segments.length - 1] });
     }
 
     // Tab: All
