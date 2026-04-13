@@ -65,8 +65,37 @@
 
   function getStorageKey(uid) { return STORAGE_PREFIX + uid; }
 
+  /* -- Get the project root name from ENGINE_BASE (e.g. "MU61S8") -- */
+  var _rootName = '';
+  try {
+    _rootName = new URL(ENGINE_BASE || '', location.href).pathname
+      .replace(/\/$/, '').replace(/^\//, '');
+  } catch (e) {}
+
+  /* -- Normalize a stored d.path by stripping the project root prefix -- */
+  function _normStoredPath(p) {
+    if (!p) return '';
+    var s = p.replace(/^\//, '');
+    if (_rootName && s.indexOf(_rootName + '/') === 0) {
+      s = s.substring(_rootName.length + 1);
+    } else if (_rootName && s === _rootName) {
+      s = '';
+    }
+    return s;
+  }
+
+  /* -- Get folder segments RELATIVE to ENGINE_BASE (project root) --
+     e.g. "/MU61S8/gyn/dep/index.html" -> ["gyn", "gyn/dep"]
+     This matches the format used by computeFolderPath() in quiz/bank-engine.js */
   function getFolderSegments(path) {
-    var parts = path.replace(/\/[^/]*$/, '').split('/').filter(Boolean);
+    var cleaned = path.replace(/\/[^\/]*$/, '').replace(/^\//, '');
+    // Strip project root prefix
+    if (_rootName && cleaned.indexOf(_rootName + '/') === 0) {
+      cleaned = cleaned.substring(_rootName.length + 1);
+    } else if (_rootName && cleaned === _rootName) {
+      cleaned = '';
+    }
+    var parts = cleaned.split('/').filter(Boolean);
     var segs = [];
     for (var i = 0; i < parts.length; i++) segs.push(parts.slice(0, i + 1).join('/'));
     return segs;
@@ -88,12 +117,11 @@
     var all = getAllTrackerData();
     if (scope === 'folder' && scopePath) {
       return all.filter(function (d) {
-        // Check both stored folderPath and d.path
-        var fp = d.folderPath || '';
-        var dp = d.path || '';
-        var _n = function (p) { return p.replace(/^\//, ''); };
-        var target = _n(scopePath);
-        return (fp && _n(fp).indexOf(target) === 0) || (dp && _n(dp).indexOf(target) === 0);
+        // Check stored folderPath (ENGINE_BASE-relative) and d.path (full URL, normalized)
+        var fp = (d.folderPath || '').replace(/^\//, '');
+        var dp = _normStoredPath(d.path);
+        var target = scopePath.replace(/^\//, '');
+        return (fp && fp.indexOf(target) === 0) || (dp && dp.indexOf(target) === 0);
       });
     }
     return all;
@@ -206,13 +234,12 @@
   function updateBadge() {
     var segments = getFolderSegments(location.pathname);
     var folderPath = segments.length > 0 ? segments[segments.length - 1] : '';
-    var _norm = function (p) { return p.replace(/^\//, ''); };
     var data = folderPath
       ? getAllTrackerData().filter(function (d) {
-          var fp = d.folderPath || '';
-          var dp = d.path || '';
-          var target = _norm(folderPath);
-          return (fp && _norm(fp).indexOf(target) === 0) || (dp && _norm(dp).indexOf(target) === 0);
+          var fp = (d.folderPath || '').replace(/^\//, '');
+          var dp = _normStoredPath(d.path);
+          var target = folderPath.replace(/^\//, '');
+          return (fp && fp.indexOf(target) === 0) || (dp && dp.indexOf(target) === 0);
         })
       : getAllTrackerData();
     var total = 0;
