@@ -2505,6 +2505,54 @@ checkSavedProgress();
   /* ══════════════════════════════════════════
      SAVE — called after quiz submission
      ══════════════════════════════════════════ */
+
+  /* ── Compute folder path & title relative to project root ── */
+  function computeFolderPath() {
+    // ENGINE_BASE points to the project root (where quiz-engine.js lives)
+    // Use it to compute the folder of the current quiz relative to the root
+    try {
+      var rootUrl = ENGINE_BASE || '';
+      // Resolve rootUrl relative to current location for proper URL construction
+      var rootAbs = new URL(rootUrl, location.href).href;
+      var pageAbs = location.href;
+      // Get the relative path from project root to current page
+      var relative = pageAbs.substring(rootAbs.length);
+      // Remove filename to get folder path
+      var folderPath = relative.replace(/[^/]*$/, '');
+      return folderPath || '';
+    } catch (e) {
+      // Fallback: use path-based extraction
+      var cleaned = location.pathname.replace(/^\//, '');
+      var parts = cleaned.split('/');
+      if (parts.length > 1) return parts.slice(0, -1).join('/') + '/';
+      return '';
+    }
+  }
+
+  var _folderTitleCache = {};
+
+  function fetchAndCacheFolderTitle(folderPath) {
+    if (!folderPath || _folderTitleCache[folderPath]) {
+      return Promise.resolve(_folderTitleCache[folderPath] || null);
+    }
+    var rootAbs = '';
+    try { rootAbs = new URL(ENGINE_BASE || '', location.href).href; } catch(e) { rootAbs = ''; }
+    var indexUrl = rootAbs + folderPath + 'index.html';
+    return fetch(indexUrl)
+      .then(function(resp) { return resp.ok ? resp.text() : null; })
+      .then(function(html) {
+        if (!html) return null;
+        var match = html.match(/<title>([^<]+)<\/title>/i);
+        if (match) {
+          var title = match[1].trim();
+          _folderTitleCache[folderPath] = title;
+          return title;
+        }
+        return null;
+      })
+      .catch(function() { return null; });
+  }
+
   window.saveTrackerData = function() {
     try {
       var cfg = getConfig();
@@ -2530,6 +2578,8 @@ checkSavedProgress();
 
       if (!wrongQs.length && !flaggedQs.length) return;
 
+      var folderPath = computeFolderPath();
+
       var data = {
         uid:         cfg.uid || location.pathname,
         title:       cfg.title || document.title,
@@ -2539,16 +2589,28 @@ checkSavedProgress();
         flaggedCount: flaggedQs.length,
         wrong:       wrongQs,
         flagged:     flaggedQs,
-        path:        location.pathname
+        path:        location.pathname,
+        folderPath:  folderPath
       };
 
-      localStorage.setItem(getStorageKey(data.uid), JSON.stringify(data));
+      // Try to fetch folder title and save it with the data
+      fetchAndCacheFolderTitle(folderPath).then(function(folderTitle) {
+        if (folderTitle) data.folderTitle = folderTitle;
+        localStorage.setItem(getStorageKey(data.uid), JSON.stringify(data));
 
-      var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
-      if (keys.indexOf(data.uid) === -1) { keys.push(data.uid); }
-      localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(keys));
+        var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+        if (keys.indexOf(data.uid) === -1) { keys.push(data.uid); }
+        localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(keys));
 
-      updateDashboardBadge();
+        updateDashboardBadge();
+      }).catch(function() {
+        // Save without folder title if fetch fails
+        localStorage.setItem(getStorageKey(data.uid), JSON.stringify(data));
+        var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+        if (keys.indexOf(data.uid) === -1) { keys.push(data.uid); }
+        localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(keys));
+        updateDashboardBadge();
+      });
     } catch (e) { console.error('Tracker save error:', e); }
   };
 
