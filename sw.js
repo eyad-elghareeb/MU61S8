@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-01b82cba2e86';
+const CACHE_VERSION = 'mu61-quiz-02a9f3bc7d41';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -9,30 +9,27 @@ const GOOGLE_FONT_CSS =
 var PRECACHE_REL_PATHS = [
   'quiz-engine.js',
   'bank-engine.js',
+  'index-engine.js',
   'index.html',
-  'Cardio/57th end round 1.html',
-  'Cardio/57th end round 2.html',
-  'Cardio/57th end round 3.html',
-  'Cardio/57th final.html',
+  'manifest.webmanifest',
+  'favicon.svg',
+  'icon-48.png',
+  'icon-72.png',
+  'icon-96.png',
+  'icon-144.png',
+  'icon-192.png',
+  'icon-512.png',
   'Cardio/57th-end-round-1.html',
   'Cardio/57th-end-round-2.html',
   'Cardio/57th-end-round-3.html',
   'Cardio/57th-final.html',
-  'Cardio/58th end round 1.html',
-  'Cardio/58th end round 2.html',
-  'Cardio/58th final.html',
   'Cardio/58th-end-round-1.html',
   'Cardio/58th-end-round-2.html',
   'Cardio/58th-final.html',
-  'Cardio/59th final.html',
-  'Cardio/59th mid.html',
   'Cardio/59th-final.html',
   'Cardio/59th-mid.html',
-  'Cardio/60th final.html',
-  'Cardio/60th mid.html',
   'Cardio/60th-final.html',
   'Cardio/60th-mid.html',
-  'Cardio/61th mid.html',
   'Cardio/61th-mid.html',
   'Cardio/damietta-qs.html',
   'Cardio/index.html',
