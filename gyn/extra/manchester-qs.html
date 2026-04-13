@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Manchester Qs</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mnxrc6hpuerbn",
+  "title": "Manchester Qs",
+  "description": "Various Questions from MMPE"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "what is the function of The cilia of the fallopian tube ?",
+    "options": [
+      "transport the ovum towards the uterus",
+      "transport the ovum towards the peritoneal cavity",
+      "Has a bactericidal function to prevent peritoneal function",
+      "enhance the rapid division of the zygote",
+      "remove the zona pellucida which surrounds the ovum"
+    ],
+    "correct": 0,
+    "explanation": "The primary function of the cilia lining the fallopian tubes is to beat in a coordinated manner to transport the ovum (and later the zygote) from the ovary towards the uterine cavity for potential implantation."
+  },
+  {
+    "question": "which of the following is not a cause of true amenorrhea ?",
+    "options": [
+      "Pure turner syndrome",
+      "Asherman syndrome",
+      "Kalman syndrome",
+      "Sheehan syndrome",
+      "longitudinal vaginal septum"
+    ],
+    "correct": 4,
+    "explanation": "A longitudinal vaginal septum typically does not obstruct menstrual flow, hence it does not cause amenorrhea. In contrast, conditions like Turner syndrome, Asherman syndrome, Kallmann syndrome, and Sheehan syndrome are classical causes of true amenorrhea."
+  },
+  {
+    "question": "Which of the following is not a cause of congestive dysmenorrhea?",
+    "options": [
+      "Ovarian endometrioma",
+      "Cervical leiomyoma",
+      "pelvic inflammatory disease",
+      "Pelvic organ prolapse",
+      "Polycystic ovarian syndrome"
+    ],
+    "correct": 4,
+    "explanation": "Polycystic ovarian syndrome (PCOS) is typically associated with painless, irregular, or anovulatory bleeding (or amenorrhea), rather than congestive (secondary) dysmenorrhea. Congestive dysmenorrhea is secondary to pelvic pathology such as endometriosis, fibroids, or PID."
+  },
+  {
+    "question": "A girl 7 years old with genital bleeding the cause may be one of the followings except",
+    "options": [
+      "Estrogen secreting ovarian tumor",
+      "Foreign body in the vagina",
+      "Simmonds disease",
+      "sarcoma botryoides of the vagina",
+      "Genital tract trauma"
+    ],
+    "correct": 2,
+    "explanation": "Simmonds disease refers to profound panhypopituitarism, which leads to a deficiency of pituitary hormones causing hypogonadism and amenorrhea, not precocious puberty or prepubertal bleeding. The other options are known causes of vaginal bleeding in young girls."
+  },
+  {
+    "question": "The 1ry source of progesterone during the reproductive cycle of a non-pregnant female is (are) the :",
+    "options": [
+      "Granulosa cells",
+      "Theca cells",
+      "Pituitary",
+      "Corpus luteum"
+    ],
+    "correct": 3,
+    "explanation": "Following ovulation, the remnants of the dominant follicle become the corpus luteum, which is the primary source of progesterone during the luteal phase of the cycle to prepare the endometrium for implantation."
+  },
+  {
+    "question": "The uterine cycle at day 12 would primarily be under the influence of :",
+    "options": [
+      "Estrogen",
+      "Progesterone",
+      "Epinephrine",
+      "Thyroxine"
+    ],
+    "correct": 0,
+    "explanation": "Day 12 of a standard 28-day menstrual cycle is part of the late follicular (proliferative) phase, which is strongly dominated by estrogen produced by the developing ovarian follicles."
+  },
+  {
+    "question": "A woman 25 year old obese lady comes to outpatient clinic presented with prolonged uterine bleeding for 15 days after absent periods for 3 cycles, by US examination she has slightly enlarged empty uterus with unilateral cystic ovary, pregnancy test is negative. what is the possibility of her condition?",
+    "options": [
+      "Ectopic pregnancy outside uterine cavity",
+      "normal finding in this age group",
+      "Sub serous fibroid is the most common cause in this age group",
+      "Endometriosis is the possible cause",
+      "Test for thyroid hormonal profile"
+    ],
+    "correct": 4,
+    "explanation": "The clinical picture of obesity, secondary amenorrhea followed by heavy prolonged bleeding, and a cystic ovary strongly suggests anovulatory dysfunctional uterine bleeding (likely PCOS). Checking a thyroid profile is a key step in evaluating secondary amenorrhea and anovulatory cycles, as hypothyroidism can mimic these symptoms."
+  },
+  {
+    "question": "Which of the following is not true for tubal factor of infertility ?",
+    "options": [
+      "It is responsible for about 20-30% of infertility causes.",
+      "Tuboplasty is the best treatment option now",
+      "Hysteroscopy is essential for diagnosis of the proximal ends of the tubes.",
+      "PID is a common cause.",
+      "Laparoscopy is a good diagnostic and therapeutic test."
+    ],
+    "correct": 1,
+    "explanation": "Tuboplasty is no longer considered the 'best' treatment option for most cases of tubal infertility. With the advancement of Assisted Reproductive Technologies, In Vitro Fertilization (IVF) has largely superseded tubal surgery due to higher success rates and lower risks of ectopic pregnancy."
+  },
+  {
+    "question": "What is the most common cause of 1ry amenorrhea?",
+    "options": [
+      "Sheehan's syndrome",
+      "Hyperprolactinemia",
+      "Gonadal dysgenesis",
+      "Mullerian agenesis",
+      "Imperforate hymen"
+    ],
+    "correct": 2,
+    "explanation": "Gonadal dysgenesis (which includes Turner syndrome) is the most frequent cause of primary amenorrhea, accounting for roughly 40-50% of cases, followed closely by Müllerian agenesis."
+  },
+  {
+    "question": "What is the most common cause of 2ry amenorrhea?",
+    "options": [
+      "Cryptomenorrhea",
+      "Pregnancy",
+      "Cushing syndrome",
+      "Hypothyroidism",
+      "PCOS"
+    ],
+    "correct": 1,
+    "explanation": "Pregnancy is by far the most common cause of secondary amenorrhea in women of reproductive age. It must always be the first condition ruled out before undertaking further endocrine or anatomical evaluations."
+  },
+  {
+    "question": "All the following cause amenorrhea with galactorrhea except ?",
+    "options": [
+      "Prolactinoma",
+      "Empty sella syndrome",
+      "Chiari-Frommel syndrome",
+      "Asherman syndrome",
+      "Del-castillo syndrome"
+    ],
+    "correct": 3,
+    "explanation": "Asherman syndrome consists of intrauterine adhesions (synechiae) leading to amenorrhea due to endometrial destruction. It is a structural defect and does not alter prolactin levels or cause galactorrhea."
+  },
+  {
+    "question": "A girl 18-year-old comes to you informing that she has never menstruated with monthly lower abdominal pain, by examination she has well-developed body, breast and pubic hair with supra-pubic cystic mass what is the possibility?",
+    "options": [
+      "Hypothalamic-pituitary ovarian defect.",
+      "Uterine aplasia.",
+      "Imperforate hymen.",
+      "Testicular feminization syndrome (TFS).",
+      "Delayed puberty."
+    ],
+    "correct": 2,
+    "explanation": "The triad of primary amenorrhea, normal secondary sexual characteristics (showing normal hormones), and cyclical pelvic pain with a suprapubic mass (hematocolpos) is the classic presentation for an outflow tract obstruction, most commonly an imperforate hymen."
+  },
+  {
+    "question": "The correct answer about post-menopausal bleeding is :",
+    "options": [
+      "Maybe considered as a normal variation",
+      "Ultrasound can exclude uterine malignancy",
+      "Hysteroscopy is contraindicated",
+      "Cervical cancer need exclusion"
+    ],
+    "correct": 3,
+    "explanation": "Post-menopausal bleeding is never considered normal and warrants immediate investigation. Malignancies of the reproductive tract, particularly endometrial and cervical cancer, must always be rigorously excluded."
+  },
+  {
+    "question": "The following is CORRECT regarding the menstrual cycle is :",
+    "options": [
+      "Menstruation is followed by the secretory phase around day 5 to 13 in the cycle",
+      "The luteal phase is also known as proliferative phase",
+      "LH surge causes ovulation",
+      "Progesterone level is high in the follicular phase"
+    ],
+    "correct": 2,
+    "explanation": "Ovulation is triggered by a sudden surge in Luteinizing Hormone (LH), which typically peaks 24 to 36 hours prior to the release of the ovum."
+  },
+  {
+    "question": "The correct answer about diagnosis of PCOS is :",
+    "options": [
+      "Usually regular cycle",
+      "Normal ovarian morphology on ultrasound scan",
+      "Reversed LH:FSH ratio",
+      "Normal BMI"
+    ],
+    "correct": 2,
+    "explanation": "Patients with PCOS classically exhibit an elevated or reversed LH:FSH ratio (often >2:1) due to increased frequency of GnRH pulses favoring LH secretion over FSH."
+  },
+  {
+    "question": "The best acceptable method for confirmation of ovulation include :",
+    "options": [
+      "+ve thread test of cervical mucus",
+      "Serum estrogen level on day 14",
+      "Serum progesterone level on day 21",
+      "Premenstrual endometrial biopsy"
+    ],
+    "correct": 2,
+    "explanation": "Measuring mid-luteal serum progesterone (typically on day 21 of a 28-day cycle) is the standard, reliable, and non-invasive method to confirm that ovulation and subsequent corpus luteum formation have occurred."
+  },
+  {
+    "question": "A 50 y/o female complains few months ago of fewer periods, bone aches, some depression. You might expect her to have :",
+    "options": [
+      "FSH & LH to be high",
+      "FSH & LH to be low",
+      "FSH & estrogen to be high",
+      "FSH & estrogen to be low"
+    ],
+    "correct": 0,
+    "explanation": "These symptoms indicate perimenopause/menopause. As ovarian follicular reserve depletes, estrogen production decreases. The lack of negative feedback from estrogen leads to elevated levels of both FSH and LH from the anterior pituitary."
+  },
+  {
+    "question": "At the midpoint in the menstrual cycle, ovulation is triggered by a sudden increase in the amount of :",
+    "options": [
+      "Estrogen",
+      "Progesterone",
+      "LH",
+      "FSH"
+    ],
+    "correct": 2,
+    "explanation": "A rapid rise in estrogen exerts positive feedback on the pituitary gland mid-cycle, resulting in a dramatic LH surge that triggers follicle rupture and ovulation."
+  },
+  {
+    "question": "30 y/o female with endometrial hyperplasia, the 1st line of ttt of choice is :",
+    "options": [
+      "Medroxyprogesterone",
+      "Estrogens",
+      "Danazol",
+      "GnRH analogues"
+    ],
+    "correct": 0,
+    "explanation": "Progestins (such as Medroxyprogesterone acetate) are the first-line treatment for endometrial hyperplasia without atypia. They counteract the proliferative effects of estrogen and induce shedding of the hyperplastic endometrium."
+  },
+  {
+    "question": "ICSI (IntraCytoplasmic Sperm Injection) is best indicated in :",
+    "options": [
+      "PCOS",
+      "Obstructive azospermia",
+      "Tubal obstruction",
+      "Abnormal endometrial receptivity",
+      "Cervical factor"
+    ],
+    "correct": 1,
+    "explanation": "ICSI is a specialized IVF technique designed to overcome severe male factor infertility. In cases of obstructive azoospermia, sperm can be retrieved surgically (e.g., via TESA/PESA) and injected directly into the oocyte."
+  },
+  {
+    "question": "Which of the following semen parameters would not be evaluated in a semen analysis?",
+    "options": [
+      "Sperm motility",
+      "Sperm concentration",
+      "Sperm morphology",
+      "Sperm penetration",
+      "Seminal fluid viscosity"
+    ],
+    "correct": 3,
+    "explanation": "A standard semen analysis measures volume, concentration, motility, morphology, and viscosity. 'Sperm penetration' assesses functional ability and requires specialized assays (like the hamster zona-free ovum test), which are not part of routine semen analysis."
+  },
+  {
+    "question": "A case of 2 yrs 1ry infertility of patient 22 y/o with regular cycle, you will start work-up by :",
+    "options": [
+      "Hysterosalpingography",
+      "Semen analysis",
+      "Laparoscopy",
+      "Hysteroscopy",
+      "Premenstrual endometrial biopsy"
+    ],
+    "correct": 1,
+    "explanation": "A semen analysis is the most fundamental, cost-effective, and non-invasive initial step in evaluating an infertile couple. Male factor infertility accounts for up to 40-50% of causes and should always be checked first."
+  },
+  {
+    "question": "Patient presented with 1ry amenorrhea, genotype 46xy, by examination (gonads ..testis & phenotype .. Female with developed breast, absent sexual hair)............. What is your diagnosis ?",
+    "options": [
+      "Frohlich syndrome.",
+      "Turner syndrome .",
+      "Androgen insensitivity syndrome.",
+      "Savage syndrome .",
+      "Laurance Moon Beedle syndrome"
+    ],
+    "correct": 2,
+    "explanation": "A 46,XY karyotype with intra-abdominal testes, a female phenotype with breast development (from aromatized testosterone), but absent pubic/axillary hair is the classic presentation of Complete Androgen Insensitivity Syndrome (CAIS)."
+  },
+  {
+    "question": "Which of the following is the most common pelvic mass associated with amenorrhea in a reproductive-age woman?",
+    "options": [
+      "Follicular cyst",
+      "Corpus luteum cyst",
+      "Benign cystic teratoma",
+      "Leiomyoma",
+      "Pregnancy"
+    ],
+    "correct": 4,
+    "explanation": "Because pregnancy is the most common cause of amenorrhea in reproductive-age women, the enlarging gravid uterus serves as the most frequently encountered 'pelvic mass' associated with amenorrhea."
+  },
+  {
+    "question": "The following is likely the diagnoses in a 16-year-old female with primary amenorrhea but normal development of the breasts and external genitalia:",
+    "options": [
+      "Turner's syndrome.",
+      "Complete androgen insensitivity syndrome.",
+      "Uterine agenesis.",
+      "Kallmann's syndrome.",
+      "Hyperprolactinaemia."
+    ],
+    "correct": 2,
+    "explanation": "Müllerian (Uterine) agenesis presents with primary amenorrhea and normal female secondary sexual characteristics (since the ovaries function normally). It is the second most common cause of primary amenorrhea and more statistically likely than CAIS, which also usually features absent/sparse pubic hair."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

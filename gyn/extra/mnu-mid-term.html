@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>MNU Mid Term </title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mnxr6yty4m6jv",
+  "title": "MNU Mid Term ",
+  "description": "Mid Term Exam from Mansoura National University"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "What is the FIRST-LINE pharmacological treatment for heavy menstrual bleeding (HMB)?",
+    "options": [
+      "Anticoagulants",
+      "Tranexamic acid (antifibrinolytic)",
+      "Combined oral contraceptive pill",
+      "GnRH agonists"
+    ],
+    "correct": 1,
+    "explanation": "Tranexamic acid or NSAIDs are first-line. Anticoagulants worsen HMB."
+  },
+  {
+    "question": "What is the most common cause of uterine bleeding in women of childbearing age?",
+    "options": [
+      "Endometrial polyp",
+      "Uterine fibroids (leiomyoma)",
+      "Endometrial hyperplasia",
+      "Coagulopathy",
+      "Pregnancy complication"
+    ],
+    "correct": 4,
+    "explanation": "Pregnancy complications (e.g., threatened abortion, ectopic pregnancy, miscarriage) are the most common cause of uterine bleeding in women of childbearing age and must always be excluded first."
+  },
+  {
+    "question": "What is the most common cause of uterine bleeding in the PREMENOPAUSAL period?",
+    "options": [
+      "Endometrial carcinoma",
+      "Dysfunctional uterine bleeding (anovulatory)",
+      "Cervical polyp",
+      "Atrophic vaginitis"
+    ],
+    "correct": 1,
+    "explanation": "Anovulatory DUB (ovulatory dysfunction) is the leading cause in perimenopausal/premenopausal women."
+  },
+  {
+    "question": "What is the most common cause of uterine bleeding in the POSTMENOPAUSAL period?",
+    "options": [
+      "Cervical carcinoma",
+      "Endometrial atrophy",
+      "Endometrial carcinoma",
+      "HRT side effect"
+    ],
+    "correct": 1,
+    "explanation": "Atrophic endometrium/vaginitis is the most frequent cause, though carcinoma must always be excluded."
+  },
+  {
+    "question": "Which of the following is NOT an indication during an ACUTE episode of heavy uterine bleeding?",
+    "options": [
+      "Ultrasound (US)",
+      "MRI",
+      "Endometrial biopsy",
+      "Hysterosalpingography (HSG)"
+    ],
+    "correct": 3,
+    "explanation": "HSG is used to assess tubal patency / uterine cavity in infertility workup — not in acute bleeding management."
+  },
+  {
+    "question": "Anosmia/hyposmia combined with primary amenorrhea and color blindness is characteristic of which syndrome?",
+    "options": [
+      "Sheehan syndrome",
+      "Kallmann syndrome",
+      "Turner syndrome",
+      "Asherman syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Kallmann = GnRH deficiency + olfactory bulb agenesis → anosmia + hypogonadotropic hypogonadism."
+  },
+  {
+    "question": "Fröhlich syndrome (adiposogenital dystrophy) is characterized by all of the following EXCEPT:",
+    "options": [
+      "Amenorrhea",
+      "Infantile (underdeveloped) genitalia",
+      "Obesity",
+      "Retinitis pigmentosa"
+    ],
+    "correct": 3,
+    "explanation": "Retinitis pigmentosa is a feature of Laurence-Moon-Biedl syndrome, not Fröhlich syndrome."
+  },
+  {
+    "question": "An isolated elevated LH level (with normal/low FSH) in a woman of reproductive age is most consistent with:",
+    "options": [
+      "Primary ovarian insufficiency",
+      "Polycystic ovary syndrome (PCOS)",
+      "Hypothalamic amenorrhea",
+      "Prolactinoma"
+    ],
+    "correct": 1,
+    "explanation": "PCOS classically shows elevated LH:FSH ratio (>2:1) with tonic LH secretion."
+  },
+  {
+    "question": "Which hormone is ABSENT in the postmenopausal state?",
+    "options": [
+      "Estrone (E1)",
+      "FSH",
+      "Progesterone",
+      "LH"
+    ],
+    "correct": 2,
+    "explanation": "Progesterone is produced by the corpus luteum after ovulation. No ovulation → no corpus luteum → no progesterone."
+  },
+  {
+    "question": "Estrogen replacement therapy (ERT) is MOST critically important in which of the following conditions?",
+    "options": [
+      "Natural menopause at age 52",
+      "Premature ovarian insufficiency (POI) / premature menopause",
+      "Surgical menopause after age 50",
+      "Perimenopause"
+    ],
+    "correct": 1,
+    "explanation": "Women with POI (<40 years) have prolonged estrogen deficiency; ERT is essential to protect bone, cardiovascular, and cognitive health."
+  },
+  {
+    "question": "The first-line treatment of PCOS in an infertile patient seeking ovulation induction is:",
+    "options": [
+      "Aromatase inhibitor (letrozole)",
+      "GnRH agonist",
+      "Metformin alone",
+      "Clomiphene citrate"
+    ],
+    "correct": 3,
+    "explanation": "Clomiphene citrate is the classic first-line agent for ovulation induction in PCOS. Letrozole shows superior live birth rates in some studies but clomiphene remains the traditional first-line in most curricula."
+  },
+  {
+    "question": "In a postmenopausal woman with low bone mineral density (BMD), which intervention is MOST effective at reducing osteoporosis?",
+    "options": [
+      "Calcium + vitamin D alone",
+      "Bisphosphonates (e.g., alendronate)",
+      "Estrogen replacement therapy",
+      "Weight-bearing exercise only"
+    ],
+    "correct": 2,
+    "explanation": "Estrogen is the most effective agent for preventing postmenopausal bone loss; it directly inhibits osteoclast activity and is particularly important in surgical or premature menopause."
+  },
+  {
+    "question": "A 35-year-old woman has a single intramural fibroid measuring 7 × 8 cm causing menorrhagia and pressure symptoms. She desires future fertility. The BEST surgical option is:",
+    "options": [
+      "Hysterectomy",
+      "Myomectomy",
+      "Uterine artery embolization (UAE)",
+      "Endometrial ablation"
+    ],
+    "correct": 1,
+    "explanation": "Myomectomy preserves the uterus and fertility. UAE and ablation are relatively contraindicated if future pregnancy is desired."
+  },
+  {
+    "question": "According to the FIGO PALM-COEIN classification, a submucosal fibroid with ≥50% of its bulk within the myometrium is classified as:",
+    "options": [
+      "FIGO Type 0",
+      "FIGO Type 1",
+      "FIGO Type 2",
+      "FIGO Type 3"
+    ],
+    "correct": 2,
+    "explanation": "Type 0 = pedunculated, entirely intracavitary (0% intramural); Type 1 = submucosal, <50% intramural; Type 2 = submucosal, ≥50% intramural extension."
+  },
+  {
+    "question": "The approximate risk of malignant transformation (leiomyosarcoma) in a uterine fibroid is:",
+    "options": [
+      "0.1%",
+      "0.5%",
+      "2%",
+      "5%"
+    ],
+    "correct": 0,
+    "explanation": "The quoted risk of malignant transformation to leiomyosarcoma is approximately 0.1% (1 in 1000)."
+  },
+  {
+    "question": "The primary mechanism by which endometriosis causes TUBAL (pre-tubular) infertility is:",
+    "options": [
+      "Direct tubal occlusion by endometriotic implants",
+      "Peritubal adhesions distorting tubal anatomy and impairing ovum pick-up",
+      "Elevated progesterone levels inhibiting fertilization",
+      "Autoimmune destruction of oocytes"
+    ],
+    "correct": 1,
+    "explanation": "Endometriosis causes pelvic inflammation → adhesion formation → distortion of the tube-ovary relationship, impairing fimbrial capture of the ovum."
+  },
+  {
+    "question": "The Bartholin glands are located at which anatomical position?",
+    "options": [
+      "Anterior to the clitoris, beneath the pubic arch",
+      "Posterolateral to the vaginal orifice, at the 4 and 8 o'clock positions",
+      "Medial to the labia minora at the level of the urethral meatus",
+      "Deep to the perineal membrane in the urogenital triangle"
+    ],
+    "correct": 1,
+    "explanation": "Bartholin (greater vestibular) glands open into the vestibule posterolaterally; their ducts open between hymen and labia minora."
+  },
+  {
+    "question": "The round ligament of the uterus attaches distally to the:",
+    "options": [
+      "Ovary",
+      "Labia majora (via inguinal canal)",
+      "Sacrum",
+      "Ischial spine"
+    ],
+    "correct": 1,
+    "explanation": "The round ligament traverses the inguinal canal and terminates in the subcutaneous tissue of the labia majora — the female homologue of the gubernaculum."
+  },
+  {
+    "question": "In the female fetus, the LOWER part of the gubernaculum becomes the:",
+    "options": [
+      "Round ligament of the uterus",
+      "Ovarian ligament (ligament of ovary)",
+      "Ligament of the labia majora",
+      "Broad ligament"
+    ],
+    "correct": 0,
+    "explanation": "The gubernaculum is divided by the developing uterus: upper part → ovarian (proper) ligament; lower part → round ligament of the uterus (which then continues through the inguinal canal to the labia majora)."
+  },
+  {
+    "question": "Regarding the uterine internal os, which statement is INCORRECT?",
+    "options": [
+      "It marks the junction between the uterine body and the cervix",
+      "It corresponds histologically to the isthmus",
+      "It is located at the level of the external cervical os",
+      "It is the anatomical narrowing between corpus and cervical canal"
+    ],
+    "correct": 2,
+    "explanation": "The internal os is the upper (anatomical) opening of the cervical canal into the uterine cavity — distinct from the external os which opens into the vagina."
+  },
+  {
+    "question": "The clitoris is the embryological homologue of which male structure?",
+    "options": [
+      "Scrotum",
+      "Glans penis",
+      "Prostate",
+      "Epididymis"
+    ],
+    "correct": 1,
+    "explanation": "Both develop from the genital tubercle. Under androgenic influence → penis; in absence → clitoris."
+  },
+  {
+    "question": "Pseudouterus (uterus didelphys / bicornuate variants) results from failure of:",
+    "options": [
+      "Complete fusion of the two Müllerian (paramesonephric) ducts",
+      "Resorption of the median septum after Müllerian duct fusion",
+      "Regression of the Wolffian (mesonephric) ducts",
+      "Migration of the urogenital sinus"
+    ],
+    "correct": 0,
+    "explanation": "Uterine duplication anomalies result from failed midline fusion of the paired Müllerian ducts during embryogenesis."
+  },
+  {
+    "question": "Hegar's sign (softening of the uterine isthmus) is detected on bimanual examination at which gestational week range?",
+    "options": [
+      "4–6 weeks",
+      "6–8 weeks",
+      "10–12 weeks",
+      "14–16 weeks"
+    ],
+    "correct": 1,
+    "explanation": "Hegar's sign (softening of the uterine isthmus) is classically elicited at 6–8 weeks of gestation on bimanual examination."
+  },
+  {
+    "question": "The MOST IMPORTANT clinical feature that differentiates Müllerian agenesis (Mayer-Rokitansky-Küster-Hauser syndrome) from Androgen Insensitivity Syndrome (AIS) is:",
+    "options": [
+      "Primary amenorrhea",
+      "Absence of pubic and axillary hair (in AIS) vs. normal hair development (in MRKH)",
+      "Presence of a vaginal dimple",
+      "Normal breast development"
+    ],
+    "correct": 1,
+    "explanation": "Both have 46,XX (MRKH) or 46,XY (AIS) with primary amenorrhea and absent uterus. Key difference: AIS has absent/sparse pubic & axillary hair due to androgen resistance; MRKH has normal female hair pattern. Karyotype and testosterone levels confirm diagnosis."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

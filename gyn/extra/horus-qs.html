@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Horus Qs</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mnxrj7mibsu3j",
+  "title": "Horus Qs",
+  "description": "Various questions from HUE",
+  "icon": "🤰"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which of the following is a cause of primary amenorrhea?",
+    "options": [
+      "Asherman syndrome",
+      "Premature ovarian failure",
+      "Sheehan's syndrome",
+      "Simmond's disease",
+      "Mullerian agenesis"
+    ],
+    "correct": 4,
+    "explanation": "Müllerian agenesis is a congenital condition where the uterus and upper vagina fail to develop, resulting in primary amenorrhea despite normal secondary sexual characteristics."
+  },
+  {
+    "question": "The most common cause of precocious puberty in girls is?",
+    "options": [
+      "Idiopathic or constitutional",
+      "Gonadal tumors",
+      "Albright's syndrome",
+      "Hypothyroidism",
+      "Central nervous system tumors"
+    ],
+    "correct": 0,
+    "explanation": "In approximately 80-90% of girls with central precocious puberty, the cause is idiopathic or constitutional, meaning no underlying pathology is found."
+  },
+  {
+    "question": "The infundibulo-pelvic ligament contains which artery?",
+    "options": [
+      "External iliac artery",
+      "Internal iliac artery",
+      "Inferior mesenteric artery",
+      "Uterine artery",
+      "Ovarian artery"
+    ],
+    "correct": 4,
+    "explanation": "The infundibulopelvic (suspensory) ligament of the ovary transmits the ovarian artery, ovarian vein, and nerve plexus."
+  },
+  {
+    "question": "Which of the following is the most common pelvic mass associated with amenorrhea in a reproductive-age woman?",
+    "options": [
+      "Follicular cyst",
+      "Corpus luteum cyst",
+      "Benign cystic teratoma",
+      "Leiomyoma",
+      "Pregnancy"
+    ],
+    "correct": 4,
+    "explanation": "Pregnancy is the most common cause of secondary amenorrhea, and the enlarging uterus acts as the most frequently encountered 'pelvic mass' in this context."
+  },
+  {
+    "question": "Premature thelarche is associated with which of the following?",
+    "options": [
+      "Axillary hair development",
+      "Isolated breast development",
+      "Pubic hair development",
+      "Spontaneous ovulation",
+      "Voice changes"
+    ],
+    "correct": 1,
+    "explanation": "Premature thelarche refers to the isolated development of breast tissue in young girls (usually under age 8) without other signs of puberty."
+  },
+  {
+    "question": "The drug of choice for treatment of bacterial vaginosis is:",
+    "options": [
+      "Crystalline penicillin",
+      "Metronidazole",
+      "Miconazole",
+      "Streptomycin",
+      "Vibramycin (Doxycycline)"
+    ],
+    "correct": 1,
+    "explanation": "Metronidazole (oral or vaginal) is the gold standard treatment for bacterial vaginosis, effectively targeting anaerobic bacteria like Gardnerella vaginalis."
+  },
+  {
+    "question": "The commonest sexually transmitted disease worldwide is:",
+    "options": [
+      "Chlamydial infection",
+      "Trichomonas vaginalis",
+      "Candidal vaginitis",
+      "Bacterial vaginosis",
+      "Syphilis"
+    ],
+    "correct": 0,
+    "explanation": "According to the provided material, Chlamydial infection is identified as the most common sexually transmitted disease globally."
+  },
+  {
+    "question": "Primary dysmenorrhea is characterized by:",
+    "options": [
+      "Dull aching diffuse and constant pain",
+      "Start several hours before or with onset of menstrual flow",
+      "Occurs in multiparous woman during the third and fourth decades of life",
+      "Associated with anovulatory cycles",
+      "Associated with PID"
+    ],
+    "correct": 1,
+    "explanation": "Primary dysmenorrhea typically involves crampy lower abdominal pain that starts just before or at the onset of bleeding and lasts for 12–72 hours."
+  },
+  {
+    "question": "A 25-year-old woman presents with delayed menses and vaginal bleeding. Which of the following serum assays should initially be performed?",
+    "options": [
+      "HCG",
+      "Progesterone",
+      "Prolactin",
+      "FSH",
+      "Luteinizing hormone (LH)"
+    ],
+    "correct": 0,
+    "explanation": "In any woman of reproductive age presenting with menstrual irregularities or bleeding, pregnancy must be ruled out first using an HCG test."
+  },
+  {
+    "question": "The main presenting symptom of Trichomonas vaginalis infection is:",
+    "options": [
+      "Pruritus vulvae",
+      "Frothy green may be malodorous vaginal discharge",
+      "Dysmenorrhea",
+      "Dysuria",
+      "Dyspareunia"
+    ],
+    "correct": 1,
+    "explanation": "Trichomoniasis classically presents with a profuse, frothy, yellowish-green vaginal discharge that is often foul-smelling (malodorous)."
+  },
+  {
+    "question": "The scrotum is homologous to which organ in the female?",
+    "options": [
+      "Bartholin's glands",
+      "Labia minora",
+      "Skene's gland",
+      "Labia",
+      "Round ligament of ovary"
+    ],
+    "correct": 3,
+    "explanation": "The labia majora in females are embryologically homologous to the scrotum in males, both developing from the labioscrotal swellings."
+  },
+  {
+    "question": "The most common site of endometriosis is:",
+    "options": [
+      "Uterine surface",
+      "Anterior cul-de-sac",
+      "Uterosacral ligaments",
+      "Ovary",
+      "Rectovaginal septum"
+    ],
+    "correct": 3,
+    "explanation": "The ovaries are the most frequent site for ectopic endometrial tissue (endometriosis), often forming 'chocolate cysts' or endometriomas."
+  },
+  {
+    "question": "The causative organism in Vaginal candidiasis is:",
+    "options": [
+      "Bacteria",
+      "Fungus",
+      "Virus",
+      "Protozoa",
+      "Worm"
+    ],
+    "correct": 1,
+    "explanation": "Vaginal candidiasis (yeast infection) is caused by an overgrowth of fungi, most commonly Candida albicans."
+  },
+  {
+    "question": "A 45-year-old woman suffers urinary incontinence when she coughs, this pattern is defined as:",
+    "options": [
+      "Stress incontinence",
+      "Urge incontinence",
+      "Overflow incontinence",
+      "Vesico-vaginal fistula",
+      "Urethral diverticulum"
+    ],
+    "correct": 0,
+    "explanation": "Stress incontinence is the involuntary leakage of urine during activities that increase intra-abdominal pressure, such as coughing, sneezing, or lifting."
+  },
+  {
+    "question": "A 21-year-old sexually active female presented with bilateral adnexal pain and tenderness, cervical motion tenderness, temperature 39°C and WBC 12,000/mL. What is the most likely diagnosis?",
+    "options": [
+      "Ectopic pregnancy",
+      "Pelvic inflammatory diseases (PID)",
+      "Endometriosis",
+      "Urinary tract infection",
+      "Ruptured corpus luteum cyst"
+    ],
+    "correct": 1,
+    "explanation": "The combination of fever, leukocytosis, bilateral adnexal tenderness, and cervical motion tenderness (Chandelier sign) is classic for PID."
+  },
+  {
+    "question": "The most common type of genitourinary fistula is:",
+    "options": [
+      "Vesico-vaginal fistula",
+      "Vesico-cervical fistula",
+      "Uretero-vaginal fistula",
+      "Uretero-cervical fistula",
+      "Urethro-vaginal fistula"
+    ],
+    "correct": 0,
+    "explanation": "The vesicovaginal fistula (between the bladder and vagina) is the most common type of acquired genitourinary fistula, often resulting from obstetric or surgical trauma."
+  },
+  {
+    "question": "Which of the following is the procedure of choice for treatment of procidentia in healthy postmenopausal women?",
+    "options": [
+      "Posterior colpoperineorrhaphy",
+      "Colpocleisis",
+      "Classical repair",
+      "Vaginal hysterectomy and repair of pelvic floor",
+      "Vaginal pessary"
+    ],
+    "correct": 3,
+    "explanation": "Procidentia (complete uterine prolapse) in a healthy woman is best treated surgically with a vaginal hysterectomy combined with pelvic floor repair."
+  },
+  {
+    "question": "A 35-year-old complains of primary infertility, increasing dysmenorrhea and pelvic pain. Pelvic examination demonstrates tenderness and nodularity over her uterosacral ligaments. What is the most likely diagnosis?",
+    "options": [
+      "Adenomyosis",
+      "Pelvic congestion syndrome",
+      "Chronic ectopic pregnancy",
+      "Endometriosis",
+      "Chronic pelvic inflammatory disease"
+    ],
+    "correct": 3,
+    "explanation": "The triad of infertility, dysmenorrhea, and dyspareunia combined with physical findings of uterosacral nodularity is highly suggestive of endometriosis."
+  },
+  {
+    "question": "Which of the following ligaments provide the most support to the uterus in terms of preventing prolapse?",
+    "options": [
+      "Broad ligaments",
+      "Round ligaments",
+      "Utero-ovarian ligaments",
+      "Cardinal ligament",
+      "Arcuate ligament"
+    ],
+    "correct": 3,
+    "explanation": "The cardinal (Mackenrodt's) ligaments provide the primary lateral support for the uterus and cervix, preventing downward displacement (prolapse)."
+  },
+  {
+    "question": "A 65-year-old woman suffers urinary incontinence when she has a desire to void urine. This pattern is defined as:",
+    "options": [
+      "Stress incontinence",
+      "Urge incontinence",
+      "Combined stress and urge incontinence",
+      "Vesico-vaginal fistula",
+      "Urethral diverticulum"
+    ],
+    "correct": 1,
+    "explanation": "Urge incontinence is characterized by the involuntary loss of urine preceded by a sudden, strong, and uncontrollable urge to void."
+  },
+  {
+    "question": "The following is the procedure of choice for treatment of rectocele in a young woman:",
+    "options": [
+      "Posterior colpoperineorrhaphy",
+      "Anterior colporrhaphy",
+      "Classical repair",
+      "Colpocleisis",
+      "Vaginal pessary"
+    ],
+    "correct": 0,
+    "explanation": "Posterior colpoperineorrhaphy is the surgical procedure used to repair a rectocele by strengthening the rectovaginal septum and perineal body."
+  },
+  {
+    "question": "Which of the following is a hirsutism cause of amenorrhea?",
+    "options": [
+      "Pure turner",
+      "Multiple X S",
+      "PCOs",
+      "Lactation"
+    ],
+    "correct": 2,
+    "explanation": "Polycystic Ovary Syndrome (PCOS) is a common endocrine disorder characterized by hyperandrogenism (causing hirsutism), ovulatory dysfunction (causing amenorrhea), and polycystic ovaries."
+  },
+  {
+    "question": "Urge incontinence is defined as:",
+    "options": [
+      "Leakage of urine on coughing or sneezing",
+      "The rapid urge to evacuate the urinary bladder",
+      "Constant dribbling of urine",
+      "Inability to empty the bladder completely"
+    ],
+    "correct": 1,
+    "explanation": "Urge incontinence involves an overactive bladder muscle that causes a sudden, strong need to urinate followed by involuntary leakage."
+  },
+  {
+    "question": "The most serious cause of bleeding in peri-menopause women is:",
+    "options": [
+      "Uterine fibroids",
+      "Endometrial carcinoma",
+      "Cervical polyp",
+      "Coagulation disorder"
+    ],
+    "correct": 1,
+    "explanation": "While there are many causes of abnormal bleeding, endometrial carcinoma is the most serious and must be ruled out through biopsy in perimenopausal or postmenopausal women."
+  },
+  {
+    "question": "Which of the following is a direct sign of genital prolapse?",
+    "options": [
+      "Low back pain",
+      "Feeling of heaviness in the pelvis",
+      "Protruding flesh from the vulva",
+      "Urinary frequency"
+    ],
+    "correct": 2,
+    "explanation": "The most direct and diagnostic sign of genital prolapse is the physical protrusion of pelvic organs (uterus, bladder, or rectum) through the vaginal opening."
+  },
+  {
+    "question": "Which of the following causes a painful ulcer on the genitalia of a female?",
+    "options": [
+      "Syphilis",
+      "Human papillomavirus (HPV)",
+      "Herpes simplex",
+      "Chancroid"
+    ],
+    "correct": 2,
+    "explanation": "Genital herpes (Herpes simplex virus) and Chancroid typically cause painful ulcers, whereas a primary syphilis chancre is characteristically painless."
+  },
+  {
+    "question": "What is the average length of the menstrual cycle?",
+    "options": [
+      "21 days",
+      "28 days",
+      "35 days",
+      "40 days"
+    ],
+    "correct": 1,
+    "explanation": "The average length of the human menstrual cycle is 28 days, though a range of 21–35 days is considered normal for most women."
+  },
+  {
+    "question": "The most common presentation of adenomyosis is:",
+    "options": [
+      "Intermenstrual bleeding",
+      "Heavy menstrual bleeding and symmetrical enlarged uterus",
+      "Post-coital bleeding",
+      "Watery vaginal discharge"
+    ],
+    "correct": 1,
+    "explanation": "Adenomyosis typically presents with heavy menstrual bleeding (menorrhagia) and a symmetrically enlarged, 'boggy' uterus on pelvic examination."
+  },
+  {
+    "question": "Typical vaginal candidiasis presents with:",
+    "options": [
+      "Profuse frothy discharge",
+      "Red itching vulva",
+      "Greyish white discharge with fishy odor",
+      "Blood-stained discharge"
+    ],
+    "correct": 1,
+    "explanation": "Vaginal candidiasis is characterized by intense vulvovaginal itching (pruritus), erythema (redness), and a thick, white 'cottage cheese' discharge."
+  },
+  {
+    "question": "Which of the following is a common cause of pelvic inflammatory disease?",
+    "options": [
+      "Candida albicans",
+      "Chlamydia trachomatis",
+      "Trichomonas vaginalis",
+      "Gardnerella vaginalis"
+    ],
+    "correct": 1,
+    "explanation": "Chlamydia trachomatis and Neisseria gonorrhoeae are the two most common pathogens responsible for pelvic inflammatory disease (PID)."
+  },
+  {
+    "question": "Vaginal discharge of trichomoniasis is characterized by:",
+    "options": [
+      "Thick, white, curdy discharge",
+      "Profuse yellowish green mucoid frothy malodorous discharge",
+      "Thin, grey, homogenous discharge",
+      "Brownish, bloody discharge"
+    ],
+    "correct": 1,
+    "explanation": "Trichomoniasis results in a profuse, yellowish-green, frothy, and foul-smelling discharge due to the presence of the parasite."
+  },
+  {
+    "question": "The most common cause of chronic pelvic pain is:",
+    "options": [
+      "Pelvic inflammatory disease",
+      "Endometriosis",
+      "Irritable bowel syndrome",
+      "Ovarian cysts"
+    ],
+    "correct": 1,
+    "explanation": "Endometriosis is the leading cause of chronic pelvic pain and secondary dysmenorrhea in women of reproductive age."
+  },
+  {
+    "question": "Which of the following is considered protective from pelvic inflammatory disease?",
+    "options": [
+      "Intrauterine device (IUD)",
+      "Using barrier contraception",
+      "Douching",
+      "Multiple sexual partners"
+    ],
+    "correct": 1,
+    "explanation": "Barrier methods like condoms prevent the transmission of STIs that lead to PID, whereas douching and having multiple partners increase the risk."
+  },
+  {
+    "question": "Which of the following is a contraindication of estrogen replacement therapy in postmenopausal women?",
+    "options": [
+      "Osteoporosis",
+      "Vaginal atrophy",
+      "Thromboembolism",
+      "Hot flashes"
+    ],
+    "correct": 2,
+    "explanation": "A history of thromboembolic disease (blood clots) is a major contraindication for systemic estrogen therapy because estrogen increases the risk of clotting."
+  },
+  {
+    "question": "Which of the following is a sure major criteria of Pelvic Inflammatory Disease?",
+    "options": [
+      "Lower abdominal tenderness",
+      "Evidence of hydrosalpinx via laparoscope",
+      "Elevated erythrocyte sedimentation rate (ESR)",
+      "Cervical motion tenderness"
+    ],
+    "correct": 1,
+    "explanation": "Laparoscopic evidence of tubal inflammation or hydrosalpinx provides definitive visual confirmation of PID, making it a major diagnostic criterion."
+  },
+  {
+    "question": "The gold standard for diagnosis of endometriosis is:",
+    "options": [
+      "Ultrasound",
+      "MRI",
+      "Laparoscopy",
+      "CA-125 level"
+    ],
+    "correct": 2,
+    "explanation": "Laparoscopy with direct visualization and histological confirmation of endometriotic lesions is the gold standard for diagnosing endometriosis."
+  },
+  {
+    "question": "The site of fertilization is the:",
+    "options": [
+      "Isthmus of the fallopian tube",
+      "Ampulla of the fallopian tube",
+      "Fimbriae",
+      "Uterine cavity"
+    ],
+    "correct": 1,
+    "explanation": "Fertilization normally occurs in the ampulla, which is the widest and longest part of the fallopian tube."
+  },
+  {
+    "question": "Submucosal fibroid is associated with which of the following?",
+    "options": [
+      "Asymptomatic",
+      "Heavy menstrual bleeding",
+      "Increased frequency of urination",
+      "Infertility"
+    ],
+    "correct": 1,
+    "explanation": "Submucosal fibroids distort the uterine cavity and increase the endometrial surface area, leading to heavy and prolonged menstrual bleeding."
+  },
+  {
+    "question": "The most common cause of central precocious puberty is:",
+    "options": [
+      "Ovarian tumor",
+      "Adrenal tumor",
+      "Early maturation of hypothalamus-pituitary axis",
+      "Hypothyroidism"
+    ],
+    "correct": 2,
+    "explanation": "Central precocious puberty results from the premature activation of the hypothalamic-pituitary-gonadal axis, leading to gonadotropin-dependent puberty."
+  },
+  {
+    "question": "What is the first line of treatment in case of infertility due to polycystic ovary disease?",
+    "options": [
+      "Metformin",
+      "Clomifene",
+      "Gonadotropins",
+      "Laparoscopic ovarian drilling"
+    ],
+    "correct": 1,
+    "explanation": "Clomifene citrate (or letrozole) is the first-line pharmacological treatment for inducing ovulation in women with PCOS-related infertility."
+  },
+  {
+    "question": "A 17-year-old female with primary amenorrhea and present breasts has a negative withdrawal test after estrogen and progesterone administration. What is the probable diagnosis?",
+    "options": [
+      "Turner syndrome",
+      "Androgen insensitive syndrome",
+      "Mullerian agenesis",
+      "Hypogonadotropic hypogonadism"
+    ],
+    "correct": 1,
+    "explanation": "In Androgen Insensitivity Syndrome (46,XY), the lack of androgen receptors leads to a female phenotype with breasts but no uterus; thus, a hormone withdrawal test will not produce bleeding."
+  },
+  {
+    "question": "Which of the following is a risk factor for fibroid?",
+    "options": [
+      "Multiparity",
+      "Family history",
+      "Smoking",
+      "Early menarche"
+    ],
+    "correct": 1,
+    "explanation": "Genetics plays a significant role in fibroid development; women with a first-degree relative who has fibroids are at a significantly higher risk."
+  },
+  {
+    "question": "A 16-year-old girl presented with pain that starts before menstrual flow and continues for 2 days after. What is the probable diagnosis?",
+    "options": [
+      "Secondary dysmenorrhea",
+      "Primary dysmenorrhea",
+      "Endometriosis",
+      "Pelvic inflammatory disease"
+    ],
+    "correct": 1,
+    "explanation": "This timing of pain is characteristic of primary dysmenorrhea, which occurs in the absence of identifiable pelvic pathology."
+  },
+  {
+    "question": "Dysmenorrhea associated with endometriosis is characterized by:",
+    "options": [
+      "Pain only on the first day of flow",
+      "Starts before, continues through and ends after the flow finishes",
+      "Sharp pain during ovulation",
+      "Pain relieved by the start of menstrual flow"
+    ],
+    "correct": 1,
+    "explanation": "Secondary dysmenorrhea due to endometriosis often starts several days before menstruation and tends to worsen throughout the period, sometimes lasting after flow stops."
+  },
+  {
+    "question": "The PALM-COEIN system is based on what?",
+    "options": [
+      "Causes of infertility",
+      "Causes that are associated with heavy menstrual bleeding",
+      "Staging of endometrial cancer",
+      "Classification of ovarian tumors"
+    ],
+    "correct": 1,
+    "explanation": "PALM-COEIN is the FIGO classification system for the causes of abnormal uterine bleeding (AUB) in non-pregnant women of reproductive age."
+  },
+  {
+    "question": "The main supporting structure for the uterus is the:",
+    "options": [
+      "Broad ligament",
+      "Round ligament",
+      "Cardinal ligament",
+      "Uterosacral ligament"
+    ],
+    "correct": 2,
+    "explanation": "The cardinal (Mackenrodt's) ligament is the primary supporting structure that anchors the cervix to the pelvic side walls."
+  },
+  {
+    "question": "Which of the following is a sign of malignant change in a fibroid?",
+    "options": [
+      "Decreased in size after menopause",
+      "Increased in size of cells",
+      "Calcification",
+      "Red degeneration"
+    ],
+    "correct": 1,
+    "explanation": "Rapid cellular growth or an increase in the size of a fibroid, particularly after menopause, is a warning sign for malignant transformation into leiomyosarcoma."
+  },
+  {
+    "question": "Regarding ovarian causes of amenorrhea, which of the following is correct?",
+    "options": [
+      "Low level of FSH",
+      "High level of FSH",
+      "Low level of LH",
+      "High level of estrogen"
+    ],
+    "correct": 1,
+    "explanation": "Ovarian failure (primary hypogonadism) leads to a loss of negative feedback on the pituitary, resulting in high levels of FSH and LH."
+  },
+  {
+    "question": "The normal position of the uterus is:",
+    "options": [
+      "Anteverted – anteflexed",
+      "Retroverted – retroflexed",
+      "Axial position",
+      "Lateroflexed"
+    ],
+    "correct": 0,
+    "explanation": "The uterus is typically in an anteverted (tilted forward relative to the vagina) and anteflexed (bent forward relative to the cervix) position."
+  },
+  {
+    "question": "Prolapse of the upper half of the anterior vaginal wall causes:",
+    "options": [
+      "Cystocele",
+      "Rectocele",
+      "Enterocele",
+      "Urethrocele"
+    ],
+    "correct": 0,
+    "explanation": "A cystocele occurs when the supportive tissue between a woman's bladder and vaginal wall weakens, allowing the bladder to bulge into the upper anterior vagina."
+  },
+  {
+    "question": "A 50-year-old woman with hot flashes had a total abdominal hysterectomy and bilateral salpingo-oophorectomy. What is the recommended treatment?",
+    "options": [
+      "Progesterone only",
+      "Estrogen only",
+      "Combined estrogen and progesterone",
+      "Testosterone"
+    ],
+    "correct": 1,
+    "explanation": "Because the patient no longer has a uterus, she does not require progesterone to prevent endometrial hyperplasia and can take estrogen-only therapy for menopause symptoms."
+  },
+  {
+    "question": "A 45-year-old woman's ultrasound revealed an endometrial thickness of 18 mm. What is the probable next step?",
+    "options": [
+      "Repeat ultrasound in 6 months",
+      "Simple endometrial biopsy",
+      "Hysterectomy",
+      "Prescribe progesterone"
+    ],
+    "correct": 1,
+    "explanation": "An endometrial thickness of 18 mm in a woman of this age is abnormally high and requires an endometrial biopsy to rule out hyperplasia or carcinoma."
+  },
+  {
+    "question": "Which of the following is a common cause of cystovaginal (vesicovaginal) fistula?",
+    "options": [
+      "Childhood trauma",
+      "Prolonged labor",
+      "Radiation therapy",
+      "Cervical cancer"
+    ],
+    "correct": 1,
+    "explanation": "In many developing regions, obstructed and prolonged labor is the leading cause of vesicovaginal fistulas due to ischemic pressure necrosis."
+  },
+  {
+    "question": "What is the treatment option for a woman with endometriosis causing infertility?",
+    "options": [
+      "Hysterectomy",
+      "Laparoscopic lysis of adhesion of endometrium",
+      "Continuous progesterone therapy",
+      "GnRH agonists for 1 year"
+    ],
+    "correct": 1,
+    "explanation": "Surgical removal of endometriotic implants and lysis of adhesions (restoring anatomy) is the primary way to improve fertility outcomes in endometriosis patients."
+  },
+  {
+    "question": "Which of the following causes stress incontinence?",
+    "options": [
+      "Urinary tract infection",
+      "Chronic constipation",
+      "Diabetes insipidus",
+      "Overactive bladder"
+    ],
+    "correct": 1,
+    "explanation": "Chronic constipation leads to chronic straining, which weakens the pelvic floor muscles and increases intra-abdominal pressure, predisposing to stress incontinence."
+  },
+  {
+    "question": "Which of the following occurs during puberty?",
+    "options": [
+      "Decrease in level of GnRH",
+      "Increase in level of GnRH",
+      "Decrease in level of FSH",
+      "Increase in level of inhibin"
+    ],
+    "correct": 1,
+    "explanation": "Puberty begins with an increase in the pulsatile secretion of Gonadotropin-Releasing Hormone (GnRH) from the hypothalamus."
+  },
+  {
+    "question": "What is the only investigation done for a male in the case of infertility?",
+    "options": [
+      "Testicular biopsy",
+      "Hormonal assay",
+      "Semen analysis",
+      "Post-coital test"
+    ],
+    "correct": 2,
+    "explanation": "Semen analysis is the fundamental, non-invasive investigation that assesses the male's fertility potential by evaluating sperm count, motility, and morphology."
+  },
+  {
+    "question": "Which of the following is made from the Müllerian duct?",
+    "options": [
+      "Lower vagina",
+      "Upper vagina",
+      "Labia majora",
+      "Ovary"
+    ],
+    "correct": 1,
+    "explanation": "The Müllerian (paramesonephric) ducts develop into the fallopian tubes, uterus, and the upper part of the vagina."
+  },
+  {
+    "question": "Which of the following confirms ovulation?",
+    "options": [
+      "Basal body temperature drop",
+      "Mid-luteal progesterone 6-11 ng/mL",
+      "Positive urine LH test",
+      "Ferning pattern on cervical mucus"
+    ],
+    "correct": 1,
+    "explanation": "A mid-luteal serum progesterone level (measured around day 21) is the most reliable way to confirm that ovulation and the formation of a functioning corpus luteum have occurred."
+  },
+  {
+    "question": "A 47-year-old female's menstrual cycles occur every 4 months. Which statement is correct?",
+    "options": [
+      "It is abnormal and requires immediate investigation",
+      "It is normal and occurs in women around menopause",
+      "It suggests polycystic ovary syndrome",
+      "It indicates premature ovarian failure"
+    ],
+    "correct": 1,
+    "explanation": "Infrequent periods (oligomenorrhea) are a common and expected feature of the menopausal transition (perimenopause) for women in their late 40s."
+  },
+  {
+    "question": "A 55-year-old woman with an intact uterus has hot flashes and decreased bone density. What should be prescribed?",
+    "options": [
+      "Estrogen only",
+      "Progesterone only",
+      "Combined estrogen and progesterone pill",
+      "Testosterone"
+    ],
+    "correct": 2,
+    "explanation": "In a woman with an intact uterus, estrogen must always be given with a progestogen to protect the endometrium from the risk of cancer."
+  },
+  {
+    "question": "Which of the following degenerations is common in fibroids during pregnancy?",
+    "options": [
+      "Hyaline degeneration",
+      "Red degeneration",
+      "Calcific degeneration",
+      "Cystic degeneration"
+    ],
+    "correct": 1,
+    "explanation": "Red (carneous) degeneration is an acute form of necrosis that occurs when a fibroid outgrows its blood supply, most commonly seen during pregnancy."
+  },
+  {
+    "question": "Which of the following should never be prescribed for a lactating woman?",
+    "options": [
+      "Progesterone-only pills",
+      "Combined contraceptive pills",
+      "Copper IUD",
+      "Barrier methods"
+    ],
+    "correct": 1,
+    "explanation": "Combined oral contraceptives (containing estrogen) are avoided during breastfeeding because they can significantly decrease milk production."
+  },
+  {
+    "question": "The IUD works on which mechanism?",
+    "options": [
+      "Suppressing ovulation",
+      "Thickening cervical mucus",
+      "Causing sterile endometritis",
+      "Inhibiting implantation"
+    ],
+    "correct": 2,
+    "explanation": "Intrauterine devices act primarily by inducing a local inflammatory response (sterile endometritis) in the uterus that is toxic to sperm and eggs."
+  },
+  {
+    "question": "Which of the following cancers is preventable?",
+    "options": [
+      "Ovarian cancer",
+      "Cancer cervix",
+      "Endometrial cancer",
+      "Vulvar cancer"
+    ],
+    "correct": 1,
+    "explanation": "Cervical cancer is considered highly preventable through HPV vaccination and regular Pap smear screening, which identifies and treats precancerous lesions."
+  },
+  {
+    "question": "A 37-year-old woman with a CIN II lesion. What is the best management?",
+    "options": [
+      "Cryotherapy",
+      "Cold knife conization",
+      "Loop Electrosurgical Excision Procedure (LEEP)",
+      "Hysterectomy"
+    ],
+    "correct": 2,
+    "explanation": "LEEP is the preferred treatment for CIN II and CIN III because it is a quick outpatient procedure that removes the abnormal area while preserving the cervix."
+  },
+  {
+    "question": "Which of the following HPV types cause genital warts?",
+    "options": [
+      "16 and 18",
+      "11 and 6",
+      "31 and 33",
+      "45 and 52"
+    ],
+    "correct": 1,
+    "explanation": "HPV types 6 and 11 are 'low-risk' types that cause approximately 90% of genital warts (Condyloma acuminata)."
+  },
+  {
+    "question": "A 29-year-old female presented with headache, breast tenderness, and bloating. What is the most likely diagnosis?",
+    "options": [
+      "Pregnancy",
+      "Premenstrual syndrome",
+      "Ovarian cyst",
+      "Thyroid disorder"
+    ],
+    "correct": 1,
+    "explanation": "These physical symptoms occurring in the luteal phase of the cycle and resolving with menstruation are characteristic of Premenstrual Syndrome (PMS)."
+  },
+  {
+    "question": "A 50-year-old female has cancer of the vulva mass confined to the vulva and the lower part of the vagina. What is the stage?",
+    "options": [
+      "I",
+      "II",
+      "III",
+      "IV"
+    ],
+    "correct": 1,
+    "explanation": "Invulvar cancer staging, Stage II involves a tumor of any size with extension to adjacent perineal structures (lower 1/3 of urethra, lower 1/3 of vagina, or anus) but negative lymph nodes."
+  },
+  {
+    "question": "A 54-year-old female with endometrial cancer, extended to less than 50% of the myometrium. What is the stage?",
+    "options": [
+      "Ia",
+      "Ib",
+      "II",
+      "IIIa"
+    ],
+    "correct": 0,
+    "explanation": "Stage Ia endometrial cancer is defined as a tumor confined to the corpus uteri with no or less than 50% invasion of the myometrium."
+  },
+  {
+    "question": "What is the most common form of estrogen used in combined oral contraceptives (COC)?",
+    "options": [
+      "Conjugated equine estrogen",
+      "Estradiol valerate",
+      "Ethinyl Estradiol",
+      "Mestranol"
+    ],
+    "correct": 2,
+    "explanation": "Ethinyl estradiol is the potent, synthetic estrogen found in the vast majority of combined oral contraceptive formulations."
+  },
+  {
+    "question": "A 37-year-old female presented with endometrial hyperplasia with atypia. What is the best line of management?",
+    "options": [
+      "Hysterectomy",
+      "High-dose progesterone",
+      "Hysteroscopic resection",
+      "Follow-up with ultrasound"
+    ],
+    "correct": 0,
+    "explanation": "Endometrial hyperplasia with atypia has a high risk of progression to (or co-existence with) adenocarcinoma, making hysterectomy the recommended definitive treatment."
+  },
+  {
+    "question": "A 70-year-old female, medically unfit, with a 3rd-degree uterine prolapse. What is the management?",
+    "options": [
+      "Vaginal hysterectomy",
+      "Abdominal sacrocolpopexy",
+      "Cup Pessary",
+      "Kegel exercises"
+    ],
+    "correct": 2,
+    "explanation": "For a woman who is medically unfit for surgery, a mechanical device like a pessary is the best option to support the prolapsed organs and relieve symptoms."
+  },
+  {
+    "question": "A 30-year-old female presented with ovarian dysgerminoma. What is the management?",
+    "options": [
+      "Total abdominal hysterectomy and bilateral salpingo-oophorectomy",
+      "Unilateral salpingo-oophorectomy",
+      "Chemotherapy only",
+      "Radiation therapy only"
+    ],
+    "correct": 1,
+    "explanation": "Dysgerminoma is a germ cell tumor that typically occurs in young women; unilateral salpingo-oophorectomy is the standard treatment to preserve fertility as these tumors are highly chemo-sensitive."
+  },
+  {
+    "question": "What is the main ligament of the cervix?",
+    "options": [
+      "Broad ligament",
+      "Round ligament",
+      "Cardinal ligament",
+      "Uterosacral ligament"
+    ],
+    "correct": 2,
+    "explanation": "The cardinal (Mackenrodt's) ligament is considered the most important ligamentous support for the cervix and uterus."
+  },
+  {
+    "question": "Which hormone has a thermogenic effect?",
+    "options": [
+      "Estrogen",
+      "Progesterone",
+      "Follicle-stimulating hormone (FSH)",
+      "Luteinizing hormone (LH)"
+    ],
+    "correct": 1,
+    "explanation": "Progesterone raises the basal body temperature by about 0.5 to 1.0 degree Fahrenheit after ovulation occurs."
+  },
+  {
+    "question": "Where is FSH produced?",
+    "options": [
+      "Hypothalamus",
+      "Anterior pituitary",
+      "Posterior pituitary",
+      "Ovaries"
+    ],
+    "correct": 1,
+    "explanation": "Follicle-Stimulating Hormone (FSH) is synthesized and secreted by the gonadotropic cells of the anterior pituitary gland."
+  },
+  {
+    "question": "Thelarche is related to?",
+    "options": [
+      "Onset of menstruation",
+      "Pubic hair development",
+      "Axillary hair development",
+      "Isolated breast development"
+    ],
+    "correct": 3,
+    "explanation": "Thelarche is the clinical term for the start of breast development, which is usually the first sign of puberty in girls."
+  },
+  {
+    "question": "A 60-year-old postmenopausal woman complains of abnormal uterine bleeding. What is the most common cause?",
+    "options": [
+      "Endometrial cancer",
+      "Atrophic endometritis",
+      "Cervical polyp",
+      "Uterine fibroids"
+    ],
+    "correct": 1,
+    "explanation": "While cancer must be excluded, atrophy of the endometrium or vagina is statistically the most common cause of postmenopausal bleeding."
+  },
+  {
+    "question": "A 16-year-old girl complains of heavy menstrual bleeding. What is the most common cause?",
+    "options": [
+      "Endometriosis",
+      "Coagulopathy",
+      "Thyroid disorder",
+      "Ovarian cyst"
+    ],
+    "correct": 1,
+    "explanation": "In adolescents with severe menorrhagia, coagulopathies (like von Willebrand disease) are common and should be considered alongside anovulatory cycles."
+  },
+  {
+    "question": "A 50-year-old healthy female has an atypical glandular lesion on Pap smear. What is the next step?",
+    "options": [
+      "Hysterectomy",
+      "Laparoscopic endometrial curettage",
+      "Prescribe progesterone",
+      "Repeat Pap smear in 1 year"
+    ],
+    "correct": 1,
+    "explanation": "Atypical Glandular Cells (AGC) require aggressive evaluation, including endometrial sampling and colposcopy, to rule out glandular malignancy."
+  },
+  {
+    "question": "What is the commonest predisposing factor for genital prolapse?",
+    "options": [
+      "Obesity",
+      "Chronic cough",
+      "Childbirth",
+      "Constipation"
+    ],
+    "correct": 2,
+    "explanation": "Trauma to the pelvic floor during vaginal childbirth is the single most significant risk factor for developing pelvic organ prolapse later in life."
+  },
+  {
+    "question": "What is the surgery for a prolapse of the middle third of the posterior vaginal wall?",
+    "options": [
+      "Anterior colporrhaphy",
+      "Colpoperineorrhaphy",
+      "Sacrospinous fixation",
+      "Manchester repair"
+    ],
+    "correct": 1,
+    "explanation": "A colpoperineorrhaphy (posterior repair) is the specific surgical procedure used to correct a rectocele or posterior vaginal wall prolapse."
+  },
+  {
+    "question": "What is the commonest symptom of Candida infection?",
+    "options": [
+      "Dysuria",
+      "Pruritis vulvae",
+      "Pelvic pain",
+      "Dyspareunia"
+    ],
+    "correct": 1,
+    "explanation": "Intense itching of the vulva (pruritus vulvae) is the hallmark symptom that brings most patients with a yeast infection to the doctor."
+  },
+  {
+    "question": "Which discharge is related to trichomoniasis?",
+    "options": [
+      "White, curdy",
+      "Green, frothy, malodorous",
+      "Gray, homogenous, fishy odor",
+      "Brown, bloody"
+    ],
+    "correct": 1,
+    "explanation": "Trichomonas infection classically produces a malodorous, frothy, yellowish-green discharge."
+  },
+  {
+    "question": "A congenital defect of the uterus is often associated with a congenital defect in which other system?",
+    "options": [
+      "Skeletal system",
+      "Urinary system",
+      "Nervous system",
+      "Gastrointestinal system"
+    ],
+    "correct": 1,
+    "explanation": "Because the Müllerian and renal systems develop from the same embryological tissue, up to 30-40% of women with uterine anomalies also have renal (urinary) tract defects."
+  },
+  {
+    "question": "What increases during primary dysmenorrhea?",
+    "options": [
+      "Estrogen",
+      "Progesterone",
+      "Prostaglandin (PGF2a)",
+      "Cortisol"
+    ],
+    "correct": 2,
+    "explanation": "Primary dysmenorrhea is caused by high levels of prostaglandins (specifically PGF2alpha) which cause intense uterine contractions and ischemia."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
