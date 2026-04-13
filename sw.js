@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-02a9f3bc7d41';
+const CACHE_VERSION = 'mu61-quiz-f2b67edd89e3';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -9,16 +9,8 @@ const GOOGLE_FONT_CSS =
 var PRECACHE_REL_PATHS = [
   'quiz-engine.js',
   'bank-engine.js',
-  'index-engine.js',
   'index.html',
-  'manifest.webmanifest',
-  'favicon.svg',
-  'icon-48.png',
-  'icon-72.png',
-  'icon-96.png',
-  'icon-144.png',
-  'icon-192.png',
-  'icon-512.png',
+  'bank-maker.html',
   'Cardio/57th-end-round-1.html',
   'Cardio/57th-end-round-2.html',
   'Cardio/57th-end-round-3.html',
@@ -98,7 +90,8 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/60th-midterm.html',
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
-  'quiz-engine-test.html'
+  'quiz-engine-test.html',
+  'quiz-maker-js.html'
 ];
 
 function hrefFromScope(scope, relPath) {
