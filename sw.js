@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-601b667fbf9f';
+const CACHE_VERSION = 'mu61-quiz-e8d771d9cb61';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -92,7 +92,9 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
   'quiz-engine-test.html',
-  'quiz-maker-js.html'
+  'quiz-maker-js.html',
+  'surg/dr-magdy-questions-breast.html',
+  'surg/index.html'
 ];
 
 function hrefFromScope(scope, relPath) {
