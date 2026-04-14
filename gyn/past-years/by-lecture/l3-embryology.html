@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L3-Embryology</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mnyiaa5z6fya4",
+  "title": "L3-Embryology",
+  "description": "Past Batches by lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Congenital uterine anomalies are commonly associated with anomalies in which other system?",
+    "options": [
+      "Anomalies of the intestines",
+      "Anomalies of the skeletal system",
+      "Anomalies of the urinary system",
+      "Anomalies of the cardiovascular system",
+      "Anomalies of the nervous system"
+    ],
+    "correct": 2,
+    "explanation": "Because the Mullerian ducts and the urinary system (Wolffian ducts/metanephros) develop in close proximity from the intermediate mesoderm, renal anomalies occur in up to 30-50% of women with uterine malformations."
+  },
+  {
+    "question": "Which uterine anomaly can be corrected by hysteroscopic metroplasty?",
+    "options": [
+      "Bicornuate uterus",
+      "Septate uterus",
+      "Uterus didelphys",
+      "Unicornuate uterus",
+      "Arcuate uterus"
+    ],
+    "correct": 1,
+    "explanation": "A septate uterus consists of a midline partition that is relatively avascular. This can be safely incised or resected hysteroscopically to improve reproductive outcomes."
+  },
+  {
+    "question": "When a 30-year-old woman is diagnosed with a Bicornuate uterus during an infertility evaluation, additional testing is necessary to check for anomalies in which system?",
+    "options": [
+      "Skeletal",
+      "Hematopoietic",
+      "Urinary",
+      "Nervous",
+      "Tracheoesophageal"
+    ],
+    "correct": 2,
+    "explanation": "Uterine and renal anomalies are frequently paired; a patient with a bicornuate uterus should undergo renal imaging (like ultrasound or IVP) to check for renal agenesis or ectopia."
+  },
+  {
+    "question": "The presence of a uterus in a phenotypically normal male is due to:",
+    "options": [
+      "Lack of mullerian inhibiting factor",
+      "Lack of testosterone",
+      "Increased levels of estrogens",
+      "46, XX karyotype",
+      "Presence of ovarian tissue early in embryonic development"
+    ],
+    "correct": 0,
+    "explanation": "In a genetic male (46,XY), the Sertoli cells normally produce Mullerian Inhibiting Factor (MIF) to cause duct regression. Lack of MIF or its receptor leads to Persistent Mullerian Duct Syndrome."
+  },
+  {
+    "question": "Anomalies of the urinary system are commonly associated with which of the following?",
+    "options": [
+      "Cardiovascular deformities",
+      "Mullerian deformities",
+      "Gastrointestinal deformities",
+      "Musculoskeletal deformities",
+      "Respiratory deformities"
+    ],
+    "correct": 1,
+    "explanation": "Due to the shared embryological origin from the urogenital ridge, defects in Mullerian duct development (uterus/tubes/upper vagina) often coincide with urinary tract defects."
+  },
+  {
+    "question": "Complete failure of fusion of the Mullerian ducts results in:",
+    "options": [
+      "Absence of uterus",
+      "Uterine didelphys",
+      "Bicornuate uterus",
+      "Subseptate uterus",
+      "Arcuate uterus"
+    ],
+    "correct": 1,
+    "explanation": "Uterus didelphys occurs when the two Mullerian ducts fail to fuse at all, resulting in two separate uteri, two cervices, and often a longitudinal vaginal septum."
+  },
+  {
+    "question": "The ovary develops from the:",
+    "options": [
+      "Mullerian duct",
+      "Genital ridge",
+      "Genital tubercle",
+      "Mesonephric duct",
+      "Gubernaculum"
+    ],
+    "correct": 1,
+    "explanation": "The ovaries develop from the genital (gonadal) ridge, which is a thickening of the intermediate mesoderm on the medial aspect of the mesonephros."
+  },
+  {
+    "question": "Which of the following anatomic structures is correctly paired with its embryologic origin?",
+    "options": [
+      "Genital tubercle-clitoris",
+      "Urethral folds-labia majora",
+      "Labioscrotal folds-labia minora",
+      "The whole vagina-urogenital sinus",
+      "Fallopian tubes-mesonephric duct"
+    ],
+    "correct": 0,
+    "explanation": "The clitoris arises from the genital tubercle. The urethral folds become the labia minora, and the labioscrotal folds become the labia majora."
+  },
+  {
+    "question": "What is the preferred imaging modality when a congenital mullerian anomaly is suspected?",
+    "options": [
+      "Computed tomography",
+      "Trans-abdominal sonography",
+      "Magnetic resonance imaging (MRI)",
+      "Abdomino-pelvic x-ray series",
+      "Doppler ultrasonography"
+    ],
+    "correct": 2,
+    "explanation": "MRI is highly sensitive and specific for classifying Mullerian anomalies because it provides excellent detail of the uterine fundal contour and the internal cavity."
+  },
+  {
+    "question": "Which of the following is the result of lack of fusion of the Müllerian ducts system?",
+    "options": [
+      "Uterine didelphys",
+      "Transverse vaginal septum",
+      "Unilateral renal agenesis",
+      "Imperforate hymen",
+      "Ovarian remnant syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Uterus didelphys is the classic clinical representation of the total failure of the two paramesonephric (Mullerian) ducts to fuse."
+  },
+  {
+    "question": "During early embryonic development, if germ cells fail to enter the developing genital ridge, which of the following is most likely to occur?",
+    "options": [
+      "Ovarian teratomas",
+      "Ectopic pregnancy",
+      "Ovarian choriocarcinoma",
+      "Gonadal agenesis",
+      "Testicular feminization"
+    ],
+    "correct": 3,
+    "explanation": "The presence of primordial germ cells is necessary to induce the development of the gonad; without their migration to the genital ridge, gonadal agenesis (streak gonads) occurs."
+  },
+  {
+    "question": "Absence of the vagina is most commonly found in association with which of the following?",
+    "options": [
+      "Congenital adrenal hyperplasia in a female infant",
+      "Turner's syndrome",
+      "Association with an absent or rudimentary uterus",
+      "Medication-induced fetal masculinization",
+      "Gonadal dysgenesis"
+    ],
+    "correct": 2,
+    "explanation": "Vaginal agenesis (Mayer-Rokitansky-Küster-Hauser syndrome) is typically associated with uterine agenesis or a rudimentary uterus because both derive from the Mullerian ducts."
+  },
+  {
+    "question": "Which of the following statements are true regarding Turner syndrome?",
+    "options": [
+      "There are no classic physical stigmata of the syndrome.",
+      "They comprise the minority of patients with gonadal dysgenesis.",
+      "Although the uterus and vagina are normal, patients have streak gonads and primary amenorrhea.",
+      "It is an example of hypogonadotrophic hypogonadism.",
+      "It is due to partial or complete loss of an autosome."
+    ],
+    "correct": 2,
+    "explanation": "Turner syndrome (45,X) features normal Mullerian development (uterus/vagina present) but the ovaries fail to develop (streak gonads), leading to primary amenorrhea and high FSH/LH."
+  },
+  {
+    "question": "Which class of hormones is essential for the embryogenesis and differentiation of the external genitalia?",
+    "options": [
+      "Androgens",
+      "Estrogens",
+      "Cortisol",
+      "Human chorionic gonadotropin",
+      "Progesterone"
+    ],
+    "correct": 0,
+    "explanation": "External genitalia develop in a female direction by default. The presence of androgens (specifically DHT) is required to drive differentiation into male external genitalia."
+  },
+  {
+    "question": "In a 25-year-old woman, serum FSH is elevated (more than 25 IU/L) in which case?",
+    "options": [
+      "Polycystic ovarian syndrome",
+      "Mullerian agenesis",
+      "Ovarian agenesis",
+      "Medications like H2 blockers",
+      "Asherman syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Ovarian agenesis or failure results in a lack of estrogen/inhibin production. Without negative feedback, the pituitary secretes high levels of FSH (hypergonadotropic hypogonadism)."
+  },
+  {
+    "question": "Which of the following is true regarding most Müllerian duct anomalies?",
+    "options": [
+      "Associated with disordered function of the gonads",
+      "Usually diagnosed after onset of puberty",
+      "Often recognised in prepubertal period",
+      "Associated with age-inappropriate external genitalia",
+      "Mostly associated with lower gastrointestinal tract anomalies"
+    ],
+    "correct": 1,
+    "explanation": "Most Mullerian anomalies (like septate or bicornuate uterus) are asymptomatic until puberty, when they may present with primary amenorrhea, cyclic pain, or later with reproductive issues."
+  },
+  {
+    "question": "Which of the following is a hormone specifically relevant to the differentiation of the male external genitalia?",
+    "options": [
+      "Androstenedione",
+      "Estrogens",
+      "Human chorionic gonadotropin",
+      "Dihydrotestosterone (DHT)",
+      "Progesterone"
+    ],
+    "correct": 3,
+    "explanation": "Dihydrotestosterone (DHT), converted from testosterone by 5-alpha reductase, is the specific androgen responsible for virilizing the external genitalia."
+  },
+  {
+    "question": "Which congenital anomaly results from the incomplete fusion of the Müllerian ducts?",
+    "options": [
+      "Unicornuate uterus",
+      "Uterus didelphys",
+      "Imperforate hymen",
+      "Vaginal atresia",
+      "Turner syndrome"
+    ],
+    "correct": 1,
+    "explanation": "While didelphys is a total lack of fusion, the provided answer key classifies it under the 'fusion failure' spectrum. Typically, incomplete fusion results in bicornuate or septate uteri."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

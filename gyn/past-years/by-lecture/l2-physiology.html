@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L2-Physiology</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mnyi663oca7kk",
+  "title": "L2-Physiology",
+  "description": "Past Batches by lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Regarding human fertility, which is true?",
+    "options": [
+      "Fertilization usually occurs 5-7 days before implantation and before the extrusion of the second polar body",
+      "Subfertility only treated with IVF",
+      "An adverse male factor is detectable in 60% of couples with low fertility",
+      "Mumps in adulthood has no effect on male fertility",
+      "Oligospermia means that sperm shape is abnormal"
+    ],
+    "correct": 0,
+    "explanation": "Fertilization occurs in the ampulla of the fallopian tube. Implantation typically happens about 6-7 days later. The second polar body is extruded only after the sperm penetrates the secondary oocyte."
+  },
+  {
+    "question": "The average blood loss resulting from menstruation is:",
+    "options": [
+      "10 to 15ml",
+      "25 to 50 ml",
+      "75 to 100ml",
+      "101 to 125ml",
+      "130 to 150ml"
+    ],
+    "correct": 1,
+    "explanation": "Normal menstrual blood loss is generally considered to be between 30 and 80 ml, with 25-50 ml representing a typical average range."
+  },
+  {
+    "question": "The morula leaves the fallopian tube and enters the uterine cavity after approximately what period of time post-fertilization?",
+    "options": [
+      "1 day",
+      "3 days",
+      "5 days",
+      "7 days",
+      "35%"
+    ],
+    "correct": 2,
+    "explanation": "The fertilized egg undergoes cleavage while traveling down the tube. It reaches the morula stage and enters the uterine cavity roughly 4 to 5 days after fertilization."
+  },
+  {
+    "question": "A sharp decrease in estrogen and progesterone levels 3 or 4 days before the end of the menstrual cycle triggers:",
+    "options": [
+      "Ovulation",
+      "Degeneration of the corpus luteum",
+      "Menstruation",
+      "Menopause",
+      "Amenorrhea"
+    ],
+    "correct": 2,
+    "explanation": "The withdrawal of estrogen and progesterone due to the regression of the corpus luteum causes the spiral arteries to constrict and the functional layer of the endometrium to shed."
+  },
+  {
+    "question": "Ovulation in the human is:",
+    "options": [
+      "Associated with a surge of follicle stimulating hormone",
+      "Followed by the development of secretory endometrium",
+      "Associated with decreased in motility of the fallopian tube",
+      "Associated with a sustained fall in basal body temperature",
+      "Followed by a rise in urinary estradiol"
+    ],
+    "correct": 1,
+    "explanation": "After ovulation, the corpus luteum produces progesterone, which converts the proliferative endometrium into a secretory endometrium."
+  },
+  {
+    "question": "A woman normally has 32-day cycles. In this woman, when does ovulation occur?",
+    "options": [
+      "It should occur at day 12.",
+      "It should occur at day 14.",
+      "It should occur at day 18.",
+      "It should occur at day 22.",
+      "It should occur at day 20."
+    ],
+    "correct": 2,
+    "explanation": "The luteal phase is constant at 14 days. Subtracting 14 from a 32-day cycle gives Day 18 (32 - 14 = 18)."
+  },
+  {
+    "question": "With regard to menstrual flow, which of the following is incorrect?",
+    "options": [
+      "Its duration ranges from two to eight days",
+      "Endometrial regeneration is the only mechanism that controls menstrual loss",
+      "Alkaline hematin is the standard method used to assess menstrual loss",
+      "Endometrial spiral artery is an end artery",
+      "Blood constitutes 50% of menstrual loss"
+    ],
+    "correct": 1,
+    "explanation": "Menstrual loss is controlled by multiple factors, including local vasoconstriction of spiral arteries and thrombus formation, not just endometrial regeneration."
+  },
+  {
+    "question": "Which of the following potentiates the release of prolactin from the anterior pituitary gland?",
+    "options": [
+      "Dopamine",
+      "Follicle stimulating hormone",
+      "Gonadotropin-releasing hormone",
+      "Corticotropin-releasing hormone",
+      "Thyrotropin-releasing hormone"
+    ],
+    "correct": 4,
+    "explanation": "Thyrotropin-releasing hormone (TRH) acts as a prolactin-releasing factor, stimulating its secretion from the anterior pituitary."
+  },
+  {
+    "question": "When does ovulation take place in women monitoring with urinary luteinizing hormone kits?",
+    "options": [
+      "Day of positive results",
+      "Day after positive results",
+      "Day prior to positive results",
+      "Three days after positive results",
+      "Four days after positive results"
+    ],
+    "correct": 1,
+    "explanation": "The LH surge in urine precedes ovulation by approximately 12 to 36 hours; therefore, ovulation usually occurs the day after the kit shows a positive result."
+  },
+  {
+    "question": "At what stage of the female life is the highest number of oocytes found in the ovary?",
+    "options": [
+      "At age 35",
+      "At birth",
+      "At puberty",
+      "In utero at 5 months' gestation",
+      "2 years old"
+    ],
+    "correct": 3,
+    "explanation": "A female fetus has its peak number of germ cells (approximately 6-7 million) at around 20 weeks (5 months) of intrauterine life."
+  },
+  {
+    "question": "A procedure that detects ovum release from the follicle is:",
+    "options": [
+      "Colposcopy",
+      "Laparoscopy",
+      "Hysteroscopy",
+      "HSG",
+      "Ultrasound"
+    ],
+    "correct": 4,
+    "explanation": "Serial ultrasounds (folliculometry) can track the growth and subsequent disappearance or collapse of the dominant follicle, signifying ovulation."
+  },
+  {
+    "question": "Meiosis I of the oocytes is completed at which of the following times?",
+    "options": [
+      "Birth",
+      "Ovulation",
+      "Puberty",
+      "Fertilization",
+      "2 years old"
+    ],
+    "correct": 1,
+    "explanation": "Primary oocytes are arrested in prophase of meiosis I. Meiosis I is completed just before ovulation, resulting in a secondary oocyte and the first polar body."
+  },
+  {
+    "question": "What is the fate of most of the ovarian follicles that begin to develop at each cycle?",
+    "options": [
+      "They develop and ovulate at some time during the person's life",
+      "They continue to grow, forming follicle cysts",
+      "They regress to primordial follicles",
+      "They remain to continue their development in the next cycle",
+      "They undergo atresia"
+    ],
+    "correct": 4,
+    "explanation": "In each cycle, several follicles are recruited, but typically only one reaches dominance. The others fail and undergo a process of programmed cell death called atresia."
+  },
+  {
+    "question": "Regarding the menstrual cycle, which is the true statement?",
+    "options": [
+      "Menstruation occurs with vasodilation of the spiral arteries",
+      "The LH surge triggers menstruation",
+      "The Graafian follicle develops during the luteal phase",
+      "Both the follicle and the corpus luteum secrete oestradiol.",
+      "Progesterone levels fall after the onset of menstruation."
+    ],
+    "correct": 3,
+    "explanation": "Estradiol is secreted by the granulosa cells of the growing follicle (follicular phase) and by the corpus luteum (luteal phase)."
+  },
+  {
+    "question": "A 36-year-old morbidly obese woman presents by heavy menstruation. An office endometrial biopsy shows complex hyperplasia of the endometrium without atypia. The hyperplasia is most likely related to the excess formation in the patient's adipose tissue of which of the following hormones?",
+    "options": [
+      "Estriol",
+      "Estradiol",
+      "Estrone",
+      "Androstenedione",
+      "Dehydroepiandrosterone"
+    ],
+    "correct": 2,
+    "explanation": "In obese women, adipose tissue contains aromatase, which converts adrenal and ovarian androstenedione into estrone, a weak estrogen that can cause endometrial hyperplasia."
+  },
+  {
+    "question": "Different sex hormones have different effects on the cervical mucus. Which of the following statements accurately describes the effect of estrogen?",
+    "options": [
+      "It decreases the water content of cervical mucus.",
+      "It decreases the palm leaf crystallization pattern of mucus upon drying (ferning).",
+      "It decreases formation of glycoprotein channels, which favor sperm penetration.",
+      "It increases cervical mucus stretchability (spinnbarkeit).",
+      "It increases the amount of potassium chloride in the cervical mucus."
+    ],
+    "correct": 3,
+    "explanation": "Under the influence of high estrogen levels (pre-ovulatory), cervical mucus becomes clear, watery, and highly elastic (high spinnbarkeit) to facilitate sperm passage."
+  },
+  {
+    "question": "Control of blood loss during menstruation does not appropriately involve which of the following mechanisms?",
+    "options": [
+      "Thrombus formation",
+      "Platelet aggregation",
+      "Vasoconstriction of spiral arteries",
+      "Myometrial contractions",
+      "Regeneration of endometrium"
+    ],
+    "correct": 3,
+    "explanation": "Myometrial contractions are critical for controlling blood loss post-delivery (postpartum) but play a negligible role in normal menstrual flow control."
+  },
+  {
+    "question": "Which of the following hormones 'rescues' the corpus luteum from luteolysis?",
+    "options": [
+      "Luteinizing hormone",
+      "Human placental lactogen",
+      "Follicle-stimulating hormone",
+      "Human chorionic gonadotropin",
+      "Gonadotropin releasing hormone"
+    ],
+    "correct": 3,
+    "explanation": "If pregnancy occurs, hCG produced by the blastocyst mimics LH and maintains the corpus luteum so it can continue producing progesterone."
+  },
+  {
+    "question": "Control of blood loss during menstruation does not appropriately involve which of the following mechanisms?",
+    "options": [
+      "Thrombus formation",
+      "Decrease local endometrial production of PGI2",
+      "Vasoconstriction of spiral arteries",
+      "Myometrial contractions",
+      "Regeneration of endometrium"
+    ],
+    "correct": 3,
+    "explanation": "Similar to previous logic, myometrial contractions are not a primary mechanism for limiting the volume of menstrual blood loss."
+  },
+  {
+    "question": "Which of the following statements accurately describes the effect of estrogen on cervical mucus?",
+    "options": [
+      "It decreases the water content of cervical mucus",
+      "It decreases the palmleaf crystallization pattern of mucus upon drying (ferning)",
+      "It decreases formation of glycoprotein channels, which favor sperm penetration",
+      "It decrease cervical mucus stretchability (spinnbarkeit)",
+      "It increases the amount of sodium chloride in the cervical mucus"
+    ],
+    "correct": 4,
+    "explanation": "Estrogen increases the sodium chloride content in cervical mucus, which causes it to crystallize in a 'fern' pattern when dried on a slide."
+  },
+  {
+    "question": "Regarding the menstrual cycle, which is the true statement?",
+    "options": [
+      "Menstruation occurs with vasodilation of the spiral arteries",
+      "The LH surge triggers menstruation",
+      "The Graafian follicle develops during the luteal phase",
+      "Both the follicle and the corpus luteum do not secrete oestradiol.",
+      "Progesterone levels fall before the onset of menstruation"
+    ],
+    "correct": 4,
+    "explanation": "The fall of progesterone (and estrogen) occurs toward the end of the luteal phase, signaling the spiral arteries to constrict and initiate menses."
+  },
+  {
+    "question": "Which of the following hormones is the primary androgen and/or androgen precursor produced by the ovary?",
+    "options": [
+      "Testosterone",
+      "Androstenedione",
+      "Dihydrotestosterone",
+      "Dehydroepiandrosterone sulfate",
+      "Dehydroepiandrosterone"
+    ],
+    "correct": 1,
+    "explanation": "The ovarian theca cells produce large amounts of androstenedione, which is the primary substrate converted to estrogen by granulosa cells."
+  },
+  {
+    "question": "When does ovulation take place in women monitoring with urinary luteinizing hormone kits?",
+    "options": [
+      "Day of positive results",
+      "Day after positive results",
+      "Day prior to positive results",
+      "Three days after positive results",
+      "Four days after positive results"
+    ],
+    "correct": 1,
+    "explanation": "The LH surge is the trigger for ovulation; once detected in the urine, ovulation is expected to follow within 24 hours."
+  },
+  {
+    "question": "Which hormone is responsible for the proliferative phase of the endometrium?",
+    "options": [
+      "Progesterone",
+      "Estrogen",
+      "FSH",
+      "LH",
+      "Inhibin"
+    ],
+    "correct": 1,
+    "explanation": "The proliferative phase occurs during the follicular stage of the ovarian cycle and is driven by increasing levels of estrogen."
+  },
+  {
+    "question": "The endometrium's basal layer is responsible for:",
+    "options": [
+      "Menstrual shedding",
+      "Regeneration after menstruation",
+      "Implantation",
+      "Secretory changes",
+      "Decidualization"
+    ],
+    "correct": 1,
+    "explanation": "The stratum basalis is not shed during menses; it provides the stem cells necessary to rebuild the functional layer (stratum functionalis) in the next cycle."
+  },
+  {
+    "question": "The average duration of the luteal phase is:",
+    "options": [
+      "7 days",
+      "14 days",
+      "21 days",
+      "28 days",
+      "35 days"
+    ],
+    "correct": 1,
+    "explanation": "The luteal phase (post-ovulatory) is remarkably constant across women, lasting almost exactly 14 days."
+  },
+  {
+    "question": "The primary source of estrogen in postmenopausal women is:",
+    "options": [
+      "Ovaries",
+      "Adrenal glands",
+      "Liver",
+      "Fat tissue",
+      "Peripheral conversion of androgens"
+    ],
+    "correct": 4,
+    "explanation": "Post-menopause, the ovaries no longer produce estrogen. Estrogen (specifically estrone) is formed by peripheral aromatization of adrenal androgens in adipose and other tissues."
+  },
+  {
+    "question": "Which one of the following is not considered a test to detect ovulation?",
+    "options": [
+      "Midluteal serum progesterone.",
+      "Basal body temperature.",
+      "Detection of LH surge in urine dipstick.",
+      "Folliculometry.",
+      "Postmenstrual Endometrial biopsy"
+    ],
+    "correct": 3,
+    "explanation": "The source identifies folliculometry as the outlier. While it tracks follicle growth, tests like midluteal progesterone or LH surge are more definitive biochemical markers of the ovulation event itself."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

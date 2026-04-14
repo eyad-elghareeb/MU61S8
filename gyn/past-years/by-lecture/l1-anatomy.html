@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L1-Anatomy</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mnyi1l9dd9vbd",
+  "title": "L1-Anatomy",
+  "description": "Past Batches by lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which muscles form the pelvic floor?",
+    "options": [
+      "Levator ani and pyriformis",
+      "Obturator internus and coccygeus",
+      "Levator ani and obturator internus",
+      "Levator ani and coccygeus",
+      "Obturator internus and pyriformis"
+    ],
+    "correct": 3,
+    "explanation": "The pelvic floor, or pelvic diaphragm, is primarily composed of the levator ani and the coccygeus muscles, which support the pelvic viscera."
+  },
+  {
+    "question": "Which nerve supplies the external anal sphincter?",
+    "options": [
+      "Femoral",
+      "Ilio-inguinal",
+      "Inferior rectal",
+      "Superior rectal",
+      "Obturator"
+    ],
+    "correct": 2,
+    "explanation": "The external anal sphincter is innervated by the inferior rectal nerve, which is a branch of the pudendal nerve."
+  },
+  {
+    "question": "Which artery is present in the infundibulo-pelvic ligament?",
+    "options": [
+      "External iliac artery",
+      "Internal iliac artery",
+      "Inferior mesenteric artery",
+      "Uterine artery",
+      "Ovarian artery"
+    ],
+    "correct": 4,
+    "explanation": "The infundibulo-pelvic ligament (suspensory ligament of the ovary) contains the ovarian artery and ovarian vein."
+  },
+  {
+    "question": "The shape of the hymenal opening in normal individuals can include all of the following EXCEPT:",
+    "options": [
+      "Annular",
+      "Crescentic",
+      "Septate",
+      "Cribriform",
+      "Sigmoid"
+    ],
+    "correct": 4,
+    "explanation": "Sigmoid is not a recognized shape for a hymenal opening; common variations include annular, crescentic, septate, and cribriform."
+  },
+  {
+    "question": "The primary arterial blood supply to the vulva is provided by the:",
+    "options": [
+      "Internal pudendal artery",
+      "Vaginal artery",
+      "Azygos artery",
+      "Superior vesical artery",
+      "Middle rectal artery"
+    ],
+    "correct": 0,
+    "explanation": "The internal pudendal artery, a branch of the internal iliac artery, is the primary source of blood for the external female genitalia."
+  },
+  {
+    "question": "Which of the following is NOT derived from the internal iliac artery?",
+    "options": [
+      "The uterine artery",
+      "The vaginal artery",
+      "The middle vesical artery",
+      "The middle hemorrhoidal artery",
+      "The ovarian artery"
+    ],
+    "correct": 4,
+    "explanation": "The ovarian artery arises directly from the abdominal aorta, whereas the other listed arteries are branches of the internal iliac artery."
+  },
+  {
+    "question": "The portio vaginalis refers to which part of the cervix?",
+    "options": [
+      "The part extending cephalad from the vagina",
+      "The part that protrudes into the vagina",
+      "The part forming an internal isthmus",
+      "The part covered with endocervical epithelium",
+      "The part that opens into the uterus"
+    ],
+    "correct": 1,
+    "explanation": "The portio vaginalis is the portion of the cervix that projects into the vaginal canal and is covered by squamous epithelium."
+  },
+  {
+    "question": "What is the correct anatomical order of the four sections of the fallopian tube from lateral to medial?",
+    "options": [
+      "Ampulla, isthmus, infundibulum and interstitium",
+      "Interstitium, isthmus, ampulla and infundibulum",
+      "Interstitium, ampulla, isthmus and infundibulum",
+      "Infundibulum, isthmus, ampulla and interstitium",
+      "Infundibulum, ampulla, isthmus and interstitium"
+    ],
+    "correct": 4,
+    "explanation": "The fallopian tube consists of the infundibulum (lateral near ovary), the ampulla (widest part), the isthmus (narrow part), and the interstitium (medial within the uterine wall)."
+  },
+  {
+    "question": "Dimensions of approximately 3 x 2 x 1 inches belong to which of the following non-pregnant organs?",
+    "options": [
+      "The ovary",
+      "The uterus",
+      "The uterine tube",
+      "The cervix",
+      "The vagina"
+    ],
+    "correct": 1,
+    "explanation": "A typical nulliparous, non-pregnant uterus measures roughly 3 inches long, 2 inches wide, and 1 inch thick."
+  },
+  {
+    "question": "A normal gynecological examination in a 55-year-old woman may include:",
+    "options": [
+      "A non-palpable Bartholin's gland",
+      "Dark menstrual-type blood",
+      "An ovary that is palpable",
+      "Uterine descent",
+      "A well-formed vaginal rugae"
+    ],
+    "correct": 0,
+    "explanation": "Bartholin's glands are normally not palpable. In postmenopausal women, ovaries shrink and rugae flatten due to estrogen deficiency."
+  },
+  {
+    "question": "What is the normal pH of the vagina in a healthy woman after menarche?",
+    "options": [
+      "Between 1.5 and 2.5",
+      "Between 2.5 and 3.0",
+      "Between 3.0 and 5.0",
+      "Between 6.8 and 7.0",
+      "Between 7.2"
+    ],
+    "correct": 2,
+    "explanation": "Lactobacilli produce lactic acid which maintains an acidic vaginal pH, usually between 3.8 and 4.5, to inhibit pathogens."
+  },
+  {
+    "question": "The main blood supply of the vulva is:",
+    "options": [
+      "Inferior hemorrhoidal artery",
+      "Pudendal artery",
+      "Ilioinguinal artery",
+      "Femoral artery",
+      "Inferior hypogastric artery"
+    ],
+    "correct": 1,
+    "explanation": "The pudendal artery (specifically the internal pudendal) is the chief arterial supply to the vulva and perineum."
+  },
+  {
+    "question": "Arterial blood supply to the uterus is derived from what sources?",
+    "options": [
+      "Ovarian arteries alone",
+      "Uterine arteries alone",
+      "Uterine and ovarian arteries",
+      "Uterine and inferior rectal arteries",
+      "Vaginal and uterine arteries"
+    ],
+    "correct": 2,
+    "explanation": "The uterus has a dual blood supply from the uterine arteries and the ovarian arteries which anastomose with each other."
+  },
+  {
+    "question": "Lymphatic drainage of the ovaries follows the course of the ovarian arteries to what groups of nodes?",
+    "options": [
+      "Lateral and preaortic lumbar nodes",
+      "Paracervical nodes",
+      "Deep inguinal nodes",
+      "Internal iliac nodes",
+      "Obturator nodes"
+    ],
+    "correct": 0,
+    "explanation": "Ovarian lymphatics travel along the ovarian vessels to drain into the para-aortic (lumbar) lymph nodes."
+  },
+  {
+    "question": "With regard to the vagina, which of the following is correct?",
+    "options": [
+      "Lined by stratified squamous keratinized epithelium",
+      "The pH of its fluid does not change throughout life",
+      "In direct relation to peritoneal cavity through anterior fornix",
+      "The middle portion of posterior vaginal wall is in contact with anal canal",
+      "It is a potential space"
+    ],
+    "correct": 4,
+    "explanation": "The vagina is a fibromuscular potential space, as its walls are normally collapsed and in contact with each other."
+  },
+  {
+    "question": "In Kallmann syndrome, the associated anomaly is:",
+    "options": [
+      "Hirsutism",
+      "Galactorrhea",
+      "Anosmia",
+      "Hypertension"
+    ],
+    "correct": 2,
+    "explanation": "Kallmann syndrome is a condition of hypogonadotropic hypogonadism associated with a defect in the sense of smell (anosmia)."
+  },
+  {
+    "question": "Frohlich’s syndrome is associated with:",
+    "options": [
+      "Hirsutism",
+      "Obesity and amenorrhea",
+      "Hyperprolactinemia",
+      "Hypothyroidism"
+    ],
+    "correct": 1,
+    "explanation": "Fröhlich's syndrome (adiposogenital dystrophy) is characterized by obesity and secondary hypogonadism/amenorrhea due to hypothalamic dysfunction."
+  },
+  {
+    "question": "Menarche typically occurs between which ages?",
+    "options": [
+      "6–10 years",
+      "8–12 years",
+      "10–16 years",
+      "12–18 years"
+    ],
+    "correct": 2,
+    "explanation": "Menarche usually occurs within 2-3 years after thelarche, with the typical range being 10 to 16 years of age."
+  },
+  {
+    "question": "What is the earliest physiological sign of puberty in females?",
+    "options": [
+      "Menarche",
+      "Thelarche",
+      "Growth spurt",
+      "Adrenarche"
+    ],
+    "correct": 2,
+    "explanation": "Acceleration of growth velocity is often the first internal physiological change of puberty, preceding thelarche (breast development)."
+  },
+  {
+    "question": "Primary dysmenorrhea typically occurs in which age group?",
+    "options": [
+      "14-24 years",
+      "25-35 years",
+      "36-45 years",
+      "Over 45 years"
+    ],
+    "correct": 0,
+    "explanation": "Primary dysmenorrhea is most common in adolescents and young women, often beginning shortly after ovulatory cycles are established."
+  },
+  {
+    "question": "Which medication is commonly used as a first-line treatment for primary dysmenorrhea?",
+    "options": [
+      "Antibiotics",
+      "NSAIDs",
+      "Antidepressants",
+      "Diuretics"
+    ],
+    "correct": 1,
+    "explanation": "NSAIDs inhibit prostaglandin synthesis, which is the primary cause of painful uterine contractions in primary dysmenorrhea."
+  },
+  {
+    "question": "Secondary dysmenorrhea is commonly associated with which of the following?",
+    "options": [
+      "Hypothyroidism",
+      "Pelvic endometriosis",
+      "Diabetes",
+      "Obesity"
+    ],
+    "correct": 1,
+    "explanation": "Secondary dysmenorrhea results from an identifiable pelvic pathology, with endometriosis being one of the leading causes."
+  },
+  {
+    "question": "Which of the following is a physiological cause of amenorrhea?",
+    "options": [
+      "Turners syndrome",
+      "Lactation",
+      "Asherman’s syndrome",
+      "PCOS"
+    ],
+    "correct": 1,
+    "explanation": "Lactation is a normal physiological state that causes amenorrhea due to hyperprolactinemia suppressing GnRH pulses."
+  },
+  {
+    "question": "Which of the following causes false (cryptomenorrhea) amenorrhea?",
+    "options": [
+      "Asherman’s syndrome",
+      "Turners syndrome",
+      "Imperforate hymen",
+      "PCOS"
+    ],
+    "correct": 2,
+    "explanation": "Cryptomenorrhea occurs when menstruation happens but cannot exit the body due to an obstruction, such as an imperforate hymen."
+  },
+  {
+    "question": "In hypergonadotropic amenorrhea, FSH and LH levels are characteristically:",
+    "options": [
+      "Low",
+      "Normal",
+      "High",
+      "Variable"
+    ],
+    "correct": 2,
+    "explanation": "High gonadotropins (FSH/LH) occur when there is no negative feedback from the ovaries (ovarian failure)."
+  },
+  {
+    "question": "What is the most common cause of secondary amenorrhea?",
+    "options": [
+      "Pituitary tumor",
+      "Pregnancy",
+      "PCOS",
+      "Hypothyroidism"
+    ],
+    "correct": 1,
+    "explanation": "Pregnancy is the single most common cause of secondary amenorrhea in women of reproductive age."
+  },
+  {
+    "question": "Asherman’s syndrome is most accurately diagnosed using:",
+    "options": [
+      "MRI",
+      "Laparoscopy",
+      "Hysteroscopy",
+      "HSG"
+    ],
+    "correct": 2,
+    "explanation": "Hysteroscopy allows direct visualization of intrauterine adhesions and is considered the gold standard for diagnosis."
+  },
+  {
+    "question": "Which condition commonly presents with both galactorrhea and amenorrhea?",
+    "options": [
+      "Pituitary prolactinoma",
+      "Thyroid cancer",
+      "Endometrial carcinoma",
+      "Ovarian cyst"
+    ],
+    "correct": 0,
+    "explanation": "A prolactin-secreting pituitary tumor causes galactorrhea and shuts down the reproductive axis, leading to amenorrhea."
+  },
+  {
+    "question": "What is the standard definition of primary amenorrhea in a girl with normal secondary sexual characters?",
+    "options": [
+      "Cessation of menstruation for 6 months",
+      "Absence of menses by age 15",
+      "Absence of menses during pregnancy",
+      "Irregular menstruation for 3 cycles"
+    ],
+    "correct": 1,
+    "explanation": "Primary amenorrhea is the failure of menses to occur by age 15 in the presence of secondary sexual characteristics."
+  },
+  {
+    "question": "The primary treatment for restoring the uterine cavity in Asherman’s syndrome is:",
+    "options": [
+      "Antibiotics",
+      "Hysteroscopic adhesiolysis",
+      "Hormonal replacement therapy",
+      "Diuretics"
+    ],
+    "correct": 1,
+    "explanation": "Surgical breakdown of adhesions via hysteroscopy is the primary method to restore the uterine cavity in Asherman's syndrome."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

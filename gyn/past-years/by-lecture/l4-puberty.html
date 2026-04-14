@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L4-Puberty</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mnyif85arliib",
+  "title": "L4-Puberty",
+  "description": "Past Batches by lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "The most common cause of precocious puberty in girls is:",
+    "options": [
+      "Idiopathic or constitutional",
+      "Gonadal tumors",
+      "Albright's syndrome",
+      "Hypothyroidism",
+      "Central nervous system tumors"
+    ],
+    "correct": 0,
+    "explanation": "In approximately 80-90% of cases of central precocious puberty in girls, no organic lesion is found, classifying it as idiopathic."
+  },
+  {
+    "question": "Premature thelarche is associated with which of the following?",
+    "options": [
+      "Axillary hair development",
+      "Isolated breast development",
+      "Pubic hair development",
+      "Spontaneous ovulations",
+      "Voice changes"
+    ],
+    "correct": 1,
+    "explanation": "Premature thelarche is the isolated development of breast tissue in young girls without other signs of puberty or hormonal maturation."
+  },
+  {
+    "question": "Iso-sexual precocious puberty can be caused by:",
+    "options": [
+      "Sertoli-Leydig cell tumor",
+      "Granulosa cell tumor",
+      "Immature teratoma",
+      "Mucinous cystadenoma",
+      "Hilar cell tumor"
+    ],
+    "correct": 1,
+    "explanation": "Granulosa cell tumors are estrogen-secreting ovarian tumors that can cause isosexual precocious puberty in girls."
+  },
+  {
+    "question": "One of the effects that has a major long-term implication in precocious puberty is:",
+    "options": [
+      "Epiphyseal closure",
+      "Hair growth",
+      "Genital development",
+      "Breast tissue development",
+      "Start of menstruation"
+    ],
+    "correct": 0,
+    "explanation": "Early exposure to sex steroids leads to rapid bone maturation and premature epiphyseal closure, resulting in short adult stature."
+  },
+  {
+    "question": "Which of the following generally occurs first among the major developmental events of female puberty?",
+    "options": [
+      "Menarche",
+      "Pubarche",
+      "Thelarche",
+      "Growth spurt",
+      "Adrenarche"
+    ],
+    "correct": 2,
+    "explanation": "Clinical onset of puberty is traditionally marked by thelarche (the appearance of breast buds)."
+  },
+  {
+    "question": "Precocious puberty is defined as initial pubertal changes occurring prior to what age?",
+    "options": [
+      "6.5 years",
+      "8 years",
+      "9.5 years",
+      "10 years",
+      "<5.5 years"
+    ],
+    "correct": 1,
+    "explanation": "The standard clinical definition for precocious puberty in girls is the onset of secondary sexual characteristics before age 8."
+  },
+  {
+    "question": "A primary goal of therapy for central precocious puberty includes prevention of which of the following consequences?",
+    "options": [
+      "Short stature",
+      "Excessive breast size",
+      "Learning disabilities",
+      "Occurrence of pregnancy",
+      "Psychological upset"
+    ],
+    "correct": 0,
+    "explanation": "The primary medical objective of treating precocious puberty is to delay bone age advancement to preserve final height potential."
+  },
+  {
+    "question": "A 9-year-old girl presents for evaluation of regular vaginal bleeding. History reveals thelarche at age 7 and adrenarche at age 8. Which of the following is the most common cause of this condition in girls?",
+    "options": [
+      "Idiopathic",
+      "Gonadal tumors",
+      "McCune-Albright syndrome",
+      "Hypothyroidism",
+      "Tumours of the central nervous system"
+    ],
+    "correct": 0,
+    "explanation": "The majority of central precocious puberty cases in females are idiopathic, whereas in males, an organic cause is more frequent."
+  },
+  {
+    "question": "A 6-year-old girl experiences irregular vaginal bleeding. She is taller than her peers and has early breast development. Serum gonadotropin levels are low and remain unchanged after IV administration of GnRH. What is the most likely diagnosis?",
+    "options": [
+      "Corpus luteum cyst",
+      "Endometrioma",
+      "Epoophoron",
+      "Fibroma",
+      "Granulosa cell tumour"
+    ],
+    "correct": 4,
+    "explanation": "Low gonadotropins that do not respond to GnRH indicate peripheral precocious puberty. An estrogen-secreting Granulosa cell tumor is a classic cause."
+  },
+  {
+    "question": "Which of the following pubertal events in girls is not estrogen-dependent?",
+    "options": [
+      "Menses",
+      "Vaginal cornification",
+      "Reaching adult height",
+      "Hair growth",
+      "Production of cervical mucus"
+    ],
+    "correct": 2,
+    "explanation": "While estrogen contributes to the growth spurt, adult height is influenced by multiple factors. Note: Hair growth is primarily androgen-dependent."
+  },
+  {
+    "question": "A 7-year-old girl is brought in to see you because she has developed breasts and has a few pubic hairs starting to show up. Which of the following is the best treatment for the girl's condition?",
+    "options": [
+      "Exogenous gonadotropins",
+      "Low dose combined oral contraceptive",
+      "GnRH agonists",
+      "Danazol inhibit",
+      "No treatment; reassure the mother"
+    ],
+    "correct": 2,
+    "explanation": "GnRH agonists are the gold standard for central precocious puberty; they desensitize the pituitary to stop premature ovarian stimulation."
+  },
+  {
+    "question": "What is the usual order of appearance of the signs of normal puberty?",
+    "options": [
+      "Menarche then Axillary & pubic hair, then breast buds",
+      "Breast buds then Axillary & pubic hair, then menarche",
+      "Breast buds, then menarche, then Axillary & pubic hair",
+      "Axillary & pubic hair, then menarche, then breast buds",
+      "Axillary & pubic hair, then breast buds, then menarche"
+    ],
+    "correct": 1,
+    "explanation": "The typical sequence is thelarche (breast buds), then pubarche (pubic/axillary hair), and finally menarche (first menstruation)."
+  },
+  {
+    "question": "A primary goal of therapy for central precocious puberty includes prevention of which of the following consequences?",
+    "options": [
+      "Short stature",
+      "Excessive breast size",
+      "Learning disabilities",
+      "Occurrence of pregnancy",
+      "Psychological upset"
+    ],
+    "correct": 0,
+    "explanation": "Halting the premature advancement of bone age is the primary goal to prevent permanent short stature."
+  },
+  {
+    "question": "Menarche typically occurs during Tanner stage:",
+    "options": [
+      "I",
+      "II",
+      "III",
+      "IV",
+      "V"
+    ],
+    "correct": 3,
+    "explanation": "Menarche usually occurs during Tanner Stage IV of breast development, roughly two years after the onset of thelarche."
+  },
+  {
+    "question": "The first sign of puberty in females is usually:",
+    "options": [
+      "Thelarche",
+      "Menarche",
+      "Pubarche",
+      "Growth spurt",
+      "Adrenarche"
+    ],
+    "correct": 3,
+    "explanation": "Physiologically, an increase in growth velocity (the growth spurt) typically precedes the appearance of breast buds (thelarche)."
+  },
+  {
+    "question": "Which hormone is primarily responsible for initiation of thelarche?",
+    "options": [
+      "Thyroxine",
+      "Progesterone",
+      "Testosterone",
+      "Inhibin",
+      "Estrogen"
+    ],
+    "correct": 4,
+    "explanation": "Estrogen is the hormone responsible for the growth of mammary ducts and breast tissue during puberty."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

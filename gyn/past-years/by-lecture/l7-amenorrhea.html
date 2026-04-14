@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L7-Amenorrhea</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mnyiq6iecry29",
+  "title": "L7-Amenorrhea",
+  "description": "Past Batches by lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "A 25-year-old woman suffered from severe post-partum haemorrhage followed by secondary amenorrhoea. The most likely diagnosis is:",
+    "options": [
+      "Pituitary craniopharyngioma",
+      "Hyperprolactinemia",
+      "Adrenal hyperplasia",
+      "Sheehan's syndrome",
+      "Ovarian failure"
+    ],
+    "correct": 3,
+    "explanation": "Sheehan's syndrome is ischemic necrosis of the anterior pituitary gland due to severe postpartum hemorrhage and hypotension. It typically presents with failure to lactate and secondary amenorrhea."
+  },
+  {
+    "question": "Premature ovarian failure (Primary Ovarian Insufficiency) can be diagnosed by measuring which of the following?",
+    "options": [
+      "Hysterosalpingography",
+      "Ultrasound scan of the ovaries",
+      "Serum FSH and LH levels",
+      "Serum prolactin levels",
+      "Serum androgen levels"
+    ],
+    "correct": 2,
+    "explanation": "POF/POI is characterized by the depletion of follicles before age 40. The hallmark biochemical finding is elevated gonadotropins (FSH and LH) due to the lack of negative feedback from estrogen."
+  },
+  {
+    "question": "The most common chromosomal cause of primary amenorrhea is:",
+    "options": [
+      "Testicular feminization",
+      "Mullerian agenesis",
+      "Congenital absence of gonadotropins",
+      "Turner's syndrome",
+      "Pituitary tumours"
+    ],
+    "correct": 3,
+    "explanation": "Turner's syndrome (45,X or its mosaics) is the most frequent genetic cause of primary amenorrhea, resulting from accelerated atresia of oocytes and streak gonads."
+  },
+  {
+    "question": "Secondary amenorrhea can be caused by:",
+    "options": [
+      "Mullerian agenesis",
+      "Congenital absence of LH-RH",
+      "Testicular feminization",
+      "Turner's syndrome",
+      "Sheehan's syndrome"
+    ],
+    "correct": 4,
+    "explanation": "Secondary amenorrhea is the cessation of cycles after they have been established. Sheehan's syndrome is an acquired condition of pituitary failure following delivery, leading to secondary amenorrhea."
+  },
+  {
+    "question": "A 26-year-old lady presents with secondary amenorrhea, and both FSH and LH are found to be high. What is the most likely diagnosis?",
+    "options": [
+      "Sheehan syndrome",
+      "Asherman syndrome",
+      "Premature ovarian failure",
+      "Imperforated hymen",
+      "Pituitary adenoma"
+    ],
+    "correct": 2,
+    "explanation": "High gonadotropins (hypergonadotropic hypogonadism) in a young woman with secondary amenorrhea diagnostic of primary ovarian failure."
+  },
+  {
+    "question": "Features characteristically associated with an imperforate hymen in a 16-year-old girl include:",
+    "options": [
+      "Acute retention of the urine",
+      "Absence of secondary sexual characteristics",
+      "Hirsutism",
+      "Short stature",
+      "Presence of secondary amenorrhea"
+    ],
+    "correct": 0,
+    "explanation": "In imperforate hymen, the accumulated menstrual blood (hematocolpos) can distend the vagina and put pressure on the urethra, leading to acute urinary retention."
+  },
+  {
+    "question": "The most common 'mass' associated with amenorrhea in a reproductive age woman is:",
+    "options": [
+      "Follicular cyst",
+      "Corpus luteal cyst",
+      "Benign cystic teratoma",
+      "Leiomyoma",
+      "Pregnancy"
+    ],
+    "correct": 4,
+    "explanation": "In clinical practice, the 'mass' found (the enlarging uterus) in a woman with amenorrhea is most commonly due to pregnancy."
+  },
+  {
+    "question": "The presentation of Asherman's Syndrome typically involves which of the following?",
+    "options": [
+      "Hypomenorrhea and amenorrhea",
+      "Galactorrhea",
+      "Menorrhagia",
+      "Metrorrhagia",
+      "Dysmenorrhea"
+    ],
+    "correct": 0,
+    "explanation": "Asherman's syndrome consists of intrauterine adhesions that partially or completely obliterate the uterine cavity, leading to light periods (hypomenorrhea) or no periods (amenorrhea)."
+  },
+  {
+    "question": "Patients with which of the following conditions present with primary amenorrhea?",
+    "options": [
+      "A bicornuate uterus",
+      "Polycystic ovary syndrome",
+      "Imperforate hymen",
+      "Sheehan's Syndrome",
+      "Anorexia nervosa"
+    ],
+    "correct": 2,
+    "explanation": "Imperforate hymen is a cause of primary cryptomenorrhea; the patient has never had a visible period despite having normal cycles."
+  },
+  {
+    "question": "Secondary amenorrhea is a recognized feature of:",
+    "options": [
+      "Imperforated hymen",
+      "Testicular feminization syndrome",
+      "Pregnancy",
+      "Sickle cell anemia",
+      "Müllerian agenesis"
+    ],
+    "correct": 2,
+    "explanation": "Pregnancy is the physiological cessation of menstruation and is the most common cause of secondary amenorrhea."
+  },
+  {
+    "question": "Regarding the pelvi-abdominal swelling in cases of imperforate hymen, which statement is INCORRECT?",
+    "options": [
+      "It is a distended vagina full of menstrual fluid",
+      "It is a distended uterine cavity full of menstrual fluid",
+      "The swelling is soft and cystic",
+      "Clinically it may resemble an ovarian cyst",
+      "Could result in acute retention of urine"
+    ],
+    "correct": 2,
+    "explanation": "The mass (hematocolpos/hematometra) is typically described as firm and tense rather than soft."
+  },
+  {
+    "question": "In a 32-year-old woman taking oral contraceptives, amenorrhea is most likely due to:",
+    "options": [
+      "Pregnancy",
+      "Pituitary tumor",
+      "Asherman syndrome",
+      "Relative progesterone excess",
+      "Relative estrogen excess"
+    ],
+    "correct": 0,
+    "explanation": "Even while on contraception, pregnancy remains the most important diagnosis to rule out in any woman of reproductive age presenting with amenorrhea."
+  },
+  {
+    "question": "A 16-year-old girl with primary amenorrhea and normal development fails to bleed after estrogen and progesterone therapy. This indicates:",
+    "options": [
+      "Uterine steroid receptor defect",
+      "Pituitary failure",
+      "Ovarian failure and the patient need long-life HRT",
+      "Corpus luteum defect",
+      "Ovarian receptor defect"
+    ],
+    "correct": 0,
+    "explanation": "Failure to bleed after sequential estrogen and progesterone suggests an 'outflow tract' or 'end-organ' problem (like uterine agenesis or non-responsive endometrium)."
+  },
+  {
+    "question": "Which of the following is characteristically associated with imperforate hymen in a 16-year-old girl?",
+    "options": [
+      "Acute urine retention",
+      "Absence of secondary sexual characteristics",
+      "Hirsutism",
+      "Short stature",
+      "Present with secondary amenorrhea"
+    ],
+    "correct": 0,
+    "explanation": "Hematocolpos can compress the urethra, causing difficulty in voiding or acute urinary retention."
+  },
+  {
+    "question": "The CORRECT answer for a patient with Asherman's syndrome is:",
+    "options": [
+      "Biphasic basal body temperature",
+      "Diagnosis by laparoscopy",
+      "Normal menstruation",
+      "Normal endometrium but abnormal estrogen receptors",
+      "The only treatment is hysterectomy"
+    ],
+    "correct": 0,
+    "explanation": "In Asherman's syndrome, ovarian function is normal, so the basal body temperature remains biphasic (indicating ovulation), even though the patient does not bleed."
+  },
+  {
+    "question": "Which symptom would you expect in an infertile young patient diagnosed with Asherman syndrome?",
+    "options": [
+      "Hypomenorrhea",
+      "Oligomenorrhea",
+      "Menorrhagia",
+      "Metrorrhagia",
+      "Dysmenorrhea"
+    ],
+    "correct": 0,
+    "explanation": "Scarring of the uterine lining reduces the functional area for bleeding, resulting in very light periods (hypomenorrhea)."
+  },
+  {
+    "question": "Secondary amenorrhea is defined as the absence of menstruation, in a previously menstruating woman, for at least:",
+    "options": [
+      "Two previous cycle intervals",
+      "12 months",
+      "Three previous cycle intervals or 4 months",
+      "Three previous cycle intervals or 6 months",
+      "Six previous cycle intervals or 6 months"
+    ],
+    "correct": 3,
+    "explanation": "The classic definition of secondary amenorrhea is the absence of menses for 3 months in a woman with regular cycles, or 6 months in a woman with irregular cycles."
+  },
+  {
+    "question": "In primary amenorrhea, if FSH is elevated and no breast development is present, what is the most likely diagnosis?",
+    "options": [
+      "Complete androgen insensitivity",
+      "Kallmann syndrome",
+      "Mullerian agenesis",
+      "Hypothalamic dysfunction",
+      "Gonadal dysgenesis"
+    ],
+    "correct": 4,
+    "explanation": "High FSH with no breast development indicates primary ovarian failure before puberty, most commonly due to gonadal dysgenesis (e.g., Turner syndrome)."
+  },
+  {
+    "question": "A 28-year-old with primary amenorrhea has a 46, XY karyotype. During pelvic laparoscopy, what is the expected finding?",
+    "options": [
+      "Streak gonads and male internal genitalia",
+      "Streak gonads and female internal genitalia",
+      "Empty pelvis (no gonads or internal genitalia)",
+      "Bilateral abdominal testes and male internal genitalia",
+      "Bilateral abdominal testes and no internal genitalia"
+    ],
+    "correct": 1,
+    "explanation": "In Pure Gonadal Dysgenesis (Swyer Syndrome), the patient has a 46,XY karyotype but because the testes never developed, no MIF was produced, allowing Mullerian (female) structures to persist."
+  },
+  {
+    "question": "A 45-year-old woman has amenorrhea for 7 months. After excluding pregnancy, which test is indicated next?",
+    "options": [
+      "Hysterosalpingogram",
+      "Endometrial biopsy",
+      "Thyroid function tests",
+      "Testosterone and DHEAS levels",
+      "LH and FSH levels"
+    ],
+    "correct": 4,
+    "explanation": "In a 45-year-old, the most likely cause of secondary amenorrhea is the menopausal transition, which is confirmed by measuring FSH levels."
+  },
+  {
+    "question": "A 22-year-old with 6 months amenorrhea has normal development and tests (TSH, PRL, pregnancy). What would be the next course of action?",
+    "options": [
+      "Administer progesterone",
+      "Administer estrogen followed by progesterone",
+      "Measure circulating estrogen levels",
+      "Measure circulating testosterone levels",
+      "Obtain radiologic evaluation of the sella turcica"
+    ],
+    "correct": 0,
+    "explanation": "The progesterone challenge test is used to assess endogenous estrogen levels and the patency of the outflow tract."
+  },
+  {
+    "question": "In which of the following patients is karyotyping most strongly indicated?",
+    "options": [
+      "A 22-year-old woman with secondary amenorrhea and hirsutism",
+      "A 25-year-old woman with secondary amenorrhea and elevated prolactin",
+      "A 20-year-old woman with primary amenorrhea and Mullerian structure seen on sonography",
+      "A 16-year-old woman with primary amenorrhea and a persistently elevated FSH (80 mIU/mL)",
+      "A 15-year-old woman with absent flow with secondary sex characters exist"
+    ],
+    "correct": 3,
+    "explanation": "Hypergonadotropic hypogonadism (high FSH) in a young woman with primary amenorrhea requires a karyotype to rule out Turner syndrome or Y-chromosome-bearing dysgenesis."
+  },
+  {
+    "question": "A 16-year-old phenotypic girl is seen for primary amenorrhea. Karyotyping shows 46, XY. You advise gonadectomy primarily because:",
+    "options": [
+      "When she is finished growing",
+      "If the gonads are not in the normal location",
+      "Because of the high risk of malignancy",
+      "Because there is no chance of pregnancy",
+      "Because she will become virilized"
+    ],
+    "correct": 2,
+    "explanation": "In individuals with Y-chromosome material and dysgenetic gonads (like AIS or Swyer), there is a significant risk (up to 25-30%) of developing gonadoblastoma or dysgerminoma."
+  },
+  {
+    "question": "A 28-year-old patient complains of amenorrhea after a dilation and curettage. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Asherman syndrome",
+      "Sheehan syndrome",
+      "Cervical stenosis",
+      "Traumatic vaginal atresia",
+      "Gonadal failure"
+    ],
+    "correct": 0,
+    "explanation": "Asherman's syndrome (intrauterine adhesions) is a classic complication following trauma to the gravid uterus during a D&C."
+  },
+  {
+    "question": "Which of the following clinical scenarios meets the definition of primary amenorrhea?",
+    "options": [
+      "12-year-old with Tanner stage I breast development",
+      "16-year-old with Tanner stage II breast development",
+      "14-year-old with Tanner stage III breast development",
+      "18-year-old with Tanner stage V and cessation of menses for two cycles",
+      "13-year-old with Tanner stage I breast development"
+    ],
+    "correct": 1,
+    "explanation": "Primary amenorrhea is defined as the absence of menarche by age 15 in the presence of secondary sexual characteristics (like Tanner stage II breast development)."
+  },
+  {
+    "question": "Elevated FSH and LH levels in a young woman with amenorrhea indicate:",
+    "options": [
+      "Hypothalamic dysfunction",
+      "Ovarian failure",
+      "Pituitary tumor",
+      "PCOS",
+      "Hyperprolactinemia"
+    ],
+    "correct": 1,
+    "explanation": "Elevated gonadotropins demonstrate that the pituitary is responding to a lack of negative feedback from the ovaries, signifying primary gonadal failure."
+  },
+  {
+    "question": "Primary amenorrhea is diagnosed if no menses occur by age:",
+    "options": [
+      "12",
+      "13 (if no 2ry characters)",
+      "15 (if normal 2ry characters)",
+      "16",
+      "18"
+    ],
+    "correct": 1,
+    "explanation": "Clinically, workup starts at 13 if no breast development is present, or at age 15 if development is normal (per modern ACOG/ASRM guidelines)."
+  },
+  {
+    "question": "Testicular feminization syndrome (Androgen Insensitivity) results from:",
+    "options": [
+      "46, XX karyotype",
+      "Androgen insensitivity",
+      "Estrogen deficiency",
+      "Müllerian agenesis",
+      "Turner syndrome"
+    ],
+    "correct": 1,
+    "explanation": "This condition is caused by a mutation in the androgen receptor, making tissues unresponsive to testosterone in a genetic male (XY)."
+  },
+  {
+    "question": "A 14-year-old girl with normal breast/pubic development has monthly abdominal pain but has never menstruated. A firm midline mass is detected below the umbilicus. What is the diagnosis?",
+    "options": [
+      "Pregnancy",
+      "Fibroid uterus",
+      "Hematocolpos",
+      "Endometriosis",
+      "Ovarian cyst"
+    ],
+    "correct": 2,
+    "explanation": "Hematocolpos (blood trapped in the vagina) due to an imperforate hymen presents as cyclic pain, primary amenorrhea, and a palpable midline mass."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
