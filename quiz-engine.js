@@ -1919,6 +1919,14 @@ function filterResults(filter, btn) {
 /* ── RESTART ─────────────────────────────────────────────── */
 function restartQuiz() {
   clearProgress();
+  
+  // Clear pending restore data to prevent auto-restore prompt
+  pendingRestoreData = null;
+  if (restoreToastTimeout) {
+    clearTimeout(restoreToastTimeout);
+    restoreToastTimeout = null;
+  }
+  
   showScreen('start-screen');
 }
 
@@ -2175,7 +2183,7 @@ function clearProgress() {
  * Confirm and reset quiz progress
  */
 function confirmResetProgress() {
-  if (confirm('Are you sure you want to reset your quiz progress? This cannot be undone.')) {
+  if (confirm('Are you sure you want to reset your progress? This cannot be undone.')) {
     clearProgress();
     // Reset state
     state.current = 0;
@@ -2185,6 +2193,13 @@ function confirmResetProgress() {
     state.timerSecs = (parseInt(document.getElementById('time-input').value) || 30) * 60;
     state.submitted = false;
     state.mode = 'exam';
+    
+    // Clear pending restore data to prevent auto-restore prompt
+    pendingRestoreData = null;
+    if (restoreToastTimeout) {
+      clearTimeout(restoreToastTimeout);
+      restoreToastTimeout = null;
+    }
 
     showToast('🔄 Progress reset! Starting fresh...');
 

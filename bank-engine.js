@@ -2145,6 +2145,13 @@ function confirmResetProgress() {
   // Clear saved progress when manually resetting
   clearProgress();
   
+  // Clear pending restore data to prevent auto-restore prompt
+  pendingRestoreData = null;
+  if (restoreToastTimeout) {
+    clearTimeout(restoreToastTimeout);
+    restoreToastTimeout = null;
+  }
+  
   showScreen('start-screen');
 }
 
