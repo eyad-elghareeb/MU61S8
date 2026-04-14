@@ -304,6 +304,29 @@ input[type=radio] { display: none; }
   }
 }
 
+@media (max-width: 640px) {
+  .question-area .q-header {
+    flex-wrap: wrap !important;
+  }
+  .question-area .q-number-badge {
+    order: 1 !important;
+    flex-shrink: 0 !important;
+  }
+  .question-area .q-actions {
+    order: 2 !important;
+    margin-left: auto !important;
+  }
+  .question-area .q-text {
+    order: 3 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0 !important;
+    font-size: 1.15rem !important;
+    line-height: 1.8 !important;
+  }
+}
+
 /* ═══════════════════════════════════════════
    QUIZ SCREEN LAYOUT
 ═══════════════════════════════════════════ */
