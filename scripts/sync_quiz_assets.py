@@ -368,15 +368,23 @@ def extract_balanced(text: str, start: int, open_char: str, close_char: str) -> 
 
 
 def parse_js_literal(literal: str) -> object:
-    normalized = literal
-
-    key_pattern = re.compile(r"([,{]\s*)([A-Za-z_$][A-Za-z0-9_$]*)(\s*:)")
+    # Strip JavaScript/JSON comments first
+    # Remove single-line comments
+    normalized = re.sub(r'//.*?$', '', literal, flags=re.MULTILINE)
+    # Remove multi-line comments
+    normalized = re.sub(r'/\*.*?\*/', '', normalized, flags=re.DOTALL)
+    
+    # Quote unquoted keys - handle newlines and whitespace properly
+    # Match: after { or , (with any whitespace including newlines), capture unquoted key followed by :
+    key_pattern = re.compile(r"([,{]\s*)([A-Za-z_$][A-Za-z0-9_$]*)(\s*:)", re.DOTALL)
     previous = None
     while previous != normalized:
         previous = normalized
         normalized = key_pattern.sub(r'\1"\2"\3', normalized)
 
+    # Remove trailing commas before } or ]
     normalized = re.sub(r",(\s*[}\]])", r"\1", normalized)
+    
     return json.loads(normalized)
 
 
