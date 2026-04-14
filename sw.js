@@ -12,6 +12,7 @@ const HTML2PDF_CDN =
 var PRECACHE_REL_PATHS = [
   'quiz-engine.js',
   'bank-engine.js',
+  'index-engine.js',
   'index.html',
   'Cardio/57th-end-round-1.html',
   'Cardio/57th-end-round-2.html',
