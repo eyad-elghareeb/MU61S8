@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-81d03a1b04bb';
+const CACHE_VERSION = 'mu61-quiz-7559352cf988';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -98,6 +98,14 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/59th-midterm.html',
   'gyn/past-years/60th-final.html',
   'gyn/past-years/60th-midterm.html',
+  'gyn/past-years/by-lecture/index.html',
+  'gyn/past-years/by-lecture/l1-anatomy.html',
+  'gyn/past-years/by-lecture/l2-physiology.html',
+  'gyn/past-years/by-lecture/l3-embryology.html',
+  'gyn/past-years/by-lecture/l4-puberty.html',
+  'gyn/past-years/by-lecture/l5-menopause.html',
+  'gyn/past-years/by-lecture/l6-abnormal-menstruation.html',
+  'gyn/past-years/by-lecture/l7-amenorrhea.html',
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
   'ped/index.html',
