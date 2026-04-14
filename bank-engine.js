@@ -3298,15 +3298,17 @@ checkSavedProgress();
     if (_origShowScreen) {
       window.showScreen = function (id) {
         var current = document.querySelector('.screen.active');
-        if (current) {
-          current.style.opacity = '0';
-          setTimeout(function () {
-            current.classList.remove('active');
-            _origShowScreen(id);
-          }, 150);
-        } else {
+        var target = document.getElementById(id);
+        // Don't animate if already on the same screen or no current screen
+        if (current === target || !current) {
           _origShowScreen(id);
+          return;
         }
+        current.style.opacity = '0';
+        setTimeout(function () {
+          current.classList.remove('active');
+          _origShowScreen(id);
+        }, 150);
       };
     }
   })();
