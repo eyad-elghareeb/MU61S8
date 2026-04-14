@@ -1802,6 +1802,24 @@ function showScreen(id) {
   target.style.animation = 'none';
   target.offsetHeight; /* trigger reflow */
   target.style.animation = '';
+  
+  // Also restart animations on start-card if showing start screen
+  if (id === 'start-screen') {
+    const startCard = target.querySelector('.start-card');
+    if (startCard) {
+      startCard.style.animation = 'none';
+      startCard.offsetHeight; /* trigger reflow */
+      startCard.style.animation = '';
+      
+      const startIcon = target.querySelector('.start-icon');
+      if (startIcon) {
+        startIcon.style.animation = 'none';
+        startIcon.offsetHeight; /* trigger reflow */
+        startIcon.style.animation = '';
+      }
+    }
+  }
+  
   if (id === 'start-screen') updateStartScreenStats();
 }
 
