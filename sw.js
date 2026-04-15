@@ -12,6 +12,15 @@ const HTML2PDF_CDN =
 var PRECACHE_REL_PATHS = [
   'quiz-engine.js',
   'bank-engine.js',
+  'index-engine.js',
+  'manifest.webmanifest',
+  'favicon.svg',
+  'icon-48.png',
+  'icon-72.png',
+  'icon-96.png',
+  'icon-144.png',
+  'icon-192.png',
+  'icon-512.png',
   'index.html',
   'Cardio/57th-end-round-1.html',
   'Cardio/57th-end-round-2.html',
@@ -178,14 +187,7 @@ self.addEventListener('install', function (event) {
       var scope = self.registration.scope;
       var cache = await caches.open(CACHE_NAME);
 
-      /* Core assets (manifest + favicon) */
-      await Promise.all(
-        ['manifest.webmanifest', 'favicon.svg'].map(function (f) {
-          return cache.add(hrefFromScope(scope, f)).catch(function () {});
-        })
-      );
-
-      /* All HTML + JS files */
+      /* All HTML + JS files, icons, manifest, and favicon */
       await Promise.all(
         PRECACHE_REL_PATHS.map(function (rel) {
           var u = hrefFromScope(scope, rel);
