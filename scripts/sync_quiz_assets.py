@@ -236,7 +236,7 @@ def update_service_worker() -> bool:
     text = SW_PATH.read_text(encoding="utf-8")
     html_paths = [path.relative_to(REPO_ROOT).as_posix() for path in discover_html_files()]
     # Engine files must always be first in the precache list
-    engine_paths = ["quiz-engine.js", "bank-engine.js"]
+    engine_paths = ["quiz-engine.js", "bank-engine.js", "index-engine.js"]
     all_cache_paths = engine_paths + html_paths
     cache_version = build_cache_version(all_cache_paths)
 
