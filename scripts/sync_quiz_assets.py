@@ -9,7 +9,16 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SW_PATH = REPO_ROOT / "sw.js"
-ROOT_CACHE_ASSETS = ("manifest.webmanifest", "favicon.svg")
+ROOT_CACHE_ASSETS = (
+    "manifest.webmanifest",
+    "favicon.svg",
+    "icon-48.png",
+    "icon-72.png",
+    "icon-96.png",
+    "icon-144.png",
+    "icon-192.png",
+    "icon-512.png",
+)
 SKIP_DIRS = {".git", ".github", "__pycache__", "_site", "scripts", "node_modules"}
 GENERIC_DESCRIPTIONS = {"past years exams", "department book mcqs", "quiz loading..."}
 ACRONYMS = {
@@ -237,7 +246,9 @@ def update_service_worker() -> bool:
     html_paths = [path.relative_to(REPO_ROOT).as_posix() for path in discover_html_files()]
     # Engine files must always be first in the precache list
     engine_paths = ["quiz-engine.js", "bank-engine.js", "index-engine.js"]
-    all_cache_paths = engine_paths + html_paths
+    # Icon assets must be included in the precache list for offline availability
+    icon_paths = [path for path in ROOT_CACHE_ASSETS if path.endswith((".png", ".svg")) and (REPO_ROOT / path).exists()]
+    all_cache_paths = engine_paths + html_paths + icon_paths
     cache_version = build_cache_version(all_cache_paths)
 
     updated = re.sub(
@@ -261,7 +272,7 @@ def update_service_worker() -> bool:
 def build_cache_version(all_paths: list[str]) -> str:
     hasher = hashlib.sha256()
 
-    for rel_path in [*all_paths, *ROOT_CACHE_ASSETS]:
+    for rel_path in all_paths:
         path = REPO_ROOT / rel_path
         hasher.update(rel_path.encode("utf-8"))
         hasher.update(b"\0")

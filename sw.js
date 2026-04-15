@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-f79e5b2d34e1';
+const CACHE_VERSION = 'mu61-quiz-1d8b636ad7d8';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -114,7 +114,14 @@ var PRECACHE_REL_PATHS = [
   'ped/pediactric---chapter-2-chest.html',
   'ped/pediactric---chapter-3-emergency.html',
   'surg/dr-magdy-questions-breast.html',
-  'surg/index.html'
+  'surg/index.html',
+  'favicon.svg',
+  'icon-48.png',
+  'icon-72.png',
+  'icon-96.png',
+  'icon-144.png',
+  'icon-192.png',
+  'icon-512.png'
 ];
 
 /* ── Build a full URL from scope + relative path ── */
