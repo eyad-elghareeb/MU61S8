@@ -2163,51 +2163,7 @@ function clearOldSaves() {
 }
 
 /** @deprecated Use checkSavedProgress() — kept only so old bookmarks don't crash. */
-function restoreProgress() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (!saved) return false;
-
-  try {
-    const data = JSON.parse(saved);
-
-    // Check if data is from a compatible version
-    if (data.version !== STORAGE_VERSION) {
-      console.log('Incompatible save version, starting fresh');
-      localStorage.removeItem(STORAGE_KEY);
-      return false;
-    }
-
-    // Verify this save is for the same quiz
-    if (data.quizTitle !== QUIZ_CONFIG.title) {
-      console.log('Save is for a different quiz, starting fresh');
-      localStorage.removeItem(STORAGE_KEY);
-      return false;
-    }
-
-    // Verify question count hasn't changed
-    if (data.totalQuestions !== QUESTIONS.length) {
-      console.log('Quiz structure has changed, starting fresh');
-      localStorage.removeItem(STORAGE_KEY);
-      return false;
-    }
-
-    // Only restore if less than 7 days old
-    const maxAge = 7 * 24 * 60 * 60 * 1000;
-    if (Date.now() - data.timestamp > maxAge) {
-      console.log('Save is too old, starting fresh');
-      localStorage.removeItem(STORAGE_KEY);
-      return false;
-    }
-
-    // Do the actual restore
-    doRestoreProgress(data);
-    return true;
-  } catch(e) {
-    console.error('Error restoring progress:', e);
-    localStorage.removeItem(STORAGE_KEY);
-    return false;
-  }
-}
+// Function removed: restoreProgress() is dead code. All restore logic is now handled by checkSavedProgress() + doRestoreProgress().
 
 function clearProgress() {
   localStorage.removeItem(STORAGE_KEY);
