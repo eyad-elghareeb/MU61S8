@@ -2180,6 +2180,15 @@ function toggleTheme() {
   const html = document.documentElement;
   const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', newTheme);
+
+  // Remove FOUC-prevention inline styles so the CSS-variable rules on body take over.
+  document.body.style.background = '';
+  document.body.style.color = '';
+
+  // Keep the browser chrome (address bar / status bar) in sync.
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  if (themeMeta) themeMeta.content = newTheme === 'light' ? '#f3f0eb' : '#0d1117';
+
   localStorage.setItem('quiz-theme', newTheme);
   updateThemeIcon();
 }
