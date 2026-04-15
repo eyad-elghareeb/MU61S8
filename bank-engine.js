@@ -1244,6 +1244,18 @@ input[type=radio]:checked + .option-label .option-key { background: var(--accent
   </div>
 </div>
 
+<!-- Reset Confirm Modal -->
+<div class="modal-overlay" id="reset-modal">
+  <div class="modal">
+    <h3>Reset Progress?</h3>
+    <p>Are you sure you want to reset your progress? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeResetModal()">Go Back</button>
+      <button class="btn-confirm danger" onclick="confirmResetAction()">Reset Now</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <!-- ════════════════════════════════════════════════════════════════
@@ -2176,7 +2188,14 @@ function filterResults(filter, btn) {
 
 /* ─── CONFIRM RESET (mid-quiz) ───────────────────────────────── */
 function confirmResetProgress() {
-  if (!confirm('End this session and go back to start?')) return;
+  document.getElementById('reset-modal').classList.add('open');
+}
+
+function closeResetModal() {
+  document.getElementById('reset-modal').classList.remove('open');
+}
+
+function confirmResetAction() {
   clearInterval(saveIntervalId);
   stopTimer();
   state.submitted = false;
@@ -2199,6 +2218,7 @@ function confirmResetProgress() {
     restoreScreenTimeout = null;
   }
 
+  closeResetModal();
   showScreen('start-screen');
 }
 

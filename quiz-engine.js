@@ -1401,6 +1401,18 @@ input[type=radio]:checked + .option-label .option-key {
   </div>
 </div>
 
+<!-- ═══════════════ RESET CONFIRM MODAL ════════════════ -->
+<div class="modal-overlay" id="reset-modal">
+  <div class="modal">
+    <h3>Reset Progress?</h3>
+    <p>Are you sure you want to reset your progress? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeResetModal()">Go Back</button>
+      <button class="btn-confirm danger" onclick="confirmResetAction()">Reset Now</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════ TOAST ════════════════ -->
 <div class="toast" id="toast"></div>
 
@@ -2177,32 +2189,39 @@ function clearProgress() {
  * Confirm and reset quiz progress
  */
 function confirmResetProgress() {
-  if (confirm('Are you sure you want to reset your progress? This cannot be undone.')) {
-    stopTimer();  // ← kill the running interval + submit timeout
-    clearProgress();
-    // Reset state
-    state.current = 0;
-    state.answers = {};
-    state.flagged = {};
-    state.elapsed = 0;
-    state.timerSecs = (parseInt(document.getElementById('time-input').value) || 30) * 60;
-    state.submitted = false;
-    state.mode = 'exam';
+  document.getElementById('reset-modal').classList.add('open');
+}
 
-    // Clear all pending async actions that could steal the screen
-    pendingRestoreData = null;
-    if (restoreToastTimeout) {
-      clearTimeout(restoreToastTimeout);
-      restoreToastTimeout = null;
-    }
-    if (restoreScreenTimeout) {
-      clearTimeout(restoreScreenTimeout);
-      restoreScreenTimeout = null;
-    }
+function closeResetModal() {
+  document.getElementById('reset-modal').classList.remove('open');
+}
 
-    showScreen('start-screen');
-    showToast('🔄 Progress reset! Starting fresh...');
+function confirmResetAction() {
+  stopTimer();
+  clearProgress();
+  // Reset state
+  state.current = 0;
+  state.answers = {};
+  state.flagged = {};
+  state.elapsed = 0;
+  state.timerSecs = (parseInt(document.getElementById('time-input').value) || 30) * 60;
+  state.submitted = false;
+  state.mode = 'exam';
+
+  // Clear all pending async actions that could steal the screen
+  pendingRestoreData = null;
+  if (restoreToastTimeout) {
+    clearTimeout(restoreToastTimeout);
+    restoreToastTimeout = null;
   }
+  if (restoreScreenTimeout) {
+    clearTimeout(restoreScreenTimeout);
+    restoreScreenTimeout = null;
+  }
+
+  closeResetModal();
+  showScreen('start-screen');
+  showToast('🔄 Progress reset! Starting fresh...');
 }
 
 // Pause timer when user leaves the page/tab, resume when they come back
