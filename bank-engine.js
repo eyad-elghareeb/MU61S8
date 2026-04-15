@@ -196,7 +196,7 @@ input[type=radio] { display: none; }
 /* Bank coverage stats */
 .bank-stats-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.65rem;
   margin-bottom: 0.75rem;
 }
