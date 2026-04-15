@@ -1814,6 +1814,7 @@ function confirmSubmit() {
   // Guard against double submission (race condition: timer expiry + user click)
   if (state.submitted) return;
   state.submitted = true;  // Set flag FIRST to close the re-entry window immediately
+  clearInterval(saveIntervalId);
   closeModal();
   stopTimer();
   saveTrackerData();
@@ -1935,6 +1936,7 @@ function filterResults(filter, btn) {
 
 /* ── RESTART ─────────────────────────────────────────────── */
 function restartQuiz() {
+  clearInterval(saveIntervalId);
   stopTimer();  // ← kill the running interval first
   clearProgress();
 
@@ -2255,7 +2257,7 @@ window.addEventListener('visibilitychange', function() {
 });
 
 // Auto-save every 5 seconds
-setInterval(saveProgress, 5000);
+let saveIntervalId = setInterval(saveProgress, 5000);
 
 // Save progress before page unload (tab close, refresh, navigation)
 window.addEventListener('beforeunload', function() {
