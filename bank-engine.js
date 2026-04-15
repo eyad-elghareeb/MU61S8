@@ -1300,6 +1300,7 @@ const STORAGE_KEY = `quiz_progress_${STORAGE_VERSION}_${(BANK_CONFIG.uid || wind
 let pendingRestoreData = null;
 let restoreToastTimeout = null;
 let restoreScreenTimeout = null;  // tracks the setTimeout inside doRestoreProgress
+let pendingTransitionTimeout = null;  // tracks screen transition timeouts to prevent race conditions
 
 /**
  * Safely save quiz progress to localStorage
@@ -2060,6 +2061,10 @@ function confirmSubmit() {
   if (state.submitted) return;
   state.submitted = true;  // Set flag FIRST to close the re-entry window immediately
   clearInterval(saveIntervalId);
+  if (pendingTransitionTimeout) {
+    clearTimeout(pendingTransitionTimeout);
+    pendingTransitionTimeout = null;
+  }
   closeModal();
   stopTimer();
   saveTrackerData();
@@ -2224,13 +2229,9 @@ function updateThemeIcon() {
 /* ─── NAVIGATE ───────────────────────────────────────────────── */
 function navigateToIndex(event) {
   event.preventDefault();
-  // If we arrived from another page on this site, go back; otherwise fall
-  // back to the sibling index.html (correct for any subfolder depth).
-  if (document.referrer && new URL(document.referrer).origin === location.origin) {
-    history.back();
-  } else {
-    window.location.href = 'index.html';
-  }
+  // Always navigate to index.html to prevent history.back() loops
+  // within the quiz flow (start → quiz → results → back would bounce)
+  window.location.href = 'index.html';
 }
 
 /* ─── TOAST ──────────────────────────────────────────────────── */

@@ -1815,6 +1815,10 @@ function confirmSubmit() {
   if (state.submitted) return;
   state.submitted = true;  // Set flag FIRST to close the re-entry window immediately
   clearInterval(saveIntervalId);
+  if (pendingTransitionTimeout) {
+    clearTimeout(pendingTransitionTimeout);
+    pendingTransitionTimeout = null;
+  }
   closeModal();
   stopTimer();
   saveTrackerData();
@@ -1937,6 +1941,10 @@ function filterResults(filter, btn) {
 /* ── RESTART ─────────────────────────────────────────────── */
 function restartQuiz() {
   clearInterval(saveIntervalId);
+  if (pendingTransitionTimeout) {
+    clearTimeout(pendingTransitionTimeout);
+    pendingTransitionTimeout = null;
+  }
   stopTimer();  // ← kill the running interval first
   clearProgress();
 
@@ -1980,13 +1988,9 @@ function toggleTheme() {
 /* ── NAVIGATE BACK TO HUB ──────────────────────────────────── */
 function navigateToIndex(event) {
   event.preventDefault();
-  // If we arrived from another page on this site, go back; otherwise fall
-  // back to the sibling index.html (correct for any subfolder depth).
-  if (document.referrer && new URL(document.referrer).origin === location.origin) {
-    history.back();
-  } else {
-    window.location.href = 'index.html';
-  }
+  // Always navigate to index.html to prevent history.back() loops
+  // within the quiz flow (start → quiz → results → back would bounce)
+  window.location.href = 'index.html';
 }
 function updateThemeIcon() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -2225,6 +2229,7 @@ window.addEventListener('beforeunload', function() {
 // Check for saved progress on init
 let restoreToastTimeout = null;
 let restoreScreenTimeout = null;  // tracks the setTimeout inside doRestoreProgress
+let pendingTransitionTimeout = null;  // tracks screen transition timeouts to prevent race conditions
 
 function checkSavedProgress() {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -3397,6 +3402,11 @@ checkSavedProgress();
     var _origShowScreen = window.showScreen;
     if (_origShowScreen) {
       window.showScreen = function (id) {
+        // Clear any pending transition to prevent race conditions
+        if (pendingTransitionTimeout) {
+          clearTimeout(pendingTransitionTimeout);
+          pendingTransitionTimeout = null;
+        }
         var current = document.querySelector('.screen.active');
         var target = document.getElementById(id);
         // Don't animate if already on the same screen or no current screen
@@ -3405,7 +3415,8 @@ checkSavedProgress();
           return;
         }
         current.style.opacity = '0';
-        setTimeout(function () {
+        pendingTransitionTimeout = setTimeout(function () {
+          pendingTransitionTimeout = null;
           current.classList.remove('active');
           current.style.opacity = ''; // clean up so returning later works
           _origShowScreen(id);
