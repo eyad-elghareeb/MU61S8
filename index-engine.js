@@ -13,6 +13,33 @@
   var _trackerStyle = document.createElement('style');
   _trackerStyle.textContent = '.dash-folder-title{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--accent);padding:0.75rem 0 0.4rem;margin-bottom:0.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.4rem}';
   document.head.appendChild(_trackerStyle);
+  
+  /* ── Toast Notification Styles ────────────────────────────── */
+  var _toastStyle = document.createElement('style');
+  _toastStyle.textContent = '.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:0.65rem 1.2rem;font-size:0.88rem;font-weight:500;box-shadow:var(--shadow);z-index:9999;transition:transform 0.3s ease,opacity 0.3s ease;white-space:nowrap;display:flex;align-items:center;gap:0.5rem;max-width:90%}.toast.show{transform:translateX(-50%) translateY(0)}';
+  document.head.appendChild(_toastStyle);
+  
+  /* ── Toast HTML Element ───────────────────────────────────── */
+  var _toastEl = document.createElement('div');
+  _toastEl.id = 'toast';
+  _toastEl.className = 'toast';
+  document.body.appendChild(_toastEl);
+  
+  /* ── Toast Function ───────────────────────────────────────── */
+  var toastTimer;
+  window.showToast = function(msg) {
+    var t = document.getElementById('toast');
+    if (!t) return;
+    clearTimeout(toastTimer);
+    t.innerHTML = '';
+    var msgSpan = document.createElement('span');
+    msgSpan.textContent = msg;
+    t.appendChild(msgSpan);
+    t.classList.add('show');
+    toastTimer = setTimeout(function() {
+      t.classList.remove('show');
+    }, 2200);
+  };
 
   /* ── Inject Animation System v2 ────────────────────────────── */
   var _animStyle = document.createElement('style');
@@ -542,7 +569,7 @@
   /* ── PDF Export ────────────────────────────────────────────── */
   window.exportTrackerToPDF = function () {
     var data = getDataForScope(currentScope, currentScopePath);
-    if (!data.length) { alert('No tracked questions to export.'); return; }
+    if (!data.length) { showToast('No tracked questions to export.'); return; }
 
     var totalWrong = 0, totalFlagged = 0;
     data.forEach(function (d) { totalWrong += (d.wrong || []).length; totalFlagged += (d.flagged || []).length; });
@@ -626,7 +653,7 @@
       var s = document.createElement('script');
       s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
       s.onload = runExport;
-      s.onerror = function () { alert('Failed to load PDF library'); };
+      s.onerror = function () { showToast('Failed to load PDF library'); };
       document.head.appendChild(s);
     }
   };
