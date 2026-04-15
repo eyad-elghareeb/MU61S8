@@ -1512,7 +1512,9 @@ function doRestoreProgress(data) {
   state.answers = data.answers;
   state.flagged = data.flagged || {};
   state.elapsed = data.elapsed || 0;
-  state.timerSecs = data.timerSecs || 0;
+  // In learning mode, timerSecs is irrelevant (count-up uses elapsed only)
+  // Only restore timerSecs for exam mode to avoid confusion
+  state.timerSecs = (data.mode === 'learning') ? 0 : (data.timerSecs || 0);
   state.mode = data.mode;
   state.submitted = false;
 
