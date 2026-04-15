@@ -1033,10 +1033,6 @@ input[type=radio]:checked + .option-label .option-key { background: var(--accent
         <span class="bsv" id="stat-sessions">0</span>
         <span class="bsl">Sessions</span>
       </div>
-      <div class="bank-stat-box">
-        <span class="bsv" id="stat-remaining">0</span>
-        <span class="bsl">Remaining</span>
-      </div>
     </div>
 
     <!-- Coverage bar -->
@@ -1651,12 +1647,10 @@ function updateStartScreenStats() {
   const bankSize = QUESTION_BANK.length;
   const covered  = progress.shownIndices.length;
   const pct      = bankSize > 0 ? Math.round(covered / bankSize * 100) : 0;
-  const remainingCount = getRemainingQuestionsCount();
 
   document.getElementById('stat-covered').textContent  = covered;
   document.getElementById('stat-total').textContent    = bankSize;
   document.getElementById('stat-sessions').textContent = progress.totalSessions;
-  document.getElementById('stat-remaining').textContent = remainingCount;
   document.getElementById('coverage-fill').style.width = pct + '%';
   document.getElementById('coverage-pct').textContent  = pct + '%';
 }
@@ -1664,10 +1658,8 @@ function updateStartScreenStats() {
 function adjustCount(delta) {
   const inp = document.getElementById('q-count-input');
   const bankSize = QUESTION_BANK.length;
-  const remainingCount = getRemainingQuestionsCount();
-  const effectiveMax = Math.max(1, Math.min(bankSize, remainingCount > 0 ? remainingCount : bankSize));
   const cur = parseInt(inp.value) || selectedCount || 20;
-  const newVal = Math.max(1, Math.min(effectiveMax, cur + delta));
+  const newVal = Math.max(1, Math.min(bankSize, cur + delta));
   inp.value = newVal;
   selectedCount = newVal;
   autoSetTime(newVal);
@@ -1678,10 +1670,8 @@ function adjustCount(delta) {
 
 function setCount(n) {
   const bankSize = QUESTION_BANK.length;
-  const remainingCount = getRemainingQuestionsCount();
-  const effectiveMax = Math.max(1, Math.min(bankSize, remainingCount > 0 ? remainingCount : bankSize));
-  if (n === -1) n = effectiveMax; // "All" (remaining)
-  n = Math.max(1, Math.min(n, effectiveMax));
+  if (n === -1) n = bankSize; // "All"
+  n = Math.max(1, Math.min(n, bankSize));
   selectedCount = n;
 
   document.getElementById('q-count-input').value = n;
@@ -1693,10 +1683,8 @@ function setCount(n) {
 
 function onCustomCount(val) {
   const bankSize = QUESTION_BANK.length;
-  const remainingCount = getRemainingQuestionsCount();
-  const effectiveMax = Math.max(1, Math.min(bankSize, remainingCount > 0 ? remainingCount : bankSize));
   let n = parseInt(val) || 1;
-  n = Math.max(1, Math.min(n, effectiveMax));
+  n = Math.max(1, Math.min(n, bankSize));
   selectedCount = n;
   autoSetTime(n);
   
@@ -1781,13 +1769,11 @@ function initUI() {
   const bankSize = QUESTION_BANK.length;
   const capCount = document.getElementById('q-count-input');
   
-  // Set max to remaining questions (not yet mastered) instead of total bank size
-  const remainingCount = getRemainingQuestionsCount();
-  const effectiveMax = Math.max(1, Math.min(bankSize, remainingCount > 0 ? remainingCount : bankSize));
-  capCount.max = effectiveMax;
+  // Set max to total bank size
+  capCount.max = bankSize;
   
   // Default count
-  const defaultCount = Math.min(20, effectiveMax);
+  const defaultCount = Math.min(20, bankSize);
   adjustCount(0); // Initialize with default value
 
   updateStartScreenStats();
@@ -2732,44 +2718,13 @@ checkSavedProgress();
   };
 
   /* ══════════════════════════════════════════
-     CLEANUP — remove tracker entries older than 30 days
+     CLEANUP — disabled (keep all tracker data indefinitely)
      ══════════════════════════════════════════ */
-  var TRACKER_MAX_AGE = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+  // 30-day cleanup has been removed - all tracker data is kept indefinitely
 
   function cleanExpiredTrackerData() {
-    try {
-      var now = Date.now();
-      var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
-      var changed = false;
-      var remainingKeys = [];
-
-      keys.forEach(function(uid) {
-        var raw = localStorage.getItem(getStorageKey(uid));
-        if (raw) {
-          try {
-            var data = JSON.parse(raw);
-            if (data.timestamp && (now - data.timestamp) > TRACKER_MAX_AGE) {
-              // Entry is older than 30 days — remove it
-              localStorage.removeItem(getStorageKey(uid));
-              changed = true;
-            } else {
-              remainingKeys.push(uid);
-            }
-          } catch (e) {
-            // Invalid JSON — remove it
-            localStorage.removeItem(getStorageKey(uid));
-            changed = true;
-          }
-        } else {
-          // Key listed but data missing — clean up the reference
-          changed = true;
-        }
-      });
-
-      if (changed) {
-        localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(remainingKeys));
-      }
-    } catch (e) { /* silent */ }
+    // Cleanup disabled - keeping all data for long-term tracking
+    return;
   }
 
   /* ══════════════════════════════════════════
@@ -2806,25 +2761,6 @@ checkSavedProgress();
     }
 
     return all; // scope === 'all'
-  }
-
-  // Get count of remaining (not yet answered correctly) questions for current scope
-  function getRemainingQuestionsCount() {
-    var data = getTrackerDataForScope(currentScope, currentScopePath);
-    var seenIds = new Set();
-    
-    data.forEach(function(d) {
-      // Add wrong and flagged questions to seen set
-      if (d.wrong) d.wrong.forEach(function(q) { if (q && q.id) seenIds.add(q.id); });
-      if (d.flagged) d.flagged.forEach(function(q) { if (q && q.id) seenIds.add(q.id); });
-    });
-    
-    // Count questions in bank that haven't been marked as wrong/flagged
-    var remaining = QUESTION_BANK.filter(function(q) {
-      return q.id && !seenIds.has(q.id);
-    }).length;
-    
-    return remaining;
   }
 
   /* ══════════════════════════════════════════
