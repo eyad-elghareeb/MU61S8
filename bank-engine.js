@@ -3314,7 +3314,7 @@ checkSavedProgress();
       var keyIndex = answerKeys.indexOf(e.key.toLowerCase());
       if (typeof state !== 'undefined' && keyIndex < SESSION_QUESTIONS[state.current].options.length) {
         state.answers[state.current] = keyIndex;
-        var radio = document.getElementById('opt-' + state.current + '-' + keyIndex);
+        var radio = document.getElementById('opt_' + keyIndex);
         if (radio) {
           radio.checked = true;
           // In learning mode, show feedback immediately
