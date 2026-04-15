@@ -658,43 +658,7 @@
     }
   };
 
-  /* ── Cleanup expired tracker data (30-day max age) ──────────── */
-  function cleanExpiredTrackerData() {
-    try {
-      var TRACKER_MAX_AGE = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
-      var now = Date.now();
-      var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
-      var changed = false;
-      var remainingKeys = [];
-
-      keys.forEach(function(uid) {
-        var raw = localStorage.getItem(getStorageKey(uid));
-        if (raw) {
-          try {
-            var data = JSON.parse(raw);
-            if (data.timestamp && (now - data.timestamp) > TRACKER_MAX_AGE) {
-              localStorage.removeItem(getStorageKey(uid));
-              changed = true;
-            } else {
-              remainingKeys.push(uid);
-            }
-          } catch (e) {
-            localStorage.removeItem(getStorageKey(uid));
-            changed = true;
-          }
-        } else {
-          changed = true;
-        }
-      });
-
-      if (changed) {
-        localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(remainingKeys));
-      }
-    } catch (e) { /* silent */ }
-  }
-
   /* ── Init ──────────────────────────────────────────────────── */
-  cleanExpiredTrackerData();
   updateBadge();
   window.__indexEngineReady = true;
 
