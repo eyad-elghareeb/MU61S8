@@ -196,7 +196,7 @@ input[type=radio] { display: none; }
 /* Bank coverage stats */
 .bank-stats-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.65rem;
   margin-bottom: 0.75rem;
 }
@@ -1551,7 +1551,7 @@ function doRestoreProgress(data) {
    Tracks which questions from the bank have been shown across sessions.
    Structure: { shownIndices: number[], totalSessions: number, cycleCount: number }
 ──────────────────────────────────────────────────────────────── */
-const BANK_PROGRESS_KEY = `bank_progress_v1_${(BANK_CONFIG.uid || 'default').replace(/[^a-zA-Z0-9]/g,'_')}`;
+const BANK_PROGRESS_KEY = `bank_progress_v1_${(typeof BANK_CONFIG !== 'undefined' ? BANK_CONFIG.uid : 'default').replace(/[^a-zA-Z0-9]/g,'_')}`;
 
 function getBankProgress() {
   try {
@@ -1758,6 +1758,16 @@ document.querySelectorAll('input[name="quiz-order"]').forEach(input => {
 
 /* ─── INIT UI ────────────────────────────────────────────────── */
 function initUI() {
+  // Validate that BANK_CONFIG and QUESTION_BANK are defined
+  if (typeof BANK_CONFIG === 'undefined') {
+    console.error('bank-engine.js: BANK_CONFIG is not defined. Make sure to define BANK_CONFIG before loading bank-engine.js');
+    return;
+  }
+  if (typeof QUESTION_BANK === 'undefined' || !Array.isArray(QUESTION_BANK)) {
+    console.error('bank-engine.js: QUESTION_BANK is not defined or is not an array. Make sure to define QUESTION_BANK before loading bank-engine.js');
+    return;
+  }
+
   document.title = BANK_CONFIG.title;
   document.getElementById('bank-title').textContent    = BANK_CONFIG.title;
   document.getElementById('bank-subtitle').textContent = BANK_CONFIG.description;
