@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L11-Fibroid</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mo06tpv7n6cve",
+  "title": "L11-Fibroid",
+  "description": "Past Batches by lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "The commonest uterine fibroid to cause excessive bleeding is:",
+    "options": [
+      "Submucous fibroid.",
+      "Subserous fibroid.",
+      "Intramural fibroid.",
+      "Cervical fibroid."
+    ],
+    "correct": 0,
+    "explanation": "Submucous fibroids are located just beneath the uterine lining (endometrium). They distort the uterine cavity and increase the surface area of the endometrium, leading to significantly heavier and more prolonged menstrual bleeding."
+  },
+  {
+    "question": "The incidence of sarcomatous degeneration in uterine leiomyoma is:",
+    "options": [
+      "<1%",
+      "3%",
+      "10%",
+      "15%"
+    ],
+    "correct": 0,
+    "explanation": "Uterine leiomyomas are benign tumors. Transformation into a malignant leiomyosarcoma is extremely rare, occurring in less than 1% of cases (often cited around 0.1% to 0.5%)."
+  },
+  {
+    "question": "Fibromyoma of the uterus: all are true except:",
+    "options": [
+      "Is pre malignant tumor",
+      "Symptoms are related to the site",
+      "Estrogen dependent tumor",
+      "Can cause postpartum hemorrhage"
+    ],
+    "correct": 0,
+    "explanation": "Leiomyomas (fibroids) are benign monoclonal tumors of smooth muscle cells. They are not considered premalignant lesions for leiomyosarcoma; the two are generally thought to arise independently."
+  },
+  {
+    "question": "A patient with small submucous 3 cm uterine leiomyoma accompanied by excessive uterine bleeding should be initially evaluated and/or treated by:",
+    "options": [
+      "Myomectomy",
+      "Hysterectomy",
+      "Irradiation",
+      "Hysteroscopy"
+    ],
+    "correct": 3,
+    "explanation": "Hysteroscopy is the gold standard for both evaluating the uterine cavity and performing surgical resection (myomectomy) of submucous fibroids that are causing symptoms like heavy bleeding."
+  },
+  {
+    "question": "The most common uterine tumors in reproductive age is:",
+    "options": [
+      "Sarcoma",
+      "Adenocarcinoma",
+      "Adenomyosis",
+      "Leiomyoma"
+    ],
+    "correct": 3,
+    "explanation": "Leiomyomas (fibroids) are the most common pelvic tumors in women of reproductive age, affecting up to 70-80% of women by the time they reach menopause."
+  },
+  {
+    "question": "Pelvic examination of a 39-year old woman who complains of menorrhagia reveals an asymmetrically enlarged uterus-felt at the umbilicus. The most likely diagnosis is:",
+    "options": [
+      "Multiple uterine fibroids",
+      "Uterine carcinoma",
+      "Uterine sarcoma",
+      "Cervical carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "An asymmetrically enlarged, firm uterus is the classic clinical finding for multiple uterine fibroids. Carcinomas usually present with abnormal bleeding but less dramatic, irregular uterine enlargement."
+  },
+  {
+    "question": "Sarcomatous change in uterine fibroids occur in:",
+    "options": [
+      "0.05%",
+      "0.5%",
+      "1.5%",
+      "5%"
+    ],
+    "correct": 0,
+    "explanation": "Specific clinical data suggests that the rate of occult leiomyosarcoma in women undergoing surgery for presumed benign fibroids is very low, approximately 1 in 2000 (0.05%)."
+  },
+  {
+    "question": "A 20-year-old lady pregnant in the first trimester came complaining of lower abdominal pain in examination a mass continued with the uterus was found what is the diagnosis:",
+    "options": [
+      "Red degeneration",
+      "Yellow degeneration",
+      "Calcification",
+      "Hyaline degeneration"
+    ],
+    "correct": 0,
+    "explanation": "Red degeneration (necrobiosis) is a common complication of fibroids during pregnancy. It occurs due to rapid growth of the fibroid outstripping its blood supply, leading to acute pain, localized tenderness, and sometimes fever."
+  },
+  {
+    "question": "The most common site of uterine myoma is:",
+    "options": [
+      "Subserous",
+      "Interstitial",
+      "Submucous",
+      "Cervical"
+    ],
+    "correct": 1,
+    "explanation": "Interstitial (or intramural) fibroids are the most common type. They develop within the muscular wall of the uterus and may expand inward or outward."
+  },
+  {
+    "question": "Which of the following is diagnosed by hysteroscopy?",
+    "options": [
+      "Ectopic pregnancy",
+      "PCOS",
+      "Submucous fibroid",
+      "Endometriosis"
+    ],
+    "correct": 2,
+    "explanation": "Hysteroscopy involves inserting a camera through the cervix to view the inside of the uterus. It is the definitive diagnostic tool for identifying intracavitary pathologies like submucous fibroids."
+  },
+  {
+    "question": "The LEAST symptom to be associated with submucous fibroids is:",
+    "options": [
+      "Intermenstrual bleeding",
+      "Subfertility",
+      "Pregnancy loss",
+      "Heavy menstrual bleeding"
+    ],
+    "correct": 2,
+    "explanation": "While submucous fibroids can cause subfertility and bleeding, they are less commonly the primary cause of recurrent pregnancy loss compared to their strong association with menorrhagia and infertility."
+  },
+  {
+    "question": "The best low-cost imaging method to diagnose uterine fibroids is:",
+    "options": [
+      "MRI scan",
+      "CT scan",
+      "Ultrasound scan",
+      "PET scan"
+    ],
+    "correct": 2,
+    "explanation": "Ultrasound (specifically transvaginal ultrasound) is the first-line imaging modality because it is highly accurate, widely available, safe (no radiation), and cost-effective."
+  },
+  {
+    "question": "The initial treatment option of 47 years lady with asymptomatic myoma 5 cm FIGO 5 is:",
+    "options": [
+      "Gonadotropin releasing hormone agonists",
+      "Assurance and follow up",
+      "Combined oral contraceptives",
+      "Selective progesterone receptor modulators"
+    ],
+    "correct": 1,
+    "explanation": "Asymptomatic fibroids, especially those that are intramural (FIGO 5) and in women nearing menopause, do not require intervention. Routine monitoring with clinical exams or ultrasound is sufficient."
+  },
+  {
+    "question": "Which location of uterine fibroid is typically the most symptomatic?",
+    "options": [
+      "FIGO 1",
+      "FIGO 4",
+      "FIGO 5",
+      "FIGO 7"
+    ],
+    "correct": 0,
+    "explanation": "FIGO 1 refers to a submucous fibroid that is <50% intramural. Because these involve the endometrial cavity, they are highly likely to cause significant symptoms like heavy menstrual bleeding."
+  },
+  {
+    "question": "Which of the following is the most common indication for treatment of uterine leiomyomata in a 42-year-old woman?",
+    "options": [
+      "Interference with reproductive function",
+      "Rapid enlargement",
+      "Pain",
+      "Excessive uterine bleeding"
+    ],
+    "correct": 3,
+    "explanation": "Excessive uterine bleeding (menorrhagia) is the most common symptom leading women to seek medical or surgical treatment for fibroids."
+  },
+  {
+    "question": "A 48-year-old patient with uterine leiomyomata, found on pelvic examination complains of excessive uterine bleeding. Which of the following should be the next step in management?",
+    "options": [
+      "Myomectomy",
+      "Hysterectomy",
+      "Ultrasonography",
+      "Endometrial biopsy"
+    ],
+    "correct": 2,
+    "explanation": "Initial management for abnormal bleeding with a suspected uterine mass involves imaging (ultrasonography) to confirm the size, number, and location of the fibroids and to assess the endometrial thickness."
+  },
+  {
+    "question": "A 40-year-old woman is found on pelvic examination to have an enlarged uterus. Ultrasound reveals a well-circumscribed intramural mass. The patient asks: what is the incidence of sarcomatous degeneration?",
+    "options": [
+      "<1%",
+      "3%",
+      "10%",
+      "15%"
+    ],
+    "correct": 0,
+    "explanation": "Consistent with previous data, the risk of a presumed fibroid actually being a sarcoma is very low, typically reported as less than 1%."
+  },
+  {
+    "question": "Which of the following is the most common pelvic mass in a postmenopausal woman?",
+    "options": [
+      "Leiomyoma",
+      "Corpus luteum cyst",
+      "Germ-cell tumor",
+      "Follicular cyst"
+    ],
+    "correct": 0,
+    "explanation": "Even though fibroids usually regress after menopause due to the drop in estrogen, they remain the most common pelvic mass found in postmenopausal women because of their high prevalence earlier in life."
+  },
+  {
+    "question": "According to the FIGO fibroid classification system type 3 is:",
+    "options": [
+      "Intramural and entirely within the myometrium",
+      "Located in cervix or broad ligament",
+      "Touch the endometrium without any intra-cavitary component",
+      "Could be appropriately treated by hysteroscopy"
+    ],
+    "correct": 2,
+    "explanation": "FIGO Type 3 fibroids are 100% intramural but are in contact with the endometrium (lining of the uterus), though they do not protrude into the cavity."
+  },
+  {
+    "question": "The conservative non-surgical management of uterine fibroid is a good alternative when indicated. Which of the following is the best to control the volume/growth?",
+    "options": [
+      "Progestin-releasing intrauterine system",
+      "Tranexamic acid",
+      "Gonadotropin releasing hormone agonists",
+      "Mefenamic acid"
+    ],
+    "correct": 2,
+    "explanation": "GnRH agonists are highly effective at reducing fibroid volume (by up to 30-50%) by inducing a temporary menopause-like state. Other options like Tranexamic acid only treat the bleeding, not the size."
+  },
+  {
+    "question": "Which symptom of leiomyomas is not correctly paired with its common pathophysiology?",
+    "options": [
+      "Asymptomatic- FIGO (0) fibroid",
+      "Menorrhagia-dilatation of venules",
+      "Pelvic pressure-mechanical compression",
+      "Acute pelvic pain-leiomyoma degeneration"
+    ],
+    "correct": 0,
+    "explanation": "FIGO 0 fibroids are pedunculated and located entirely within the uterine cavity. These are almost always symptomatic, causing heavy bleeding or cramping, rather than being asymptomatic."
+  },
+  {
+    "question": "The non-surgical management of uterine fibroid is a good alternative. Which of the following is the best to control the volume/growth of fibroid?",
+    "options": [
+      "Progestin-releasing intrauterine system",
+      "Tranexamic acid",
+      "Mefenamic acid",
+      "Gonadotropin releasing hormone agonists"
+    ],
+    "correct": 3,
+    "explanation": "GnRH agonists (like Leuprolide) are the primary medical treatment used specifically to shrink the size of the fibroid before surgery or as a bridge to menopause."
+  },
+  {
+    "question": "The most common type of degeneration in uterine fibroid during pregnancy is:",
+    "options": [
+      "hyaline",
+      "fatty",
+      "red",
+      "cystic"
+    ],
+    "correct": 2,
+    "explanation": "Red degeneration (carneous degeneration) is the characteristic form of degeneration seen in pregnancy, caused by acute infarction of the fibroid tissue."
+  },
+  {
+    "question": "Which FIGO classification type describes a fibroid that is completely within the uterine cavity?",
+    "options": [
+      "0",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 0,
+    "explanation": "Type 0 refers to pedunculated intracavitary leiomyomas that do not involve the myometrium."
+  },
+  {
+    "question": "Risk factors for developing uterine fibroids includes which of the following?",
+    "options": [
+      "Regular exercise.",
+      "High fiber diet.",
+      "Family history of fibroid.",
+      "Multiparity."
+    ],
+    "correct": 2,
+    "explanation": "Family history is a significant risk factor; women with a first-degree relative who had fibroids have a much higher risk. Conversely, parity (having children) and exercise are generally protective."
+  },
+  {
+    "question": "Submucous fibroid is usually associated with what type of menstrual abnormalities?",
+    "options": [
+      "Oligomenorrhea.",
+      "Amenorrhoea.",
+      "Postcoital bleeding.",
+      "Heavy menstrual flow."
+    ],
+    "correct": 3,
+    "explanation": "Heavy menstrual flow (menorrhagia) is the hallmark symptom of submucous fibroids because they disturb the overlying endometrium and impair uterine contractility."
+  },
+  {
+    "question": "A 50-year-old patient had abnormal uterine bleeding associated with hot flushes. Ultrasound reveals a fundal myoma 7 x 7 cm. What is your recommended management?",
+    "options": [
+      "Follow up.",
+      "Endometrial ablation.",
+      "Hysterectomy.",
+      "Myomectomy."
+    ],
+    "correct": 2,
+    "explanation": "For a woman near menopause with a large, symptomatic fibroid and heavy bleeding, hysterectomy is often recommended as it provides a definitive cure and eliminates the risk of future uterine issues."
+  },
+  {
+    "question": "What is the best treatment of submucous fibroid 4 x 4 cm in a patient with heavy menstrual bleeding?",
+    "options": [
+      "Medical treatment with GnRH analogue.",
+      "Medical treatment with gestagens.",
+      "Hysteroscopic myomectomy.",
+      "Laparoscopic myomectomy."
+    ],
+    "correct": 2,
+    "explanation": "Hysteroscopic myomectomy is the preferred surgical approach for removing submucous fibroids as it is minimally invasive and directly addresses the cause of the bleeding within the cavity."
+  },
+  {
+    "question": "What is the most common presentation of leiomyoma:",
+    "options": [
+      "Heavy menstrual bleeding.",
+      "Intermenstrual bleeding.",
+      "Pelvic pain.",
+      "Asymptomatic."
+    ],
+    "correct": 3,
+    "explanation": "Most women with uterine fibroids are asymptomatic; the tumors are often discovered incidentally during a routine pelvic exam or an ultrasound performed for other reasons."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

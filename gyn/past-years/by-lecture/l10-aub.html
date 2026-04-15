@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L10-AUB</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mo06rrsox2iui",
+  "title": "L10-AUB",
+  "description": "Past Batches by lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "A 55-year-old woman is complaining of postmenopausal bleeding. Which of the following is mandatory in her management plan?",
+    "options": [
+      "Immediate gestagen therapy",
+      "Cervical cytology",
+      "Fractional endometrial biopsy",
+      "Laparotomy and proceed"
+    ],
+    "correct": 2,
+    "explanation": "Postmenopausal bleeding (PMB) must be investigated to rule out endometrial cancer. Tissue sampling, such as a fractional endometrial biopsy, is mandatory."
+  },
+  {
+    "question": "Excessive menstruation is considered when monthly volume of blood loss exceeds:",
+    "options": [
+      "50 ml",
+      "80 ml",
+      "100 ml",
+      "120 ml"
+    ],
+    "correct": 1,
+    "explanation": "Menorrhagia is defined as menstrual blood loss exceeding 80 ml per cycle, as this is the threshold where patients are likely to develop iron deficiency anemia."
+  },
+  {
+    "question": "The commonest cause of excessive menstruation in adolescent girls is:",
+    "options": [
+      "Endometrial hyperplasia",
+      "Uterine fibroid",
+      "Von Willibrand's disease",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The most common cause in adolescents is anovulation due to an immature hypothalamic-pituitary-ovarian axis. Since this isn't listed, 'None of the above' is the answer."
+  },
+  {
+    "question": "The best method of endometrial sampling in view of reliability is:",
+    "options": [
+      "Hysteroscopic-guided biopsy",
+      "Pipelle biopsy",
+      "Novak's curette",
+      "Dilatation, curettage and biopsy"
+    ],
+    "correct": 0,
+    "explanation": "Hysteroscopic-guided biopsy is superior because it allows direct visualization of the cavity, ensuring focal lesions are sampled rather than missed by blind techniques."
+  },
+  {
+    "question": "Menorrhagia is:",
+    "options": [
+      "Intermittent Irregular vaginal bleeding",
+      "Commonly presents as postmenopausal bleeding",
+      "Heavy menstrual cycle more than 80 ml",
+      "Infrequent spaced cycles every 45 days"
+    ],
+    "correct": 2,
+    "explanation": "Menorrhagia refers to regular menstrual periods that are excessively heavy (over 80 ml) or prolonged (over 7 days)."
+  },
+  {
+    "question": "A 34-year-old woman with menorrhagia, dysmenorrhea, and an 8-week uterus. What is the FIRST DIAGNOSTIC test to perform?",
+    "options": [
+      "Ultrasound",
+      "Hysterosalpingography (HSG)",
+      "Endometrial biopsy",
+      "Computed tomography scanning"
+    ],
+    "correct": 0,
+    "explanation": "Ultrasound is the first-line imaging for evaluating uterine size and identifying causes like fibroids or adenomyosis."
+  },
+  {
+    "question": "The abnormal pattern of bleeding that appears in conjunction with a short phase is called:",
+    "options": [
+      "Menorrhagia",
+      "Menometrorrhagia",
+      "Polymenorrhea",
+      "Metrorrhagia"
+    ],
+    "correct": 2,
+    "explanation": "Polymenorrhea is defined as cyclic bleeding where the cycle interval is less than 21 days, often due to a shortened follicular or luteal phase."
+  },
+  {
+    "question": "Bicornuate uterus might predispose to:",
+    "options": [
+      "Recurrent preterm labor",
+      "Primary amenorrhea",
+      "Recurrent oblique lie",
+      "Menorrhagia"
+    ],
+    "correct": 3,
+    "explanation": "While Müllerian anomalies cause pregnancy complications, they are also associated with menorrhagia due to increased endometrial surface area and vascular abnormalities."
+  },
+  {
+    "question": "What is the next step in evaluation of abnormal uterine bleeding after history and physical in a woman of reproductive age?",
+    "options": [
+      "Pelvic ultrasound",
+      "Coagulation profile",
+      "Pregnancy test",
+      "Ovarian tumour markers"
+    ],
+    "correct": 2,
+    "explanation": "A pregnancy test is the first essential step for any woman of reproductive age with AUB to rule out pregnancy-related complications like miscarriage or ectopic pregnancy."
+  },
+  {
+    "question": "What is the most common cause of postmenopausal bleeding?",
+    "options": [
+      "Endometrial cancer",
+      "Estrogen replacement therapy",
+      "Atrophic endometrium/vaginitis",
+      "Endometrial polyps"
+    ],
+    "correct": 2,
+    "explanation": "Atrophy of the endometrium or vagina due to low estrogen levels is statistically the most common cause of bleeding in postmenopausal women."
+  },
+  {
+    "question": "Which of the following tools is not clinically useful to estimate menstrual blood loss?",
+    "options": [
+      "Pad counts",
+      "Hemoglobin and hematocrit",
+      "Pallor",
+      "Sodium hydroxide extraction of hemoglobin"
+    ],
+    "correct": 3,
+    "explanation": "Sodium hydroxide extraction (alkaline hematin method) is a research tool for exact quantification and is too complex for routine clinical use."
+  },
+  {
+    "question": "A 14-year-old girl complains of irregular vaginal bleeding. What is the most likely cause?",
+    "options": [
+      "Hypothyroidism",
+      "Polycystic ovary syndrome",
+      "Congenital adrenal hyperplasia",
+      "Hypothalamic immaturity"
+    ],
+    "correct": 3,
+    "explanation": "In early adolescence, the hypothalamic-pituitary-ovarian axis is immature, leading to inconsistent cycles and anovulatory bleeding."
+  },
+  {
+    "question": "Which treatment is most effective in reducing rather than eliminating menstrual flow in regular periods?",
+    "options": [
+      "Tranexamic acid",
+      "Dilatation and curettage",
+      "Depot medroxyprogesterone acetate",
+      "Misoprostol"
+    ],
+    "correct": 0,
+    "explanation": "Tranexamic acid reduces blood loss by stabilizing clots in the endometrium without stopping the menstrual cycle entirely."
+  },
+  {
+    "question": "A 46-year-old morbidly obese woman with irregular periods for 6 months. What is the initial management?",
+    "options": [
+      "Oral contraceptives",
+      "Endometrial biopsy",
+      "Office hysteroscopy",
+      "Endometrial ablation"
+    ],
+    "correct": 1,
+    "explanation": "Women over 45 with irregular bleeding or those with risk factors like obesity require an endometrial biopsy to exclude hyperplasia or malignancy."
+  },
+  {
+    "question": "In premenarchal girls, which of the following is the most common source of abnormal bleeding?",
+    "options": [
+      "Ovary",
+      "Uterus",
+      "Vagina",
+      "Urethra"
+    ],
+    "correct": 2,
+    "explanation": "Bleeding in young children is usually caused by vulvovaginitis, trauma, or foreign bodies within the vagina."
+  },
+  {
+    "question": "A 60-year-old postmenopausal woman with uterine origin bleeding. Which diagnostic procedure is the standard starting point?",
+    "options": [
+      "Colposcopy",
+      "Transvaginal sonography",
+      "Saline infusion sonography",
+      "Diagnostic hysteroscopy"
+    ],
+    "correct": 1,
+    "explanation": "Transvaginal sonography (TVS) is the standard initial screen. An endometrial thickness of ≤ 4 mm is generally considered low risk for malignancy."
+  },
+  {
+    "question": "A 46-year-old morbidly obese woman with irregular menstrual cycles. What is the most appropriate initial management?",
+    "options": [
+      "Assessment of sex steroid hormones",
+      "Endometrial samples",
+      "Office hysteroscopy",
+      "Endometrial ablation"
+    ],
+    "correct": 1,
+    "explanation": "This is a variant of the earlier obesity question. Regardless of the slight wording change, obesity is a high-risk factor for endometrial cancer, requiring tissue sampling (biopsy)."
+  },
+  {
+    "question": "A 57-year-old woman with persistent bleeding despite an 'atrophic' biopsy result. What is the best next step?",
+    "options": [
+      "Continued observation",
+      "Endometrial ablation",
+      "Hysteroscopic examination",
+      "Serum CA-125 testing"
+    ],
+    "correct": 2,
+    "explanation": "If bleeding persists after a negative blind biopsy, hysteroscopy is required to visualize and sample focal lesions like polyps that may have been missed."
+  },
+  {
+    "question": "A progesterone withdrawal test causing bleeding indicates:",
+    "options": [
+      "Ovarian failure",
+      "Uterine outflow obstruction",
+      "Anovulation",
+      "Hypothalamic dysfunction"
+    ],
+    "correct": 2,
+    "explanation": "Bleeding after progesterone withdrawal proves the patient has an intact outflow tract and sufficient estrogen, confirming the diagnosis of anovulation."
+  },
+  {
+    "question": "The first-line medical treatment for acute abnormal uterine bleeding (AUB) is:",
+    "options": [
+      "Tranexamic acid",
+      "Hysterectomy",
+      "D&C",
+      "NSAIDS"
+    ],
+    "correct": 0,
+    "explanation": "Tranexamic acid is used to treat heavy bleeding acutely by reducing fibrinolysis in the uterine wall."
+  },
+  {
+    "question": "AUB-O refers to:",
+    "options": [
+      "Ovulatory dysfunction",
+      "Ovarian tumor",
+      "Outflow obstruction",
+      "Obesity-related bleeding"
+    ],
+    "correct": 0,
+    "explanation": "In the FIGO system, 'O' signifies ovulatory dysfunction, common in conditions like PCOS or thyroid disorders."
+  },
+  {
+    "question": "A 45-year-old with irregular bleeding and thickened endometrium on ultrasound should undergo:",
+    "options": [
+      "Endometrial biopsy",
+      "Hysterectomy",
+      "Hormonal therapy",
+      "Observation"
+    ],
+    "correct": 0,
+    "explanation": "A thickened lining in a perimenopausal woman with AUB requires histological evaluation to rule out hyperplasia or cancer."
+  },
+  {
+    "question": "Which of these is the most common cause of postmenopausal bleeding?",
+    "options": [
+      "Endometrial cancer",
+      "Atrophic endometritis",
+      "Endometrial hyperplasia",
+      "Cervical polyp"
+    ],
+    "correct": 1,
+    "explanation": "Atrophy (atrophic endometritis) is statistically the leading cause of PMB, though cancer must always be ruled out."
+  },
+  {
+    "question": "What is the first step to do for 52-year-old postmenopausal woman presented with vaginal bleeding?",
+    "options": [
+      "Assurance and follow up",
+      "Start gestagen therapy",
+      "Transvaginal sonography",
+      "Hysteroscopic ablation"
+    ],
+    "correct": 2,
+    "explanation": "Ultrasound (TVS) is used as the first-line screening tool in PMB to assess the thickness of the endometrial stripe."
+  },
+  {
+    "question": "What is the commonest cause of postmenopausal bleeding (final confirmed answer)?",
+    "options": [
+      "Endometrial polyp",
+      "Endometrial hyperplasia",
+      "Endometrial cancer",
+      "Endometrial atrophy"
+    ],
+    "correct": 3,
+    "explanation": "Atrophy remains the most frequent cause of postmenopausal bleeding across multiple studies and clinical texts."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

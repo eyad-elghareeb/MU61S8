@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L13-Infertility</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mo0786v3h9frl",
+  "title": "L13-Infertility",
+  "description": "Past Batches by lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "The most practical method of documenting occurrence of ovulation is:",
+    "options": [
+      "Cervical smear",
+      "Midluteal serum progesterone",
+      "Midluteal serum hCG",
+      "Serum FSH/LH ratio"
+    ],
+    "correct": 1,
+    "explanation": "Midluteal serum progesterone (measured on day 21 of a 28-day cycle) is the most practical clinical test to confirm ovulation. A level >10 ng/mL strongly indicates that a functional corpus luteum has formed."
+  },
+  {
+    "question": "The term \"teratospermia\" stands for:",
+    "options": [
+      "Diminished sperm number",
+      "Increased abnormal forms of sperms",
+      "Decreased sperm motility",
+      "Pus cells in the spermatic fluid"
+    ],
+    "correct": 1,
+    "explanation": "Teratospermia refers specifically to abnormal sperm morphology. Oligospermia refers to low count, and asthenospermia refers to poor motility."
+  },
+  {
+    "question": "The normal result of the postcoital test is considered when:",
+    "options": [
+      "Absent sperms in the vaginal and cervical samples",
+      "Absent sperms in the vaginal and present in the cervical samples",
+      "Present sperms in the vaginal and absent in the cervical sample",
+      "Present sperms in the vaginal and present in the cervical sample"
+    ],
+    "correct": 3,
+    "explanation": "A normal (positive) postcoital test requires finding motile sperm within the cervical mucus, proving the sperm can survive the vaginal environment and penetrate the cervix."
+  },
+  {
+    "question": "The assisted reproductive technology (ART) includes the following except:",
+    "options": [
+      "Intrauterine insemination",
+      "Invitro fertilization",
+      "Intracytoplasmic sperm injection",
+      "Pituitary down regulation"
+    ],
+    "correct": 0,
+    "explanation": "While IUI is a fertility treatment, many definitions of ART specifically involve the handling of oocytes and embryos (like IVF and ICSI). IUI involves only sperm processing and deposition."
+  },
+  {
+    "question": "An infertile woman undergoing IVF cycle received high doses of human menopausal gonadotrophins. Few days after embryo transfer, developed pleural effusion, ascites & abdominal pain. She mostly has:",
+    "options": [
+      "Severe ovarian hyperstimulation syndrome",
+      "Ectopic pregnancy",
+      "Ovarian failure",
+      "Ovarian thecoma"
+    ],
+    "correct": 0,
+    "explanation": "These are classic signs of severe Ovarian Hyperstimulation Syndrome (OHSS), a systemic complication of ovulation induction characterized by fluid shifts to the third space (ascites, effusion)."
+  },
+  {
+    "question": "The initial evaluation in an infertile couple should include:",
+    "options": [
+      "Ovarian biopsy",
+      "Semen analysis",
+      "D & C",
+      "Laparoscopy"
+    ],
+    "correct": 1,
+    "explanation": "Semen analysis is one of the three pillars of the basic infertility workup (alongside confirming ovulation and tubal patency) because it is non-invasive and easy to perform."
+  },
+  {
+    "question": "Induction of ovulation agents:",
+    "options": [
+      "Clomiphene citrate is an anti-androgen",
+      "Clomiphene citrate is given by injection",
+      "Gonadotropins is given orally",
+      "Causes multiple follicles"
+    ],
+    "correct": 3,
+    "explanation": "A major risk and intended effect of ovulation induction agents is the recruitment and growth of multiple follicles, which increases the risk of multiple gestations."
+  },
+  {
+    "question": "In Secondary infertility:",
+    "options": [
+      "Is frequently due to tubal problems",
+      "The problem is often a chromosomal defect",
+      "Is frequently due to male factor",
+      "Commonly associated with endometriosis"
+    ],
+    "correct": 0,
+    "explanation": "Secondary infertility (infertility after a previous pregnancy) is most commonly linked to tubal damage or pelvic adhesions, often stemming from postpartum infections or pelvic surgeries."
+  },
+  {
+    "question": "The test used to diagnose ovulation on day 21 in a 28 days menstrual cycle:",
+    "options": [
+      "Estrogen",
+      "FSH",
+      "Progesterone",
+      "LH"
+    ],
+    "correct": 2,
+    "explanation": "Progesterone is the hormone of the luteal phase. Its peak on day 21 is used as the standard biochemical marker to confirm that ovulation has successfully occurred."
+  },
+  {
+    "question": "A woman with bilateral proximal tubal blockage which was diagnosed by Hysterosalpingogram and her husband have normal spermogram. What is the best management choice for this couple?",
+    "options": [
+      "Laparoscopic opening of the tube",
+      "Giving the woman clomid for 6 months",
+      "Doing controlled ovarian hyperstimulation",
+      "Doing IVF"
+    ],
+    "correct": 3,
+    "explanation": "When both tubes are blocked (tubal factor), bypassing the tubes via In Vitro Fertilization (IVF) is the most effective treatment with the highest success rates."
+  },
+  {
+    "question": "The general incidence of infertility is:",
+    "options": [
+      "5%",
+      "10-15%",
+      "25%",
+      "30%"
+    ],
+    "correct": 1,
+    "explanation": "Infertility affects approximately 10% to 15% of couples globally, defined as the failure to conceive after one year of regular, unprotected intercourse."
+  },
+  {
+    "question": "During evaluation of infertility in 25-year-old female a hysterosalpingogram showed evidence of Asherman syndrome. Which of the following symptoms would you expect this patient to have:",
+    "options": [
+      "hypomenorrhea",
+      "oligo menorrhea",
+      "menorrhagia",
+      "metrorrhagia"
+    ],
+    "correct": 0,
+    "explanation": "Asherman syndrome involves intrauterine adhesions that destroy the endometrial lining. This leads to a significant reduction in menstrual flow (hypomenorrhea) or complete absence of periods (amenorrhea)."
+  },
+  {
+    "question": "Which of the following semen parameters would not be evaluated in a semen analysis?",
+    "options": [
+      "sperm motility",
+      "sperm concentration",
+      "sperm morphology",
+      "sperm penetration"
+    ],
+    "correct": 3,
+    "explanation": "Standard semen analysis covers count (concentration), motility, and morphology. Sperm penetration is a functional test that is not part of the routine basic analysis."
+  },
+  {
+    "question": "According to WHO (world health organization), routine criteria the percentage of normal morphology of normal semen analysis is:",
+    "options": [
+      ">4%",
+      "<30%",
+      ">50%",
+      ">70%"
+    ],
+    "correct": 0,
+    "explanation": "Using Kruger's strict criteria (adopted by WHO), a sample is considered normal if 4% or more of the sperm have normal morphology."
+  },
+  {
+    "question": "The basic tests used to evaluate infertile couples include the following Except:",
+    "options": [
+      "Serum prolactin",
+      "Transvaginal folliculometry",
+      "Semen analysis",
+      "Hysterosalpingography"
+    ],
+    "correct": 1,
+    "explanation": "Folliculometry (tracking follicle growth via ultrasound) is used during treatment cycles. The basic diagnostic workup focuses on semen analysis, HSG for tubes, and day 21 progesterone/ovulation markers."
+  },
+  {
+    "question": "An infertile woman was given 30 ampoules of human menopausal gonadotropins (HMG), then she developed pleural effusion, ascites and abdominal pain, she mostly likely has:",
+    "options": [
+      "Severe ovarian hyperstimulation syndrome",
+      "Mild ovarian hyperstimulation syndrome",
+      "Ovarian failure",
+      "Ovarian thecoma"
+    ],
+    "correct": 0,
+    "explanation": "The presence of pleural effusion and ascites (fluid in the chest and abdomen) categorizes the Ovarian Hyperstimulation Syndrome as 'severe'."
+  },
+  {
+    "question": "Which of the following is a normal finding in seminal fluid examination?",
+    "options": [
+      "Normal sperm morphology is 4% or more",
+      "Volume of 0.5 ml",
+      "PII 5.5",
+      "Motility less than 10%"
+    ],
+    "correct": 0,
+    "explanation": "According to WHO standards, a normal morphology of ≥4% is considered a normal finding. A volume of 0.5 ml is too low (normal is >1.5 ml), and 10% motility is too low (normal is >32% progressive)."
+  },
+  {
+    "question": "Clomiphene citrate is indicated for:",
+    "options": [
+      "Endometriosis",
+      "Menometrorrhagia",
+      "A repeated flat basal temperature curve",
+      "Dysmenorrhea"
+    ],
+    "correct": 2,
+    "explanation": "A flat basal body temperature (BBT) curve indicates anovulation. Clomiphene citrate is used to induce ovulation in women who are not ovulating."
+  },
+  {
+    "question": "Which of the following medications is used for achieving a pregnancy in a patient with hypogonadotropic hypogonadism?",
+    "options": [
+      "Estradiol",
+      "Aromatase inhibitors",
+      "Gonadotropins",
+      "Clomiphene citrate"
+    ],
+    "correct": 2,
+    "explanation": "In hypogonadotropic hypogonadism (low FSH/LH from the pituitary), Clomiphene won't work because it requires a functional pituitary. Therefore, direct replacement with exogenous Gonadotropins is needed."
+  },
+  {
+    "question": "In couples attempting pregnancy, what percentage of women is expected to conceive within 1 year?",
+    "options": [
+      "15",
+      "30",
+      "60",
+      "85"
+    ],
+    "correct": 3,
+    "explanation": "About 85% of couples in the general population will conceive within the first 12 months of regular unprotected intercourse."
+  },
+  {
+    "question": "Patients with severe oligospermia have sperm counts less than which of the following?",
+    "options": [
+      "< 5 million/mL",
+      "< 15 million/mL",
+      "< 25 million/mL",
+      "< 30 million/mL"
+    ],
+    "correct": 0,
+    "explanation": "Oligospermia is <15 million/mL, but clinical 'severe' oligospermia is generally defined as a concentration below 5 million/mL."
+  },
+  {
+    "question": "You are counseling a couple about factors that can affect fertility. Which of the following factors adversely affect spermatogenesis?",
+    "options": [
+      "Swimming",
+      "Exposure to cold",
+      "Febrile illness",
+      "Boxer shorts"
+    ],
+    "correct": 2,
+    "explanation": "High body temperatures during a febrile illness can significantly and negatively impact sperm production and quality for up to three months."
+  },
+  {
+    "question": "Which of the following is the gold standard technique for tubal evaluation?",
+    "options": [
+      "Hysterosalpingography",
+      "Laparoscopic evaluation",
+      "Saline infusion sonography",
+      "Magnetic resonance imaging"
+    ],
+    "correct": 0,
+    "explanation": "HSG is considered the standard initial test for tubal evaluation. While laparoscopy with chromopertubation is more accurate, HSG remains the 'gold standard' primary screening tool due to its lower invasiveness."
+  },
+  {
+    "question": "Hysterosalpingography is a procedure used in basic evaluation of infertile lady. Which of the following regarding this procedure is correct?",
+    "options": [
+      "The procedure is done premenstrually",
+      "Distorted cavity could be diagnosed appropriately",
+      "Lipiodol is a commonly used water soluble contrast",
+      "Employing Lipiodol, delayed film is essential"
+    ],
+    "correct": 3,
+    "explanation": "When oil-based contrast (Lipiodol) is used, a 24-hour delayed film is necessary to confirm the spread of the dye throughout the peritoneal cavity, ensuring tubal patency."
+  },
+  {
+    "question": "Using WHO classification for Semen Analysis interpretation, choose the false statement is:",
+    "options": [
+      "The normal lower limit for normal morphology is 4%",
+      "The normal lower limit for sperm motility is 32%",
+      "Viability should be at least 58%",
+      "The normal lower limit for sperm concentration is 39 million/mL"
+    ],
+    "correct": 3,
+    "explanation": "The lower limit for sperm *concentration* is 15 million/mL. 39 million refers to the total sperm *count* per ejaculate."
+  },
+  {
+    "question": "In an amenorrheic patient who has had pituitary ablation, which of the following regimens is most likely to result in an ovulatory cycle?",
+    "options": [
+      "Clomiphene citrate",
+      "Pulsatile infusion of GnRH",
+      "Continuous infusion of GnRH",
+      "Human menopausal gonadotropin followed by hCG"
+    ],
+    "correct": 3,
+    "explanation": "If the pituitary is ablated, the patient cannot produce its own FSH/LH. Treatment must provide these hormones directly (hMG) to grow follicles, followed by hCG to trigger release."
+  },
+  {
+    "question": "Infertility secondary to anovulation is most often attributed to which of the following disorders?",
+    "options": [
+      "Hypothyroidism",
+      "Hyperprolactinemia",
+      "Ovarian hyperthecosis",
+      "Polycystic ovarian syndrome"
+    ],
+    "correct": 3,
+    "explanation": "PCOS is the single most common cause of anovulatory infertility in women of reproductive age."
+  },
+  {
+    "question": "A semen analysis sample of 2.5 cc contains 25 million sperm/ml; 65% normal morphology; 20% progressive forward mobility. What should you tell the couple?",
+    "options": [
+      "The sample is normal",
+      "The sample is abnormal due to low count",
+      "The sample is abnormal due to low morphology",
+      "The sample is abnormal due to low percentage of forwardly mobile sperm"
+    ],
+    "correct": 3,
+    "explanation": "The concentration and morphology are normal (limits are 15M/ml and 4% respectively), but the progressive motility is only 20%, which is below the normal limit of 32%."
+  },
+  {
+    "question": "A 37-year-old woman with chronic bulimia has low levels of estrogen and gonadotropins. What is the best method of ovulation induction?",
+    "options": [
+      "Clomiphene citrate",
+      "Human menopausal gonadotropin",
+      "Bromocryptine mesylate",
+      "Aromatase inhibitors"
+    ],
+    "correct": 1,
+    "explanation": "Eating disorders cause hypothalamic suppression (low FSH/LH). Clomiphene usually fails here because it needs a responsive hypothalamus/pituitary. Gonadotropins (hMG) are the treatment of choice."
+  },
+  {
+    "question": "A 30-year-old woman with primary infertility for 18 months. Which test would not be part of the basic work-up?",
+    "options": [
+      "Diagnostic laparoscopy",
+      "Menstrual calendars",
+      "Day 3 FSH level",
+      "Semen analysis"
+    ],
+    "correct": 0,
+    "explanation": "Laparoscopy is an invasive surgical procedure and is not considered part of the initial 'basic' workup, which typically involves non-invasive hormonal and imaging tests."
+  },
+  {
+    "question": "A 27-year-old woman with chronic bulimia has ovulatory dysfunction with low levels of estrogen and gonadotropins. What is the best method of ovulation induction?",
+    "options": [
+      "Human menopausal gonadotropin",
+      "Human menopausal gonadotropin plus human chorionic gonadotropin",
+      "Dopamine agonists",
+      "Depot GnRH agonists"
+    ],
+    "correct": 1,
+    "explanation": "In cases of hypothalamic anovulation, hMG is used to stimulate follicle development, and hCG is required to mimic the LH surge and trigger the actual release of the egg."
+  },
+  {
+    "question": "Using WHO classification for Semen Analysis interpretation, choose the false statement is:",
+    "options": [
+      "The normal lower limit for normal morphology is 4%",
+      "The normal lower limit for sperm motility is 32%",
+      "Viability should be at least 58%",
+      "The normal lower limit for sperm concentration is 39 million/mL"
+    ],
+    "correct": 3,
+    "explanation": "Again, 39 million is the threshold for total count per ejaculate, whereas 15 million/mL is the threshold for concentration."
+  },
+  {
+    "question": "Which of the following medications is used for achieving pregnancy in a patient with pituitary ablation?",
+    "options": [
+      "Continuous GnRH infusion",
+      "Aromatase inhibitors",
+      "Gonadotropins",
+      "Clomiphene citrate"
+    ],
+    "correct": 2,
+    "explanation": "Without a pituitary gland, the body cannot respond to GnRH or Clomiphene. Exogenous gonadotropins must be administered to directly stimulate the ovaries."
+  },
+  {
+    "question": "The gold standard for tubal evaluation for an infertile couple:",
+    "options": [
+      "HSG",
+      "Laparoscopy",
+      "Hysteroscopy",
+      "MRI"
+    ],
+    "correct": 0,
+    "explanation": "Hysterosalpingography (HSG) remains the gold standard for the initial evaluation of tubal patency in the infertility workup."
+  },
+  {
+    "question": "Which of the following conditions is suitable for clomiphene citrate stimulation:",
+    "options": [
+      "Asherman's syndrome",
+      "Polycystic ovarian syndrome",
+      "Premature ovarian insufficiency",
+      "Sheehan syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Clomiphene citrate works by stimulating the pituitary to release more FSH. It is the first-line treatment for PCOS-related anovulation but is useless in ovarian failure (POI) or pituitary failure (Sheehan)."
+  },
+  {
+    "question": "The normal result of the postcoital test is considered when:",
+    "options": [
+      "Absent sperms in the vaginal and cervical samples",
+      "Absent sperms in the vaginal and present in the cervical sample",
+      "Present sperms in the vaginal and absent in the cervical sample",
+      "Present sperms in the vaginal and present in the cervical sample"
+    ],
+    "correct": 3,
+    "explanation": "A positive test is defined by finding motile sperm in the cervical mucus, which indicates successful intercourse and sperm-mucus compatibility."
+  },
+  {
+    "question": "The assisted reproductive technology (ART) includes the following Except:",
+    "options": [
+      "Intrauterine insemination",
+      "In vitro fertilization",
+      "Intracytoplasmic sperm injection",
+      "Pituitary down regulation"
+    ],
+    "correct": 0,
+    "explanation": "IUI is generally categorized as a low-tech fertility treatment, distinct from ART, which involves the extracorporeal (outside the body) handling of eggs and embryos."
+  },
+  {
+    "question": "Worldwide the incidence of infertility in married couples is:",
+    "options": [
+      "5-10%",
+      "10-15%",
+      "20-25%",
+      "35-30%"
+    ],
+    "correct": 1,
+    "explanation": "The standard epidemiological figure for infertility is 10-15% of all married/cohabiting couples."
+  },
+  {
+    "question": "A procedure that assesses both uterine cavity and tubal lumen:",
+    "options": [
+      "Colposcopy",
+      "Laparoscopy",
+      "Hysteroscopy",
+      "Hysterosalpingography"
+    ],
+    "correct": 3,
+    "explanation": "HSG is the only routine procedure listed that simultaneously visualizes the internal contour of the uterus and the patency of the fallopian tubes."
+  },
+  {
+    "question": "In semen analysis, the term \"Asthenospermia\" stands for:",
+    "options": [
+      "Diminished sperm number",
+      "Increased abnormal forms of sperms",
+      "Decreased sperm motility",
+      "Presence of red blood cells"
+    ],
+    "correct": 2,
+    "explanation": "Asthenospermia refers specifically to reduced sperm motility. This is distinct from oligospermia (low count) and teratospermia (abnormal shape)."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
