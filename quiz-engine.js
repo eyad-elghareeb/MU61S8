@@ -2372,7 +2372,9 @@ function doRestoreProgress(data) {
 
   // Restore timer values exactly as saved (time doesn't count while page is closed)
   state.elapsed = data.elapsed || 0;
-  state.timerSecs = data.timerSecs || 0;
+  // In learning mode, timerSecs is irrelevant (count-up uses elapsed only)
+  // Only restore timerSecs for exam mode to avoid confusion
+  state.timerSecs = (data.mode === 'learning') ? 0 : (data.timerSecs || 0);
 
   state.mode = data.mode;
   state.submitted = false;
