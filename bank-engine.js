@@ -969,7 +969,6 @@ input[type=radio]:checked + .option-label .option-key { background: var(--accent
   .dash-stat { padding: 0.6rem; }
   .dash-stat .ds-val { font-size: 1.2rem; }
   .dash-body { padding: 0.75rem 1rem; }
-  .bank-stats-row { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
