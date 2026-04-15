@@ -1244,6 +1244,18 @@ input[type=radio]:checked + .option-label .option-key { background: var(--accent
   </div>
 </div>
 
+<!-- Reset Confirm Modal -->
+<div class="modal-overlay" id="reset-modal">
+  <div class="modal">
+    <h3>Reset Progress?</h3>
+    <p>Are you sure you want to reset your progress? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeResetModal()">Go Back</button>
+      <button class="btn-confirm danger" onclick="confirmResetAction()">Reset Now</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <!-- ════════════════════════════════════════════════════════════════
@@ -1300,6 +1312,7 @@ const STORAGE_KEY = `quiz_progress_${STORAGE_VERSION}_${(BANK_CONFIG.uid || wind
 let pendingRestoreData = null;
 let restoreToastTimeout = null;
 let restoreScreenTimeout = null;  // tracks the setTimeout inside doRestoreProgress
+let pendingTransitionTimeout = null;  // tracks screen transition timeouts to prevent race conditions
 
 /**
  * Safely save quiz progress to localStorage
@@ -2059,6 +2072,11 @@ function confirmSubmit() {
   // Guard against double submission (race condition: timer expiry + user click)
   if (state.submitted) return;
   state.submitted = true;  // Set flag FIRST to close the re-entry window immediately
+  clearInterval(saveIntervalId);
+  if (pendingTransitionTimeout) {
+    clearTimeout(pendingTransitionTimeout);
+    pendingTransitionTimeout = null;
+  }
   closeModal();
   stopTimer();
   saveTrackerData();
@@ -2170,7 +2188,15 @@ function filterResults(filter, btn) {
 
 /* ─── CONFIRM RESET (mid-quiz) ───────────────────────────────── */
 function confirmResetProgress() {
-  if (!confirm('End this session and go back to start?')) return;
+  document.getElementById('reset-modal').classList.add('open');
+}
+
+function closeResetModal() {
+  document.getElementById('reset-modal').classList.remove('open');
+}
+
+function confirmResetAction() {
+  clearInterval(saveIntervalId);
   stopTimer();
   state.submitted = false;
   state.current = 0;
@@ -2192,6 +2218,7 @@ function confirmResetProgress() {
     restoreScreenTimeout = null;
   }
 
+  closeResetModal();
   showScreen('start-screen');
 }
 
@@ -2222,13 +2249,9 @@ function updateThemeIcon() {
 /* ─── NAVIGATE ───────────────────────────────────────────────── */
 function navigateToIndex(event) {
   event.preventDefault();
-  // If we arrived from another page on this site, go back; otherwise fall
-  // back to the sibling index.html (correct for any subfolder depth).
-  if (document.referrer && new URL(document.referrer).origin === location.origin) {
-    history.back();
-  } else {
-    window.location.href = 'index.html';
-  }
+  // Always navigate to index.html to prevent history.back() loops
+  // within the quiz flow (start → quiz → results → back would bounce)
+  window.location.href = 'index.html';
 }
 
 /* ─── TOAST ──────────────────────────────────────────────────── */
@@ -2299,7 +2322,7 @@ function showToast(msg, actions = []) {
 }
 
 // Auto-save every 5 seconds
-setInterval(saveProgress, 5000);
+let saveIntervalId = setInterval(saveProgress, 5000);
 
 // Save progress before page unload (tab close, refresh, navigation)
 window.addEventListener('beforeunload', function() {
@@ -3312,7 +3335,7 @@ checkSavedProgress();
       var keyIndex = answerKeys.indexOf(e.key.toLowerCase());
       if (typeof state !== 'undefined' && keyIndex < SESSION_QUESTIONS[state.current].options.length) {
         state.answers[state.current] = keyIndex;
-        var radio = document.getElementById('opt-' + state.current + '-' + keyIndex);
+        var radio = document.getElementById('opt_' + keyIndex);
         if (radio) {
           radio.checked = true;
           // In learning mode, show feedback immediately
