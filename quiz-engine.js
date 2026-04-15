@@ -3117,7 +3117,6 @@ checkSavedProgress();
   };
 
   /* ── Init badge on load ── */
-  cleanExpiredTrackerData();
   updateDashboardBadge();
 
   /* ═══════════════════════════════════════════════════════════
