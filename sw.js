@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-393006a87ff9';
+const CACHE_VERSION = 'mu61-quiz-5d062b4a4edd';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -12,15 +12,6 @@ const HTML2PDF_CDN =
 var PRECACHE_REL_PATHS = [
   'quiz-engine.js',
   'bank-engine.js',
-  'index-engine.js',
-  'manifest.webmanifest',
-  'favicon.svg',
-  'icon-48.png',
-  'icon-72.png',
-  'icon-96.png',
-  'icon-144.png',
-  'icon-192.png',
-  'icon-512.png',
   'index.html',
   'Cardio/57th-end-round-1.html',
   'Cardio/57th-end-round-2.html',
