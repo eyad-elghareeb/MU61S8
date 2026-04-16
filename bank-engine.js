@@ -1641,6 +1641,39 @@ function updateStartScreenStats() {
   const pct      = bankSize > 0 ? Math.round(covered / bankSize * 100) : 0;
   const remaining = bankSize - covered;
 
+  // If cycle is complete (100% coverage), automatically reset for new cycle
+  if (pct === 100 && covered > 0) {
+    progress.cycleCount++;
+    progress.shownIndices = [];
+    saveBankProgress(progress);
+    showToast(`🎉 Full cycle complete! Starting fresh — cycle ${progress.cycleCount + 1}`);
+    // Refresh progress values after reset
+    const newCovered = 0;
+    const newRemaining = bankSize;
+    
+    document.getElementById('stat-covered').textContent  = newCovered;
+    document.getElementById('stat-total').textContent    = bankSize;
+    document.getElementById('stat-sessions').textContent = progress.totalSessions;
+    document.getElementById('coverage-fill').style.width = '0%';
+    document.getElementById('coverage-pct').textContent  = '0%';
+    
+    // Reset input for fresh cycle
+    const inp = document.getElementById('q-count-input');
+    selectedCount = Math.min(selectedCount || 20, bankSize);
+    inp.value = selectedCount;
+    inp.max = newRemaining;
+    inp.placeholder = newRemaining;
+    
+    // Update the +5 button
+    const plusBtn = inp.parentElement.querySelector('.time-adj-btn:last-child');
+    if (plusBtn) {
+      plusBtn.textContent = '+5';
+      plusBtn.disabled = false;
+      plusBtn.style.opacity = '';
+    }
+    return;
+  }
+
   document.getElementById('stat-covered').textContent  = covered;
   document.getElementById('stat-total').textContent    = bankSize;
   document.getElementById('stat-sessions').textContent = progress.totalSessions;
