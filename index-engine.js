@@ -509,9 +509,10 @@
       if (!fGroups.length) return;
 
       var firstGroup = fGroups[0];
+      // Try to get the folder title from multiple sources in order of preference
       var displayFolderTitle = firstGroup.folderTitle
-        || _folderTitleCache[firstGroup.topFolder]
         || _folderTitleCache[firstGroup.folder]
+        || _folderTitleCache[firstGroup.topFolder]
         || decodeURIComponent(firstGroup.topFolder.replace(/\/$/, ''));
 
       // Don't show raw folder name if it matches the project root
