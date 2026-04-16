@@ -1650,13 +1650,17 @@ function updateStartScreenStats() {
   // Cap the question count input to remaining questions in current cycle
   const inp = document.getElementById('q-count-input');
   const currentVal = parseInt(inp.value) || selectedCount || 20;
-  // During active cycle, cap to remaining; after cycle complete, allow full bank
-  const maxAllowed = remaining > 0 ? remaining : bankSize;
+  // After cycle complete (remaining = bankSize), allow full bank; otherwise cap to remaining
+  const maxAllowed = remaining > 0 && (remaining < bankSize || covered === 0) ? remaining : bankSize;
   inp.max = maxAllowed;
   inp.placeholder = maxAllowed;
   
-  // Cap current value if it exceeds remaining
-  if (currentVal > maxAllowed) {
+  // Reset selectedCount to maxAllowed when cycle is complete to ensure user can select any number
+  if (covered === 0 && remaining === bankSize) {
+    // Fresh cycle - reset to default or keep user's last preference if within range
+    selectedCount = Math.min(selectedCount || 20, bankSize);
+    inp.value = selectedCount;
+  } else if (currentVal > maxAllowed) {
     inp.value = maxAllowed;
     selectedCount = maxAllowed;
   }
