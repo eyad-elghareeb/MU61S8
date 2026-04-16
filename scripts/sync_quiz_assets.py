@@ -18,6 +18,7 @@ ROOT_CACHE_ASSETS = (
     "icon-144.png",
     "icon-192.png",
     "icon-512.png",
+    "index-engine.css",
 )
 SKIP_DIRS = {".git", ".github", "__pycache__", "_site", "scripts", "node_modules"}
 GENERIC_DESCRIPTIONS = {"past years exams", "department book mcqs", "quiz loading..."}
@@ -246,9 +247,9 @@ def update_service_worker() -> bool:
     html_paths = [path.relative_to(REPO_ROOT).as_posix() for path in discover_html_files()]
     # Engine files must always be first in the precache list
     engine_paths = ["quiz-engine.js", "bank-engine.js", "index-engine.js"]
-    # Icon assets must be included in the precache list for offline availability
-    icon_paths = [path for path in ROOT_CACHE_ASSETS if path.endswith((".png", ".svg")) and (REPO_ROOT / path).exists()]
-    all_cache_paths = engine_paths + html_paths + icon_paths
+    # Icon assets and CSS must be included in the precache list for offline availability
+    asset_paths = [path for path in ROOT_CACHE_ASSETS if path.endswith((".png", ".svg", ".css")) and (REPO_ROOT / path).exists()]
+    all_cache_paths = engine_paths + html_paths + asset_paths
     cache_version = build_cache_version(all_cache_paths)
 
     updated = re.sub(
