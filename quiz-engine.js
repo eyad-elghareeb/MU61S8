@@ -2730,44 +2730,13 @@ checkSavedProgress();
   };
 
   /* ══════════════════════════════════════════
-     CLEANUP — remove tracker entries older than 30 days
+     CLEANUP — disabled (keep data indefinitely)
      ══════════════════════════════════════════ */
-  var TRACKER_MAX_AGE = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+  var TRACKER_MAX_AGE = null; // Disabled - keep data indefinitely
 
   function cleanExpiredTrackerData() {
-    try {
-      var now = Date.now();
-      var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
-      var changed = false;
-      var remainingKeys = [];
-
-      keys.forEach(function(uid) {
-        var raw = localStorage.getItem(getStorageKey(uid));
-        if (raw) {
-          try {
-            var data = JSON.parse(raw);
-            if (data.timestamp && (now - data.timestamp) > TRACKER_MAX_AGE) {
-              // Entry is older than 30 days — remove it
-              localStorage.removeItem(getStorageKey(uid));
-              changed = true;
-            } else {
-              remainingKeys.push(uid);
-            }
-          } catch (e) {
-            // Invalid JSON — remove it
-            localStorage.removeItem(getStorageKey(uid));
-            changed = true;
-          }
-        } else {
-          // Key listed but data missing — clean up the reference
-          changed = true;
-        }
-      });
-
-      if (changed) {
-        localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(remainingKeys));
-      }
-    } catch (e) { /* silent */ }
+    // Cleanup disabled - data is kept indefinitely
+    // This function is intentionally empty to preserve all tracker data
   }
 
   /* ══════════════════════════════════════════
