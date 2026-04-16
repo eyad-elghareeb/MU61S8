@@ -2763,12 +2763,23 @@ checkSavedProgress();
     }
 
     if (scope === 'folder' && scopePath) {
+      var target = scopePath.replace(/^\/|\/$/g, ''); // normalize: remove leading/trailing slashes
       return all.filter(function(d) {
         // Check stored folderPath (ENGINE_BASE-relative) and d.path (full URL, normalized)
-        var fp = (d.folderPath || '').replace(/^\//, '');
+        var fp = (d.folderPath || '').replace(/^\/|\/$/g, '');
         var dp = _normStoredPath(d.path);
-        var target = scopePath.replace(/^\//, '');
-        return (fp && fp.indexOf(target) === 0) || (dp && dp.indexOf(target) === 0);
+        // Extract folder from full path for comparison
+        var dpFolder = '';
+        if (dp) {
+          var dpParts = dp.split('/');
+          if (dpParts.length > 1) {
+            dpFolder = dpParts.slice(0, -1).join('/').replace(/^\/|\/$/g, '');
+          }
+        }
+        // Match if the quiz's folder starts with the target folder path
+        // This ensures "gyn/dep" matches when target is "gyn", but "gyn-extra" does not
+        return (fp && (fp === target || fp.indexOf(target + '/') === 0)) 
+            || (dpFolder && (dpFolder === target || dpFolder.indexOf(target + '/') === 0));
       });
     }
 
@@ -2825,15 +2836,26 @@ checkSavedProgress();
     // Tab: This Quiz
     tabs.push({ id: 'quiz', label: 'This Quiz' });
 
-    // Tab: nearest meaningful folder (skip the root project dir if only 1 segment)
+    // Tab: All quizzes from all folders
+    tabs.push({ id: 'all', label: 'All Quizzes' });
+
+    // Tab: Intermediate folders (parent directories) - only if we have nested structure
+    // e.g., for gyn/dep/file.html, add "gyn" as an intermediate folder tab
+    if (segments.length >= 3) {
+      // Add all intermediate folders except the deepest one
+      for (var i = 0; i < segments.length - 1; i++) {
+        var folderKey = segments[i] + '/';
+        var folderLabel = _folderTitleCache[folderKey] || decodeURIComponent(segments[i]);
+        tabs.push({ id: 'folder', label: folderLabel, path: segments[i], level: i });
+      }
+    }
+
+    // Tab: Current/deepest folder (only if we have at least 2 segments)
     if (segments.length >= 2) {
       var folderKey = segments[segments.length - 1] + '/';
       var folderLabel = _folderTitleCache[folderKey] || decodeURIComponent(segments[segments.length - 1]);
-      tabs.push({ id: 'folder', label: folderLabel, path: segments[segments.length - 1] });
+      tabs.push({ id: 'folder', label: folderLabel, path: segments[segments.length - 1], level: segments.length - 1 });
     }
-
-    // Tab: All
-    tabs.push({ id: 'all', label: 'All' });
 
     var scopeHTML = '';
     tabs.forEach(function(t) {
