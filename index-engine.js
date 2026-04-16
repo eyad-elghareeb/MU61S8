@@ -370,8 +370,12 @@
     var buildTabs = function () {
       var tabs = [];
 
-      // Tab: All quizzes from all folders
-      tabs.push({ id: 'all', label: 'All Quizzes', path: '' });
+      // Tab: Current/deepest folder (first/leftmost, only if we have at least 1 segment)
+      if (segments.length >= 1) {
+        var folderKey = segments[segments.length - 1] + '/';
+        var folderLabel = _folderTitleCache[folderKey] || decodeURIComponent(segments[segments.length - 1]);
+        tabs.push({ id: 'folder', label: folderLabel, path: segments[segments.length - 1], level: segments.length - 1 });
+      }
 
       // Tab: Intermediate folders (parent directories) - only if we have nested structure
       // e.g., for gyn/dep/file.html, add "gyn" as an intermediate folder tab
@@ -384,12 +388,8 @@
         }
       }
 
-      // Tab: Current/deepest folder (only if we have at least 1 segment)
-      if (segments.length >= 1) {
-        var folderKey = segments[segments.length - 1] + '/';
-        var folderLabel = _folderTitleCache[folderKey] || decodeURIComponent(segments[segments.length - 1]);
-        tabs.push({ id: 'folder', label: folderLabel, path: segments[segments.length - 1], level: segments.length - 1 });
-      }
+      // Tab: All quizzes from all folders
+      tabs.push({ id: 'all', label: 'All Quizzes', path: '' });
 
       var scopeHTML = '';
       tabs.forEach(function (t, i) {
@@ -400,10 +400,10 @@
       });
       scopeBar.innerHTML = scopeHTML;
 
-      // Set default tab to the current/deepest folder if available
-      if (segments.length >= 1) {
+      // Set default tab to current/deepest folder (first tab)
+      if (tabs.length > 0 && tabs[0].id === 'folder') {
         currentScope = 'folder';
-        currentScopePath = segments[segments.length - 1];
+        currentScopePath = tabs[0].path;
       } else {
         currentScope = 'all';
         currentScopePath = '';
