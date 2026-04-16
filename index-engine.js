@@ -159,12 +159,23 @@
   function getDataForScope(scope, scopePath) {
     var all = getAllTrackerData();
     if (scope === 'folder' && scopePath) {
+      var target = scopePath.replace(/^\/|\/$/g, ''); // normalize: remove leading/trailing slashes
       return all.filter(function (d) {
         // Check stored folderPath (ENGINE_BASE-relative) and d.path (full URL, normalized)
-        var fp = (d.folderPath || '').replace(/^\//, '');
+        var fp = (d.folderPath || '').replace(/^\/|\/$/g, '');
         var dp = _normStoredPath(d.path);
-        var target = scopePath.replace(/^\//, '');
-        return (fp && fp.indexOf(target) === 0) || (dp && dp.indexOf(target) === 0);
+        // Extract folder from full path for comparison
+        var dpFolder = '';
+        if (dp) {
+          var dpParts = dp.split('/');
+          if (dpParts.length > 1) {
+            dpFolder = dpParts.slice(0, -1).join('/').replace(/^\/|\/$/g, '');
+          }
+        }
+        // Match if the quiz's folder starts with the target folder path
+        // This ensures "gyn/dep" matches when target is "gyn", but "gyn-extra" does not
+        return (fp && (fp === target || fp.indexOf(target + '/') === 0)) 
+            || (dpFolder && (dpFolder === target || dpFolder.indexOf(target + '/') === 0));
       });
     }
     return all;
@@ -358,17 +369,27 @@
 
     var buildTabs = function () {
       var tabs = [];
-      if (segments.length >= 1) {
-        var folderKey1 = segments[segments.length - 1] + '/';
-        var label1 = _folderTitleCache[folderKey1] || decodeURIComponent(segments[segments.length - 1]);
-        tabs.push({ id: 'folder', label: label1, path: segments[segments.length - 1] });
-      }
-      if (segments.length >= 2) {
-        var folderKey2 = segments[segments.length - 2] + '/';
-        var label2 = _folderTitleCache[folderKey2] || decodeURIComponent(segments[segments.length - 2]);
-        tabs.push({ id: 'folder', label: label2, path: segments[segments.length - 2] });
-      }
+
+      // Tab: All quizzes from all folders
       tabs.push({ id: 'all', label: 'All Quizzes', path: '' });
+
+      // Tab: Intermediate folders (parent directories) - only if we have nested structure
+      // e.g., for gyn/dep/file.html, add "gyn" as an intermediate folder tab
+      if (segments.length >= 2) {
+        // Add all intermediate folders except the deepest one
+        for (var i = 0; i < segments.length - 1; i++) {
+          var folderKey = segments[i] + '/';
+          var folderLabel = _folderTitleCache[folderKey] || decodeURIComponent(segments[i]);
+          tabs.push({ id: 'folder', label: folderLabel, path: segments[i], level: i });
+        }
+      }
+
+      // Tab: Current/deepest folder (only if we have at least 1 segment)
+      if (segments.length >= 1) {
+        var folderKey = segments[segments.length - 1] + '/';
+        var folderLabel = _folderTitleCache[folderKey] || decodeURIComponent(segments[segments.length - 1]);
+        tabs.push({ id: 'folder', label: folderLabel, path: segments[segments.length - 1], level: segments.length - 1 });
+      }
 
       var scopeHTML = '';
       tabs.forEach(function (t, i) {
@@ -379,8 +400,8 @@
       });
       scopeBar.innerHTML = scopeHTML;
 
-      currentScope = 'folder';
-      currentScopePath = tabs.length > 0 ? tabs[0].path : '';
+      currentScope = 'all';
+      currentScopePath = '';
       renderDashboard();
       var overlay = document.getElementById('tracker-dashboard');
       if (overlay) overlay.classList.add('open');
