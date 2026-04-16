@@ -1656,7 +1656,7 @@ function updateStartScreenStats() {
   inp.placeholder = maxAllowed;
   
   // Reset selectedCount to maxAllowed when cycle is complete to ensure user can select any number
-  if (covered === 0 && remaining === bankSize) {
+  if (covered === 0) {
     // Fresh cycle - reset to default or keep user's last preference if within range
     selectedCount = Math.min(selectedCount || 20, bankSize);
     inp.value = selectedCount;
@@ -2168,15 +2168,18 @@ function onNewSessionClick(event) {
   const pct = bankSize > 0 ? Math.round(covered / bankSize * 100) : 0;
   
   // If cycle is complete (100% coverage), show the completed cycle toast
-  if (pct === 100 || covered === 0) {
+  if (pct === 100) {
     // Reset to start a fresh cycle
     progress.cycleCount++;
     progress.shownIndices = [];
     saveBankProgress(progress);
     showToast(`🎉 Full cycle complete! Starting fresh — cycle ${progress.cycleCount + 1}`);
+    // Navigate to start screen where user can choose any number of questions
+    showScreen('start-screen');
+    return;
   }
   
-  // Navigate to start screen where user can choose any number of questions
+  // For incomplete cycles, just navigate to start screen
   showScreen('start-screen');
 }
 
