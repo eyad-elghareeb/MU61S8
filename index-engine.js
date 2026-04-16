@@ -400,8 +400,22 @@
       });
       scopeBar.innerHTML = scopeHTML;
 
-      currentScope = 'all';
-      currentScopePath = '';
+      // Set default tab to the current/deepest folder if available
+      if (segments.length >= 1) {
+        currentScope = 'folder';
+        currentScopePath = segments[segments.length - 1];
+      } else {
+        currentScope = 'all';
+        currentScopePath = '';
+      }
+      
+      // Update active state on tabs
+      document.querySelectorAll('.dash-scope-tab').forEach(function (tab) {
+        var isActive = tab.getAttribute('data-scope') === currentScope && 
+                       tab.getAttribute('data-path') === currentScopePath;
+        tab.classList.toggle('active', isActive);
+      });
+      
       renderDashboard();
       var overlay = document.getElementById('tracker-dashboard');
       if (overlay) overlay.classList.add('open');
@@ -494,18 +508,18 @@
 
     var html = '';
     var lastTopFolder = '__none__';
-    var folderGroups = {}; // topFolder -> [groups]
+    var folderGroups = {}; // folder -> [groups]
 
-    // First pass: organize groups by topFolder
+    // First pass: organize groups by folder
     groups.forEach(function (g) {
-      if (!g.topFolder) g.topFolder = '__root__';
-      if (!folderGroups[g.topFolder]) folderGroups[g.topFolder] = [];
-      folderGroups[g.topFolder].push(g);
+      if (!g.folder) g.folder = '__root__';
+      if (!folderGroups[g.folder]) folderGroups[g.folder] = [];
+      folderGroups[g.folder].push(g);
     });
 
     // Render each folder section
-    Object.keys(folderGroups).forEach(function (topFolder) {
-      var fGroups = folderGroups[topFolder];
+    Object.keys(folderGroups).forEach(function (folder) {
+      var fGroups = folderGroups[folder];
       if (!fGroups.length) return;
 
       var firstGroup = fGroups[0];
@@ -513,30 +527,30 @@
       var displayFolderTitle = firstGroup.folderTitle
         || _folderTitleCache[firstGroup.folder]
         || _folderTitleCache[firstGroup.topFolder]
-        || decodeURIComponent(firstGroup.topFolder.replace(/\/$/, ''));
+        || decodeURIComponent(firstGroup.folder.replace(/\/$/, ''));
 
       // Don't show raw folder name if it matches the project root
       if (displayFolderTitle && displayFolderTitle === _rootName) {
         displayFolderTitle = '';
       }
 
-      var isCollapsed = _collapsedFolders[topFolder] || false;
-      var isSelected = _selectedFolders.hasOwnProperty(topFolder) ? _selectedFolders[topFolder] : true;
+      var isCollapsed = _collapsedFolders[folder] || false;
+      var isSelected = _selectedFolders.hasOwnProperty(folder) ? _selectedFolders[folder] : true;
 
       if (displayFolderTitle) {
         html += '<div class="dash-folder-header" style="align-items:center;">';
-        html += '<div class="dash-folder-title" onclick="toggleFolder(\'' + escHtml(topFolder) + '\')">';
+        html += '<div class="dash-folder-title" onclick="toggleFolder(\'' + escHtml(folder) + '\')">';
         html += '<span class="dash-folder-toggle' + (isCollapsed ? ' collapsed' : '') + '">\u25BC</span> ';
         html += escFolderIcon(escHtml(displayFolderTitle));
         html += '</div>';
         html += '<input type="checkbox" class="dash-folder-select" ';
         html += (isSelected ? 'checked' : '') + ' ';
-        html += 'onclick="event.stopPropagation(); toggleFolderSelection(\'' + escHtml(topFolder) + '\', this.checked)" ';
+        html += 'onclick="event.stopPropagation(); toggleFolderSelection(\'' + escHtml(folder) + '\', this.checked)" ';
         html += 'title="Select for export">';
         html += '</div>';
       }
 
-      html += '<div class="dash-folder-content' + (isCollapsed ? ' collapsed' : '') + '" id="folder-content-' + escHtml(topFolder) + '">';
+      html += '<div class="dash-folder-content' + (isCollapsed ? ' collapsed' : '') + '" id="folder-content-' + escHtml(folder) + '">';
 
       fGroups.forEach(function (g) {
         var dateStr = g.timestamp
@@ -590,21 +604,21 @@
   };
 
   /* ── Toggle folder collapse ────────────────────────────────── */
-  window.toggleFolder = function (topFolder) {
-    _collapsedFolders[topFolder] = !_collapsedFolders[topFolder];
-    var contentEl = document.getElementById('folder-content-' + topFolder);
+  window.toggleFolder = function (folder) {
+    _collapsedFolders[folder] = !_collapsedFolders[folder];
+    var contentEl = document.getElementById('folder-content-' + folder);
     var toggleEl = contentEl ? contentEl.previousElementSibling.querySelector('.dash-folder-toggle') : null;
     if (contentEl) {
-      contentEl.classList.toggle('collapsed', _collapsedFolders[topFolder]);
+      contentEl.classList.toggle('collapsed', _collapsedFolders[folder]);
     }
     if (toggleEl) {
-      toggleEl.classList.toggle('collapsed', _collapsedFolders[topFolder]);
+      toggleEl.classList.toggle('collapsed', _collapsedFolders[folder]);
     }
   };
 
   /* ── Toggle folder selection ───────────────────────────────── */
-  window.toggleFolderSelection = function (topFolder, checked) {
-    _selectedFolders[topFolder] = checked;
+  window.toggleFolderSelection = function (folder, checked) {
+    _selectedFolders[folder] = checked;
   };
 
   /* ── Remove single item ────────────────────────────────────── */
@@ -646,8 +660,8 @@
     
     // Filter data based on selected folders (default: all selected)
     var data = allData.filter(function (d) {
-      var topFolder = getTopLevelFolder(getFolderForEntry(d)) || '__root__';
-      return _selectedFolders.hasOwnProperty(topFolder) ? _selectedFolders[topFolder] : true;
+      var folder = getFolderForEntry(d) || '__root__';
+      return _selectedFolders.hasOwnProperty(folder) ? _selectedFolders[folder] : true;
     });
 
     if (!data.length) { showToast('No tracked questions to export.'); return; }
