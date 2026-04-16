@@ -1863,6 +1863,17 @@ function initUI() {
 
   const bankSize = QUESTION_BANK.length;
   const progress = getBankProgress();
+  
+  // Check if cycle is complete (100% coverage) on initial load and auto-reset
+  const covered = progress.shownIndices.length;
+  const pct = bankSize > 0 ? Math.round(covered / bankSize * 100) : 0;
+  if (pct === 100 && covered > 0) {
+    progress.cycleCount++;
+    progress.shownIndices = [];
+    saveBankProgress(progress);
+    showToast(`🎉 Full cycle complete! Starting fresh — cycle ${progress.cycleCount + 1}`);
+  }
+  
   const remaining = Math.max(1, bankSize - progress.shownIndices.length);
   const capCount = document.getElementById('q-count-input');
 
