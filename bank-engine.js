@@ -1650,13 +1650,17 @@ function updateStartScreenStats() {
   // Cap the question count input to remaining questions in current cycle
   const inp = document.getElementById('q-count-input');
   const currentVal = parseInt(inp.value) || selectedCount || 20;
-  // During active cycle, cap to remaining; after cycle complete, allow full bank
-  const maxAllowed = remaining > 0 ? remaining : bankSize;
+  // Always cap to remaining questions
+  const maxAllowed = remaining;
   inp.max = maxAllowed;
   inp.placeholder = maxAllowed;
   
-  // Cap current value if it exceeds remaining
-  if (currentVal > maxAllowed) {
+  // Reset selectedCount to maxAllowed when cycle is complete to ensure user can select any number
+  if (covered === 0 && remaining === bankSize) {
+    // Fresh cycle - reset to default or keep user's last preference if within range
+    selectedCount = Math.min(selectedCount || 20, bankSize);
+    inp.value = selectedCount;
+  } else if (currentVal > maxAllowed) {
     inp.value = maxAllowed;
     selectedCount = maxAllowed;
   }
@@ -1675,8 +1679,8 @@ function adjustCount(delta) {
   const bankSize = QUESTION_BANK.length;
   const progress = getBankProgress();
   const remaining = Math.max(1, bankSize - progress.shownIndices.length);
-  // During active cycle, cap to remaining; after cycle complete, allow full bank
-  const maxAllowed = remaining > 0 && remaining < bankSize ? remaining : bankSize;
+  // Always cap to remaining questions
+  const maxAllowed = remaining;
   
   const cur = parseInt(inp.value) || selectedCount || 20;
   const newVal = Math.max(1, Math.min(maxAllowed, cur + delta));
@@ -1700,8 +1704,8 @@ function setCount(n) {
   const bankSize = QUESTION_BANK.length;
   const progress = getBankProgress();
   const remaining = Math.max(1, bankSize - progress.shownIndices.length);
-  // During active cycle, cap to remaining; after cycle complete, allow full bank
-  const maxAllowed = remaining > 0 && remaining < bankSize ? remaining : bankSize;
+  // Always cap to remaining questions
+  const maxAllowed = remaining;
   
   if (n === -1) n = maxAllowed; // "All" = all remaining questions in current cycle
   n = Math.max(1, Math.min(n, maxAllowed));
@@ -1727,8 +1731,8 @@ function onCustomCount(val) {
   const bankSize = QUESTION_BANK.length;
   const progress = getBankProgress();
   const remaining = Math.max(1, bankSize - progress.shownIndices.length);
-  // During active cycle, cap to remaining; after cycle complete, allow full bank
-  const maxAllowed = remaining > 0 && remaining < bankSize ? remaining : bankSize;
+  // Always cap to remaining questions
+  const maxAllowed = remaining;
   
   let n = parseInt(val) || 1;
   n = Math.max(1, Math.min(n, maxAllowed));
