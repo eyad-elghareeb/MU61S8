@@ -1226,7 +1226,7 @@ input[type=radio]:checked + .option-label .option-key { background: var(--accent
     </div>
     <div class="result-list" id="result-list"></div>
     <div class="result-actions">
-      <button class="btn-restart" onclick="showScreen('start-screen')">↺ New Session</button>
+      <button class="btn-restart" onclick="onNewSessionClick(event)">↺ New Session</button>
       <a href="#" class="btn-restart btn-secondary" onclick="navigateToIndex(event); return false;">🏠 Return to Hub</a>
     </div>
   </div>
@@ -2155,6 +2155,29 @@ function confirmSubmit() {
 
   buildResults();
   showScreen('result-screen');
+}
+
+/* ─── NEW SESSION BUTTON ─────────────────────────────────────── */
+function onNewSessionClick(event) {
+  event.preventDefault();
+  
+  // Check if bank coverage is 100% (cycle complete)
+  const progress = getBankProgress();
+  const bankSize = QUESTION_BANK.length;
+  const covered = progress.shownIndices.length;
+  const pct = bankSize > 0 ? Math.round(covered / bankSize * 100) : 0;
+  
+  // If cycle is complete (100% coverage), show the completed cycle toast
+  if (pct === 100 || covered === 0) {
+    // Reset to start a fresh cycle
+    progress.cycleCount++;
+    progress.shownIndices = [];
+    saveBankProgress(progress);
+    showToast(`🎉 Full cycle complete! Starting fresh — cycle ${progress.cycleCount + 1}`);
+  }
+  
+  // Navigate to start screen where user can choose any number of questions
+  showScreen('start-screen');
 }
 
 /* ─── BUILD RESULTS ──────────────────────────────────────────── */
