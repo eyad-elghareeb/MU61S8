@@ -11,7 +11,7 @@
 
   /* ── Inject tracker dashboard extra styles ─────────────────── */
   var _trackerStyle = document.createElement('style');
-  _trackerStyle.textContent = '.dash-folder-title{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--accent);padding:0.75rem 0 0.4rem;margin-bottom:0.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.4rem}';
+  _trackerStyle.textContent = '.dash-folder-title{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--accent);padding:0.75rem 0 0.4rem;margin-bottom:0.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none}.dash-folder-title:hover{opacity:0.85}.dash-folder-toggle{font-size:0.9rem;transition:transform 0.2s ease;display:inline-block}.dash-folder-toggle.collapsed{transform:rotate(-90deg)}.dash-folder-content{transition:max-height 0.3s ease,opacity 0.25s ease;overflow:hidden;max-height:2000px;opacity:1}.dash-folder-content.collapsed{max-height:0;opacity:0}.dash-folder-header{display:flex;align-items:center;justify-content:space-between;gap:0.5rem}.dash-folder-select{margin-left:auto;width:18px;height:18px;cursor:pointer;accent-color:var(--accent)}';
   document.head.appendChild(_trackerStyle);
   
   /* ── Toast Notification Styles ────────────────────────────── */
@@ -312,6 +312,9 @@
 
   /* ── Open dashboard ────────────────────────────────────────── */
   window.openTrackerDashboard = function () {
+    // Reset selection state when opening dashboard (all folders selected by default)
+    _selectedFolders = {};
+
     var segments = getFolderSegments(location.pathname);
     var scopeBar = document.getElementById('dash-scope-bar');
     if (!scopeBar) return;
@@ -403,6 +406,8 @@
   };
 
   /* ── Render dashboard ──────────────────────────────────────── */
+  var _collapsedFolders = {};
+  var _selectedFolders = {};
   function renderDashboard() {
     var data = getDataForScope(currentScope, currentScopePath);
     var totalWrong = 0, totalFlagged = 0;
@@ -468,44 +473,72 @@
 
     var html = '';
     var lastTopFolder = '__none__';
+    var folderGroups = {}; // topFolder -> [groups]
 
+    // First pass: organize groups by topFolder
     groups.forEach(function (g) {
-      // Show folder heading if top-level folder changed and we have a title
-      if (g.topFolder && g.topFolder !== lastTopFolder) {
-        // Look up the best title: stored title, cache for exact folder, cache for top folder
-        var displayFolderTitle = g.folderTitle
-          || _folderTitleCache[g.topFolder]
-          || _folderTitleCache[g.folder]
-          || decodeURIComponent(g.topFolder.replace(/\/$/, ''));
-        // Don't show raw folder name if it matches the project root
-        if (displayFolderTitle && displayFolderTitle === _rootName) {
-          displayFolderTitle = '';
-        }
-        if (displayFolderTitle) {
-          html += '<div class="dash-folder-title">' + escFolderIcon(escHtml(displayFolderTitle)) + '</div>';
-        }
-        lastTopFolder = g.topFolder;
+      if (!g.topFolder) g.topFolder = '__root__';
+      if (!folderGroups[g.topFolder]) folderGroups[g.topFolder] = [];
+      folderGroups[g.topFolder].push(g);
+    });
+
+    // Render each folder section
+    Object.keys(folderGroups).forEach(function (topFolder) {
+      var fGroups = folderGroups[topFolder];
+      if (!fGroups.length) return;
+
+      var firstGroup = fGroups[0];
+      var displayFolderTitle = firstGroup.folderTitle
+        || _folderTitleCache[firstGroup.topFolder]
+        || _folderTitleCache[firstGroup.folder]
+        || decodeURIComponent(firstGroup.topFolder.replace(/\/$/, ''));
+
+      // Don't show raw folder name if it matches the project root
+      if (displayFolderTitle && displayFolderTitle === _rootName) {
+        displayFolderTitle = '';
       }
 
-      var dateStr = g.timestamp
-        ? new Date(g.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-        : '';
+      var isCollapsed = _collapsedFolders[topFolder] || false;
+      var isSelected = _selectedFolders.hasOwnProperty(topFolder) ? _selectedFolders[topFolder] : true;
 
-      html += '<div class="dash-quiz-group">';
-      html += '<div class="dash-quiz-title">' + (g.title);
-      if (g.wrongItems.length)   html += ' <span class="quiz-badge wrong-badge">' + g.wrongItems.length + ' wrong</span>';
-      if (g.flaggedItemsAll.length) html += ' <span class="quiz-badge flag-badge">' + g.flaggedItemsAll.length + ' flagged</span>';
-      if (dateStr)             html += ' <span style="font-size:0.7rem;color:var(--text-muted);font-weight:400;margin-left:auto;">' + dateStr + '</span>';
-      html += '</div>';
+      if (displayFolderTitle) {
+        html += '<div class="dash-folder-header" style="align-items:center;">';
+        html += '<div class="dash-folder-title" onclick="toggleFolder(\'' + escHtml(topFolder) + '\')">';
+        html += '<span class="dash-folder-toggle' + (isCollapsed ? ' collapsed' : '') + '">\u25BC</span> ';
+        html += escFolderIcon(escHtml(displayFolderTitle));
+        html += '</div>';
+        html += '<input type="checkbox" class="dash-folder-select" ';
+        html += (isSelected ? 'checked' : '') + ' ';
+        html += 'onclick="event.stopPropagation(); toggleFolderSelection(\'' + escHtml(topFolder) + '\', this.checked)" ';
+        html += 'title="Select for export">';
+        html += '</div>';
+      }
 
-      g.wrongItems.forEach(function (q) {
-        var isAlsoFlagged = g.flaggedItemsAll.some(function (f) { return f.idx === q.idx; });
-        html += buildItem(g.uid, q, isAlsoFlagged ? 'Wrong + Flagged' : 'Wrong', 'wrong', '\u2717');
+      html += '<div class="dash-folder-content' + (isCollapsed ? ' collapsed' : '') + '" id="folder-content-' + escHtml(topFolder) + '">';
+
+      fGroups.forEach(function (g) {
+        var dateStr = g.timestamp
+          ? new Date(g.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+          : '';
+
+        html += '<div class="dash-quiz-group">';
+        html += '<div class="dash-quiz-title">' + (g.title);
+        if (g.wrongItems.length)   html += ' <span class="quiz-badge wrong-badge">' + g.wrongItems.length + ' wrong</span>';
+        if (g.flaggedItemsAll.length) html += ' <span class="quiz-badge flag-badge">' + g.flaggedItemsAll.length + ' flagged</span>';
+        if (dateStr)             html += ' <span style="font-size:0.7rem;color:var(--text-muted);font-weight:400;margin-left:auto;">' + dateStr + '</span>';
+        html += '</div>';
+
+        g.wrongItems.forEach(function (q) {
+          var isAlsoFlagged = g.flaggedItemsAll.some(function (f) { return f.idx === q.idx; });
+          html += buildItem(g.uid, q, isAlsoFlagged ? 'Wrong + Flagged' : 'Wrong', 'wrong', '\u2717');
+        });
+        g.flaggedItems.forEach(function (q) {
+          html += buildItem(g.uid, q, 'Flagged', 'flagged', '\u2691');
+        });
+        html += '</div>';
       });
-      g.flaggedItems.forEach(function (q) {
-        html += buildItem(g.uid, q, 'Flagged', 'flagged', '\u2691');
-      });
-      html += '</div>';
+
+      html += '</div>'; // close dash-folder-content
     });
 
     body.innerHTML = html || '<div class="dash-empty"><div class="dash-empty-icon">\u2705</div><p>No wrong or flagged questions tracked. Great job!</p></div>';
@@ -532,6 +565,24 @@
   window.closeTrackerDashboard = function () {
     var overlay = document.getElementById('tracker-dashboard');
     if (overlay) overlay.classList.remove('open');
+  };
+
+  /* ── Toggle folder collapse ────────────────────────────────── */
+  window.toggleFolder = function (topFolder) {
+    _collapsedFolders[topFolder] = !_collapsedFolders[topFolder];
+    var contentEl = document.getElementById('folder-content-' + topFolder);
+    var toggleEl = contentEl ? contentEl.previousElementSibling.querySelector('.dash-folder-toggle') : null;
+    if (contentEl) {
+      contentEl.classList.toggle('collapsed', _collapsedFolders[topFolder]);
+    }
+    if (toggleEl) {
+      toggleEl.classList.toggle('collapsed', _collapsedFolders[topFolder]);
+    }
+  };
+
+  /* ── Toggle folder selection ───────────────────────────────── */
+  window.toggleFolderSelection = function (topFolder, checked) {
+    _selectedFolders[topFolder] = checked;
   };
 
   /* ── Remove single item ────────────────────────────────────── */
@@ -568,7 +619,15 @@
 
   /* ── PDF Export ────────────────────────────────────────────── */
   window.exportTrackerToPDF = function () {
-    var data = getDataForScope(currentScope, currentScopePath);
+    // Get all tracker data and filter by selected folders
+    var allData = getAllTrackerData();
+    
+    // Filter data based on selected folders (default: all selected)
+    var data = allData.filter(function (d) {
+      var topFolder = getTopLevelFolder(getFolderForEntry(d)) || '__root__';
+      return _selectedFolders.hasOwnProperty(topFolder) ? _selectedFolders[topFolder] : true;
+    });
+
     if (!data.length) { showToast('No tracked questions to export.'); return; }
 
     var totalWrong = 0, totalFlagged = 0;
@@ -577,7 +636,7 @@
     var scopeFolderKey = currentScopePath ? currentScopePath + '/' : '';
     var scopeLabel = currentScope === 'folder'
       ? (_folderTitleCache[scopeFolderKey] || decodeURIComponent(currentScopePath))
-      : 'All Quizzes';
+      : 'Selected Exams';
     var now = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
     var html = '<div style="font-family:Arial,sans-serif;max-width:780px;margin:0 auto;padding:20px;color:#1c1917;">'
