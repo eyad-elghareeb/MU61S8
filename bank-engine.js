@@ -1597,14 +1597,17 @@ function shuffle(arr) {
 
 function selectSessionQuestions(count, order = 'sequential') {
   const bankSize = QUESTION_BANK.length;
-  const n = Math.min(count, bankSize);
   const progress = getBankProgress();
-
+  
   const allIndices = Array.from({ length: bankSize }, (_, i) => i);
   let unshown = allIndices.filter(i => !progress.shownIndices.includes(i));
-
+  
+  // Cap count to remaining questions in current cycle
+  const maxAllowed = unshown.length > 0 ? unshown.length : bankSize;
+  const n = Math.min(count, maxAllowed);
+  
   let picked;
-
+  
   if (unshown.length === 0) {
     // All questions have been shown — start a new coverage cycle
     progress.cycleCount++;
@@ -1615,15 +1618,6 @@ function selectSessionQuestions(count, order = 'sequential') {
     picked = order === 'sequential'
       ? unshown.sort((a, b) => a - b).slice(0, n)
       : shuffle(unshown).slice(0, n);
-  } else if (unshown.length < n) {
-    // Not enough unshown questions for the requested count.
-    // Only allow selecting the remaining questions in this session.
-    // User must complete this session to start a new cycle with full selection.
-    picked = order === 'sequential'
-      ? unshown.sort((a, b) => a - b)
-      : shuffle(unshown);
-    // Update count to match remaining
-    selectedCount = picked.length;
   } else {
     // Sequential: pick next N questions in original bank order (no shuffle)
     // Random: shuffle then pick N for fair random coverage
@@ -1640,8 +1634,6 @@ function selectSessionQuestions(count, order = 'sequential') {
   SESSION_QUESTION_INDICES = picked;
   return picked.map(i => QUESTION_BANK[i]);
 }
-
-/* ─── START SCREEN LOGIC ────────────────────────────────────── */
 function updateStartScreenStats() {
   const progress = getBankProgress();
   const bankSize = QUESTION_BANK.length;
@@ -1655,20 +1647,21 @@ function updateStartScreenStats() {
   document.getElementById('coverage-fill').style.width = pct + '%';
   document.getElementById('coverage-pct').textContent  = pct + '%';
 
-  // Cap the question count input to bank size (allow user to request any amount)
+  // Cap the question count input to remaining questions in current cycle
   const inp = document.getElementById('q-count-input');
   const currentVal = parseInt(inp.value) || selectedCount || 20;
-  const maxAllowed = bankSize; // Allow up to full bank size
+  // During active cycle, cap to remaining; after cycle complete, allow full bank
+  const maxAllowed = remaining > 0 ? remaining : bankSize;
   inp.max = maxAllowed;
   inp.placeholder = maxAllowed;
   
-  // Don't cap current value - let user choose what they want
+  // Cap current value if it exceeds remaining
   if (currentVal > maxAllowed) {
     inp.value = maxAllowed;
     selectedCount = maxAllowed;
   }
   
-  // Update the +5 button behavior based on bank size, not remaining
+  // Update the +5 button behavior based on remaining questions
   const plusBtn = inp.parentElement.querySelector('.time-adj-btn:last-child');
   if (plusBtn) {
     plusBtn.textContent = currentVal >= maxAllowed ? 'max' : '+5';
@@ -1680,18 +1673,23 @@ function updateStartScreenStats() {
 function adjustCount(delta) {
   const inp = document.getElementById('q-count-input');
   const bankSize = QUESTION_BANK.length;
+  const progress = getBankProgress();
+  const remaining = Math.max(1, bankSize - progress.shownIndices.length);
+  // During active cycle, cap to remaining; after cycle complete, allow full bank
+  const maxAllowed = remaining > 0 && remaining < bankSize ? remaining : bankSize;
+  
   const cur = parseInt(inp.value) || selectedCount || 20;
-  const newVal = Math.max(1, Math.min(bankSize, cur + delta));
+  const newVal = Math.max(1, Math.min(maxAllowed, cur + delta));
   inp.value = newVal;
   selectedCount = newVal;
   autoSetTime(newVal);
 
-  // Update +5 button state based on bank size
+  // Update +5 button state based on remaining questions
   const plusBtn = inp.parentElement.querySelector('.time-adj-btn:last-child');
   if (plusBtn) {
-    plusBtn.textContent = newVal >= bankSize ? 'max' : '+5';
-    plusBtn.disabled = newVal >= bankSize;
-    plusBtn.style.opacity = newVal >= bankSize ? '0.4' : '';
+    plusBtn.textContent = newVal >= maxAllowed ? 'max' : '+5';
+    plusBtn.disabled = newVal >= maxAllowed;
+    plusBtn.style.opacity = newVal >= maxAllowed ? '0.4' : '';
   }
 
   // Only clear saved progress when user actively changes the count (not during init)
@@ -1700,21 +1698,25 @@ function adjustCount(delta) {
 
 function setCount(n) {
   const bankSize = QUESTION_BANK.length;
+  const progress = getBankProgress();
+  const remaining = Math.max(1, bankSize - progress.shownIndices.length);
+  // During active cycle, cap to remaining; after cycle complete, allow full bank
+  const maxAllowed = remaining > 0 && remaining < bankSize ? remaining : bankSize;
   
-  if (n === -1) n = bankSize; // "All" = all questions in bank
-  n = Math.max(1, Math.min(n, bankSize));
+  if (n === -1) n = maxAllowed; // "All" = all remaining questions in current cycle
+  n = Math.max(1, Math.min(n, maxAllowed));
   selectedCount = n;
 
   document.getElementById('q-count-input').value = n;
   autoSetTime(n);
 
-  // Update +5 button state based on bank size
+  // Update +5 button state based on remaining questions
   const inp = document.getElementById('q-count-input');
   const plusBtn = inp.parentElement.querySelector('.time-adj-btn:last-child');
   if (plusBtn) {
-    plusBtn.textContent = n >= bankSize ? 'max' : '+5';
-    plusBtn.disabled = n >= bankSize;
-    plusBtn.style.opacity = n >= bankSize ? '0.4' : '';
+    plusBtn.textContent = n >= maxAllowed ? 'max' : '+5';
+    plusBtn.disabled = n >= maxAllowed;
+    plusBtn.style.opacity = n >= maxAllowed ? '0.4' : '';
   }
 
   // Only clear saved progress when user actively changes the count (not during init)
@@ -1723,21 +1725,25 @@ function setCount(n) {
 
 function onCustomCount(val) {
   const bankSize = QUESTION_BANK.length;
+  const progress = getBankProgress();
+  const remaining = Math.max(1, bankSize - progress.shownIndices.length);
+  // During active cycle, cap to remaining; after cycle complete, allow full bank
+  const maxAllowed = remaining > 0 && remaining < bankSize ? remaining : bankSize;
   
   let n = parseInt(val) || 1;
-  n = Math.max(1, Math.min(n, bankSize));
+  n = Math.max(1, Math.min(n, maxAllowed));
   selectedCount = n;
   
   const inp = document.getElementById('q-count-input');
   inp.value = n;
   autoSetTime(n);
 
-  // Update +5 button state based on bank size
+  // Update +5 button state based on remaining questions
   const plusBtn = inp.parentElement.querySelector('.time-adj-btn:last-child');
   if (plusBtn) {
-    plusBtn.textContent = n >= bankSize ? 'max' : '+5';
-    plusBtn.disabled = n >= bankSize;
-    plusBtn.style.opacity = n >= bankSize ? '0.4' : '';
+    plusBtn.textContent = n >= maxAllowed ? 'max' : '+5';
+    plusBtn.disabled = n >= maxAllowed;
+    plusBtn.style.opacity = n >= maxAllowed ? '0.4' : '';
   }
 
   // Only clear saved progress when user actively changes the count (not during init)
@@ -1848,18 +1854,6 @@ function startQuiz() {
   const order = document.querySelector('input[name="quiz-order"]:checked').value;
   const timeMins = parseInt(document.getElementById('time-input').value) || 30;
   let count = selectedCount;
-
-  // Validate count against remaining questions
-  const bankSize = QUESTION_BANK.length;
-  const progress = getBankProgress();
-  const remaining = Math.max(1, bankSize - progress.shownIndices.length);
-  
-  // If user requested more than remaining, limit to remaining and show info
-  if (count > remaining && remaining < bankSize) {
-    count = remaining;
-    selectedCount = remaining;
-    showToast(`Only ${remaining} question${remaining > 1 ? 's' : ''} remaining in this cycle`);
-  }
 
   // Clear any existing saved progress before starting a new session
   clearProgress();
