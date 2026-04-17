@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-0c8b0af9f2ee';
+const CACHE_VERSION = 'mu61-quiz-7936040bf38d';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -118,8 +118,19 @@ var PRECACHE_REL_PATHS = [
   'ped/pediactric---chapter-1-cardio.html',
   'ped/pediactric---chapter-2-chest.html',
   'ped/pediactric---chapter-3-emergency.html',
+  'surg/60th-mid.html',
+  'surg/ahassan-question-bank-breast.html',
+  'surg/aio-breast.html',
   'surg/dr-magdy-questions-breast.html',
+  'surg/dr.-maf/all-dr-maf-questions---breast.html',
+  'surg/dr.-maf/drmaf-l1-anatomy.html',
+  'surg/dr.-maf/drmaf-l2-benign-breast-diseases.html',
+  'surg/dr.-maf/drmaf-l3-breast-cancer.html',
+  'surg/dr.-maf/drmaf-l4-ddx-and-male-breast-disease.html',
+  'surg/dr.-maf/index.html',
   'surg/index.html',
+  'surg/past-years-breast-qs.html',
+  'surg/schwartz-breast-mcq.html',
   'favicon.svg',
   'icon-48.png',
   'icon-72.png',
