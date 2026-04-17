@@ -2816,8 +2816,14 @@ checkSavedProgress();
         var isWrong   = ans !== undefined && ans !== q.correct;
         var isFlagged = state.flagged && state.flagged[i];
 
+        // Get the bank index for this question (critical for tracking across sessions)
+        var bankIndex = SESSION_QUESTION_INDICES && SESSION_QUESTION_INDICES[i] !== undefined 
+          ? SESSION_QUESTION_INDICES[i] 
+          : i;
+
         var qData = {
           idx: i,
+          bankIndex: bankIndex,  // Store bank index to identify question across sessions
           text: q.question,
           yourAnswer:   ans !== undefined ? KEYS[ans] + '. ' + q.options[ans] : 'Not answered',
           correctAnswer: KEYS[q.correct] + '. ' + q.options[q.correct],
