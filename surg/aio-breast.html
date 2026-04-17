@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>AIO-Breast</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mo2fau9w1jwjm",
+  "title": "AIO-Breast",
+  "description": "AIO Questions on breast chapter",
+  "icon": "🔪"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "The axillary lymph nodes are divided into three levels by:",
+    "options": [
+      "The axillary artery",
+      "The axillary vein",
+      "The pectoralis minor muscle",
+      "The clavicle",
+      "The nerve to lattisimus dorsi"
+    ],
+    "correct": 2,
+    "explanation": "The pectoralis minor muscle is the anatomical landmark used to divide the axillary lymph nodes into three levels: Level I (lateral to it), Level II (posterior/deep to it), and Level III (medial to it)."
+  },
+  {
+    "question": "A 40-year-old woman underwent her first screening mammogram. Which of the following mammographic findings would require a breast biopsy?",
+    "options": [
+      "Breast calcifications larger than 2 mm in diameter",
+      "Clustered breast micro calcification",
+      "A density that effaces with compression",
+      "Pop-corn calcification",
+      "Multiple round well-circumscribed breast densities"
+    ],
+    "correct": 1,
+    "explanation": "Clustered microcalcifications on a mammogram are highly suspicious for malignancy, particularly Ductal Carcinoma In Situ (DCIS), and mandate a breast biopsy for definitive diagnosis. Pop-corn calcifications are typically benign (fibroadenoma)."
+  },
+  {
+    "question": "Bilateral primary breast cancer is most likely to develop in association with:",
+    "options": [
+      "Medullary carcinoma",
+      "Colloid carcinoma",
+      "Duct carcinoma",
+      "Lobular carcinoma",
+      "Mastitis carcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Lobular carcinoma (both in situ and invasive) has a significantly higher rate of multicentricity and bilaterality compared to ductal carcinoma."
+  },
+  {
+    "question": "One of the following is a major contraindication for breast conserving surgery:",
+    "options": [
+      "Carcinoma in situ in 10% of the tumor",
+      "Palpable single mobile axillary lymph node",
+      "Tumor less than 3 cm",
+      "Multicentric tumor",
+      "Patient aged 45 years"
+    ],
+    "correct": 3,
+    "explanation": "Multicentric tumors (tumors located in more than one quadrant of the breast) are an absolute contraindication to breast-conserving surgery because clear surgical margins cannot be achieved without unacceptable cosmetic deformity."
+  },
+  {
+    "question": "Commonly causes creamy nipple discharge:",
+    "options": [
+      "Duct carcinoma",
+      "Duct papilloma",
+      "Subareolar mastitis",
+      "Duct ectasia",
+      "Breast abscess"
+    ],
+    "correct": 3,
+    "explanation": "Duct ectasia is a benign condition characterized by dilation of the subareolar ducts, which often fill with stagnant, lipid-rich secretions, leading to a thick, creamy, pasty, or greenish nipple discharge."
+  },
+  {
+    "question": "The most common cause of bloody nipple discharge is:",
+    "options": [
+      "Duct carcinoma",
+      "Duct papilloma",
+      "Sub-areolar mastitis",
+      "Duct ectasia",
+      "Breast abscess"
+    ],
+    "correct": 1,
+    "explanation": "An intraductal papilloma is a benign fibroepithelial tumor within the milk ducts and is statistically the most common cause of spontaneous, unilateral, bloody or serosanguineous nipple discharge."
+  },
+  {
+    "question": "One of the following is a main contraindication for conservative breast surgery:",
+    "options": [
+      "Carcinoma in situs in 10% of the tumor",
+      "Palpable single mobile axillary lymph node",
+      "Tumor less than 3 cm",
+      "Multicentric tumor",
+      "Patient aged 50 years"
+    ],
+    "correct": 3,
+    "explanation": "Multicentric disease makes it impossible to achieve complete tumor excision with negative margins while preserving a cosmetically acceptable breast, making it a primary contraindication for conservative surgery."
+  },
+  {
+    "question": "What is the most likely cause of bloody nipple discharge?",
+    "options": [
+      "Fibrocystic breast disease",
+      "Intraductal papilloma",
+      "Pituitary tumor",
+      "Invasive ductal carcinoma",
+      "Lobular carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Although breast cancer must be ruled out, a benign intraductal papilloma is the most frequent overall cause of unilateral bloody nipple discharge."
+  },
+  {
+    "question": "A 47-woman presents with invasive duct carcinoma in the left breast 4 x 2 cm with positive ipsilateral fixed axillary lymph node and no distant metastasis. What is TNM staging?",
+    "options": [
+      "T3N1M1",
+      "T3N2M0",
+      "T2N1M0",
+      "T2N0M0",
+      "T2N2M0"
+    ],
+    "correct": 4,
+    "explanation": "A tumor measuring 4 cm falls into the T2 category (2 to 5 cm). Fixed ipsilateral axillary lymph nodes are staged as N2. With no distant metastasis (M0), the final stage is T2N2M0."
+  },
+  {
+    "question": "Which one of the following lesions usually presents as a discrete, freely movable breast lump in the breast?",
+    "options": [
+      "Sclerosing adenosis",
+      "Cystic disease",
+      "Ductal carcinoma",
+      "Fibroadenoma",
+      "Plasma cell mastitis"
+    ],
+    "correct": 3,
+    "explanation": "Fibroadenomas are classically described as discrete, firm, smooth, and highly mobile lumps in the breast, often referred to clinically as a 'breast mouse'."
+  },
+  {
+    "question": "Breast self-examination:",
+    "options": [
+      "Is recommended for all women above the age of twenty",
+      "Is recommended for women above the age of 40 only",
+      "Is recommended to be done 3 times per month",
+      "Is recommended to be done twice yearly",
+      "Should be conducted in the presence of specialist surgeon"
+    ],
+    "correct": 0,
+    "explanation": "Breast self-awareness and self-examination are generally recommended to begin for women in their twenties to help them become familiar with the normal consistency of their breasts."
+  },
+  {
+    "question": "A 42-year-old woman presents with a large irregular lump, about 12 cm in diameter in her right breast, of 4 months' duration. The lump is very mobile and is stretching the skin and about to ulcerate:",
+    "options": [
+      "Traumatic fat necrosis",
+      "Cancer breast",
+      "Phylloid tumor",
+      "Breast abscess",
+      "Fibro adenoma"
+    ],
+    "correct": 2,
+    "explanation": "Phyllodes tumors typically present as large, rapidly growing, but highly mobile masses that stretch the overlying skin, causing thinning, venous engorgement, and sometimes pressure ulceration."
+  },
+  {
+    "question": "During a routine screening mammography, what is the findings that indicate a begin condition are which of the following?",
+    "options": [
+      "Discrete, stellate mass",
+      "Fine, clustered calcifications",
+      "Coarse calcifications",
+      "Solid, clearly defined mass with irregular edges",
+      "Discrete, non-palpable mass that has enlarged when compared with a mass shown on a mammogram taken 1 year previously"
+    ],
+    "correct": 2,
+    "explanation": "Coarse, popcorn-like calcifications on a mammogram are classically associated with degenerating fibroadenomas, which are benign ('begin' condition is a typo for benign in the source). The other options describe suspicious or malignant features."
+  },
+  {
+    "question": "What is the greatest impact on prognosis of breast cancer?",
+    "options": [
+      "The size of the primary tumor",
+      "The histological type of the carcinoma",
+      "The number of axillary nodes positive for metastasis",
+      "Hormonal receptor status of the primary tumor",
+      "Positive findings on tests for the presence of the BRCA (breast cancer) 1 gene"
+    ],
+    "correct": 2,
+    "explanation": "The axillary lymph node status (specifically the absolute number of positive nodes) remains the single most important and powerful independent prognostic factor for early-stage breast cancer."
+  },
+  {
+    "question": "Which of the following is the cause of Peau d'orange in advanced breast cancer?",
+    "options": [
+      "Lymphatic permeation to the skin by tumor",
+      "Lymphatic compression (obstruction) of the skin by tumor",
+      "Direct infiltration and contracture of Cooper's ligament",
+      "Infiltration and fibrosis of the main milk ducts",
+      "Venous obstruction"
+    ],
+    "correct": 1,
+    "explanation": "Peau d'orange (orange peel appearance) is caused by tumor emboli blocking the subdermal lymphatic channels. This lymphatic obstruction leads to cutaneous edema, causing the skin to swell around the tethered hair follicles."
+  },
+  {
+    "question": "A 40-year-old woman presents with a 1 cm nodule in the upper outer quadrant of right breast. She undergoes excision biopsy. Which pathological entity carries the highest risk for development of malignancy?",
+    "options": [
+      "Atypical ductal hyperplasia",
+      "Duct ectasia",
+      "Fibroadenoma",
+      "Florid papillary hyperplasia",
+      "Sclerosing adenosis"
+    ],
+    "correct": 0,
+    "explanation": "Atypical ductal hyperplasia (ADH) is a high-risk proliferative breast lesion. It substantially increases a woman's relative risk for developing subsequent invasive breast carcinoma compared to the other benign entities listed."
+  },
+  {
+    "question": "A 27-year-old woman presents with a single lump in the left breast that has been present for 6 months. On examination, there is a 3 cm smooth well circumscribed lump in the upper outer quadrant of the breast that is freely mobile and not attached to overlying skin. What is the most likely diagnosis?",
+    "options": [
+      "Sclerosing adenosis",
+      "Cystic disease",
+      "Ductal carcinoma",
+      "Fibroadenoma",
+      "Plasma cell mastitis"
+    ],
+    "correct": 3,
+    "explanation": "A smooth, well-circumscribed, and highly mobile painless mass in a young female under 30 is the classic clinical description of a fibroadenoma."
+  },
+  {
+    "question": "Which of the following breast cancer cases can be treated by conservative breast surgery?",
+    "options": [
+      "6 cm breast mass and the axilla is negative and no metastasis",
+      "Multicentric breast cancer case and no metastasis",
+      "4 cm breast cancer case with infiltration of multiple axillary lymph nodes",
+      "3 cm breast mass with negative axilla and no metastasis",
+      "2 cm breast mass with negative axilla and there is evidence of Peau d'orange"
+    ],
+    "correct": 3,
+    "explanation": "A localized 3 cm tumor with clinically negative nodes is an excellent candidate for breast-conserving surgery. Multicentric disease, large tumors (>5 cm), or skin involvement (peau d'orange, T4b) are generally contraindications."
+  },
+  {
+    "question": "A 22-year-old woman present complaining of a 2-week history of milky discharge from both her breasts. She is otherwise well. Clinical examination of the breasts is unremarkable and a pregnancy test is negative. Which of the following investigations would be indicated in the first instance?",
+    "options": [
+      "Dopamine levels",
+      "Fine needle aspiration",
+      "Mammogram",
+      "MRI of the breast",
+      "Prolactin levels"
+    ],
+    "correct": 4,
+    "explanation": "Bilateral milky discharge in a non-pregnant woman is termed galactorrhea. Checking serum prolactin levels is the essential first step to evaluate for hyperprolactinemia or a prolactin-secreting pituitary adenoma."
+  },
+  {
+    "question": "A 21 years old female presented by discrete, well circumscribed freely movable breast lump, the appropriate diagnosis is?",
+    "options": [
+      "Duct carcinoma",
+      "Plasma cell mastitis",
+      "Sclerosing adenosis",
+      "Fibroadenoma",
+      "Cystic disease of the breast"
+    ],
+    "correct": 3,
+    "explanation": "In a young woman (early twenties), a discrete, well-circumscribed, freely movable mass is the hallmark presentation of a benign fibroadenoma."
+  },
+  {
+    "question": "Which of the following conditions is associated with increased risk of breast cancer?",
+    "options": [
+      "Breast granuloma",
+      "Atypical hyperplasia",
+      "Fibrocystic mastopathy",
+      "Breast ductectazia",
+      "Breast cyst"
+    ],
+    "correct": 1,
+    "explanation": "Atypical hyperplasia (both ductal and lobular) is a significant proliferative breast disease with atypia that confers a 4- to 5-fold increased relative risk of developing breast cancer."
+  },
+  {
+    "question": "The following breast cancer lesion can be treated by conservative breast surgery:",
+    "options": [
+      "Tumor less than 4 cm with N2 axillary lymph nodes",
+      "Tumor less than 4 cm with a history of treatment from collagen vascular disease",
+      "Tumor less than 4 cm with extensive insitu component",
+      "Multicentric tumor",
+      "Tumor less than 4 cm with the axillary lymph nodes are not palpable"
+    ],
+    "correct": 4,
+    "explanation": "A single tumor under 4 cm with no clinically palpable lymph nodes is an ideal indication for breast-conserving surgery (lumpectomy). Collagen vascular diseases are relative/absolute contraindications to the requisite radiotherapy."
+  },
+  {
+    "question": "Which of the following breast lesions is a non invasive?",
+    "options": [
+      "Intraductal carcinoma",
+      "Medullary carcinoma",
+      "Mucinous carcinoma",
+      "Tubular carcinoma",
+      "Infiltrating lobular carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Intraductal carcinoma, also known as Ductal Carcinoma In Situ (DCIS), refers to malignant epithelial cells confined within the ductal system that have not breached the basement membrane, hence it is non-invasive."
+  },
+  {
+    "question": "Regarding the risk of breast cancer. Which of the following statements is true?",
+    "options": [
+      "Breast cancer occurs more commonly with lipomatosis",
+      "A history of breast cancer in first degree family relative",
+      "The first birth before age 18",
+      "Diabetes mellitus increases the risk of breast cancer",
+      "Hair dyes have been shown to increase the risk of breast cancer"
+    ],
+    "correct": 1,
+    "explanation": "A strong family history, particularly a first-degree relative (mother, sister, daughter) diagnosed with breast cancer, is a well-established and significant risk factor."
+  },
+  {
+    "question": "Breast conservative surgery is not suitable for:",
+    "options": [
+      "Mastitis carcinomatosa",
+      "1 cm infiltrating lobular carcinoma",
+      "8 mm infiltrating ductal carcinoma",
+      "Ductal carcinoma insitu",
+      "Non-comedo ductal carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Mastitis carcinomatosa (inflammatory breast cancer) features widespread dermal lymphatic invasion. It is an absolute contraindication to breast-conserving surgery and requires neoadjuvant chemotherapy followed by mastectomy."
+  },
+  {
+    "question": "Which one of the following chromosomal and/or genetic abnormalities associated with the development of breast cancer is not true?",
+    "options": [
+      "Mutations in the p53 tumor suppressor gene",
+      "A mutation in the short arm of chromosome 2",
+      "The presence of a BRCA 1 gene on chromosome 17",
+      "Trisomy 18",
+      "FAP gene mutation"
+    ],
+    "correct": 2,
+    "explanation": "Based on the provided answer key, option (c) is marked as the exception. While BRCA1 is indeed located on chromosome 17q21, this question likely tests specific obscure legacy concepts where the phrasing 'presence of' rather than 'mutation of' may be the intended distracter."
+  },
+  {
+    "question": "After Intraductal papilloma, unilateral bloody nipple discharge from one orifice is most commonly caused by which of the following pathologic conditions?",
+    "options": [
+      "Paget's disease of the nipple",
+      "Intraductal carcinoma",
+      "Inflammatory carcinoma",
+      "Subareolar mastitis",
+      "Soft fibroadenoma"
+    ],
+    "correct": 1,
+    "explanation": "While intraductal papilloma is the leading benign cause of unilateral bloody discharge, an underlying intra-ductal or invasive carcinoma is the most serious and second most common cause."
+  },
+  {
+    "question": "Which of the following conditions have an increased risk of breast carcinoma?",
+    "options": [
+      "Breast cyst",
+      "Duct ectasia",
+      "Atypical ductal or lobular hyperplasia",
+      "Fibroadenoma"
+    ],
+    "correct": 2,
+    "explanation": "Atypical hyperplasia (both ductal and lobular) is a well-recognized premalignant marker that significantly increases a patient's risk of subsequently developing breast carcinoma."
+  },
+  {
+    "question": "An 18-year-old presents with a well circumscribed 2 cm mass in her right breast. The mass is painless and has a rubbery consistency and discrete borders. It appears to move freely through the breast tissue. What is the likeliest diagnosis?",
+    "options": [
+      "Carcinoma",
+      "Cyst",
+      "Fibroadenoma",
+      "Cystosarcoma phylloids",
+      "Intramammary lymph node"
+    ],
+    "correct": 2,
+    "explanation": "The clinical description of a painless, rubbery, well-circumscribed, freely mobile mass in an 18-year-old strongly points to a fibroadenoma."
+  },
+  {
+    "question": "Galactorrhea, a milky discharge from the nipple in non pregnant woman is most likely to be associated with which of the following?",
+    "options": [
+      "Fibroadenoma",
+      "Tubular adenoma",
+      "Pituitary adenoma",
+      "Hyperparathyroidism",
+      "Breast abscess"
+    ],
+    "correct": 2,
+    "explanation": "A pituitary adenoma (prolactinoma) can secrete excess prolactin, leading to the abnormal production of milk (galactorrhea) in non-pregnant women."
+  },
+  {
+    "question": "Regarding duct carcinoma in situ, one statement only is true:",
+    "options": [
+      "May be discovered on screening mammography for asymptomatic women",
+      "It's not a true malignancy",
+      "Close observation in all that is needed",
+      "Is always bilateral"
+    ],
+    "correct": 0,
+    "explanation": "DCIS most frequently presents clinically as asymptomatic, clustered microcalcifications discovered incidentally on a routine screening mammogram."
+  },
+  {
+    "question": "After undergoing modified radical mastectomy for cancer of the right breast, a 52-year-old female teacher becomes aware that the medical end of her scapula becomes prominent in protraction movements at the shoulder. She also complains of some weakness in complete abduction of the same shoulder. What nerve was injured?",
+    "options": [
+      "Long thoracic",
+      "Thoracodorsal",
+      "Ulnar",
+      "Intercostobrachial"
+    ],
+    "correct": 0,
+    "explanation": "The long thoracic nerve innervates the serratus anterior muscle. Injury to this nerve leads to a 'winged scapula', characterized by prominence of the medial border of the scapula upon pushing or protraction."
+  },
+  {
+    "question": "In breast carcinoma, which one of the following statements is false?",
+    "options": [
+      "Ductal carcinoma is the most common variant",
+      "Lobular carcinoma occurs in 15 per cent",
+      "There may be a combination of lobular and ductal features",
+      "Colloid, medullary and lobular carcinoma carry a poor prognosis"
+    ],
+    "correct": 3,
+    "explanation": "Colloid (mucinous) and medullary carcinomas are actually specific subtypes of breast cancer that are well known for having a significantly better, more favorable prognosis compared to standard invasive ductal carcinoma."
+  },
+  {
+    "question": "How many lactiferous ducts drain into the nipple of the mature female breast?",
+    "options": [
+      "5 - 10",
+      "15 - 20",
+      "25 - 30",
+      "35 - 40"
+    ],
+    "correct": 1,
+    "explanation": "Anatomically, the mature female breast is made up of approximately 15 to 20 distinct glandular lobes, each draining via its own lactiferous duct that opens independently onto the nipple."
+  },
+  {
+    "question": "Absence of the breast (Amastia) is associated with:",
+    "options": [
+      "Turner's syndrome",
+      "Klienfelter's syndrome",
+      "Poland syndrome",
+      "Fleischer's syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Poland syndrome is a congenital disorder characterized by unilateral chest wall hypoplasia (absence of the sternal head of the pectoralis major muscle) and is frequently associated with ipsilateral amastia or breast hypoplasia."
+  },
+  {
+    "question": "The appropriate therapy of Paget's disease of the nipple:",
+    "options": [
+      "Topical steroid cream",
+      "Topical antifungal medication",
+      "Intralesional steroid injection",
+      "Resection"
+    ],
+    "correct": 3,
+    "explanation": "Paget's disease of the nipple is almost always associated with an underlying intra-ductal or invasive breast cancer. It requires definitive surgical resection (mastectomy or wide local excision with radiation), not topical treatments."
+  },
+  {
+    "question": "Which of the following conditions increases a woman's risk of breast cancer?",
+    "options": [
+      "Sclerosing adenosis",
+      "Fibroadenoma",
+      "Atypical lobular hyperplasia",
+      "Intraductal papilloma"
+    ],
+    "correct": 2,
+    "explanation": "Atypical lobular hyperplasia (ALH) is a high-risk proliferative lesion that increases a woman's lifetime risk of developing breast cancer by about 4 to 5 times."
+  },
+  {
+    "question": "Triple assessment of breast mass includes the following Except:",
+    "options": [
+      "Clinical evaluation",
+      "Imaging",
+      "Laboratory investigations",
+      "Cytology"
+    ],
+    "correct": 2,
+    "explanation": "The 'triple assessment' protocol for a breast lump involves 1) Clinical examination, 2) Imaging (Mammogram/Ultrasound), and 3) Tissue sampling (FNAC/Cytology or Core biopsy). Routine blood laboratory investigations are not part of this triad."
+  },
+  {
+    "question": "Probe test can differentiate phalloids from:",
+    "options": [
+      "Fibroadenoma",
+      "Breast mouse",
+      "Breast cancer",
+      "Chronic breast abscess"
+    ],
+    "correct": 2,
+    "explanation": "The 'slipping' or probe test assesses the mobility of a breast mass. It helps distinguish highly mobile, distinct masses like phyllodes tumors from rigid, infiltrative, tethered masses typical of breast cancer."
+  },
+  {
+    "question": "The commonest cause of bloody nipple discharge is ........................ :",
+    "options": [
+      "Paget's disease",
+      "Breast cancer",
+      "Duct papilloma",
+      "Fibroadenoma"
+    ],
+    "correct": 2,
+    "explanation": "Intraductal papilloma is the most common cause of spontaneous, unilateral, bloody nipple discharge due to bleeding from the delicate vascular fronds of the papilloma within the duct."
+  },
+  {
+    "question": "All of the following are risk factors of breast cancer Except:",
+    "options": [
+      "Early menarche",
+      "Obesity",
+      "Early menopause",
+      "Family history of ovarian cancer"
+    ],
+    "correct": 2,
+    "explanation": "Early menopause reduces a woman's lifetime exposure to endogenous estrogen, thus acting as a protective factor rather than a risk factor for breast cancer. Early menarche and late menopause increase the risk."
+  },
+  {
+    "question": "The following is a bad prognostic factor in breast cancer ............... :",
+    "options": [
+      "Node negative tumor",
+      "Tumors less than 1 cm in diameter",
+      "Pregnancy",
+      "Medullary breast cancer"
+    ],
+    "correct": 2,
+    "explanation": "Pregnancy-associated breast cancer is generally considered to carry a worse prognosis, largely because it is often diagnosed at a more advanced stage due to masking by physiological breast changes during pregnancy."
+  },
+  {
+    "question": "A 25 years old female presented with a well-defined mobile breast mass 2 cm in diameter, the mass is painless and she noticed it 1 month ago. Your best investigation of choice will be:",
+    "options": [
+      "Mammogram",
+      "Ultrasound of the breast",
+      "Excisional biopsy",
+      "Ductoscopy of the breast"
+    ],
+    "correct": 1,
+    "explanation": "In women under 30-35 years of age, breast tissue is dense, rendering mammography less sensitive. An ultrasound is the first-line and most appropriate imaging modality for evaluating a breast mass in this age group."
+  },
+  {
+    "question": "A 35-year-old professional dancer presents with a well-defined, tense, smooth mass in the upper out quadrant of the left breast. She states that the mass becomes larger just before onset of her periods. Aspiration yields a clear yellow fluid and the mass disappears. The most likely diagnosis is:",
+    "options": [
+      "Fibroadenoma is a cyst",
+      "Fibrocystic disease of the breast",
+      "Carcinoma in a cyst",
+      "Lipoma",
+      "Galactocele"
+    ],
+    "correct": 1,
+    "explanation": "A cyst that fluctuates in size with the menstrual cycle and completely collapses upon aspiration of clear/yellow fluid is the classic presentation of a simple cyst associated with fibrocystic breast changes."
+  },
+  {
+    "question": "While performing radical mastectomy long thoracic nerve was injured. Which muscle will be affected?",
+    "options": [
+      "Scalenous anterior",
+      "Scalenous medius",
+      "Serratus anterior",
+      "Subscapularis",
+      "Teres major"
+    ],
+    "correct": 2,
+    "explanation": "The long thoracic nerve (nerve of Bell) provides motor innervation strictly to the serratus anterior muscle. Its injury causes paralysis of this muscle and subsequent winging of the scapula."
+  },
+  {
+    "question": "All of the following are mammographic criteria of benign breast mass Except:",
+    "options": [
+      "Macrocalcifications",
+      "Smooth borders",
+      "Homogenous",
+      "Perifocal haziness"
+    ],
+    "correct": 3,
+    "explanation": "Perifocal haziness (spiculation or ill-defined margins) on a mammogram represents tissue infiltration and is a classic radiological sign of a malignant breast lesion, not a benign one."
+  },
+  {
+    "question": "Which of the following is true regarding breast cancer?",
+    "options": [
+      "The most common site is the inner lower quadrant",
+      "Paget disease is a premalignant condition",
+      "Skin dimpling is caused by obstruction of lactiferous ducts",
+      "Tamoxifen is an estrogen receptor antagonist",
+      "Extended radical mastectomy is the operation of choice for management of breast cancer"
+    ],
+    "correct": 3,
+    "explanation": "Tamoxifen is a selective estrogen receptor modulator (SERM) that acts primarily as an estrogen receptor antagonist in breast tissue, making it a highly effective treatment for ER-positive breast cancers."
+  },
+  {
+    "question": "Cancer en cuirasse is:",
+    "options": [
+      "Skin nodules",
+      "Lymphedema of breast skin",
+      "Both",
+      "Non of the above"
+    ],
+    "correct": 2,
+    "explanation": "Cancer en cuirasse is a rare, advanced form of cutaneous metastasis from breast cancer characterized by diffuse, woody induration (lymphedema/fibrosis) and scattered firm skin nodules over the chest wall."
+  },
+  {
+    "question": "The following statements about pulmonary metastasis of breast cancer are true Except:",
+    "options": [
+      "May be asymptomatic",
+      "May produce persistent cough",
+      "May produce dyspnea",
+      "May cause pleural effusion",
+      "If localized to one lung while the other lung shows good functions, Pneumonectomy is indicated"
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary metastases denote systemic, Stage IV disease. They are treated with systemic therapies (chemotherapy, hormonal therapy). Radical surgery like pneumonectomy is not indicated for metastatic breast cancer spread to the lungs."
+  },
+  {
+    "question": "Concerning sampling of a breast lump, all the following statement are true Except:",
+    "options": [
+      "The most accurate is excisional biopsy",
+      "Fine needle aspiration cytology does not require general anesthesia",
+      "Fine needle aspiration cytology shows tissue architecture",
+      "Frozen section biopsy is sometimes inconclusive",
+      "Tru cut biopsy obtains a core of tissue"
+    ],
+    "correct": 2,
+    "explanation": "Fine Needle Aspiration Cytology (FNAC) only extracts isolated cells and cell clusters for cytological analysis; it inherently destroys and cannot show the surrounding tissue architecture needed to differentiate in situ from invasive cancer."
+  },
+  {
+    "question": "The main presentation of Paget's disease of the nipple is:",
+    "options": [
+      "Mass under the nipple",
+      "Bleeding per nipple",
+      "Unilateral red scaly nipple",
+      "Bilateral itchy red vesicles"
+    ],
+    "correct": 2,
+    "explanation": "Paget's disease of the breast typically presents as a persistent, unilateral, red, scaling, eczematous-like lesion on the nipple that does not respond to topical dermatological treatments."
+  },
+  {
+    "question": "The following statements about lymphatic drainage of the breast are all true Except:",
+    "options": [
+      "Lymph from medial half of the breast may drain in internal mammary nodes",
+      "From anywhere in the breast lymphatics drain mostly to axillary nodes",
+      "Division of axillary nodes into levels I, II and III depends upon the anatomical relationship with pectoralis minor",
+      "Level one axillary nodes is the highest in the axilla",
+      "The sentinel node is the earliest axillary node to be involved with cancer spread"
+    ],
+    "correct": 3,
+    "explanation": "Level I axillary nodes are the lowest nodes in the axilla, located lateral to the pectoralis minor. Level III (apical nodes) are located medial to the muscle and are the highest in the axilla."
+  },
+  {
+    "question": "The following statements about post-mastectomy arm edema, all are true Except:",
+    "options": [
+      "Is always transient",
+      "Adding radiotherapy to the axilla after clearance of lymph nodes increases the risk of edema",
+      "Rough dissection of the axillary vein at surgery is one of the causes",
+      "Insertion of an IV line in the ipsilateral upper limb is a predisposing factor",
+      "May be caused by recurrence in the axilla"
+    ],
+    "correct": 0,
+    "explanation": "Post-mastectomy arm edema (lymphedema) is a chronic, progressive, and largely irreversible condition due to the permanent disruption of lymphatic pathways; it is rarely just a 'transient' issue."
+  },
+  {
+    "question": "About acute lactational breast abscess, one statement only is true:",
+    "options": [
+      "Is commonly multilocular",
+      "Weaning the baby is mandatory",
+      "Aspiration pus by a wide bore needle is superior to incisional drainage as it avoids injury to lactiferous duct",
+      "Mammography is indicated if an abscess is suspected",
+      "Treatment is essentially conservative by antibiotics"
+    ],
+    "correct": 0,
+    "explanation": "Acute lactational breast abscesses are frequently multilocular because the tough fibrous septa of Cooper's ligaments compartmentalize the infection within the breast stroma."
+  },
+  {
+    "question": "Massive swellings of the breast include all the following Except:",
+    "options": [
+      "Phylloids tumor",
+      "Atrophic scirrhous carcinoma",
+      "Diffuse hypertrophy",
+      "Giant fibroadenoma"
+    ],
+    "correct": 1,
+    "explanation": "Atrophic scirrhous carcinoma is a slow-growing, highly fibrotic cancer that typically causes the breast to shrink, contract, and pucker, rather than producing a massive swelling."
+  },
+  {
+    "question": "Signs of pus formation are the following Except:",
+    "options": [
+      "Hectic fever",
+      "Edema of overlying",
+      "No response to medical treatment for 48 hours",
+      "Fluctuation occurs early in breast abscess"
+    ],
+    "correct": 3,
+    "explanation": "Fluctuation is typically a late sign in breast abscesses. Because the pus is held under tension deep within the fibrous septa of the breast tissue, it does not fluctuate early."
+  },
+  {
+    "question": "The commonest histological type of breast cancer is:",
+    "options": [
+      "Duct carcinoma in situ",
+      "Lobular carcinoma in situ",
+      "Invasive duct carcinoma",
+      "Invasive lobular carcinoma",
+      "Paget's disease of nipple"
+    ],
+    "correct": 2,
+    "explanation": "Invasive ductal carcinoma (Not Otherwise Specified) is by far the most common histological subtype, representing roughly 70-80% of all invasive breast cancers."
+  },
+  {
+    "question": "Hematogenous spread of breast cancer may produce any of the following Except:",
+    "options": [
+      "Brain metastasis",
+      "Fracture of the supine",
+      "Pleural effusion",
+      "Jaundice",
+      "Hypocalcemia"
+    ],
+    "correct": 4,
+    "explanation": "Breast cancer metastasis to the bone typically causes bone destruction leading to hypercalcemia, not hypocalcemia. ('Fracture of the supine' is a typo in the source for spine)."
+  },
+  {
+    "question": "For modified radical mastectomy, all the following statements are true Except:",
+    "options": [
+      "The areola and nipple are removed",
+      "The whole breast tissue is removed",
+      "Block dissection of the axillary nodes requires excision of axillary vein",
+      "Nerve to serratus anterior should be spared",
+      "The pectoralis major muscle is spared"
+    ],
+    "correct": 2,
+    "explanation": "Excision of the axillary vein during axillary node dissection is contraindicated, as it would lead to massive, debilitating venous engorgement and edema of the upper limb. It must be carefully preserved."
+  },
+  {
+    "question": "Neo-adjuvant therapy for malignancy means:",
+    "options": [
+      "Treatment with modern methods",
+      "Giving chemo and/or radiotherapy before surgery",
+      "Giving chemotherapy and radical excision",
+      "Giving radiotherapy after palliative excision",
+      "Giving chemotherapy and palliative excision"
+    ],
+    "correct": 1,
+    "explanation": "Neoadjuvant therapy refers to the administration of systemic therapy (like chemotherapy) or radiotherapy prior to the definitive primary surgical resection, usually to downstage the tumor."
+  },
+  {
+    "question": "Which of the following is a contraindication for breast conserving surgery (BCT)?",
+    "options": [
+      "Small lump to breast ratio",
+      "Central breast tumor mass",
+      "Breast tumor size less than 5 cm",
+      "Young age"
+    ],
+    "correct": 1,
+    "explanation": "A central breast tumor mass (located directly behind the nipple-areolar complex) is often considered a contraindication to BCT because achieving clear margins usually requires excision of the nipple-areolar complex, resulting in poor cosmetic outcomes."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

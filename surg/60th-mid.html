@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>60th Mid</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mo2gfyzxu55m3",
+  "title": "60th Mid",
+  "description": "Past batches Exams"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "The following nerve can be injured during axillary surgery in breast cancer patients:",
+    "options": [
+      "Axillary nerve",
+      "Intercostobrachial nerve",
+      "Spinal accessory nerve",
+      "Vagus nerve",
+      "Radial nerve"
+    ],
+    "correct": 1,
+    "explanation": "The intercostobrachial nerve provides sensation to the axilla and the medial aspect of the upper arm. It is frequently encountered and often injured during axillary lymph node dissection, leading to postoperative numbness in that region."
+  },
+  {
+    "question": "Which of the following breast lesions is characterized by being discrete, well defined, and freely mobile with lobulated surface. This lesion enlarges by expansion rather than infiltration?",
+    "options": [
+      "Breast abscess",
+      "Fibrocystic disease",
+      "Invasive duct cancer",
+      "Fibroadenoma",
+      "Plasma cell mastitis"
+    ],
+    "correct": 3,
+    "explanation": "Fibroadenoma is the most common benign tumor of the female breast, especially in young women. It is classically described as a 'breast mouse' because it is highly mobile, discrete, and grows by expansion within a capsule rather than infiltrating the surrounding tissue."
+  },
+  {
+    "question": "The most common clinical presentation of a duct papilloma is",
+    "options": [
+      "Recent nipple retraction",
+      "Painless lump",
+      "Bloody nipple discharge",
+      "Microcalcifications in mammography",
+      "Eczema and itching of the nipple and areola"
+    ],
+    "correct": 2,
+    "explanation": "Intraductal papilloma is a small, benign growth within a milk duct. Its hallmark clinical feature is spontaneous, unilateral nipple discharge, which is often bloody or serosanguineous."
+  },
+  {
+    "question": "The first line of Acute breast abscess management is:",
+    "options": [
+      "Surgical drainage by Hilton's technique",
+      "Toilet mastectomy",
+      "Follow-up only",
+      "Ultrasound Guided aspiration",
+      "Modified radical mastectomy"
+    ],
+    "correct": 3,
+    "explanation": "In modern practice, ultrasound-guided needle aspiration has replaced formal surgical incision and drainage as the first-line treatment for breast abscesses. It is less invasive, allows for quicker healing, and avoids surgical scarring."
+  },
+  {
+    "question": "A 46 years old female patient has irregular breast mass, her mammography shows BIRADS 5 left breast mass. What will be the most appropriate next step?",
+    "options": [
+      "Breast ultrasound",
+      "FNAC",
+      "Trucut needle biopsy (Core needle biopsy)",
+      "Excision",
+      "MRM"
+    ],
+    "correct": 2,
+    "explanation": "A BIRADS 5 classification on mammography indicates a very high suspicion of malignancy (>95%). A core needle (Trucut) biopsy is the standard next step to provide a definitive histological diagnosis and determine the tumor's biological markers (ER, PR, and HER2)."
+  },
+  {
+    "question": "What is the single most accurate and important prognostic factor for breast cancer?",
+    "options": [
+      "Tumor size",
+      "Pregnancy",
+      "Patient's age",
+      "Lymph node status",
+      "Tumor type"
+    ],
+    "correct": 3,
+    "explanation": "The status of the axillary lymph nodes (presence and number of metastatic nodes) remains the single most important independent prognostic factor for recurrence and overall survival in patients with operable breast cancer."
+  },
+  {
+    "question": "Which of the following is not a common finding in breast cancer patients?",
+    "options": [
+      "Hard mass.",
+      "irregular, ill-defined mass",
+      "Painful axillary lymph nodes.",
+      "Bloody nipple discharge.",
+      "Recently retracted nipple."
+    ],
+    "correct": 2,
+    "explanation": "Malignant lumps and associated metastatic axillary lymph nodes are typically painless. Painful lymph nodes are more commonly associated with inflammatory conditions or infections (lymphadenitis)."
+  },
+  {
+    "question": "Which of the following is a pre-malignant breast lesion?",
+    "options": [
+      "Ductectasia (Pasma cell mastitis)",
+      "Breast fibroadenoma",
+      "Breast fibroadenosis",
+      "Radial scar",
+      "Typical ductal hyperplasia"
+    ],
+    "correct": 3,
+    "explanation": "A radial scar is a complex sclerosing lesion that is considered a high-risk or pre-malignant lesion. It can be associated with tubular carcinoma and increases the risk of developing invasive cancer in either breast."
+  },
+  {
+    "question": "As regard congenital anomalies of the breast, Amazia is :",
+    "options": [
+      "Absence of one or both breasts",
+      "Absence of accessory breasts along milk line",
+      "lack of breast hypertrophy",
+      "Absence of the nipple",
+      "Absence of the milk line"
+    ],
+    "correct": 0,
+    "explanation": "Amazia is a congenital condition characterized by the complete absence of the mammary gland (glandular tissue) on one or both sides, although the nipple and areola are usually present."
+  },
+  {
+    "question": "Which of the following is an absolute contra-indication of breast conserving surgery?",
+    "options": [
+      "Young age",
+      "Positive Lymph nodes",
+      "Tumor size larger than 3 cm",
+      "Ductal carcinoma",
+      "Inflammatory breast cancer (Mastitis carciomatosis)"
+    ],
+    "correct": 4,
+    "explanation": "Inflammatory breast cancer (mastitis carcinomatosa) is an absolute contraindication to breast-conserving surgery because the disease is diffuse and involves the dermal lymphatics throughout the breast, requiring systemic therapy followed by total mastectomy."
+  },
+  {
+    "question": "A 63 years-old fit female patient underwent breast conserving surgery for breast cancer, post-operative staging is T1N1M0. Pathology shows positive hormone receptors. Choose the correct adjuvant treatments for her?",
+    "options": [
+      "Chemotherapy & Radiotherapy only",
+      "Aromatase inhibitors, Chemotherapy & Radiotherapy",
+      "Bilateral oophorectomy, Chemotherapy & Radiotherapy",
+      "Aromatase inhibitors & Chemotherapy only",
+      "Bilateral oophorectomy & Radiotherapy only"
+    ],
+    "correct": 1,
+    "explanation": "Since the patient had breast-conserving surgery, radiotherapy is mandatory. Being node-positive (N1), she requires chemotherapy. As a postmenopausal woman with hormone-receptor-positive disease, aromatase inhibitors are the standard endocrine therapy."
+  },
+  {
+    "question": "Breast cancer is characterized by",
+    "options": [
+      "There is good prognosis with mastitis carcinomatosis",
+      "Nodal status positive carries good prognosis",
+      "Trastuzumab (Herceptin) is given to Luminal A breast cancer patients",
+      "Triple negative breast cancer should start neoadjuvant chemotherapy",
+      "Sentinel lymph node biopsy has no value in node negative patients"
+    ],
+    "correct": 3,
+    "explanation": "Triple-negative breast cancer (TNBC) is aggressive and lacks targeted receptors (ER, PR, HER2). Neoadjuvant chemotherapy is the preferred initial treatment to shrink the tumor and evaluate pathological response before surgery."
+  },
+  {
+    "question": "Breast cancer is most commonly seen in which quadrant of the breast?",
+    "options": [
+      "Lower inner",
+      "Upper inner",
+      "Upper outer",
+      "Retroareolar",
+      "Lower outer"
+    ],
+    "correct": 2,
+    "explanation": "The upper outer quadrant contains the highest concentration of glandular breast tissue, and consequently, about 50% of all breast cancers originate in this location."
+  },
+  {
+    "question": "Which of the following is not an indication of breast MRI?",
+    "options": [
+      "To differentiate between Fibrosis/Recurrence.",
+      "Follow-up Implants.",
+      "ACR (American college of radiology) C&D breast.",
+      "Routine screening for old females more than 45 years old",
+      "Patient with known genetic mutation who needs screening at an early age."
+    ],
+    "correct": 3,
+    "explanation": "Routine screening for average-risk women over 45 is adequately performed with mammography. MRI is not a routine screening tool for the general population but is reserved for high-risk patients, implant evaluation, and specific diagnostic challenges."
+  },
+  {
+    "question": "Which of the following choices is a subtype of ductal carcinoma in situ?",
+    "options": [
+      "Comedo type",
+      "Tubular carcinoma",
+      "Invasive lobular carcinoma",
+      "Medullary carcinoma",
+      "Mucinous carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Ductal Carcinoma In Situ (DCIS) is classified into several architectural subtypes, including Comedo, cribriform, micropapillary, and solid. Comedo-type is characterized by high-grade cells and central necrosis."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

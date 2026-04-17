@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Dr.MAF L1-Anatomy</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mo2e9jqnp1x8z",
+  "title": "Dr.MAF L1-Anatomy",
+  "description": "Questions on every lecture Made By Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "The following statements about lymphatic drainage of the breast are all true, except:",
+    "options": [
+      "Lymph from medial half of the breast may drain in internal mammary nodes.",
+      "From anywhere in the breast lymphatics drain mostly to axillary nodes.",
+      "Division of axillary nodes into levels I, II, and III depends upon the anatomical relationship with the pectoralis minor muscle.",
+      "Level one axillary nodes is the highest in the axilla.",
+      "The sentinel node is the earliest axillary node to be involved with cancer spread."
+    ],
+    "correct": 3,
+    "explanation": "Level one axillary nodes are the lowest in the axilla, located lateral to the pectoralis minor muscle. Level three (apical) nodes are the highest."
+  },
+  {
+    "question": "Which of the following muscles do not form the posterior relation of breast?",
+    "options": [
+      "Pectoralis major",
+      "Serratus Anterior",
+      "Rectus Abdominis",
+      "Latissimus Dorsi",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The breast rests on the deep pectoral fascia overlying the pectoralis major, serratus anterior, and external oblique/rectus abdominis muscles. The latissimus dorsi forms the posterior axillary fold and is not a direct posterior relation."
+  },
+  {
+    "question": "After undergoing modified radical mastectomy for cancer of the right breast, a 52-year-old female teacher becomes aware that the medial end of her scapula becomes prominent in protraction movements at the shoulder. She also complains of some weakness in complete abduction of the same shoulder. What nerve was injured?",
+    "options": [
+      "Long thoracic",
+      "Thoracodorsal",
+      "Ulnar",
+      "Intercostobrachial",
+      "Axillary"
+    ],
+    "correct": 0,
+    "explanation": "Injury to the long thoracic nerve paralyses the serratus anterior muscle, causing a winged scapula where the medial border becomes prominent during protraction."
+  },
+  {
+    "question": "How many lactiferous ducts drain into the nipple of the mature female breast?",
+    "options": [
+      "5 - 10",
+      "15 - 20",
+      "25 - 30",
+      "35 - 40"
+    ],
+    "correct": 1,
+    "explanation": "The mature female breast is composed of 15 to 20 lobes, each drained by a single lactiferous duct that opens independently onto the nipple."
+  },
+  {
+    "question": "While performing radical mastectomy long thoracic nerve was injured. Which muscle will be affected?",
+    "options": [
+      "Scalenus anterior",
+      "Scalenous medius",
+      "Serratus anterior",
+      "Subscapularis",
+      "Teres major"
+    ],
+    "correct": 2,
+    "explanation": "The long thoracic nerve provides motor innervation exclusively to the serratus anterior muscle."
+  },
+  {
+    "question": "Cooper's ligament of the breast does not:",
+    "options": [
+      "Form a fibrous thickening of supportive connective tissue.",
+      "Extends from the pectoral fascia to the skin.",
+      "Contain lactiferous ducts.",
+      "Responsible for dimpling of the skin in case of carcinoma.",
+      "Provide structural support & breast contour."
+    ],
+    "correct": 2,
+    "explanation": "Cooper's ligaments are purely structural suspensory ligaments made of connective tissue. They do not contain the lactiferous ducts, which belong to the glandular tissue."
+  },
+  {
+    "question": "Which is true as regard the nipple:",
+    "options": [
+      "Lie at mid-clavicular line in 6 intercostal space.",
+      "The orifices of the lactiferous ducts lie near its apex.",
+      "The nipple points forward & inwards & downwards.",
+      "Lie at mid clavicular line at the level of the 4th rib.",
+      "Lactiferous ducts open in its side near the base."
+    ],
+    "correct": 1,
+    "explanation": "The lactiferous ducts converge and open via small orifices near the apex of the nipple to allow for milk ejection."
+  },
+  {
+    "question": "Which of the following is NOT a group of axillary lymph node groups:",
+    "options": [
+      "lymph nodes that lie at the lateral edge of the pectoralis major",
+      "lymph nodes that lie on the subscapular vessels",
+      "lymph nodes that are embedded along the intercosto-brachial nerve",
+      "Subclavicular lymph nodes",
+      "lymph nodes that lie around internal mammary vessels"
+    ],
+    "correct": 4,
+    "explanation": "Internal mammary lymph nodes form a separate parasternal lymphatic drainage chain deep to the anterior chest wall and are not classified as part of the axillary lymph node groups."
+  },
+  {
+    "question": "Which of the following do the breast veins drain into:",
+    "options": [
+      "Perforating branches of the external mammary vein",
+      "Tributaries of the subclavian vein",
+      "Perforating branches of posterior intercostal veins",
+      "Perforating branches of anterior intercostal veins",
+      "Tributaries of the jugular vein"
+    ],
+    "correct": 2,
+    "explanation": "Venous drainage of the breast primarily follows the arterial supply, draining into the internal mammary (internal thoracic) vein, axillary vein, and perforating branches of the posterior intercostal veins."
+  },
+  {
+    "question": "Which of the following is defined as absence of nipple:",
+    "options": [
+      "Athelia",
+      "Amazia",
+      "Atheliomezia",
+      "Microthelia",
+      "Micromazia"
+    ],
+    "correct": 0,
+    "explanation": "Athelia is the medical term for the congenital absence of one or both nipples."
+  },
+  {
+    "question": "Absence of the breast (amastia) is associated with:",
+    "options": [
+      "Turner s syndrome",
+      "Klinefelter's syndrome",
+      "Poland syndrome",
+      "Fleischer's syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Poland syndrome is a rare congenital anomaly characterized by the underdevelopment or absence of the chest muscle (pectoralis major) on one side, often accompanied by amastia or breast hypoplasia on that side."
+  },
+  {
+    "question": "The medial mammary artery is tributary the:",
+    "options": [
+      "2nd 3rd, and 4th intercostal arteries",
+      "Internal mammary artery",
+      "Thoracoacromial artery",
+      "Posterior intercostal arteries"
+    ],
+    "correct": 0,
+    "explanation": "Medial mammary arteries are often direct perforating branches passing through the 2nd, 3rd, and 4th intercostal spaces."
+  },
+  {
+    "question": "As regard congenital anomalies of the breast, Amazia is:",
+    "options": [
+      "Absence of one or both breast",
+      "Absence accessory breasts along milk line",
+      "lack of breast hypertrophy",
+      "Absence of nipple",
+      "Absence of the milk line"
+    ],
+    "correct": 0,
+    "explanation": "Amazia specifically refers to the condition where breast tissue is absent, but the nipple and areola remain present."
+  },
+  {
+    "question": "Regarding the anatomy of the breast, which of the following is true?",
+    "options": [
+      "The breast extends from the 1st to the 6th rib in non-lactating women.",
+      "The axillary tail of Spence passes through the Foramen of Langer.",
+      "Cooper's ligaments are responsible for breast mobility during lactation.",
+      "The nipple is typically located at the midclavicular line in the 6th intercostal space."
+    ],
+    "correct": 1,
+    "explanation": "The axillary tail of Spence is a prolongation of breast tissue that penetrates the deep fascia of the axilla through a defect known as the Foramen of Langer."
+  },
+  {
+    "question": "All of the following are true about the blood supply of the breast except:",
+    "options": [
+      "The internal thoracic artery is the main arterial supply.",
+      "The lateral thoracic artery is a branch of the axillary artery.",
+      "The posterior intercostal arteries provide medial perforators.",
+      "The venous drainage corresponds to the arterial supply."
+    ],
+    "correct": 2,
+    "explanation": "The medial perforators are supplied by the internal thoracic (internal mammary) artery. The posterior intercostal arteries supply the lateral aspect of the breast."
+  },
+  {
+    "question": "Regarding the lymphatic drainage of the breast, which of the following is correct?",
+    "options": [
+      "75% of lymph drains into the internal mammary lymph nodes.",
+      "The apical group of axillary lymph nodes receives drainage from all other groups.",
+      "Lymphatics from the lower inner quadrant drain directly into the supraclavicular nodes.",
+      "The subareolar plexus of Sabby drains primarily into the posterior intercostal lymph nodes."
+    ],
+    "correct": 1,
+    "explanation": "The apical (Level III) group of axillary lymph nodes serves as the final common pathway, receiving lymphatic drainage from all other axillary node groups before draining into the subclavian lymphatic trunk."
+  },
+  {
+    "question": "Which of the following statements about Cooper's ligaments is false?",
+    "options": [
+      "They are fibrous thickenings of connective tissue.",
+      "They become stretched during pregnancy and lactation.",
+      "They are responsible for skin dimpling in breast cancer.",
+      "They primarily provide arterial supply to the breast parenchyma."
+    ],
+    "correct": 3,
+    "explanation": "Cooper's ligaments are suspensory fibrous septa that support the breast. They do not have a vascular function and do not provide arterial supply."
+  },
+  {
+    "question": "The terminal duct lobular unit (TDLU) is significant because:",
+    "options": [
+      "It is the site where duct papillomas most commonly occur.",
+      "It is where most breast diseases originate, except duct ectasia.",
+      "It is located exclusively in the upper outer quadrant of the breast.",
+      "It drains directly into the lactiferous sinus without branching."
+    ],
+    "correct": 1,
+    "explanation": "The TDLU is the fundamental functional and pathological unit of the breast. The majority of benign and malignant breast diseases arise here, with the exception of conditions like duct ectasia which affect the larger central ducts."
+  },
+  {
+    "question": "Regarding the nerve supply of the breast, which of the following is true?",
+    "options": [
+      "It is primarily derived from the cervical plexus (C3-C5).",
+      "The intercostobrachial nerve supplies the upper medial part of the arm and axilla.",
+      "The lateral cutaneous branches of T1-T3 provide sensory innervation.",
+      "The nipple is innervated by the phrenic nerve."
+    ],
+    "correct": 1,
+    "explanation": "The intercostobrachial nerve (lateral cutaneous branch of T2) crosses the axilla and supplies sensory innervation to the skin of the axilla and the upper medial aspect of the arm."
+  },
+  {
+    "question": "Which of the following lymph node groups is classified as Level II in relation to the pectoralis minor muscle?",
+    "options": [
+      "Anterior (pectoral) group.",
+      "Posterior (scapular) group.",
+      "Central group.",
+      "Apical (subclavicular) group."
+    ],
+    "correct": 2,
+    "explanation": "Level II axillary lymph nodes are situated deep to (behind) the pectoralis minor muscle. The central group is typically classified as Level II."
+  },
+  {
+    "question": "The 'milk lines' during embryonic development extend from:",
+    "options": [
+      "The clavicle to the 8th rib.",
+      "The anterior axillary fold to the groin.",
+      "The midline to the posterior axillary line.",
+      "The sternum to the mid-axillary line"
+    ],
+    "correct": 1,
+    "explanation": "Mammary ridges, or milk lines, develop early in embryogenesis and extend bilaterally from the axilla (anterior axillary fold) down to the inguinal region (groin)."
+  },
+  {
+    "question": "Which of the following is a clinical significance of the retromammary space?",
+    "options": [
+      "It contains the main lactiferous ducts.",
+      "It allows free mobility of the breast due to loose connective tissue.",
+      "It is the primary site for breast cancer metastasis.",
+      "It houses the majority of the glandular tissue in the breast."
+    ],
+    "correct": 1,
+    "explanation": "The retromammary space is a layer of loose areolar tissue between the breast and the deep pectoral fascia, allowing the breast to glide freely over the chest wall."
+  },
+  {
+    "question": "The areola contains all of the following glands except:",
+    "options": [
+      "Sebaceous glands.",
+      "Sweat glands.",
+      "Accessory mammary glands (Montgomery's glands).",
+      "Brunner's glands."
+    ],
+    "correct": 3,
+    "explanation": "Brunner's glands are mucous-secreting glands located in the duodenum of the gastrointestinal tract, not in the breast."
+  },
+  {
+    "question": "Which of the following is true about the axillary lymph nodes?",
+    "options": [
+      "The average number is 15, but can reach up to 35 in some individuals.",
+      "The central group drains directly into the subclavian lymphatic trunk.",
+      "The apical group is located below and lateral to the pectoralis minor muscle.",
+      "The lateral (humeral) group lies along the lateral part of the axillary vein."
+    ],
+    "correct": 3,
+    "explanation": "The lateral (humeral) group of axillary lymph nodes is positioned posteromedial to the axillary vein and receives most of the lymphatic drainage from the upper limb."
+  },
+  {
+    "question": "Axillary L.N are divided into 3 levels by:",
+    "options": [
+      "Serratus anterior.",
+      "Pectoralis major.",
+      "Rectus Abdominis.",
+      "Pectoralis minor."
+    ],
+    "correct": 3,
+    "explanation": "Surgeons divide axillary lymph nodes into three levels based on their anatomical relationship to the pectoralis minor muscle (Level I: lateral, Level II: deep, Level III: medial)."
+  },
+  {
+    "question": "All of the following are nerves can be injured during breast surgery, except?",
+    "options": [
+      "Long thoracic N.",
+      "Intercostobrachial N.",
+      "Axillary N.",
+      "Thoracodorsal N."
+    ],
+    "correct": 2,
+    "explanation": "The axillary nerve passes through the quadrangular space to innervate the deltoid and teres minor and is generally located too high and deep in the axilla to be at significant risk during standard breast and axillary surgeries."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

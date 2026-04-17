@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Schwartz Breast MCQ</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mo2g25tjrr784",
+  "title": "Schwartz Breast MCQ",
+  "description": "Breast MCQs From Schwartz textbook"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "How many lactiferous ducts drain into the nipple of the mature female breast?",
+    "options": [
+      "5-10",
+      "15-20",
+      "25-30",
+      "35-40"
+    ],
+    "correct": 1,
+    "explanation": "The breast is composed of 15 to 20 lobes, each terminating in a major lactiferous duct opening onto the nipple."
+  },
+  {
+    "question": "During pregnancy, alveolar epithelium develops in the breast which is responsible after delivery for the production of milk. Which portion of the alveolar epithelial cell is responsible for production of the fat present in human milk?",
+    "options": [
+      "Endoplasmic reticulum",
+      "Mitochondria",
+      "Cell membrane",
+      "Cytoplasm"
+    ],
+    "correct": 3,
+    "explanation": "Milk proteins are synthesized in the endoplasmic reticulum, while the lipid component forms as droplets in the cytoplasm."
+  },
+  {
+    "question": "The medial mammary artery is a tributary of the",
+    "options": [
+      "2nd, 3rd, and 4th intercostal arteries",
+      "Internal mammary artery",
+      "Thoracoacromial artery",
+      "Posterior intercostal arteries"
+    ],
+    "correct": 0,
+    "explanation": "The medial mammary arteries arise from the second, third, and fourth anterior intercostal perforators."
+  },
+  {
+    "question": "Which of the following hormones is primarily responsible for differentiation of the breast ductal epithelium?",
+    "options": [
+      "Estrogen",
+      "Testosterone",
+      "Progesterone",
+      "Prolactin"
+    ],
+    "correct": 2,
+    "explanation": "Estrogen initiates development, but progesterone is responsible for the differentiation of the epithelium and lobular development."
+  },
+  {
+    "question": "Absence of the breast (amastia) is associated with:",
+    "options": [
+      "Turner's syndrome",
+      "Klinefelter's syndrome",
+      "Poland syndrome",
+      "Fleischer's syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Poland's syndrome involves breast absence, costal cartilage defects, and hypoplasia of the chest wall tissues."
+  },
+  {
+    "question": "The treatment of choice for Zuska's disease is",
+    "options": [
+      "Observation and nonsteroidal anti-inflammatory drugs (NSAIDs)",
+      "Antibiotics, incision, and drainage",
+      "Wide resection of the affected area",
+      "Mastectomy"
+    ],
+    "correct": 1,
+    "explanation": "Zuska's disease (recurrent periductal mastitis) is managed with antibiotics and surgical incision and drainage as needed."
+  },
+  {
+    "question": "A clinically positive subclavicular lymph node is a",
+    "options": [
+      "Level I node",
+      "Level II node",
+      "Level III node",
+      "Level IV node"
+    ],
+    "correct": 2,
+    "explanation": "Level III lymph nodes include the subclavicular group and are located medial to the pectoralis minor muscle."
+  },
+  {
+    "question": "Which of the following conditions leads to gynecomastia due to an increased production of estrogen?",
+    "options": [
+      "Klinefelter's syndrome",
+      "Hepatocellular carcinoma",
+      "Aging (senescence)",
+      "Renal failure"
+    ],
+    "correct": 1,
+    "explanation": "Hepatocellular carcinoma increases estrogen secretion, whereas the other options involve a decrease in testosterone production."
+  },
+  {
+    "question": "The treatment of choice for Mondor's disease is",
+    "options": [
+      "Observation and nonsteroidal anti-inflammatory drugs (NSAIDs)",
+      "Antibiotics, incision, and drainage",
+      "Wide resection of the affected area",
+      "Mastectomy"
+    ],
+    "correct": 0,
+    "explanation": "Mondor's disease is a self-limiting superficial thrombophlebitis managed with NSAIDs, warm compresses, and breast support."
+  },
+  {
+    "question": "The appropriate therapy for Paget's disease of the nipple is",
+    "options": [
+      "Topical steroid cream",
+      "Topical antifungal medication",
+      "Intralesional steroid injection",
+      "Resection"
+    ],
+    "correct": 3,
+    "explanation": "Paget's disease is associated with underlying malignancy and requires surgical resection (lumpectomy or mastectomy)."
+  },
+  {
+    "question": "In the ANDI (aberrations of normal development and involution) classification, a 2-cm fibroadenoma is considered",
+    "options": [
+      "Normal",
+      "A disorder",
+      "A disease",
+      "A premalignant disease"
+    ],
+    "correct": 1,
+    "explanation": "Fibroadenomas up to 3 cm are considered disorders; giant or multiple fibroadenomas are classified as disease."
+  },
+  {
+    "question": "Which of the following conditions increases a woman's risk of breast cancer?",
+    "options": [
+      "Sclerosing adenosis",
+      "Fibroadenoma",
+      "Atypical lobular hyperplasia",
+      "Intraductal papilloma"
+    ],
+    "correct": 2,
+    "explanation": "Atypical proliferative diseases like atypical lobular hyperplasia confer a fourfold increase in breast cancer risk."
+  },
+  {
+    "question": "A 35-year-old woman with a BRCA1 gene mutation seeks your advice about her known increased risk of breast cancer. You should recommend",
+    "options": [
+      "Mammograms and physical examination every 6 months until she is 50, then bilateral prophylactic mastectomy",
+      "Mammograms and physical examination every 6 months + tamoxifen",
+      "Prophylactic bilateral mastectomy and, if she has completed childbearing, prophylactic bilateral oophorectomy",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Prophylactic bilateral mastectomy and oophorectomy are the most effective risk-reduction strategies for BRCA mutation carriers."
+  },
+  {
+    "question": "Which of the following statements about lobular carcinoma in situ (LCIS) is true?",
+    "options": [
+      "In general, LCIS occurs at an older age than ductal carcinoma in situ (DCIS)",
+      "The majority of women with LCIS are premenopausal",
+      "LCIS is bilateral in 10 to 20% of women",
+      "Invasive ductal carcinoma can be expected to occur an average of 5 to 10 years later in approximately 75% of women with LCIS"
+    ],
+    "correct": 1,
+    "explanation": "LCIS tends to occur at a younger age than DCIS, with about two-thirds of cases found in premenopausal women."
+  },
+  {
+    "question": "Moderate ductal hyperplasia of the breast is characterized by the microscopic finding of",
+    "options": [
+      "3 to 4 cell layers above the basement membrane",
+      "5 or more cell layers above the basement membrane",
+      "Obstruction of >50% of the ductal lumen by hyperplastic cells",
+      "Obstruction of >70% of the ductal lumen by hyperplastic cells"
+    ],
+    "correct": 1,
+    "explanation": "Microscopically, moderate ductal hyperplasia is defined by the presence of five or more cell layers above the basement membrane."
+  },
+  {
+    "question": "Which of the following is appropriate treatment for a 3-cm fibroadenoma?",
+    "options": [
+      "Resection",
+      "Cryoablation",
+      "Observation",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Fibroadenomas can be safely managed via surgical removal, cryoablation, or conservative observation."
+  },
+  {
+    "question": "Which of the following women with recurrent subareolar infection should undergo a total duct excision (rather than a fistulotomy)?",
+    "options": [
+      "55-year-old with nipple inversion",
+      "55-year-old without nipple inversion",
+      "35-year-old with nipple inversion",
+      "35-year-old without nipple inversion"
+    ],
+    "correct": 0,
+    "explanation": "Total duct excision is indicated for older age, large/diffuse infections, or marked nipple inversion."
+  },
+  {
+    "question": "The average lifetime risk for a woman to develop breast cancer is approximately",
+    "options": [
+      "7%",
+      "12%",
+      "17%",
+      "22%"
+    ],
+    "correct": 1,
+    "explanation": "The average lifetime risk for a woman to develop breast cancer is approximately 12.5% (roughly 1 in 8)."
+  },
+  {
+    "question": "Routine mammography in women over 50 years of age decreases mortality from breast cancer by approximately",
+    "options": [
+      "10%",
+      "25%",
+      "33%",
+      "45%"
+    ],
+    "correct": 2,
+    "explanation": "Screening mammography in women aged 50 and older has been shown to reduce breast cancer mortality by 33%."
+  },
+  {
+    "question": "The most common genetic cause of breast cancer is a mutation in",
+    "options": [
+      "PTEN (Cowden syndrome)",
+      "BRCA2",
+      "P53 (Li-Fraumeni syndrome)",
+      "MSH2 (Muir-Torre syndrome)"
+    ],
+    "correct": 1,
+    "explanation": "Mutations in BRCA1 and BRCA2 are the most common genetic mutations associated with hereditary breast cancer."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

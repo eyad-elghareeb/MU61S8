@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Dr.MAF L3-Breast Cancer</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mo2eh8dpm530k",
+  "title": "Dr.MAF L3-Breast Cancer",
+  "description": "Questions on every lecture Made By Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "A patient with early breast cancer who has received appropriate treatment asks, \"When can I be considered free of cancer?\"",
+    "options": [
+      "After 2 years.",
+      "After 5 years.",
+      "After 10 years.",
+      "After 20 years.",
+      "Never."
+    ],
+    "correct": 4,
+    "explanation": "Breast cancer, especially ER-positive, carries a lifelong risk of late recurrence. Therefore, patients are never considered completely free of cancer risk and require long-term surveillance."
+  },
+  {
+    "question": "One of the following associations between tumour markers and cancers is not correct.",
+    "options": [
+      "AFP and breast cancer.",
+      "AFP and hepatocellular carcinoma.",
+      "AFP and malignant teratoma of the testis.",
+      "CA 19-9 and pancreatic cancer.",
+      "Thyrocalcitonin and medullary carcinoma of thyroid."
+    ],
+    "correct": 0,
+    "explanation": "Alpha-fetoprotein (AFP) is not a tumor marker for breast cancer. Common tumor markers used to monitor breast cancer include CA 15-3, CA 27.29, and CEA."
+  },
+  {
+    "question": "The axillary lymph nodes are divided into three levels I, II and III by :",
+    "options": [
+      "The axillary artery.",
+      "The axillary vein.",
+      "The pectoralis minor muscle.",
+      "The clavicle.",
+      "The nerve to latissimus dorsi"
+    ],
+    "correct": 2,
+    "explanation": "The pectoralis minor muscle is the anatomical landmark used to divide axillary lymph nodes into Level I (lateral/inferior to the muscle), Level II (posterior/deep to the muscle), and Level III (medial/superior to the muscle)."
+  },
+  {
+    "question": "Regarding breast cysts, one statement is true.",
+    "options": [
+      "The commonest is galactocele.",
+      "Malignancy is suspected if the cyst is tense.",
+      "Malignancy is suspected if the lump does not totally disappear after complete aspiration of fluid.",
+      "Multiplicity of cysts raises suspicion of malignancy.",
+      "In the majority of cases cyst excision is necessary"
+    ],
+    "correct": 2,
+    "explanation": "If a breast cyst does not completely resolve after fine needle aspiration, or if it rapidly recurs, there is a high clinical suspicion of an underlying malignancy or complex lesion requiring core biopsy or excision."
+  },
+  {
+    "question": "The commonest histological type of breast cancer is :",
+    "options": [
+      "Duct carcinoma in situ.",
+      "Lobular carcinoma in situ.",
+      "Invasive duct carcinoma.",
+      "Invasive lobular carcinoma.",
+      "Paget's disease of nipple"
+    ],
+    "correct": 2,
+    "explanation": "Invasive ductal carcinoma (Not Otherwise Specified - NOS) is the most common histological subtype, accounting for approximately 70-80% of all breast cancers."
+  },
+  {
+    "question": "The following statements about breast cancer prognosis are all true, except :",
+    "options": [
+      "Is worsened by the detection of axillary node deposits.",
+      "Is better in estrogen receptor +ve cases.",
+      "Is better for tumours in the medial than in the lateral half of the breast.",
+      "Is worse for invasive duct carcinoma than for cystosarcoma phyllodes.",
+      "Is affected by the tumour grade"
+    ],
+    "correct": 2,
+    "explanation": "Tumors located in the medial half of the breast generally carry a slightly worse prognosis due to their propensity to drain directly into the less surgically accessible internal mammary lymph nodes."
+  },
+  {
+    "question": "Breast self-examination:",
+    "options": [
+      "Is recommended for all women above the age of twenty.",
+      "Is recommended for women above the age of 40 only.",
+      "Is recommended to be done monthly in the immediate premenstrual period.",
+      "Is recommended to be done twice yearly.",
+      "Should be conducted in the presence of a specialist surgeon"
+    ],
+    "correct": 0,
+    "explanation": "Breast self-examination/self-awareness is generally recommended for all women starting at age 20. It should ideally be performed a few days after the menstrual period ends, not during the premenstrual period when breasts are nodular and tender."
+  },
+  {
+    "question": "A woman has a 3 cm breast mass. There are neither palpable axillary lymph nodes nor clinical evidence of metastasis. Tru-cut biopsy proves the presence of invasive duct carcinoma. TNM clinical staging is",
+    "options": [
+      "T1 N1 M1",
+      "T1 N0 M0",
+      "T2 N2 M0",
+      "T2 N1 M0",
+      "T2 N0 M0"
+    ],
+    "correct": 4,
+    "explanation": "A tumor measuring 3 cm is classified as T2 (between 2 and 5 cm). The absence of clinically palpable axillary nodes is N0. The lack of evidence of metastasis is M0. Thus, the clinical stage is T2N0M0."
+  },
+  {
+    "question": "The following statements about mammography are all true, except:",
+    "options": [
+      "Indicated for the diagnosis of a breast lump.",
+      "Indicated for regular screening of women who are at high-risk of development of breast cancer.",
+      "Indicated for follow-up of contralateral breast after mastectomy for breast cancer.",
+      "More informative in young women below the age of 35 years.",
+      "Addition of ultrasound improves the diagnosis of breast cancer"
+    ],
+    "correct": 3,
+    "explanation": "Mammography is generally less informative in younger women (under 35) because their breast tissue is more dense and fibroglandular, which can obscure lesions on X-ray. Ultrasound is the preferred initial imaging modality in this age group."
+  },
+  {
+    "question": "The following statements about Paget's disease of the nipple are all true, except:",
+    "options": [
+      "Is lobular carcinoma arising at the opening of a lactiferous duct on the nipple.",
+      "Should be differentiated from eczema of the nipple.",
+      "Sometimes there is no palpable mass.",
+      "Mastectomy is indicated.",
+      "The disease is not related to Paget's disease of bones."
+    ],
+    "correct": 0,
+    "explanation": "Paget's disease of the nipple is caused by an underlying intra-ductal carcinoma (DCIS or invasive ductal carcinoma), not lobular carcinoma."
+  },
+  {
+    "question": "Regarding axillary node involvement in cancer of the breast, all the following statements are true, except:",
+    "options": [
+      "Clinical assessment of the axilla is commonly inaccurate.",
+      "Prognosis is affected by the number of affected nodes.",
+      "Is an indication for adjuvant chemotherapy in early cases.",
+      "Is an indication for adding irradiation of the axilla after its surgical evacuation.",
+      "Raises suspicion of distant microscopic spread."
+    ],
+    "correct": 3,
+    "explanation": "Routine post-operative irradiation of the axilla following a complete surgical axillary lymph node dissection is generally contraindicated because it significantly increases the risk of severe upper extremity lymphedema."
+  },
+  {
+    "question": "The following statements about pulmonary metastases of breast cancer are all true, except :",
+    "options": [
+      "May be asymptomatic.",
+      "May produce persistent cough.",
+      "May produce dyspnoea.",
+      "May cause pleural effusion.",
+      "If localized to one lung while the other lung shows good function, pneumonectomy is indicated"
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary metastases indicate systemic Stage IV breast cancer. The primary treatment relies on systemic chemo- or endocrine therapy. Radical surgical resections like pneumonectomy are virtually never indicated for systemic metastatic spread."
+  },
+  {
+    "question": "Haematogenous spread of breast cancer may produce any of the following except :",
+    "options": [
+      "Brain metastases",
+      "Fracture of the spine",
+      "Pleural effusion",
+      "Jaundice",
+      "Hypercalcaemia"
+    ],
+    "correct": 2,
+    "explanation": "Pleural effusion is most commonly the result of direct extension to the pleura or localized lymphatic spread/obstruction, whereas brain metastases, bone deposits (fractures, hypercalcemia), and liver metastases (jaundice) represent classical haematogenous spread."
+  },
+  {
+    "question": "Concerning sampling of a breast lump, all the following statements are true, except :",
+    "options": [
+      "The most accurate is excision biopsy.",
+      "Fine needle aspiration cytology does not require general anaesthesia.",
+      "Fine needle aspiration cytology shows tissue architecture.",
+      "Frozen section biopsy is sometimes inconclusive.",
+      "Tru-cut biopsy obtains a core of tissue."
+    ],
+    "correct": 2,
+    "explanation": "Fine needle aspiration cytology (FNAC) draws out individual cells and small clusters, but it completely destroys the surrounding tissue architecture. A core (tru-cut) biopsy is required to assess tissue architecture and distinguish in situ from invasive disease."
+  },
+  {
+    "question": "The following statements about lymphatic drainage of the breast are all true, except:",
+    "options": [
+      "Lymph from medial half of the breast may drain in internal mammary nodes.",
+      "From anywhere in the breast lymphatics drain mostly to axillary nodes.",
+      "Division of axillary nodes into levels I, II, and III depends upon the anatomical relationship with the pectoralis minor muscle.",
+      "Level one axillary nodes is the highest in the axilla.",
+      "The sentinel node is the earliest axillary node to be involved with cancer spread."
+    ],
+    "correct": 3,
+    "explanation": "Level I axillary lymph nodes are the lowest nodes in the axilla, located lateral to the lateral border of the pectoralis minor muscle. Level III (apical) nodes are the highest."
+  },
+  {
+    "question": "Regarding duct carcinoma in situ of the breast, one statement only is true.",
+    "options": [
+      "May be discovered on screening mammography for asymptomatic women.",
+      "Is not a true malignancy.",
+      "It does not progress to invasive cancer but is a powerful marker of increased cancer risk.",
+      "Close observation is all that is needed.",
+      "Is always bilateral."
+    ],
+    "correct": 0,
+    "explanation": "Ductal carcinoma in situ (DCIS) most frequently presents as asymptomatic microcalcifications detected on routine screening mammograms."
+  },
+  {
+    "question": "Early breast cancer:",
+    "options": [
+      "Means a T1 N1 M0 tumour or less.",
+      "Means that cure is impossible.",
+      "Means that microscopic metastases are not present.",
+      "Primary treatment is by surgery ± radiotherapy",
+      "Adjuvant chemotherapy is not indicated."
+    ],
+    "correct": 3,
+    "explanation": "Early, operable breast cancer is primarily managed with curative-intent surgery (either mastectomy or breast-conserving surgery) often coupled with adjuvant radiotherapy to maximize local control."
+  },
+  {
+    "question": "For modified radical mastectomy all the following statements are true, except:",
+    "options": [
+      "The areola and nipple are removed.",
+      "The whole breast tissue is removed.",
+      "Block dissection of the axillary nodes requires excision of axillary vein.",
+      "Nerve to serratus anterior should be spared.",
+      "The pectoralis major muscle is spared."
+    ],
+    "correct": 2,
+    "explanation": "During an axillary lymph node dissection, the axillary vein must be carefully skeletonized and preserved. Excising the axillary vein would lead to massive, debilitating arm edema."
+  },
+  {
+    "question": "The following statements about post-mastectomy arm oedema are all true, except:",
+    "options": [
+      "Is always transient.",
+      "Adding radiotherapy to the axilla after clearance of lymph nodes increases the risk of oedema.",
+      "Rough dissection of the axillary vein at surgery is one of the causes.",
+      "Insertion of an IV line in the ipsilateral upper limb is a predisposing factor.",
+      "May be caused by recurrence in the axilla."
+    ],
+    "correct": 0,
+    "explanation": "Post-mastectomy arm edema (lymphedema) is typically a chronic, progressive, and largely irreversible condition caused by disruption of lymphatic channels, rather than a merely transient issue."
+  },
+  {
+    "question": "Acute hypercalcaemia in a patient with advanced breast cancer:",
+    "options": [
+      "Is caused by parathyroid hyperplasia.",
+      "Is better treated at home.",
+      "Bilateral lower limb oedema is a constant feature.",
+      "IV fluid administration is an important line of treatment.",
+      "Chemotherapy is the main method of reducing serum calcium."
+    ],
+    "correct": 3,
+    "explanation": "Aggressive intravenous fluid hydration (usually with normal saline) is the most critical first step in managing malignancy-associated hypercalcemia to restore intravascular volume and promote renal excretion of calcium."
+  },
+  {
+    "question": "Neo-adjuvant therapy for malignancy means :",
+    "options": [
+      "Treatment with modern methods.",
+      "Giving chemo and/or radiotherapy before surgery.",
+      "Giving chemotherapy after radical excision.",
+      "Giving radiotherapy after palliative excision.",
+      "Giving chemotherapy after palliative excision"
+    ],
+    "correct": 1,
+    "explanation": "Neoadjuvant therapy is defined as the administration of systemic agents (like chemotherapy or hormonal therapy) or radiation before the primary surgical intervention to downstage the tumor."
+  },
+  {
+    "question": "What is the hereditary factor percentage in female breast cancers?",
+    "options": [
+      "20-30%.",
+      "45-50%.",
+      "6-10%.",
+      "75-80%"
+    ],
+    "correct": 2,
+    "explanation": "Only a small minority of breast cancers, approximately 5% to 10%, are attributable to strongly inherited genetic mutations (such as BRCA1 and BRCA2)."
+  },
+  {
+    "question": "About breast cancer receptors, all the following statement are true, except :",
+    "options": [
+      "Breast cancer should always be tested for hormone receptors.",
+      "The majority of breast cancers are estrogen receptor positive.",
+      "Hormone receptor negative cancers respond poorly to chemotherapy.",
+      "Hormone receptor positive cancers have a better prognosis than negative ones.",
+      "HER2 positive cancers can benefit from treatment with trastuzumab (Herceptin)."
+    ],
+    "correct": 2,
+    "explanation": "Hormone receptor-negative breast cancers (such as triple-negative cancers) generally have high cellular proliferation rates, making them ironically more responsive to cytotoxic chemotherapy than slower-growing hormone-positive tumors."
+  },
+  {
+    "question": "About Ki-67 :",
+    "options": [
+      "This is a protein.",
+      "It is detected in breast cancer tissue.",
+      "A high level indicates distant metastases.",
+      "It is an indicator of cellular proliferation.",
+      "A high level carries a poor prognosis."
+    ],
+    "correct": 2,
+    "explanation": "Ki-67 is a nuclear protein associated with cellular proliferation and carries a poor prognosis when elevated. However, a high level alone is an index of cell division, not a direct indicator that distant metastases are present."
+  },
+  {
+    "question": "About conservative therapy for breast cancer, all the following statements are true, except :",
+    "options": [
+      "It applies for tumours that are 4cm or less.",
+      "The breast mass should be excised with a safety margin.",
+      "Excision of axillary nodes depends on the findings of sentinel lymph node biopsy.",
+      "Postoperative breast radiotherapy is an essential part of this treatment modality.",
+      "Multicentric tumours should receive neoadjuvant therapy before applying this method."
+    ],
+    "correct": 4,
+    "explanation": "Multicentric breast tumors (disease in more than one quadrant) cannot be completely excised with acceptable cosmetic results and are an absolute contraindication for breast-conserving therapy, regardless of neoadjuvant options."
+  },
+  {
+    "question": "Regarding breast cancer incidence, which of the following is true?",
+    "options": [
+      "It is equally common in males and females.",
+      "The upper outer quadrant (UOQ) is the most common site.",
+      "Synchronous bilateral breast cancer occurs in 10% of cases.",
+      "The lower inner quadrant (LIQ) has the lowest risk."
+    ],
+    "correct": 1,
+    "explanation": "Because it contains the greatest volume of fibroglandular tissue, the upper outer quadrant is the most frequent anatomical location for the development of breast cancer."
+  },
+  {
+    "question": "All of the following are predisposing factors for breast cancer EXCEPT:",
+    "options": [
+      "Late menopause.",
+      "BRCA1 mutation.",
+      "High dietary fiber intake.",
+      "Previous breast cancer history."
+    ],
+    "correct": 2,
+    "explanation": "High dietary fiber intake is considered to be protective or neutral, while late menopause, genetic mutations (BRCA), and a personal history of the disease are all well-established risk factors."
+  },
+  {
+    "question": "Which of the following syndromes is associated with the PTEN gene?",
+    "options": [
+      "Li-Fraumeni syndrome.",
+      "Cowden syndrome.",
+      "Lynch II syndrome.",
+      "Peutz-Jeghers syndrome."
+    ],
+    "correct": 1,
+    "explanation": "Cowden syndrome, or multiple hamartoma syndrome, is an autosomal dominant disorder caused by mutations in the PTEN tumor suppressor gene and confers a high lifetime risk of breast cancer."
+  },
+  {
+    "question": "Regarding BRCA2 mutations, which of the following is true?",
+    "options": [
+      "They are associated with triple-negative breast cancer (TNBC).",
+      "They increase the risk of pancreatic cancer.",
+      "They are located on chromosome 17.",
+      "They have no association with prostate cancer"
+    ],
+    "correct": 1,
+    "explanation": "BRCA2 mutations increase the susceptibility to several malignancies beyond breast and ovarian cancer, notably including male breast cancer, pancreatic cancer, and aggressive prostate cancer."
+  },
+  {
+    "question": "Which of the following lesions carries the highest risk (10-fold) of developing invasive breast cancer?",
+    "options": [
+      "Atypical ductal hyperplasia (ADH).",
+      "Sclerosing adenosis.",
+      "Lobular carcinoma in situ (LCIS).",
+      "Duct papilloma."
+    ],
+    "correct": 2,
+    "explanation": "Lobular carcinoma in situ (LCIS) is a significant non-obligate precursor and risk marker, increasing a woman's lifetime risk of developing invasive breast cancer by approximately 8- to 10-fold."
+  },
+  {
+    "question": "All of the following are considered precancerous lesions EXCEPT:",
+    "options": [
+      "Radial scar.",
+      "Macrocysts.",
+      "Fibroadenoma.",
+      "Complex fibroadenoma."
+    ],
+    "correct": 2,
+    "explanation": "Simple fibroadenomas are common, entirely benign fibroepithelial tumors that do not undergo malignant transformation or increase the risk of developing breast cancer."
+  },
+  {
+    "question": "Regarding DCIS, which of the following is true?",
+    "options": [
+      "Comedo-type DCIS is less aggressive than non-comedo types.",
+      "Microcalcifications are a characteristic feature.",
+      "DCIS >25 mm never shows microinvasion.",
+      "Van Nuys Grade III includes non-high-grade lesions without comedo necrosis."
+    ],
+    "correct": 1,
+    "explanation": "The classic, most common mammographic presentation of Ductal Carcinoma In Situ (DCIS) is the presence of clustered, fine, pleomorphic microcalcifications."
+  },
+  {
+    "question": "Which of the following invasive breast cancer types has the best prognosis?",
+    "options": [
+      "Medullary carcinoma.",
+      "Mucinous carcinoma.",
+      "Tubular carcinoma.",
+      "Metaplastic carcinoma."
+    ],
+    "correct": 2,
+    "explanation": "Tubular carcinoma is a well-differentiated, slow-growing subtype of invasive ductal carcinoma associated with a very low rate of axillary metastasis and an exceptionally favorable long-term prognosis."
+  },
+  {
+    "question": "A 55-year-old woman presents with eczematous changes of the nipple and no palpable mass. What is the most likely diagnosis?",
+    "options": [
+      "Paget's disease of the nipple.",
+      "Duct ectasia.",
+      "Acute mastitis.",
+      "Phylodes tumor."
+    ],
+    "correct": 0,
+    "explanation": "Unilateral, scaling, eczematoid changes confined to the nipple-areolar complex in an older woman that fail to respond to topical steroids are highly characteristic of Paget's disease of the breast."
+  },
+  {
+    "question": "All of the following are features of inflammatory breast cancer EXCEPT:",
+    "options": [
+      "Non-pitting edema.",
+      "Rapid onset with fever.",
+      "Diffuse brawny induration.",
+      "Palpable mass"
+    ],
+    "correct": 3,
+    "explanation": "Because inflammatory breast cancer rapidly diffuses through and obstructs the dermal lymphatic channels, it classically presents with profound skin changes (erythema, edema) rather than a distinct, discrete palpable mass."
+  },
+  {
+    "question": "Which molecular subtype of breast cancer is ER/PR positive but may have high Ki67 or HER2 positivity?",
+    "options": [
+      "Luminal A.",
+      "Luminal B.",
+      "HER2-enriched.",
+      "Triple-negative."
+    ],
+    "correct": 1,
+    "explanation": "Luminal B breast cancers are hormone receptor-positive but are distinguished from Luminal A by higher cellular proliferation (Ki67 > 20%) and/or HER2 overexpression, reflecting a more aggressive tumor biology."
+  },
+  {
+    "question": "All of the following are true about triple-negative breast cancer (TNBC) EXCEPT:",
+    "options": [
+      "It is associated with BRCA1 mutations.",
+      "It has a poor prognosis.",
+      "It responds well to hormonal therapy.",
+      "It is negative for ER, PR, and HER2."
+    ],
+    "correct": 2,
+    "explanation": "Triple-negative breast cancer is defined by the absence of estrogen, progesterone, and HER2 receptors, which renders targeted hormonal therapies completely ineffective."
+  },
+  {
+    "question": "Which of the following is the most common site of distant metastasis in breast cancer?",
+    "options": [
+      "Liver.",
+      "Lung.",
+      "Bone.",
+      "Brain."
+    ],
+    "correct": 2,
+    "explanation": "The skeletal system (bones) is overall the most frequent site of first distant metastasis for invasive breast cancer, particularly for hormone receptor-positive subtypes."
+  },
+  {
+    "question": "Regarding lymphatic spread of breast cancer, which of the following is true?",
+    "options": [
+      "Internal mammary lymph nodes are rarely involved.",
+      "Contralateral breast spread occurs via blood vessels.",
+      "Axillary lymph nodes are the primary drainage site.",
+      "Infraclavicular lymph nodes are never involved."
+    ],
+    "correct": 2,
+    "explanation": "The vast majority (approximately 75%) of the breast's lymphatic drainage flows to the axillary lymph nodes, making them the primary regional site for cancer metastasis."
+  },
+  {
+    "question": "A 60-year-old woman with a history of breast cancer presents with back pain and vertebral fractures. Imaging reveals osteolytic lesions. What is the most likely route of metastasis?",
+    "options": [
+      "Batson's plexus.",
+      "Portal vein.",
+      "Lymphatic embolization.",
+      "Transcoelomic spread."
+    ],
+    "correct": 0,
+    "explanation": "Batson's venous plexus is a network of valveless paraspinal veins that allows retrograde blood flow, enabling breast cancer emboli to deposit directly into the vertebral column."
+  },
+  {
+    "question": "Regarding TNM staging for breast cancer, which of the following is true?",
+    "options": [
+      "T1 tumors are >2 cm in size.",
+      "N2 indicates involvement of supraclavicular lymph nodes.",
+      "T4 includes tumors fixed to the chest wall or skin.",
+      "M1 refers to ipsilateral lymph node metastasis."
+    ],
+    "correct": 2,
+    "explanation": "In breast cancer staging, the T4 designation signifies a tumor of any size that directly invades and is fixed to the underlying chest wall or involves the overlying skin (e.g., ulceration or satellite nodules)."
+  },
+  {
+    "question": "All of the following are true about AJCC staging EXCEPT:",
+    "options": [
+      "Stage 0 includes DCIS and LCIS.",
+      "T2N1M0 is classified as Stage III.",
+      "The formula X+Y=3 requires subtracting 1 to determine the stage.",
+      "T3N2 is classified as Stage IIIB."
+    ],
+    "correct": 1,
+    "explanation": "Under standard anatomical staging, a T2N1M0 tumor corresponds to Stage IIB, not Stage III."
+  },
+  {
+    "question": "Which of the following skin manifestations is pathognomonic for breast cancer?",
+    "options": [
+      "Peau d'orange.",
+      "Dimpling.",
+      "Satellite nodules.",
+      "Dilated veins."
+    ],
+    "correct": 2,
+    "explanation": "The presence of macroscopic satellite skin nodules surrounding the primary tumor is a definitive, pathognomonic sign of advanced local breast cancer (T4b)."
+  },
+  {
+    "question": "A 45-year-old woman presents with a painless breast mass and peau d'orange appearance. Which of the following is the most likely underlying mechanism?",
+    "options": [
+      "Venous obstruction.",
+      "Lymphatic compression.",
+      "Direct skin infiltration.",
+      "Arterial insufficiency."
+    ],
+    "correct": 1,
+    "explanation": "Peau d'orange (an orange-peel-like appearance) occurs when widespread tumor cells obstruct the subdermal lymphatic channels, causing dermal edema and tethering of the hair follicles."
+  },
+  {
+    "question": "Regarding symptoms of breast cancer, which of the following is true?",
+    "options": [
+      "Pain is the most common presenting symptom.",
+      "Bloody nipple discharge is typical of ductal carcinoma.",
+      "Nipple retraction is an early sign.",
+      "Asymptomatic cases are rare."
+    ],
+    "correct": 1,
+    "explanation": "While intraductal papillomas are the most frequent cause overall, spontaneous bloody nipple discharge is a classic and highly suspicious symptom indicating underlying ductal carcinoma."
+  },
+  {
+    "question": "All of the following are local signs of breast cancer EXCEPT:",
+    "options": [
+      "Fixation of the mass to the chest wall.",
+      "Matted axillary lymph nodes.",
+      "Pitting edema of the breast.",
+      "Fungating ulcer."
+    ],
+    "correct": 2,
+    "explanation": "Edema secondary to breast cancer (peau d'orange) is characteristically non-pitting lymphedema, resulting from subdermal lymphatic obstruction."
+  },
+  {
+    "question": "Which of the following patients should undergo annual mammographic screening?",
+    "options": [
+      "A 35-year-old woman with no family history of breast cancer.",
+      "A 45-year-old woman with a first-degree relative diagnosed at age 55.",
+      "A 50-year-old woman with no risk factors.",
+      "A 30-year-old woman with fibroadenoma"
+    ],
+    "correct": 2,
+    "explanation": "Guidelines routinely recommend regular annual or biennial screening mammograms for all women beginning at age 40 to 50; therefore, a 50-year-old woman clearly meets the criteria regardless of additional risk factors."
+  },
+  {
+    "question": "Regarding mammographic findings in breast cancer, which of the following is true?",
+    "options": [
+      "Benign masses typically show spiculated borders.",
+      "Microcalcifications are pathognomonic for DCIS.",
+      "Popcorn calcifications are suggestive of malignancy.",
+      "Elastography is used for BIRADS 5 lesions."
+    ],
+    "correct": 1,
+    "explanation": "Clusters of fine, pleomorphic or branching microcalcifications on a mammogram are the classic and highly sensitive radiological hallmark of Ductal Carcinoma In Situ (DCIS)."
+  },
+  {
+    "question": "A mammogram report categorizes a lesion as BI-RADS 4. What is the implied likelihood of malignancy?",
+    "options": [
+      "0%.",
+      "≤2%.",
+      ">2% but <95%.",
+      "≥95%."
+    ],
+    "correct": 2,
+    "explanation": "The BI-RADS 4 category designates a suspicious abnormality with a probability of malignancy ranging from >2% to <95%, meaning a tissue biopsy is required for a definitive diagnosis."
+  },
+  {
+    "question": "All of the following are indications for breast MRI EXCEPT:",
+    "options": [
+      "Evaluation of breast implants.",
+      "Screening in patients with ACR category A density.",
+      "Lobular breast cancer.",
+      "DCIS in patients opting for conservative surgery."
+    ],
+    "correct": 1,
+    "explanation": "ACR category A indicates almost entirely fatty breasts, which are exquisitely evaluated by standard mammography. An MRI is not indicated for routine screening in low-density breasts."
+  },
+  {
+    "question": "Which of the following is the most definitive diagnostic investigation for breast cancer?",
+    "options": [
+      "CA15-3 measurement.",
+      "Exfoliate cytology of nipple discharge.",
+      "Trucut needle biopsy.",
+      "Alkaline phosphatase level."
+    ],
+    "correct": 2,
+    "explanation": "A core needle (trucut) biopsy yields intact tissue architecture, allowing pathologists to definitively diagnose invasive cancer, determine grade, and assess hormone receptor status."
+  },
+  {
+    "question": "Regarding tumor markers in breast cancer, which of the following is true?",
+    "options": [
+      "CA15-3 is used for early diagnosis.",
+      "HER2/neu positivity indicates luminal A subtype.",
+      "Elevated alkaline phosphatase suggests bone metastasis.",
+      "BRCA testing is routine for all patients."
+    ],
+    "correct": 2,
+    "explanation": "An elevation in serum alkaline phosphatase in a patient diagnosed with breast cancer is highly suspicious for the presence of osteoblastic bone metastases or liver deposits."
+  },
+  {
+    "question": "Which of the following is the most sensitive investigation for detecting bone metastasis?",
+    "options": [
+      "Plain X-ray (bone survey).",
+      "CT scan.",
+      "Bone scan (99T pyrophosphate).",
+      "PET-CT."
+    ],
+    "correct": 2,
+    "explanation": "Isotope bone scintigraphy (using Technetium-99m) is highly sensitive for identifying osteoblastic activity across the entire skeleton, making it the standard test for detecting bone metastases."
+  },
+  {
+    "question": "All of the following are indications for BRCA gene testing EXCEPT:",
+    "options": [
+      "A first-degree relative with bilateral breast cancer.",
+      "Triple-negative breast cancer at age 60.",
+      "Ashkenazi Jewish descent with one affected relative.",
+      "Male breast cancer in a second-degree relative."
+    ],
+    "correct": 1,
+    "explanation": "While early-onset triple-negative breast cancer (usually ≤50 or ≤60 depending on the guideline) prompts BRCA testing, a diagnosis of TNBC at older ages (e.g., beyond 60) without other family history is generally a weaker or non-indication compared to the others listed."
+  },
+  {
+    "question": "A patient with ER/PR-positive, HER2-negative breast cancer and low Ki67 is most likely classified as:",
+    "options": [
+      "Luminal A.",
+      "Luminal B.",
+      "HER2-enriched.",
+      "Triple-negative."
+    ],
+    "correct": 0,
+    "explanation": "The Luminal A molecular subtype is characterized by strong hormone receptor expression (ER/PR+), lack of HER2 overexpression, and a low cellular proliferative index (low Ki67)."
+  },
+  {
+    "question": "Which of the following gene signatures is used to determine the need for adjuvant chemotherapy in node-negative, luminal A breast cancer?",
+    "options": [
+      "BRCA1/2 testing.",
+      "Oncotype DX.",
+      "PS3 mutation analysis.",
+      "PTEN gene testing."
+    ],
+    "correct": 1,
+    "explanation": "The Oncotype DX genomic assay analyzes 21 genes to calculate a recurrence score, which guides clinicians on whether the patient will derive significant benefit from adjuvant chemotherapy."
+  },
+  {
+    "question": "A 55-year-old woman with invasive ductal carcinoma presents with back pain. Imaging reveals osteolytic lesions. Which of the following is the most likely route of metastasis?",
+    "options": [
+      "Batson's venous plexus.",
+      "Lymphatic permeation.",
+      "Portal circulation.",
+      "Transcoelomic spread."
+    ],
+    "correct": 0,
+    "explanation": "Breast cancer frequently metastasizes directly to the axial skeleton and vertebrae via Batson's venous plexus, a network of valveless veins communicating with the systemic circulation."
+  },
+  {
+    "question": "Which of the following is a characteristic feature of Paget's disease of the nipple?",
+    "options": [
+      "Associated palpable mass in all cases.",
+      "Eczematous changes responsive to steroids.",
+      "Paget cells on histopathology.",
+      "Poor prognosis compared to other subtypes"
+    ],
+    "correct": 2,
+    "explanation": "The diagnostic histopathological feature of Paget's disease is the presence of large, atypical, clear-staining intraepithelial adenocarcinoma cells (Paget cells) within the nipple epidermis."
+  },
+  {
+    "question": "Which of the following is a contraindication for breast-conserving surgery?",
+    "options": [
+      "Tumor size 3 cm.",
+      "Multicentric microcalcifications.",
+      "Age >60 years.",
+      "ER-positive status."
+    ],
+    "correct": 1,
+    "explanation": "Multicentric disease (such as widespread malignant microcalcifications across multiple quadrants) is an absolute contraindication to breast-conserving surgery because clear surgical margins cannot be achieved."
+  },
+  {
+    "question": "Regarding treatment aims for breast cancer, which of the following is true?",
+    "options": [
+      "Stage 0 disease always requires neoadjuvant chemotherapy.",
+      "Stage I and II are managed with surgery followed by adjuvant therapy.",
+      "Stage III is treated with surgery first, followed by chemotherapy.",
+      "Stage IV prioritizes local control over systemic therapy."
+    ],
+    "correct": 1,
+    "explanation": "Early-stage operable breast cancer (Stages I and II) is primarily managed with upfront surgical resection followed by adjuvant treatments (radiation, systemic therapy) based on pathology."
+  },
+  {
+    "question": "All of the following are true about DCIS management EXCEPT:",
+    "options": [
+      "WLE with a 2 mm margin is sufficient for low-grade, localized DCIS.",
+      "High-grade DCIS >1 cm requires radiotherapy.",
+      "Multicentric DCIS mandates simple mastectomy.",
+      "LCIS is managed identically to DCIS."
+    ],
+    "correct": 3,
+    "explanation": "DCIS is an obligate precursor treated with definitive surgical excision and often radiation. Conversely, LCIS is generally viewed as a risk-enhancing marker for future invasive disease and is typically managed with chemoprevention and surveillance."
+  },
+  {
+    "question": "Which of the following is an absolute contraindication for breast-conserving surgery (BCS)?",
+    "options": [
+      "Tumor size 3 cm.",
+      "Age <35 years.",
+      "Positive margins after re-excision.",
+      "BRCA1 mutation"
+    ],
+    "correct": 2,
+    "explanation": "If clear margins cannot be achieved despite attempts at surgical re-excision, breast-conserving surgery is aborted and a mastectomy becomes the mandatory treatment for local control."
+  },
+  {
+    "question": "Regarding mastectomy techniques, which of the following is true?",
+    "options": [
+      "Halsted radical mastectomy is the current standard of care.",
+      "Modified radical mastectomy preserves the pectoralis minor muscle.",
+      "Skin-sparing mastectomy is contraindicated in all cases of invasive cancer.",
+      "Nipple-areola sparing mastectomy is never an option for DCIS."
+    ],
+    "correct": 1,
+    "explanation": "A modified radical mastectomy preserves the pectoralis major muscle and often the pectoralis minor (as in the Patey modification), unlike the historical Halsted radical mastectomy which sacrificed both."
+  },
+  {
+    "question": "A patient with T1N0 breast cancer undergoes SLNB revealing micrometastasis in one sentinel node. What is the next step?",
+    "options": [
+      "Complete axillary dissection.",
+      "Omit further surgery if radiotherapy is planned.",
+      "Repeat SLNB.",
+      "Proceed with neoadjuvant chemotherapy."
+    ],
+    "correct": 1,
+    "explanation": "Based on landmark trials like ACOSOG Z0011, patients with clinically early-stage breast cancer, limited sentinel node involvement (micrometastases or 1-2 nodes), and who receive whole-breast irradiation can safely avoid a morbid complete axillary lymph node dissection."
+  },
+  {
+    "question": "All of the following are indications for axillary lymph node dissection EXCEPT:",
+    "options": [
+      "≥3 suspicious lymph nodes on imaging.",
+      "Clinically positive axillary nodes (N1).",
+      "Sentinel node biopsy showing isolated tumor cells.",
+      "T3 tumor with no nodal involvement."
+    ],
+    "correct": 2,
+    "explanation": "The detection of isolated tumor cells (ITCs, smaller than 0.2 mm) in a sentinel lymph node does not necessitate a completion axillary lymph node dissection."
+  },
+  {
+    "question": "Which of the following is a primary aim of neoadjuvant chemotherapy?",
+    "options": [
+      "Eliminate the need for surgery.",
+      "Downstage inoperable tumors.",
+      "Reduce the risk of contralateral breast cancer.",
+      "Replace radiotherapy in Stage III disease."
+    ],
+    "correct": 1,
+    "explanation": "Neoadjuvant chemotherapy is primarily utilized to downstage locally advanced, large, or inoperable tumors, potentially converting them into candidates for operable or breast-conserving surgery."
+  },
+  {
+    "question": "Regarding adjuvant chemotherapy, which of the following is true?",
+    "options": [
+      "It is contraindicated in ER-positive, HER2-negative tumors.",
+      "Anthracyclines are preferred for patients with pre-existing cardiac disease.",
+      "Taxane-based regimens are associated with peripheral neuropathy."
+    ],
+    "correct": 2,
+    "explanation": "Taxanes (such as paclitaxel and docetaxel) disrupt microtubule function and frequently cause dose-limiting, cumulative peripheral sensory neuropathy."
+  },
+  {
+    "question": "A postmenopausal woman with ER-positive, HER2-negative breast cancer is most likely to benefit from:",
+    "options": [
+      "Tamoxifen.",
+      "Aromatase inhibitor.",
+      "Trastuzumab.",
+      "PARP inhibitor"
+    ],
+    "correct": 1,
+    "explanation": "Aromatase inhibitors (e.g., anastrozole, letrozole) act by blocking the peripheral conversion of androgens to estrogens and are the preferred primary endocrine therapy for postmenopausal women."
+  },
+  {
+    "question": "All of the following are side effects of tamoxifen EXCEPT:",
+    "options": [
+      "Endometrial cancer.",
+      "Peripheral neuropathy.",
+      "Bone mineral density loss.",
+      "Venous thromboembolism."
+    ],
+    "correct": 1,
+    "explanation": "Peripheral neuropathy is classically associated with cytotoxic chemotherapies (like taxanes) rather than tamoxifen. Tamoxifen is a SERM with known risks of DVT and endometrial cancer."
+  },
+  {
+    "question": "Which of the following patients requires post-mastectomy radiotherapy?",
+    "options": [
+      "T1N0 tumor with clear margins.",
+      "T2N1 (1 positive node).",
+      "T3N0 tumor.",
+      "DCIS treated with WLE and 3 mm margins."
+    ],
+    "correct": 2,
+    "explanation": "Post-mastectomy radiotherapy is strongly indicated for patients with large tumors (T3, greater than 5 cm) to reduce the risk of chest wall local recurrence."
+  },
+  {
+    "question": "A 28-year-old pregnant woman (first trimester) is diagnosed with Stage II breast cancer. She declines termination. What is the most appropriate management?",
+    "options": [
+      "Immediate neoadjuvant chemotherapy.",
+      "Modified radical mastectomy, delaying chemotherapy until the second trimester.",
+      "Breast-conserving surgery with intraoperative radiotherapy.",
+      "Tamoxifen initiation."
+    ],
+    "correct": 1,
+    "explanation": "Both chemotherapy and radiotherapy are strictly contraindicated in the first trimester due to high teratogenicity. The standard of care is a modified radical mastectomy, with systemic chemotherapy initiated safely in the second trimester."
+  },
+  {
+    "question": "All of the following are true about SLNB in pregnancy EXCEPT:",
+    "options": [
+      "Tc99 is considered safe. (Note: This is highlighted as the EXCEPT answer).",
+      "Blue dye is contraindicated.",
+      "It is avoided due to fetal radiation risk.",
+      "Recent studies support its safety."
+    ],
+    "correct": 2,
+    "explanation": "Sentinel lymph node biopsy using a small, well-shielded dose of Tc99m sulfur colloid delivers a negligible radiation dose to the fetus and is considered safe in pregnancy, refuting the claim that it must be avoided due to radiation risk."
+  },
+  {
+    "question": "Which of the following is associated with the worst prognosis?",
+    "options": [
+      "Mucinous carcinoma.",
+      "Tubular carcinoma.",
+      "Inflammatory breast cancer.",
+      "Paget's disease without a mass."
+    ],
+    "correct": 2,
+    "explanation": "Inflammatory breast cancer is an exceptionally aggressive, locally advanced phenotype defined by diffuse dermal lymphatic invasion; it invariably carries the poorest prognosis among breast cancer types."
+  },
+  {
+    "question": "The Nottingham Prognostic Index includes all of the following EXCEPT:",
+    "options": [
+      "Tumor size.",
+      "Lymph node status.",
+      "HER2 status.",
+      "Tumor grade."
+    ],
+    "correct": 2,
+    "explanation": "The Nottingham Prognostic Index relies strictly on tumor size, the number of positive lymph nodes, and the histological grade. It predates and does not incorporate HER2 status."
+  },
+  {
+    "question": "A patient with bone-only metastatic ER-positive breast cancer should receive:",
+    "options": [
+      "Trastuzumab + chemotherapy.",
+      "Aromatase inhibitor + Hormonal therapy.",
+      "Pembrolizumab monotherapy.",
+      "Immediate surgical resection."
+    ],
+    "correct": 1,
+    "explanation": "For patients presenting with hormone receptor-positive metastatic disease confined to non-visceral sites (such as bone only), endocrine therapy is highly effective and represents the preferred first-line treatment."
+  },
+  {
+    "question": "Regarding pathologic complete response (pCR), which of the following is true?",
+    "options": [
+      "It is most likely in ER-positive tumors.",
+      "It is defined as residual DCIS in the breast.",
+      "US-guided clipping is used to locate the tumor bed post-NAT.",
+      "It eliminates the need for radiotherapy."
+    ],
+    "correct": 2,
+    "explanation": "Because a successful response to neoadjuvant therapy (NAT) can cause the tumor to completely disappear on imaging, placing an ultrasound-guided metallic clip before therapy is mandatory to definitively identify the tumor bed for later surgical excision."
+  },
+  {
+    "question": "A patient with BRCA1-associated TNBC and metastatic disease may benefit from:",
+    "options": [
+      "Tamoxifen.",
+      "PARP inhibitor.",
+      "Aromatase inhibitor.",
+      "LHRH agonist."
+    ],
+    "correct": 1,
+    "explanation": "PARP inhibitors (e.g., olaparib) work by exploiting the concept of synthetic lethality and are highly active specifically in patients carrying BRCA mutations."
+  },
+  {
+    "question": "A 52-year-old woman presents with a 3.5 cm breast mass and two ipsilateral axillary lymph nodes on imaging. Biopsy confirms invasive ductal carcinoma. What is her TNM stage and recommended treatment?",
+    "options": [
+      "T2N1M0 – Neoadjuvant chemotherapy -> surgery -> adjuvant therapy.",
+      "T1N2M0 – Surgery -> adjuvant chemotherapy + radiotherapy.",
+      "T3N0M0 – Breast-conserving surgery + sentinel lymph node biopsy.",
+      "T2N1M1 – Palliative systemic therapy only."
+    ],
+    "correct": 0,
+    "explanation": "A 3.5 cm mass represents T2 disease, and ipsilateral mobile nodes signify N1 disease. Stage IIB/IIIA (T2N1M0) disease frequently benefits from upfront neoadjuvant chemotherapy followed by appropriate surgery and adjuvant interventions."
+  },
+  {
+    "question": "A 60-year-old woman with DCIS (4 cm, high-grade, comedo-type) undergoes wide local excision with 1 mm margins. What is the next step?",
+    "options": [
+      "Observation only.",
+      "Re-excision to achieve 2 mm margins.",
+      "Simple mastectomy +/- SLNB.",
+      "Adjuvant trastuzumab."
+    ],
+    "correct": 2,
+    "explanation": "For a large (4 cm) segment of high-grade DCIS with close (1 mm) margins, re-excision is typically unfeasible without severe cosmetic detriment. Mastectomy, often accompanied by SLNB for large/high-grade lesions, is the standard recommendation."
+  },
+  {
+    "question": "A 38-year-old woman with T2N0 HER2-positive breast cancer undergoes breast-conserving surgery. Sentinel lymph node biopsy is negative. What adjuvant therapy is essential?",
+    "options": [
+      "Tamoxifen for 5 years.",
+      "Trastuzumab + chemotherapy.",
+      "Radiotherapy alone.",
+      "Aromatase inhibitor."
+    ],
+    "correct": 1,
+    "explanation": "For a HER2-positive invasive breast cancer that is >1 cm in size (T2), standard guidelines mandate adjuvant anti-HER2 targeted therapy (trastuzumab) administered in conjunction with systemic chemotherapy."
+  },
+  {
+    "question": "A 45-year-old man presents with a 2 cm breast mass fixed to the pectoralis major and matted axillary nodes. Biopsy shows invasive ductal carcinoma. What is the most appropriate initial treatment?",
+    "options": [
+      "Neoadjuvant chemotherapy -> modified radical mastectomy.",
+      "Immediate radical mastectomy.",
+      "Tamoxifen monotherapy.",
+      "Radiotherapy alone"
+    ],
+    "correct": 0,
+    "explanation": "Fixation to the chest wall and the presence of matted (fixed) axillary lymph nodes indicate locally advanced disease. Upfront neoadjuvant chemotherapy is required to downstage the disease prior to surgical resection."
+  },
+  {
+    "question": "A 65-year-old woman with ER-positive, HER2-negative T1N0 breast cancer refuses surgery. What is the best alternative?",
+    "options": [
+      "Primary radiotherapy.",
+      "Neoadjuvant chemotherapy.",
+      "Aromatase inhibitor.",
+      "Trastuzumab."
+    ],
+    "correct": 2,
+    "explanation": "In older or frail patients with highly hormone receptor-positive early breast cancer who refuse or are unfit for surgery, primary endocrine therapy (such as an aromatase inhibitor) serves as a valid and effective alternative to control disease progression."
+  },
+  {
+    "question": "A pregnant woman (second trimester) is diagnosed with T3N1 triple-negative breast cancer. What is the safest approach?",
+    "options": [
+      "Immediate termination -> neoadjuvant chemotherapy.",
+      "Modified radical mastectomy -> adjuvant chemotherapy postpartum.",
+      "Neoadjuvant chemotherapy -> surgery postpartum.",
+      "Tamoxifen + radiotherapy."
+    ],
+    "correct": 2,
+    "explanation": "During the second and third trimesters, systemic chemotherapy is relatively safe for the fetus. For a large, aggressive TNBC, initiating neoadjuvant chemotherapy during pregnancy followed by surgery is a widely accepted standard."
+  },
+  {
+    "question": "A patient with T1N0 LCIS and strong family history of breast cancer chooses prophylactic surgery. What is recommended?",
+    "options": [
+      "Bilateral subcutaneous mastectomy.",
+      "Annual MRI surveillance.",
+      "Tamoxifen for 10 years.",
+      "Radiotherapy."
+    ],
+    "correct": 0,
+    "explanation": "Because LCIS is an indicator of significantly increased bilateral breast cancer risk, particularly in patients with a strong family history, bilateral risk-reducing mastectomy is a recognized definitive prophylactic option if the patient opts for surgery."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

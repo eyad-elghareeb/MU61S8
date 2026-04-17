@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MU61 Quiz - Dr.MAF Surgery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../../index-engine.css">
+  <!-- Meta tags for preview and favicon -->
+  <meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+  <meta property="og:title" content="MU61 Quiz - Dr.MAF Surgery">
+  <meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MU61 Quiz - Dr.MAF Surgery">
+  <meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+
+<body>
+
+  <!-- TOP NAVIGATION -->
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Surgery">←</a>
+    <div class="topbar-title">MU61 Quiz - Dr.MAF Surgery</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M3 3v18h18" />
+        <path d="M7 16l4-8 4 4 5-9" />
+      </svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <!-- HERO SECTION -->
+    <header class="hero">
+      <h1>Select your <span>Dr.MAF Surgery exam</span></h1>
+      <p>Test your knowledge with Dr.MAF Surgery questions. Choose an exam below to begin.</p>
+    </header>
+
+    <!-- EXAMS GRID -->
+    <div class="quiz-grid" id="quiz-grid">
+      <!-- Cards are generated here via JavaScript -->
+    </div>
+
+    <!-- FOOTNOTE -->
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank"
+        rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TRACKER DASHBOARD ═══════════════ -->
+  <div class="dash-overlay" id="tracker-dashboard">
+    <div class="dash-modal">
+      <div class="dash-header">
+        <h2 id="dash-title-text">📊 Question Tracker</h2>
+        <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
+      </div>
+      <div class="dash-scope-bar" id="dash-scope-bar"></div>
+      <div class="dash-summary">
+        <div class="dash-stat">
+          <div class="ds-val red" id="dash-total-wrong">0</div>
+          <div class="ds-lbl">Wrong</div>
+        </div>
+        <div class="dash-stat">
+          <div class="ds-val blue" id="dash-total-flagged">0</div>
+          <div class="ds-lbl">Flagged</div>
+        </div>
+        <div class="dash-stat">
+          <div class="ds-val green" id="dash-total-quizzes">0</div>
+          <div class="ds-lbl">Quizzes</div>
+        </div>
+      </div>
+      <div class="dash-body" id="dash-body"></div>
+      <div class="dash-footer">
+        <button class="btn-dash-action" onclick="exportTrackerToPDF()" title="Export to PDF">📄 Export PDF</button>
+        <button class="btn-dash-action btn-dash-danger" onclick="clearAllTrackerData()">🗑 Clear All</button>
+        <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const QUIZZES = [
+      {
+        title: "Dr.MAF L1-Anatomy",
+        description: "Anatomy questions",
+        icon: "🩺",
+        tags: ["Quiz", "26 Questions"],
+        url: "drmaf-l1-anatomy.html"
+      },
+      {
+        title: "Dr.MAF L2-Benign Diseases",
+        description: "Benign breast diseases questions",
+        icon: "💊",
+        tags: ["Quiz", "44 Questions"],
+        url: "drmaf-l2-benign-breast-diseases.html"
+      },
+      {
+        title: "Dr.MAF L3-Breast Cancer",
+        description: "Breast cancer specific questions",
+        icon: "🔬",
+        tags: ["Quiz", "84 Questions"],
+        url: "drmaf-l3-breast-cancer.html"
+      },
+      {
+        title: "Dr.MAF L4-DDX & Male Breast",
+        description: "Differential diagnosis and male breast disease questions",
+        icon: "👨",
+        tags: ["Quiz", "8 Questions"],
+        url: "drmaf-l4-ddx-and-male-breast-disease.html"
+      },
+      {
+        title: "All Dr.MAF Breast Questions",
+        description: "Full collection of Dr.MAF breast questions",
+        icon: "📘",
+        tags: ["Quiz", "157 Questions"],
+        url: "all-dr-maf-questions---breast.html"
+      }
+    ];
+  </script>
+
+  <script src="../../index-engine.js"></script>
+
+  <script>(function () { var s = localStorage.getItem('quiz-theme'); if (s) document.documentElement.setAttribute('data-theme', s); if (window.__updateThemeIcon) window.__updateThemeIcon(); if (window.renderQuizzes) window.renderQuizzes(); })();</script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('../../sw.js').catch(function () { });
+      });
+    }
+  </script>
+
+</body>
+
+</html>

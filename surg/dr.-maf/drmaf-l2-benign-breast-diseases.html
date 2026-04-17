@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Dr.MAF L2-Benign Breast Diseases</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mo2eb54dg1euh",
+  "title": "Dr.MAF L2-Benign Breast Diseases",
+  "description": "Questions on every lecture Made By Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "About acute lactational breast abscess, one statement only is true.",
+    "options": [
+      "Is commonly multilocular",
+      "Weaning the baby is mandatory.",
+      "Aspirating pus by a wide bore needle is superior to incision and drainage as it avoids injury to lactiferous ducts",
+      "Mammography is indicated if an abscess is suspected",
+      "Treatment is essentially conservativeby antibiotic"
+    ],
+    "correct": 0,
+    "explanation": "Acute lactational breast abscesses are commonly multilocular because the stroma of the breast contains fibrous septa (Cooper's ligaments) that compartmentalize the infection. Weaning is not mandatory; in fact, continued breastfeeding or emptying is encouraged."
+  },
+  {
+    "question": "Treatment of cyclic mastalgia may include all the following, except :",
+    "options": [
+      "Exclusion of malignancy and reassurance.",
+      "Avoidance of breast support.",
+      "Giving up caffeine consumption.",
+      "Bromocriptine 2.5 mg bid.",
+      "Danazol 100-200 mg bid."
+    ],
+    "correct": 1,
+    "explanation": "Patients with cyclic mastalgia are advised to wear a firm, well-fitting supportive bra to minimize movement and pain, not to avoid breast support."
+  },
+  {
+    "question": "The following statements about mammary duct ectasia are all true, except :",
+    "options": [
+      "May produce a mass similar to carcinoma in the axillary tail of the breast",
+      "May produce non-lactational mastitis or abscess",
+      "May produce a mamillary fistula.",
+      "Anaerobic bacteria are commonly implicated.",
+      "May present by nipple discharge."
+    ],
+    "correct": 0,
+    "explanation": "Note: The source originally marked D, but anaerobic bacteria are commonly implicated in periductal mastitis (which is part of the duct ectasia spectrum). The true exception is A, because the mass produced by duct ectasia is characteristically central (subareolar), not located in the axillary tail."
+  },
+  {
+    "question": "Commonly causes creamy nipple discharge:",
+    "options": [
+      "Duct carcinoma.",
+      "Duct papilloma.",
+      "Subareolar mastitis.",
+      "Duct ectasia.",
+      "Breast abscess."
+    ],
+    "correct": 3,
+    "explanation": "Duct ectasia is classically associated with a thick, creamy, pasty, or toothpaste-like (often greenish or yellowish) nipple discharge due to stagnant secretions accumulating in dilated subareolar ducts."
+  },
+  {
+    "question": "The most common cause of bloody nipple discharge is:",
+    "options": [
+      "Duct carcinoma.",
+      "Duct papilloma.",
+      "Subareolar mastitis.",
+      "Duct ectasia.",
+      "Breast abscess."
+    ],
+    "correct": 1,
+    "explanation": "An intraductal papilloma is a benign tumor within the milk ducts and is statistically the most common cause of spontaneous, unilateral, bloody or serosanguineous nipple discharge."
+  },
+  {
+    "question": "What is the most likely cause of bloody nipple discharge?",
+    "options": [
+      "Fibrocystic breast disease.",
+      "Intraductal papilloma.",
+      "Pituitary tumor.",
+      "Invasive ductal carcinoma.",
+      "Lobular carcinoma."
+    ],
+    "correct": 1,
+    "explanation": "Intraductal papilloma is the most common etiology for bloody nipple discharge. While invasive ductal carcinoma can cause it, papilloma is statistically much more frequent."
+  },
+  {
+    "question": "Which one of the following lesions usually presents as a discrete, freely movable breast lump in the breast?",
+    "options": [
+      "Sclerosing adenosis.",
+      "Cystic disease.",
+      "Ductal carcinoma.",
+      "Fibroadenoma.",
+      "Plasma cell mastitis."
+    ],
+    "correct": 3,
+    "explanation": "Fibroadenomas are classically described as discrete, firm, non-tender, and highly mobile lumps in the breast, frequently referred to clinically as a breast mouse."
+  },
+  {
+    "question": "A 42-year-old woman presents with a large irregular lump, about 12 cm in diameter. In right breast , of 4 month .The lump is very mobile and is stretching the skin:",
+    "options": [
+      "Traumatic fat necrosis.",
+      "Cancer breast.",
+      "Phylloid tumor.",
+      "Breast abscess.",
+      "Fibroadenoma."
+    ],
+    "correct": 2,
+    "explanation": "Phyllodes tumors characteristically present as large, rapidly growing, painless, and highly mobile masses that stretch the overlying skin and cause venous engorgement."
+  },
+  {
+    "question": "A 35-year-old professional dancer presents with a well-defined, tense, smooth mass in the upper out quadrant of the left breast. She states that the mass becomes larger just before the onset of her periods. Aspiration yields a clear yellow fluid and the mass disappears. The most likely diagnosis is:",
+    "options": [
+      "Fibroadenoma in a cyst.",
+      "Fibrocystic disease.",
+      "Carcinoma in a cyst.",
+      "Lipoma.",
+      "Galactocele."
+    ],
+    "correct": 1,
+    "explanation": "Breast cysts associated with fibrocystic disease typically fluctuate in size and tenderness with the menstrual cycle, and they collapse completely upon aspiration of clear or straw-colored fluid."
+  },
+  {
+    "question": "All of the following are mammographic criteria of benign breast mass Except:",
+    "options": [
+      "Macroadenifications.",
+      "Smooth borders.",
+      "Homogenous.",
+      "Perifocal haziness."
+    ],
+    "correct": 3,
+    "explanation": "Perifocal haziness (or spiculation) is a classic mammographic sign of malignancy due to tumor infiltration into the surrounding tissue, whereas benign masses typically have smooth, well-defined, and distinct borders."
+  },
+  {
+    "question": "Signs of pus formation are the following Except:",
+    "options": [
+      "Hectic fever.",
+      "Edema of overlying.",
+      "No response to medical treatment for 48 hours.",
+      "Fluctuation occurs early in breast abscess"
+    ],
+    "correct": 3,
+    "explanation": "Fluctuation is a late sign in breast abscesses because the pus is initially held under tension within the fibrous septa (Cooper's ligaments) and often deep within the breast tissue."
+  },
+  {
+    "question": "A 22-year-old woman presents complaining of a 2-week history of milky discharge from both her breasts. She is otherwise well. Clinical examination of the breasts is unremarkable and a pregnancy test is negative. Which of the following investigations would be indicated in the first instance?",
+    "options": [
+      "Dopamine levels",
+      "Fine needle aspiration",
+      "Mammogram",
+      "MRI of the breast",
+      "Prolactin levels"
+    ],
+    "correct": 4,
+    "explanation": "Bilateral, non-bloody, milky nipple discharge in a non-pregnant female is highly suspicious for galactorrhea. Checking serum prolactin levels is the most appropriate first-line investigation to rule out a prolactinoma or hyperprolactinemia."
+  },
+  {
+    "question": "What is most probably the cause of premenstrual pain in both breasts?",
+    "options": [
+      "CIS",
+      "Duct papilloma",
+      "Multiple cysts",
+      "Periductal mastitis",
+      "Galactocele"
+    ],
+    "correct": 2,
+    "explanation": "Premenstrual bilateral breast pain (cyclic mastalgia) is a hallmark symptom of fibrocystic breast changes, which often feature multiple cysts and glandular tissue that swell under hormonal influence before menstruation."
+  },
+  {
+    "question": "Green discharge is most commonly seen with:",
+    "options": [
+      "Fibroadenosis",
+      "Duct ectasia",
+      "Breast cancer",
+      "Duct papilloma",
+      "Retention cyst"
+    ],
+    "correct": 1,
+    "explanation": "Duct ectasia commonly presents with a multicolored (often green, yellow, or brown), thick, pasty nipple discharge caused by the accumulation of stagnant secretions and lipid material in dilated ducts."
+  },
+  {
+    "question": "Fibroadenoma of the breast is described as:",
+    "options": [
+      "Fixed mass",
+      "Fungating mass",
+      "Diffuse parenchymal sheets",
+      "Solitary mobile mass",
+      "Single ill-defined mass"
+    ],
+    "correct": 3,
+    "explanation": "A fibroadenoma typically presents as a firm, smooth, solitary, and highly mobile mass within the breast."
+  },
+  {
+    "question": "Breast neoplasia that arises from stroma with leaf-shaped clefts and cracks:",
+    "options": [
+      "Medullary carcinoma",
+      "Intraductal papilloma",
+      "Intraductal carcinoma",
+      "Invasive ductal carcinoma",
+      "Phylloides tumor"
+    ],
+    "correct": 4,
+    "explanation": "Phyllodes tumors are characterized microscopically by a leaf-like (the Greek word 'phyllodes' translates to leaf-like) architectural pattern consisting of epithelial-lined clefts surrounded by hypercellular stroma."
+  },
+  {
+    "question": "Which lesion is characterized by discrete, freely mobile lumps in the breast?",
+    "options": [
+      "Sclerosing adenosis",
+      "Fibrocystic disease",
+      "Invasive duct cancer",
+      "Fibroadenoma",
+      "Plasma cell mastitis"
+    ],
+    "correct": 3,
+    "explanation": "Fibroadenomas are distinguished by their classic presentation as discrete, firm, rubbery, and highly mobile lumps in the breast."
+  },
+  {
+    "question": "Which of the following statements is the most accurate regarding non-lactational breast abscess:",
+    "options": [
+      "it is commonly in pre pubertal females",
+      "most common causative organism is staphylococcus",
+      "Often due to mixed aerobic and anaerobic bacteria",
+      "Most commonly due to Tuberculosis",
+      "Most commonly a complications of Diabetes Mellitus."
+    ],
+    "correct": 2,
+    "explanation": "Note: The source originally claimed B, but lactational abscesses are the ones predominantly caused by Staphylococcus aureus. Non-lactational abscesses (often periductal and associated with smoking) are typically caused by a mixed flora of aerobic and anaerobic bacteria. Therefore, C is clinically the most accurate statement."
+  },
+  {
+    "question": "A 24-year-old woman developed a breast lump which had been first noted four months before. The tumor was well defined and highly mobile. What is the most likely diagnosis:",
+    "options": [
+      "Fibrocystic disease",
+      "Fibroadenoma",
+      "Sclerosing adenosis",
+      "Ductal carcinoma",
+      "Medullary carcinoma."
+    ],
+    "correct": 1,
+    "explanation": "In a young woman (under 30), a solid, well-defined, painless, and highly mobile breast mass is classically a fibroadenoma."
+  },
+  {
+    "question": "Which of the following is the appropriate treatment for 2cm fibroadenoma:",
+    "options": [
+      "Excision",
+      "Cryoablation",
+      "Observation",
+      "RFA",
+      "All of the above."
+    ],
+    "correct": 2,
+    "explanation": "Small (<3 cm), asymptomatic fibroadenomas confirmed by triple assessment can be safely managed with observation, as they are benign and may even regress over time."
+  },
+  {
+    "question": "Which of the following statements is true concerning intraductal papilloma?",
+    "options": [
+      "This lesion is the most common cause of bloody nipple discharge",
+      "Serous non-bloody discharge is unlikely",
+      "A nonpalpable lesion can not be diagnosed with ductography",
+      "An isolated lesion is considered premalignant",
+      "All of the above."
+    ],
+    "correct": 0,
+    "explanation": "Intraductal papilloma is the most frequent cause of pathological nipple discharge, classically presenting as a spontaneous, unilateral, bloody or serosanguineous discharge."
+  },
+  {
+    "question": "The most common clinical presentation of a duct papilloma is:",
+    "options": [
+      "a painful lump",
+      "a painless lump",
+      "a bloody nipple discharge",
+      "microcalcifications in mammograms",
+      "eczema and itching."
+    ],
+    "correct": 2,
+    "explanation": "Most duct papillomas are small and non-palpable. Their most common presenting symptom is unilateral, spontaneous bloody or serosanguineous nipple discharge."
+  },
+  {
+    "question": "Bleeding from the nipple is associated with the following breast disease(s) except:",
+    "options": [
+      "Plasma cell mastitis",
+      "Duct papilloma",
+      "Paget's disease",
+      "Breast cancer",
+      "Breast trauma."
+    ],
+    "correct": 0,
+    "explanation": "Plasma cell mastitis (a stage of mammary duct ectasia) usually presents with a thick, cheesy, greenish or creamy discharge. Bloody discharge is much more characteristic of papillomas, carcinomas, or trauma."
+  },
+  {
+    "question": "A bleeding nipple may be a symptom of which breast disease:",
+    "options": [
+      "Duct papilloma",
+      "Fat necrosis",
+      "Galactocele",
+      "Fibroadenoma",
+      "Polymazia."
+    ],
+    "correct": 0,
+    "explanation": "Intraductal papilloma often presents with unilateral bloody nipple discharge as the delicate, branching vascular fronds of the papilloma are easily traumatized and bleed into the duct."
+  },
+  {
+    "question": "Each of the following pathologic entities are components of fibrocystic disease except:",
+    "options": [
+      "Apocrine metaplasia",
+      "Adenosis",
+      "Plasma cells",
+      "Epitheliosis",
+      "Cysts."
+    ],
+    "correct": 2,
+    "explanation": "Note: The source originally marked A, but apocrine metaplasia is a classic, defining histologic hallmark of fibrocystic change. The true exception is plasma cells; a dense plasma cell infiltrate is characteristic of plasma cell mastitis (mammary duct ectasia), an inflammatory condition distinct from fibrocystic disease."
+  },
+  {
+    "question": "Multiple irregular flecks of calcium on mammogram are likely to be present in which of the following except:",
+    "options": [
+      "Fat necrosis",
+      "Ductal carcinoma-in-situ",
+      "Invasive ductal carcinoma",
+      "Acute breast abscess",
+      "Paget's disease."
+    ],
+    "correct": 3,
+    "explanation": "An acute breast abscess presents as a fluid-filled collection with localized soft tissue inflammation, not with microcalcifications. In contrast, DCIS, invasive carcinoma, and fat necrosis frequently exhibit characteristic calcifications on mammography."
+  },
+  {
+    "question": "Fibroadenoma is usually:",
+    "options": [
+      "Found in the elderly woman",
+      "A premalignant tumor",
+      "Present as a breast lump",
+      "Found during pregnancy",
+      "Atypical."
+    ],
+    "correct": 2,
+    "explanation": "A fibroadenoma usually presents as a firm, painless, mobile breast lump in young women. It is an entirely benign, not premalignant, lesion."
+  },
+  {
+    "question": "Which is true about the pathological sequences of soft fibroadenoma (Fate):",
+    "options": [
+      "Never reach to huge size",
+      "Never undergo cystic degeneration",
+      "Never turn to cyst adenoma fungoid",
+      "May turn to benign Cyst sarcoma phylloids",
+      "Never turn malignant."
+    ],
+    "correct": 3,
+    "explanation": "While heavily debated in modern pathology (as most arise de novo), classic surgical teaching sometimes describes that a pre-existing cellular fibroadenoma may undergo changes resembling a benign cystosarcoma phyllodes (phyllodes tumor)."
+  },
+  {
+    "question": "Which is not true about fibrocystic disease of the breast:",
+    "options": [
+      "Adenosis",
+      "Epitheliosis",
+      "Papillomatosis",
+      "Fibrosis",
+      "Lymphocytosis."
+    ],
+    "correct": 4,
+    "explanation": "The hallmark histological features of fibrocystic disease include fibrosis, cyst formation, adenosis, and epithelial hyperplasia (epitheliosis/papillomatosis). Lymphocytosis is not a recognized component."
+  },
+  {
+    "question": "All of the following is precancerous breast lesion EXCEPT:",
+    "options": [
+      "Sclerosing adenosis",
+      "Macro cysts",
+      "Complex fibro adenoma",
+      "Duct papilloma",
+      "Ductectasia."
+    ],
+    "correct": 4,
+    "explanation": "Mammary duct ectasia is a benign inflammatory condition of the major ducts and does not carry any increased risk of malignant transformation. Proliferative changes like sclerosing adenosis and complex fibroadenomas carry a slight increased risk."
+  },
+  {
+    "question": "Treatment of chronic breast abscess is:",
+    "options": [
+      "Excisional biopsy to exclude malignancy",
+      "Assurance and observation",
+      "Only excision without pathological examination",
+      "Systemic antibiotic",
+      "Incision and drainage."
+    ],
+    "correct": 0,
+    "explanation": "A chronic breast abscess often forms a firm, indurated mass (antibioma) that can clinically mimic breast carcinoma. Therefore, an excisional biopsy is required to completely remove the mass and histologically rule out cancer."
+  },
+  {
+    "question": "Which is NOT true about naked eye picture of cystosarcoma phyllodes tumors:",
+    "options": [
+      "Its size is huge",
+      "Its surface is lobulated",
+      "It is ill defined & fixed",
+      "Skin is stretched with dilated veins",
+      "Skin may ulcerate."
+    ],
+    "correct": 2,
+    "explanation": "Despite their potentially massive size, phyllodes tumors remain well-circumscribed and highly mobile within the breast tissue. They are not typically ill-defined or fixed."
+  },
+  {
+    "question": "Which is NOT true about surgical treatment of fibroadenosis:",
+    "options": [
+      "Surgery for severe resistant pain",
+      "Surgery for brown nipple discharge",
+      "Surgery for localized mass with suspicion of malignancy",
+      "Surgery for atypical hyperplasia",
+      "Cysts are treated by aspiration."
+    ],
+    "correct": 1,
+    "explanation": "Brown, green, or yellow multi-ductal nipple discharge is a common physiological or benign finding in fibroadenosis (fibrocystic changes) and does not require surgical intervention unless there is suspicion of malignancy."
+  },
+  {
+    "question": "Which of the following is defined as absence of nipple:",
+    "options": [
+      "Athelia",
+      "Amastia",
+      "Amazia",
+      "Polymastia",
+      "Polythelia."
+    ],
+    "correct": 0,
+    "explanation": "The medical term 'athelia' strictly refers to the congenital absence of the nipple. Amastia is the absence of both breast and nipple, while amazia is the absence of the breast tissue with a remaining nipple."
+  },
+  {
+    "question": "Mondor's disease of the breast is defined as:",
+    "options": [
+      "Hormonal imbalance at puberty",
+      "Thrombophlebitis of superficial veins of the breast",
+      "Obstruction of lactiferous duct",
+      "Stimulation of breast secretion in newborn",
+      "Absence of breasts."
+    ],
+    "correct": 1,
+    "explanation": "Mondor's disease is a rare, benign condition characterized by superficial thrombophlebitis of the subcutaneous veins of the breast and anterior chest wall, presenting as a palpable cord-like structure."
+  },
+  {
+    "question": "Which of the following is NOT true about mammary duct ectasia:",
+    "options": [
+      "Has a stage of acute inflammation",
+      "Presents by subareolar soft mass",
+      "Presents by transverse retraction of nipple",
+      "Presents by cheesy nipple discharge",
+      "Galactography shows dilatation of ducts."
+    ],
+    "correct": 1,
+    "explanation": "In mammary duct ectasia, chronic periductal inflammation and fibrosis typically produce a firm or hard, ill-defined subareolar mass that can mimic breast carcinoma. It does not typically present as a 'soft' mass."
+  },
+  {
+    "question": "As regard fibroadenosis which of the following microscopic findings is precancerous:",
+    "options": [
+      "Mild typical hyperplasia",
+      "Panplasia",
+      "Sclerosing adenosis",
+      "Microcyst",
+      "Papillomatosis."
+    ],
+    "correct": 2,
+    "explanation": "Sclerosing adenosis is a proliferative breast lesion that carries a slightly increased relative risk (about 1.5 to 2 times) for the development of subsequent breast cancer compared to non-proliferative changes."
+  },
+  {
+    "question": "A 21-year-old female presents by a discrete, well-circulated, freely movable breast lump. What is the appropriate diagnosis?",
+    "options": [
+      "Duct carcinoma",
+      "Plasma cell mastitis",
+      "Sclerosing adenosis",
+      "Fibroadenoma",
+      "Cystic disease of the breast"
+    ],
+    "correct": 3,
+    "explanation": "A discrete, well-circumscribed, freely movable painless breast mass in a young female is the classic clinical presentation of a fibroadenoma."
+  },
+  {
+    "question": "Triple assessment of breast mass includes the following Excent:",
+    "options": [
+      "Clinical evaluation",
+      "Imaging",
+      "Laboratory investigations",
+      "Cytology"
+    ],
+    "correct": 2,
+    "explanation": "The 'triple assessment' protocol for evaluating breast masses consists of three components: clinical examination, radiological imaging, and tissue sampling (cytology or histology). Routine laboratory investigations are not included in this triad."
+  },
+  {
+    "question": "Galactorrhea, a milky discharge from the nipple in a non-pregnant woman, is most likely to be associated with which of the following?",
+    "options": [
+      "Fibroadenoma",
+      "Tubular adenoma",
+      "Pituitary adenoma",
+      "Hyperparathyroidism",
+      "Breast abscess"
+    ],
+    "correct": 2,
+    "explanation": "A prolactin-secreting pituitary adenoma (prolactinoma) causes hyperprolactinemia, which stimulates milk production and classically results in bilateral galactorrhea in non-pregnant women."
+  },
+  {
+    "question": "An 18-year-old presents with a well-circulated 2 cm mass in her right breast. The mass is painless and has a rubbery consistency and discrete borders. It appears to move freely through the breast tissue. What is the most likely diagnosis?",
+    "options": [
+      "Carcinoma",
+      "Cyst",
+      "Fibroadenoma",
+      "Cystosarcoma phylloids",
+      "Intramammary lymph node"
+    ],
+    "correct": 2,
+    "explanation": "The clinical description of a painless, rubbery, well-circumscribed, highly mobile mass in a young adult female is highly characteristic of a fibroadenoma."
+  },
+  {
+    "question": "Probe test can differentiate phalloids from",
+    "options": [
+      "Fibroadenoma",
+      "Breast mouse",
+      "Breast cancer",
+      "Chronic breast abscess"
+    ],
+    "correct": 2,
+    "explanation": "The mobility assessment (sometimes referred to clinically as a probe or slipping test) helps distinguish a highly mobile, benign-acting mass like a phyllodes tumor from a rigid, infiltrative, fixed mass characteristic of breast cancer."
+  },
+  {
+    "question": "How many lactiferous ducts drain into the nipple of a mature female breast",
+    "options": [
+      "5-10",
+      "15-20",
+      "25-30",
+      "35-40"
+    ],
+    "correct": 1,
+    "explanation": "The mature female breast is composed of approximately 15 to 20 functional lobes, each draining into its own separate lactiferous duct that opens independently onto the nipple."
+  },
+  {
+    "question": "Which of the following is not a complication of duct papilloma:",
+    "options": [
+      "Malignant transformatio",
+      "Bleeding per nipple",
+      "Retention cyst",
+      "Colloid formation",
+      "Obstruction of the duct"
+    ],
+    "correct": 3,
+    "explanation": "A duct papilloma can bleed, obstruct the duct (leading to retention cysts), and rarely undergo malignant transformation. Colloid formation is not a recognized complication; rather, it is a feature of mucinous (colloid) breast carcinoma."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
