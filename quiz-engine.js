@@ -2676,14 +2676,24 @@ checkSavedProgress();
 
       var wrongQs = [], flaggedQs = [];
       var currentSessionIndices = {};
+      var currentSessionTexts = {};
+      var hasGlobalIndices = (typeof SESSION_QUESTION_INDICES !== 'undefined' && SESSION_QUESTION_INDICES);
+      
       qs.forEach(function(q, i) {
         var ans = state.answers[i];
         var isWrong   = ans !== undefined && ans !== q.correct;
         var isFlagged = state.flagged && state.flagged[i];
 
         // Determine the global index
-        var qIdx = (typeof SESSION_QUESTION_INDICES !== 'undefined' && SESSION_QUESTION_INDICES) ? SESSION_QUESTION_INDICES[i] : (q.idx !== undefined ? q.idx : i);
-        currentSessionIndices[qIdx] = true;
+        var qIdx = hasGlobalIndices ? SESSION_QUESTION_INDICES[i] : (q.idx !== undefined ? q.idx : i);
+        
+        // Track by index if we have global indices, otherwise track by text
+        if (hasGlobalIndices || q.idx !== undefined) {
+          currentSessionIndices[qIdx] = true;
+        } else {
+          // For non-bank quizzes, use question text to identify questions across sessions
+          currentSessionTexts[q.question] = true;
+        }
 
         var qData = {
           idx: qIdx,
@@ -2703,10 +2713,19 @@ checkSavedProgress();
       // Merge with existing data to ensure we don't overwrite previous sessions
       if (existingData) {
         var oldWrong = (existingData.wrong || []).filter(function(wq) {
-          return !currentSessionIndices[wq.idx];
+          // Use appropriate tracking method based on whether we have global indices
+          if (hasGlobalIndices || wq.idx !== undefined) {
+            return !currentSessionIndices[wq.idx];
+          } else {
+            return !currentSessionTexts[wq.text];
+          }
         });
         var oldFlagged = (existingData.flagged || []).filter(function(fq) {
-          return !currentSessionIndices[fq.idx];
+          if (hasGlobalIndices || fq.idx !== undefined) {
+            return !currentSessionIndices[fq.idx];
+          } else {
+            return !currentSessionTexts[fq.text];
+          }
         });
         wrongQs = oldWrong.concat(wrongQs);
         flaggedQs = oldFlagged.concat(flaggedQs);
