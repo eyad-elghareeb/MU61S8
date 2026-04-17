@@ -1,0 +1,110 @@
+  _kbStyle.textContent = `
+/* Keyboard Shortcuts Help Card */
+.kb-help-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+.kb-help-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+.kb-help-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.4);
+  position: relative;
+}
+.kb-help-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.kb-help-card .kb-close-btn {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-size: 0.85rem;
+}
+.kb-help-card .kb-close-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.kb-shortcut-list {
+  display: grid;
+  gap: 0.5rem;
+}
+.kb-shortcut-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.4rem 0;
+}
+.kb-shortcut-item:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+.kb-keys {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  min-width: 90px;
+}
+.kb-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 0.35rem;
+  border-radius: 4px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+}
+.kb-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+.kb-hint {
+  margin-top: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--accent-dim);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+.kb-hint strong { color: var(--accent); }
+
+  document.head.appendChild(_kbStyle);
