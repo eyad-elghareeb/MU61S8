@@ -586,13 +586,16 @@
 
   function buildItem(uid, q, typeLabel, iconClass, iconText) {
     var esc = (q.text || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // Use bankIndex if available for removal, otherwise fall back to idx
+    var removeIdx = q.bankIndex !== undefined ? q.bankIndex : (q.idx || 0);
+    var displayIdx = q.idx !== undefined ? q.idx : 0;
     return '<div class="dash-q-item">'
       + '<div class="dash-q-icon ' + iconClass + '">' + iconText + '</div>'
       + '<div class="dash-q-content">'
-      +   '<div class="dash-q-num">Q' + ((q.idx || 0) + 1) + ' \u00B7 ' + typeLabel + '</div>'
+      +   '<div class="dash-q-num">Q' + (displayIdx + 1) + ' \u00B7 ' + typeLabel + '</div>'
       +   '<div class="dash-q-text">' + esc + '</div>'
       + '</div>'
-      + '<button class="dash-q-remove" onclick="removeTrackerItem(\'' + uid + '\',' + (q.idx || 0) + ')" title="Remove">\u2715</button>'
+      + '<button class="dash-q-remove" onclick="removeTrackerItemByBankIndex(\'' + uid + '\',' + removeIdx + ')" title="Remove">\u2715</button>'
       + '</div>';
   }
 
@@ -628,6 +631,30 @@
       var data = JSON.parse(raw);
       data.wrong   = (data.wrong || []).filter(function (q) { return q.idx !== qIdx; });
       data.flagged = (data.flagged || []).filter(function (q) { return q.idx !== qIdx; });
+      if (!data.wrong.length && !data.flagged.length) {
+        localStorage.removeItem(getStorageKey(uid));
+        var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+        localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(keys.filter(function (k) { return k !== uid; })));
+      } else {
+        localStorage.setItem(getStorageKey(uid), JSON.stringify(data));
+      }
+      renderDashboard();
+      updateBadge();
+    } catch (e) {}
+  };
+  /* ── Remove single item by bankIndex ───────────────────────── */
+  window.removeTrackerItemByBankIndex = function (uid, bankIdx) {
+    try {
+      var raw = localStorage.getItem(getStorageKey(uid));
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      // Remove by bankIndex - removes ALL instances of this question across sessions
+      data.wrong   = (data.wrong || []).filter(function (q) { 
+        return q.bankIndex === undefined || q.bankIndex !== bankIdx; 
+      });
+      data.flagged = (data.flagged || []).filter(function (q) { 
+        return q.bankIndex === undefined || q.bankIndex !== bankIdx; 
+      });
       if (!data.wrong.length && !data.flagged.length) {
         localStorage.removeItem(getStorageKey(uid));
         var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
@@ -709,11 +736,12 @@
 
       allItems.forEach(function (item) {
         var q = item.q;
+        var displayIdx = q.idx !== undefined ? q.idx : 0;
         html += '<div style="border:1.5px solid ' + item.color + ';border-radius:10px;margin-bottom:12px;overflow:hidden;page-break-inside:avoid;">'
           + '<div style="padding:12px 15px;background:' + item.bg + ';">'
           + '<div style="display:flex;gap:10px;align-items:flex-start;">'
           + '<div style="width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;background:rgba(0,0,0,.06);color:' + item.color + ';">' + (item.type === 'Flagged' ? '\u2691' : '\u2717') + '</div>'
-          + '<div><div style="font-size:10px;color:#78716c;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Q' + ((q.idx || 0) + 1) + ' \u00B7 ' + item.type + '</div>'
+          + '<div><div style="font-size:10px;color:#78716c;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Q' + (displayIdx + 1) + ' \u00B7 ' + item.type + '</div>'
           + '<div style="font-size:14px;font-weight:500;line-height:1.5;">' + q.text + '</div></div></div></div>'
           + '<div style="padding:10px 15px 12px;border-top:1px solid #e5e0db;">'
           + '<div style="background:rgba(220,38,38,.08);border-radius:6px;padding:7px 11px;margin-bottom:7px;font-size:12px;"><span style="font-size:10px;text-transform:uppercase;font-weight:700;opacity:.6;margin-right:8px;">Your Answer</span>' + q.yourAnswer + '</div>'

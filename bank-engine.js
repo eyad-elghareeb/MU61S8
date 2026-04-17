@@ -2837,15 +2837,73 @@ checkSavedProgress();
 
       var folderPath = computeFolderPath();
 
+      // Load existing data to merge with new session data
+      var existingData = null;
+      var existingKey = getStorageKey(cfg.uid || location.pathname);
+      try {
+        var existingRaw = localStorage.getItem(existingKey);
+        if (existingRaw) existingData = JSON.parse(existingRaw);
+      } catch (e) {}
+
+      // Merge wrong questions by bankIndex (avoid duplicates)
+      var mergedWrong = [];
+      var wrongBankIndices = {};
+      
+      // Add existing wrong questions first
+      if (existingData && existingData.wrong) {
+        existingData.wrong.forEach(function(q) {
+          if (q.bankIndex !== undefined && !wrongBankIndices[q.bankIndex]) {
+            mergedWrong.push(q);
+            wrongBankIndices[q.bankIndex] = true;
+          }
+        });
+      }
+      
+      // Add new wrong questions (skip if already exists with same bankIndex)
+      wrongQs.forEach(function(q) {
+        if (q.bankIndex !== undefined && !wrongBankIndices[q.bankIndex]) {
+          mergedWrong.push(q);
+          wrongBankIndices[q.bankIndex] = true;
+        } else if (q.bankIndex === undefined) {
+          // Fallback for questions without bankIndex (use idx)
+          mergedWrong.push(q);
+        }
+      });
+
+      // Merge flagged questions by bankIndex (avoid duplicates)
+      var mergedFlagged = [];
+      var flaggedBankIndices = {};
+      
+      // Add existing flagged questions first
+      if (existingData && existingData.flagged) {
+        existingData.flagged.forEach(function(q) {
+          if (q.bankIndex !== undefined && !flaggedBankIndices[q.bankIndex]) {
+            mergedFlagged.push(q);
+            flaggedBankIndices[q.bankIndex] = true;
+          }
+        });
+      }
+      
+      // Add new flagged questions (skip if already exists with same bankIndex)
+      flaggedQs.forEach(function(q) {
+        if (q.bankIndex !== undefined && !flaggedBankIndices[q.bankIndex]) {
+          mergedFlagged.push(q);
+          flaggedBankIndices[q.bankIndex] = true;
+        } else if (q.bankIndex === undefined) {
+          // Fallback for questions without bankIndex (use idx)
+          mergedFlagged.push(q);
+        }
+      });
+
       var data = {
         uid:         cfg.uid || location.pathname,
         title:       cfg.title || document.title,
         timestamp:   Date.now(),
         totalQs:     qs.length,
-        wrongCount:  wrongQs.length,
-        flaggedCount: flaggedQs.length,
-        wrong:       wrongQs,
-        flagged:     flaggedQs,
+        wrongCount:  mergedWrong.length,
+        flaggedCount: mergedFlagged.length,
+        wrong:       mergedWrong,
+        flagged:     mergedFlagged,
         path:        location.pathname,
         folderPath:  folderPath
       };
