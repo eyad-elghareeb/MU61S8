@@ -642,6 +642,12 @@
 
   /* ── Clear all ─────────────────────────────────────────────── */
   window.confirmClearTrackerData = function () {
+    // Update the message to show current scope
+    var scopeName = getCurrentScopeDisplayName();
+    var messageEl = document.getElementById('clear-tracker-message');
+    if (messageEl && scopeName) {
+      messageEl.textContent = 'Are you sure you want to clear all questions for "' + scopeName + '"? This cannot be undone.';
+    }
     document.getElementById('clear-tracker-modal').classList.add('open');
   };
   
@@ -678,6 +684,19 @@
       showToast('🗑 Questions cleared for this section!');
     } catch (e) {}
   };
+  
+  function getCurrentScopeDisplayName() {
+    if (currentScope === 'folder' && currentScopePath) {
+      var folderPath = currentScopePath + '/';
+      if (_folderTitleCache[folderPath]) {
+        return _folderTitleCache[folderPath];
+      }
+      return decodeURIComponent(currentScopePath);
+    } else if (currentScope === 'all') {
+      return 'All Selected Exams';
+    }
+    return 'this section';
+  }
 
   /* ── PDF Export ────────────────────────────────────────────── */
   window.exportTrackerToPDF = function () {
