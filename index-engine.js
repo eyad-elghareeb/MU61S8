@@ -641,14 +641,41 @@
   };
 
   /* ── Clear all ─────────────────────────────────────────────── */
+  window.confirmClearTrackerData = function () {
+    document.getElementById('clear-tracker-modal').classList.add('open');
+  };
+  
+  window.closeClearTrackerModal = function () {
+    document.getElementById('clear-tracker-modal').classList.remove('open');
+  };
+  
   window.clearAllTrackerData = function () {
-    if (!confirm('Clear all tracked questions? This cannot be undone.')) return;
+    // Close modal first
+    closeClearTrackerModal();
+    
     try {
       var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
-      keys.forEach(function (uid) { localStorage.removeItem(getStorageKey(uid)); });
-      localStorage.removeItem(KEYS_LIST_KEY);
+      var allData = getAllTrackerData();
+      
+      // Filter data based on current scope
+      var dataToClear = getDataForScope(currentScope, currentScopePath);
+      var uidsToClear = {};
+      dataToClear.forEach(function (d) { uidsToClear[d.uid] = true; });
+      
+      // Only remove items that match the current scope
+      keys.forEach(function (uid) {
+        if (uidsToClear[uid]) {
+          localStorage.removeItem(getStorageKey(uid));
+        }
+      });
+      
+      // Update keys list - keep only keys not being cleared
+      var remainingKeys = keys.filter(function (uid) { return !uidsToClear[uid]; });
+      localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(remainingKeys));
+      
       renderDashboard();
       updateBadge();
+      showToast('🗑 Questions cleared for this section!');
     } catch (e) {}
   };
 
