@@ -67,8 +67,20 @@
     <div class="dash-body" id="dash-body"></div>
     <div class="dash-footer">
       <button class="btn-dash-action" onclick="exportTrackerToPDF()" title="Export to PDF">📄 Export PDF</button>
-      <button class="btn-dash-action btn-dash-danger" onclick="clearAllTrackerData()">🗑 Clear All</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>
       <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CLEAR TRACKER CONFIRM MODAL ════════════════ -->
+<div class="modal-overlay" id="clear-tracker-modal">
+  <div class="modal">
+    <h3>Clear Questions?</h3>
+    <p id="clear-tracker-message">Are you sure you want to clear all questions for this section? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeClearTrackerModal()">Go Back</button>
+      <button class="btn-confirm danger" onclick="clearAllTrackerData()">Clear Now</button>
     </div>
   </div>
 </div>
