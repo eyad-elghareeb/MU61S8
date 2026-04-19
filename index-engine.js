@@ -37,6 +37,30 @@
   _modalEl.innerHTML = '<div class="modal"><h3>Clear Questions?</h3><p id="clear-tracker-message">Are you sure you want to clear all questions for this section? This cannot be undone.</p><div class="modal-actions"><button class="btn-cancel" onclick="closeClearTrackerModal()">Go Back</button><button class="btn-confirm danger" onclick="clearAllTrackerData()">Clear Now</button></div></div>';
   document.body.appendChild(_modalEl);
   
+  /* ── Tracker Dashboard HTML ───────────────────────────────── */
+  var _dashEl = document.createElement('div');
+  _dashEl.className = 'dash-overlay';
+  _dashEl.id = 'tracker-dashboard';
+  _dashEl.innerHTML = '<div class="dash-modal">' +
+    '<div class="dash-header">' +
+      '<h2 id="dash-title-text">📊 Question Tracker</h2>' +
+      '<button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>' +
+    '</div>' +
+    '<div class="dash-scope-bar" id="dash-scope-bar"></div>' +
+    '<div class="dash-summary">' +
+      '<div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>' +
+      '<div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>' +
+      '<div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>' +
+    '</div>' +
+    '<div class="dash-body" id="dash-body"></div>' +
+    '<div class="dash-footer">' +
+      '<button class="btn-dash-action" onclick="exportTrackerToPDF()" title="Export to PDF">📄 Export PDF</button>' +
+      '<button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>' +
+      '<button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>' +
+    '</div>' +
+  '</div>';
+  document.body.appendChild(_dashEl);
+  
   /* ── Toast Function ───────────────────────────────────────── */
   var toastTimer;
   window.showToast = function(msg) {
