@@ -15,60 +15,60 @@
     '.btn-dash-review{padding:0.65rem 1.25rem;border-radius:8px;background:var(--correct);border:1.5px solid var(--correct);color:#ffffff;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all var(--transition);margin-left:auto}.btn-dash-review:hover{opacity:0.85}.btn-dash-review:disabled{opacity:0.4;cursor:not-allowed}' +
     '.dash-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);font-style:italic}';
   document.head.appendChild(_trackerStyle);
-  
+
   /* ── Toast Notification Styles ────────────────────────────── */
   var _toastStyle = document.createElement('style');
   _toastStyle.textContent = '.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:0.65rem 1.2rem;font-size:0.88rem;font-weight:500;box-shadow:var(--shadow);z-index:9999;transition:transform 0.3s ease,opacity 0.3s ease;white-space:nowrap;display:flex;align-items:center;gap:0.5rem;max-width:90%}.toast.show{transform:translateX(-50%) translateY(0)}';
   document.head.appendChild(_toastStyle);
-  
+
   /* ── Modal Styles ─────────────────────────────────────────── */
   var _modalStyle = document.createElement('style');
   _modalStyle.textContent = '.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:2100;display:none;align-items:center;justify-content:center;padding:1rem}.modal-overlay.open{display:flex}.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;max-width:420px;width:100%;box-shadow:var(--shadow);animation:modalIn 0.38s var(--ease-spring) both}.modal h3{font-family:\'Playfair Display\',serif;font-size:1.3rem;margin-bottom:0.75rem}.modal p{color:var(--text-muted);font-size:0.9rem;line-height:1.6;margin-bottom:1.25rem}.modal-actions{display:flex;gap:0.75rem}.modal-actions .btn-cancel{flex:1;padding:0.75rem;border-radius:10px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);font-weight:600;font-size:0.9rem;transition:border-color 0.2s var(--ease-out), background 0.2s var(--ease-out)}.modal-actions .btn-cancel:hover{border-color:var(--accent)}.modal-actions .btn-confirm{flex:1;padding:0.75rem;border-radius:10px;background:var(--correct);border:none;color:#fff;font-weight:700;font-size:0.9rem;transition:opacity 0.2s var(--ease-out)}.modal-actions .btn-confirm:hover{opacity:0.85}.modal-actions .btn-confirm.danger{background:var(--wrong)}@keyframes modalIn{from{opacity:0;transform:translateY(28px) scale(0.93)}to{opacity:1;transform:translateY(0) scale(1)}}';
   document.head.appendChild(_modalStyle);
-  
+
   /* ── Toast HTML Element ───────────────────────────────────── */
   var _toastEl = document.createElement('div');
   _toastEl.id = 'toast';
   _toastEl.className = 'toast';
   document.body.appendChild(_toastEl);
-  
+
   /* ── Clear Tracker Modal HTML ─────────────────────────────── */
   var _modalEl = document.createElement('div');
   _modalEl.className = 'modal-overlay';
   _modalEl.id = 'clear-tracker-modal';
   _modalEl.innerHTML = '<div class="modal"><h3>Clear Questions?</h3><p id="clear-tracker-message">Are you sure you want to clear all questions for this section? This cannot be undone.</p><div class="modal-actions"><button class="btn-cancel" onclick="closeClearTrackerModal()">Go Back</button><button class="btn-confirm danger" onclick="clearAllTrackerData()">Clear Now</button></div></div>';
   document.body.appendChild(_modalEl);
-  
+
   /* ── Tracker Dashboard HTML ───────────────────────────────── */
   var _dashEl = document.createElement('div');
   _dashEl.className = 'dash-overlay';
   _dashEl.id = 'tracker-dashboard';
   _dashEl.innerHTML = '<div class="dash-modal">' +
     '<div class="dash-header">' +
-      '<h2 id="dash-title-text">📊 Question Tracker</h2>' +
-      '<button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>' +
+    '<h2 id="dash-title-text">📊 Question Tracker</h2>' +
+    '<button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>' +
     '</div>' +
     '<div class="dash-scope-bar" id="dash-scope-bar">' +
-      '<div id="dash-scope-tabs"></div>' +
-      '<button id="dash-master-toggle" class="dash-master-toggle" onclick="toggleMasterSelection()"></button>' +
+    '<div id="dash-scope-tabs"></div>' +
+    '<button id="dash-master-toggle" class="dash-master-toggle" onclick="toggleMasterSelection()"></button>' +
     '</div>' +
     '<div class="dash-summary">' +
-      '<div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>' +
-      '<div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>' +
-      '<div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>' +
+    '<div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>' +
+    '<div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>' +
+    '<div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>' +
     '</div>' +
     '<div class="dash-body" id="dash-body"></div>' +
     '<div class="dash-footer">' +
-      '<button class="btn-dash-action" onclick="exportTrackerToPDF()" title="Export to PDF">📄 Export PDF</button>' +
-      '<button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>' +
-      '<button class="btn-dash-review" id="btn-start-review" onclick="startReviewMode()">▶ Start Review</button>' +
+    '<button class="btn-dash-action" onclick="exportTrackerToPDF()" title="Export to PDF">📄 Export PDF</button>' +
+    '<button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>' +
+    '<button class="btn-dash-review" id="btn-start-review" onclick="startReviewMode()">▶ Start Review</button>' +
     '</div>' +
-  '</div>';
+    '</div>';
   document.body.appendChild(_dashEl);
 
   /* ── Toast Function ───────────────────────────────────────── */
   var toastTimer;
-  window.showToast = function(msg) {
+  window.showToast = function (msg) {
     var t = document.getElementById('toast');
     if (!t) return;
     clearTimeout(toastTimer);
@@ -77,7 +77,7 @@
     msgSpan.textContent = msg;
     t.appendChild(msgSpan);
     t.classList.add('show');
-    toastTimer = setTimeout(function() {
+    toastTimer = setTimeout(function () {
       t.classList.remove('show');
     }, 2200);
   };
@@ -120,7 +120,7 @@
         + '<h2 class="card-title">' + escHtml(quiz.title) + '</h2>'
         + '<p class="card-desc">' + escHtml(quiz.description) + '</p>'
         + '<div class="card-meta">'
-        +   (quiz.tags || []).map(function (t) { return '<span class="meta-badge">' + escHtml(t) + '</span>'; }).join('')
+        + (quiz.tags || []).map(function (t) { return '<span class="meta-badge">' + escHtml(t) + '</span>'; }).join('')
         + '</div>'
         + '<a href="' + escHtml(quiz.url) + '" class="btn-take-quiz">Start \u2192</a>'
         + '</div>';
@@ -129,7 +129,7 @@
 
   /* ── Tracker storage ───────────────────────────────────────── */
   var STORAGE_PREFIX = 'quiz_tracker_v2_';
-  var KEYS_LIST_KEY  = 'quiz_tracker_keys';
+  var KEYS_LIST_KEY = 'quiz_tracker_keys';
 
   function getStorageKey(uid) { return STORAGE_PREFIX + uid; }
 
@@ -138,7 +138,7 @@
   try {
     _rootName = new URL(ENGINE_BASE || '', location.href).pathname
       .replace(/\/$/, '').replace(/^\//, '');
-  } catch (e) {}
+  } catch (e) { }
 
   /* -- Normalize a stored d.path by stripping the project root prefix -- */
   function _normStoredPath(p) {
@@ -191,7 +191,7 @@
       var results = [];
       keys.forEach(function (uid) {
         var raw = localStorage.getItem(getStorageKey(uid));
-        if (raw) try { results.push(JSON.parse(raw)); } catch (e) {}
+        if (raw) try { results.push(JSON.parse(raw)); } catch (e) { }
       });
       return results;
     } catch (e) { return []; }
@@ -215,8 +215,8 @@
         }
         // Match if the quiz's folder starts with the target folder path
         // This ensures "gyn/dep" matches when target is "gyn", but "gyn-extra" does not
-        return (fp && (fp === target || fp.indexOf(target + '/') === 0)) 
-            || (dpFolder && (dpFolder === target || dpFolder.indexOf(target + '/') === 0));
+        return (fp && (fp === target || fp.indexOf(target + '/') === 0))
+          || (dpFolder && (dpFolder === target || dpFolder.indexOf(target + '/') === 0));
       });
     }
     return all;
@@ -244,7 +244,7 @@
           var relative = absUrl.substring(rootAbs.length);
           raw = relative.replace(/[^/]*$/, '') || '';
         }
-      } catch (e) {}
+      } catch (e) { }
 
       // Last resort: extract from d.path and strip root prefix
       if (!raw && d.path) {
@@ -339,11 +339,11 @@
     var folderPath = segments.length > 0 ? segments[segments.length - 1] : '';
     var data = folderPath
       ? getAllTrackerData().filter(function (d) {
-          var fp = (d.folderPath || '').replace(/^\//, '');
-          var dp = _normStoredPath(d.path);
-          var target = folderPath.replace(/^\//, '');
-          return (fp && fp.indexOf(target) === 0) || (dp && dp.indexOf(target) === 0);
-        })
+        var fp = (d.folderPath || '').replace(/^\//, '');
+        var dp = _normStoredPath(d.path);
+        var target = folderPath.replace(/^\//, '');
+        return (fp && fp.indexOf(target) === 0) || (dp && dp.indexOf(target) === 0);
+      })
       : getAllTrackerData();
     var total = 0;
     data.forEach(function (d) { total += (d.wrong || []).length + (d.flagged || []).length; });
@@ -371,6 +371,13 @@
 
     // Reset selection state when opening dashboard (all folders selected by default)
     _selectedQuizzes = {};
+
+    // Reset footer review button text and action
+    var revBtn = document.getElementById('btn-start-review');
+    if (revBtn) {
+      revBtn.textContent = '▶ Start Review';
+      revBtn.onclick = startReviewMode;
+    }
 
     var segments = getFolderSegments(location.pathname);
     var scopeBar = document.getElementById('dash-scope-bar');
@@ -447,7 +454,7 @@
           + escHtml(t.label) + '</button>';
       });
       tabsContainer.innerHTML = scopeHTML;
-      
+
       renderDashboard();
       var overlay = document.getElementById('tracker-dashboard');
       if (overlay) {
@@ -462,11 +469,11 @@
     // Fetch titles in background to refresh labels later
     if (foldersToFetch.length > 0) {
       Promise.all(foldersToFetch.map(function (f) { return fetchFolderTitle(f); }))
-        .then(function () { 
+        .then(function () {
           // Check if dashboard still open to avoid unnecessary work
-          if (_activeDashboard === 'tracker') buildTabs(); 
+          if (_activeDashboard === 'tracker') buildTabs();
         })
-        .catch(function () {}); 
+        .catch(function () { });
     }
   };
 
@@ -516,8 +523,8 @@
       // 3. Re-render once we have better names
       // Check if we are still on the tracker dashboard to avoid background layout thrashing
       if (_activeDashboard === 'tracker') {
-          renderDashboardContent(body, data);
-          updateMasterToggleState(data);
+        renderDashboardContent(body, data);
+        updateMasterToggleState(data);
       }
     });
   }
@@ -525,8 +532,8 @@
   function updateMasterToggleState(data) {
     var masterToggle = document.getElementById('dash-master-toggle');
     if (!masterToggle) return;
-    
-    var allSelected = data.every(function(d) { return _selectedQuizzes[d.uid] !== false; });
+
+    var allSelected = data.every(function (d) { return _selectedQuizzes[d.uid] !== false; });
     masterToggle.textContent = allSelected ? 'Deselect All' : 'Select All';
     masterToggle.classList.toggle('active', allSelected);
   }
@@ -566,7 +573,7 @@
     });
 
     var html = '';
-    
+
     // Selection buttons removed from here (now a single toggle in scope bar)
 
     var lastTopFolder = '__none__';
@@ -596,8 +603,8 @@
       }
 
       var isCollapsed = _collapsedFolders[folder] || false;
-      var folderUids = fGroups.map(function(g) { return g.uid; });
-      var isFolderSelected = folderUids.every(function(uid) { return _selectedQuizzes[uid] !== false; });
+      var folderUids = fGroups.map(function (g) { return g.uid; });
+      var isFolderSelected = folderUids.every(function (uid) { return _selectedQuizzes[uid] !== false; });
 
       if (displayFolderTitle) {
         html += '<div class="dash-folder-header" style="align-items:center;">';
@@ -622,12 +629,12 @@
             : '';
 
           html += '<div class="dash-quiz-group">';
-          html += '<div class="dash-quiz-title" style="cursor:pointer; display:flex; align-items:center;" onclick="document.getElementById(\'chk-\'+\''+g.uid+'\').click()">';
-          html += '<input type="checkbox" id="chk-'+g.uid+'" class="dash-quiz-select" style="margin-right:8px; width:16px; height:16px; cursor:pointer; accent-color:var(--accent)" ' + (isQuizSelected ? 'checked' : '') + ' onclick="event.stopPropagation(); toggleQuizSelection(\'' + g.uid + '\', this.checked)"> ';
+          html += '<div class="dash-quiz-title" style="cursor:pointer; display:flex; align-items:center;" onclick="document.getElementById(\'chk-\'+\'' + g.uid + '\').click()">';
+          html += '<input type="checkbox" id="chk-' + g.uid + '" class="dash-quiz-select" style="margin-right:8px; width:16px; height:16px; cursor:pointer; accent-color:var(--accent)" ' + (isQuizSelected ? 'checked' : '') + ' onclick="event.stopPropagation(); toggleQuizSelection(\'' + g.uid + '\', this.checked)"> ';
           html += escHtml(g.title);
-          if (g.wrongItems.length)   html += ' <span class="quiz-badge wrong-badge">' + g.wrongItems.length + ' wrong</span>';
+          if (g.wrongItems.length) html += ' <span class="quiz-badge wrong-badge">' + g.wrongItems.length + ' wrong</span>';
           if (g.flaggedItemsAll.length) html += ' <span class="quiz-badge flag-badge">' + g.flaggedItemsAll.length + ' flagged</span>';
-          if (dateStr)             html += ' <span style="font-size:0.7rem;color:var(--text-muted);font-weight:400;margin-left:auto;">' + dateStr + '</span>';
+          if (dateStr) html += ' <span style="font-size:0.7rem;color:var(--text-muted);font-weight:400;margin-left:auto;">' + dateStr + '</span>';
           html += '</div>';
 
           g.wrongItems.forEach(function (q) {
@@ -657,8 +664,8 @@
     return '<div class="dash-q-item">'
       + '<div class="dash-q-icon ' + iconClass + '">' + iconText + '</div>'
       + '<div class="dash-q-content">'
-      +   '<div class="dash-q-num">Q' + ((q.idx || 0) + 1) + ' \u00B7 ' + typeLabel + '</div>'
-      +   '<div class="dash-q-text">' + esc + '</div>'
+      + '<div class="dash-q-num">Q' + ((q.idx || 0) + 1) + ' \u00B7 ' + typeLabel + '</div>'
+      + '<div class="dash-q-text">' + esc + '</div>'
       + '</div>'
       + '<button class="dash-q-remove" onclick="removeTrackerItem(\'' + uid + '\',' + (q.idx || 0) + ')" title="Remove">\u2715</button>'
       + '</div>';
@@ -697,24 +704,24 @@
 
   window.toggleFolderSelection = function (folder, checked) {
     var data = getDataForScope(currentScope, currentScopePath);
-    data.forEach(function(d) {
-       var dFolder = getFolderForEntry(d) || '__root__';
-       if (dFolder === folder) _selectedQuizzes[d.uid] = checked;
+    data.forEach(function (d) {
+      var dFolder = getFolderForEntry(d) || '__root__';
+      if (dFolder === folder) _selectedQuizzes[d.uid] = checked;
     });
     renderDashboard();
   };
 
-  window.toggleAllSelection = function(checked) {
+  window.toggleAllSelection = function (checked) {
     var data = getDataForScope(currentScope, currentScopePath);
-    data.forEach(function(d) {
-       _selectedQuizzes[d.uid] = checked;
+    data.forEach(function (d) {
+      _selectedQuizzes[d.uid] = checked;
     });
     renderDashboard();
   };
 
-  window.toggleMasterSelection = function() {
+  window.toggleMasterSelection = function () {
     var data = getDataForScope(currentScope, currentScopePath);
-    var allSelected = data.every(function(d) { return _selectedQuizzes[d.uid] !== false; });
+    var allSelected = data.every(function (d) { return _selectedQuizzes[d.uid] !== false; });
     toggleAllSelection(!allSelected);
   };
 
@@ -724,7 +731,7 @@
       var raw = localStorage.getItem(getStorageKey(uid));
       if (!raw) return;
       var data = JSON.parse(raw);
-      data.wrong   = (data.wrong || []).filter(function (q) { return q.idx !== qIdx; });
+      data.wrong = (data.wrong || []).filter(function (q) { return q.idx !== qIdx; });
       data.flagged = (data.flagged || []).filter(function (q) { return q.idx !== qIdx; });
       if (!data.wrong.length && !data.flagged.length) {
         localStorage.removeItem(getStorageKey(uid));
@@ -735,14 +742,14 @@
       }
       renderDashboard();
       updateBadge();
-    } catch (e) {}
+    } catch (e) { }
   };
 
   /* ── Batch Remove Items (Performance Update) ── */
   window.batchRemoveTrackerItems = function (items) {
     try {
       var uidMap = {};
-      items.forEach(function(it) {
+      items.forEach(function (it) {
         if (!uidMap[it.uid]) uidMap[it.uid] = [];
         uidMap[it.uid].push(it.idx);
       });
@@ -750,29 +757,29 @@
       var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
       var keysChanged = false;
 
-      Object.keys(uidMap).forEach(function(uid) {
+      Object.keys(uidMap).forEach(function (uid) {
         var indices = uidMap[uid];
         var raw = localStorage.getItem(getStorageKey(uid));
         if (!raw) return;
         var data = JSON.parse(raw);
-        data.wrong = (data.wrong || []).filter(function(q) { return !indices.includes(q.idx); });
-        data.flagged = (data.flagged || []).filter(function(q) { return !indices.includes(q.idx); });
+        data.wrong = (data.wrong || []).filter(function (q) { return !indices.includes(q.idx); });
+        data.flagged = (data.flagged || []).filter(function (q) { return !indices.includes(q.idx); });
 
         if (!data.wrong.length && !data.flagged.length) {
           localStorage.removeItem(getStorageKey(uid));
-          keys = keys.filter(function(k) { return k !== uid; });
+          keys = keys.filter(function (k) { return k !== uid; });
           keysChanged = true;
         } else {
           localStorage.setItem(getStorageKey(uid), JSON.stringify(data));
         }
       });
-      
+
       if (keysChanged) {
         localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(keys));
       }
       renderDashboard();
       updateBadge();
-    } catch (e) {}
+    } catch (e) { }
   };
 
   /* ── Clear all ─────────────────────────────────────────────── */
@@ -785,43 +792,43 @@
     }
     document.getElementById('clear-tracker-modal').classList.add('open');
   };
-  
+
   window.closeClearTrackerModal = function () {
     document.getElementById('clear-tracker-modal').classList.remove('open');
   };
-  
+
   window.clearAllTrackerData = function () {
     // Close modal first
     closeClearTrackerModal();
-    
+
     try {
       var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
       var allData = getAllTrackerData();
-      
+
       // Filter data based on current scope AND selection
       var dataToClear = getDataForScope(currentScope, currentScopePath);
       var uidsToClear = {};
-      dataToClear.forEach(function (d) { 
-        if (_selectedQuizzes[d.uid] !== false) uidsToClear[d.uid] = true; 
+      dataToClear.forEach(function (d) {
+        if (_selectedQuizzes[d.uid] !== false) uidsToClear[d.uid] = true;
       });
-      
+
       // Only remove items that match the current scope
       keys.forEach(function (uid) {
         if (uidsToClear[uid]) {
           localStorage.removeItem(getStorageKey(uid));
         }
       });
-      
+
       // Update keys list - keep only keys not being cleared
       var remainingKeys = keys.filter(function (uid) { return !uidsToClear[uid]; });
       localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(remainingKeys));
-      
+
       renderDashboard();
       updateBadge();
       showToast('🗑 Questions cleared for this section!');
-    } catch (e) {}
+    } catch (e) { }
   };
-  
+
   function getCurrentScopeDisplayName() {
     if (currentScope === 'folder' && currentScopePath) {
       var folderPath = currentScopePath + '/';
@@ -835,21 +842,21 @@
     return 'this section';
   }
 
-  
+
   function fetchAndParseQuestions(path) {
     var url = window.location.origin + path;
     if (path && window.location.pathname.endsWith('index.html') && path.startsWith('.')) {
-        url = new URL(path, window.location.href).href;
+      url = new URL(path, window.location.href).href;
     } else if (path && !path.startsWith('http') && !path.startsWith('/')) {
-        var rootAbs = new URL(ENGINE_BASE || '', window.location.href).href;
-        url = rootAbs + path;
+      var rootAbs = new URL(ENGINE_BASE || '', window.location.href).href;
+      url = rootAbs + path;
     } else if (path && path.startsWith('/')) {
-        url = location.origin + path;
+      url = location.origin + path;
     }
 
     return fetch(url)
-      .then(function(r) { return r.ok ? r.text() : null; })
-      .then(function(html) {
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (html) {
         if (!html) return null;
         var match = html.match(/\/\*\s*\[QUESTIONS_START\]\s*\*\/([\s\S]*?)\/\*\s*\[QUESTIONS_END\]\s*\*\//);
         if (!match) {
@@ -858,66 +865,66 @@
         if (!match) return null;
         var block = match[1].trim();
         block = block.replace(/^const\s+(?:QUESTIONS|QUESTION_BANK)\s*=\s*/, '').replace(/;\s*$/, '');
-        
+
         try {
           var arr;
           eval('arr = ' + block + ';');
           if (Array.isArray(arr)) return arr;
-        } catch(e) {}
-        
-        try { return JSON.parse(block); } catch(e) { return null; }
+        } catch (e) { }
+
+        try { return JSON.parse(block); } catch (e) { return null; }
       })
-      .catch(function() { return null; });
+      .catch(function () { return null; });
   }
 
   var _isSyncRequested = true;
   var _currentReviewQs = [];
 
-  window.startReviewMode = function() {
+  window.startReviewMode = function () {
     var data = getDataForScope(currentScope, currentScopePath);
-    
-    data = data.filter(function(d) {
-        return _selectedQuizzes[d.uid] !== false;
+
+    data = data.filter(function (d) {
+      return _selectedQuizzes[d.uid] !== false;
     });
 
     if (!data || !data.length) {
       showToast('No questions selected. Please check at least one folder.');
       return;
     }
-    
+
     var b = document.getElementById('dash-body');
     if (b) b.innerHTML = '<div class="dash-empty" style="padding:4rem 1rem;"><div>Generating review session...</div></div>';
-    
+
     var qByPath = {};
-    data.forEach(function(d) {
+    data.forEach(function (d) {
       var p = d.path || '';
       if (!qByPath[p]) qByPath[p] = { uid: d.uid, title: d.title || 'Unknown', qs: [] };
-      
+
       var seenMsg = {};
-      (d.wrong || []).forEach(function(q) {
+      (d.wrong || []).forEach(function (q) {
         if (!seenMsg[q.idx]) { seenMsg[q.idx] = true; qByPath[p].qs.push({ q: q, type: 'wrong' }); }
       });
-      (d.flagged || []).forEach(function(q) {
+      (d.flagged || []).forEach(function (q) {
         if (!seenMsg[q.idx]) { seenMsg[q.idx] = true; qByPath[p].qs.push({ q: q, type: 'flagged' }); }
       });
     });
 
     var paths = Object.keys(qByPath);
-    var fetches = paths.map(function(p) {
-        if (!p) return Promise.resolve({ p: p, arr: null });
-        return fetchAndParseQuestions(p).then(function(arr) { return { p: p, arr: arr }; });
+    var fetches = paths.map(function (p) {
+      if (!p) return Promise.resolve({ p: p, arr: null });
+      return fetchAndParseQuestions(p).then(function (arr) { return { p: p, arr: arr }; });
     });
 
-    Promise.all(fetches).then(function(results) {
+    Promise.all(fetches).then(function (results) {
       var arrMap = {};
-      results.forEach(function(res) { arrMap[res.p] = res.arr; });
+      results.forEach(function (res) { arrMap[res.p] = res.arr; });
 
       var finalQs = [];
-      paths.forEach(function(p) {
+      paths.forEach(function (p) {
         var group = qByPath[p];
         var sourceArr = arrMap[p];
-        
-        group.qs.forEach(function(item) {
+
+        group.qs.forEach(function (item) {
           var tq = item.q;
           var srcQuestion = (sourceArr && sourceArr[tq.idx]) ? sourceArr[tq.idx] : null;
 
@@ -936,13 +943,13 @@
             var isNotAns = tq.yourAnswer === 'Not answered';
             var opts = [cText];
             if (!isNotAns && yText && yText !== cText) opts.push(yText);
-            
+
             for (var i = opts.length - 1; i > 0; i--) {
               var j = Math.floor(Math.random() * (i + 1));
               var temp = opts[i]; opts[i] = opts[j]; opts[j] = temp;
             }
             var cIdx = opts.indexOf(cText);
-            
+
             finalQs.push({
               question: '<span style="font-size:0.7em;color:var(--text-muted);display:block;margin-bottom:8px;">\uD83D\uDCC1 ' + escHtml(group.title) + '</span>' + tq.text,
               options: opts,
@@ -965,6 +972,13 @@
         return;
       }
 
+      // Update footer button to launch final session
+      var revBtn = document.getElementById('btn-start-review');
+      if (revBtn) {
+        revBtn.textContent = 'Start Session \u2192';
+        revBtn.onclick = launchReviewFinal;
+      }
+
       renderReviewSetup(finalQs);
     });
   };
@@ -973,24 +987,23 @@
     var b = document.getElementById('dash-body');
     if (!b) return;
     var count = qs.length;
-    
+
     var html = '<div class="dash-empty" style="padding:2rem 1rem; text-align:center;">';
     html += '<div style="font-size:1.4rem; color:var(--text); margin-bottom:1.5rem; font-family:\'Playfair Display\', serif;">\uD83D\uDCDD Review Mode</div>';
     html += '<p style="color:var(--text-muted); margin-bottom:2rem; line-height:1.6;">You are about to review <strong>' + count + '</strong> questions from your tracker.</p>';
-    
+
     html += '<label style="display:flex; align-items:center; justify-content:center; gap:0.75rem; background:var(--surface2); padding:0.9rem 1.4rem; border-radius:14px; border:1px solid var(--border); cursor:pointer; margin-bottom:2.5rem; margin-inline:auto; max-width:fit-content; transition: border-color 0.2s;">';
     html += '<input type="checkbox" id="rev-sync-checkbox" checked style="width:20px; height:20px; accent-color:var(--correct); cursor:pointer;">';
     html += '<span style="font-size:0.92rem; font-weight:500;">Remove corrected questions from tracker</span>';
     html += '</label>';
-    
-    html += '<button class="btn-dash-review" style="padding:1.1rem 3rem; font-size:1.05rem; border-radius:14px; width:auto; flex:none; margin:0 auto; display:block;" onclick="launchReviewFinal()">Start Session \u2192</button>';
+
     html += '</div>';
-    
+
     b.innerHTML = html;
     _currentReviewQs = qs;
   }
 
-  window.launchReviewFinal = function() {
+  window.launchReviewFinal = function () {
     var qs = _currentReviewQs;
     var isSyncChecked = document.getElementById('rev-sync-checkbox').checked;
     _isSyncRequested = isSyncChecked;
@@ -1066,12 +1079,12 @@
     iframe.style.border = 'none';
     iframe.style.zIndex = '999999';
     iframe.style.background = currentTheme === 'light' ? '#f3f0eb' : '#0d1117';
-    
+
     document.body.appendChild(iframe);
   };
 
 
-  window.closeReviewMode = function(fromPopState) {
+  window.closeReviewMode = function (fromPopState) {
     if (!fromPopState && _activeDashboard === 'review') {
       history.back();
       return;
@@ -1085,17 +1098,17 @@
     }
   };
 
-  window.addEventListener('message', function(e) {
-      if (e.data === 'close-review') {
-          closeReviewMode();
-      } else if (e.data && e.data.type === 'review-sync') {
-          if (_isSyncRequested && Array.isArray(e.data.correctItems)) {
-              batchRemoveTrackerItems(e.data.correctItems);
-          }
+  window.addEventListener('message', function (e) {
+    if (e.data === 'close-review') {
+      closeReviewMode();
+    } else if (e.data && e.data.type === 'review-sync') {
+      if (_isSyncRequested && Array.isArray(e.data.correctItems)) {
+        batchRemoveTrackerItems(e.data.correctItems);
       }
+    }
   });
 
-  window.addEventListener('popstate', function(e) {
+  window.addEventListener('popstate', function (e) {
     var state = e.state;
     if (state && state.dash === 'tracker') {
       openTrackerDashboard(null, true);
@@ -1113,7 +1126,7 @@
   /* ── PDF Export ────────────────────────────────────────────── */
   window.exportTrackerToPDF = function () {
     var data = getDataForScope(currentScope, currentScopePath);
-    
+
     // Filter data based on explicitly selected quizzes
     data = data.filter(function (d) {
       return _selectedQuizzes[d.uid] !== false;
@@ -1134,13 +1147,13 @@
       + '<h1 style="font-size:22px;margin:0 0 4px;font-family:Georgia,serif;">\uD83D\uDCCA Question Tracker</h1>'
       + '<p style="color:#78716c;margin:0 0 4px;font-size:13px;">Scope: ' + scopeLabel + ' &mdash; ' + now + '</p>'
       + '<div style="background:#f8f6f1;border-radius:12px;padding:18px 20px;margin-bottom:22px;border:1px solid #d0ccc5;display:flex;gap:18px;align-items:center;flex-wrap:wrap;">'
-      +   '<div style="flex:1;min-width:180px;">'
-      +     '<div style="display:flex;gap:8px;flex-wrap:wrap;">'
-      +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#dc2626;">' + totalWrong + '</div><div style="font-size:10px;color:#78716c;">Wrong</div></div>'
-      +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#2563eb;">' + totalFlagged + '</div><div style="font-size:10px;color:#78716c;">Flagged</div></div>'
-      +       '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#16a34a;">' + data.length + '</div><div style="font-size:10px;color:#78716c;">Quizzes</div></div>'
-      +     '</div>'
-      +   '</div>'
+      + '<div style="flex:1;min-width:180px;">'
+      + '<div style="display:flex;gap:8px;flex-wrap:wrap;">'
+      + '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#dc2626;">' + totalWrong + '</div><div style="font-size:10px;color:#78716c;">Wrong</div></div>'
+      + '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#2563eb;">' + totalFlagged + '</div><div style="font-size:10px;color:#78716c;">Flagged</div></div>'
+      + '<div style="background:#fff;border:1px solid #d0ccc5;border-radius:8px;padding:7px 12px;text-align:center;min-width:62px;"><div style="font-size:16px;font-weight:700;color:#16a34a;">' + data.length + '</div><div style="font-size:10px;color:#78716c;">Quizzes</div></div>'
+      + '</div>'
+      + '</div>'
       + '</div>';
 
     data.sort(function (a, b) { return (b.timestamp || 0) - (a.timestamp || 0); });
@@ -1194,7 +1207,7 @@
     container.innerHTML = html;
 
     function runExport() {
-      html2pdf().set(opt).from(container).save().catch(function () {});
+      html2pdf().set(opt).from(container).save().catch(function () { });
     }
 
     if (typeof html2pdf !== 'undefined') {
@@ -1245,7 +1258,7 @@
       wave.className = 'ripple-wave';
       var r = btn.getBoundingClientRect();
       wave.style.left = (e.clientX - r.left) + 'px';
-      wave.style.top  = (e.clientY - r.top)  + 'px';
+      wave.style.top = (e.clientY - r.top) + 'px';
       btn.appendChild(wave);
       wave.addEventListener('animationend', function () { wave.remove(); });
     });
