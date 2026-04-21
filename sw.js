@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-29e5362aa0e5';
+const CACHE_VERSION = 'mu61-quiz-764aa39c8243';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -141,7 +141,8 @@ var PRECACHE_REL_PATHS = [
   'icon-144.png',
   'icon-192.png',
   'icon-512.png',
-  'index-engine.css'
+  'index-engine.css',
+  'manifest.webmanifest'
 ];
 
 /* ── Build a full URL from scope + relative path ── */
@@ -206,15 +207,34 @@ self.addEventListener('install', function (event) {
       var scope = self.registration.scope;
       var cache = await caches.open(CACHE_NAME);
 
-      /* All HTML + JS files, icons, manifest, and favicon */
+      var REQUIRED = [
+        'quiz-engine.js',
+        'bank-engine.js',
+        'index-engine.js',
+        'index-engine.css',
+        'index.html',
+        'manifest.webmanifest',
+        'favicon.svg'
+      ];
+
+      /* 1. Critical assets — DO NOT CATCH (fails install on error) */
       await Promise.all(
-        PRECACHE_REL_PATHS.map(function (rel) {
-          var u = hrefFromScope(scope, rel);
-          return cache.add(u).catch(function () {});
+        REQUIRED.map(function (rel) {
+          return cache.add(hrefFromScope(scope, rel));
         })
       );
 
-      /* Cross-origin CDN resources */
+      /* 2. All other HTML/icons — tolerate failures */
+      var others = PRECACHE_REL_PATHS.filter(function (p) {
+        return REQUIRED.indexOf(p) === -1;
+      });
+      await Promise.all(
+        others.map(function (rel) {
+          return cache.add(hrefFromScope(scope, rel)).catch(function () {});
+        })
+      );
+
+      /* 3. Cross-origin CDN resources */
       await precacheGoogleFonts(cache);
       await precacheHtml2Pdf(cache);
 
@@ -279,7 +299,29 @@ function handleAsset(event, request) {
   return (async function () {
     var cache = await caches.open(CACHE_NAME);
     var cached = await cache.match(request);
+    
+    /* Root fallback for shared assets (e.g. index-engine.css loaded from subfolders) */
+    if (!cached) {
+      var url = new URL(request.url);
+      var scope = self.registration.scope;
+      if (url.origin === self.location.origin && url.href.indexOf(scope) === 0) {
+        var filename = url.pathname.split('/').pop();
+        var SHARED = [
+          'quiz-engine.js',
+          'bank-engine.js',
+          'index-engine.js',
+          'index-engine.css',
+          'manifest.webmanifest',
+          'favicon.svg'
+        ];
+        if (SHARED.indexOf(filename) !== -1) {
+          cached = await cache.match(hrefFromScope(scope, filename));
+        }
+      }
+    }
+
     if (cached) return cached;
+
     try {
       var res = await fetch(request);
       if (shouldStore(res)) {
