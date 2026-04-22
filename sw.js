@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-662eb8554960';
+const CACHE_VERSION = 'mu61-quiz-c3b2a65ce841';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -147,7 +147,8 @@ var PRECACHE_REL_PATHS = [
 
 /* ── Build a full URL from scope + relative path ── */
 function hrefFromScope(scope, relPath) {
-  return new URL(relPath, scope).href;
+  var s = scope.endsWith('/') ? scope : scope + '/';
+  return new URL(relPath, s).href;
 }
 
 function shouldStore(res) {
@@ -282,9 +283,17 @@ function handleNavigate(event, request) {
       if (cached) return cached;
 
       /* Try matching without query/hash (some browsers append them) */
-      var cleanUrl = request.url.split('?')[0].split('#')[0];
+      var url = new URL(request.url);
+      var cleanUrl = url.origin + url.pathname;
       cached = await cache.match(cleanUrl);
       if (cached) return cached;
+
+      /* Directory support: if URL ends in / or has no extension, try appending index.html */
+      if (url.pathname.endsWith('/') || !url.pathname.split('/').pop().includes('.')) {
+        var indexUrl = cleanUrl.endsWith('/') ? cleanUrl + 'index.html' : cleanUrl + '/index.html';
+        cached = await cache.match(indexUrl);
+        if (cached) return cached;
+      }
 
       /* Last resort: serve the main hub page */
       var fb = await cache.match(hrefFromScope(self.registration.scope, 'index.html'));
