@@ -182,11 +182,11 @@ function precacheGoogleFonts(cache) {
       }
       return Promise.all(
         jobs.map(function (j) {
-          return j.catch(function () {});
+          return j.catch(function () { });
         })
       );
     })
-    .catch(function () {});
+    .catch(function () { });
 }
 
 /* ── Precache html2pdf.js CDN bundle for offline PDF export ── */
@@ -195,7 +195,7 @@ function precacheHtml2Pdf(cache) {
     .then(function (res) {
       if (res.ok) return cache.put(HTML2PDF_CDN, res);
     })
-    .catch(function () {});
+    .catch(function () { });
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -230,7 +230,7 @@ self.addEventListener('install', function (event) {
       });
       await Promise.all(
         others.map(function (rel) {
-          return cache.add(hrefFromScope(scope, rel)).catch(function () {});
+          return cache.add(hrefFromScope(scope, rel)).catch(function () { });
         })
       );
 
@@ -273,7 +273,7 @@ function handleNavigate(event, request) {
       if (res && res.ok) {
         try {
           await cache.put(request, res.clone());
-        } catch (_) {}
+        } catch (_) { }
       }
       return res;
     } catch (err) {
@@ -299,7 +299,7 @@ function handleAsset(event, request) {
   return (async function () {
     var cache = await caches.open(CACHE_NAME);
     var cached = await cache.match(request);
-    
+
     /* Root fallback for shared assets (e.g. index-engine.css loaded from subfolders) */
     if (!cached) {
       var url = new URL(request.url);
@@ -327,7 +327,7 @@ function handleAsset(event, request) {
       if (shouldStore(res)) {
         try {
           await cache.put(request, res.clone());
-        } catch (_) {}
+        } catch (_) { }
       }
       return res;
     } catch (err) {
