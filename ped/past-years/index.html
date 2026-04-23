@@ -8,17 +8,17 @@
 s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
 document.head.appendChild(s)})();
 </script>
-<title>Internal Medicine - By Lecture</title>
+<title>Pediatrics - Past Years</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../index-engine.css">
-<meta name="description" content="Internal Medicine lectures organized by topic">
-<meta property="og:title" content="Internal Medicine - By Lecture">
-<meta property="og:description" content="Internal Medicine lectures organized by topic">
+<meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:title" content="Pediatrics - Past Years">
+<meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Internal Medicine - By Lecture">
-<meta name="twitter:description" content="Internal Medicine lectures organized by topic">
+<meta name="twitter:title" content="Pediatrics - Past Years">
+<meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
 <meta name="theme-color" content="#0d1117">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="manifest" href="../../manifest.webmanifest">
@@ -28,8 +28,8 @@ document.head.appendChild(s)})();
 <body>
 
   <div class="topbar">
-    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
-    <div class="topbar-title">Internal Medicine - By Lecture</div>
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Pediatrics">←</a>
+    <div class="topbar-title">Pediatrics - Past Years</div>
     <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
     <span class="tracker-badge" id="tracker-badge-count"></span>
@@ -39,8 +39,8 @@ document.head.appendChild(s)})();
 
   <div class="container">
     <header class="hero">
-      <h1>Internal Medicine <span>By Lecture</span></h1>
-      <p>Quizzes organized by individual lecture topics.</p>
+      <h1>Pediatrics <span>Past Years</span></h1>
+      <p>Past years Exams in pediatrics.</p>
     </header>
 
     <div class="quiz-grid" id="quiz-grid"></div>
@@ -81,94 +81,73 @@ const QUIZZES = [
     url: "57th-final.html"
   },
   {
-    title: "57th Formative",
+    title: "58th End Round 1",
     description: "Past years Exams in pediatrics",
     icon: "📘",
-    tags: ["Quiz", "6 Questions"],
-    url: "57th-formative.html"
+    tags: ["End Round", "40 Questions"],
+    url: "58th-end-round-1.html"
   },
   {
     title: "58th End Round 2",
     description: "Past years Exams in pediatrics",
     icon: "📘",
-    tags: ["End Round", "44 Questions"],
+    tags: ["End Round", "40 Questions"],
     url: "58th-end-round-2.html"
   },
   {
     title: "58th End Round 3",
     description: "Past years Exams in pediatrics",
     icon: "📘",
-    tags: ["End Round", "34 Questions"],
+    tags: ["End Round", "40 Questions"],
     url: "58th-end-round-3.html"
   },
   {
     title: "58th Final",
     description: "Past years Exams in pediatrics",
     icon: "📘",
-    tags: ["Final", "29 Questions"],
+    tags: ["Final", "40 Questions"],
     url: "58th-final.html"
   },
   {
     title: "59th Final",
     description: "Past years Exams in pediatrics",
     icon: "📘",
-    tags: ["Final", "35 Questions"],
+    tags: ["Final", "40 Questions"],
     url: "59th-final.html"
   },
   {
     title: "59th Midterm",
     description: "Past years Exams in pediatrics",
     icon: "📘",
-    tags: ["Midterm", "44 Questions"],
+    tags: ["Midterm", "25 Questions"],
     url: "59th-midterm.html"
+  },
+  {
+    title: "60th Final",
+    description: "Past years Exams in pediatrics",
+    icon: "📘",
+    tags: ["Final", "40 Questions"],
+    url: "60th-final.html"
   },
   {
     title: "60th Midterm",
     description: "Past years Exams in pediatrics",
     icon: "📘",
-    tags: ["Midterm", "41 Questions"],
+    tags: ["Midterm", "25 Questions"],
     url: "60th-midterm.html"
   },
   {
     title: "61st Midterm",
     description: "Past years Exams in pediatrics",
     icon: "📘",
-    tags: ["Midterm", "45 Questions"],
+    tags: ["Midterm", "25 Questions"],
     url: "61st-midterm.html"
   }
 ];
 </script>
 
-<div class="dash-overlay" id="tracker-dashboard">
-  <div class="dash-modal">
-    <div class="dash-header">
-      <h2 id="dash-title-text">📊 Question Tracker</h2>
-      <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
-    </div>
-    <div class="dash-scope-bar" id="dash-scope-bar"></div>
-    <div class="dash-summary">
-      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
-      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
-      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
-    </div>
-    <div class="dash-body" id="dash-body"></div>
-    <div class="dash-footer">
-      <button class="btn-dash-action" onclick="exportTrackerToPDF()">📄 Export PDF</button>
-      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>
-      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
-    </div>
-  </div>
-</div>
-
 <script src="../../index-engine.js"></script>
-<script>
-(function(){
-  var s=localStorage.getItem('quiz-theme');
-  if(s) document.documentElement.setAttribute('data-theme',s);
-  if(window.__updateThemeIcon) window.__updateThemeIcon();
-  if(window.renderQuizzes) window.renderQuizzes();
-})();
-</script>
+<script>(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();</script>
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
@@ -176,5 +155,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
 </body>
 </html>
