@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>COPD</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobd2vw4np6s9",
+  "title": "COPD",
+  "description": "Question on every Chest lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "One of the following could improves survival in Cor-pulmonale:",
+    "options": [
+      "Warfarin",
+      "Theophylline",
+      "Antioxidant",
+      "Furosemide",
+      "Long term oxygen therapy"
+    ],
+    "correct": 4,
+    "explanation": "Long term oxygen therapy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "When caring for a patient with emphysema requiring supplemental oxygen, the healthcare provider carefully titrate the oxygen to the lowest effective dose in order to avoid: (10-2019)",
+    "options": [
+      "Obstructive apnea",
+      "Respiratory alkalosis",
+      "Hypoventilation",
+      "Hyperventilation",
+      "Tachycardia"
+    ],
+    "correct": 2,
+    "explanation": "Hypoventilation is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "In a COPD categorized as Group B, which of the following therapeutic strategies is best treatment: (10-2019)",
+    "options": [
+      "Long-acting beta 2-agonist taken regularly",
+      "Short-acting beta 2-agonist taken as needed",
+      "Short-acting antimuscarinic agent taken regularly",
+      "Short-acting bronchodilator and theophylline",
+      "Oral corticosteroids"
+    ],
+    "correct": 0,
+    "explanation": "Long-acting beta 2-agonist taken regularly is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "After evaluating a patient at the bedside, you find barrel chest, pursed lip breathing and scalene hypertonicity. Your provisional diagnosis is: (10-2019)",
+    "options": [
+      "Emphysema",
+      "Asthma",
+      "Chronic bronchitis",
+      "Pulmonary embolic disease",
+      "Congestive heart failure"
+    ],
+    "correct": 0,
+    "explanation": "Emphysema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "the health care provider is teaching a patient with emphysema pursed-lip breathing. Pursed lip breathing helps patients with emphysema because it: (10-2019)",
+    "options": [
+      "Helps the patient achieve maximum inhalation",
+      "Increases the respiratory rate",
+      "Helps keep the small airway open and prevents air trapping",
+      "Increases oxygenation rate",
+      "Creates negative pressure in the airways"
+    ],
+    "correct": 2,
+    "explanation": "Helps keep the small airway open and prevents air trapping is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "To differentiate between asthma and COPD by spirometry we choose:",
+    "options": [
+      "Reversibility test",
+      "Reduced FEV1",
+      "Reduced FVC",
+      "Reduced TLC",
+      "Decreased DLCO"
+    ],
+    "correct": 0,
+    "explanation": "Reversibility test is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "On examination, patient with COPD may have: (4-2019)",
+    "options": [
+      "Kyphosis",
+      "Bronchial breathing",
+      "Dullness on percussion",
+      "Increased TVF",
+      "Barrel shaped chest"
+    ],
+    "correct": 4,
+    "explanation": "Barrel shaped chest is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "Generalized chest wheezes is caused by:",
+    "options": [
+      "COPD",
+      "Foreign body inhalation",
+      "Endobronchial TB",
+      "Bronchial stenosis",
+      "Right lobar pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "COPD is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Risk factors for development of chronic obstructive lung disease does include: (10-2018)",
+    "options": [
+      "Cigarette smoking",
+      "Occupational exposure to particulate dust",
+      "Family history of atopy",
+      "Environmental pollution",
+      "Alpha-1-antitrypsin deficiency"
+    ],
+    "correct": 2,
+    "explanation": "Family history of atopy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following are recognized causes of hemoptysis Except:",
+    "options": [
+      "Tuberculosis",
+      "Bronchiectasis",
+      "Chronic obstructive pulmonary disease",
+      "Mitral stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Chronic obstructive pulmonary disease is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "Which one of the following disorders is associated with pulmonary emphysema? (10-2016)",
+    "options": [
+      "Glutathione deficiency",
+      "Alpha 1-antitrypsin deficiency",
+      "Alpha 2-Macroglobulin deficiency",
+      "Protein C deficiency"
+    ],
+    "correct": 1,
+    "explanation": "Alpha 1-antitrypsin deficiency is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "70 year old man admitted with acute sever exacerbation of COPD does not respond to oxygen and nebulized bronchodilators. What is the next?",
+    "options": [
+      "Inhaled salbutamol",
+      "Long term O2 therapy",
+      "Intermittent positive pressure ventilator (IPPV)",
+      "Nebulized salbutamol, ipratropium, oral prednisolone and oral amoxicillin"
+    ],
+    "correct": 2,
+    "explanation": "Intermittent positive pressure ventilator (IPPV) is NOT a typical feature or cause of COPD/emphysema. COPD is characterized by chronic airflow limitation, smoking history, alpha-1-antitrypsin deficiency, and barrel-shaped chest."
+  },
+  {
+    "question": "The severity of COPD is assessed using post bronchodilator spirometery analysis. From the list below, select the values that you would expect to see in a patient with moderate COPD.",
+    "options": [
+      "FEV1/FVC < 0.7, FEV1 per cent predicted 30-49 per cent",
+      "FEV1/FVC < 0.7, FEV1 per cent predicted >= 80 per cent",
+      "FEV1/FVC < 0.7, FEV1 per cent predicted < 30 per cent",
+      "FEV1/FVC < 0.7, FEV1 per cent predicted 50-79 per cent",
+      "FEV1/FVC < 0.7, FEV1 per cent predicted 60-70 per cent"
+    ],
+    "correct": 3,
+    "explanation": "FEV1/FVC < 0.7, FEV1 per cent predicted 50-79 per cent is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "Which is not a cause of finger clubbing?",
+    "options": [
+      "Empyema",
+      "Bronchogenic carcinoma",
+      "COPD",
+      "Cystic fibrosis",
+      "Mesothelioma"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is COPD. Clubbing is associated with chronic hypoxia, lung cancer, bronchiectasis, cystic fibrosis, fibrosing alveolitis, empyema, and infective endocarditis. COPD is NOT a recognized cause of digital clubbing. Empyema is a known cause of clubbing. Bronchogenic carcinoma is a known cause of clubbing. Cystic fibrosis is a known cause of clubbing. Mesothelioma is a known cause of clubbing."
+  },
+  {
+    "question": "Most common cause of a chronic slightly productive cough in the adult population is:",
+    "options": [
+      "Asthma",
+      "Chronic bronchial inflammation",
+      "Heart failure",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Chronic bronchial inflammation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following are the most likely physical examination findings in a patient with emphysema?",
+    "options": [
+      "Diffuse expiratory wheezing",
+      "Clubbing of the fingers",
+      "Bibasilar inspiratory crackles with increased jugular venous pressure (JVP)",
+      "Inspiratory stridor",
+      "Third heart sound"
+    ],
+    "correct": 0,
+    "explanation": "Diffuse expiratory wheezing is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "In a subject with an arterial PCO2 of 30 mm Hg, you would consider all of the following in the differential diagnosis EXCEPT:",
+    "options": [
+      "Acute airway obstruction",
+      "Interstitial lung disease",
+      "Pulmonary embolism",
+      "Diabetic ketoacidosis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Acute airway obstruction. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "A 56-year-old woman admits to a 60-pack-year smoking history. She complains of fatigue and dyspnea with minimal exertion, and a cough that is productive each morning. Which of the following is the most likely finding in this patient?",
+    "options": [
+      "Normal diffusing capacity of lung for carbon monoxide (DLCO)",
+      "Decreased residual volume",
+      "Normal to slightly increased forced expiratory volume in first second (FEV1)",
+      "Decreased forced expiratory volume in first second/forced vital capacity (FEV1/FVC)",
+      "Decreased forced vital capacity (FVC)"
+    ],
+    "correct": 3,
+    "explanation": "Decreased forced expiratory volume in first second/forced vital capacity (FEV1/FVC) is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 30-year-old man presents to your clinic with a cough and finger clubbing. From the list below, which of these answers is not a respiratory cause of finger clubbing?",
+    "options": [
+      "Empyema",
+      "Mesothelioma",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "COPD"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is COPD. Clubbing is associated with chronic hypoxia, lung cancer, bronchiectasis, cystic fibrosis, fibrosing alveolitis, empyema, and infective endocarditis. COPD is NOT a recognized cause of digital clubbing. Empyema is a known cause of clubbing. Mesothelioma is a known cause of clubbing. Bronchogenic carcinoma is a known cause of clubbing. Cystic fibrosis is a known cause of clubbing."
+  },
+  {
+    "question": "In COPD:",
+    "options": [
+      "common cause is alpha1-antitrypsin deficiency",
+      "Disease occurs in smokers",
+      "A small volume pulse suggests CO2 retention",
+      "Stopping smoking will not improve prognosis in severe cases"
+    ],
+    "correct": 1,
+    "explanation": "Disease occurs in smokers is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "The elastic recoil of the lung is severely diminished in:",
+    "options": [
+      "Chronic bronchitis",
+      "Emphysema",
+      "Bronchogenic carcinoma",
+      "Bronchial asthma"
+    ],
+    "correct": 1,
+    "explanation": "Emphysema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 23-year-old female has intermittent episodes of breathlessness and cough. She has a past history of eczema and her FEV1/FVC ratio is reduced. What is the most likely diagnosis?",
+    "options": [
+      "Asthma",
+      "Chronic obstructive pulmonary disease",
+      "Cryptogenic fibrosing alveolitis",
+      "Heart failure"
+    ],
+    "correct": 0,
+    "explanation": "Asthma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Low voltage ECG is seen in:",
+    "options": [
+      "Thin chest wall",
+      "Consolidation",
+      "Hyperthyroidism",
+      "Emphysema"
+    ],
+    "correct": 3,
+    "explanation": "Emphysema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Low voltage ECG is seen in:",
+    "options": [
+      "Thin chest wall",
+      "Consolidation",
+      "Hyperthyroidism",
+      "Emphysema"
+    ],
+    "correct": 3,
+    "explanation": "Emphysema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Commonest cause of respiratory failure is:",
+    "options": [
+      "Emphysema",
+      "Fibrosing alveolitis",
+      "Bronchial asthma",
+      "Chronic bronchitis"
+    ],
+    "correct": 3,
+    "explanation": "Chronic bronchitis is correct. Respiratory failure results from inadequate gas exchange. Type I is hypoxemic; Type II is hypercapnic."
+  },
+  {
+    "question": "A 65-year-old woman used to smoke 50 cigarettes a day for 40 years. She had increasing dyspnea for several years, but no cough. Chest X-ray shows increased lung size along with flattening of the diaphragms. Over the next several years she developed worsening peripheral edema. Her vital signs show T 36.7°C, Pulse 80/min, RR 15/min, and BP 120/80 mm Hg. Which of the following cardiac findings is most likely to be present?",
+    "options": [
+      "Constrictive pericarditis",
+      "Left ventricular aneurysm",
+      "Mitral valve stenosis",
+      "Non-bacterial thrombotic endocarditis",
+      "Right ventricular hypertrophy"
+    ],
+    "correct": 4,
+    "explanation": "Right ventricular hypertrophy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following are risk factors in developing COPD (except):",
+    "options": [
+      "Smoking.",
+      "Air pollution.",
+      "Recurrent infection.",
+      "Genetic.",
+      "Traumatic."
+    ],
+    "correct": 4,
+    "explanation": "Traumatic. is NOT a typical feature or cause of COPD/emphysema. COPD is characterized by chronic airflow limitation, smoking history, alpha-1-antitrypsin deficiency, and barrel-shaped chest."
+  },
+  {
+    "question": "Neck vein examination in COPD:",
+    "options": [
+      "Is normal",
+      "Inspiratory congestion",
+      "Expiratory congestion",
+      "Inspiratory & expiratory congestion"
+    ],
+    "correct": 2,
+    "explanation": "Expiratory congestion is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "Low voltage in ECG is seen in:",
+    "options": [
+      "Thin chest wall",
+      "Consolidation",
+      "Hyperthyroidism",
+      "Emphysema"
+    ],
+    "correct": 3,
+    "explanation": "Emphysema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The elastic recoil of lung is severely diminished in:",
+    "options": [
+      "Chronic bronchitis",
+      "Emphysema",
+      "Bronchogenic carcinoma",
+      "Bronchial asthma"
+    ],
+    "correct": 1,
+    "explanation": "Emphysema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "'Closing volume' of the lung is increased in:",
+    "options": [
+      "Cigarette smoking",
+      "Obesity",
+      "Anaemia",
+      "Bronchiectasis"
+    ],
+    "correct": 0,
+    "explanation": "Cigarette smoking is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Reduced compliance of lung is seen in all except:",
+    "options": [
+      "Diffuse interstitial fibrosis",
+      "Atelectasis",
+      "Left ventricular failure",
+      "Emphysema"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Emphysema. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Which is true in a predominant 'blue bloater':",
+    "options": [
+      "Vital capacity is markedly diminished",
+      "H/O repeated episodes of respiratory insufficiency",
+      "Elastic recoil is much diminished",
+      "Pulmonary hypertension does not complicate the disease"
+    ],
+    "correct": 1,
+    "explanation": "H/O repeated episodes of respiratory insufficiency is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which is false regarding emphysema:",
+    "options": [
+      "Pao2 65-75 mm Hg",
+      "Increased diffusion capacity",
+      "Paco2 35-40 mm Hg",
+      "Decreased elastic recoil"
+    ],
+    "correct": 1,
+    "explanation": "Increased diffusion capacity is NOT a typical feature or cause of COPD/emphysema. COPD is characterized by chronic airflow limitation, smoking history, alpha-1-antitrypsin deficiency, and barrel-shaped chest."
+  },
+  {
+    "question": "antitrypsin deficiency PIZZ type have predominant:",
+    "options": [
+      "Paraseptal emphysema",
+      "Centriacinar emphysema",
+      "Paracicatrical emphysema",
+      "Panacinar emphysema"
+    ],
+    "correct": 3,
+    "explanation": "Panacinar emphysema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Blood gases examination in severe COPD may be (T/F): Increase PaO2",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "Blood gases examination in severe COPD may be (T/F): Decrease PaO2",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "Blood gases examination in severe COPD may be (T/F): Increase PaCO2",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "Blood gases examination in severe COPD may be (T/F): Decrease PaCO2",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "A previously healthy 65-year-old smoker with early COPD complains of shortness of breath on exertion.",
+    "options": [
+      "100% O2, and amoxicillin",
+      "28% O2, inhaled bronchodilators and intravenous amoxicillin",
+      "60% O2, nebulized salbutamol, oral prednisolone and oral amoxicillin",
+      "ICU admission and intubation",
+      "Inhaled salbutamol Ventilation",
+      "Intermittent Positive pressure",
+      "Intravenous salbutamol",
+      "Intravenous salbutamol",
+      "Long term O2 therapy",
+      "Lung transplantation",
+      "Nebulized salbutamol, ipratropium, oral prednisolone",
+      "Oral aminophylline"
+    ],
+    "correct": 4,
+    "explanation": "Inhaled salbutamol Ventilation is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "A 65-year-old woman with longstanding COPD presents with shortness of breath and cough productive of colored sputum.",
+    "options": [
+      "100% O2, and amoxicillin",
+      "28% O2, inhaled bronchodilators and intravenous amoxicillin",
+      "60% O2, nebulized salbutamol, oral prednisolone and oral amoxicillin",
+      "ICU admission and intubation",
+      "Inhaled salbutamol Ventilation",
+      "Intermittent Positive pressure",
+      "Intravenous salbutamol",
+      "Intravenous salbutamol",
+      "Long term O2 therapy",
+      "Lung transplantation",
+      "Nebulized salbutamol, ipratropium, oral prednisolone",
+      "Oral aminophylline"
+    ],
+    "correct": 10,
+    "explanation": "Nebulized salbutamol, ipratropium, oral prednisolone is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "A 70-year-old man admitted with acute severe exacerbation of COPD does not respond to oxygen and nebulized bronchodilators.",
+    "options": [
+      "100% O2, and amoxicillin",
+      "28% O2, inhaled bronchodilators and intravenous amoxicillin",
+      "60% O2, nebulized salbutamol, oral prednisolone and oral amoxicillin",
+      "ICU admission and intubation",
+      "Inhaled salbutamol Ventilation",
+      "Intermittent Positive pressure",
+      "Intravenous salbutamol",
+      "Intravenous salbutamol",
+      "Long term O2 therapy",
+      "Lung transplantation",
+      "Nebulized salbutamol, ipratropium, oral prednisolone",
+      "Oral aminophylline"
+    ],
+    "correct": 5,
+    "explanation": "Intermittent Positive pressure is NOT a typical feature or cause of COPD/emphysema. COPD is characterized by chronic airflow limitation, smoking history, alpha-1-antitrypsin deficiency, and barrel-shaped chest."
+  },
+  {
+    "question": "65-year-old patient with advanced COPD treated with bronchodilators and steroids still feels breathless. His baseline PaO2 is around 6.5 kPa.",
+    "options": [
+      "100% O2, and amoxicillin",
+      "28% O2, inhaled bronchodilators and intravenous amoxicillin",
+      "60% O2, nebulized salbutamol, oral prednisolone and oral amoxicillin",
+      "ICU admission and intubation",
+      "Inhaled salbutamol Ventilation",
+      "Intermittent Positive pressure",
+      "Intravenous salbutamol",
+      "Intravenous salbutamol",
+      "Long term O2 therapy",
+      "Lung transplantation",
+      "Nebulized salbutamol, ipratropium, oral prednisolone",
+      "Oral aminophylline"
+    ],
+    "correct": 8,
+    "explanation": "Long term O2 therapy is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "A 55-year-old patient with COPD requires regular add-on therapy after bronchodilators do not control symptoms.",
+    "options": [
+      "100% O2, and amoxicillin",
+      "28% O2, inhaled bronchodilators and intravenous amoxicillin",
+      "60% O2, nebulized salbutamol, oral prednisolone and oral amoxicillin",
+      "ICU admission and intubation",
+      "Inhaled salbutamol Ventilation",
+      "Intermittent Positive pressure",
+      "Intravenous salbutamol",
+      "Intravenous salbutamol",
+      "Long term O2 therapy",
+      "Lung transplantation",
+      "Nebulized salbutamol, ipratropium, oral prednisolone",
+      "Oral aminophylline"
+    ],
+    "correct": 11,
+    "explanation": "Oral aminophylline is NOT a typical feature or cause of COPD/emphysema. COPD is characterized by chronic airflow limitation, smoking history, alpha-1-antitrypsin deficiency, and barrel-shaped chest."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

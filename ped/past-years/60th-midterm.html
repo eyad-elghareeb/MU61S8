@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>60th Midterm</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobanvlq7azet",
+  "title": "60th Midterm",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is an early sign of shock?",
+    "options": [
+      "Altered mental status",
+      "Cheyne-Stokes breathing",
+      "Sinus tachycardia",
+      "Bradycardia"
+    ],
+    "correct": 2,
+    "explanation": "TACHYCARDIA is the EARLIEST compensatory sign of shock. The body increases HR to maintain CO (CO = HR × SV) when SV falls. Other early signs: prolonged CRT (>2 sec), cool peripheries, decreased urine output. LATE signs: hypotension, bradycardia, altered consciousness. Children maintain BP until 25–40% blood loss is lost."
+  },
+  {
+    "question": "What is the normal arterial oxygen saturation measured by pulse oximetry?",
+    "options": [
+      "85-88%",
+      "88-92%",
+      "97-100%",
+      "More than 100%",
+      "92-95%"
+    ],
+    "correct": 2,
+    "explanation": "Normal SpO2 by pulse oximetry: 97–100%. SpO2 <94%: supplemental oxygen recommended. SpO2 <90%: significant hypoxaemia — urgent oxygen. Limitations: inaccurate in CO poisoning (falsely HIGH), methaemoglobinaemia (reads ~85%), poor perfusion, dark nail varnish."
+  },
+  {
+    "question": "Which type of shock is viral myocarditis?",
+    "options": [
+      "Hypovolemic",
+      "Obstructive",
+      "Distributive",
+      "Cardiogenic",
+      "Septic"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Cardiogenic. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following best defines anion gap?",
+    "options": [
+      "It is the difference between unmeasured cations and unmeasured anions",
+      "It is the difference between total cations and total anions in the blood",
+      "It is the measure of how low bicarbonate is in metabolic acidosis",
+      "It is the measure of how much chloride is depleted in metabolic alkalosis",
+      "It is the measure of sodium not bound to chloride or bicarbonate"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: It is the difference between unmeasured cations and unmeasured anions. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is characteristic of the uncompensated stage of shock?",
+    "options": [
+      "Inadequate perfusion of vital organs",
+      "Blood flow is normal or increased and may be redistributed",
+      "Vital organs function is maintained",
+      "Microvascular perfusion becomes marginal",
+      "Blood pressure remains normal"
+    ],
+    "correct": 3,
+    "explanation": "Shock stages: (1) COMPENSATED: normal BP, tachycardia, maintained vital functions. (2) UNCOMPENSATED (progressive): BP falls, microvascular perfusion fails, lactic acidosis. (3) IRREVERSIBLE: multi-organ failure. 'Microvascular perfusion becomes marginal' = UNCOMPENSATED stage."
+  },
+  {
+    "question": "The dose of adrenaline IV for cardiac arrest?",
+    "options": [
+      "10 microgram/kg",
+      "10 milligram/kg",
+      "100 milligram/kg",
+      "1000 microgram/kg",
+      "100 microgram/kg"
+    ],
+    "correct": 0,
+    "explanation": "Adrenaline for cardiac arrest: IV/IO 0.01 mg/kg = 10 mcg/kg. Use 1:10,000 concentration (0.1 mg/mL): give 0.1 mL/kg. Via ETT: 0.1 mg/kg (10× IV dose). Repeat every 3–5 minutes. Higher doses have shown NO benefit and may worsen neurological outcomes."
+  },
+  {
+    "question": "What is the most common cause of convulsions in acute hyponatremia?",
+    "options": [
+      "Brain edema",
+      "Cerebral stroke",
+      "Hypotension",
+      "Hypoxemia",
+      "Intracranial hemorrhage"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Brain edema. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 6-month-old infant presents with a history of persistent wheezing since birth and frequent exacerbations, which have not improved with inhaled salbutamol. On examination, the respiratory rate (RR) is 70 breaths per minute, and there is biphasic stridor with bilateral expiratory wheezes. What is the most likely diagnosis?",
+    "options": [
+      "Bronchial asthma",
+      "Vascular ring",
+      "Bronchiolitis",
+      "Laryngomalacia",
+      "Tracheomalacia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Vascular ring. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following statements is true regarding type 2 acute respiratory failure?",
+    "options": [
+      "Normal PaCO2",
+      "Cardiogenic pulmonary edema is a common cause",
+      "Shallow breathing and cyanosis",
+      "Alveolar hyperventilation"
+    ],
+    "correct": 2,
+    "explanation": "Type 2 RF (hypercapnic, PaCO₂ >45 mmHg): inadequate alveolar ventilation → CO₂ retention + hypoxaemia. Presentations: shallow/reduced breathing (neuromuscular disease, CNS depression, severe COPD/asthma), cyanosis. NOT the hyperventilation/air hunger of type 1 RF."
+  },
+  {
+    "question": "Which of the following is the main mechanism of hypoxemia in acute respiratory distress syndrome (ARDS)?",
+    "options": [
+      "Intracardiac shunt",
+      "Hypoventilation",
+      "Diffusion abnormality",
+      "Depression of respiratory center"
+    ],
+    "correct": 2,
+    "explanation": "ARDS: diffuse alveolar damage → flooding with protein-rich exudate → surfactant inactivation → alveolar collapse → INTRAPULMONARY SHUNTING (V/Q mismatch with V/Q → 0). Shunt fraction >30%. Hypoxaemia is REFRACTORY to O₂ alone (shunt blood never contacts alveolar O₂). NOTE: Some sources list 'diffusion abnormality' — accept per source answer."
+  },
+  {
+    "question": "What's the definition of hypercapnia?",
+    "options": [
+      "PaCo2 > 45 mmHg",
+      "PaCo2 > 40 mmHg",
+      "PaCo2 > 35 mmHg",
+      "PaCo2 > 30 mmHg",
+      "PaCo2 > 25 mmHg"
+    ],
+    "correct": 0,
+    "explanation": "Hypercapnia: PaCO₂ >45 mmHg. Normal: 35–45 mmHg. In chronic hypercapnia (e.g., CF, muscular dystrophy) the kidney compensates by retaining HCO₃⁻ → pH near normal despite very high PaCO₂. Permissive hypercapnia (up to 55–60 mmHg) is a lung-protective ventilation strategy in ARDS/severe asthma."
+  },
+  {
+    "question": "How should you open the airway in a 5 years old child arrested due to car accident:",
+    "options": [
+      "Head till and chin left with neck extended position",
+      "Head till and chin left with neck neutral position",
+      "Abdominal thrust",
+      "Jaw thrust",
+      "Head till and chin left with neck sniffing position"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Jaw thrust. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the maximum Fi02 that can be delivered through nasal cannula?",
+    "options": [
+      "50%",
+      "40%",
+      "21%",
+      "60%"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: 40%. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Why Infants are more prone to wheezing?",
+    "options": [
+      "Elastic recoil of chest wall",
+      "Elastic recoil of the lung",
+      "Smaller airway diameter",
+      "Higher respiratory rate"
+    ],
+    "correct": 2,
+    "explanation": "Poiseuille's law: resistance ∝ 1/r⁴. Infant airways have very small absolute radius; 1 mm of mucosal oedema can reduce radius by ~50%, increasing resistance 16-fold. Adults have larger airways so the same swelling causes proportionally far less obstruction."
+  },
+  {
+    "question": "What are the components of Pediatric Assessment Triangle (PAT)?",
+    "options": [
+      "General appearance, work of breathing, circulatory status",
+      "Capillary refill time, work of breathing, heart rate",
+      "General appearance, heart rate, circulatory status",
+      "General appearance, work of breathing, blood pressure",
+      "Capillary refill time, work of breathing, circulatory status"
+    ],
+    "correct": 0,
+    "explanation": "PAT (observable in <30 seconds WITHOUT touching): (1) APPEARANCE (TICLS: Tone, Interactivity, Consolability, Look, Speech/cry), (2) WORK OF BREATHING (retractions, nasal flaring, audible sounds), (3) CIRCULATION TO SKIN (pallor, cyanosis, mottling). Blood pressure and HR require equipment — NOT part of the PAT."
+  },
+  {
+    "question": "Features suggestive of streptococcal pharyngitis include?",
+    "options": [
+      "Tonsillar yellowish exudate and enlarged tender cervical lymph nodes",
+      "Gradual onset",
+      "Ulcerative mouth lesions",
+      "Hoarseness of voice"
+    ],
+    "correct": 0,
+    "explanation": "GAS pharyngitis: sudden onset, high fever, tonsillar exudate, TENDER ANTERIOR CERVICAL LAP, absence of cough/rhinorrhoea. VIRAL: gradual onset, cough, coryza, conjunctivitis, hoarseness. Ulcerative lesions = herpangina (enterovirus) or HSV. Post-auricular LAP = rubella. Hoarseness = laryngitis."
+  },
+  {
+    "question": "Which of the following drugs can be given through an endotracheal tube?",
+    "options": [
+      "Atropine",
+      "Diazepam",
+      "Calcium gluconate",
+      "Sodium bicarbonate",
+      "Norepinephrine"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Atropine. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is the mainstay for ttt of acute bronchiolitis in 1 year old infant?",
+    "options": [
+      "Dexamethasone",
+      "Oxygen & fluid therapy",
+      "Bronchodilator",
+      "Inhaled glucocorticoids",
+      "Ribavirin"
+    ],
+    "correct": 1,
+    "explanation": "Acute bronchiolitis: entirely SUPPORTIVE. (1) Supplemental oxygen (SpO2 ≥92–95%), (2) Adequate hydration (oral/NG feeds; IV if too tired). Multiple RCTs: NO benefit from bronchodilators, corticosteroids, antibiotics, ribavirin, or hypertonic saline (modest benefit in some studies for inpatients)."
+  },
+  {
+    "question": "Fulminating course of high fever, toxic appearance, sore throat, drooling of saliva and rapidly progressive respiratory obstruction are characteristic of?",
+    "options": [
+      "Bacterial tracheitis",
+      "Epiglottitis",
+      "Acute bronchitis",
+      "Bronchiolitis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Epiglottitis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following signs and symptoms suggests the diagnosis of bronchial asthma?",
+    "options": [
+      "Frequent episodes of wheezing – more than once a month",
+      "Presence of seasonal variation in wheeze",
+      "Cough or wheeze disappear during exercise",
+      "Symptoms that disappear after age of 3 years",
+      "Cough particularly at daytime"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Frequent episodes of wheezing – more than once a month. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In case of aspirated foreign body, 80 – 90 % become lodged in?",
+    "options": [
+      "The trachea",
+      "The larynx",
+      "Bronchioles",
+      "The bronchi"
+    ],
+    "correct": 3,
+    "explanation": "80–90% of aspirated FBs lodge in the MAIN BRONCHI (right > left in adults; less right-side predominance in young children). ~10% larynx/trachea. ~10% bronchioles. Bronchial FB: unilateral wheeze, reduced breath sounds, hyperinflation (ball-valve) or atelectasis. Definitive treatment: rigid bronchoscopy."
+  },
+  {
+    "question": "Which of the following is the most common cause of atypical pneumonia?",
+    "options": [
+      "Mycoplasma pneumoniae",
+      "Respiratory syncytial virus (RSV)",
+      "Enterovirus",
+      "Chlamydophila pneumoniae",
+      "Legionella pneumophilia"
+    ],
+    "correct": 0,
+    "explanation": "Mycoplasma pneumoniae = most common cause of atypical (walking) pneumonia in school-age children (5–15 years). 'Atypical' = gradual onset, mild symptoms, interstitial CXR infiltrates, no response to penicillin. RSV = most common viral pneumonia in infants. Chlamydia trachomatis = afebrile pneumonia of infancy (staccato cough)."
+  },
+  {
+    "question": "In children with acute asthma exacerbation, which one of the following statements IS TRUE?",
+    "options": [
+      "Breathlessness is due to cough",
+      "Inspiratory phase of breathing is prolonged",
+      "Peak flow is impaired and reversed by bronchodilators",
+      "Tend to have shallow breaths at the extreme of expiration"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Peak flow is impaired and reversed by bronchodilators. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In which of the following clinical scenarios, innocent murmur is the most likely diagnosis?",
+    "options": [
+      "Newborn with history of maternal infection with rubella virus in the first trimester",
+      "Large (macrosomic) newborn with central cyanosis with tachypnea and mild respiratory distress",
+      "Asymptomatic child with soft short systolic murmur heard accidently during febrile illness in the supine position",
+      "Infant with Down syndrome with precordial systolic murmur"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Asymptomatic child with soft short systolic murmur heard accidently during febrile illness in the supine position. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is not true about viral bronchopneumonia?",
+    "options": [
+      "May be associated with skin rash",
+      "Bilateral auscultatory & radiological findings",
+      "Acute or abrupt onset",
+      "History of antecedent upper respiratory symptoms"
+    ],
+    "correct": 2,
+    "explanation": "Viral bronchopneumonia features: GRADUAL onset, preceded by URTI prodrome (rhinorrhoea, congestion, low-grade fever), bilateral auscultatory/radiological findings, may have skin rash, less toxic. ABRUPT onset = bacterial pneumonia. Therefore 'acute or abrupt onset' is NOT characteristic of viral bronchopneumonia."
+  },
+  {
+    "question": "Which of the following is suggestive of typical bacterial pneumonia?",
+    "options": [
+      "Auscultatory findings are usually diffuse and bilateral",
+      "Febrile patient appearing ill and toxic with symptoms and localized chest pain",
+      "The onset is gradual and associated with preceding upper airway symptoms (eg, rhinorrhea, congestion)",
+      "There is poor correlation between clinical signs and radiology"
+    ],
+    "correct": 1,
+    "explanation": "Typical bacterial lobar pneumonia: ABRUPT onset, HIGH fever, TOXIC appearance, LOCALISED signs (dullness/bronchial breathing/crepitations), PLEURITIC CHEST PAIN, GOOD clinical-radiological correlation (lobar/segmental consolidation on CXR). Atypical: gradual, mild, poor correlation."
+  },
+  {
+    "question": "Which of the following medications is used to close a patent ductus arteriosus (PDA)?",
+    "options": [
+      "Digitalis",
+      "Diazepam",
+      "Indomethacin",
+      "Theophylline"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Indomethacin. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following cyanotic congenital heart diseases in newborn is associated with increased pulmonary blood flow?",
+    "options": [
+      "Pulmonary atresia",
+      "Tricuspid atresia with pulmonary stenosis",
+      "Ebstein anomaly",
+      "Truncus arteriosus"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Truncus arteriosus. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following statements IS TURE regarding large ventricular septal defect (VSD)?",
+    "options": [
+      "The murmur of mitral regurgitation has some features as the murmur of VSD regarding its timing and duration",
+      "The apical impulse is suggestive of right ventricular dilatation",
+      "A normal pulmonary vascularity in plain CXR is expected",
+      "Unrepaired large VSD is almost associated with normal growth pattern in infancy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: The murmur of mitral regurgitation has some features as the murmur of VSD regarding its timing and duration. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Cyanotic congenital heart disease in newborn with pulmonary oligemia and left ventricular hypertrophy is suggestive of which of the following?",
+    "options": [
+      "Tetralogy of Fallot",
+      "Transposition of great arteries",
+      "Tricuspid atresia",
+      "Truncus arteriosus"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Tricuspid atresia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A child presents with a systolic murmur at the 2nd and 3rd intercostal spaces. What is the most likely diagnosis?",
+    "options": [
+      "Coarctation of the aorta",
+      "Ventricular septal defect",
+      "Valvular pulmonary stenosis",
+      "Valvular aortic stenosis",
+      "Atrial septal defect"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Atrial septal defect. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Pulsus paradoxus is a typical sign of which of the following?",
+    "options": [
+      "Coarctation of the aorta",
+      "Supravalvular aortic stenosis",
+      "Pericardial effusion and tamponade",
+      "ASD",
+      "Patent ductus arteriosus"
+    ],
+    "correct": 2,
+    "explanation": "Cardiac tamponade: Beck's triad (hypotension, muffled heart sounds, raised JVP) + pulsus paradoxus (>10 mmHg systolic BP fall during inspiration). Mechanism: non-distensible pericardium → inspiration fills RV more → septum shifts left → LV output falls. CoA and aortic stenosis cause pulse pressure differences between limbs, not pulsus paradoxus."
+  },
+  {
+    "question": "A 3-week-old boy presented with central cyanosis. Electrocardiography suggests he has tetralogy of Fallot. Which of the following is true regarding tetralogy of Fallot?",
+    "options": [
+      "The cardiac silhouette is typically large with no specific contour",
+      "Wide splitting of the second heart sound",
+      "Varying degrees of left ventricular hypertrophy",
+      "Hypoxic spells is a frequent complication",
+      "The typical murmur is pansystolic in timing"
+    ],
+    "correct": 3,
+    "explanation": "TOF: VSD + pulmonary stenosis + overriding aorta + RVH. Key points: (1) Hypoxic (tet) spells are a major complication from dynamic infundibular spasm — managed with knee-chest position, morphine, IV propranolol. (2) Murmur is EJECTION SYSTOLIC (NOT pansystolic — from RVOTO, not the VSD). (3) Boot-shaped heart on CXR. (4) Brain abscess complication in older children (paradoxical emboli through VSD). (5) ECG: RVH + right axis."
+  },
+  {
+    "question": "What is the most common congenital heart disease in Turner syndrome?",
+    "options": [
+      "Bicuspid aortic valve",
+      "Ventricular septal defect (VSD)",
+      "Tetralogy of Fallot",
+      "Pulmonary stenosis",
+      "Atrial septal defect (ASD)"
+    ],
+    "correct": 0,
+    "explanation": "Turner syndrome (45,XO): most common CHD is bicuspid aortic valve (~14–30%), followed by coarctation of the aorta (~10–15%) — both are left-sided/aortic defects. Williams syndrome → supravalvular AS. Noonan syndrome → pulmonary stenosis. Down syndrome → AVSD/VSD."
+  },
+  {
+    "question": "On cardiac examination of a 5 years old child. There was dullness outside the apex on percussion. What is the most likely diagnosis?",
+    "options": [
+      "Pericardial effusion",
+      "Aortic dilatation",
+      "Huge left atrium",
+      "Dilated pulmonary artery"
+    ],
+    "correct": 0,
+    "explanation": "Percussion finding: dullness extending BEYOND (lateral to) the apical impulse indicates fluid surrounding the heart — pericardial effusion displaces cardiac dullness outward. Aortic dilatation widens UPPER mediastinal dullness. Pneumothorax → hyperresonance. Pleural effusion → stony dullness over lung."
+  },
+  {
+    "question": "During measurement of blood pressure in a child. What is the optimal width of the bladder of the cuff?",
+    "options": [
+      "60-70% of the circumference of the limb",
+      "10-20% of the circumference of the limb",
+      "40-50% of the circumference of the limb",
+      "5% of the circumference of the limb"
+    ],
+    "correct": 2,
+    "explanation": "BP cuff: bladder width should be 40–50% of arm circumference. TOO NARROW → falsely HIGH reading (undercuffing). TOO WIDE → falsely LOW reading (overcuffing). Bladder length should encircle 80–100% of the limb circumference."
+  },
+  {
+    "question": "Which of the following organisms is most commonly associated with infective endocarditis after dental procedures?",
+    "options": [
+      "Staphylococcus aureus",
+      "Streptococcus viridans",
+      "Enterococcus faecalis",
+      "Streptococcus pneumoniae",
+      "Pseudomonas aeruginosa"
+    ],
+    "correct": 1,
+    "explanation": "Viridans streptococci (oral flora: S. sanguinis, S. mitis) are the most common cause of subacute IE after dental procedures. Bacteraemia from dental manipulation → adherence to damaged endothelium → vegetation. S. aureus causes acute IE after skin/IV procedures. Enterococcus after GI/GU procedures."
+  },
+  {
+    "question": "What is the most common causative organism of childhood empyema?",
+    "options": [
+      "Haemophilus influenzae",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae",
+      "Klebsiella pneumoniae",
+      "Pseudomonas aeruginosa"
+    ],
+    "correct": 1,
+    "explanation": "Staphylococcus aureus is the most common cause of childhood empyema, particularly in children <2 years. It produces coagulase and PVL toxin, forming rapidly loculated collections. Streptococcus pneumoniae is the most common cause of lobar pneumonia overall but S. aureus causes proportionally more empyemas in children."
+  },
+  {
+    "question": "What is the most common cause of an exudative pleural effusion?",
+    "options": [
+      "Congestive heart failure",
+      "Nephrotic syndrome",
+      "Infection",
+      "Pulmonary embolism",
+      "Liver cirrhosis"
+    ],
+    "correct": 2,
+    "explanation": "In children, INFECTION (parapneumonic effusion/empyema) is the most common cause of pleural effusion (>50% of cases). Light's criteria: exudate if protein ratio >0.5, LDH ratio >0.6, or LDH >2/3 ULN. Transudates (heart failure, nephrotic, cirrhosis, hypoalbuminaemia) are less common in children than adults."
+  },
+  {
+    "question": "What is the main anti-inflammatory drug used in the treatment of viral croup?",
+    "options": [
+      "Ibuprofen",
+      "Paracetamol",
+      "Corticosteroid",
+      "Antihistamine",
+      "Salbutamol"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Corticosteroid. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 10-month-old boy presents with a fracture of the thigh. To assess circulation, where should the pulsations be checked?",
+    "options": [
+      "Carotid and radial",
+      "Radial and ulnar",
+      "Popliteal and dorsalis pedis",
+      "Brachial and femoral",
+      "Axillary and posterior tibial"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Brachial and femoral. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

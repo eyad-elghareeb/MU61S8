@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>59th Final</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "moban4ldedzj9",
+  "title": "59th Final",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is correct about glucose 6 phosphate dehydrogenase (G6PD) deficiency?",
+    "options": [
+      "It is an x-linked dominant disorder",
+      "Stool is black in severe cases",
+      "Hemolysis may be due to ingestion of certain drugs",
+      "It has no sex predilection",
+      "Microcytic hypochromic anemia"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Hemolysis may be due to ingestion of certain drugs. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following conditions can be treated by desmopressin?",
+    "options": [
+      "ITP",
+      "Anaphylactoid purpura",
+      "Von willibrand disease",
+      "Thalassemia",
+      "Aplastic anemia"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Von willibrand disease. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In Ann Arbor staging for Hodgkin lymphoma, what does the presence of (E) mean?",
+    "options": [
+      "Excess Lymph node involvement",
+      "Extra lymphatic organ involvement",
+      "Extra mediastinal organ",
+      "Except mediastinal involvement",
+      "Except splenic infiltration"
+    ],
+    "correct": 1,
+    "explanation": "Ann Arbor: Stage I–IV based on nodal involvement. Suffixes: A/B (absence/presence of B symptoms: fever >38°C, night sweats, ≥10% weight loss); E = localised EXTRALYMPHATIC organ involvement by direct extension from adjacent lymph node; S = Spleen involvement. Example: IIE = two nodal groups with direct extension to adjacent organ."
+  },
+  {
+    "question": "A male child aged 5 years came to the outpatient clinic with pallor and rashes all over the body. There is associated high fever, and mouth ulcers. CBC revealed: Hemoglobin: 5 gm/dl; MCV: 79 fl; MCH: 35 pg; WBC: 1,000 /mm3; Platelets: 35,000/mm3. What is the most probable diagnosis?",
+    "options": [
+      "Sickle cell anemia",
+      "Aplastic anemia",
+      "Iron deficiency anemia",
+      "Beta thalassemia major",
+      "Megaloblastic anemia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Aplastic anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is a cause of transudative pleural effusion?",
+    "options": [
+      "Pneumonia",
+      "Obstructed lymphatic drainage",
+      "Hypoalbuminemia",
+      "Connective tissue disease",
+      "Tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Hypoalbuminemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A healthy 11-year-old male who is taken to Emergency Department for persistent headache for the last 4 days despite treatment with acetaminophen and ibuprofen at home. He has had intermittent emesis and fever for the last three days and has had minimal oral intake over the last 36 hours. CSF was clear and showed glucose 70 mg/dl, mildly elevated protein (150 mg/dl), WBC 300/ul mainly lymphocytes. Gram stain was negative. Blood glucose was 110 mg/dl at the same time. What is the most probable diagnosis?",
+    "options": [
+      "Acute poliomylitis",
+      "Bacterial Meningitis",
+      "Viral encephalitis",
+      "TB Meningitis",
+      "Autoimmune Encephalitis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Viral encephalitis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following conditions is associated with the \"steeple sign\"?",
+    "options": [
+      "Acute epiglottitis",
+      "Viral croup",
+      "Streptococcal pharyngitis",
+      "Acute bronchitis",
+      "Pneumonia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Viral croup. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is characteristic of laryngeal foreign bodies?",
+    "options": [
+      "Unilateral wheezing",
+      "Bilateral wheezing",
+      "Decreased breath sounds",
+      "Hoarseness or aphonia",
+      "Drooling"
+    ],
+    "correct": 3,
+    "explanation": "Foreign body locations: LARYNGEAL: HOARSENESS/APHONIA (vocal cord involvement), stridor, croupy cough, ± drooling. TRACHEAL: audible/palpable tracheal thud, bilateral wheeze. BRONCHIAL: unilateral wheeze + decreased breath sounds + hyperinflation or atelectasis. Hoarseness specifically identifies laryngeal involvement."
+  },
+  {
+    "question": "A chest x-ray of a 9-month-old infant with clinical signs of pneumonia, showed multiple pneumatoceles. What is the most likely etiologic agent?",
+    "options": [
+      "Staphylococcus aureus",
+      "Hemophilus influenza",
+      "Streptococcal pneumoniae",
+      "Moraxella catarrhalis",
+      "Viruses"
+    ],
+    "correct": 0,
+    "explanation": "Pneumatoceles = thin-walled air cysts from check-valve bronchiolar obstruction + alveolar necrosis. Pathognomonic of STAPHYLOCOCCUS AUREUS pneumonia. May rupture → pneumothorax or pyopneumothorax. Treatment: IV anti-staphylococcal antibiotics (flucloxacillin, or vancomycin if MRSA suspected)."
+  },
+  {
+    "question": "A 4-year-old boy with severe pallor had the following CBC findings: Hemoglobin: 7 g/dl, MCV: 120 fl, MCH: 35 pg, MCHC: 37 g%, reticulocyte count: 1%, total leucocytic count: 6,900 cells/cu mm, platelet count: 300,000 cells/cu mm. What is the most probable diagnosis?",
+    "options": [
+      "Hemorrhagic anemia due to acute blood loss",
+      "Iron deficiency anemia",
+      "Beta thalassemia major",
+      "Folic acid deficiency anemia",
+      "Aplastic anemia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Folic acid deficiency anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following antibiotics is used for chemoprophylaxis for close contacts of patient with acute bacterial meningitis?",
+    "options": [
+      "Rifampicin",
+      "Amoxicillin",
+      "Cefotaxime",
+      "Ampicillin",
+      "Vancomycin"
+    ],
+    "correct": 0,
+    "explanation": "Prophylaxis for meningococcal/HiB contacts: rifampicin (meningococcal: 10 mg/kg BD × 2 days; HiB: 20 mg/kg/day × 4 days). Alternatives for meningococcal: single-dose ciprofloxacin (adults ≥12 years), single-dose ceftriaxone IM (all ages including pregnancy). Goal: eradicate nasopharyngeal carriage."
+  },
+  {
+    "question": "Which of the following is the appropriate treatment of extensive pulmonary tuberculosis in a 9-year-old child?",
+    "options": [
+      "Two months quadrable therapy + 4 months double therapy",
+      "INH + Rifampicin for 3 months",
+      "Two months triple therapy + 4 months double therapy",
+      "Two months quadrable therapy + 10 months double therapy",
+      "Two months triple therapy + 10 months double therapy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Two months quadrable therapy + 4 months double therapy. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the commonest form of skeletal tuberculosis?",
+    "options": [
+      "T.B. arthritis",
+      "T.B. osteomyelitis",
+      "Spinal T.B.",
+      "Metaphyseal T.B.",
+      "Diaphyseal T.B."
+    ],
+    "correct": 2,
+    "explanation": "Skeletal TB: (1) SPINAL TB (Pott's disease) — 50% of skeletal TB, most at thoracolumbar junction (T10–L2). Complications: vertebral collapse (gibbus deformity), cold (psoas) abscess, Pott's paraplegia. (2) Hip joint TB. (3) Knee TB. Diagnosis: MRI spine (investigation of choice)."
+  },
+  {
+    "question": "Which of the following clinical signs is pathognomonic of measles?",
+    "options": [
+      "Severe prodromal stage",
+      "Circumoral pallor",
+      "Maculopapular rash",
+      "Post auricular lymphadenopathy",
+      "Koplik spots"
+    ],
+    "correct": 4,
+    "explanation": "Koplik spots: tiny bluish-white spots on the BUCCAL MUCOSA (opposite lower molars) appearing 1–2 days BEFORE the measles rash — PATHOGNOMONIC of measles. They disappear as the rash appears. Post-auricular LAP = rubella. Slapped cheek = erythema infectiosum. Sandpaper = scarlet fever."
+  },
+  {
+    "question": "Which is the most common clinical course in 90-95% of infected persons with poliomyelitis virus?",
+    "options": [
+      "Asymptomatic course",
+      "Abortive poliomyelitis",
+      "Nonparalytic poliomyelitis",
+      "Spinal paralytic poliomyelitis",
+      "Polio-encephalitis"
+    ],
+    "correct": 0,
+    "explanation": "Poliovirus infection: 90–95% ASYMPTOMATIC (inapparent); 4–8% minor illness (abortive polio); 1–2% non-paralytic (aseptic meningitis); <0.5% paralytic. The vast majority are silent yet shed virus in faeces for weeks — explaining why vaccination is so critical."
+  },
+  {
+    "question": "Which of the following infectious disease is associated with \"risus sardonicus\"?",
+    "options": [
+      "A. Acute poliomyelitis",
+      "Tetanus",
+      "Pertussis",
+      "Mumps",
+      "Meningitis"
+    ],
+    "correct": 1,
+    "explanation": "Tetanus: tetanospasmin blocks GABA/glycine at inhibitory synapses → uncontrolled muscle spasm. RISUS SARDONICUS (sardonic smile from facial muscle spasm) is PATHOGNOMONIC. Trismus (lockjaw — masseter spasm) is typically the FIRST symptom. Management: HTIg, wound debridement, metronidazole, benzodiazepines, ICU."
+  },
+  {
+    "question": "What is the drug of choice for treatment of pertussis?",
+    "options": [
+      "Penicillin",
+      "Tetracycline",
+      "Erythromycin",
+      "Amoxicillin",
+      "Cefotaxime"
+    ],
+    "correct": 2,
+    "explanation": "Pertussis treatment: AZITHROMYCIN (first-line, 5 days), ERYTHROMYCIN (traditional drug of choice, 14 days), or clarithromycin (7 days). TMP-SMX: alternative. Macrolides administered early (catarrhal stage) limit progression. All household contacts receive post-exposure prophylaxis regardless of vaccination status."
+  },
+  {
+    "question": "Neurological dysfunction in critically ill children can be evaluated by which of the following scores?",
+    "options": [
+      "RIFLE score",
+      "ARDS score",
+      "Becker score",
+      "Glasgow coma score",
+      "Mallampati score"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Glasgow coma score. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the normal intracranial pressure?",
+    "options": [
+      "30 mmHg",
+      "20 mmHg",
+      "25 mmHg",
+      "15 mmHg",
+      "<10 mmHg"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: <10 mmHg. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is the most common ECG change in hyperkalemia?",
+    "options": [
+      "Appearance of U wave",
+      "Depressed S-T segmented",
+      "Flat p wave",
+      "Peaked T wave",
+      "Wide QRS complex"
+    ],
+    "correct": 3,
+    "explanation": "Hyperkalaemia ECG progression: (1) PEAKED T WAVES (tall, narrow, symmetric) — EARLIEST at K⁺ 5.5–6.5 mEq/L, (2) Prolonged PR + P wave flattening, (3) QRS widening (>7 mEq/L), (4) Sine wave, (5) VF/asystole. U waves = HYPOkalaemia. Peaked T waves are the most common and earliest ECG change."
+  },
+  {
+    "question": "An 8-week-old female infant presented to the emergency department. On initial examination, the patient was determined to be moderately dehydrated. The following values were obtained from an arterial blood sample: pH 7.1, PC02 28 mmHg, HCO3 16 mmol/l. What is the primary underlying disorder?",
+    "options": [
+      "No disorder",
+      "Metabolic acidosis",
+      "Metabolic alkalosis",
+      "Respiratory acidosis",
+      "Respiratory alkalosis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Metabolic acidosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "You were engaged in CPR for a 3-year-old child found unresponsive in the ward. You were performing cycles of 15 chest compressions and 2 breathings alternatively with another medical personnel. After 2 min of resuscitation, you evaluate the pulse which shows pulseless electrical activity status. The AED already is attached. You administered adrenaline 0.01 mg/kg IV. The rhythm on the next assessment showed ventricular fibrillation. What is the most appropriate action?",
+    "options": [
+      "Give DC shock at a dose of 4 joules per kg",
+      "Continue chest compression at an increased rate",
+      "Start lidocaine therapy 5 mg",
+      "Start post resuscitation care",
+      "Give IV adrenaline 0.01mg/kg"
+    ],
+    "correct": 0,
+    "explanation": "PEA and asystole = NON-SHOCKABLE rhythms. Treatment: (1) High-quality CPR; (2) Adrenaline 0.01 mg/kg IV/IO every 3–5 minutes; (3) Treat reversible causes (4H's: hypoxia, hypovolaemia, hypo/hyperK, hypothermia; 4T's: tamponade, tension PTX, toxins, thromboembolism). In 2-rescuer paediatric CPR: 15:2 ratio."
+  },
+  {
+    "question": "Which of the following is a cause of obstructive shock?",
+    "options": [
+      "Toxic shock syndrome",
+      "Anaphylaxis",
+      "Neurogenic shock",
+      "Coarctation of the Aorta",
+      "Septic shock"
+    ],
+    "correct": 3,
+    "explanation": "Obstructive shock: mechanical obstruction to blood flow. Causes: cardiac tamponade, tension pneumothorax, massive PE, severe CoA. In severe CoA: duct-dependent neonate decompensates when PDA closes. Septic/neurogenic/anaphylactic = distributive. Dehydration = hypovolemic. Viral myocarditis = cardiogenic."
+  },
+  {
+    "question": "Which of the following suggests organic cause of constipation?",
+    "options": [
+      "Large caliber stool",
+      "Presence of fecal soiling",
+      "Rectal dilatation",
+      "Empty tight rectum",
+      "Stool frequency less than 3/week"
+    ],
+    "correct": 3,
+    "explanation": "Hirschsprung's disease: aganglionic segment cannot relax → on digital rectal examination: RECTUM IS EMPTY AND TIGHT (no faecal accumulation in aganglionic segment) + 'squirt sign' (explosive stool on finger withdrawal). Functional constipation: rectum is FULL of hard stool (faecal retention) with overflow soiling."
+  },
+  {
+    "question": "Which of the following is considered a feature suggesting functional abdominal pain in children and adolescents?",
+    "options": [
+      "Dysphagia",
+      "Deceleration of linear growth",
+      "Nocturnal diarrhea",
+      "Persistent vomiting",
+      "Recurrent periumbilical pain"
+    ],
+    "correct": 4,
+    "explanation": "Functional abdominal pain (Rome IV): PERIUMBILICAL, recurrent, no organic red flags, does NOT wake child from sleep. Red flags for organic pain: epigastric (PUD), nocturnal, RLQ (Crohn's/appendicitis), weight loss, FTT, bloody stool, dysphagia."
+  },
+  {
+    "question": "Which of the following statements is true regarding hyponatremic dehydration?",
+    "options": [
+      "The fluid loss is restricted to the intracellular fluid compartment.",
+      "Hyponatremia is a serum sodium concentration less than 145 mmol/I.",
+      "Possible complications of severe cases include fever, irritability, spasms, and occasionally cerebral hemorrhage",
+      "Shock occurs early",
+      "Rehydration must be carried out slowly over 48 hours"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Shock occurs early. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the minimal fluid requirement of a 6-month-old infant with mild diarrhea?",
+    "options": [
+      "50 ml/kg",
+      "75 ml/kg",
+      "150 ml/kg",
+      "300 ml/kg",
+      "400 ml/kg"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: 50 ml/kg. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "An awake, alert infant with a 2-day history of diarrhea presents with a depressed fontanelle, tachycardia, sunken eyes, and the loss of skin elasticity. Which of the following is the correct percentage of dehydration?",
+    "options": [
+      "Less than 1%",
+      "1% to 5%",
+      "5% to 9%",
+      "10% to 15%",
+      "More than 20%"
+    ],
+    "correct": 3,
+    "explanation": "MODERATE-to-SEVERE dehydration (10–15%): sunken anterior fontanelle, sunken eyes, absent tears, tachycardia, reduced skin turgor, irritability, oliguria. ALERT child rules out >15% (severe dehydration causes altered consciousness). Management: ORS 100 mL/kg over 4 hours or IV fluids."
+  },
+  {
+    "question": "Which of the following is most common cause of chronic diarrhea in an 18 months old infant?",
+    "options": [
+      "Celiac disease",
+      "Toddler's diarrhea",
+      "Lactase deficiency",
+      "Cow milk intolerance",
+      "Inflammatory bowel disease"
+    ],
+    "correct": 1,
+    "explanation": "TODDLER'S DIARRHEA (functional diarrhea of childhood) is the most common cause of chronic diarrhoea in 6 months–3 years. Loose watery stools 4–6/day with undigested food, NO blood, NO FTT. Caused by excessive fruit juice (fructose/sorbitol) + low fat diet. Treatment: dietary modification."
+  },
+  {
+    "question": "Which of the following factors affect the development of the HBsAg during perinatal transmission in infants?",
+    "options": [
+      "Maternal anti-HBs levels",
+      "Acute HBV in 2nd trimester",
+      "Maternal Anti-HBc IgM levels",
+      "Maternal Anti-HBc IgG levels",
+      "HBV-DNA or DNA polymerase activity"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Acute HBV in 2nd trimester. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is a cause of chronic liver disease?",
+    "options": [
+      "Paracetamol toxicity",
+      "HAV",
+      "HEV",
+      "Autoimmune liver disease",
+      "Phenylketonuria"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Phenylketonuria. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is a sign of right-sided heart failure?",
+    "options": [
+      "Edema lower limb",
+      "Tachypnea",
+      "Orthopnea",
+      "Wheezing",
+      "Pulmonary edema 30-"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Edema lower limb. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following drugs is contraindicated in children with hypertrophic cardiomyopathy?",
+    "options": [
+      "Beta blockers",
+      "Digitalis",
+      "Diuretics",
+      "Antibiotics",
+      "Immunosuppressives"
+    ],
+    "correct": 1,
+    "explanation": "In HCM: DIGITALIS is CONTRAINDICATED — positive inotrope → increases contractility → worsens dynamic LVOT obstruction → reduces CO. Also contraindicated: vasodilators (reduce preload → worsen obstruction), diuretics (used cautiously). TREATMENT: β-blockers, verapamil, disopyramide. Surgical septal myectomy or alcohol ablation for refractory cases."
+  },
+  {
+    "question": "Which of the following is a characteristic of lymphadenopathy of Kawasaki disease?",
+    "options": [
+      "Usually, unilateral",
+      "Less than 1.5 cm in diameter",
+      "Commonly axillary",
+      "Non-tender",
+      "Hard in consistency"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Usually, unilateral. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 6-year-old presents with persistent high fever, dyspnea and heart murmur. He is diagnosed to have infective endocarditis. What are the findings you will look for in your clinical examination?",
+    "options": [
+      "Desquamation around the nails",
+      "Subcutaneous nodules on the elbow",
+      "Vesicular rash on the palms",
+      "Spider angiomas on the back",
+      "Splinter hemorrhages under the nails"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Splinter hemorrhages under the nails. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

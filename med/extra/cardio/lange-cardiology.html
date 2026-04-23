@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Lange Cardiology</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mo6see7f8zskk",
+  "title": "Lange Cardiology",
+  "description": "All cardiology questions from Lange Q&A",
+  "icon": "🫀"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A 62-year-old man with coronary artery disease (CAD) presents with presyncope. His physical examination is normal except for bradycardia (pulse 56 beats/min) and an irregular pulse. The electrocardiogram (ECG) shows Wenckebach's type atrioventricular (AV) block. Which of the following are you most likely to see on the ECG?",
+    "options": [
+      "progressive PR shortening",
+      "progressive lengthening of the PR interval",
+      "tachycardia",
+      "dropped beat after PR lengthening",
+      "fixed 2:1 block"
+    ],
+    "correct": 3,
+    "explanation": "Wenckebach (type I second-degree AV block) is characterized by progressive lengthening of the PR interval until a nonconducted P wave (dropped beat) occurs. The magnitude of PR lengthening declines with each beat, so RR intervals characteristically shorten prior to the dropped beat. It is almost always caused by abnormal conduction across the AV node, and the QRS complex is usually of normal duration. Progressive PR shortening is incorrect as the PR interval lengthens, not shortens. Tachycardia and fixed 2:1 block are not features of Wenckebach."
+  },
+  {
+    "question": "A 72-year-old woman had a pacemaker inserted 4 years ago for symptomatic bradycardia because of AV nodal disease. She is clinically feeling well and her ECG shows normal sinus rhythm at a rate of 68/min but no pacemaker spikes. Her pacemaker only functions when the ventricular rate falls below a preset interval. Which of the following best describes her pacemaker function?",
+    "options": [
+      "asynchronous",
+      "atrial synchronous",
+      "ventricular inhibited",
+      "atrioventricular sequential",
+      "ventricular synchronous"
+    ],
+    "correct": 2,
+    "explanation": "The ventricular inhibited (VVI) pacemaker functions when the heart rate falls below a preset interval. If a QRS is detected, the pacemaker is inhibited. If a QRS is not sensed, the pacing stimulus is delivered and the ventricle is stimulated. This is the pacemaker type described. Asynchronous pacemakers fire regardless of intrinsic cardiac activity. Atrial synchronous pacemakers sense atrial activity. AV sequential pacemakers stimulate both chambers. Ventricular synchronous pacemakers sense ventricular activity to trigger pacing."
+  },
+  {
+    "question": "A 42-year-old man develops shortness of breath (SOB) and chest pain 7 days after an open cholecystectomy. His blood pressure is 145/86 mm Hg, pulse is 120/min, respirations 24/min, and oxygen saturation of 97%. Pulmonary embolism is clinically suspected. Which of the following is the most common ECG finding of pulmonary embolism?",
+    "options": [
+      "a deep S wave in lead I",
+      "depressed ST segments in leads I and II",
+      "prominent Q wave in lead I, and inversion of T wave in lead III",
+      "sinus tachycardia",
+      "clockwise rotation in the precordial leads"
+    ],
+    "correct": 3,
+    "explanation": "Sinus tachycardia is the most common ECG finding in pulmonary embolism. The specific ECG signs such as S1Q3T3 are rarely seen except in cases of massive pulmonary embolism. In submassive PE, the ECG may show nonspecific ST changes and sinus tachycardia. Deep S wave in lead I, depressed ST segments, and S1Q3T3 pattern are specific but uncommon findings. Clockwise rotation is also less common than simple sinus tachycardia."
+  },
+  {
+    "question": "A 63-year-old woman develops exertional angina and has had two episodes of syncope. Examination shows a systolic ejection murmur with radiation to the carotids and a soft S2. Which of the following is the most likely diagnosis?",
+    "options": [
+      "mitral stenosis",
+      "mitral insufficiency",
+      "aortic stenosis",
+      "aortic insufficiency",
+      "tricuspid stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Aortic stenosis is most likely associated with the classic triad of angina pectoris, syncope, and exertional dyspnea. The systolic ejection murmur radiating to the carotids with a soft S2 is characteristic. Exertional syncope is caused by systemic vasodilation in the presence of fixed or inadequate cardiac output, an arrhythmia, or both. Mitral stenosis causes a diastolic murmur. Mitral insufficiency causes a pansystolic murmur at the apex. Aortic insufficiency causes a diastolic murmur. Tricuspid stenosis would not cause these findings."
+  },
+  {
+    "question": "A 42-year-old man with known valvular heart disease develops a fever for 1 week. He appears unwell; findings include a pansystolic murmur at the apex that radiates to the axilla and a soft S1 sound. He has petechiae on his conjunctival sac, linear hemorrhages under a few finger nails, and painful, tender, and erythematous nodules on some of the distal fingertips. Which of the following is the most responsible mechanism for these physical findings?",
+    "options": [
+      "direct bacterial invasion",
+      "immune response",
+      "vascular phenomena",
+      "valvular damage",
+      "preexisting cardiac dysfunction"
+    ],
+    "correct": 2,
+    "explanation": "Common findings in infective endocarditis include petechiae, Roth's spots, Osler's nodes, Janeway lesions, splinter hemorrhages, stroke, and infarction of viscera or extremities. Many of these complications are thought to be embolic but may include vasculitis (vascular phenomena). Autopsy studies reveal that many systemic emboli go unrecognized. While direct bacterial invasion and immune response play roles in endocarditis, the peripheral findings (petechiae, Osler's nodes, Janeway lesions, splinter hemorrhages) are primarily vascular/embolic phenomena."
+  },
+  {
+    "question": "Which of the following antiarrhythmic drugs mediates its effect by interfering with movement of calcium through the slow channel?",
+    "options": [
+      "phenytoin",
+      "verapamil",
+      "lidocaine",
+      "amiodarone",
+      "bretylium"
+    ],
+    "correct": 1,
+    "explanation": "The slow channel for calcium assumes considerable importance in the region of the sinus node and AV node. Verapamil, a calcium channel blocker, interferes with calcium movement through these slow channels, resulting in both antiarrhythmic and negative inotropic effects. Phenytoin and lidocaine are class IB antiarrhythmics that block sodium channels. Amiodarone is a class III antiarrhythmic that blocks potassium channels. Bretylium is also a class III agent."
+  },
+  {
+    "question": "A 67-year-old man presents with an anterior myocardial infarction (MI) and receives thrombolytic therapy. Three days later, he develops chest pain that is different from his infarct pain. It is worsened by inspiration, swallowing, and lying down, and relieved by sitting forward. He has a low-grade fever and a friction rub along the left sternal border. Which of the following is the most likely diagnosis?",
+    "options": [
+      "extension of the MI",
+      "pulmonary embolism",
+      "pericarditis",
+      "pneumonia",
+      "costochondritis"
+    ],
+    "correct": 2,
+    "explanation": "Pericarditis secondary to transmural infarction is very common and most cases appear within 4 days. The most common manifestation is a friction rub along the left sternal border, which is evanescent. The pain is usually perceived as different from infarct pain, worsened by inspiration, swallowing, coughing, or lying down, and frequently associated with low-grade fever. Extension of MI would not cause a friction rub or positional pain. PE causes pleuritic pain but not a friction rub. Pneumonia would cause fever and cough, not friction rub."
+  },
+  {
+    "question": "The positive inotropic effect of digitalis is due to which of the following mechanisms?",
+    "options": [
+      "positively inotropic",
+      "negatively inotropic",
+      "positively chronotropic",
+      "negatively chronotropic",
+      "excitation contraction uncoupling"
+    ],
+    "correct": 0,
+    "explanation": "Positively inotropic is the best description of digitalis's effect on the heart. Digitalis increases the force of myocardial contraction by inhibiting Na+/K+-ATPase, leading to increased intracellular calcium and stronger contractions. It is not negatively inotropic. While digitalis has negatively chronotropic effects (slowing heart rate through vagal stimulation), the primary therapeutic effect is positively inotropic. Excitation-contraction coupling is a normal physiological process, not the mechanism of digitalis."
+  },
+  {
+    "question": "A 22-year-old primagravida woman develops hypertension at 28 weeks. She is asymptomatic and the examination is normal except for 1+ pedal edema. Her complete blood count, liver enzymes, and electrolytes are normal. The urinalysis is positive for proteinuria. Which of the following is true for this type of hypertension?",
+    "options": [
+      "improves in the third trimester",
+      "leads to large-birth-weight babies",
+      "should be controlled with medications",
+      "spares the placenta",
+      "spares maternal kidney function"
+    ],
+    "correct": 2,
+    "explanation": "Studies now show benefit in controlling blood pressure with drugs in pregnancy-induced hypertension, but ACE inhibitors are contraindicated because they might cause renal abnormalities in the fetus. Women who develop hypertension during pregnancy have a higher risk of developing hypertension in later life. Preeclampsia does not improve in the third trimester; it worsens. It leads to intrauterine growth restriction (small babies), not large ones. It affects both the placenta and maternal kidney function."
+  },
+  {
+    "question": "A 61-year-old man has a non-ST-elevation MI and is admitted to the coronary care unit. The following day, he develops bradycardia but no symptoms. His blood pressure is 126/84 mm Hg, pulse 50/min, and on examination, the heart sounds are normal, with no extra sounds or rubs. His ECG has changed. Which of the following ECG findings is the best indication for this patient to receive a pacemaker?",
+    "options": [
+      "persistent bradycardia",
+      "second-degree AV block Mobitz type I",
+      "first-degree AV block",
+      "new left bundle branch block (LBBB)",
+      "new LBBB and Mobitz type II AV block"
+    ],
+    "correct": 4,
+    "explanation": "There is a possible indication to insert a temporary pacemaker if a new LBBB occurs. If LBBB and a Mobitz type II AV block occur, there is general agreement on the usefulness of pacing. Temporary pacemaker is not required for first-degree block. For second-degree block of the Wenckebach type (usually with an inferior infarction), pacing is only required if symptoms of bradycardia and hypotension cannot be controlled medically. Persistent bradycardia alone without symptoms does not mandate pacing."
+  },
+  {
+    "question": "A 28-year-old woman with primary pulmonary hypertension is examined. Which of the following findings is most likely on auscultation?",
+    "options": [
+      "a loud first heart sound",
+      "an increased second heart sound",
+      "a fixed split second heart sound",
+      "a third heart sound",
+      "a fourth heart sound"
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary hypertension is associated with an increased intensity of the second heart sound, which coincides with the end of the T wave on ECG. It is the pulmonic component of the second heart sound that is increased. Pulmonary stenosis can cause dyspnea on exertion but auscultation will reveal a systolic murmur and decreased second heart sound (pulmonic component). Fixed splitting is characteristic of ASD, not pulmonary hypertension."
+  },
+  {
+    "question": "A 22-year-old woman complains of palpitations and has a regular heartbeat at a rate of 170/min, with a blood pressure of 110/70 mm Hg. The rate abruptly changes to 75/min after applying carotid sinus pressure. Which of the following is the most likely diagnosis?",
+    "options": [
+      "sinus tachycardia",
+      "paroxysmal atrial fibrillation",
+      "paroxysmal atrial flutter",
+      "paroxysmal supraventricular tachycardia (PSVT)",
+      "paroxysmal ventricular tachycardia"
+    ],
+    "correct": 3,
+    "explanation": "PSVT is the most likely diagnosis. Carotid sinus pressure increases vagal tone (parasympathetic) which decreases AV nodal conduction and terminates AV node re-entry arrhythmias. Sinus tachycardia differs from PSVT in that it does not start or stop abruptly. In PSVT, the QRS is usually narrow without clearly discernible P waves. Atrial flutter typically shows a rate of 150/min (2:1 block) and would slow but not necessarily terminate with carotid pressure. Ventricular tachycardia would show wide QRS complexes and does not respond to carotid sinus pressure."
+  },
+  {
+    "question": "A 73-year-old man has angina pectoris on exertion, but an angiogram reveals noncritical stenosis of the coronary arteries. This occurs most frequently with which of the following valvular heart diseases?",
+    "options": [
+      "mitral stenosis",
+      "mitral insufficiency",
+      "pulmonary stenosis",
+      "aortic stenosis",
+      "aortic insufficiency"
+    ],
+    "correct": 3,
+    "explanation": "In the absence of critical CAD, angina pectoris occurs most frequently with aortic stenosis. The high left ventricular pressure and wall stress increase myocardial oxygen demand beyond what the coronary arteries can supply, even without critical stenosis. AMI is usually due to associated atherosclerotic coronary occlusion. Mitral stenosis, mitral insufficiency, and pulmonary stenosis do not typically cause angina in the absence of CAD. Aortic insufficiency can cause angina but less commonly than aortic stenosis."
+  },
+  {
+    "question": "A patient with new-onset syncope has a blood pressure of 110/95 mm Hg and a harsh systolic ejection murmur at the base, radiating to both carotids. Auscultation of the second heart sound at the base might reveal which of the following findings?",
+    "options": [
+      "it is accentuated",
+      "it is diminished",
+      "it is normal in character",
+      "it is widely split due to delayed systolic ventricular ejection",
+      "it shows fixed splitting"
+    ],
+    "correct": 1,
+    "explanation": "In aortic stenosis, the first sound is usually normal; the second sound is characteristically diminished because of the increased ventricular pressure and the stenotic valve is less mobile. There can be a single S2 either because A2 and P2 are superimposed or A2 is absent or very soft. Severe aortic stenosis may be accompanied by paradoxical splitting of S2. An accentuated S2 is seen in pulmonary hypertension. Fixed splitting is seen in ASD. Wide splitting is seen in conditions with delayed RV ejection."
+  },
+  {
+    "question": "A 69-year-old woman complains of easy fatigue and one episode of presyncope. On examination of the jugular venous pressure (JVP), there are irregular large a waves. The ECG has fixed PP and RR intervals but varying PR intervals. Which of the following conditions is this most likely caused by?",
+    "options": [
+      "surgical removal of an atrium",
+      "independent beating of atria and ventricles",
+      "a reentry phenomenon",
+      "a drug effect",
+      "a heart rate under 60 beats/min"
+    ],
+    "correct": 1,
+    "explanation": "AV dissociation is the independent beating of atria and ventricles and is recognized on the ECG by fixed PP and RR intervals but variable PR intervals. The irregular large a waves (cannon a waves) occur when the atrium contracts against a closed tricuspid valve. AV block is one cause of AV dissociation. Surgical removal of an atrium would cause different findings. Reentry phenomenon causes tachyarrhythmias, not AV dissociation. Drug effects and bradycardia alone do not cause this specific pattern."
+  },
+  {
+    "question": "A 57-year-old man has an anterior MI. It is complicated by the development of heart failure. Nitroglycerin would be a useful first medication under which circumstances?",
+    "options": [
+      "severe pulmonary congestion, blood pressure 80 mm Hg systolic",
+      "clear lungs, blood pressure 120 mm Hg systolic",
+      "clear lungs, blood pressure 80 mm Hg systolic",
+      "clear lungs, blood pressure 160 mm Hg systolic",
+      "moderate pulmonary congestion, blood pressure 130 mm Hg systolic"
+    ],
+    "correct": 4,
+    "explanation": "Nitroglycerin is usually used in the setting of severe pulmonary congestion with adequate blood pressure. With significant hypotension (80 mm Hg systolic), inotropic agents or vasopressors are more appropriate. In patients with clear lungs, regardless of blood pressure, nitroglycerin is not the first choice for heart failure. Moderate pulmonary congestion with adequate blood pressure (130 mm Hg systolic) is an appropriate setting for nitroglycerin use, as it reduces preload and relieves congestion while maintaining perfusion pressure."
+  },
+  {
+    "question": "A 28-year-old man develops viridans group streptococci septicemia. Which of the following cardiac lesions has the highest risk of developing endocarditis?",
+    "options": [
+      "ventricular septal defect",
+      "atrial septal defect, secundum type",
+      "mitral valve prolapse with regurgitation",
+      "pure mitral stenosis",
+      "asymmetric septal hypertrophy"
+    ],
+    "correct": 2,
+    "explanation": "Mitral valve prolapse with regurgitation carries the highest risk of developing endocarditis among the listed lesions. The turbulent flow across the regurgitant valve creates a favorable environment for bacterial colonization. VSD also increases risk but less than mitral regurgitation. ASD secundum type has a very low risk of endocarditis because of the low-pressure shunt and lack of turbulent flow across the defect. Pure mitral stenosis and asymmetric septal hypertrophy carry lower endocarditis risk."
+  },
+  {
+    "question": "A 47-year-old woman has new-onset transient right arm weakness and word finding difficulty symptoms lasting 3 hours. She is also experiencing exertional dyspnea, and had a syncopal event 1 month ago. Her echocardiogram reveals a cardiac tumor in the left atrium, it is pedunculated and attached to the endocardium. Which of the following is the most likely cause of this lesion?",
+    "options": [
+      "myxoma",
+      "sarcoma",
+      "rhabdomyoma",
+      "fibroma",
+      "lipoma"
+    ],
+    "correct": 0,
+    "explanation": "The myxoma is a solitary globular or polypoid tumor, about 75% found in the left atrium. The clinical presentation is with one or more of the classical triad of constitutional symptoms (fatigue, fever, anemia), embolic events (as in this patient with TIA symptoms), or obstruction of the valve orifice (causing syncope). Sarcoma, rhabdomyoma, fibroma, and lipoma are much rarer cardiac tumors. The pedunculated, endocardium-attached left atrial mass is classic for atrial myxoma."
+  },
+  {
+    "question": "A 72-year-old woman has new-onset atrial flutter with a ventricular rate of 150/min. She is hemodynamically stable with a blood pressure of 155/90 mm Hg, but is experiencing palpitations. Which of the following drugs is the best intravenous choice for controlling the heart rate?",
+    "options": [
+      "diltiazem",
+      "lidocaine",
+      "aminophylline",
+      "magnesium",
+      "atropine"
+    ],
+    "correct": 0,
+    "explanation": "Diltiazem and verapamil may be of help in both acute paroxysms of atrial flutter and chronic management by slowing AV nodal conduction. The other choices have no effect on the AV node to slow down flutter, and atropine accelerates AV conduction. Lidocaine is a class IB antiarrhythmic used for ventricular arrhythmias. Aminophylline stimulates the heart and would increase heart rate. Magnesium is used for torsades de pointes, not atrial flutter rate control."
+  },
+  {
+    "question": "Several of the older patients in your practice intend to pursue exercise programs. They have no cardiac symptoms, but some do have vascular risk factors such as diabetes or hypertension. In these patients, which of the following is true about exercise electrocardiography?",
+    "options": [
+      "it is an invasive procedure",
+      "it is contraindicated in patients over 65 years of age",
+      "it is a noninvasive method for early detection of latent ischemic heart disease",
+      "it is only useful in patients with symptoms",
+      "it has no role in patients with risk factors"
+    ],
+    "correct": 2,
+    "explanation": "Exercise electrocardiography represents an increasingly popular noninvasive method for early detection of latent ischemic heart disease. It is of most clinical value when the pretest probability of disease is moderate (30-70%). In men over 40 and women over 50 who plan to start vigorous exercise, use of exercise ECG is possibly but not definitely supported by the evidence. It is not invasive, not contraindicated in patients over 65, and has value even in asymptomatic patients with risk factors."
+  },
+  {
+    "question": "A 45-year-old man with diabetes and renal disease is undergoing cardiac catheterization. Which of the following complications of the procedure is of most concern?",
+    "options": [
+      "contrast media causing anaphylaxis",
+      "contrast media causing renal impairment",
+      "arrhythmia from catheter manipulation",
+      "infection at the catheter site",
+      "air embolism"
+    ],
+    "correct": 1,
+    "explanation": "Contrast media used in cardiac catheterization may result in renal impairment. The group at highest risk includes diabetics with renal disease and those with preexisting renal failure. Good hydration is essential. While contrast can also cause anaphylaxis, and arrhythmias can occur from catheter manipulation, renal impairment is the most significant concern in a diabetic patient with preexisting renal disease. Infection and air embolism are rare complications."
+  },
+  {
+    "question": "A 22-year-old woman develops idiopathic pericarditis, with a resultant pericardial effusion. Which of the following features determines the patient's clinical course and prognosis?",
+    "options": [
+      "specific gravity of the fluid",
+      "presence or absence of blood in the fluid",
+      "presence or nature of any underlying disease",
+      "cellular count of the fluid",
+      "viscosity of the fluid"
+    ],
+    "correct": 2,
+    "explanation": "Acute pericarditis is most often idiopathic and is typically self-limited (usually within 2-6 weeks). While small effusions are common, tamponade is unusual, as are heart failure and constriction. Other diseases causing pericarditis should be searched for, and may influence the prognosis. The specific gravity, blood content, cellular count, and viscosity of the fluid are less important prognostically than identifying any underlying disease process."
+  },
+  {
+    "question": "A 65-year-old man complains of postural hypotension with dizziness. His blood pressure is 110/80 mm Hg supine and 85/70 mm Hg standing (after 2 minutes), the pulse rate remains the same at 80/min. Which of the following is the most likely diagnosis?",
+    "options": [
+      "thyrotoxicosis",
+      "diuretic therapy",
+      "venous varicosities",
+      "possibility of diabetes mellitus (DM)",
+      "essential hypotension"
+    ],
+    "correct": 3,
+    "explanation": "Orthostatic hypotension (systolic dropping by 20 mm or more) is particularly common in the elderly and in diabetics because of autonomic neuropathy. The lack of compensatory tachycardia when standing (pulse remains at 80/min) suggests autonomic dysfunction, consistent with diabetic autonomic neuropathy. Thyrotoxicosis would cause tachycardia. Diuretic therapy could cause volume depletion but typically causes compensatory tachycardia. Venous varicosities and essential hypotension are less likely explanations."
+  },
+  {
+    "question": "The echocardiogram of a 22-year-old woman reveals mitral valve prolapse. Which of the following is the most common physical finding in this condition?",
+    "options": [
+      "diastolic rumble",
+      "absent first heart sound",
+      "diastolic click",
+      "aortic regurgitation",
+      "late systolic murmur"
+    ],
+    "correct": 4,
+    "explanation": "In mitral valve prolapse, the first heart sound is usually preserved followed by a systolic click and late systolic murmur. The click is actually the most common finding, but the late systolic murmur is also characteristic. General physical examination may reveal scoliosis, pectus excavatum, straightened thoracic spine, or narrow anteroposterior diameter of chest. Diastolic rumble is heard in mitral stenosis. The first heart sound is not absent. Diastolic click and aortic regurgitation are not features of MVP."
+  },
+  {
+    "question": "A 36-year-old man is seen because of palpitations. He admits to precordial discomfort, weakness, and anxiety. His pulse is 150/min, and his blood pressure is 124/70 mm Hg. Heart sounds are normal. Carotid sinus pressure gradually changes the rate to 75/min, but when released, the pulse rate returns to 150/min. Which of the following is the most likely diagnosis?",
+    "options": [
+      "atrial flutter with 2:1 block",
+      "paroxysmal atrial tachycardia with 2:1 block",
+      "sinus arrhythmia",
+      "atrial fibrillation",
+      "nodal tachycardia"
+    ],
+    "correct": 0,
+    "explanation": "The symptoms and signs are like any sudden paroxysmal tachycardia, but the ventricular rate is the clue, after carotid pressure, to the diagnosis of atrial flutter with 2:1 block. Carotid sinus pressure increases vagal tone which slows AV conduction, temporarily increasing the block from 2:1 to 4:1, slowing the rate. When released, the 2:1 conduction resumes. The ventricular rate of 150/min is characteristic of atrial flutter with 2:1 AV conduction (atrial rate ~300/min). PSVT would typically terminate abruptly, not just slow temporarily."
+  },
+  {
+    "question": "A 25-year-old man complains of left precordial chest pain that radiates to the left shoulder but not down the left arm. The pain is accentuated by inspiration and relieved by sitting up. The pain is accompanied by fever and chills. His blood pressure is 105/75 mm Hg, pulse 110/min and regular, and temperature 37.5°C. The ECG shows ST-segment elevation in all leads except aVR and V1. On the third hospital day, the patient's blood pressure falls, JVP rises, and he goes into CHF. Which of the following is the most likely diagnosis?",
+    "options": [
+      "a second pulmonary embolus",
+      "extension of a myocardial infarct",
+      "cardiac tamponade",
+      "secondary bacterial infection",
+      "rupture of a chordae tendineae"
+    ],
+    "correct": 2,
+    "explanation": "Management of acute viral or idiopathic pericarditis includes analgesia and rest. Careful observation for increasing effusion and tamponade is essential. The classic findings of cardiac tamponade include arterial hypotension and pulsus paradoxus. The initial presentation (positional pain, friction rub, diffuse ST elevation, fever) is classic for pericarditis, and the subsequent hemodynamic deterioration (falling BP, rising JVP, CHF) indicates progression to tamponade from fluid accumulation in the pericardial space."
+  },
+  {
+    "question": "An 80-year-old man with Type II diabetes and hypertension presents with increasing dyspnea. He appears short of breath, blood pressure is 170/95 mm Hg, pulse 100/min and regular. The JVP is at 7 cm; there is a loud second heart sound and a systolic ejection murmur at the right sternal border, which does not radiate. The lungs have bibasilar crackles up to the scapula. The CXR has bilateral infiltrates and vascular redistribution. His echocardiogram reports aortic sclerosis, concentric left ventricular hypertrophy (LVH), and normal ejection fraction. Which of the following is the most likely mechanism for this condition?",
+    "options": [
+      "valvular heart disease",
+      "diastolic dysfunction",
+      "systolic dysfunction",
+      "hibernating myocardium",
+      "hypertrophic obstructive cardiomyopathy (HOCM)"
+    ],
+    "correct": 1,
+    "explanation": "Diastolic dysfunction is an important cause of heart failure in the elderly. It is commonly associated with a history of hypertension and diabetes. Normal ejection fraction and aortic sclerosis rule out either systolic or valvular heart disease as causes. In HOCM there is nonconcentric (asymmetric) hypertrophy, not concentric. The concentric LVH with normal EF in the setting of hypertension and diabetes is classic for diastolic dysfunction, where the stiff ventricle cannot relax properly, leading to elevated filling pressures and pulmonary congestion."
+  },
+  {
+    "question": "A 68-year-old woman with hypertension and dyslipidemia presents with 30 minutes of retrosternal chest pain radiating to her neck. She is diaphoretic and in moderate distress. The ECG shows ST-segment elevation in the inferior leads. Which of the following mechanisms is the most likely cause of her condition?",
+    "options": [
+      "coronary plaque rupture",
+      "aortic inflammation",
+      "pericardial inflammation",
+      "vasculitis",
+      "myocarditis"
+    ],
+    "correct": 0,
+    "explanation": "Acute rupture of an atherosclerotic plaque is now recognized as the most common cause of ST-elevation MI. The ruptured plaque exposes thrombogenic material, leading to thrombus formation and coronary artery occlusion. Pericarditis has diffuse ST elevation, not limited to a coronary territory. Aortic inflammation (aortitis) would not cause ST elevation in a specific coronary distribution. Vasculitis and myocarditis are not common causes of acute ST-elevation MI."
+  },
+  {
+    "question": "A 62-year-old man with a prosthetic aortic valve develops fevers and malaise. His valve was replaced 5 years ago because of aortic stenosis from a bicuspid valve. He has a systolic ejection murmur but no other abnormalities on examination. Blood cultures are most likely to grow which of the following?",
+    "options": [
+      "fungi",
+      "bartonella",
+      "diphtheroids",
+      "Staphylococcus epidermidis",
+      "Streptococcus bovis"
+    ],
+    "correct": 3,
+    "explanation": "S. epidermidis is still the most frequent early and late cause of endocarditis in patients with prosthetic heart valves. The other organisms are seen less frequently in late prosthetic valve endocarditis. Streptococcus bovis is associated with colonic pathology and native valve endocarditis. Fungi and bartonella are seen less commonly. Diphtheroids (Corynebacterium) can cause prosthetic valve endocarditis but less commonly than S. epidermidis."
+  },
+  {
+    "question": "A 58-year-old man with no prior cardiac history presents with retrosternal chest pain starting at rest and lasting 30 minutes. The pain radiates to the left arm and is associated with diaphoresis and dyspnea. His blood pressure is 150/90 mm Hg, pulse 100/min, the heart sounds are normal, and the lungs are clear to auscultation. Which of the following is the next most appropriate investigation?",
+    "options": [
+      "CT scan—chest",
+      "CXR",
+      "cardiac troponin",
+      "ECG",
+      "myocardial perfusion imaging"
+    ],
+    "correct": 3,
+    "explanation": "This man has acute coronary syndrome (ACS) until proven otherwise. The ECG is the most useful initial investigation since it identifies individuals with ST-segment elevation who may be candidates for either thrombolysis or primary angioplasty (PCI). The troponins are important in diagnosing myocardial necrosis but the ECG is the first investigation. The other investigations may be important in looking for alternate causes of chest pain once ST-elevation MI has been ruled out."
+  },
+  {
+    "question": "The laboratory results show: Urinalysis pH 5.2, Albumin Negative to trace, Serum Na 140 mEq/L, K 3.5 mEq/L, Cl 100 mEq/L, CO2 25 mEq/L, Creatinine 1.0 mg/100 mL, Fasting sugar 90 mg/100 mL, Calcium 9.0 mg/100 mL, Uric acid 5.0 mg/100 mL. These results are obtained from the investigation of a 37-year-old African-American woman who has a blood pressure at rest of 140/100 mm Hg. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Cushing's syndrome",
+      "primary aldosteronism",
+      "essential hypertension",
+      "pyelonephritis",
+      "bilateral renal artery stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Essential hypertension is the most likely diagnosis. A secondary cause for hypertension is found in only 10% of patients, with 90% labeled as essential. The normal laboratory results (normal K, creatinine, glucose, calcium, urinalysis) argue against secondary causes. Cushing's syndrome would show hyperglycemia and hypokalemia. Primary aldosteronism would show hypokalemia. Pyelonephritis would show urinary abnormalities. Renal artery stenosis might show abnormal renal function. Current recommendations for initial workup include serum chemistry, urinalysis, and ECG."
+  },
+  {
+    "question": "A 17-year-old girl develops exertional dyspnea, but has no cough, sputum, or wheezing symptoms. On examination, she has a fixed splitting of her second heart sound and a 3/6 systolic ejection murmur heard best over the left sternal border. An echocardiogram confirms the condition. Which of the following is the best physiologic explanation for her condition?",
+    "options": [
+      "pulmonary blood flow is greater than systemic blood flow",
+      "pulmonary blood flow is less than systemic blood flow",
+      "pulmonary blood flow is equal to systemic blood flow",
+      "the left ventricle is enlarged",
+      "the systemic blood pressure is elevated"
+    ],
+    "correct": 0,
+    "explanation": "This is characteristic of an atrial septal defect. Pulmonary blood flow is greater because of increased blood flow from the right atrium, which receives blood from both the vena cava and the left atrium (through the defect). This left-to-right shunt causes volume overload of the right heart and pulmonary vasculature. Fixed splitting of S2 is the hallmark auscultatory finding. Pulmonary flow is not less than systemic. The left ventricle is not enlarged; the right ventricle is. Systemic blood pressure is not typically elevated."
+  },
+  {
+    "question": "A 19-year-old man develops typical angina pectoris. There is no family history of premature CAD. Which of the following is the most likely diagnosis?",
+    "options": [
+      "mitral stenosis",
+      "coronary artery aneurysm",
+      "coarctation",
+      "atrial septal defect",
+      "Werner's syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Angina or infarction in young patients should prompt the physician to consider congenital coronary artery anomaly or congenital coronary artery aneurysm. Acquired coronary artery aneurysm can be caused by atherosclerosis, trauma, angioplasty, atherectomy, vasculitis, mycotic emboli, Kawasaki syndrome, or arterial dissection. Mitral stenosis, coarctation, ASD, and Werner's syndrome do not typically present with angina in a young patient."
+  },
+  {
+    "question": "A 32-year-old asymptomatic woman has a rapidly rising, forceful pulse that collapses quickly. Which of the following is the most likely diagnosis?",
+    "options": [
+      "mitral stenosis",
+      "mitral regurgitation",
+      "aortic stenosis",
+      "aortic regurgitation",
+      "coarctation of the aorta"
+    ],
+    "correct": 3,
+    "explanation": "This pulse (water-hammer or Corrigan's pulse) is seen in aortic regurgitation. The pressure in diastole is usually low due to regurgitation back into the left ventricle, and the rapid upstroke reflects the large stroke volume. The collapsing nature results from rapid runoff of blood back into the ventricle and into the peripheral circulation. Mitral stenosis causes a small pulse. Mitral regurgitation may cause a brisk but not collapsing pulse. Aortic stenosis causes a slow-rising (pulsus tardus) pulse. Coarctation causes delayed femoral pulses."
+  },
+  {
+    "question": "A 63-year-old woman on digitalis for chronic atrial fibrillation experiences fatigue, nausea, and anorexia. Her pulse is regular at 50 beats/min, and the heart sounds, chest, and abdomen examinations are normal. On the ECG, no P waves are visible and the QRS complexes are narrow and regular. Which of the following is the most appropriate management step?",
+    "options": [
+      "an increase in digitalis dose",
+      "complete cessation of digitalis",
+      "withdrawal of digitalis for one dose",
+      "addition of a beta-blocker",
+      "addition of a calcium channel blocker"
+    ],
+    "correct": 1,
+    "explanation": "This patient has digitalis toxicity. In atrial fibrillation treated with digitalis, the development of a regular, slow ventricular rate with narrow QRS complexes indicates complete heart block from digitalis toxicity. The regularization of the R-R interval in a patient previously in AF is a hallmark of digitalis toxicity. Slow atrial fibrillation with regularization of the R-R interval may occur. Symptoms of digitalis toxicity include anorexia, nausea, fatigue, dizziness, and visual disturbances. Complete cessation of digitalis is the appropriate management, not just withholding one dose. Increasing the dose would worsen toxicity."
+  },
+  {
+    "question": "A 47-year-old man is found to have edema, ascites, and hepatosplenomegaly. The examination of his neck veins reveals elevated venous pressure with a deep y descent. Heart size on x-ray is normal. Which of the following etiologies is not a possible explanation for this syndrome?",
+    "options": [
+      "rheumatic fever",
+      "TB",
+      "unknown cause",
+      "previous acute pericarditis",
+      "neoplastic involvement of the pericardium"
+    ],
+    "correct": 0,
+    "explanation": "Commonly, no cause is found for constrictive pericarditis. Some patients do give a history of previous acute pericarditis. TB is now an uncommon cause. Cancer can cause constriction but is uncommon. Rheumatic fever does NOT cause pericarditis or constrictive pericarditis; it causes valvular heart disease. The deep y descent with elevated JVP and normal heart size is characteristic of constrictive pericarditis."
+  },
+  {
+    "question": "A 65-year-old man develops palpitations and dizziness. His blood pressure is 80/50 mm Hg and his pulse is regular at 150/min. His ECG shows a \"saw-toothed\" pattern of P waves. Which of the following procedures is most appropriate in converting him back to sinus rhythm?",
+    "options": [
+      "carotid sinus pressure",
+      "gagging procedures",
+      "Valsalva maneuver",
+      "eyeball compression",
+      "electrical cardioversion"
+    ],
+    "correct": 4,
+    "explanation": "The maneuvers listed increase the block and are useful for diagnosis, but not for converting the atrial flutter to a sinus rhythm. Electrical cardioversion is the method of choice in patients who are hemodynamically unstable (BP 80/50, dizziness). Often very low amounts of energy during cardioversion will convert atrial flutter. The saw-toothed P waves confirm atrial flutter. Carotid sinus pressure, gagging, Valsalva, and eyeball compression only transiently increase AV block but do not terminate the arrhythmia."
+  },
+  {
+    "question": "A 63-year-old woman presents with symptoms of palpitations and atrial flutter on the ECG. Which of the following is the most likely mechanism of this arrhythmia?",
+    "options": [
+      "atrial asystole",
+      "atrial bigeminy",
+      "right atrial macro-reentry",
+      "AV nodal reentry",
+      "accessory pathway"
+    ],
+    "correct": 2,
+    "explanation": "Atrial flutter is characterized by regular atrial activation with an atrial rate of >240 beats/min. It is now known that the predominant mechanism for atrial flutter is right atrial macroreentry with circular activation. Atrial flutter typically originates from the right atrium and most often involves a large circuit that travels around the area of the tricuspid valve. Atrial asystole and bigeminy are not mechanisms of flutter. AV nodal reentry causes PSVT. Accessory pathways cause WPW syndrome."
+  },
+  {
+    "question": "A 62-year-old man has progressive symptoms of dyspnea, and more recently noticed difficulty lying supine. Examination shows an elevated JVP at 8 cm, with a third heart sound, pedal edema, and bibasilar crackles on auscultation. Which one of the following may be implicated in fluid retention for this condition?",
+    "options": [
+      "decreased renin",
+      "increased aldosterone",
+      "increased estrogen",
+      "increased growth hormone",
+      "decreased vasopressin"
+    ],
+    "correct": 1,
+    "explanation": "In heart failure, the renin-angiotensin-aldosterone system is activated. Increased aldosterone causes sodium and water retention, contributing to the edema and fluid overload seen in this patient. While renin is increased (not decreased) in heart failure, aldosterone is the direct mediator of fluid retention. Estrogen and growth hormone are not directly implicated in heart failure fluid retention. Vasopressin (ADH) is actually increased in heart failure, not decreased, contributing to water retention."
+  },
+  {
+    "question": "Three months after an anterior MI, a 73-year-old man has a follow-up ECG. He is clinically feeling well with no further angina symptoms. His ECG shows Q waves in the anterior leads with persistent ST-segment elevation. The current ECG is most compatible with which of the following diagnosis?",
+    "options": [
+      "ventricular aneurysm",
+      "hibernating myocardium",
+      "acute infarction",
+      "silent infarction",
+      "early repolarization"
+    ],
+    "correct": 0,
+    "explanation": "ST elevation persisting 2 weeks after an infarct, an abnormal pericardial impulse, and a bulge on the left ventricular border on x-ray are characteristic of an aneurysm. Ventricular aneurysms are most often a result of a large anterior infarct. The poor prognosis associated with these aneurysms is due to the associated left ventricular dysfunction, rather than to the aneurysm itself. Hibernating myocardium would show viable but dysfunctional tissue. Acute infarction would have new symptoms. Silent infarction would not show persistent ST elevation. Early repolarization is a normal variant."
+  },
+  {
+    "question": "A 79-year-old man presents with syncope. On physical examination, he has a slow upstroke in his carotid pulse and a diamond-shaped systolic murmur at the base. His chest is clear. Which of the following findings is his CXR most likely to reveal?",
+    "options": [
+      "right ventricular dilatation",
+      "stenosis of the proximal ascending aorta",
+      "left atrial hypertrophy",
+      "normal overall cardiac size",
+      "displaced apex"
+    ],
+    "correct": 3,
+    "explanation": "In aortic stenosis, there is normal overall cardiac size, but dilatation of the proximal ascending aorta and blunt rounding of the lower left cardiac contour. Calcification of the valve is often difficult to determine on plain films. Although left atrial enlargement can occur, its presence on the CXR should raise other diagnostic possibilities, such as mitral valve disease. The slow upstroke (pulsus tardus) and diamond-shaped murmur are classic for aortic stenosis. RV dilatation and displaced apex are not typical of isolated aortic stenosis."
+  },
+  {
+    "question": "A 49-year-old man has his serum lipids measured. Which pattern suggests the lowest risk for CAD?",
+    "options": [
+      "total cholesterol 215 mg/dL, HDL cholesterol 28 mg/dL",
+      "total cholesterol 215 mg/dL, HDL cholesterol 43 mg/dL",
+      "total cholesterol 180 mg/dL, HDL cholesterol 29 mg/dL",
+      "total cholesterol 202 mg/dL, HDL cholesterol 45 mg/dL",
+      "total cholesterol 225 mg/dL, HDL cholesterol 40 mg/dL"
+    ],
+    "correct": 3,
+    "explanation": "This combination, although the total cholesterol is borderline, has high HDL cholesterol, which is protective. HDL is the most protective lipid fraction, and higher levels are associated with lower cardiovascular risk. Option D has the most favorable ratio of HDL to total cholesterol among the choices. Option A has very low HDL (28). Option B has borderline HDL. Option C has low HDL despite lower total cholesterol. Option E has the highest total cholesterol with only moderate HDL."
+  },
+  {
+    "question": "A 16-year-old boy is found to have hypertension on routine evaluation. On examination, the blood pressure in his arms is higher than in his legs by more than 10 mm Hg. Which of the following is the most likely diagnosis?",
+    "options": [
+      "aortic insufficiency",
+      "coarctation of the aorta",
+      "normal variant",
+      "ventricular aneurysm",
+      "severe juvenile diabetes"
+    ],
+    "correct": 1,
+    "explanation": "Besides coarctation of the aorta, aortic occlusive disease, dissection of the aorta, and abdominal aneurysm may lead to differential blood pressure in arms and legs. Coarctation is the third most common form of congenital cardiac disease. One-third of patients will be hypertensive. The femoral pulses are weak, delayed, and even absent. The higher BP in arms than legs is a hallmark finding of coarctation."
+  },
+  {
+    "question": "A 79-year-old man with a 40-year history of hypertension and cardiomegaly on CXR is likely to show which of the following on his ECG?",
+    "options": [
+      "clockwise rotation of the electrical axis",
+      "rSR' pattern in V1",
+      "right axis deviation",
+      "high-voltage QRS complexes in V5 and V6",
+      "prolonged PR interval in the limb leads"
+    ],
+    "correct": 3,
+    "explanation": "He likely has left ventricular hypertrophy (LVH) from chronic hypertension. The ECG criteria for LVH include high-voltage QRS complexes in the left precordial leads (V5 and V6) and often in the limb leads. Clockwise rotation, rSR' in V1, and right axis deviation are features of right ventricular hypertrophy or right bundle branch block. Prolonged PR interval suggests first-degree AV block, not LVH specifically."
+  },
+  {
+    "question": "A 59-year-old woman presents for the first time with untreated congestive heart failure (CHF). Urinalysis and urine biochemistry is most likely to show which of the following?",
+    "options": [
+      "decreased urinary sodium content",
+      "low urine specific gravity",
+      "increased urinary chloride content",
+      "red blood cell (RBC) casts",
+      "proteinuria"
+    ],
+    "correct": 0,
+    "explanation": "In CHF, the kidneys retain sodium and water due to activation of the renin-angiotensin-aldosterone system and decreased renal perfusion. This results in decreased urinary sodium content. The urine specific gravity is typically high (not low) due to concentrated urine. Urinary chloride is decreased (not increased) along with sodium retention. RBC casts are seen in glomerulonephritis, not CHF. Proteinuria is not a characteristic finding of CHF."
+  },
+  {
+    "question": "A 60-year-old woman presents with symptoms of weight loss, anxiety, and palpitations. On examination, she has a thyroid goiter. Which of the following is the most likely cardiac finding?",
+    "options": [
+      "prolonged circulation time",
+      "decreased cardiac output",
+      "paroxysmal atrial fibrillation",
+      "pericardial effusion",
+      "aortic insufficiency"
+    ],
+    "correct": 2,
+    "explanation": "Thyroid disease may affect the heart muscle directly or there may be excessive sympathetic stimulation. Common symptoms of thyrotoxic heart disease include palpitations, exertional dyspnea, and worsening angina. Atrial fibrillation is particularly common in older individuals with hyperthyroidism. Circulation time is decreased (not prolonged) due to the hyperdynamic state. Cardiac output is increased (not decreased). Pericardial effusion and aortic insufficiency are not associated with hyperthyroidism."
+  },
+  {
+    "question": "A 70-year-old woman is found to have an irregular pulse rate on a routine visit. She is experiencing no new symptoms at rest or on exertion. On the ECG, there are no P waves and an irregular RR interval at a rate of 70/min. On her previous ECG from 4 years ago she was in sinus rhythm. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "cardioversion",
+      "antiarrhythmic therapy",
+      "beta-blocker",
+      "anticoagulation",
+      "aspirin"
+    ],
+    "correct": 3,
+    "explanation": "Since the duration of atrial fibrillation is not known, it is presumed to be chronic. There is an increased risk of cardioembolic events if restoration of sinus rhythm is attempted before anticoagulating the patient for 3-4 weeks. Aspirin is only modestly effective in reducing cardioembolic events and not the first choice. Beta-blockers are not indicated since the rate is controlled. Cardioversion without prior anticoagulation could cause thromboembolism. The priority is anticoagulation to prevent stroke."
+  },
+  {
+    "question": "A 47-year-old woman develops accelerated hypertension (blood pressure 210/105 mm Hg) but no clinical symptoms except frequent headaches. Which of the following findings are most likely on examination of the fundi?",
+    "options": [
+      "retinitis obliterans",
+      "cotton wool spots",
+      "retinal detachment",
+      "optic atrophy",
+      "foveal blindness"
+    ],
+    "correct": 1,
+    "explanation": "Cotton wool spots, hemorrhage, and papilledema are common in accelerated (malignant) hypertension. Fibrinoid necrosis occurs on the arterioles of many organs. Earlier manifestations of arteriosclerosis include thickening of the vessel wall, manifested by obscuring of the venous column at arterial crossings. Retinitis obliterans, retinal detachment, optic atrophy, and foveal blindness are not the characteristic fundoscopic findings of malignant hypertension."
+  },
+  {
+    "question": "A 32-year-old man presents for routine evaluation. He has no symptoms but has noticed some new \"nodules\" on his legs. Physical examination reveals lumps on his Achilles tendon, yellow lesions around his eyes, and pigmentation of his iris. Which of the following is the most likely diagnosis?",
+    "options": [
+      "familial hyperlipidemia",
+      "diabetes",
+      "myxedema",
+      "chronic renal disease",
+      "an inherited defect of glycogen utilization"
+    ],
+    "correct": 0,
+    "explanation": "Early atherosclerosis with tendon xanthomas, xanthelasma, and arcus senilis are characteristics of familial hypercholesterolemia. The disorder is inherited in an autosomal dominant manner. Achilles tendon xanthomas, xanthelasma (yellow lesions around eyes), and corneal arcus (iris pigmentation) are classic findings. Diabetes, myxedema, and chronic renal disease can cause secondary hyperlipidemia but not this classic presentation of tendon xanthomas and xanthelasma at a young age. Glycogen storage diseases present differently."
+  },
+  {
+    "question": "A 58-year-old man whom you have followed dies suddenly, spurring you into doing some research on sudden death. Which of the following is the most likely cause for this individual?",
+    "options": [
+      "extensive coronary atherosclerosis",
+      "electrolyte disturbance",
+      "pulmonary embolism",
+      "acute stroke",
+      "CHF"
+    ],
+    "correct": 0,
+    "explanation": "Sudden death, defined as death within 1 hour of onset of symptoms, is usually caused by cardiac disease in middle-aged and elderly patients. The most common coronary artery finding is extensive chronic coronary atherosclerosis, although acute syndromes do occur. The typical mechanism is a ventricular tachyarrhythmia triggered by ischemia in the setting of coronary disease. Electrolyte disturbances, PE, stroke, and CHF can all cause sudden death but are less common causes than coronary atherosclerosis."
+  },
+  {
+    "question": "You have a large number of patients in your practice with hypertension. If the diagnosis in an individual is essential hypertension, which of the following statements is correct?",
+    "options": [
+      "over 95% of patients are salt-sensitive",
+      "it comprises about 90% of hypertensives in general population",
+      "renin levels are invariably high",
+      "women have a poorer prognosis",
+      "alcohol reduces risk"
+    ],
+    "correct": 1,
+    "explanation": "Over 90% of hypertensives in the general population have essential hypertension. Only about 60% of hypertensives are very sensitive to salt (not 95%). About 20% of hypertensives have low-renin essential hypertension, which is more common in Blacks. Male sex, Black race, youth, smoking, DM, excess alcohol ingestion, hypercholesterolemia, more severe hypertension, and evidence of end-organ damage are among the factors that suggest a poor prognosis. Excess alcohol increases risk, not reduces it."
+  },
+  {
+    "question": "An 80-year-old man presents with nausea, vomiting, and decreased urine output. He has a history of hypertension and chronic renal failure (Stage 3, GFR 50 mL/min). He is taking spironolactone and nifedipine for treatment of hypertension. Which of the following is a characteristic ECG finding of his most likely electrolyte abnormality?",
+    "options": [
+      "shortened PR interval",
+      "lengthened PR interval",
+      "broad-based peaked T wave",
+      "shortening of the QT interval",
+      "narrow-based peaked T wave"
+    ],
+    "correct": 2,
+    "explanation": "In renal impairment, potassium-sparing diuretics (spironolactone) can cause life-threatening hyperkalemia. The characteristic findings of hyperkalemia are a narrow-based, peaked T wave in conjunction with a widened QRS complex. The PR interval prolongs and the P wave flattens with hyperkalemia. Shortened QT interval is seen in hypercalcemia. Narrow-based peaked T waves are not characteristic of hyperkalemia; the broad-based (wide) peaked T wave is the hallmark."
+  },
+  {
+    "question": "A 52-year-old woman presents with polyuria, polydypsia, constipation, and fatigue. She has no significant past medical history, and she is not on any medications. She was recently diagnosed with hyperparathyroidism. Which of the following ECG findings is most characteristic of her condition?",
+    "options": [
+      "shortened PR interval",
+      "lengthened PR interval",
+      "lengthened QU interval",
+      "shortening of the QT interval",
+      "broad-based peaked T wave"
+    ],
+    "correct": 3,
+    "explanation": "With severe hypercalcemia, the QT interval is markedly shortened. There is a correlation between the length of QT interval and the degree of hypercalcemia. Shortened PR interval is seen in WPW syndrome. Lengthened PR interval occurs in first-degree AV block. Lengthened QU interval occurs in hypokalemia. Broad-based peaked T waves occur in hyperkalemia."
+  },
+  {
+    "question": "A 64-year-old man with heart failure is recently started on 80 mg/day of furosemide. He now feels weak and tired, but notes that his heart failure symptoms have improved. There is no change in his urine output and he gets a good diuretic response every time he takes his furosemide. Which of the following ECG findings is most characteristic of his most likely electrolyte abnormality?",
+    "options": [
+      "shortened PR interval",
+      "lengthened PR interval",
+      "lengthened QU interval",
+      "shortening of the QT interval",
+      "broad-based peaked T wave"
+    ],
+    "correct": 2,
+    "explanation": "Hypokalemia from loop diuretics (furosemide) results in prolongation of the QU interval. The delayed repolarization in hypokalemia is best expressed at QU rather than QT prolongation since it can be difficult to separate the T wave from the U wave. In severe cases, the ST segments become depressed. Quinidine can cause similar ECG findings. Shortened QT is seen in hypercalcemia. Broad-based peaked T waves are seen in hyperkalemia."
+  },
+  {
+    "question": "A 52-year-old man with alcoholic cirrhosis develops a variceal bleed with hypotension. His blood pressure is 85/60 mm Hg, pulse 120/min, and heart sounds are normal. The JVP is not visible, the lungs are clear, and his extremities are pale, cool, and clammy. Which of the following hemodynamic patterns is most likely?",
+    "options": [
+      "high right atrial pressure and high cardiac output",
+      "low right atrial pressure and low cardiac output",
+      "high right atrial pressure and high PA wedge pressure",
+      "normal right atrial pressure and high cardiac output",
+      "low right atrial pressure and high systemic vascular resistance"
+    ],
+    "correct": 1,
+    "explanation": "Hypovolemic shock is characterized by a low cardiac output with normal or high systemic vascular resistance. The low right atrial filling pressure and low PA wedge pressure reflect the inadequate venous return. The cool, clammy extremities indicate high SVR from compensatory vasoconstriction. High right atrial pressure would be seen in cardiogenic shock or RV infarction. High cardiac output is seen in septic shock, not hypovolemic shock."
+  },
+  {
+    "question": "A 73-year-old man has an inferior infarct with ST elevation documented on right-sided precordial leads. He is hypotensive (blood pressure 90/70 mm Hg) and tachycardic. The JVP is 10 cm, the heart sounds are normal, lungs are clear, and his extremities are cool. Which of the following hemodynamic patterns is most likely?",
+    "options": [
+      "low right atrial pressure and low PA wedge pressure",
+      "high right atrial pressure with normal or high PA wedge pressure",
+      "low right atrial pressure with high cardiac output",
+      "high right atrial pressure with low PA wedge pressure",
+      "low systemic vascular resistance and high cardiac output"
+    ],
+    "correct": 3,
+    "explanation": "This man has a right ventricular MI. Primary right ventricular failure is characterized by a disproportionately high right atrial pressure with normal or high wedge pressure. The PA diastolic pressure is normal or elevated and the gradient between PA diastolic pressure and wedge pressure is usually increased. Systemic vascular resistance is usually normal. Low right atrial pressure is seen in hypovolemia. High cardiac output is seen in sepsis. Low SVR is seen in septic shock."
+  },
+  {
+    "question": "A 20-year-old man is being treated for acute lymphoblastic leukemia. While neutropenic, he becomes severely hypotensive with a temperature of 38.5°C. His blood pressure is 80/60 mm Hg, pulse 120/min, and heart sounds are normal. The JVP is below the sternal angle, lungs are clear, and his extremities are warm and flushed. Which of the following hemodynamic patterns is most likely?",
+    "options": [
+      "high right atrial pressure and low cardiac output",
+      "high right atrial pressure and high PA wedge pressure",
+      "low right atrial pressure with high cardiac output",
+      "high systemic vascular resistance and low cardiac output",
+      "low right atrial pressure with low cardiac output"
+    ],
+    "correct": 2,
+    "explanation": "In septic shock, right atrial pressure, wedge pressures, and systemic vascular resistance are low. PA diastolic pressure is usually normal or high, therefore resulting in an increased gradient between PA diastolic and wedge pressures. Cardiac output can be normal or high in early sepsis (warm shock). The warm, flushed extremities indicate low SVR. High right atrial pressure is seen in cardiogenic shock or RV infarction. Low cardiac output is seen in cardiogenic or hypovolemic shock."
+  },
+  {
+    "question": "A 78-year-old woman has an acute anterior wall MI with hypotension and pulmonary congestion. Her blood pressure is 90/70 mm Hg, pulse 110/min, JVP at 8 cm, and the heart sounds are normal. The lungs have bibasilar crackles, and her extremities are cool and diaphoretic. Which of the following hemodynamic patterns is most likely?",
+    "options": [
+      "low right atrial pressure and low PA wedge pressure",
+      "low right atrial pressure and high cardiac output",
+      "high right atrial pressure and low PA wedge pressure",
+      "high PA wedge pressure and low cardiac output",
+      "low systemic vascular resistance and high cardiac output"
+    ],
+    "correct": 3,
+    "explanation": "Cardiogenic shock is characterized by high right atrial pressure (although it can be normal at times), high PA wedge pressure, high PA diastolic pressure, high systemic vascular resistance, and low cardiac output. The pulmonary congestion and crackles reflect the high PA wedge pressure. The cool, diaphoretic extremities reflect high SVR from compensatory vasoconstriction. Low right atrial pressure is seen in hypovolemia. High cardiac output is seen in sepsis. Low SVR is seen in septic shock."
+  },
+  {
+    "question": "An asymptomatic 19-year-old student with a murmur is found to have mitral regurgitation on echocardiogram. Which of the following auscultation findings is most characteristic of this condition?",
+    "options": [
+      "holosystolic murmur",
+      "midsystolic murmur",
+      "rapid decompensation with pulmonary edema",
+      "diminished forward stroke volume",
+      "absent first heart sound"
+    ],
+    "correct": 0,
+    "explanation": "In chronic, compensated mitral regurgitation, there is a holosystolic murmur which starts with S1 and extends to or past the aortic component of S2. The S1 is diminished (not absent), and there is increased splitting of S2. This condition is often tolerated for years before symptoms develop. Midsystolic murmur, rapid decompensation with pulmonary edema, and diminished forward stroke volume are features of acute MR, not chronic."
+  },
+  {
+    "question": "A 60-year-old man with an acute myocardial infarct develops a new murmur. Echocardiogram reveals acute MR. Which of the following findings is most characteristic?",
+    "options": [
+      "holosystolic murmur tolerated for years",
+      "rapid decompensation with pulmonary edema",
+      "diminished S1 with increased splitting of S2",
+      "may be tolerated without loss of cardiac reserve",
+      "soft holosystolic murmur at the apex"
+    ],
+    "correct": 1,
+    "explanation": "CAD is the most common cause of acute mitral regurgitation in the United States. The murmur is often midsystolic early on, and a thrill may be present. The apex is usually hyperdynamic but actual forward stroke volume is usually diminished. The presentation is usually dominated by acute pulmonary edema and occurs most often 2-7 days post-MI. Chronic MR is tolerated for years, but acute MR causes rapid decompensation."
+  },
+  {
+    "question": "A 25-year-old woman develops exertional dyspnea and fatigue. Her past history is significant for rheumatic fever as a child. Auscultation of the heart reveals a loud first heart sound and a low-pitched middiastolic sound. Which of the following ECG findings is most characteristic?",
+    "options": [
+      "prolonged PR interval",
+      "broad-notched P wave in lead II",
+      "short QT interval",
+      "short PR interval",
+      "LVH"
+    ],
+    "correct": 1,
+    "explanation": "ECG changes in mitral stenosis are due to enlargement and hypertrophy of the left atrium and asynchronous atrial activation. The notched P wave (P mitrale) is most prominent in lead II. In lead V1, the P wave has a negative terminal deflection. Prolonged PR interval is seen in first-degree AV block. Short QT is seen in hypercalcemia. Short PR is seen in WPW syndrome. LVH is seen in conditions with left ventricular pressure or volume overload, not typical in isolated mitral stenosis."
+  },
+  {
+    "question": "A 70-year-old man with a prior anterior MI comes for his routine evaluation. He feels well and has no symptoms. He is taking metoprolol 100 mg bid, aspirin 81 mg od, enalapril 10 mg bid, and simvastatin 40 mg od for secondary prevention. Which of the following ECG findings might be expected?",
+    "options": [
+      "prolonged PR interval",
+      "broad-notched P wave in lead II",
+      "short QT interval",
+      "short PR interval",
+      "LVH"
+    ],
+    "correct": 0,
+    "explanation": "A prolonged PR interval is a common finding in asymptomatic elderly patients who have age-related degeneration of the AV node. Drugs such as beta-blockers (metoprolol) may exacerbate the condition or even cause PR prolongation in excessive doses. Broad-notched P waves are seen in left atrial enlargement (mitral stenosis). Short QT is seen in hypercalcemia. Short PR is seen in WPW. LVH would be seen in hypertensive heart disease."
+  },
+  {
+    "question": "A 20-year-old woman develops palpitations and dizziness. Her blood pressure is 100/70 mm Hg, pulse 200/min, and she feels lightheaded. Which of the following ECG findings is most characteristic of Wolff-Parkinson-White syndrome?",
+    "options": [
+      "prolonged PR interval",
+      "broad-notched P wave in lead II",
+      "short QT interval",
+      "short PR interval",
+      "LVH"
+    ],
+    "correct": 3,
+    "explanation": "In Wolff-Parkinson-White syndrome, the PR interval is short, the QRS is widened, and there is slurring of the upstroke of the R wave (delta wave). The shortened PR interval reflects faster than normal conduction through an accessory pathway. The ventricular complex represents a fusion beat. The blurred upstroke of the QRS (delta wave) represents ventricular activation via the accessory pathway. Prolonged PR interval is the opposite finding. Broad-notched P waves are seen in left atrial enlargement."
+  },
+  {
+    "question": "A 64-year-old woman with metastatic breast cancer presents with fatigue and malaise. She recently started noticing polyuria and polydypsia. On examination, her JVP is below the sternal angle, heart sounds are normal, and she has tenderness over her thoracic spine. Which of the following ECG findings is most likely?",
+    "options": [
+      "prolonged PR interval",
+      "broad-notched P wave in lead II",
+      "short QT interval",
+      "short PR interval",
+      "broad-based peaked T wave"
+    ],
+    "correct": 2,
+    "explanation": "Hypercalcemia (likely from bone metastases) may prolong the QRS and shorten the ST and QT intervals. Serious arrhythmias rarely occur with hypercalcemia. The thoracic spine tenderness in a patient with metastatic breast cancer suggests bone metastases causing hypercalcemia. Prolonged PR interval is seen in AV block. Broad-notched P waves are seen in left atrial enlargement. Short PR is seen in WPW. Broad-based peaked T waves are seen in hyperkalemia."
+  },
+  {
+    "question": "A 78-year-old man develops recent-onset chest pain and dyspnea on exertion. His blood pressure is 150/90 mm Hg, pulse 90/min, and a systolic ejection murmur at the right sternal border that radiates to the carotids. His carotid pulse is also diminished. Which of the following ECG findings is most likely?",
+    "options": [
+      "prolonged PR interval",
+      "broad-notched P wave in lead II",
+      "short QT interval",
+      "short PR interval",
+      "LVH"
+    ],
+    "correct": 4,
+    "explanation": "The ECG in severe aortic stenosis shows LVH, but is not perfectly sensitive and is not specific. Bundle branch blocks and ST-T changes can occur, but some patients have a normal ECG. The clinical picture (systolic ejection murmur radiating to carotids, diminished carotid pulse) is classic for aortic stenosis, and LVH is the expected ECG finding from chronic pressure overload."
+  },
+  {
+    "question": "Which of the following is true of both metoprolol and captopril?",
+    "options": [
+      "useful in heart failure",
+      "prominent negative inotropic effect",
+      "treatment of chronic atrial fibrillation",
+      "mechanism of action is calcium blockade",
+      "only one is useful in heart failure"
+    ],
+    "correct": 0,
+    "explanation": "Beta-blockers and ACE inhibitors are both indicated in the treatment of heart failure patients with systolic dysfunction. Beta-blockers have a negative inotropic effect (metoprolol only). For chronic atrial flutter rate control, beta-blockers are commonly used (metoprolol only). Neither ACE inhibitors nor beta-blockers mediate their effects by calcium channel blockade."
+  },
+  {
+    "question": "Which of the following is true of metoprolol but not captopril?",
+    "options": [
+      "useful in heart failure",
+      "prominent negative inotropic effect",
+      "treatment of chronic atrial fibrillation rate control",
+      "mechanism is ACE inhibition",
+      "mechanism of action is calcium blockade"
+    ],
+    "correct": 1,
+    "explanation": "Beta-blockers have a negative inotropic effect on the heart. Despite this, they improve survival in patients with left ventricular dysfunction and heart failure. ACE inhibitors (captopril) do not have a direct negative inotropic effect. Both are useful in heart failure. For chronic atrial flutter, beta-blockers are commonly used for rate control (not ACE inhibitors). Neither works by calcium blockade."
+  },
+  {
+    "question": "In the treatment of chronic atrial fibrillation, which medication is effective for rate control?",
+    "options": [
+      "captopril",
+      "metoprolol",
+      "nifedipine",
+      "hydralazine",
+      "spironolactone"
+    ],
+    "correct": 1,
+    "explanation": "In chronic atrial flutter/fibrillation, control of ventricular rate is the goal of therapy. Beta-blockers, calcium channel blockers, and digoxin are drugs commonly used. Captopril, hydralazine, nifedipine, and spironolactone are not standard rate-control agents for atrial fibrillation."
+  },
+  {
+    "question": "Which of the following statements about metoprolol and captopril is correct?",
+    "options": [
+      "Both work by calcium blockade",
+      "Metoprolol works by calcium blockade",
+      "Captopril works by calcium blockade",
+      "Neither works by calcium blockade",
+      "Both work by ACE inhibition"
+    ],
+    "correct": 3,
+    "explanation": "Neither ACE inhibitors nor beta-blockers mediate their effects by calcium channel blockade. Metoprolol is a beta-1 selective adrenergic receptor blocker. Captopril is an ACE inhibitor. Calcium channel blockers (like verapamil, diltiazem, nifedipine) are a separate class of drugs."
+  },
+  {
+    "question": "Which of the following medications acts by direct action on vascular smooth muscle? (Select the medication that does NOT act this way.)",
+    "options": [
+      "hydralazine",
+      "enalapril",
+      "metoprolol",
+      "nifedipine",
+      "nitrates"
+    ],
+    "correct": 2,
+    "explanation": "Hydralazine, nifedipine, nitrates, and amlodipine all act directly on vascular smooth muscle. Hydralazine has a greater dilator effect on arterioles than on veins; the opposite is true for nitrates. Metoprolol is a beta-blocker that works by blocking beta-adrenergic receptors, not by direct action on vascular smooth muscle. Enalapril acts by inhibiting ACE. Digoxin is a direct inotropic agent."
+  },
+  {
+    "question": "Which of the following medications acts by inhibition of angiotensin converting enzyme (ACE I)?",
+    "options": [
+      "hydralazine",
+      "enalapril",
+      "spironolactone",
+      "metoprolol",
+      "nifedipine"
+    ],
+    "correct": 1,
+    "explanation": "Enalapril may exert its effect by inhibiting formation of angiotensin II. This lowers systemic vascular resistance. In addition, ACE inhibitors have a natriuretic effect by inhibition of aldosterone secretion. They have been shown to improve mortality and decrease hospitalization in patients with CHF. Hydralazine, spironolactone, metoprolol, and nifedipine do not work by ACE inhibition."
+  },
+  {
+    "question": "Which of the following medications is a myocardial stimulant (positive inotrope)?",
+    "options": [
+      "hydralazine",
+      "enalapril",
+      "spironolactone",
+      "digoxin",
+      "nifedipine"
+    ],
+    "correct": 3,
+    "explanation": "Digoxin is a direct inotropic agent, but is usually reserved for patients who are symptomatic after treatment with ACE inhibitors and diuretics. It can be used for rate control in atrial fibrillation, although beta-blockers might be preferred. Hydralazine, enalapril, spironolactone, and nifedipine are not positive inotropes."
+  },
+  {
+    "question": "Which of the following medications has been used for primary pulmonary hypertension?",
+    "options": [
+      "hydralazine",
+      "enalapril",
+      "spironolactone",
+      "nifedipine",
+      "digoxin"
+    ],
+    "correct": 3,
+    "explanation": "Long-acting nifedipine has been a useful adjunct to the treatment of primary pulmonary hypertension, but great care must be used as even low doses of vasodilators can cause untoward reactions in patients with pulmonary hypertension. Lung transplants have provided a major therapeutic modality for managing severe pulmonary hypertension. ACE inhibitors and hydralazine have been tried, but are not effective."
+  },
+  {
+    "question": "Which of the following medications may decrease mortality by direct myocardial protective action against catecholamines?",
+    "options": [
+      "hydralazine",
+      "enalapril",
+      "spironolactone",
+      "metoprolol",
+      "furosemide"
+    ],
+    "correct": 3,
+    "explanation": "There are numerous potential mechanisms that might explain the beneficial effects of beta-blockers in left ventricular dysfunction and post-MI. The benefit is additive to that provided by ACE inhibitors. Beta-blockers like metoprolol protect the myocardium from the toxic effects of excessive catecholamine stimulation. Hydralazine, enalapril, spironolactone, and furosemide do not have this direct anti-catecholamine protective effect."
+  },
+  {
+    "question": "A 75-year-old woman with hypertension develops fatigue and dyspnea on exertion. Her blood pressure is 160/60 mm Hg and pulse 80/min. The second heart sound is diminished and there is an early diastolic murmur that radiates from the right sternal border to the apex. Which of the following arterial pulse findings is most characteristic?",
+    "options": [
+      "pulsus tardus",
+      "pulsus paradoxus",
+      "hyperkinetic pulse",
+      "bisferiens pulse",
+      "dicrotic pulse"
+    ],
+    "correct": 2,
+    "explanation": "A hyperkinetic pulse occurs in the setting of an elevated stroke volume or an abnormally rapid runoff from the arterial system. Aortic regurgitation causes a hyperkinetic (water-hammer) pulse with a rapid upstroke and collapsing quality due to the diastolic regurgitation. Pulsus tardus is seen in aortic stenosis. Pulsus paradoxus is seen in cardiac tamponade. Bisferiens pulse is seen in HOCM and combined AS/AR. Dicrotic pulse is seen in dilated cardiomyopathy."
+  },
+  {
+    "question": "A 64-year-old man with two previous MIs develops SOB at rest and has difficulty lying down. His blood pressure is 95/70 mm Hg, pulse 100/min, and JVP is 8 cm. The cardiac apex is dilated and displaced laterally, heart sounds are normal, but there is a soft third heart sound. Which of the following arterial pulse findings is most characteristic?",
+    "options": [
+      "pulsus tardus",
+      "pulsus paradoxus",
+      "hyperkinetic pulse",
+      "bisferiens pulse",
+      "dicrotic pulse"
+    ],
+    "correct": 4,
+    "explanation": "A dicrotic pulse has a peak in systole and another in diastole. It occurs in patients with very low stroke volume, especially dilated cardiomyopathy. This patient has ischemic cardiomyopathy with low stroke volume (displaced apex, soft S3, low blood pressure). Pulsus tardus is seen in aortic stenosis. Pulsus paradoxus is seen in tamponade. Hyperkinetic pulse is seen in high-output states. Bisferiens pulse is seen in HOCM and AR."
+  },
+  {
+    "question": "An 18-year-old man notices occasional lightheadedness when standing up quickly. He also has difficulty playing sports because of easy fatigue and SOB. Examination shows normal heart sounds, but a loud systolic ejection murmur at the right sternal border. The murmur decreases with elevating the legs and increases in the standing position. Which of the following arterial pulse findings is most characteristic?",
+    "options": [
+      "pulsus tardus",
+      "pulsus paradoxus",
+      "hyperkinetic pulse",
+      "bisferiens pulse",
+      "dicrotic pulse"
+    ],
+    "correct": 3,
+    "explanation": "The bisferiens pulse (two systolic peaks) occurs in HOCM and aortic regurgitation. In HOCM, the murmur increases with standing (decreased preload) and decreases with leg elevation (increased preload), which is characteristic. Pulsus tardus is seen in aortic stenosis. Pulsus paradoxus is seen in tamponade. Hyperkinetic pulse is seen in AR and high-output states. Dicrotic pulse is seen in dilated cardiomyopathy."
+  },
+  {
+    "question": "A 76-year-old woman presents with new-onset syncope. She has also noticed early fatigue on exertion for the past year. On examination, there is a systolic ejection murmur at the right sternal border that radiates to the carotids. Which of the following arterial pulse findings is most characteristic?",
+    "options": [
+      "pulsus tardus",
+      "pulsus paradoxus",
+      "hyperkinetic pulse",
+      "bisferiens pulse",
+      "dicrotic pulse"
+    ],
+    "correct": 0,
+    "explanation": "The pulsus tardus of aortic stenosis is the result of mechanical obstruction to left ventricular ejection and often has an accompanying thrill. The characteristic feel of the pulse is caused by a delayed systolic peak. This patient has classic aortic stenosis (systolic ejection murmur radiating to carotids, syncope, exertional fatigue). Pulsus paradoxus is seen in tamponade. Hyperkinetic pulse is seen in AR. Bisferiens pulse is seen in HOCM. Dicrotic pulse is seen in dilated cardiomyopathy."
+  },
+  {
+    "question": "A 62-year-old man with a 40-pack/year history of smoking presents with increased sputum production and marked SOB. On examination, he is using accessory muscles of respiration, and breath sounds are diminished with expiratory wheezes. Which of the following arterial pulse findings is most characteristic?",
+    "options": [
+      "pulsus tardus",
+      "pulsus paradoxus",
+      "hyperkinetic pulse",
+      "bisferiens pulse",
+      "dicrotic pulse"
+    ],
+    "correct": 1,
+    "explanation": "Pulsus paradoxus, a drop of >10 mm Hg in systolic blood pressure during inspiration, is caused by pericardial tamponade, airway obstruction (COPD/asthma), or superior vena cava obstruction. In severe COPD exacerbation with air trapping, the wide swings in intrathoracic pressure cause exaggerated pulsus paradoxus. Pulsus tardus is seen in AS. Hyperkinetic pulse is seen in AR. Bisferiens pulse is seen in HOCM. Dicrotic pulse is seen in dilated cardiomyopathy."
+  },
+  {
+    "question": "Which of the following JVP findings is characteristic of tricuspid regurgitation?",
+    "options": [
+      "Cannon a wave",
+      "prominent x descent",
+      "Kussmaul's sign",
+      "slow y descent",
+      "prominent v waves"
+    ],
+    "correct": 4,
+    "explanation": "Tricuspid regurgitation increases the size of the v wave. When tricuspid regurgitation becomes severe, the combination of a prominent v wave and obliteration of the x descent results in a single, large, positive systolic wave. Cannon a waves occur in complete heart block. Kussmaul's sign occurs in RV infarction and constrictive pericarditis. Slow y descent occurs in right atrial myxoma or tricuspid stenosis."
+  },
+  {
+    "question": "Which of the following JVP findings is characteristic of right atrial myxoma?",
+    "options": [
+      "Cannon a wave",
+      "prominent x descent",
+      "Kussmaul's sign",
+      "slow y descent",
+      "prominent v waves"
+    ],
+    "correct": 3,
+    "explanation": "Right atrial myxoma, or tricuspid stenosis, will slow the y descent by obstructing right ventricular filling. The y descent of the JVP is produced mainly by the tricuspid valve opening and the subsequent rapid inflow of blood into the right ventricle. Cannon a waves occur in complete heart block. Prominent x descent is seen in cardiac tamponade. Kussmaul's sign occurs in RV infarction. Prominent v waves are seen in tricuspid regurgitation."
+  },
+  {
+    "question": "Which of the following JVP findings is characteristic of right ventricular infarction?",
+    "options": [
+      "Cannon a wave",
+      "prominent x descent",
+      "Kussmaul's sign",
+      "slow y descent",
+      "prominent v waves"
+    ],
+    "correct": 2,
+    "explanation": "Right ventricular infarction and constrictive pericarditis frequently result in an increase in JVP during inspiration (Kussmaul's sign). Severe right-sided failure can also be a cause. Kussmaul's sign reflects the inability of the rigid right ventricle to accommodate increased venous return during inspiration. Cannon a waves occur in complete heart block. Prominent x descent is seen in tamponade. Slow y descent is seen in right atrial myxoma. Prominent v waves are seen in tricuspid regurgitation."
+  },
+  {
+    "question": "Which of the following JVP findings is characteristic of right-sided heart failure?",
+    "options": [
+      "Cannon a wave",
+      "prominent x descent",
+      "Kussmaul's sign",
+      "slow y descent",
+      "positive abdominojugular reflux"
+    ],
+    "correct": 4,
+    "explanation": "Right-sided heart failure is the most common cause of a positive abdominojugular reflux (normal JVP at rest, increases during 10 seconds of firm midabdominal compression, and only drops when pressure is released). Cannon a waves occur in complete heart block. Kussmaul's sign occurs in RV infarction and constrictive pericarditis. Slow y descent is seen in right atrial myxoma."
+  },
+  {
+    "question": "Which of the following JVP findings is characteristic of complete heart block?",
+    "options": [
+      "Cannon a wave",
+      "prominent x descent",
+      "Kussmaul's sign",
+      "slow y descent",
+      "prominent v waves"
+    ],
+    "correct": 0,
+    "explanation": "Large a waves (cannon a waves) occur with increased resistance to filling (tricuspid stenosis, pulmonary hypertension) or when the right atrium contracts against a tricuspid valve closed by right ventricular systole in complete heart block or other arrhythmias. The irregular timing of atrial contraction against a closed tricuspid valve produces cannon a waves. Prominent x descent is seen in tamponade. Kussmaul's sign is seen in RV infarction. Slow y descent is seen in right atrial myxoma. Prominent v waves are seen in tricuspid regurgitation."
+  },
+  {
+    "question": "A 25-year-old woman is found to have a midsystolic murmur on routine evaluation. The murmur does not radiate but it does increase with standing. She otherwise feels well and the rest of the examination is normal. Which of the following is the most likely diagnosis?",
+    "options": [
+      "aortic stenosis",
+      "HOCM",
+      "mitral regurgitation (chronic)",
+      "tricuspid regurgitation",
+      "mitral valve prolapse"
+    ],
+    "correct": 4,
+    "explanation": "With standing, most murmurs diminish. The two exceptions are HOCM, which becomes louder, and mitral valve prolapse, which becomes longer and louder. The midsystolic click-late systolic murmur that increases with standing is characteristic of MVP. Aortic stenosis murmur decreases with standing. HOCM murmur increases with standing but typically has other features. Chronic MR is holosystolic. Tricuspid regurgitation increases with inspiration."
+  },
+  {
+    "question": "A 75-year-old man is brought to the hospital because of a syncopal episode. There was no incontinence or post-event confusion. On examination, his blood pressure is 140/80 mm Hg, pulse 72/min with no postural changes. His second heart sound is diminished and there is a systolic ejection murmur that radiates to the carotids. With the Valsalva maneuver, the murmur decreases in length and intensity. Which of the following is the most likely diagnosis?",
+    "options": [
+      "aortic stenosis",
+      "HOCM",
+      "mitral regurgitation (chronic)",
+      "tricuspid regurgitation",
+      "mitral valve prolapse"
+    ],
+    "correct": 0,
+    "explanation": "With the Valsalva maneuver, most murmurs will decrease. The exceptions are the murmurs of HOCM and mitral valve prolapse, which increase. This patient's murmur decreases with Valsalva, has a diminished S2, and radiates to the carotids, all classic for aortic stenosis. The syncopal episode is also characteristic of critical AS. HOCM murmur increases with Valsalva. MR and TR murmurs behave differently."
+  },
+  {
+    "question": "A 22-year-old woman with no past medical history is found to have a systolic ejection murmur on routine physical examination. She has no symptoms and feels well. The murmur is heard along the right and left sternal borders and it decreases with handgrip exercises. Which of the following is the most likely diagnosis?",
+    "options": [
+      "aortic stenosis",
+      "HOCM",
+      "mitral regurgitation (chronic)",
+      "tricuspid regurgitation",
+      "mitral valve prolapse"
+    ],
+    "correct": 1,
+    "explanation": "The murmur of HOCM often decreases with submaximal isometric exercise (handgrip). Handgrip increases afterload, which reduces the dynamic obstruction in HOCM, making the murmur softer. Murmurs across normal or obstructed valves will be increased by handgrip. Aortic stenosis murmur would not decrease with handgrip. MR murmur increases with handgrip. The right and left sternal border location also favors HOCM over AS."
+  },
+  {
+    "question": "A 45-year-old woman has developed increasing SOB on exertion and fatigue. She has a loud systolic ejection murmur heard best at the left sternal border, and the murmur increases with standing. A double apical impulse is also noted. Which of the following is the most likely diagnosis?",
+    "options": [
+      "aortic stenosis",
+      "HOCM",
+      "mitral regurgitation (chronic)",
+      "tricuspid regurgitation",
+      "mitral valve prolapse"
+    ],
+    "correct": 1,
+    "explanation": "HOCM often has a bisferiens pulse. The murmur increases with standing (decreased preload increases dynamic obstruction), and a double apical impulse is characteristic. It can also be found in pure aortic regurgitation or combined aortic regurgitation and aortic stenosis. Aortic stenosis murmur decreases with standing. Chronic MR has a holosystolic murmur at the apex. Tricuspid regurgitation increases with inspiration. MVP has a click-murmur."
+  },
+  {
+    "question": "A 65-year-old man with a previous history of an anterior MI comes for follow-up. On examination, he has a systolic murmur heard best at the apex and radiating to the axilla. Transient external compression of both arms with blood pressure cuffs 20 mm Hg over peak systolic pressure increases the murmur. Which of the following is the most likely diagnosis?",
+    "options": [
+      "aortic stenosis",
+      "HOCM",
+      "mitral regurgitation (chronic)",
+      "tricuspid regurgitation",
+      "mitral valve prolapse"
+    ],
+    "correct": 2,
+    "explanation": "This maneuver (handgrip equivalent) will increase the murmurs of mitral regurgitation, ventricular septal defect, and aortic regurgitation. Other murmurs are not affected. The post-MI apical murmur radiating to the axilla that increases with afterload augmentation is characteristic of mitral regurgitation (possibly from papillary muscle dysfunction). AS murmur would not increase. HOCM murmur decreases with increased afterload."
+  },
+  {
+    "question": "A 56-year-old man presents with SOB, fatigue, and edema. He has also noticed weight gain, abdominal discomfort, and distension. He has a prior history of lung cancer treated with radiotherapy to the chest. There is no history of liver or cardiac disease in the past. On examination, he has an elevated JVP, prominent y descent of neck veins, and positive Kussmaul's sign. The heart sounds are normal. The CXR shows a normal cardiac silhouette and the ECG has low voltages. Which of the following is the most likely diagnosis?",
+    "options": [
+      "cardiac tamponade",
+      "constrictive pericarditis",
+      "restrictive cardiomyopathy",
+      "right ventricle myocardial infarction (RVMI)",
+      "dilated cardiomyopathy"
+    ],
+    "correct": 1,
+    "explanation": "Constrictive pericarditis is characterized by a prominent y descent of the neck veins and low voltage on ECG. The presence of a positive Kussmaul's sign helps differentiate the syndrome from cor pulmonale and restrictive cardiomyopathies. The prior radiotherapy to the chest is a risk factor. Cardiac tamponade shows pulsus paradoxus and prominent x descent (not y). Restrictive cardiomyopathy typically has absent pulsus paradoxus and absent Kussmaul's sign. RVMI would show ECG abnormalities."
+  },
+  {
+    "question": "A 28-year-old woman recently developed symptoms of chest pain that changed with positioning. It was worse when lying down and relieved when sitting up. The pain is better now but she notices increasing dyspnea and edema. On examination, the blood pressure is 85/60 mm Hg with a positive pulsus paradoxus, low volume pulse at 110/min, and the heart sounds are distant. The JVP is at 7 cm with a negative Kussmaul's sign. There are low voltages on the ECG, and a large cardiac silhouette on the CXR. Which of the following is the most likely diagnosis?",
+    "options": [
+      "cardiac tamponade",
+      "constrictive pericarditis",
+      "restrictive cardiomyopathy",
+      "right ventricle myocardial infarction (RVMI)",
+      "dilated cardiomyopathy"
+    ],
+    "correct": 0,
+    "explanation": "Cardiac tamponade can occur with as little as 200 mL of fluid if the accumulation is rapid. Physical examination reveals a pulsus paradoxus (>10 mm Hg inspiratory decline in systolic arterial pressure), a prominent x descent of the jugular veins, but no Kussmaul's sign. The ECG may show low voltage. The distant heart sounds, pulsus paradoxus, and large cardiac silhouette on CXR with negative Kussmaul's sign are characteristic. Constrictive pericarditis has prominent y descent and Kussmaul's sign."
+  },
+  {
+    "question": "A 52-year-old man presents with SOB, elevated JVP, and Kussmaul's sign. He had an inferior MI 3 days ago. ECG abnormalities are present and there is a right-sided S3. The CXR shows a normal cardiac silhouette. Which of the following is the most likely diagnosis?",
+    "options": [
+      "cardiac tamponade",
+      "constrictive pericarditis",
+      "restrictive cardiomyopathy",
+      "right ventricle myocardial infarction (RVMI)",
+      "dilated cardiomyopathy"
+    ],
+    "correct": 3,
+    "explanation": "RVMI is characterized by high neck veins, ECG abnormalities, and often a right-sided S3. The low cardiac output associated with RVMI can often be treated by volume expansion. Although a third of patients with inferoposterior infarctions have some degree of right ventricular necrosis, extensive RVMI is uncommon. The inferior MI history, Kussmaul's sign, and right-sided S3 are diagnostic."
+  },
+  {
+    "question": "A 55-year-old woman with metastatic lung cancer presents with dyspnea and pedal edema. On examination, the JVP is at 10 cm, with a negative Kussmaul's sign. The heart sounds are diminished and the lungs have bibasilar crackles. The ECG shows QRS complexes of variable height. Which of the following is the most likely diagnosis?",
+    "options": [
+      "cardiac tamponade",
+      "constrictive pericarditis",
+      "restrictive cardiomyopathy",
+      "right ventricle myocardial infarction (RVMI)",
+      "dilated cardiomyopathy"
+    ],
+    "correct": 0,
+    "explanation": "Electrical alternans (a beat-to-beat alternation in one or more component of the ECG signal) can occur in pericardial effusion and numerous other conditions. Total electrical alternans (P-QRS-T) and sinus tachycardia is relatively specific for pericardial effusion (often with tamponade). The metastatic lung cancer causing malignant pericardial effusion with tamponade explains the diminished heart sounds, elevated JVP, and electrical alternans."
+  },
+  {
+    "question": "A 64-year-old presents with dyspnea and edema. He had previous coronary bypass surgery 5 years ago, which was uncomplicated. Since then he has had no further chest pain. On examination, his JVP is at 8 cm, with prominent Kussmaul's sign. The heart sounds are easily heard but there is an early diastolic filling sound (pericardial knock). Which of the following is the most likely diagnosis?",
+    "options": [
+      "cardiac tamponade",
+      "constrictive pericarditis",
+      "restrictive cardiomyopathy",
+      "right ventricle myocardial infarction (RVMI)",
+      "dilated cardiomyopathy"
+    ],
+    "correct": 1,
+    "explanation": "A pericardial knock is characteristic of constrictive pericarditis. It is in fact an early S3, occurring 0.06-0.12 seconds after aortic closure. S1 and S2 are frequently distant. The previous cardiac surgery is a risk factor for constrictive pericarditis. Kussmaul's sign and pericardial knock together are highly suggestive. Cardiac tamponade has pulsus paradoxus, not pericardial knock. Restrictive cardiomyopathy doesn't have pericardial knock."
+  },
+  {
+    "question": "A 55-year-old woman is recently diagnosed with amyloidosis. She is now noticing increasing SOB, fatigue, and edema. On examination, the JVP is at 10 cm with a negative Kussmaul's sign but prominent x and y descent. The blood pressure is 90/70 mm Hg, no pulsus paradoxus, pulse 100/min with low volume, and normal heart sounds. Which of the following is the most likely diagnosis?",
+    "options": [
+      "cardiac tamponade",
+      "constrictive pericarditis",
+      "restrictive cardiomyopathy",
+      "right ventricle myocardial infarction (RVMI)",
+      "dilated cardiomyopathy"
+    ],
+    "correct": 2,
+    "explanation": "The combination of absent pulsus paradoxus and absent Kussmaul's sign with prominent x and y descent favors a restrictive cardiomyopathy. Unlike constrictive pericarditis, restrictive cardiomyopathies frequently present with an enlarged heart, orthopnea, LVH, and bundle branch blocks. Amyloidosis is a classic cause of restrictive cardiomyopathy. The low-volume pulse and normal heart sounds are consistent."
+  },
+  {
+    "question": "A 45-year-old man develops new symptoms of sudden-onset flushing involving his head and neck lasting a few minutes at a time. He also notices diarrhea and wheezing. Examination reveals a systolic murmur at the left sternal border. Which of the following cardiac findings is most likely?",
+    "options": [
+      "focal myocardial necrosis",
+      "proximal aortitis",
+      "endothelial plaques",
+      "systolic scratchy sound",
+      "restrictive cardiomyopathy"
+    ],
+    "correct": 2,
+    "explanation": "The cardiac lesions of gastrointestinal carcinoids are almost exclusively in the right side of the heart and occur only when there are hepatic metastases. Fibrous plaques are found on the endothelium of the cardiac chambers, valves, and great vessels. These plaques can distort cardiac valves; tricuspid regurgitation and pulmonic stenosis are the most common valvular problems. The flushing, diarrhea, and wheezing are characteristic of carcinoid syndrome."
+  },
+  {
+    "question": "A 35-year-old man presents with back pain and morning stiffness lasting 1 hour, and then it improves after activity. On examination, there are no active inflammatory joints but he has limited forward and lateral flexion of the lumbar spine, as well as decreased chest expansion. X-rays show changes of sacroilitis. Which of the following cardiac findings is most likely?",
+    "options": [
+      "focal myocardial necrosis",
+      "proximal aortitis",
+      "endothelial plaques",
+      "systolic scratchy sound",
+      "restrictive cardiomyopathy"
+    ],
+    "correct": 1,
+    "explanation": "The proximal aortitis of seronegative arthritis (ankylosing spondylitis, Reiter syndrome, psoriatic arthritis, or associated with inflammatory bowel disease) can result in aortic regurgitation and AV block. The clinical presentation of back pain, morning stiffness improving with activity, limited spinal mobility, decreased chest expansion, and sacroilitis is classic for ankylosing spondylitis."
+  },
+  {
+    "question": "A 31-year-old woman has new-onset headaches and blood pressure elevation. She also notices that the symptoms come episodically and consist of palpitations, headache, anxiety, and marked blood pressure elevation. She undergoes a workup for secondary causes of hypertension, and is found to have elevated free catecholamines in her urine. Which of the following cardiac findings is most likely?",
+    "options": [
+      "focal myocardial necrosis",
+      "proximal aortitis",
+      "endothelial plaques",
+      "systolic scratchy sound",
+      "restrictive cardiomyopathy"
+    ],
+    "correct": 0,
+    "explanation": "Focal myocardial necrosis and inflammatory cell infiltration caused by high circulating levels of catecholamines are seen in about 50% of patients who die with pheochromocytoma. The episodic headaches, palpitations, anxiety, and hypertension with elevated urinary catecholamines are classic for pheochromocytoma. The catecholamine excess can cause direct myocardial damage."
+  },
+  {
+    "question": "A 22-year-old university student notices unintentional weight loss and palpitations for 1 month. She also complains of sweating and feeling hot all the time. On examination, her pulse is regular at 110/min, blood pressure 96/60 mm Hg; she has a diffuse enlargement of the thyroid gland. Her TSH is low and free T3 and T4 are elevated. Which of the following cardiac findings is most likely?",
+    "options": [
+      "focal myocardial necrosis",
+      "proximal aortitis",
+      "endothelial plaques",
+      "systolic scratchy sound",
+      "restrictive cardiomyopathy"
+    ],
+    "correct": 3,
+    "explanation": "The Means-Lerman scratch, a systolic scratchy sound heard at the left second intercostal space during expiration, is thought to result from the rubbing of the hyperdynamic pericardium against the pleura. Palpitations, atrial fibrillation, hypertension, angina, and heart failure are more common cardiac manifestations of hyperthyroidism. The weight loss, palpitations, heat intolerance, and goiter with suppressed TSH confirm hyperthyroidism."
+  },
+  {
+    "question": "A 60-year-old man presents with SOB, increasing abdominal distention, and lower leg edema. He has no prior history of cardiac, renal, or liver disease. On examination, the JVP is at 8 cm with a negative Kussmaul's sign but prominent x and y descent. The blood pressure is 95/75 mm Hg, no pulsus paradoxus, pulse 100/min with low volume, and normal heart sounds. There is shifting dullness of the abdomen and pedal edema. His blood glucose and hemoglobin A1C are elevated. Which of the following cardiac findings is most likely?",
+    "options": [
+      "focal myocardial necrosis",
+      "proximal aortitis",
+      "endothelial plaques",
+      "systolic scratchy sound",
+      "restrictive cardiomyopathy"
+    ],
+    "correct": 4,
+    "explanation": "DM can result in a restrictive cardiomyopathy in the absence of large-vessel CAD. Histology reveals increased collagen, glycoprotein, triglycerides, and cholesterol in the myocardial interstitium. Abnormalities may be present in small intramural arteries. The elevated glucose and HbA1c indicate diabetes, which is a known cause of restrictive cardiomyopathy. The hemodynamic pattern (absent pulsus paradoxus, absent Kussmaul's, prominent x and y descent) is consistent."
+  },
+  {
+    "question": "A 63-year-old woman with Type II diabetes is seen for follow-up after a fasting lipid profile. She has no other medical conditions and feels well. Her diabetes is well-controlled and the last hemoglobin A1C value was 6.5%. Her total cholesterol is 240 mg/dL, HDL 50 mg/dL, LDL 160 mg/dL, and triglycerides 150 mg/dL. Which of the following treatments is appropriate?",
+    "options": [
+      "statin therapy",
+      "fibrate therapy",
+      "lifestyle modification",
+      "estrogen replacement",
+      "niacin therapy"
+    ],
+    "correct": 0,
+    "explanation": "Patients with diabetes have the same rates of coronary heart disease events as patients with established CAD. Diabetes is now considered a coronary heart disease equivalent when assessing risk. The goal for LDL is <100 mg/dL in patients with diabetes. The current guidelines support risk reduction efforts including drug therapy in diabetic patients similar to those recommended for patients with CAD. Her LDL of 160 mg/dL warrants statin therapy. Lifestyle modification is recommended for everyone, but statin therapy is also needed."
+  },
+  {
+    "question": "A 42-year-old woman, who is an executive at a large company, is seen for her annual evaluation. She is concerned about her risk for future cardiac events since a colleague was just diagnosed with angina. She has no other medical illness and is a lifetime nonsmoker. Her fasting lipid profile is total cholesterol 240 mg/dL, HDL 55 mg/dL, LDL 160 mg/dL, and triglycerides 140 mg/dL. Which of the following is the most appropriate treatment?",
+    "options": [
+      "statin therapy",
+      "fibrate therapy",
+      "lifestyle modification",
+      "estrogen replacement",
+      "niacin therapy"
+    ],
+    "correct": 2,
+    "explanation": "When assessing cardiovascular risk, it is important to consider recommendations in light of risk level. For primary prevention (no known symptomatic CAD), risk calculators estimate future risk. In this individual, she has no risk factors for CAD and her 10-year risk for cardiovascular events is low. The goals for LDL are <160 mg/dL, and drug therapy should be considered only if LDL >190 mg/dL. The best advice is lifestyle modification such as dietary modification, exercise, and weight loss. Repeat screening is recommended every 5 years."
+  },
+  {
+    "question": "A 57-year-old man comes to see you for follow-up 4 weeks after being discharged from hospital for unstable angina. His coronary angiogram showed moderate nonstenotic disease in two vessels. His total cholesterol is 240 mg/dL, LDL 120 mg/dL, HDL 50 mg/dL, and triglycerides 130 mg/dL. Which of the following treatments is appropriate?",
+    "options": [
+      "lifestyle modification only",
+      "statin therapy and lifestyle modification",
+      "fibrate therapy only",
+      "estrogen replacement",
+      "niacin therapy only"
+    ],
+    "correct": 1,
+    "explanation": "For patients with established CAD, their future risk for further cardiovascular events is high (10-year risk >20%). For secondary prevention, the LDL level target is <100 mg/dL. For all individuals at increased risk, lifestyle modification is stressed as a key component therapy. Given the recent diagnosis of CAD and the elevated LDL level, treatment with a statin is also indicated. His LDL of 120 mg/dL is above the target of <100 mg/dL for secondary prevention."
+  },
+  {
+    "question": "A 58-year-old woman is admitted to hospital with left-sided hemiparesis. She is diagnosed with an ischemic right cortical stroke. Which of the following treatments is beneficial in reducing future stroke risk?",
+    "options": [
+      "statin therapy",
+      "anticoagulation only",
+      "lifestyle modification only",
+      "statin therapy and lifestyle modification",
+      "antiplatelet therapy only"
+    ],
+    "correct": 3,
+    "explanation": "Recent evidence has suggested that lipid modification for patients with ischemic stroke (that is not cardioembolic in origin) by lowering LDL level with statins is beneficial in reducing future stroke risk. This evidence comes from the analysis of cardiovascular statin trials that have a lower rate of ischemic strokes in patients taking the medication compared to placebo. Lifestyle modification is also important, especially smoking cessation."
+  },
+  {
+    "question": "A 56-year-old man is diagnosed with the metabolic syndrome, which consists of hypertension, insulin resistance, dyslipidemia, and abdominal obesity. He has no prior history of cardiac or vascular disease and is otherwise well. His fasting total cholesterol is 270 mg/dL, HDL 50 mg/dL, LDL 150 mg/dL, and triglycerides 150 mg/dL. Which of the following is most appropriate?",
+    "options": [
+      "lifestyle modification only",
+      "statin therapy and lifestyle modification",
+      "fibrate therapy only",
+      "estrogen replacement",
+      "niacin therapy only"
+    ],
+    "correct": 1,
+    "explanation": "The metabolic syndrome carries a 10-year risk for cardiac events of approximately 10-20%. At this risk level, the LDL goal is <130 mg/dL and treatment threshold for starting drug therapy is >130 mg/dL. His LDL of 150 mg/dL exceeds this threshold. Lifestyle modification is an important component of the overall treatment, but statin therapy is also indicated given the elevated LDL and multiple risk factors."
+  },
+  {
+    "question": "A 60-year-old woman is concerned about her risk for cardiovascular disease since she is postmenopausal now. She has no symptoms of cardiac or vascular disease and her only cardiac risk factor is hypertension for the past 5 years, which is well-controlled. Her fasting total cholesterol is 240 mg/dL, HDL 55 mg/dL, LDL 160 mg/dL, and triglycerides 140 mg/dL. Which of the following is the most appropriate treatment?",
+    "options": [
+      "statin therapy",
+      "fibrate therapy",
+      "lifestyle modification",
+      "estrogen replacement",
+      "niacin therapy"
+    ],
+    "correct": 2,
+    "explanation": "Many observational studies have verified the increased risk of CAD in women after menopause, and this formed the basis for recommending estrogen therapy to lower cardiovascular risk. However, two large randomized clinical trials have shown no benefit with estrogen replacement in postmenopausal women as a means of reducing cardiovascular risk. Estrogen replacement is not recommended for cardiac risk modification. Since this patient has only one risk factor (hypertension), her 10-year risk is low (<10%) and lifestyle modification is the best advice. She will require follow-up lipid assessment in 5 years."
+  },
+  {
+    "question": "A 54-year-old man with diabetes has a persistently elevated blood pressure averaging 150/90 mm Hg. He has complications of peripheral neuropathy and a urinalysis is positive for microalbuminuria. Which of the following is the most appropriate medication?",
+    "options": [
+      "thiazides",
+      "spironolactone",
+      "clonidine",
+      "beta-blockers",
+      "ACE inhibitors"
+    ],
+    "correct": 4,
+    "explanation": "ACE inhibitors have no adverse effects on glucose or lipid metabolism and minimize the development of diabetic nephropathy by reducing renal vascular resistance and renal perfusion pressure. The goal for blood pressure control in diabetics is set at 130/80 mm Hg which is lower than in nondiabetics. This lower pressure is important in preventing progression of renal disease and other end-organ damage. Microalbuminuria in a diabetic is a specific indication for ACE inhibitors."
+  },
+  {
+    "question": "A 60-year-old woman with no past medical history has an elevated blood pressure of 165/80 mm Hg on routine evaluation. Repeated measurements over the next month confirm the elevated pressure. Physical examination, routine blood count, and biochemistry are all normal. Which of the following is the most appropriate medication?",
+    "options": [
+      "thiazides",
+      "spironolactone",
+      "clonidine",
+      "prazosin",
+      "beta-blockers"
+    ],
+    "correct": 0,
+    "explanation": "Thiazides have been a cornerstone in most trials of antihypertensive therapy. The current JNC-7 guidelines suggest starting with thiazide diuretics because of their proven efficacy in lowering mortality and morbidity in large clinical trials. Other agents are considered if there are comorbidities such as diabetes or CAD. For uncomplicated hypertension without specific indications for other drug classes, thiazides are the first-line treatment."
+  },
+  {
+    "question": "A 26-year-old woman develops new-onset hypertension. She has no other medical problems and is not taking any medications. She undergoes an evaluation for secondary hypertension and is found to have unilateral renal artery stenosis. Which of the following is the most appropriate medication?",
+    "options": [
+      "thiazides",
+      "spironolactone",
+      "prazosin",
+      "beta-blockers",
+      "ACE inhibitors"
+    ],
+    "correct": 4,
+    "explanation": "Although contraindicated in bilateral stenosis, ACE inhibitors are the drug of choice in unilateral renal artery stenosis. When ACE inhibitors are used in patients with impaired renal function, renal function should be monitored twice a week for the first 3 weeks. In unilateral stenosis, the unaffected kidney can compensate for any reduction in GFR on the stenotic side, making ACE inhibitors safe and effective."
+  },
+  {
+    "question": "A 70-year-old man has isolated systolic hypertension. On examination, his blood pressure is 170/80 mm Hg, heart and lungs are normal. He has no other medical conditions. Which of the following is the most appropriate medication?",
+    "options": [
+      "thiazides",
+      "spironolactone",
+      "clonidine",
+      "prazosin",
+      "beta-blockers"
+    ],
+    "correct": 0,
+    "explanation": "Thiazides seem to work particularly well in Blacks and the elderly. Isolated systolic hypertension is a common occurrence in the elderly, due to arteriosclerosis of the large arteries. Treatment of isolated systolic hypertension with low-dose thiazides results in lower stroke rates and death. The goal of treatment is a blood pressure of 140/90 mm Hg."
+  },
+  {
+    "question": "A 57-year-old man has a blood pressure of 155/90 mm Hg on routine evaluation. He had coronary artery bypass grafting 4 years earlier, after which he has had no further chest pain. The rest of the examination is normal, and the elevated blood pressure is confirmed on two repeat visits. Which of the following is the most appropriate medication?",
+    "options": [
+      "thiazides",
+      "spironolactone",
+      "clonidine",
+      "beta-blockers",
+      "hydralazine"
+    ],
+    "correct": 3,
+    "explanation": "Beta-blockers are the most appropriate choice for the treatment of hypertension in patients with CAD. They lower mortality in patients with CAD as well as hypertension. ACE inhibitors can also be used, especially if there is left ventricular dysfunction or the patient has multiple cardiovascular risk factors such as diabetes or dyslipidemia. Thiazides, spironolactone, clonidine, and hydralazine are not specifically indicated for patients with established CAD."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

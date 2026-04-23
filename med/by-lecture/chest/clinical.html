@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Clinical</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobd2l6dvq81o",
+  "title": "Clinical",
+  "description": "Question on every Chest lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Bradypnea is associated with:",
+    "options": [
+      "Narcotic overdose.",
+      "Acidosis.",
+      "Pneumonia.",
+      "Acute lung injury"
+    ],
+    "correct": 0,
+    "explanation": "Narcotic overdose. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "On examination of the chest of a patient with a unilateral tension pneumothorax, which of the following signs is present?",
+    "options": [
+      "Chest wall movements are decreased on both sides.",
+      "The mediastinum is pulled towards the affected side.",
+      "Breath sound may be decreased or absent on the affected side.",
+      "Tactile vocal fremitus will be increased on the affected side."
+    ],
+    "correct": 2,
+    "explanation": "Breath sound may be decreased or absent on the affected side. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "All are features of hypercapnia EXCEPT",
+    "options": [
+      "Capillary pulsation",
+      "Central cyanosis.",
+      "Papilledema",
+      "Asterixis."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Central cyanosis.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Clubbing is seen in:",
+    "options": [
+      "Mesothelioma",
+      "Asthma",
+      "COPD",
+      "Pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "Mesothelioma is a recognized cause of digital clubbing, which results from chronic tissue hypoxia and hypertrophic osteoarthropathy. Asthma is incorrect because it is not a recognized cause of digital clubbing. COPD is incorrect because it is not a recognized cause of digital clubbing."
+  },
+  {
+    "question": "A cough made worse in recumbent position suggests:",
+    "options": [
+      "Pulmonary embolism",
+      "Asthma",
+      "Gastroesophageal reflux",
+      "Subdiaphragmatic abscess"
+    ],
+    "correct": 2,
+    "explanation": "Gastroesophageal reflux is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Clubbing occurs earliest with",
+    "options": [
+      "Mesothelioma of pleura",
+      "Fallot's tetralogy",
+      "Lung abscess",
+      "Bronchiectasis"
+    ],
+    "correct": 2,
+    "explanation": "Lung abscess is a recognized cause of digital clubbing, which results from chronic tissue hypoxia and hypertrophic osteoarthropathy."
+  },
+  {
+    "question": "A 60 year old man has had cough and sputum for over 15 years. Now he complains that his sputum is blood tinged, particularly when he first awakens in the morning. His chest X-rays show tram-lines at both lung bases. These findings suggest:",
+    "options": [
+      "Carcinoma of the lung",
+      "Bronchiectasis",
+      "Interstitial lung disease",
+      "Heart failure"
+    ],
+    "correct": 1,
+    "explanation": "Bronchiectasis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 40 year old male, presents with a long history of productive cough and breathlessness. He had complained of halitosis and exacerbation of productive sputum, chest pain and hemoptysis. Examination revealed bilateral inspiratory crackles. Which of the following treatments is likely to decrease the frequency of his exacerbation?",
+    "options": [
+      "Cyclic antibiotic therapy",
+      "Inhaled corticosteroid",
+      "Nebulized bronchodilator",
+      "Postural drainage",
+      "Surgical resection"
+    ],
+    "correct": 3,
+    "explanation": "Postural drainage is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "A 43 year old man consult you as he is producing a cupful of foul purulent sputum every day. Examination reveals digital clubbing and coarse crackles at the left base. What is the most likely diagnosis?",
+    "options": [
+      "Bronchiectasis.",
+      "Acute lung abscess.",
+      "Bronchoalveolar cell carcinoma.",
+      "Sarcoidosis."
+    ],
+    "correct": 0,
+    "explanation": "Bronchiectasis. is a recognized cause of digital clubbing, which results from chronic tissue hypoxia and hypertrophic osteoarthropathy."
+  },
+  {
+    "question": "Clubbing is present in all EXCEPT:",
+    "options": [
+      "Fibrosing alveolitis.",
+      "Cystic fibrosis.",
+      "Emphysema.",
+      "Bronchiectasis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Emphysema.. Clubbing is associated with chronic hypoxia, lung cancer, bronchiectasis, cystic fibrosis, fibrosing alveolitis, empyema, and infective endocarditis. Emphysema. is NOT a recognized cause of digital clubbing. Fibrosing alveolitis. is a known cause of clubbing. Cystic fibrosis. is a known cause of clubbing."
+  },
+  {
+    "question": "A 30-year-old man presents to your clinic with a cough and finger clubbing. From the list below, which of these answers is not a respiratory cause of finger clubbing?",
+    "options": [
+      "Empyema",
+      "Mesothelioma",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "COPD"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is COPD. Clubbing is associated with chronic hypoxia, lung cancer, bronchiectasis, cystic fibrosis, fibrosing alveolitis, empyema, and infective endocarditis. COPD is NOT a recognized cause of digital clubbing. Empyema is a known cause of clubbing. Mesothelioma is a known cause of clubbing. Bronchogenic carcinoma is a known cause of clubbing. Cystic fibrosis is a known cause of clubbing."
+  },
+  {
+    "question": "Bronchial breath sound is found in all EXCEPT",
+    "options": [
+      "Collapse with patent bronchus.",
+      "bronchial asthma.",
+      "superficial, big, cavity with patent bronchus.",
+      "bronchopleural fistula."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is bronchial asthma.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Which is not a cause of finger clubbing?",
+    "options": [
+      "Empyema",
+      "Bronchogenic carcinoma",
+      "COPD",
+      "Cystic fibrosis",
+      "Mesothelioma"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is COPD. Clubbing is associated with chronic hypoxia, lung cancer, bronchiectasis, cystic fibrosis, fibrosing alveolitis, empyema, and infective endocarditis. COPD is NOT a recognized cause of digital clubbing. Empyema is a known cause of clubbing. Bronchogenic carcinoma is a known cause of clubbing. Cystic fibrosis is a known cause of clubbing. Mesothelioma is a known cause of clubbing."
+  },
+  {
+    "question": "Most common cause of a chronic slightly productive cough in the adult population is:",
+    "options": [
+      "Asthma",
+      "Chronic bronchial inflammation",
+      "Heart failure",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Chronic bronchial inflammation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following are the most likely physical examination findings in a patient with emphysema?",
+    "options": [
+      "Diffuse expiratory wheezing",
+      "Clubbing of the fingers",
+      "Bibasilar inspiratory crackles with increased jugular venous pressure (JVP)",
+      "Inspiratory stridor",
+      "Third heart sound"
+    ],
+    "correct": 0,
+    "explanation": "Diffuse expiratory wheezing is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "PDA with reversed shunt case",
+    "options": [
+      "Central cyanosis",
+      "Peripheral cyanosis",
+      "Differential cyanosis",
+      "Reversed differential cyanosis",
+      "Chemical cyanosis"
+    ],
+    "correct": 2,
+    "explanation": "Differential cyanosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Transposition of great vessels and COA",
+    "options": [
+      "Central cyanosis",
+      "Peripheral",
+      "Differential",
+      "Reversed differential",
+      "Chemical"
+    ],
+    "correct": 3,
+    "explanation": "Reversed differential is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The LEFT lung contains the following number of segments: (10-2014)",
+    "options": [
+      "Two",
+      "Five",
+      "Seven",
+      "eight",
+      "Twelve"
+    ],
+    "correct": 3,
+    "explanation": "eight is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Ex-smoker is: (3-2015)",
+    "options": [
+      "A person who have never smoked a cigarette or who smoked less than 100 cigarettes in the entire lifetime",
+      "A person who have smoked 100 cigarettes in their lifetime & currently smoke cigarette every day (daily) or some days (nondaily)",
+      "A person who has quit smoking for at least six months",
+      "A person who has quit smoking for at least 1 month",
+      "Pleural mesothelioma"
+    ],
+    "correct": 2,
+    "explanation": "A person who has quit smoking for at least six months is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following are recognized causes of hemoptysis Except:",
+    "options": [
+      "Tuberculosis",
+      "Bronchiectasis",
+      "Chronic obstructive pulmonary disease",
+      "Mitral stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Chronic obstructive pulmonary disease is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "Cough in bronchiectasis is:",
+    "options": [
+      "Associated with expectoration of little amount of sputum",
+      "Dry cough",
+      "Related to posture",
+      "Brassy in nature"
+    ],
+    "correct": 2,
+    "explanation": "Related to posture is correct. Bronchiectasis is characterized by chronic productive cough, postural variation, hemoptysis, coarse crackles, and tram-track opacities on CT."
+  },
+  {
+    "question": "The following is false regarding superior vena cava obstruction:",
+    "options": [
+      "Manifested by puffy face",
+      "Neck veins are congested & pulsating",
+      "Caused by compression & invasion by tumor",
+      "Part from mediastinal syndrome"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Neck veins are congested & pulsating. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "In bronchial asthma; controller medications include all of the following drugs Except:",
+    "options": [
+      "Inhaled corticosteroid",
+      "Short acting B2-agonist",
+      "Leukotriene modifiers",
+      "Sodium cromoglycate",
+      "Nedocromide sodium"
+    ],
+    "correct": 1,
+    "explanation": "Short acting B2-agonist is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Cough due to mediastinal mass is characterized by being: (10-2017)",
+    "options": [
+      "Whooping cough",
+      "Bovine cough",
+      "Brassy cough",
+      "Barking cough",
+      "Diminished air entry"
+    ],
+    "correct": 2,
+    "explanation": "Brassy cough is correct. A brassy cough results from compression of the recurrent laryngeal nerve or trachea by a mediastinal mass."
+  },
+  {
+    "question": "Generalized chest wheezes is caused by: (10-2018)",
+    "options": [
+      "COPD",
+      "Foreign body inhalation",
+      "Endobronchial TB",
+      "Bronchial stenosis",
+      "Right lobar pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "COPD is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "What is the warning sign you should take care when you admit a patient with sever attack of bronchial asthma:",
+    "options": [
+      "Easily fatigued with physical activity",
+      "Reduced peak flow meter reading",
+      "Cyanosis",
+      "Wheezing with activity",
+      "Nighttime coughing"
+    ],
+    "correct": 2,
+    "explanation": "Cyanosis is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Clinical signs of consolidation includes:",
+    "options": [
+      "Wheezes",
+      "Crepitation",
+      "Decreased TVF",
+      "Hyperresonance",
+      "Increased air entry"
+    ],
+    "correct": 1,
+    "explanation": "Crepitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "During auscultation of the heart you discover a wide fixed splitting of the second heart sound. In which of the following conditions does this occur?",
+    "options": [
+      "Uncomplicated ASD",
+      "Fallot's Tetralogy",
+      "Aortic stenosis",
+      "High bundle branch block",
+      "Constrictive pericarditis"
+    ],
+    "correct": 0,
+    "explanation": "Uncomplicated ASD is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In which of the following conditions can central cyanosis be detected? (3-2018)",
+    "options": [
+      "Methemoglobinemia",
+      "Ventilation-perfusion mismatch",
+      "Cyanide poisoning",
+      "Heavy physical exercise",
+      "Arteriovenous shunt in hemodialysis patient"
+    ],
+    "correct": 1,
+    "explanation": "Ventilation-perfusion mismatch is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Cough due to mediastinal mass is characterized by being: (10-2017)",
+    "options": [
+      "Whooping cough",
+      "Bovine cough",
+      "Brassy cough",
+      "Barking cough"
+    ],
+    "correct": 2,
+    "explanation": "Brassy cough is correct. A brassy cough results from compression of the recurrent laryngeal nerve or trachea by a mediastinal mass."
+  },
+  {
+    "question": "Patient smokes 20 cigarettes/day for 30 years; he is: (3-2016)",
+    "options": [
+      "Mild smoker",
+      "Moderate smoker",
+      "Heavy smoker",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Moderate smoker is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The most common cause of hemoptysis is: (10-2020)",
+    "options": [
+      "Tuberculosis",
+      "Acute bronchitis",
+      "Lung cancer",
+      "Sarcoidosis",
+      "Lung fibrosis"
+    ],
+    "correct": 1,
+    "explanation": "Acute bronchitis is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "The right lung contain the following number of segments: (10-2020)",
+    "options": [
+      "Three",
+      "Five",
+      "Seven",
+      "Ten",
+      "Twelve"
+    ],
+    "correct": 3,
+    "explanation": "Ten is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Clubbing is seen in:",
+    "options": [
+      "Mesothelioma",
+      "Asthma",
+      "COPD",
+      "Pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "Mesothelioma is a recognized cause of digital clubbing, which results from chronic tissue hypoxia and hypertrophic osteoarthropathy. Asthma is incorrect because it is not a recognized cause of digital clubbing. COPD is incorrect because it is not a recognized cause of digital clubbing."
+  },
+  {
+    "question": "A cough made worse in recumbent position suggests:",
+    "options": [
+      "Pulmonary embolism",
+      "Asthma",
+      "Gastroesophageal reflux",
+      "Subdiaphragmatic abscess"
+    ],
+    "correct": 2,
+    "explanation": "Gastroesophageal reflux is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Bronchial breath sound is found in all except:",
+    "options": [
+      "Collapse with patent bronchus",
+      "Bronchial asthma",
+      "Superficial, big, empty cavity with patent bronchus.",
+      "Broncho pleural fistula",
+      "Lobar pneumonia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Bronchial asthma. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Bronchophony may be found in:",
+    "options": [
+      "Pneumothorax",
+      "Empyema",
+      "Lobar Consolidation",
+      "Pleural effusion.",
+      "Chylothorax"
+    ],
+    "correct": 2,
+    "explanation": "Lobar Consolidation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Pink, frothy and profuse sputum is seen in:",
+    "options": [
+      "Pneumoconiosis",
+      "Lobar pneumonia",
+      "Acute pulmonary edema",
+      "Aspergilloma",
+      "ARDS"
+    ],
+    "correct": 2,
+    "explanation": "Acute pulmonary edema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "P-pulmonale in ECG is seen in",
+    "options": [
+      "Hydropneumothorax",
+      "Chronic cor pulmonale",
+      "Pulmonary tuberculosis",
+      "Allergic bronchopulmonary Aspergillosis",
+      "Wolff-Parkinson-White syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Chronic cor pulmonale is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Low voltage in ECG is seen in:",
+    "options": [
+      "Thin chest wall",
+      "Consolidation",
+      "Hyperthyroidism",
+      "Emphysema",
+      "Dextrocardia"
+    ],
+    "correct": 3,
+    "explanation": "Emphysema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Nocturnal cough is classically found in all except:",
+    "options": [
+      "Post-nasal drip",
+      "Tropical eosinophilia",
+      "Left ventricular failure",
+      "Recurrent laryngeal nerve palsy",
+      "GERD"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Recurrent laryngeal nerve palsy. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Normal respiratory rate range is:",
+    "options": [
+      "5-7 beat/min",
+      "25 - 30 beat/min",
+      "10 - 19 beat/min",
+      "18 - 26 beat/min"
+    ],
+    "correct": 2,
+    "explanation": "10 - 19 beat/min is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Apnea alternating with hyperpnea is described as:",
+    "options": [
+      "Biot's respiration.",
+      "Chyne-stokes breathing.",
+      "Apneustic respiration.",
+      "Ataxic respiration."
+    ],
+    "correct": 1,
+    "explanation": "Chyne-stokes breathing. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Normal percussion note of the bare area of the heart is:",
+    "options": [
+      "Dull",
+      "Resonant.",
+      "Impaired note.",
+      "Hyper resonant."
+    ],
+    "correct": 2,
+    "explanation": "Impaired note. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Positive D'Espine sign is due to:",
+    "options": [
+      "Thyroid gland enlargement.",
+      "Mediastinal lymph node enlargement.",
+      "Hepatomegaly",
+      "Lung collapse."
+    ],
+    "correct": 1,
+    "explanation": "Mediastinal lymph node enlargement. is correct. Positive D'Espine sign (audible bronchial breath sound over the 7th cervical vertebra) indicates mediastinal lymphadenopathy or mass."
+  },
+  {
+    "question": "Localized chest wheezes is present in:",
+    "options": [
+      "Bronchial asthma.",
+      "COPD",
+      "Pleural tumors",
+      "Bronchial carcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Bronchial carcinoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Clubbing is present in all except:",
+    "options": [
+      "Fibrosing alveolitis",
+      "Cystic fibrosis",
+      "Lung abscess",
+      "Emphysema"
+    ],
+    "correct": 3,
+    "explanation": "[CORRECTED FROM ANSWER KEY] Emphysema/COPD does NOT cause clubbing. Lung abscess, fibrosing alveolitis, and cystic fibrosis are recognized causes of clubbing. The correct answer is Emphysema. Clubbing is associated with chronic hypoxia, lung cancer, bronchiectasis, cystic fibrosis, fibrosing alveolitis, empyema, and infective endocarditis. Emphysema is NOT a recognized cause of digital clubbing. Fibrosing alveolitis is a known cause of clubbing. Cystic fibrosis is a known cause of clubbing. Lung abscess is a known cause of clubbing."
+  },
+  {
+    "question": "Commonest cause of hypertrophic osteoarthropathy is:",
+    "options": [
+      "Fallot's tetralogy",
+      "Bronchiectasis",
+      "Bronchogenic carcinoma",
+      "Mesothelioma of pleura"
+    ],
+    "correct": 3,
+    "explanation": "Mesothelioma of pleura is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Lovibond's angle is approximately:",
+    "options": [
+      "120°",
+      "140°",
+      "160°",
+      "175°"
+    ],
+    "correct": 2,
+    "explanation": "160° is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Woody dullness in percussion over chest is classically found in:",
+    "options": [
+      "Thickened pleura",
+      "Consolidation",
+      "Collapse of the lung",
+      "Pleural effusion"
+    ],
+    "correct": 1,
+    "explanation": "Consolidation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Cheyne-Stokes respiration is classically seen in all except: A: Hepatocellular failure",
+    "options": [
+      "Uraemia",
+      "Opium poisoning",
+      "Raised intracranial tension"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Uraemia. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Bronchial breath sound is found in all except:",
+    "options": [
+      "Collapse with patent bronchus",
+      "Bronchial asthma",
+      "Superficial, big, empty cavity with patent bronchus",
+      "Bronchopleural fistula"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Bronchial asthma. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Aegophony may be found in:",
+    "options": [
+      "Pneumothorax",
+      "Emphysema",
+      "Consolidation",
+      "Superficial, empty cavity"
+    ],
+    "correct": 2,
+    "explanation": "Consolidation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Platypnoea may be found in:",
+    "options": [
+      "COPD",
+      "Acute severe asthma",
+      "Pneumonia",
+      "Selective paralysis of intercostal muscles"
+    ],
+    "correct": 3,
+    "explanation": "Selective paralysis of intercostal muscles is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Loss of Traube's space tympanicity is found in all except:",
+    "options": [
+      "Splenic rupture",
+      "Achalasia cardia",
+      "Ca. of fundus of stomach",
+      "Pericardial effusion"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Pericardial effusion. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Restriction of bilateral chest movement is found in all except:",
+    "options": [
+      "Myasthenia gravis",
+      "Ankylosing spondylitis",
+      "Viperide snake bite",
+      "Diffuse interstitial fibrosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Viperide snake bite. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Crepitations uninfluenced by coughing are found in:",
+    "options": [
+      "Acute pulmonary oedema",
+      "Consolidation",
+      "Fibrosing alveolitis",
+      "Lung abscess"
+    ],
+    "correct": 2,
+    "explanation": "Fibrosing alveolitis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Pink, frothy and profuse sputum is seen in:",
+    "options": [
+      "Pneumoconiosis",
+      "Lobar pneumonia",
+      "Acute pulmonary oedema",
+      "Aspergilloma"
+    ],
+    "correct": 2,
+    "explanation": "Acute pulmonary oedema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Bilateral hypertranslucency in chest X-ray (PA view) is seen: in all except",
+    "options": [
+      "Emphysema",
+      "Under-exposed film",
+      "Multiple bullae",
+      "Fallot's tetralogy with pulmonary atresia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Under-exposed film. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Pneumatocele is found in pneumonia caused by:",
+    "options": [
+      "Staphylococcus aureus",
+      "Klebsiella pneumoniae",
+      "Streptococcus pneumoniae",
+      "Mycoplasma pneumoniae"
+    ],
+    "correct": 0,
+    "explanation": "Staphylococcus aureus is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "In performing a chest X-ray (PA view), the tube-film distance should be:",
+    "options": [
+      "2 feet",
+      "4 feet",
+      "6 feet",
+      "8 feet"
+    ],
+    "correct": 2,
+    "explanation": "6 feet is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "P-pulmonale in ECG is seen in:",
+    "options": [
+      "Hydropneumothorax",
+      "Chronic cor pulmonale",
+      "Pulmonary tuberculosis",
+      "Allergic bronchopulmonary aspergillosis"
+    ],
+    "correct": 1,
+    "explanation": "Chronic cor pulmonale is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Amphoric breath sound is found in:",
+    "options": [
+      "Pleural effusion",
+      "Superfical, big empty cavity in lung",
+      "Consolidation",
+      "Open pneumothorax"
+    ],
+    "correct": 3,
+    "explanation": "Open pneumothorax is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The lower part of right border of cardiac silhouette in a chest: X-ray (PA view) is usually formed by:",
+    "options": [
+      "Right atrium",
+      "Inferior vena cava",
+      "Right ventricle",
+      "Superior vena cava"
+    ],
+    "correct": 0,
+    "explanation": "Right atrium is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Melanoptysis (black sputum) is seen in:",
+    "options": [
+      "Coal workers pneumoconiosis",
+      "Ochronosis",
+      "Maple syrup urine disease",
+      "Goodpasture's disease"
+    ],
+    "correct": 0,
+    "explanation": "Coal workers pneumoconiosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Chest X-ray shows miliary mottlings in all except:",
+    "options": [
+      "Extrinsic allergic alveolitis",
+      "Chickenpox pneumonia",
+      "Tuberous sclerosis",
+      "Pulmonary haemosiderosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Tuberous sclerosis. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Large amount of eosinophils in the sputum is diagnostic of:",
+    "options": [
+      "Staphylococcal pneumonia",
+      "Fibrosing alveolitis",
+      "Pulmonary aspergillosis",
+      "Cystic fibrosis"
+    ],
+    "correct": 2,
+    "explanation": "Pulmonary aspergillosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Brassy cough is seen in:",
+    "options": [
+      "Recurrent laryngeal nerve palsy",
+      "Acute laryngitis",
+      "Heavy smokers",
+      "Carcinoma of the larynx"
+    ],
+    "correct": 3,
+    "explanation": "Carcinoma of the larynx is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Upper border of liver dullness is elevated in all except:",
+    "options": [
+      "Ascites",
+      "Subdiaphragmatic abscess (right)",
+      "Pneumothorax (right)",
+      "Pleural effusion (right)"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Pneumothorax (right). This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Stridor is characteristically found in:",
+    "options": [
+      "Tropical eosinophilia",
+      "Laryngeal diphtheria",
+      "Carcinoid syndrome",
+      "Cardiac asthma"
+    ],
+    "correct": 1,
+    "explanation": "Laryngeal diphtheria is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The dome of diaphragm is elevated in:",
+    "options": [
+      "Emphysema",
+      "Pleural effusion",
+      "Cirrhosis of liver",
+      "Diaphragmatic palsy"
+    ],
+    "correct": 3,
+    "explanation": "Diaphragmatic palsy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 63-year-old man presents to ER with weight loss, cough, hemoptysis and shortness of breath. On examination he is anemic, clubbed and apyrexial.",
+    "options": [
+      "ARDS",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "Extrinsic allergic alveolitis",
+      "Fibrosing alveolitis",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolus",
+      "Right sided rib fracture"
+    ],
+    "correct": 1,
+    "explanation": "Bronchogenic carcinoma is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "A 65-year-old man presents with shortness of breath and cough productive of pink frothy sputum. On examination he is cyanosed and tachycardic, and has bibasal end-inspiratory crackles. His jugular venous pressure (JVP) is elevated.",
+    "options": [
+      "ARDS",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "Extrinsic allergic alveolitis",
+      "Fibrosing alveolitis",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolus",
+      "Right sided rib fracture"
+    ],
+    "correct": 8,
+    "explanation": "Pulmonary edema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 70-year-old woman presents with fever, rigors, shortness of breath and right-sided pleuritic chest pain. On examination the right side of the chest shows reduced expansion, dull percussion and increased tactile vocal fremitus.",
+    "options": [
+      "ARDS",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "Extrinsic allergic alveolitis",
+      "Fibrosing alveolitis",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolus",
+      "Right sided rib fracture"
+    ],
+    "correct": 6,
+    "explanation": "Pneumonia is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 30-year-old farmer presents with repeated episodes of fever, rigors, dry cough and shortness of breath with onset several hours after starting work. On examination he is pyrexial with coarse end-inspiratory crackles. His chest radiograph shows mid-zone mottling.",
+    "options": [
+      "ARDS",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "Extrinsic allergic alveolitis",
+      "Fibrosing alveolitis",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolus",
+      "Right sided rib fracture"
+    ],
+    "correct": 3,
+    "explanation": "Extrinsic allergic alveolitis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 21-year-old man has a productive cough, wheeze and steatorrhea. On examination he is clubbed and cyanosed, and has bilateral coarse crackles.",
+    "options": [
+      "ARDS",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "Extrinsic allergic alveolitis",
+      "Fibrosing alveolitis",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolus",
+      "Right sided rib fracture"
+    ],
+    "correct": 2,
+    "explanation": "Cystic fibrosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 52-year-old woman on HRT presents with a swollen left calf, chest pain and shortness of breath.",
+    "options": [
+      "Anaemia",
+      "Bronchial asthma",
+      "Bronchogenic carcinoma",
+      "Cryptogenic fibrosing alveolitis",
+      "Extrinsic allergic alveolitis",
+      "Inhaled foreign body",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolism"
+    ],
+    "correct": 10,
+    "explanation": "Pulmonary embolism is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 78-year-old man has been short of breath for a few weeks. His chest radiography shows a right basal shadow rising towards the axilla.",
+    "options": [
+      "Anaemia",
+      "Bronchial asthma",
+      "Bronchogenic carcinoma",
+      "Cryptogenic fibrosing alveolitis",
+      "Extrinsic allergic alveolitis",
+      "Inhaled foreign body",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolism"
+    ],
+    "correct": 6,
+    "explanation": "Pleural effusion is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 54-year-old woman presents with a 9-month history of progressive breathlessness and cyanosis. Clinical examination reveals clubbing and bilateral inspiratory crackles.",
+    "options": [
+      "Anaemia",
+      "Bronchial asthma",
+      "Bronchogenic carcinoma",
+      "Cryptogenic fibrosing alveolitis",
+      "Extrinsic allergic alveolitis",
+      "Inhaled foreign body",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolism"
+    ],
+    "correct": 3,
+    "explanation": "Cryptogenic fibrosing alveolitis is a recognized cause of digital clubbing, which results from chronic tissue hypoxia and hypertrophic osteoarthropathy. Bronchial asthma is incorrect because it is not a recognized cause of digital clubbing."
+  },
+  {
+    "question": "A 27-year-old farmer presents with fever, malaise, cough and breathlessness, which he has had for a few days. His symptoms were worse in the evening. Clinical examination demonstrated coarse end-inspiratory crackles.",
+    "options": [
+      "Anaemia",
+      "Bronchial asthma",
+      "Bronchogenic carcinoma",
+      "Cryptogenic fibrosing alveolitis",
+      "Extrinsic allergic alveolitis",
+      "Inhaled foreign body",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolism"
+    ],
+    "correct": 4,
+    "explanation": "Extrinsic allergic alveolitis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 34-year-old tall, slim porter presents with sudden-onset chest pain and breathlessness. He had had similar episodes in the past.",
+    "options": [
+      "Anaemia",
+      "Bronchial asthma",
+      "Bronchogenic carcinoma",
+      "Cryptogenic fibrosing alveolitis",
+      "Extrinsic allergic alveolitis",
+      "Inhaled foreign body",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary edema",
+      "Pulmonary embolism"
+    ],
+    "correct": 8,
+    "explanation": "Pneumothorax is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 65-year-old smoker presents with shortness of breath, gallop rhythm and production of pink frothy sputum.",
+    "options": [
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "Churg-Strauss syndrome",
+      "Goodpasture's syndrome",
+      "Hemophilia",
+      "Hemothorax",
+      "Pneumonia",
+      "Polyarteritis Nodosa",
+      "Pulmonary edema",
+      "Pulmonary embolism",
+      "Tuberculosis",
+      "Wegner's granulomatosis"
+    ],
+    "correct": 8,
+    "explanation": "Pulmonary edema is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 24-year-old man initially complaining of cough and intermittent hemoptysis presents a few weeks later with hematuria. Biopsy confirms a crescentic glomerulonephritis. Renal biopsy shows linear pattern deposition on immunofluorescence.",
+    "options": [
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "Churg-Strauss syndrome",
+      "Goodpasture's syndrome",
+      "Hemophilia",
+      "Hemothorax",
+      "Pneumonia",
+      "Polyarteritis Nodosa",
+      "Pulmonary edema",
+      "Pulmonary embolism",
+      "Tuberculosis",
+      "Wegner's granulomatosis"
+    ],
+    "correct": 3,
+    "explanation": "Goodpasture's syndrome is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "A 34-year-old woman originally complaining of nasal obstruction develops cough, hemoptysis and pleuritic chest pain. Her chest radiograph shows multiple nodular masses.",
+    "options": [
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "Churg-Strauss syndrome",
+      "Goodpasture's syndrome",
+      "Hemophilia",
+      "Hemothorax",
+      "Pneumonia",
+      "Polyarteritis Nodosa",
+      "Pulmonary edema",
+      "Pulmonary embolism",
+      "Tuberculosis",
+      "Wegner's granulomatosis"
+    ],
+    "correct": 11,
+    "explanation": "Wegner's granulomatosis is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "A 22-year-old man presents with fever, night sweats, weight loss and cough productive of cup full of blood. Ziehl-Neelsen stain is positive for acid-fast bacilli.",
+    "options": [
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "Churg-Strauss syndrome",
+      "Goodpasture's syndrome",
+      "Hemophilia",
+      "Hemothorax",
+      "Pneumonia",
+      "Polyarteritis Nodosa",
+      "Pulmonary edema",
+      "Pulmonary embolism",
+      "Tuberculosis",
+      "Wegner's granulomatosis"
+    ],
+    "correct": 10,
+    "explanation": "Tuberculosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 35-year-old business man returns from a trip abroad and collapses at the airport with hemoptysis and pleuritic chest pain. He has a sinus tachycardia and his ECG shows right axis deviation.",
+    "options": [
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "Churg-Strauss syndrome",
+      "Goodpasture's syndrome",
+      "Hemophilia",
+      "Hemothorax",
+      "Pneumonia",
+      "Polyarteritis Nodosa",
+      "Pulmonary edema",
+      "Pulmonary embolism",
+      "Tuberculosis",
+      "Wegner's granulomatosis"
+    ],
+    "correct": 9,
+    "explanation": "Pulmonary embolism is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "Multiple bilateral nodules between 0.5 and 5 cm in a former miner with rheumatoid arthritis.",
+    "options": [
+      "Aortic stenosis",
+      "Asbestosis",
+      "Bronchiectasis",
+      "Caplan's Syndrome",
+      "Kartagener's Syndrome",
+      "Left Ventricular Failure",
+      "Mitral Stenosis",
+      "Post Fracture Fat Embolism",
+      "Previous Varicella Pneumonitis",
+      "Right Lower Lobe Collapse",
+      "Right Upper Lobe Collapse",
+      "Right Ventricular Failure",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 3,
+    "explanation": "Caplan's Syndrome is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Kerley B lines, bat-wing shadowing, prominent upper lobe vessels, cardiomegaly.",
+    "options": [
+      "Aortic stenosis",
+      "Asbestosis",
+      "Bronchiectasis",
+      "Caplan's Syndrome",
+      "Kartagener's Syndrome",
+      "Left Ventricular Failure",
+      "Mitral Stenosis",
+      "Post Fracture Fat Embolism",
+      "Previous Varicella Pneumonitis",
+      "Right Lower Lobe Collapse",
+      "Right Upper Lobe Collapse",
+      "Right Ventricular Failure",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 5,
+    "explanation": "Left Ventricular Failure is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Trachea deviated to right, horizontal fissure and right hilum displaced upwards.",
+    "options": [
+      "Aortic stenosis",
+      "Asbestosis",
+      "Bronchiectasis",
+      "Caplan's Syndrome",
+      "Kartagener's Syndrome",
+      "Left Ventricular Failure",
+      "Mitral Stenosis",
+      "Post Fracture Fat Embolism",
+      "Previous Varicella Pneumonitis",
+      "Right Lower Lobe Collapse",
+      "Right Upper Lobe Collapse",
+      "Right Ventricular Failure",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 10,
+    "explanation": "Right Upper Lobe Collapse is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Double shadow right heart border, prominent left atrial appendage, left main bronchus elevation.",
+    "options": [
+      "Aortic stenosis",
+      "Asbestosis",
+      "Bronchiectasis",
+      "Caplan's Syndrome",
+      "Kartagener's Syndrome",
+      "Left Ventricular Failure",
+      "Mitral Stenosis",
+      "Post Fracture Fat Embolism",
+      "Previous Varicella Pneumonitis",
+      "Right Lower Lobe Collapse",
+      "Right Upper Lobe Collapse",
+      "Right Ventricular Failure",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 6,
+    "explanation": "Mitral Stenosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Numerous calcified nodules sized less than 5 mm located predominantly in the lower zones of the lungs.",
+    "options": [
+      "Aortic stenosis",
+      "Asbestosis",
+      "Bronchiectasis",
+      "Caplan's Syndrome",
+      "Kartagener's Syndrome",
+      "Left Ventricular Failure",
+      "Mitral Stenosis",
+      "Post Fracture Fat Embolism",
+      "Previous Varicella Pneumonitis",
+      "Right Lower Lobe Collapse",
+      "Right Upper Lobe Collapse",
+      "Right Ventricular Failure",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 8,
+    "explanation": "Previous Varicella Pneumonitis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 28-year-old man presents with dry cough and progressive shortness of breath. His chest radiograph shows bilateral hilar lymphadenopathy.",
+    "options": [
+      "Aspergillosis",
+      "Berylliosis",
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "COPD",
+      "Cryptogenic Fibrosing Alveolitis",
+      "Extrinsic Allergic Alveolitis",
+      "Mesothelioma",
+      "Pneumonia",
+      "Sarcoidosis",
+      "Silicosis",
+      "Tuberculosis"
+    ],
+    "correct": 9,
+    "explanation": "Sarcoidosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The chest radiograph of a 13-year-old boy with cystic fibrosis has tramline and ring shadows.",
+    "options": [
+      "Aspergillosis",
+      "Berylliosis",
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "COPD",
+      "Cryptogenic Fibrosing Alveolitis",
+      "Extrinsic Allergic Alveolitis",
+      "Mesothelioma",
+      "Pneumonia",
+      "Sarcoidosis",
+      "Silicosis",
+      "Tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "Bronchiectasis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 65-year-old dockyard worker presents with weight loss and shortness of breath. He is clubbed and cachectic. His chest radiograph shows pleural calcification and a lobulated pleural mass.",
+    "options": [
+      "Aspergillosis",
+      "Berylliosis",
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "COPD",
+      "Cryptogenic Fibrosing Alveolitis",
+      "Extrinsic Allergic Alveolitis",
+      "Mesothelioma",
+      "Pneumonia",
+      "Sarcoidosis",
+      "Silicosis",
+      "Tuberculosis"
+    ],
+    "correct": 7,
+    "explanation": "Mesothelioma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 40-year-old woman presents with gross clubbing and progressive shortness of breath. Examination reveals fine end-inspiratory crackles. Her chest radiograph shows a ground-glass appearance of the lung.",
+    "options": [
+      "Aspergillosis",
+      "Berylliosis",
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "COPD",
+      "Cryptogenic Fibrosing Alveolitis",
+      "Extrinsic Allergic Alveolitis",
+      "Mesothelioma",
+      "Pneumonia",
+      "Sarcoidosis",
+      "Silicosis",
+      "Tuberculosis"
+    ],
+    "correct": 5,
+    "explanation": "Cryptogenic Fibrosing Alveolitis is a recognized cause of digital clubbing, which results from chronic tissue hypoxia and hypertrophic osteoarthropathy. COPD is incorrect because it is not a recognized cause of digital clubbing."
+  },
+  {
+    "question": "A 65-year-old smoker presents with shortness of breath. On the chest radiograph, eight ribs can be seen anteriorly above the diaphragm on each side of the chest in the mid-clavicular line.",
+    "options": [
+      "Aspergillosis",
+      "Berylliosis",
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "COPD",
+      "Cryptogenic Fibrosing Alveolitis",
+      "Extrinsic Allergic Alveolitis",
+      "Mesothelioma",
+      "Pneumonia",
+      "Sarcoidosis",
+      "Silicosis",
+      "Tuberculosis"
+    ],
+    "correct": 4,
+    "explanation": "COPD is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In which disease states the trachea is shifted to the same side (T/F): Pleural effusion",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "In which disease states the trachea is shifted to the same side (T/F): Pulmonary collapse",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In which disease states the trachea is shifted to the same side (T/F): Pneumothorax",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In which disease states the trachea is shifted to the same side (T/F): Pulmonary fibrosis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In which disease states the trachea is shifted to the same side (T/F): Pneumonectomy",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In which states breath sound intensity is decreased (T/F): Pleural effusion",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "In which states breath sound intensity is decreased (T/F): Obesity",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In which states breath sound intensity is decreased (T/F): Pulmonary collapse",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In which states breath sound intensity is decreased (T/F): Pneumonia",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "In which states breath sound intensity is decreased (T/F): Acute bronchitis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following disease states is associated with chest wheeze (T/F): Pleural effusion",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Which of the following disease states is associated with chest wheeze (T/F): Bronchial asthma",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Which of the following disease states is associated with chest wheeze (T/F): COPD",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "Which of the following disease states is associated with chest wheeze (T/F): Cardiac asthma",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Which of the following disease states is associated with chest wheeze (T/F): Cystic fibrosis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Kussmul's respiration was described in patients with (T/F): Diabetic ketoacidosis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Kussmul's respiration was described in patients with (T/F): Uraemia",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Kussmul's respiration was described in patients with (T/F): Aspirin intoxication",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Kussmul's respiration was described in patients with (T/F): Morphine poisoning",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Kussmul's respiration was described in patients with (T/F): Metabolic alkalosis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Tracheal shift to the same side the disease caused by (T/F): Pulmonary collapse",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Tracheal shift to the same side the disease caused by (T/F): Pulmonary fibrosis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Tracheal shift to the same side the disease caused by (T/F): Massive pleural effusion",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Tracheal shift to the same side the disease caused by (T/F): Lung resection",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Tactile vocal fremitus is decreased by (T/F): Pneumothorax",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Tactile vocal fremitus is decreased by (T/F): Pleural effusion",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Tactile vocal fremitus is decreased by (T/F): Collapse",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Tactile vocal fremitus is decreased by (T/F): Consolidation with patent bronchus",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Wheezy chest occurs in (T/F): Bronchial asthma",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Wheezy chest occurs in (T/F): C.O.P.D",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Wheezy chest occurs in (T/F): Vocal cord dysfunction",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Wheezy chest occurs in (T/F): Interstitial fibrosis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. ILD causes restrictive physiology with impaired gas exchange. Causes include occupational exposures, connective tissue disease, drugs, and idiopathic pulmonary fibrosis."
+  },
+  {
+    "question": "Wheezy chest occurs in (T/F): Pleural effusion",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

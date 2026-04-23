@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pneumonia</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobd4o26pxc1e",
+  "title": "Pneumonia",
+  "description": "Question on every Chest lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Clinical signs of consolidation include:",
+    "options": [
+      "Wheezes",
+      "Crepitation",
+      "Decreased TVF",
+      "Hyperresonance",
+      "Increased air entry"
+    ],
+    "correct": 1,
+    "explanation": "Crepitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The common cause of infectious pneumonia is:",
+    "options": [
+      "Streptococcus pneumonia",
+      "Klebsiella pneumonia",
+      "Staphylococcus pneumonia",
+      "Legionella pneumonia",
+      "Viral pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "Streptococcus pneumonia is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Clinical signs of consolidation include: (7-2020)",
+    "options": [
+      "Wheezes",
+      "Crepitations",
+      "Decreased TVF",
+      "Hyperresonance",
+      "Diminished air entry"
+    ],
+    "correct": 1,
+    "explanation": "Crepitations is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Pneumatoceles occur commonly with: (4-2019)",
+    "options": [
+      "Streptococcus pneumonia",
+      "Viral pneumonia",
+      "Hemophilus influenza pneumonia",
+      "Mycoplasma pneumonia",
+      "Staphylococcus aureus pneumonia"
+    ],
+    "correct": 4,
+    "explanation": "Staphylococcus aureus pneumonia is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 70-year-old female developed hospital acquired pneumonia; she had cyanosis, tachycardia with fever & cough. Chest X-ray revealed fluid in the pleural space. The likely diagnosis is: (3-2018)",
+    "options": [
+      "Emphysema",
+      "Hydrothorax",
+      "Empyema",
+      "Pneumothorax",
+      "Bronchial asthma"
+    ],
+    "correct": 2,
+    "explanation": "Empyema is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Atypical pneumonia can be caused by all of the following organisms, Except: (10-2017)",
+    "options": [
+      "Legionella pneumonia",
+      "Moraxella catarrhalis",
+      "Mycoplasma pneumonia",
+      "Chlamydia pneumonia"
+    ],
+    "correct": 1,
+    "explanation": "Moraxella catarrhalis is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "The most common cause of infectious pneumonia is: (10-2020)",
+    "options": [
+      "Streptococcus pneumonia",
+      "Klebsiella",
+      "Coxiella burnetii",
+      "Legionella pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "Streptococcus pneumonia is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Hospital acquired pneumonia (HAP) is defined as: (10-2020)",
+    "options": [
+      "Pneumonia occurring before 24 hours of hospital admission",
+      "Pneumonia occurring after 24 hours of hospital admission",
+      "Pneumonia occurring before 24 - 48 hours of hospital admission",
+      "Pneumonia occurring after 24 - 48 hours of hospital admission"
+    ],
+    "correct": 3,
+    "explanation": "Pneumonia occurring after 24 - 48 hours of hospital admission is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "The most common cause of infectious pneumonia is:",
+    "options": [
+      "Streptococcus pneumonia.",
+      "Klebsiella",
+      "Coxiella burnetii",
+      "Legionella pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "Streptococcus pneumonia. is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "The most common cause of infectious pneumonia is:",
+    "options": [
+      "Streptococcus pneumonia",
+      "Klebsiella",
+      "Coxiella burnetii",
+      "Legionella pneumonia",
+      "Tuberculosis"
+    ],
+    "correct": 0,
+    "explanation": "Streptococcus pneumonia is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Hospital acquired pneumonia is defined as pneumonia occurring:",
+    "options": [
+      "Before 24 hours of hospital admission",
+      "After 24 hours of hospital admission",
+      "Before 48 hours of hospital admission",
+      "After 48 - 72 hours of hospital admission",
+      "Before 36 hours of hospital admission"
+    ],
+    "correct": 3,
+    "explanation": "After 48 - 72 hours of hospital admission is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "In lobar pneumonia, which is not true:",
+    "options": [
+      "Trachea deviated to the opposite side",
+      "Woody dullness on percussion",
+      "Tubular breath sound",
+      "Presence of whispering pectoriloquy",
+      "Tachypnea"
+    ],
+    "correct": 0,
+    "explanation": "Trachea deviated to the opposite side is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "General examination of a case of pneumonia may reveal all of the following signs except:",
+    "options": [
+      "Working alae nasi.",
+      "Fever 39°C.",
+      "Bradycardia.",
+      "Tachypnea."
+    ],
+    "correct": 2,
+    "explanation": "Bradycardia. is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "All the following signs may be found in a case with pneumonia except:",
+    "options": [
+      "Diminished respiratory movement on the affected site.",
+      "Decreased TVF on the affected side",
+      "Dullness on the affected side.",
+      "Bronchial breathing."
+    ],
+    "correct": 1,
+    "explanation": "Decreased TVF on the affected side is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "All of the following are indices of severe pneumonia except:",
+    "options": [
+      "Fever 40°C.",
+      "Tachycardia 125 beat /min",
+      "RR < 20 /min",
+      "Hypotension with diastolic BP < 60 mmHg."
+    ],
+    "correct": 2,
+    "explanation": "RR < 20 /min is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "In a patient of consolidation, which one of the following is increased commonly:",
+    "options": [
+      "Myotactic irritability",
+      "Vocal fremitus",
+      "Rhonchial fremitus",
+      "Palpable coarse crepitations"
+    ],
+    "correct": 1,
+    "explanation": "Vocal fremitus is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Drug-induced eosinophilic pneumonia is caused by all except:",
+    "options": [
+      "Penicillins",
+      "Nitrofurantoin",
+      "Chlorpropamide",
+      "Hydrochlorthiazides"
+    ],
+    "correct": 3,
+    "explanation": "Hydrochlorthiazides is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "Which is not an example of hypersensitivity pneumonitis:",
+    "options": [
+      "Bagassosis",
+      "Byssinosis",
+      "Farmer's lung",
+      "Maple bark disease"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Byssinosis. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "In lobar pneumonia which of the following is true in arterial blood:",
+    "options": [
+      "Decreased Po2, and Increased Pco2",
+      "Decreased Po2, and Decreased Pco2",
+      "Decreased Po2, and normal Pco2",
+      "Normal Po2 and Increased Pco2"
+    ],
+    "correct": 1,
+    "explanation": "Decreased Po2, and Decreased Pco2 is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Viral pneumonia may have:",
+    "options": [
+      "Signs of consolidation in chest",
+      "Splenomegaly",
+      "High WBC count",
+      "Foul-smelling expectoration"
+    ],
+    "correct": 1,
+    "explanation": "Splenomegaly is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "All are commonly seen in Legionella pneumophila-induced pneumonia except:",
+    "options": [
+      "Cavitation",
+      "Hyponatraemia",
+      "Proteinuria",
+      "Confusion"
+    ],
+    "correct": 0,
+    "explanation": "Cavitation is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "In lobar pneumonia, which is not true:",
+    "options": [
+      "Trachea deviated to the opposite side",
+      "woody dullness on percussion",
+      "Tubular breath sound",
+      "Presence of whispering pectoriloquy"
+    ],
+    "correct": 0,
+    "explanation": "Trachea deviated to the opposite side is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "Which of the following is false regarding indications of hospitalization in pneumonia:",
+    "options": [
+      "Respiratory rate > 30/min with dyspnoea",
+      "Temperature > 103° F",
+      "Pulse rate > 140 beats/min",
+      "Signs of meningism"
+    ],
+    "correct": 1,
+    "explanation": "Temperature > 103° F is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "Characteristic of Mycoplasma pneumoniae-pneumonia are all except:",
+    "options": [
+      "Headache",
+      "Non-productive cough",
+      "Pleural effusion",
+      "Bullous myringitis"
+    ],
+    "correct": 2,
+    "explanation": "Pleural effusion is NOT typically seen in pneumonia. Lobar pneumonia presents with consolidation signs: dull percussion, increased vocal fremitus, bronchial breathing, and whispering pectoriloquy."
+  },
+  {
+    "question": "Atypical pneumonia caused by the following organisms (T/F): Legionella spp",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Atypical pneumonia caused by the following organisms (T/F): Mycoplasma",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Atypical pneumonia caused by the following organisms (T/F): Klebsiella",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Atypical pneumonia caused by the following organisms (T/F): Chlamydia spp",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "Atypical pneumonia caused by the following organisms (T/F): Coxiella burnetii",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "An 80-year-old man presents with bilateral cavitating bronchopneumonia after an influenza infection.",
+    "options": [
+      "Aspergillus fumigatus",
+      "Chlamydia pneumoniae",
+      "Chlamydia psittaci",
+      "Coxiella burnetii",
+      "Cytomegalovirus (CMV) Infection",
+      "Escherichia coli",
+      "Legionella pneumophila",
+      "Moraxella catarrhalis",
+      "Mycoplasma pneumoniae",
+      "Pneumocystis Jiroveci",
+      "Pseudomonas sp",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae",
+      "Varicella zoster"
+    ],
+    "correct": 11,
+    "explanation": "Staphylococcus aureus is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "A 24-year-old student presents with severe headache, fever, dry cough and arthralgia. He has recently bought several parrots and was previously fit and well.",
+    "options": [
+      "Aspergillus fumigatus",
+      "Chlamydia pneumoniae",
+      "Chlamydia psittaci",
+      "Coxiella burnetii",
+      "Cytomegalovirus (CMV) Infection",
+      "Escherichia coli",
+      "Legionella pneumophila",
+      "Moraxella catarrhalis",
+      "Mycoplasma pneumoniae",
+      "Pneumocystis Jiroveci",
+      "Pseudomonas sp",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae",
+      "Varicella zoster"
+    ],
+    "correct": 2,
+    "explanation": "Chlamydia psittaci is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 40-year-old man with HIV presents with fever, dry cough, weight loss and exertional dyspnea.",
+    "options": [
+      "Aspergillus fumigatus",
+      "Chlamydia pneumoniae",
+      "Chlamydia psittaci",
+      "Coxiella burnetii",
+      "Cytomegalovirus (CMV) Infection",
+      "Escherichia coli",
+      "Legionella pneumophila",
+      "Moraxella catarrhalis",
+      "Mycoplasma pneumoniae",
+      "Pneumocystis Jiroveci",
+      "Pseudomonas sp",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae",
+      "Varicella zoster"
+    ],
+    "correct": 9,
+    "explanation": "Pneumocystis Jiroveci is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 75-year-old man presents with headache, dry cough, anemia and a skin rash. Blood tests detect cold agglutinins.",
+    "options": [
+      "Aspergillus fumigatus",
+      "Chlamydia pneumoniae",
+      "Chlamydia psittaci",
+      "Coxiella burnetii",
+      "Cytomegalovirus (CMV) Infection",
+      "Escherichia coli",
+      "Legionella pneumophila",
+      "Moraxella catarrhalis",
+      "Mycoplasma pneumoniae",
+      "Pneumocystis Jiroveci",
+      "Pseudomonas sp",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae",
+      "Varicella zoster"
+    ],
+    "correct": 8,
+    "explanation": "Mycoplasma pneumoniae is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 25-year-old air-conditioning technician, who suffered from flu-like symptoms a week ago, has developed a dry cough. His chest radiograph shows multilobar shadowing. Blood tests show hyponatremia and lymphopenia. Urinalysis reveals hematuria.",
+    "options": [
+      "Aspergillus fumigatus",
+      "Chlamydia pneumoniae",
+      "Chlamydia psittaci",
+      "Coxiella burnetii",
+      "Cytomegalovirus (CMV) Infection",
+      "Escherichia coli",
+      "Legionella pneumophila",
+      "Moraxella catarrhalis",
+      "Mycoplasma pneumoniae",
+      "Pneumocystis Jiroveci",
+      "Pseudomonas sp",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae",
+      "Varicella zoster"
+    ],
+    "correct": 6,
+    "explanation": "Legionella pneumophila is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Standard therapy for community-acquired pneumococcal pneumonia not requiring hospital admission.",
+    "options": [
+      "Ceftazidime",
+      "High dose AZT (zidovudine) and",
+      "Intravenous amoxicillin",
+      "Intravenous benzyl penicillin",
+      "Intravenous cefuroxime and",
+      "Intravenous ciprofloxacin",
+      "Intravenous co-trimoxazole",
+      "Intravenous Flucloxacillin pyrazinamide",
+      "Intravenous teicoplanin",
+      "Oral amoxicillin",
+      "Oral Flucloxacillin",
+      "Oral isoniazid and rifampicin erythromycin",
+      "Oral tetracycline"
+    ],
+    "correct": 9,
+    "explanation": "Oral amoxicillin is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "A 35-year-old patient on the ward admitted to hospital 10 days ago presents with severe pneumonia.",
+    "options": [
+      "Ceftazidime",
+      "High dose AZT (zidovudine) and",
+      "Intravenous amoxicillin",
+      "Intravenous benzyl penicillin",
+      "Intravenous cefuroxime and",
+      "Intravenous ciprofloxacin",
+      "Intravenous co-trimoxazole",
+      "Intravenous Flucloxacillin pyrazinamide",
+      "Intravenous teicoplanin",
+      "Oral amoxicillin",
+      "Oral Flucloxacillin",
+      "Oral isoniazid and rifampicin erythromycin",
+      "Oral tetracycline"
+    ],
+    "correct": 0,
+    "explanation": "Ceftazidime is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "A 40-year-old builder presents with a severe community-acquired pneumonia. Atypical pathogens are suspected.",
+    "options": [
+      "Ceftazidime",
+      "High dose AZT (zidovudine) and",
+      "Intravenous amoxicillin",
+      "Intravenous benzyl penicillin",
+      "Intravenous cefuroxime and",
+      "Intravenous ciprofloxacin",
+      "Intravenous co-trimoxazole",
+      "Intravenous Flucloxacillin pyrazinamide",
+      "Intravenous teicoplanin",
+      "Oral amoxicillin",
+      "Oral Flucloxacillin",
+      "Oral isoniazid and rifampicin erythromycin",
+      "Oral tetracycline"
+    ],
+    "correct": 4,
+    "explanation": "Intravenous cefuroxime and is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "A 22-year-old HIV-positive individual on anti-retroviral therapy presents with Pneumocystis Jiroveci pneumonia.",
+    "options": [
+      "Ceftazidime",
+      "High dose AZT (zidovudine) and",
+      "Intravenous amoxicillin",
+      "Intravenous benzyl penicillin",
+      "Intravenous cefuroxime and",
+      "Intravenous ciprofloxacin",
+      "Intravenous co-trimoxazole",
+      "Intravenous Flucloxacillin pyrazinamide",
+      "Intravenous teicoplanin",
+      "Oral amoxicillin",
+      "Oral Flucloxacillin",
+      "Oral isoniazid and rifampicin erythromycin",
+      "Oral tetracycline"
+    ],
+    "correct": 6,
+    "explanation": "Intravenous co-trimoxazole is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "A 19-year-old man contracts pneumonia with symptoms of headache, fever and dry cough. Serology shows evidence of chlamydia infection.",
+    "options": [
+      "Ceftazidime",
+      "High dose AZT (zidovudine) and",
+      "Intravenous amoxicillin",
+      "Intravenous benzyl penicillin",
+      "Intravenous cefuroxime and",
+      "Intravenous ciprofloxacin",
+      "Intravenous co-trimoxazole",
+      "Intravenous Flucloxacillin pyrazinamide",
+      "Intravenous teicoplanin",
+      "Oral amoxicillin",
+      "Oral Flucloxacillin",
+      "Oral isoniazid and rifampicin erythromycin",
+      "Oral tetracycline"
+    ],
+    "correct": 12,
+    "explanation": "Oral tetracycline is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

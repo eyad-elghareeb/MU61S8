@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Kasr Al-Ainy Chest</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mo6rbeywu5c80",
+  "title": "Kasr Al-Ainy Chest",
+  "description": "All chest questions from Kasr Al-Ainy book",
+  "icon": "🫁"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A 32-year-old woman presented with mild fever and fatigue for the past month. She has no significant past medical history. Her temperature is 38.1°C, blood pressure is 115/70 mm Hg, pulse is 75/min, and respirations are 18/min. Non tender, mobile, cervical and axillary lymph nodes are noted. Auscultation of the lungs reveals fine crackles bilaterally. Chest x-ray film showed hilar lymphadenopathy and diffuse interstitial infiltrates. Lymph node biopsy shows non caseating granulomas. Which of the following is the most appropriate therapy?",
+    "options": [
+      "ACE inhibitor",
+      "Allopurinol",
+      "Cyclosporine",
+      "Glucocorticoids",
+      "Isoniazid"
+    ],
+    "correct": 3,
+    "explanation": "This patient has pulmonary sarcoidosis (non-caseating granulomas, bilateral hilar adenopathy, parenchymal infiltrates, peak age 20-40). Glucocorticoids (Prednisone 30-40 mg/day) are the drug of choice. Neither allopurinol nor cyclosporine has proven benefit in sarcoidosis. Although ACE levels may be elevated in sarcoidosis, ACE inhibitors have no therapeutic value. Isoniazid is used for tuberculosis, not sarcoidosis."
+  },
+  {
+    "question": "A 39-year-old man presents to the ER with acute onset of shortness of breath, hemoptysis, and left-sided pleuritic chest pain. His past medical history includes medication-controlled asthma, peptic ulcer disease, and a recent onset of idiopathic nephrotic syndrome. His blood pressure is 180/100 mm Hg, pulse is 110/min, and RR is 28/min. Cardiac and lung examinations are normal. Laboratory data are remarkable for a serum lactate dehydrogenase of 300 U/L. An ECG shows sinus tachycardia, prominent S waves in lead I, inversions of the T wave, and a prominent Q wave in lead III. Which of the following is the most likely cause of the chest pain?",
+    "options": [
+      "Aortic dissection",
+      "Esophageal spasm",
+      "Myocardial infarction",
+      "Pneumonia",
+      "Pulmonary embolism"
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary embolism is the correct diagnosis. Key features include pleuritic chest pain, hemoptysis, tachycardia, tachypnea, elevated LDH (lung infarction), and the classic S1Q3T3 ECG pattern (acute cor pulmonale). Nephrotic syndrome predisposes to PE through hypercoagulability (loss of anticoagulant proteins in urine and intravascular volume depletion). Inferior MI would show Q waves and ST elevations in leads I, II, and AVF, not the S1Q3T3 pattern."
+  },
+  {
+    "question": "A 43-year-old woman complains of slowly increasing breathlessness. She has no smoking history. Investigations reveal she has bilateral enlarged hilar lymph nodes, elevated serum calcium, interstitial lung disease, and enlarged liver and spleen. What is the most likely diagnosis?",
+    "options": [
+      "Coccidioidomycosis",
+      "Hyperparathyroidism",
+      "Hypervitaminosis D",
+      "Sarcoidosis",
+      "Tuberculosis"
+    ],
+    "correct": 3,
+    "explanation": "Sarcoidosis is the diagnosis. The combination of bilateral hilar lymphadenopathy (BHL), hypercalcemia, interstitial lung disease, and hepatosplenomegaly strongly favors sarcoidosis. Hyperparathyroidism would not cause breathlessness or BHL. Coccidioidomycosis presents with fever, cough, myalgia, and rash. TB is the main differential but hypercalcemia and BHL together point more to sarcoidosis. Hypervitaminosis D causes hypercalcemia but not BHL."
+  },
+  {
+    "question": "A 65-year-old woman used to smoke 50 cigarettes a day for 40 years. She had increasing dyspnea for several years, but no cough. Chest X-ray shows increased lung size along with flattening of the diaphragms. Over the next several years she developed worsening peripheral edema. Her vital signs show T 36.7°C, Pulse 80/min, RR 15/min, and BP 120/80 mm Hg. Which of the following cardiac findings is most likely to be present?",
+    "options": [
+      "Constrictive pericarditis",
+      "Left ventricular aneurysm",
+      "Mitral valve stenosis",
+      "Non-bacterial thrombotic endocarditis",
+      "Right ventricular hypertrophy"
+    ],
+    "correct": 4,
+    "explanation": "Right ventricular hypertrophy is the most likely finding. This patient has emphysema (hyperinflated lungs, flat diaphragms) from long-term smoking causing pulmonary hypertension, which leads to right ventricular hypertrophy and failure (cor pulmonale), manifest as peripheral edema. Mitral stenosis, constrictive pericarditis, and LV aneurysm are not supported by the history of heavy smoking and emphysema."
+  },
+  {
+    "question": "A 38-year-old male presents with episodic wheeze and non-productive cough which occurs particularly at night. He has been employed in the plastics industry. He is worried about relation of these symptoms to his work. Which of the following confirms his worries?",
+    "options": [
+      "Absent family history of asthma",
+      "Commencement of symptoms on his first day of work",
+      "Elevated serum IgE concentration",
+      "Improved symptomatology when being on holiday",
+      "Increased bronchial reactivity"
+    ],
+    "correct": 3,
+    "explanation": "Improved symptoms when on holiday is the hallmark feature of occupational asthma. Patients with occupational asthma are characteristically better away from work. Occupational asthma accounts for up to 10% of adult-onset asthma, with plastics workers being a high-risk group. Absence of family history and elevated IgE are not specific enough. Starting symptoms on the first day of work is not typical (sensitization takes time). The diagnosis is confirmed by serial peak expiratory flow measurements at home and at work."
+  },
+  {
+    "question": "A 55-year-old plumber presented with a dry nocturnal cough and increasing exertional breathlessness. On examination he had early finger clubbing, cyanosis and bilateral basal crackles. A chest X-ray showed bilateral lower zone shadowing. Investigations revealed: PaO2 8.2 kPa (11.3-12.6), FEV1/FVC ratio 85%. Which of the following investigations is most likely to establish the diagnosis?",
+    "options": [
+      "Echocardiography",
+      "High resolution CT scan of chest",
+      "Measurement of diffusion capacity",
+      "Serum angiotensin-converting enzyme level",
+      "Transbronchial lung biopsy"
+    ],
+    "correct": 1,
+    "explanation": "High resolution CT (HRCT) of the chest is the investigation most likely to establish the diagnosis of pulmonary fibrosis. This patient has a restrictive lung defect (high FEV1/FVC ratio), hypoxia, clubbing, cyanosis, and basal crackles, suggesting pulmonary fibrosis. Given his plumbing occupation, asbestos exposure is possible. HRCT has excellent correlation with histological abnormalities: ground-glass appearance suggests active, treatable disease while a reticular pattern suggests irreversible fibrosis. HRCT is often diagnostic without need for biopsy."
+  },
+  {
+    "question": "A 48-year-old woman presented with shortness of breath, cough with heavy sputum production, and low grade fever. She used to smoke 20 cigarettes per day for 30 years. Her arterial blood gases revealed: PH 7.4 (7.36-7.44), PCO2 45 mmHg (35-45), PO2 78 mmHg (90-110). What is the most likely diagnosis?",
+    "options": [
+      "Bronchial asthma",
+      "Chronic bronchitis",
+      "Cryptogenic fibrosing alveolitis",
+      "Paraneoplastic syndrome",
+      "Pulmonary embolism"
+    ],
+    "correct": 1,
+    "explanation": "Chronic bronchitis is the most likely diagnosis. This patient has the classic presentation: heavy smoking history, productive cough with sputum, and relative hypoxia with a high-normal PCO2 indicating CO2 retention. This represents an acute exacerbation of COPD on the chronic bronchitis end of the spectrum. Asthma would typically show acute reversible obstruction. Cryptogenic fibrosing alveolitis would show restrictive pattern. Pulmonary embolism wouldn't cause heavy sputum production."
+  },
+  {
+    "question": "A 67-year-old man presents with a long history of cough, breathlessness on minimal exertion and ankle swelling. He smokes 30-40 cigarettes per day. Investigations show: Hemoglobin 19 g/dl, PaO2 6.2 kPa, PaCO2 8.9 kPa, Serum [H+] 44 nmol/l, Serum [HCO3] 36 mmol/l. What is the most likely explanation of these results?",
+    "options": [
+      "Acute respiratory acidosis",
+      "Chronic respiratory acidosis",
+      "Chronic respiratory alkalosis",
+      "Metabolic acidosis",
+      "Metabolic alkalosis"
+    ],
+    "correct": 1,
+    "explanation": "Chronic respiratory acidosis is correct. The patient has low PaO2, high PaCO2, normal H+ (44 nmol/l, just within the upper normal limit of 36-44), and elevated HCO3 (36 mmol/l, above the normal 21-27.5) indicating compensated respiratory acidosis. The elevated HCO3 is the renal compensation for chronic CO2 retention (Type 2 respiratory failure). Secondary polycythemia (Hb 19 g/dl) occurs due to chronic hypoxia. This is classic chronic COPD with compensated hypercapnic respiratory failure."
+  },
+  {
+    "question": "A 55-year-old man who has a 25 year pack history of smoking presents with productive cough with mucoid sputum of 2 years duration. On examination he has scattered rhonchi and wheezing. What is the most likely diagnosis?",
+    "options": [
+      "Bronchial Asthma",
+      "Bronchiectasis",
+      "Chronic Bronchitis",
+      "Fibrosing Alveolitis",
+      "Pneumonitis"
+    ],
+    "correct": 2,
+    "explanation": "Chronic bronchitis is the most likely diagnosis. Chronic bronchitis is defined as productive cough for at least 3 months per year for 2 consecutive years. This patient has a significant smoking history and a 2-year history of mucoid productive cough. Asthma would show reversible episodic wheeze. Bronchiectasis would show large volumes of purulent sputum and bilateral crackles. Fibrosing alveolitis would show restrictive features and dry cough."
+  },
+  {
+    "question": "You are asked to examine a patient who attends ER with shortness of breath. The chest X-ray shows right lower lobe consolidation. Which of the following features should prompt admission to hospital?",
+    "options": [
+      "A PaO2 of 9.8 kPa (11-13)",
+      "A respiratory rate of 32/min",
+      "A SaO2 of 95%",
+      "A White cell count of 16.8x10^9/l",
+      "Audible Bronchial breathing"
+    ],
+    "correct": 1,
+    "explanation": "A respiratory rate of 32/min is an indication for admission using the CURB-65 score. The British Thoracic Society CURB-65 score gives one point each for: Confusion, Urea >7 mmol/l, Respiratory rate ≥30/min, Blood pressure <90 systolic or <60 diastolic, and Age ≥65. A score of 1-2 warrants hospital consideration; a score of ≥3 warrants admission. A respiratory rate of 32/min (≥30) scores a point. The other parameters given (mild hypoxia, slightly elevated WCC, bronchial breathing) alone are not CURB-65 criteria for admission."
+  },
+  {
+    "question": "A 75-year-old female presents with an acute infective exacerbation of her long standing Chronic Obstructive Airways Disease. Blood gas analysis whilst she was receiving oxygen shows: pH 7.14 (7.36-7.44), PO2 18 kPa (11.3-12.6), PCO2 10.5 kPa (4.7-6.0). What is the most appropriate immediate management for this patient?",
+    "options": [
+      "CPAP",
+      "Doxapram infusion",
+      "Invasive Ventilation",
+      "Nebulized salbutamol with ipratropium",
+      "Reduce inspired oxygen concentration"
+    ],
+    "correct": 4,
+    "explanation": "Reducing the inspired oxygen concentration is the correct immediate management. The blood gases show hypercapnic acidosis (high PCO2, low pH) despite excessively high PO2 (18 kPa - far above normal), indicating over-oxygenation is suppressing the hypoxic drive in this COPD patient. COPD patients should not receive more than 24-28% oxygen without ABG monitoring. Reducing FiO2 may correct the acidosis. After this adjustment, nebulized bronchodilators (driven on air) should be added. Non-invasive ventilation is indicated if the patient fails to improve."
+  },
+  {
+    "question": "An otherwise healthy 32-year-old man was involved in a high speed accident 3 days ago. He has sustained a closed fracture of his femur which has been treated surgically with an intramedullary nail, as well as fractures of his right clavicle and left radius. On examination, he is acutely short of breath and has a temperature of 37.5°C. The patient seems confused when you speak to him, and as you examine him, you note petechial hemorrhages. What do you think is the most likely diagnosis?",
+    "options": [
+      "Asthma attack",
+      "Chest infection",
+      "Fat embolism",
+      "Pulmonary embolism",
+      "Tension pneumothorax"
+    ],
+    "correct": 2,
+    "explanation": "Fat embolism is the most likely diagnosis. The triad of respiratory distress, neurological changes (confusion), and petechial rash following long bone fracture (especially femur treated with intramedullary nail) is classic for fat embolism syndrome. Fat globules from damaged bone marrow enter the circulation causing V/Q mismatch (pulmonary symptoms), cerebral microemboli (confusion), and capillary damage in skin (petechial rash). While PE is also a risk here, the petechial rash and confusion specifically point to fat embolism."
+  },
+  {
+    "question": "A 65-year-old man with known chronic obstructive pulmonary disease, treated with inhalers, was admitted with a six-week history of gradually increasing shortness of breath. He was apyrexial, mildly confused with a respiratory rate of 26 breaths per minute and there were no changes on the chest X-ray. Investigations revealed: PaO2 7.8 kPa (9-12.6), PaCO2 8.5 kPa (4.7-6.0), PH 7.3 (7.36-7.44). What is the most appropriate immediate management?",
+    "options": [
+      "High flow oxygen therapy",
+      "Intravenous aminophylline",
+      "Intravenous hydrocortisone",
+      "Intubation and mechanical ventilation",
+      "Nebulized salbutamol and ipratropium bromide"
+    ],
+    "correct": 4,
+    "explanation": "Nebulized salbutamol and ipratropium bromide is the most appropriate immediate management. This COPD patient normally uses inhalers and will respond to bronchodilators. Bronchodilators should be nebulized with air, not high-flow oxygen (which would worsen CO2 retention). Corticosteroids reduce hospital stay and are added in COPD exacerbations. High-flow oxygen is contraindicated as it would suppress the hypoxic drive further. NIV should be tried first in severe cases before progressing to intubation. IV aminophylline is only 2nd-3rd line therapy."
+  },
+  {
+    "question": "A 65-year-old obese man presents with night time sweats, nocturia, poor concentration and day time somnolence. To which of the following conditions does the patient is predisposed?",
+    "options": [
+      "Hypoglycemia",
+      "Hypotension",
+      "Insulin sensitivity",
+      "Osteoporosis",
+      "Sudden death"
+    ],
+    "correct": 4,
+    "explanation": "Sudden death is the condition this patient is predisposed to. The history of nocturnal sweats, nocturia, poor concentration, and daytime somnolence in an obese patient is typical of obstructive sleep apnea (OSA). OSA is an independent risk factor for stroke and death from all causes. It is also associated with systemic hypertension, impaired glucose tolerance, and insulin resistance (not sensitivity), but sudden death during sleep episodes is the most life-threatening predisposition."
+  },
+  {
+    "question": "A 61-year-old, heavy smoker, with a BMI of 37, presents with impotence, nocturia and depression. He is hypoxic at rest on air and has ankle edema. Which is the most appropriate investigation to determine the etiology?",
+    "options": [
+      "Arterial blood gas",
+      "Chest x-ray",
+      "Sleep study",
+      "Thyroid function test",
+      "Ventilation-perfusion scan"
+    ],
+    "correct": 2,
+    "explanation": "A sleep study (polysomnography) is the most appropriate investigation. This clinical scenario describes cor pulmonale secondary to diurnal respiratory failure in a patient with likely severe obstructive sleep apnea (OSA). The combination of morbid obesity, heavy smoking, impotence, nocturia, depression (neurobehavioral effects), hypoxia at rest, and ankle edema points to OSA with cor pulmonale. Hypercapnia out of proportion to the degree of lung disease is a clue to OSA. Sleep study confirms the diagnosis."
+  },
+  {
+    "question": "A patient with Rheumatoid arthritis complains of progressive breathlessness. Which of the following is the most likely cause?",
+    "options": [
+      "Asthma",
+      "Fibrosing Alveolitis",
+      "Pulmonary Embolus",
+      "Pulmonary Eosinophilia",
+      "Pulmonary nodules"
+    ],
+    "correct": 1,
+    "explanation": "Fibrosing alveolitis is the most likely pulmonary complication of rheumatoid arthritis causing progressive breathlessness. It is indistinguishable from cryptogenic fibrosing alveolitis and presents with progressive dyspnea, dry cough, finger clubbing, cyanosis, and bilateral end-inspiratory crackles. Other pulmonary complications of RA include pleural effusions, empyema, cryptogenic organizing pneumonia, bronchiectasis, and pulmonary nodules (usually asymptomatic). Pulmonary nodules combined with coal workers' pneumoconiosis = Caplan's Syndrome."
+  },
+  {
+    "question": "A 40-year-old male, presents with a long history of productive cough and breathlessness. He had complained of halitosis and exacerbations of productive sputum, chest pain and hemoptysis. Examination revealed bilateral inspiratory crackles. Which of the following treatments is likely to decrease the frequency of his exacerbations?",
+    "options": [
+      "Cyclic antibiotic therapy",
+      "Inhaled corticosteroids",
+      "Nebulized bronchodilators",
+      "Postural drainage",
+      "Surgical resection"
+    ],
+    "correct": 3,
+    "explanation": "Postural drainage is the cornerstone of bronchiectasis management and decreases exacerbation frequency. This patient has bronchiectasis (productive cough, halitosis, hemoptysis, bilateral crackles). Retained mucus is the primary reason bronchiectasis patients become infected. Postural drainage should be performed at least once daily. Cyclic antibiotics benefit cystic fibrosis with pseudomonas but not proven in bronchiectasis. Inhaled corticosteroids lack evidence for routine use. Surgical resection is only for localized disease; this patient has widespread bilateral disease."
+  },
+  {
+    "question": "A 60-year-old woman presents with deteriorating dyspnea and cough productive of purulent sputum. She has a two year history of recurrent chest infections and is a smoker of 5 cigarettes daily. Investigations show: Hemoglobin 19.5 g/dL, White cell count 15.7x10^9/L, PaO2 6.8 kPa (11.3-12.6), Carboxy-hemoglobin 15.5% (3-15), Red cell mass 147% (75-125). What is the most likely explanation for these findings?",
+    "options": [
+      "Chronic obstructive airways disease",
+      "Ectopic erythropoietin production",
+      "Myelofibrosis",
+      "Primary polycythemia",
+      "Pseudo-polycythemia"
+    ],
+    "correct": 0,
+    "explanation": "Chronic obstructive airways disease (COPD) is the most likely explanation. The patient has secondary polycythemia due to hypoxia from COPD caused by smoking. Her history of increasing breathlessness, productive cough, recurrent chest infections, and smoking is consistent with COPD. The elevated red cell mass and hemoglobin are responses to chronic hypoxia. Treatment includes smoking cessation and long-term oxygen therapy (LTOT) when PaO2 <7.3 kPa or <8.0 kPa with evidence of pulmonary hypertension, edema, or polycythemia."
+  },
+  {
+    "question": "A 72-year-old lifelong smoker presents with progressive dyspnea on exertion and chronic, nonproductive cough. On examination he is thin, breathing with pursed lips, respiratory rate 25/min, with mild wheezing on chest auscultation. What is the predominant mechanism of the airflow limitation in this gentleman?",
+    "options": [
+      "Bronchospasm",
+      "Foreign body obstruction",
+      "Increased airways resistance",
+      "Loss of elastic recoil",
+      "Mucus plugging in the small airways"
+    ],
+    "correct": 3,
+    "explanation": "Loss of elastic recoil is the predominant mechanism of airflow limitation in emphysema. This patient has classic emphysema: thin, pursed-lip breathing (to maintain airway pressure during exhalation), progressive dyspnea, non-productive cough, and long smoking history. The pathology is centrilobular or panacinar destruction of alveolar walls with loss of elastic tissue, causing dynamic airway collapse during expiration. Bronchospasm is predominant in asthma. Mucus plugging is seen in chronic bronchitis."
+  },
+  {
+    "question": "A 63 year-old diabetic patient presents with productive cough and shortness of breathe for 5 days. She has right lower lobe consolidation and small unilateral pleural effusion on CXR. Which of the following points to a poor prognosis?",
+    "options": [
+      "Her age",
+      "Her CXR signs",
+      "Her diabetes",
+      "Temp >38°C",
+      "WCC > 15"
+    ],
+    "correct": 2,
+    "explanation": "Diabetes mellitus is a significant co-existing morbidity that independently points to poor prognosis in pneumonia. Indicators of poor prognosis include: age >65, co-existing morbidity (diabetes mellitus, chronic renal failure, stroke, coronary artery disease), respiratory rate >30, and mental impairment. Biochemical markers include WCC <4 or >30 (not just >15), hypoxia needing CPAP or FiO2 >60%, positive blood culture, and blood urea >7 mmol. Her age is 63 (not >65) and WCC >15 and temperature alone are not major poor prognostic indicators."
+  },
+  {
+    "question": "A 20-year-old male student is assessed for shortness of breath that occurs whilst running. He has no other symptoms and does not smoke. Physical examination, full blood count, and chest X-ray are normal. Which of the following is most likely to be helpful in confirming the suspected diagnosis?",
+    "options": [
+      "Arterial blood gas studies before and after exercise",
+      "Determination of lung volumes and diffusing capacity",
+      "Measurement of venous blood lactate before and after exercise",
+      "Spirometry before and after administration of bronchodilators",
+      "Spirometry before and after exercise"
+    ],
+    "correct": 4,
+    "explanation": "Spirometry before and after exercise is the best test for confirming exercise-induced asthma. A typical obstructive pattern (decreased FEV1/FVC) would be expected following exercise. No abnormalities may appear following bronchodilator therapy (distinguishing from classical asthma), and lung volumes and diffusion capacity would likely be unaffected. Blood gas analysis would show minimal change in partial pressures. Lactate measurements are for glycogen storage diseases, which present with weakness, not shortness of breath."
+  },
+  {
+    "question": "A 65-year-old woman presented with increasing fatigue, dyspnea and dry cough. Her chest X-ray shows an area of dense pneumonia-like consolidation in the right lower lobe. A course of antibiotics did not improve her symptoms or chest X-ray. Broncho alveolar lavage (BAL) retrieved 'atypical' cells. What is the most likely diagnosis?",
+    "options": [
+      "Bronchioloalveolar cell carcinoma",
+      "Mycoplasma pneumonia",
+      "Pulmonary alveolar proteinosis",
+      "Pulmonary embolism with infarction",
+      "Sarcoidosis"
+    ],
+    "correct": 0,
+    "explanation": "Bronchioloalveolar cell carcinoma (now called adenocarcinoma in situ) is the correct diagnosis. Key features include: non-resolving consolidation despite antibiotics, atypical cells on BAL, progressive fatigue and dry cough in a middle-aged patient. Bronchioloalveolar carcinoma accounts for 1-20% of pulmonary neoplasms, affects middle-aged patients equally regardless of sex, and can mimic pneumonia radiographically. The local form may be indolent while the diffuse form simulates air-space disease with air bronchograms."
+  },
+  {
+    "question": "A 25-year-old male presents to ER with shortness of breath. One week ago, he developed influenza and became more short of breath and fatigued in the last 24 hours. His temperature is 38.5°C, his SaO2 is 90% on 2L of oxygen, blood pressure 100/60 mmHg and heart rate 120/min. The CXR shows patchy consolidation. Which antibiotic therapy should you select for this man?",
+    "options": [
+      "Amoxicillin",
+      "Amoxicillin and Flucloxacillin",
+      "Amoxicillin and Gentamicin",
+      "Amoxicillin and Rifampicin",
+      "Flucloxacillin"
+    ],
+    "correct": 1,
+    "explanation": "Amoxicillin and Flucloxacillin is the correct choice. Patients who develop pneumonia after influenza are at high risk of Staphylococcal pneumonia (look for cavitation on CXR). Guidelines state amoxicillin should be first-line for all pneumonia, with the addition of Flucloxacillin when Staphylococcal infection is suspected. Gentamicin is indicated for severe hospital-acquired pneumonia. Rifampicin is added for severe atypical infections (e.g., Legionella). Flucloxacillin alone would not cover typical pneumococcal organisms."
+  },
+  {
+    "question": "A 47-year-old woman presenting with breathlessness has her arterial blood gases taken which give the following results: PO2 8.7 kPa (11.3-12.6), PCO2 4.4 kPa (4.7-6.0), PH 7.46 (7.36-7.44), HCO3 24 mmol/L (20-28). Which of the following is most likely the diagnosis?",
+    "options": [
+      "Acute severe asthma",
+      "Emphysema",
+      "Hyperventilation syndrome",
+      "Kyphoscoliosis",
+      "Opiate overdose"
+    ],
+    "correct": 0,
+    "explanation": "Acute severe asthma is the diagnosis. The blood gases show respiratory alkalosis (elevated pH, low PCO2) with associated hypoxia (low PO2). In acute asthma, hyperventilation causes CO2 washout leading to respiratory alkalosis, while V/Q mismatch causes hypoxia. A normal or rising CO2 in asthma is ominous, indicating impending respiratory failure requiring ventilatory support. Hyperventilation syndrome also shows respiratory alkalosis but without hypoxia. Emphysema and opiate overdose would show elevated CO2."
+  },
+  {
+    "question": "A solitary nodule is detected on a chest x-ray film in an otherwise healthy 55-year-old man. The patient has been smoking 10 cigarettes daily for 3 years. The nodule is located in the right middle lobe and measures approximately 3 cm. Previous chest x-ray films are not available for comparison. CT scan reveals a solitary lung nodule with an irregular contour. No other pulmonary lesions are found. Physical examination and routine laboratory tests are normal. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Aspergilloma",
+      "Bronchogenic carcinoma",
+      "Hamartoma",
+      "Pulmonary abscess",
+      "Secondary (reactivated) tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "Hamartoma is the most likely diagnosis. In large surveys, 60% of solitary pulmonary nodules are benign, with granulomas being most common. Factors favoring benign lesion include small size, smooth margins, and absence of symptoms. Popcorn-like calcifications on CT definitively favor hamartoma. A hamartoma is a malformative lesion composed of cartilage, bronchial mucosa, and smooth muscle, usually found incidentally. Malignancy is favored by irregular margins, size >2 cm, and patient age >45. Secondary TB manifests with multiple nodular/cavitary infiltrates in upper lobes with systemic symptoms."
+  },
+  {
+    "question": "A 45-year-old man with alcoholism is admitted with acute pancreatitis. On the fourth hospital day, the patient develops rapidly progressive respiratory distress, with labored breathing and tachypnea. His temperature is 37.0°C, pulse is 100/min, blood pressure is 130/75 mm Hg, and RR is 24/min. ABG: pH 7.32, PaO2 52 mm Hg, PaCO2 51 mm Hg. A chest x-ray film reveals diffuse bilateral infiltrates, a normal cardiac silhouette, and minimal pleural effusions. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Acute bilateral bronchopneumonia",
+      "Acute respiratory distress syndrome",
+      "Cardiogenic pulmonary edema",
+      "Exacerbation of acute pancreatitis",
+      "Pulmonary embolism"
+    ],
+    "correct": 1,
+    "explanation": "Acute Respiratory Distress Syndrome (ARDS) is the diagnosis. ARDS develops 12-48 hours after the initiating event (3-4 days after acute pancreatitis in this case). Key features include: bilateral infiltrates on CXR, normal cardiac silhouette (excluding cardiogenic cause), acute respiratory failure unresponsive to supplemental oxygen, and a triggering event (pancreatitis). Treatment involves addressing the underlying cause and mechanical ventilation with PEEP. Cardiogenic pulmonary edema would show an enlarged cardiac silhouette. Mortality is approximately 50%."
+  },
+  {
+    "question": "A 49-year-old man with acute pancreatitis develops severe shortness of breath 15 minutes after undergoing placement of a catheter in his subclavian vein. His blood pressure is 100/60 mm Hg, pulse is 124/min, and RR is 50/min. He is cyanotic and in obvious distress. His neck veins are distended, and his trachea deviates to the left. Breath sounds are diminished on the right side of his chest. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Chest x-ray",
+      "Endotracheal intubation",
+      "Needle thoracotomy in the second right intercostal space",
+      "Removal of the catheter",
+      "Tube thoracotomy in the left fifth intercostal space"
+    ],
+    "correct": 2,
+    "explanation": "Needle thoracotomy in the second right intercostal space (mid-clavicular line) is required. This is a tension pneumothorax from subclavian vein catheterization puncturing the lung apex. Classic signs: tracheal deviation away from the affected side, absent breath sounds on the affected side, distended neck veins, hypotension, tachycardia, and cyanosis. This is a clinical emergency - do not delay for chest x-ray. After needle decompression, a chest tube must be inserted. Tube thoracotomy in the LEFT side would be on the wrong side. Removal of the catheter would not treat the pneumothorax."
+  },
+  {
+    "question": "A 72-year-old man suffers severe pleuritic chest pain on the seventh postoperative day after surgical pinning of an intertrochanteric hip fracture. He was not on anticoagulants at the time. He is hemodynamically stable, but is short of breath and has distended neck veins. Spiral CT scan shows the presence of a pulmonary infarct on the left side, and echocardiogram does not show signs of right ventricular strain. Which of the following is the most appropriate management at this time?",
+    "options": [
+      "Anticoagulation with heparin",
+      "Infusion of thrombolytic agents into the left pulmonary artery",
+      "Insertion of vena cava filter",
+      "Surgical embolectomy",
+      "Systemic infusion of thrombolytic agents"
+    ],
+    "correct": 0,
+    "explanation": "Anticoagulation with heparin is the standard first-line treatment for pulmonary embolism. Thrombolytics are reserved for life-threatening right heart failure, and are contraindicated after major surgery due to bleeding risk. When thrombolytics are used, systemic administration is as effective as direct intra-arterial delivery. Vena cava filters are indicated only when PE recurs despite anticoagulation or when anticoagulation is contraindicated. Surgical embolectomy is a last resort for massive PE with hemodynamic instability not responsive to other measures."
+  },
+  {
+    "question": "A 48-year-old man with a long history of smoking presents to the ER with difficulty breathing for the past 2 days. His temperature is 38.3°C, blood pressure is 120/70 mm Hg, and pulse is 103/min. Dullness to percussion and decreased breath sounds are noted over the right lower lung field. A right-sided pleural effusion is found. Thoracentesis results: PH 7.18, Glucose 40 mg/dL, Protein 3.8 g/dL, LDH 220 IU/L. Serum: Protein 7.0 g/dL, LDH 320 IU/L. Which of the following is the most likely etiology of the effusion?",
+    "options": [
+      "A transudate of infectious etiology",
+      "A transudate of noninfectious etiology",
+      "An exudate of infectious etiology",
+      "An exudate of inflammatory etiology",
+      "An exudate of malignant etiology"
+    ],
+    "correct": 2,
+    "explanation": "This is an exudate of infectious etiology. The pleural fluid LDH:serum LDH ratio >0.6 (220/320 = 0.69) and pleural fluid protein:serum protein ratio >0.5 (3.8/7.0 = 0.54) confirm an exudate (Light's criteria), eliminating transudate options. The sub-acute clinical presentation (2 days of symptoms), fever (38.3°C), and smoking history suggest an infectious/parapneumonic etiology. A glucose <60 mg/dL and low pH are seen in both complicated parapneumonic effusions and malignancy. In malignant effusions, glucose is rarely <60 mg/dL (<15% of cases), making infectious more likely."
+  },
+  {
+    "question": "A 56-year-old man presents with a 10-month history of increasing dyspnea on exertion and occasional dry cough. He has been smoking half a pack of cigarettes daily for 40 years and has a history of rheumatoid arthritis. Chest examination reveals mild hyperresonance in all lung fields and diminished breath sounds. Lung volume measurements show increased TLC and RV, with an elevated RV/TLC ratio. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Asthma",
+      "Bronchiectasis",
+      "Chronic bronchitis",
+      "Emphysema",
+      "Interstitial lung disease"
+    ],
+    "correct": 3,
+    "explanation": "Emphysema is the correct diagnosis. Classic features include long smoking history, progressive dyspnea, dry cough, hyperresonance (air trapping), diminished breath sounds, and hyperinflation on CXR. The pathognomonic pulmonary function finding is increased TLC and RV with elevated RV/TLC ratio, indicating predominant expansion of residual volume at the expense of functioning lung parenchyma. Asthma would show reversible obstruction. Bronchiectasis would show large amounts of purulent sputum. Interstitial lung disease would show restrictive pattern with decreased TLC."
+  },
+  {
+    "question": "A 36-year-old woman who has worked as a hospital nurse for 10 years complains of fatigue, weight loss, cough with blood-tinged sputum, and night sweats for 4 months. Chest X-ray reveals bilateral pulmonary infiltrates and cavitary lesions in the upper lobes. Her records show she became tuberculin skin test positive in her first year of work but was not treated. Which of the following interventions at that time would most likely have prevented her current condition?",
+    "options": [
+      "Annual chest x-ray examination",
+      "BCG vaccination",
+      "Close observation only",
+      "Isoniazid for 6 months",
+      "Rifampin for 6 months"
+    ],
+    "correct": 3,
+    "explanation": "Isoniazid for 6 months (300 mg/day) is the prophylactic treatment that would have prevented reactivation tuberculosis. This patient is now showing active TB with classic upper lobe cavitary disease. Isoniazid prophylaxis prevents active disease in most 'skin test converters' (documented negative test becoming positive within 2 years). It is also recommended for HIV-positive patients, immunocompromised patients, and close contacts of active TB patients. BCG vaccination is less effective in adults. Close observation without treatment would not prevent reactivation."
+  },
+  {
+    "question": "A 74-year-old woman suddenly became delirious 1 hour ago. She was well until 5 days ago, when she tripped and injured her right leg; she has been bedridden since. On examination, her temperature is 37.2°C, blood pressure is 110/70 mm Hg, pulse is 110/min, and respirations are 32/min. Passive flexion of her right hip causes obvious pain. Pulse oximetry shows an oxygen saturation of 80%, and a chest x-ray is normal. An ECG shows sinus tachycardia. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Acute cerebral hemorrhage",
+      "Acute cerebral infarction",
+      "Myocardial infarction",
+      "Pulmonary infarction",
+      "Pulmonary thromboembolism"
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary thromboembolism (PTE) is the most likely diagnosis. Classic risk factors are present: leg injury and bedridden state (DVT formation). Signs include tachycardia, tachypnea, low O2 saturation (80%), and low-grade fever. The chest x-ray is often normal in PTE. Delirium is due to hypoxemia. Shortness of breath is the most common symptom and tachypnea the most frequent sign. Pulmonary infarction suggests a smaller PTE causing severe pleuritic pain. The ECG showing only sinus tachycardia (no STEMI pattern) makes MI less likely."
+  },
+  {
+    "question": "A 55-year-old man presents with a 2-day history of hemoptysis. He reports an acute onset of eight episodes of coughing bright blood. He has a cough productive of 5-10 mL of sputum each morning. He has a history of chronic obstructive pulmonary disease and has smoked 30 cigarettes daily for 30 years. Physical examination is normal, and a chest x-ray film is clear. Which of the following is the most likely cause of this man's hemoptysis?",
+    "options": [
+      "Alpha-1 antitrypsin deficiency",
+      "Bronchiectasis",
+      "Bronchogenic carcinoma",
+      "Chronic bronchitis",
+      "Pulmonary tuberculosis"
+    ],
+    "correct": 3,
+    "explanation": "Chronic bronchitis is the most likely cause of hemoptysis in this patient. Bronchitis involves excessive mucus production leading to productive cough for at least 3 months for 2 consecutive years, and is among the most common causes of hemoptysis in adults. The morning productive cough supports this diagnosis. However, bronchogenic carcinoma must always be considered in a heavy smoker with hemoptysis, even with a clear CXR (CT should be obtained). Bronchiectasis can also cause hemoptysis, but normal CXR makes it less likely though not impossible. TB is less likely in this smoker."
+  },
+  {
+    "question": "A previously healthy 23-year-old man complains of a febrile illness that developed over a 2-day period. He has had temperatures to 39.4°C, with rigors, cough productive of mucopurulent sputum and right chest pain. There is no cyanosis. Diminished tactile fremitus, dullness on percussion, and bronchial breathing are present in the right lower lung. A chest x-ray film shows consolidation of the right lower lobe. Microscopic examination of the sputum reveals gram-positive diplococci. The patient denies previous allergic drug reactions. Which of the following is the most appropriate pharmaco-therapy?",
+    "options": [
+      "Cefazolin",
+      "Erythromycin",
+      "Penicillin",
+      "Tetracycline",
+      "Trimethoprim-sulfamethoxazole"
+    ],
+    "correct": 2,
+    "explanation": "Penicillin is the drug of choice for pneumococcal pneumonia. The symptomatology (lobar consolidation, gram-positive diplococci in sputum) confirms Streptococcus pneumoniae. Gram-stained sputum is more sensitive than culture for identifying Pneumococcus. Penicillin is given orally (penicillin V) for outpatient uncomplicated pneumonia or parenterally (IV penicillin G) for seriously ill patients. The patient denies allergies, so penicillin is safe. Erythromycin is used for atypical organisms. Cefazolin and co-trimoxazole are not first-line for pneumococcal pneumonia."
+  },
+  {
+    "question": "A 63-year-old man presents to ER with weight loss, cough, hemoptysis and shortness of breath. On examination he is anemic, clubbed and apyrexial. What is the most likely cause for these clinical findings?",
+    "options": [
+      "ARDS",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "Fibrosing alveolitis",
+      "Pneumothorax"
+    ],
+    "correct": 1,
+    "explanation": "Bronchogenic carcinoma is the most likely diagnosis. The key feature here is finger clubbing in an older man with weight loss, cough, hemoptysis, and anemia - all suggestive of malignancy. Respiratory causes of clubbing include: carcinoma of the bronchus, mesothelioma, bronchiectasis, abscess, empyema, cryptogenic fibrosing alveolitis, and cystic fibrosis. Notably, COPD and asthma do NOT cause clubbing. The combination of hemoptysis, weight loss, anemia, and clubbing is a classic malignancy presentation."
+  },
+  {
+    "question": "A 65-year-old man presents with shortness of breath and cough productive of pink frothy sputum. On examination he is cyanosed and tachycardic, and has bibasal end-inspiratory crackles. His jugular venous pressure (JVP) is elevated. What is the most likely cause for these clinical findings?",
+    "options": [
+      "Bronchogenic carcinoma",
+      "Fibrosing alveolitis",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pulmonary edema"
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary edema secondary to left ventricular failure is the diagnosis. Elevated left-sided filling pressures cause high pulmonary capillary pressures leading to fluid transudation into alveoli, impairing gas exchange. Pink frothy sputum results from red blood cell leakage through ruptured pulmonary capillaries. The bibasal crackles are due to pulmonary edema. The elevated JVP indicates right heart failure secondary to or concomitant with left heart failure. This combination distinguishes it from fibrosing alveolitis (no frothy sputum) and pneumonia (no JVP elevation)."
+  },
+  {
+    "question": "A 70-year-old woman presents with fever, rigors, shortness of breath and right-sided pleuritic chest pain. On examination the right side of the chest shows reduced expansion, dull percussion and increased tactile vocal fremitus. What is the most likely cause for these clinical findings?",
+    "options": [
+      "Cystic fibrosis",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary embolus"
+    ],
+    "correct": 2,
+    "explanation": "Pneumonia is the correct diagnosis. Reduced expansion, dullness to percussion, and increased tactile vocal fremitus together indicate consolidation (replacement of alveolar air by fluid/cells/material). Bronchial breathing is also a feature of consolidation. The most common cause of consolidation is pneumonia. Pleural effusion would show reduced tactile fremitus (fluid attenuates transmission). Pneumothorax would show hyper-resonance and absent breath sounds. The fever and rigors also support an infective cause."
+  },
+  {
+    "question": "A 30-year-old farmer presents with repeated episodes of fever, rigors, dry cough and shortness of breath with onset several hours after starting work. On examination he is pyrexial with coarse end-inspiratory crackles. His chest radiograph shows mid-zone mottling. What is the most likely cause for these clinical findings?",
+    "options": [
+      "ARDS",
+      "Extrinsic allergic alveolitis",
+      "Fibrosing alveolitis",
+      "Pneumonia",
+      "Pulmonary embolus"
+    ],
+    "correct": 1,
+    "explanation": "Extrinsic allergic alveolitis (EAA), also known as hypersensitivity pneumonitis, is the diagnosis. The classic presentation is recurrent episodes of fever, rigors, dry cough, and breathlessness occurring several hours after antigen exposure (starting farm work). In farmers, the antigen is often thermophilic actinomycetes in mouldy hay (Farmer's lung) or Aspergillus clavatus on germinating barley. Lung function tests reveal a reversible restrictive defect. Serum-precipitating antibodies identify the causative antigen. Acute cases respond to corticosteroids but allergen avoidance is the key preventive measure."
+  },
+  {
+    "question": "A 21-year-old man has a productive cough, wheeze and steatorrhea. On examination he is clubbed and cyanosed, and has bilateral coarse crackles. What is the most likely cause for these clinical findings?",
+    "options": [
+      "ARDS",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "Fibrosing alveolitis",
+      "Pneumonia"
+    ],
+    "correct": 2,
+    "explanation": "Cystic fibrosis (CF) is the correct diagnosis. This is an autosomal recessive condition due to CFTR gene mutation on chromosome 7, causing thick secretions in lungs and pancreas. The combination of productive cough with wheeze, bilateral coarse crackles, and clubbing (from chronic lung infection) with steatorrhea (pancreatic insufficiency causing malabsorption) is classic. CF patients are susceptible to recurrent respiratory infections, especially Pseudomonas. Males are usually infertile. High sweat sodium/chloride >60 mmol/l is diagnostic. Hemoptysis may indicate aspergilloma."
+  },
+  {
+    "question": "A 52-year-old woman on HRT presents with a swollen left calf, chest pain and shortness of breath. What is the most likely cause for these clinical findings?",
+    "options": [
+      "Bronchial asthma",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pulmonary edema",
+      "Pulmonary embolism"
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary embolism is the correct diagnosis. HRT (hormone replacement therapy) is a significant risk factor for deep vein thrombosis (DVT), which can result in pulmonary embolism. The swollen left calf indicates DVT, and the sudden chest pain and breathlessness indicate PE. Other risk factors for PE include previous thromboembolic events, oral contraceptive pill, surgery (especially pelvic), immobility, and inherited thrombophilia. Diagnosis requires high clinical suspicion plus tests such as V/Q scanning or CT pulmonary angiography."
+  },
+  {
+    "question": "A 78-year-old man has been short of breath for a few weeks. His chest radiography shows a right basal shadow rising towards the axilla. What is the most likely cause for these clinical findings?",
+    "options": [
+      "Bronchogenic carcinoma",
+      "Cryptogenic fibrosing alveolitis",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax"
+    ],
+    "correct": 2,
+    "explanation": "Pleural effusion is the correct diagnosis. A shadow on CXR rising towards the axilla with a concave upper border (meniscus sign) is the characteristic radiological appearance of pleural effusion. This pattern is formed because the fluid layers with the least fluid at the lateral border and the meniscus effect of surface tension. Consolidation (pneumonia) would appear as a homogeneous opacity without the rising border. Pneumothorax would show a clear lung edge. Fibrosing alveolitis would show bilateral lower zone fibrosis."
+  },
+  {
+    "question": "A 54-year-old woman presents with a 9-month history of progressive breathlessness and cyanosis. Clinical examination reveals clubbing and bilateral inspiratory crackles. What is the most likely cause for these clinical findings?",
+    "options": [
+      "Bronchial asthma",
+      "Bronchogenic carcinoma",
+      "Cryptogenic fibrosing alveolitis",
+      "Extrinsic allergic alveolitis",
+      "Pleural effusion"
+    ],
+    "correct": 2,
+    "explanation": "Cryptogenic fibrosing alveolitis (CFA) is the correct diagnosis. Clubbing plus bilateral inspiratory crackles are the hallmark signs of CFA, particularly in patients over 50 years. The progressive 9-month history of breathlessness and cyanosis further supports this. CXR shows ground-glass shadowing progressing to honeycombing. CFA is associated with rheumatoid arthritis, systemic sclerosis, and ulcerative colitis (in which case it is not called cryptogenic). Asthma does not cause clubbing. EAA is more episodic and occupation-related."
+  },
+  {
+    "question": "A 27-year-old farmer presents with fever, malaise, cough and breathlessness, which he has had for a few days. His symptoms were worse in the evening. Clinical examination demonstrated coarse end-inspiratory crackles. What is the most likely cause for these clinical findings?",
+    "options": [
+      "Anaemia",
+      "Cryptogenic fibrosing alveolitis",
+      "Extrinsic allergic alveolitis",
+      "Pneumonia",
+      "Pulmonary embolism"
+    ],
+    "correct": 2,
+    "explanation": "Extrinsic allergic alveolitis (EAA) is the diagnosis. EAA is more common in specific occupations: farmers, ventilation system workers, and vets. The typical presentation includes fever, malaise, cough, and breathlessness that relate to work exposure and classically worsen in the evening (delayed hypersensitivity). It can present as acute, subacute, or chronic forms. In farmers, the culprit antigen is typically thermophilic actinomycetes in mouldy hay. It differs from pneumonia by the work-related pattern and absence of typical infective signs like purulent sputum."
+  },
+  {
+    "question": "A 34-year-old tall, slim porter presents with sudden-onset chest pain and breathlessness. He had had similar episodes in the past. What is the most likely cause for these clinical findings?",
+    "options": [
+      "Bronchial asthma",
+      "Pleural effusion",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary embolism"
+    ],
+    "correct": 3,
+    "explanation": "Pneumothorax is the correct diagnosis. Primary spontaneous pneumothorax characteristically occurs in young, tall, slim males without underlying lung disease. It presents with sudden-onset chest pain and breathlessness, and recurrent episodes are common. Air enters the pleural space due to rupture of a subpleural bleb. On examination there is reduced expansion and absent breath sounds on the affected side. Pulmonary embolism is less likely without risk factors. Pleural effusion develops gradually. Asthma would show wheezing rather than sudden unilateral symptoms."
+  },
+  {
+    "question": "An 80-year-old man presents with bilateral cavitating bronchopneumonia after an influenza infection. What is the most likely causative organism?",
+    "options": [
+      "Chlamydia psittaci",
+      "Legionella pneumophila",
+      "Mycoplasma pneumoniae",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae"
+    ],
+    "correct": 3,
+    "explanation": "Staphylococcus aureus is the correct organism. Although not the most common cause of community-acquired pneumonia, Staphylococcus aureus can cause severe pneumonia with cavitation in debilitated patients, including the elderly and those recovering from influenza. It is also seen in IV drug users through hematological seeding from infected needles, often associated with tricuspid valve endocarditis. Flucloxacillin is the treatment of choice for methicillin-sensitive staphylococcal infection. Cavitation is a key radiological feature that differentiates it from pneumococcal pneumonia."
+  },
+  {
+    "question": "A 24-year-old student presents with severe headache, fever, dry cough and arthralgia. He has recently bought several parrots and was previously fit and well. What is the most likely causative organism?",
+    "options": [
+      "Chlamydia pneumoniae",
+      "Chlamydia psittaci",
+      "Legionella pneumophila",
+      "Mycoplasma pneumoniae",
+      "Streptococcus pneumoniae"
+    ],
+    "correct": 1,
+    "explanation": "Chlamydia psittaci (psittacosis) is the correct organism. Psittacosis should be suspected in any patient with lower respiratory tract symptoms who has had exposure to birds (especially parrots, parakeets, and other psittacine birds). It causes an atypical pneumonia with headache, fever, dry cough, and myalgias/arthralgias. No acute diagnostic tests are available; diagnosis is retrospective by rising complement-fixing antibody titers. Like other atypical pneumonias (Legionella, Mycoplasma), psittacosis is treated with macrolide antibiotics."
+  },
+  {
+    "question": "A 40-year-old man with HIV presents with fever, dry cough, weight loss and exertional dyspnea. What is the most likely causative organism?",
+    "options": [
+      "Aspergillus fumigatus",
+      "Cytomegalovirus (CMV) infection",
+      "Legionella pneumophila",
+      "Pneumocystis Jiroveci",
+      "Staphylococcus aureus"
+    ],
+    "correct": 3,
+    "explanation": "Pneumocystis Jiroveci (formerly carinii) pneumonia (PCP) is the correct diagnosis. PCP is a common AIDS-defining illness in HIV-infected patients and a classic opportunistic infection in immunocompromised patients (e.g., those on immunosuppressive drugs or cancer chemotherapy). It presents with fever, dry cough, progressive exertional dyspnea, and weight loss. CXR classically shows bilateral perihilar ground-glass infiltrates. Treatment is high-dose intravenous co-trimoxazole for 2-3 weeks; pentamidine is used if co-trimoxazole is contraindicated."
+  },
+  {
+    "question": "A 75-year-old man presents with headache, dry cough, anemia and a skin rash. Blood tests detect cold agglutinins. What is the most likely causative organism?",
+    "options": [
+      "Chlamydia pneumoniae",
+      "Coxiella burnetii",
+      "Legionella pneumophila",
+      "Mycoplasma pneumoniae",
+      "Streptococcus pneumoniae"
+    ],
+    "correct": 3,
+    "explanation": "Mycoplasma pneumoniae is the most common atypical cause of community-acquired pneumonia. The characteristic feature is autoimmune hemolytic anemia caused by cold agglutinins (IgM antibodies against red blood cell I antigens). Other extrapulmonary features include erythema multiforme (skin rash), myopericarditis, and meningoencephalitis. Cases often occur in epidemics. Diagnosis is made retrospectively via rising antibody titers. If Mycoplasma is clinically suspected, a macrolide antibiotic should be started empirically."
+  },
+  {
+    "question": "A 25-year-old air-conditioning technician, who suffered from flu-like symptoms a week ago, has developed a dry cough. His chest radiograph shows multilobar shadowing. Blood tests show hyponatremia and lymphopenia. Urinalysis reveals hematuria. What is the most likely causative organism?",
+    "options": [
+      "Chlamydia pneumoniae",
+      "Chlamydia psittaci",
+      "Legionella pneumophila",
+      "Mycoplasma pneumoniae",
+      "Streptococcus pneumoniae"
+    ],
+    "correct": 2,
+    "explanation": "Legionella pneumophila is the correct organism. Key clues include: air-conditioning system exposure, preceding flu-like illness, multilobar shadowing, hyponatremia, lymphopenia, and hematuria. Outbreaks are associated with contaminated air-conditioning and cooling tower systems. Urinary antigen test rapidly detects Legionella with high sensitivity and specificity. Other distinguishing features include high fever, confusion, and elevated liver enzymes. Adequate chlorination of water supplies prevents outbreaks. Treatment: macrolides or quinolones; rifampicin can be added in severe cases."
+  },
+  {
+    "question": "A 65-year-old smoker presents with shortness of breath, gallop rhythm and production of pink frothy sputum. What is the most likely cause of these findings in the context of hemoptysis conditions?",
+    "options": [
+      "Bronchiectasis",
+      "Goodpasture's syndrome",
+      "Pulmonary edema",
+      "Pulmonary embolism",
+      "Tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "Pulmonary edema secondary to left ventricular failure is the diagnosis. The presentation includes shortness of breath, a gallop rhythm (S3 indicating LV dysfunction), and pink frothy sputum (from ruptured pulmonary capillaries causing RBC leakage into alveoli). In this elderly smoker, the most likely cause is ischemic heart disease with underlying acute ischemic event such as myocardial infarction. Other cardiac signs such as increased JVP and gallop rhythm confirm cardiac origin. The pink frothy quality of sputum differentiates this from blood from the airways."
+  },
+  {
+    "question": "A 24-year-old man initially complaining of cough and intermittent hemoptysis presents a few weeks later with hematuria. Biopsy confirms a crescentic glomerulonephritis. Renal biopsy shows linear pattern deposition on immunofluorescence. What is the most likely diagnosis?",
+    "options": [
+      "Churg-Strauss syndrome",
+      "Goodpasture's syndrome",
+      "Polyarteritis Nodosa",
+      "Pulmonary embolism",
+      "Wegener's granulomatosis"
+    ],
+    "correct": 1,
+    "explanation": "Goodpasture's syndrome is the diagnosis. This is a pulmonary-renal syndrome caused by anti-glomerular basement membrane (anti-GBM) antibodies that cross-react with pulmonary alveolar basement membranes (Type II hypersensitivity). The definitive diagnostic finding is LINEAR staining on direct immunofluorescence of renal biopsy (versus granular in other conditions). Strong association with HLA-DR2. More common in smokers and those exposed to hydrocarbon solvents. Treatment: immunosuppression (corticosteroids) plus plasmapheresis to remove anti-GBM antibodies. Wegener's would show cANCA and granular immunofluorescence."
+  },
+  {
+    "question": "A 34-year-old woman originally complaining of nasal obstruction develops cough, hemoptysis and pleuritic chest pain. Her chest radiograph shows multiple nodular masses. What is the most likely diagnosis?",
+    "options": [
+      "Bronchogenic Carcinoma",
+      "Churg-Strauss syndrome",
+      "Goodpasture's syndrome",
+      "Polyarteritis Nodosa",
+      "Wegener's granulomatosis"
+    ],
+    "correct": 4,
+    "explanation": "Wegener's granulomatosis (granulomatosis with polyangiitis) is the correct diagnosis. This is a small artery vasculitis (PR3-ANCA/cANCA positive) characterized by a classic triad: upper respiratory tract involvement (nasal obstruction, sinusitis, saddle nose deformity), lower respiratory tract disease (cough, hemoptysis, multiple nodular masses on CXR), and renal involvement. Eye signs (scleritis, uveitis, retinitis) are present in up to 50%. Treatment involves immunosuppression with high-dose corticosteroids and cyclophosphamide. Goodpasture's would show linear immunofluorescence on renal biopsy."
+  },
+  {
+    "question": "A 22-year-old man presents with fever, night sweats, weight loss and cough productive of a cup full of blood. Ziehl-Neelsen stain is positive for acid-fast bacilli. What is the most likely diagnosis?",
+    "options": [
+      "Bronchiectasis",
+      "Bronchogenic Carcinoma",
+      "Goodpasture's syndrome",
+      "Pulmonary embolism",
+      "Tuberculosis"
+    ],
+    "correct": 4,
+    "explanation": "Tuberculosis (TB) is the diagnosis, confirmed by Ziehl-Neelsen staining positive for acid-fast bacilli (AFB). The classic presentation includes fever, night sweats, weight loss (constitutional symptoms), and hemoptysis. The lung is the most commonly affected organ in TB, but infection may present at other sites: urinary tract, bone, central nervous system. Miliary TB describes widespread hematological dissemination with poor prognosis. Treatment involves standard anti-TB regimens (RIPE: Rifampicin, Isoniazid, Pyrazinamide, Ethambutol). The AFB smear confirmation is the key finding here."
+  },
+  {
+    "question": "A 35-year-old business man returns from a trip abroad and collapses at the airport with hemoptysis and pleuritic chest pain. He has a sinus tachycardia and his ECG shows right axis deviation. What is the most likely diagnosis?",
+    "options": [
+      "Bronchogenic Carcinoma",
+      "Goodpasture's syndrome",
+      "Pneumonia",
+      "Pulmonary embolism",
+      "Tuberculosis"
+    ],
+    "correct": 3,
+    "explanation": "Pulmonary embolism (PE) is the classic diagnosis here. A long-haul flight is a well-known risk factor for DVT and PE (economy class syndrome). The presentation includes hemoptysis, pleuritic chest pain (indicating pulmonary infarction), sinus tachycardia, and right axis deviation on ECG (acute right heart strain). Diagnosis relies on high clinical suspicion plus ventilation-perfusion scanning, CTPA, or pulmonary angiography. Other risk factors for PE include previous thromboembolic events, oral contraceptive pill, pelvic surgery, immobility, and inherited thrombophilia."
+  },
+  {
+    "question": "Multiple bilateral nodules between 0.5 and 5 cm are seen on CXR in a former miner with rheumatoid arthritis. What is the most likely diagnosis?",
+    "options": [
+      "Asbestosis",
+      "Caplan's Syndrome",
+      "Kartagener's Syndrome",
+      "Mitral Stenosis",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 1,
+    "explanation": "Caplan's Syndrome is the correct diagnosis. It is a pulmonary manifestation of rheumatoid arthritis (RA) characterized by multiple pulmonary nodules (0.5-5 cm) in patients with RA who are exposed to coal dust, silica, or asbestos. Symptoms include cough, shortness of breath, and hemoptysis. RA has several other respiratory manifestations including fibrosing alveolitis, pleural effusions, and rarely obliterative bronchiolitis. RA can also affect the cricoarytenoid joints causing upper respiratory tract obstruction. The combination of mining history + RA + bilateral nodules is pathognomonic for Caplan's."
+  },
+  {
+    "question": "A CXR shows Kerley B lines, bat-wing shadowing, prominent upper lobe vessels, and cardiomegaly. What is the most likely diagnosis?",
+    "options": [
+      "Aortic stenosis",
+      "Left Ventricular Failure",
+      "Mitral Stenosis",
+      "Right Ventricular Failure",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 1,
+    "explanation": "Left Ventricular Failure (LVF) is the correct diagnosis. These CXR findings indicate pulmonary edema from raised left-sided filling pressures. Kerley B lines (interstitial edema), bat-wing/perihilar shadowing (alveolar edema), cardiomegaly, and upper lobe blood diversion are classic LVF radiological features. Although right ventricular failure may present with cardiomegaly, it does not cause pulmonary edema. Mitral stenosis can show similar features but is distinguished by a prominent left atrial appendage and elevated left main bronchus, not bat-wing shadowing."
+  },
+  {
+    "question": "A CXR shows trachea deviated to the right, with the horizontal fissure and right hilum displaced upwards. What is the most likely diagnosis?",
+    "options": [
+      "Kartagener's Syndrome",
+      "Right Lower Lobe Collapse",
+      "Right Upper Lobe Collapse",
+      "Right Ventricular Failure",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 2,
+    "explanation": "Right Upper Lobe Collapse is the correct diagnosis. In right upper lobe collapse, the horizontal fissure is elevated (normally runs from the right hilum to the sixth rib in the axillary line), the trachea deviates towards the collapsed lobe (to the right), and the right hilum is displaced upwards. Volume loss is the key feature - the collapsed lobe occupies less space. Left upper lobe collapse produces a different appearance: hazy white shadow over the left lung without a horizontal fissure, as there is no left middle lobe."
+  },
+  {
+    "question": "A CXR shows a double shadow at the right heart border, prominent left atrial appendage, and left main bronchus elevation. What is the most likely diagnosis?",
+    "options": [
+      "Aortic stenosis",
+      "Left Ventricular Failure",
+      "Mitral Stenosis",
+      "Right Ventricular Failure",
+      "Wagner's Granulomatosis"
+    ],
+    "correct": 2,
+    "explanation": "Mitral Stenosis is the correct diagnosis. Advanced mitral stenosis causes left atrial enlargement, which produces characteristic CXR findings: double right heart border (enlarged left atrium bulging behind the right atrium), prominent left atrial appendage (left heart border), widening of the carina, and elevation of the left main bronchus. Calcification of the mitral valve may also be visible. Pulmonary edema can occur. Importantly, left ventricular enlargement is NOT a feature of pure mitral stenosis (the LV is protected/under-filled)."
+  },
+  {
+    "question": "A CXR shows numerous calcified nodules sized less than 5 mm located predominantly in the lower zones of the lungs. What is the most likely diagnosis?",
+    "options": [
+      "Asbestosis",
+      "Caplan's Syndrome",
+      "Post Fracture Fat Embolism",
+      "Previous Varicella Pneumonitis",
+      "Right Upper Lobe Collapse"
+    ],
+    "correct": 3,
+    "explanation": "Previous Varicella (chickenpox) Pneumonitis is the correct diagnosis. Multiple small calcified nodules in the lower lung zones are a characteristic late finding of healed varicella pneumonitis. Other causes of multiple calcified pulmonary nodules include old tuberculosis (typically upper zones), histoplasmosis, and chronic renal failure. Varicella pneumonitis is more severe in adults and immunocompromised patients. The calcifications represent healed granulomas from the primary infection. The lower zone predominance and small uniform size help distinguish this from TB (upper zone) or Caplan's (larger nodules)."
+  },
+  {
+    "question": "A 28-year-old man presents with dry cough and progressive shortness of breath. His chest radiograph shows bilateral hilar lymphadenopathy. What is the most likely diagnosis?",
+    "options": [
+      "Berylliosis",
+      "Bronchogenic Carcinoma",
+      "Extrinsic Allergic Alveolitis",
+      "Sarcoidosis",
+      "Tuberculosis"
+    ],
+    "correct": 3,
+    "explanation": "Sarcoidosis is the most likely diagnosis. The combination of bilateral hilar lymphadenopathy (BHL) in a young patient with dry cough and progressive breathlessness is the classic presentation of sarcoidosis. Sarcoidosis is more common in Black patients and presents between ages 20-40. Other causes of BHL include TB, malignancy (though symmetrical BHL is rare), organic dust diseases, and EAA. In sarcoidosis, BHL may be asymptomatic (incidental finding) or accompanied by erythema nodosum, uveitis, and hypercalcemia."
+  },
+  {
+    "question": "A 13-year-old boy with cystic fibrosis has tramline and ring shadows on chest radiograph. What is the most likely associated condition explaining these radiological findings?",
+    "options": [
+      "Aspergillosis",
+      "Bronchiectasis",
+      "COPD",
+      "Pneumonia",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "Bronchiectasis is the condition causing tramline and ring shadows on CXR. These are characteristic radiological findings: tram lines represent the thickened, dilated bronchial walls seen in longitudinal section, while ring shadows represent the same dilated bronchi seen in cross-section. Bronchiectasis is a common and early complication of cystic fibrosis due to recurrent respiratory infections (especially Pseudomonas) and impaired mucus clearance. Patients present with productive cough, hemoptysis, and bilateral coarse crackles. Other causes include Kartagener's syndrome and pertussis."
+  },
+  {
+    "question": "A 65-year-old dockyard worker presents with weight loss and shortness of breath. He is clubbed and cachectic. His chest radiograph shows pleural calcification and a lobulated pleural mass. What is the most likely diagnosis?",
+    "options": [
+      "Bronchogenic Carcinoma",
+      "Cryptogenic Fibrosing Alveolitis",
+      "Mesothelioma",
+      "Sarcoidosis",
+      "Tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "Mesothelioma is the correct diagnosis. This is a consequence of previous asbestos exposure (dockyard worker). The classic CXR shows a lobulated pleural mass with pleural calcification (from prior asbestos exposure). It presents with progressive breathlessness, weight loss, and chest pain in an older patient with occupational asbestos history. Pleural calcification alone (without the pleural mass) is a benign finding from asbestos exposure. Mesothelioma has a very poor prognosis. Dockyard workers, plumbers, and insulation workers are classically at risk of asbestos-related disease."
+  },
+  {
+    "question": "A 40-year-old woman presents with gross clubbing and progressive shortness of breath. Examination reveals fine end-inspiratory crackles. Her chest radiograph shows a ground-glass appearance of the lung. What is the most likely diagnosis?",
+    "options": [
+      "Berylliosis",
+      "Bronchogenic Carcinoma",
+      "Cryptogenic Fibrosing Alveolitis",
+      "Extrinsic Allergic Alveolitis",
+      "Sarcoidosis"
+    ],
+    "correct": 2,
+    "explanation": "Cryptogenic Fibrosing Alveolitis (CFA) is the diagnosis. The classic combination is: clubbing + fine end-inspiratory crackles + progressive breathlessness + ground-glass shadowing on CXR in a middle-aged patient. As the disease progresses, a honeycomb lung pattern develops. CFA is associated with rheumatoid arthritis, systemic sclerosis, and ulcerative colitis (when not called cryptogenic). HRCT confirms the diagnosis. EAA would be more episodic and occupation-related. Berylliosis is a rare occupational disease mimicking sarcoidosis."
+  },
+  {
+    "question": "A 65-year-old smoker presents with shortness of breath. On the chest radiograph, eight ribs can be seen anteriorly above the diaphragm on each side of the chest in the mid-clavicular line. What is the most likely diagnosis?",
+    "options": [
+      "Aspergillosis",
+      "Bronchiectasis",
+      "COPD",
+      "Pneumonia",
+      "Tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "COPD is the correct diagnosis. On a standard PA CXR taken at full inspiration, no more than six ribs should be visible anteriorly above the diaphragm in the mid-clavicular line. The presence of eight visible ribs indicates hyperexpansion (air trapping), which is characteristic of COPD. Other CXR features of COPD include flat diaphragms, increased lung lucency, narrow cardiac silhouette, and reduced vascular markings. These findings reflect air trapping and loss of elastic recoil in emphysema. This is a classic radiological teaching point for COPD diagnosis."
+  },
+  {
+    "question": "A 12-year-old girl has slight wheeze and shortness of breath despite inhaled salbutamol. What is the most appropriate treatment?",
+    "options": [
+      "Inhaled beclomethasone",
+      "Inhaled Salbutamol",
+      "Inhaled Salbutamol with spacer",
+      "Nebulized salbutamol",
+      "Oral prednisolone"
+    ],
+    "correct": 2,
+    "explanation": "Inhaled Salbutamol with spacer is the most appropriate treatment. In children and patients with poor inhaler technique, a spacer device dramatically improves drug delivery to the lungs, potentially making the existing bronchodilator therapy effective. The fact that she is not responding to inhaled salbutamol suggests poor delivery technique rather than inadequate treatment. In young patients, optimizing bronchodilator therapy before adding corticosteroids is important because early initiation of corticosteroids may cause growth retardation."
+  },
+  {
+    "question": "A 22-year-old student with mild asthma that needs treatment for occasional early morning wheeze. What is the most appropriate treatment?",
+    "options": [
+      "Inhaled beclomethasone",
+      "Inhaled Salbutamol",
+      "Inhaled salmeterol",
+      "Low dose oral aminophylline",
+      "Oral prednisolone"
+    ],
+    "correct": 1,
+    "explanation": "Inhaled Salbutamol (a short-acting beta-2 agonist) as a reliever inhaler is the appropriate Step 1 treatment per British Thoracic Society (BTS) guidelines for mild asthma with only occasional symptoms. Step 1 involves short-acting bronchodilator as needed. This step is for patients with infrequent, brief wheezing episodes causing minimal symptoms. If symptoms become more frequent or require regular use of the reliever, step 2 (adding regular inhaled corticosteroids) should be considered."
+  },
+  {
+    "question": "A 17-year-old student complains that he has to use his salbutamol inhaler regularly to control wheezing. What is the most appropriate treatment?",
+    "options": [
+      "Home 100% oxygen",
+      "Inhaled beclomethasone",
+      "Inhaled Salbutamol",
+      "Inhaled salmeterol",
+      "Oral prednisolone"
+    ],
+    "correct": 1,
+    "explanation": "Inhaled beclomethasone (inhaled corticosteroid) is appropriate for Step 2 of BTS asthma guidelines. Step 2 involves adding a regular preventer therapy in the form of an inhaled corticosteroid at a dose appropriate to disease severity. This is indicated when a patient needs to use their bronchodilator reliever regularly to control symptoms. Regular inhaled steroids reduce airway inflammation, preventing symptoms and reducing exacerbations. The dose should be titrated to the lowest effective dose to minimize side effects."
+  },
+  {
+    "question": "A 32-year-old patient taking maximum dose-inhaled therapy and slow-release theophylline shows persistently inadequate control of symptoms. What is the most appropriate treatment?",
+    "options": [
+      "Inhaled beclomethasone",
+      "Inhaled salmeterol",
+      "Low dose oral aminophylline",
+      "Nebulized salbutamol",
+      "Oral prednisolone"
+    ],
+    "correct": 4,
+    "explanation": "Oral prednisolone is appropriate for Step 5 of BTS asthma guidelines. When all other therapeutic options have been exhausted (maximum inhaled therapy, slow-release theophylline), oral glucocorticoids become necessary despite their long-term adverse effects. The use of oral steroids at this step represents the most intensive treatment level. A patient with such poorly controlled asthma should be under specialist respiratory care. The goal is to use the minimum effective oral steroid dose while monitoring for side effects."
+  },
+  {
+    "question": "A 25-year-old woman requires add-on therapy because inhaled beclomethasone and salbutamol do not adequately combat her symptoms. What is the most appropriate treatment?",
+    "options": [
+      "Inhaled beclomethasone",
+      "Inhaled Salbutamol",
+      "Inhaled salmeterol",
+      "Nebulized ipratropium bromide",
+      "Oral prednisolone"
+    ],
+    "correct": 2,
+    "explanation": "Inhaled salmeterol (long-acting beta-2 agonist, LABA) is the appropriate Step 3 add-on therapy per BTS guidelines. When patients are not adequately controlled with a regular short-acting bronchodilator and low-dose inhaled corticosteroids, there are two options: add a long-acting beta-2 agonist (LABA), or increase the dose of inhaled steroid. Adding a LABA such as salmeterol is the preferred initial escalation at Step 3. LABAs provide sustained bronchodilation over 12 hours and reduce nighttime symptoms."
+  },
+  {
+    "question": "A 65-year-old man with long-standing COPD presents with severe shortness of breath. After treatment with oxygen and nebulized bronchodilators, his PaO2 is 6.0 kPa, PaCO2 16.0 kPa, and pH 7.2. What is the most appropriate management?",
+    "options": [
+      "28% O2, nebulized salbutamol, and intravenous hydrocortisone",
+      "Chest drain",
+      "Intubation",
+      "Left sided decompression",
+      "Nasal intermittent positive pressure ventilation"
+    ],
+    "correct": 4,
+    "explanation": "Nasal intermittent positive pressure ventilation (NIPPV/NIV) is the appropriate next step. This COPD patient has severe type II respiratory failure (high CO2, acidosis, low O2) that has not responded to medical therapy. NIV has been shown to reduce the need for formal intubation in COPD exacerbations. It is the preferred treatment before progressing to invasive ventilation. NIV requires a conscious, cooperative patient. If NIV fails or the patient deteriorates, intubation should be considered. This is a life-saving intervention that avoids the complications of general anesthesia."
+  },
+  {
+    "question": "A 17-year-old woman presents with wheeze and marked perioral swelling. Her PaO2 is 7.0 kPa on 28% O2, PaCO2 4.1 kPa. What is the most appropriate emergency treatment?",
+    "options": [
+      "100% O2, nebulized salbutamol, and intramuscular adrenalin",
+      "100% O2, nebulized salbutamol, and intravenous hydrocortisone",
+      "28% O2, nebulized salbutamol, and intramuscular adrenalin",
+      "28% O2, nebulized salbutamol, and intravenous hydrocortisone",
+      "Emergency tracheostomy"
+    ],
+    "correct": 0,
+    "explanation": "100% O2, nebulized salbutamol, and intramuscular adrenalin is the correct treatment for acute anaphylaxis. Perioral swelling indicates laryngeal edema, which can obstruct the airway. This is a type I IgE-mediated hypersensitivity reaction. The treatment of choice is intramuscular epinephrine (adrenaline) 0.5 ml of 1:1000 solution (500 micrograms), which can be repeated if no improvement. IV epinephrine is dangerous (given slowly in dilution of 1:10,000 only in frank cardiac arrest). High-flow oxygen should be given to correct hypoxia. Laryngeal edema may complicate endotracheal intubation."
+  },
+  {
+    "question": "A 14-year-old with asthma presents with an acute severe asthma attack. PaO2 is 10.0 kPa on 28% O2, PaCO2 is 8.0 kPa. What is the most appropriate treatment?",
+    "options": [
+      "100% O2, nebulized salbutamol, and intramuscular adrenalin",
+      "100% O2, nebulized salbutamol, and intravenous hydrocortisone",
+      "28% O2, nebulized salbutamol, and intravenous hydrocortisone",
+      "Intubation",
+      "Nasal intermittent positive pressure ventilation"
+    ],
+    "correct": 1,
+    "explanation": "100% O2, nebulized salbutamol, and intravenous hydrocortisone is the correct treatment. This is a life-threatening asthma attack - the elevated CO2 (normally low in asthma) indicates impending respiratory collapse. Despite elevated CO2, 100% O2 should be given as there is no risk of hypoxic drive suppression in asthma (unlike COPD). Life-threatening features include PEFR <33%, silent chest, cyanosis, bradycardia, and high PaCO2. IV hydrocortisone and nebulized bronchodilators are essential. Intubation should be considered if the patient does not respond to drug therapy."
+  },
+  {
+    "question": "A 28-year-old man involved in a road traffic accident presents with severe respiratory distress. Examination reveals decreased expansion on the right side of the chest with mediastinal shift to the left. What is the most appropriate management?",
+    "options": [
+      "Chest drain",
+      "Chest radiograph",
+      "Intubation",
+      "Left sided decompression",
+      "Right sided decompression"
+    ],
+    "correct": 4,
+    "explanation": "Right sided decompression is required immediately for tension pneumothorax. Air enters the pleural space on inspiration but cannot escape during expiration, progressively shifting the mediastinum to the contralateral side. Management should NOT be delayed for chest x-ray - this is a clinical emergency. A needle/cannula is inserted into the second intercostal space in the mid-clavicular line on the right side, followed by chest tube placement. Decreased expansion on the right + mediastinal shift to the left = tension pneumothorax on the right. The mediastinal shift compromises both the contralateral lung and cardiac filling."
+  },
+  {
+    "question": "A young man presents with an acute onset shortness of breath. Examination reveals decreased expansion on the right side of the chest. His SaO2 is 95%. What is the most appropriate immediate management?",
+    "options": [
+      "28% O2, nebulized salbutamol, and oral prednisolone",
+      "Chest drain",
+      "Chest radiograph",
+      "Intubation",
+      "Right sided decompression"
+    ],
+    "correct": 2,
+    "explanation": "A chest radiograph is indicated to confirm the diagnosis of pneumothorax and assess the degree of collapse. With a SaO2 of 95% and no signs of tension pneumothorax (no mediastinal shift), this appears to be a simple spontaneous pneumothorax. In healthy patients with a small pneumothorax, it may heal without intervention - the patient can be observed for 6 hours and discharged if stable with early follow-up. If large or symptomatic, simple aspiration is first-line. Chest drain is reserved for failed aspiration or large pneumothorax. Spontaneous pneumothorax is common in young tall thin men."
+  },
+  {
+    "question": "A previously healthy 65-year-old smoker with early COPD complains of shortness of breath on exertion. What is the most appropriate management?",
+    "options": [
+      "100% O2 and amoxicillin",
+      "ICU admission and intubation",
+      "Inhaled salbutamol",
+      "Long term O2 therapy",
+      "Nebulized salbutamol, ipratropium, oral prednisolone and oral amoxicillin"
+    ],
+    "correct": 2,
+    "explanation": "Inhaled salbutamol is the first-line pharmacological therapy for early COPD. The initial management also includes lifestyle measures: stopping smoking, encouraging exercise, and weight reduction. Short-acting bronchodilators (beta-2 agonists like salbutamol or anticholinergics like ipratropium) are used as first-line therapy for early COPD with symptoms on exertion. Long-term O2 therapy is reserved for advanced COPD with severe hypoxemia. Nebulized bronchodilators with steroids and antibiotics are for acute exacerbations."
+  },
+  {
+    "question": "A 65-year-old woman with longstanding COPD presents with shortness of breath and cough productive of colored (purulent) sputum. What is the most appropriate management?",
+    "options": [
+      "28% O2, inhaled bronchodilators and intravenous amoxicillin",
+      "ICU admission and intubation",
+      "Inhaled salbutamol",
+      "Long term O2 therapy",
+      "Nebulized salbutamol, ipratropium, oral prednisolone and oral amoxicillin"
+    ],
+    "correct": 4,
+    "explanation": "Nebulized salbutamol, ipratropium, oral prednisolone, and oral amoxicillin is the appropriate treatment for an infective exacerbation of COPD. The colored (purulent) sputum indicates bacterial infection triggering the exacerbation. Treatment includes: nebulized bronchodilators (salbutamol + ipratropium) to relieve bronchospasm, oral corticosteroids (prednisolone) to reduce inflammation and shorten hospital stay, and antibiotics (amoxicillin) to treat infection. Controlled oxygen (24-28%) must be given carefully. If the patient deteriorates, NIV or ICU may be needed."
+  },
+  {
+    "question": "A 70-year-old man admitted with acute severe exacerbation of COPD does not respond to oxygen and nebulized bronchodilators. What is the most appropriate next management?",
+    "options": [
+      "28% O2, inhaled bronchodilators and intravenous amoxicillin",
+      "ICU admission and intubation",
+      "Inhaled salbutamol",
+      "Intermittent Positive pressure Ventilation",
+      "Long term O2 therapy"
+    ],
+    "correct": 3,
+    "explanation": "Intermittent Positive Pressure Ventilation (IPPV/NIV) is the appropriate next step. When a COPD patient deteriorates despite optimal medical therapy (oxygen and bronchodilators), early use of non-invasive IPPV may improve outcome and avoid formal intubation. NIV reduces the work of breathing, helps clear CO2, and improves oxygenation. If NIV fails, formal intubation and ICU transfer may be necessary. The advantage of NIV over intubation is avoidance of sedation, easier weaning, and lower complication rates. It requires a conscious, cooperative patient."
+  },
+  {
+    "question": "A 65-year-old patient with advanced COPD treated with bronchodilators and steroids still feels breathless. His baseline PaO2 is around 6.5 kPa. What is the most appropriate management?",
+    "options": [
+      "ICU admission and intubation",
+      "Inhaled salbutamol",
+      "Intermittent Positive pressure Ventilation",
+      "Long term O2 therapy",
+      "Lung transplantation"
+    ],
+    "correct": 3,
+    "explanation": "Long-term oxygen therapy (LTOT) should be considered. LTOT is indicated in clinically stable COPD patients (non-smokers) with PaO2 <7.3 kPa. This patient has a PaO2 of 6.5 kPa, meeting the indication. Evidence shows that maintaining PaO2 >8.0 kPa for more than 15 hours per day increases survival in COPD. LTOT reduces pulmonary hypertension, polycythemia, and right heart failure. Patients must use oxygen >15 hours/day for maximum benefit. Smoking must be stopped before starting LTOT due to fire risk and reduced efficacy."
+  },
+  {
+    "question": "A 55-year-old patient with COPD requires regular add-on therapy after bronchodilators do not control symptoms. What is the most appropriate add-on treatment?",
+    "options": [
+      "Inhaled salbutamol",
+      "Intermittent Positive pressure Ventilation",
+      "Long term O2 therapy",
+      "Lung transplantation",
+      "Oral aminophylline"
+    ],
+    "correct": 4,
+    "explanation": "Oral aminophylline is the appropriate add-on therapy. Taken before bedtime, aminophylline is particularly helpful for COPD patients with symptoms in the early morning hours. Aminophylline is a methylxanthine that inhibits phosphodiesterase, increasing cAMP levels leading to bronchodilation. It must be used carefully due to its narrow therapeutic index. Signs of toxicity include nausea, vomiting, and cardiac arrhythmias. Serum levels should be monitored. It is used as an add-on when bronchodilators alone are insufficient, not as first-line therapy."
+  },
+  {
+    "question": "What is the standard therapy for community-acquired pneumococcal pneumonia not requiring hospital admission?",
+    "options": [
+      "Ceftazidime",
+      "Intravenous benzyl penicillin",
+      "Intravenous cefuroxime and erythromycin",
+      "Oral amoxicillin",
+      "Oral tetracycline"
+    ],
+    "correct": 3,
+    "explanation": "Oral amoxicillin is the standard outpatient treatment for community-acquired pneumococcal pneumonia. Oral erythromycin can be used as an alternative if the patient is allergic to penicillin, or it can be combined with amoxicillin if an atypical organism is suspected. For patients requiring hospital admission, intravenous amoxicillin (or benzyl penicillin) is used, escalating to IV cefuroxime + erythromycin if severe. Ceftazidime is reserved for hospital-acquired infections with Gram-negative organisms including Pseudomonas."
+  },
+  {
+    "question": "A 35-year-old patient on the ward admitted to hospital 10 days ago presents with severe pneumonia. What is the most appropriate antibiotic?",
+    "options": [
+      "Ceftazidime",
+      "Intravenous cefuroxime and erythromycin",
+      "Intravenous co-trimoxazole",
+      "Intravenous Flucloxacillin",
+      "Oral amoxicillin"
+    ],
+    "correct": 0,
+    "explanation": "Ceftazidime is the appropriate antibiotic for hospital-acquired pneumonia. Hospital-acquired infections (developing >48-72 hours after admission) are caused by different pathogens than community-acquired pneumonia, including Gram-negative aerobes such as Pseudomonas species, which are often multi-antibiotic resistant. Third-generation cephalosporins like Ceftazidime have anti-pseudomonal activity and are effective in this context. Oral amoxicillin is inadequate for severe hospital-acquired pneumonia. Flucloxacillin targets Staphylococcus but does not cover Gram-negatives adequately."
+  },
+  {
+    "question": "A 40-year-old builder presents with a severe community-acquired pneumonia. Atypical pathogens are suspected. What is the most appropriate antibiotic?",
+    "options": [
+      "Ceftazidime",
+      "Intravenous benzyl penicillin",
+      "Intravenous cefuroxime and erythromycin",
+      "Intravenous co-trimoxazole",
+      "Oral amoxicillin"
+    ],
+    "correct": 2,
+    "explanation": "Intravenous cefuroxime and erythromycin is the standard therapy for severe community-acquired pneumonia with suspected atypical pathogens. This combination covers both typical (Streptococcus pneumoniae) and atypical organisms (Mycoplasma, Chlamydia, Legionella). Rifampicin can be added empirically if Legionella infection is strongly suspected. For less severe cases, oral amoxicillin with or without a macrolide is used. Atypical organisms do not respond to beta-lactam antibiotics alone; macrolide coverage is essential."
+  },
+  {
+    "question": "A 22-year-old HIV-positive individual on anti-retroviral therapy presents with Pneumocystis Jiroveci pneumonia. What is the most appropriate treatment?",
+    "options": [
+      "Ceftazidime",
+      "Intravenous cefuroxime and erythromycin",
+      "Intravenous co-trimoxazole",
+      "Intravenous Flucloxacillin",
+      "Oral isoniazid and rifampicin"
+    ],
+    "correct": 2,
+    "explanation": "Intravenous co-trimoxazole (trimethoprim-sulfamethoxazole) is the treatment of choice for Pneumocystis Jiroveci (PCP) pneumonia, given intravenously for 2-3 weeks. Intravenous pentamidine is an alternative if co-trimoxazole is contraindicated or not tolerated. Corticosteroids are used as adjunctive therapy when hypoxemia is significant (PaO2 <70 mmHg or A-a gradient >35 mmHg on room air) to reduce the inflammatory response. Without treatment, PCP carries high mortality. After treatment, prophylaxis is continued with low-dose co-trimoxazole."
+  },
+  {
+    "question": "A 19-year-old man contracts pneumonia with symptoms of headache, fever and dry cough. Serology shows evidence of chlamydia infection. What is the most appropriate treatment?",
+    "options": [
+      "Intravenous benzyl penicillin",
+      "Intravenous cefuroxime and erythromycin",
+      "Intravenous co-trimoxazole",
+      "Oral amoxicillin",
+      "Oral tetracycline"
+    ],
+    "correct": 4,
+    "explanation": "Oral tetracycline is the treatment of choice for Chlamydial pneumonia (Chlamydia pneumoniae or Chlamydia psittaci). Chlamydial pneumonia often presents with a biphasic illness: upper respiratory tract symptoms (sore throat, hoarseness) precede the pneumonia. Diagnosis is usually made retrospectively by serology. Macrolides (erythromycin, azithromycin) are also effective alternatives for chlamydial infections. Beta-lactam antibiotics (amoxicillin, penicillin) are ineffective as Chlamydia is an intracellular organism without a true cell wall."
+  },
+  {
+    "question": "Bilateral pleural effusion is commonly seen in all EXCEPT:",
+    "options": [
+      "SLE",
+      "Nephrotic syndrome",
+      "Pulmonary tuberculosis",
+      "Congestive cardiac failure",
+      "After coronary artery bypass graft"
+    ],
+    "correct": 0,
+    "explanation": "SLE is the exception according to the answer key. While SLE can cause pleural effusions (pleuritis is common), bilateral pleural effusions are considered less characteristic compared to the other conditions listed. Nephrotic syndrome (low oncotic pressure), congestive cardiac failure (hydrostatic pressure), and conditions post-CABG all commonly and predictably cause bilateral effusions. Pulmonary tuberculosis more commonly causes unilateral effusion. In SLE, pleural effusions are usually exudative and may be unilateral or bilateral but less commonly bilateral as a typical presentation."
+  },
+  {
+    "question": "Hemorrhagic pleural effusion may be seen in:",
+    "options": [
+      "Cirrhosis of liver",
+      "Pulmonary tuberculosis",
+      "SLE",
+      "Myxedema",
+      "Nephrotic syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary tuberculosis can cause hemorrhagic pleural effusion. Causes of hemorrhagic pleural effusion (blood-stained exudate) include: pulmonary tuberculosis, malignancy (primary or metastatic), pulmonary infarction, trauma (hemothorax), and Goodpasture's syndrome. Cirrhosis, nephrotic syndrome, and myxedema cause transudates (non-hemorrhagic, protein-poor). SLE typically causes a serous exudate rather than hemorrhagic. Malignancy is the most common cause of hemorrhagic effusions in clinical practice."
+  },
+  {
+    "question": "Pleural rub is characteristically:",
+    "options": [
+      "Uni phasic",
+      "Superficial, scratchy",
+      "Alters with coughing",
+      "Never palpable",
+      "Present over a pleural effusion"
+    ],
+    "correct": 1,
+    "explanation": "Pleural rub is characteristically superficial and scratchy in quality. It is caused by friction between the inflamed visceral and parietal pleural surfaces during respiration. Key features: biphasic (heard during both inspiration and expiration, unlike crackles which are mainly inspiratory), superficial and leathery/scratchy in quality, does NOT alter with coughing (unlike crackles from secretions), may be palpable as a friction fremitus, and is NOT present over a pleural effusion (fluid separates the pleural surfaces, eliminating friction)."
+  },
+  {
+    "question": "Bronchial breath sound is found in all except:",
+    "options": [
+      "Collapse with patent bronchus",
+      "Bronchial asthma",
+      "Superficial, big, empty cavity with patent bronchus",
+      "Broncho pleural fistula",
+      "Lobar pneumonia"
+    ],
+    "correct": 1,
+    "explanation": "Bronchial asthma does NOT produce bronchial breath sounds. Bronchial breathing is a harsh, high-pitched sound heard when sound is conducted through consolidated or compressed lung directly to the chest wall (the alveolar buffer is removed). It is heard in: lobar pneumonia (consolidation), lung collapse with patent bronchus, large superficial cavities with patent bronchi (enhanced resonance), and broncho-pleural fistula. In asthma, the airways are narrowed with air trapping causing wheeze/rhonchi - not bronchial breathing. Asthma produces vesicular breath sounds with prolonged expiration and wheeze."
+  },
+  {
+    "question": "Bronchophony may be found in:",
+    "options": [
+      "Pneumothorax",
+      "Empyema",
+      "Lobar Consolidation",
+      "Pleural effusion",
+      "Chylothorax"
+    ],
+    "correct": 2,
+    "explanation": "Lobar consolidation produces bronchophony (enhanced transmission of spoken voice through the consolidated lung). Bronchophony, whispered pectoriloquy, and aegophony are all features of consolidation where alveolar air is replaced by fluid/cells, enhancing sound transmission. Pneumothorax and pleural effusion/empyema/chylothorax all have fluid or air between the lung and chest wall that attenuates sound transmission, resulting in REDUCED vocal resonance, not bronchophony. Therefore, all fluid/air-based pleural conditions reduce voice sounds."
+  },
+  {
+    "question": "Pink, frothy and profuse sputum is seen in:",
+    "options": [
+      "Pneumoconiosis",
+      "Lobar pneumonia",
+      "Acute pulmonary edema",
+      "Aspergilloma",
+      "ARDS"
+    ],
+    "correct": 2,
+    "explanation": "Acute pulmonary edema classically produces pink, frothy, and profuse sputum. This results from high hydrostatic pressure in pulmonary capillaries (from left ventricular failure) causing transudation of fluid into alveoli. The pink color is from red blood cells that leak through ruptured capillaries. The frothy nature is due to mixing of fluid with surfactant and air in the alveoli. This is a medical emergency requiring urgent treatment with IV furosemide, nitrates, oxygen, and sitting the patient upright. Aspergilloma causes hemoptysis. Lobar pneumonia causes rust-colored purulent sputum."
+  },
+  {
+    "question": "P-pulmonale in ECG is seen in:",
+    "options": [
+      "Hydropneumothorax",
+      "Chronic cor pulmonale",
+      "Pulmonary tuberculosis",
+      "Allergic bronchopulmonary Aspergillosis",
+      "Wolff-Parkinson-White syndrome"
+    ],
+    "correct": 1,
+    "explanation": "P-pulmonale (tall, peaked P waves exceeding 2.5 mm in lead II) is seen in chronic cor pulmonale. P-pulmonale indicates right atrial enlargement/hypertrophy that occurs secondary to chronic pulmonary hypertension, most commonly from COPD (chronic bronchitis/emphysema). The right atrium enlarges to maintain output against increased pulmonary vascular resistance. Other ECG features of cor pulmonale include right axis deviation, right bundle branch block, and right ventricular hypertrophy pattern. Wolff-Parkinson-White shows delta waves and short PR interval."
+  },
+  {
+    "question": "Low voltage in ECG is seen in:",
+    "options": [
+      "Thin chest wall",
+      "Consolidation",
+      "Hyperthyroidism",
+      "Emphysema",
+      "Dextrocardia"
+    ],
+    "correct": 3,
+    "explanation": "Emphysema causes low voltage on ECG. In emphysema, hyperinflated lungs act as a poor conductor between the heart and chest wall electrodes, attenuating electrical signals. This results in low-amplitude (low-voltage) QRS complexes across all leads. Other causes of low voltage include pericardial effusion, obesity, myxedema (hypothyroidism), bilateral pleural effusions, anasarca, and restrictive cardiomyopathy. Thin chest wall and consolidation would actually INCREASE voltage (closer proximity/better conduction). Hyperthyroidism increases cardiac output but doesn't cause low voltage."
+  },
+  {
+    "question": "Bilateral hilar lymphadenopathy is seen in all except:",
+    "options": [
+      "Sarcoidosis",
+      "Bronchogenic carcinoma",
+      "Pneumoconiosis",
+      "Lymphoma",
+      "Aspergillosis"
+    ],
+    "correct": 2,
+    "explanation": "Pneumoconiosis is the answer according to the provided answer key. Bilateral hilar lymphadenopathy (BHL) is classically associated with sarcoidosis, lymphoma, and certain infections. While silicosis (a form of pneumoconiosis) can cause hilar node enlargement with 'eggshell' calcification, pneumoconiosis as a whole is not a classic cause of BHL compared to sarcoidosis, lymphoma, and malignancy. Aspergillosis can in some forms cause BHL through allergic bronchopulmonary aspergillosis (ABPA). The key teaching is that BHL is most characteristic of sarcoidosis."
+  },
+  {
+    "question": "Regarding hypoventilation all are true except:",
+    "options": [
+      "Occurs in severe kyphoscoliosis",
+      "Hypoxemia",
+      "Hypercapnia",
+      "Hypoxemia is not corrected by 100% O2",
+      "Occurs at high altitude"
+    ],
+    "correct": 3,
+    "explanation": "The false statement is that hypoxemia in hypoventilation is NOT corrected by 100% O2. In fact, hypoxemia due to hypoventilation IS corrected by 100% O2 (this distinguishes it from V/Q mismatch and shunts). Hypoventilation reduces alveolar oxygen and accumulates CO2 (hypercapnia). Supplemental O2 increases alveolar PO2 and corrects the hypoxemia. True causes of hypoventilation include kyphoscoliosis (restrictive chest wall), obesity hypoventilation, neuromuscular disease, and CNS depression. High altitude causes hyperventilation (not hypoventilation) as a compensatory response to low inspired O2."
+  },
+  {
+    "question": "Which does not belong to the clinical manifestation of bronchial asthma?",
+    "options": [
+      "Chest pain",
+      "Dyspnea",
+      "Wheeze",
+      "Cough",
+      "Rhonchi"
+    ],
+    "correct": 0,
+    "explanation": "Chest pain does not classically belong to the clinical manifestations of bronchial asthma. The classic clinical features of bronchial asthma are: dyspnea (breathlessness), wheeze (polyphonic, predominantly expiratory), cough (particularly nocturnal, non-productive), and rhonchi on auscultation. While some patients may experience chest tightness with asthma attacks, frank chest pain is not a classical manifestation. Chest pain would prompt evaluation for other conditions such as pneumothorax, pleurisy, or cardiac causes. Asthma's cardinal features are the reversible triad of bronchospasm, mucus hypersecretion, and airway inflammation."
+  },
+  {
+    "question": "In lobar pneumonia, which is not true?",
+    "options": [
+      "Trachea deviated to the opposite side",
+      "Woody dullness on percussion",
+      "Tubular breath sound",
+      "Presence of whispering pectoriloquy",
+      "Tachypnea"
+    ],
+    "correct": 0,
+    "explanation": "Trachea deviated to the opposite side is NOT true in lobar pneumonia. In lobar pneumonia (consolidation), there is no change in lung volume, so the trachea remains midline or deviates minimally. Tracheal deviation towards the lesion occurs in lobar collapse (atelectasis). Tracheal deviation away from the lesion occurs in tension pneumothorax or massive pleural effusion. The true findings in lobar pneumonia are: dullness (woody percussion), tubular/bronchial breath sounds, whispering pectoriloquy, bronchophony, increased vocal fremitus, and tachypnea with fever."
+  },
+  {
+    "question": "Which is not a part of Kartagener's syndrome?",
+    "options": [
+      "Dextrocardia",
+      "Sinusitis",
+      "Impotence",
+      "Bronchiectasis",
+      "Infertility"
+    ],
+    "correct": 2,
+    "explanation": "Impotence is NOT part of Kartagener's syndrome. Kartagener's syndrome is a subset of Primary Ciliary Dyskinesia (PCD) characterized by the triad of: situs inversus (dextrocardia), bronchiectasis, and chronic sinusitis. It results from immotile cilia due to absent dynein arms. Male infertility (due to immotile sperm, not impotence) is a feature since sperm motility requires functioning dynein arms. Female fertility may also be reduced. Impotence is a sexual dysfunction with neurological or vascular causes, not related to ciliary dysfunction. The key distinguishing feature is ciliary immotility."
+  },
+  {
+    "question": "Chronic respiratory failure is not seen in:",
+    "options": [
+      "Diffuse interstitial fibrosis",
+      "Emphysema",
+      "Pneumothorax",
+      "Chronic bronchitis",
+      "Kyphoscoliosis"
+    ],
+    "correct": 2,
+    "explanation": "Pneumothorax does NOT cause chronic respiratory failure. Pneumothorax is an acute condition where air in the pleural space causes acute lung collapse. When treated, the lung re-expands and respiratory function returns to baseline. Chronic respiratory failure requires chronic, progressive, irreversible disease processes: diffuse interstitial fibrosis (restrictive), emphysema (obstructive), chronic bronchitis (obstructive COPD), and kyphoscoliosis (restrictive chest wall disease causing hypoventilation) all cause progressive decline in respiratory function leading to chronic respiratory failure. Pneumothorax, once drained, is a curable condition."
+  },
+  {
+    "question": "Lung abscess is not a complication of:",
+    "options": [
+      "Malignancy",
+      "Bronchopneumonia",
+      "Wegener's granulomatosis",
+      "Suppurative staphylococcal pneumonia",
+      "Pulmonary embolism"
+    ],
+    "correct": 1,
+    "explanation": "Bronchopneumonia is NOT typically a cause of classic lung abscess. Bronchopneumonia causes patchy multi-focal consolidation and microabscesses but not the typical single large cavity lung abscess. Classic causes of lung abscess include: aspiration (anaerobic bacteria), suppurative Staphylococcal pneumonia (particularly post-influenza), Klebsiella pneumonia, septic emboli from endocarditis (IV drug users), malignancy (cavitating tumors), and Wegener's granulomatosis (necrotic nodules). Pulmonary embolism with infarction rarely causes abscess formation. The key mechanism is tissue necrosis and cavitation."
+  },
+  {
+    "question": "Symptoms of acute pulmonary thromboembolism include all except:",
+    "options": [
+      "Substernal chest pain",
+      "Hemoptysis",
+      "Breathlessness",
+      "Syncope",
+      "Sputum production"
+    ],
+    "correct": 4,
+    "explanation": "Sputum production is NOT a typical symptom of acute pulmonary thromboembolism. The classic symptoms of PE include: breathlessness (most common), pleuritic chest pain (worse on inspiration), hemoptysis (from pulmonary infarction), syncope (massive PE with acute right heart failure), and in massive PE, substernal/central chest pain (from right ventricular ischemia). Sputum production is a feature of airway and parenchymal diseases (COPD, bronchitis, pneumonia) not vascular occlusion from PE. The absence of sputum in the presence of dyspnea and pleuritic chest pain should raise suspicion for PE."
+  },
+  {
+    "question": "Which is false regarding Pickwickian syndrome?",
+    "options": [
+      "Marked obesity",
+      "Hyperventilation",
+      "Somnolence",
+      "Right-sided heart failure",
+      "Systemic hypertension"
+    ],
+    "correct": 1,
+    "explanation": "Hyperventilation is FALSE regarding Pickwickian syndrome (obesity hypoventilation syndrome). The cardinal feature is HYPOVENTILATION (not hyperventilation) caused by the mechanical restriction of obesity on chest wall movement. This leads to: chronic CO2 retention (hypercapnia), hypoxemia, somnolence (daytime sleepiness), marked obesity, right-sided heart failure (cor pulmonale from pulmonary hypertension), and systemic hypertension. The Pickwickian syndrome is characterized by alveolar hypoventilation leading to hypoxemia and hypercapnia. Patients often have obstructive sleep apnea as a concomitant disorder."
+  },
+  {
+    "question": "Commonest histologic variety of bronchogenic carcinoma is:",
+    "options": [
+      "Small cell carcinoma",
+      "Large cell carcinoma",
+      "Epidermoid carcinoma",
+      "Adenocarcinoma",
+      "Pancoast's tumor"
+    ],
+    "correct": 3,
+    "explanation": "Adenocarcinoma is now the most common histologic type of bronchogenic carcinoma globally, having surpassed squamous cell (epidermoid) carcinoma. This shift is attributed to changes in cigarette design (filter cigarettes causing deeper inhalation of smoke into peripheral airways where adenocarcinoma arises), decline in male smoking rates, and increased smoking in women. Adenocarcinoma typically arises peripherally in the lung and is the most common type in non-smokers and women. Small cell carcinoma is the most aggressive type. Pancoast's tumor is a location (superior sulcus) rather than a histologic type."
+  },
+  {
+    "question": "Investigation of highest diagnostic efficacy in acute pulmonary thromboembolism is:",
+    "options": [
+      "ECG",
+      "Arterial blood gas estimation",
+      "Contrast-enhanced spiral CT (CTPA)",
+      "Ventilation-perfusion lung scans",
+      "Echocardiography"
+    ],
+    "correct": 2,
+    "explanation": "Contrast-enhanced spiral CT pulmonary angiography (CTPA) is the investigation of highest diagnostic efficacy in acute pulmonary thromboembolism. It provides direct visualization of clots in the pulmonary vasculature with high sensitivity and specificity and has largely replaced V/Q scanning as the initial diagnostic test. V/Q scanning is used when CTPA is contraindicated (e.g., renal failure, contrast allergy). ECG (showing S1Q3T3) and ABG (hypoxemia with hypocapnia) are supportive but non-specific. Echocardiography shows right heart strain but cannot directly visualize peripheral emboli."
+  },
+  {
+    "question": "Acute lung injury (ARDS) should be differentiated from:",
+    "options": [
+      "Acute LVF",
+      "Congestive cardiac failure",
+      "Acute severe asthma",
+      "Spontaneous pneumothorax",
+      "Narcotic overdose"
+    ],
+    "correct": 0,
+    "explanation": "Acute LVF (left ventricular failure) is the most important condition to differentiate from ARDS because both present with acute bilateral pulmonary infiltrates and respiratory failure. In cardiogenic pulmonary edema (LVF), PCWP >18 mmHg, fluid responds to diuretics, BNP is elevated, and echocardiography shows poor LV function. In ARDS, PCWP <18 mmHg, the edema is non-cardiogenic and doesn't readily respond to diuretics alone, and LV function may be normal. This distinction is critical as management differs fundamentally. ARDS requires PEEP ventilation while LVF needs diuresis and vasodilators."
+  },
+  {
+    "question": "The dome of diaphragm is elevated in:",
+    "options": [
+      "Emphysema",
+      "Pleural effusion",
+      "Cirrhosis of liver",
+      "Diaphragmatic palsy",
+      "Asbestosis"
+    ],
+    "correct": 3,
+    "explanation": "Diaphragmatic palsy causes elevation of the dome of the diaphragm (the affected side rises because the muscle cannot contract against intra-abdominal pressure). In diaphragmatic palsy, the paralyzed hemidiaphragm is pushed upward by abdominal viscera and moves paradoxically upward during inspiration (sniff test). Emphysema causes a FLATTENED/depressed diaphragm from hyperinflation. Pleural effusion pushes the diaphragm down. Cirrhosis causes ascites which raises both hemidiaphragms equally. Asbestosis causes lower zone fibrosis without specific diaphragm elevation."
+  },
+  {
+    "question": "All of the following are complicated by cyanosis except:",
+    "options": [
+      "Respiratory failure",
+      "Lung abscess",
+      "Acute lung injury",
+      "Pulmonary thromboembolism",
+      "Pulmonary arteriovenous fistula"
+    ],
+    "correct": 1,
+    "explanation": "Lung abscess is NOT typically complicated by cyanosis. While lung abscess causes localized infection with tissue necrosis, it does not usually cause sufficient V/Q mismatch or shunting to produce cyanosis. Respiratory failure, ARDS (acute lung injury), pulmonary thromboembolism (V/Q mismatch), and pulmonary arteriovenous fistula (intrapulmonary shunt allowing deoxygenated blood to bypass the lungs) all cause significant hypoxemia leading to cyanosis. Lung abscess would need to be very extensive to cause cyanosis, and even then it's not a characteristic feature."
+  },
+  {
+    "question": "Bronchial adenoma most commonly presents as:",
+    "options": [
+      "Cough",
+      "Stridor",
+      "Recurrent hemoptysis",
+      "Chest pain",
+      "Coin shadow in chest x-ray"
+    ],
+    "correct": 2,
+    "explanation": "Recurrent hemoptysis is the most common presentation of bronchial adenoma (carcinoid tumor). Bronchial carcinoids are low-grade malignant neoplasms that arise from neuroendocrine cells, typically in central bronchi. They are highly vascular, explaining the recurrent hemoptysis. Other presentations include cough, wheeze, recurrent pneumonia (due to bronchial obstruction), and carcinoid syndrome (flushing, diarrhea, bronchoconstriction - especially with liver metastases). Central carcinoids may appear as a hilar or perihilar mass on CXR. The classic teaching is that carcinoid = recurrent hemoptysis in a young non-smoker."
+  },
+  {
+    "question": "Nocturnal cough is classically found in all except:",
+    "options": [
+      "Post-nasal drip",
+      "Tropical eosinophilia",
+      "Left ventricular failure",
+      "Recurrent laryngeal nerve palsy",
+      "GERD"
+    ],
+    "correct": 3,
+    "explanation": "Recurrent laryngeal nerve palsy does NOT classically cause nocturnal cough. It causes hoarseness, a bovine cough (non-explosive, breathy), and risk of aspiration due to vocal cord paralysis, but not classically nocturnal. Classic causes of nocturnal cough include: post-nasal drip (mucus pools at the back of the throat when lying down), left ventricular failure (lying flat increases pulmonary venous pressure - orthopnea/paroxysmal nocturnal dyspnea with cough), GERD (acid reflux aggravated by recumbency), tropical eosinophilia, and asthma. ACE inhibitor cough also occurs at any time including at night."
+  },
+  {
+    "question": "Hemorrhagic pleural effusion is not characteristic of:",
+    "options": [
+      "Systemic lupus erythematosus",
+      "Acute pulmonary thromboembolism",
+      "Tuberculous effusion",
+      "Acute pancreatitis",
+      "Metastatic cancer"
+    ],
+    "correct": 0,
+    "explanation": "Systemic Lupus Erythematosus (SLE) is NOT characteristically associated with hemorrhagic pleural effusion. SLE typically causes serous exudative pleural effusions (pleuritis). Hemorrhagic pleural effusions are characteristically seen in: malignancy (metastatic cancer - most common cause), pulmonary embolism with infarction, trauma, tuberculosis (less commonly), and acute pancreatitis. The hemorrhagic nature of an effusion should always raise suspicion for malignancy. SLE causes immune-complex mediated pleuritis resulting in serous or serosanguineous (occasionally) exudate, but frank hemorrhagic effusion is not its hallmark."
+  },
+  {
+    "question": "In allergic asthma, the most important mediators for pathogenesis is:",
+    "options": [
+      "Thromboxane A2",
+      "Leukotrienes",
+      "Prostaglandins",
+      "Bradykinin",
+      "Neuropeptides"
+    ],
+    "correct": 1,
+    "explanation": "Leukotrienes (specifically LTC4, LTD4, LTE4 - slow-reacting substances of anaphylaxis) are the most important mediators in the pathogenesis of allergic asthma. They are produced by mast cells, eosinophils, and basophils and cause potent bronchoconstriction, increased mucus secretion, airway edema, and recruitment of inflammatory cells. Leukotriene receptor antagonists (e.g., montelukast) are used as add-on therapy in asthma. While histamine, prostaglandins, and thromboxane A2 also play roles, leukotrienes are 1000 times more potent than histamine in causing bronchoconstriction and are the primary mediators."
+  },
+  {
+    "question": "Which of the anti-tuberculosis drugs should be totally avoided in pregnancy?",
+    "options": [
+      "INH",
+      "Pyrazinamide",
+      "Rifampicin",
+      "Streptomycin",
+      "Ethambutol"
+    ],
+    "correct": 3,
+    "explanation": "Streptomycin (an aminoglycoside) should be totally avoided in pregnancy. Streptomycin crosses the placenta and causes ototoxicity (cochlear and vestibular damage) and nephrotoxicity in the fetus, potentially causing congenital deafness. INH and rifampicin are considered safe in pregnancy (with pyridoxine supplementation for INH). Ethambutol is generally safe. Pyrazinamide's safety in pregnancy is uncertain but may be used when benefits outweigh risks. The standard anti-TB regimen in pregnancy substitutes streptomycin with pyrazinamide: INH + Rifampicin + Ethambutol (+ Pyrazinamide with caution)."
+  },
+  {
+    "question": "Which is correct in type II respiratory failure?",
+    "options": [
+      "Decreased PO2 and decreased PCO2",
+      "Decreased PO2 and normal PCO2",
+      "Normal PO2 and elevated PCO2",
+      "Decreased PO2 and elevated PCO2",
+      "Normal PO2 and normal PCO2"
+    ],
+    "correct": 3,
+    "explanation": "Type II respiratory failure is characterized by decreased PO2 (hypoxemia) AND elevated PCO2 (hypercapnia). This is also called ventilatory failure because the primary problem is inadequate alveolar ventilation (hypoventilation). Type I respiratory failure shows only hypoxemia with normal or low CO2 (failure of oxygenation alone, e.g., from V/Q mismatch). Type II causes include COPD, neuromuscular disease (MND, Guillain-Barré), chest wall deformities (kyphoscoliosis), obesity hypoventilation, and central respiratory depression (opiates). Both types require oxygen therapy, but Type II also requires ventilatory support."
+  },
+  {
+    "question": "The commonest cause of acute cor pulmonale is:",
+    "options": [
+      "Lobar consolidation",
+      "Pneumothorax",
+      "Pulmonary thromboembolism",
+      "Fibrosing alveolitis",
+      "COPD"
+    ],
+    "correct": 2,
+    "explanation": "Pulmonary thromboembolism (massive PE) is the commonest cause of ACUTE cor pulmonale. Massive PE causes sudden, severe elevation of pulmonary vascular resistance, leading to acute right ventricular dilation and failure. Clinically this presents with hypotension, elevated JVP, and right heart strain on ECG (S1Q3T3). Note: COPD is the commonest cause of CHRONIC cor pulmonale. Fibrosing alveolitis causes subacute/chronic cor pulmonale. Lobar consolidation and pneumothorax can temporarily increase pulmonary pressure but are not classically 'cor pulmonale.' The key distinction is acute vs. chronic cor pulmonale."
+  },
+  {
+    "question": "Characteristic feature of pulmonary hypertension does not include:",
+    "options": [
+      "Prominent a-wave in jugular venous pressure",
+      "Left parasternal heave",
+      "Diastolic shock",
+      "Wide splitting of S2 with loud P2",
+      "Dominant R wave in leads V1 to V3"
+    ],
+    "correct": 3,
+    "explanation": "Wide splitting of S2 with loud P2 is NOT a characteristic feature of pulmonary hypertension. In pulmonary hypertension, there is a LOUD P2 (due to forceful pulmonary valve closure from elevated pressure) but NARROW splitting or no splitting (since the elevated pressure causes rapid pulmonary valve closure). Wide splitting of S2 is characteristic of right bundle branch block or pulmonary stenosis. Features of pulmonary HTN include: loud P2, right ventricular heave, prominent a-wave in JVP (reduced RV compliance), dominant R wave in V1-V3 (RVH), and a palpable P2 (diastolic shock)."
+  },
+  {
+    "question": "Hemoptysis following acute pleuritic chest pain and dyspnea is characteristic of:",
+    "options": [
+      "Bronchogenic carcinoma",
+      "Pulmonary thromboembolism",
+      "Pulmonary tuberculosis",
+      "Arteriovenous malformations",
+      "Dressler's syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary thromboembolism is the classical cause of hemoptysis following acute pleuritic chest pain and dyspnea. The sequence is: PE causes pulmonary infarction → infarction causes pleuritic pain and dyspnea → subsequent hemorrhagic infarction causes hemoptysis. This triad (sudden dyspnea + pleuritic chest pain + hemoptysis) is the classic presentation of PE with pulmonary infarction. Bronchogenic carcinoma causes hemoptysis without the acute pleuritic onset. TB causes gradual hemoptysis with constitutional symptoms. Dressler's syndrome is post-MI pericarditis causing pleuritic pain but not hemoptysis."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

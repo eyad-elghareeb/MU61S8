@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>57th end round 1</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobag12vo9uuv",
+  "title": "57th end round 1",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "One of the following can cause unilateral dilated fixed pupil:",
+    "options": [
+      "Organophosphate",
+      "Anticholinergics",
+      "Narcotics",
+      "Mid brain dysfunction",
+      "Tentorial herniation"
+    ],
+    "correct": 4,
+    "explanation": "Transtentorial (uncal) herniation compresses ipsilateral CN III (parasympathetic fibres on the outer surface) → dilated fixed pupil IPSILATERAL to the lesion. Bilateral dilated = pontine/anoxic injury. Organophosphates → bilateral miosis (cholinergic). Anticholinergics → bilateral mydriasis. Narcotics → bilateral miosis."
+  },
+  {
+    "question": "Ahmed is a 7-year-old boy with recent history of migratory pol arthritis , newly heard apical pansystolic murmur, arthralgia, positive acute phase reactants and ASOT of 500 units. Regarding diagnosis of rheumatic fever the boy is considered have:",
+    "options": [
+      "Two major manifestations and two minor manifestations",
+      "Two major manifestations and one minor manifestations",
+      "One major manifestation and two minor manifestations",
+      "Two major manifestations only",
+      "Three major manifestations only"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Two major manifestations and one minor manifestations. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following can cause distributive shock:",
+    "options": [
+      "Early sepsis",
+      "Tension pneumothorax",
+      "Cardiac tamponade",
+      "Aortic stenosis",
+      "Dehydration"
+    ],
+    "correct": 0,
+    "explanation": "Distributive shock = massive vasodilation/maldistribution. Early SEPSIS (cytokine-mediated vasodilation) is the classic example. Also: anaphylaxis, neurogenic shock. Tension pneumothorax and cardiac tamponade = OBSTRUCTIVE. Dehydration = hypovolemic. Aortic stenosis = cardiogenic/obstructive. Neurogenic shock = distributive but presents with bradycardia."
+  },
+  {
+    "question": "A 5-year-old boy with a history of bronchial asthma and was rushed to the emergency department with increasing shortness of breath, pyrexia and a productive cough. He has difficulty communicating because of his inability to complete a sentence. Upon examination he has crackles and wheezes can be heard in the lower lobes; he has tachycardia and a bounding pulse . Measurements of arterial blood gases shows PH 7.3, PaCO2 68 mm Hg, HCO3 28 mmol/L, and PaO2 60mm Hg. How would you interpret this:",
+    "options": [
+      "Respiratory acidosis, uncompensated",
+      "Respiratory acidosis, partially compensated",
+      "Metabolic acidosis, partially uncompensated",
+      "Metabolic alkalosis, uncompensated"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Respiratory acidosis, uncompensated. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The risk of developing infective endocarditis is the least in a patient with:",
+    "options": [
+      "Severe aortic regurgitation",
+      "Small ventricular septal defect",
+      "Severe mitral regurgitation",
+      "Large atrial septal defect"
+    ],
+    "correct": 3,
+    "explanation": "Large ASD carries the lowest IE risk: low-velocity, non-turbulent flow across the defect — no endothelial injury. AHA guidelines do NOT recommend IE prophylaxis for ASD. Small VSD (high-velocity jet — Venturi effect) has a higher IE risk than large ASD. Aortic/mitral regurgitation and stenotic valves carry the highest risk."
+  },
+  {
+    "question": "One of the well-known medications that can cause dilated cardiomyopathy:",
+    "options": [
+      "IVIG",
+      "Doxorubicin",
+      "Cyclosporine",
+      "Methotrexate",
+      "Cyclophosphamide"
+    ],
+    "correct": 1,
+    "explanation": "Doxorubicin (anthracycline) causes cumulative dose-dependent cardiotoxicity through free radical damage to cardiomyocyte mitochondria → dilated cardiomyopathy. Risk increases sharply above 300–400 mg/m² cumulative dose. Regular echocardiographic monitoring is mandatory during chemotherapy."
+  },
+  {
+    "question": "Regarding tetralogy of Fallot, one of the following is TRUE:",
+    "options": [
+      "The typical murmur heard on auscultation is pansystolic in timing",
+      "It is the most common cyanotic heart disease in children",
+      "Brain abscess is a well-known neurological complication in infancy",
+      "The cardiac silhouette is typically large with no specific contour"
+    ],
+    "correct": 1,
+    "explanation": "TOF: VSD + pulmonary stenosis + overriding aorta + RVH. Key points: (1) Hypoxic (tet) spells are a major complication from dynamic infundibular spasm — managed with knee-chest position, morphine, IV propranolol. (2) Murmur is EJECTION SYSTOLIC (NOT pansystolic — from RVOTO, not the VSD). (3) Boot-shaped heart on CXR. (4) Brain abscess complication in older children (paradoxical emboli through VSD). (5) ECG: RVH + right axis."
+  },
+  {
+    "question": "A pathological murmur is suspected in the presence of one of the following auscultatory finding:",
+    "options": [
+      "Splitting of the second heart sound at pulmonary area",
+      "Ejection systolic in timing",
+      "Systolic murmur best heard in supine position",
+      "Presence of click",
+      "Continuous murmur best heard in sitting position."
+    ],
+    "correct": 3,
+    "explanation": "A SYSTOLIC CLICK is always pathological: ejection click (aortic/pulmonary valve stenosis, dilated great vessel) or mid-systolic click (MVP). Innocent murmurs: soft (<3/6), short systolic, no click, no thrill, vary with position (louder lying). A continuous murmur loudest in SITTING suggests venous hum (innocent); PDA is louder lying."
+  },
+  {
+    "question": "The correct site of the paddles of the defibrillator is:",
+    "options": [
+      "At the apex and lower end of sternum",
+      "At the apex and the right infraclavicular area",
+      "At the apex and the left parasternal area",
+      "At the apex and the left infraclavicular area",
+      "At the apex and the right parasternal area"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: At the apex and the right infraclavicular area. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The dose of adrenaline IV for cardiac arrest is:",
+    "options": [
+      "100 milligram/kg",
+      "1000 microgram/kg",
+      "10 milligram/kg",
+      "100 microgram/kg",
+      "10 microgram/kg"
+    ],
+    "correct": 4,
+    "explanation": "Adrenaline for cardiac arrest: IV/IO 0.01 mg/kg = 10 mcg/kg. Use 1:10,000 concentration (0.1 mg/mL): give 0.1 mL/kg. Via ETT: 0.1 mg/kg (10× IV dose). Repeat every 3–5 minutes. Higher doses have shown NO benefit and may worsen neurological outcomes."
+  },
+  {
+    "question": "Cyanotic congenital heart disease in newborn with pulmonary oligemia and left ventricular hypertrophy is suggestive of:",
+    "options": [
+      "Truncus arteriosus",
+      "Tricuspid atresia.",
+      "Tetralogy of Fallot",
+      "Transposition of great arteries with large VSD",
+      "Total anomalous pulmonary venous return"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Tricuspid atresia.. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The main diagnostic sign of cardiac arrest is:",
+    "options": [
+      "Apnea",
+      "Shock",
+      "Absence of central pulse",
+      "Absence of peripheral pulse",
+      "Arrhythmia"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Absence of central pulse. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In arrested child with ventricular fibrillation, the first maneuver to do immediately is:",
+    "options": [
+      "Giving DC shock",
+      "Giving anti arrhythmic drugs",
+      "Giving Epinephrine",
+      "Giving atropine"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Giving DC shock. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Sixteen years old boy which came to the emergency department not breathing the size of endotracheal tube needed is:",
+    "options": [
+      "Size 6",
+      "Size 8",
+      "Size 7.5",
+      "Size 6.5",
+      "Size 15.The best method for airway opening in arrested child is:",
+      "Oropharyngeal airway",
+      "Endotracheal tube",
+      "Head tilt and jaw thrust",
+      "Ryle tube",
+      "Nasopharyngeal airway"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Size 8. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In pediatric basic life support the rescuer resuscitates the collapsed child:",
+    "options": [
+      "Oxygen should be given early",
+      "He should be a medical person",
+      "At the hospital",
+      "Begin with DC shock",
+      "Activate basic life support chain"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Activate basic life support chain. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is a major Modified Duke infective Endocarditis criterion:",
+    "options": [
+      "Blood cultures positive for staph aureus",
+      "Osler's nodes or Roth spots",
+      "Septic emboli",
+      "Fever < 38°C"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Blood cultures positive for staph aureus. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is contraindicated in the treatment of infective endocarditis:",
+    "options": [
+      "Intravenous antibiotics empiric therapy till culture results",
+      "Long term antibiotics based on culture results (4 weeks or longer)",
+      "Surgical removal of vegetation",
+      "Immunosuppressive dose of corticosteroids tapered over 4-6 week"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Immunosuppressive dose of corticosteroids tapered over 4-6 week. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Heimlich maneuver is used for which of the following purposes:",
+    "options": [
+      "Opening airway in presence of possible cervical spine injury",
+      "Restoring spontaneous circulation in children with cardiac arrest",
+      "Chest compression in a large child to ensure adequate compression",
+      "Expelling a foreign body in the airway in the conscious child"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Expelling a foreign body in the airway in the conscious child. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding a large patent arterial duct (PDA), one of the following statements IS TRUE:",
+    "options": [
+      "The typical murmur heard on auscultation is pansystolic in timing",
+      "The murmur of venous hum has some features as the murmur of PDA regarding its timing and duration",
+      "A normal pulmonary vascularity in plain CXR is expected",
+      "The apical impulse s suggestive of right ventricular dilatation"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: The murmur of venous hum has some features as the murmur of PDA regarding its timing and duration. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following best defines anion gap:",
+    "options": [
+      "It is the measure of how much chloride is depleted in metabolic alkalosis",
+      "It is the difference between unmeasured cations and unmeasured anions",
+      "It is the measure of how low bicarbonate is in metabolic acidosis",
+      "It is the measure of sodium not bound to chloride or bicarbonate"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: It is the difference between unmeasured cations and unmeasured anions. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Features suggestive of minor manifestation of acute rheumatic fever include:",
+    "options": [
+      "Serological evidence of recent streptococcal infection",
+      "Non-pruritic erythematous rash over the trunk with fading center and well margin",
+      "Joint pain without any objective finding",
+      "Involuntary purposeless, jerky dysthymic movement of hands and arms"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Joint pain without any objective finding. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is one of the five principles clinical features of Kawasaki disease:",
+    "options": [
+      "Aortic root enlargement",
+      "Bilateral cervical lymphadenopathy (>2 cm in diameter)",
+      "Diarrhea, vomiting, or abdominal pain",
+      "Bilateral bulbar conjunctival injection without exudate"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Bilateral bulbar conjunctival injection without exudate. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In pediatric basic life support chest compression should be done with:",
+    "options": [
+      "Extended shoulder",
+      "Abducted shoulder",
+      "Flexed wrist",
+      "Flexed elbow",
+      "Extended elbow"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Extended elbow. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The earliest sign of congestive heart failure on chest X-ray is:",
+    "options": [
+      "Kerley B lines",
+      "Pulmonary edema",
+      "Pulmonary vascular congestion",
+      "Pleural effusion",
+      "Increase heart size"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Increase heart size. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most common congenital acyanotic heart disease is:",
+    "options": [
+      "Coarctation of the aorta",
+      "Atrial septal defect (secundum)",
+      "Patent ductus arteriosus",
+      "Pulmonary valve stenosis",
+      "Ventricular septal defect"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Ventricular septal defect. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The nasal cannula gives oxygen concentration:",
+    "options": [
+      "60%",
+      "40%",
+      "50%",
+      "100%",
+      "70%"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: 40%. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding large ventricular septal defect (VSD), one of the following is true:",
+    "options": [
+      "Unrepaired large VSD is almost associated with normal growth pattern in infancy",
+      "The typical murmur heard in auscultation is continuous in timing",
+      "A normal pulmonary vascularity in plain CXR Is expected",
+      "The apical impulse is suggestive of right ventricular dilation",
+      "The murmur of mitral regurgitation has same features of the murmur of VSD in timing"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: The murmur of mitral regurgitation has same features of the murmur of VSD in timing. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is characteristic of the uncompensated stage of shock:",
+    "options": [
+      "Inadequate perfusion of vital organs",
+      "Blood flow is normal or increased and may be redistributed",
+      "Vital organs function is maintained",
+      "Microvascular perfusion becomes marginal",
+      "Blood pressure remains normal"
+    ],
+    "correct": 3,
+    "explanation": "Shock stages: (1) COMPENSATED: normal BP, tachycardia, maintained vital functions. (2) UNCOMPENSATED (progressive): BP falls, microvascular perfusion fails, lactic acidosis. (3) IRREVERSIBLE: multi-organ failure. 'Microvascular perfusion becomes marginal' = UNCOMPENSATED stage."
+  },
+  {
+    "question": "The drug is contraindicated in children with hypertrophic cardiomyopathy is:",
+    "options": [
+      "Antibiotics",
+      "Diuretics",
+      "Digitalis",
+      "Immunosuppressives"
+    ],
+    "correct": 2,
+    "explanation": "In HCM: DIGITALIS is CONTRAINDICATED — positive inotrope → increases contractility → worsens dynamic LVOT obstruction → reduces CO. Also contraindicated: vasodilators (reduce preload → worsen obstruction), diuretics (used cautiously). TREATMENT: β-blockers, verapamil, disopyramide. Surgical septal myectomy or alcohol ablation for refractory cases."
+  },
+  {
+    "question": "Best method of oxygen delivery is suitable to arrested children:",
+    "options": [
+      "Venturi mask",
+      "Face mask",
+      "Ambu bag",
+      "Nasal cannula",
+      "Head box"
+    ],
+    "correct": 2,
+    "explanation": "Self-inflating bag (BVM): device of choice during resuscitation — delivers >90% FiO2 with a reservoir, provides controlled IPPV regardless of patient effort. Venturi masks, nasal cannulae, and head boxes require a spontaneously breathing patient."
+  },
+  {
+    "question": "PH 7.14, PaCO2 80 mm Hg, HCO3 24 mmol/L, and PaO2 60mm Hg. How would you interpret this:",
+    "options": [
+      "Respiratory acidosis, uncompensated",
+      "Respiratory acidosis, partially compensated",
+      "Metabolic acidosis, partially uncompensated",
+      "Metabolic alkalosis, uncompensated"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Respiratory acidosis, uncompensated. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Characteristics of hypertonic dehydration include:",
+    "options": [
+      "Skin turgor is less affected relative to the severity of dehydration",
+      "Serum sodium concentration is less than 135 mmol/L",
+      "Central nervous system complications are relatively infrequent",
+      "Early onset of shock"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Skin turgor is less affected relative to the severity of dehydration. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is considered a feature suggesting functional abdominal pain in children and adolescents:",
+    "options": [
+      "Dysphagia",
+      "Deceleration of linear growth",
+      "Nocturnal diarrhea",
+      "Recurrent periumbilical pain"
+    ],
+    "correct": 3,
+    "explanation": "Functional abdominal pain (Rome IV): PERIUMBILICAL, recurrent, no organic red flags, does NOT wake child from sleep. Red flags for organic pain: epigastric (PUD), nocturnal, RLQ (Crohn's/appendicitis), weight loss, FTT, bloody stool, dysphagia."
+  },
+  {
+    "question": "The most common cause of neonatal cholestasis is:",
+    "options": [
+      "Idiopathic neonatal hepatitis",
+      "ABO incompatibility",
+      "Progressive familial intrahepatic cholestasis",
+      "Biliary atresia",
+      "Alagille syndrome"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Biliary atresia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the percentage of HBsAg positive infants who will develop chronic hepatitis or chronic carrier state?",
+    "options": [
+      "10%",
+      "30%",
+      "90%",
+      "70%",
+      "50%"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 90%. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The minimum required duration for diagnosis of chronic hepatitis in a child of persistent elevation of transaminases is:",
+    "options": [
+      "9 months",
+      "2 months",
+      "4 months",
+      "6 months",
+      "8 months"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: 6 months. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following IS TRUE regarding Wilson's disease?",
+    "options": [
+      "Serum ceruloplasmin is high",
+      "Autosomal dominant disorder",
+      "Bushfield spots",
+      "Hepatic dysfunction is usually mild",
+      "Urinary copper is high"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Urinary copper is high. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is an important diagnostic study for neonatal cholestasis?",
+    "options": [
+      "Chest X ray",
+      "CT abdomen",
+      "Echocardiography",
+      "Hepatobiliary scintigraphy",
+      "MRI abdomen"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Hepatobiliary scintigraphy. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is an index of poor outcome in fulminant hepatitis?",
+    "options": [
+      "Decrease blood ammonia",
+      "Increased prothrombin time unresponsive to vitamin k administration",
+      "Hepatomegaly",
+      "Factor VII level < 80% of normal",
+      "Female sex"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Increased prothrombin time unresponsive to vitamin k administration. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is TRUE regarding hepatitis A virus?",
+    "options": [
+      "Several serotypes have been recognized",
+      "Common source of outbreak is food and water contamination",
+      "Maternal-neonatal transmission is possible",
+      "Mainly occur via hematogenous mode of transmission",
+      "It is a DNA virus"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Common source of outbreak is food and water contamination. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is a cause of tender hepatomegaly?",
+    "options": [
+      "Right-sided heart failure",
+      "Neiman-Pick's disease",
+      "Biliary atresia",
+      "Gaucher's disease"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Right-sided heart failure. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The maintenance fluid requirement for a 25 kg child /day is:",
+    "options": [
+      "2000 ml",
+      "1000 ml",
+      "2500 ml",
+      "1600 ml",
+      "500 ml"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: 1600 ml. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

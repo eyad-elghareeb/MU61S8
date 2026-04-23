@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>57th Final</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobamrx2swdq0",
+  "title": "57th Final",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is true regarding acute epiglottitis?",
+    "options": [
+      "Fulminating course of high fever and drooling of saliva",
+      "Absence of toxic manifestations",
+      "The most common cause is para-influenza",
+      "Good response to nebulized adrenaline",
+      "No need for antibiotic therapy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Fulminating course of high fever and drooling of saliva. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Steeple sign is characteristic for:",
+    "options": [
+      "Acute epiglottitis",
+      "Viral croup",
+      "Streptococcal pharyngitis",
+      "Acute bronchitis",
+      "Acute bronchiolitis virus"
+    ],
+    "correct": 1,
+    "explanation": "Steeple sign is characteristic of VIRAL CROUP (parainfluenza). AP neck/chest X-ray: symmetric subglottic narrowing, pointed appearance. Para-influenza type 1 is responsible for 75% of croup cases. Thumb sign = epiglottitis. Irregular tracheal mucosa = bacterial tracheitis."
+  },
+  {
+    "question": "The most common organism causing bacterial tracheitis is:",
+    "options": [
+      "Streptococcus pneumoniae",
+      "Group A Streptococcus",
+      "Mycoplasma",
+      "Staphylococcus aureus",
+      "Hemophilus influenzae type B"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Staphylococcus aureus. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most common causative organism of afebrile pneumonia of infancy is:",
+    "options": [
+      "Staphylococcus",
+      "Hemophilus influenza",
+      "Streptococcus pneumonia",
+      "Chlamydia trachomatis",
+      "Mycoplasma pneumonia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Chlamydia trachomatis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Hyperinflation with bilateral interstitial infiltrates and peri-bronchial cuffing are radiographic manifestations of:",
+    "options": [
+      "Viral pneumonia",
+      "Typical bacterial pneumonia",
+      "Parasitic pneumonia",
+      "Fungal pneumonia",
+      "Tuberculous pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "Bilateral hyperinflation + interstitial infiltrates + peribronchial cuffing (shaggy perihilar markings) = classic CXR of VIRAL PNEUMONIA (RSV, adenovirus, influenza). Typical bacterial: unilateral lobar/segmental consolidation. Mycoplasma: unilateral lower lobe infiltrates. TB: upper lobe + hilar adenopathy."
+  },
+  {
+    "question": "The most common airway foreign bodies:",
+    "options": [
+      "Small plastic toys",
+      "Metallic foreign bodies",
+      "Hot dogs",
+      "Beads",
+      "Vegetable matter"
+    ],
+    "correct": 4,
+    "explanation": "Vegetable matter (peanuts, nuts, seeds, corn) = ~75% of aspirated FBs. Organic material swells in contact with mucosa, is radiolucent, and causes intense chemical tracheobronchitis. Hard round objects (coins, beads) are next most common. Right main bronchus is more commonly affected. Suspected FB → urgent rigid bronchoscopy."
+  },
+  {
+    "question": "Tachypnea in an 8 months old infant is:",
+    "options": [
+      "60 breath/minute",
+      "50 breath/minute",
+      "40 breath/minute",
+      "30 breath/minute",
+      "20 breath/minute"
+    ],
+    "correct": 1,
+    "explanation": "WHO tachypnoea thresholds: <2 months: ≥60/min; 2–12 months: ≥50/min; 1–5 years: ≥40/min; >5 years: ≥30/min. At 8 months (2–12 month group): tachypnoea ≥50/min. Tachypnoea is the MOST SENSITIVE clinical sign of pneumonia in children."
+  },
+  {
+    "question": "The most common cause of pleural effusion in children is:",
+    "options": [
+      "Malignancy",
+      "Congestive heart failure",
+      "Infection",
+      "Hypoalbuminemia",
+      "Collagen diseases"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Infection. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Clinical examination of a child with large unilateral pneumothorax can show:",
+    "options": [
+      "Decreased breath sound intensity",
+      "Increased tactile vocal fremitus",
+      "Crepitations",
+      "Bronchial breathing",
+      "Unilateral wheezing"
+    ],
+    "correct": 0,
+    "explanation": "Pneumothorax signs on affected side: DECREASED/absent breath sounds, HYPERRESONANCE (not dullness), reduced chest expansion, absent tactile fremitus, tracheal deviation AWAY (tension). Stony dullness = effusion. Crepitations = consolidation. Bronchial breathing = consolidation."
+  },
+  {
+    "question": "Which of the following is the most accepted diagnostic criteria of asthma?",
+    "options": [
+      "Cough or wheeze in a child who has tested positive for allergens on skin prick testing",
+      "Cough or wheeze in a child with a strong family history of asthma",
+      "Recurrent cough or wheeze that responds to bronchodilator therapy",
+      "Persistent cough or wheeze in a child exposed to passive smoking in the home",
+      "Onset of wheezes after 3 years of age"
+    ],
+    "correct": 2,
+    "explanation": "Recurrent cough/wheeze that RESPONDS TO BRONCHODILATOR THERAPY (reversibility ≥12% improvement in FEV1 or PEF) is the most accepted diagnostic criterion for asthma. This reversible airflow obstruction distinguishes asthma from other chronic lung diseases."
+  },
+  {
+    "question": "Peak incidence of acute bronchiolitis is:",
+    "options": [
+      "9-12 months",
+      "6-12 months",
+      "2-6 months",
+      "12-24 months",
+      "24-36 months"
+    ],
+    "correct": 2,
+    "explanation": "Acute bronchiolitis (RSV 70–80%): peak incidence 2–6 months of age. Risk factors for severe disease: age <6–12 weeks (most important), prematurity, chronic lung disease, haemodynamically significant CHD, immunodeficiency, trisomy 21."
+  },
+  {
+    "question": "The most common viral cause of encephalitis is:",
+    "options": [
+      "Herpes simples",
+      "Enteroviruses",
+      "Varicella Zoster",
+      "Mumps",
+      "Measles"
+    ],
+    "correct": 1,
+    "explanation": "Enteroviruses (coxsackievirus, echovirus, EV71) = most COMMON cause of viral CNS infections worldwide (aseptic meningitis + encephalitis). HSV = most SEVERE, highest mortality if untreated, most common cause of SPORADIC fatal encephalitis. All suspected viral encephalitis should receive empirical IV aciclovir."
+  },
+  {
+    "question": "A 5-year-old girl was brought to the emergency department when she developed altered mental status. Kernig and Brudzinski signs were present. CSF examination showed: WBCs 1500 /ul (80% neutrophils), Sugar 20 mg/dl, Protein 400 mg/dl, Positive Gram stain. You would interpret CSF described above as:",
+    "options": [
+      "Normal",
+      "Bacterial Meningitis",
+      "Viral encephalitis",
+      "TB Meningitis",
+      "Autoimmune Encephalitis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Bacterial Meningitis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Acyclovir is indicated for treatment of:",
+    "options": [
+      "Herpes simplex",
+      "Enteroviruses",
+      "Mumps",
+      "Measles",
+      "Rubella"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Herpes simplex. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "False positive tuberculin test may be present in:",
+    "options": [
+      "Disseminated infection",
+      "Live viral vaccine",
+      "Infection with atypical mycobacteria",
+      "Active infection",
+      "Immunodeficiency"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Infection with atypical mycobacteria. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of these antituberculosis agents can cause optic neuritis?",
+    "options": [
+      "Isoniazid",
+      "Rifampin",
+      "Pyrazinamide",
+      "Ethambutol",
+      "Streptomycin"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Ethambutol. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The commonest affected part of GIT by tuberculosis is:",
+    "options": [
+      "Terminal part of small intestine",
+      "Terminal part of esophagus",
+      "Terminal part of large intestine",
+      "Pylorus",
+      "Antrum of stomach"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Terminal part of small intestine. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following clinical signs is pathognomonic of rubella?",
+    "options": [
+      "Severe prodromal stage",
+      "Circumoral pallor",
+      "Maculopapular rash",
+      "Post auricular lymphadenopathy",
+      "Koplik spots"
+    ],
+    "correct": 3,
+    "explanation": "Rubella (German measles — rubivirus): PATHOGNOMONIC sign = POSTAURICULAR + occipital + posterior cervical lymphadenopathy appearing 1–5 days BEFORE the rash. Rash: faint pinkish-red maculopapular, starts on face, spreads downward, lasts only 3 days. Koplik spots = MEASLES (not rubella). Circumoral pallor = scarlet fever."
+  },
+  {
+    "question": "The exact time of appearance of skin elevated temperature roseola infantum infection is which of the following :",
+    "options": [
+      "1st day of fever",
+      "3rd day of fever",
+      "4th day of fever",
+      "5th day of fever",
+      "Once the fever drops"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Once the fever drops. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following signs is pathognomonic of chicken pox?",
+    "options": [
+      "Circumoral pallor",
+      "Pleomorphic rash",
+      "Strawberry tongue",
+      "Lymphadenopathy",
+      "White coated tongue"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Pleomorphic rash. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following signs is characteristic of poliomyelitis paralysis?",
+    "options": [
+      "Symmetrical paralysis",
+      "Complete recovery",
+      "Associated with sensory loss",
+      "Purely motor",
+      "Extensor planter reflex"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Purely motor. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most common complication of mumps infection is:",
+    "options": [
+      "Arthritis",
+      "Nephritis",
+      "Meningoencephalitis",
+      "Thyroiditis",
+      "Myocarditis"
+    ],
+    "correct": 2,
+    "explanation": "Mumps (paramyxovirus) complications: (1) MENINGOENCEPHALITIS — most common (~10%, even without parotitis), self-limiting. (2) Orchitis — common in postpubertal males (~30%), can cause infertility if bilateral. (3) Oophoritis, pancreatitis, sensorineural hearing loss. Meningoencephalitis CSF: lymphocytic pleocytosis, mildly elevated protein, normal glucose."
+  },
+  {
+    "question": "Incubation period of measles is:",
+    "options": [
+      "2-4 days",
+      "5 days",
+      "1-2 weeks",
+      "3-4 weeks",
+      "5-6 weeks"
+    ],
+    "correct": 2,
+    "explanation": "Measles IP: 10–14 days (approximately 1–2 weeks). Prodrome (3Cs: Cough, Coryza, Conjunctivitis + fever) for 2–4 days. Koplik spots appear day 1–2 of prodrome. Rash appears 2–4 days after prodrome onset (~day 14 total from exposure). Infectious from 4 days before to 4 days after rash."
+  },
+  {
+    "question": "In pediatric basic life support chest compression should be done with:",
+    "options": [
+      "Extended shoulder",
+      "Abducted shoulder",
+      "Flexed wrist",
+      "Flexed elbow",
+      "Extended elbow"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Extended elbow. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Cystic fibrosis typically causes:",
+    "options": [
+      "Meconium aspiration syndrome occur in about 1 in 10 babies with cystic fibrosis",
+      "Steatorrhea, chronic chest symptoms, and failure to thrive",
+      "Hypernatremia in hot weather due to salt accumulation",
+      "Hypercholesterolemia due to fat absorption",
+      "Poor growth secondary to the need for High dose steroid therapy"
+    ],
+    "correct": 1,
+    "explanation": "CF (CFTR mutation): (1) Exocrine pancreatic insufficiency → STEATORRHOEA + fat-soluble vitamin deficiency + malnutrition. (2) Obstructive pulmonary disease (Pseudomonas). (3) SALT WASTING → HYPONATRAEMIA (not hypernatraemia) in hot weather due to excessive sweat chloride. Poor growth from malnutrition, not steroid therapy."
+  },
+  {
+    "question": "The following is considered one of the B symptoms in Hodgkin disease:",
+    "options": [
+      "Itching",
+      "Jaundice",
+      "Fever",
+      "Anemia",
+      "Ascites"
+    ],
+    "correct": 0,
+    "explanation": "Classic Ann Arbor B symptoms (Hodgkin): (1) Fever >38°C, (2) Drenching night sweats, (3) Weight loss >10% in 6 months. PRURITUS (itching) is a 'B-equivalent' symptom — clinically significant and commonly tested. Caused by histamine release from eosinophils/mast cells. Not officially a 'B symptom' in Ann Arbor but commonly listed alongside them."
+  },
+  {
+    "question": "One of the unfavorable prognostic factors in acute lymphoblastic leukemia is:",
+    "options": [
+      "Age< 10 years old",
+      "T-ALL by immunophenotyping",
+      "Initial WBCs < 50.000/mm3",
+      "CSF free from blast cells",
+      "Philadelphia chromosome positive ALL"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: CSF free from blast cells. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In FAB classification of acute lymphoblastic leukemia, which of the following IS TRUE:",
+    "options": [
+      "L1 is associated with CNS infiltration",
+      "L2 is associated with large size blasts",
+      "L2 is associated with CNS infiltration",
+      "L1 is associated with blast vacuoles",
+      "L3 is associated with CNS infiltration"
+    ],
+    "correct": 1,
+    "explanation": "FAB ALL: L1 = small uniform blasts (children, GOOD prognosis ~85%); L2 = LARGE heterogeneous blasts, irregular nuclei (adults, WORSE prognosis ~14%); L3 = large blasts with vacuoles (Burkitt, mature B-cell, WORST prognosis ~1%). CNS infiltration more common with L3/B-cell."
+  },
+  {
+    "question": "One of the following causes of anemia is associated with macrocytosis:",
+    "options": [
+      "Sickle cell anemia",
+      "Aplastic anemia",
+      "Congenital spherocytosis",
+      "Vit B12 deficiency",
+      "Beta Thalassemia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Vit B12 deficiency. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In iron deficiency anemia, the erythrocytic indices are typically:",
+    "options": [
+      "MCV increased, MCH decreased, and MCHC decreased",
+      "MCV decreased, MCH decreased, and MCHC decreased",
+      "MCV decreased, MCH increased, and MCHC decreased",
+      "MCV decreased, MCH decreased, and MCHC normal",
+      "MCV normal, MCH decreased, and MCHC normal"
+    ],
+    "correct": 1,
+    "explanation": "IDA: ALL THREE indices reduced. MCV <80 fL (microcytes), MCH <27 pg (less Hb/RBC), MCHC <32 g/dL (hypochromia). TIBC is INCREASED. Serum ferritin: DECREASED (earliest sensitive marker). Blood film: microcytic hypochromic RBCs, pencil cells, target cells."
+  },
+  {
+    "question": "Which of the following is a treatment option for aplastic anemia?",
+    "options": [
+      "IVIG",
+      "Bone marrow transplantation",
+      "Splenectomy",
+      "Immune suppression",
+      "Folic acid"
+    ],
+    "correct": 1,
+    "explanation": "Aplastic anaemia: HAEMATOPOIETIC SCT (HSCT) — curative, preferred in severe disease <40 years with matched sibling donor. Immunosuppression (ATG + cyclosporine) if no matched donor. IVIG and splenectomy do NOT treat aplastic anaemia (no autoimmune platelet destruction, no hypersplenism as primary mechanism)."
+  },
+  {
+    "question": "Which of the following is considered a feature of acute hemolytic anemia?",
+    "options": [
+      "Purpura and ecchymosis",
+      "Splenomegaly",
+      "Growth retardation",
+      "Mongloid facies",
+      "Increased reticulocyte count"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Growth retardation. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Iron chelating agents are used for treatment of:",
+    "options": [
+      "Leukemia",
+      "Lymphoma",
+      "Wilms tumor",
+      "Chronic hemolytic anemia",
+      "ITP"
+    ],
+    "correct": 3,
+    "explanation": "Iron chelating agents (deferoxamine SC/IV, deferasirox oral, deferiprone oral) treat secondary haemosiderosis from chronic transfusions — primarily thalassaemia major and sickle cell disease. Each RBC unit transfusion adds ~250 mg iron. Start chelation when ferritin >1,000 ng/mL."
+  },
+  {
+    "question": "Hemophilia A is characterized by:",
+    "options": [
+      "Prolonged bleeding time",
+      "Prolonged prothrombin time",
+      "Prolonged APPT",
+      "Prolonged thrombin time",
+      "Decreased platelet aggregation"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Prolonged APPT. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In ITP, platelet transfusion is indicated if platelet count is less than:",
+    "options": [
+      "10.000/mm3",
+      "30.000/mm3",
+      "40.000/mm3",
+      "50.000/mm3",
+      "60.000/mm3"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: 10.000/mm3. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A normal platelet count with prolonged bleeding time is seen in:",
+    "options": [
+      "Hemophilia A",
+      "Von Willebrand disease",
+      "Leukemia",
+      "Hypersplenism",
+      "Aplastic anemia"
+    ],
+    "correct": 1,
+    "explanation": "VWD (most common inherited bleeding disorder): VWF required for platelet adhesion → prolonged BLEEDING TIME (primary haemostasis impaired). VWF carries Factor VIII → reduced Factor VIII → prolonged APTT. Platelet COUNT: NORMAL. PT/thrombin time: normal. Distinguishes VWD from haemophilia (normal BT) and ITP (normal BT, low plt count)."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

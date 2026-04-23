@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Davidson's Chest</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mo6uq1ayoozma",
+  "title": "Davidson's Chest",
+  "description": "All chest questions from Davidson's",
+  "icon": "🫁"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A 46 year old woman has a recent diagnosis of adenocarcinoma of the lung made at bronchoscopy 1 week ago. She presents to the emergency department acutely short of breath with a non-productive cough. She has an ache in the centre of her chest that is made worse by breathing in. She is apyrexial. Oxygen saturations are 91% on 40% oxygen. Respiratory rate is 30 breaths/min. Blood pressure (BP) is 100/65 mmHg and pulse is 110 beats/min. Examination reveals decreased expansion of the right side with dullness to percussion throughout the right side. Her trachea is deviated to the right and the apex beat is not palpable. Breath sounds are reduced on the right. What is the most likely diagnosis?",
+    "options": [
+      "Collapse of the right lung",
+      "Pericardial effusion",
+      "Right-sided pleural effusion",
+      "Right-sided pneumonia",
+      "Right-sided pneumothorax"
+    ],
+    "correct": 0,
+    "explanation": "The examination findings point towards collapse of the right lung because the trachea is pulled to that side (the opposite would be the case with pleural effusion). The collapse must be significant because the apex beat is not palpable, suggesting the heart is pulled towards the right side by mediastinal shift. The patient's diagnosis was made at bronchoscopy, suggesting a central tumour. Pneumothorax is less likely than if the patient had a peripheral tumour that had been biopsied using computed tomography (CT) guidance. Pericardial effusion would not explain the respiratory examination findings. The presentation is too acute for pneumonia and the patient is apyrexial. An urgent chest X-ray (CXR) would be an important test and the patient may require urgent radiotherapy or interventional bronchoscopy to re-inflate the lung."
+  },
+  {
+    "question": "An 83 year old woman was passenger in a car that collided with a lamppost in the city centre. She was initially complaining of pain in her right hip and ribs but has become increasingly drowsy since the paramedics administered 2 mg of morphine. She is brought to the emergency department by ambulance. Urgent X-rays reveal a pelvic fracture, and a single right-sided rib fracture. Having, initially been drowsy but responsive she is now unresponsive. Oxygen saturations are 87% on 2 L/min oxygen via nasal cannulae. She is apyrexial. BP is 110/66 mmHg, pulse is 65 beats/min. There are no new findings on examination. An urgent CT brain reveals only small vessel disease. Arterial blood gas: H+ 60 nmol/L (pH 7.22), PaO2 8.7 kPa (65 mmHg), PaCO2 10 kPa (75 mmHg), HCO3- 26 mmol/L. What is the most likely cause of her deteriorating conscious level?",
+    "options": [
+      "Cholesterol embolism - ventilation/perfusion (V/Q) mismatch",
+      "Chronic obstructive pulmonary disease (COPD) with oxygen toxicity - loss of hypoxic drive",
+      "Flail segment due to rib fracture - loss of elastic recoil",
+      "Opiate toxicity - suppression of the respiratory centre",
+      "Undetected fracture of C3 - diaphragmatic failure"
+    ],
+    "correct": 4,
+    "explanation": "The patient has type II respiratory failure following a road traffic accident that caused multiple fractures. It seems very likely that she would have sustained a whiplash-type injury to the neck. C3, 4 and 5 innervate the diaphragm via the phrenic nerve and a fracture at this level can cause respiratory failure. The patient has type II respiratory failure with a normal alveolar-arterial gradient. Opiate toxicity is unlikely given the dose involved. A flail segment requires multiple rib fractures. A normal alveolar-arterial gradient is against V/Q mismatch and would be more likely to cause type I respiratory failure. There are no examination findings in keeping with COPD and the oxygen involved (although delivered in an uncontrolled fashion) is low flow."
+  },
+  {
+    "question": "A 55 year old man has smoked 30 cigarettes per day since he was 15 years old. He is a taxi driver. He finds he is increasingly breathless on exertion. Oxygen saturations are 98% on room air. Examination reveals tracheal tug, reduced cricosternal distance and a barrel chest. He has reduced cardiac dullness and symmetrically reduced air entry. CXR reveals hyperinflation and spirometry reveals moderate airways obstruction. The patient walks 300 m on an incremental walk test before becoming breathless; oxygen saturations are maintained. What pathological change best explains why he is breathless on exertion?",
+    "options": [
+      "Activation of central chemoreceptors",
+      "Exercise-induced bronchospasm",
+      "Loss of elastic recoil",
+      "Paradoxical diaphragm movement",
+      "Pulmonary hypertension"
+    ],
+    "correct": 2,
+    "explanation": "In COPD, loss of elastin fibres results in small airway collapse and air trapping during expiration. This dynamic hyperinflation is initially noticed on exertion because expiration time is shortened during exercise. Exercise-induced bronchospasm would be more likely in asthma. There are no examination findings that suggest sufficient pulmonary hypertension to cause breathlessness. There is no reason for the diaphragm to move paradoxically in this case. Central chemoreceptors are stimulated by a rise in CO2, which might be expected in more advanced disease."
+  },
+  {
+    "question": "A 45 year old man has returned home from a holiday in Spain with a dry cough, left-sided pleuritic chest pain and fever. He had started some amoxicillin he bought whilst in Spain. He has been sent to the medical assessment unit after a family physician visit at home where he was found to be quite muddled. He has a fever of 39.5°C and oxygen saturations of 85% on air. Respiratory rate is 26 breaths/min, BP 103/63 mmHg, pulse 112 beats/min. Examination reveals left-sided bronchial breathing with increased vocal resonance. What is his CURB-65 score?",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 2,
+    "explanation": "The CURB-65 score was originally developed to predict mortality in community-acquired pneumonia and is now widely used for the assessment of disease severity. The components are C = confusion, U = urea > 7 mmol/L (42 mg/dl), R = respiratory rate ≥ 30 breaths/min, B = blood pressure systolic < 90 mmHg or diastolic ≤ 60 mmHg, 65 = age ≥ 65 years. His CURB-65 score is 2. He scores points for confusion and urea."
+  },
+  {
+    "question": "A 45 year old man has returned home from a holiday in Spain with a dry cough, left-sided pleuritic chest pain and fever. He had started some amoxicillin he bought whilst in Spain. He has been sent to the medical assessment unit after a family physician visit at home where he was found to be quite muddled. He has a fever of 39.5°C and oxygen saturations of 85% on air. Respiratory rate is 26 breaths/min, BP 103/63 mmHg, pulse 112 beats/min. Examination reveals left-sided bronchial breathing with increased vocal resonance. Which of the following is the causative organism likely to be?",
+    "options": [
+      "Chlamydia pneumoniae",
+      "Haemophilus influenzae",
+      "Legionella pneumophila",
+      "Mycoplasma pneumoniae",
+      "Streptococcus pneumoniae"
+    ],
+    "correct": 2,
+    "explanation": "The patient has pneumonia with delirium, hyponatraemia, deranged liver function tests (LFTs) and high fever. He requires investigation for legionella and antibiotics to cover this organism. It may be that his LFT derangement relates to amoxicillin therapy but this antibiotic might have been expected to improve his symptoms if pneumonia was related to a more common pneumonia-causing organism (e.g. S. pneumoniae)."
+  },
+  {
+    "question": "An 82 year old man presents with increasing shortness of breath on exertion over the last 2 years. He has finger clubbing and bi-basal inspiratory crackles within the chest. His CT chest reveals bilateral, diffuse fibrotic change and basal honeycombing. The radiologist feels the appearance is in keeping with usual interstitial pneumonia. The patient is keen that everything be done to ensure the diagnosis is accurate. Which one of the following statements is true?",
+    "options": [
+      "A typical CT appearance is sufficient for diagnosis",
+      "Blind transbronchial needle aspiration would likely give the diagnosis because of diffuse nodal involvement",
+      "Bronchoscopy with cytopathological analysis of washings would help characterise the nature of his pulmonary fibrosis",
+      "Endobronchial ultrasound of his subcarinal node would exclude more diffuse disease",
+      "Transbronchial lung biopsy would give a tissue diagnosis because idiopathic pulmonary fibrosis is diffuse"
+    ],
+    "correct": 0,
+    "explanation": "A typical clinical presentation and CT appearance should allow an interstitial lung disease multidisciplinary meeting to reach a diagnosis of idiopathic pulmonary fibrosis (IPF) without a tissue sample. Bronchoscopy has no specific diagnostic features but may be useful in the setting of intercurrent infection or atypical CT scans/presentations. Transbronchial lung biopsy would be risky and likely to be non-diagnostic. There are no diagnostic lymph node features in IPF."
+  },
+  {
+    "question": "A 75 year old man with no past medical history presents with increasing shortness of breath over 6 months. He previously worked at a shipyard where he had significant exposure to asbestos. He has a large right-sided pleural effusion. Pleural aspiration is performed and reveals an exudate but cytopathological examination identifies no malignant cells. CT scanning reveals circumferential pleural thickening but no other abnormalities. Which test is most likely to give a diagnosis?",
+    "options": [
+      "Abrams needle biopsy",
+      "Bronchoscopy",
+      "Echocardiogram",
+      "Repeat pleural aspiration",
+      "Thoracoscopy"
+    ],
+    "correct": 4,
+    "explanation": "Direct visualisation and targeted biopsy of any pleural lesion provides the best chance of a tissue diagnosis. Mesothelioma cannot be diagnosed on cytopathological examination of pleural fluid. Bronchoscopy would not help with pleural disease but may be helpful if there were an endobronchial lesion with pleural metastases. Echocardiogram is not considered helpful because there is pleural thickening as well as a right-sided pleural effusion, so heart failure is an unlikely cause."
+  },
+  {
+    "question": "A 59 year old smoker presents with a new cough. CXR is abnormal and subsequent CT scanning identifies a 4-cm tumour peripherally in the left lower lobe and an enlarged hilar lymph node on the ipsilateral side. The tumour is surrounded by emphysematous change and the radiologist feels CT-guided biopsy would have a high risk of pneumothorax. PET scanning reveals high FDG avidity in the presumed tumour and indeterminate uptake in the hilar lymph node but no other significant uptake. The patient has a forced expiratory volume in 1 second (FEV1) of 1.5 L (predicted 3.2) and a forced vital capacity (FVC) of 3.0 L (predicted 3.4). What should be the next investigation?",
+    "options": [
+      "CT-guided biopsy",
+      "Endobronchial ultrasound-guided fine-needle aspiration (EBUS-FNA)",
+      "Flexible bronchoscopy",
+      "Repeat CT scanning",
+      "Thoracoscopy"
+    ],
+    "correct": 1,
+    "explanation": "The patient requires a diagnostic test to confirm lung cancer, determine histological type and complete staging. It seems likely he has T2a, N1, M0 disease. EBUS-FNA will meet all these requirements. Flexible bronchoscopy might give histological type but would not confirm disease in the hilar lymph node. CT-guided biopsy is perhaps more likely than flexible bronchoscopy to confirm histological type but would have an attendant risk of pneumothorax. Thoracoscopy has no role as there is no evidence of pleural disease. Repeat CT scanning would delay diagnosis in a scenario where curative treatment may be possible."
+  },
+  {
+    "question": "A 37 year old asthmatic woman presents with difficult asthma control despite maximal inhaled therapy and montelukast. Her asthma control consistently deteriorates in April and May. During this time the patient experiences streaming eyes and nasal secretions. The patient is an enthusiastic runner but finds it difficult to complete a run during these months. The patient has no exposure to animals or birds and works in an office. Serum allergy testing reveals the following results: Total IgE 1241 kU/L, Specific IgE to dog 24 kU/L, Specific IgE to cat 3.4 kU/L, Specific IgE to tree pollen 0.2 kU/L, Specific IgE to oilseed rape 34 kU/L, Specific IgE to grass pollen 25 kU/L. What is the likely explanation for the patient's presentation?",
+    "options": [
+      "The patient has exercise-induced asthma (IgE testing irrelevant)",
+      "The patient has lied about exposure to animals (specific IgE to cats and dogs elevated)",
+      "The patient is non-adherent with medication (total IgE remains high)",
+      "The patient is sensitised to montelukast (IgE results represent cross-reactivity)",
+      "The patient's asthma is triggered by seasonal pollens (specific IgE to oilseed rape and grass positive)"
+    ],
+    "correct": 4,
+    "explanation": "Seasonal deterioration in asthma control is a common presentation and it seems likely that the patient encounters these allergens when she is out running. It will be important in future to monitor the pollen counts and to avoid areas of high antigen density (e.g. near oilseed rape fields). The patient may be allergic to cats and dogs but it would not explain this presentation. It is possible to have positive specific IgEs but no clinical phenotype on antigen exposure. The history is as important as the serological testing. Total IgE cannot be used to monitor medication adherence. Exercise-induced asthma would not have such strong seasonality."
+  },
+  {
+    "question": "A 49 year old patient returns from a holiday in Portugal with fever, a dry cough, increasing shortness of breath. His wife has brought him to hospital because he had an episode where he became very muddled and seemed not to recognise his family members. In Spain he stayed in a hotel and on his return he was exposed to a nephew who has since been diagnosed with influenza and has been admitted to the local paediatric hospital with breathing difficulties. Observations on arrival include: temperature 39.3°C, BP 110/55 mmHg, pulse 102 beats/min, oxygen saturations 89% on room air. Blood tests reveal an inflammatory response and a CXR shows bilateral infiltrates. What is the most useful diagnostic test likely to be?",
+    "options": [
+      "Differential cell count in bronchial lavage",
+      "High-resolution CT chest (HRCT)",
+      "Nucleic acid amplification testing for respiratory pathogens",
+      "Paired serology for mycoplasma and legionella",
+      "Sputum cytology"
+    ],
+    "correct": 2,
+    "explanation": "Nucleic acid amplification testing of sputum or throat swab would differentiate between legionella and influenza in this case. The test result would be available quickly. Sputum cytology has a limited role in respiratory diagnostics. HRCT would be unlikely to offer more information than the CXR. Paired serology would determine whether the patient had been infected by legionella but would not be available in a timely fashion. Differential cell count would not give a specific answer about the causative pathogen."
+  },
+  {
+    "question": "A 45 year old smoker is sent for pulmonary function testing because of breathlessness, wheeze and productive cough. There are no other significant respiratory exposures. The family physician has trialled a salbutamol inhaler, which has been somewhat helpful. Spirometry reveals: FEV1 2.6 L, FVC 4.4 L, FEV1/FVC 0.59. Following nebulisation of 2.5 mg salbutamol: FEV1 3.2 L, FVC 4.4 L, FEV1/FVC 0.73. What does the respiratory function testing reveal?",
+    "options": [
+      "A mixture of obstruction and restriction",
+      "A restrictive defect",
+      "A reversible obstructive defect",
+      "An irreversible obstructive defect",
+      "Inhaled salbutamol has confounded testing"
+    ],
+    "correct": 2,
+    "explanation": "The patient has an obstructive defect that entirely resolves following nebulised bronchodilator; this is in keeping with asthma despite the patient's smoking history. Inhaled therapy taken on the morning of reversibility testing can confound the test but in this instance there is a clear result with strong evidence of reversibility."
+  },
+  {
+    "question": "A 62 year old woman attends the family practice surgery with increasing shortness of breath on exertion and is sent for full pulmonary function testing. She is an ex-smoker of 25 pack years and works caring for horses at a riding stable. Respiratory function testing reveals: FEV1 3.2 L, FVC 3.8 L, FEV1/FVC 0.84, Total lung capacity (TLC) 4.1 L, Residual volume (RV) 0.6 L, Transfer factor for carbon monoxide (TLCO) 1.5 (44%), Transfer coefficient (KCO) 1 (56%). How should the respiratory function testing be interpreted?",
+    "options": [
+      "Gas transfer reduction indicates emphysema",
+      "Gas transfer reduction indicates hypersensitivity pneumonitis",
+      "No evidence of airways obstruction",
+      "There is a restrictive picture",
+      "There is an obstructive picture"
+    ],
+    "correct": 2,
+    "explanation": "The gas transfer is reduced and partially corrects for lung volume. There is no evidence of airways obstruction. The respiratory function tests are non-diagnostic and further clinical details and, potentially, imaging studies are likely to be required. FEV1, FVC and FEV1/FVC are within normal limits."
+  },
+  {
+    "question": "A 53 year old man presents with a 3-month history of non-productive cough. He has no other symptoms but is finding the cough tiresome and frustrating. He is a non-smoker and works in an office. He is on omeprazole 20 mg once a day, which has controlled his acid reflux for the last 2 years. He has trialled a nasal spray and cough linctus without improvement. Spirometry is normal. Which of the following statements is true?",
+    "options": [
+      "A CXR should be performed",
+      "A trial of an inhaled corticosteroid (ICS) is warranted",
+      "He should see an ear, nose and throat (ENT) surgeon",
+      "His cough has become a habit and he must get used to it",
+      "His reflux medication should be increased"
+    ],
+    "correct": 0,
+    "explanation": "Chronic cough has many causes but it is important not to miss parenchymal lung disease or bronchial carcinoma and a CXR ought to be performed. Physicians should be very careful about attributing chronic cough to 'habit'. Reflux may be at the root of this cough but at this stage it is important to rule out parenchymal disease/bronchial carcinoma. A trial of steroid medication would usually be given if there was a suspicion of asthma or eosinophilic bronchitis, but further testing would be useful prior to this. ENT surgeons may be consulted when there is chronic rhinitis/sinusitis as part of a cough presentation, which does not respond to standard therapies."
+  },
+  {
+    "question": "A 75 year old woman has been referred with a daily, chronic non-productive cough that has been present for at least 10 years. She has no nocturnal and no nasal symptoms. Her only other symptom is of back pain following a further vertebral fracture in the last month. Her past medical history includes: osteoporosis (multiple vertebral fractures and kyphosis), previous duodenal ulcer, TB meningitis as a child. She is a life-long non-smoker. Her medication includes: omeprazole 20 mg once daily, alendronic acid once a week, calcium and vitamin D, and cod liver oil capsules. CXR reveals a large hiatus hernia and significant kyphosis. What is the most likely cause of her cough?",
+    "options": [
+      "Asthma",
+      "Gastro-oesophageal reflux",
+      "Hypercalcaemia",
+      "Lung cancer",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "Given the CXR findings and history, reflux is the most likely cause even though the patient is asymptomatic (proton pump inhibitor started following a duodenal ulcer, so no ongoing heartburn). TB is unlikely as the cough is non-productive and there are no systemic symptoms. Asthma is less likely because there is no nocturnal element. Hypercalcaemia does not cause cough, although if it were present alongside cough it should raise the suspicion of malignancy. Lung cancer is unlikely because of the duration of the cough."
+  },
+  {
+    "question": "A 42 year old woman presents with a 4-month history of breathlessness that occurs at rest and on exertion, exclusively in the daytime. She has no other symptoms and is a non-smoker. The breathlessness started following an episode of upper respiratory tract infection where she had significant nasal blockage. She has no nasal symptoms now but often has the feeling that she cannot get a satisfying breath, like she cannot extract enough oxygen from the air. Sometimes this becomes very frightening and on one occasion she was admitted to the emergency department after nearly passing out. Her D-dimer was positive but a CTPA was normal and she was discharged home with a salbutamol inhaler, which she sometimes finds helpful. Her father was a smoker and died of lung cancer in his 60s. Examination is unremarkable, spirometry is normal, oxygen saturations are 98% on room air. What should be the next investigation?",
+    "options": [
+      "Arterial blood gas",
+      "Bronchoscopy",
+      "Dysfunctional breathing studies and a Nijmegen questionnaire",
+      "Echocardiogram",
+      "Lung volume and gas transfer studies"
+    ],
+    "correct": 2,
+    "explanation": "This is a very typical presentation of dysfunctional breathing. The patient had an initial illness, which may have altered the breathing pattern by preventing nasal breathing, and has a reasonable fear of lung cancer because a close relative died of it. A CTPA has ruled out an acute venous thromboembolism and parenchymal lung disease (including lung cancer) as a cause. Echocardiogram might be useful if there was a murmur, background of congenital heart disease or if there were signs of right heart dysfunction (CTPA would not necessarily exclude chronic venous thromboembolism (VTE) or pulmonary hypertension). Normal CT scan makes ILD or emphysema unlikely. Arterial blood gas would not necessarily be abnormal in dysfunctional breathing (although almost certainly would have shown respiratory alkalosis during the emergency department presentation)."
+  },
+  {
+    "question": "A 64 year old woman with COPD presents with right-sided pleuritic chest pain that came on suddenly and left her feeling very breathless. She had felt very well until that point, having been away on holiday for 3 weeks in North America. She was well on the flight, which lasted 5 hours. Her last exacerbation of COPD was 4 months ago, when she was admitted to hospital and received oxygen, nebulised bronchodilators and prednisolone. Observations: oxygen saturations 84% on room air, BP 151/81 mmHg, pulse 110 beats/min; apyrexial. Examination reveals globally decreased air entry and mild bipedal oedema. Investigations: CXR hyperinflation, no focal changes. CRP 15 mg/L, D-dimer 865 ng/mL, WCC 11 x 10^9/L; ECG: sinus tachycardia with a rightward axis. What is the most likely cause of her chest pain?",
+    "options": [
+      "Bronchospasm",
+      "Malignant pleural disease",
+      "Pneumonia",
+      "Pneumothorax",
+      "Pulmonary thromboembolism"
+    ],
+    "correct": 4,
+    "explanation": "The most likely cause of this pain is pulmonary thromboembolism because she has recently been on a long-haul flight, is hypoxaemic, tachycardic and has a positive D-dimer. Malignant pleural disease would be unlikely to have such a sudden onset. Pneumothorax and pneumonia are not supported by the X-ray findings. Bronchospasm can give a central chest tightness but not a peripheral pleuritic chest pain. Central chest tightness is a common finding in exacerbations of COPD because of coughing and strain on costal cartilages and intercostal muscles."
+  },
+  {
+    "question": "An 84 year old man has had a nagging ache in his left chest that has slowly built up over 3 months. The pain is worst in his axilla but radiates posteriorly towards the spine. The patient smoked a pipe for 50 years and worked initially in the merchant navy before taking up a job in a brewery. Examination reveals: dullness to percussion from the left lung base to the mid-zone and erythema ab igne of the posterior chest wall. Which of the following is the most likely cause of this chest pain?",
+    "options": [
+      "Chronic thromboembolic disease",
+      "Herpes zoster",
+      "Mesothelioma",
+      "Pneumonia",
+      "Tietze's syndrome"
+    ],
+    "correct": 2,
+    "explanation": "The most likely cause is mesothelioma because of the patient's employment history (asbestos was often found in the boiler rooms of older ships), the insidious nature of the pain and its nagging quality. It seems likely the patient has a pleural effusion or perhaps pleural thickening. Chronic thromboembolic disease might present with recurrent pleuritic chest pain but more commonly is associated with progressive breathlessness. Pneumonia might be expected to present with more systemic symptoms over a shorter time period. Tietze's syndrome presents more acutely and is usually self-terminating with supportive measures."
+  },
+  {
+    "question": "A 45 year old man attends his family physician with a sprained wrist following a mistimed punch at his karate class. The doctor notices that he has clubbed fingers. The patient has no past medical history of note, is a non-smoker and, apart from his painful wrist, is asymptomatic. He says people have always commented on his fingers and that his father's fingers are similar in appearance. On checking the patient's record the doctor notes finger clubbing was first recorded in his teenage years. What is the next step the family physician should take?",
+    "options": [
+      "Check bloods (including LFTs, thyroid function tests and erythrocyte sedimentation rate)",
+      "CXR to exclude cancer",
+      "Reassurance",
+      "Referral to respiratory clinic",
+      "Sweat test to exclude cystic fibrosis"
+    ],
+    "correct": 2,
+    "explanation": "It seems very likely that this man has familial clubbing. There is documented evidence of the presence of finger clubbing for approximately 30 years and the patient is asymptomatic. Interestingly, his father probably has finger clubbing too. There is no need for further investigation or onwards referral."
+  },
+  {
+    "question": "A patient presents acutely having coughed up 50 ml of fresh red blood suddenly that morning. He is well known to the respiratory department because of recurrent exacerbations of bronchiectasis. The cause of the bronchiectasis was tuberculosis treated 20 years ago. The patient has had a large apical cavity on the right side of the CXR for at least 10 years. CXR today appears to show that this cavity has partially filled in. What is the likely cause of his haemoptysis?",
+    "options": [
+      "Carcinoma",
+      "Mycetoma",
+      "Pulmonary infarction",
+      "Suppurative pneumonia",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "The likely cause of haemoptysis here is a mycetoma developing in an old cavity caused by tuberculosis. Carcinoma is less likely than mycetoma in this scenario but scar carcinomas can develop in areas of the lungs previously damaged by infection. Tuberculosis is likely to have been adequately treated and a patient regularly attending with exacerbations of bronchiectasis is likely to have had sputum screened for mycobacteria intermittently. There are no systemic symptoms to suggest a pneumonia and the haemoptysis is solely fresh blood (not mixed in with purulent sputum) and of sudden onset. Pulmonary infarction is less likely because of the lack of other symptoms (pleuritic chest pain and shortness of breath) and the CXR changes."
+  },
+  {
+    "question": "A 32 year old cystic fibrosis patient presents with massive haemoptysis in the form of 250 ml of fresh red blood. The patient is actively coughing more blood but is haemodynamically stable (BP 145/72 mmHg, pulse 98 beats/min). The most useful investigation is likely to be:",
+    "options": [
+      "Bronchial artery angiography",
+      "Bronchoscopy",
+      "Coagulation studies",
+      "CTPA",
+      "Sputum culture"
+    ],
+    "correct": 0,
+    "explanation": "Bronchial artery angiography will demonstrate abnormally dilated areas of bronchial vasculature and with active bleeding can isolate the leaking point. This can be difficult to interpret in chronic suppurative lung disease as the bronchial vasculature is often diffusely abnormal. Sputum culture is unlikely to be helpful in isolated massive haemoptysis although infection may be a precipitant in chronic lung disease (such as cystic fibrosis (CF) bronchiectasis). Bronchoscopy may be helpful in the presence of a central lung tumour and can sometimes determine whether the bleeding point is in the right or left lung (CXR or CT can be helpful here too), but bronchial artery angiography is increasingly favoured because of the potential to perform embolisation of the aberrant artery. A CTPA may determine the source of bleeding (e.g. tumour or pulmonary arteriovenous malformation) in some cases but is unlikely to be helpful here. Coagulation studies should be performed as CF patients may be deficient in vitamin K and can have liver disease, but the more likely cause is abnormal bronchial vasculature."
+  },
+  {
+    "question": "A 67 year old man has a CT colonogram as a screening test for iron-deficiency anaemia. No colonic abnormality is identified but a 6-mm nodule is identified in the right lower lobe of the lung. The radiologist suggests referral to the respiratory team for ongoing follow-up. With regard to pulmonary nodules, the risk of malignancy increases with which of the following?",
+    "options": [
+      "A smooth margin",
+      "Central deposition of calcification",
+      "Lack of smoking history",
+      "Size < 4 mm",
+      "Upper lobe distribution"
+    ],
+    "correct": 4,
+    "explanation": "Nodules greater than 4 mm require careful follow-up unless they have benign characteristics such as central deposition of calcification (which may suggest hamartoma). Spiculated margins are more typical of malignant lesions. Malignant nodules are more common in upper lobes; benign nodules distribute evenly. Smoking is a very strong risk factor for lung cancer."
+  },
+  {
+    "question": "A 65 year old woman with rheumatoid arthritis has a CT scan to determine whether she has an associated interstitial lung disease. She has mild basal interlobular septal thickening in keeping with early interstitial lung disease (ILD). The radiologist also identifies a spiculated, 1.5 cm-diameter right upper lobe nodule that he suggests may require further investigation. Which of the following statements is true with regard to PET scanning for pulmonary nodules?",
+    "options": [
+      "It always detects bronchoalveolar carcinoma",
+      "Inflammatory nodules are reliably excluded",
+      "It has replaced tissue biopsy",
+      "It is not useful in nodules < 1 cm in diameter",
+      "It offers no more information than a standard CT"
+    ],
+    "correct": 3,
+    "explanation": "PET scanning is useful for nodules > 1 cm in diameter. It detects metabolic activity, which is usually higher in malignant disease. However, metabolic activity can be high in inflammatory nodules, which can lead to false positives. Tissue diagnosis must still be pursued even with a positive PET scan to identify the best treatment option. False-negative PET scans can occur in very slow-growing cancers or in neuroendocrine cancers. Metabolic activity is assessed by PET scan, which is not detected by a single CT scan, although could be inferred by nodule growth on serial CT scans."
+  },
+  {
+    "question": "Which of the following is a cause of a transudative pleural effusion?",
+    "options": [
+      "Drug-induced pleural effusion",
+      "Hypothyroidism",
+      "Pulmonary infarction",
+      "Rheumatoid arthritis",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "Transudative effusions include organ failure: cardiac, renal, liver and thyroid. Hypothyroidism is therefore the correct answer, although it is relatively rare."
+  },
+  {
+    "question": "Which one of the following statements is true? Light's criteria includes:",
+    "options": [
+      "Pleural fluid: serum protein ratio > 0.6",
+      "Pleural fluid lactate dehydrogenase (LDH) > two-thirds of the upper limit of normal serum LDH",
+      "Pleural fluid LDH < two-thirds of the upper limit of normal serum LDH",
+      "Pleural fluid LDH: serum LDH ratio > 0.5",
+      "Pleural fluid: serum protein ratio < 0.5"
+    ],
+    "correct": 1,
+    "explanation": "Light's criteria suggest an exudate where two of the three criteria are met. It is nonetheless important to take a holistic overview of the case as the criteria misclassify transudates as exudates 25% of the time."
+  },
+  {
+    "question": "In which of the following conditions might acute type I respiratory failure be expected?",
+    "options": [
+      "Flail chest injury",
+      "Lobar collapse",
+      "Lymphangitis carcinomatosa",
+      "Obstructive sleep apnoea (OSA)",
+      "Opioid toxicity"
+    ],
+    "correct": 1,
+    "explanation": "Acute type I respiratory failure might be expected in lobar collapse where the collapsed lobe is underventilated but perfused and CO2 is cleared in the neighbouring functional lung units but haemoglobin saturation does not allow augmentation of oxygen uptake. If lobar collapse was associated with more widespread mucus plugging and bronchospasm (e.g. in asthma or allergic bronchopulmonary aspergillosis), type II respiratory failure might occur because of generalised V/Q mismatch. OSA usually causes chronic type II respiratory failure. Flail chest injury might cause acute type II respiratory failure, as might opioid toxicity. Lymphangitis carcinomatosa would cause chronic type I respiratory failure."
+  },
+  {
+    "question": "A 27 year old woman with severe atopic asthma is 26 weeks pregnant. She has been awake at night coughing and short of breath for 48 hours. She has been trying to avoid using her salbutamol inhaler but nonetheless has had to take it 6 to 8 times in the last 24 hours. She has no nasal symptoms and no reflux. Observations: oxygen saturations 94% on room air, respiratory rate 22 breaths/min, BP 110/65 mmHg, pulse 96 beats/min, apyrexial; peak expiratory flow rate (PEFR) 240 L/min (best 450 L/min). Examination of the chest reveals bilateral wheeze, mild bilateral pedal oedema, heart sounds dual, no murmur. The patient's current medications include: regular high-dose ICS/long-acting beta-2-agonist (LABA) and oral montelukast; inhaled short-acting beta-2-agonist (SABA) as required. She insists she has been adherent with medication, although she is very worried about taking any medications whilst pregnant. What should be the next step in her management?",
+    "options": [
+      "Low-molecular-weight heparin (LMWH)",
+      "Oral amoxicillin",
+      "Oral prednisolone",
+      "Reduce high-dose ICS/LABA",
+      "Stop montelukast"
+    ],
+    "correct": 2,
+    "explanation": "This patient is on maximal therapy for atopic asthma but has features of poor control suggesting a significant exacerbation. She needs to have oral corticosteroid therapy, nebulised bronchodilator and be admitted for observation. Her therapy should not be reduced because the greater risk to patient and fetus is uncontrolled asthma. Antibiotics would only be considered where there was strong objective evidence of infection (fever, sputum culture positive, CXR infiltrate). The presentation is not suggestive of pulmonary thromboembolism."
+  },
+  {
+    "question": "A 48 year old asthmatic is referred to clinic because of increased frequency of asthma exacerbations. He has been waking at night with cough and breathlessness that require extra doses of inhaled salbutamol. Spirometry reveals an obstructive defect and blood tests reveal an eosinophilia of 0.67 x 10^9/L. CXR is clear. The patient's current therapy includes Flixotide 500 microg/salmeterol 25 microg 1 puff twice a day; salbutamol 2 puffs, as required. The patient has started prednisolone 40 mg for 5 days as prescribed by his family physician today. In line with British Thoracic Society guidelines, what should be suggested in order to step-up therapy?",
+    "options": [
+      "Add amoxicillin",
+      "Add montelukast",
+      "Double prednisolone dose",
+      "Provide home nebuliser",
+      "Start omalizumab"
+    ],
+    "correct": 1,
+    "explanation": "The scenario does not provide enough information to advocate initiation of omalizumab (we do not know patient's body mass index (BMI), total IgE, sensitisation to allergens). Montelukast and oral theophylline preparations are recommended as additional therapy at this stage. Doubling the prednisolone would increase side-effects without increasing efficacy. There is no indication for an antibiotic here. Home nebulisers are not recommended in asthma because of the risk of late presentation with significant exacerbation."
+  },
+  {
+    "question": "A 65 year old man with known COPD and mild airways obstruction on spirometry presents with increasing shortness of breath on exertion. He mainly struggles walking on inclines or climbing stairs. He does not experience exacerbations of COPD and he has had no courses of oral prednisolone or antibiotics in the last 2 years. His current inhaled therapy includes a long-acting muscarinic antagonist (LAMA) and an SABA. Examination reveals decreased air entry bilaterally, with loss of cardiac dullness on percussion. The patient does not desaturate on an incremental walk test. What would be a reasonable addition for this patient to escalate therapy?",
+    "options": [
+      "Ambulatory oxygen",
+      "Inhaled corticosteroid (ICS)/LABA combination inhaler",
+      "LAMA/LABA combination inhaler",
+      "Oral prednisolone",
+      "Salbutamol nebuliser"
+    ],
+    "correct": 2,
+    "explanation": "The patient's main complaint is of increased shortness of breath on exertion. ICS would be indicated if there was an increase in exacerbation frequency. Oral prednisolone would be useful in the context of a current exacerbation of COPD. Ambulatory oxygen is not indicated without desaturation on exertion. Whilst a nebuliser might well improve the patient's symptoms, an escalation of inhaled therapy would be a better approach. LAMA/LABA combination inhalers offer enhanced bronchodilatation and improvements in exercise tolerance."
+  },
+  {
+    "question": "A 57 year old woman has been coughing for 3 years. She always carries tissues with her to collect the phlegm she coughs up throughout the day. Sometimes her phlegm can be green and she feels run-down and unwell. Antibiotics seem to help but she only feels better for 2-3 weeks. The patient is a non-smoker who works in an office. She finds her cough embarrassing and work colleagues have been giving her a hard time. What would be the best investigation for this patient?",
+    "options": [
+      "Alpha-1-Antitrypsin levels",
+      "Bronchoscopy",
+      "CXR",
+      "High-resolution CT chest",
+      "Immunoglobulin levels"
+    ],
+    "correct": 3,
+    "explanation": "A chronic productive cough should raise a suspicion of bronchiectasis. HRCT would show the thickened, dilated airways characteristic of the disease. CXR might show bronchiectatic changes but would not be as sensitive. Bronchoscopy may be useful if sputum samples are not definitive (e.g. intermittent non-tuberculous Mycobacterium isolation). Alpha-1-Antitrypsin deficiency is a rare cause of bronchiectasis but this test would follow CT diagnosis. Immunoglobulin levels can be low where an immunodeficiency is a cause of bronchiectasis (IgA, IgM, IgE and IgG with subclasses should be measured)."
+  },
+  {
+    "question": "A 24 year old man with cystic fibrosis has recently moved into the area. He keeps relatively well and missed some appointments at his previous service. He has had two exacerbations of bronchiectasis in the last year and is disappointed with his most recent lung function measures. He has heard about a new medicine called ivacaftor that is only beneficial to some patients with cystic fibrosis and wonders if he qualifies. Ivacaftor is a small-molecule drug that corrects the function of which of the following cystic fibrosis transmembrane regulator (CFTR) gene defects?",
+    "options": [
+      "DeltaF508",
+      "G542X",
+      "G551D",
+      "R117H",
+      "W1282X"
+    ],
+    "correct": 2,
+    "explanation": "Ivacaftor corrects the G551D-mutant CFTR. G551D is present in 4% of the CF population, whereas DeltaF508 is present in 70%."
+  },
+  {
+    "question": "A 24 year old cystic fibrosis patient has failed to recover from a recent exacerbation of her bronchiectasis. Previously Haemophilus influenzae and Staphylococcus aureus have been isolated from her sputum. A 2-week course of co-amoxiclav followed by 2 weeks of doxycycline have failed to improve spirometry or reduce sputum load. CXR is unchanged and blood tests are unrevealing, apart from CRP of 134 mg/L. The microbiology team have isolated Pseudomonas aeruginosa in the most recent sample provided. Which one of the following statements is true of P. aeruginosa in cystic fibrosis?",
+    "options": [
+      "Intravenous antibiotic therapy is rarely required",
+      "It is a benign coloniser of the bronchiectatic airways",
+      "It is one of the earliest bacteria isolated in sputum from CF patients",
+      "Nebulised azithromycin 3 times a week suppresses infection",
+      "Nebulised tobramycin is an effective treatment in chronic colonisation"
+    ],
+    "correct": 4,
+    "explanation": "Pseudomonas aeruginosa is a significant pathogen in CF bronchiectasis. It tends to emerge as patients move towards adulthood. Intravenous antibiotics are often administered in exacerbations caused by P. aeruginosa, frequently by implanted subcutaneous venous access ports. Oral azithromycin therapy 3 times a week is an effective therapy but is not nebulised."
+  },
+  {
+    "question": "Acute coryza is most commonly caused by which of the following?",
+    "options": [
+      "Bordetella pertussis",
+      "Haemophilus influenzae",
+      "Mycoplasma pneumoniae",
+      "Rhinovirus",
+      "Streptococcus pneumoniae"
+    ],
+    "correct": 3,
+    "explanation": "The common cold is most frequently caused by the rhinovirus. Bordetella pertussis causes whooping cough, which can be very prolonged in adults."
+  },
+  {
+    "question": "A 32 year old man presents with a 5-day history of left-sided pleuritic chest pain, fever and cough productive of rusty sputum. Observations include: BP 100/60 mmHg, pulse 105 beats/min, temperature 38.2°C, respiratory rate 21 breaths/min, oxygen saturations 87% on room air. Examination reveals dullness to percussion and bronchial breathing on the left. Nasolabial cold sores are noted. Which organism is likely to be responsible for this presentation?",
+    "options": [
+      "Aspergillus fumigatus",
+      "Herpes simplex virus (HSV)",
+      "Mycobacterium tuberculosis",
+      "Pneumocystis jirovecii",
+      "Streptococcus pneumoniae"
+    ],
+    "correct": 4,
+    "explanation": "The above presentation is typical of a lobar pneumonia caused by Streptococcus pneumoniae. HSV is likely to be the cause of the cold sores that frequently accompany this presentation but would be a rare cause of a lobar pneumonia. Pneumocystis jirovecii is an important cause of pneumonia in immunocompromised individuals. Mycobacterium tuberculosis rarely presents so acutely but should be considered in upper zone pneumonias, in the immunocompromised and in patients with relevant travel or exposure histories. Aspergillus can cause a lobar pneumonia but usually in the context of underlying lung disease."
+  },
+  {
+    "question": "A 53 year old businessman presents with fever, chills, cough and shortness of breath. He has recently returned from a trip to the Middle East where he visited a number of countries and spent time in the city as well as visiting more rural areas. Examination reveals temperature of 40°C, pulse 115 beats/min, BP 100/50 mmHg, oxygen saturations 80% on room air. CXR shows diffuse infiltrates. Which of the following statements is most accurate?",
+    "options": [
+      "Burkholderia pseudomallei needs to be covered",
+      "He should be isolated and tested for carbapenemase-producing Enterobacteriaceae (CPE)",
+      "He should be isolated and tested for Middle East respiratory syndrome (MERS)",
+      "He should be isolated and tested for severe acute respiratory syndrome (SARS)",
+      "Local antibiotic protocol for community-acquired pneumonia (CAP) should be followed"
+    ],
+    "correct": 2,
+    "explanation": "The patient has recently returned from the Middle East and has a serious respiratory infection. Isolation and exclusion (or diagnosis) of MERS are priorities. Burkholderia pseudomallei is endemic to South-east Asia and Northern Australia. Local antibiotic protocol is irrelevant here because of the patient's travel history. CPE testing is important when patients have been hospitalised in countries with a high prevalence of this organism."
+  },
+  {
+    "question": "A 73 year old man has been in hospital for 3 days having undergone elective hip surgery. He is acutely confused in the middle of the night with a temperature of 38.3°C. Urinalysis is negative but blood testing reveals raised inflammatory markers. A CXR clearly shows a new right-sided infiltrate. Which of the following approaches is appropriate?",
+    "options": [
+      "A CTPA should be ordered",
+      "Blood cultures should be taken and a watch-and-wait policy favoured",
+      "Local antibiotic guidelines for CAP should be followed",
+      "Local antibiotic policy for hospital-acquired pneumonia (HAP) should be followed",
+      "Local antibiotic policy for ventilator-associated pneumonia (VAP) should be followed"
+    ],
+    "correct": 3,
+    "explanation": "The patient has been in hospital for > 2 days and has a clinical and radiological presentation consistent with pneumonia. The priority is to start treatment for HAP."
+  },
+  {
+    "question": "A 72 year old man initially improves following treatment for an exacerbation of COPD. He has been in hospital for 10 days when he spikes a temperature of 39°C, his oxygen saturations drop and he starts to expectorate green sputum with blood-streaking. A CXR reveals dense left-sided consolidation. Late-onset HAP is often attributable to which of the following microorganisms?",
+    "options": [
+      "Acinetobacter",
+      "Chlamydia",
+      "Haemophilus",
+      "Legionella",
+      "Streptococcus"
+    ],
+    "correct": 0,
+    "explanation": "Late-onset HAP is most often attributable to Gram-negative bacteria (e.g. Escherichia, Pseudomonas, Klebsiella spp. and Acinetobacter baumannii), Staphylococcus aureus (including meticillin-resistant Staph. aureus, MRSA) and anaerobes."
+  },
+  {
+    "question": "The mortality from HAP is approximately which of the following?",
+    "options": [
+      "10%",
+      "20%",
+      "30%",
+      "40%",
+      "50%"
+    ],
+    "correct": 2,
+    "explanation": "The mortality from HAP is high, at approximately 30%."
+  },
+  {
+    "question": "A 34 year old woman has been unwell with high fever, pleuritic chest pain and cough productive of foul sputum. She is an intravenous drug-user and has noted that her usual injection site in the groin has developed a fluctuant swelling. CXR shows multiple nodules and a CT shows a predominantly basal distribution and notes that some of the nodules are cavitating. What is the likely explanation for these findings?",
+    "options": [
+      "Aspiration pneumonia",
+      "Infective endocarditis",
+      "Metastatic cancer",
+      "Pulmonary thromboembolism",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "The patient has developed haematogenous lung abscesses from an infected injection site. It is likely that the right side of the heart (pulmonary and tricuspid valves) is affected and the patient has infective endocarditis."
+  },
+  {
+    "question": "A 28 year old student of Chinese origin has begun treatment for pulmonary tuberculosis that presented with a typical clinical picture and CXR. Sputum was positive for acid- and alcohol-fast bacilli, and polymerase chain reaction (PCR) for Mycobacterium tuberculosis has detected no resistance to isoniazid or rifampicin. He is receiving the standard treatment regimen. Two weeks into therapy, he phones the specialist nursing team as he has painful eyes and is worried that the therapy is not working. What is the likely cause of this presentation?",
+    "options": [
+      "Drug resistance to ethambutol and pyrazinamide",
+      "Ethambutol",
+      "Immune reconstitution",
+      "Intercurrent viral infection",
+      "Non-tuberculous Mycobacterium"
+    ],
+    "correct": 1,
+    "explanation": "This presentation is most likely to be optic neuritis secondary to ethambutol (although isoniazid can also cause this). Patients starting this drug should be warned to report all eye-related symptoms to their clinical team and to stop ethambutol until advised otherwise."
+  },
+  {
+    "question": "A 54 year old man is due to start a monoclonal antibody-based therapy for active Crohn's disease but the radiologist has noted a minor abnormality on the patient's recent CXR. The patient had a bacille Calmette-Guerin (BCG) vaccine in childhood and has no known TB contacts. He has no respiratory symptoms. Local guidance suggests checking an interferon-gamma release assay (IGRA) on a peripheral blood sample. Which one of the following statements is true with regard to the IGRA?",
+    "options": [
+      "A positive result should prompt the clinician to start antituberculous chemotherapy",
+      "It is more specific than tuberculin skin testing",
+      "It is now the first-line test for diagnosis of active TB",
+      "It is only positive where there is systemic mycobacterial infection",
+      "It measures the release of interferon-alpha from sensitised T cells"
+    ],
+    "correct": 1,
+    "explanation": "IGRA is less likely to give a false-positive response in patients who have had the BCG or have opportunistic mycobacterial infection. It may be positive in active TB but also in latent TB and should not be used as a first-line diagnostic test or as a guide to therapy. The test relies on the release of interferon-gamma from sensitised T cells."
+  },
+  {
+    "question": "A 64 year old woman presents with back pain, weight loss and a palpable mass in her loin that extends into the buttock. She is reviewed by the orthopaedic team and imaging suggests the mass is of fluid consistency. They aspirate pus easily and send it to the laboratory for culture and cytopathological examination. They ask for advice about further testing. Which of the following would be an important additional test?",
+    "options": [
+      "Bronchoscopy",
+      "Echocardiogram to exclude septic embolus",
+      "Flow cytometry",
+      "Fluid biochemistry",
+      "Mycobacterial testing"
+    ],
+    "correct": 4,
+    "explanation": "This presentation is consistent with psoas abscess and, whilst there may be a bacteriological cause, this would be a typical extrapulmonary presentation of TB. Malignancy is a major differential diagnosis. The type of imaging utilised above is not identified, but a CT/magnetic resonance imaging (MRI) would be invaluable to assess for spinal disease and potentially cord involvement."
+  },
+  {
+    "question": "A 34 year old haematology patient has been receiving cytotoxic chemotherapy for acute myeloid leukaemia. He is isolated with neutropenic sepsis thought to be secondary to pneumonia. He has fever, pleuritic chest pain and haemoptysis. CT scanning has revealed multiple nodules with what is described as surrounding inflammatory change. The radiological differential includes infection, inflammation and malignancy. The patient has made no response to standard antibiotics for neutropenic sepsis. What should be the next step in management?",
+    "options": [
+      "Antituberculous chemotherapy",
+      "Bronchoscopy",
+      "CTPA",
+      "Respiratory virus throat swab",
+      "Voriconazole"
+    ],
+    "correct": 4,
+    "explanation": "The clinical presentation and radiology findings are suggestive of invasive pulmonary aspergillosis and treatment with an antifungal agent should not be delayed for further testing (although mycological culture would be indicated - induced sputum/bronchoscopy). An intercurrent VTE is thought less likely given the scenario, but pleuritic chest pain and haemoptysis should bring this to mind in other contexts. Voriconazole is currently first-line therapy."
+  },
+  {
+    "question": "A 63 year old female non-smoker presents to her family physician with a new cough. Her CXR is abnormal with a 5-cm lesion in the right mid-zone. She has since undergone bronchoscopy at which an endobronchial tumour was biopsied. Which is the most common histological type of lung cancer?",
+    "options": [
+      "Adenocarcinoma",
+      "Large cell carcinoma",
+      "Mesothelioma",
+      "Small cell carcinoma",
+      "Squamous carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Adenocarcinoma has recently become the commonest cause of lung cancer."
+  },
+  {
+    "question": "A 73 year old woman with metastatic non-small cell lung cancer is considering palliative chemotherapy. Although she has lost weight and been more tired she has not experienced any other symptoms. Her cancer was discovered when she had a CT scan because of a combination of weight loss, smoking habit and finger clubbing. She has developed increasingly painful wrists. What is the most likely cause for this problem?",
+    "options": [
+      "Bone metastases",
+      "Finger clubbing",
+      "Horner's syndrome",
+      "Hypercalcaemia",
+      "Hypertrophic pulmonary osteoarthropathy (HPOA)"
+    ],
+    "correct": 4,
+    "explanation": "The most likely cause is HPOA, a painful periostitis of the distal radius and ulna. Finger clubbing is not painful. Bone metastases are possible but less likely. Hypercalcaemia can certainly cause bone pain and measuring calcium levels is always indicated when there is bone pain. Horner's syndrome can cause pain in the inner aspect of the arm and small muscle wasting in the hand."
+  },
+  {
+    "question": "A 56 year old smoker presents with increasing shortness of breath. A CXR shows a left-sided pleural effusion and CT scanning has demonstrated a 3-cm tumour in the left lung but no evidence of lymphadenopathy. Pleural fluid aspiration reveals an adenocarcinoma. What is the correct staging of this lung cancer?",
+    "options": [
+      "I",
+      "II",
+      "III",
+      "IV",
+      "Staging not yet complete"
+    ],
+    "correct": 3,
+    "explanation": "The presence of a cytology-positive pleural effusion automatically makes this lung cancer stage IV. If the pleural effusion had an alternative cause such as intercurrent infection and was cytology-negative, the tumour could be stage IIb."
+  },
+  {
+    "question": "A 36 year old non-smoker presents with isolated haemoptysis. She has no systemic symptoms but has been expectorating small amounts of fresh blood most mornings in the last 2 weeks. She denies epistaxis and is quite clear she has been coughing blood rather than vomiting. A CT scan identifies an area of collapse in the left upper lobe (LUL) and a possible small tumour in the main bronchus. Bronchoscopy reveals a vascular-looking tumour emerging from the LUL orifice. What is the most likely tumour type for this lesion?",
+    "options": [
+      "Adenocarcinoma",
+      "Breast",
+      "Carcinoid",
+      "Small cell",
+      "Squamous"
+    ],
+    "correct": 2,
+    "explanation": "A young non-smoker with isolated haemoptysis and a localised, vascular tumour is likely to have a bronchial carcinoid. These tumours are rare but have an excellent outcome. They are not associated with the usual features of the carcinoid syndrome."
+  },
+  {
+    "question": "A 56 year old, non-smoking man presents with a 3-month history of an irritating non-productive cough. CXR is abnormal and subsequent CT scanning reveals metastatic disease in the bones and a 4-cm left-sided peripheral mass. Bronchoscopy achieves biopsy and cytopathological examination identifies adenocarcinoma, which proves to be EGFR (epidermal growth factor receptor) positive on molecular analysis. What would be the treatment of choice for this man?",
+    "options": [
+      "Adjuvant chemotherapy and lobectomy",
+      "Best supportive care",
+      "Cisplatin and pemetrexed",
+      "Erlotinib",
+      "Radiotherapy"
+    ],
+    "correct": 3,
+    "explanation": "Significant survival benefits are conferred by treatment with tyrosine kinase inhibitor drugs in patients with EGFR mutation, even in the presence of metastatic disease. The presence of these mutations is more common in non-smoking patients with adenocarcinoma."
+  },
+  {
+    "question": "A 64 year old woman with breast cancer metastatic to liver, lungs and bone has been receiving second-line chemotherapy but has become increasingly breathless over 3 months. She received antibiotics for a presumed pneumonia after CXR identified bilateral infiltrates but made no improvement. Subsequent CT scanning has identified diffuse interstitial thickening radiating from the hilar regions. What is the likely diagnosis?",
+    "options": [
+      "Drug-induced pneumonitis",
+      "Lymphangitis carcinomatosa",
+      "Pneumocystis pneumonia",
+      "Pulmonary oedema",
+      "Venous thromboembolism"
+    ],
+    "correct": 1,
+    "explanation": "The possible answers reflect a sensible differential diagnosis for this presentation. The most likely cause, however, is lymphangitis given the insidious onset, the presence of metastatic disease in the lungs and the CT findings."
+  },
+  {
+    "question": "A 28 year old woman presents to the acute receiving unit with a vague chest discomfort that seems to move through into her back. CXR appears to show mediastinal widening. A CT angiogram is requested to rule out aortic dissection but it identifies a large mass in the anterior mediastinum and some cervical, supraclavicular and axillary lymphadenopathy. What is the most likely diagnosis?",
+    "options": [
+      "Bronchogenic cyst",
+      "Lymphoma",
+      "Neurogenic tumour",
+      "Oesophageal tumour",
+      "Retrosternal goitre"
+    ],
+    "correct": 1,
+    "explanation": "The most likely diagnosis is lymphoma because of the tumour location and the lymphadenopathy."
+  },
+  {
+    "question": "A 79 year old woman has been increasingly short of breath over 6 months. She has no significant past medical history and is on no medication. She has no significant respiratory exposures. Examination reveals bilateral, fine basal crackles and finger clubbing. An HRCT demonstrates bilateral basal, peripheral reticulation with honeycomb cysts. What is the most likely diagnosis?",
+    "options": [
+      "Acute interstitial pneumonia",
+      "Idiopathic pulmonary fibrosis",
+      "Lymphocytic interstitial pneumonia",
+      "Non-specific interstitial pneumonia",
+      "Sarcoidosis"
+    ],
+    "correct": 1,
+    "explanation": "Insidious breathlessness in a woman in her eighth decade with typical examination and CT findings mean that this woman is likely to receive a diagnosis of idiopathic pulmonary fibrosis without further invasive investigation after discussion at an interstitial lung disease multidisciplinary meeting. Lung biopsy adds little information and may be associated with significant morbidity and even mortality."
+  },
+  {
+    "question": "Respiratory bronchiolitis-interstitial lung disease (RBILD) is more common in which of the following groups?",
+    "options": [
+      "Non-smokers",
+      "Patients > 65 years of age",
+      "Patients with connective tissue diseases",
+      "Smokers",
+      "Women"
+    ],
+    "correct": 3,
+    "explanation": "RBILD is a smoking-associated idiopathic interstitial pneumonia that is more common in men and presents between the ages of 40 and 60 years."
+  },
+  {
+    "question": "A 28 year old woman develops a painful rash on her lower limbs, arthralgia and fever. She feels run-down and unwell. Her family physician arranges a CXR and refers to the respiratory clinic. At review 4 weeks later she feels back to her usual self apart from a persistent mild lethargy. What is the most likely cause for this presentation?",
+    "options": [
+      "HIV",
+      "Lymphoma",
+      "Pneumonia",
+      "Sarcoidosis",
+      "Tuberculosis"
+    ],
+    "correct": 3,
+    "explanation": "The symptom complex, combined with a typical CXR appearance (bilateral hilar lymph node and paratracheal lymph node enlargement) is sufficient for a diagnosis of sarcoidosis and this presentation usually has an excellent prognosis."
+  },
+  {
+    "question": "A 55 year old man presents with increasing breathlessness over 2 years. He has a dry cough. Examination of the chest is unremarkable. Pulmonary function testing reveals a restrictive defect. HRCT identifies mild bilateral hilar lymph node enlargement, nodules in a bronchovascular distribution and extensive fibrotic change. What is the most likely diagnosis?",
+    "options": [
+      "Sarcoidosis stage 0",
+      "Sarcoidosis stage I",
+      "Sarcoidosis stage II",
+      "Sarcoidosis stage III",
+      "Sarcoidosis stage IV"
+    ],
+    "correct": 4,
+    "explanation": "The presence of extensive fibrosis even in the presence of enlarged lymph nodes is suggestive of sarcoidosis stage IV. The patient's breathlessness and abnormal lung function suggest the patient has respiratory failure from a silent progression of pulmonary sarcoidosis. The absence of inspiratory crackles on examination suggests the fibrotic change is due to sarcoidosis."
+  },
+  {
+    "question": "A 72 year old woman has had rheumatoid arthritis for 20 years. She recently had a chest infection but fully recovered. A CXR was ordered to exclude pneumonia but revealed multiple smooth nodules. CT scanning also identifies four smooth nodules of varying size. A CXR recovered from storage shows that these nodules have been present for at least 5 years. What is the likely cause of these nodules?",
+    "options": [
+      "Bronchiectasis",
+      "Metastatic cancer",
+      "Pulmonary embolism",
+      "Pulmonary fibrosis",
+      "Rheumatoid nodules"
+    ],
+    "correct": 4,
+    "explanation": "Rheumatoid arthritis has many respiratory complications including nodules, pleural effusion, bronchiectasis and interstitial lung disease. In addition, medications given for rheumatoid arthritis also have respiratory complications and leave patients prone to a range of respiratory infections."
+  },
+  {
+    "question": "A 61 year old woman is receiving intravenous daptomycin for staphylococcal discitis. She has required intravenous fluids for a mild acute kidney injury (AKI) secondary to sepsis and dehydration. Her clinical condition and inflammatory markers had been improving with this therapy. After 2 weeks of antibiotics she spikes a fever to 39°C, her WCC rises and she develops an oxygen requirement (oxygen saturations 94% on 35% oxygen). Blood tests: haemoglobin 102 g/L, WCC 16 x 10^9/L (neutrophils 9 x 10^9/L, eosinophils 5 x 10^9/L, lymphocytes 1 x 10^9/L, monocytes 0.8 x 10^9/L), CRP 150 mg/L, urea 8 mmol/L (48 mg/dL), creatinine 89 micromol/L (1.01 mg/dL). CXR bilateral peripheral, especially upper-zone consolidation. What should the treatment be for this patient?",
+    "options": [
+      "Antibiotics to cover hospital-acquired pneumonia",
+      "Antituberculosis chemotherapy",
+      "Continue current therapy",
+      "Intravenous furosemide",
+      "Stop daptomycin and give prednisolone"
+    ],
+    "correct": 4,
+    "explanation": "The high peripheral blood eosinophil count, peripheral X-ray shadowing and potential causative agent (daptomycin) make drug-induced chronic eosinophilic pneumonia the likely diagnosis. As the patient has become systemically unwell with an oxygen requirement it is reasonable to start prednisolone as well as stopping the causative agent. The high eosinophil count makes HAP unlikely. TB should be considered (it can also cause a discitis) but does not cause a peripheral blood eosinophilia. Fluid overload is considered less likely because of the presence of fever and atypical radiology."
+  },
+  {
+    "question": "A 45 year old non-smoking man presents with fever, weight loss and breathlessness. On the night of his admission he has developed stridor. CXR reveals multiple, bilateral pulmonary nodules. His past medical history includes sinusitis and conductive deafness. Blood tests reveal: urea 7 mmol/L (42 mg/dl), creatinine 165 micromol/L (1.87 mg/dl), haemoglobin 102 g/L, WCC 15 x 10^9/L (neutrophils 12 x 10^9/L), CRP 145 mg/L. What is the most likely diagnosis?",
+    "options": [
+      "Acute eosinophilic pneumonia",
+      "Bronchial carcinoma",
+      "Chronic eosinophilic pneumonia",
+      "Eosinophilic granulomatosis with polyangiitis",
+      "Granulomatous polyangiitis"
+    ],
+    "correct": 4,
+    "explanation": "The presentation here is of multisystem granulomatous polyangiitis. The patient has multiple nodules on CXR and the presentation with stridor suggests subglottic stenosis. It seems likely the patient also has renal involvement. Sinusitis and conductive deafness are also suggestive of granulomatous polyangiitis."
+  },
+  {
+    "question": "A 70 year old woman has been coughing, short of breath, intermittently feverish and run-down over 6 weeks. Her past medical history includes transient ischaemic attack and recurrent urinary tract infections. Her medications include aspirin, simvastatin, amlodipine and nitrofurantoin. She is a non-smoker and has a pet cat. Examination reveals oxygen saturations of 91% on room air, BP 121/76 mmHg, pulse 89 beats/min, apyrexial, respiratory rate 18 breaths/min. Her CXR shows bi-basal infiltrates. What is the most likely diagnosis?",
+    "options": [
+      "Atypical pneumonia",
+      "Cryptogenic organising pneumonia",
+      "Idiopathic pulmonary fibrosis",
+      "Nitrofurantoin lung disease",
+      "Non-specific interstitial pneumonia (NSIP)"
+    ],
+    "correct": 3,
+    "explanation": "The answers above are a reasonable differential diagnosis for the presentation. A progressive pneumonitis is a side-effect of nitrofurantoin taken long term for prevention of urinary tract infections. The subacute onset with systemic symptoms mitigates against IPF or NSIP, whilst atypical pneumonia would be expected to be more acute. A cryptogenic organising pneumonia should not be assumed whilst a potential cause is evident."
+  },
+  {
+    "question": "A 26 year old non-smoking woman presents for the second time with pneumothorax. She has no other past medical history. Good resolution is achieved with chest drainage but a CT scan identifies multiple cysts throughout the lung parenchyma. The CT chest catches an abnormality on the upper pole of the right kidney, which is incompletely imaged and the radiologist suggests an MRI for better characterisation of the lesion. What diagnosis should be considered and further investigated?",
+    "options": [
+      "Alveolar microlithiasis",
+      "Alveolar proteinosis",
+      "Lymphangioleiomyomatosis",
+      "Lymphocytic interstitial pneumonia",
+      "Pulmonary Langerhans cell histiocytosis (histiocytosis X)"
+    ],
+    "correct": 2,
+    "explanation": "The recurrence of pneumothorax in the presence of a multicystic lung disease and the possibility of a renal tumour in a young woman suggests lymphangioleiomyomatosis may be the underlying diagnosis. Pulmonary Langerhans cell histiocytosis is strongly associated with smoking. Lymphocytic interstitial pneumonia is usually associated with connective tissue disease or HIV. The other conditions do not cause lung cysts and are not associated with pneumothorax."
+  },
+  {
+    "question": "A 43 year old woman presents with cough, shortness of breath and wheeze. She is a smoker, has no past medical history and no exposure to birds or animals. She had been off work for 2 weeks but made an improvement after starting inhaled beclometasone and a short-acting bronchodilator as required. On return to work, things seemed to be fine but deteriorated after about 3 weeks. She works behind the counter in a local bakery. The patient would like to know if she has occupational asthma. Which test would be most helpful in making the diagnosis?",
+    "options": [
+      "Histamine challenge test",
+      "Peak expiratory flow rate diary",
+      "Specific IgE to flour",
+      "Spirometry with reversibility",
+      "Sputum eosinophils"
+    ],
+    "correct": 1,
+    "explanation": "All of these tests might be useful in investigating this patient's case. However, a detailed PEFR diary that measures a minimum of 4 times per day for at least 3 weeks and during a period away from work would be most informative about whether the patient is experiencing occupational asthma."
+  },
+  {
+    "question": "A 55 year old geologist has been coughing, breathless and experiencing arthralgia since renovation started at her home. The work was started because of damp and has involved some structural work. Her home always seems to be dusty currently. Her husband is a stonemason and has been working on a new piece at home in their garage. At work she has been preparing beryllium samples for a PhD project, which has been quite stressful as deadlines for submission approach. CXR shows bilateral hilar lymphadenopathy with some soft nodularity in the mid-zones. What is the most likely diagnosis?",
+    "options": [
+      "Berylliosis",
+      "Dysfunctional breathing",
+      "Hypersensitivity pneumonitis",
+      "Sarcoidosis",
+      "Silicosis"
+    ],
+    "correct": 0,
+    "explanation": "A patient who works with beryllium and presents with a sarcoid-like clinical picture and imaging should have berylliosis excluded as a priority. Her husband's work should not influence her respiratory status unless she is spending significant amounts of time assisting him. It is possible that where there is damp, mould is also present, but hilar adenopathy would be uncommon in hypersensitivity pneumonitis. Although she has some work stress, dysfunctional breathing would not explain her arthralgia, cough or X-ray appearances."
+  },
+  {
+    "question": "Which of the following statements is true with regard to progressive massive fibrosis (PMF)?",
+    "options": [
+      "Characterised by small radiographic nodules",
+      "Chyloptysis is associated",
+      "Finger clubbing and basal crackles are characteristic",
+      "It has no impact on lung function",
+      "It may progress even after exposure ceases"
+    ],
+    "correct": 4,
+    "explanation": "Finger clubbing and basal crackles are characteristic of idiopathic pulmonary fibrosis. Melanoptysis (black sputum) is associated. Simple coal worker's pneumoconiosis has no impact on lung function but PMF may lead to respiratory failure. PMF is characterised by large conglomerate masses."
+  },
+  {
+    "question": "A 41 year old stonemason admits to shortness of breath on exertion. A screening CXR and pulmonary function testing are both abnormal so he has been referred to the respiratory clinic. Silicosis results from the inhalation of which of the following?",
+    "options": [
+      "Coal",
+      "Cotton",
+      "Quartz",
+      "Silicone",
+      "Tin"
+    ],
+    "correct": 2,
+    "explanation": "Silicosis results from the inhalation of crystalline silica usually in the form of quartz."
+  },
+  {
+    "question": "A 72 year old man presents with progressive breathlessness over 6 months; more recently he has had a vague ache in the right side of his chest that has kept him awake at night. His past medical history is significant for two separate episodes of 'benign asbestos pleurisy' in his 50s. He has pleural plaques and received compensation. He had worked in the construction industry and had frequent, heavy exposure to asbestos. He stopped smoking 20 years ago during a bout of pleurisy, having started age 12 years and smoked an average of 20 cigarettes per day. CXR reveals a right-sided pleural effusion and pleural plaques. It is not possible to see the right-sided costophrenic angle. CT scanning reveals pleural plaques, right-sided pleural effusion and mild thickening of the pleura that extends onto the mediastinum anteriorly. What is the most likely reason for his presentation?",
+    "options": [
+      "Asbestos pleural plaques",
+      "Asbestosis",
+      "Benign asbestos pleurisy",
+      "Diffuse pleural thickening",
+      "Mesothelioma"
+    ],
+    "correct": 4,
+    "explanation": "The diagnosis of exclusion here is mesothelioma. The patient has a pleural effusion, extension of pleural thickening onto the mediastinum, chest wall pain that keeps him awake at night and significant asbestos exposure. Although he has had benign asbestos pleurisy in the past, the presentation here is more sinister. Asbestosis is a fibrosing lung condition that would be picked up on CT. Although the patient has pleural plaques, these should not affect his respiratory function or clinical condition."
+  },
+  {
+    "question": "A 69 year old woman has progressive breathlessness on exertion. Because she described a vague feeling of her chest tightening during one of these episodes, her family physician started aspirin and glyceryl trinitrate spray and referred to cardiology. She underwent CT coronary angiogram. This identified no coronary artery disease but diffuse ground glass and some centrilobular nodules were picked up incidentally in the lungs. The patient has no past medical history, worked as a secretary and was a non-smoker. She has kept a pet parrot at home for the last year. What is the likely diagnosis?",
+    "options": [
+      "Aspirin sensitivity",
+      "Breathing artefact",
+      "Hypersensitivity pneumonitis",
+      "Idiopathic pulmonary fibrosis",
+      "Sarcoidosis"
+    ],
+    "correct": 2,
+    "explanation": "The patient has exposure to a parrot and a CT in keeping with hypersensitivity pneumonitis. It is very likely she has bird fancier's lung. Although the CT was focused on the coronary arteries, the image quality is not likely to have created these findings by artefact. Aspirin sensitivity presents differently and her shortness of breath was present prior to starting aspirin. Sarcoidosis is possible (it is nearly always in the differential for abnormal CT chest) but the history of a parrot at home needs to be explored first. Idiopathic pulmonary fibrosis has a different CT appearance. It would be important to ensure a CT scan focused on the lungs was arranged to ensure optimal imaging available at baseline. Removal of the parrot and deep cleaning of the room it resided in are likely to lead to complete resolution of the clinical and radiological findings."
+  },
+  {
+    "question": "A 72 year old man presents with cough and weight loss. He smoked 20 cigarettes per day until 5 years ago. In addition, he worked lagging pipes with 'monkey dung' during his apprenticeship. Examination reveals a supraclavicular lymph node but no significant chest findings. His CT scan notes the supraclavicular lymph node but also suggests there is a peripheral 5 cm peripheral mass in the left lung and an enlarged left-sided hilar lymph node. There is an indeterminate lesion in the liver and MRI is suggested for clarification. What should the next diagnostic test be?",
+    "options": [
+      "CT-guided biopsy",
+      "Endobronchial ultrasound",
+      "Flexible bronchoscopy",
+      "Liver biopsy",
+      "Supraclavicular lymph node biopsy"
+    ],
+    "correct": 4,
+    "explanation": "The patient is at significantly increased risk of lung cancer because of his smoking and his occupation ('monkey dung' is a form of asbestos). The least invasive test that will give a histological diagnosis is peripheral lymph node biopsy. Endobronchial ultrasound would be a reasonable test but is more invasive. Liver biopsy may not give an answer as the lesion may not be related to the primary cancer. Flexible bronchoscopy is less likely to give an answer in a peripheral tumour."
+  },
+  {
+    "question": "Which of the following associations in relation to lung disease is correct?",
+    "options": [
+      "Anthrax and inadequately pasteurised milk",
+      "Chlamydia psittaci and hide factory workers",
+      "Coxiella burnetii and sewage workers",
+      "Francisella tularensis and muskrat contact",
+      "Leptospiral pneumonia and welding"
+    ],
+    "correct": 3,
+    "explanation": "Chlamydia psittaci infects birds (e.g. parrots and budgerigars). Coxiella burnetii is the causative agent of Q fever, and farm workers, abattoir workers and hide factory workers may be exposed. Anthrax may occur in workers exposed to infected hides, hair, bristle, bone meal and animal carcasses."
+  },
+  {
+    "question": "A 45 year old man presents to the acute receiving unit with sudden-onset right-sided pleuritic chest pain, shortness of breath and a swollen, painful right calf. He recently had right-sided anterior cruciate ligament reconstruction abroad (following a skiing accident) and flew home from Canada in the last week. He has a past medical history of spontaneous VTE (treated with 6 months of warfarin) and a family history of VTE (mother and uncle). Observations: oxygen saturations 88% on room air, respiratory rate 22 breaths/min, pulse 110 beats/min, BP 110/65 mmHg. Chest is clear. Right calf is greater in circumference than left by 3 cm. Heart sounds dual, no murmurs. Investigations: CXR reveals marginally elevated right hemidiaphragm; ECG: sinus tachycardia; CRP 35 mg/L, D-dimer 200 ng/ml. What should the next test be for this patient?",
+    "options": [
+      "CT pulmonary angiogram",
+      "Echocardiogram",
+      "Fluoroscopy of the diaphragm",
+      "Respiratory virus throat swab",
+      "Sputum microscopy culture and sensitivity"
+    ],
+    "correct": 0,
+    "explanation": "This is a clear case of pulmonary thromboembolism (PTE) in a high-risk patient. D-dimer has been inappropriately checked as the patient is high risk and this test only safely excludes VTE in low-to-moderate risk patients. Echocardiogram may show right heart strain but cannot diagnose PTE. Sputum microscopy, culture and sensitivity, and respiratory virus throat swab would be appropriate if the history and CXR were in keeping with respiratory infection. The elevated diaphragm here is likely to reflect pleuritic pain or potentially atelectasis in keeping with PTE. Diaphragmatic studies are not indicated here."
+  },
+  {
+    "question": "A 28 year old woman has an anterior cruciate ligament repair and is recovering at home in an above-knee cast when she starts to feel like she will pass out every time she stands up. She attends the emergency department. Examination reveals BP 80/45 mmHg, pulse 110 beats/min, oxygen saturations 92% on air, respiratory rate 22 breaths/min, apyrexial. Chest is clear. Investigations: CXR is clear. Bloods are as follows: haemoglobin 100 g/L, WCC 11 x 10^9/L, platelets 200 x 10^9/L, D-dimer 1200 ng/ml, urea 10 mmol/L (60 mg/dl), creatinine 92 micromol/L (1.04 mg/dl). ECG reveals sinus tachycardia. As the investigations are being reviewed the patient has a cardiac arrest. What should the immediate management include?",
+    "options": [
+      "Apixaban",
+      "Intravenous heparin infusion",
+      "LMWH",
+      "Thrombolysis",
+      "Warfarin"
+    ],
+    "correct": 3,
+    "explanation": "The patient's presentation is typical of a large, central pulmonary thromboembolism and she has suffered a cardiac arrest. The immediate management should include resuscitation and thrombolysis. Thrombolysis is indicated in hypotension unresponsive to fluid resuscitation and in cardiac arrest."
+  },
+  {
+    "question": "A 26 year old woman has been increasingly short of breath over 2 years. She attends the emergency department and is noted to be hypoxaemic with swollen ankles. Her ECG shows right bundle branch block. An echocardiogram is arranged. Pulmonary hypertension is defined as a mean pulmonary artery pressure measured at right heart catheterisation of at least which of the following?",
+    "options": [
+      "15 mmHg",
+      "25 mmHg",
+      "35 mmHg",
+      "45 mmHg",
+      "55 mmHg"
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary hypertension is defined as mean pulmonary artery pressure of at least 25 mmHg at rest, as measured at right heart catheterisation."
+  },
+  {
+    "question": "A 24 year old woman presents with breathlessness and palpitations that has become worse over the preceding year. She has had significant social stress because of the end of a relationship and the death of her mother. Examination reveals an elevated jugular venous pressure but no other abnormalities. An ECG has a rate of 76 beats/min and a rightward axis. CXR reveals a paucity of peripheral vasculature. What would be the most appropriate next investigation?",
+    "options": [
+      "D-dimer",
+      "Dysfunctional breathing studies and Nijmegen questionnaire",
+      "HRCT",
+      "Spirometry",
+      "Transthoracic echocardiography"
+    ],
+    "correct": 4,
+    "explanation": "This presentation could be compatible with primary pulmonary hypertension, although this would require further investigation. A transthoracic echocardiogram is a good initial test. Dysfunctional breathing should not be assumed because of social stress, especially in the presence of physical examination findings and abnormal investigations. HRCT might identify enlarged pulmonary arteries but would not be the ideal study. D-dimer would not be appropriate as it would not rule out chronic thromboembolic disease as the cause of pulmonary hypertension. Spirometry would not necessarily show an abnormality, although gas transfer is often reduced."
+  },
+  {
+    "question": "A 23 year old woman has been diagnosed with primary pulmonary hypertension following right heart catheterisation and extensive investigation to exclude alternative causes of her presentation at a specialist unit. Which of the following therapies may be indicated in primary pulmonary hypertension?",
+    "options": [
+      "Bosentan",
+      "Cyclizine",
+      "Etanercept",
+      "Infliximab",
+      "Isosorbide mononitrate"
+    ],
+    "correct": 0,
+    "explanation": "Endothelin inhibitors such as ambrisentan and bosentan are therapies used in primary pulmonary hypertension. Cyclizine and nitrates are contraindicated. There is no role for anti-tumour necrosis factor agents."
+  },
+  {
+    "question": "A 45 year old woman presents with cough that appears in May and is gone by autumn. In addition, she experiences nasal discharge and watering eyes. Examination is unremarkable and spirometry is normal. What is the likely diagnosis?",
+    "options": [
+      "Allergic asthma",
+      "Allergic rhinitis",
+      "Bordetella pertussis",
+      "Perennial rhinitis",
+      "Viral upper respiratory tract infection"
+    ],
+    "correct": 1,
+    "explanation": "The seasonal presentation with prominent nasal symptoms and watering eyes suggests allergic rhinitis."
+  },
+  {
+    "question": "Which of the following statements is true with regard to breathing during sleep?",
+    "options": [
+      "Abnormal ventilatory drive is present in obstructive sleep apnoea",
+      "During sleep muscle tone increases",
+      "Forty per cent of middle-aged women snore",
+      "Hypoventilation accompanies normal sleep",
+      "Palatoglossus and genioglossus contract actively during expiration"
+    ],
+    "correct": 3,
+    "explanation": "Palatoglossus and genioglossus contract actively during inspiration. Abnormal ventilatory drive is present in central sleep apnoea. Forty per cent of middle-aged men snore. During sleep muscle tone decreases."
+  },
+  {
+    "question": "A 55 year old man has been increasingly sleepy during the daytime. He is having trouble at work as he has been found asleep at his desk and has taken to napping during his breaks. He had a near-miss in his car. His Epworth sleepiness score is 18. His BMI is 36. What is the result of his sleep study likely to be?",
+    "options": [
+      "5 apnoea/hypopneas per hour of sleep",
+      "10 apnoea/hypopneas per hour of sleep",
+      "20 apnoea/hypopneas per hour of sleep",
+      "Central sleep apnoea",
+      "Narcolepsy"
+    ],
+    "correct": 2,
+    "explanation": "The patient's presentation is typical of obstructive sleep apnoea and 15 or more apnoea/hypopnoeas per hour of sleep is diagnostic."
+  },
+  {
+    "question": "A 55 year old woman has an apical lung cancer on the left side with lymph node involvement. She receives radiotherapy following a mediastinoscopy. She has a hoarse voice and is worried this is because of her lung tumour. Bronchoscopy reveals no vocal cord paralysis. What is the likely cause?",
+    "options": [
+      "Chronic laryngitis",
+      "Endotracheal intubation during mediastinoscopy",
+      "Laryngeal tuberculosis",
+      "Left recurrent laryngeal nerve involvement by the tumour",
+      "Psychogenic aphonia"
+    ],
+    "correct": 1,
+    "explanation": "There is no vocal cord paralysis, so local trauma during intubation is the likely cause of the acute-onset hoarseness."
+  },
+  {
+    "question": "A 34 year old man presents with acute-onset shortness of breath and left-sided pleuritic chest pain. Examination reveals oxygen saturations of 94% breathing room air, decreased air entry on the left side of the chest with hyper-resonant percussion note. CXR reveals large left-sided pneumothorax. A therapeutic aspiration is performed and 2.5 L of air is aspirated with no change in the X-ray appearance. What should be the next step?",
+    "options": [
+      "Admit for observation and oxygen",
+      "Bronchoscopy",
+      "Cardiothoracic surgery",
+      "Continue therapeutic aspiration",
+      "Intercostal chest drain"
+    ],
+    "correct": 4,
+    "explanation": "This is a primary spontaneous pneumothorax (PSP). Therapeutic aspiration was the appropriate first step but has failed. An intercostal chest drain would be the next step as most PSPs will resolve without the need for referral to cardiothoracic surgery. An intervention is required to treat the pneumothorax, although observation and oxygen would be useful whilst awaiting a skilled intercostal chest drain practitioner. Bronchoscopy has no role here but may be useful in lung/lobar collapse, which should not be confused with pneumothorax."
+  },
+  {
+    "question": "A 72 year old man is increasingly breathless and has woken in the night breathless. He can no longer go for his regular weekly swim. His past medical history includes ischaemic heart disease, hypertension and polio in childhood. His CXR is under-inspired despite three attempts. A sleep study reveals significant hypoventilation and a morning arterial blood gas identifies decompensated type II respiratory failure. What is the likely diagnosis?",
+    "options": [
+      "Bronchial carcinoma",
+      "Eventration of the diaphragm",
+      "Hernia through foramen of Bochdalek",
+      "Idiopathic diaphragmatic paralysis",
+      "Post-polio syndrome"
+    ],
+    "correct": 4,
+    "explanation": "This man has a past history of polio and he seems to have bilateral diaphragmatic weakness that is significantly impairing his respiratory function. A diaphragmatic defect or eventration would be unlikely to cause respiratory failure. Bronchial carcinoma would be more likely to cause unilateral diaphragmatic paralysis. A history of polio means that this is unlikely to be idiopathic."
+  },
+  {
+    "question": "Which of these associations between pathophysiological features and conditions is correct?",
+    "options": [
+      "Diaphragmatic rupture and ankylosing spondylitis",
+      "Eventration of diaphragm and foramen of Bochdalek",
+      "Pectus carinatum and poliomyelitis",
+      "Pectus excavatum and asthma",
+      "Thoracic kyphoscoliosis and tuberculosis"
+    ],
+    "correct": 4,
+    "explanation": "Thoracic kyphoscoliosis is caused by vertebral disease, trauma, neuromuscular disease or can be a congenital abnormality. Asthma is associated with pectus carinatum."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Mowafy Chest</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mo6zj37h87dsd",
+  "title": "Mowafy Chest",
+  "description": "All chest questions from Dr. Mowafy's book",
+  "icon": "🫁"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A 55-year-old man with congestive heart failure develops bilateral pleural effusions. Which of the following is the most likely pleural fluid characteristic if thoracentesis is performed?",
+    "options": [
+      "Pleural fluid LDH 39, LDH ratio 0.2, protein ratio 0.7",
+      "Pleural fluid LDH 39, LDH ratio 0.2, protein ratio 0.1",
+      "Pleural fluid LDH 599, LDH ratio 0.9, protein ratio 0.1",
+      "Pleural fluid LDH 599, LDH ratio 0.9, protein ratio 0.7"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Pleural fluid LDH 39, LDH ratio 0.2, protein ratio 0.1 because this represents a transudative effusion, which is typical in congestive heart failure. Transudative effusions have low LDH (<200), low LDH ratio (<0.6), and low protein ratio (<0.5). Option a is wrong because the protein ratio is too high for a transudate. Option c is wrong because both LDH and LDH ratio are too high for a transudate. Option d is wrong because the LDH and LDH ratio are too high for a transudate, though the protein ratio is appropriate."
+  },
+  {
+    "question": "A 70-year-old man complains of gradually worsening dyspnea and a persistent cough over the past 3 months but no fevers. He is found to have a right-sided pleural effusion, which is tapped and is grossly bloody. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Parapneumonic effusion",
+      "Malignancy in the pleural space",
+      "Rupture of aortic dissection into the pleural space",
+      "Pulmonary embolism with pulmonary infarction"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Malignancy in the pleural space because a bloody pleural effusion in an older patient with chronic symptoms is highly suggestive of malignancy. Option a is wrong because parapneumonic effusions are typically associated with pneumonia and fever. Option c is wrong because aortic dissection would present with acute severe pain and hemodynamic instability. Option d is wrong because pulmonary embolism with infarction typically presents with acute dyspnea and pleuritic pain, not chronic symptoms."
+  },
+  {
+    "question": "A 39-year-old man develops a moderate free-fl owing pleural effusion following a left diplococci on Gram stain, pH 6.9, glucose 32 mg/dL, and LDH 1890. Which of the following is the best next step?",
+    "options": [
+      "Send the fluid for culture.",
+      "Continue treatment with antibiotics for pneumococcal infection.",
+      "Tube thoracostomy to drain the effusion,",
+      "Schedule a follow-up chest x-ray in 2 weeks to document resolution of the effusion."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Tube thoracostomy to drain the effusion because the pleural fluid pH of 6.9 indicates complicated parapneumonic effusion requiring drainage. Option a is wrong because while culture should be sent, drainage is the priority for pH <7.2. Option b is wrong because antibiotics alone are insufficient for pH <7.2. Option d is wrong because follow-up imaging is inappropriate when drainage is indicated."
+  },
+  {
+    "question": "A 28 year old man with no significant past medical history presented to ER with an acute onset of pleuritic chest pain and shortness of breath while playing football. On examination, there is decreased expansion of the chest on left side, hyperresonance to percussion and reduced air entry on the left. The most likely diagnosis is",
+    "options": [
+      "Left sided pneumothorax",
+      "Left sided pneumonia",
+      "Left sided pleural effusion",
+      "Left lung fibrosis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Left sided pneumothorax because the clinical presentation with acute pleuritic pain, decreased chest expansion, hyperresonance, and reduced air entry is classic for pneumothorax. Option b is wrong because pneumonia would typically present with fever and consolidation signs. Option c is wrong because pleural effusion would show dullness to percussion, not hyperresonance. Option d is wrong because lung fibrosis would present with chronic symptoms and diffuse findings, not acute onset."
+  },
+  {
+    "question": "A 42-year-old woman is being treated with infliximab for rheumatoid arthritis. After 6 months of therapy, she develops persistent fever, weight loss, and night sweats, and tuberculosis is suspected. Which of the following is the most likely location of the tuberculosis?",
+    "options": [
+      "Middle and lower lung zones",
+      "Pleural space",
+      "Apical segment of the upper lung lobes",
+      "Cervical or supraclavicular lymph nodes"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Apical segment of the upper lung lobes because typical reactivation tuberculosis in immunocompetent individuals affects the apical segments. Option a is wrong because middle and lower zones are more typical for primary tuberculosis. Option b is wrong because pleural TB is less common than parenchymal disease. Option d is wrong because cervical/supraclavicular nodes are more typical of primary TB or miliary spread, not reactivation."
+  },
+  {
+    "question": "A 24-year-old man has been treated with isoniazid, rifampin, and pyrazinamide for active pulmonary tuberculosis. After 3 months, he states that he is having numbness and tingling of",
+    "options": [
+      "CT scan of the lumbar spine.",
+      "Initiate pyridoxine.",
+      "Continue the tuberculosis agents and monitor for further neurologic problems.",
+      "Initiate a workup for tuberculosis adenopathy compression on the femoral nerve."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Initiate pyridoxine because isoniazid causes a deficiency of vitamin B6 (pyridoxine), leading to peripheral neuropathy characterized by numbness and tingling. Option a) is incorrect because a CT scan of the lumbar spine is not indicated for this medication side effect. Option c) is incorrect because continuing the medication without addressing the deficiency would worsen the neuropathy. Option d) is incorrect because there is no indication of tuberculosis adenopathy compression on the femoral nerve in this case."
+  },
+  {
+    "question": "A 25-year-old woman is seen in the clinic because her father, who recently emigrated from Aswan, was diagnosed with and has been treated for tuberculosis. She denies a cough and her chest radiograph Is normal. A PPD test shows 10 mm of induration. Her only medication is an oral contraceptive. Which of the following is the best next step?",
+    "options": [
+      "Oral isoniazid and barrier contraception.",
+      "Combination therapy including isoniazid, rifampin, and pyrazinamide.",
+      "Observation.",
+      "Induce three sputum samples."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Oral isoniazid and barrier contraception because this patient has a positive PPD (10 mm) with normal chest x-ray and known exposure to TB, indicating latent TB infection that requires treatment with isoniazid for 9 months. Barrier contraception is needed due to rifampin's induction of liver enzymes that reduce oral contraceptive efficacy. Option b) is incorrect as combination therapy is for active TB, not latent infection. Option c) is incorrect because observation without treatment risks progression to active TB. Option d) is incorrect as sputum samples are for diagnosing active TB, not indicated here."
+  },
+  {
+    "question": "A25 year old woman is seen in the clinic because her father, who recently came from Aswan, was diagnosed with and has been treated for TB. She denies cough and her chest radiograph is normal. A PPD test done for her shows 15 mm of induration. Which of the following is the best next step?",
+    "options": [
+      "Combination therapy including isoniazid, rifampin and pyrazinamide.",
+      "Observation",
+      "Oral isoniazide for nine months",
+      "Give rifampicin for sex months"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Oral isoniazide for nine months because this patient has a larger PPD reaction (15 mm) with normal chest x-ray and known exposure, indicating latent TB infection requiring 9 months of isoniazid treatment. Option a) is incorrect as combination therapy is for active TB, not latent infection. Option b) is incorrect because observation without treatment risks progression to active TB. Option d) is incorrect as rifampicin alone is not standard for latent TB treatment and the duration is wrong."
+  },
+  {
+    "question": "Which of the following tests is the most important to follow for a patient receiving isoniazid and rifampin for tuberculosis treatment?",
+    "options": [
+      "Renal function tests",
+      "Liver function tests",
+      "Slit-lamp examinations",
+      "Amylase and lipase tests"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Liver function tests because both isoniazid and rifampin can cause hepatotoxicity, which is the most serious adverse effect requiring monitoring. Option a) is incorrect as renal function is not significantly affected by these medications. Option c) is incorrect as slit-lamp examinations are for monitoring ethambutol toxicity, not isoniazid or rifampin. Option d) is incorrect as amylase and lipase are not routinely monitored for TB treatment."
+  },
+  {
+    "question": "A 45 year old man with diabetes, diagnosed with pulmonary TB who started treatment 2 months ago, presents to you with a week history of pins and needles in his hands and feet for the symptoms described by the patient?",
+    "options": [
+      "Pyrazinamide",
+      "Rifampicin",
+      "Ethambutol",
+      "Isoniazid",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Isoniazid because it is known to cause peripheral neuropathy as a side effect due to vitamin B6 deficiency, which manifests as numbness and tingling in the extremities. Option a) is incorrect as pyrazinamide is not associated with neuropathy. Option b) is incorrect as rifampicin can cause red discoloration of body fluids but not neuropathy. Option c) is incorrect as ethambutol can cause optic neuritis but not peripheral neuropathy. Option e) is incorrect as isoniazid is the correct answer."
+  },
+  {
+    "question": "You see a 67 year old man who has been referred to the chest clinic following a three",
+    "options": [
+      "Anhydrosis",
+      "Enophthalmos",
+      "Hoarse voice",
+      "Mydriasis",
+      "Ptosis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Mydriasis because Horner's syndrome, which can be caused by a Pancoast tumor, typically presents with miosis (pupil constriction) rather than mydriasis. However, the question appears to be incomplete as it cuts off after 'three'. Option a) Anhydrosis is wrong because Horner's syndrome can cause decreased sweating on the affected side, but this is not the most characteristic finding. Option b) Enophthalmos is wrong because Horner's syndrome can cause sunken eyes, but this is not the most characteristic finding. Option c) Hoarse voice is wrong because this is more associated with recurrent laryngeal nerve compression from mediastinal masses. Option e) Ptosis is wrong because Horner's syndrome causes drooping eyelid, but this is not the most characteristic finding."
+  },
+  {
+    "question": "A 52-year-old man presents with dyspnea, and chest x-ray shows a hilar mass with",
+    "options": [
+      "CT scan of the chest, head, and abdomen for cancer staging.",
+      "Pulmonary function testing to evaluate pulmonary reserve to evaluate for pulmonectomy.",
+      "Obtain a specific tissue diagnosis by biopsy of the hilar mass. 4",
+      "Initiate palliative radiation because the patient is not a candidate for curative resection."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Obtain a specific tissue diagnosis by biopsy of the hilar mass because establishing a definitive diagnosis through biopsy is essential before proceeding with any treatment, as the management approach varies significantly based on the cancer type. Option a) CT scan of the chest, head, and abdomen for cancer staging is wrong because staging should only be performed after establishing a tissue diagnosis. Option b) Pulmonary function testing to evaluate pulmonary reserve to evaluate for pulmonectomy is wrong because this is only relevant if the patient is a surgical candidate, which requires knowing the cancer type and stage first. Option d) Initiate palliative radiation because the patient is not a candidate for curative resection is wrong because we cannot determine the appropriate treatment without first establishing a tissue diagnosis."
+  },
+  {
+    "question": "A 33-year-old woman who Is a nonsmoker has lost 14 kg and has a cough. She is noted to have a lung mass on chest radiograph. Which of the following lung cancers is the most likely cell type?",
+    "options": [
+      "Squamous cell",
+      "Adenocarcinoma",
+      "Small cell",
+      "Large cell"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Adenocarcinoma because it is the most common lung cancer in nonsmokers and is often associated with peripheral lung masses and weight loss. Option a) Squamous cell is wrong because it is strongly associated with smoking and typically presents with central tumors and hemoptysis. Option c) Small cell is wrong because it is almost exclusively associated with heavy smoking and typically presents with central tumors and paraneoplastic syndromes. Option d) Large cell is wrong because it is a rare subtype of lung cancer that is strongly associated with smoking."
+  },
+  {
+    "question": "A 67-year-old long-time smoker with chronic obstructive pulmonary disease presents with 3 days of headaches and plethoric swelling of his face and right arm. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Angioedema",
+      "Hypothyroidism",
+      "Superior vena cava syndrome",
+      "TB"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Superior vena cava syndrome because the patient's symptoms of headaches and plethoric swelling of the face and right arm are classic for SVC obstruction, which is commonly caused by a mediastinal mass in a long-time smoker with COPD. Option a) Angioedema is wrong because it typically presents with transient swelling of the skin and mucous membranes without the chronicity and association with smoking seen here. Option b) Hypothyroidism is wrong because it would present with cold intolerance, weight gain, and fatigue rather than localized swelling. Option d) TB is wrong because while it can cause mediastinal lymphadenopathy, it typically presents with systemic symptoms like fever, night sweats, and weight loss rather than the specific vascular symptoms described."
+  },
+  {
+    "question": "Which of the following are the most likely physical examination findings in a patient with emphysema?",
+    "options": [
+      "Diffuse expiratory wheezing",
+      "Clubbing of the fingers",
+      "Bibasilar inspiratory crackles with increased jugular venous pressure (JVP)",
+      "Inspiratory stridor",
+      "Third heart sound"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Diffuse expiratory wheezing because in emphysema, the loss of elastic recoil leads to air trapping during expiration, causing characteristic wheezing. Option b) Clubbing of the fingers is wrong because it is typically associated with interstitial lung diseases, lung cancer, or chronic hypoxemia, not primarily with emphysema. Option c) Bibasilar inspiratory crackles with increased jugular venous pressure (JVP) is wrong because crackles are more typical of pulmonary fibrosis, and increased JVP suggests right heart failure which is a complication but not a primary finding. Option d) Inspiratory stridor is wrong because it suggests upper airway obstruction, which is not characteristic of emphysema. Option e) Third heart sound is wrong because it is associated with heart failure, not directly with emphysema."
+  },
+  {
+    "question": "Which of the following findings are you most likely to encounter in an 80-year-old woman",
+    "options": [
+      "Enlarged overall lung volume (TLC)",
+      "Decreased FEV1/FVC",
+      "Decreased vital capacity (VC)",
+      "Increased vital capacity (VC)",
+      "ABG with pH 7.48 and PaCO2 of 32 mm Hg"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Decreased vital capacity (VC) because aging leads to reduced lung elasticity and chest wall compliance, resulting in decreased VC. Option a is wrong as lung volume typically decreases with age due to reduced chest wall compliance and increased stiffness. Option b is incorrect as the FEV1/FVC ratio usually remains normal or increases slightly in elderly patients due to disproportionate loss of elastic recoil. Option d is wrong because VC decreases rather than increases with age. Option e is incorrect as the described ABG findings suggest respiratory alkalosis, which is not a typical age-related change."
+  },
+  {
+    "question": "Which of the following is the most likely organism to cause a lobar pneumonia in a",
+    "options": [
+      "Pneumocystis jirovecii",
+      "Mycobacterium tuberculosis",
+      "Histoplasmosis capsulatum",
+      "Streptococcus pneumonia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Streptococcus pneumonia because it is the most common bacterial pathogen causing community-acquired lobar pneumonia in adults. Option a is wrong as Pneumocystis jirovecii typically causes diffuse interstitial pneumonia rather than lobar consolidation. Option b is incorrect as Mycobacterium tuberculosis usually causes chronic cavitary or miliary patterns rather than acute lobar pneumonia. Option c is wrong as Histoplasma capsulatum typically causes granulomatous lung disease with mediastinal lymphadenopathy rather than lobar consolidation."
+  },
+  {
+    "question": "A 56-year-old woman admits to a 60-pack-year smoking history. She complains of fatigue and dyspnea with minimal exertion, and a cough that is productive each morning. Which of the following is the most likely finding in this patient?",
+    "options": [
+      "Normal diffusing capacity of lung for carbon monoxide (DLCO)",
+      "Decreased residual volume",
+      "Normal to slightly increased forced expiratory volume in first second (FEV1)",
+      "Decreased forced expiratory volume in first second/forced vital capacity (FEV1/FVC)",
+      "Decreased forced vital capacity (FVC)"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Decreased forced expiratory volume in first second/forced vital capacity (FEV1/FVC) because this patient's symptoms and smoking history are classic for chronic obstructive pulmonary disease (COPD), which is characterized by a reduced FEV1/FVC ratio. Option a is wrong as DLCO is typically decreased in COPD due to destruction of alveolar-capillary membrane. Option b is incorrect as residual volume typically increases in COPD due to air trapping. Option c is wrong as FEV1 is decreased in COPD, not normal or increased. Option e is incorrect as FVC may be normal or slightly decreased in COPD, but the key finding is the reduced FEV1/FVC ratio."
+  },
+  {
+    "question": "Which of the following therapies is most likely to provide the greatest benefit to a patient",
+    "options": [
+      "Inhaled tiotropium daily",
+      "Inhaled albuterol as needed",
+      "Oral prednisone daily",
+      "Supplemental oxygen used at night",
+      "Supplemental oxygen used continuously"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is e) Supplemental oxygen used continuously because patients with advanced COPD and chronic hypoxemia benefit from continuous oxygen therapy, which improves survival and quality of life. Option a is wrong as tiotropium provides bronchodilation but does not address hypoxemia. Option b is incorrect as albuterol is for symptom relief and does not affect mortality in hypoxemic COPD. Option c is wrong as oral steroids have significant side effects and are not indicated for long-term use in stable COPD. Option d is incorrect as nocturnal oxygen alone is insufficient for patients with significant daytime hypoxemia."
+  },
+  {
+    "question": "A patient with known asthma undergoing therapy with inhaled corticosteroid and intermittent (short-acting) B2-agonist presents with complaints of nocturnal awakenings secondary to cough and occasional wheezing. This episode occurs three to four times per week. Pulmonary function tests in the past have shown mild obstructive lung disease. Which of the following is the best next step?",
+    "options": [
+      "Oral steroids",
+      "Leukotriene inhibitors",
+      "Long-acting B2-agonists",
+      "Antireflux therapy"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Long-acting B2-agonists because this patient's nocturnal symptoms indicate inadequate asthma control despite inhaled corticosteroid therapy, and adding a long-acting B2-agonist is the recommended step-up therapy according to asthma guidelines. Option a is wrong as oral steroids are reserved for severe exacerbations due to significant side effects. Option b is incorrect as leukotriene inhibitors are alternative controllers but less effective than adding long-acting B2-agonists to inhaled corticosteroids. Option d is wrong as antireflux therapy would only be considered if there was evidence of gastroesophageal reflux exacerbating asthma symptoms."
+  },
+  {
+    "question": "A 22-year-old woman presents with fatigue, arthralgias, and a dry cough for the past 6 weeks, but no shortness of breath, On physical examination, her lungs are clear to auscultation, and she has bilateral pretibial tender erythematous raised nodules. Which of the following is your best next step?",
+    "options": [
+      "Chest radiograph",
+      "High-resolution CT",
+      "Empiric treatment for postnasal drip",
+      "Antinuclear antibody",
+      "Initiation of antituberculosis therapy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is chest radiograph because this patient's presentation with fatigue, arthralgias, dry cough, and erythema nodosum is highly suggestive of sarcoidosis, which commonly presents with hilar lymphadenopathy on chest imaging. Option b (high-resolution CT) is not the best initial step as it is more invasive and typically reserved for further evaluation after initial radiograph. Option c (empiric treatment for postnasal drip) is incorrect as there is no evidence of upper respiratory infection. Option d (antinuclear antibody) is premature as this would be part of workup for connective tissue diseases, not initial evaluation. Option e (antituberculosis therapy) is inappropriate as there are no specific symptoms or findings suggesting tuberculosis."
+  },
+  {
+    "question": "A 65-year-old cigarette smoker with a history of hypertension and mild congestive heart The illness began 1 week ago with fever, muscle aches, abdominal pain, and diarrhea, with which of the following atypical organisms must be considered in this case?",
+    "options": [
+      "Chlamydia pneumoniae",
+      "Mycoplasma pneumoniae",
+      ", Legionella pneumophila",
+      "Aspergillus fumigatus"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Legionella pneumophila because this elderly smoker with gastrointestinal symptoms (abdominal pain, diarrhea) and systemic illness has classic presentation of Legionella, which can cause multisystem involvement. Option a (Chlamydia pneumoniae) typically causes milder respiratory symptoms without prominent GI involvement. Option b (Mycoplasma pneumoniae) usually presents with milder respiratory symptoms and is less likely to cause significant GI symptoms in an elderly smoker. Option d (Aspergillus fumigatus) is incorrect as it typically causes chronic pulmonary disease or invasive infection in immunocompromised patients, not acute febrile illness with GI symptoms."
+  },
+  {
+    "question": "22-year-old woman presents with worsening cough and shortness of breath over 6 weeks, which did not improve with a course of antibiotics or antitussives. Her serum calcium level is found to be 12.5 mg/dL, and a chest x-ray reveals bilateral hilar lymphadenopathy. She has erythema nodosum on her legs. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Sarcoidosis",
+      "Mycoplasma pneumonia",
+      "Acute lymphoblastic leukemia",
+      "Squamous cell carcinoma of the lung",
+      "Pulmonary embolism"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is sarcoidosis because this young woman presents with classic triad of hypercalcemia, bilateral hilar lymphadenopathy, and erythema nodosum, which is highly characteristic of sarcoidosis. Option b (Mycoplasma pneumonia) is incorrect as it typically causes acute respiratory infection without hypercalcemia or lymphadenopathy. Option c (Acute lymphoblastic leukemia) is incorrect as it would typically show more systemic symptoms and abnormal blood counts. Option d (Squamous cell carcinoma of the lung) is incorrect as it is rare in young non-smokers and would not present with hypercalcemia and erythema nodosum. Option e (Pulmonary embolism) is incorrect as it would not explain hypercalcemia or lymphadenopathy."
+  },
+  {
+    "question": "An 85-year-old nursing home resident with a history of congestive heart failure has of fever and productive cough. Chest x-ray reveals a right middle lobe consolidation. Which of the following is the most appropriate initial antibiotic choice?",
+    "options": [
+      "Oral amoxicillin",
+      "Intravenous linezolid",
+      "Intravenous cefepime",
+      "Oral azithromycin"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is intravenous cefepime because this elderly nursing home resident with heart failure likely has healthcare-associated pneumonia requiring broad-spectrum coverage against Gram-negative organisms including Pseudomonas. Option a (oral amoxicillin) is inadequate as it doesn't cover typical healthcare pathogens. Option b (intravenous linezolid) is incorrect as it's for Gram-positive coverage and not first-line for pneumonia. Option d (oral azithromycin) is incorrect as monotherapy is insufficient for healthcare-associated pneumonia and doesn't cover Gram-negative organisms."
+  },
+  {
+    "question": "A 25 year old woman is admitted to ER with severe exacerbation of asthma. On examination her RR is 30. As you feel the peripheral pulse, the volume falls as the patient inspire. Which of the following explains this clinical sign?",
+    "options": [
+      "Decreased left atrial filling pressures on inspiration",
+      "Decreased right atrial filling on inspiration",
+      "Increased left atrial pressure on inspiration",
+      "Peripheral vasodilatation"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is decreased left atrial filling pressures on inspiration because in severe asthma, increased intrathoracic pressure during inspiration decreases venous return to the left atrium, causing a pulsus paradoxus. Option b is incorrect as decreased right atrial filling would not explain the pulsus paradoxus. Option c is incorrect as increased left atrial pressure would not cause decreased pulse volume on inspiration. Option d is incorrect as peripheral vasodilatation would not cause this respiratory variation in pulse volume."
+  },
+  {
+    "question": "A45 year old woman with unexpected weight loss and shortness of breath presents to you in clinic. On examination, there is reduced air entry and dullness to percussion in the right lung. A pleural aspiration reveals a protein content of > 30 g/L. What is the most likely diagnosis?",
+    "options": [
+      "Bronchogenic carcinoma",
+      "Congestive heart failure",
+      "Nephrotic syndrome",
+      "Liver cirrhosis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Bronchogenic carcinoma because this patient presents with classic signs of malignant pleural effusion: unexpected weight loss, reduced air entry, dullness to percussion, and a pleural fluid protein content >30 g/L, which indicates an exudative effusion commonly associated with lung cancer. Option b) Congestive heart failure is incorrect as it typically causes transudative pleural effusions with protein content <30 g/L. Option c) Nephrotic syndrome is incorrect as it causes transudative effusions due to low plasma oncotic pressure. Option d) Liver cirrhosis is incorrect as it causes transudative effusions due to hypoalbuminemia and portal hypertension."
+  },
+  {
+    "question": "A 28 year old man has been newly diagnosed with asthma. He has never been admitted to discuss the treatment options with him. His PEFR is 85%. Which of the following is the most",
+    "options": [
+      "Short acting beta 2 agonist inhaler",
+      "Long acting beta 2 agonist inhaler",
+      "Low dose steroid inhaler",
+      "Leukotriene receptor antagonist",
+      "High dose steroid inhaler"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Short acting beta 2 agonist inhaler because for a newly diagnosed asthma patient with normal PEFR (85%), the initial treatment should be as-needed short-acting beta 2 agonists for symptom relief, following step 1 of asthma management guidelines. Option b) Long acting beta 2 agonist inhaler is incorrect as it's not used alone due to safety concerns and is typically combined with inhaled corticosteroids. Option c) Low dose steroid inhaler is incorrect as it's reserved for patients with persistent symptoms requiring regular controller therapy. Option d) Leukotriene receptor antagonist is incorrect as it's a second-line add-on therapy, not initial treatment. Option e) High dose steroid inhaler is incorrect as it's excessive for a newly diagnosed patient with normal lung function."
+  },
+  {
+    "question": "A 46 year old man has presented to ER with acute onset of shortness of breath with high seen?",
+    "options": [
+      "Inverted T waves in lead |, tall & flat T waves in lead Ill",
+      "Deep S waves in lead |, pathological Q waves in lead III, and inverted T waves in lead III",
+      "No changes in lead |, deep S waves in lead III",
+      "Deep S waves in lead | with no changes in lead Ill"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Deep S waves in lead I, pathological Q waves in lead III, and inverted T waves in lead III because this describes the classic ECG findings of acute pulmonary embolism, showing right heart strain pattern with S1Q3T3. Option a) Inverted T waves in lead I, tall & flat T waves in lead III is incorrect as it doesn't match the typical pulmonary embolism pattern. Option c) No changes in lead I, deep S waves in lead III is incorrect as it's incomplete without the Q waves and T wave changes. Option d) Deep S waves in lead I with no changes in lead III is incorrect as it's missing the characteristic Q waves and T wave inversion in lead III."
+  },
+  {
+    "question": "Which of the following is not a cause of bronchiectasis?",
+    "options": [
+      "Kartagener syndrome",
+      "Cystic fibrosis",
+      "Left ventricular failure",
+      "Ulcerative colitis",
+      "Allergic bronchopulmonary aspergillosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Left ventricular failure because it causes pulmonary edema due to increased pulmonary venous pressure, but does not directly lead to bronchiectasis. Option a) Kartagener syndrome is incorrect as it's a ciliary dyskinesia syndrome that commonly causes bronchiectasis. Option b) Cystic fibrosis is incorrect as it's the most common cause of bronchiectasis due to chronic infection and inflammation. Option d) Ulcerative colitis is incorrect as it's associated with bronchiectasis through immune-mediated mechanisms. Option e) Allergic bronchopulmonary aspergillosis is incorrect as it's a well-known cause of bronchiectasis due to hypersensitivity reaction to Aspergillus."
+  },
+  {
+    "question": "Which is not a cause of finger clubbing?",
+    "options": [
+      "Empyema",
+      "Bronchogenic carcinoma",
+      "COPD",
+      "Cystic fibrosis",
+      "Mesothelioma"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) COPD because chronic obstructive pulmonary disease typically does not cause finger clubbing, which is more associated with intrathoracic malignancies, interstitial lung diseases, or suppurative lung conditions. Option a) Empyema is incorrect as it can cause clubbing due to chronic pleural inflammation and infection. Option b) Bronchogenic carcinoma is incorrect as it's a classic cause of clubbing through tumor production of growth factors. Option d) Cystic fibrosis is incorrect as it commonly causes clubbing due to chronic lung infection and inflammation. Option e) Mesothelioma is incorrect as it's associated with clubbing due to pleural involvement and chronic inflammation."
+  },
+  {
+    "question": "You are asked to request imaging for a patient with a suspected pneumothorax who you",
+    "options": [
+      "CT chest",
+      "US chest",
+      "V/Qscan",
+      "Chest X ray"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Chest X ray because it is the initial imaging modality of choice for suspected pneumothorax as it is widely available, cost-effective, and has high sensitivity for detecting pneumothoraces. Option a) CT chest is not first-line as it involves higher radiation exposure and cost, and is typically reserved for complex cases. Option b) US chest is useful for detecting pneumothorax in critical settings but is less sensitive than X-ray for initial diagnosis. Option c) V/Q scan is inappropriate as it is used for pulmonary embolism evaluation, not pneumothorax."
+  },
+  {
+    "question": "A.50 year old man with no past medical history, presents with a four month history of dry cough and shortness of breath on exertion. The patient is referred to the chest clinic after",
+    "options": [
+      "Idiopathic pulmonary fibrosis",
+      "Bronchogenic carcinoma",
+      "Sarcoidosis",
+      "Bronchial asthma"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Sarcoidosis because it commonly presents with dry cough and dyspnea in middle-aged adults, and is associated with bilateral hilar lymphadenopathy on chest imaging. Option a) Idiopathic pulmonary fibrosis typically presents with progressive dyspnea and inspiratory crackles, not a four-month history. Option b) Bronchogenic carcinoma would more likely present with hemoptysis, weight loss, or other systemic symptoms. Option d) Bronchial asthma typically presents with wheezing and variable airflow obstruction, not a chronic dry cough without response to bronchodilators."
+  },
+  {
+    "question": "A 69 year old man presents with dyspnea, cyanosis and finger clubbing. His chest X ray",
+    "options": [
+      "Bronchiectasis",
+      "Pulmonary fibrosis",
+      "Bronchogenic carcinoma",
+      "COPD",
+      "Bronchitis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Pulmonary fibrosis because it classically presents with dyspnea, cyanosis, finger clubbing, and characteristic reticular or honeycomb pattern on chest X-ray. Option a) Bronchiectasis typically shows tram tracking or cystic changes on imaging and is associated with productive cough. Option c) Bronchogenic carcinoma may present with clubbing but usually shows a mass or nodule rather than diffuse interstitial changes. Option d) COPD typically shows hyperinflation and flattened diaphragms on X-ray, not interstitial fibrosis. Option e) Bronchitis would not typically cause finger clubbing."
+  },
+  {
+    "question": "Which of the following types of cancer is most commonly associated with myasthenia gravis?",
+    "options": [
+      "Small cell lung cancer",
+      "Non-small cell lung cancer",
+      "Mesothelioma",
+      "Thymoma"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Thymoma because it is the most commonly associated cancer with myasthenia gravis, with approximately 15-20% of myasthenia gravis patients having a thymoma. Option a) Small cell lung cancer is associated with Lambert-Eaton myasthenic syndrome, not myasthenia gravis. Option b) Non-small cell lung cancer has no strong association with myasthenia gravis. Option c) Mesothelioma is associated with asbestos exposure and has no known link to myasthenia gravis."
+  },
+  {
+    "question": "Which of the following, from the pleural aspirate analysis, would typically be found in a",
+    "options": [
+      "pH>7.2, LDH, T glucose",
+      "pH<7.2, TLDH, T glucose",
+      "pH>7.2, LDH, Vglucose",
+      "pH<7.2, *LDH, )glucose"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) pH<7.2, *LDH, )glucose because this represents exudative pleural fluid with low pH, high LDH, and low glucose, which is typical for complicated parapneumonic effusion or empyema. Option a) pH>7.2, LDH, T glucose is incorrect as exudates have low pH, not high. Option b) pH<7.2, TLDH, T glucose is incorrect as exudates have high LDH, not low, and low glucose, not high. Option c) pH>7.2, LDH, Vglucose is incorrect as exudates have low pH and low glucose, not high."
+  },
+  {
+    "question": "You are told that a patient in clinic has been diagnosed with cystic fibrosis using the diagnosis of cystic fibrosis?",
+    "options": [
+      "NaCl <40 mmol/L",
+      "NaCl > 60 mmol/L",
+      "NaCi<60 mmol/L",
+      "NaCl >5O mmol/L"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) NaCl > 60 mmol/L because in cystic fibrosis, defective CFTR protein leads to reduced chloride secretion and increased sodium absorption in sweat glands, resulting in elevated sweat chloride levels (>60 mmol/L). Option a) NaCl <40 mmol/L is wrong as this would be normal and not diagnostic for cystic fibrosis. Option c) NaCl<60 mmol/L is incorrect because values below 60 mmol/L are not diagnostic for cystic fibrosis. Option d) NaCl >5O mmol/L is wrong as the threshold for diagnosis is >60 mmol/L, not >50 mmol/L."
+  },
+  {
+    "question": "Which of the following organisms responsible for causing chronic pneumonia is most",
+    "options": [
+      "L, pneumophilia",
+      "S. pneumonia",
+      "Pseudomonas aeruginosa",
+      "H. influenza"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Pseudomonas aeruginosa because it is a common cause of chronic pneumonia, particularly in patients with cystic fibrosis or bronchiectasis, forming biofilms and causing persistent infections. Option a) L. pneumophilia is wrong as it typically causes acute Legionnaires' disease rather than chronic pneumonia. Option b) S. pneumonia is incorrect because it usually causes acute pneumonia rather than chronic infection. Option d) H. influenza is wrong as it typically causes acute respiratory infections and is not strongly associated with chronic pneumonia."
+  },
+  {
+    "question": "Which of the following carcinomas of the lung is highly associated with exposure to asbestoses?",
+    "options": [
+      "Adenocarcinoma",
+      "Small cell carcinoma",
+      "Squamous cell carcinoma",
+      "Malignant mesothelioma"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Malignant mesothelioma because it is a rare cancer almost exclusively linked to asbestos exposure, with a latency period of 20-50 years. Option a) Adenocarcinoma is wrong as it is more associated with smoking rather than asbestos exposure. Option b) Small cell carcinoma is incorrect because it is strongly associated with smoking, not asbestos. Option c) Squamous cell carcinoma is wrong as while it can be associated with asbestos, it is more strongly linked to smoking."
+  },
+  {
+    "question": "Which of the following drugs would be the most appropriate to treat pulmonary Aspergillus spp. Infection?",
+    "options": [
+      "Amoxycillin.",
+      "Erythromycin",
+      "Amphotericin B",
+      "Flucloxacillin"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Amphotericin B because it is an antifungal medication effective against Aspergillus species by binding to ergosterol in fungal cell membranes. Option a) Amoxycillin is wrong as it is an antibiotic ineffective against fungal infections. Option b) Erythromycin is incorrect because it is an antibiotic that targets bacteria, not fungi. Option d) Flucloxacillin is wrong as it is a beta-lactam antibiotic effective against certain bacteria but not fungi."
+  },
+  {
+    "question": "Patient received salbutamol, what is expected regarding electrolytes?",
+    "options": [
+      "Hypermagnesemia",
+      "Hypernatremia",
+      "Hypokalemia",
+      "Hyperkalemia"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Hypokalemia because salbutamol (a beta-2 agonist) promotes potassium uptake into cells, leading to decreased serum potassium levels. Option a) Hypermagnesemia is wrong as salbutamol does not significantly affect magnesium levels. Option b) Hypernatremia is incorrect because salbutamol does not cause sodium retention or hypernatremia. Option d) Hyperkalemia is wrong as salbutamol causes potassium shift into cells, resulting in hypokalemia, not hyperkalemia."
+  },
+  {
+    "question": "25 year old man has sudden onset of chest pain on the right side and dyspnea. His trachea is deviated to the left. All of the following would be anticipated except",
+    "options": [
+      "Absence of rales",
+      "Absence of rhonchi",
+      "Hyperresonance over the right chest",
+      "Distant breath sounds on the right",
+      "Pleural friction rub on the left"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is e) Pleural friction rub on the left because the patient's presentation suggests a right-sided tension pneumothorax, characterized by sudden chest pain, dyspnea, and tracheal deviation away from the affected side. Option a) is incorrect because rales would not be present in a pneumothorax as there is no fluid in the alveoli. Option b) is incorrect because rhonchi would not be present as there is no airway obstruction. Option c) is correct because hyperresonance is expected over the affected side due to air in the pleural space. Option d) is correct because breath sounds would be distant or absent on the affected side due to the pneumothorax. Option e) is incorrect because a pleural friction rub would not be present on the left side as the pathology is on the right."
+  },
+  {
+    "question": "A 62-year-old man with limited-stage small cell lung cancer and proximal muscular weakness is most likely to have which of the following conditions?",
+    "options": [
+      "SIADH",
+      "Myasthenia gravis",
+      "Cerebellar degeneration",
+      "Eaton-Lambert syndrome"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Eaton-Lambert syndrome because small cell lung cancer is associated with paraneoplastic syndromes, and Eaton-Lambert syndrome is a classic paraneoplastic condition characterized by proximal muscle weakness that improves with exercise. Option a) is incorrect because SIADH is another paraneoplastic syndrome associated with small cell lung cancer but presents with hyponatremia rather than proximal weakness. Option b) is incorrect because myasthenia gravis causes proximal weakness but is not typically associated with small cell lung cancer. Option c) is incorrect because cerebellar degeneration is a paraneoplastic syndrome but presents with ataxia rather than proximal weakness."
+  },
+  {
+    "question": "Bilateral pleural effusion is commonly seen in all except:",
+    "options": [
+      "SLE",
+      "Nephrotic syndrome",
+      "Pulmonary tuberculosis",
+      "Congestive cardiac failure"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Pulmonary tuberculosis because pulmonary tuberculosis typically causes unilateral pleural effusions rather than bilateral ones. Option a) is incorrect because SLE commonly causes bilateral pleural effusions due to systemic inflammation. Option b) is incorrect because nephrotic syndrome leads to hypoalbuminemia and can cause bilateral pleural effusions. Option d) is incorrect because congestive cardiac failure frequently results in bilateral pleural effusions due to increased hydrostatic pressure."
+  },
+  {
+    "question": "In examining the pleural fluid the following characteristics imply an exudative effusion except:",
+    "options": [
+      "Pleural/serum protein ratio greater than 0.5",
+      "Pleural pH of 7.40",
+      "Pleural/serum LDH ratio of greater than 0.6",
+      "WE8C content of 6000"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Pleural pH of 7.40 because exudative effusions typically have a pH less than 7.30 due to increased inflammatory mediators. Option a) is incorrect because a pleural/serum protein ratio greater than 0.5 is a criterion for exudative effusion. Option c) is incorrect because a pleural/serum LDH ratio greater than 0.6 is another criterion for exudative effusion. Option d) is incorrect because a WBC count of 6000 is consistent with an exudative effusion, which typically has higher cell counts than transudative effusions."
+  },
+  {
+    "question": "Pleural effusion associated with pulmonary embolism can be:",
+    "options": [
+      "An exudate",
+      "Atransudate",
+      "Bloody",
+      "Allof the above"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) All of the above because pleural effusions associated with pulmonary embolism can present as exudates, transudates, or bloody effusions depending on the underlying pathophysiology. Option a) is correct because exudative effusions can occur due to increased permeability from infarction or inflammation. Option b) is correct because transudative effusions can occur due to increased hydrostatic pressure from right heart strain. Option c) is correct because bloody effusions can occur due to hemorrhage from infarction or direct injury to the pleura."
+  },
+  {
+    "question": "As regard to Pleural effusion in rheumatoid — collagen vascular disease, all are true except",
+    "options": [
+      "Often associated with onset of joint symptoms",
+      "Has alow pH and glucose",
+      "Often bilateral",
+      "Empyema can occur in this setting"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Often bilateral because rheumatoid pleural effusions are typically unilateral, occurring in only about 20-40% of cases as bilateral. Option a is true as pleural effusions often coincide with joint symptom onset in rheumatoid disease. Option b is true as these effusions characteristically have low pH (<7.30) and glucose levels due to inflammation. Option d is true as empyema can occur as a complication of rheumatoid pleural effusion, particularly if there's a superimposed infection."
+  },
+  {
+    "question": "Tobacco use is associated with the following cancers except",
+    "options": [
+      "Bladder",
+      "Liver",
+      "Pancreas",
+      "Pharynx",
+      "Colorectal"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Liver because tobacco use is not strongly associated with liver cancer; instead, hepatitis B and C infections, alcohol abuse, and non-alcoholic fatty liver disease are primary risk factors. Option a is incorrect as tobacco is a major risk factor for bladder cancer through carcinogen exposure. Option c is incorrect as tobacco significantly increases pancreatic cancer risk. Option d is incorrect as tobacco is strongly linked to pharyngeal cancer. Option e is incorrect as tobacco use increases colorectal cancer risk, especially with heavy or long-term exposure."
+  },
+  {
+    "question": "In a patient with airways obstruction and sacular bronchiectasis on chest CT and eosinophilia a primary diagnosis to consider is:",
+    "options": [
+      "Cystic Fibrosis",
+      "Histoplasmosis",
+      "Bronchopulmonary aspergillosis",
+      "Tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Bronchopulmonary aspergillosis because this condition classically presents with airways obstruction, sacular bronchiectasis on CT, and eosinophilia due to hypersensitivity reaction to Aspergillus antigens. Option a is incorrect as cystic fibrosis typically shows diffuse cylindrical bronchiectasis rather than sacular pattern and may have different eosinophil levels. Option b is incorrect as histoplasmosis typically shows nodular or infiltrative patterns rather than sacular bronchiectasis. Option d is incorrect as tuberculosis typically shows cavitary lesions or tree-in-bud pattern rather than sacular bronchiectasis."
+  },
+  {
+    "question": "A 60 year old man has had cough and sputum for over 15 years. Now he complains that his sputum is blood tinged, particularly when he first awakens in the morning. His chest X-",
+    "options": [
+      "Carcinoma of the lung",
+      "Bronchiectasis",
+      "Interstitial lung disease",
+      "Heart failure"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Bronchiectasis because the chronic cough with sputum production for over 15 years, particularly with blood-tinged sputum upon awakening, is classic for bronchiectasis where dilated airways accumulate mucus that becomes blood-streaked overnight. Option a is incorrect as carcinoma typically presents with more acute symptoms and may show a mass on X-ray rather than chronic bronchial changes. Option c is incorrect as interstitial lung disease typically presents with progressive dyspnea and restrictive pattern on pulmonary function tests. Option d is incorrect as heart failure typically presents with orthopnea, paroxysmal nocturnal dyspnea, and pulmonary edema on X-ray."
+  },
+  {
+    "question": "A cough made worse in recumbent position suggests:",
+    "options": [
+      "Pulmonary embolism",
+      "Asthma",
+      "Gastroesophageal reflux",
+      "Subdiaphragmatic abscess"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Gastroesophageal reflux because recumbent position worsens reflux as gravity no longer helps keep stomach contents down, leading to cough from aspiration or irritation of the esophagus. Option a is incorrect as pulmonary embolism typically presents with acute dyspnea, pleuritic chest pain, and tachycardia rather than position-dependent cough. Option b is incorrect as asthma cough is often worse at night or early morning but not specifically in recumbent position. Option d is incorrect as subdiaphragmatic abscess typically presents with fever, abdominal pain, and referred shoulder pain rather than position-dependent cough."
+  },
+  {
+    "question": "Most common cause of a chronic slightly productive cough in the adult population is:",
+    "options": [
+      "Asthma",
+      "Chronic bronchial inflammation",
+      "Heart failure",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Chronic bronchial inflammation because it is the most common cause of a chronic slightly productive cough in adults, often due to conditions like chronic bronchitis or COPD, which result from long-term exposure to irritants like tobacco smoke. Option a) Asthma is incorrect because while it can cause cough, it typically presents with wheezing and shortness of breath rather than a productive cough, and is less common than chronic bronchial inflammation as a cause. Option c) Heart failure is incorrect because it typically causes a dry cough or frothy sputum, often accompanied by orthopnea and paroxysmal nocturnal dyspnea, rather than a slightly productive cough. Option d) None of the above is incorrect because chronic bronchial inflammation is indeed the most common cause of this symptom pattern in adults."
+  },
+  {
+    "question": "A 40 year old woman is seen in the office complaining of shortness of breath in climbing a flight of stairs, which has been progressive over the past four months. Her physical examination is unremarkable. Her chest X-rays show bilateral hilar adenopathy, with a mild",
+    "options": [
+      "Interstitial pulmonary fibrosis (IPF)",
+      "Sarcoidosis",
+      "Wegener’s granulomatosis",
+      "Asbestosis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is sarcoidosis because it commonly presents with bilateral hilar adenopathy and progressive dyspnea in young adults, often without other physical findings. Interstitial pulmonary fibrosis is incorrect as it typically shows reticular or honeycomb patterns on imaging rather than isolated hilar adenopathy. Wegener's granulomatosis is incorrect because it usually involves upper respiratory symptoms, renal involvement, and c-ANCA positivity, not just hilar adenopathy. Asbestosis is incorrect as it typically shows pleural plaques and lower lobe fibrosis on imaging with a history of asbestos exposure."
+  },
+  {
+    "question": "In interstitial lung diseases, lung function tests most often show:",
+    "options": [
+      "Reduced carbon monoxide diffusing capacity (DLCO)",
+      "Increased total lung capacity (TLC)",
+      "Airflow obstruction",
+      "Elevated arterial PCO2"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Reduced carbon monoxide diffusing capacity (DLCO) because interstitial lung diseases cause fibrosis and thickening of the alveolar-capillary membrane, impairing gas transfer and reducing DLCO. Option b is incorrect as interstitial lung diseases typically show reduced total lung capacity due to restrictive physiology, not increased TLC. Option c is wrong because airflow obstruction is characteristic of obstructive diseases like COPD, not interstitial lung diseases. Option d is incorrect as elevated arterial PCO2 occurs in advanced respiratory failure, not as a primary finding in interstitial lung diseases."
+  },
+  {
+    "question": "A 60 year old man, former smoker, was found to have an 8 mm mass lesion in the left asymptomatic. There are no previous chest films. To make a diagnosis, what is the next step?",
+    "options": [
+      "Repeat chest films in six months",
+      "Bronchoscopy with transbronchial biopsy",
+      "Fine needle CT guided aspiration of the lesion",
+      "Sputum cytology"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is fine needle CT guided aspiration of the lesion because it provides a definitive tissue diagnosis for an 8 mm pulmonary nodule in a high-risk patient (60-year-old former smoker), which is essential to determine if it's malignant. Option a is incorrect because waiting six months without diagnosis could allow potential cancer progression. Option b is incorrect as bronchoscopy with transbronchial biopsy is less accurate for small peripheral lesions like this 8 mm nodule. Option d is incorrect because sputum cytology has low sensitivity for small peripheral lung nodules and is better for central lesions."
+  },
+  {
+    "question": "In adult respiratory distress syndrome (ARDS) the following findings are present except:",
+    "options": [
+      "Cyanosis",
+      "Tachypnea",
+      "Infiltrates on chest X-ray",
+      "Elevated pulmonary capillary wedge pressure"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Elevated pulmonary capillary wedge pressure because ARDS is characterized by non-cardiogenic pulmonary edema, meaning the pulmonary capillary wedge pressure remains normal or low (<18 mmHg) while the lungs are flooded with fluid due to increased permeability of the alveolar-capillary membrane. Cyanosis (a) is incorrect as it is a common finding in ARDS due to hypoxemia from impaired gas exchange. Tachypnea (b) is incorrect as it is a hallmark compensatory mechanism in ARDS to improve oxygenation. Infiltrates on chest X-ray (c) is incorrect as diffuse bilateral infiltrates are a key diagnostic criterion for ARDS, representing the alveolar fluid accumulation."
+  },
+  {
+    "question": "A 60 year old man who has worked with asbestos for 10 years, stopping over 20 years ago, presents with dyspnea and a chest x-ray which shows pleural plaques. His pulmonary is the most likely cause of his dyspnea?",
+    "options": [
+      "Asbestosis",
+      "Mesothelioma",
+      "Chronic obstructive lung disease",
+      "Asthma",
+      "Silicosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is chronic obstructive lung disease because asbestos exposure is a known risk factor for COPD, and the dyspnea in this case is more likely due to smoking-related or age-related COPD rather than asbestos-specific pathology. Asbestosis is incorrect because it typically requires more significant asbestos exposure and would show interstitial fibrosis on imaging, not just pleural plaques. Mesothelioma is incorrect because it typically presents much later after asbestos exposure and would show pleural thickening or masses rather than just plaques. Silicosis is incorrect because it results from silica exposure, not asbestos exposure. Asthma is incorrect because it typically presents earlier in life with reversible airway obstruction and is not associated with asbestos exposure."
+  },
+  {
+    "question": "In a subject with an arterial PCO2 of 30 mm Hg, you would consider all of the following in the differential diagnosis EXCEPT",
+    "options": [
+      "Acute airway obstruction",
+      "Interstitial lung disease",
+      "Pulmonary embolism",
+      "Diabetic ketoacidosis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Acute airway obstruction because this condition would typically cause an elevated arterial PCO2 due to hypoventilation and CO2 retention, not the decreased PCO2 of 30 mm Hg seen in this case. Option b) Interstitial lung disease is incorrect as it can cause hyperventilation and respiratory alkalosis with low PCO2 due to hypoxemic stimulation of peripheral chemoreceptors. Option c) Pulmonary embolism is incorrect because it often leads to hyperventilation and respiratory alkalosis with low PCO2 as a compensatory mechanism to improve oxygenation. Option d) Diabetic ketoacidosis is incorrect because it causes hyperventilation (Kussmaul respirations) leading to respiratory alkalosis and decreased PCO2 as the body attempts to compensate for metabolic acidosis."
+  },
+  {
+    "question": "All of the following are indicators of severe pneumonia EXCEPT",
+    "options": [
+      "Altered mental status",
+      "PaO2 < 90mmHg",
+      "Respiratory rate > 30/min",
+      "Blood pressure < 90/60mmHg",
+      "Chest X-ray shows bilateral infiltration, multi-lobar infiltration and the infiltrations"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) PaO2 < 90mmHg because this value alone does not necessarily indicate severe pneumonia; mild to moderate pneumonia can also cause hypoxemia, and severity is determined by multiple factors rather than just oxygen levels. Option a) is wrong as altered mental status indicates severe pneumonia due to hypoxia or sepsis. Option c) is incorrect because respiratory rate > 30/min is a sign of severe pneumonia reflecting increased work of breathing. Option d) is wrong as blood pressure < 90/60mmHg indicates septic shock, a complication of severe pneumonia. Option e) is incorrect because extensive or bilateral chest X-ray findings are characteristic of severe pneumonia indicating significant lung involvement."
+  },
+  {
+    "question": "All of the following are complications of lobar pneumonia except",
+    "options": [
+      "Lung abscess",
+      "Amyloidosis",
+      "Suppurative arthritis",
+      "Infective endocarditis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Infective endocarditis because this condition is not a direct complication of lobar pneumonia, which primarily affects the lung parenchyma. Infective endocarditis is an infection of the heart valves that typically results from bacteremia originating from other sites, not directly from pneumonia. Lung abscess (a) is a complication as it can form when necrotic lung tissue becomes secondarily infected. Amyloidosis (b) can occur as a long-term complication due to chronic inflammation from recurrent or unresolved pneumonia. Suppurative arthritis (c) can develop when bacteria from the pneumonia enter the bloodstream and seed joints, though it's less common than other complications."
+  },
+  {
+    "question": "Most common site of metastatic disease is",
+    "options": [
+      "Bone",
+      "Brain",
+      "Liver",
+      "Lung"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is lung because the lungs receive dual blood supply from both the pulmonary and bronchial circulations, making them a common first site for metastatic spread from many primary cancers. Bone is incorrect because while it is a common site for certain cancers like breast and prostate, it is not the most frequent overall metastatic site. Brain is incorrect as it is less common than lung metastasis, typically occurring in later stages of disease. Liver is incorrect because although it is a common site for metastasis from gastrointestinal cancers, it is not as universally common as lung metastasis across all cancer types."
+  },
+  {
+    "question": "All of the following are non metastatic complications of malignancy except",
+    "options": [
+      "Cushing syndrome",
+      "Cerebral cortical degeneration",
+      "Cerebellar degeneration",
+      "Polymyositis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Cerebral cortical degeneration because this condition is not recognized as a direct non-metastatic complication of malignancy, while the other options are well-documented paraneoplastic syndromes. Cushing syndrome (a) is a paraneoplastic syndrome caused by ectopic ACTH production by certain tumors. Cerebellar degeneration (c) is a classic paraneoplastic syndrome often associated with anti-Yo antibodies in gynecologic cancers. Polymyositis (d) is another paraneoplastic syndrome that can occur in various malignancies as an immune-mediated response to the tumor."
+  },
+  {
+    "question": "A high amylase level in pleural fluid suggestive of",
+    "options": [
+      "Tuberculosis",
+      "Malignancy",
+      "Rheumatoid arthritis",
+      "Pulmonary infarction"
+    ],
+    "correct": 1,
+    "explanation": "A high amylase level in pleural fluid is suggestive of malignancy because pancreatic or lung cancers can directly produce and secrete amylase into the pleural space, leading to elevated levels. Tuberculosis is incorrect as it typically causes lymphocytic pleural effusions without significant amylase elevation. Rheumatoid arthritis is wrong because it usually presents with low glucose and high LDH in pleural fluid, not elevated amylase. Pulmonary infarction is incorrect as it typically causes exudative effusions with high LDH but normal amylase levels."
+  },
+  {
+    "question": "The diffusion capacity of the lung (DLCO) is not decreased in the following conditions",
+    "options": [
+      "Interstitial lung disease",
+      "Good pasture syndrome",
+      "Emphysema",
+      "Primary pulmonary hypertension"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Primary pulmonary hypertension because this condition affects the pulmonary vasculature and increases pulmonary artery pressure without damaging the alveolar-capillary membrane or reducing the surface area for gas exchange, which are the primary determinants of diffusion capacity. Option a) Interstitial lung disease is incorrect because it thickens the alveolar-capillary membrane, impairing gas diffusion. Option b) Good pasture syndrome is incorrect as it involves anti-glomerular basement membrane antibodies that damage both the lungs and kidneys, reducing diffusion capacity through alveolar hemorrhage and fibrosis. Option c) Emphysema is incorrect because it destroys alveolar walls, reducing the surface area available for gas exchange and thereby decreasing diffusion capacity."
+  },
+  {
+    "question": "In a case of humoral immunodeficiency. Which of the following infections is suspected?",
+    "options": [
+      "Giardiasis",
+      "Pneumocystis carinii pneumonia",
+      "Recurrent sinusitis",
+      "Recurrent subcutaneous abscess"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is recurrent sinusitis because humoral immunodeficiencies primarily affect B-cell function and antibody production, leading to impaired defense against encapsulated bacteria like Streptococcus pneumoniae and Haemophilus influenzae, which commonly cause recurrent sinus infections. Giardiasis is incorrect as it's typically associated with T-cell defects rather than humoral immunity. Pneumocystis carinii pneumonia is wrong because it's characteristic of cell-mediated immunodeficiencies like HIV/AIDS. Recurrent subcutaneous abscesses are incorrect as they're more commonly associated with defects in neutrophil function rather than humoral immunity."
+  },
+  {
+    "question": "Which of the following drugs is not useful in the treatment of acute bronchial asthma?",
+    "options": [
+      "Ipratropium",
+      "Salbutamol",
+      "Montelukast",
+      "Hydrocortisone"
+    ],
+    "correct": 2,
+    "explanation": "Montelukast is not useful in the treatment of acute bronchial asthma because it is a leukotriene receptor antagonist that works slowly and is only indicated for long-term control of asthma, not for acute relief of bronchospasm. Ipratropium is incorrect because it is a short-acting muscarinic antagonist that can be used in combination with beta-2 agonists for acute asthma exacerbations. Salbutamol is incorrect as it is a short-acting beta-2 agonist that is first-line therapy for acute bronchospasm in asthma. Hydrocortisone is incorrect because systemic corticosteroids like hydrocortisone are used to reduce airway inflammation in acute asthma exacerbations, though they take several hours to work."
+  },
+  {
+    "question": "Which of the following is not correct regarding sarcoidosis?",
+    "options": [
+      "Often cavitates",
+      "Spontaneous remission is usual",
+      "Bilateral hilar lymphadenopathy",
+      "Tuberculin test is negative"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Often cavitates because sarcoidosis typically presents as non-caseating granulomas and rarely causes cavitation, unlike tuberculosis or fungal infections which commonly cavitate. Option b) is incorrect because spontaneous remission occurs in only about 50% of cases, not \"usual.\" Option c) is incorrect as bilateral hilar lymphadenopathy is actually a classic feature of sarcoidosis, occurring in 75-90% of cases. Option d) is incorrect because tuberculin test is typically negative in sarcoidosis due to anergic state from cell-mediated immune dysfunction, though this is not a reliable diagnostic criterion."
+  },
+  {
+    "question": "Which of the following is not a cause of pulmonary hypertension?",
+    "options": [
+      "Hyperventilation",
+      "Obesity",
+      "High attitude",
+      "Phenfluramine"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is hyperventilation because it does not directly cause pulmonary hypertension; instead, it affects carbon dioxide levels and pH balance without increasing pulmonary artery pressure. Obesity can cause pulmonary hypertension through increased cardiac output and hypoxia, high altitude leads to hypoxic pulmonary vasoconstriction, and phenfluramine has been directly linked to pulmonary hypertension through its effects on serotonin receptors and vascular remodeling."
+  },
+  {
+    "question": "A low protein content is characteristic of pleural effusions associated with :",
+    "options": [
+      "TB.",
+      "Cirrhosis,",
+      "Bronchogenic carcinoma.",
+      "Rheumatoid diseases,"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Cirrhosis because cirrhosis leads to transudative pleural effusions with low protein content (<3 g/dL) due to increased hydrostatic pressure from portal hypertension and hypoalbuminemia. Option a) TB is incorrect because tuberculous pleural effusions are exudates with high protein content due to inflammatory processes. Option c) Bronchogenic carcinoma is incorrect because malignant pleural effusions are typically exudates with high protein content resulting from tumor invasion and inflammation. Option d) Rheumatoid diseases is incorrect because rheumatoid pleural effusions are exudates with high protein content and often have low glucose levels due to inflammatory processes."
+  },
+  {
+    "question": "Which of the following manifestations is typical of Kartagener’s syndrome?",
+    "options": [
+      "Intestinal obstruction",
+      "Dextrocardia",
+      "Steatorrhea",
+      "Infertility"
+    ],
+    "correct": 1,
+    "explanation": "Kartagener's syndrome is a subtype of primary ciliary dyskinesia characterized by the triad of situs inversus, chronic sinusitis, and bronchiectasis, with dextrocardia being a common manifestation due to the abnormal positioning of organs. Intestinal obstruction is not associated with Kartagener's syndrome as it relates to mechanical or functional blockages in the intestines rather than ciliary dysfunction. Steatorrhea, which is the presence of excess fat in feces, is not a typical feature of Kartagener's syndrome and is more commonly seen in conditions like pancreatic insufficiency or malabsorption disorders. Infertility can occur in Kartagener's syndrome due to impaired sperm motility from defective cilia, but it is not as consistently present or defining as dextrocardia in the syndrome's presentation."
+  },
+  {
+    "question": "Hypercapnia is a typical feature of :",
+    "options": [
+      "Pulmonary embolism.",
+      "Salicylate intoxication.",
+      "Pulmonary fibrosis.",
+      "Severe chronic bronchitis"
+    ],
+    "correct": 3,
+    "explanation": "Hypercapnia is a typical feature of severe chronic bronchitis because this condition causes chronic airway obstruction and impaired gas exchange, leading to carbon dioxide retention. Pulmonary embolism typically causes hypoxia but not hypercapnia as it primarily affects oxygenation. Salicylate intoxication causes respiratory alkalosis due to direct stimulation of the respiratory center, not hypercapnia. Pulmonary fibrosis primarily causes hypoxemia due to impaired diffusion capacity but does not typically lead to hypercapnia until very late stages."
+  },
+  {
+    "question": "In pneumonia, the following features are classically associated with the specific organisms EXCEPT :",
+    "options": [
+      "Erythema nodosum and Mycoplasma pneumonia.",
+      "Hyponatremia and Legionella pneumonia,",
+      "Abscess formation and Staphylococcus aureus.",
+      "Hemolytic anemia and Streptococcus pneumonia."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Erythema nodosum and Mycoplasma pneumonia because erythema nodosum is actually classically associated with other infections like tuberculosis or coccidioidomycosis, not Mycoplasma pneumonia. Option b is incorrect because hyponatremia is indeed associated with Legionella pneumonia due to the syndrome of inappropriate antidiuretic hormone secretion. Option c is incorrect as Staphylococcus aureus pneumonia can lead to abscess formation, particularly in post-viral or post-influenza cases. Option d is incorrect because hemolytic anemia is not a typical feature of Streptococcus pneumonia infection; instead, pneumococcal infections are more commonly associated with complications like parapneumonic effusions or empyema."
+  },
+  {
+    "question": "In lobar pneumonia which of the following is true in arterial blood :",
+    "options": [
+      "Decreased Po2, increased PCO2",
+      "Decreased Po2 , Decreased Pco2.",
+      "Decreased Po2 and normal Pco2.",
+      "Normal Po2, increased Peo2."
+    ],
+    "correct": 1,
+    "explanation": "In lobar pneumonia, the correct answer is b) Decreased Po2, Decreased Pco2 because the inflammatory process causes alveolar filling with fluid and pus, impairing gas exchange and leading to hypoxemia (decreased Po2). The hypoxemia triggers an increase in respiratory rate and depth, resulting in hyperventilation which causes decreased Pco2. Option a is incorrect because increased PCO2 would indicate hypoventilation, not the hyperventilation that occurs in pneumonia. Option c is incorrect because while Po2 is decreased, Pco2 is not normal but rather decreased due to hyperventilation. Option d is incorrect because both Po2 is decreased (not normal) and Pco2 is decreased (not increased) in this condition."
+  },
+  {
+    "question": "Which is NOT a part of Kartagener syndrome :",
+    "options": [
+      "Dextrocardia,",
+      "Sinusitis.",
+      "Impotence.",
+      "Bronchiectasis."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) Impotence because Kartagener syndrome is characterized by the triad of situs inversus (including dextrocardia), chronic sinusitis, and bronchiectasis, with no association with impotence. Option a) Dextrocardia is wrong because it is actually a hallmark feature of Kartagener syndrome, occurring in nearly all affected individuals. Option b) Sinusitis is wrong because it is one of the three classic components of Kartagener syndrome, resulting from impaired mucociliary clearance. Option d) Bronchiectasis is wrong because it is the third essential component of Kartagener syndrome, caused by defective ciliary function leading to recurrent respiratory infections."
+  },
+  {
+    "question": "Which is correct in type 2 respiratory failure :",
+    "options": [
+      "Decreased Po2, increased PCO2",
+      "Decreased Po2 , Decreased Pco2,",
+      "Decreased Po2 and normal Pco2.",
+      "Normal Po2, increased Pco2,"
+    ],
+    "correct": 0,
+    "explanation": "Type 2 respiratory failure is characterized by decreased Po2 (hypoxemia) and increased PCO2 (hypercapnia) due to inadequate alveolar ventilation relative to metabolic demands, commonly seen in conditions like severe COPD or neuromuscular disorders. Option b is incorrect because decreased PCO2 would indicate hyperventilation, which is characteristic of type 1 respiratory failure. Option c is incorrect because normal PCO2 does not occur in type 2 failure, which requires hypercapnia due to ventilation-perfusion mismatch or hypoventilation. Option d is incorrect because normal Po2 would not qualify as respiratory failure, which requires hypoxemia, and increased PCO2 alone without hypoxemia is not sufficient for type 2 failure diagnosis."
+  },
+  {
+    "question": "In pleural effusion, an impaired transport of glucose into the pleural space is found in:",
+    "options": [
+      "TB",
+      "Myxedema.",
+      "Liver cirrhosis.",
+      "Rheumatoid arthritis."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is rheumatoid arthritis because in this condition, pleural effusions often have low glucose levels due to impaired glucose transport across the pleural membrane, which is a characteristic feature of inflammatory exudative effusions. Tuberculosis pleural effusions typically have low glucose but due to high lactate dehydrogenase and cell-mediated immunity rather than impaired transport. Myxedema is associated with transudative pleural effusions due to increased capillary permeability from hypothyroidism, not impaired glucose transport. Liver cirrhosis causes transudative pleural effusions through increased hydrostatic pressure and hypoalbuminemia, not through impaired glucose transport mechanisms."
+  },
+  {
+    "question": "Bronchial breath sound is found in all EXCEPT",
+    "options": [
+      "Collapse with patent bronchus.",
+      "bronchial asthma.",
+      "superficial, big, cavity with patent bronchus.",
+      "bronchopleural fistula."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is bronchial asthma because asthma causes bronchoconstriction and mucus plugging, which obstructs air flow and prevents transmission of bronchial breath sounds to the chest wall. Collapse with patent bronchus allows bronchial sounds to be heard over the consolidated area, superficial big cavities with patent bronchi transmit bronchial sounds due to air-filled spaces, and bronchopleural fistulas create a direct connection allowing bronchial sounds to be audible. Bronchial asthma is characterized by wheezing and diminished breath sounds due to airway obstruction, not bronchial breath sounds."
+  },
+  {
+    "question": "A 43 year old man consult you as he is producing a cupful of foul purulent sputum every day. Examination reveals digital clubbing and coarse crackles at the left base. What is the",
+    "options": [
+      "Bronchiectasis.",
+      "Acute lung abscess.",
+      "Bronchoalveolar cell carcinoma.",
+      "Sarcoidosis."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is bronchiectasis as it classically presents with chronic productive cough of purulent sputum, digital clubbing, and localized crackles due to permanent dilation of the bronchi. Acute lung abscess is incorrect as it presents acutely with fever and would not have chronic daily symptoms. Bronchoalveolar cell carcinoma is incorrect as it typically presents with progressive dyspnea and diffuse infiltrates rather than localized findings. Sarcoidosis is incorrect as it typically presents with bilateral hilar lymphadenopathy and restrictive lung pattern rather than chronic purulent sputum and localized crackles."
+  },
+  {
+    "question": "Clubbing is present in all EXCEPT :",
+    "options": [
+      "Fibrosing alveolitis.",
+      "Cystic fibrosis.",
+      "Emphysema.",
+      "Bronchiectasis."
+    ],
+    "correct": 2,
+    "explanation": "Clubbing is not present in emphysema because this condition primarily involves destruction of alveolar walls without significant hypoxia or chronic inflammation that typically causes clubbing. Fibrosing alveolitis, cystic fibrosis, and bronchiectasis all cause chronic hypoxia and inflammation leading to clubbing through mechanisms like increased vascular endothelial growth factor. Emphysema differs by causing airflow obstruction without the chronic tissue hypoxia required for clubbing development. The other options are incorrect because they all involve chronic lung diseases that can lead to hypoxia and subsequent clubbing formation."
+  },
+  {
+    "question": "Which of the following drugs is NOT used in acute asthma :",
+    "options": [
+      "Zafirlukast.",
+      "Terbutaline.",
+      "Corticosteroids.",
+      "Ipratropium bromide."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Zafirlukast because it is a leukotriene receptor antagonist that is used for long-term control of asthma rather than acute relief. Terbutaline (b) is a short-acting beta-2 agonist used for acute bronchospasm relief. Corticosteroids (c) are used in acute asthma to reduce inflammation and are often given orally or intravenously during exacerbations. Ipratropium bromide (d) is a short-acting muscarinic antagonist that can be combined with albuterol for acute asthma treatment, particularly in severe cases."
+  },
+  {
+    "question": "Which of the following occupations is associated with new onset asthma?",
+    "options": [
+      "Paint sprayer.",
+      "Insulation installer.",
+      "Typist.",
+      "Truck driver."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is a) Paint sprayer because occupational asthma is commonly associated with exposure to isocyanates in spray paints, which are potent sensitizers that can trigger new onset asthma. Insulation installer is incorrect because while some insulation materials may cause respiratory irritation, they are not as strongly linked to asthma development as paint sprayers. Typist is incorrect as this occupation typically involves no exposure to asthmagens. Truck driver is incorrect because although diesel exhaust may exacerbate asthma, it is not a primary cause of new onset asthma like paint sprayer exposures."
+  },
+  {
+    "question": "Which of the following is the most common malignancy associated with asbestos exposure ?",
+    "options": [
+      "Pleural mesothelioma.",
+      "Non-Hodgkin lymphoma.",
+      "Bronchogenic carcinoma.",
+      "Fibrosarcoma."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is bronchogenic carcinoma because asbestos exposure is strongly linked to lung cancer, with smokers who have been exposed to asbestos having a significantly increased risk. Pleural mesothelioma, while strongly associated with asbestos, is less common than bronchogenic carcinoma in asbestos-exposed individuals. Non-Hodgkin lymphoma and fibrosarcoma are not definitively linked to asbestos exposure as primary malignancies, with the latter being a rare soft tissue tumor not typically associated with asbestos."
+  },
+  {
+    "question": "A pleural aspirate with diminished glucose concentration, excess lymphocytes, high",
+    "options": [
+      "Tuberculous effusion.",
+      "Pneumococcal pneumonia.",
+      "Asbestosis.",
+      "Malignant lymphoma."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is tuberculous effusion because it classically presents with low glucose levels due to high glucose consumption by inflammatory cells, excess lymphocytes as a response to mycobacterial infection, and high protein content from increased vascular permeability. Pneumococcal pneumonia is incorrect as it typically causes a neutrophilic predominance with normal or slightly decreased glucose. Asbestosis is wrong because it usually shows a mixed cell population with normal glucose levels. Malignant lymphoma is incorrect as it typically presents with a bloody effusion and may have variable glucose levels but not consistently low glucose with lymphocyte predominance."
+  },
+  {
+    "question": "Which is false regarding transudative pleural effusion :",
+    "options": [
+      "Protein < 3.0 g/100ml.",
+      "Pleural fluid/serum LDH ratio < 0.6",
+      "PH<7.2",
+      "Specific gravity < 1016"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is c) PH<7.2 because transudative pleural effusions typically have a pH greater than 7.30, similar to blood pH, as they result from systemic factors rather than inflammation or infection. Option a is incorrect because transudates have protein levels below 3.0 g/dL (not above), distinguishing them from exudates. Option b is incorrect as the pleural fluid/serum LDH ratio is indeed less than 0.6 in transudates, which is a key diagnostic criterion. Option d is incorrect because transudates have a specific gravity less than 1.016, which is lower than exudates, reflecting their lower protein content."
+  },
+  {
+    "question": "Which is example of exudative pleural effusion :",
+    "options": [
+      "Nephrotic syndrome.",
+      "Constrictive pericarditis,",
+      "SVC syndrome.",
+      "Rheumatoid arthritis."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Rheumatoid arthritis because it causes an exudative pleural effusion due to chronic inflammation and immune complex deposition in the pleural space. Option a) Nephrotic syndrome is incorrect because it causes transudative pleural effusions due to low oncotic pressure from hypoalbuminemia. Option b) Constrictive pericarditis is incorrect as it typically causes transudative effusions due to increased systemic venous pressure rather than inflammation. Option c) SVC syndrome is incorrect because it leads to transudative effusions from increased hydrostatic pressure, not inflammatory exudation."
+  },
+  {
+    "question": "Commonest cause of hypertrophic osteoarthropathy is :",
+    "options": [
+      "Fallot's tetralogy.",
+      "Bronchiectasis.",
+      "Mesothelioma.",
+      "Bronchogenic carcinoma."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Bronchogenic carcinoma because it is the most common malignancy associated with hypertrophic osteoarthropathy, accounting for approximately 80% of cases, particularly non-small cell lung cancers. Option a) Fallot's tetralogy is incorrect as it is a congenital heart defect that rarely causes hypertrophic osteoarthropathy compared to malignancies. Option b) Bronchiectasis is incorrect because while it can cause hypertrophic osteoarthropathy, it is much less common than bronchogenic carcinoma as an underlying cause. Option c) Mesothelioma is incorrect as it is a rare cause of hypertrophic osteoarthropathy compared to bronchogenic carcinoma, which is by far the most common etiology."
+  },
+  {
+    "question": "Which of the following drugs may produce pleural effusion :",
+    "options": [
+      "Losartan.",
+      "Miltefosine.",
+      "Amiodarone.",
+      "Propranolol."
+    ],
+    "correct": 2,
+    "explanation": "Amiodarone is the correct answer as it is a well-known cause of pleural effusion due to its phospholipidosis effect and direct toxicity to the pleura, occurring in approximately 6-10% of patients. Losartan is not associated with pleural effusion as an adverse effect. Miltefosine, an antileishmanial drug, has not been reported to cause pleural effusion in clinical practice. Propranolol, a beta-blocker, is not known to induce pleural effusion as a side effect."
+  },
+  {
+    "question": "Pink, frothy, and profuse sputum is seen in :",
+    "options": [
+      "Pneumoconiosis.",
+      "Lobar pneumonia.",
+      "Acute pulmonary edema.",
+      "Aspergilloma."
+    ],
+    "correct": 2,
+    "explanation": "Pink, frothy, and profuse sputum is characteristic of acute pulmonary edema because it results from alveolar hemorrhage and transudation of fluid into the alveoli due to increased pulmonary capillary pressure, commonly seen in left heart failure. Pneumoconiosis is incorrect as it typically presents with black or silicotic sputum due to dust accumulation, not pink frothy secretions. Lobar pneumonia is wrong because it classically produces rusty or purulent sputum from consolidation and bacterial infection, not the frothy pink appearance of edema. Aspergilloma is incorrect as it presents with hemoptysis but not typically the characteristic pink, frothy sputum seen in pulmonary edema."
+  },
+  {
+    "question": "A patient with hemoptysis and having depressed bridge of the nose is diagnostic of :",
+    "options": [
+      "Rickets.",
+      "Wegner's granulomatosis.",
+      "Congenital syphilis.",
+      "Rhinocerebral mucormycosis."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Wegener's granulomatosis because this condition is characterized by granulomatous inflammation of the upper respiratory tract, which can lead to nasal septal perforation and a depressed nasal bridge (saddle nose deformity), along with pulmonary manifestations including hemoptysis. Rickets is incorrect as it is a metabolic bone disorder causing soft bones due to vitamin D deficiency, not respiratory symptoms or nasal changes. Congenital syphilis is wrong because although it can cause a saddle nose deformity, it typically presents with other stigmata like Hutchinson's teeth and chorioretinitis, not hemoptysis. Rhinocerebral mucormycosis is incorrect because it causes tissue necrosis and black eschars in the nose, but not typically a depressed nasal bridge or hemoptysis as primary features."
+  },
+  {
+    "question": "Which of the following is not a paraneoplastic syndrome in bronchogenic carcinoma :",
+    "options": [
+      "Cachexia.",
+      "Hemoptysis.",
+      "Polymyositis.",
+      "SIADH"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Hemoptysis because it is a direct local effect of the tumor invading or eroding into blood vessels rather than a paraneoplastic syndrome, which involves systemic effects caused by tumor-secreted substances or immune responses. Option a) Cachexia is a paraneoplastic syndrome as it involves complex metabolic derangements caused by tumor-derived cytokines leading to muscle wasting. Option c) Polymyositis is a paraneoplastic syndrome as it represents an autoimmune inflammatory myopathy associated with various malignities including lung cancer. Option d) SIADH (syndrome of inappropriate antidiuretic hormone secretion) is a paraneoplastic syndrome caused by ectopic production of ADH or ADH-like substances by tumor cells leading to hyponatremia."
+  },
+  {
+    "question": "Which does not belong to the triad of symptomatic bronchial asthma :",
+    "options": [
+      "Chest pain.",
+      "Dyspnea.",
+      "Wheeze.",
+      "Cough."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is chest pain because the classic triad of symptomatic bronchial asthma consists of dyspnea, wheeze, and cough, which are the primary respiratory symptoms resulting from airway inflammation and bronchoconstriction. Dyspnea is incorrect as it is a core symptom of asthma caused by airflow limitation. Wheeze is incorrect as it results from turbulent airflow through narrowed airways during exhalation. Cough is incorrect as it is a common asthma symptom, particularly in nocturnal or cough-variant asthma, resulting from airway irritation and inflammation."
+  },
+  {
+    "question": "Caplan's syndrome is coal worker's pneumoconiosis associated with :",
+    "options": [
+      "SLE",
+      "Scleroderma.",
+      "Rheumatoid arthritis.",
+      "Ankylosing spondylitis."
+    ],
+    "correct": 2,
+    "explanation": "Caplan's syndrome is correctly associated with rheumatoid arthritis as it represents the co-occurrence of rheumatoid arthritis and coal worker's pneumoconiosis, characterized by distinctive pulmonary nodules. The syndrome is not linked to SLE, scleroderma, or ankylosing spondylitis as these conditions have different pathophysiological mechanisms and do not demonstrate this specific pulmonary complication in coal workers. While rheumatoid factor may be present in other conditions, the unique combination of rheumatoid arthritis with pneumoconiosis defines Caplan's syndrome, making the other options incorrect associations."
+  },
+  {
+    "question": "Which is not a bedside feature of fibrosing alveolitis",
+    "options": [
+      "Orthopnea",
+      "Anemia",
+      "Clubbing",
+      "Crepitations"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is orthopnea as it is not a typical bedside feature of fibrosing alveolitis. Orthopnea refers to difficulty breathing when lying flat and is more commonly associated with cardiac conditions like heart failure rather than pulmonary fibrosis. Anemia is incorrect because while not a direct feature, it can be associated with chronic fibrosing alveolitis due to chronic inflammation. Clubbing is incorrect as it is a classic finding in chronic fibrosing alveolitis resulting from chronic hypoxia. Crepitations are incorrect because they represent the fine crackling sounds heard on auscultation, which are characteristic of fibrosing alveolitis due to collapsed and stiff alveoli."
+  },
+  {
+    "question": "Chronic respiratory failure is not seen in",
+    "options": [
+      "Diffuse interstitial fibrosis",
+      "Emphysema",
+      "Pneumothorax",
+      "Chronic bronchitis"
+    ],
+    "correct": 2,
+    "explanation": "Chronic respiratory failure is not seen in pneumothorax because it is typically an acute condition where air enters the pleural space causing lung collapse, which can be resolved with intervention, whereas chronic respiratory failure develops gradually due to persistent lung damage. Diffuse interstitial fibrosis causes chronic respiratory failure through progressive scarring and stiffening of lung tissue impairing gas exchange. Emphysema leads to chronic respiratory failure by destroying alveolar walls reducing surface area for gas exchange and causing air trapping. Chronic bronchitis results in chronic respiratory failure through persistent airway inflammation, mucus production, and airflow limitation that worsen over time."
+  },
+  {
+    "question": "Commonest middle mediastinal mass is",
+    "options": [
+      "Lymphoma",
+      "Aortic aneurysm",
+      "Bronchogenic cyst",
+      "Thymoma"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is lymphoma because it is the most common middle mediastinal mass, particularly Hodgkin lymphoma, which frequently presents with mediastinal lymphadenopathy. Aortic aneurysm is incorrect as it typically occurs in the anterior mediastinum and is not the most common mass in this location. Bronchogenic cyst is wrong because while it can occur in the middle mediastinum, it is less common than lymphoma. Thymoma is incorrect as it is most commonly found in the anterior mediastinum rather than the middle mediastinum."
+  },
+  {
+    "question": "Commonest cause of superior mediastinal syndrome is :",
+    "options": [
+      "Lymphoma.",
+      "Thymoma.",
+      "Bronchogenic carcinoma.",
+      "Retrosternal goiter."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is bronchogenic carcinoma because it is the most common cause of superior mediastinal syndrome due to its tendency to metastasize to mediastinal lymph nodes, causing compression of adjacent structures. Lymphoma is incorrect because while it can cause superior mediastinal syndrome, it is less common than bronchogenic carcinoma. Thymoma is incorrect as it is a relatively rare tumor compared to bronchogenic carcinoma. Retrosternal goiter is incorrect because it is an uncommon cause of superior mediastinal syndrome and typically presents with more gradual symptoms."
+  },
+  {
+    "question": "Which is false regarding Pickwickian syndrome",
+    "options": [
+      "Marked obesity",
+      "Hyperventilation",
+      "Somnolence",
+      "Right sided heart failure"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is b) Hyperventilation because Pickwickian syndrome, now known as obesity hypoventilation syndrome, is characterized by hypoventilation (reduced breathing) rather than hyperventilation, leading to hypercapnia and hypoxemia. Option a) Marked obesity is correct as obesity is a primary feature causing restrictive lung mechanics and reduced chest wall compliance. Option c) Somnolence is correct as patients experience excessive daytime sleepiness due to chronic hypoventilation and sleep-disordered breathing. Option d) Right-sided heart failure is correct as chronic hypoxemia can lead to pulmonary hypertension and subsequent cor pulmonale."
+  },
+  {
+    "question": "The commonest benign pulmonary neoplasm is",
+    "options": [
+      "Lipoma",
+      "Adenoma",
+      "Fibroma",
+      "Hamartoma"
+    ],
+    "correct": 3,
+    "explanation": "Hamartoma is the most common benign pulmonary neoplasm because it accounts for approximately 75% of all benign lung tumors, typically arising from cartilage, fat, and connective tissue. Lipoma is incorrect as it is a rare benign tumor composed of mature fat cells that rarely occurs in the lungs. Adenoma is incorrect because while it can occur in the lungs, it is much less common than hamartoma and typically arises from glandular tissue. Fibroma is incorrect as it is an extremely rare benign tumor in the lungs, composed mainly of fibrous or connective tissue, and accounts for only a small fraction of pulmonary neoplasms."
+  },
+  {
+    "question": "Investigation of highest diagnostic efficacy in acute pulmonary thromboembolism is",
+    "options": [
+      "ECG",
+      "Ventilation/perfusion lung scan",
+      "Spiral CT",
+      "Arterial blood gases."
+    ],
+    "correct": 2,
+    "explanation": "Spiral CT is the most effective diagnostic tool for acute pulmonary thromboembolism as it provides direct visualization of pulmonary emboli with high sensitivity and specificity, particularly for central clots. ECG is incorrect as it only shows nonspecific findings like sinus tachycardia or right heart strain but cannot confirm or rule out pulmonary embolism. Ventilation/perfusion lung scan is less accurate than CT as it often yields indeterminate results and cannot directly visualize the emboli. Arterial blood gases are incorrect as they show nonspecific abnormalities like hypoxemia or respiratory alkalosis that are not diagnostic for pulmonary embolism."
+  },
+  {
+    "question": "High amylase in pleural fluid is found in all EXCEPT",
+    "options": [
+      "Esophageal rupture",
+      "Bronchogenic carcinoma",
+      "Sarcoidosis",
+      "Acute pancreatitis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is sarcoidosis because it does not typically cause elevated amylase levels in pleural fluid, as it is a granulomatous disease that affects the lungs and lymph nodes without pancreatic involvement or esophageal damage. Esophageal rupture is incorrect because it can lead to high pleural fluid amylase due to saliva contamination from the esophagus. Bronchogenic carcinoma is incorrect as certain tumors can produce or secrete amylase into the pleural space. Acute pancreatitis is incorrect because pancreatic enzymes, including amylase, can directly leak into the pleural space through the diaphragm or lymphatic channels."
+  },
+  {
+    "question": "Pure oxygen therapy may produce all of the following EXCEPT",
+    "options": [
+      "Acute lung injury",
+      "Respiratory depression",
+      "Fibrosis of the lung",
+      "Consolidation of the lung"
+    ],
+    "correct": 3,
+    "explanation": "Pure oxygen therapy can cause acute lung injury due to oxygen toxicity, which damages alveolar cells and capillaries. Respiratory depression may occur as oxygen suppresses the hypoxic drive in patients with chronic hypercapnia. Fibrosis of the lung can develop from prolonged oxygen exposure due to inflammatory responses and tissue remodeling. Consolidation of the lung is not directly caused by oxygen therapy but rather results from alveolar filling with fluid, pus, or cells, which is a pathological process unrelated to oxygen toxicity."
+  },
+  {
+    "question": "Upper border of liver dullness is elevated in all EXCEPT",
+    "options": [
+      "Ascites",
+      "Right subdiaphragmatic abscess",
+      "Right pneumothorax",
+      "Right pleural effusion."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is d) Right pleural effusion because a pleural effusion would cause dullness to be present at the lung base rather than elevating the upper border of liver dullness. Ascites elevates the liver dullness by pushing the diaphragm upward due to fluid accumulation in the peritoneal cavity. A right subdiaphragmatic abscess elevates the liver dullness by causing a mass effect that displaces the diaphragm upward. Right pneumothorax elevates the liver dullness by causing the lung to collapse and pull the mediastinum upward, which in turn elevates the diaphragm and liver."
+  },
+  {
+    "question": "Commonest cause of respiratory failure is",
+    "options": [
+      "Emphysema",
+      "Fibrosing alveolitis.",
+      "Bronchial asthma.",
+      "Chronic bronchitis."
+    ],
+    "correct": 3,
+    "explanation": "Chronic bronchitis is the commonest cause of respiratory failure overall, as it leads to progressive airway obstruction with type 2 respiratory failure (hypercapnic). While emphysema, fibrosing alveolitis, and bronchial asthma can all cause respiratory failure, chronic bronchitis (often as part of COPD) is by far the most common etiology due to the chronic nature of airway inflammation and scarring that progressively impairs ventilation."
+  },
+  {
+    "question": "Acute lung injury ( ARDS ) should be differentiated from :",
+    "options": [
+      "Acute LVF",
+      "Congestive cardiac failure.",
+      "Acute severe asthma.",
+      "Spontaneous pneumothorax."
+    ],
+    "correct": 0,
+    "explanation": "ARDS should be differentiated from acute left ventricular failure (acute LVF) because both present with acute dyspnea, bilateral pulmonary infiltrates, and hypoxemia, but the treatment approaches differ significantly. In ARDS, pulmonary capillary wedge pressure is normal or low, whereas in acute LVF it is elevated. This distinction is critical because diuretics and afterload reduction benefit LVF but may worsen ARDS. Congestive cardiac failure is more chronic and less of an acute differential."
+  },
+  {
+    "question": "All are features of hypercapnia EXCEPT",
+    "options": [
+      "Capillary pulsation",
+      "Central cyanosis.",
+      "Papilledema",
+      "Asterixis."
+    ],
+    "correct": 0,
+    "explanation": "Capillary pulsation is NOT a feature of hypercapnia; it is a sign of aortic regurgitation (Corrigan pulse). Features of hypercapnia include central cyanosis (from hypoxemia that often accompanies hypercapnia), papilledema (from cerebral vasodilation and increased intracranial pressure due to CO2 retention), and asterixis (a flapping tremor caused by CNS depression from elevated CO2 levels)."
+  },
+  {
+    "question": "Classic dermatological manifestation of chronic sarcoidosis is :",
+    "options": [
+      "Erythema nodosum.",
+      "Maculopapular rash",
+      "Lupus pernio",
+      "Subcutaneous nodules."
+    ],
+    "correct": 2,
+    "explanation": "Lupus pernio is the classic dermatological manifestation of chronic sarcoidosis, appearing as indurated, purple-blue plaques on the nose, cheeks, and ears. Erythema nodosum is the classic skin manifestation of acute sarcoidosis, not chronic. Maculopapular rash and subcutaneous nodules are less specific and not the classic dermatological sign of chronic sarcoidosis."
+  },
+  {
+    "question": "The most reliable symptom of acute pulmonary thromboembolism is",
+    "options": [
+      "Chest pain",
+      "Hemoptysis.",
+      "Breathlessness",
+      "Syncope"
+    ],
+    "correct": 2,
+    "explanation": "Breathlessness (dyspnea) is the most reliable and common symptom of acute pulmonary thromboembolism, occurring in the vast majority of cases due to V/Q mismatch and increased dead space ventilation. Chest pain and hemoptysis occur in fewer patients and are more suggestive of peripheral emboli with pulmonary infarction. Syncope is a concerning sign suggesting massive PE but is less common."
+  },
+  {
+    "question": "Pulmonary fibrosis is not produced by :",
+    "options": [
+      "Tuberculosis.",
+      "Cor pulmonale.",
+      "Progressive systemic sclerosis.",
+      "Rheumatoid arthritis."
+    ],
+    "correct": 1,
+    "explanation": "Cor pulmonale does not produce pulmonary fibrosis; rather, cor pulmonale is a consequence of pulmonary disease leading to right heart failure. Pulmonary fibrosis can be caused by tuberculosis (post-inflammatory scarring), progressive systemic sclerosis (interstitial lung disease from collagen deposition), and rheumatoid arthritis (rheumatoid lung with fibrosis). Cor pulmonale results from conditions that increase pulmonary vascular resistance, not from fibrogenic processes."
+  },
+  {
+    "question": "Cranial nerve most commonly affected in sarcoidosis is :",
+    "options": [
+      "VII",
+      "Il",
+      "V",
+      "X"
+    ],
+    "correct": 0,
+    "explanation": "The facial nerve (cranial nerve VII) is the most commonly affected cranial nerve in sarcoidosis, typically presenting as unilateral or bilateral facial nerve palsy due to neurosarcoidosis involving the nerve at the level of the parotid gland or within the facial canal. Cranial nerves II, V, and X can be affected but are less commonly involved than VII in neurosarcoidosis."
+  },
+  {
+    "question": "Commonest cause of death in sarcoidosis is :",
+    "options": [
+      "Cor pulmonale.",
+      "Pneumonia.",
+      "Nephrocalcinosis.",
+      "Neurosarcoidosis."
+    ],
+    "correct": 0,
+    "explanation": "Cor pulmonale is the commonest cause of death in sarcoidosis, resulting from progressive pulmonary fibrosis leading to pulmonary hypertension and right heart failure. While pneumonia can complicate sarcoidosis, nephrocalcinosis (from hypercalcemia), and neurosarcoidosis are serious but less common causes of death than the cardiovascular consequences of chronic lung disease."
+  },
+  {
+    "question": "Reactivation of pulmonary tuberculosis is due to :",
+    "options": [
+      "Malnutrition.",
+      "Low perfusion.",
+      "High ventilation.",
+      "Low PaQ>."
+    ],
+    "correct": 0,
+    "explanation": "Malnutrition is a major cause of reactivation of latent tuberculosis, as it impairs cell-mediated immunity (particularly T-cell function) that keeps dormant TB bacilli controlled. Low perfusion and high ventilation are not recognized mechanisms of TB reactivation. Low PaO2 does not directly cause TB reactivation; it is the immunocompromised state from malnutrition that allows dormant bacilli to reactivate and multiply."
+  },
+  {
+    "question": "Commonest sign of aspiration pneumonia is :",
+    "options": [
+      "Stridor.",
+      "Tachypnea.",
+      "Central cyanosis.",
+      "Crepitations,"
+    ],
+    "correct": 1,
+    "explanation": "Tachypnea is the commonest sign of aspiration pneumonia, as the inflammatory process in the lung parenchyma triggers an increased respiratory rate as a compensatory mechanism. Stridor suggests upper airway obstruction rather than parenchymal infection. Central cyanosis is a late and unreliable sign. Crepitations may be present on auscultation but are not the most consistent or common initial sign across all patients."
+  },
+  {
+    "question": "The dose of which antituberculous drug need not to be reduced in severe renal failure",
+    "options": [
+      "Rifampicin.",
+      "INH.",
+      "Pyrazinamide.",
+      "Streptomycin."
+    ],
+    "correct": 0,
+    "explanation": "Rifampicin is the antituberculous drug whose dose need not be reduced in severe renal failure, as it is primarily eliminated by the liver through biliary excretion. INH generally does not require dose adjustment either but requires careful monitoring for neuropathy. Pyrazinamide should be used with caution in renal failure. Streptomycin is an aminoglycoside that is nephrotoxic and ototoxic, and its dose must be significantly reduced or avoided in renal failure as it is excreted renally."
+  },
+  {
+    "question": "Bronchial adenoma most commonly present as :",
+    "options": [
+      "Cough.",
+      "Stridor.",
+      "Recurrent hemoptysis.",
+      "Chest pain."
+    ],
+    "correct": 2,
+    "explanation": "Bronchial adenoma (carcinoid tumor) most commonly presents as recurrent hemoptysis due to its highly vascular nature and propensity for bleeding from the bronchial mucosa. While cough can occur if the tumor causes partial airway obstruction, and stridor may develop with significant airway narrowing, hemoptysis is the most characteristic and common presentation. Chest pain is less common and typically occurs with larger tumors or local invasion."
+  },
+  {
+    "question": "Bradypnea is associated with :",
+    "options": [
+      "Narcotic overdose.",
+      "Acidosis.",
+      "Pneumonia.",
+      "Acute lung injury."
+    ],
+    "correct": 0,
+    "explanation": "Narcotic overdose causes bradypnea by directly depressing the respiratory center in the brainstem, reducing both the respiratory rate and tidal volume. Acidosis typically causes hyperventilation (Kussmaul breathing) as a compensatory mechanism to blow off CO2. Pneumonia and acute lung injury both cause tachypnea due to hypoxemic drive and inflammatory mediators, not bradypnea."
+  },
+  {
+    "question": "Primary spontaneous pneumothorax is associated with :",
+    "options": [
+      "Tall & thin individuals.",
+      "Non-smokers.",
+      "Exercise.",
+      "COPD."
+    ],
+    "correct": 0,
+    "explanation": "Primary spontaneous pneumothorax is associated with tall and thin individuals because their body habitus creates more negative intrapleural pressures at the lung apices, predisposing to subpleural bleb formation and rupture. Smoking is actually a significant risk factor, not non-smoking. Exercise is not a specific association. COPD is associated with secondary (not primary) spontaneous pneumothorax."
+  },
+  {
+    "question": "Predominantly left sided pleural effusion is seen in :",
+    "options": [
+      "Congestive heart failure.",
+      "Amebic liver abscess,",
+      "Esophageal rupture.",
+      "Liver cirrhosis."
+    ],
+    "correct": 2,
+    "explanation": "Esophageal rupture causes a predominantly left-sided pleural effusion because the esophagus lies in close proximity to the left pleural space, and the rupture allows gastric contents and saliva to drain into the left hemithorax. Congestive heart failure typically causes bilateral effusions. Amebic liver abscess (right-sided liver) causes right-sided effusion. Liver cirrhosis causes right-sided or bilateral effusions (hepatic hydrothorax)."
+  },
+  {
+    "question": "Which of the anti-tuberculous drugs should be totally avoided in pregnancy :",
+    "options": [
+      "INH.",
+      "Rifampicin.",
+      "Ethambutol.",
+      "Streptomycin."
+    ],
+    "correct": 3,
+    "explanation": "Streptomycin should be totally avoided in pregnancy because it is an aminoglycoside that crosses the placenta and can cause ototoxicity (congenital deafness) and nephrotoxicity in the fetus. INH, rifampicin, and ethambutol are considered safe in pregnancy and are part of the standard treatment regimen for TB during pregnancy, although pyridoxine supplementation is recommended with INH."
+  },
+  {
+    "question": "The most common organism causing pneumonia during mechanical ventilation in the first 4 days of hospitalization is :",
+    "options": [
+      "Staph. aureus.",
+      "Streptococcus pneumonia.",
+      "Gram -ve bacilli.",
+      "Hemophilus influenza."
+    ],
+    "correct": 1,
+    "explanation": "Streptococcus pneumonia is the most common organism causing pneumonia during the first 4 days of mechanical ventilation (early-onset ventilator-associated pneumonia), as it reflects community-acquired pathogens that were present at the time of intubation. After 4 days, Gram-negative bacilli (Pseudomonas, Acinetobacter) and MRSA become more common as late-onset VAP pathogens. Staph. aureus and H. influenza are less common in this early VAP setting."
+  },
+  {
+    "question": "Which of the following is NOT responsible for development of interstitial lung disease ; .",
+    "options": [
+      "Carbamazepine.",
+      "Methotrexate.",
+      "Amiodarone.",
+      "Carbimazole."
+    ],
+    "correct": 3,
+    "explanation": "Carbimazole is NOT responsible for the development of interstitial lung disease; it is an antithyroid medication without known pulmonary toxicity. Carbamazepine can cause pulmonary eosinophilia and interstitial pneumonitis. Methotrexate is a well-known cause of drug-induced interstitial lung disease. Amiodarone is one of the most common drug causes of pulmonary toxicity, including interstitial pneumonitis and fibrosis."
+  },
+  {
+    "question": "On examination of the chest of a patient with a unilateral tension pneumothorax, which of the following signs is present?",
+    "options": [
+      "Chest wall movements are decreased on both sides.",
+      "The mediastinum is pulled towards the affected side.",
+      "Breath sound may be decreased or absent on the affected side.",
+      "Tactile vocal fremitus will be increased on the affected side."
+    ],
+    "correct": 2,
+    "explanation": "In a unilateral tension pneumothorax, breath sounds may be decreased or absent on the affected side because the pleural space is filled with air under pressure, collapsing the lung and blocking sound transmission. Chest wall movements are decreased on the affected side only, not both sides. The mediastinum is pushed AWAY from the affected side due to the positive pressure, not pulled towards it. Tactile vocal fremitus is decreased or absent on the affected side due to the insulating effect of the pleural air, not increased."
+  },
+  {
+    "question": "Which of the following is a typical manifestation of chronic hyperventilation?",
+    "options": [
+      "Hypoxemia",
+      "Hyperphosphatemia",
+      "Tetany",
+      "Clubbing"
+    ],
+    "correct": 2,
+    "explanation": "Tetany is a typical manifestation of chronic hyperventilation because prolonged hyperventilation causes respiratory alkalosis, which decreases ionized calcium levels by increasing calcium binding to albumin, leading to neuromuscular excitability and tetany. Hypoxemia is not a feature of pure hyperventilation (PaO2 actually increases). Hyperphosphatemia does not occur; hypophosphatemia occurs instead due to intracellular shifts. Clubbing is not associated with hyperventilation."
+  },
+  {
+    "question": "A 65-year-old man presents with progressive shortness of breath with a history of the patient say “ninety nine,” no tingling is appreciated in the hand. The trachea appears to be deviated toward the left. Which of the following diagnoses is most likely?",
+    "options": [
+      "Pneumonia",
+      "Bronchial obstruction",
+      "Pleural effusion",
+      "Pneumothorax"
+    ],
+    "correct": 1,
+    "explanation": "Bronchial obstruction is the most likely diagnosis based on reduced vocal resonance (the patient saying \"ninety nine\" produces less sound transmission), which indicates that sound cannot reach the chest wall through the obstructed airway. Pneumonia would increase vocal resonance (bronchial breathing with consolidation). Pleural effusion would reduce vocal resonance but would also cause stony dullness to percussion. Pneumothorax would cause hyperresonance rather than the described findings."
+  },
+  {
+    "question": "Which one of the following disorders characteristically produces type I respiratory failure ?",
+    "options": [
+      "Kyphoscoliosis.",
+      "Guillan-Barre polyneuropathy.",
+      "ARDS",
+      "Inhaled foreign body in a major airway"
+    ],
+    "correct": 2,
+    "explanation": "ARDS characteristically produces type 1 respiratory failure (hypoxemic without hypercapnia) because the primary problem is impaired gas exchange due to alveolar-capillary membrane damage, non-cardiogenic pulmonary edema, and V/Q mismatch, while ventilation is typically maintained or increased. Kyphoscoliosis, Guillain-Barre polyneuropathy, and inhaled foreign body all cause type 2 respiratory failure (hypoventilatory with hypercapnia) due to mechanical ventilatory failure or airway obstruction."
+  },
+  {
+    "question": "All of the following are causes of an elevated hemidiaphragm EXCEPT :",
+    "options": [
+      "Laryngeal nerve paralysis.",
+      "Surgical lobectomy.",
+      "Subphrenic abscess.",
+      "Pulmonary collapse."
+    ],
+    "correct": 0,
+    "explanation": "Laryngeal nerve paralysis is NOT a cause of elevated hemidiaphragm because the laryngeal nerves innervate the larynx, not the diaphragm. The phrenic nerve (C3-C5) innervates the diaphragm, and phrenic nerve paralysis would cause diaphragmatic elevation. Surgical lobectomy reduces lung volume and allows the diaphragm to rise. Subphrenic abscess pushes the diaphragm upward. Pulmonary collapse reduces lung volume, allowing the hemidiaphragm to elevate."
+  },
+  {
+    "question": "A 49 year old man with acute pancreatitis develops severe shortness of breath 15 is 100/60 mmHg, pulse is 124/min, and RR is 50/min. he is cyanotic and in obvious distress. His neck veins are distended and trachea deviates to the left. Breath sounds are diminished on the right side of his chest. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Chest X ray",
+      "Endotracheal intubation",
+      "Needle thoracotomy in the second right intercostal space",
+      "Removal of the catheter"
+    ],
+    "correct": 2,
+    "explanation": "Needle thoracotomy in the second right intercostal space is the correct intervention because this patient with acute pancreatitis has developed a tension pneumothorax (absent breath sounds on the right, tracheal deviation to the left, hypotension, and tachycardia), which is a medical emergency requiring immediate decompression. A chest X-ray would delay life-saving treatment. Endotracheal intubation addresses airway issues but not the tension pneumothorax. Catheter removal would not address the underlying pneumothorax."
+  },
+  {
+    "question": "Concerning respiratory failure, Which of the following statements is true ?",
+    "options": [
+      "PaCO2 is elevated in all types of respiratory failure.",
+      "The commonest cause of type II respiratory failure is pneumonia.",
+      "Pulsus paradoxus is a sign commonly associated with respiratory failure.",
+      "It always presents with dyspnea."
+    ],
+    "correct": 2,
+    "explanation": "Pulsus paradoxus is a sign commonly associated with respiratory failure, particularly in severe asthma and COPD exacerbations, where a marked inspiratory fall in blood pressure (>10 mmHg) occurs due to increased negative intrathoracic pressure. PaCO2 is NOT elevated in all types of respiratory failure (type 1 has normal or low PaCO2). The commonest cause of type 2 respiratory failure is COPD, not pneumonia. Respiratory failure does NOT always present with dyspnea, as patients with neuromuscular disease may present with fatigue or confusion instead."
+  },
+  {
+    "question": "A 48 year old man with long history of smoking presents to ER with difficulty breathing for the past 2 days. His temperature is 38, blood pressure is 120/70 mmHg, and pulse is 103/min. dullness to percussion and decreased breath sounds are noted over the obtained : - Pleural fluid : PH : 7.18, glucose : 40 mg/dL, protein : 3.8g/L, LDH : 220 IU/L - Serum: Protein : 7 g/dL, LDH : 320 IU/L Which of the following is most likely etiology of the effusion?",
+    "options": [
+      "A transudate of infectious etiology",
+      "A transudate of noninfectious etiology",
+      "An exudate of infectious etiology",
+      "An exudate of inflammatory etiology"
+    ],
+    "correct": 2,
+    "explanation": "The findings of fever, purulent sputum, high neutrophil count, and low glucose in the pleural fluid indicate an exudate of infectious etiology (empyema or complicated parapneumonic effusion). The low glucose and high neutrophil count are hallmarks of bacterial infection in the pleural space. A transudate would not have these inflammatory characteristics. An exudate of inflammatory (noninfectious) etiology would not typically show this degree of neutrophilia and such low glucose levels."
+  },
+  {
+    "question": "A 40 year old male, presents with a long history of productive cough and breathlessness. He had complained of halitosis and exacerbation of productive sputum, the following treatments is likely to decrease the frequency of his exacerbation?",
+    "options": [
+      "Cyclic antibiotic therapy",
+      "Inhaled corticosteroid",
+      "Nebulized bronchodilator",
+      "Postural drainage",
+      "Surgical resection"
+    ],
+    "correct": 0,
+    "explanation": "Cyclic antibiotic therapy is the most appropriate management for this patient with bronchiectasis, as the recurrent infections with purulent sputum and halitosis suggest chronic bacterial colonization requiring rotating antibiotic regimens to suppress infection and reduce exacerbation frequency. Inhaled corticosteroids are not standard for bronchiectasis. Nebulized bronchodilators help if there is reversible airway obstruction. Postural drainage is adjunctive but not the primary treatment. Surgical resection is reserved for localized disease unresponsive to medical therapy."
+  },
+  {
+    "question": "Unilateral consolidation on chest X-ray can be caused by all EXCEPT",
+    "options": [
+      "Pneumonia",
+      "Pulmonary infarction",
+      "Pulmonary edema",
+      "Pulmonary hemorrhage"
+    ],
+    "correct": 2,
+    "explanation": "Pulmonary edema does NOT cause unilateral consolidation on chest X-ray because it is a generalized process affecting both lungs symmetrically due to increased pulmonary capillary pressure, producing bilateral perihilar (bat-wing) infiltrates. Pneumonia, pulmonary infarction, and pulmonary hemorrhage are all recognized causes of unilateral consolidation since they can affect a single lobe or lung segment."
+  },
+  {
+    "question": "A 64-year-old woman comes to your office complaining of hoarse voice for 4 months. She has not had fever, sore throat, or a cough. On examination, she has expiratory wheezes in her left mid-lung fields. Which of the following is the best next step?",
+    "options": [
+      "Prescribe antibiotics for bronchitis.",
+      "Order a chest x-ray.",
+      "Advise gargling with salt-water solution.",
+      "Prescribe an albuterol inhaler."
+    ],
+    "correct": 1,
+    "explanation": "This patient has chronic hoarseness and unilateral wheezing, suggesting an intrathoracic mass causing bronchial obstruction and impairment of the recurrent laryngeal nerve causing vocal cord paralysis. An imaging study of the chest is essential. Antibiotics would not address the underlying mass. Gargling would not help with an intrathoracic pathology. An albuterol inhaler might temporarily help wheezing but would not diagnose or treat the cause."
+  },
+  {
+    "question": "An obese 50-year-old man with a history of asthma returns with complaints of occasional dyspepsia and nocturnal cough. He wakes up in the morning with a sour taste in his mouth. His current medications include inhaled corticosteroid and a short-acting B2-agonist. Which of the following should be your next step?",
+    "options": [
+      "24-Hour esophageal pH monitoring",
+      "Chest radiograph",
+      "Initiation of omeprazole",
+      "Short course of oral corticosteroids",
+      "Initiation of allergy desensitization"
+    ],
+    "correct": 2,
+    "explanation": "This patient has symptoms consistent with GERD (dyspepsia, sour taste, nocturnal cough) which may be exacerbating his asthma. The most appropriate first step is initiation of a proton pump inhibitor such as omeprazole, along with dietary modifications and weight reduction. 24-hour esophageal pH monitoring is indicated only if the medication does not help. Oral corticosteroids are not indicated as this is likely GERD-related rather than uncontrolled asthma."
+  },
+  {
+    "question": "Which of the following drugs is most likely to cause pulmonary fibrosis?",
+    "options": [
+      "Amlodipine",
+      "Aspirin",
+      "Amiodarone",
+      "Alendronate"
+    ],
+    "correct": 2,
+    "explanation": "Amiodarone is well-known for causing pulmonary fibrosis as a side effect. It is an antiarrhythmic medication that can lead to interstitial pneumonitis and pulmonary fibrosis, particularly at higher doses or with long-term use. Amlodipine (a calcium channel blocker), aspirin (an antiplatelet agent), and alendronate (a bisphosphonate) are not typically associated with pulmonary fibrosis."
+  },
+  {
+    "question": "Which of the following does not fall under the category of hypersensitivity pneumonitis?",
+    "options": [
+      "Coal worker's lung",
+      "Pigeon fancier's lung",
+      "Mushroom picker's lung",
+      "Farmer's lung",
+      "Malt worker's lung"
+    ],
+    "correct": 0,
+    "explanation": "Coal worker's lung (pneumoconiosis) is caused by inhalation of inorganic dust (coal dust) and is not a hypersensitivity pneumonitis. Hypersensitivity pneumonitis (extrinsic allergic alveolitis) is caused by hypersensitivity to inhaled organic dusts such as fungal spores or avian proteins. Pigeon fancier's lung, mushroom picker's lung, farmer's lung, and malt worker's lung are all types of hypersensitivity pneumonitis caused by organic antigens."
+  },
+  {
+    "question": "A 64 year old man is referred from the cardiology department who questions whether his dyspnea is secondary to pulmonary rather than cardiac causes. He has a history of difficult to control atrial fibrillation but this has settled with new medication. A chest x-ray shows an increased interstitial pattern in the lung bases. On examination the patient is in sinus rhythm, has no clubbing, no raised jugular venous pulse, no S3 but has inspiratory crackles in both lung bases. Pulmonary function tests show a restrictive pattern. What is the most likely cause of his dyspnea?",
+    "options": [
+      "Chronic obstructive lung disease",
+      "Idiopathic pulmonary fibrosis",
+      "Pulmonary embolic disease",
+      "Drug induced pulmonary fibrosis"
+    ],
+    "correct": 3,
+    "explanation": "The patient was reported to have had atrial fibrillation but is now in sinus rhythm due to a new medication which in this case was amiodarone, a classic cause of drug-induced pulmonary fibrosis. With regards to idiopathic pulmonary fibrosis, the symptoms and findings are suggestive but the patient does not have clubbing which is somewhat against this diagnosis. With regards to pulmonary embolic disease, the chest x-ray findings do not support this. COPD would show an obstructive pattern on PFTs, not restrictive."
+  },
+  {
+    "question": "After TB has been transmitted, how long does it take for the body's immune system to be able to react to tuberculin?",
+    "options": [
+      "48 to 72 hours",
+      "7 to 10 days",
+      "2 to 8 weeks",
+      "6 months or more"
+    ],
+    "correct": 2,
+    "explanation": "After TB has been transmitted, it takes 2 to 8 weeks for the body's immune system to be able to react to tuberculin. This is the window period during which the tuberculin skin test may be falsely negative. The 48-72 hour timeframe refers to how long it takes to read the PPD test result after placement, not the time for conversion after exposure."
+  },
+  {
+    "question": "Smoking is not a risk factor of",
+    "options": [
+      "Small cell carcinoma",
+      "Emphysema",
+      "Respiratory bronchiolitis",
+      "Bronchiolitis obliterans organizing pneumonia"
+    ],
+    "correct": 3,
+    "explanation": "Bronchiolitis obliterans with organizing pneumonia (BOOP), also called Cryptogenic Organizing Pneumonia (COP), is not associated with smoking. It is often a complication of an existing chronic inflammatory disease such as rheumatoid arthritis or dermatomyositis, or it can be a side effect of certain medications such as amiodarone. Small cell carcinoma, emphysema, and respiratory bronchiolitis are all strongly associated with smoking."
+  },
+  {
+    "question": "Crepitations not influenced by coughing are found in:",
+    "options": [
+      "Acute pulmonary edema",
+      "Pneumonia",
+      "Fibrosing alveolitis",
+      "Lung abscess"
+    ],
+    "correct": 2,
+    "explanation": "Fibrosing alveolitis (idiopathic pulmonary fibrosis) produces fine end-inspiratory crepitations that are not influenced by coughing because they are caused by the fibrotic changes in the lung parenchyma opening during inspiration. In contrast, crepitations from pulmonary edema and pneumonia can change with coughing as secretions shift. Lung abscess typically produces coarse crepitations that may change with position or coughing."
+  },
+  {
+    "question": "A patient with low grade fever and weight loss has decreased movement on the right side of the chest with decreased fremitus, dullness to percussion, and decreased breath sounds all on the right. The trachea is deviated to the left. The most likely diagnosis is:",
+    "options": [
+      "Pneumothorax",
+      "Pneumonia",
+      "Pleural effusion",
+      "Atelectasis"
+    ],
+    "correct": 2,
+    "explanation": "The combination of decreased movement, decreased fremitus, dullness to percussion, decreased breath sounds, and tracheal deviation away from the affected side is classic for pleural effusion. Pneumothorax would cause hyperresonance rather than dullness. Pneumonia would cause increased fremitus and bronchial breathing. Atelectasis would cause tracheal deviation toward the affected side."
+  },
+  {
+    "question": "Viral pneumonia may have:",
+    "options": [
+      "Signs of consolidation in chest",
+      "Splenomegaly",
+      "High WBC count",
+      "Foul-smelling expectoration"
+    ],
+    "correct": 1,
+    "explanation": "Viral pneumonia may present with splenomegaly, particularly in cases caused by CMV or EBV. Signs of consolidation are more typical of bacterial pneumonia. High WBC count is more suggestive of bacterial infection. Foul-smelling expectoration is characteristic of anaerobic infection such as lung abscess, not viral pneumonia."
+  },
+  {
+    "question": "Which is the most appropriate investigation for this scenario? A 17 year-old girl has been admitted with acute onset shortness of breath believed by her GP to be a deterioration in her normally well controlled asthma. She has suffered with asthma since the age of 5 years and is normally well controlled, she has never had any hospital admissions. She usually takes regular salbutamol and beclomethasone.",
+    "options": [
+      "Chest x ray",
+      "Arterial blood gas",
+      "CT chest",
+      "V/Q scan",
+      "Peak expiratory flow rate"
+    ],
+    "correct": 4,
+    "explanation": "In an acute asthma exacerbation in a previously well-controlled patient, peak expiratory flow rate (PEFR) is the most appropriate initial investigation to assess the severity of the exacerbation and response to treatment. Chest x-ray would be indicated if pneumothorax or pneumonia is suspected. ABG is reserved for severe cases with impending respiratory failure. CT chest and V/Q scan are not first-line investigations for acute asthma."
+  },
+  {
+    "question": "Which is the most appropriate investigation for this scenario? A 27-year-old patient with a history of Marfan's disease presents to emergency with new onset shortness of breath. He has not had any recent illness and has not been exerting himself. He is not complaining of cough but has noticed a small amount of right sided chest pain since the onset of the shortness of breath.",
+    "options": [
+      "Chest x ray",
+      "Arterial blood gas",
+      "CT chest",
+      "V/Q scan",
+      "Peak expiratory flow rate"
+    ],
+    "correct": 0,
+    "explanation": "In a patient with Marfan syndrome presenting with sudden onset shortness of breath and chest pain, the most likely diagnosis is pneumothorax. A chest x-ray is the most appropriate initial investigation to confirm pneumothorax. Marfan syndrome is associated with an increased risk of spontaneous pneumothorax due to the connective tissue abnormality."
+  },
+  {
+    "question": "Which is the most appropriate investigation for this scenario? A 51-year-old lady has recently returned from holiday. Since her return she has noticed a minor pleuritic chest pain, which she thought would resolve with time. 2 days on, the pain is worsening and she has developed shortness of breath. On examination her saturation on room air is 89%, her chest is clear with good air entry and she has no swelling in her calves. D-dimer test is positive and chest X-ray normal.",
+    "options": [
+      "Chest x ray",
+      "Arterial blood gas",
+      "CT chest",
+      "V/Q scan",
+      "Peak expiratory flow rate"
+    ],
+    "correct": 3,
+    "explanation": "This patient has clinical features suggestive of pulmonary embolism: pleuritic chest pain, shortness of breath, hypoxia (saturation 89%), positive D-dimer, and a normal chest x-ray. A V/Q scan is the most appropriate investigation in this scenario, particularly if CT pulmonary angiography is not available. The normal chest x-ray makes V/Q scan interpretation more reliable."
+  },
+  {
+    "question": "Which is the most appropriate investigation for this scenario? A 41-year-old man is referred by his GP to the respiratory clinic for investigations of his worsening dyspnea and dry cough. He has no past respiratory history and his GP is concerned about finger clubbing, which he has noticed on routine examination. On auscultation of his chest he has noticed fine end inspiratory crepitations and chest X-ray shows a ground glass appearance.",
+    "options": [
+      "Chest x ray",
+      "Arterial blood gas",
+      "CT chest",
+      "V/Q scan",
+      "Peak expiratory flow rate"
+    ],
+    "correct": 2,
+    "explanation": "This patient has features of interstitial lung disease: progressive dyspnea, dry cough, finger clubbing, fine end-inspiratory crepitations, and ground glass appearance on chest x-ray. A high-resolution CT chest (HRCT) is the most appropriate investigation to characterize the interstitial lung disease pattern and extent, which is crucial for diagnosis and management planning."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

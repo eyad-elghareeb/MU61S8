@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>58th Final</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobamfcff0f7y",
+  "title": "58th Final",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "What is the most common cause of obstructive heart failure in children?",
+    "options": [
+      "Large ventricular septal defect",
+      "Coarctation of the aorta",
+      "Patent ductus arteriosus",
+      "Dilated cardiomyopathy"
+    ],
+    "correct": 1,
+    "explanation": "Coarctation of the aorta (CoA) causes OBSTRUCTIVE heart failure via a fixed mechanical obstruction to LV outflow at the aortic isthmus. In severe neonatal CoA (duct-dependent circulation), PDA closure on day 2–14 causes acute circulatory collapse: absent/weak femoral pulses, upper-lower limb BP differential >20 mmHg, systolic murmur at the left sternal border/back, rib notching (>5 years). VSD and PDA cause VOLUME overload. DCM causes systolic pump failure."
+  },
+  {
+    "question": "What is the recommended treatment for Kawasaki disease?",
+    "options": [
+      "High-dose prednisolone for 4 weeks",
+      "IVIG 2 g/kg (single infusion) plus high-dose aspirin, then low-dose aspirin",
+      "Low-dose aspirin alone for 6 weeks",
+      "Antibiotics plus IVIG plus low-dose aspirin"
+    ],
+    "correct": 1,
+    "explanation": "Kawasaki disease: (1) IVIG 2 g/kg as a SINGLE IV infusion over 10–12 hours — reduces coronary artery aneurysm risk from ~25% to ~4%. (2) HIGH-DOSE aspirin 80–100 mg/kg/day during the acute/febrile phase (~14 days). (3) LOW-DOSE aspirin 3–5 mg/kg/day (antiplatelet) once afebrile for ≥6–8 weeks (longer if coronary abnormalities persist). Corticosteroids are reserved for IVIG-resistant cases. Coronary artery follow-up with echocardiography at 2 weeks, 6 weeks, and 6 months."
+  },
+  {
+    "question": "Which of the following is used as a MINOR criterion in the modified Duke criteria for infective endocarditis?",
+    "options": [
+      "Positive blood culture (standard criteria for specific organism)",
+      "Vegetation on echocardiography",
+      "Hemiplegia from a cerebral embolus",
+      "New valvular regurgitation on echocardiography"
+    ],
+    "correct": 2,
+    "explanation": "Modified Duke MINOR criteria: predisposing cardiac condition or IV drug use; fever >38°C; vascular phenomena (major arterial emboli, septic pulmonary infarcts, mycotic aneurysm, Janeway lesions, INTRACRANIAL HAEMORRHAGE, conjunctival haemorrhages); immunological phenomena (Osler nodes, Roth spots, RF, GN); microbiological evidence not meeting major criteria. HEMIPLEGIA from a cerebral embolus = VASCULAR PHENOMENON = MINOR Duke criterion. Positive blood cultures, echocardiographic findings, and new regurgitation are MAJOR criteria."
+  },
+  {
+    "question": "Which of the following is a characteristic clinical feature of right-sided heart failure?",
+    "options": [
+      "Paroxysmal nocturnal dyspnoea",
+      "Pulmonary oedema",
+      "Lower limb pitting oedema",
+      "Orthopnoea"
+    ],
+    "correct": 2,
+    "explanation": "Right heart failure → SYSTEMIC venous hypertension: LOWER LIMB PITTING OEDEMA (dependent), hepatomegaly, raised JVP, ascites, periorbital puffiness. Left heart failure → PULMONARY venous hypertension: PND, orthopnoea, tachypnoea, pulmonary oedema, cardiac asthma. In infants with CHF: sweating during feeding, FTT, tachypnoea, and hepatomegaly are the most prominent signs (true dependent oedema is less common in infants than adults due to their predominantly supine posture)."
+  },
+  {
+    "question": "Which drug is contraindicated in hypertrophic obstructive cardiomyopathy (HCM)?",
+    "options": [
+      "Beta-blockers (e.g., metoprolol)",
+      "Verapamil",
+      "Digitalis (digoxin)",
+      "Disopyramide"
+    ],
+    "correct": 2,
+    "explanation": "DIGITALIS is CONTRAINDICATED in HCM with LVOT obstruction. As a POSITIVE INOTROPE, it increases myocardial contractility → the hypertrophied septum contracts more vigorously against the LVOT → WORSENING of dynamic obstruction → reduced cardiac output and syncope risk. TREATMENT of HCM: BETA-BLOCKERS (metoprolol — reduce HR and contractility, improve diastolic filling), VERAPAMIL (similar mechanism), DISOPYRAMIDE (negative inotrope + antiarrhythmic). Vasodilators and nitrates are also contraindicated."
+  },
+  {
+    "question": "What is the normal intracranial pressure (ICP) in children?",
+    "options": [
+      "15–25 mmHg",
+      "20–30 mmHg",
+      "Less than 10 mmHg",
+      "10–20 mmHg"
+    ],
+    "correct": 2,
+    "explanation": "Normal ICP in children: LESS THAN 10 mmHg (7–15 mmHg in some references; the accepted clinical threshold is <10 mmHg). ICP 20–40 mmHg: requires active treatment (osmotic agents, head elevation, CSF drainage). ICP >40 mmHg: immediately life-threatening (CPP = MAP − ICP falls critically below 50–60 mmHg). Signs of raised ICP: morning headache, vomiting, papilloedema (chronic), Cushing's triad (bradycardia + hypertension + abnormal breathing) — a late, ominous sign."
+  },
+  {
+    "question": "What is the most common ECG change in hyperkalaemia?",
+    "options": [
+      "Prolonged QTc interval",
+      "Peaked tall narrow symmetric T waves",
+      "ST segment depression",
+      "Prolonged PR interval (first degree block)"
+    ],
+    "correct": 1,
+    "explanation": "Hyperkalaemia ECG progression: (1) PEAKED T WAVES (tall, narrow, symmetric) — EARLIEST, MOST COMMON change at K⁺ 5.5–6.5 mEq/L; (2) Prolonged PR + P wave flattening (K⁺ ~6.5); (3) QRS widening (K⁺ >7); (4) Sine wave; (5) VF/asystole. Peaked T waves are NARROW (narrow base, narrow peak) and SYMMETRIC — distinguishing them from ischaemic T wave inversions or broad T waves. Clinical significance: T wave peaking alone requires close monitoring; QRS widening demands immediate treatment."
+  },
+  {
+    "question": "What is the immediate treatment for ventricular fibrillation (VF) in a child?",
+    "options": [
+      "Adrenaline 0.01 mg/kg IV as first priority",
+      "Synchronised DC cardioversion at 1 J/kg",
+      "Amiodarone 5 mg/kg IV first",
+      "Unsynchronised DC shock (defibrillation) starting at 2 J/kg"
+    ],
+    "correct": 3,
+    "explanation": "VF = SHOCKABLE rhythm → immediate UNSYNCHRONISED DEFIBRILLATION: (1) First shock: 2 J/kg; (2) Subsequent shocks: 4 J/kg. Synchronised cardioversion is for HAEMODYNAMICALLY UNSTABLE TACHYARRHYTHMIAS WITH A PULSE (SVT, VT with pulse) — NOT for VF (unsynchronised because VF has no organised rhythm to synchronise to). During defibrillator charging: CPR continues. After shock: immediately resume CPR for 2 minutes. After 2nd/3rd shock: adrenaline 0.01 mg/kg, then amiodarone 5 mg/kg."
+  },
+  {
+    "question": "A 3-year-old has blood gases: pH 7.52, PaCO2 48 mmHg, HCO3 38 mmol/L. What is the primary disorder?",
+    "options": [
+      "Respiratory acidosis with metabolic compensation",
+      "Metabolic acidosis with respiratory compensation",
+      "Metabolic alkalosis with respiratory compensation",
+      "Respiratory alkalosis"
+    ],
+    "correct": 2,
+    "explanation": "ABG: pH 7.52 = ALKALOSIS. HCO₃⁻ = 38 mEq/L = markedly ELEVATED = PRIMARY metabolic abnormality. PaCO₂ = 48 mmHg = slightly elevated = RESPIRATORY COMPENSATION (hypoventilation to retain CO₂ and buffer alkalosis). Elevated pH + high HCO₃⁻ + compensatory high PaCO₂ = PRIMARY METABOLIC ALKALOSIS. Causes: vomiting (loss of HCl), diuretics (furosemide, thiazides — Cl-responsive), Bartter/Gitelman syndrome (Cl-resistant), pyloric stenosis. Respiratory alkalosis would show LOW PaCO₂ + low/normal HCO₃⁻."
+  },
+  {
+    "question": "Which scoring system is used to assess level of consciousness in critically ill children?",
+    "options": [
+      "RIFLE score (for acute kidney injury)",
+      "ARDS Berlin criteria (for respiratory failure)",
+      "Glasgow Coma Scale (GCS)",
+      "Mallampati score (for airway assessment)"
+    ],
+    "correct": 2,
+    "explanation": "The GLASGOW COMA SCALE (GCS) is the universally accepted bedside tool for quantifying consciousness level: Eye opening (E: 1–4) + Verbal response (V: 1–5) + Motor response (M: 1–6) = total 3–15. GCS <8: severe brain injury — strong indication for intubation to protect airway. Paediatric GCS modification exists for infants. AVPU (Alert, Voice, Pain, Unresponsive) is a simpler triage version. RIFLE = AKI. ARDS criteria = respiratory failure. Mallampati = pre-anaesthetic airway assessment."
+  },
+  {
+    "question": "What is the most common cause of transudative pleural effusion in children?",
+    "options": [
+      "Bacterial pneumonia",
+      "Hypoalbuminaemia (e.g., nephrotic syndrome, malnutrition)",
+      "Malignancy",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "TRANSUDATIVE effusion results from altered Starling forces: (1) Decreased oncotic pressure: HYPOALBUMINAEMIA (nephrotic syndrome, malnutrition, protein-losing enteropathy), (2) Increased hydrostatic pressure: congestive heart failure, cirrhosis. EXUDATIVE (increased membrane permeability/protein): infection (most common overall paediatric effusion), malignancy, TB, connective tissue disease. Light's criteria: exudate if protein ratio >0.5, LDH ratio >0.6, or LDH >2/3 ULN."
+  },
+  {
+    "question": "Multiple pneumatoceles on chest X-ray in a febrile infant most likely indicate infection by which organism?",
+    "options": [
+      "Streptococcus pneumoniae",
+      "Mycoplasma pneumoniae",
+      "Staphylococcus aureus",
+      "Haemophilus influenzae"
+    ],
+    "correct": 2,
+    "explanation": "PNEUMATOCELES (thin-walled air-filled cysts) = hallmark of STAPHYLOCOCCUS AUREUS pneumonia. S. aureus produces coagulase and PVL toxin causing tissue necrosis and check-valve bronchiolar obstruction → air trapping → pneumatocele formation. Pneumatoceles may enlarge, rupture (→ tension pneumothorax or pyopneumothorax), or resolve over weeks. Management: IV anti-staphylococcal antibiotics (flucloxacillin, or vancomycin if MRSA). Multiple pneumatoceles on CXR in a sick infant = S. aureus pneumonia until proven otherwise."
+  },
+  {
+    "question": "A child presents with sudden onset barking cough, stridor, and hoarse voice. CXR shows a steeple sign. What is the diagnosis and first-line treatment?",
+    "options": [
+      "Epiglottitis — IV ceftriaxone and secure airway in OR",
+      "Viral croup — oral/IM dexamethasone 0.6 mg/kg single dose",
+      "Bacterial tracheitis — IV flucloxacillin and intubation",
+      "Foreign body aspiration — rigid bronchoscopy"
+    ],
+    "correct": 1,
+    "explanation": "VIRAL CROUP (acute laryngotracheobronchitis — parainfluenza type 1): clinical diagnosis — barking (seal-like) cough + inspiratory stridor + hoarse voice in child 6 months–3 years. STEEPLE SIGN on AP X-ray confirms. First-line: DEXAMETHASONE 0.6 mg/kg PO/IM (single dose) — reduces subglottic oedema. Severe croup: add nebulised L-epinephrine (3 mL of 1:1,000). Epiglottitis: thumb sign, no barking cough, drooling, requires airway in OR. Bacterial tracheitis: toxic, does NOT respond to adrenaline."
+  },
+  {
+    "question": "A laryngeal foreign body classically presents with which of the following?",
+    "options": [
+      "Unilateral wheeze and decreased breath sounds",
+      "Bilateral wheeze and hyperinflation",
+      "Hoarseness or aphonia",
+      "Decreased breath sounds only"
+    ],
+    "correct": 2,
+    "explanation": "Foreign body locations: LARYNGEAL: HOARSENESS/APHONIA (vocal cord involvement) + stridor + croupy cough ± drooling. TRACHEAL: biphasic stridor + audible/palpable tracheal thud. BRONCHIAL (80–90%): UNILATERAL wheeze + decreased breath sounds + hyperinflation or atelectasis. Hoarseness specifically identifies LARYNGEAL level involvement. Drooling suggests laryngeal/oesophageal level. Management: urgent rigid bronchoscopy."
+  },
+  {
+    "question": "What is the most common clinical course of poliovirus infection?",
+    "options": [
+      "Spinal paralytic poliomyelitis",
+      "Abortive poliomyelitis (minor febrile illness)",
+      "Asymptomatic (inapparent) infection",
+      "Non-paralytic poliomyelitis (aseptic meningitis)"
+    ],
+    "correct": 2,
+    "explanation": "Poliovirus infection outcomes: ASYMPTOMATIC (inapparent) = 90–95% of ALL infections. Minor illness (abortive polio: fever, malaise, sore throat, vomiting) = 4–8%. Non-paralytic (aseptic meningitis) = 1–2%. Paralytic = <0.5–1%. The vast majority of infected individuals are asymptomatic yet shed virus in faeces for weeks, maintaining community transmission. This is why vaccination is so critical — most 'sources' are unknowing asymptomatic carriers."
+  },
+  {
+    "question": "Which pathological finding is pathognomonic of measles?",
+    "options": [
+      "Post-auricular lymphadenopathy",
+      "Koplik's spots on the buccal mucosa",
+      "Lacy reticular rash on extremities",
+      "Sandpaper rash on the trunk"
+    ],
+    "correct": 1,
+    "explanation": "KOPLIK'S SPOTS: tiny (1–3 mm) bluish-white spots with red halos on the BUCCAL MUCOSA (opposite lower molars) — appearing 1–2 days BEFORE the measles rash and disappearing as the rash appears. They are PATHOGNOMONIC of MEASLES. Post-auricular LAP = rubella. Lacy rash = erythema infectiosum (parvovirus B19). Sandpaper rash = scarlet fever (GAS). Without Koplik's spots, no other single finding is pathognomonic of measles."
+  },
+  {
+    "question": "Which infectious disease is associated with risus sardonicus?",
+    "options": [
+      "Pertussis",
+      "Tetanus",
+      "Bacterial meningitis",
+      "Acute poliomyelitis"
+    ],
+    "correct": 1,
+    "explanation": "TETANUS: C. tetani toxin (tetanospasmin) blocks GABA/glycine release at inhibitory synapses → uncontrolled muscle spasm. RISUS SARDONICUS (sardonic grin — forced facial grimace from sustained facial muscle contraction) is PATHOGNOMONIC of tetanus. Trismus (lockjaw — masseter spasm) is the FIRST symptom. Opisthotonos (arched back), laryngospasm, and autonomic instability follow. Neonatal tetanus: omphalitis + jaw spasm (neonatus can't suck). Management: HTIg, wound debridement, metronidazole, benzodiazepines, ICU."
+  },
+  {
+    "question": "What is the most common form of skeletal tuberculosis?",
+    "options": [
+      "TB arthritis of the hip",
+      "Diaphyseal osteomyelitis",
+      "Spinal tuberculosis (Pott's disease)",
+      "Metaphyseal tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "SPINAL TB (Pott's disease) = most common form of skeletal TB (~50% of bone/joint TB cases). Most commonly affects the LOWER THORACIC/THORACOLUMBAR junction (T10–L2). Complications: vertebral collapse (gibbus deformity/kyphosis), cold (psoas) abscess extending down the inguinal canal, Pott's paraplegia (from cord compression). Diagnosis: MRI spine (investigation of choice). Treatment: standard 6-month anti-TB regimen (2HRZE + 4HR) with orthopaedic/neurosurgical input if needed."
+  },
+  {
+    "question": "What is the most common cause of chemoprophylaxis in close contacts of acute bacterial meningitis?",
+    "options": [
+      "Amoxicillin",
+      "Rifampicin",
+      "Cefotaxime",
+      "Ampicillin"
+    ],
+    "correct": 1,
+    "explanation": "RIFAMPICIN is the standard drug for chemoprophylaxis of close contacts of meningococcal disease (10 mg/kg twice daily for 2 days) and HiB meningitis (20 mg/kg once daily for 4 days). It eradicates nasopharyngeal carriage, preventing secondary cases. Alternatives for meningococcal prophylaxis: single-dose ciprofloxacin (≥12 years), single-dose IM ceftriaxone (all ages including pregnancy). Amoxicillin, cefotaxime, and ampicillin are for treatment, NOT prophylaxis of contacts."
+  },
+  {
+    "question": "What is the drug of choice for treatment of pertussis (whooping cough)?",
+    "options": [
+      "Penicillin V",
+      "Tetracycline",
+      "Erythromycin (or azithromycin)",
+      "Amoxicillin"
+    ],
+    "correct": 2,
+    "explanation": "MACROLIDES are the drugs of choice for pertussis: AZITHROMYCIN (current first-line: 5-day course, better tolerated, fewer GI side effects) or ERYTHROMYCIN (traditional drug of choice: 14-day course). Clarithromycin (7 days) is an alternative. TMP-SMX when macrolides are contraindicated. Macrolides administered EARLY (catarrhal stage) limit progression; in the paroxysmal stage they reduce infectivity but not illness duration. ALL household contacts receive post-exposure prophylaxis regardless of vaccination status."
+  },
+  {
+    "question": "What is the appropriate treatment for extensive pulmonary tuberculosis in a 9-year-old child?",
+    "options": [
+      "INH + Rifampicin for 3 months only",
+      "Two months triple therapy (HRZ) + 4 months double therapy (HR)",
+      "Two months quadruple therapy (HRZE) + 4 months double therapy (HR)",
+      "Two months quadruple therapy (HRZE) + 10 months double therapy (HR)"
+    ],
+    "correct": 2,
+    "explanation": "Standard WHO paediatric TB regimen for PULMONARY TB (including extensive): 2 months HRZE (isoniazid, rifampicin, pyrazinamide, ethambutol) + 4 months HR = TOTAL 6 MONTHS. EXTENDED 10-month regimens (2HRZE + 7–10 months HR) are ONLY used for: TB meningitis, miliary TB, bone/joint TB, or extensively drug-resistant (XDR) TB. Using a shorter 3-month regimen risks treatment failure and acquired drug resistance."
+  },
+  {
+    "question": "What is the normal intracranial pressure in children?",
+    "options": [
+      "30 mmHg",
+      "20 mmHg",
+      "25 mmHg",
+      "Less than 10 mmHg"
+    ],
+    "correct": 3,
+    "explanation": "Normal ICP: <10 mmHg in children. ICP 20–40 mmHg requires treatment (head elevation 30°, osmotic agents — mannitol or hypertonic saline, CSF drainage). ICP >40 mmHg is immediately life-threatening as CPP (= MAP − ICP) falls critically. Causes of raised ICP: meningitis/encephalitis, hydrocephalus, space-occupying lesions, cerebral oedema, hepatic encephalopathy. Cushing's triad (bradycardia + hypertension + irregular breathing) is a LATE and OMINOUS sign."
+  },
+  {
+    "question": "Which of the following conditions is treated with desmopressin (DDAVP)?",
+    "options": [
+      "Immune thrombocytopenic purpura (ITP)",
+      "Beta-thalassaemia major",
+      "Von Willebrand disease (VWD) type 1",
+      "Aplastic anaemia"
+    ],
+    "correct": 2,
+    "explanation": "DDAVP (desmopressin) stimulates V2 receptors on endothelial cells → releases stored VWF and Factor VIII from Weibel-Palade bodies. INDICATED FOR: (1) Von Willebrand disease TYPE 1 (most common type, ~70% of VWD) and type 2A; (2) Mild haemophilia A. CONTRAINDICATED in VWD type 2B (paradoxical thrombocytopaenia). NOT effective for haemophilia B (Factor IX deficiency — no VWF/FVIII release), ITP (platelet antibody issue), thalassaemia (iron overload/defective haemoglobin), or aplastic anaemia (marrow failure)."
+  },
+  {
+    "question": "Which factor is most important in determining the risk of perinatal HBV transmission?",
+    "options": [
+      "Maternal anti-HBs levels",
+      "Maternal anti-HBc IgG levels",
+      "Maternal HBV-DNA level (viral load) and DNA polymerase activity",
+      "Maternal anti-HBc IgM levels"
+    ],
+    "correct": 2,
+    "explanation": "MATERNAL HBV-DNA LEVEL (viral load) is the MOST IMPORTANT determinant of perinatal HBV transmission. High HBV-DNA (>200,000 IU/mL, HBeAg-positive) → 70–90% transmission without prophylaxis. Low/undetectable HBV-DNA → <10% transmission. Standard prophylaxis: HBV vaccine + HBIG within 12 hours of birth (95% effective if maternal DNA is low). If maternal HBV-DNA >10⁷ IU/mL → tenofovir from 28–32 weeks gestation significantly reduces perinatal transmission."
+  },
+  {
+    "question": "Which of the following is the most common cause of chronic diarrhoea in infants and young children?",
+    "options": [
+      "Coeliac disease",
+      "Toddler's diarrhoea (chronic non-specific diarrhoea)",
+      "Lactase deficiency",
+      "Inflammatory bowel disease"
+    ],
+    "correct": 1,
+    "explanation": "TODDLER'S DIARRHOEA (functional diarrhoea of childhood) is the most common cause of chronic diarrhoea in infants and young children (6 months–3 years). KEY FEATURES: child is thriving (normal growth), loose watery stools 4–6/day, worse with excessive fruit juice, improves with increased fat and reduced juice, no blood, no mucus. Pathophysiology: rapid intestinal transit from high fructose/sorbitol intake + low fat diet. Treatment: dietary modification + reassurance (no medications needed)."
+  },
+  {
+    "question": "Which of the following is a cause of chronic liver disease in children?",
+    "options": [
+      "Paracetamol toxicity",
+      "Hepatitis A virus (HAV)",
+      "Hepatitis E virus (HEV)",
+      "Autoimmune hepatitis"
+    ],
+    "correct": 3,
+    "explanation": "AUTOIMMUNE HEPATITIS (AIH) causes progressive, CHRONIC hepatitis → cirrhosis if untreated. Features: young girls, elevated ALT/AST (>10× normal), elevated IgG, positive autoantibodies (ANA+/SMA+ type 1; anti-LKM-1 type 2). Treatment: prednisolone ± azathioprine → normalises enzymes and prevents progression. HAV and HEV: ACUTE self-limited hepatitis with NO chronic sequelae. Paracetamol: ACUTE liver failure (not chronic). HBV (if perinatally acquired): can cause chronic hepatitis."
+  },
+  {
+    "question": "What is the correct assessment of a case with sunken eyes, bulging fontanelle, reduced skin turgor, and tachycardia in a 6-month-old infant?",
+    "options": [
+      "Less than 1% dehydration — outpatient management",
+      "1–5% dehydration — oral rehydration at home",
+      "5–9% dehydration — hospitalisation and ORS 100 mL/kg over 4 hours",
+      "10–15% dehydration — urgent IV fluids"
+    ],
+    "correct": 2,
+    "explanation": "Clinical signs: sunken fontanelle, sunken eyes, tachycardia, reduced skin turgor = MODERATE DEHYDRATION (5–9%). Management: hospitalise, give ORS 100 mL/kg over 4 hours (WHO Plan B). Severe dehydration (≥10%): altered consciousness, very sunken eyes, no skin elasticity, weak pulse, anuria → IV Ringer's lactate 100 mL/kg. Mild (<5%): minimal signs, manage at home with Plan A (50 mL/kg ORS). Bulging fontanelle suggests raised ICP or hypernatraemic correction issues."
+  },
+  {
+    "question": "Which of the following suggests an organic cause of constipation in a child?",
+    "options": [
+      "Large calibre stool",
+      "Presence of faecal soiling (overflow incontinence)",
+      "Rectal dilatation on abdominal X-ray",
+      "Empty, tight rectum on digital rectal examination"
+    ],
+    "correct": 3,
+    "explanation": "EMPTY, TIGHT RECTUM on digital rectal examination = HIRSCHSPRUNG'S DISEASE (organic cause). The aganglionic segment cannot relax → no faecal accumulation in the tight segment. Withdrawal of examining finger is followed by explosive expulsion of stool/gas ('squirt sign'). FUNCTIONAL constipation: rectum is FULL and DILATED with impacted stool, with faecal soiling (overflow incontinence). Large calibre stool and rectal dilatation also suggest functional constipation (faecal retention)."
+  },
+  {
+    "question": "Which of the following suggests a feature of hyponatraemic/hypotonic dehydration?",
+    "options": [
+      "Early shock with marked skin turgor loss and relatively moist tongue",
+      "Serum sodium >150 mEq/L",
+      "Doughy skin texture that remains indented",
+      "Predominantly extracellular fluid loss only"
+    ],
+    "correct": 0,
+    "explanation": "Hyponatraemic dehydration: sodium loss > water loss → plasma hypotonic → water shifts INTO cells. ECF is disproportionately reduced → EARLY SHOCK. SKIN TURGOR IS MARKEDLY REDUCED (ECF depleted) while the TONGUE may not be as dry (cells are actually over-hydrated). This dissociation — marked skin turgor loss with relatively moist mucosal surfaces — is characteristic. Doughy skin = hypernatraemic dehydration. Na >150 = hypernatraemia. Predominantly ECF loss with cellular dehydration = isonatraemic dehydration."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

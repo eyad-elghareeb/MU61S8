@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>61st Midterm</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobc6uijp7a6p",
+  "title": "61st Midterm",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "A 4 yo asthmatic child presented to ER with severe respiratory distress, on examination he has bilateral diffuse chest expantion with prolonged expiration O2 saturation was 87% and you order oxygen therapy via non rebreathing face mask O2 saturation raises to 95%. What is your next step",
+    "options": [
+      "Urgent consultation to pulmonology department for possible bronchoscopy",
+      "start with nubelized sulbutamol to improve bronchospasm and continue monitoring",
+      "Give first dose racemic epinepherine to improve laryngospasm",
+      "Urgent admission to ICU as specifiec line of treatment is not indicated",
+      "Start with nonninvasive ventilation. If not improved intubate and start invasive ventilation"
+    ],
+    "correct": 1,
+    "explanation": "Once oxygen is administered and saturation improves to 95%, the immediate next step is nebulized salbutamol (albuterol) to relieve bronchospasm, along with continued monitoring. Bronchoscopy/pulmonology consultation is inappropriate for acute asthma without a foreign body concern. Racemic epinephrine is used for croup (laryngeal obstruction), not asthma. ICU admission is not the immediate next step if the patient is responding to initial treatment. Non-invasive ventilation is reserved for cases failing bronchodilator therapy."
+  },
+  {
+    "question": "An 8 month get presented to the ER with bilateral wheezes and respiratory distress, the mother gives history of mangement of wheezy chest not improving with nebulizers, she also complains of recurrent chocking episodes, on examination infant distress increases with neck flexion and improves with neck hyperextention. Which of the follwing is the best diagnostic tool for infant condition",
+    "options": [
+      "CT angiography",
+      "Pulmonary function test",
+      "Bronchoscopy as foriegn body is suspected",
+      "Plain chest x-ray AP and lateral view",
+      "Non contrast CT chest"
+    ],
+    "correct": 0,
+    "explanation": "The clinical picture of wheezing not responding to nebulizers, recurrent choking, and positional change in symptoms (worse with neck flexion, better with hyperextension) is classic for a vascular ring compressing the airway and esophagus. CT angiography is the best diagnostic tool to identify vascular anomalies. Pulmonary function tests are not feasible in 8-month-old infants. Bronchoscopy is for foreign body aspiration, not positional airway compression. Plain CXR and non-contrast CT will not adequately visualize vascular structures causing the compression."
+  },
+  {
+    "question": "In case of an aspirated foreign body, 80 – 90% become lodged in?",
+    "options": [
+      "The trachea",
+      "The larynx",
+      "Bronchioles",
+      "The bronchi",
+      "the carina"
+    ],
+    "correct": 3,
+    "explanation": "80-90% of aspirated foreign bodies lodge in the bronchi, most commonly the right main bronchus due to its wider diameter, more vertical orientation, and higher airflow compared to the left. The trachea and larynx are less common lodging sites because they are wider and more likely to allow passage. Bronchioles are too small for most foreign bodies to reach. The carina is a bifurcation structure, not a lodging site."
+  },
+  {
+    "question": "Which of the foolowing is the proper definition of hypercapnia?",
+    "options": [
+      "PaCo2 > 45 mmHg",
+      "PaCo2 > 40 mmHg",
+      "PaCo2 > 35 mmHg",
+      "PaCo2 > 30 mmHg",
+      "PaCo2 > 25 mmHg"
+    ],
+    "correct": 0,
+    "explanation": "Hypercapnia is defined as PaCO2 > 45 mmHg. Normal PaCO2 range is 35–45 mmHg. A value above 45 mmHg indicates inadequate alveolar ventilation (hypoventilation). Values below 35 mmHg indicate hypocapnia (hyperventilation). The thresholds of 40, 35, 30, and 25 mmHg do not define hypercapnia; 40 mmHg is the midpoint of normal, and below 35 represents hyperventilation."
+  },
+  {
+    "question": "What causes staccato cough?",
+    "options": [
+      "Moraxella catarrhalis",
+      "Hemophilus influenza",
+      "Staphylococcus",
+      "Chlamydia trachomatis",
+      "Streptococcal pneumoniae"
+    ],
+    "correct": 3,
+    "explanation": "Staccato cough — a distinctive, rhythmic, machine-gun-like cough — is a hallmark of Chlamydia trachomatis pneumonia in infants. It is typically acquired perinatally from an infected birth canal and presents as an afebrile pneumonia in the first weeks of life. Moraxella catarrhalis, H. influenzae, Staphylococcus, and S. pneumoniae cause other forms of respiratory infection but none are associated with staccato cough."
+  },
+  {
+    "question": "What is the predominant pathogen in childhood empyema?",
+    "options": [
+      "Methilin resistant staphylococcus aures (MRSA)",
+      "Mycobacterium tuberculus",
+      "Streptococcus pneumoniae",
+      "Candida albicans",
+      "Pseudomonas aeruginosa"
+    ],
+    "correct": 2,
+    "explanation": "Streptococcus pneumoniae (pneumococcus) is the most common cause of childhood empyema (parapneumonic effusion with infection). While MRSA is an emerging pathogen in complicated pneumonia, it is not the predominant cause globally. M. tuberculosis, Candida, and Pseudomonas cause empyema in specific immunocompromised or special circumstances but are not the predominant cause in immunocompetent children."
+  },
+  {
+    "question": "Which of the following is suggestive of typical bacterial pneumonia?",
+    "options": [
+      "Auscultatory findings are usually diffuse and bilateral",
+      "Febrile patient appearing ill and toxic with symptoms and localized chest pain",
+      "The onset is gradual and associated with preceding upper airway symptoms (eg, rhinorrhea, congestion)",
+      "There is poor correlation between clinical signs and radiology",
+      "wheezing is more frequent in patients with bacterial pneumonia"
+    ],
+    "correct": 1,
+    "explanation": "Typical bacterial pneumonia is characterized by acute onset of high fever, a toxic and ill-appearing child, and localized pleuritic chest pain with focal lung consolidation. Diffuse bilateral findings are typical of atypical/viral pneumonia. Gradual onset with preceding upper respiratory symptoms also describes atypical pneumonia. Poor correlation between clinical and radiological findings is a feature of atypical pneumonia. Wheezing is more associated with viral/atypical pneumonia, not typical bacterial pneumonia."
+  },
+  {
+    "question": "What is the normal Respiratory rate for a 50-day old infant",
+    "options": [
+      "50",
+      "60",
+      "40",
+      "20",
+      "30"
+    ],
+    "correct": 1,
+    "explanation": "For infants under 2 months of age, the upper limit of normal respiratory rate is 60 breaths per minute. The WHO defines tachypnea in infants under 2 months as RR > 60/min. A 50-day-old (approximately 7 weeks) falls in this age category, so 60 is the correct reference value. A rate of 40 is normal for older infants (2–12 months). Values of 20–30 are normal for school-age children and adolescents."
+  },
+  {
+    "question": "Treatment of tension pnuemothorax is",
+    "options": [
+      "Antibiotics & O2",
+      "Antibiotics & O2& analgesics for pain",
+      "observation & analgesics for pain",
+      "100% Oxygen supplementation",
+      "Rapid needle aspiration"
+    ],
+    "correct": 4,
+    "explanation": "Tension pneumothorax is a life-threatening emergency requiring immediate rapid needle decompression (needle aspiration) at the 2nd intercostal space, midclavicular line, followed by chest tube insertion. It causes mediastinal shift and obstructive shock. Antibiotics are not indicated as it is a mechanical problem. Observation is dangerous given the rapidly fatal nature. 100% oxygen may help reabsorb air in a simple small pneumothorax but is not adequate for tension pneumothorax. Analgesics alone address only pain."
+  },
+  {
+    "question": "Previously healthy 4-month-old boy who presented to the emergency department with rhinnorhea and tachypnea for the past 4 days, he had bilateral coarse lung sounds and subcostal and intercostal retraction with nasal flaring, he was diagnosed as acute bronchiolitis. Which of the following is a risk factor for severe acute bronchiolitis?",
+    "options": [
+      "Age younger than 2 years",
+      "Cyanosis",
+      "Fine crackles on chest auscultation",
+      "Nasal flaring",
+      "Age less than 6 to 12 weeks"
+    ],
+    "correct": 4,
+    "explanation": "Age less than 6–12 weeks is a well-established risk factor for SEVERE bronchiolitis because very young infants have narrower airways, immature immune systems, incomplete respiratory muscle development, and are at high risk for apnea. Age younger than 2 years is a risk factor for getting bronchiolitis, but not specifically for severe disease. Cyanosis, fine crackles, and nasal flaring are clinical signs/findings of bronchiolitis itself, not pre-existing risk factors for severe disease."
+  },
+  {
+    "question": "What is the normal arterial oxygen saturation measured by pulse oximetry?",
+    "options": [
+      "85-88%",
+      "88-92%",
+      "97-100%",
+      "More than 100%",
+      "92-95%"
+    ],
+    "correct": 2,
+    "explanation": "Normal arterial oxygen saturation (SpO2) measured by pulse oximetry is 97–100% in healthy individuals breathing room air. Values of 85–88% and 88–92% represent moderate to severe hypoxemia requiring supplemental oxygen. SpO2 cannot physiologically exceed 100% with standard pulse oximetry. 92–95% represents mild hypoxemia. Any reading below 95% in children generally warrants evaluation and possible supplemental oxygen."
+  },
+  {
+    "question": "A 8 yo white boy presented by fever reaching a tempreture maximum of 39c complaining of right upper quadrant pain, SaO2 84% on room air, chest examination revelead stony dullness on percussion on right side and decrease intensity of breath sound on right side. What is the most likely diagnosis?",
+    "options": [
+      "Acute bronchiolitis",
+      "Atypical pnuemonia",
+      "bacterial pnuemonia complicated by right side plueral effusion",
+      "Viral bronchopnuemonia",
+      "Typical right sided bacterial pnuemonia"
+    ],
+    "correct": 2,
+    "explanation": "Stony dullness on percussion is pathognomonic for pleural effusion. Combined with decreased breath sounds, right-sided localized findings, high fever, right upper quadrant pain (diaphragmatic irritation), and significant hypoxia (SpO2 84%), this presentation indicates bacterial pneumonia complicated by a right-sided pleural effusion (parapneumonic effusion). Acute bronchiolitis occurs in infants and has bilateral findings. Atypical pneumonia has diffuse bilateral findings and milder toxicity. Viral bronchopneumonia has bilateral findings. Uncomplicated typical pneumonia would not produce stony dullness."
+  },
+  {
+    "question": "Which of the following signs and symptoms suggests the diagnosis of bronchial asthma?",
+    "options": [
+      "Frequent episodes of wheezing – more than once a month",
+      "Presence of seasonal variation in wheeze",
+      "Cough or wheeze disappear during exercise",
+      "Symptoms that disappear after age of 3 years",
+      "Cough particularly at daytime"
+    ],
+    "correct": 0,
+    "explanation": "Frequent episodes of wheezing occurring more than once a month is a key diagnostic feature of bronchial asthma, reflecting recurrent airway hyperresponsiveness. Seasonal variation alone is not specific enough for asthma. Cough and wheeze in asthma worsen with exercise (exercise-induced bronchoconstriction), not disappear. Disappearance of symptoms after age 3 is more characteristic of transient early wheezing of infancy. Asthma cough is characteristically nocturnal or in the early morning, not specifically daytime."
+  },
+  {
+    "question": "The following mechanism can cause fluid accumilation in plueral space",
+    "options": [
+      "Decreased capillary permeability",
+      "Decreased capillary hydrostatic pressure",
+      "Decreased plasma oncotic pressure",
+      "Increased plasma oncotic pressure",
+      "Lymphatic drainage of plueral space"
+    ],
+    "correct": 2,
+    "explanation": "Decreased plasma oncotic pressure (e.g., hypoalbuminemia from nephrotic syndrome, liver disease, or malnutrition) reduces the ability of blood vessels to retain fluid by osmosis, leading to fluid leakage into the pleural space (transudate formation). Decreased capillary permeability would reduce fluid extravasation. Decreased capillary hydrostatic pressure would also reduce fluid leakage into the pleural space. Increased plasma oncotic pressure keeps fluid intravascular. Lymphatic drainage actually removes fluid from the pleural space."
+  },
+  {
+    "question": "Which of the following is the mainstay for ttt of acute bronchiolitis in 1 year old infant?",
+    "options": [
+      "Dexamethasone",
+      "Oxygen & fluid therapy",
+      "Oral Bronchodilator",
+      "Inhaled glucocorticoids",
+      "Ribavirin"
+    ],
+    "correct": 1,
+    "explanation": "The mainstay of treatment for acute bronchiolitis is supportive care: oxygen therapy to maintain adequate SpO2 (>90-92%) and fluid replacement to prevent dehydration. No pharmacological therapy has been consistently shown to alter the clinical course. Dexamethasone and inhaled glucocorticoids have not been proven beneficial in bronchiolitis trials. Oral or inhaled bronchodilators are not routinely recommended. Ribavirin is an antiviral occasionally used in severe RSV bronchiolitis in immunocompromised patients only."
+  },
+  {
+    "question": "Which of the following is not true about viral bronchopneumonia?",
+    "options": [
+      "May be associated with skin rash",
+      "Bilateral auscultatory & radiological findings",
+      "Acute or abrupt onset",
+      "History of antecedent upper respiratory symptoms",
+      "Absence of toxic manifestations"
+    ],
+    "correct": 2,
+    "explanation": "Viral bronchopneumonia has a GRADUAL (subacute) onset, not an acute or abrupt onset — making option C the false statement. True features include: association with skin rash (e.g., measles, varicella), bilateral auscultatory and radiological findings, a history of preceding upper respiratory symptoms (rhinorrhea, cough), and absence of toxic manifestations (children appear less ill than in bacterial pneumonia). Abrupt onset with high fever and toxicity is characteristic of typical bacterial pneumonia."
+  },
+  {
+    "question": "The main anti-inflammatory drug used for treatment of viral croup",
+    "options": [
+      "Corticosteroids",
+      "Nebulized atropine",
+      "Nasal saline",
+      "Salbutamol",
+      "Antibiotics"
+    ],
+    "correct": 0,
+    "explanation": "Corticosteroids (dexamethasone, oral or IM) are the main anti-inflammatory treatment for viral croup (acute laryngotracheobronchitis). They reduce subglottic edema, shorten illness duration, and decrease the need for hospitalization and further interventions. Nebulized epinephrine (not atropine) is used for severe croup. Nasal saline has no role. Salbutamol is a bronchodilator for asthma, not croup. Antibiotics are not indicated as croup is primarily caused by parainfluenza virus (a viral infection)."
+  },
+  {
+    "question": "Which of the following medications is used to close a patent ductus arteriosus (PDA) in preterm infant?",
+    "options": [
+      "Digitalis",
+      "Prostaglandin E1",
+      "Indomethacin",
+      "Theophylline",
+      "Furosimide"
+    ],
+    "correct": 2,
+    "explanation": "Indomethacin, an NSAID that inhibits cyclooxygenase and reduces prostaglandin synthesis, is used to pharmacologically close a patent ductus arteriosus in preterm infants (ibuprofen is an alternative). The ductus remains patent due to prostaglandin E2, so inhibiting its production promotes ductal closure. Digitalis is a cardiac glycoside for heart failure. Prostaglandin E1 (alprostadil) is used to KEEP the ductus OPEN in duct-dependent congenital heart diseases. Theophylline treats apnea of prematurity. Furosemide is a diuretic."
+  },
+  {
+    "question": "Features suggestive of streptococcal pharyngitis include?",
+    "options": [
+      "Tonsillar yellowish exudate and enlarged tender cervical lymph nodes",
+      "Gradual onset",
+      "Ulcerative mouth lesions",
+      "Hoarseness of voice",
+      "coryza"
+    ],
+    "correct": 0,
+    "explanation": "Group A Streptococcal pharyngitis classically presents with tonsillar exudate (yellowish/white), enlarged tender anterior cervical lymphadenopathy (lymphadenitis), sudden onset of high fever, and sore throat without coryza. Gradual onset and coryza (runny nose) strongly suggest viral pharyngitis. Ulcerative mouth lesions suggest herpangina (Coxsackie) or herpes stomatitis. Hoarseness of voice suggests laryngeal involvement, which is more typical of viral laryngotracheitis, not streptococcal pharyngitis."
+  },
+  {
+    "question": "A child 7 yo with few days of bilateral migratory painful knee swelling presented in the ER with fever, dyspnea and effort intolerance, on examination Temp: 39, HR 130/min, RR 36/min. On auscultation a murmer was heard. Which of the following is most commonly expected description of the murmur",
+    "options": [
+      "Pansystolic murmur on lower left sternal border propagated all over the precordium",
+      "Pansystolic murmur on apex propagated toward axilla",
+      "Early diastolic murmur on upper right sternal border with no propagation",
+      "Early diastolic murmur on upper left sternal border with no propagation",
+      "Pansystolic murmur on lower left sternal border with no propagation"
+    ],
+    "correct": 1,
+    "explanation": "This child has acute rheumatic fever with carditis (migratory polyarthritis + fever + cardiac murmur). The most common cardiac manifestation is mitral regurgitation, which produces a pansystolic murmur best heard at the cardiac apex and radiating toward the left axilla. A pansystolic murmur at the lower left sternal border suggests VSD. Early diastolic murmurs suggest aortic or pulmonary regurgitation, which are less common in acute rheumatic fever. Mitral regurgitation at the apex is the hallmark of rheumatic carditis."
+  },
+  {
+    "question": "Which of the following organisms is most commonly associated with infective endocarditis after dental procedures?",
+    "options": [
+      "Staphylococcus aureus",
+      "Streptococcus viridans",
+      "Enterococcus faecalis",
+      "Hemophilius influenza",
+      "Candida albicans"
+    ],
+    "correct": 1,
+    "explanation": "Streptococcus viridans (viridans group streptococci) is the most common cause of infective endocarditis following dental procedures. These organisms colonize the oral cavity and enter the bloodstream during dental manipulation, then adhere to damaged or abnormal cardiac valves. Staphylococcus aureus causes acute IE primarily from skin wounds, IV catheters, or IV drug use. Enterococcus faecalis is associated with GI/GU procedures. H. influenzae and Candida are rare causes of IE."
+  },
+  {
+    "question": "What of the following statements about Sydenham's chorea is TRUE",
+    "options": [
+      "It perisist with hypertonia and rigidity",
+      "It often presents months after the intial streptococcal infection",
+      "It primarily affects motor nuerons of spinal cord",
+      "It always assocaiated with elevated inflamatory markers",
+      "It is caused by direct bacterial invasion of the central nervous system"
+    ],
+    "correct": 1,
+    "explanation": "Sydenham's chorea characteristically presents weeks to months after the initial Group A streptococcal infection, often long after other manifestations of rheumatic fever have resolved, making it the last to appear. It causes hypotonia and involuntary movements, NOT hypertonia and rigidity (which describe extrapyramidal disorders). It affects the basal ganglia (caudate and subthalamic nuclei), not spinal motor neurons. Inflammatory markers (ESR, CRP) may be completely normal at the time of chorea onset. It results from molecular mimicry/autoimmune cross-reactivity, not direct bacterial invasion of the CNS."
+  },
+  {
+    "question": "Which of the following heart diseases is NOT typically associated with an increased risk of infective endocarditis",
+    "options": [
+      "Prothetic heart valve",
+      "Patent ductus arteriosus",
+      "Atrial septal defect (secundum type)",
+      "Bicuspid aortic valve",
+      "Ventricular septal defect"
+    ],
+    "correct": 2,
+    "explanation": "Secundum-type ASD is NOT associated with significantly increased risk of infective endocarditis because it creates a low-pressure, low-turbulence shunt that causes minimal endothelial damage, and does not generate the jet effect needed for bacterial colonization. Prosthetic heart valves carry the highest risk. PDA, bicuspid aortic valve, and VSD all create turbulent high-velocity blood flow causing endothelial damage, which predisposes to bacterial adherence and IE. Primum ASD (associated with mitral abnormalities) carries higher risk than secundum."
+  },
+  {
+    "question": "A 7-year-old boy with recent history of fever, newly heard apical pansystolic murmur, prolonged PR interval on ECG, positive acute phase reactant and ASO titre of 500 unit. Regarding diagnosis of rheumatic fever the boy is in this case",
+    "options": [
+      "Two major manifestations and two minor manifestations",
+      "Two major manifestations and one minor manifestations",
+      "One major manifestation and two minor manifestations",
+      "Three minor manifestations only",
+      "One major manifestation and three minor manifestaions"
+    ],
+    "correct": 2,
+    "explanation": "Using the Jones criteria: Major criteria include carditis, polyarthritis, chorea, erythema marginatum, and subcutaneous nodules. Minor criteria include fever, elevated ESR/CRP, and prolonged PR interval. In this case, the apical pansystolic murmur = carditis (1 major criterion). The minor criteria present are: elevated acute phase reactants (ESR/CRP) and prolonged PR interval on ECG = 2 minor criteria. ASO titre >200 units confirms preceding streptococcal infection, which is required evidence but is NOT a Jones criterion itself. Diagnosis: 1 major + 2 minor + evidence of strep = rheumatic fever."
+  },
+  {
+    "question": "What is the most common CHD associated with Turner syndrome?",
+    "options": [
+      "VSD",
+      "ASD",
+      "TOF",
+      "Bicuspid aortic valve",
+      "PS"
+    ],
+    "correct": 3,
+    "explanation": "Bicuspid aortic valve is the most common congenital heart defect in Turner syndrome (45,X0), occurring in approximately 30–50% of affected individuals. Coarctation of the aorta is the second most common cardiovascular anomaly in Turner syndrome. VSD, ASD, Tetralogy of Fallot, and pulmonary stenosis are not specifically associated with Turner syndrome at elevated rates compared to the general population."
+  },
+  {
+    "question": "A 10-year-old child is admitted to our hospital with acute rheumatic fever with rheumatic arthiritis. What is the most appropriate treatment plan?",
+    "options": [
+      "Salicylate 50 mg/kg/d for 2 weeks then 30 mg/kg/d for 6 weeks",
+      "Prednisolone 2 mg/kg/d for 2 weeks then withdraw with addition of salicylate",
+      "Prednisolone 2 mg/kg/d for 4 weeks then withdraw with addition of salicylate",
+      "Salicylate 100 mg/kg/d for 2 weeks then 75 mg/kg/d for 6 weeks",
+      "Salicylate 40 mg/kg/d for 4 weeks and complete bed rest"
+    ],
+    "correct": 3,
+    "explanation": "For acute rheumatic fever with arthritis (without severe carditis), the treatment is high-dose aspirin (salicylate) at 100 mg/kg/day (maximum 6–8 g/day) for 2 weeks, then reduced to 75 mg/kg/day for 6 weeks. This achieves anti-inflammatory blood levels. Lower doses (50 mg/kg/day or 40 mg/kg/day) are subtherapeutic for anti-inflammatory purposes. Corticosteroids (prednisolone) are reserved for severe carditis, not simple arthritis. Aspirin alone without adequate dose titration is insufficient."
+  },
+  {
+    "question": "Pulsus paradoxus is a typical sign of which of the following?",
+    "options": [
+      "Coarctation of the aorta",
+      "Supravalvular aortic stenosis",
+      "Pericardial effusion and tamponade",
+      "ASD",
+      "Patent ductus arteriosus"
+    ],
+    "correct": 2,
+    "explanation": "Pulsus paradoxus (>10 mmHg drop in systolic BP during normal inspiration) is a classic sign of cardiac tamponade and large pericardial effusion. During inspiration, increased venous return to the right heart causes the interventricular septum to shift left (ventricular interdependence) in a fluid-constrained pericardial sac, reducing left ventricular filling and output. It also occurs in severe asthma and constrictive pericarditis. Coarctation, supravalvular aortic stenosis, ASD, and PDA do not characteristically produce pulsus paradoxus."
+  },
+  {
+    "question": "A 7 months old boy presented with 6 days history of high grade fever not relieved by antipyretic he has a strawberry tongue non purulunt conjuctvitis with neck lymphadenopathy and edema of hands and feet HR is 160/min. Which of the following is the first line treatment",
+    "options": [
+      "Oral antiplatelet dose of aspirin",
+      "IV pulse steroid",
+      "IVIG",
+      "IV antibiotics",
+      "IV antipyertic"
+    ],
+    "correct": 2,
+    "explanation": "This infant has Kawasaki disease (fever >5 days + strawberry tongue + non-purulent conjunctivitis + cervical lymphadenopathy + extremity edema/erythema). The first-line treatment is IV immunoglobulin (IVIG) 2 g/kg as a single infusion within the first 10 days of illness, which dramatically reduces the incidence of coronary artery aneurysms from ~25% to ~5%. High-dose aspirin is given concurrently for its anti-inflammatory effect but is not the primary treatment. IV steroids are for IVIG-refractory cases. IV antibiotics are not indicated as Kawasaki is not a bacterial infection."
+  },
+  {
+    "question": "Asymptomatic 9 yo girl with parasternal pulsation, hyperactive pericardium, wide fixed splitting of 2nd heart sound and ejection systolic murmur at 2nd intercostal space. What is the most likely diagnosis",
+    "options": [
+      "Valvular pulmonary stenosis",
+      "COA",
+      "Valvular aortic stenosis",
+      "ASD",
+      "VSD"
+    ],
+    "correct": 3,
+    "explanation": "Wide, FIXED splitting of the second heart sound (S2) that does not vary with respiration is pathognomonic for atrial septal defect (ASD). The fixed splitting occurs because the left-to-right shunt causes equal and constant filling of both ventricles regardless of the respiratory phase. An ejection systolic murmur at the 2nd intercostal space represents increased flow across the pulmonary valve. Parasternal pulsation and hyperactive pericardium reflect right ventricular volume overload. Pulmonary stenosis causes variable splitting. COA, aortic stenosis, and VSD have different auscultatory profiles."
+  },
+  {
+    "question": "Which of the following cyanotic congenital heart diseases in newborn is associated with increased pulmonary blood flow?",
+    "options": [
+      "Pulmonary atresia",
+      "Tricuspid atresia with pulmonary stenosis",
+      "Ebstein anomaly",
+      "Tetralogy of fallot",
+      "Truncus arteriosus"
+    ],
+    "correct": 4,
+    "explanation": "Truncus arteriosus is a cyanotic CHD associated with INCREASED pulmonary blood flow (pulmonary plethora). A single arterial trunk arises from both ventricles and gives rise to both the aorta and pulmonary arteries, with unrestricted flow to the lungs. Pulmonary atresia, tricuspid atresia with pulmonary stenosis, Ebstein anomaly, and Tetralogy of Fallot are all associated with DECREASED pulmonary blood flow (pulmonary oligemia) due to right-sided obstruction. Other cyanotic lesions with increased flow include TGA and total anomalous pulmonary venous return."
+  },
+  {
+    "question": "Which of the following statements is TRUE regarding large ventricular septal defect?",
+    "options": [
+      "The apical impulse is suggestive of right ventricular dilatation",
+      "The most common type is the peri membranous type",
+      "Unrepaired large VSD is almost associated with normal growth",
+      "The typical murmur heard on auscultation is continuous in timing",
+      "A normal pulmonary vascularity in plain CXR"
+    ],
+    "correct": 1,
+    "explanation": "The perimembranous (membranous) type is the most common VSD, accounting for approximately 75–80% of all VSDs. Large VSDs cause LEFT ventricular (not right ventricular) dilatation and an enlarged apical impulse displaced laterally. Unrepaired large VSDs cause significant growth failure, recurrent chest infections, and pulmonary hypertension — not normal growth. The typical murmur is a harsh pansystolic murmur, not continuous (a continuous murmur is characteristic of PDA). Large VSDs show increased pulmonary vascularity and cardiomegaly on CXR."
+  },
+  {
+    "question": "Which of the following is suggestive of large PDA",
+    "options": [
+      "normal intensity of S2",
+      "Wide pulse pressure",
+      "Harsh pansystolic murmur in middle left parasternal area",
+      "Normal ECG",
+      "Decreased pulmonary vascularity in CXR"
+    ],
+    "correct": 1,
+    "explanation": "Wide pulse pressure is a hallmark of large PDA because continuous runoff of blood from the aorta into the pulmonary artery during diastole causes low diastolic blood pressure, widening the pulse pressure. S2 is loud (accentuated P2), not normal, due to pulmonary hypertension. The murmur is a continuous (machinery) murmur at the left infraclavicular region/upper left sternal border, not pansystolic. ECG shows left ventricular hypertrophy. CXR shows INCREASED pulmonary vascularity and cardiomegaly, not decreased vascularity."
+  },
+  {
+    "question": "Cyanotic congenital heart disease in newborn with pulmonary oligemia and left ventricular hypertrophy is suggestive of",
+    "options": [
+      "Truncus arteriosus",
+      "Tricuspid atresia",
+      "Tetralogy of Fallot",
+      "Transposition of great arteries",
+      "Severe pulmonary stenosis"
+    ],
+    "correct": 1,
+    "explanation": "Tricuspid atresia is the classic cyanotic CHD presenting with pulmonary oligemia (reduced pulmonary blood flow) and LEFT ventricular hypertrophy (LVH). Because there is no tricuspid valve/right AV connection, the right ventricle is hypoplastic, and all systemic venous return is diverted to the left heart via an ASD, leading to LVH. Truncus arteriosus and TGA cause increased pulmonary blood flow. TOF causes right ventricular hypertrophy (RVH). Severe pulmonary stenosis alone does not typically produce significant LVH."
+  },
+  {
+    "question": "What is the normal heart rate of a 3 yo child",
+    "options": [
+      "75-90 BPM",
+      "30-40 BPM",
+      "95-140 BPM",
+      "145-170 BPM",
+      "45-70 BPM"
+    ],
+    "correct": 2,
+    "explanation": "The normal heart rate for a 3-year-old child is 95–140 beats per minute. Pediatric normal heart rates decrease with age: newborns 100–160, infants (1–12 months) 90–150, toddlers/preschool (1–5 years) 80–140. 95–140 BPM is appropriate for this age group. 75–90 BPM is more appropriate for school-age children (6–12 years). 30–40 BPM represents severe bradycardia. 145–170 BPM would be tachycardia. 45–70 BPM is too slow and would indicate significant bradycardia."
+  },
+  {
+    "question": "A 2.5 yo child has viral myocarditis he was admitted to PICU and was shocked. Which of the following is the most likely type of shock in this child?",
+    "options": [
+      "Hypovolemic",
+      "Obstructive",
+      "Distributive",
+      "Cardiogenic",
+      "Septic"
+    ],
+    "correct": 3,
+    "explanation": "Viral myocarditis causes direct inflammatory injury to the myocardium, impairing contractility and leading to cardiogenic shock. This is characterized by low cardiac output, poor peripheral perfusion, elevated central venous pressure, and pulmonary congestion. Hypovolemic shock results from volume depletion (bleeding, dehydration). Obstructive shock results from mechanical obstruction (cardiac tamponade, tension pneumothorax). Distributive shock occurs in anaphylaxis and sepsis due to vasodilation. Septic shock is a form of distributive shock from infection."
+  },
+  {
+    "question": "A 10 yo child with pnuemonia develops hypotention (BP below 5th percentile for age) despite receiving adequate fluid resusctation, lactate is high and urine output is low. What is the most likely diagnosis",
+    "options": [
+      "Hypovolemic shock",
+      "Multiple organ dysfunction syndrome",
+      "Severe sepsis",
+      "Septic shock",
+      "Cardiogenic shock"
+    ],
+    "correct": 3,
+    "explanation": "Septic shock is defined as sepsis-induced hypotension (BP below 5th percentile) that persists DESPITE adequate fluid resuscitation, along with signs of tissue hypoperfusion such as elevated lactate (>2 mmol/L) and oliguria. The source of infection is pneumonia. Hypovolemic shock would respond to adequate fluid resuscitation. Severe sepsis refers to organ dysfunction without refractory hypotension. MODS is a complication/consequence, not an initial diagnosis. Cardiogenic shock would occur in a child with primary cardiac pathology."
+  },
+  {
+    "question": "Which of the following is an Early sign of shock",
+    "options": [
+      "Hypotension",
+      "Altered mental status",
+      "Cheyne- stroke breathing",
+      "Bradycardia",
+      "Sinus tachycardia"
+    ],
+    "correct": 4,
+    "explanation": "Sinus tachycardia is the earliest compensatory response to shock, as the body increases heart rate to maintain cardiac output when preload or contractility is reduced. Hypotension is a late (decompensated) sign indicating failure of compensatory mechanisms. Altered mental status is a late sign reflecting cerebral hypoperfusion. Cheyne-Stokes breathing indicates severe brainstem compromise (very late). Bradycardia in the context of shock is an ominous, pre-terminal sign indicating impending cardiac arrest."
+  },
+  {
+    "question": "In infants the most appropriate central pulse site is",
+    "options": [
+      "Radial artery",
+      "Temporal artery",
+      "Brachial or femoral artery",
+      "Dorsalis pedis artery",
+      "Carotid artery"
+    ],
+    "correct": 2,
+    "explanation": "In infants, the brachial or femoral artery is the most appropriate site for assessing central pulses during resuscitation. The carotid artery, while the preferred site in older children and adults, is difficult to palpate in infants due to their short, fat necks. The radial and dorsalis pedis arteries are peripheral pulses that may be absent or diminished in shock and are not reliable for central pulse assessment. The temporal artery is a peripheral site used for temperature measurement, not central pulse assessment."
+  },
+  {
+    "question": "What is the most common cause of hypoxemia in children?",
+    "options": [
+      "V/Q mismatch",
+      "Diffusion abnormality",
+      "Hypoventilation",
+      "Pulmonary edema",
+      "Intracardiac shunt"
+    ],
+    "correct": 0,
+    "explanation": "V/Q (ventilation-perfusion) mismatch is the most common cause of hypoxemia in children and adults alike. It occurs when alveoli are perfused but not adequately ventilated (or vice versa), as seen in pneumonia, asthma, bronchiolitis, and atelectasis. Diffusion abnormality (thickened alveolar membrane) is the main mechanism in interstitial lung diseases. Hypoventilation causes hypercapnia and secondary hypoxemia. Pulmonary edema causes hypoxemia primarily through V/Q mismatch and shunt. Intracardiac shunting is less common and specific to congenital heart diseases."
+  },
+  {
+    "question": "Which of the following is the main mechanism of hypoxemia in acute respiratory distress syndrome (ARDS)?",
+    "options": [
+      "Intracardiac shunt",
+      "Hypoventilation",
+      "Diffusion abnormality",
+      "Depression of respiratory center",
+      "Hyperventilation"
+    ],
+    "correct": 2,
+    "explanation": "According to this source, diffusion abnormality is identified as the main mechanism of hypoxemia in ARDS, due to inflammatory exudate and edema thickening the alveolar-capillary membrane, impairing gas exchange. Intracardiac shunt occurs in structural heart defects. Hypoventilation causes hypercapnic (Type 2) respiratory failure, not the refractory hypoxemia typical of ARDS. Depression of the respiratory center causes hypoventilation. Hyperventilation actually increases oxygenation transiently and would not cause hypoxemia."
+  },
+  {
+    "question": "Which of the following statements is TRUE regarding type 4 acute respiratory failure?",
+    "options": [
+      "Pulmonary hemorrhage is a typical cause",
+      "Status asthmaticus is a typical cause",
+      "Acute respiratory distress syndrome is a typical cause",
+      "Perioperative respiratory failure is a typical cause",
+      "Shock is a typical cause"
+    ],
+    "correct": 4,
+    "explanation": "Type 4 acute respiratory failure is hypoperfusion-related respiratory failure, occurring in the context of shock states, where inadequate perfusion of the respiratory muscles and impaired oxygen delivery lead to respiratory failure. Pulmonary hemorrhage and ARDS are causes of Type 1 (hypoxemic) respiratory failure. Status asthmaticus causes Type 2 (hypercapnic) respiratory failure due to severe bronchospasm and hypoventilation. Perioperative failure is typically a mixed Type 1/2 rather than pure Type 4."
+  },
+  {
+    "question": "Which of the following statements is true regarding type 2 acute respiratory failure?",
+    "options": [
+      "Normal PaCO2",
+      "Cardiogenic pulmonary edema is a common cause",
+      "Shallow breathing and cyanosis",
+      "Alveolar hyperventilation",
+      "Respiratory distress and chest signs"
+    ],
+    "correct": 2,
+    "explanation": "Type 2 acute respiratory failure is hypercapnic (ventilatory) failure characterized by elevated PaCO2 due to alveolar hypoventilation. Shallow breathing (reduced tidal volume/rate) and cyanosis (from hypoxemia secondary to hypoventilation) are expected findings. Normal PaCO2 contradicts the definition of Type 2 failure (which requires elevated CO2). Cardiogenic pulmonary edema causes Type 1 (hypoxemic) failure. Alveolar hyperventilation would LOWER CO2, the opposite of Type 2. Respiratory distress with chest signs is more characteristic of Type 1 failure."
+  },
+  {
+    "question": "Which of the following is TRUE regarding compensated shock?",
+    "options": [
+      "Blood pressure remains normal",
+      "Inadequate perfusion of vital organs",
+      "Organ and cellular function deteriorate",
+      "Significant reduction in effective plasma volume",
+      "Irreversible damage of vital organs"
+    ],
+    "correct": 0,
+    "explanation": "In compensated shock, the body's compensatory mechanisms (tachycardia, peripheral vasoconstriction, increased myocardial contractility, neurohormonal activation) successfully maintain blood pressure within normal limits despite reduced circulating volume or cardiac output. Perfusion of vital organs is maintained through these compensatory mechanisms. Organ and cellular function have not yet significantly deteriorated. Irreversible damage occurs only in uncompensated/irreversible shock. Identifying and treating compensated shock early is critical to prevent progression to decompensated shock."
+  },
+  {
+    "question": "What is the maximum FiO2 that can be delivered through nasal cannula?",
+    "options": [
+      "50%",
+      "40%",
+      "21%",
+      "60%",
+      "70%"
+    ],
+    "correct": 1,
+    "explanation": "Standard nasal cannula can deliver a maximum FiO2 of approximately 40% at flow rates up to 6 L/min in adults (lower in children). Above this flow rate, the dry gas causes nasal mucosal irritation and does not reliably increase FiO2 further. Higher FiO2 delivery requires a simple face mask (40–60%), non-rebreathing mask (60–90%), or high-flow nasal cannula (HFNC) (up to 100%). Room air alone provides 21% FiO2. 50%, 60%, and 70% exceed what standard nasal cannula can reliably deliver."
+  },
+  {
+    "question": "What are the components of Pediatric Assessment Triangle (PAT)?",
+    "options": [
+      "General appearance, work of breathing, circulatory status",
+      "Capillary refill time, work of breathing, heart rate",
+      "General appearance, heart rate, circulatory status",
+      "General appearance, work of breathing, blood pressure",
+      "Capillary refill time, work of breathing, circulatory status"
+    ],
+    "correct": 0,
+    "explanation": "The Pediatric Assessment Triangle (PAT) is a rapid, hands-off visual assessment tool with three components: (1) General appearance (TICLS mnemonic: tone, interactivity, consolability, look/gaze, speech/cry), (2) Work of breathing (visible respiratory effort, abnormal sounds, positioning), and (3) Circulatory status to skin (color changes such as pallor, mottling, cyanosis). Capillary refill time, heart rate, and blood pressure are part of the hands-on primary assessment (ABCDE), NOT the visual PAT. Blood pressure is rarely included even in primary assessment of young children."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

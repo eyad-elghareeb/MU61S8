@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Lange Chest</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mo6syaumcxe5l",
+  "title": "Lange Chest",
+  "description": "All chest questions from Lange Q&A",
+  "icon": "🫀"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A 33-year-old farmer complains of recurrent episodes of wheezing after working in a barn where hay is stored. On auscultation, there are bibasilar crackles and heart sounds are normal. His laboratory work is normal with no increase in eosinophils and the chest x-ray (CXR) reveals patchy lower lobe infiltrates. Which of the following is the most likely diagnosis?",
+    "options": [
+      "asthma",
+      "chronic obstructive lung disease",
+      "hypersensitivity pneumonitis",
+      "bronchiectasis",
+      "sarcoidosis"
+    ],
+    "correct": 2,
+    "explanation": "Hypersensitivity pneumonitis is an inflammatory disorder of the lungs involving alveolar walls and terminal airways that is caused by repeated exposure to organic agents. In this example of \"farmer's lung,\" the inhalation of antigens present in moldy hay such as thermophilic actinomyces or Aspergillus species are the causative agents. When exposure to moldy hay is stopped, symptoms and signs of farmer's lung all tend to abate and complete recovery usually follows. In acute syndromes, the presentation is 4-8 hours after exposure. Symptoms include fever, chills, malaise, cough, and dyspnea without wheezing. The rate of disease depends on rainfall (which promotes fungal growth) and agricultural practices related to turning and stacking hay. In acute and subacute presentations, removing exposure to the antigen will result in complete recovery."
+  },
+  {
+    "question": "A 57-year-old man with a 40-pack-per-year history of smoking experiences symptoms of shortness of breath on exertion. He has bilateral wheezes on expiration and increased resonance to percussion of the chest. Pulmonary function tests confirm the diagnosis of chronic obstructive lung disease (COPD). Which of the following is the best definition of this condition?",
+    "options": [
+      "it is caused by bronchial asthma",
+      "it is preceded by chronic bronchitis",
+      "it is airflow limitation that is not fully reversible",
+      "it is due to destruction and dilatation of lung alveoli",
+      "is due to small airways disease only"
+    ],
+    "correct": 2,
+    "explanation": "COPD is defined as a disease state that is characterized by airflow limitation that is not fully reversible. Emphysema and chronic bronchitis are closely related, and the term COPD is often used to encompass both. Chronic bronchitis is a clinical syndrome defined as excessive tracheobronchial mucous production severe enough to cause productive cough for at least 3 months of the year for at least two consecutive years. Emphysema is defined as the distention of air spaces distal to the terminal bronchiole, with destruction of alveolar septa. It is primarily a histologic diagnosis. Smoking is the usual antecedent for COPD."
+  },
+  {
+    "question": "An agitated and nervous 24-year-old woman has had severe wheezing and shortness of breath for 2 days. After receiving oxygen, steroids, and salbutamol (Ventolin) in the emergency room, her breathing improves. She is still wheezing and now feels tremulous and anxious with a pulse of 110/min and respirations 30/min. Arterial blood gases on oxygen reveal a pH of 7.40, PO2 340 mm Hg, PCO2 40 mm Hg, and bicarbonate of 24 mEq/L. She is hospitalized for further treatment. Which of the following treatments or medications should be avoided in her?",
+    "options": [
+      "theophylline",
+      "sedatives",
+      "corticosteroids",
+      "sympathomimetic amines",
+      "intravenous (IV) fluids"
+    ],
+    "correct": 1,
+    "explanation": "Tranquilizers and sedatives should be avoided in prolonged asthma attacks. Bronchodilators, fluids, aminophylline, and steroids may be used. In acute situations, IV glucocorticoids are frequently used. Results of therapy should be monitored in an objective manner, with peak expiratory flow rates or FEV1. In acute asthmatic attacks, hypocarbia is usual on blood gas analysis. Normal or elevated PaCO2 is a bad sign and requires intensive monitoring and aggressive treatment."
+  },
+  {
+    "question": "A 29-year-old woman has a long history of mild asthma. She now has a flare and experiences recurrent episodes of bronchial obstruction, fever, malaise, and expectoration of brownish mucous plugs. On examination, there is bilateral wheezing. Infection is suspected and a CXR reveals upper lobe pulmonary infiltrates. The eosinophil count is 2000/mL, and serum precipitating antibodies to Aspergillus are positive. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "antihelminthic therapy",
+      "a short course of systemic glucocorticoid therapy",
+      "desensitization treatment",
+      "high-dose glucocorticoids by puffer",
+      "long-term systemic glucocorticoid therapy"
+    ],
+    "correct": 4,
+    "explanation": "Allergic bronchopulmonary aspergillosis usually requires long-term treatment with glucocorticoids. The major diagnostic criteria are bronchial asthma, pulmonary infiltrates, eosinophilia greater than 1000, immediate wheal and flare response to Aspergillus fumigatus, serum precipitins to A. fumigatus, elevated serum IgE, and central bronchiectasis."
+  },
+  {
+    "question": "A 31-year-old African American man presents with dyspnea on exertion. He also has fever and red tender rash on his shins. Physical examination reveals fine inspiratory crackles in both lower lung lobes and tender erythematous nodules on his legs. CXR shows bilateral hilar adenopathy and reticulonodular changes in both lungs. Transbronchial biopsy reveals noncaseating granulomas. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "aspirin",
+      "isoniazid (INH) and streptomycin",
+      "steroids",
+      "nitrogen mustard",
+      "no therapy"
+    ],
+    "correct": 2,
+    "explanation": "Relatively asymptomatic patients often require no treatment. Steroids are used with ocular (as in this case), CNS, or other serious complications. Although 50% of patients are left with permanent organ impairment, these are usually not symptomatic or significant. Only in 15-20% of cases does the disease remain active or recur. Glucocorticoids are the treatment of choice, but numerous other agents have been used."
+  },
+  {
+    "question": "A 53-year-old man with a long respiratory history is admitted to the hospital because of increasing shortness of breath and sputum production. He is started on antibiotics and inhaled bronchodilators and anticholinergic agents. The next day he is found in his room confused and sleepy. A PCO2 determination reveals severe hypercarbia (PCO2 70 mmHg). Which of the following explanations regarding his elevated PCO2 is correct?",
+    "options": [
+      "occurs only with CO2 inhalation",
+      "does not occur in obstructive lung disease",
+      "does not occur in restrictive lung disease",
+      "may worsen with oxygen administration",
+      "occurs with chronic hypocapnia"
+    ],
+    "correct": 3,
+    "explanation": "The administration of oxygen may worsen the syndrome of carbon dioxide narcosis because the chief stimulus to ventilation is often hypoxia, and when this is suddenly relieved, the ventilation may drop quickly. Causes of the chronic hypoventilation syndrome include impaired respiratory drive (e.g., prolonged hypoxia, central nervous system [CNS] disease), neuromuscular disorders (e.g., motor neuron disease, myasthenia gravis), or impaired ventilatory apparatus (e.g., kyphoscoliosis, COPD)."
+  },
+  {
+    "question": "A 63-year-old woman is seen in the emergency room with acute shortness of breath. There is no history of heart or lung problems in the past. She was recently diagnosed with breast cancer and is undergoing active treatment. On examination, her blood pressure is 120/80 mm Hg, pulse 100/min, and heart and lungs are normal. There are no clinical signs of deep venous thrombosis (DVT). Which of the following investigations is most likely to rule out a pulmonary embolism (PE)?",
+    "options": [
+      "normal CXR",
+      "normal electrocardiogram (ECG)",
+      "normal ventilation-perfusion lung scan",
+      "normal ventilation scan",
+      "normal magnetic resonance image (MRI)"
+    ],
+    "correct": 2,
+    "explanation": "The perfusion lung scan is most valuable in ruling out a PE. If properly performed early in the course of symptoms, a normal scan rules out the diagnosis. High-probability scans are usually considered enough evidence of PE to warrant definitive treatment. Intermediate- or low-probability scans may require further investigation (e.g., with pulmonary angiography), depending on the prior probability of disease. More recent data suggest that a normal high-resolution chest CT with contrast rules out clinically significant PE and is replacing perfusion scanning since the lung images may provide an alternate diagnosis for the patient's symptoms."
+  },
+  {
+    "question": "A 40-year-old woman has been complaining of a 3-year history of increasing dyspnea and fatigue. She has no other medical illness. Physical examination reveals increased jugular venous pressure (JVP) with prominent c-v wave, and a reduced carotid pulse. Precordial examination reveals a left parasternal lift, loud P2, and right-sided S3 and S4. There are no audible murmurs. CXR reveals clear lung fields and an ECG shows evidence of right ventricular hypertrophy. Pulmonary function tests show a slight restrictive pattern. Primary pulmonary hypertension is suspected. Which of the following is the most appropriate test to confirm the diagnosis?",
+    "options": [
+      "open lung biopsy",
+      "pulmonary angiography",
+      "cardiac catheterization",
+      "noninvasive exercise testing",
+      "electrophysiologic testing"
+    ],
+    "correct": 2,
+    "explanation": "Open lung biopsy is not required. Pulmonary angiography is usually performed only if a lung scan suggests thromboembolic disease. Cardiac catheterization is useful to exclude an underlying cardiac shunt as the cause of the pulmonary hypertension. The pulmonary capillary wedge pressure is normal but can be difficult to obtain."
+  },
+  {
+    "question": "A 63-year-old man is having symptoms of shortness of breath. As part of his workup, an arterial blood gas is done and the PCO2 is 60 mm Hg. Which of the following is the most likely cause for the elevated PCO2?",
+    "options": [
+      "ventilation-perfusion ratio inequality",
+      "right-to-left shunt",
+      "impaired diffusion",
+      "hypoventilation",
+      "carbon monoxide poisoning"
+    ],
+    "correct": 3,
+    "explanation": "Hypoventilation always causes both hypoxemia and hypercapnia. If the hypoventilation syndrome is caused exclusively by impaired respiratory drive (e.g., drug overdose), then the alveolar-arterial PaO2 gradient remains normal. Often, hypoventilation results from more than one disorder in the respiratory system (e.g., COPD plus metabolic alkalosis secondary to diuretics and glucocorticoids)."
+  },
+  {
+    "question": "A 56-year-old man is evaluated for chronic cough. It is present most of the time and is progressively getting worse over the past 3 years. With the cough he usually has white to yellow sputum that he has to expectorate. There is no history of wheezing, asthma, congestive heart failure (CHF), or acid reflux disease. He currently smokes one pack a day for the past 25 years. On examination, his chest is clear. CXR is normal and his forced expiratory volume in 1 second (FEV1) and forced vital capacity (FVC) on spirometry are normal. Which of the following is the most likely diagnosis?",
+    "options": [
+      "chronic obstructive pulmonary disease (COPD)",
+      "early cor pulmonale",
+      "chronic bronchitis",
+      "asthma",
+      "emphysema"
+    ],
+    "correct": 2,
+    "explanation": "Chronic bronchitis is a clinical diagnosis defined by the presence of chronic productive cough for 3 months in each of 2 successive years in a patient in whom other causes of chronic cough have been excluded. Emphysema is a pathologic term describing the abnormal permanent enlargement of airspaces distal to the terminal bronchioles, accompanied by destruction of their walls without obvious fibrosis. Emphysema may be noted in patients with COPD."
+  },
+  {
+    "question": "A 58-year-old man is recently diagnosed with bowel cancer. He now complains of vague chest discomfort and shortness of breath. On examination, he is unwell, blood pressure 90/50 mm Hg, pulse 110/min, respirations 26/min, and oxygen saturation 88%. His lungs are normal on auscultation, the JVP is 8 cm, and P2 is loud. There is no edema or leg tenderness on palpation. A quantitative (ELISA) D-dimer assay is positive, ECG reveals sinus tachycardia, and cardiac enzymes are negative. The lung scan is read as high probability for PE. Which of the following tests is most likely to help in guiding emergent therapy?",
+    "options": [
+      "echocardiogram",
+      "CT scan",
+      "venous ultrasound of the legs",
+      "contrast phlebography",
+      "pulmonary function tests"
+    ],
+    "correct": 0,
+    "explanation": "In most circumstances, treatment is anticoagulation to prevent further pulmonary emboli. However, hemodynamic instability may warrant primary therapy for the embolus (e.g., thrombolysis). Evidence of right ventricular hypokinesis on echocardiogram can be an indication for such primary therapy."
+  },
+  {
+    "question": "A 40-year-old man has a routine CXR, which reveals a posterior mediastinal mass. Which of the following is the most likely diagnosis?",
+    "options": [
+      "lipoma",
+      "neurogenic tumor",
+      "esophageal cyst",
+      "fibroma",
+      "bronchogenic cyst"
+    ],
+    "correct": 1,
+    "explanation": "Neurogenic tumors are the most common posterior mediastinal masses. Other posterior mediastinal masses include meningoceles, meningomyeloceles, gastroenteric cysts, and esophageal diverticula. Common anterior mediastinal masses include thymomas, lymphomas, teratomas, and thyroid masses. Middle mediastinal masses include vascular lesions, lymph nodes, and pleuropericardial and bronchogenic cysts."
+  },
+  {
+    "question": "A 35-year-old man is evaluated for symptoms of shortness of breath. He reports no other lung or heart disease. He smokes half pack a day for the past 10 years. On examination, his JVP is 2 cm, heart sounds normal, and lungs are clear. A CXR shows hyperinflation and increased lucency of the lung fields. A chest CT reveals bullae and emphysematous changes, while pulmonary function tests show an FEV1/FVC ratio of <70%. Evaluation of his family reveals other affected individuals. Which of the following is the most likely diagnosis?",
+    "options": [
+      "alpha1-antitrypsin deficiency",
+      "beta-glycosidase deficiency",
+      "glucose-6-phosphatase deficiency",
+      "glucocerebrosides deficiency",
+      "growth hormone deficiency"
+    ],
+    "correct": 0,
+    "explanation": "Most people have two MM genes and a resultant alpha1-antitrypsin level in excess of 2.5 g/L. Homozygotes with ZZ or SS genotypes have severe alpha1-antitrypsin deficiency and develop severe panacinar emphysema in the third or fourth decade of life. Smoking is an important cofactor in the development of disease. Heterozygotes (MZ or MS) have intermediate levels of alpha1-antitrypsin (i.e., genetic expression is that of an autosomal codominant allele). This heterozygous state is common (5-14% of general population), but it is unclear whether it is associated with lung function abnormalities."
+  },
+  {
+    "question": "A 23-year-old man notices a gradual but progressive increase in breathing difficulty. He has a long history of back pain with prolonged morning stiffness. He has also had an episode of iritis in the past. On examination, there is reduced range of motion in the lumbar spine with forward flexion and pain on palpation of the sacroiliac joint and surrounding soft tissue. X-rays of the pelvis show erosions and sclerosis of the sacroiliac joint. Which of the following is the most likely pulmonary complication of this condition?",
+    "options": [
+      "fibrocavitary disease",
+      "airflow obstruction",
+      "bilateral lower lobe involvement",
+      "pleural effusions",
+      "hilar adenopathy"
+    ],
+    "correct": 0,
+    "explanation": "Ankylosing spondylitis is characterized by bilateral upper lobe fibrosis, which may be complicated by fibrocavitary disease. The pulmonary involvement is rare and is usually very slowly progressive. The cavities can be colonized by Aspergillus."
+  },
+  {
+    "question": "A 44-year-old woman has been complaining of a 4-year history of increasing dyspnea and fatigue. Physical examination reveals increased JVP and a reduced carotid pulse. Precordial examination reveals a left parasternal lift, loud P2, and right-sided S3 and S4. There are no audible murmurs. CXR reveals clear lung fields and an ECG shows evidence of right ventricular hypertrophy. Pulmonary function tests show a slight restrictive pattern. A diagnosis of primary pulmonary hypertension is made. Which of the following is the most likely cause of death in this condition?",
+    "options": [
+      "intractable left ventricular failure",
+      "intractable respiratory failure",
+      "massive PE",
+      "intractable right ventricular failure or sudden death",
+      "myocardial infarction"
+    ],
+    "correct": 3,
+    "explanation": "The natural history of the disease is unclear because the disease is asymptomatic for a long period. Survival from diagnosis is dependent on the functional class of the patient. Functional class IV dyspnea suggests a mean survival of only 6 months. Death is usually the result of either intractable right heart failure or sudden death."
+  },
+  {
+    "question": "A patient with hypoxemia, hypercapnia, and polycythemia is able to restore his blood gases to normal by voluntary hyperventilation. Which of the following is the most likely location for the abnormalities seen on his blood gases?",
+    "options": [
+      "cerebral cortex",
+      "bone marrow",
+      "ventricular septum",
+      "respiratory center",
+      "cerebellum"
+    ],
+    "correct": 3,
+    "explanation": "The primary pathology is likely to be located in the respiratory center. Cyanosis, especially when asleep, is caused by a combination of polycythemia and hypoxia. The symptoms of alveolar hypoventilation are caused by both hypercarbia and hypoxemia."
+  },
+  {
+    "question": "A 63-year-old woman presents with dyspnea and coughing up foul smelling purulent sputum. She has had many similar episodes in the past. There are no other constitutional symptoms and she denies excessive alcohol intake. On physical examination, she appears chronically ill with clubbing of the fingers. Heart sounds are normal, JVP is measured at 4 cm, and there are inspiratory crackles heard at the lung bases posteriorly. There is no hepatosplenomegaly or any palpable lymph nodes. CXR shows scaring in the left lower lobe, which on chest CT scan is identified as cystic changes with airway dilatation and bronchial wall thickening. Which of the following is the most appropriate initial next step in management?",
+    "options": [
+      "antibiotics and postural drainage",
+      "steroids",
+      "radiotherapy",
+      "aerosols",
+      "INH"
+    ],
+    "correct": 0,
+    "explanation": "Antibiotics and postural drainage might be included in therapy. The choice of antimicrobial agents is guided by the sputum culture, but ampicillin and tetracycline are used if normal flora is found. The general principles of therapy include eliminating underlying problems, improved clearance of secretions, control of infections, and reversal of airflow obstruction."
+  },
+  {
+    "question": "A 32-year-old man develops symptoms of wheezing, cough, and shortness of breath. He has bilateral expiratory wheezes, and the rest of the examination is normal. Further evaluation with pulmonary function tests reveals a reduced FEV1/FVC ratio that corrects with bronchodilators. Which of the following statements about a diagnosis of idiosyncratic asthma (also called nonatopic) is correct?",
+    "options": [
+      "known antigenic stimulus",
+      "adult onset",
+      "history of atopy",
+      "positive skin tests",
+      "high immunoglobulin E (IgE) levels"
+    ],
+    "correct": 1,
+    "explanation": "A significant portion of asthmatics have no known personal or family history of atopy and have normal IgE levels. Idiosyncratic asthma is more likely to have its onset in adult life. Upper respiratory infections can serve as triggers for idiosyncratic asthma."
+  },
+  {
+    "question": "A 20-year-old African American woman presents with mild dyspnea on exertion and joint discomfort in her knees, wrists, and ankles. She also has a fever and red tender rash on her shins. Physical examination reveals hepatosplenomegaly, generalized lymphadenopathy, corneal opacities, and tender erythematous nodules on her legs. CXR shows bilateral symmetric hilar adenopathy. Transbronchial biopsy reveals noncaseating granulomas. Which of the following is the most likely cause for the eye lesion?",
+    "options": [
+      "uveitis",
+      "diabetic complications",
+      "steroids",
+      "congenital origin",
+      "infectious infiltration"
+    ],
+    "correct": 0,
+    "explanation": "Acute granulomatous uveitis may be the initial manifestation of sarcoidosis. It can cause blindness. About 25% of patients with sarcoid have eye involvement - three-quarters have anterior uveitis and one-quarter have posterior uveitis. Involvement of lacrimal glands can lead to dry, sore eyes."
+  },
+  {
+    "question": "A 74-year-old man with a history of smoking notices blood in his chronic daily sputum production. He has no fever or chills, but has lost 10 lb in the past 6 months. On examination, he has bilateral expiratory wheezes, and his fingers are clubbed. There are no lymph nodes and the remaining examination is normal. CXR reveals a left hilar mass. Which of the following suggests that the tumor is a small cell lung cancer?",
+    "options": [
+      "syndrome of inappropriate antidiuretic hormone (SIADH) secretion",
+      "acanthosis nigricans",
+      "Cushing's syndrome",
+      "leukemoid reaction",
+      "Stevens-Johnson syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Paraneoplastic syndromes are classified as metabolic, neuromuscular, connective tissue, dermatologic, and vascular. Stevens-Johnson syndrome usually follows drug allergy. Acanthosis nigricans and other cutaneous manifestations (e.g., dermatomyositis) are rare (<1%). Clubbing is common and occurs in up to 30% of non-small cell lung cancers. The various endocrine syndromes occur in 12% of cases. At times, paraneoplastic syndromes may be the presenting finding in lung cancer or be the first sign of recurrence. Most occur with non-small cell lung cancer, but SIADH is more characteristic of small cell lung cancer."
+  },
+  {
+    "question": "A 66-year-old man with chronic alcoholism has had a low grade fever and cough for several weeks. His heart sounds are normal and there are crackles in the left lower base. A CXR reveals a left lower lobe lung abscess. Which of the following is the most appropriate therapy?",
+    "options": [
+      "penicillin",
+      "clindamycin",
+      "ceftriaxone",
+      "metronidazole",
+      "metronidazole plus respiratory fluoroquinolone (levofloxacin)"
+    ],
+    "correct": 4,
+    "explanation": "Traditionally, penicillin was the treatment of choice for anaerobic lung disease. However, metronidazole plus either third-generation cephalosporin (ceftriaxone) or fluoroquinolone (levofloxacin) has a better spectrum of activity against oral anaerobes, Gram negatives, and Streptococcus pneumoniae."
+  },
+  {
+    "question": "A 44-year-old woman presents with increased shortness of breath, cough, and sputum production. She has had asthma since childhood and uses her medications as directed. Recently, she noticed that her peak flow readings were decreasing after the symptoms started. On examination, she is in moderate respiratory distress, respirations 25/min, there are bilateral wheezes and oxygen saturation is 90% on room air. On her blood gas, the PCO2 is 50 mm Hg. Which of the following is the most likely mechanism for her carbon dioxide retention?",
+    "options": [
+      "impaired diffusion syndromes",
+      "right-to-left shunt",
+      "hyperventilation",
+      "ventilation-perfusion ratio inequality",
+      "mechanical ventilation at fixed volume"
+    ],
+    "correct": 3,
+    "explanation": "Carbon dioxide retention is seen in right-to-left shunt only with exercise and is uncommon in impaired diffusion syndromes. Disorders of the chest wall, lower airways, and lungs can cause an increased PaCO2 because of severe ventilation-perfusion mismatching despite normal or increased minute volume of ventilation."
+  },
+  {
+    "question": "A previously well 53-year-old man develops progressive shortness of breath. Pulmonary function tests reveal a restrictive defect and a high-resolution CT suggests pulmonary fibrosis. Which of the following is the most likely role of transbronchial biopsy in this condition?",
+    "options": [
+      "assess disease severity",
+      "assess possible bronchiolar narrowing",
+      "diagnose specific causes of interstitial lung disease",
+      "determine degree of inflammation",
+      "diagnose possible cancer"
+    ],
+    "correct": 2,
+    "explanation": "Transbronchial biopsy helps differentiate idiopathic pulmonary fibrosis (IPF) from similar syndromes with specific treatments. These include chronic hypersensitivity pneumonitis, cryptogenic organizing pneumonia, and sarcoidosis."
+  },
+  {
+    "question": "A 28-year-old man presents with coughing up blood and sputum. He gives a history of recurrent pneumonias and a chronic cough productive of foul-smelling purulent sputum. He has no other past medical history and is a lifetime nonsmoker. On physical examination, there are no oral lesions, heart sounds are normal, and wet inspiratory crackles are heard at the lung bases posteriorly. He also has clubbing of his fingers, but there is no hepatosplenomegaly or any palpable lymph nodes. CXR show fibrosis and pulmonary infiltrates in the right lower lung. Which of the following is the most appropriate initial diagnostic test?",
+    "options": [
+      "chest CT scan",
+      "bronchoscopy",
+      "bronchography",
+      "open thoracotomy",
+      "bronchoalveolar lavage"
+    ],
+    "correct": 0,
+    "explanation": "Bronchography has been superseded by a CT scan in defining the extent of bronchiectasis. Occasionally, advanced cases of saccular bronchiectasis can be diagnosed by routine CXR. The use of high-resolution CT scanning, in which the images are 1.5 mm thick, has resulted in excellent diagnostic accuracy."
+  },
+  {
+    "question": "A 38-year-old woman has been complaining of a 2-year history of increasing dyspnea and fatigue. Physical examination reveals increased JVP and a reduced carotid pulse. Precordial examination reveals a left parasternal lift, loud P2, and right-sided S3 and S4. There are no audible murmurs. CXR reveals clear lung fields and an ECG shows evidence of right ventricular hypertrophy. Pulmonary function tests show a slight restrictive pattern. Primary pulmonary hypertension is diagnosed. Which of the following treatments is helpful in this condition?",
+    "options": [
+      "corticosteroids",
+      "nitrates",
+      "alpha-adrenergic blockers",
+      "calcium channel blockers",
+      "angiotensin-converting enzyme (ACE) inhibitors"
+    ],
+    "correct": 3,
+    "explanation": "Patients frequently are subjected to test doses of short-acting vasodilators such as IV prostacyclin or adenosine, or inhaled nitric oxide. About half of these responders will then respond to high oral doses of nifedipine or diltiazem. Prostacyclin is also available as a treatment, but its applicability is limited by the necessity to administer it as a continuous IV infusion."
+  },
+  {
+    "question": "A 64-year-old woman is admitted to the hospital with right lobar pneumonia and sepsis syndrome. She becomes progressively more short of breath and hypoxemic requiring intubation and mechanical ventilation. Her repeat CXR in the intensive care unit now shows diffuse pulmonary infiltrates and a diagnosis of acute respiratory distress syndrome (ARDS) is made. Which of the following mechanisms is the most likely cause for the early \"exudative\" phase of ARDS?",
+    "options": [
+      "increased lung compliance",
+      "increased interstitial fibrosis",
+      "increased vascular permeability to fluid and proteins",
+      "decreased pulmonary perfusion",
+      "decreased ventilatory dead space"
+    ],
+    "correct": 2,
+    "explanation": "The increased vascular permeability is the hallmark of the disease. Diagnostic criteria include acute onset, PaO2/FiO2 = 200 mm Hg (regardless of positive end-expiratory pressure [PEEP] level), bilateral infiltrate on frontal CXR, and pulmonary artery occlusion pressure = 18 mm Hg (or if not measured, no evidence of left atrial hypertension)."
+  },
+  {
+    "question": "A 23-year-old man is experiencing a flare of his asthma. He is using his salbutamol inhaler more frequently than usual and despite increasing his inhaled steroids he is still short of breath. Previously his asthma was considered mild with no severe exacerbations requiring oral steroids or hospitalization. With his flare, he has recurrent episodes of bronchial obstruction, fever, malaise, and expectoration of brownish mucous plugs. On examination, there is bilateral wheezing. The heart, abdomen, neurologic, and skin exams are normal. CXR reveals upper lobe pulmonary infiltrates; the eosinophil count is 3000/mL, and serum precipitating antibodies to Aspergillus are positive. Which of the following is the most likely diagnosis?",
+    "options": [
+      "ascaris infestation",
+      "allergic bronchopulmonary aspergillosis",
+      "Churg-Strauss allergic granulomatosis",
+      "Löeffler's syndrome",
+      "hypereosinophilic syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Allergic bronchopulmonary aspergillosis (in asthmatics), parasitic reactions, and drugs are known causes of pulmonary eosinophilia. Idiopathic causes include Löeffler's syndrome (benign, acute eosinophilic pneumonia), chronic eosinophilic pneumonia, hypereosinophilic syndrome, and Churg-Strauss allergic granulomatosis."
+  },
+  {
+    "question": "A 34-year-old African American man presents with mild dyspnea on exertion and joint discomfort in his knees, wrists, and ankles. He also has a fever and red tender rash on his shins. Physical examination reveals hepatosplenomegaly, generalized lymphadenopathy, and tender erythematous nodules on his legs. CXR shows bilateral symmetric hilar adenopathy. Which of the following laboratory findings is not characteristic of this condition?",
+    "options": [
+      "hyperglobulinemia",
+      "elevated ACE level",
+      "elevated sedimentation rate (ESR)",
+      "elevated serum calcium",
+      "normal gallium scan"
+    ],
+    "correct": 4,
+    "explanation": "There is no diagnostic blood test, but two-thirds of patients with sarcoidosis will have an elevated level of ACE. Also there is an elevated ESR, hyperglobulinemia, and occasionally hypercalcemia, which are all nonspecific findings. A false-positive rheumatoid factor (RF) and antinuclear antibodies (ANA) antibodies can also be seen. The gallium scan is positive in patients with sarcoidosis."
+  },
+  {
+    "question": "A 66-year-old man has progressive shortness of breath due to COPD. He is currently able to do his activities of daily living, but has trouble walking more than one block. His physical examination reveals hyperinflation, increased resonance to percussion, and bilateral expiratory wheezes. He is on appropriate medical therapy for his stage of COPD. Which of the following is also indicated in the management of this condition?",
+    "options": [
+      "meningococcal vaccination",
+      "yearly influenza vaccination",
+      "weight reduction if obese",
+      "Haemophilus influenzae B vaccination",
+      "pneumococcal vaccination"
+    ],
+    "correct": 1,
+    "explanation": "Yearly influenza vaccination is indicated for patients with COPD. Evidence for pneumococcal vaccination is not definitive but some advocate giving it as well. There is no role for vaccination with H. influenzae B or meningococcus in patients with COPD. Dietary support to prevent malnutrition and improve muscle strength can be helpful. Exercise programs seem to provide subjective improvement as well. Obviously, stopping smoking is crucial."
+  },
+  {
+    "question": "A 45-year-old woman has severe symptoms of epigastric and abdominal pain after eating. A trial of acid suppression therapy with proton pump inhibitors (PPI) only partially improved her symptoms. She undergoes elective outpatient upper endoscopy, which is positive for a small duodenal ulcer. Two hours later, she is short of breath and complaining of severe anterior chest pain, which is made worse with deep inspiration. On examination, she looks unwell, blood pressure is 150/90 mm Hg, pulse 110/min, and lungs are clear. Heart sounds are normal but an extra \"crunching\" type sound is intermittently heard. CXR demonstrates air surrounding the heart. Which of the following is the most likely diagnosis?",
+    "options": [
+      "acute pericarditis",
+      "acute cardiac ischemia",
+      "acute mediastinitis",
+      "aortic dissection",
+      "pneumothorax"
+    ],
+    "correct": 2,
+    "explanation": "Acute mediastinitis is a rare complication of upper endoscopy. It can also result from trauma to the trachea or esophagus, or dissection of the retroperitoneum. Clinical presentation may include substernal chest pain, subcutaneous emphysema, and Hamman's signs, a crunching or clicking noise synchronous with the heartbeat."
+  },
+  {
+    "question": "Which of the following is most likely associated with cystic fibrosis in an adult patient?",
+    "options": [
+      "spontaneous remission",
+      "good pancreatic exocrine function",
+      "hemoptysis",
+      "rectal polyps",
+      "normal sweat chloride"
+    ],
+    "correct": 2,
+    "explanation": "Hemoptysis suggests infection in a patient with advanced lung disease. Pancreatic exocrine function is poor. Nasal polyps are common, but not rectal polyps. About 7% of cases of cystic fibrosis are diagnosed after age 18. Because of improved therapy, cystic fibrosis is no longer just a pediatric disease. Median survival is now 32 years for men and 29 years for women."
+  },
+  {
+    "question": "A 55-year-old woman is in the intensive care unit on a ventilator for hypoxemia following \"flash\" pulmonary edema. Her PO2 on the blood gas prior to intubation was 44 mm Hg, and now while breathing 100% oxygen on the ventilator her repeat blood gas reveals a PO2 of 80 mm Hg. Hypoxemia while receiving 100% oxygen indicates which of the following problems?",
+    "options": [
+      "ventilation-perfusion ratio inequality",
+      "right-to-left shunt",
+      "hypoventilation",
+      "impaired diffusion",
+      "interstitial lung disease"
+    ],
+    "correct": 1,
+    "explanation": "Hypoxemia while receiving 100% oxygen indicates right-to-left shunt. Shunts permit circulation of blood that never passes through the ventilated lung. Shunting can occur within the lung (atelectasis, vascular abnormalities) or outside the lung (congenital cardiac malformations). The hypoxemia of ventilation-perfusion mismatch is more easily correctable by 100% oxygen."
+  },
+  {
+    "question": "A 31-year-old man with severe kyphoscoliosis due to cerebral palsy is experiencing worsening shortness of breath with exertion. On examination, he has a severe scoliosis to the left and decreased air entry to that side. His right lung is clear, JVP is 3 cm, and heart sounds are normal. Pulmonary function tests are performed. Which of the following is the most likely abnormality to be seen on the pulmonary function tests?",
+    "options": [
+      "increased total lung capacity (TLC)",
+      "increased functional residual capacity (FRC)",
+      "decreased TLC",
+      "increased compliance",
+      "increased vital capacity (VC)"
+    ],
+    "correct": 2,
+    "explanation": "Bony deformities of the chest can lead to respiratory failure with raised PCO2, as well as recurrent pulmonary infection. Most patients develop a restrictive lung disease pattern with decreased compliance, reduced TLC and VC. In addition, because of the reduced compliance, the resting position of the lung changes such that FRC is reduced. Finally, the net effect is an increase in the work of breathing. The pattern on pulmonary function testing is usually that of a restrictive pattern."
+  },
+  {
+    "question": "A 67-year-old woman has pulmonary function tests performed to evaluate symptoms of dyspnea. The most prominent finding is a reduction of the ratio of FEV1/FVC. Which of the following is the most likely diagnosis?",
+    "options": [
+      "COPD",
+      "ankylosing spondylitis",
+      "pickwickian syndrome",
+      "scleroderma of the chest wall",
+      "lobar pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "The VC is reduced in emphysema, but the FEV1 is grossly reduced because of high airway resistance. In predominant emphysema, diffusing capacity is more profoundly decreased than in predominant bronchitis."
+  },
+  {
+    "question": "Which of the following statements concerning asbestosis is correct?",
+    "options": [
+      "the type of asbestos fiber is crucial in determining whether asbestos-related lung disease occurs",
+      "moderate rather than severe obstruction to airflow is characteristic of asbestosis",
+      "mesothelioma is the common malignancy associated with asbestosis",
+      "pleural effusions are invariably associated with malignancy in asbestosis",
+      "short-term (i.e., 1-2 years) exposure can result in serious sequelae decades later"
+    ],
+    "correct": 4,
+    "explanation": "All forms of asbestos fiber have been associated with lung disease. Restrictive, not obstructive, disease is characteristic. Lung cancer, either squamous cell or adenocarcinoma, is the most common malignancy and the risk is greatly increased by smoking. Benign pleural effusions can occur in both symptomatic and asymptomatic individuals. Reports of mesothelioma 30-35 years after brief exposure to asbestos emphasize the importance of a complete occupational/environmental history."
+  },
+  {
+    "question": "A 52-year-old man develops sudden-onset shortness of breath on postoperative day 4 after a hemicolectomy for colon cancer. His surgery went well with no operative complications. He reports no cough, sputum, or pleuritic chest pain. His blood pressure is 155/90 mm Hg, pulse 100/min, temperature 37.8°C, lungs are clear, and heart sounds normal. He has bilateral pedal edema, but no discomfort in his legs. His CXR and ECG are normal. A chest CT with contrast reveals a thrombus in his right upper lobe artery. Which of the following statements concerning the management of this condition is most likely correct?",
+    "options": [
+      "continuous IV heparin or subcutaneous low-molecular-weight heparin (LMWH) therapy is indicated",
+      "urgent thrombolytic therapy is indicated",
+      "urgent inferior vena cava (IVC) filter insertion is indicated",
+      "confirmation of the diagnosis with bilateral ultrasound leg Dopplers",
+      "surgical embolectomy is indicated"
+    ],
+    "correct": 0,
+    "explanation": "PE is an important postoperative complication, which requires urgent treatment. This man is hemodynamically stable and treatment consists of anticoagulation to prevent another PE or propagation of the clot. Thrombolytics are not indicated unless there is severe hemodynamic compromise, and especially in him since he has had recent surgery. The efficacy of IV heparin and LMWH is the same, and can be used with caution in the postoperative setting if there is no ongoing bleeding from the operative site. IVC filter would only be indicated if the patient could not be anticoagulated for some absolute contraindication. The thrust of management is therefore prevention."
+  },
+  {
+    "question": "A 55-year-old woman presents with coughing up blood and sputum. She gives a history of recurrent pneumonias and a chronic cough productive of foul-smelling purulent sputum. The sputum production is worse on lying down and in the morning. On physical examination, she appears chronically ill with clubbing of the fingers. Wet inspiratory crackles are heard at the lung bases posteriorly. There are no hepatosplenomegaly or any palpable lymph nodes. CXR shows scaring in the right lower lobe, which on chest CT scan is identified as airway dilatation, bronchial wall thickening, and grapelike cysts. Which of the following is a recognized precursor to this patient's condition?",
+    "options": [
+      "bronchial asthma",
+      "cigarette smoking",
+      "lung infection and impairment of drainage",
+      "lung cancer",
+      "silicosis"
+    ],
+    "correct": 2,
+    "explanation": "In the preantibiotic era, bacterial bronchopneumonia was the most common cause of bronchiectasis. Now it is felt that influenza and adenoviruses are the most common causes. Of the bacterial causes, S. aureus, Klebsiella, and anaerobes are the most common. Besides infection, impaired drainage of the involved segment by bronchial obstruction (foreign body) or poorly functioning cilia is required. Other causes in some individuals include poor host humeral immunity such as hypogammaglobulinemia."
+  },
+  {
+    "question": "A 50-year-old man presents with excessive daytime sleepiness and a history of snoring. One week ago, he fell asleep while driving his car and got into a minor accident. On examination, he is obese (body mass index [BMI] >30) and his blood pressure is 160/90 mm Hg. His lungs are clear and heart sounds are distant. Which of the following is the most likely explanation for the symptoms associated with this condition?",
+    "options": [
+      "related to cardiac dysfunction",
+      "neuropsychiatric and behavioral",
+      "pulmonary",
+      "gastrointestinal (GI)",
+      "musculoskeletal"
+    ],
+    "correct": 1,
+    "explanation": "The description of a middle-aged man with daytime sleepiness, obesity, hypertension, and snoring suggests obstructive sleep apnea. Although nasal continuous positive airway pressure is effective treatment, simple oxygen therapy is not. Stopping sedative medications and avoiding alcohol improves symptoms. Restless sleep and sudden death have been described as part of the syndrome and surgery (uvulopalatopharyngoplasty or tracheostomy) has been used in severe cases. A wide variety of symptoms can occur, but neuropsychiatric and behavioral manifestations secondary to sleep disturbance are the most common."
+  },
+  {
+    "question": "Which of the following statements concerning hypoxemia in COPD is correct?",
+    "options": [
+      "erythrocytosis is an appropriate compensation for hypoxemia, and phlebotomy will worsen symptoms",
+      "nocturnal oxygen therapy is effective in producing symptomatic and hemodynamic improvement in severe hypoxia",
+      "a PO2 of 58 mm Hg is an indication for continuous oxygen therapy",
+      "a PO2 of 65 mm Hg or below is an indication for supplemental oxygen during air travel",
+      "continuous supplemental oxygen improves functional ability but does not alter the natural history of obstructive airways disease with severe hypoxemia"
+    ],
+    "correct": 1,
+    "explanation": "Nocturnal oxygen supplementation improves symptoms but is not as effective as continuous supplementation in prolonging life and decreasing hospitalization. Some symptoms of erythrocytosis, headaches, and fullness can be relieved by phlebotomy. In prolonged air travel, even those with PO2 in the mid 70s should be considered for oxygen therapy. A PO2 below 55 mm Hg is an indication for oxygen therapy, but between 55 and 60 mm Hg, associated evidence of right heart dysfunction should also be present before therapy is commenced."
+  },
+  {
+    "question": "A 23-year-old man presents with coughing up blood and sputum. He gives a history of recurrent pneumonias and a chronic cough productive of foul-smelling purulent sputum. The sputum production is worse when lying down and in the morning. On physical examination, he appears chronically ill with clubbing of the fingers. Wet inspiratory crackles are heard at the lung bases posteriorly. There are no hepatosplenomegaly or any palpable lymph nodes. CXR shows scaring in the right lower lobe, which on chest CT scan is identified as airway dilatation, bronchial wall thickening, and grapelike cysts. Which of the following is sometimes seen in this condition?",
+    "options": [
+      "lung cancer",
+      "dextrocardia",
+      "fungal infection",
+      "carcinoid syndrome",
+      "Hodgkin's disease"
+    ],
+    "correct": 1,
+    "explanation": "Kartagener's syndrome consists of situs inversus (with dextrocardia), bronchiectasis, and nasal polyps. The bronchiectasis results from impaired ciliary function."
+  },
+  {
+    "question": "A 33-year-old woman, otherwise perfectly well, presents with recurrent episodes of hemoptysis. She has no fever, weight loss, cough, or sputum production. Her physical examination is entirely normal. Her CXR, biochemistry, CBC, and coagulation profile are also normal. Which of the following is the most appropriate initial diagnostic test?",
+    "options": [
+      "echocardiogram",
+      "gallium scan",
+      "CT scan of chest",
+      "bronchoscopy",
+      "pulmonary function tests"
+    ],
+    "correct": 2,
+    "explanation": "This history suggests a benign bronchial adenoma. These are usually centrally located on CXR. The most appropriate next test would be a lung CT to demonstrate a lesion. The other tests are invasive and/or not appropriate for identifying the source of bleeding."
+  },
+  {
+    "question": "A 34-year-old woman is complaining of progressive and worsening shortness of breath. Her symptoms first started 3 years ago, and she now gets dyspneic and fatigued while doing her activities of daily living. Her past medical history is not significant and she is not taking any medications. Physical examination reveals increased JVP and a reduced carotid pulse. Precordial examination reveals a left parasternal lift, loud P2, and right-sided S3 and S4. There are no audible murmurs. CXR reveals clear lung fields and an ECG shows evidence of right ventricular hypertrophy. Pulmonary function tests are normal. Which of the following is the most likely diagnosis?",
+    "options": [
+      "asthma (without wheezing)",
+      "primary pulmonary hypertension",
+      "pulmonary veno-occlusive disease",
+      "pulmonary leiomyomatosis",
+      "\"silent\" tricuspid valve disease"
+    ],
+    "correct": 1,
+    "explanation": "This presentation is characteristic of primary pulmonary hypertension. Pulmonary veno-occlusive disease is much less common. The predominant pathology, plexogenic arteriopathy, is characterized by medial hypertrophy associated with laminar intimal fibrosis and plexiform lesions. The thrombotic arteriopathy is characterized by eccentric intimal fibrosis with medial hypertrophy, fibroelastic intimal pads in the arteries and arterioles, and evidence of old recanalized thrombi. There is a female predominance, and the third or fourth decade is the most common age at presentation. By the time of diagnosis, the pulmonary hypertension is usually severe."
+  },
+  {
+    "question": "An 83-year-old man with Parkinson's disease presents with low-grade fever and cough for several weeks. Lately, he has been experiencing more rigidity and difficulty with his walking. He is on a levodopa/carbidopa combination for treatment for the past 5 years. On examination, his gait is shuffling and slow. He has a tremor in his left hand at rest, and there is cogwheel rigidity of the forearm. There are crackles in the left lower lung field. CXR reveals a lung abscess in the left lower lobe. Which of the following is the most likely bacteriologic diagnosis for the lung abscess?",
+    "options": [
+      "oropharyngeal flora",
+      "tuberculosis",
+      "Staphylococcus aureus",
+      "Pseudomonas aeruginosa",
+      "Candida albicans"
+    ],
+    "correct": 0,
+    "explanation": "Most lung abscesses and all anaerobic abscesses involve the normal flora of the oropharynx. Septic emboli usually contain S. aureus. Factors that predispose to Gram-negative colonization of the oropharynx include hospitalization, debility, severe underlying diseases, alcoholism, diabetes, and advanced age. Impaired consciousness, neurologic disease, swallowing disorders, and nasogastric or endotracheal tubes all increase the likelihood of aspiration."
+  },
+  {
+    "question": "A 28-year-old African American woman presents with mild dyspnea on exertion. She reports no coughing, sputum production, or wheezing symptoms, but has noticed a red tender rash on her shins. Physical examination reveals hepatosplenomegaly, generalized lymphadenopathy, and tender erythematous nodules on her legs. CXR shows bilateral symmetric hilar adenopathy. Her pulmonary function tests reveal a mild restrictive pattern. Which of the following tests will most likely make a definitive diagnosis?",
+    "options": [
+      "tuberculin skin test",
+      "bronchoscopy with transbronchial biopsy",
+      "elevated ACE level",
+      "serum hypercalcemia",
+      "increased uptake on gallium scan"
+    ],
+    "correct": 1,
+    "explanation": "Transbronchial biopsy, looking for noncaseating granulomas, is required to confirm the diagnosis of sarcoidosis in someone with the right clinical context. The other investigations are supportive of a diagnosis of sarcoidosis but not diagnostic of it, since many other conditions can cause an elevated ACE level or positive gallium scan."
+  },
+  {
+    "question": "A 69-year-old woman has recently returned on an overnight flight from Europe. She now complains of vague chest discomfort and shortness of breath. On examination, she is comfortable, blood pressure 130/80 mm Hg, pulse 90/min, respirations 18/min, and oxygen saturation 97%. Her heart and lungs are normal on auscultation, and there is no edema or leg tenderness on palpation. A quantitative (ELISA) D-dimer assay is positive. Which of the following statements regarding the D-dimer assay is correct?",
+    "options": [
+      "it is sensitive but not specific",
+      "it is specific but not sensitive",
+      "it is neither specific nor sensitive",
+      "a negative result suggests myocardial ischemia",
+      "it is both sensitive and specific"
+    ],
+    "correct": 0,
+    "explanation": "A negative D-dimer level rules out thromboembolic disease in patients with intermediate or low pretest probability for DVT/PE. When done by the enzyme-linked immunosorbent assay (ELISA) technique, it is relatively sensitive (i.e., a negative result helps rule out DVT or PE). When done by the latex agglutination method (qualitative assay), it is neither specific nor sensitive enough to guide therapy."
+  },
+  {
+    "question": "A 64-year-old woman is admitted to the hospital after the acute onset of left-sided weakness. She has had a large right cerebral stroke and is confined to bed. On the fifth hospital day, her oxygen saturation is noted to be reduced to 90% on room air. She feels fine, the neurologic weakness is unchanged, blood pressure is 130/90 mm Hg, and pulse 80/min. Examination of the chest reveals decreased fremitus, dullness to percussion, and absent breath sounds in the left lower lung. There is also a tracheal shift towards the left side. Which of the following is the most likely diagnosis?",
+    "options": [
+      "acute asthmatic attack",
+      "complete pneumothorax",
+      "large pleural effusion",
+      "atelectasis",
+      "lobar pneumonia"
+    ],
+    "correct": 3,
+    "explanation": "Atelectasis and large pleural effusions both can present with decreased fremitus, dullness or flatness to percussion, and absent breath sounds. In atelectasis, tracheal shift, if present, is toward the affected side, and the opposite for a large pleural effusion. Asthma's most typical manifestations are prolonged expiration and diffuse wheezing. However, impaired expansion, decreased fremitus, hyperresonance, and low diaphragms can also be found. A complete pneumothorax results in absent fremitus, hyperresonance or tympany, and absent breath sounds. Lobar pneumonia is characterized by consolidation with increased fremitus, dullness, and auscultatory findings of bronchial breathing, bronchophony, pectoriloquy, and crackles."
+  },
+  {
+    "question": "A 72-year-old man with COPD develops acute shortness of breath and presents to the hospital. He appears uncomfortable: blood pressure is 120/90 mm Hg, pulse 100/min, oxygen saturation 85% on room air. On examination of the chest, there is absent fremitus, absent breath sounds, and hyperresonant percussion of the right lung. The trachea is shifted to the left. Which of the following is the most likely diagnosis?",
+    "options": [
+      "acute asthmatic attack",
+      "complete pneumothorax",
+      "large pleural effusion",
+      "atelectasis",
+      "lobar pneumonia"
+    ],
+    "correct": 1,
+    "explanation": "A complete pneumothorax results in absent fremitus, hyperresonance or tympany, and absent breath sounds. The trachea is shifted away from the affected side. Atelectasis shows tracheal shift toward the affected side with dullness to percussion. Large pleural effusion shows dullness with tracheal shift away from the affected side. Lobar pneumonia is characterized by consolidation with increased fremitus. Asthma typically shows prolonged expiration and wheezing."
+  },
+  {
+    "question": "A 45-year-old woman comes to the emergency department because of increased shortness of breath. Examination of the chest reveals decreased fremitus, low diaphragms, and prolonged expiration phase. Which of the following is the most likely diagnosis?",
+    "options": [
+      "acute asthmatic attack",
+      "complete pneumothorax",
+      "large pleural effusion",
+      "atelectasis",
+      "lobar pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "Asthma's most typical manifestations are prolonged expiration and diffuse wheezing. However, impaired expansion, decreased fremitus, hyperresonance, and low diaphragms can also be found. A complete pneumothorax results in absent fremitus, hyperresonance or tympany, and absent breath sounds. Atelectasis and large pleural effusions present with decreased fremitus, dullness, and absent breath sounds. Lobar pneumonia shows increased fremitus and dullness with bronchial breathing."
+  },
+  {
+    "question": "A 24-year old woman notices increasing shortness of breath after recent treatment for right lower lobe pneumonia. She has no fever, cough, or sputum production. On examination, the pertinent findings are decreased fremitus, dullness on percussion, and absent breath sounds of the right lower lung. In addition, the trachea has shifted to the left. Which of the following is the most likely diagnosis?",
+    "options": [
+      "acute asthmatic attack",
+      "complete pneumothorax",
+      "large pleural effusion",
+      "atelectasis",
+      "lobar pneumonia"
+    ],
+    "correct": 2,
+    "explanation": "Atelectasis and large pleural effusions both can present with decreased fremitus, dullness or flatness to percussion, and absent breath sounds. In atelectasis, tracheal shift, if present, is toward the affected side, and the opposite for a large pleural effusion (tracheal shift away from the affected side). In this case, the trachea is shifted to the left (away from the right-sided findings), indicating a large pleural effusion."
+  },
+  {
+    "question": "A 61-year-old man is not feeling well because of shortness of breath and left-sided chest pains that increase with breathing. His examination reveals increased fremitus, dull to percussion, and bronchophony on the left side. His heart sounds are normal. Which of the following is the most likely diagnosis?",
+    "options": [
+      "acute asthmatic attack",
+      "complete pneumothorax",
+      "large pleural effusion",
+      "atelectasis",
+      "lobar pneumonia"
+    ],
+    "correct": 4,
+    "explanation": "Lobar pneumonia is characterized by consolidation with increased fremitus, dullness, and auscultatory findings of bronchial breathing, bronchophony, pectoriloquy, and crackles. The increased fremitus differentiates it from atelectasis and pleural effusion (which show decreased fremitus). Complete pneumothorax shows hyperresonance. Asthma typically shows prolonged expiration and wheezing."
+  },
+  {
+    "question": "A 66-year-old man with a 40-pack-per-year history of smoking is investigated for hemoptysis. CXR reveals a central 3-cm mass near the left bronchus. His serum biochemistry is abnormal for elevated calcium, but there is no boney metastasis on the bone scan. Biopsy of the mass is positive for a type of lung cancer associated with paraneoplastic hypercalcemia. Which of the following is the most likely cell type?",
+    "options": [
+      "squamous cell carcinoma",
+      "adenocarcinoma",
+      "large cell carcinoma",
+      "small cell carcinoma",
+      "bronchioloalveolar carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Hypercalcemia may be due to metastatic destruction of bone, ectopic formation of parathyroid hormone, or formation of other osteolytic substances. Squamous cell carcinoma is the lung cancer type most commonly associated with paraneoplastic hypercalcemia."
+  },
+  {
+    "question": "A 55-year-old woman presents with symptoms of fever, chills, and colored sputum production. She is a former 40-pack-per-year smoker. Her CXR is abnormal for a 2-cm right hilar mass and right lower lobe infiltrate. She is started on antibiotics and a biopsy of the hilar mass is positive for a type of lung cancer responsive to cytotoxic chemotherapy. Which of the following is the most likely cell type?",
+    "options": [
+      "squamous cell carcinoma",
+      "adenocarcinoma",
+      "large cell carcinoma",
+      "small cell carcinoma",
+      "bronchioloalveolar carcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Combination chemotherapy has produced promising results in lung cancer, particularly of the small cell anaplastic type. Alkylating agents and anthracyclines are active among other agents."
+  },
+  {
+    "question": "A 71-year-old man is having an elective left total knee replacement, when a routine preoperative CXR finds a solitary lung mass. He has no other symptoms related to the lung mass. His surgery is cancelled and a biopsy of the lung mass is positive for a type of lung cancer. Which of the following types of lung cancer is least likely to be cured by surgery?",
+    "options": [
+      "squamous cell carcinoma",
+      "adenocarcinoma",
+      "large cell carcinoma",
+      "small cell carcinoma",
+      "bronchioloalveolar carcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Early stage non-small cell lung cancer can be cured by surgery. However, 70% present with disseminated disease. Small cell carcinoma is not typically curable by surgery as it is usually disseminated at diagnosis and is treated with chemotherapy."
+  },
+  {
+    "question": "A 58-year-old woman has a witnessed generalized seizure. She has no prior history of seizures, and her only new symptoms are weight loss and anorexia. She looks unwell and cachectic, and the remaining examination is normal. Her serum sodium is 112 mEq/L, osmolality 260 mOsm/kg, and urine osmolality 420 mOsm/kg. Her CXR is abnormal for a large left hilar mass. She has a 30-pack-per-year history of smoking. Biopsy of the mass is positive for a lung cancer most commonly associated with ectopic endocrine syndromes. Which of the following is the most likely cell type?",
+    "options": [
+      "squamous cell carcinoma",
+      "adenocarcinoma",
+      "large cell carcinoma",
+      "small cell carcinoma",
+      "bronchioloalveolar carcinoma"
+    ],
+    "correct": 3,
+    "explanation": "The most commonly encountered syndromes are SIADH, Cushing's syndrome, and gynecomastia. Small cell carcinoma is the lung cancer type most commonly associated with ectopic endocrine syndromes."
+  },
+  {
+    "question": "A 58-year-old man comes to the emergency department because of left shoulder pain radiating down his left arm. His only risk factor for cardiac disease is hypertension and a 30-pack-per-year smoking history. On examination, his blood pressure is 150/90 mm Hg in both arms, pulse 100/min, and heart sounds are normal. He also has ptosis of his left eyelid and a left pupil that is smaller than the right. ECG is normal, and a CXR shows a large left apical mass with 1st and 2nd rib destruction. A biopsy of the mass is consistent with lung cancer most commonly associated with Pancoast's syndrome. Which of the following is the most likely cell type?",
+    "options": [
+      "squamous cell carcinoma",
+      "adenocarcinoma",
+      "large cell carcinoma",
+      "small cell carcinoma",
+      "bronchioloalveolar carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Pancoast's syndrome (or superior sulcus syndrome) is found in apical lung tumors, usually epidermoid (squamous cell). Shoulder pain secondary to involvement of the eighth cervical and first and second thoracic nerves is characteristic. Horner syndrome frequently coexists."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

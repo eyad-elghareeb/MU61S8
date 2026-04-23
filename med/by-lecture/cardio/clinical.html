@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Clinical</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobcx1t1dlqz2",
+  "title": "Clinical",
+  "description": "Question on every Cardio lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "During auscultation of the heart, you discover a wide fixed splitting of the second heart sound. In which of the following conditions does this occur? (10-2019)",
+    "options": [
+      "Uncomplicated ASD.",
+      "Fallot's tetralogy.",
+      "Aortic stenosis.",
+      "Right bundle branch block.",
+      "Constructive pericarditis."
+    ],
+    "correct": 0,
+    "explanation": "Uncomplicated ASD. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which one of the following precordial signs is consistent with right ventricular enlargement? (10-2019)",
+    "options": [
+      "Left parasternal pulsation.",
+      "Shifted apical impulse outward & downward.",
+      "Localized apical extent.",
+      "Apical systolic bulge.",
+      "Suprasternal pulsation."
+    ],
+    "correct": 0,
+    "explanation": "Left parasternal pulsation. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Clubbing is a feature of all the following except: (3-2017)",
+    "options": [
+      "Cyanotic congenital heart disease.",
+      "Rheumatic fever.",
+      "Pulmonary arteriovenous fistula.",
+      "Infective endocarditis."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Rheumatic fever.. Clubbing is associated with chronic hypoxia, lung cancer, bronchiectasis, cystic fibrosis, fibrosing alveolitis, empyema, and infective endocarditis. Rheumatic fever. is NOT a recognized cause of digital clubbing."
+  },
+  {
+    "question": "The term diastolic shock on palpation is used for: (3-2017)",
+    "options": [
+      "Palpable S1.",
+      "Palpable S2.",
+      "Palpable S3.",
+      "Palpable S4."
+    ],
+    "correct": 1,
+    "explanation": "Palpable S2. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Jaundice may occur in all following cardiac complications except: (3-2017)",
+    "options": [
+      "Hepatic congestion due to heart failure.",
+      "Prosthetic valve.",
+      "Severe right-side heart failure.",
+      "Hypertension."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Hypertension.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Criteria of cardiac edema include all of the following except: (3-2017)",
+    "options": [
+      "Bilateral.",
+      "Dependent.",
+      "Soft.",
+      "Painful."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Painful.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Which of the following conditions leads to unequal pulse? (3-2017)",
+    "options": [
+      "Myocardial infarction",
+      "Pericarditis",
+      "Aortic dissection.",
+      "Aortic stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Aortic dissection. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which one of the following statements is consistent with ASD (Atrial septal defect):",
+    "options": [
+      "Presented by cyanosis at birth",
+      "Induce pan-systolic murmur",
+      "Wide fixed split S2",
+      "No role of percutaneous device closure",
+      "Induce continuous murmur"
+    ],
+    "correct": 2,
+    "explanation": "Wide fixed split S2 is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Patent ductus arteriosus (PDA) is associated with the following type pulse:",
+    "options": [
+      "Collapsing pulse",
+      "Pulsus paradoxus",
+      "Jerky pulse",
+      "Pulsus alternans",
+      "Bispheriens pulse"
+    ],
+    "correct": 0,
+    "explanation": "Collapsing pulse is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following signs is consistent with coarctation of the aorta:",
+    "options": [
+      "Bounding pulsation",
+      "Pistol-shot femoral pulses",
+      "Right ventricle enlargement seen on x-ray",
+      "Radio femoral delay in pulse examination",
+      "An intraventricular septal defect"
+    ],
+    "correct": 3,
+    "explanation": "Radio femoral delay in pulse examination is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "During auscultation of the heart you discover a wide fixed splitting of the second heart sound. In which of the following conditions does this occur?",
+    "options": [
+      "Uncomplicated ASD",
+      "Fallot's Tetralogy",
+      "Aortic stenosis",
+      "left bundle branch block",
+      "Constrictive pericarditis"
+    ],
+    "correct": 0,
+    "explanation": "Uncomplicated ASD is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which one of the following precordial signs is consistent with right ventricular enlargement?",
+    "options": [
+      "Left parasternal pulsation",
+      "Shifted apical impulse outward downward",
+      "Localized apical extent",
+      "Apical systolic bulge",
+      "Suprasternal pulsation"
+    ],
+    "correct": 0,
+    "explanation": "Left parasternal pulsation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Cannon 'a' waves in neck veins are seen in:",
+    "options": [
+      "Pulmonary hypertension",
+      "Tricuspid incompetence",
+      "Right atrial myxoma",
+      "Complete heart block",
+      "Constrictive pericarditis"
+    ],
+    "correct": 3,
+    "explanation": "Complete heart block is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Pulsatile liver & ascites is found in:",
+    "options": [
+      "Tricuspid incompetence",
+      "Critical pulmonary stenosis",
+      "Mitral incompetence",
+      "Mitral stenosis"
+    ],
+    "correct": 0,
+    "explanation": "Tricuspid incompetence is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Criteria of cardiac edema include all of the following Except:",
+    "options": [
+      "Bilateral",
+      "Dependent",
+      "Soft",
+      "Painful"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Painful. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Haemoptysis occurs most frequently in:",
+    "options": [
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Tricuspid regurgitation",
+      "Aortic regurgitation",
+      "Aortic stenosis"
+    ],
+    "correct": 3,
+    "explanation": "Aortic regurgitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Paradoxical pulse is usually caused by:",
+    "options": [
+      "Cardiac tamponade",
+      "Myocardial infraction",
+      "Cardiac decompensation",
+      "A-F",
+      "None of these"
+    ],
+    "correct": 0,
+    "explanation": "Cardiac tamponade is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Cyanosis is an early finding in:",
+    "options": [
+      "Pulmonary stenosis",
+      "A.S.D",
+      "Truncus arteriosus",
+      "V.S.D",
+      "Lutembacher syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Truncus arteriosus is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The cause of wide pulse pressure is:",
+    "options": [
+      "Mitral stenosis",
+      "Aortic insufficiency",
+      "Coarctation of aorta",
+      "Pyelonephritis",
+      "pheochromocytoma"
+    ],
+    "correct": 1,
+    "explanation": "Aortic insufficiency is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Pulsus paradoxus can be detected in all of the following conditions except:",
+    "options": [
+      "Pericardial tamponade",
+      "Acute exacerbation of asthma",
+      "Severe chronic obstructive lung disease",
+      "Acute mitral regurgitation"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Acute mitral regurgitation. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The presence of a \"pulsus alternans\" is most indicative of:",
+    "options": [
+      "Right ventricular failure",
+      "Right atrial enlargement",
+      "Left ventricular failure",
+      "Left atrial enlargement"
+    ],
+    "correct": 2,
+    "explanation": "Left ventricular failure is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Large bounding pulse can be encountered in all of the following conditions except:",
+    "options": [
+      "Fever",
+      "Anemia",
+      "Aortic regurgitation",
+      "Complete heart block",
+      "Aortic stenosis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Aortic stenosis. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The following statement regarding the internal jugular pulse is false:",
+    "options": [
+      "The \"a\" wave occurs just following the first heart sound",
+      "The \"v\" wave occurs during ventricular systole",
+      "The \"y\" descent follows the second sound",
+      "The \"x\" descent immediately precedes the second heart sound"
+    ],
+    "correct": 0,
+    "explanation": "The \"a\" wave occurs just following the first heart sound is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Following statements regarding jugular venous pulse are true except:",
+    "options": [
+      "a wave disappears in atrial fibrillation",
+      "Giant a-waves are seen in tricuspid stenosis",
+      "Large v-waves are seen in tricuspid regurgitation",
+      "Cannon waves are seen with premature ventricular contractions.",
+      "Distended pulsatile neck veins are seen in superior vena caval obstruction."
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Distended pulsatile neck veins are seen in superior vena caval obstruction.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Precardial bulge implies:",
+    "options": [
+      "Left Atrial hypertrophy",
+      "Left Ventricular hypertrophy",
+      "Right Ventricular hypertrophy"
+    ],
+    "correct": 2,
+    "explanation": "Right Ventricular hypertrophy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Displaced apical impulse can be seen in all of the following except:",
+    "options": [
+      "Hypertension",
+      "Atelectasis of left lung",
+      "Kypho scoliosis",
+      "Massive ascites",
+      "Consolidation of left lower lobe"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Consolidation of left lower lobe. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Prominent suprasternal pulsation can be seen in all of the following except:",
+    "options": [
+      "Aging",
+      "Uncoiled Aorta",
+      "Arch aneurysm",
+      "Aortic stenosis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Aortic stenosis. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Splitting of the second heart sound is best heard at the:",
+    "options": [
+      "Second right intercostal space",
+      "Second left intercostal space",
+      "Apex",
+      "Fifth left intercostal space"
+    ],
+    "correct": 1,
+    "explanation": "Second left intercostal space is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "An S4 at the PMI indicates:",
+    "options": [
+      "The LV function is normal",
+      "Decreased compliance in early diastolic filling",
+      "Increased LV distensibility",
+      "Decreased compliance to late diastolic filling during the atrial contraction",
+      "Decreased systolic pressure"
+    ],
+    "correct": 3,
+    "explanation": "Decreased compliance to late diastolic filling during the atrial contraction is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "An S3 at the PMI indicates:",
+    "options": [
+      "The LV function is normal",
+      "Decreased compliance in early diastolic filling",
+      "A decrease in end-diastolic pressure",
+      "Decreased compliance to late diastolic filling during the atrial contraction"
+    ],
+    "correct": 1,
+    "explanation": "Decreased compliance in early diastolic filling is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A Holo (pan) systolic murmur occupies:",
+    "options": [
+      "The mid-systolic period",
+      "The end-systolic period",
+      "The initial-systolic period",
+      "All of the systolic period"
+    ],
+    "correct": 3,
+    "explanation": "All of the systolic period is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following statement is false regarding auscultation of heart sounds and heart murmurs:",
+    "options": [
+      "Murmurs that originate in the mitral valve are usually heard best at the cardiac apex",
+      "Murmurs originating in the pulmonic valve are usually heard best at the 2nd, and 3rd, right intercostal space, near the sternum",
+      "Murmurs that originate from the tricuspid valve are usually heard best near the lower left sternal border",
+      "Murmurs that originate in the aortic valve are usually heard best at the 2nd, and 3rd, left intercostal space and near the sternum"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Murmurs that originate in the aortic valve are usually heard best at the 2nd, and 3rd, left intercostal space and near the sternum. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Identify the incorrect statement in regard to S3:",
+    "options": [
+      "May be normal in young children",
+      "May be normal in pregnant females during the last trimester",
+      "Is heard best with the bell of the stethoscope",
+      "May be present in congestive heart failure (CHF)",
+      "S3 is always abnormal"
+    ],
+    "correct": 4,
+    "explanation": "S3 is always abnormal is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following heart sounds are heard better with the diaphragm of the stethoscope as opposed to the bell except:",
+    "options": [
+      "S1",
+      "S2",
+      "S3",
+      "Ejection click"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is S3. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The following murmur is best heard with bell stethoscope, except:",
+    "options": [
+      "Aortic stenosis",
+      "Mitral insufficiency",
+      "Aortic insufficiency",
+      "Mitral stenosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Aortic insufficiency. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "S1 may be accentuated in all of the following except:",
+    "options": [
+      "Anemia",
+      "Hyperthyroidism",
+      "Chronic valvular mitral insufficiency",
+      "Chronic valvular mitral stenosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Chronic valvular mitral insufficiency. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Two \"sounds\" around S1 (within .12 seconds) could be which of the following:",
+    "options": [
+      "Split S1",
+      "S1 and opening snap",
+      "S4 S1",
+      "S3 S1"
+    ],
+    "correct": 0,
+    "explanation": "Split S1 is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The pitch of a murmur is related to:",
+    "options": [
+      "Frequency",
+      "Stethoscope tubing length",
+      "Patient position—flat vs decubitus",
+      "Bell vs diaphragm"
+    ],
+    "correct": 3,
+    "explanation": "Bell vs diaphragm is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The first heart sound is characterized by except:",
+    "options": [
+      "Is associated with closure of the mitral and tricuspid valves.",
+      "If split, is usually associated with heart disease.",
+      "Is louder in patients with hyperthyroidism.",
+      "Is soft in mitral stenosis associated with heavy valve calcification.",
+      "Is best heard at the apex of the heart."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is If split, is usually associated with heart disease.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The second heart sound is characterized by except:",
+    "options": [
+      "Is frequently split during expiration in normal individuals.",
+      "Reversed splitting occurs in atrial septal defect.",
+      "Is increased in intensity in systemic hypertension.",
+      "Is increased intensity in pulmonary hypertension.",
+      "Exhibits fixed splitting in the presence of severe aortic stenosis."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Reversed splitting occurs in atrial septal defect.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The third heart sound is characterized by; except:",
+    "options": [
+      "May be normal in youth.",
+      "Is characteristically diastolic in timing.",
+      "Is a low pitched sound.",
+      "Is a sign of severe isolated mitral stenosis.",
+      "Is recognized feature of right ventricular failure."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Is a sign of severe isolated mitral stenosis.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The fourth heart sound is characterized; except:",
+    "options": [
+      "Is frequently heard in heart failure associated with atrial fibrillation.",
+      "Is a low-pitched sound.",
+      "Is a recognized feature of aortic stenosis.",
+      "Is always an abnormal sound signifying heart disease.",
+      "Is best heard in the epigastrium or parasternally."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Is frequently heard in heart failure associated with atrial fibrillation.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Mid-diastolic murmurs over the mitral area may be heard in all the following Except:",
+    "options": [
+      "Left atrial myxoma",
+      "Mitral stenosis with atrial fibrillation",
+      "Organic aortic incompetence",
+      "Organic pulmonary incompetence",
+      "Acute rheumatic fever."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Organic pulmonary incompetence. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The following are the common clinical features suggestive of a pathological murmur EXCEPT:",
+    "options": [
+      "Harsh quality",
+      "Grade III or more in intensity",
+      "Pansystolic or diastolic in timing",
+      "Affected by posture",
+      "Wide radiation"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Affected by posture. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Slow rising pulse is a feature of:",
+    "options": [
+      "Endotoxin shock.",
+      "AS.",
+      "MS",
+      "Constrictive pericarditis",
+      "Coarctation of aorta"
+    ],
+    "correct": 1,
+    "explanation": "AS. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Regarding neck venous pulsation which is false:",
+    "options": [
+      "Undulating.",
+      "Better felt than seen.",
+      "Becomes prominent on lying down.",
+      "There are two negative waves.",
+      "Emptying during systole"
+    ],
+    "correct": 1,
+    "explanation": "Better felt than seen. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Water-hammer pulse is present when pulse pressure is at least above:",
+    "options": [
+      "30 mm Hg.",
+      "80 mm Hg.",
+      "40 mm Hg",
+      "60 mm Hg",
+      "10 mmHg"
+    ],
+    "correct": 3,
+    "explanation": "60 mm Hg is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Left parasternal heave is diagnostic of:",
+    "options": [
+      "Left ventricular hypertrophy",
+      "Right atrial hypertrophy",
+      "Right ventricular hypertrophy.",
+      "Hypertrophic cardiomyopathy.",
+      "Tricuspid stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Right ventricular hypertrophy. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Pulsus bisferiens is found in:",
+    "options": [
+      "Combined AS and AI",
+      "Combined MS and AS.",
+      "Combined AI and MI.",
+      "Combined MS and MI",
+      "Combined MS and AI"
+    ],
+    "correct": 0,
+    "explanation": "Combined AS and AI is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "v-wave in JVP becomes prominent in:",
+    "options": [
+      "Tricuspid incompetence",
+      "Cardiac tamponade.",
+      "Ventricular tachycardia.",
+      "Right atrial myxoma",
+      "Complete heart block"
+    ],
+    "correct": 0,
+    "explanation": "Tricuspid incompetence is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which is false regarding edema in congestive cardiac failure:",
+    "options": [
+      "Initially noticed in the morning.",
+      "Starts in the dependent part.",
+      "Pitting edema.",
+      "Sacral edema in non-ambulatory patients.",
+      "Is characterized by reduced sodium excretion"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Initially noticed in the morning.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Which does not produce regularly irregular pulse:",
+    "options": [
+      "2nd degree heart block.",
+      "Atrial fibrillation.",
+      "Extrasystoles.",
+      "Sinus arrhythmia.",
+      "Atrial tachycardia with block"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Atrial fibrillation.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Hemoptysis may be found in:",
+    "options": [
+      "Left ventricular failure.",
+      "Right ventricular failure.",
+      "Pulmonary stenosis.",
+      "Left-to-right shunt",
+      "Marfan's syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Left ventricular failure. is correct. Hemoptysis causes include TB, bronchiectasis, lung cancer, mitral stenosis, and pulmonary embolism. Massive hemoptysis (>100-600 mL/day) requires urgent intervention."
+  },
+  {
+    "question": "Slow rising pulse, narrow pulse pressure, heaving apex beat and fourth heart sound.",
+    "options": [
+      "Acute CO2 retention",
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "Coarctation of aorta",
+      "Gaucher's disease",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mixed aortic valve disease",
+      "Mixed mitral valve disease"
+    ],
+    "correct": 2,
+    "explanation": "Aortic stenosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Collapsing pulse, wide pulse pressure, and 'pistol-shot' sound heard over femoral arteries.",
+    "options": [
+      "Acute CO2 retention",
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "Coarctation of aorta",
+      "Gaucher's disease",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mixed aortic valve disease",
+      "Mixed mitral valve disease"
+    ],
+    "correct": 1,
+    "explanation": "Aortic regurgitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Radio-femoral delay in a patient with hypertension.",
+    "options": [
+      "Acute CO2 retention",
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "Coarctation of aorta",
+      "Gaucher's disease",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mixed aortic valve disease",
+      "Mixed mitral valve disease"
+    ],
+    "correct": 6,
+    "explanation": "Coarctation of aorta is correct. Hypertension management targets <130/80 mmHg with lifestyle modification and pharmacotherapy (ACEI/ARB, CCB, thiazide)."
+  },
+  {
+    "question": "Pulsus paradoxus, jugular venous pressure (JVP) rises on inspiration, heart sounds muffled.",
+    "options": [
+      "Acute CO2 retention",
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "Coarctation of aorta",
+      "Gaucher's disease",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mixed aortic valve disease",
+      "Mixed mitral valve disease"
+    ],
+    "correct": 5,
+    "explanation": "Cardiac tamponade is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Bounding pulse in a patient who is short of breath.",
+    "options": [
+      "Acute CO2 retention",
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "Coarctation of aorta",
+      "Gaucher's disease",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mixed aortic valve disease",
+      "Mixed mitral valve disease"
+    ],
+    "correct": 0,
+    "explanation": "Acute CO2 retention is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Slapping apex beat, loud S1, mid-diastolic murmur loudest at the apex in expiration lying on the left side.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Atrial septal defect",
+      "Cardiomyopathy",
+      "Coarctation of aorta",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pericarditis",
+      "Tetralogy of Fallot",
+      "Tricuspid regurgitation",
+      "Ventricular septal defect"
+    ],
+    "correct": 8,
+    "explanation": "Mitral stenosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Heaving un-displaced apex beat, absent A2 with ejection systolic murmur radiating to the carotids.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Atrial septal defect",
+      "Cardiomyopathy",
+      "Coarctation of aorta",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pericarditis",
+      "Tetralogy of Fallot",
+      "Tricuspid regurgitation",
+      "Ventricular septal defect"
+    ],
+    "correct": 1,
+    "explanation": "Aortic stenosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Pan-systolic murmur heard best at lower left sternal edge during inspiration in a patient with pulsatile hepatomegaly.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Atrial septal defect",
+      "Cardiomyopathy",
+      "Coarctation of aorta",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pericarditis",
+      "Tetralogy of Fallot",
+      "Tricuspid regurgitation",
+      "Ventricular septal defect"
+    ],
+    "correct": 11,
+    "explanation": "Tricuspid regurgitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Displaced, volume-overloaded apex. Soft S1, pan-systolic murmur at the apex radiating to the axilla.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Atrial septal defect",
+      "Cardiomyopathy",
+      "Coarctation of aorta",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pericarditis",
+      "Tetralogy of Fallot",
+      "Tricuspid regurgitation",
+      "Ventricular septal defect"
+    ],
+    "correct": 7,
+    "explanation": "Mitral regurgitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Left parasternal heave and harsh pan-systolic murmur at lower left sternal edge that is also audible at apex.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Atrial septal defect",
+      "Cardiomyopathy",
+      "Coarctation of aorta",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pericarditis",
+      "Tetralogy of Fallot",
+      "Tricuspid regurgitation",
+      "Ventricular septal defect"
+    ],
+    "correct": 12,
+    "explanation": "Ventricular septal defect is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Elevated JVP with absent pulsation.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Complete heart block",
+      "Constrictive pericarditis",
+      "Left heart failure",
+      "Mitral stenosis",
+      "Normal JVP",
+      "Superior vena cava obstruction",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular fibrillation"
+    ],
+    "correct": 8,
+    "explanation": "Superior vena cava obstruction is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Giant systolic 'v' waves.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Complete heart block",
+      "Constrictive pericarditis",
+      "Left heart failure",
+      "Mitral stenosis",
+      "Normal JVP",
+      "Superior vena cava obstruction",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular fibrillation"
+    ],
+    "correct": 9,
+    "explanation": "Tricuspid regurgitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Large 'a' waves and slow 'y' descent in JVP. Patient has ascites.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Complete heart block",
+      "Constrictive pericarditis",
+      "Left heart failure",
+      "Mitral stenosis",
+      "Normal JVP",
+      "Superior vena cava obstruction",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular fibrillation"
+    ],
+    "correct": 10,
+    "explanation": "Tricuspid stenosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Cannon 'a' waves.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Complete heart block",
+      "Constrictive pericarditis",
+      "Left heart failure",
+      "Mitral stenosis",
+      "Normal JVP",
+      "Superior vena cava obstruction",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular fibrillation"
+    ],
+    "correct": 3,
+    "explanation": "Complete heart block is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Raised JVP that rises on inspiration.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial fibrillation",
+      "Complete heart block",
+      "Constrictive pericarditis",
+      "Left heart failure",
+      "Mitral stenosis",
+      "Normal JVP",
+      "Superior vena cava obstruction",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular fibrillation"
+    ],
+    "correct": 4,
+    "explanation": "Constrictive pericarditis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 26-year-old woman presents acutely unwell with shortness of breath. Her ECG shows sinus tachycardia, deep S waves in I, inverted T waves in III and Q waves in III.",
+    "options": [
+      "Anterolateral myocardial infarction",
+      "Atrial fibrillation",
+      "Heart block",
+      "Hyperkalemia",
+      "Hypokalemia",
+      "Inferior myocardial Infarction",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mobitz type II second-degree",
+      "Pericarditis",
+      "Pulmonary embolus",
+      "Right bundle-branch block",
+      "Subendocardial infarction"
+    ],
+    "correct": 11,
+    "explanation": "Pulmonary embolus is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Dominant R in V1, inverted T waves in V1-V3, deep wide S waves in V6.",
+    "options": [
+      "Anterolateral myocardial infarction",
+      "Atrial fibrillation",
+      "Heart block",
+      "Hyperkalemia",
+      "Hypokalemia",
+      "Inferior myocardial Infarction",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mobitz type II second-degree",
+      "Pericarditis",
+      "Pulmonary embolus",
+      "Right bundle-branch block",
+      "Subendocardial infarction"
+    ],
+    "correct": 12,
+    "explanation": "Right bundle-branch block is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Prolonged P-R interval, depressed ST, flattened T waves, prominent U waves.",
+    "options": [
+      "Anterolateral myocardial infarction",
+      "Atrial fibrillation",
+      "Heart block",
+      "Hyperkalemia",
+      "Hypokalemia",
+      "Inferior myocardial Infarction",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mobitz type II second-degree",
+      "Pericarditis",
+      "Pulmonary embolus",
+      "Right bundle-branch block",
+      "Subendocardial infarction"
+    ],
+    "correct": 4,
+    "explanation": "Hypokalemia is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Sinus rhythm, bifid 'p' waves best seen in II, V3 and V4.",
+    "options": [
+      "Anterolateral myocardial infarction",
+      "Atrial fibrillation",
+      "Heart block",
+      "Hyperkalemia",
+      "Hypokalemia",
+      "Inferior myocardial Infarction",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mobitz type II second-degree",
+      "Pericarditis",
+      "Pulmonary embolus",
+      "Right bundle-branch block",
+      "Subendocardial infarction"
+    ],
+    "correct": 7,
+    "explanation": "Mitral regurgitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 65-year-old man presents with chest pain radiating to the jaw. The ECG shows ST segment elevation in II, III and aVF, with T-wave inversion in V5 and V6.",
+    "options": [
+      "Anterolateral myocardial infarction",
+      "Atrial fibrillation",
+      "Heart block",
+      "Hyperkalemia",
+      "Hypokalemia",
+      "Inferior myocardial Infarction",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Mobitz type II second-degree",
+      "Pericarditis",
+      "Pulmonary embolus",
+      "Right bundle-branch block",
+      "Subendocardial infarction"
+    ],
+    "correct": 5,
+    "explanation": "Inferior myocardial Infarction is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "ECG of a 55 year old being treated for hypertension shows tall tented T waves.",
+    "options": [
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "1st degree heart block",
+      "Hypercalcemia",
+      "Hyperkalemia",
+      "Hypocalcaemia",
+      "Hypokalemia",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Normal ECG",
+      "Right bundle-branch block",
+      "Ventricular tachycardia"
+    ],
+    "correct": 5,
+    "explanation": "Hyperkalemia is correct. Hypertension management targets <130/80 mmHg with lifestyle modification and pharmacotherapy (ACEI/ARB, CCB, thiazide)."
+  },
+  {
+    "question": "A 34-year-old man presents to ER after a road traffic accident. The ECG shows pulseless electrical activity.",
+    "options": [
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "1st degree heart block",
+      "Hypercalcemia",
+      "Hyperkalemia",
+      "Hypocalcaemia",
+      "Hypokalemia",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Normal ECG",
+      "Right bundle-branch block",
+      "Ventricular tachycardia"
+    ],
+    "correct": 2,
+    "explanation": "Cardiac tamponade is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "An 85-year-old man with pneumonia complains of palpitations. ECG shows absent P waves.",
+    "options": [
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "1st degree heart block",
+      "Hypercalcemia",
+      "Hyperkalemia",
+      "Hypocalcaemia",
+      "Hypokalemia",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Normal ECG",
+      "Right bundle-branch block",
+      "Ventricular tachycardia"
+    ],
+    "correct": 0,
+    "explanation": "Atrial fibrillation is correct. Pneumonia is characterized by consolidation with alveolar filling, producing bronchial breath sounds, dullness, and crepitations. Streptococcus pneumoniae is the most common cause."
+  },
+  {
+    "question": "ECG of a 45-year-old man with sarcoidosis shows an 'M' pattern V5 and inverted T waves in I, aVL and V5-V6.",
+    "options": [
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "1st degree heart block",
+      "Hypercalcemia",
+      "Hyperkalemia",
+      "Hypocalcaemia",
+      "Hypokalemia",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Normal ECG",
+      "Right bundle-branch block",
+      "Ventricular tachycardia"
+    ],
+    "correct": 8,
+    "explanation": "Left bundle-branch block is correct. Sarcoidosis is a multisystem granulomatous disease. Diagnosis requires compatible clinical picture, exclusion of other causes, and noncaseating granulomas on biopsy."
+  },
+  {
+    "question": "ECG of a 12-year-old girl shows normal P waves and QRS complexes but shows T-wave inversion in V1.",
+    "options": [
+      "Atrial fibrillation",
+      "Atrial flutter",
+      "Cardiac tamponade",
+      "1st degree heart block",
+      "Hypercalcemia",
+      "Hyperkalemia",
+      "Hypocalcaemia",
+      "Hypokalemia",
+      "Left bundle-branch block",
+      "Mitral regurgitation",
+      "Normal ECG",
+      "Right bundle-branch block",
+      "Ventricular tachycardia"
+    ],
+    "correct": 10,
+    "explanation": "Normal ECG is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

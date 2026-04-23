@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Mowafy Cardiology</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mo6ybqvgujwdy",
+  "title": "Mowafy Cardiology",
+  "description": "All cardiology questions from Dr. Mowafy's book",
+  "icon": "🫀"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "The Cause of silent myocardial infarction may be :",
+    "options": [
+      "Athletes",
+      "Obese",
+      "Females",
+      "Diabetes mellitus"
+    ],
+    "correct": 3,
+    "explanation": "Diabetes mellitus is a well-recognized cause of silent myocardial infarction. Diabetic autonomic neuropathy impairs the perception of cardiac pain, leading to infarction without typical anginal symptoms. Athletes may have higher pain thresholds but this is not a recognized cause of silent MI. Obesity is a cardiovascular risk factor but does not specifically cause silent MI. Females may present with atypical symptoms but diabetes is the most established cause of truly silent (asymptomatic) MI."
+  },
+  {
+    "question": "Which of the following best describes the effect of calcium ions on the myocardium?",
+    "options": [
+      "Positively inotropic",
+      "Negatively inotropic",
+      "Positively chronotropic",
+      "Negatively chronotropic"
+    ],
+    "correct": 0,
+    "explanation": "Calcium ions have a positively inotropic effect on the myocardium, meaning they increase the force of myocardial contraction. This occurs because calcium is essential for the excitation-contraction coupling in cardiac myocytes — increased intracellular calcium enhances actin-myosin cross-bridge formation. Calcium is not negatively inotropic (that would weaken contraction). While calcium can affect heart rate, its primary direct effect on the myocardium is inotropic (contractility) rather than chronotropic (rate). Negatively chronotropic means slowing the heart rate, which is not the primary effect of calcium on myocardium."
+  },
+  {
+    "question": "Wide fixed splitting of the second heart sound occur in:",
+    "options": [
+      "Mitral stenosis",
+      "Mitral regurge",
+      "Atrial septal defect",
+      "Ventricular septal defect"
+    ],
+    "correct": 2,
+    "explanation": "Wide fixed splitting of the second heart sound is the hallmark of atrial septal defect (ASD). In ASD, the left-to-right shunt increases right ventricular volume, delaying pulmonary valve closure (wide splitting). The splitting is fixed because the shunt equalizes the respiratory variation in venous return between the two ventricles. Mitral stenosis does not cause wide fixed splitting. Mitral regurgitation can cause wide splitting but it varies with respiration. VSD typically causes a pansystolic murmur rather than fixed splitting of S2."
+  },
+  {
+    "question": "In the absence of critical stenosis of the coronary arteries, angina pectoris occurs most frequently with which of the following valvular heart diseases?",
+    "options": [
+      "Mitral stenosis",
+      "Mitral regurge",
+      "Aortic stenosis",
+      "Aortic regurge"
+    ],
+    "correct": 2,
+    "explanation": "Aortic stenosis (AS) is the most likely valvular disease to cause angina pectoris even without critical coronary stenosis. In AS, the markedly increased left ventricular pressure leads to significant hypertrophy, which increases myocardial oxygen demand while simultaneously compressing the coronary microcirculation during systole, reducing oxygen supply. This supply-demand mismatch causes angina. Mitral stenosis does not typically cause angina. Mitral regurgitation causes volume overload rather than the severe pressure overload seen in AS. Aortic regurgitation can cause angina but less commonly than AS, as the diastolic runoff reduces coronary perfusion pressure rather than creating the massive oxygen demand of AS."
+  },
+  {
+    "question": "Which of the following cardiac lesion has the highest risk of developing infective endocarditis?",
+    "options": [
+      "VSD",
+      "ASD",
+      "Mitral valve prolapse with regurgitation",
+      "MS"
+    ],
+    "correct": 0,
+    "explanation": "VSD is a high-risk lesion for infective endocarditis (IE). The high-velocity jet of blood across the ventricular septal defect creates endothelial damage that promotes bacterial colonization. MS carries an intermediate risk. ASD carries a low risk for IE because the left-to-right shunt has relatively low velocity and pressure gradient across the atrial septum, causing less endothelial damage. Mitral valve prolapse with regurgitation carries intermediate risk."
+  },
+  {
+    "question": "Which lipid pattern suggests the lowest risk for CAD?",
+    "options": [
+      "Total cholesterol 215 mg/dL, HDL cholesterol 28 mg/dL",
+      "Total cholesterol 215 mg/dL, HDL cholesterol 43 mg/dL",
+      "Total cholesterol 180 mg/dL, HDL cholesterol 29 mg/dL",
+      "Total cholesterol 202 mg/dL, HDL cholesterol 45 mg/dL"
+    ],
+    "correct": 3,
+    "explanation": "The combination of total cholesterol 202 mg/dL with HDL cholesterol 45 mg/dL suggests the lowest risk. Although the total cholesterol is on borderline (normal <200, borderline 200-240, high >240), the high HDL cholesterol is protective — HDL removes cholesterol from arterial walls and has anti-inflammatory properties. Option (a) has very low HDL (28), which is a major risk factor despite borderline total cholesterol. Option (b) has better HDL (43) but still lower than option (d). Option (c) has normal total cholesterol but very low HDL (29), negating the benefit. HDL norms: >40-50 in males, 50-60 in females."
+  },
+  {
+    "question": "Which one of the following is characteristic of atrial myxoma?",
+    "options": [
+      "It usually originate in the right atrium",
+      "The clinical signs can mimic severe mitral regurgitation",
+      "Recurrence is frequent, even after successful surgical removal",
+      "Echocardiogram is diagnostic in most cases"
+    ],
+    "correct": 3,
+    "explanation": "Echocardiogram is diagnostic in most cases of atrial myxoma, making it the characteristic feature among the options. Option (a) is incorrect because 75% of atrial myxomas originate in the left atrium, not the right atrium. Option (b) is incorrect because the clinical signs of left atrial myxoma mimic mitral stenosis (MS), not mitral regurgitation — the tumor obstructs the mitral valve orifice during diastole, creating a stenosis-like picture. Option (c) is incorrect because recurrence is rare after complete surgical excision, not frequent."
+  },
+  {
+    "question": "A 52-year-old woman with no prior medical history presents in the emergency department with a 3-hour episode of crushing substernal chest pain. The pain radiates to her arm and neck. An ECG reveals ST segment elevation in leads II, III and aVF. The patient has no obvious contraindication to anticoagulation. Which of the following is the most optimal treatment at this time?",
+    "options": [
+      "Administration of IV fluids",
+      "Administration of aspirin and heparin only",
+      "Administration of thrombolytic therapy, heparin, and aspirin",
+      "Cardiac surgery to bypass the occluded vessel"
+    ],
+    "correct": 2,
+    "explanation": "The patient presents with an acute inferior STEMI (ST elevation in II, III, aVF) within 3 hours of symptom onset with no contraindications. The most optimal treatment is thrombolytic therapy combined with heparin and aspirin. Thrombolysis dissolves the occlusive clot, heparin prevents re-occlusion, and aspirin provides antiplatelet therapy. IV fluids alone (a) are insufficient — they may be needed if the patient is hypotensive, but they do not address the occluded artery. Aspirin and heparin only (b) lack the thrombolytic agent needed to dissolve the acute clot. Cardiac surgery (d) is not the first-line treatment for acute STEMI; primary PCI or thrombolysis is preferred."
+  },
+  {
+    "question": "The most effective diagnostic modality in a case of subacute bacterial endocarditis is :",
+    "options": [
+      "ECG",
+      "Transthoracic echocardiogram (TTE)",
+      "Transesophageal echocardiogram (TEE)",
+      "Cardiac catheterization"
+    ],
+    "correct": 2,
+    "explanation": "Transesophageal echocardiogram (TEE) is the most effective diagnostic modality for subacute bacterial endocarditis. TEE provides superior image quality compared to TTE because the esophagus is directly posterior to the heart, allowing higher-frequency imaging with better resolution for detecting vegetations, abscesses, and valvular perforations. ECG (a) may show nonspecific changes but is not diagnostic for endocarditis. Transthoracic echocardiogram (b) is useful but has lower sensitivity (60-70%) compared to TEE (>90%). Cardiac catheterization (d) is not a diagnostic tool for endocarditis and carries risk of dislodging vegetations."
+  },
+  {
+    "question": "Which of the following therapies has been shown to increase survival in a case of post myocardial infarction patients who have ejection fraction > 50%?",
+    "options": [
+      "Angiotensin-Converting enzyme inhibitor",
+      "Beta blocker",
+      "Digoxin",
+      "Loop diuretic"
+    ],
+    "correct": 1,
+    "explanation": "Beta blockers have been shown to improve survival after myocardial infarction (MI) by decreasing both oxygen demand and the incidence of ventricular arrhythmias. This survival benefit extends to patients with preserved ejection fraction (>50%). ACE inhibitors (a) improve survival in post-MI patients specifically with ejection fractions less than 40%, not those with preserved EF. Digoxin (c) is used for rate control in atrial fibrillation and has no mortality benefit post-MI; in fact, it may increase mortality in some patients. Loop diuretics (d) manage fluid overload but do not improve survival."
+  },
+  {
+    "question": "A 51-year-old man is brought to the emergency department for chest pain. The patient has chronic stable angina that is usually precipitated by activity and relieved by rest. About 3 weeks ago, his physician prescribed sildenafil (Viagra), and he has been using the drug with success. This morning, he developed acute onset of substernal chest pain, radiating to his left arm. This pain is not relieved by rest. The patient last took sildenafil the night before. Which of the following treatments is absolutely contraindicated in this situation?",
+    "options": [
+      "Captopril",
+      "Metoprolol",
+      "Nitroglycerin",
+      "Tissue plasminogen activator (tPA)"
+    ],
+    "correct": 2,
+    "explanation": "Nitroglycerin is absolutely contraindicated in this patient who recently took sildenafil (Viagra). The co-administration of nitrates within 24 hours after taking sildenafil is absolutely contraindicated. The vasodilatory effects of nitrates are amplified when administered in the presence of sildenafil, which can lead to refractory and life-threatening hypotension. Captopril (a), an ACE inhibitor, is not contraindicated. Metoprolol (b), a beta-blocker, is not contraindicated and may actually be beneficial. tPA (d) may be considered if STEMI is confirmed and there are no other contraindications."
+  },
+  {
+    "question": "A 57-year-old man presents to his physician for follow-up. He has a positive family history for coronary artery disease and he has smoked one-half pack of cigarettes per day for the past 20 years. Which of the following lipid patterns would most strongly suggest the need for pharmacologic therapy in this patient?",
+    "options": [
+      "Total cholesterol 180 mg/dL, LDL cholesterol 140 mg/dL",
+      "Total cholesterol 230 mg/dL, LDL cholesterol 100 mg/dL",
+      "Total cholesterol 245 mg/dL, LDL cholesterol 165 mg/dL",
+      "Total cholesterol 285 mg/dL, LDL cholesterol 100 mg/dL"
+    ],
+    "correct": 2,
+    "explanation": "A patient with 2 or more risk factors (positive family history + smoking) and an LDL greater than 160 mg/dL needs medical therapy. Option (c) with LDL of 165 mg/dL meets this threshold. Option (a) has an LDL of 140 mg/dL and could be managed with dietary modification and education. Option (b) has an elevated total cholesterol but LDL of only 100 mg/dL, which does not require pharmacotherapy in this risk category. Option (d) has a very high total cholesterol (285) but LDL of only 100 mg/dL, suggesting a high HDL level, which is actually protective and does not require drug therapy."
+  },
+  {
+    "question": "In a patient with central chest pain at rest :",
+    "options": [
+      "Relief of pain by nitrates excludes an esophageal cause",
+      "Features of autonomic disturbance are specific to cardiac pain",
+      "Interscapular radiation suggests the possibility of aortic dissection",
+      "Myocardial ischemia radiates to the neck but not the jaw"
+    ],
+    "correct": 2,
+    "explanation": "Interscapular radiation of chest pain suggests the possibility of aortic dissection, as the dissection flap irritates the thoracic aortic adventitia which is innervated by thoracic spinal nerves. Option (a) is incorrect because nitrates can also relieve esophageal spasm, so relief by nitrates does not exclude an esophageal cause. Option (b) is incorrect because autonomic disturbance (sweating, nausea, tachycardia) may occur in severe pain from any cause, not just cardiac pain. Option (d) is incorrect because myocardial ischemia can radiate to both the neck and the jaw — jaw radiation is actually one of the most specific features of angina."
+  },
+  {
+    "question": "Recognised causes of secondary hypertension include EXCEPT",
+    "options": [
+      "Persistent ductus arteriosus",
+      "Coarctation of the aorta",
+      "Primary hyperaldosteronism",
+      "Acromegaly"
+    ],
+    "correct": 0,
+    "explanation": "Persistent ductus arteriosus (PDA) is NOT a recognized cause of secondary hypertension. PDA causes a left-to-right shunt with a continuous machinery murmur and widened pulse pressure, but not hypertension. Coarctation of the aorta (b) is a well-known cause of secondary hypertension due to mechanical obstruction proximal to the coarctation. Primary hyperaldosteronism (c) (Conn's syndrome) causes hypertension through aldosterone-mediated sodium and water retention. Acromegaly (d) causes hypertension through growth hormone-mediated cardiac and vascular effects."
+  },
+  {
+    "question": "As regarded to the auscultatory findings listed below, which is correct?",
+    "options": [
+      "Third heart sound-opening of mitral valve",
+      "Varying intensity of first heart sound-atrioventricular dissociation",
+      "Soft first heart sound-mitral stenosis",
+      "Fourth heart sound-atrial fibrillation"
+    ],
+    "correct": 1,
+    "explanation": "Varying intensity of the first heart sound is characteristic of atrioventricular (AV) dissociation, as seen in complete heart block. When the atria and ventricles beat independently, the PR interval varies beat-to-beat, causing the mitral and tricuspid valves to be at different positions at the onset of ventricular systole, producing varying S1 intensity. Option (a) is incorrect because the third heart sound (S3) is due to rapid ventricular filling, not opening of the mitral valve (which produces the opening snap). Option (c) is incorrect because mitral stenosis typically produces a LOUD first heart sound due to the valve being kept wide open at the onset of systole, not a soft one. Option (d) is incorrect because the fourth heart sound (S4) requires atrial contraction, which is absent in atrial fibrillation."
+  },
+  {
+    "question": "In the investigation of suspected angina pectoris :",
+    "options": [
+      "Physical examination is of no clinical value",
+      "The resting ECG is usually normal",
+      "Exercise-induced elevation in blood pressure indicates significant ischemia",
+      "A normal ECG during exercise excludes angina pectoris"
+    ],
+    "correct": 1,
+    "explanation": "In suspected angina pectoris, the resting ECG is usually normal because ischemia typically occurs only during exertion. Between episodes, the ECG returns to normal. Option (a) is incorrect because physical examination is important to exclude anemia and valvular stenosis as alternative causes of chest pain. Option (c) is incorrect because exercise-induced elevation in blood pressure is a normal physiological response, not a sign of ischemia; exercise-induced HYPOTENSION would suggest significant ischemia. Option (d) is incorrect because a normal exercise ECG does not exclude angina — the sensitivity of exercise ECG is only about 70%, and false negatives can occur."
+  },
+  {
+    "question": "In the treatment of patients with angina pectoris :",
+    "options": [
+      "Aspirin reduces the frequency of angina attacks",
+      "Glyceryl trinitrate is equally effective when swallowed as when taken sublingually",
+      "Calcium antagonists may cause peripheral edema",
+      "Beta blockers are more effective than other anti-anginal agents"
+    ],
+    "correct": 2,
+    "explanation": "Calcium antagonists (calcium channel blockers) may cause peripheral edema as a side effect due to preferential arteriolar dilation without corresponding venous dilation, leading to increased capillary hydrostatic pressure and fluid extravasation. Option (a) is incorrect because aspirin prevents thrombotic events (antiplatelet effect) but does not reduce the frequency of angina attacks. Option (b) is incorrect because glyceryl trinitrate (nitroglycerin) undergoes extensive first-pass hepatic metabolism when swallowed, making sublingual administration far more effective. Option (d) is incorrect because beta-blockers are not proven to be more effective than other anti-anginal agents; they are equally effective when used appropriately."
+  },
+  {
+    "question": "In the treatment of acute myocardial infarction :",
+    "options": [
+      "Aspirin given within 6 hours of onset reduces the mortality",
+      "Diamorphine is better given intramuscular than by any other route",
+      "Immediate calcium channel blocker therapy reduces the early mortality rate",
+      "Nitrate therapy reduces the early mortality rate"
+    ],
+    "correct": 0,
+    "explanation": "Aspirin given within 6 hours of onset of acute MI reduces mortality. Aspirin inhibits platelet aggregation by blocking cyclooxygenase, preventing further thrombus propagation. Option (b) is incorrect because diamorphine should be given intravenously, not intramuscularly, as IM injection can cause hematoma formation especially if thrombolysis is given later. Option (c) is incorrect because immediate calcium channel blocker therapy has NOT been shown to reduce early mortality in acute MI; in fact, some calcium channel blockers may be harmful in the acute setting. Option (d) is incorrect because nitrate therapy has not been shown to significantly reduce early mortality in acute MI."
+  },
+  {
+    "question": "Drug therapies which improve the long-term prognosis after myocardial infarction include EXCEPT :",
+    "options": [
+      "Aspirin",
+      "Calcium antagonists",
+      "ACE inhibitors",
+      "Beta-blockers"
+    ],
+    "correct": 1,
+    "explanation": "Calcium antagonists are the EXCEPTION — they have NOT been shown to improve long-term prognosis after myocardial infarction. In some cases, short-acting calcium channel blockers (like nifedipine) may actually increase mortality post-MI. Aspirin (a) improves prognosis by preventing recurrent ischemic events through antiplatelet action. ACE inhibitors (c) improve prognosis by preventing ventricular remodeling and reducing afterload. Beta-blockers (d) improve prognosis by reducing oxygen demand, preventing arrhythmias, and decreasing sympathetic activation."
+  },
+  {
+    "question": "Clinical features suggesting aortic stenosis include :",
+    "options": [
+      "Late systolic ejection click",
+      "Slapping apex beat",
+      "Syncope associated with angina",
+      "Loud second heart sound"
+    ],
+    "correct": 2,
+    "explanation": "Syncope associated with angina is a classic clinical feature of aortic stenosis (AS). The triad of angina, syncope, and heart failure characterizes severe AS. Syncope occurs due to fixed cardiac output that cannot increase with exertion, compounded by vasodepressor reflexes. Option (a) is incorrect because the ejection click in AS is early systolic (not late), and it diminishes as the stenosis worsens and the valve becomes less mobile. Option (b) is incorrect because AS produces a heaving (thrusting) apex beat due to LV pressure overload, not a slapping apex beat (seen in volume overload like MR). Option (d) is incorrect because the aortic component of S2 is soft or absent in AS due to reduced valve mobility, making S2 quiet rather than loud."
+  },
+  {
+    "question": "Disorders associated with aortic regurgitation include EXCEPT",
+    "options": [
+      "Ankylosing spondylitis",
+      "Marfan's syndrome",
+      "Syphilitic aortitis",
+      "Persistent ductus arteriosus"
+    ],
+    "correct": 3,
+    "explanation": "Persistent ductus arteriosus (PDA) is NOT directly associated with aortic regurgitation. PDA causes a left-to-right shunt with a continuous machinery murmur and can lead to heart failure, but it does not cause aortic valve incompetence. Ankylosing spondylitis (a) causes aortic regurgitation through inflammation and fibrosis of the aortic root and valve. Marfan's syndrome (b) causes aortic regurgitation through aortic root dilation and annular stretching. Syphilitic aortitis (c) causes aortic regurgitation through destructive inflammation of the aortic root and valve commissures."
+  },
+  {
+    "question": "In atrial septal defect :",
+    "options": [
+      "The lesion is usually of primum type",
+      "The initial shunt is right to left",
+      "Splitting of the second heart sound increases in expiration",
+      "The ECG typically shows right bundle branch block"
+    ],
+    "correct": 3,
+    "explanation": "In atrial septal defect (ASD), the ECG typically shows right bundle branch block (RBBB) due to right ventricular volume overload and conduction delay in the stretched right bundle. Option (a) is incorrect because the secundum type is the most common form of ASD (about 70% of cases), not the primum type. Option (b) is incorrect because the initial shunt is LEFT to RIGHT (from the higher-pressure left atrium to the lower-pressure right atrium), not right to left. Option (c) is incorrect because ASD causes FIXED splitting of S2 — it does not increase specifically in expiration; the splitting is wide and does not vary with respiration."
+  },
+  {
+    "question": "Dilated (congestive) cardiomyopathy is EXCEPT",
+    "options": [
+      "Usually idiopathic",
+      "Associated with specific ECG changes",
+      "Associated with chronic alcohol misuse",
+      "Caused by Coxsackie A, influenza and HIV infection"
+    ],
+    "correct": 1,
+    "explanation": "Dilated cardiomyopathy is NOT associated with specific ECG changes — the ECG findings are nonspecific and variable (may show sinus tachycardia, arrhythmias, or nonspecific ST-T changes). Option (a) is correct because most cases of dilated cardiomyopathy are idiopathic (about 50%). Option (c) is correct because chronic alcohol misuse is a well-known toxic cause of dilated cardiomyopathy. Option (d) is correct because viral myocarditis from Coxsackie A, influenza, and HIV can progress to dilated cardiomyopathy."
+  },
+  {
+    "question": "All of the following are recognized complications of acute MI EXCEPT",
+    "options": [
+      "Acute mitral regurge",
+      "Acute aortic regurge",
+      "Dressler's syndrome",
+      "Left ventricular aneurysm"
+    ],
+    "correct": 1,
+    "explanation": "Acute aortic regurgitation is NOT a recognized complication of acute MI. The aortic valve is not typically affected by myocardial infarction. Acute mitral regurgitation (a) is a recognized complication, occurring due to papillary muscle rupture or dysfunction. Dressler's syndrome (c) is a recognized late complication — an autoimmune pericarditis occurring weeks to months after MI. Left ventricular aneurysm (d) is a recognized complication resulting from myocardial wall thinning and remodeling after transmural infarction."
+  },
+  {
+    "question": "Which of the following tests is most sensitive and specific for the diagnosis of coronary artery disease?",
+    "options": [
+      "Stress ECG",
+      "Stress echocardiography",
+      "Cardiac catheterization and coronary angiography",
+      "Multi slice CT"
+    ],
+    "correct": 2,
+    "explanation": "Cardiac catheterization and coronary angiography is the most sensitive and specific test for the diagnosis of coronary artery disease — it is the gold standard. It directly visualizes the coronary arteries, allowing assessment of the location and severity of stenoses. Stress ECG (a) has moderate sensitivity (~70%) and specificity (~70-80%). Stress echocardiography (b) has better sensitivity (~80-85%) and specificity (~80-85%) than stress ECG but still inferior to angiography. Multi-slice CT (d) is a non-invasive alternative with good sensitivity for coronary calcium and stenosis but is not as sensitive or specific as invasive angiography."
+  },
+  {
+    "question": "Mitral stenosis...",
+    "options": [
+      "Graham Steell murmur may occur",
+      "Causes enlargement of both left atrium & left ventricle",
+      "May lead to development of non cardiogenic pulmonary edema",
+      "Rarely causes AF"
+    ],
+    "correct": 0,
+    "explanation": "Graham Steell murmur may occur in mitral stenosis. It is an early diastolic murmur heard in the second intercostal space to the left of the sternum, associated with pulmonary valve regurgitation secondary to pulmonary hypertension (which develops as a complication of MS). Option (b) is incorrect because MS causes enlargement of the left atrium but NOT the left ventricle — in fact, the left ventricle may be underfilled and small. Option (c) is incorrect because MS leads to cardiogenic pulmonary edema (from pulmonary venous hypertension), not non-cardiogenic pulmonary edema. Option (d) is incorrect because atrial fibrillation is very common in MS due to left atrial dilation and is one of the most frequent complications."
+  },
+  {
+    "question": "Sudden death may occur in",
+    "options": [
+      "AS",
+      "ASD",
+      "PDA",
+      "Constrictive pericarditis"
+    ],
+    "correct": 0,
+    "explanation": "Aortic stenosis (AS) can cause sudden cardiac death. Severe AS can lead to lethal ventricular arrhythmias, especially during exertion when the fixed cardiac output cannot meet demand. ASD (b) typically does not cause sudden death — it is usually well tolerated for decades. PDA (c) causes a continuous murmur and left-to-right shunt but sudden death is uncommon. Constrictive pericarditis (d) causes chronic heart failure but is not typically associated with sudden death."
+  },
+  {
+    "question": "Clinically, severity of MS is best assessed by",
+    "options": [
+      "Diastolic shock",
+      "Proximity of S2-opening snap gap",
+      "Paroxysmal nocturnal dyspnea",
+      "Shorter duration of mid diastolic murmur"
+    ],
+    "correct": 1,
+    "explanation": "The proximity of S2 to the opening snap (S2-OS interval) is the best clinical indicator of MS severity. The higher the left atrial pressure, the earlier the mitral valve opens after aortic valve closure, shortening the S2-OS interval. A short S2-OS gap indicates severe MS. Diastolic shock (a) is not a recognized clinical sign of MS severity. Paroxysmal nocturnal dyspnea (c) indicates pulmonary venous congestion but is a subjective symptom, not the best clinical assessment. A shorter duration of mid-diastolic murmur (d) is incorrect — in severe MS, the murmur is actually longer because the pressure gradient persists throughout diastole."
+  },
+  {
+    "question": "Clubbing is not a feature of :",
+    "options": [
+      "Fallot's tetralogy",
+      "Left atrial myxoma",
+      "Right to left shunt",
+      "Acute bacterial endocarditis"
+    ],
+    "correct": 3,
+    "explanation": "Clubbing is NOT a feature of acute bacterial endocarditis. Clubbing (and hypertrophic osteoarthropathy) is a feature of SUBACUTE (not acute) bacterial endocarditis, developing over weeks to months of chronic infection. Fallot's tetralogy (a) causes clubbing due to chronic cyanosis from right-to-left shunting. Left atrial myxoma (b) can cause clubbing as a paraneoplastic phenomenon. Right-to-left shunt (c) causes clubbing due to chronic hypoxemia. Acute bacterial endocarditis (d) progresses too rapidly for clubbing to develop."
+  },
+  {
+    "question": "Digitalis toxicity is associated with all except",
+    "options": [
+      "Wenckebach block",
+      "Ventricular bigeminy",
+      "Paroxysmal atrial tachycardia with block",
+      "Mobitz type II block"
+    ],
+    "correct": 3,
+    "explanation": "Mobitz type II block is NOT typically associated with digitalis toxicity. Digitalis toxicity causes AV nodal conduction disturbances, including Wenckebach (Mobitz type I) block (a), which is a vagally-mediated first-degree then second-degree AV block. Ventricular bigeminy (b) — every other beat is a PVC — is the most common arrhythmia of digoxin toxicity. Paroxysmal atrial tachycardia with block (c) is classic for digoxin toxicity — the drug increases AV nodal block while causing atrial ectopy. Mobitz type II (d) is an infranodal block (below the AV node) caused by His-Purkinje disease, not by digitalis toxicity which primarily affects the AV node."
+  },
+  {
+    "question": "Hemoptysis may be found in",
+    "options": [
+      "Left ventricular failure",
+      "Right ventricular failure",
+      "Pulmonary stenosis",
+      "Left to right shunt"
+    ],
+    "correct": 0,
+    "explanation": "Hemoptysis may be found in left ventricular failure because LVF causes pulmonary venous hypertension, which can lead to rupture of bronchial-pulmonary venous connections, producing pink frothy sputum or frank hemoptysis. This is especially common in mitral stenosis with pulmonary hypertension. Right ventricular failure (b) causes systemic venous congestion (jugular venous distension, peripheral edema, hepatomegaly) but not hemoptysis. Pulmonary stenosis (c) does not cause hemoptysis as it does not cause pulmonary venous congestion. Left-to-right shunt (d) causes increased pulmonary flow but hemoptysis is not a typical feature."
+  },
+  {
+    "question": "Which is not a major manifestation of Jones criteria in rheumatic fever",
+    "options": [
+      "Chorea",
+      "Erythema nodosum",
+      "Subcutaneous nodule",
+      "Polyarthritis"
+    ],
+    "correct": 1,
+    "explanation": "Erythema nodosum is NOT a major Jones criterion. The major Jones criteria are: Migratory polyarthritis, Carditis, Subcutaneous nodules, Erythema marginatum (NOT nodosum), and Sydenham's chorea. Erythema marginatum is a distinctive rash with serpiginous, erythematous rings that migrate — this is different from erythema nodosum, which presents as tender red nodules typically on the shins and is associated with other conditions like sarcoidosis and streptococcal infections but is NOT part of the Jones criteria. Chorea (a), subcutaneous nodule (c), and polyarthritis (d) are all major Jones criteria."
+  },
+  {
+    "question": "Atrial myxoma may be associated with all except",
+    "options": [
+      "Fever",
+      "Splenomegaly",
+      "Clubbing",
+      "High ESR"
+    ],
+    "correct": 1,
+    "explanation": "Splenomegaly is NOT typically associated with atrial myxoma. Atrial myxoma is associated with systemic manifestations due to tumor secretion of interleukin-6 (IL-6), including fever (a), clubbing (c), and high ESR (d) — all reflecting the inflammatory/paraneoplastic nature of the tumor. Splenomegaly (b) is a feature of infective endocarditis, not atrial myxoma. The systemic features of myxoma can mimic endocarditis, but splenomegaly would point toward endocarditis rather than myxoma."
+  },
+  {
+    "question": "S4 is not associated with",
+    "options": [
+      "AS",
+      "Hypertrophic cardiomyopathy",
+      "Chronic mitral regurge",
+      "Systemic hypertension"
+    ],
+    "correct": 2,
+    "explanation": "S4 (fourth heart sound) is NOT associated with chronic mitral regurgitation. An S4 is produced by forceful atrial contraction against a stiff, non-compliant ventricle. In chronic MR, the left atrium is dilated and compliant, and there is volume overload of the LV (not pressure overload), so conditions for S4 production are absent. AS (a) causes LV hypertrophy and decreased compliance, producing S4. Hypertrophic cardiomyopathy (b) has a stiff, hypertrophied ventricle producing a prominent S4. Systemic hypertension (d) causes LV hypertrophy and decreased compliance, producing S4."
+  },
+  {
+    "question": "Incidence of infective endocarditis is least in",
+    "options": [
+      "MI",
+      "ASD",
+      "PDA",
+      "VSD"
+    ],
+    "correct": 1,
+    "explanation": "Atrial septal defect (ASD) has the lowest incidence of infective endocarditis among the listed conditions. The left-to-right shunt in ASD has a low velocity and low pressure gradient across the atrial septum, resulting in minimal endothelial damage and low risk for bacterial colonization. MI (mitral insufficiency) (a) has a higher risk due to regurgitant jets causing endothelial damage. PDA (c) carries an intermediate-to-high risk because the shunt creates turbulent flow with endothelial damage. VSD (d) carries a high risk due to the high-velocity jet across the ventricular septum."
+  },
+  {
+    "question": "Which enzyme rise earliest in acute myocardial infarction",
+    "options": [
+      "AST",
+      "ALT",
+      "CPK",
+      "LDH"
+    ],
+    "correct": 2,
+    "explanation": "CPK (creatine phosphokinase, specifically CK-MB isoform) rises earliest in acute myocardial infarction, typically within 4-6 hours of symptom onset. AST (a) rises later, peaking at 24-48 hours, and is less specific for MI. ALT (b) is primarily a liver enzyme and is not used for MI diagnosis. LDH (d) rises latest, peaking at 3-6 days, and has largely been replaced by more specific cardiac biomarkers like troponin."
+  },
+  {
+    "question": "Which of the following beta blockers is used in heart failure",
+    "options": [
+      "Carvedilol",
+      "Atenolol",
+      "Labetalol",
+      "Pindolol"
+    ],
+    "correct": 0,
+    "explanation": "Carvedilol is a beta-blocker specifically approved and used in heart failure. It is a non-selective beta-blocker with additional alpha-1 blocking activity, and large clinical trials (COPERNICUS, CAPRICORN) have demonstrated its mortality benefit in heart failure. Atenolol (b) is a selective beta-1 blocker used for hypertension and angina but not approved for heart failure. Labetalol (c) is used for hypertension, including hypertensive emergencies, but not for heart failure. Pindolol (d) has intrinsic sympathomimetic activity and is not used in heart failure."
+  },
+  {
+    "question": "Drug of choice in acute management of PSVT is",
+    "options": [
+      "Amiodarone",
+      "Verapamil",
+      "Metoprolol",
+      "Adenosine"
+    ],
+    "correct": 3,
+    "explanation": "Adenosine is the drug of choice for acute management of paroxysmal supraventricular tachycardia (PSVT). It works by slowing conduction through the AV node, interrupting the re-entry circuit. Adenosine has an extremely short half-life (<10 seconds), making it safe with minimal side effects. Amiodarone (a) is used for ventricular arrhythmias and rate control but is not first-line for PSVT. Verapamil (b) was previously used but carries risk of hypotension and is slower-acting. Metoprolol (c) can be used but is not the drug of choice for acute PSVT termination."
+  },
+  {
+    "question": "Earliest valvular lesion in acute rheumatic carditis is",
+    "options": [
+      "MS",
+      "AI",
+      "MI",
+      "AS"
+    ],
+    "correct": 2,
+    "explanation": "Mitral insufficiency (MI/mitral regurgitation) is the earliest valvular lesion in acute rheumatic carditis. Acute rheumatic fever causes inflammatory valvulitis, and the mitral valve is most commonly affected. In the acute phase, mitral regurgitation develops due to valvulitis and chordal involvement, while mitral stenosis (a) takes years to develop from chronic scarring and fusion of the commissures. Aortic insufficiency (b) can occur but is less common as the earliest lesion. Aortic stenosis (d) is a late chronic sequela, not an acute lesion."
+  },
+  {
+    "question": "Commonest heart valve abnormality revealed after acute myocardial infarction is",
+    "options": [
+      "AI",
+      "MI",
+      "AS",
+      "AI"
+    ],
+    "correct": 1,
+    "explanation": "Mitral insufficiency (MI/mitral regurgitation) is the commonest heart valve abnormality after acute myocardial infarction. This occurs due to papillary muscle dysfunction or rupture (especially the posteromedial papillary muscle which has single blood supply from the PDA), ischemic mitral valve annular dilation, or left ventricular remodeling causing papillary muscle displacement. AI (aortic insufficiency) (a and d) is not typically caused by MI. AS (aortic stenosis) (c) is a chronic degenerative condition, not caused by acute MI."
+  },
+  {
+    "question": "Which one of the following is the most reliable feature of chest pain secondary to ischemic heart disease?",
+    "options": [
+      "Retrosternal location",
+      "Radiation to the lower jaw",
+      "ECG shows T wave inversion in lead III",
+      "Pain aggravated by heavy meals"
+    ],
+    "correct": 1,
+    "explanation": "Radiation to the lower jaw is the most specific characteristic of angina pain and the most reliable feature of chest pain secondary to ischemic heart disease. Retrosternal location (a), though characteristic of ischemic heart disease, is not specific — it may also occur in other conditions such as esophageal spasm. T wave inversion in lead III (c) can be a normal variant and is not reliable. Pain aggravated by heavy meals (d) can occur in both cardiac and gastrointestinal conditions, making it nonspecific."
+  },
+  {
+    "question": "In cardiopulmonary resuscitation which of the following is true?",
+    "options": [
+      "External cardiac massage should be performed at 30 compressions/min",
+      "Most patients in ventricular fibrillation will respond to 200 J shock",
+      "Adrenaline should not be used in ventricular fibrillation",
+      "Calcium chloride should be given"
+    ],
+    "correct": 1,
+    "explanation": "Most patients in ventricular fibrillation will respond to a 200 J shock. Early defibrillation is the most important determinant of survival in VF. Option (a) is incorrect because external cardiac massage should be done at a rate of 60-80 compressions per minute (current guidelines recommend 100-120/min), not 30/min. Option (c) is incorrect because adrenaline (epinephrine) IS used in VF, particularly for refractory VF after initial failed shocks. Option (d) is incorrect because calcium chloride is ineffective in routine CPR — it is only indicated in calcium channel blocker overdose and after cardiac surgery."
+  },
+  {
+    "question": "Which of the following statements is true regarding infective endocarditis?",
+    "options": [
+      "Can occur on previously normal heart valves",
+      "Can be caused only by bacteria",
+      "Streptococcus fecalis is the commonest pathogen",
+      "Occurs commonly in calcific mitral stenosis"
+    ],
+    "correct": 0,
+    "explanation": "Infective endocarditis can occur on previously normal heart valves, as seen in IV drug addicts who develop right-sided endocarditis on previously normal tricuspid valves. Option (b) is incorrect because IE can be caused by bacteria as well as fungi and rickettsia. Option (c) is incorrect because while Streptococcus fecalis (now called Enterococcus faecalis) is an important cause, it is not the commonest pathogen — Streptococcus viridans is the most common cause of subacute IE, and Staphylococcus aureus is the most common cause of acute IE. Option (d) is incorrect because calcific mitral stenosis is a low-risk lesion for IE (the rough, calcified surface is less conducive to bacterial colonization compared to turbulent flow lesions)."
+  },
+  {
+    "question": "Treatment with thiazide diuretic :",
+    "options": [
+      "Improves glucose tolerance",
+      "Reduces potassium loss",
+      "May precipitate gout",
+      "Reduces renin level"
+    ],
+    "correct": 2,
+    "explanation": "Thiazide diuretics may precipitate gout because they reduce renal excretion of uric acid, causing hyperuricemia which can trigger acute gout attacks. Option (a) is incorrect because thiazides WORSEN glucose tolerance and can precipitate diabetes — they impair insulin secretion and peripheral glucose utilization. Option (b) is incorrect because thiazides cause potassium LOSS (hypokalemia), not reduction in potassium loss. Option (d) is incorrect because thiazides INCREASE renin levels (through volume depletion activating the RAAS system), not reduce them."
+  },
+  {
+    "question": "Accentuation during inspiration characterizes the murmur of :",
+    "options": [
+      "AR",
+      "AS",
+      "TR",
+      "VSD"
+    ],
+    "correct": 2,
+    "explanation": "Accentuation during inspiration characterizes the murmur of tricuspid regurgitation (TR). This phenomenon is known as Carvallo's sign — during inspiration, increased venous return to the right heart increases the regurgitant volume across the tricuspid valve, intensifying the murmur. AR (aortic regurgitation) (a) murmur is typically heard best on expiration with the patient leaning forward. AS (aortic stenosis) (b) murmur is typically louder on expiration. VSD (d) murmur is not specifically accentuated during inspiration."
+  },
+  {
+    "question": "All of the following antiarrhythmic drugs can not be used with heart failure except",
+    "options": [
+      "Verapamil",
+      "Disopyramide",
+      "Quinidine",
+      "Amiodarone"
+    ],
+    "correct": 3,
+    "explanation": "Amiodarone is the only antiarrhythmic drug listed that can be used in heart failure because it does not have significant negative inotropic effects. Most antiarrhythmic drugs have a negative inotropic effect. Verapamil (a) is a calcium channel blocker with significant negative inotropic effects and is contraindicated in heart failure. Disopyramide (b) is a class Ia antiarrhythmic with strong negative inotropic properties. Quinidine (c) is a class Ia antiarrhythmic with negative inotropic effects and proarrhythmic risk."
+  },
+  {
+    "question": "Right ventricular hypertrophy may be present in all of the following conditions except",
+    "options": [
+      "Cor pulmonale",
+      "ASD",
+      "TS",
+      "MS"
+    ],
+    "correct": 2,
+    "explanation": "Tricuspid stenosis (TS) does NOT cause right ventricular hypertrophy because TS obstructs blood flow from the right atrium to the right ventricle, resulting in DECREASED RV filling and volume — the RV receives less blood and therefore does not hypertrophy. Instead, TS causes right ATRIAL enlargement and hypertrophy. Cor pulmonale (a) causes RVH due to pulmonary hypertension creating pressure overload. ASD (b) causes RVH due to right ventricular volume overload from the left-to-right shunt. MS (d) causes RVH indirectly through pulmonary venous hypertension leading to pulmonary arterial hypertension and RV pressure overload."
+  },
+  {
+    "question": "Which of the following is absolute contraindication to thrombolysis for an acute myocardial infarction?",
+    "options": [
+      "Menstruation finished 2 days previously",
+      "Proliferative diabetic retinopathy",
+      "Ischemic stroke 18 months previously",
+      "Total hip replacement 7 days previously"
+    ],
+    "correct": 3,
+    "explanation": "Total hip replacement 7 days previously is an absolute contraindication to thrombolysis because major surgery within the past 2-3 weeks carries an unacceptably high risk of catastrophic bleeding. Menstruation finished 2 days ago (a) is NOT a contraindication — normal menstruation does not increase bleeding risk significantly. Proliferative diabetic retinopathy (b) is a RELATIVE, not absolute, contraindication. Ischemic stroke 18 months previously (c) is not an absolute contraindication — the absolute contraindication is stroke within the past 3-6 months."
+  },
+  {
+    "question": "All of the following are associated with increased rates of myocardial infarction except",
+    "options": [
+      "Hemochromatosis",
+      "SLE",
+      "Antiphospholipid syndrome",
+      "Kawasaki disease"
+    ],
+    "correct": 0,
+    "explanation": "Hemochromatosis is NOT associated with increased rates of myocardial infarction. Hemochromatosis can result in a cardiomyopathy (iron deposition in the myocardium causing dilated or restrictive cardiomyopathy), but it does not increase the risk of MI (which is caused by coronary artery occlusion). SLE (b) is associated with accelerated atherosclerosis and increased MI risk due to chronic inflammation and vasculitis. Antiphospholipid syndrome (c) causes a prothrombotic state with arterial and venous thrombosis, increasing MI risk. Kawasaki disease (d) causes coronary artery aneurysms in children, which can thrombose and cause MI."
+  },
+  {
+    "question": "Cardiac tamponade may occur with all except",
+    "options": [
+      "Tuberculosis",
+      "Rheumatic fever",
+      "Rheumatoid arthritis",
+      "Uremia"
+    ],
+    "correct": 1,
+    "explanation": "Rheumatic fever does NOT typically cause cardiac tamponade. Rheumatic fever causes pericarditis but it is usually fibrinous and rarely produces significant pericardial effusion. Cardiac tamponade requires accumulation of enough fluid in the pericardial space to compromise cardiac filling. Tuberculosis (a) is a classic cause of cardiac tamponade through exudative pericardial effusion. Rheumatoid arthritis (c) can cause pericardial effusion leading to tamponade. Uremia (d) is a well-known cause of pericarditis and pericardial effusion that can progress to tamponade."
+  },
+  {
+    "question": "Coarctation of the aorta",
+    "options": [
+      "Is more common in women",
+      "Is associated with rib notching all 12 ribs on the left",
+      "Rarely causes problems in pediatric life",
+      "Is associated with cerebral aneurysm"
+    ],
+    "correct": 3,
+    "explanation": "Coarctation of the aorta is associated with cerebral (berry) aneurysms. Stroke may result from hypertension or from associated berry aneurysm rupture. Option (a) is incorrect because coarctation is more common in MEN, not women (though it is associated with Turner's syndrome in females). Option (b) is incorrect because rib notching affects ribs 3-8 only, not all 12 ribs, due to collateral circulation through the intercostal arteries. Option (c) is incorrect because coarctation CAN cause heart failure in the neonate, so it certainly causes problems in pediatric life."
+  },
+  {
+    "question": "Chest pain most commonly occurs in",
+    "options": [
+      "MS",
+      "AI",
+      "AS",
+      "TI"
+    ],
+    "correct": 2,
+    "explanation": "Chest pain most commonly occurs in aortic stenosis (AS). The severe LV hypertrophy in AS creates a massive oxygen demand that exceeds supply, causing angina even without coronary artery disease. MS (a) may cause chest discomfort from pulmonary hypertension but true anginal chest pain is uncommon. AI (aortic insufficiency) (b) can cause angina due to reduced diastolic coronary perfusion pressure but this is less common than in AS. TI (tricuspid insufficiency) (d) does not cause chest pain."
+  },
+  {
+    "question": "Digoxin toxicity is more likely with",
+    "options": [
+      "Hyperkalemia",
+      "Hypocalcemia",
+      "Hypomagnesemia",
+      "Spironolactone"
+    ],
+    "correct": 2,
+    "explanation": "Hypomagnesemia makes digoxin toxicity more likely. Hypokalemia, hypomagnesemia, and hypercalcemia all worsen digitalis toxicity. Hypokalemia increases digoxin binding to the Na+/K+-ATPase pump, enhancing its effect. Hypomagnesemia reduces the threshold for digoxin-induced arrhythmias. Hypercalcemia synergizes with digoxin's calcium-mediated inotropic effect. Option (a) is incorrect because hyperkalemia actually DECREASES digoxin binding and toxicity. Option (b) is incorrect because hypocalcemia would reduce, not increase, digoxin toxicity (hypercalcemia worsens it). Option (d) spironolactone can increase digoxin levels but the primary electrolyte disturbance directly worsening toxicity is hypomagnesemia."
+  },
+  {
+    "question": "Which of the following factors is most suggestive of a diagnosis of aortic dissection?",
+    "options": [
+      "Profound vomiting prior to pain",
+      "History of syphilis",
+      "Down's syndrome",
+      "Hypotension"
+    ],
+    "correct": 1,
+    "explanation": "History of syphilis is most suggestive of aortic dissection among the options. Dissection of the aorta is associated with hypertension, cocaine abuse, trauma, and syphilis (which causes aortic wall weakening through syphilitic aortitis). By association with coarctation, it is also associated with Turner's syndrome, but NOT Down's syndrome (c). Profound vomiting prior to pain (a) is not associated with dissection. Hypotension (d) is not typical — most patients with dissection have HYPERTENSION, and hypotension would be a late, ominous sign suggesting rupture."
+  },
+  {
+    "question": "Ventricular septal defect is associated with",
+    "options": [
+      "Pansystolic murmur once Eisenmenger's syndrome has occurred",
+      "Lithium exposure in utero",
+      "Aortic regurge",
+      "Heart failure on the first day of life"
+    ],
+    "correct": 2,
+    "explanation": "Ventricular septal defect (VSD) is associated with aortic regurgitation. Sub-aortic VSD can lead to prolapse of the aortic valve cusp into the defect, causing AR. Option (a) is incorrect because the pansystolic murmur of VSD DISAPPEARS with the onset of Eisenmenger's syndrome as pressures equalize between the ventricles. Option (b) is incorrect because lithium exposure during development is associated with Ebstein's anomaly (tricuspid regurgitation), not VSD. Option (d) is incorrect because VSD does not typically cause heart failure on the first day of life — the shunt increases as pulmonary vascular resistance drops over the first few weeks."
+  },
+  {
+    "question": "What is the most appropriate initial management of propranolol toxicity?",
+    "options": [
+      "IV atropine",
+      "IV adrenaline",
+      "IV glucagon",
+      "IV ciprofloxacin"
+    ],
+    "correct": 2,
+    "explanation": "IV glucagon is the drug of choice for beta-blocker (propranolol) toxicity. Glucagon stimulates production of cAMP through non-adrenergic pathways, resulting in enhanced myocardial contractility, heart rate, and atrioventricular conduction — bypassing the blocked beta-receptors. IV atropine (a) may help with bradycardia but does not address the negative inotropic effect. IV adrenaline (b) can be used but acts through beta-receptors which are blocked, requiring very high doses. IV ciprofloxacin (d) is an antibiotic and has no role in beta-blocker toxicity."
+  },
+  {
+    "question": "Signs of cardiac tamponade include all of the following except",
+    "options": [
+      "Paradoxical pulse",
+      "Hypotension",
+      "Pericardial knock",
+      "Tachycardia"
+    ],
+    "correct": 2,
+    "explanation": "Pericardial knock is NOT a sign of cardiac tamponade — it occurs in constrictive pericarditis. A pericardial knock is a high-pitched early diastolic sound due to sudden halting of the relaxing ventricles by a rigid pericardium, which is the hallmark of constriction, not tamponade. Paradoxical pulse (a) (pulsus paradoxus — drop in systolic BP >10 mmHg during inspiration) is a key sign of tamponade. Hypotension (b) occurs due to impaired cardiac filling and reduced stroke volume. Tachycardia (d) is a compensatory response to maintain cardiac output."
+  },
+  {
+    "question": "Reversed splitting second heart sound occurs in all of the following except",
+    "options": [
+      "LBBB",
+      "AS",
+      "ASD",
+      "Systemic hypertension"
+    ],
+    "correct": 2,
+    "explanation": "ASD does NOT cause reversed splitting of S2 — it causes WIDE FIXED splitting. Reversed (paradoxical) splitting of S2 occurs when aortic valve closure (A2) is delayed until after pulmonary valve closure (P2), resulting in P2-A2 sequence that reverses to A2-P2 during inspiration. This occurs in conditions that delay LV ejection: LBBB (a) delays LV activation, AS (b) prolongs LV ejection time, and systemic hypertension (d) increases afterload prolonging ejection. ASD (c) causes wide fixed splitting because the right ventricle is always volume-overloaded, not reversed splitting."
+  },
+  {
+    "question": "Which of the following is an obligatory sign of malignant hypertension",
+    "options": [
+      "Renal failure",
+      "Papilledema",
+      "Heart failure",
+      "Arterio-venous crossing changes"
+    ],
+    "correct": 1,
+    "explanation": "Papilledema is an obligatory sign of malignant hypertension. Malignant hypertension is defined as hypertensive crisis with grade 4 retinopathy (papilledema). Accelerated hypertension is defined as hypertension with grade 3 retinopathy (without papilledema). Renal failure (a) commonly occurs but is not obligatory — it may develop over time. Heart failure (c) is a possible complication but not a defining feature. Arteriovenous crossing changes (d) are seen in grade 1-2 retinopathy and are not specific to malignant hypertension."
+  },
+  {
+    "question": "A hypertensive patient showing a hypertensive crisis in response to propranolol most probably has :",
+    "options": [
+      "Pheochromocytoma",
+      "Conn's syndrome",
+      "Renovascular hypertension",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "A hypertensive patient showing hypertensive crisis in response to propranolol most probably has pheochromocytoma. In pheochromocytoma, there is excessive catecholamine secretion (both epinephrine and norepinephrine). Beta-blockade with propranolol blocks the vasodilatory beta-2 effects of epinephrine, leaving unopposed alpha-receptor stimulation by norepinephrine, which causes severe vasoconstriction and hypertensive crisis. This is why alpha-blockade must always be established BEFORE beta-blockade in pheochromocytoma. Conn's syndrome (b) causes hypertension through aldosterone excess, not catecholamines. Renovascular hypertension (c) is mediated by renin-angiotensin, not catecholamines."
+  },
+  {
+    "question": "All of the following are used in the treatment of severe left ventricular failure except :",
+    "options": [
+      "Disopyramide",
+      "Nitroprusside",
+      "Dobutamine",
+      "Mechanical ventilation"
+    ],
+    "correct": 0,
+    "explanation": "Disopyramide is NOT used in the treatment of severe left ventricular failure. Disopyramide is a class Ia antiarrhythmic drug with significant negative inotropic effects — it weakens myocardial contractility. Antiarrhythmic drugs are generally negatively inotropic and should be avoided as much as possible in heart failure. Nitroprusside (b) is a potent vasodilator that reduces both preload and afterload, improving cardiac output in severe LVF. Dobutamine (c) is a positive inotrope that increases myocardial contractility. Mechanical ventilation (d) reduces the work of breathing and improves oxygenation in severe LVF with pulmonary edema."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

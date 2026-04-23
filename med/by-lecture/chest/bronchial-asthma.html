@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bronchial Asthma</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobd6yx58utj0",
+  "title": "Bronchial Asthma",
+  "description": "Question on every Chest lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Extrinsic asthma is characterized by which one of the followings: (10-2020)",
+    "options": [
+      "Childhood onset",
+      "Negative family history of allergy",
+      "Negative skin test to common allergens",
+      "Normal serum IgE",
+      "No obvious allergen exposure"
+    ],
+    "correct": 0,
+    "explanation": "[CORRECTED FROM ANSWER KEY] Extrinsic (allergic) asthma is classically characterized by childhood onset, positive family history of allergy, positive skin tests, and elevated IgE. Childhood onset is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Which one of the following drugs is a long acting beta-2 agonist?",
+    "options": [
+      "Salbutamol",
+      "Terbutaline",
+      "Formoterol",
+      "Orciprenaline",
+      "Ipratropium bromide"
+    ],
+    "correct": 2,
+    "explanation": "Formoterol is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which medication will provide the patient with the fastest relief form these signs and symptoms of an asthma attack: (10-2019)",
+    "options": [
+      "Theophylline",
+      "Tiotropium",
+      "Albuterol",
+      "Cromolyn",
+      "Formoterol"
+    ],
+    "correct": 2,
+    "explanation": "Albuterol is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "What is the warning sign you should take care when you admit a patient with sever attack of bronchial asthma: (10-2019)",
+    "options": [
+      "Easily fatigued with physical activity",
+      "Reduced peak flow meter reading",
+      "Cyanosis",
+      "Wheezing with activity",
+      "Nighttime coughing"
+    ],
+    "correct": 2,
+    "explanation": "Cyanosis is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Which of the following drug is a long acting B2-agonist: (4-2019)",
+    "options": [
+      "Salbutamol",
+      "Terbutaline",
+      "Formoterol",
+      "Orciprenaline",
+      "Noradrenalin"
+    ],
+    "correct": 2,
+    "explanation": "Formoterol is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "To differentiate between asthma & COPD by spirometry we choose: (4-2019)",
+    "options": [
+      "Reversibility test",
+      "Reduced FEV1",
+      "Reduced FVC",
+      "Reduced TLC",
+      "Increased FVC"
+    ],
+    "correct": 0,
+    "explanation": "Reversibility test is correct. COPD is defined by persistent respiratory symptoms and airflow limitation due to airway and/or alveolar abnormalities."
+  },
+  {
+    "question": "Extrinsic asthma Is characterized by:",
+    "options": [
+      "Non obvious precipitating factor",
+      "Childhood onset",
+      "Negative family history of allergy & negative skin test to common allergens",
+      "Absent atopic tendency"
+    ],
+    "correct": 1,
+    "explanation": "Childhood onset is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "In a case of bronchial asthma, pulmonary function tests are characterized by any of the following Except: (3-2017)",
+    "options": [
+      "Restrictive ventilatory defect",
+      "Obstructive ventilatory defect",
+      "During variation in peak expiratory flow rate with morning dipping",
+      "Significant reversibility which is indicated by an increase of > 12% or 100 ml FEV1 after a short acting B2 agonist"
+    ],
+    "correct": 0,
+    "explanation": "Restrictive ventilatory defect is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "In bronchial asthma; controller medications include all of the following drugs Except: (3-2017)",
+    "options": [
+      "Inhaled corticosteroid",
+      "Short acting Br-agonist",
+      "Leukotriene modifiers",
+      "Sodium cromoglycate",
+      "Neochrome sodium"
+    ],
+    "correct": 1,
+    "explanation": "Short acting Br-agonist is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Which one of the following is NOT a criterion of acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration",
+      "Respiratory rate > 30/min",
+      "Pulse < 100/min",
+      "Pulsus paradoxus with drop of systolic blood pressure > 10 mmHg"
+    ],
+    "correct": 2,
+    "explanation": "Pulse < 100/min is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Indications of mechanical ventilation in bronchial asthma include the following: (10-2017)",
+    "options": [
+      "Respiratory rate < 20 breath per minute",
+      "Expiratory wheezes",
+      "No previous history of mechanical ventilation",
+      "Hypercapnia"
+    ],
+    "correct": 3,
+    "explanation": "Hypercapnia is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Which of the following is not a criterion for acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration",
+      "Respiratory rate > 30/min",
+      "Pulse < 100 bpm",
+      "Pulsus paradoxus"
+    ],
+    "correct": 2,
+    "explanation": "Pulse < 100 bpm is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Detection of allergen can be done by any of the following Except:",
+    "options": [
+      "Skin-prick tests",
+      "Chest x-ray",
+      "Detection of total & specific IgE",
+      "Specific bronchoprovocation test using inhaled antigens"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Detection of total & specific IgE. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Which of the following is not a criterion for acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration",
+      "Respiratory rate 30/min",
+      "Pulse < 100 bpm",
+      "Pulsus paradoxus"
+    ],
+    "correct": 2,
+    "explanation": "Pulse < 100 bpm is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Extrinsic asthma is characterized by which one of the followings:",
+    "options": [
+      "Childhood onset",
+      "Negative family history of allergy",
+      "Negative skin test to common allergens",
+      "Normal serum IgE"
+    ],
+    "correct": 0,
+    "explanation": "Childhood onset is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Which one of the following is not a criterion of acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration",
+      "Respiratory rate > 30 /min",
+      "Pulse < 100 /min",
+      "Pulsus paradoxus with drop of systolic blood pressure 10 mmHg"
+    ],
+    "correct": 2,
+    "explanation": "Pulse < 100 /min is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "EXTRENSIC asthma is characterized by:",
+    "options": [
+      "Non obvious precipitating factor",
+      "Childhood onset",
+      "Negative family history of allergy",
+      "Negative skin test to common allergens",
+      "Absent atopic tendency"
+    ],
+    "correct": 1,
+    "explanation": "Childhood onset is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "As regard bronchial asthma; which of the following statements is correct? (10-2016)",
+    "options": [
+      "Parasympathetic stimulation leads to bronchodilatation",
+      "Parasympathetic stimulation decreases mucous secretions",
+      "Sympathetic stimulation causes bronchoconstriction",
+      "Immunological mechanism is important in the genesis of the disease in atopic patients"
+    ],
+    "correct": 3,
+    "explanation": "Immunological mechanism is important in the genesis of the disease in atopic patients is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "As regard theophylline in bronchial asthma, which statement is correct? (10-2018)",
+    "options": [
+      "Dose of oral theophylline: 12 mg/kg/day in divided doses",
+      "Safe on the heart with any serum level",
+      "Serum level of theophylline should be measured not exceed 20 ug/dl",
+      "Very safe on the stomach"
+    ],
+    "correct": 2,
+    "explanation": "Serum level of theophylline should be measured not exceed 20 ug/dl is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Which of the following is not a criterion for acute severe asthma? (10-2018)",
+    "options": [
+      "Use of accessory muscles of respiration",
+      "Respiratory rate > 30/min",
+      "Pulse < 100 bpm",
+      "Pulsus paradoxus",
+      "The patient is unable to complete one sentence"
+    ],
+    "correct": 2,
+    "explanation": "Pulse < 100 bpm is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Bronchial breath sound is found in all EXCEPT:",
+    "options": [
+      "Collapse with patent bronchus.",
+      "bronchial asthma.",
+      "superficial, big, cavity with patent bronchus.",
+      "bronchopleural fistula."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is bronchial asthma.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Which does not belong to the triad of symptomatic bronchial asthma:",
+    "options": [
+      "Chest pain.",
+      "Dyspnea.",
+      "Wheeze.",
+      "Cough."
+    ],
+    "correct": 0,
+    "explanation": "Chest pain. is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Which of the following occupations is associated with new onset asthma?",
+    "options": [
+      "Paint sprayer.",
+      "Insulation installer.",
+      "Typist.",
+      "Truck driver."
+    ],
+    "correct": 0,
+    "explanation": "Paint sprayer. is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "In asthma:",
+    "options": [
+      "Peak flow rate is low during exacerbations",
+      "FEV1: FVC ratio is normal",
+      "FVC is low",
+      "JVP is elevated"
+    ],
+    "correct": 1,
+    "explanation": "FEV1: FVC ratio is normal is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "In asthma:",
+    "options": [
+      "Airway hyper-responsiveness is a major feature",
+      "Exacerbations are not precipitated by particular weather conditions",
+      "Attacks can be precipitated by use of paracetamol",
+      "Peak flow is elevated during exacerbations"
+    ],
+    "correct": 0,
+    "explanation": "Airway hyper-responsiveness is a major feature is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "A 23-year-old female has intermittent episodes of breathlessness and cough. She has a past history of eczema and her FEV1/FVC ratio is reduced. What is the most likely diagnosis?",
+    "options": [
+      "Asthma",
+      "Chronic obstructive pulmonary disease",
+      "Cryptogenic fibrosing alveolitis",
+      "Heart failure"
+    ],
+    "correct": 0,
+    "explanation": "Asthma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Exacerbation agents for bronchial asthma include:",
+    "options": [
+      "Some drugs",
+      "Cockroach",
+      "Food additives",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "All of the above is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "A 38-year-old male presents with episodic wheeze and nonproductive cough which occurs particularly at night. He has been employed in the plastics industry. He is worried about relation of these symptoms to his work. Which of the following confirms his worries?",
+    "options": [
+      "Absent family history of asthma.",
+      "Commencement of symptoms on his first day of work",
+      "Elevated serum IgE concentration",
+      "Improved symptomatology when being on holiday",
+      "Increased bronchial reactivity"
+    ],
+    "correct": 3,
+    "explanation": "Improved symptomatology when being on holiday is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which does not belong to the clinical manifestation of bronchial asthma:",
+    "options": [
+      "Chest pain",
+      "Dyspnea",
+      "Wheeze",
+      "Cough",
+      "Rhonchi"
+    ],
+    "correct": 0,
+    "explanation": "Chest pain is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "In allergic asthma, the most important mediators for pathogenesis is:",
+    "options": [
+      "Thromboxane A2",
+      "Leukotrienes",
+      "Prostaglandins",
+      "Bradykinin",
+      "Neuropeptides"
+    ],
+    "correct": 1,
+    "explanation": "Leukotrienes is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "All of the following may aggravate bronchial asthma except:",
+    "options": [
+      "Pituitary snuff",
+      "Acetylsalicylic acid",
+      "B-blockers",
+      "Sodium salicylate"
+    ],
+    "correct": 3,
+    "explanation": "Sodium salicylate is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Allergic bronchopulmonary aspergillosis occurs in:",
+    "options": [
+      "Pulmonary tuberculous cavity",
+      "Cystic lesion of sarcoid",
+      "Atopic asthmatic person",
+      "In immunocompromised host"
+    ],
+    "correct": 2,
+    "explanation": "Atopic asthmatic person is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which does not belong to the triad of symptomatic bronchial asthma:",
+    "options": [
+      "Chest pain",
+      "Dyspnoea",
+      "Wheeze",
+      "Cough"
+    ],
+    "correct": 0,
+    "explanation": "Chest pain is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Laennec's pearls and Curschmann's spirals in sputum are characteristically seen in:",
+    "options": [
+      "Pulmonary tuberculosis",
+      "Farmer's lung",
+      "Chronic bronchitis",
+      "Bronchial asthma"
+    ],
+    "correct": 3,
+    "explanation": "Bronchial asthma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which is not in the list of bedside severity assessment of bronchial asthma:",
+    "options": [
+      "Kussmaul's sign",
+      "Pulsus paradoxus",
+      "Silent chest",
+      "Central cyanosis"
+    ],
+    "correct": 0,
+    "explanation": "Kussmaul's sign is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "Your patient a 53-year-old overweight woman presents with increasing asthma symptoms. She also reports heartburn. What would you accept the physician to prescribe? (10-2019)",
+    "options": [
+      "Proton pump inhibitor.",
+      "Initiate corticosteroid inhales.",
+      "Antihistamines.",
+      "NSAID.",
+      "Start long acting beta 2 agonist"
+    ],
+    "correct": 0,
+    "explanation": "Proton pump inhibitor. is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "The initial management of severe acute bronchial asthma does not include: (10-2015)",
+    "options": [
+      "20% oxygen delivered by a controlled flow mask.",
+      "Salbutamol inhalation.",
+      "Hydrocortisone 200 mg iv and prednisolone 40 mg orally.",
+      "Arterial blood gas analysis.",
+      "Chest x-ray."
+    ],
+    "correct": 2,
+    "explanation": "Hydrocortisone 200 mg iv and prednisolone 40 mg orally. is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "Partly controlled asthma is characterized by any of the following except: (3-2015)",
+    "options": [
+      "Daytime symptoms more than twice/week.",
+      "Any limitations of activities.",
+      "Any nocturnal symptoms/awakening.",
+      "Need for reliever/rescue treatment more than twice/week.",
+      "Normal lung function."
+    ],
+    "correct": 4,
+    "explanation": "Normal lung function. is NOT characteristic of asthma. Asthma is defined by history of respiratory symptoms (wheeze, shortness of breath, chest tightness, cough) that vary over time and in intensity, together with variable expiratory airflow limitation."
+  },
+  {
+    "question": "In acute severe asthma (T/F): Respiratory distress at rest.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "In acute severe asthma (T/F): Pulse rate > 80 per minute.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "In acute severe asthma (T/F): Respiratory rate > 30/minute.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "In acute severe asthma (T/F): Vesicular breath sounds",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "A 12-year-old girl with slight wheeze and shortness of breath despite inhaled salbutamol.",
+    "options": [
+      "Home 100% oxygen",
+      "Inhaled beclomethasone",
+      "Inhaled ipratropium bromide",
+      "Inhaled Salbutamol",
+      "Inhaled Salbutamol with spacer",
+      "Inhaled salmeterol",
+      "Inhaled sodium cromoglycate",
+      "Low dose oral aminophylline",
+      "Nebulized ipratropium bromide",
+      "Nebulized salbutamol",
+      "Oral prednisolone",
+      "Oral sodium cromoglycate"
+    ],
+    "correct": 4,
+    "explanation": "Inhaled Salbutamol with spacer is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 22-year-old student with mild asthma that needs treatment for occasional early morning wheeze.",
+    "options": [
+      "Home 100% oxygen",
+      "Inhaled beclomethasone",
+      "Inhaled ipratropium bromide",
+      "Inhaled Salbutamol",
+      "Inhaled Salbutamol with spacer",
+      "Inhaled salmeterol",
+      "Inhaled sodium cromoglycate",
+      "Low dose oral aminophylline",
+      "Nebulized ipratropium bromide",
+      "Nebulized salbutamol",
+      "Oral prednisolone",
+      "Oral sodium cromoglycate"
+    ],
+    "correct": 3,
+    "explanation": "Inhaled Salbutamol is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "A 17-year-old student complains that he has to use his salbutamol inhaler regularly to control wheezing.",
+    "options": [
+      "Home 100% oxygen",
+      "Inhaled beclomethasone",
+      "Inhaled ipratropium bromide",
+      "Inhaled Salbutamol",
+      "Inhaled Salbutamol with spacer",
+      "Inhaled salmeterol",
+      "Inhaled sodium cromoglycate",
+      "Low dose oral aminophylline",
+      "Nebulized ipratropium bromide",
+      "Nebulized salbutamol",
+      "Oral prednisolone",
+      "Oral sodium cromoglycate"
+    ],
+    "correct": 1,
+    "explanation": "Inhaled beclomethasone is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 32-year-old patient taking maximum dose-inhaled therapy and slow release theophylline shows persistently inadequate control of symptoms.",
+    "options": [
+      "Home 100% oxygen",
+      "Inhaled beclomethasone",
+      "Inhaled ipratropium bromide",
+      "Inhaled Salbutamol",
+      "Inhaled Salbutamol with spacer",
+      "Inhaled salmeterol",
+      "Inhaled sodium cromoglycate",
+      "Low dose oral aminophylline",
+      "Nebulized ipratropium bromide",
+      "Nebulized salbutamol",
+      "Oral prednisolone",
+      "Oral sodium cromoglycate"
+    ],
+    "correct": 10,
+    "explanation": "Oral prednisolone is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 25-year-old woman requires add-on therapy because inhaled beclomethasone and salbutamol do not adequately combat her symptoms.",
+    "options": [
+      "Home 100% oxygen",
+      "Inhaled beclomethasone",
+      "Inhaled ipratropium bromide",
+      "Inhaled Salbutamol",
+      "Inhaled Salbutamol with spacer",
+      "Inhaled salmeterol",
+      "Inhaled sodium cromoglycate",
+      "Low dose oral aminophylline",
+      "Nebulized ipratropium bromide",
+      "Nebulized salbutamol",
+      "Oral prednisolone",
+      "Oral sodium cromoglycate"
+    ],
+    "correct": 5,
+    "explanation": "The correct answer is Inhaled salmeterol. This option is the exception among the choices given for the condition described."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chapter 3: Emergency</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "moba6xftg2uea",
+  "title": "Chapter 3: Emergency",
+  "description": "Questions on each pediatric chapter",
+  "icon": "👶"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "In drowning; what is the most urgent immediate line of management at the scene?",
+    "options": [
+      "Chest compression",
+      "Draining water from the stomach",
+      "Mouth to mouth breathing",
+      "Take of wet clothing",
+      "Hit the victim on the head to make him unconscious"
+    ],
+    "correct": 2,
+    "explanation": "In drowning, cardiac arrest is SECONDARY to respiratory arrest from hypoxia. Priority = RESCUE BREATHING (mouth-to-mouth ventilation). This is the ONLY exception to the 'compressions first' rule in standard BLS. Removing wet clothing and warming are secondary. Heimlich manoeuvre is NOT recommended."
+  },
+  {
+    "question": "Regarding disorders of the acid base balance; what is the compensatory mechanism that takes place to keep the pH normal when there is bicarbonate loss in urine? (12-2018 / 4-2017)",
+    "options": [
+      "Extracellular shift of potassium",
+      "Hyperchloraemia",
+      "Hyperventilation",
+      "Loss of organic acid in urine",
+      "Reduction in the urine output"
+    ],
+    "correct": 2,
+    "explanation": "Loss of HCO₃⁻ in urine (RTA, diarrhoea) → metabolic acidosis → respiratory COMPENSATION by HYPERVENTILATION → ↓PaCO₂ → partially corrects pH. Winter's formula: expected PaCO₂ = 1.5 × HCO₃⁻ + 8 ± 2."
+  },
+  {
+    "question": "Which of the following is an early manifestation of hypoxemia in young infants?",
+    "options": [
+      "Cyanosis",
+      "Glasgow coma score of six",
+      "Irregular breathing",
+      "Irritability",
+      "Slow heart rate"
+    ],
+    "correct": 3,
+    "explanation": "Young infants: IRRITABILITY is the earliest sign of hypoxaemia (cerebral hypoxia → CNS stimulation), followed by tachypnoea and tachycardia. CYANOSIS is LATE (requires ≥5 g/dL deoxyhaemoglobin to be visible). Bradycardia and irregular breathing are preterminal signs."
+  },
+  {
+    "question": "In metabolic disorders; which of the following disorders is most likely to be associated with cerebral edema if improperly treated? (12-2018 / 4-2017)",
+    "options": [
+      "Hyperkalemia",
+      "Hypernatremia",
+      "Hypokalemia",
+      "Hyponatremia",
+      "Respiratory acidosis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Hypernatremia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following causes normal anion gap metabolic acidosis: (4-2018)",
+    "options": [
+      "Diabetic ketoacidosis",
+      "Renal tubular acidosis",
+      "Lactic acidosis",
+      "Salicylate poisoning",
+      "Methanol ingestion"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Renal tubular acidosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In pediatric shock; which of the following is an early sign? (8-2020 / 12-2018)",
+    "options": [
+      "Hypotension",
+      "Disturbed consciousness level",
+      "Cheyne-Stoke breathing",
+      "Tachycardia",
+      "Coma"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Tachycardia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following can cause unilateral dilated fixed pupil: (4-2018)",
+    "options": [
+      "Narcotics",
+      "Organophosphate",
+      "Anticholinergics",
+      "Tentorial herniation",
+      "Midbrain dysfunction"
+    ],
+    "correct": 3,
+    "explanation": "Transtentorial (uncal) herniation compresses ipsilateral CN III (parasympathetic fibres on the outer surface) → dilated fixed pupil IPSILATERAL to the lesion. Bilateral dilated = pontine/anoxic injury. Organophosphates → bilateral miosis (cholinergic). Anticholinergics → bilateral mydriasis. Narcotics → bilateral miosis."
+  },
+  {
+    "question": "Raised intracranial tension (ICP) in children is defined as: (12-2018)",
+    "options": [
+      "Increased ICP more than 8 mmHg for more than one day",
+      "Increased ICP more than 6 mmHg for more than one hour",
+      "Increased ICP more than 10 mmHg for more than one minute",
+      "Increased ICP more than 20 mmHg for more than five minute",
+      "Increased ICP more than 10 mmHg for more than one hour"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Increased ICP more than 20 mmHg for more than five minute. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In Basic life support, immobilize the cervical spine: (4-2018)",
+    "options": [
+      "To get the sniffing position",
+      "To fix oral airway",
+      "To clear the oropharynx",
+      "If spinal cord injury is a possibility",
+      "To start cardiac compression"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: If spinal cord injury is a possibility. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which disease of the following can cause distributive shock? (4-2018)",
+    "options": [
+      "Cardiac tamponade",
+      "Dehydration",
+      "Aortic stenosis",
+      "Early sepsis",
+      "Tension pneumothorax"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Early sepsis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is associated with a normal anion gap? (12-2019 / 12-2017)",
+    "options": [
+      "Acute gastroenteritis",
+      "Diabetic ketoacidosis",
+      "Methanol ingestion",
+      "Lactic acidosis",
+      "Salicylate poisoning"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Acute gastroenteritis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "During early compensated shock, there is: (12-2017 / 4-2018)",
+    "options": [
+      "Capillary refill time > 5 seconds",
+      "Bradycardia",
+      "Altered consciousness",
+      "Normal blood pressure",
+      "Low blood pressure"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Normal blood pressure. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following causes of shock is most likely to be associated with an enlarged tender liver & raised jugular venous pressure? (12-2017)",
+    "options": [
+      "Acute blood loss",
+      "Anaphylaxis",
+      "Gastroenteritis with severe dehydration",
+      "Meningococcal septicemia",
+      "Viral myocarditis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Viral myocarditis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A head injured patient, who opens eyes to painful stimuli, is confuses & localizes to pain. His Glasgow coma score is: (12-2019 / 4-2018 / 12-2016)",
+    "options": [
+      "7",
+      "9",
+      "11",
+      "13",
+      "6"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 11. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is among the early manifestations of shock in children?",
+    "options": [
+      "Cyanosis",
+      "Diminished urine output",
+      "Glasgow come score of six",
+      "Low oxygen saturation on pulse oximetry",
+      "Systolic blood pressure less than the 2nd percentile of age"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Diminished urine output. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In hyperkalemia. Which of the following is associated with increase in the total body potassium? (12-2019 / 4-2018)",
+    "options": [
+      "Acute hemolysis",
+      "Crash syndrome",
+      "Metabolic acidosis",
+      "Tumor lysis syndrome",
+      "Addison's disease"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Addison's disease. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following variables is directly proportional to the acidity of the blood? (4-2017)",
+    "options": [
+      "Blood pH",
+      "Hydrogen ion concentration",
+      "Serum bicarbonate level",
+      "The anion gap",
+      "The blood chloride level"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Hydrogen ion concentration. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In hyperkalemia. Which of the following is associated with increase in the total body potassium? (4-2017)",
+    "options": [
+      "Acute hemolysis",
+      "Crash syndrome",
+      "Hypoaldosteronism",
+      "Metabolic acidosis",
+      "Tumor lysis syndrome"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Hypoaldosteronism. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In hypernatremia. What is the maximum accepted rate of drop of serum sodium per 24 hours? (4-2017)",
+    "options": [
+      "8 mmol/L",
+      "12 mmol/L",
+      "16 mmol/L",
+      "20 mmol/L",
+      "24 mmol/L"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: 12 mmol/L. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Shock associated with increased central venous pressure includes: (12-2016)",
+    "options": [
+      "Cardiogenic",
+      "Hypovolemic",
+      "Septic",
+      "Distributive",
+      "Anaphylactic"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Cardiogenic. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "During treatment of metabolic acidosis. What is the expected change in the serum potassium level? (8-2020 / 4-2019 / 4-2017)",
+    "options": [
+      "It will drop",
+      "It will initially drop then rise",
+      "It will initially rise then drop",
+      "It will remain the same",
+      "It will rise"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: It will drop. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In pediatric shock. Which of the following is a cause of obstructive shock: (4-2017)",
+    "options": [
+      "Myocardial infraction",
+      "Myocarditis",
+      "Severe aortic stenosis",
+      "Severe mitral regurgitation",
+      "Dehydration"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Severe aortic stenosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following can cause hyperkalemia without potassium excess: (4-2019 / 4-2016)",
+    "options": [
+      "Addison's disease",
+      "Hypoaldosteronism",
+      "Renal failure",
+      "Potassium sparing diuretics",
+      "Metabolic acidosis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Metabolic acidosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding sodium homeostasis. What it the volume of distribution of sodium? (4-2019 / 4-2017)",
+    "options": [
+      "0.2",
+      "0.3",
+      "0.4",
+      "0.5",
+      "0.6"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: 0.6. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In hyperkalemia, which of the following lines of treatment antagonizes the direct effect of potassium on the heart: (8-2020 / 12-2015 / 4-2014)",
+    "options": [
+      "Cation exchange resin",
+      "Inhaled Beta 2 agonist",
+      "IV calcium gluconate",
+      "IV insulin/glucose mixture infusion",
+      "IV sodium bicarbonate"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: IV calcium gluconate. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A child has just been intubated because of cardiopulmonary arrest. The air entry is unequal on both sides of the chest. What is urgently needed to be done?",
+    "options": [
+      "Get a chest X ray done urgently",
+      "Ignore & continue resuscitation",
+      "Suction the endotracheal tube",
+      "Take the tube out & re-intubate",
+      "Pull the tube out 1 cm & re-check"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Pull the tube out 1 cm & re-check. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 3 years old child presents with prolonged diarrhea. Serum sodium on admission is 115 mEq/L, urinary excretion of sodium is 8 mEq/L. What is the most accepted explanation of the sodium abnormality in this child? (4-2017)",
+    "options": [
+      "Excess sodium & water with more water than sodium",
+      "Excess use of oral rehydration therapy",
+      "Sodium depletion",
+      "Water deficit",
+      "Increased anti-diuretic hormone level"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Sodium depletion. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In renal tubular acidosis, acidosis is associated with which of the following:",
+    "options": [
+      "Hyperchloremia",
+      "Hyperkalemia",
+      "Hypernatremia",
+      "Increase in the unmeasured cations",
+      "Wide anion gap"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Hyperchloremia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A six-month-old infant develops cardiac arrest following severe pneumonia. Which of the following is the ideal airway opening maneuver? (12-2019 / 12-2015)",
+    "options": [
+      "Jaw thrust",
+      "Head tilt chin lift to neutral position",
+      "Head tilt chin lift to sniffing position",
+      "Look, Listen & feel",
+      "Mouth to mouth & nose breathing"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Head tilt chin lift to neutral position. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The appropriate cuff width for measurement of arterial blood pressure in a child with mid-arm circumference (15 cm) & a distance between acromion & olecraneon (13 cm) is: (4-2019 / 4-2017)",
+    "options": [
+      "3 cm",
+      "4.5 cm",
+      "6 cm",
+      "7.5 cm",
+      "9 cm"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 6 cm. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 12-month-old receives the MMR vaccine. He suddenly becomes flushed tachycardiac, tachypneic with weak peripheral pulsation & deteriorating level of consciousness. What is the likely explanation? (4-2019)",
+    "options": [
+      "Cardiogenic shock",
+      "Distributive shock",
+      "Hypovolemic shock",
+      "Anaphylactic shock",
+      "Obstructive shock"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Anaphylactic shock. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following can be a cause of obstructive shock in children? (8-2020)",
+    "options": [
+      "Anaphylaxis",
+      "Myocarditis",
+      "Severe aortic stenosis",
+      "Severe mitral regurge",
+      "Dehydration"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Severe aortic stenosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is anion gap? (12-2013)",
+    "options": [
+      "The difference between positively & negatively charged molecules in plasma",
+      "The difference between sodium & unmeasured negatively charged molecules",
+      "The difference between unmeasured positively & negatively charged molecules in plasma",
+      "The difference between sodium & bicarbonate levels",
+      "The difference between bicarbonate & chloride levels"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: The difference between unmeasured positively & negatively charged molecules in plasma. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Child aged 4 years, the most suitable size (ID) of the endotracheal tube is (4-2015)",
+    "options": [
+      "ID 5",
+      "ID 4",
+      "ID 7",
+      "ID 6",
+      "ID 3"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: ID 5. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following scores is used to evaluate level of consciousness in children: (8-2020 / 12-2013)",
+    "options": [
+      "AVPU score",
+      "MODS score",
+      "OSCE score",
+      "PELOD score",
+      "PRISM score"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: AVPU score. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the role of calcium gluconate during treatment of hyperkalemia? (4-2019 / 4-2015)",
+    "options": [
+      "To act as an inotrope",
+      "To enhance the excretion of potassium by competitive inhibition at renal tubules",
+      "To enhance the excretion of potassium in stool via a cAMP-dependent mechanism",
+      "To promote intracellular shift of potassium",
+      "To protect the heart form the effect of excess potassium"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: To protect the heart form the effect of excess potassium. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Dilutional hyponatremia is present in: (12-2014)",
+    "options": [
+      "Heart failure",
+      "Respiratory failure",
+      "Nutritional edema",
+      "Inadequate breast-feeding in infants",
+      "Small dose of furosemide"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Heart failure. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which one of the following is the most common cause of shock among Egyptian children: (12-2014)",
+    "options": [
+      "Anaphylaxis",
+      "Diarrhea",
+      "Drug overdose",
+      "Trauma",
+      "Viral myocarditis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Diarrhea. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Heimlich maneuver is used for which of the following purposes: (8-2020 / 12-2014)",
+    "options": [
+      "Assessing if the child is breathing or not",
+      "Expelling a foreign body in the airway in the conscious child",
+      "Chest compression in a large child to ensure adequate compression",
+      "Opening airway in presence of possible cervical spine injury",
+      "Restoring spontaneous circulation in children with cardiac arrest"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Expelling a foreign body in the airway in the conscious child. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "During basic life support of a 10-years old child: (4-2016)",
+    "options": [
+      "The priority is to intubate the child",
+      "Chest compressions are indicated if heart sounds are weak",
+      "The ratio of chest compression to ventilation 15:2",
+      "The encircling technique is used to perform chest compression",
+      "Ambo bag can be used with or without oxygen"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Ambo bag can be used with or without oxygen. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the meaning of an oxygen saturation of 90%? (4-2014)",
+    "options": [
+      "The paO2 is 90 mmHg while the normal is 100 mmHg",
+      "Ninety percent of the hemoglobin is carrying oxygen",
+      "The child is breathing 90% oxygen & 10% nitrogen",
+      "You cannot give this child more than 10% more oxygen to breathe",
+      "The child is breathing 90% oxygen & 10% CO2"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Ninety percent of the hemoglobin is carrying oxygen. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is a likely cause of metabolic acidosis with a large anion gap? (12-2014)",
+    "options": [
+      "Diarrhea",
+      "Renal failure on regular dialysis",
+      "Salicylate overdose",
+      "Severe chronic iron deficiency anemia",
+      "Vomiting"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Salicylate overdose. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The dose of adrenaline IV for cardiac arrest: (4-2014)",
+    "options": [
+      "10 microgram/kg",
+      "100 microgram/kg",
+      "1000 microgram/kg",
+      "10 milligram/kg",
+      "100 milligram/kg"
+    ],
+    "correct": 0,
+    "explanation": "Adrenaline for cardiac arrest: IV/IO 0.01 mg/kg = 10 mcg/kg. Use 1:10,000 concentration (0.1 mg/mL): give 0.1 mL/kg. Via ETT: 0.1 mg/kg (10× IV dose). Repeat every 3–5 minutes. Higher doses have shown NO benefit and may worsen neurological outcomes."
+  },
+  {
+    "question": "Which of the following causes metabolic acidosis with normal anion gap? (4-2014/ 12-2015)",
+    "options": [
+      "Diabetic ketoacidosis",
+      "Diarrhea",
+      "Salicylate poisoning",
+      "Renal failure",
+      "Lactic acidosis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Diarrhea. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Hyperkalemia with a normal total body potassium can be caused by which of the following: (12-2014)",
+    "options": [
+      "Hyperaldosteronism",
+      "Large amounts of potassium in IV fluids",
+      "Major trauma",
+      "Metabolic alkalosis e) Renal failure"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Major trauma. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "High pH, low carbon dioxide & normal bicarbonate best fit which of the following disorders? (12-2014)",
+    "options": [
+      "Compensated respiratory acidosis",
+      "Compensated respiratory alkalosis",
+      "Uncompensated respiratory acidosis",
+      "Uncompensated respiratory alkalosis",
+      "Compensated metabolic acidosis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Uncompensated respiratory alkalosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Acidosis in renal failure is more likely to be associated with which of the following: (12-2013 / 12-2012)",
+    "options": [
+      "Hypochloremia",
+      "Hypokalemia",
+      "Hypernatremia",
+      "Increase in the unmeasured cations",
+      "Wide anion gap"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Wide anion gap. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Obstructive shock is characterized by which of the following: (4-2013)",
+    "options": [
+      "Mechanical obstruction to ventricular outflow",
+      "Airway obstruction",
+      "Generalized vasoconstriction",
+      "Hypovolemia",
+      "Poor cardiac contractility"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Mechanical obstruction to ventricular outflow. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The ideal rate of chest compression during cardiopulmonary resuscitation in infants is: (12-2019 / 4-2018 / 12-2016 / 12-2013)",
+    "options": [
+      "150 per minute",
+      "125 per minute",
+      "100 per minute",
+      "75 per minute",
+      "50 per minute"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 100 per minute. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In treatment of hypernatremia. the maximum accepted rate of drop of serum sodium per 24 hours? (4-2019)",
+    "options": [
+      "8 mmol/L",
+      "12 mmol/L",
+      "16 mmol/L",
+      "20 mmol/L",
+      "24 mmol/L"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: 12 mmol/L. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A head injured 4 years patient, who opens eye to painful stimulus, is confused and withdraws from pain. His Glasgow coma score is: (4-2016)",
+    "options": [
+      "8",
+      "10",
+      "11",
+      "13"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: 10. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following drugs does not used during resuscitation: (4-2018)",
+    "options": [
+      "Atropine",
+      "Bicarbonate",
+      "Digitalis",
+      "Epinephrine"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Digitalis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "All the followings can cause metabolic acidosis with high anion gap Except: (4-2016)",
+    "options": [
+      "Diabetic ketoacidosis",
+      "Salicylate poisoning",
+      "Renal tubular acidosis",
+      "Renal failure",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Renal tubular acidosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The following signs are more in favour of a circulatory failure Except: (4-2018)",
+    "options": [
+      "Cyanosis despite supplied O2",
+      "Marked tachypnea with recessions",
+      "Gallop rhythm/murmur",
+      "Enlarged tender liver",
+      "Weak or absent femoral pulse"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Marked tachypnea with recessions. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which disease of the following can cause distributive shock? (4-2016)",
+    "options": [
+      "Cardiac tamponade",
+      "Dehydration",
+      "Early septic shock",
+      "Critical aortic stenosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Early septic shock. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the procedure Look-Listen-Feel is used for? (12-2017)",
+    "options": [
+      "To assess for responsiveness",
+      "To assess for airway patency",
+      "To assess for breathing",
+      "To assess for circulation",
+      "To assess for consciousness"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: To assess for breathing. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The following drugs are used in resuscitation Except: (4-2016)",
+    "options": [
+      "Atropine",
+      "Bicarbonate",
+      "Epinephrine",
+      "Digitalis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Digitalis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "During cardiopulmonary resuscitation of infant. How should chest compressions be performed? (4-2017)",
+    "options": [
+      "With the heel of one hand and the other hand on top of the first",
+      "With the heel of one hand only",
+      "With 4 fingers of one hand",
+      "With 2 fingers of one hand",
+      "With the thumb of one hand"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: With 2 fingers of one hand. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Advanced life support include the following Except: (4-2016)",
+    "options": [
+      "Vascular access",
+      "Fluid administration",
+      "Breathing support",
+      "Treatment of life-threatening arrhythmias"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Treatment of life-threatening arrhythmias. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Physiological responses to serious illness include increase of the following Except: (4-2016)",
+    "options": [
+      "Blood pressure",
+      "Heart rate",
+      "Respiratory rate",
+      "Action of accessory respiratory muscles"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Blood pressure. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "All are lines of treatment of hyperkalemia Except: (4-2015)",
+    "options": [
+      "Calcium gluconate IV",
+      "Glucose-Insulin infection",
+      "Sodium bicarbonate",
+      "Sodium polystyrene sulfonate (Kayexalate)",
+      "Beta blockers"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Beta blockers. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Interpret the following ABG results (pH: 7.48 - PaCO2: 42 - HCO3:30): (12-2015)",
+    "options": [
+      "Metabolic acidosis without compensation",
+      "Respiratory alkalosis with partial compensation",
+      "Respiratory alkalosis with full compensation",
+      "Metabolic alkalosis without compensation",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Metabolic alkalosis without compensation. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Obstructive shock is characterized by which of the following: (4-2014)",
+    "options": [
+      "Mechanical obstruction ventricular outflow",
+      "Airway obstruction",
+      "Generalized vasoconstriction",
+      "Hypovolemia",
+      "Poor cardiac contractility"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Mechanical obstruction ventricular outflow. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Shock associated with decreased central venous pressure includes the following Except: (12-2015)",
+    "options": [
+      "Cardiogenic",
+      "Hypovolemic",
+      "Septic",
+      "Distributive"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Cardiogenic. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "During basic life support of a 10-years old child, which of the following statements is correct: (4-2016 / 4-2014)",
+    "options": [
+      "The priority is to intubate the child",
+      "Chest compressions are indicated if heart sounds are week",
+      "The ratio of chest compression to ventilation is 15:2",
+      "The encircling technique is used to perform chest compressions",
+      "Ambu bag can be used with or without oxygen"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Ambu bag can be used with or without oxygen. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The following inotropic drugs can be used in acute shock Except: (12-2015)",
+    "options": [
+      "Digitalis",
+      "Dopamine",
+      "Dobutamine",
+      "Milrinone"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Digitalis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "All the following are manifestations of early shock in an infant Except: (4-2014)",
+    "options": [
+      "Hypotension",
+      "Irritability",
+      "Peripheral vasoconstriction",
+      "Tachycardia",
+      "Tachypnea"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Hypotension. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Early sign of shock is: (4-2015)",
+    "options": [
+      "Hypotension",
+      "Disturbed consciousness level",
+      "Cheyne-Stoke breathing",
+      "Tachycardia",
+      "Coma"
+    ],
+    "correct": 3,
+    "explanation": "TACHYCARDIA is the EARLIEST compensatory sign of shock. The body increases HR to maintain CO (CO = HR × SV) when SV falls. Other early signs: prolonged CRT (>2 sec), cool peripheries, decreased urine output. LATE signs: hypotension, bradycardia, altered consciousness. Children maintain BP until 25–40% blood loss is lost."
+  },
+  {
+    "question": "Contraindications for gastric lavage include: (4-2014 / 4-2013 / 12-2012)",
+    "options": [
+      "Glasgow Coma Scale 5",
+      "Kerosene ingestion",
+      "Ingestion of corrosives",
+      "Ingestion of 200 mg paracetamol by a 10 kg child",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: All of the above. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 12-month-old receives the MMR vaccine. He suddenly becomes flushed tachycardiac, tachypneic with weak peripheral pulsation & deteriorating level of consciousness. What is the likely explanation? (12-2013)",
+    "options": [
+      "Cardiogenic shock",
+      "Distributive shock",
+      "Hypovolemic shock",
+      "Immunological shock",
+      "Obstructive shock"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Immunological shock. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following causes hyperkalemia with K+ excess: (4-2013)",
+    "options": [
+      "Tumor lysis syndrome",
+      "Metabolic acidosis",
+      "Addison's disease",
+      "Rhabdomyolysis",
+      "Severe hemolysis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Addison's disease. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is a feature of early (compensated) shock: (12-2013 / 12-2012)",
+    "options": [
+      "Hypotension",
+      "Tachycardia",
+      "Decreased level of consciousness",
+      "Cold extremities",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Tachycardia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Feature suggestive of hyponatremic dehydration is: (12-2012)",
+    "options": [
+      "Serum osmolarity > 295 ions/L",
+      "Net loss of water > sodium",
+      "Child is very irritable",
+      "Marked loss of skin turgor while tongue is not dry",
+      "High incidence of intracranial hemorrhage"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Marked loss of skin turgor while tongue is not dry. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Anaphylactic shock is characterized by which of the following: (12-2013 / 12-2012)",
+    "options": [
+      "Airway obstruction",
+      "Decreased systemic vascular resistance",
+      "Generalized vasoconstriction",
+      "Hypovolemia",
+      "Poor cardiac contractility"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Decreased systemic vascular resistance. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Foreign body partially obstructing the right main bronchus is likely to cause which of the following radiological abnormalities: (12-2012)",
+    "options": [
+      "Homogenous opacity of the right lung",
+      "Hyperinflated left lung",
+      "Narrowed trachea",
+      "Shift of the trachea to the left",
+      "Shift of the trachea to the right"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Shift of the trachea to the left. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Acute laryngotracheobronchitis is associated with which of the following radiological signs: (4-2013)",
+    "options": [
+      "Enlargement of the adenoids",
+      "Jet black lungs",
+      "Steeple sign",
+      "Thumb sign",
+      "Wide upper mediastinum"
+    ],
+    "correct": 2,
+    "explanation": "Viral croup: STEEPLE SIGN on AP neck/chest X-ray — symmetrical subglottic narrowing creating a pointed appearance (steeple/pencil). Caused by subglottic mucosal oedema from parainfluenza virus. THUMB SIGN (lateral X-ray) = epiglottitis. X-ray is reserved for atypical/severe presentations; croup is a clinical diagnosis."
+  },
+  {
+    "question": "Nebulized adrenaline is indicated in which of the following conditions: (4-2013)",
+    "options": [
+      "Anaphylactic shock",
+      "Bronchial breathing",
+      "Cardiac arrest",
+      "Croup",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Croup. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Total body sodium depletion is a feature of which of the following: (12-2012)",
+    "options": [
+      "SIDH",
+      "Psychogenic polydipsia",
+      "Dilute artificial formula",
+      "Nephrotic syndrome",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Dilute artificial formula. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Heimlich maneuver is: (4-2013)",
+    "options": [
+      "Back blows",
+      "Chest compression",
+      "Epigastric compression",
+      "Finger sweep",
+      "Mouth to mouth breathing"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Epigastric compression. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Features \" suggestive of hypernatremic dehydration include: (12-2012)",
+    "options": [
+      "Dehydration with preserved intravascular volume",
+      "Late appearance of shock",
+      "Doughy feel of the abdomen",
+      "High incidence of intracranial hemorrhage",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: All of the above. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following causes hyperkalemia with K+ excess: (12-2012)",
+    "options": [
+      "Renal failure",
+      "Hypoaldosteronism",
+      "Potassium sparing diuretics",
+      "Metabolic acidosis",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Potassium sparing diuretics. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

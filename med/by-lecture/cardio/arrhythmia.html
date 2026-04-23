@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Arrhythmia</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobcwnhgk60r6",
+  "title": "Arrhythmia",
+  "description": "Question on every Cardio lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "In atrial fibrillation, which one of the following is not true: (10-2020)",
+    "options": [
+      "Atrial rate is 350-400/min",
+      "F wave in neck veins",
+      "Pulse deficit is >10.",
+      "Ventricular rate is 100-150/min",
+      "Irregular irregularity of radial pulse"
+    ],
+    "correct": 2,
+    "explanation": "Pulse deficit is >10. is NOT true for this arrhythmia. AF is characterized by irregularly irregular pulse, absent P waves, and fibrillation waves."
+  },
+  {
+    "question": "U wave in ECG is characteristically found in: (10-2020)",
+    "options": [
+      "Hyperkalemia",
+      "Hyponatremia",
+      "Hypocalcemia",
+      "Hypokalemia.",
+      "Hypercalcemia"
+    ],
+    "correct": 3,
+    "explanation": "Hypokalemia. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following conditions is considered as a contraindication to B-blockers: (10-2020)",
+    "options": [
+      "sinus tachycardia.",
+      "sick sinus syndrome.",
+      "chronic controlled HF.",
+      "systemic hypertension.",
+      "Portal hypertension."
+    ],
+    "correct": 1,
+    "explanation": "sick sinus syndrome. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following is considered as normal pacemaker of the heart? (10-2019)",
+    "options": [
+      "Sinoatrial node.",
+      "Atrioventricular node.",
+      "Atrial myocardium.",
+      "His Purkinjean systemic.",
+      "Ventricular myocardium."
+    ],
+    "correct": 0,
+    "explanation": "Sinoatrial node. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following ECG signs is consistent with first degree atrioventricular block? (10-2019)",
+    "options": [
+      "Short PR interval.",
+      "P wave not followed by an QRS complex.",
+      "Wide QRS complex.",
+      "Prolonged PR interval and each P wave is followed by an QRS complex.",
+      "Atrioventricular dissociation."
+    ],
+    "correct": 3,
+    "explanation": "Prolonged PR interval and each P wave is followed by an QRS complex. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The normal range of heart rate per minute in adult human is: (10-2019)",
+    "options": [
+      "30-50.",
+      "60-90.",
+      "100-140.",
+      "160-180.",
+      "200-220."
+    ],
+    "correct": 1,
+    "explanation": "60-90. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Ca Cannon a waves in neck veins are seen in: (3-2018)",
+    "options": [
+      "Pulmonary hypertension.",
+      "Tricuspid incompetence.",
+      "Right atrial myxoma.",
+      "Complete heart block.",
+      "Constrictive pericarditis."
+    ],
+    "correct": 3,
+    "explanation": "Complete heart block. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which sound is absent in atrial fibrillation? (3-2018)",
+    "options": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "correct": 3,
+    "explanation": "S4 is NOT true for this arrhythmia. AF is characterized by irregularly irregular pulse, absent P waves, and fibrillation waves."
+  },
+  {
+    "question": "Pulsus bigeminus is best detected by: (3-2018)",
+    "options": [
+      "Cardiac auscultation.",
+      "Chest auscultation.",
+      "Sphygmomanometer.",
+      "Jugular veins examination.",
+      "ECG."
+    ],
+    "correct": 4,
+    "explanation": "ECG. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Regular cannon wave of neck veins denotes the presence of: (3-2017)",
+    "options": [
+      "AV-nodal rhythm.",
+      "Ventricular fibrillation.",
+      "Complete heart block.",
+      "First degree heart block."
+    ],
+    "correct": 0,
+    "explanation": "AV-nodal rhythm. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following conditions leads to pulse deficit? (3-2017)",
+    "options": [
+      "Ventricular tachycardia.",
+      "AF.",
+      "Supraventricular tachycardia.",
+      "Heart block."
+    ],
+    "correct": 1,
+    "explanation": "AF. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following ECG signs is consistent with first degree atrioventricular block:",
+    "options": [
+      "Short PR interval",
+      "P wave not followed by a QRS complex",
+      "Wide QRS complex",
+      "Prolonged PR interval and each P wave is followed by a QRS complex",
+      "Atrioventricular dissociation"
+    ],
+    "correct": 3,
+    "explanation": "Prolonged PR interval and each P wave is followed by a QRS complex is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "ECG in the first-degree heart block shows:",
+    "options": [
+      "Prolonged QT interval",
+      "ST segment elevation",
+      "ST segment depression",
+      "Prolonged PR interval",
+      "Wide QRS complex"
+    ],
+    "correct": 3,
+    "explanation": "Prolonged PR interval is correct. Arrhythmia management depends on rate vs rhythm control and anticoagulation based on CHA2DS2-VASc score."
+  },
+  {
+    "question": "Regular Cannon wave of neck veins detonates the presence of:",
+    "options": [
+      "AV-Nodal Rhythm",
+      "Ventricular Fibrillation",
+      "Complete Heart Block",
+      "First degree Heart Block"
+    ],
+    "correct": 0,
+    "explanation": "AV-Nodal Rhythm is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Cannon A waves in neck veins are seen in:",
+    "options": [
+      "Pulmonary hypertension",
+      "Tricuspid incompetence",
+      "Right atrial myxoma",
+      "Complete heart block",
+      "Constrictive pericarditis"
+    ],
+    "correct": 3,
+    "explanation": "Complete heart block is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which sound is absent in arterial fibrillation?",
+    "options": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is S4. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Paroxysmal atrial Tachycardia can be terminated with:",
+    "options": [
+      "Valsalva maneuver",
+      "Vasopressors",
+      "Digitals preparations",
+      "None of these",
+      "All of these"
+    ],
+    "correct": 4,
+    "explanation": "All of these is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Diagnostic signs of pericardial tamponade include:",
+    "options": [
+      "Increased venous pressure with inspiration",
+      "A-F is usually present",
+      "Pulsus paradoxus",
+      "A and C",
+      "All the above"
+    ],
+    "correct": 3,
+    "explanation": "A and C is correct. Tamponade requires urgent pericardiocentesis. Constrictive pericarditis shows equalization of diastolic pressures and Kussmaul's sign."
+  },
+  {
+    "question": "In ventricular flutter heart rate is usually:",
+    "options": [
+      "90 beats/min",
+      "120 beats/min",
+      "150 beats/min",
+      "200 beats/min",
+      "300 beats/min"
+    ],
+    "correct": 3,
+    "explanation": "200 beats/min is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "All of the following statements are true for sinus bradycardia except:",
+    "options": [
+      "Pulse rate of 50/min",
+      "May indicate excellent physical condition",
+      "Varying intensity of S1",
+      "Normal sinus origin and conduction",
+      "Patient on digitalis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Varying intensity of S1. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "A 65-year-old man with a history of peripheral vascular disease develops thromboembolic disease in his left leg accompanied by dry gangrene. Laboratory tests show elevated serum lactic acid, and his arterial pH is 7.27. An ECG in this patient is most likely to show which of the following?",
+    "options": [
+      "Peaked T waves",
+      "QT prolongation",
+      "ST depression",
+      "T wave inversion",
+      "U waves"
+    ],
+    "correct": 0,
+    "explanation": "Peaked T waves is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 70-year-old woman has a history of dyspnea and palpitations for six months. An ECG at that time showed atrial fibrillation. She was given digoxin, diuretics and aspirin. She now presents with two short-lived episodes of altered sensation in the left face, left arm and leg. There is poor coordination of the left hand. ECHO was normal as was a CT head scan. What is the most appropriate next step in management?",
+    "options": [
+      "Anticoagulation",
+      "Carotid endarterectomy",
+      "Clopidogrel",
+      "Corticosteroid treatment",
+      "No action"
+    ],
+    "correct": 0,
+    "explanation": "Anticoagulation is correct. Arrhythmia management depends on rate vs rhythm control and anticoagulation based on CHA2DS2-VASc score."
+  },
+  {
+    "question": "A 45 year old male on treatment for chest infection presented with palpitations. ECG revealed prolongation of the QT interval and was told that there is increased risk of life threatening arrhythmia. Which of the following anti-microbial is responsible for his findings?",
+    "options": [
+      "Amoxi-Clav",
+      "Cefuroxime",
+      "Erythromycin",
+      "Gentamicin",
+      "Isoniazid"
+    ],
+    "correct": 2,
+    "explanation": "Erythromycin is correct. Arrhythmia management depends on rate vs rhythm control and anticoagulation based on CHA2DS2-VASc score."
+  },
+  {
+    "question": "A 60-year-old man with a history of controlled hypertension presents with acute onset weakness of his left arm, which resolved over 12 hours. He had suffered two similar episodes over the last three months. Examination reveals a blood pressure of 135/85 mmHg and pulse is 80/min with irregular irregularity. ECG reveals absent p wave. CT brain scan is normal. What is the most appropriate management?",
+    "options": [
+      "Amiodarone",
+      "Aspirin",
+      "Digoxin",
+      "Dipyridamole",
+      "Warfarin"
+    ],
+    "correct": 4,
+    "explanation": "Warfarin is correct. Hypertension management targets <130/80 mmHg with lifestyle modification and pharmacotherapy (ACEI/ARB, CCB, thiazide)."
+  },
+  {
+    "question": "A 26-year-old professional footballer collapses while playing football. He is rushed to the ER, and is found to be in ventricular tachycardia. He is defibrillated successfully and his 12 lead ECG demonstrates normal sinus rhythm, without ST segment changes. Ventricular tachycardia recurs and despite prolonged resuscitation, he dies. What is the most likely diagnosis?",
+    "options": [
+      "Aortic stenosis",
+      "Cocaine intoxication",
+      "Hypertrophic cardiomyopathy",
+      "Myocardial infarction",
+      "Pulmonary embolism"
+    ],
+    "correct": 2,
+    "explanation": "Hypertrophic cardiomyopathy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 62-year-old male undergoes cardioversion for idiopathic atrial fibrillation. Post-procedure he was shown to be in sinus rhythm. Medication at admission included Warfarin, digoxin and atenolol, which he had been taking for the last six weeks. Which of the following agents should he continue to take until he is seen in clinic in six weeks' time?",
+    "options": [
+      "Aspirin",
+      "Atenolol",
+      "Digoxin",
+      "Sotalol",
+      "Warfarin"
+    ],
+    "correct": 4,
+    "explanation": "Warfarin is correct. Arrhythmia management depends on rate vs rhythm control and anticoagulation based on CHA2DS2-VASc score."
+  },
+  {
+    "question": "A patient presents with atrial fibrillation and later reverts to sinus rhythm. He asked you about prognosis and recurrence. Under which of the following circumstances is the patient more likely to remain in sinus rhythm?",
+    "options": [
+      "Age > 75 Years Old",
+      "Been Commenced On Warfarin",
+      "Left Atrium Size > 6 Cm On Echo",
+      "Short History Of AF",
+      "Ventricular Rate On Presentation Of 130 Bpm"
+    ],
+    "correct": 3,
+    "explanation": "Short History Of AF is correct. Arrhythmia management depends on rate vs rhythm control and anticoagulation based on CHA2DS2-VASc score."
+  },
+  {
+    "question": "A 60-year-old man presented with an episode of right sided weakness that lasted 10 minutes and fully resolved. Examination reveals that he is in atrial fibrillation. Which of the following is the most appropriate management regime?",
+    "options": [
+      "Aspirin",
+      "No additional drug treatment",
+      "Warfarin, INR range 2-3",
+      "Warfarin, INR range 2 -3 for 6 months then aspirin",
+      "Warfarin, INR range 3-4"
+    ],
+    "correct": 2,
+    "explanation": "Warfarin, INR range 2-3 is correct. Arrhythmia management depends on rate vs rhythm control and anticoagulation based on CHA2DS2-VASc score."
+  },
+  {
+    "question": "A 70-year-old male was receiving amiodarone 200 mg daily for intermittent atrial fibrillation. However, he was aware of tiredness and lethargy. He appeared clinically euthyroid with no palpable goiter. Investigations revealed: Serum total T4 23 nmol/L (9-26), Serum total T3 0.8 nmol/L (0.9-2.8), Serum TSH 8.2 mU/L (<5). Which of the following statements would explain these results?",
+    "options": [
+      "Abnormal thyroxin binding globulin",
+      "Amiodarone-induced hypothyroidism",
+      "Sick euthyroid syndrome",
+      "Spontaneous hypothyroidism",
+      "TSH secreting pituitary adenoma"
+    ],
+    "correct": 1,
+    "explanation": "Amiodarone-induced hypothyroidism is correct. Arrhythmia management depends on rate vs rhythm control and anticoagulation based on CHA2DS2-VASc score."
+  },
+  {
+    "question": "72-year-old man with type 2 diabetes mellitus presented following the sudden onset of palpitations. An ECG revealed rate of 180/ min, irregular QRS with absent p wave. He was commenced on Amiodarone with no improvement. Which of the following has been shown to be of greatest benefit in reducing his future risk of vascular events?",
+    "options": [
+      "Anticoagulation",
+      "Aspirin",
+      "Continuation of Amiodarone",
+      "DC cardioversion",
+      "Digoxin"
+    ],
+    "correct": 0,
+    "explanation": "Anticoagulation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 30-year-old man presents with a history of transient loss of consciousness and palpitations. His ECG shows wide QRS complex regular tachycardia. Which of the following treatments should be avoided?",
+    "options": [
+      "Adenosine",
+      "Amiodarone",
+      "DC cardioversion",
+      "Flecainide",
+      "Verapamil"
+    ],
+    "correct": 4,
+    "explanation": "Verapamil is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 68 year-old woman, with rapid irregular palpitations and hypotension, is admitted for DC cardioversion. The procedure resulted in successful restoration of sinus rhythm. Which one of the following drugs should be added?",
+    "options": [
+      "Amiodarone",
+      "Digoxin",
+      "Diltiazem",
+      "Sotalol",
+      "Verapamil"
+    ],
+    "correct": 0,
+    "explanation": "Amiodarone is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which is not a cause of sinus bradycardia?",
+    "options": [
+      "Myxedema.",
+      "Complete heart block.",
+      "Hypothermia.",
+      "Obstructive jaundice.",
+      "Increased intracranial tension"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Complete heart block.. This option is the exception among the choices given for the condition described."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

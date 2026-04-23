@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pleural Disease</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobd4czl0w3v2",
+  "title": "Pleural Disease",
+  "description": "Question on every Chest lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is not a cause of transudative pleural effusion? (7-2020)",
+    "options": [
+      "Congestive cardiac failure",
+      "Nephrotic syndrome",
+      "Hepatic amebiasis",
+      "Liver cirrhosis with ascites",
+      "Hypoalbuminemia"
+    ],
+    "correct": 2,
+    "explanation": "Hepatic amebiasis is NOT a typical feature of pleural effusion. Pleural effusion presents with decreased breath sounds, stony dullness on percussion, and decreased tactile vocal fremitus."
+  },
+  {
+    "question": "Which of the following can cause exudative pleural effusion?",
+    "options": [
+      "Congestive cardiac failure",
+      "Nephrotic syndrome",
+      "Hepatic amebiasis",
+      "Liver cirrhosis with ascites",
+      "Hypoalbuminemia"
+    ],
+    "correct": 2,
+    "explanation": "Hepatic amebiasis is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Clinical signs of pleural effusion include: (10-2018)",
+    "options": [
+      "Decreased tactile vocal fremitus",
+      "Resonant percussion not over the affected area",
+      "Bronchial breath sound",
+      "Crepitation & wheezes",
+      "Increased air entry"
+    ],
+    "correct": 0,
+    "explanation": "Decreased tactile vocal fremitus is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "The following is a criterion of an exudative pleural effusion: (3-2018)",
+    "options": [
+      "Pleural fluid protein = 2.5 gm/dl",
+      "Pleural fluid LDH = 220 IU/L",
+      "Pleural fluid glucose = 120 mg/dl",
+      "Pleural fluid pH >7",
+      "Specific gravity 1010"
+    ],
+    "correct": 1,
+    "explanation": "Pleural fluid LDH = 220 IU/L is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Which one of the following is an indication for intercostal tube drainage in empyema? (3-2018)",
+    "options": [
+      "Pleural fluid pH < 7.2",
+      "Pleural fluid protein/serum protein > 0.5",
+      "Absolute LDH value > 200 IU/L",
+      "Specific gravity > 1016",
+      "Pleural fluid protein >3 gm/dl"
+    ],
+    "correct": 0,
+    "explanation": "Pleural fluid pH < 7.2 is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Trachea is shifted to other side in massive pleural effusion unless there is: (10-2017)",
+    "options": [
+      "Ipsilateral pleural fibrosis",
+      "Contralateral lung collapse Normal trachea",
+      "Large pleural effusion",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Ipsilateral pleural fibrosis is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Hemorrhagic pleural effusion may be seen in: (10-2020)",
+    "options": [
+      "Nephrotic syndrome",
+      "Pulmonary infraction",
+      "Myxedema",
+      "Systemic lupus erythematosus"
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary infraction is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "All of the following can cause transudative pleural effusion Except:",
+    "options": [
+      "Congestive cardiac failure",
+      "Nephrotic syndrome",
+      "Hepatic amebiasis",
+      "Liver cirrhosis with ascites"
+    ],
+    "correct": 2,
+    "explanation": "Hepatic amebiasis is NOT a typical feature of pleural effusion. Pleural effusion presents with decreased breath sounds, stony dullness on percussion, and decreased tactile vocal fremitus."
+  },
+  {
+    "question": "Transudative type of pleural effusion is a feature of: (10-2020)",
+    "options": [
+      "Tuberculosis",
+      "Lung cancer",
+      "Liver cell failure",
+      "Rheumatoid disease",
+      "Systemic lupus"
+    ],
+    "correct": 2,
+    "explanation": "Liver cell failure is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Pure oxygen therapy may produce all of the following EXCEPT:",
+    "options": [
+      "Acute lung injury",
+      "Respiratory depression",
+      "Fibrosis of the lung",
+      "Consolidation of the lung"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Fibrosis of the lung. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Bilateral pleural effusion is commonly seen in all EXCEPT:",
+    "options": [
+      "SLE",
+      "Nephrotic syndrome",
+      "Pulmonary tuberculosis",
+      "Congestive cardiac failure",
+      "After coronary artery bypass graft"
+    ],
+    "correct": 2,
+    "explanation": "[CORRECTED FROM ANSWER KEY] Pulmonary tuberculosis typically causes unilateral effusion, while SLE, nephrotic syndrome, and CHF commonly cause bilateral effusion. Pulmonary tuberculosis is NOT a typical feature of pleural effusion. Pleural effusion presents with decreased breath sounds, stony dullness on percussion, and decreased tactile vocal fremitus."
+  },
+  {
+    "question": "Hemorrhagic pleural effusion may be seen in:",
+    "options": [
+      "Cirrhosis of liver.",
+      "Pulmonary tuberculosis",
+      "SLE",
+      "Myxedema",
+      "Nephrotic syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary tuberculosis is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Pleural rub is characteristically:",
+    "options": [
+      "Uni phasic",
+      "Superficial, scratchy",
+      "Alters with coughing",
+      "Never palpable",
+      "Present over a pleural effusion"
+    ],
+    "correct": 1,
+    "explanation": "Superficial, scratchy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Hemorrhagic pleural effusion is not characteristic of:",
+    "options": [
+      "Systemic lupus erythematosus",
+      "Acute pulmonary thromboembolism",
+      "Tuberculous effusion",
+      "Acute pancreatitis",
+      "Metastatic cancer"
+    ],
+    "correct": 0,
+    "explanation": "Systemic lupus erythematosus is NOT a typical feature of pleural effusion. Pleural effusion presents with decreased breath sounds, stony dullness on percussion, and decreased tactile vocal fremitus."
+  },
+  {
+    "question": "The following are causes of transudative pleural effusion (except):",
+    "options": [
+      "Congestive heart failure.",
+      "Tuberculosis pleural effusion.",
+      "Liver cirrhosis.",
+      "Nephritic syndrome."
+    ],
+    "correct": 1,
+    "explanation": "Tuberculosis pleural effusion. is NOT a typical feature of pleural effusion. Pleural effusion presents with decreased breath sounds, stony dullness on percussion, and decreased tactile vocal fremitus."
+  },
+  {
+    "question": "On clinical examination of patient with right sided massive pleural effusion, the following are true (except):",
+    "options": [
+      "Decreased chest movement on right side.",
+      "Decreased tactile vocal fremitus (TVF) on left side.",
+      "Stony dullness on right side.",
+      "Decreased breath sound on right side."
+    ],
+    "correct": 1,
+    "explanation": "Decreased tactile vocal fremitus (TVF) on left side. is NOT a typical feature of pleural effusion. Pleural effusion presents with decreased breath sounds, stony dullness on percussion, and decreased tactile vocal fremitus."
+  },
+  {
+    "question": "All of the following are suggestive for respiratory failure (except):",
+    "options": [
+      "Coma",
+      "Crepitation.",
+      "RR > 20.",
+      "Central cyanosis."
+    ],
+    "correct": 1,
+    "explanation": "Crepitation. is NOT a feature of respiratory failure. Type I RF: PaO2 <60 mmHg with normal/low PaCO2. Type II RF: PaO2 <60 mmHg with PaCO2 >49 mmHg."
+  },
+  {
+    "question": "Pleural rub may be found in:",
+    "options": [
+      "COPD",
+      "Bronchiectasis.",
+      "Nephrotic syndrome.",
+      "Liver cell failure."
+    ],
+    "correct": 1,
+    "explanation": "Bronchiectasis. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Empyema is diagnosed by:",
+    "options": [
+      "pH < 7.2.",
+      "WBC > 15000/mm3",
+      "Positive culture of the pleural aspirate.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "All of the above. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Pleural exudates is characterized by the following (except):",
+    "options": [
+      "Specific gravity is more than 1029",
+      "Pleural fluid protein/ serum protein is more than 0.5.",
+      "Pleural fluid LDH/serum LDH is more than 0.6.",
+      "Absolute LDH is more than 200"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Specific gravity is more than 1029. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The following may cause hemorrhagic pleural effusion (except):",
+    "options": [
+      "Venous thromboembolisim.",
+      "Liver cell failure",
+      "Malignancy",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "Liver cell failure is NOT a typical feature of pleural effusion. Pleural effusion presents with decreased breath sounds, stony dullness on percussion, and decreased tactile vocal fremitus."
+  },
+  {
+    "question": "On radiological examination of a case of left sided pleural effusion, blunting of costophrenic angle on P/A film needs at least:",
+    "options": [
+      "500 ml of effusion.",
+      "300 ml of effusion",
+      "100 ml of effusion",
+      "900 ml of effusion"
+    ],
+    "correct": 1,
+    "explanation": "300 ml of effusion is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Which is false regarding transudative pleural effusion:",
+    "options": [
+      "Protein < 3.0 g/100 mL",
+      "Pleural fluid/serum LDH ratio < 0.6",
+      "pH < 7.2",
+      "Specific gravity < 1.016"
+    ],
+    "correct": 2,
+    "explanation": "pH < 7.2 is NOT a typical feature of pleural effusion. Pleural effusion presents with decreased breath sounds, stony dullness on percussion, and decreased tactile vocal fremitus."
+  },
+  {
+    "question": "Which is an example of exudative pleural effusion:",
+    "options": [
+      "Nephrotic syndrome",
+      "Constrictive pericarditis",
+      "SVC syndrome",
+      "Rheumatoid arthritis"
+    ],
+    "correct": 3,
+    "explanation": "Rheumatoid arthritis is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Which of the following drugs may produce pleural effusion:",
+    "options": [
+      "Losartan",
+      "Miltefosine",
+      "Amiodarone",
+      "Propranolol"
+    ],
+    "correct": 2,
+    "explanation": "Amiodarone is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Bilateral pleural effusion is commonly seen in:",
+    "options": [
+      "SLE",
+      "Nephrotic syndrome",
+      "Pulmonary tuberculosis",
+      "Congestive cardiac failure"
+    ],
+    "correct": 0,
+    "explanation": "SLE is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Haemorrhagic pleural effusion may be seen in:",
+    "options": [
+      "Cirrhosis of liver",
+      "Pulmonary tuberculosis",
+      "SLE",
+      "Myxoedema"
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary tuberculosis is correct. Pleural effusion is diagnosed by blunting of costophrenic angle (>300 mL), fluid on imaging, and Light's criteria distinguishing transudate from exudate."
+  },
+  {
+    "question": "Pleural rub is characteristically:",
+    "options": [
+      "Uniphasic",
+      "Superficial, scratchy",
+      "Alters with coughing",
+      "Never palpable"
+    ],
+    "correct": 1,
+    "explanation": "Superficial, scratchy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A high amylase in pleural fluid is found in all except:",
+    "options": [
+      "Oesophageal, rupture",
+      "Bronchogenic carcinoma",
+      "Sarcoidosis",
+      "Acute pancreatic"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Sarcoidosis. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The following causes of pleural transudate (T/F): Pleural mesothelioma",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following causes of pleural transudate (T/F): Bronchial carcinoma",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following causes of pleural transudate (T/F): Nephrotic syndrome",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following causes of pleural transudate (T/F): Tuberculosis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is correct. TB is caused by Mycobacterium tuberculosis and diagnosed by culture/NAAT. Standard treatment uses RIPE (rifampicin, isoniazid, pyrazinamide, ethambutol)."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

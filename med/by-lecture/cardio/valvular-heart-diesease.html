@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Valvular Heart Diesease</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobczkks94esv",
+  "title": "Valvular Heart Diesease",
+  "description": "Question on every Cardio lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is associated with early diastolic murmur? (10-2020)",
+    "options": [
+      "Aortic regurgitation.",
+      "Mitral stenosis.",
+      "Ventricular septal defect.",
+      "Aortic stenosis.",
+      "Atrial septal defect."
+    ],
+    "correct": 0,
+    "explanation": "Aortic regurgitation. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Treatment of symptomatic severe non pliable heavily calcific mitral stenosis includes: (10-2020)",
+    "options": [
+      "Percutaneous Balloon Mitral Valvuloplasty (PBMV).",
+      "Mitral valve repair.",
+      "Mitral valve replacement.",
+      "Medical treatment only.",
+      "Trans-catheter valve implantation."
+    ],
+    "correct": 2,
+    "explanation": "Mitral valve replacement. is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "Which of the following is associated with a weak S1? (10-2019)",
+    "options": [
+      "Hyperdynamic states.",
+      "Short PR interval.",
+      "Mitral regurge.",
+      "Left to right shunt.",
+      "Atrial premature beats."
+    ],
+    "correct": 2,
+    "explanation": "Mitral regurge. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following situations is a common cause of syncope? (10-2019)",
+    "options": [
+      "Severe aortic stenosis.",
+      "Hypertension.",
+      "Chronic kidney diseases.",
+      "First degree AV block.",
+      "Sinus tachycardia."
+    ],
+    "correct": 0,
+    "explanation": "Severe aortic stenosis. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following signs is consistent with severe aortic regurge? (10-2019)",
+    "options": [
+      "Narrow pulse pressure.",
+      "Slow rising pulse.",
+      "Collapsing Corrigan's pulse.",
+      "Systolic apical retraction.",
+      "Apical s4 added sound."
+    ],
+    "correct": 2,
+    "explanation": "Collapsing Corrigan's pulse. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Sudden death is common in: (10-2019)",
+    "options": [
+      "VSD.",
+      "MS.",
+      "Aortic stenosis.",
+      "PDA."
+    ],
+    "correct": 2,
+    "explanation": "Aortic stenosis. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following added sounds is characteristic for severe mitral stenosis? (10-2019)",
+    "options": [
+      "Systolic click.",
+      "Tumor plop.",
+      "Pericardial knock.",
+      "Opening snap.",
+      "Prosthetic click."
+    ],
+    "correct": 3,
+    "explanation": "Opening snap. is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "Heart valve least commonly affected by rheumatic pathology is: (3-2018)",
+    "options": [
+      "Mitral valve.",
+      "Aortic valve.",
+      "Pulmonary valve.",
+      "Tricuspid valve."
+    ],
+    "correct": 2,
+    "explanation": "Pulmonary valve. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Loud first heart sound is heard in: (3-2017)",
+    "options": [
+      "Mitral stenosis.",
+      "Mitral regurgitation.",
+      "Mitral valve prolapses.",
+      "Calcified mitral stenosis."
+    ],
+    "correct": 0,
+    "explanation": "Mitral stenosis. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Treatment of symptomatic severe non pliable heavily calcific mitral stenosis includes:",
+    "options": [
+      "Percutaneous Balloon Mitral Valvuloplasty (PBMV)",
+      "Mitral valve repair",
+      "Mitral valve replacement",
+      "Medical treatment only"
+    ],
+    "correct": 2,
+    "explanation": "Mitral valve replacement is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "Which of the following signs is consistent with severe aortic regurge:",
+    "options": [
+      "Narrow pulse pressure",
+      "Slow rising pulse",
+      "Collapsing Corrigan's pulse",
+      "Systolic apical retraction",
+      "Apical S4 added sound"
+    ],
+    "correct": 2,
+    "explanation": "Collapsing Corrigan's pulse is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which one of the following signs is consistent with peripheral sign of AR?",
+    "options": [
+      "Narrow pulse pressure",
+      "Capillary pulsation",
+      "Pulsus alternans",
+      "Low volume pulse",
+      "Levine sign"
+    ],
+    "correct": 1,
+    "explanation": "Capillary pulsation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which one of the following added sounds is characteristic for severe mitral stenosis:",
+    "options": [
+      "Systolic click",
+      "Tumor plop",
+      "Treesure snap",
+      "Opening snap (Note: OCR says Treesure snap, but context suggests Opening Snap)"
+    ],
+    "correct": 3,
+    "explanation": "Opening snap (Note: OCR says Treesure snap, but context suggests Opening Snap) is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "Early radiological changes in M.S is:",
+    "options": [
+      "Enlargement of aortic knob",
+      "Straightening of left cardiac border",
+      "Forward displacement of oesophagus",
+      "Right ventricular prominence",
+      "Right atrial prominence"
+    ],
+    "correct": 1,
+    "explanation": "Straightening of left cardiac border is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In mitral incompetence:",
+    "options": [
+      "Haemoptysis is less frequent than in M.S",
+      "Paroxysmal pulmonary oedema is common",
+      "The first heart sound is diminished",
+      "An apical presystolic murmur predominates",
+      "Most patients develop early cardiac failure."
+    ],
+    "correct": 0,
+    "explanation": "Haemoptysis is less frequent than in M.S is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Patients with A.S. frequently develop:",
+    "options": [
+      "Exertional dyspnoea and angina",
+      "Wide pulse pressure",
+      "Systemic embolisation",
+      "Atrial fibrillation",
+      "Right ventricular hypertrophy."
+    ],
+    "correct": 0,
+    "explanation": "Exertional dyspnoea and angina is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The most likely diagnosis with a palpable pulse in the liver and palpable venous pulse in the neck is:",
+    "options": [
+      "Mitral insufficiency",
+      "Tricuspid insufficiency",
+      "Hepatic vein thrombosis",
+      "Aneurysm of the thoracic aorta",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Tricuspid insufficiency is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The onset of AF in mitral stenosis may result in:",
+    "options": [
+      "Opening snap",
+      "Myocardial infarction",
+      "Thromboembolism",
+      "Bacterial endocarditis",
+      "Presystolic murmur"
+    ],
+    "correct": 2,
+    "explanation": "Thromboembolism is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "The E.C.G in severe aortic regurgitation usually shows:",
+    "options": [
+      "No abnormalities",
+      "Right ventricular hypertrophy",
+      "Left ventricular hypertrophy",
+      "Non specific S-T segment abnormalities",
+      "Right axis deviation"
+    ],
+    "correct": 2,
+    "explanation": "Left ventricular hypertrophy is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "Which of the following is associated with M.S",
+    "options": [
+      "A-F",
+      "Arterial embolism",
+      "Pulmonary infarction",
+      "None of these",
+      "All of these"
+    ],
+    "correct": 4,
+    "explanation": "All of these is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The valves most commonly affected in rheumatic H.D. are:",
+    "options": [
+      "Mitral and aortic",
+      "Mitral and pulmonary",
+      "Mitral and tricuspid",
+      "Tricuspid & pulmonary"
+    ],
+    "correct": 0,
+    "explanation": "Mitral and aortic is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The characteristic murmur of aortic insufficiency is:",
+    "options": [
+      "Low pitched and rumbling",
+      "High pitched and blowing",
+      "Best heard at the apex",
+      "Best heard with patient supine",
+      "Heard best on the patients' side"
+    ],
+    "correct": 1,
+    "explanation": "High pitched and blowing is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Cardiovascular syphilis is usually affecting:",
+    "options": [
+      "Peripheral arteries",
+      "Myocardium",
+      "Coronary arteries",
+      "Aorta",
+      "Veins"
+    ],
+    "correct": 3,
+    "explanation": "[CORRECTED FROM ANSWER KEY] Cardiovascular syphilis classically affects the aorta (syphilitic aortitis), not the coronary arteries. Aorta is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "In M.S. with A-F:",
+    "options": [
+      "P waves are tall and broad",
+      "Presystolic harsh murmur is present",
+      "Digitalis is indicated if heart rate is fast",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Digitalis is indicated if heart rate is fast is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which ONE of the following statements about disorders associated with a bicuspid aortic valve is TRUE?",
+    "options": [
+      "The finding occurs more often in females than males",
+      "No association with an abnormal origin to the coronary arteries",
+      "No association with coarctation of the aorta",
+      "decreased risk of aortic dissection",
+      "An increased risk of endocarditis"
+    ],
+    "correct": 4,
+    "explanation": "An increased risk of endocarditis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 76-year-old woman presents with a history of syncopal episodes and on echocardiography, she is found to have severe aortic stenosis. Which ONE of the following features is MOST likely to be found on examination?",
+    "options": [
+      "Pulsus bisferiens",
+      "A widely split second heart sound",
+      "A thrill over the right anterior second intercostal space",
+      "A wide pulse pressure",
+      "A pan-systolic murmur"
+    ],
+    "correct": 2,
+    "explanation": "A thrill over the right anterior second intercostal space is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "Which ONE of the following features suggests an alternative or additional diagnosis to that of severe mitral stenosis?",
+    "options": [
+      "Right ventricular hypertrophy",
+      "Left ventricular dilatation",
+      "Dilated left atrium",
+      "Tricuspid regurgitation",
+      "Absence of a diastolic murmur at rest"
+    ],
+    "correct": 1,
+    "explanation": "Left ventricular dilatation is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "In a patient with tricuspid incompetence, which ONE of the following findings is the MOST likely to be present?",
+    "options": [
+      "Giant A waves in the neck veins",
+      "A soft pulmonary component to the second heart second",
+      "Evidence of a right ventricular heave",
+      "An increased risk of pulmonary embolism",
+      "A murmur which decreases, with inspiration"
+    ],
+    "correct": 2,
+    "explanation": "Evidence of a right ventricular heave is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 23-year-old woman comes for a Check-Up visit. She enjoys good health and exercises regularly. Her height is 172 cm and weight is 66 kg. Her blood pressure is 120/80 mm Hg, pulse is 74/mm, and RR is 12/mm. Physical examination is unremarkable except for heart auscultation, which reveals an isolated midsystolic click. Which of the following is the most common cause of this auscultatory finding?",
+    "options": [
+      "Bicuspid aortic valve",
+      "Congenital pulmonary stenosis",
+      "Mitral valve prolapse",
+      "Ruptured papillary muscle",
+      "Tricuspid regurgitation"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Mitral valve prolapse. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "An elderly man with a history of asthma, congestive heart failure, and peptic ulcer with bronchospasm and rapid atrial fibrillation. He is admitted and receives frequent nebulized salbutamol and IV digoxin loading. His regular medications are continued. Twenty four hours after admission, his serum potassium is noted to be 2.8 mEq/L. Which one of his medications is most likely to have caused this abnormality?",
+    "options": [
+      "ACE inhibitor",
+      "Digoxin",
+      "Ranitidine",
+      "Salbutamol",
+      "Spironolactone"
+    ],
+    "correct": 3,
+    "explanation": "Salbutamol is correct. Asthma is a chronic inflammatory disorder of the airways characterized by bronchial hyperresponsiveness and reversible airflow obstruction."
+  },
+  {
+    "question": "A 65-year-old man has an ejection systolic murmur and narrow pulse pressure on clinical examination. There is no history of chest pain, breathlessness or syncope. An ECHO confirms aortic stenosis and shows an aortic valve gradient of 40mmHg. There is good left ventricular function. Which of the following management options is the most appropriate choice in this case?",
+    "options": [
+      "Anticoagulation",
+      "Aortic valve plasty",
+      "Follow-up",
+      "Routine aortic valve replacement",
+      "Urgent aortic valve replacement"
+    ],
+    "correct": 2,
+    "explanation": "Follow-up is correct. Valvular heart disease produces characteristic murmurs: MS (mid-diastolic rumbling), MR (pan-systolic), AS (ejection systolic), AR (early diastolic decrescendo)."
+  },
+  {
+    "question": "A 40-year-old man presents with recent onset exertional dyspnea. Blood pressure is 160/50 mmHg, pulse is 92/min. Cardiac examination reveals a prominent and laterally displaced apical impulse. A soft diastolic decrescendo murmur is heard along the left sternal border. Bilateral crackles are present at the lung base. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Aortic insufficiency",
+      "Aortic stenosis",
+      "Hypertrophic obstructive cardiomyopathy",
+      "Infective endocarditis",
+      "Mitral stenosis"
+    ],
+    "correct": 0,
+    "explanation": "Aortic insufficiency is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A healthy 25-year-old woman comes for a Check-Up visit. Cardiac auscultation reveals a low-pitched grade II-III mid-diastolic murmur over apex. Which of the following is the most appropriate next step in diagnosis?",
+    "options": [
+      "Antistreptolysin O titers",
+      "Cardiac catheterization",
+      "Doppler ultrasound",
+      "Echocardiography",
+      "Radionuclide angiography"
+    ],
+    "correct": 3,
+    "explanation": "Echocardiography is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "All are bedside differential diagnosis of MS except:",
+    "options": [
+      "Carey Coombs murmur.",
+      "Left atrial myxoma.",
+      "Austin Flint murmur.",
+      "Mitral valve prolapse syndrome.",
+      "Chronic MR"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Mitral valve prolapse syndrome.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "The least common complication of MS is:",
+    "options": [
+      "Cerebral thrombosis.",
+      "Sub-acute bacterial endocarditis.",
+      "Pulmonary hypertension.",
+      "Atrial fibrillation.",
+      "Hemoptysis"
+    ],
+    "correct": 1,
+    "explanation": "Sub-acute bacterial endocarditis. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which chamber of heart fails first in MS:",
+    "options": [
+      "Right atrium.",
+      "Right ventricle.",
+      "Left atrium.",
+      "Left ventricle.",
+      "Biventricular"
+    ],
+    "correct": 2,
+    "explanation": "Left atrium. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Slow rising carotid pulse, prominent left ventricular impulse, ejection click, ejection systolic murmur and fourth heart sound.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial septal defect",
+      "Fallot's tetralogy",
+      "Hypertrophic cardiomyopathy",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pulmonary stenosis",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular septal defect"
+    ],
+    "correct": 1,
+    "explanation": "Aortic stenosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Bounding carotid pulse, laterally displaced apex, ejection systolic murmur, early diastolic murmur and third heart sound.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial septal defect",
+      "Fallot's tetralogy",
+      "Hypertrophic cardiomyopathy",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pulmonary stenosis",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular septal defect"
+    ],
+    "correct": 0,
+    "explanation": "Aortic regurgitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Jerky carotid pulse, dominant a wave in jugular venous pulse, double apical impulse, ejection systolic murmur at the base and pansystolic murmur at the apex.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial septal defect",
+      "Fallot's tetralogy",
+      "Hypertrophic cardiomyopathy",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pulmonary stenosis",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular septal defect"
+    ],
+    "correct": 4,
+    "explanation": "Hypertrophic cardiomyopathy is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Elevated jugular venous pressure, early diastolic opening snap, mid diastolic murmur and loud first heart sound.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial septal defect",
+      "Fallot's tetralogy",
+      "Hypertrophic cardiomyopathy",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pulmonary stenosis",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular septal defect"
+    ],
+    "correct": 6,
+    "explanation": "Mitral stenosis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Elevated jugular venous pressure, displaced apex, pansystolic murmur at the apex and third heart sound.",
+    "options": [
+      "Aortic regurgitation",
+      "Aortic stenosis",
+      "Atrial septal defect",
+      "Fallot's tetralogy",
+      "Hypertrophic cardiomyopathy",
+      "Mitral regurgitation",
+      "Mitral stenosis",
+      "Pulmonary stenosis",
+      "Tricuspid regurgitation",
+      "Tricuspid stenosis",
+      "Ventricular septal defect"
+    ],
+    "correct": 5,
+    "explanation": "Mitral regurgitation is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

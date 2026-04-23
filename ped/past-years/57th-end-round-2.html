@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>57th end round 2</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobaizz33bsrx",
+  "title": "57th end round 2",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Wide fixed splitting of the second heart sound is an auscultatory finding in:",
+    "options": [
+      "PS",
+      "ASD",
+      "AS",
+      "VSD",
+      "COA"
+    ],
+    "correct": 1,
+    "explanation": "Wide fixed splitting of S2 = hallmark of ASD. In ASD the RV has a constant volume load (L→R shunt) → RV ejection is always prolonged → P2 is ALWAYS delayed regardless of respiration (fixed). Normal: inspiration increases splitting; expiration decreases it. Fixed splitting = no respiratory variation = ASD until proven otherwise."
+  },
+  {
+    "question": "Which of the following peripheral manifestations are painful lesions in infective endocarditis when it occurs?",
+    "options": [
+      "Subcutaneous nodules",
+      "Janeway's lesion",
+      "Splinter hemorrhage",
+      "Osler's nodules",
+      "Petechiae"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Osler's nodules. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Diastolic dysfunction and normal systolic function are recognized features of:",
+    "options": [
+      "Hypertrophic cardiomegaly",
+      "Barth's disease",
+      "Myocarditis",
+      "Left ventricular non-compliance",
+      "Dilated cardiomegaly"
+    ],
+    "correct": 0,
+    "explanation": "Diastolic dysfunction with preserved systolic function = HYPERTROPHIC CARDIOMYOPATHY. The hypertrophied, rigid myocardium has impaired relaxation (diastolic dysfunction) while EF is preserved or supranormal. Dilated cardiomyopathy causes SYSTOLIC dysfunction (reduced EF)."
+  },
+  {
+    "question": "A 6-year-old boy with basal ejection systolic murmur. systolic click and evidence of right ventricular apex in plain CXR One of the following of CHD is suspected?",
+    "options": [
+      "Valvular PS",
+      "ASD",
+      "VSD",
+      "Valvular AS",
+      "COA"
+    ],
+    "correct": 0,
+    "explanation": "Ejection systolic murmur + systolic click + right-sided CXR findings = valvular pulmonary stenosis. The click is from sudden opening of the domed valve. PS murmur is crescendo-decrescendo at the pulmonary area (2nd left ICS), radiating to the left shoulder. RVH develops from pressure overload."
+  },
+  {
+    "question": "Ali is a 9-year boy with a recent history of migratory polyarthritis newly heard apical; pan systolic murmur, fever and +ve CRP. ASOT of 500 units. Regarding diagnosis of rheumatic fever. the boy is considered having:",
+    "options": [
+      "Two major and one minor",
+      "Two major manifestations only",
+      "Two major and two minor",
+      "Two minor manifestations only"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Two major and two minor. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following can cause heart failure in full-term neonate:",
+    "options": [
+      "Patent foramen Ovale",
+      "TOF",
+      "Small PDA",
+      "Severe coarctation of the aorta",
+      "ASD"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Severe coarctation of the aorta. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following clinical scenarios would most increase your degree of suspicion for bacterial endocarditis in a child?",
+    "options": [
+      "Fever. New cardiac murmur, splenomegaly",
+      "Tachypnea, tachycardia, cardiac murmur, Sudden onset leg swelling",
+      "Positive CRP. Skin lesions, hepatomegaly",
+      "Positive ASO titre, progressively louder heart murmur, Marked hepatomegaly",
+      "Fever dropped after 2 days with CRP"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Fever. New cardiac murmur, splenomegaly. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Kawasaki features:",
+    "options": [
+      "Erythema multiform and rash",
+      "Bilateral cervical lymphadenopathy",
+      "Unilateral conjunctivitis with exudate",
+      "Vomiting and abdominal pain"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Erythema multiform and rash. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The majority of innocent murmur timing?",
+    "options": [
+      "Diastolic",
+      "Continuous",
+      "Pan systolic",
+      "Ejection systolic 11-Dilated cardiomyopathy characterized",
+      "Impaired contractility",
+      "Normal ventricular size",
+      "Dilated atrium",
+      "Abnormal relaxation"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Ejection systolic 11-Dilated cardiomyopathy characterized. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Criteria of PDA:",
+    "options": [
+      "Wide pulse pressure",
+      "Pan-systolic murmur",
+      "Right apical impulse",
+      "Normal PVM"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Wide pulse pressure. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which is true regarding large VSD?",
+    "options": [
+      "Right apical impulse",
+      "Symptoms appear within 1 :3 months",
+      "Diastolic murmur",
+      "Normal PVM"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Symptoms appear within 1 :3 months. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following criteria is minor criteria for rheumatic fever:",
+    "options": [
+      "Prolonged PR interval",
+      "Carditis",
+      "Arthritis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Prolonged PR interval. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which method of oxygen delivery is suitable for arrested children?",
+    "options": [
+      "Nasal cannula",
+      "Face mask",
+      "Venturi mask",
+      "Headbox",
+      "Ambu bag"
+    ],
+    "correct": 4,
+    "explanation": "Self-inflating bag (BVM): device of choice during resuscitation — delivers >90% FiO2 with a reservoir, provides controlled IPPV regardless of patient effort. Venturi masks, nasal cannulae, and head boxes require a spontaneously breathing patient."
+  },
+  {
+    "question": "Hyperkalemia without k+ excess occurs in :",
+    "options": [
+      "Potassium-sparing diuretics",
+      "Hypoaldosteronism",
+      "Renal failure",
+      "Addison's disease",
+      "Leukocytosis and tumor lysis syndrome"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Leukocytosis and tumor lysis syndrome. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The umbo bag with reservoir gives oxygen concentration :",
+    "options": [
+      "60%",
+      "50%",
+      "100%",
+      "40%"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 100%. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is a cause of obstructive shock?",
+    "options": [
+      "Burns",
+      "Anaphylaxis",
+      "Sepsis",
+      "Hemorrhage",
+      "Tension pneumothorax"
+    ],
+    "correct": 4,
+    "explanation": "Tension PTX → obstructive shock: mediastinal shift compresses the heart reducing venous return → obstructive shock. Signs: absent breath sounds + hyperresonance + tracheal deviation AWAY + haemodynamic collapse. Management: immediate needle decompression at 2nd ICS midclavicular line."
+  },
+  {
+    "question": "A three-year-old boy was admitted to the hospital with a diagnosis of asthma his mother reported that she has had tremors and behavioural changes in her child over the past 4 days the ABG results are pH7.35 pco2 72 hco3 30",
+    "options": [
+      "Respiratory acidosis, fully compensated",
+      "Respiratory alkalosis, fully compensated",
+      "Metabolic acidosis, Uncompensated",
+      "Metabolic acidosis, fully compensated"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Respiratory acidosis, fully compensated. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In pediatric basic life support the rescuer resuscitators the collapsed child:",
+    "options": [
+      "Activate basic life support",
+      "Give DC shock",
+      "At the hospital",
+      "Oxygen should given early",
+      "You should be a medical person"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Activate basic life support. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the procedure look-listen-feel for:",
+    "options": [
+      "To assess for circulation",
+      "To assess for breathing",
+      "To assess for airway patency",
+      "To assess for consciousness"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: To assess for breathing. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In pediatrics basic life support, airway opening to 5 years old child arrested due to car accident is achieved by:",
+    "options": [
+      "Head till and chin left with neck extended position",
+      "Head till and chin left with neck neutral position",
+      "Abdominal thrust",
+      "Jaw thrust",
+      "Head till and chin left with neck sniffing position"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Jaw thrust. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Magdy, A 6-year-old boy was rushed to the hospital following his mother's complaint that her son had been vomiting. Weak. The primary care physician notes the laboratory results: potassium2.9. which primary acid-base disorder the boy is at risk for. If medical intervention is not carried out:",
+    "options": [
+      "Metabolic acidosis",
+      "Mixed respiratory and metabolic acidosis",
+      "Metabolic alkalosis",
+      "Respiratory alkalosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Metabolic alkalosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is associated with brain edema if improperly treated?",
+    "options": [
+      "Hypernatremia",
+      "Hyponatremia",
+      "Hypokalemia",
+      "Hyperkalemia"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Hypernatremia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Early sign of shock:",
+    "options": [
+      "Hypotension",
+      "Tachypnea",
+      "Lethargy",
+      "Bradycardia"
+    ],
+    "correct": 1,
+    "explanation": "TACHYCARDIA is the EARLIEST compensatory sign of shock. The body increases HR to maintain CO (CO = HR × SV) when SV falls. Other early signs: prolonged CRT (>2 sec), cool peripheries, decreased urine output. LATE signs: hypotension, bradycardia, altered consciousness. Children maintain BP until 25–40% blood loss is lost."
+  },
+  {
+    "question": "Depth of chest compression in CPR?",
+    "options": [
+      "1-2cm",
+      "4-5cm",
+      "3cm",
+      "7-8cm"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: 4-5cm. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Drugs can be taken by endotracheal tube?",
+    "options": [
+      "Lidocaine, Naloxone, Atropine, Epinephrine",
+      "Lidocaine, Naloxone, Atropine, Digoxin 14-Diameter size of endotracheal tube for a child 12 y old?",
+      "7"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Lidocaine, Naloxone, Atropine, Epinephrine. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In case of pulseless ventricular tachycardia:",
+    "options": [
+      "DC 2j/kg",
+      "Endotracheal intubation",
+      "DC 4j/kg",
+      "Give epinephrine"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: DC 4j/kg. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Metabolic acidosis with high anion gap?",
+    "options": [
+      "Diarrhea",
+      "Renal tubular acidosis",
+      "Ketoacidosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Ketoacidosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Normal anion gap:",
+    "options": [
+      "8: 16",
+      "22: 25",
+      "20 : -28"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: 8: 16. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is an early sign of shock:",
+    "options": [
+      "Cyanosis",
+      "Irritability",
+      "Lethargy",
+      "Irregular breathing"
+    ],
+    "correct": 1,
+    "explanation": "TACHYCARDIA is the EARLIEST compensatory sign of shock. The body increases HR to maintain CO (CO = HR × SV) when SV falls. Other early signs: prolonged CRT (>2 sec), cool peripheries, decreased urine output. LATE signs: hypotension, bradycardia, altered consciousness. Children maintain BP until 25–40% blood loss is lost."
+  },
+  {
+    "question": "Which of the following is a diagnostic criterion for autoimmune hepatitis?",
+    "options": [
+      "Steatosis",
+      "Eosinophilic liver infiltration",
+      "Absent portal plasma cell",
+      "Lobular inflammation",
+      "Interface hepatitis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Interface hepatitis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Gaucher disease occurs due to enzyme deficiency of :",
+    "options": [
+      "Galactosidase",
+      "Glucocerebrosidase",
+      "Galactose 1 phosphate uridyl transferase",
+      "sphingomyelinase"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Glucocerebrosidase. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which consider a feature suggesting functional abdominal pain in children and adolescent:",
+    "options": [
+      "Being well between pain episodes",
+      "Dysphagia",
+      "Nocturnal diarrhea",
+      "Persistent vomiting",
+      "Deceleration of linear growth"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Being well between pain episodes. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is true regarding Wilsons disease:",
+    "options": [
+      "Bushfield spots",
+      "AD disorder",
+      "Low ceruloplasmin in serum",
+      "High ceruloplasmin in serum",
+      "Hepatic dysfunction is usually mild"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Low ceruloplasmin in serum. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "which of the following is an index of poor outcome in fulminant hepatitis",
+    "options": [
+      "Increased prothrombin time response to vit. K administration",
+      "Factor VII",
+      "Female sex",
+      "Hepatomegaly",
+      "Decreased ammonia level"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Factor VII. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Characters of hypertonic dehydration include:",
+    "options": [
+      "Marked loss of skin turgor while tongue is not dry",
+      "Moist tongue is a late sign",
+      "CNS complications are relatively infrequent",
+      "Shock occurs late because of relatively preserved volume",
+      "Serum Na concentration is less than 135mmol/l"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Shock occurs late because of relatively preserved volume. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Encopresis means:",
+    "options": [
+      "Rabbit pellets form of stool",
+      "Diarrhea",
+      "voluntary passage of stool in underwear in appropriate place",
+      "Hard infrequent painful defecation"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: voluntary passage of stool in underwear in appropriate place. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Maintenance fluid for child weighted 20 kg?",
+    "options": [
+      "1000",
+      "1500",
+      "2000",
+      "2500"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: 1500. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Percentage of biliary atresia cause neonatal cholestasis ?",
+    "options": [
+      "30 %",
+      "40 %",
+      "25 %",
+      "70 %"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 25 %. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Sign of biliary atresia on US?",
+    "options": [
+      "Triangular cord",
+      "Delayed radioisotope by hepatocytes"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Triangular cord. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Incubation period of HBV:",
+    "options": [
+      "1 – 3 days",
+      "3 – 10 days",
+      "10 – 20 days",
+      "30 – 180 days"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: 30 – 180 days. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

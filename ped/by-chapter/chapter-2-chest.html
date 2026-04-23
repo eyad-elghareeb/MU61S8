@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chapter 2: Chest</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "moba4lca5u1qe",
+  "title": "Chapter 2: Chest",
+  "description": "Questions on each pediatric chapter",
+  "icon": "👶"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Expiratory grunting is a sign of: (12-2018)",
+    "options": [
+      "Bronchial asthma",
+      "Bacterial pneumonia",
+      "Viral croup",
+      "Acute epiglottitis",
+      "Acute bronchitis"
+    ],
+    "correct": 1,
+    "explanation": "Grunting = compensatory auto-PEEP: the infant partially closes the glottis during expiration to maintain alveolar inflation against reduced lung compliance. Most characteristic of BACTERIAL PNEUMONIA (alveolar consolidation) and neonatal RDS. Viral croup/epiglottitis affect the upper airway (stridor). Asthma causes wheeze and prolonged expiration."
+  },
+  {
+    "question": "One of the following is a characteristic feature of Mycoplasma pneumonia in the pediatric age group: (8-2020 / 12-2018)",
+    "options": [
+      "Dramatic response to penicillin therapy",
+      "High grade fever is a common presentation",
+      "Poor correlation between the severity of symptoms & the physical findings",
+      "Sudden onset of symptoms",
+      "Is primarily a disease of infancy"
+    ],
+    "correct": 2,
+    "explanation": "Mycoplasma pneumoniae (atypical pneumonia): insidious onset, low-grade fever, dry non-productive cough, malaise. KEY FEATURE: CXR infiltrates appear FAR WORSE than the mild clinical state ('walking pneumonia') — poor clinical-radiological correlation. Responds to macrolides, NOT penicillin (no cell wall). Common in school-age children 5–15 years."
+  },
+  {
+    "question": "Foreign body partially obstructing the left main bronchus is likely to cause which of the following abnormalities: (8-2020 / 12-2018)",
+    "options": [
+      "Increased air entry on the left hemithorax",
+      "Homogenous opacity of the right hemithorax on CXR",
+      "Hyperinflated right hemithorax on CXR",
+      "Tracheal shift to the left side",
+      "Shift of the mediastinum to the right side in expiratory film"
+    ],
+    "correct": 4,
+    "explanation": "Left bronchus FB → check-valve: air enters on inspiration, trapped on expiration (dynamic airway closure). Left lung becomes hyperinflated. On EXPIRATORY film: hyperinflated left lung pushes mediastinum to the RIGHT. On inspiratory film both sides may appear equal. Fluoroscopy: 'mediastinal swing' = gold standard for bronchial FB diagnosis."
+  },
+  {
+    "question": "Acute laryngotracheobronchitis is associated with which of the following radiological signs: (12-2018)",
+    "options": [
+      "Generalized hyperinflation",
+      "Lobar consolidation",
+      "Steeple sign",
+      "Thumb sign",
+      "Wide superior mediastinum"
+    ],
+    "correct": 2,
+    "explanation": "Viral croup: STEEPLE SIGN on AP neck/chest X-ray — symmetrical subglottic narrowing creating a pointed appearance (steeple/pencil). Caused by subglottic mucosal oedema from parainfluenza virus. THUMB SIGN (lateral X-ray) = epiglottitis. X-ray is reserved for atypical/severe presentations; croup is a clinical diagnosis."
+  },
+  {
+    "question": "The most common cause of pleural effusion in children is: (8-2020 / 12-2018)",
+    "options": [
+      "Bacterial pneumonia",
+      "Congestive heart failure",
+      "Viral pneumonia",
+      "Metastatic intrathoracic malignancy",
+      "Postoperative injury to thoracic duct"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Viral pneumonia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Atypical bacterial pneumonia is more likely to occur in: (12-2019 / 12-2017)",
+    "options": [
+      "Newborn infants",
+      "Toddlers",
+      "Preschool children",
+      "School aged children",
+      "Males more than females"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: School aged children. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The combination of recurrent wheezing, abnormal stool & marked failure to thrive are suggesting of: (4-2019 / 12-2018)",
+    "options": [
+      "Bronchopulmonary dysplasia",
+      "Cystic fibrosis",
+      "Chronic persistent asthma",
+      "Missed foreign body aspiration",
+      "Vascular ring"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Cystic fibrosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most common cause of persistent wheezes in the first year of life is: (8-2020)",
+    "options": [
+      "Acute bronchiolitis",
+      "Cystic fibrosis",
+      "Foreign body aspiration",
+      "Bronchial asthma",
+      "Allergic rhinitis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Acute bronchiolitis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Acute bronchiolitis is characterized by: (12-2019 / 4-2016)",
+    "options": [
+      "Ribavirin is the treatment of choice for hospitalized cases",
+      "Bronchodilators are usually effective",
+      "Feeding difficulties are common",
+      "Upper airway obstruction is a common feature",
+      "It must be treated by antibiotics"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Feeding difficulties are common. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most appropriate treatment for newly diagnosed bronchial asthma with occasional symptoms: (12-2019 / 4-2018 / 12-2016 / 4-2014)",
+    "options": [
+      "Inhaled short acting B2 agonist",
+      "Low dose inhaled corticosteroid (ICS)",
+      "Anti-leukotriene",
+      "Slow release theophylline",
+      "Anti-IgE"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Inhaled short acting B2 agonist. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 6-year-old boy has a 1 year history of cough that is worse at night & with exercise. Which one of the following tests is most likely to assist you to make a diagnosis? (8-2020 / 4-2018 / 4-2019 / 12-2017)",
+    "options": [
+      "Barium swallow",
+      "Bronchoscopy",
+      "Chest radiograph",
+      "Spirometry",
+      "CT chest"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Spirometry. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 4-year-old boy brought to emergency department by drooling saliva, sore throat. On examination, there was high fever, hyperextension of neck & mild stridor. The most appropriate diagnosis is: (8-2020 / 4-2017)",
+    "options": [
+      "Viral pneumonia",
+      "Croups",
+      "Acute epiglottitis",
+      "Bacterial pneumonia",
+      "Bronchiolitis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Acute epiglottitis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Characteristic physical signs of pneumothorax include: (12-2019 / 12-2017)",
+    "options": [
+      "Rhonchi are heard on the affected side",
+      "The mediastinum is shifted towards the opposite side",
+      "Percussion over the affected side reveals dullness",
+      "End-respiratory crepitations are detected",
+      "Fine rales must be heard on the affected side"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: The mediastinum is shifted towards the opposite side. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most common cause of afebrile pneumonia of infancy is: (4-2019 / 4-2017)",
+    "options": [
+      "Chlamydia trachomatis",
+      "Streptococcus pneumnoniae",
+      "Staphylococcus aureus",
+      "Hemophilus influenza",
+      "Listeria monocytogenes"
+    ],
+    "correct": 0,
+    "explanation": "Chlamydia trachomatis: afebrile pneumonia at 6 weeks–4 months. Acquired during vaginal delivery. STACCATO COUGH + no fever + bilateral crackles + bilateral infiltrates + eosinophilia + conjunctivitis in 50%. Treatment: azithromycin or erythromycin."
+  },
+  {
+    "question": "A 3 year-old brought to ER by his mother, with sudden onset of cough, choking & gasping. Physical examination revealed wheezes on the right lung Chest X-ray was normal. What is the most likely diagnosis: (12-2019 / 4-2017 / 12-2015)",
+    "options": [
+      "Acute epiglottitis",
+      "Foreign body aspiration",
+      "Acute bronchiolitis",
+      "Aspiration pneumonia",
+      "Tension pneumothorax"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Foreign body aspiration. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following physical findings would be least likely on examination of a child with moderate to severe asthma: (4-2016)",
+    "options": [
+      "Tachypnea",
+      "Wheezing",
+      "Clubbing",
+      "Increased antero-posterior diameter of the chest",
+      "Allergic rhinitis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Clubbing. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In a child with stridor, the radiological thumb sign is characteristic of: (4-2017)",
+    "options": [
+      "Acute epiglottitis",
+      "Foreign body aspiration",
+      "Laryngeal web",
+      "Laryngomalacia",
+      "Laryngotracheobronchitis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Acute epiglottitis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is not true about tension pneumothorax? (12-2015)",
+    "options": [
+      "The onset is usually abrupt",
+      "There is pain, dyspnea & cyanosis",
+      "Respiratory distress & retractions",
+      "Marked decreased breath sounds over the involved lung",
+      "The percussion note over the involved area is dull"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: The percussion note over the involved area is dull. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Wheezes is a common manifestation of pneumonia caused by: (4-2019 / 4-2017)",
+    "options": [
+      "Streptococcus pneumonia",
+      "Staphylococcus aureus",
+      "Fungal infection",
+      "Viral infection",
+      "Klebsiella"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Viral infection. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Effector cells in asthma: (4-2015)",
+    "options": [
+      "Mast cells, basophils, TH2 cells",
+      "Epithelial cells",
+      "Macrophages",
+      "Plasma cells",
+      "Neutrophils"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Mast cells, basophils, TH2 cells. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Viral pneumonia differs from acute bronchiolitis in: (4-2015)",
+    "options": [
+      "Presence or absence of wheezes",
+      "Constant fine rales",
+      "Cough as a main symptom",
+      "Normal C reactive protein",
+      "High ESR"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Constant fine rales. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Tachypnea in a 3-year old child is defined as a respiratory rate exceeding: (12-2016)",
+    "options": [
+      "60 /min",
+      "50 /min",
+      "40 /min",
+      "25 /min",
+      "30 /min"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 40 /min. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following drugs is necessary for asthma control: (4-2015)",
+    "options": [
+      "Terbutaline",
+      "Inhaled corticosteroids",
+      "Mucolytics",
+      "Antibiotics",
+      "Antitussive drugs"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Inhaled corticosteroids. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Bronchial asthma in children is characterized by: (4-2019 / 12-2013 / 12-2012)",
+    "options": [
+      "Associated with bronchial hyper-reactivity",
+      "It shows irreversible airway obstruction",
+      "Usually presents with high fever",
+      "Neutrophils are the main cell inducing airway inflammation",
+      "Chronic cases are associated with clubbing of fingers"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Associated with bronchial hyper-reactivity. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Atypical bacterial pneumonia is characterized by: (4-2015)",
+    "options": [
+      "Wheezing is a frequent finding",
+      "No extra pulmonary manifestations",
+      "Presence of Pneumatoceles or pleural effusion",
+      "Segmental or lobar consolidation",
+      "High grade fever"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Wheezing is a frequent finding. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A child 5 years old, presented with respiratory distress, fever, cough & stony dullness. On percussion, X-ray chest revealed right sided pleural effusion. Trial aspiration revealed fluid with PH 7, high LDH & it was sent for culture. What do you immediate recommend? (12-2013)",
+    "options": [
+      "Conservative & wait for culture",
+      "Repeated thoracentesis daily",
+      "Chest tube drainage",
+      "Antibiotics with antipyretic",
+      "Thoracoscopy"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Chest tube drainage. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "As regards the etiology of pleural effusion: (4-2015)",
+    "options": [
+      "Chylous effusion is common",
+      "Lymphoma is the most common malignancy related effusion",
+      "Malignancy effusion is usually bilateral & bloody",
+      "Streptococcus pneumonia is the most common pathogen",
+      "Congestive heart failure can cause unilateral & transudative effusion"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Lymphoma is the most common malignancy related effusion. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Infant aged 7 months presented with respiratory rate 80/min, cyanosis & marked intercostal retraction. The condition was preceded by rhinorrhea & low grade fever. Perinatal history was free. What is your possible diagnosis? (4-2014 / 12-2012)",
+    "options": [
+      "Bronchial asthma",
+      "Foreign body inhalation",
+      "Acute bronchiolitis",
+      "Mycoplasma pneumonia",
+      "Acute laryngotracheobronchitis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Acute bronchiolitis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding foreign body aspiration one of the following statement is NOT true:",
+    "options": [
+      "Normal chest X-ray does not exclude F.B. aspiration",
+      "Negative clinical manifestations does not exclude F.B. aspiration",
+      "Tracheal foreign body present with hoarseness or aphonia",
+      "When F.B. aspiration is suspected bronchoscopy must be done",
+      "Children 1 - 3 years are the most susceptible"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Tracheal foreign body present with hoarseness or aphonia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Acute bronchiolitis: (12-2013)",
+    "options": [
+      "Is usually caused by adenovirus",
+      "More common in summer",
+      "Responds rapidly with inhaled selective B2 agonist",
+      "Caused neutrophilic infiltration to airway as a response to RSV infection",
+      "Autoimmune disorder"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Caused neutrophilic infiltration to airway as a response to RSV infection. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is not a typical complication of bacterial pneumonia:",
+    "options": [
+      "Sepsis",
+      "Empyema",
+      "Pneumothorax",
+      "Endocarditis",
+      "Pleural effusion"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Endocarditis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Controlled asthmatic patient usually present with: (4-2014 / 12-2013 / 12-2012)",
+    "options": [
+      "Normal pulmonary function tests",
+      "Day time symptoms > twice/week",
+      "Nocturnal symptoms once/week",
+      "Limitation of activities",
+      "Exercise induced cough"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Normal pulmonary function tests. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A one year old children aspirates a foreign body. On presentation, the trachea is shifted to the right, there is diminished airy entry & wheezing all over the left side. X ray shows hyperinflated left lung. What is the most likely location of foreign body? (4-2019)",
+    "options": [
+      "Above the vocal cords",
+      "In the trachea",
+      "At the carina",
+      "In the left main bronchus",
+      "In the right main bronchus."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: In the left main bronchus. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is false about tension pneumothorax: (4-2018)",
+    "options": [
+      "It is closed pneumothorax",
+      "It could be spontaneous or traumatic",
+      "The patient is hemodynamically compromised",
+      "Management include rapid needle decompression",
+      "Management include oxygen therapy, close observation & antibiotics"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: It is closed pneumothorax. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Stridor is characteristic feature of the following disease except: (4-2016)",
+    "options": [
+      "Laryngeal diphtheria",
+      "Angioneurotic edema",
+      "Adenoid hypertrophy",
+      "Bilateral abductor vocal cord paralysis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Adenoid hypertrophy. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding acute bronchiolitis, one of the following statement is false; (4-2018)",
+    "options": [
+      "Respiratory syncytial virus is the most common cause",
+      "Peak incidence between 2 & 6 months of age",
+      "X-ray chest shows hyperinflation",
+      "Inhaled steroids is the treatment of choice",
+      "There is possible association with bronchial asthma"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Inhaled steroids is the treatment of choice. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most appropriate treatment option of a 10 yr old child with intermittent symptoms of mild asthma is: (4-2016)",
+    "options": [
+      "Environmental control & patient education only; no medication is indicated",
+      "Oral theophylline",
+      "Inhaled B2 agonist as needed for symptoms",
+      "Daily inhaled corticosteroid"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Inhaled B2 agonist as needed for symptoms. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Important causes of wheezing infancy include all of the following except: (4-2016)",
+    "options": [
+      "Bronchiolitis",
+      "Asthma",
+      "Gastroesophageal reflux",
+      "Hypocalcemia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Hypocalcemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In acute bronchiolitis, one of the following is TRUE: (4-2017)",
+    "options": [
+      "Ribavirin is the treatment of choice for hospitalized cases",
+      "Bronchodilators are usually effective",
+      "Feeding difficulties are common",
+      "Upper airway obstruction is a common feature"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Feeding difficulties are common. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "All are true about massive pleural effusion except: (4-2016)",
+    "options": [
+      "Trachea is shifted to the opposite side",
+      "Overlying stone dullness",
+      "Tactile vocal fremitus is increased",
+      "It may be complicated by purulent pericarditis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Tactile vocal fremitus is increased. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following signs is FALSE regarding features of obstructive emphysema due to foreign body inhalation: (12-2016)",
+    "options": [
+      "Percussion note is usually hyper-resonant on the affected side",
+      "Breath sounds are reduced on the affected side",
+      "Total airway obstruction is the underlying mechanism",
+      "Mediastinum is pushed away from the affected side",
+      "Intercostal spaces on the affected side may be widened"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Total airway obstruction is the underlying mechanism. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding foreign body aspiration one of the following statement is false (4-2016)",
+    "options": [
+      "All children with bronchial foreign FBs typically present with classic triad",
+      "Negative clinical manifestation does not exclude F.B. aspiration",
+      "Laryngeal foreign body present with hoarseness or aphonia",
+      "When F.B. aspiration is suspected bronchoscopy must be done",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: All children with bronchial foreign FBs typically present with classic triad. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding bronchial asthma in children, one of the following statement is TRUE:",
+    "options": [
+      "Associated with bronchial hyper-reactivity",
+      "It shows irreversible airway obstruction",
+      "Usually presents with high fever",
+      "Neutrophils are the main cell inducing airway inflammation",
+      "Chronic cases are associated with clubbing of fingers"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Associated with bronchial hyper-reactivity. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Concerning acute bronchiolitis, all of the following are true except: (4-2016)",
+    "options": [
+      "Epidemics often occur during winter",
+      "The disease typically affects infants younger than 2 years of age",
+      "Immunodeficiency is an indication for treatment with ribavirin",
+      "The disease is more benign in infants born prematurely",
+      "Respiratory syncytial virus is the most common causative virus"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: The disease is more benign in infants born prematurely. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding acute asthma exacerbations management, all of the following are false except: (12-2015)",
+    "options": [
+      "Inhaled corticosteroids, nebulized B2 agonists, I.V. aminophylline",
+      "Nebulized B2 agonists, systemic corticosteroids, ipratropium bromide",
+      "Formoterol, methylxanthines, systemic steroids",
+      "Nebulized B2 agonist, salmeterol, systemic corticosteroids, theophyline",
+      "Leukotriene modifiers, inhaled corticosteroids, LABA"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Nebulized B2 agonists, systemic corticosteroids, ipratropium bromide. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Patient with Mycoplasma pneumonia can have: (12-2014)",
+    "options": [
+      "Poor correlation between symptoms which are so severe with minimal physical findings",
+      "Poor correlation between severe physical findings & minimal symptoms",
+      "High grade fever",
+      "Sudden onset of symptoms"
+    ],
+    "correct": 0,
+    "explanation": "Mycoplasma pneumoniae (atypical pneumonia): insidious onset, low-grade fever, dry non-productive cough, malaise. KEY FEATURE: CXR infiltrates appear FAR WORSE than the mild clinical state ('walking pneumonia') — poor clinical-radiological correlation. Responds to macrolides, NOT penicillin (no cell wall). Common in school-age children 5–15 years."
+  },
+  {
+    "question": "Regarding bronchial asthma, all of the following are true except: (12-2014)",
+    "options": [
+      "Episodic symptoms of airflow obstruction are present",
+      "Reversibility of symptoms with B2 agonists",
+      "Chest examination must reveal bilateral wheezes",
+      "Inhaled corticosteroids are cornerstone in long term therapy",
+      "Control of environmental factors & co-morbid conditions is essential"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Chest examination must reveal bilateral wheezes. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Initial management of the acute asthma exacerbation include: (12-2014)",
+    "options": [
+      "Oxygen therapy, nebulized B2 agonist, systemic steroids",
+      "Intravenous aminophylline, nebulized B2 agonist",
+      "Oxygen therapy, intravenous aminophylline, steroids",
+      "Nebulized B2 agonist, intravenous magnesium sulphate"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Oxygen therapy, nebulized B2 agonist, systemic steroids. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Recognized clinical features of pneumothorax include each of the following EXCEPT: (12-2014)",
+    "options": [
+      "Reduced movements of the chest on affected side",
+      "Shift of mediastinum to opposite side",
+      "Hyper resonant percussion note",
+      "Vesicular breath sounds with reduced air entry",
+      "Whispering pectoriloquy in all cases"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Whispering pectoriloquy in all cases. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "All are true regarding croup except: (12-2015)",
+    "options": [
+      "Most common organism is para influenza virus",
+      "Peak age group affected is 2 years",
+      "Incidence is higher in females",
+      "A strong family history may be present"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Incidence is higher in females. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "All of the following signs may be present in acute bronchiolitis except: (12-2014)",
+    "options": [
+      "Tachypnea",
+      "Chest retraction",
+      "Crepitations",
+      "Wheezes",
+      "Impaired note on percussion"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Impaired note on percussion. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following indicates severe laryngitis: (12-2014)",
+    "options": [
+      "Inspiratory stridor",
+      "Suprasternal retraction",
+      "Rhinorrhea",
+      "Biphasic stridor",
+      "Croupy cough"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Biphasic stridor. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following statements about bronchial asthma is correct: (12-2014)",
+    "options": [
+      "TH1 immune response",
+      "Eosinophil is the main effector cell",
+      "Increased serum IgA levels",
+      "Viral infection is the main cause"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Eosinophil is the main effector cell. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding foreign body aspiration one of the following statement is not true: (12- 2014)",
+    "options": [
+      "History of foreign body aspiration is essential for diagnosis",
+      "Negative clinical manifestations dose not exclude F.B. aspiration",
+      "Normal chest X-ray does not exclude F.B. aspiration",
+      "When F.B. aspiration is suspected bronchoscopy must be done",
+      "Most of the aspirated materials are radiolucent"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: History of foreign body aspiration is essential for diagnosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Expiratory grunting is a sign of: (4-2014)",
+    "options": [
+      "Asthma exacerbation",
+      "Pneumonia",
+      "Pleural effusion",
+      "Croup",
+      "Acute bronchitis"
+    ],
+    "correct": 1,
+    "explanation": "Grunting = compensatory auto-PEEP: the infant partially closes the glottis during expiration to maintain alveolar inflation against reduced lung compliance. Most characteristic of BACTERIAL PNEUMONIA (alveolar consolidation) and neonatal RDS. Viral croup/epiglottitis affect the upper airway (stridor). Asthma causes wheeze and prolonged expiration."
+  },
+  {
+    "question": "Atelectasis due to foreign body inhalation is characterized by each of the following EXCEPT: (4-2014 / 4-2013)",
+    "options": [
+      "Mediastinum is pulled towards the affected side",
+      "Intercostal spaces on the affected side may be narrowed",
+      "Percussion note is usually normal",
+      "Breath sounds are reduced",
+      "Total airway obstruction is present"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Percussion note is usually normal. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Lobar pneumonia is characterized by the following EXCEPT: (12-2013 / 12-2012)",
+    "options": [
+      "Bronchial breathing",
+      "Fine consonating crepitations",
+      "Increase vocal resonance",
+      "Hyper-resonance on percussion",
+      "Respiratory distress & grunting"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Hyper-resonance on percussion. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Pleural friction rub is characterized by all the following EXCEPT: (4-2013)",
+    "options": [
+      "It is audible during inspiratory phase of breathing",
+      "It may be associated with pain",
+      "It is unaltered by coughing",
+      "Better heard with chest piece of stethoscope tightly placed over chest wall",
+      "It may disappear when pleural exudate increases in quantity"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: It is audible during inspiratory phase of breathing. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The incorrect statement regarding corticosteroids in allergy is: (4-2013)",
+    "options": [
+      "The mechanism of action is not known",
+      "Corticosteroids are lymphopenic",
+      "Corticosteroids decrease synthesis of prostaglandins",
+      "Long-term usage suppresses linear growth in children",
+      "Alternate-day regimens decrease side effects"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: The mechanism of action is not known. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

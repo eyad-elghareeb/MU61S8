@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Single Best Answer Chest</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "mo6vaqioxfnwh",
+  "title": "Single Best Answer Chest",
+  "description": "All chest questions from Single Best Answer textbook",
+  "icon": "🫁"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "You see a 68-year-old man in clinic, with a 40 (cigarette) pack year history, who has been experiencing breathlessness on exertion and a productive cough of white sputum over the last four months. You assess his spirometry results which reveal an FEV1/FVC of 51 per cent with minimal reversibility after a 2-week trial of oral steroids. Cardiological investigations are normal. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Asthma",
+      "Chronic obstructive pulmonary disease (COPD)",
+      "Left ventricular failure",
+      "Chronic bronchitis",
+      "Lung fibrosis"
+    ],
+    "correct": 1,
+    "explanation": "The patients symptom history coupled with the spirometry results indicate that he has an obstructive defect. Spirometry is typically used to measure functional lung volumes. The ratio of the forced expiratory volume in one second (FEV1) to the forced vital capacity (FVC), provides a reliable approximation of severity of airflow obstruction; the normal being 80 per cent. An FEV1/FVC ratio of less than 80 per cent indicates an obstructive defect seen in COPD and asthma while a ratio of greater than 80 per cent is representative of a restrictive defect seen in lung fibrosis (E). The spirometry results coupled with minimal reversibility points the diagnosis to COPD (B) rather than asthma (A), where reversibility of the FEV1/FVC ratio is usually seen. Chronic bronchitis (D) can be defined as cough productive of sputum for three months of two successive years which does not corroborate with the onset of symptoms. Left ventricular failure (C) is obviously incorrect due to the fact that cardiological tests have been mentioned as normal."
+  },
+  {
+    "question": "A 67-year-old woman is admitted to accident and emergency with pyrexia (38.1°C) and a cough productive of green sputum. The observations show a pulse rate of 101, BP 80/60 and respiratory rate of 32. She is alert and orientated in space and time. Blood results reveal a WCC of 21, urea of 8.5 and chest x-ray shows a patch of consolidation in the lower zone of the right lung. She is treated for severe community-acquired pneumonia. Which of the following is the correct calculated CURB-65 score?",
+    "options": [
+      "6",
+      "8",
+      "4",
+      "0",
+      "1"
+    ],
+    "correct": 2,
+    "explanation": "The CURB-65 (C – confusion, U – urea >7 mmol/L, R – respiratory rate >30, B – blood pressure of less than 90 systolic or less than 60 diastolic and 65 – age of 65 or above) criteria is a clinical prediction rule validated and recommended by the British Thoracic Society for assessing the severity of community-acquired pneumonia. The score ranges from 0 to 5 and a score of 1 or 0 can be given if each of the above risk factors are present or not, respectively. This patient has a CURB-65 score of 4 (C), indicating a severe pneumonia and a mortality risk of 15–50 per cent."
+  },
+  {
+    "question": "Which of the following organisms would typically be found in a patient with atypical community-acquired pneumonia?",
+    "options": [
+      "Staphylococcus aureus",
+      "Pseudomonas spp.",
+      "Streptococcus pneumonia",
+      "Legionella pneumophilia",
+      "Haemophilus influenza"
+    ],
+    "correct": 3,
+    "explanation": "From the list of answers above, H. influenzae (E) and S. pneumoniae (C) are organisms which are usually responsible for community-acquired pneumonia. S. aureus (A) and Pseudomonas spp. (B) are usually found in patients with hospital-acquired pneumonia. L. pneumophilia (D), along with Chlamydia spp. and Mycoplasma pneumoniae, are the atypical pneumonia-causing organisms. A urinary antigen test is routinely used for the detection of Legionella spp. Serological tests can be used for the detection of Mycoplasma and Chlamydia spp. and also Legionella spp."
+  },
+  {
+    "question": "You are asked to interpret an arterial blood gas of a 76-year-old patient who was admitted to accident and emergency with an acute onset of breathlessness and low oxygen saturations. The test was taken on room air and read as follows: pH 7.37, PO2 7.8, PCO2 4.1, HCO3 24, SO2 89 per cent. Choose the most likely clinical interpretation from these arterial blood gas results:",
+    "options": [
+      "Compensated respiratory acidosis",
+      "Type 1 respiratory failure",
+      "Compensated respiratory alkalosis",
+      "Type 2 respiratory failure",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Type 1 respiratory failure (B) is defined as a PO2 <8 kPa (hypoxia) with a normal or low PCO2. The primary cause is a ventilation/perfusion mismatch of which some of the common causes include pneumonia, pulmonary oedema, pulmonary embolism, asthma, emphysema, fibrosing alveolitis and acute respiratory distress syndrome (ARDS). Type 2 respiratory (D) failure is defined as a PO2 <8 kPa (hypoxia) with a PCO2 >6.5 kPa (hypercapnia) and is caused by alveolar hypoventilation, with or without V/Q mismatch. Compensated respiratory acidosis (A) and compensated respiratory alkalosis (C) would cause the HCO3 to be elevated or low respectively, which is not the case here."
+  },
+  {
+    "question": "A 54-year-old woman is seen in clinic with a history of weight loss, loss of appetite and shortness of breath. Her respiratory rate is 19 and oxygen saturations (on room air) range between 93 and 95 per cent. On examination, there is reduced air entry and dullness to percussion on the lower to midzones of the right lung. There is also reduced chest expansion on the right. From the list below, select the most likely diagnosis:",
+    "options": [
+      "Right middle lobe pneumonia",
+      "Pulmonary embolism",
+      "Right-sided pleural effusion",
+      "Right-sided bronchial carcinoma",
+      "Right lower lobe pneumonia"
+    ],
+    "correct": 2,
+    "explanation": "The fact that there is reduced air entry, dullness to percussion in the lower and midzones of the right lung and reduced chest expansion, indicates that there is most likely to be a pleural effusion (C) from the list of answers above. 'Stony dullness' is usually used to describe the presence of a pleural effusion but, in clinical practice, distinguishing between dullness and stony dullness can be quite challenging for even the most experienced clinicians. Pulmonary embolism (B) does not usually present with any chest signs. Pneumonia (A and E) and bronchial carcinoma (D) can lead to a secondary pleural effusion, but during the initial stages will present with bronchial breathing over the affected area of the lung."
+  },
+  {
+    "question": "A 45-year-old woman with unexpected weight loss, loss of appetite and shortness of breath presents to you in clinic. On examination, there is reduced air entry and dullness to percussion in the right lung. A pleural tap is performed and the aspirate samples sent for analysis. You are told that the results reveal a protein content of >30 g/L. From the list below, select the most likely diagnosis:",
+    "options": [
+      "Bronchogenic carcinoma",
+      "Congestive cardiac failure",
+      "Liver cirrhosis",
+      "Nephrotic syndrome",
+      "Meig's syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Pleural effusions can be categorized into transudates and exudates according to their protein content. Transudates (protein content <30 g/L) occur as a result of increased venous pressure (cardiac failure (B), restrictive pericarditis, fluid overload), hypoproteinaemia (cirrhosis (C), nephrotic syndrome (D), malabsorption) hypothyroidism and Meig's syndrome (E) (right pleural effusion coupled with ovarian fibroma). Exudates occur as a result of increased capillary permeability secondary to infection (pneumonia, tuberculosis), inflammation (pulmonary infarction, rheumatoid arthritis, SLE) or malignancy (bronchogenic carcinoma, secondary metastases, lymphoma, mesothelioma, lymphangitis carcinomatosis). From the history, the most likely answer is bronchogenic carcinoma (A)."
+  },
+  {
+    "question": "You are discussing a patient with your registrar who has become acutely short of breath on the ward. After performing an arterial blood gas, you have high clinical suspicion that the patient has a pulmonary embolism. Which of the following is the investigation of choice for detecting pulmonary embolism?",
+    "options": [
+      "Magnetic resonance imaging (MRI) of the chest",
+      "High-resolution CT chest (HRCT)",
+      "Chest x-ray",
+      "Ventilation/perfusion scan (V/Q scan)",
+      "CT pulmonary angiogram (CT-Pa)"
+    ],
+    "correct": 4,
+    "explanation": "CT-Pa (E) is regarded as the investigation/diagnostic tool of choice for the detection of pulmonary embolisms (being the most readily available, sensitive and specific test). CT-Pa is able to detect PEs down to the 5th order pulmonary arteries and is readily obtainable out of hospital hours. Although V/Q scans (D) have high sensitivity/specificity, they are unlikely to be available out of hours and results are reported as low, moderate or high probability. Chest x-rays (C) may be normal or may show decreased vascular markings, atelectasis or a small pleural effusion. High resolution CT-chest (B) may not accurately detail the pulmonary vasculature but will confirm atelectasis and pleural effusion. MRI chest (A) is not used for the exclusion/diagnosis of PEs due to inaccurate imaging of pulmonary vasculature, lengthy scan times and difficulty obtaining a scan out of hours."
+  },
+  {
+    "question": "A 28-year-old man has been newly diagnosed with asthma. He has never been admitted to hospital with an asthma exacerbation and experiences symptoms once or twice a week. You discuss the treatment options with him. His peak expiratory flow reading is currently 85 per cent of the normal predicted value expected for his age and height. Which of the following is the most appropriate first step in treatment?",
+    "options": [
+      "Short-acting beta-2 agonist inhaler",
+      "Long-acting beta-2 agonist inhaler",
+      "Low-dose steroid inhaler",
+      "Leukotriene receptor antagonists",
+      "High-dose steroid inhaler"
+    ],
+    "correct": 0,
+    "explanation": "The British Thoracic Society has introduced a five step approach in the management of chronic asthma (2008 guidelines). Step 1: The use of short-acting beta-2 agonists in mild intermittent asthma. Step 2: If the patient is using beta-2 agonists three times a week or more or is symptomatic or has required oral corticosteroids in the last two years, then regular preventer therapy is required with an inhaled steroid (C) (e.g. 400 μg beclomethasone inhaler twice a day). This patient has been newly diagnosed and coupled with the fact that he experiences symptoms once or twice, at most, a week, puts him into the mild intermittent asthma category. Thus the introduction of short-acting beta-2 agonists (A) is the most appropriate answer here."
+  },
+  {
+    "question": "You see a 46-year-old man who has presented to accident and emergency with an acute onset of shortness of breath. Your registrar has high clinical suspicion that the patient is suffering from a pulmonary embolism and tells you that the patient's ECG has changes pointing to the suspected diagnosis. From the list below, which of the following ECG changes are classically seen?",
+    "options": [
+      "Inverted T-waves in lead I, tall/tented T-waves in lead III and flattened T-waves in lead III",
+      "Deep S-wave in lead I, pathological Q-wave in lead III and inverted T-waves in lead III",
+      "Flattened T-wave in lead I, inverted T-wave in lead III, and deep S-wave in lead III",
+      "No changes in lead I, deep S-wave in lead III",
+      "Deep S-wave in lead I with no changes in lead III"
+    ],
+    "correct": 1,
+    "explanation": "Although rare, the 'S1Q3T3' (B) (deep S-wave in lead I, pathological Q-wave in lead III, and inverted T-waves in lead III) pattern may be seen in patients with pulmonary embolism. More commonly, sinus tachycardia is usually observed. Right axis deviation, right bundle branch block, right ventricular strain patterns (inverted T-waves in V1–V4) or atrial fibrillation (new onset) have also been seen in patients with pulmonary embolism."
+  },
+  {
+    "question": "Which of the following arterial blood gas results, taken on room air, would you expect to see in a 67-year-old patient who has been suffering with COPD for two years and is not on home oxygen?",
+    "options": [
+      "pH 7.35, PO2 11, PCO2 5.3, HCO3 24, SO2 98 per cent",
+      "pH 7.47, PO2 12, PCO2 5.1, HCO3 30, SO2 97 per cent",
+      "pH 7.44, PO2 8.3, PCO2 6.7, HCO3 28, SO2 93 per cent",
+      "pH 7.31, PO2 10.2, PCO2 6.8, HCO3 25, SO2 95 per cent",
+      "pH 7.30, PO2 11.5, PCO2 5.2, HCO3 18, SO2 96 per cent"
+    ],
+    "correct": 2,
+    "explanation": "Patients with longstanding COPD rely on hypoxic drive in order to drive respiration. This occurs due to the fact that the respiratory centre in the brain is relatively insensitive to carbon dioxide. Typically, patients with COPD usually exhibit a type-2 respiratory failure picture in terms of arterial blood gas parameters, caused by alveolar hypoventilation, with or without V/Q mismatch. The longstanding hypercapnia results in a respiratory acidosis which over a long period of time is compensated by the kidneys retaining more bicarbonate (HCO3) in order to normalize the pH levels. From the answers, 'C' would therefore be the most appropriate selection."
+  },
+  {
+    "question": "You see a 46-year-old woman on your ward who has been diagnosed with bronchiectasis following a three-month history of a mucopurulent cough. Which of the following from the list below is not a cause of bronchiectasis?",
+    "options": [
+      "Kartagener's syndrome",
+      "Cystic fibrosis",
+      "Pneumonia",
+      "Left ventricular failure",
+      "Bronchogenic carcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Bronchiectasis is defined as chronic infection of the bronchi and bronchioles leading to permanent dilatation of these airways. The main organisms involved in this condition are H. influenzae, S. pneumoniae, S. aureus and P. aeruginosa. Answers A–C and E are all known causes of bronchiectasis. The causes can be divided into: (1) Congenital: cystic fibrosis, Young's syndrome, primary ciliary dyskinesia, Kartagner's syndrome; and (2) Acquired: Post-infection with measles, pertussis, bronchiolitis, pneumonia, TB and HIV. Other acquired causes include bronchial obstruction secondary to tumours or foreign bodies, allergic bronchopulmonary aspergillosis (ABPA), hypogammaglobulinaemia, rheumatoid arthritis, ulcerative colitis and idiopathic. Left ventricular failure (D) is not a cause of bronchiectasis."
+  },
+  {
+    "question": "A 30-year-old man presents to your clinic with a cough and finger clubbing. From the list below, which of these answers is not a respiratory cause of finger clubbing?",
+    "options": [
+      "Empyema",
+      "Mesothelioma",
+      "Bronchogenic carcinoma",
+      "Cystic fibrosis",
+      "COPD"
+    ],
+    "correct": 4,
+    "explanation": "The respiratory causes of clubbing include bronchogenic carcinoma (C), empyema (A), mesothelioma (B), cystic fibrosis (D), lung abscess, fibrosing alveolitis and bronchiectasis. In patients with COPD, the signs that may be seen in the hands are carbon dioxide retention tremor, peripheral cyanosis and tar staining in the fingertips."
+  },
+  {
+    "question": "A 55-year-old woman, who has never smoked, presents to you on the ward with a history of weight loss, decreased appetite and finger clubbing. You are told that her chest x-ray revealed opacity in the hilar region of the right lung suggesting a bronchogenic carcinoma. She is currently awaiting a CT-chest with bronchoscopy to follow. From the list below, select the most likely diagnosis:",
+    "options": [
+      "Squamous cell carcinoma of the lung",
+      "Adenocarcinoma of the lung",
+      "Small cell carcinoma of the lung",
+      "Large cell carcinoma of lung",
+      "Carcinoid tumour of the lung"
+    ],
+    "correct": 1,
+    "explanation": "Bronchogenic carcinomas can be divided into non-small cell and small cell carcinomas (C). Non-small cell lung carcinomas (NSCLC) can be further divided into subtypes: squamous cell carcinoma (A), adenocarcinoma (B), large cell carcinoma (D) and carcinoid tumour (E). Adenocarcinoma (B) is the most common lung cancer in non-smokers and in women, and typically presents as a peripheral lesion. It is also the most common type found in patients who have never smoked."
+  },
+  {
+    "question": "You see a 28-year-old man, with no past medical history, in accident and emergency who developed an acute onset of pleuritic chest pain and shortness of breath while playing football. On examination, oxygen saturations are 93 per cent on room air, respiratory rate 20 and temperature is 37.1°C. There is decreased expansion of the chest on the left side, hyper-resonant to percussion and reduced air entry on the left. The most likely diagnosis is:",
+    "options": [
+      "Left-sided pneumothorax",
+      "Left-sided pneumonia",
+      "Left-sided pleural effusion",
+      "Lung fibrosis",
+      "Traumatic chest injury"
+    ],
+    "correct": 0,
+    "explanation": "Hyper-resonance coupled with pleuritic chest pain and an acute onset from the history strongly points to a diagnosis of pneumothorax. Pneumothoraces are usually spontaneous in young thin men and tend to occur due to subpleural bulla rupture. There is no history of cough and, in addition, the patient is afebrile with no bronchial breathing over the chest wall to suggest pneumonia (B). With pleural effusion (C) there would be dullness to percussion and reduced air entry on the affected side; there would also be a more chronic onset of symptoms from the history. Lung fibrosis (D) would not typically present with signs of hyper-resonance and furthermore, disease is usually bilateral with air entry. Fine inspiratory crackles are heard on auscultation. Although pneumothoraces can develop from chest trauma, there is no history of this from the question stem, making a traumatic chest injury (E) unlikely."
+  },
+  {
+    "question": "You are asked to request imaging for a patient with a suspected pneumothorax who you have just examined in accident and emergency. Which of the following would be the most appropriate first step imaging modality?",
+    "options": [
+      "CT-chest",
+      "Ultrasound chest",
+      "Chest x-ray",
+      "V/Q scan",
+      "CT-PA"
+    ],
+    "correct": 2,
+    "explanation": "Although CT-chest (A) would give an accurate confirmation of pneumothorax, it would not be the most appropriate first step in imaging modality. A simple chest x-ray (C) would suffice in identifying a pneumothorax. V/Q scanning (D) and CT-PA are usually requested for the assessment of pulmonary emboli. An ultrasound of the chest (B) is better at assessing pleural effusions and are increasingly used in guiding chest drain insertions."
+  },
+  {
+    "question": "A 68-year-old woman has presented with acute onset shortness of breath 24 hours after a long haul flight. Her blood results show a raised D-dimer level and the arterial blood gas shows a PO2 of 8.3 kPa and PCO2 of 5.4 kPa. Your consultant suspects a pulmonary embolism and the patient needs to be started on treatment while a CT-PA is awaited. From the list below, please select the most appropriate treatment regime.",
+    "options": [
+      "Commence loading with warfarin and aim for an international normalized ratio (INR) between 2 and 3",
+      "Thromboembolic deterrent stockings",
+      "Aspirin 75 mg daily",
+      "Prophylactic dose subcutaneous low molecular weight heparin + loading with warfarin and aim for INR between 2 and 3",
+      "Treatment dose subcutaneous low molecular weight heparin + loading with warfarin and aim for INR between 2 and 3"
+    ],
+    "correct": 4,
+    "explanation": "Once pulmonary embolism is suspected, anti-coagulation must be commenced with treatment dose subcutaneous low molecular weight heparin (e.g. Dalteparin) and warfarin loading (E). Once the INR has stabilized, usually between a therapeutic range of 2–3, the low molecular weight heparin may be stopped and the patient is to continue on warfarin for a minimum of three months. Therefore, answers A–D are incorrect here."
+  },
+  {
+    "question": "You see a 67-year-old man who has been referred to the chest clinic following a three-month history of weight loss and signs which may suggest a Pancoast's tumour. Which of the following symptoms from the list below is not associated with a Pancoast's tumour?",
+    "options": [
+      "Hoarse voice",
+      "Miosis",
+      "Anhydrosis",
+      "Exopthalmos",
+      "Ptosis"
+    ],
+    "correct": 3,
+    "explanation": "Pancoast's tumours are defined as tumours arising from the lung apex either on the left or right side. As the tumour grows it can compress structures such as the brachiocephalic vein, subclavian artery, recurrent laryngeal nerve (causing voice hoarseness (A)), vagus nerve, phrenic nerve or compression of the sympathetic ganglion resulting in a group of symptoms known as Horner's syndrome (miosis (B) – pupil constriction, enopthalmos – sunken eye, ptosis (E) – drooping eyelid and ipsilateral anhydrosis (C) – loss of sweating due to compression of sympathetic supply (thoracic outlet) to the face). Exopthalmos (D) is defined as the appearance of protruding eye and is seen in patients with Grave's disease."
+  },
+  {
+    "question": "A 50-year-old Afro-Caribbean man, with no past medical history, presents with a four-month history of dry cough and shortness of breath on exertion. The patient's GP referred him to the chest clinic after performing blood tests which revealed a raised erythrocyte sedimentation rate (ESR) and serum angiotensin-converting enzyme (ACE) level. You review the patient's chest x-ray which reveals bilateral hilar lymphadenopathy. From the list below, select the most likely diagnosis:",
+    "options": [
+      "Rheumatoid arthritis",
+      "Systemic lupus erythematosus (SLE)",
+      "Sarcoidosis",
+      "Idiopathic pulmonary fibrosis",
+      "Bronchogenic carcinoma"
+    ],
+    "correct": 2,
+    "explanation": "Sarcoidosis (C) is a multisystemic granulomatous disorder of unknown aetiology which commonly affects adults, with an increased prevalence in the Afro-Caribbean population compared to Caucasians. Usually discovered during incidental findings on chest x-ray, patients with sarcoidosis (20–40 per cent) are usually asymptomatic. Ninety per cent of patients with pulmonary disease will have abnormal chest x-rays with bilateral hilar lymphadenopathy. Blood tests may reveal a raised ESR, lymphopenia, deranged LFTs, elevated serum ACE and raised immunoglobulins. Tissue biopsy (of lung, liver, lymph nodes, skin nodules or lacrimal glands) is usually diagnostic, with histology revealing non-caseating granulomata."
+  },
+  {
+    "question": "A 67-year-old man presents with dyspnoea and fatigue with signs of a raised jugular venous pressure (JVP), hepatomegaly and peripheral oedema. The patient has a longstanding history of COPD. You suspect cor pulmonale. Which of the following is not a cause of cor pulmonale?",
+    "options": [
+      "Pulmonary fibrosis",
+      "Primary pulmonary hypertension",
+      "Myasthenia gravis",
+      "COPD",
+      "Multiple sclerosis"
+    ],
+    "correct": 4,
+    "explanation": "Cor pulmonale is defined as right heart failure caused by chronic pulmonary hypertension. Causes can be categorized into: (1) Lung disease: severe/chronic asthma, COPD (D), bronchiectasis, pulmonary fibrosis (A), lung resection; (2) Pulmonary vascular disease: pulmonary emboli, pulmonary vasculitis, primary pulmonary hypertension (B), acute respiratory distress syndrome, sickle-cell disease, parasite infestation; (3) Thoracic cage abnormality: kyphosis, scoliosis, thoracoplasty; (4) Neuromuscular disease: myasthenia gravis (C), poliomyelitis, motor neurone disease; (5) Hypoventilation: sleep apnoea, enlarged adenoids in children and cerebrovascular disease. Therefore, from the list it is obvious that multiple sclerosis (E) is not one of the many causes of cor pulmonale."
+  },
+  {
+    "question": "You are told by your registrar that a 69-year-old man has been admitted to the chest ward with dyspnoea, cyanosis and finger clubbing. His chest x-ray shows bilateral lower zone reticulo-nodular shadowing. From the list below, which is the most likely diagnosis?",
+    "options": [
+      "Bronchiectasis",
+      "Pulmonary fibrosis",
+      "Bronchogenic carcinoma",
+      "Bronchitis",
+      "COPD"
+    ],
+    "correct": 1,
+    "explanation": "Classically, answers A and C–E do not produce bilateral reticulo-nodular shadowing on a chest x-ray. In addition, only the diseases mentioned in answers A–C produce clubbing as one of the clinical signs. This pattern of opacification occurs in the spectrum of fibrosing lung disease (B). In advanced fibrotic lung disease, honeycombing of the lung may be seen. Fibrosis of the lung usually starts at the bases and spreads superiorly to the upper zones of the lung as disease progresses."
+  },
+  {
+    "question": "A 25-year-old woman is admitted to accident and emergency with a severe exacerbation of asthma. On examination, her respiratory rate is 30, oxygen saturations are 95 per cent on 15 L O2 and temperature is 37.2°C. As you feel the peripheral pulse, the volume falls as the patient inspires. Which of the following explains this clinical sign?",
+    "options": [
+      "Increased left atrial filling pressures on inspiration",
+      "Decreased right ventricular filling pressures on inspiration",
+      "Peripheral vasodilation",
+      "Decreased right atrial filling pressures on inspiration",
+      "Decreased left atrial filling pressures on inspiration"
+    ],
+    "correct": 4,
+    "explanation": "As the patient inspires, at high respiratory rates, with air flow compromise due to the narrowing of airways that occurs in acute asthma exacerbations, this results in a sudden increase in negative intrathoracic pressure which causes dilatation of the pulmonary vasculature. This effect causes pooling of blood in the lungs which results in diminished pulmonary venous return to the left atrium (decreased left atrial filling (E)), hence reducing stroke volume, causing the blood pressure to drop and hence the volume of the pulse thus falls in response. In addition, an increase in negative intrathoracic pressure also causes increased venous return to the right atrium which leads to expansion of the right side of the heart resulting in compromised filling of the left side of the heart."
+  },
+  {
+    "question": "A 55-year-old man, who has never smoked and with no past medical history, has been diagnosed with right basal community-acquired pneumonia. There are minimal changes on his chest x-ray and bloods reveal a neutrophil count of 8.2 and a C-reactive protein (CRP) of 15. He has no drug allergies. Although he has a productive cough of green sputum, his respiratory rate is 16, oxygen saturations are 97 per cent on room air and his temperature is 37.4°C. You are asked to place him on treatment. Which of the following treatment options would be appropriate for this patient?",
+    "options": [
+      "Oral amoxicillin",
+      "Oral erythromycin",
+      "Intravenous ertapenem",
+      "Intravenous ertapenem with a macrolide (e.g. clarithromycin)",
+      "Intravenous tazocin"
+    ],
+    "correct": 0,
+    "explanation": "From the history we can see that this patient has a CURB-65 score of 0 putting him into a good prognostic category. Second, he is normally fit and well and has no past medical history. Therefore, he is in the category of non-severe pneumonia and does not require hospitalization. Hence, oral antibiotic therapy is preferred. From the list, amoxicillin (A) would be preferred over erythromycin (B) as it covers the most common organism (S. pneumoniae) and has a broad spectrum of action while the macrolide will cover for atypical organisms (e.g. legionella, mycoplasma, etc.). Intravenous tazocin (E) and ertapenem (C + D) are not always used across all hospital trusts; antibiotic protocols vary and it is important to check the hospital trust policy for updated guidelines."
+  },
+  {
+    "question": "A 56-year-old woman who has recently been discharged from your ward, with oral antibiotics for right basal community-acquired pneumonia, is re-admitted with transient pyrexia and shortness of breath. She is found to have a right-sided pleural effusion which is drained and some pleural aspirate sent for analysis. The results reveal an empyema. Which of the following, from the pleural aspirate analysis, would typically be found in a patient with an empyema?",
+    "options": [
+      "pH >7.2, raised LDH, raised glucose",
+      "pH <7.2, raised LDH, raised glucose",
+      "pH >7.2, lowered LDH, lowered glucose",
+      "pH <7.2, raised LDH, lowered glucose",
+      "pH <7.2, normal LDH, normal glucose"
+    ],
+    "correct": 3,
+    "explanation": "Empyema can be defined as pus in the pleural space which can occur in patients with resolving pneumonia. The pH of pleural fluid is used to ascertain pleural infection. The normal pH of pleural fluid is approximately 7.6. A pleural pH of <7.2 with a normal blood pH is usually found in pleural infections, empyema, TB, malignancy and oesophageal rupture. Light's criteria states that pleural fluid can be categorized as an exudate if one or more of the following exist: (1) The pleural fluid protein divided by serum protein >0.5; (2) Pleural fluid LDH divided by serum LDH >0.6 and (3) Pleural fluid LDH is more than two-thirds the upper limits of normal serum LDH. A low glucose level (<3.3 mmol/L) is usually seen in empyema, rheumatoid arthritis, SLE, TB, malignancy and oesophageal rupture. Therefore, from the answers above, D is the most appropriate."
+  },
+  {
+    "question": "You are told that a patient in clinic has been diagnosed with cystic fibrosis using the sodium chloride sweat test. Which of the following results from the latter test would indicate a positive diagnosis of cystic fibrosis?",
+    "options": [
+      "Sodium chloride <40 mmol/L",
+      "Sodium chloride >60 mmol/L",
+      "Sodium chloride >50 mmol/L",
+      "Sodium chloride <60 mmol/L",
+      "Sodium chloride <30 mmol/L"
+    ],
+    "correct": 1,
+    "explanation": "Cystic fibrosis is an autosomal recessive condition that arises due to mutations in the cystic fibrosis transmembrane conductance regulator (CTFR) gene found on chromosome 7. Diagnosis is usually made using the sodium chloride sweat test. A positive test for cystic fibrosis usually indicates a reading of >60 mmol/L (B) (chloride levels being greater than sodium). Genetic testing can also reveal common mutations in the CFTR gene. Faecal elastase can be measured to assess exocrine pancreatic dysfunction."
+  },
+  {
+    "question": "Which of the following organisms, responsible for causing chronic pneumonia, is most commonly found in patients with longstanding cystic fibrosis?",
+    "options": [
+      "L. pneumophilia",
+      "S. pneumonia",
+      "Burkholderia cepacia",
+      "Pseudomonas aeruginosa",
+      "H. influenza"
+    ],
+    "correct": 3,
+    "explanation": "Mucus build-up coupled with decreased mucociliary clearance results in clogging of the airways and an inflammation-rich environment which predisposes patients with cystic fibrosis to chronic lower respiratory tract infections (LRTIs). The three most common organisms responsible for causing LRTIs in cystic fibrosis are S. aureus, H. influenza and P. aeruginosa (D). In the early stages of the condition, S. aureus and H. influenza colonize and infect the lung parenchyma. With time and chronicity of disease, P. aeruginosa and Burkholderia cepacia (C) predominate with 80 per cent of patients harbouring the former and 3.5 per cent the latter, respectively."
+  },
+  {
+    "question": "From, the list below, which of the following carcinomas of the lung is highly associated with exposure to asbestos?",
+    "options": [
+      "Adenocarcinoma",
+      "Small cell carcinoma",
+      "Squamous cell carcinoma",
+      "Malignant mesothelioma",
+      "Large cell carcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Asbestos exposure is considered to be a strong predisposing (occupational) factor to the development of malignant mesothelioma (D). Approximately 90 per cent of patients with malignant mesothelioma report a previous history of asbestos exposure. The latter is a rare form of cancer which develops from the mesothelial cells from the pleural lining. It can also develop from the peritoneum, the heart and pericardium but this is relatively less common. There is a latent period of approximately 40–45 years between the time of exposure and development of the condition."
+  },
+  {
+    "question": "You see a 67-year-old man who has presented with a four-month history of progressive shortness of breath, initially on exertion but now also at rest. Associated symptoms include a dry cough. His past medical history includes atrial fibrillation, hypertension and hypercholesterolaemia. On examination, oxygen saturations are 92 per cent on room air, respiratory rate is 19 and the patient is apyrexial. On auscultation of the chest you hear bibasal fine inspiratory crackles. You review the patient's medication history. Which of the following drugs from the patient's list is most likely to cause the symptoms experienced by the patient?",
+    "options": [
+      "Amlodipine",
+      "Aspirin",
+      "Amiodarone",
+      "Simvastatin",
+      "Alendronate"
+    ],
+    "correct": 2,
+    "explanation": "This patient has signs and symptoms of worsening pulmonary fibrosis secondary to amiodarone treatment. Amiodarone along with bleomycin, bulsulfan, nitrofurantoin, methotrexate and sulfasalazine are drugs that can cause pulmonary fibrosis with long-term use. Amlodipine (A), aspirin (B), simvastatin (D) and alendronate (E) have not been documented to cause pulmonary fibrosis."
+  },
+  {
+    "question": "You see a 70-year-old man diagnosed with hypersensitivity pneumonitis following a four-month history of shortness of breath at rest and cyanosis. Which of the following does not fall under the category of hypersensitivity pneumonitis?",
+    "options": [
+      "Coal worker's lung",
+      "Pigeon fancier's lung",
+      "Mushroom picker's lung",
+      "Farmer's lung",
+      "Malt worker's lung"
+    ],
+    "correct": 0,
+    "explanation": "Hypersensitivity pneumonitis, also known as extrinsic allergic alveolitis (EAA), occurs as a result of inhalation of organic allergens such as fungal spores or avian proteins which initiates a hypersensitivity reaction. The main causes include: farmer's lung (D) – from mouldy hay; bird/pigeon fancier's lung (B) – feathers and bird droppings (avian proteins); mushroom picker's lung (C) – from mushroom compost; malt worker's lung (E) – from mouldy barley. Coal worker's lung (A), along with asbestosis, silicosis, berylliosis, anthracosis, etc., falls under the category of pneumoconiosis (occupational lung disease/restrictive lung disease caused by inhalation of dust often in mines)."
+  },
+  {
+    "question": "A 44-year-old plumber has a 4-day history of fever and generalized myalgia. Two days ago he developed a dry cough coupled with mild dyspnoea and has been feeling very lethargic. On examination his temperature is 38.5°C, respiratory rate 20, oxygen saturations ranging between 93 and 96 per cent on room air and auscultation of the chest reveals bibasal crackles. Bloods show a raised white cell count of 18.2 and neutrophil count of 11.0, CRP of 90 and a raised ALT of 261 and ALP 96. Chest x-ray reveals bibasal consolidation. The patient is treated with antibiotics for bibasal pneumonia. From the list below, select the most likely organism responsible for the pneumonia:",
+    "options": [
+      "Pseudomonas spp.",
+      "S. pneumoniae",
+      "Mycoplasma pneumoniae",
+      "L. pneumophilia",
+      "S. aureus"
+    ],
+    "correct": 3,
+    "explanation": "This patient is suffering from a bibasal pneumonia caused by atypical L. pneumophilia (D). The first clue in the question is given away by the patient's occupation; Legionella spp. tend to colonize in water tanks kept at <60°C. Patients may initially experience flu-like symptoms of fever, malaise and myalgia followed by a dry cough and sometimes dyspnoea. The patient also has deranged LFTs which is the second clue in the question. Blood tests may also show lymphopenia and hyponatraemia. Diagnosis is usually made using legionella urinary antigen testing or serology. Treatment comprises of high-dose macrolide therapy."
+  },
+  {
+    "question": "Which of the drugs below would be the most appropriate to treat pulmonary Aspergillus spp. infection?",
+    "options": [
+      "Amoxicillin",
+      "Erythromycin",
+      "Amphotericin B",
+      "Flucloxacillin",
+      "Fluconazole"
+    ],
+    "correct": 2,
+    "explanation": "From the answers, amoxicillin (A), erythromycin (B) and flucloxacillin (D) are all antibacterial agents and do not target fungal infections. Therefore the only possible answers are C and E. Fluconazole (E), although a widely used antifungal, is not effective against Aspergillus spp. Amphotericin B (C), along with other antifungals such as voriconazole, itraconazole and caspofungin, is effective in treating Aspergillus infections."
+  },
+  {
+    "question": "A 68-year-old woman is admitted to accident and emergency with shortness of breath and cough. She has been a smoker for 25 years, smoking on average 20 cigarettes a day, and is a known COPD patient with home oxygen. The observations read a pulse rate of 101, blood pressure of 100/60, respiratory rate of 20, oxygen saturations of 88 per cent on air and temperature of 37.2°C. On auscultation you hear bilateral expiratory wheeze. She is prescribed nebulizers (salbutamol 5 mg + ipratropium 500 μg) with oxygen and chest x-ray requested. Intravenous access has been established and bloods sent for analysis. From the list below, select the most appropriate next step in this patient's management plan.",
+    "options": [
+      "Arterial blood gas sampling",
+      "Peak flow assessment",
+      "Urine dip with microscopy and sensitivity",
+      "Start non-invasive ventilation (e.g. BIPAP)",
+      "Obtain sputum for microscopy, culture and sensitivity (MC&S)"
+    ],
+    "correct": 0,
+    "explanation": "This patient is suffering from an exacerbation of COPD and, due to the inefficiency of gas exchange due to underlying disease, will be unable to maintain and expel adequate oxygen saturations and carbon dioxide, respectively. Performing arterial blood gas (ABG) sampling (A) is the most appropriate step here; this will enable the physician to assess the levels of oxygen (PO2) and carbon dioxide (PCO2), as well as the acid-base status which will determine whether the patient requires non-invasive or invasive ventilation in the intensive care unit. Peak flow assessment (B), urine analysis (C) and sputum analysis (E), although important tests, do not need to be carried out initially. Non-invasive ventilation (D) would be considered following full clinical assessment of the patient coupled with his/her acid base status from the findings of the ABG."
+  },
+  {
+    "question": "During the consultant ward round, you see a 78-year-old woman who is being investigated for hyponatraemia, weight loss and haemoptysis. A mass lesion was detected on a CT-chest scan which has been biopsied and sent for histological analysis. Your consultant has a high suspicion that the patient may have bronchogenic carcinoma. From the list below, select the most likely type of bronchogenic carcinoma that would explain the above patient's symptoms:",
+    "options": [
+      "Large cell carcinoma",
+      "Small cell carcinoma",
+      "Adenocarcinoma",
+      "Squamous cell carcinoma",
+      "Alveolar cell carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Small cell carcinomas (B) are thought to originate from the neuroendocrine cells of the bronchus and express neuroendocrine markers which may lead to ectopic hormone production (e.g. ADH and ACTH), resulting in the paraneoplastic syndromes. The patient has a likely diagnosis of syndrome of inappropriate ADH secretion (SIADH). This results in a dilutional hyponatraemia. Twenty-four hour urine collection will reveal high urine sodium concentration and high urine osmolality. Symptoms of weight loss and haemoptysis can be seen in most types of bronchogenic carcinoma but the presenting hyponatraemia makes small cell carcinoma (B) the most appropriate answer here."
+  },
+  {
+    "question": "The severity of COPD is assessed using post bronchodilator spirometry analysis. From the list below, select the values that you would expect to see in a patient with moderate COPD.",
+    "options": [
+      "FEV1/FVC <0.7, FEV1 per cent predicted 30–49 per cent",
+      "FEV1/FVC <0.7, FEV1 per cent predicted ≥80 per cent",
+      "FEV1/FVC <0.7, FEV1 per cent predicted <30 per cent",
+      "FEV1/FVC <0.7, FEV1 per cent predicted 50–79 per cent",
+      "FEV1/FVC <0.7, FEV1 per cent predicted 60–70 per cent"
+    ],
+    "correct": 3,
+    "explanation": "With reference to the NICE guidelines 2010, COPD can be divided into mild, moderate, severe and very severe. The values are obtained with post bronchodilator spirometry and are as follows: Mild COPD: FEV1/FVC <0.7, FEV1 % predicted ≥80 per cent (B); Moderate COPD: FEV1/FVC <0.7, FEV1 % predicted 50–79 per cent (D); Severe COPD: FEV1/FVC <0.7, FEV1 % predicted 30–49 per cent (A); Very severe COPD: FEV1/FVC <0.7, FEV1 % predicted <30 per cent (C)."
+  },
+  {
+    "question": "A 58-year-old man with known COPD, diagnosed eight months ago, attends your clinic with persistent shortness of breath despite stopping smoking and using his salbutamol inhaler (given to him at the time of diagnosis), which he finds he is using more frequently. You assess the patient's lung function tests that have been recorded just before he saw you in clinic on this occasion. His FEV1 = 65 per cent of the predicted value. Oxygen saturations are 95 per cent on room air, respiratory rate in 18, and his temperature is 37.1°C. From the list below, select the next most appropriate step in this patient's management.",
+    "options": [
+      "40 mg daily oral prednisolone for 5 days",
+      "Start long-term oxygen therapy",
+      "Start inhaled corticosteroid therapy",
+      "Add oral theophylline therapy",
+      "Add a long-acting β2 agonist inhaler"
+    ],
+    "correct": 4,
+    "explanation": "This patient was diagnosed with COPD eight months ago and was started on a short-acting β2 agonist inhaler. With reference to the NICE guidelines in managing stable COPD, this patient can either have a long-acting β2 agonist (LABA) inhaler (e.g. salmeterol) or a long-acting muscarinic antagonist (LAMA) inhaler (e.g. tiotropium). Therefore, from the list, E is the most appropriate answer. Inhaled therapy is usually started when the patient is diagnosed with COPD and is breathless and/or has exercise limitation. If the patient experiences frequent exacerbations or persistent breathlessness, despite being on either a SABA or SAMA, a LABA or LAMA can be added."
+  },
+  {
+    "question": "A 58-year-old man is admitted with a mild exacerbation of asthma. He suffers with hypertension which is controlled with medication. He was given 5 mg salbutamol and 500 μg ipratropium nebulizers, on route to hospital, by paramedics and has received 'back to back' salbutamol 5 mg nebulizers since admission to accident and emergency. The patient was then sent to the acute medical unit where he was given regular nebulizers along with his regular antihypertension medication. Before he was discharged, his serum potassium reading was 2.9. Select, from the list below, the drug which is most likely to have caused the hypokalaemia.",
+    "options": [
+      "Ipratropium",
+      "Ramipril",
+      "Salbutamol",
+      "Amlodipine",
+      "Paracetamol"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer here is salbutamol (C). Regular nebulized salbutamol is commonly associated with hypokalaemia. Ipratropium is not documented to cause electrolyte disturbances. Ramipril (B) is reported to cause hyperkalaemia rather than hypokalaemia. Amlodipine (D) and paracetamol (E) are also not known to cause hypokalaemia. This patient will require potassium supplementation either via intravenous infusion or oral administration."
+  },
+  {
+    "question": "A 56-year-old man attends your clinic with a three-month history of a productive cough with blood-tinged sputum, following his return from India. Associated symptoms include lethargy, night sweats and decreased appetite. He is normally fit and healthy with no past medical history. On examination, the patient's chest has good air entry bilaterally with no added sounds and his temperature is 37.3°C. A sputum sample sent from the patient's GP reveals a growth of acid fast bacilli. From the list below, which is the most likely diagnosis?",
+    "options": [
+      "Pulmonary embolism",
+      "Tuberculosis",
+      "Bronchitis",
+      "Pneumonia",
+      "Bronchogenic carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "Although answers A–E can all cause haemoptysis, the clue in this question points towards the sputum analysis report which shows a growth of acid fast bacilli seen in tuberculosis (TB) (B) which can be categorized into pulmonary (75 per cent of cases) and extrapulmonary (25 per cent of cases). The gram-positive aerobic bacterium (Mycobacterium tuberculosis) is usually airborne, transmitted by people suffering from active pulmonary TB. Most people (90 per cent) infected with the bacterium are asymptomatic (latent TB) with an approximately 10–15 per cent lifetime chance that the latent infection will progress to full blown TB. Symptoms of primary pulmonary TB include chronic cough, haemoptysis, pyrexia, night sweats, loss of appetite, weight loss and lethargy."
+  },
+  {
+    "question": "Your clinic patient has been diagnosed with pulmonary tuberculosis (TB) following a three-month history of haemoptysis and fever. The patient is due to start on treatment and you are asked by your registrar which of the following regimes is the most suitable. The patient has no known drug allergies and, in addition, liver function tests and urea and electrolytes results are all within normal ranges. From the list below, which of the following answers is the most appropriate and recommended treatment regimen for this patient?",
+    "options": [
+      "Three months of isoniazid, rifampicin, ethambutol and pyrazinamide, followed by three months of isoniazid and rifampicin",
+      "Four months of isoniazid and rifampicin, followed by two months of isoniazid, rifampicin, ethambutol and pyrazinamide",
+      "Six months of isoniazid, rifampicin, ethambutol and pyrazinamide",
+      "Six months of isoniazid and rifampicin",
+      "Two months of isoniazid, rifampicin, ethambutol and pyrazinamide, followed by four months of isoniazid and rifampicin"
+    ],
+    "correct": 4,
+    "explanation": "NICE guidelines (March 2006; Clinical diagnosis and management of tuberculosis and measures for its prevention and control) recommend a standard regimen of six months which includes: The use of four drugs initially (e.g. isoniazid, rifampicin, ethambutol and pyrazinamide) for a total of two months. This is then followed by four months treatment with isoniazid and rifampicin. This regimen is viewed as first choice daily dosing and given in fixed-dose combination tablets. This standard regimen is usually used for fully drug-susceptible TB at all sites except for the CNS, all ages (children and adults) and patients with negative or positive HIV status."
+  },
+  {
+    "question": "A 45-year-old man with diabetes, diagnosed with pulmonary TB who started treatment two months ago, presents to you with a week's history of pins and needles in his hands and feet with associated numbness. He tells you that his symptoms started since he stopped taking the vitamins given to him at the start of his TB treatment. From the list below, which of the following drugs is responsible for the symptoms described by the patient?",
+    "options": [
+      "Pyrazinamide",
+      "Rifampicin",
+      "Ethambutol",
+      "Isoniazid",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "This patient is suffering from peripheral neuropathy secondary to isoniazid (D) administration. Isoniazid is associated with depletion of vitamin B6 (pyridoxine) and therefore results in peripheral neuropathy. Other side effects include rash, deranged liver function, CNS effects and sideroblastic anaemia. The common side effects of pyrazinamide (A) include arthralgia, hepatotoxicity, gastrointestinal disturbances, rash, pruritus and sideroblastic anaemia. Side effects of rifampicin (B) (a cytochrome P450 inducer) include hepatotoxicity, fever, gastrointestinal disturbances, rash and can also cause the urine and tears to become an orange–red colour. The side effects associated with ethambutol (C) include optic neuritis, red–green colour blindness, peripheral neuropathy and vertical nystagmus. Although ethambutol could also be a possible answer here, the clue given in the question points to the patient having stopped taking his vitamins which are usually given in conjunction with isoniazid treatment."
+  },
+  {
+    "question": "A 37-year-old woman is admitted to accident and emergency with severe facial burns. Despite prompt management, she develops acute respiratory distress syndrome (ARDS). Which of the following is not associated with the diagnostic criteria for ARDS?",
+    "options": [
+      "Bilateral infiltrates on chest x-ray",
+      "Acute onset",
+      "Pulmonary capillary wedge pressure >19",
+      "Refractory hypoxaemia (PaO2:FiO2 <200)",
+      "Lack of clinical congestive heart failure"
+    ],
+    "correct": 2,
+    "explanation": "ARDS, or acute lung injury, is caused either by direct injury to the lung (e.g. trauma, iatrogenic, etc.) or secondary to severe systemic illness. A diagnosis of ARDS is made if all four of the following criteria exist: (1) acute onset (B); (2) bilateral infiltrates present on chest X-ray (A); (3) pulmonary capillary wedge pressure of <19 mmHg or lack of clinical congestive heart failure (E); (4) refractory hypoxaemia with PaO2:FiO2 <200 (D) for ARDS. The correct criterion is a pulmonary capillary wedge pressure of <19 mmHg, not >19 mmHg (C). Therefore, option C is not associated with the diagnostic criteria for ARDS."
+  },
+  {
+    "question": "You see a 76-year-old woman in accident and emergency who has been admitted with a 1-day history of shortness of breath and pyrexia (38.4°C). The patient's past medical history includes hypertension, stroke and insulin-dependent diabetes. She has no known drug allergies. The nursing staff report that the patient vomited after her lunchtime meal yesterday. On examination the patient's respiratory rate is 26, oxygen saturations 93 per cent on room air. On auscultation of the chest, you hear right basal crackles. You suspect that this patient is suffering from aspiration pneumonia. From the list below, which is the most appropriate antibiotic regimen for this patient?",
+    "options": [
+      "Intravenous cefuroxime and metronidazole",
+      "Oral amoxicillin and metronidazole",
+      "Intravenous clarithromycin",
+      "Intravenous cefuroxime",
+      "Oral co-amoxiclav"
+    ],
+    "correct": 0,
+    "explanation": "It is very important to consider the use of a broad spectrum antibiotic coupled with another agent that will cover for anaerobic bacteria from the oral flora and gastric contents (e.g. Bacteroides spp., Prevotella spp., Fusobacterium spp., etc.). In addition, this patient is systemically unwell and the use of intravenous antibiotics would be more appropriate in the initial stages of treatment. From the list above, the use of intravenous cefuroxime and metronidazole (A) is therefore the most appropriate answer. Intravenous clarithromycin (C) treatment would be indicated if the patient had a penicillin allergy and, by itself, may not be enough to cover the range of aerobic and anaerobic bacteria."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

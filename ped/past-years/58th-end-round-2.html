@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>58th end round 2</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobalnovzn4ex",
+  "title": "58th end round 2",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following drugs can be given through an endotracheal tube?",
+    "options": [
+      "Atropine",
+      "Diazepam",
+      "Calcium gluconate",
+      "Sodium bicarbonate",
+      "Norepinephrine"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Atropine. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "On a cardiac examination of a 5-year-old child there was dullness outside the apex, what is the most probable diagnosis?",
+    "options": [
+      "Dilated pulmonary artery",
+      "Huge left atrium",
+      "Pericardial effusion",
+      "Aortic dilatation",
+      "Patent ductus arteriosus"
+    ],
+    "correct": 2,
+    "explanation": "Percussion finding: dullness extending BEYOND (lateral to) the apical impulse indicates fluid surrounding the heart — pericardial effusion displaces cardiac dullness outward. Aortic dilatation widens UPPER mediastinal dullness. Pneumothorax → hyperresonance. Pleural effusion → stony dullness over lung."
+  },
+  {
+    "question": "Which of those is suggestive for large PDA?",
+    "options": [
+      "Harsh pansystolic murmur in middle left parasternal area",
+      "Normal intensity of S2",
+      "Wide pulse pressure",
+      "Decreased pulmonary vascular resistance in CXR",
+      "Normal electrocardiogram"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Wide pulse pressure. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Why infants are more prone to wheezing?",
+    "options": [
+      "Elastic recoil of the lungs",
+      "Elastic recoil of chest wall",
+      "Higher basal metabolic rate",
+      "Higher respiratory rate",
+      "Smaller airway diameter"
+    ],
+    "correct": 4,
+    "explanation": "Poiseuille's law: resistance ∝ 1/r⁴. Infant airways have very small absolute radius; 1 mm of mucosal oedema can reduce radius by ~50%, increasing resistance 16-fold. Adults have larger airways so the same swelling causes proportionally far less obstruction."
+  },
+  {
+    "question": "How should you open the airway in a 5-year-old child involved in a car accident?",
+    "options": [
+      "Head tilt chin left with the neck in extension position",
+      "Jaw trust",
+      "Head tilt chin left with the neck in neutral position",
+      "Abdominal thrust",
+      "Head tilt chin left with the neck in sniffing position"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Jaw trust. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 5-year-old boy presents with his parents to the Emergency Department for a newly discovered rash, which of the following suggests the diagnosis of erythema infectiousum?",
+    "options": [
+      "Post-auricular lymphadenopathy",
+      "Koplik's spots",
+      "Lace like rash on extremities",
+      "Sandpaper-like rash",
+      "Circumoral pallor"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Lace like rash on extremities. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "On auscultation of the heart of an infant with suspected congenital heart disease, there was wide fixed splitting of the second. What is the most likely diagnosis?",
+    "options": [
+      "Coarctation of the aorta",
+      "Ventricular septal defect",
+      "Valvular pulmonary stenosis",
+      "Valvular aortic stenosis",
+      "Atrial septal defect"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Atrial septal defect. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following signs is pathognomonic of chicken pox?",
+    "options": [
+      "Pleomorphic rash",
+      "Koplik's sports",
+      "Circumoral pallor",
+      "Ulcers or blisters in the mouth or on the hands and feet",
+      "Post-auricular lymphadenopathy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Pleomorphic rash. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "On cardiac evaluation of a 3-month-old infant there was hyperactive precordium and pansystolic murmur over the left sternal border and a prominent second heart sound, what is the most probable diagnosis?",
+    "options": [
+      "Coarctation of the aorta",
+      "Ventricular septal defect",
+      "Valvular pulmonary stenosis",
+      "Valvular aortic stenosis",
+      "Atrial septal defect"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Ventricular septal defect. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which method of oxygen delivery is suitable to arrested children?",
+    "options": [
+      "Self-inflating bag",
+      "Venturi mask",
+      "Head box",
+      "Nasal cannula",
+      "Face mask"
+    ],
+    "correct": 0,
+    "explanation": "Self-inflating bag (BVM): device of choice during resuscitation — delivers >90% FiO2 with a reservoir, provides controlled IPPV regardless of patient effort. Venturi masks, nasal cannulae, and head boxes require a spontaneously breathing patient."
+  },
+  {
+    "question": "Pulsus paradoxus is a typical sign of which of the following?",
+    "options": [
+      "Coarctation of the aorta",
+      "Supravalvular aortic stenosis",
+      "Pericardial effusion and tamponade",
+      "ASD",
+      "Patent ductus arteriosus"
+    ],
+    "correct": 2,
+    "explanation": "Cardiac tamponade: Beck's triad (hypotension, muffled heart sounds, raised JVP) + pulsus paradoxus (>10 mmHg systolic BP fall during inspiration). Mechanism: non-distensible pericardium → inspiration fills RV more → septum shifts left → LV output falls. CoA and aortic stenosis cause pulse pressure differences between limbs, not pulsus paradoxus."
+  },
+  {
+    "question": "What is the appropriate depth of insertion of oral endotracheal tube in a 10-year-old child?",
+    "options": [
+      "13 cm",
+      "17 cm",
+      "15 cm",
+      "11 cm",
+      "19 cm"
+    ],
+    "correct": 1,
+    "explanation": "ETT insertion depth (cm at lips) = age/2 + 12. For 10-year-old: 5 + 12 = 17 cm. The formula (3 × tube ID in mm) also works. Nasal ETT is ~2–3 cm longer. Confirm with bilateral chest auscultation, CXR (tip 2–3 cm above carina), and end-tidal CO2."
+  },
+  {
+    "question": "What is the most common cause of hypoxemia in children?",
+    "options": [
+      "V/Q mismatch",
+      "Diffusion abnormality",
+      "Hypoventilation",
+      "Pulmonary edema",
+      "Intracardiac shunt"
+    ],
+    "correct": 0,
+    "explanation": "V/Q mismatch is the most common mechanism of hypoxaemia in children: some alveoli are ventilated but poorly perfused, or perfused but poorly ventilated (pneumonia, asthma). Intracardiac shunt is the most common cause in neonates with cyanotic CHD. Diffusion abnormality is rare in children."
+  },
+  {
+    "question": "Which of the following is the most common cause of atypical pneumonia?",
+    "options": [
+      "Mycoplasma pneumoniae",
+      "Respiratory syncytial virus (RSV)",
+      "Enterovirus",
+      "Chlamydophila pneumoniae",
+      "Legionella pneumophilia"
+    ],
+    "correct": 0,
+    "explanation": "Mycoplasma pneumoniae = most common cause of atypical (walking) pneumonia in school-age children (5–15 years). 'Atypical' = gradual onset, mild symptoms, interstitial CXR infiltrates, no response to penicillin. RSV = most common viral pneumonia in infants. Chlamydia trachomatis = afebrile pneumonia of infancy (staccato cough)."
+  },
+  {
+    "question": "Which of the following cyanotic congenital heart disease can decrease pulmonary blood flow?",
+    "options": [
+      "Transposition of the great arteries",
+      "Total anomalous pulmonary venous connection",
+      "Truncus arteriosus",
+      "Single ventricle",
+      "Tricuspid atresia with pulmonary stenosis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Tricuspid atresia with pulmonary stenosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 3-year-old boy presents to the emergency department for a newly discovered rash. On physical exam, he has a slapped cheeks appearance and has a maculopapular rash having a lacy or reticular appearance. The causative agent of this disease is which of those viruses?",
+    "options": [
+      "Human herpes virus type 6",
+      "Paramyxovirus",
+      "Adenovirus",
+      "Human herpes virus type 7",
+      "Parvovirus B19"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Parvovirus B19. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 3-week-old boy presented with central cyanosis. Electrocardiography suggests he has tetralogy of Fallot. Which of the following is true regarding tetralogy of Fallot?",
+    "options": [
+      "The cardiac silhouette is typically large with no specific contour",
+      "Wide splitting of the second heart sound",
+      "Varying degrees of left ventricular hypertrophy",
+      "Hypoxic spells is a frequent complication",
+      "The typical murmur is pansystolic in timing"
+    ],
+    "correct": 3,
+    "explanation": "TOF: VSD + pulmonary stenosis + overriding aorta + RVH. Key points: (1) Hypoxic (tet) spells are a major complication from dynamic infundibular spasm — managed with knee-chest position, morphine, IV propranolol. (2) Murmur is EJECTION SYSTOLIC (NOT pansystolic — from RVOTO, not the VSD). (3) Boot-shaped heart on CXR. (4) Brain abscess complication in older children (paradoxical emboli through VSD). (5) ECG: RVH + right axis."
+  },
+  {
+    "question": "What is the normal heart rate for a 3-year-old child?",
+    "options": [
+      "45-70 BPM",
+      "145-170 BPM",
+      "95-140 BPM",
+      "30-40 BPM",
+      "75-90 BPM"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 95-140 BPM. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "previously healthy, 4-month-old boy who presented to the emergency department with tachypnea for the past 4 days. He had bilateral coarse lung sounds and subcostal and intercostal retractions; nasal flaring. He was diagnosed as acute bronchiolitis. Which of the following is a risk factor for severe acute bronchiolitis?",
+    "options": [
+      "Age younger than 2 years",
+      "Cyanosis",
+      "Fine crackles on chest auscultation",
+      "Nasal flaring",
+      "Age less than 6 to 12 weeks"
+    ],
+    "correct": 4,
+    "explanation": "Severe bronchiolitis risk factors: Age <6–12 WEEKS (most important — immature immunity, small airways), prematurity (<35 weeks), chronic lung disease (BPD), haemodynamically significant CHD, immunodeficiency, neuromuscular disease, trisomy 21. Age <2 years is NOT specifically a risk factor."
+  },
+  {
+    "question": "Which of the following is TRUE regarding compensated shock?",
+    "options": [
+      "Blood pressure remains normal",
+      "Inadequate perfusion of vital organs",
+      "Organ and cellular function deteriorate",
+      "Significant reduction in effective plasma volume",
+      "Irreversible damage of vital organs"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Blood pressure remains normal. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the normal arterial oxygen saturation measured by pulse oximetry?",
+    "options": [
+      "85-88%",
+      "88-92%",
+      "97-100%",
+      "More than 100%",
+      "92-95%"
+    ],
+    "correct": 2,
+    "explanation": "Normal SpO2 by pulse oximetry: 97–100%. SpO2 <94%: supplemental oxygen recommended. SpO2 <90%: significant hypoxaemia — urgent oxygen. Limitations: inaccurate in CO poisoning (falsely HIGH), methaemoglobinaemia (reads ~85%), poor perfusion, dark nail varnish."
+  },
+  {
+    "question": "Which of the following is a complication of tetralogy of Fallot?",
+    "options": [
+      "Iron overload",
+      "Heart failure",
+      "Decreased blood viscosity",
+      "Cerebral venous thrombosis",
+      "Renal failure"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Cerebral venous thrombosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A previously healthy, 9-year-old child presented with fever and joint pain. He was suspected to have acute rheumatic fever. Which of the following is a major criterion of rheumatic fever?",
+    "options": [
+      "Arthralgia",
+      "Elevated CRP (30 mg/dl or more)",
+      "Prolonged PR-interval",
+      "Fever",
+      "Subcutaneous nodules"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Subcutaneous nodules. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following statements is TRUE regarding large ventricular septal defect?",
+    "options": [
+      "The apical impulse is suggestive of large ventricular dilatation",
+      "The most common type is the peri membranous type",
+      "Unrepaired large VSD is almost associated with normal growth",
+      "The typical murmur heard on auscultation is continuous in timing",
+      "A normal pulmonary vascularity in plain CXR"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: The most common type is the peri membranous type. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following signs and symptoms suggests the diagnosis of bronchial asthma?",
+    "options": [
+      "Frequent episodes of wheezing – more than once a month",
+      "Presence of seasonal variation in wheeze",
+      "Cough or wheeze disappear during exercise",
+      "Symptoms that disappear after age of 3 years",
+      "Cough particularly at daytime"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Frequent episodes of wheezing – more than once a month. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 6-year-old child is admitted to our hospital with acute rheumatic fever with severe carditis. What is the most appropriate treatment plan?",
+    "options": [
+      "Salicylate 75 mg/kg/d for 2 weeks then 50 mg/kg/d for 6 weeks",
+      "Prednisolone 2 mg/kg/d for 2-3 weeks then withdraw with addition of salicylate",
+      "Prednisolone 2 mg/kg/d for 6 weeks then withdraw with addition of salicylate",
+      "Salicylate 100 mg/kg/d for 2 weeks then 50 mg/kg/d for 6 weeks"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Prednisolone 2 mg/kg/d for 2-3 weeks then withdraw with addition of salicylate. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is a cause of distributive shock?",
+    "options": [
+      "Cardiac tamponade",
+      "Anaphylaxis",
+      "Myocarditis",
+      "Critical valvular stenosis",
+      "Hemorrhage"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Anaphylaxis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following statements is TRUE regarding type 4 acute respiratory failure?",
+    "options": [
+      "PaCO2 is < 50 mmHg with normal or decreased PaO2",
+      "Most common cause is status asthmaticus",
+      "Alveolar hypoventilation",
+      "Perioperative respiratory failure",
+      "Shock is a typical cause"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Shock is a typical cause. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What are the components of Pediatric Assessment Triangle (PAT)?",
+    "options": [
+      "General appearance, work of breathing, circulatory status",
+      "Capillary refill time, work of breathing, heart rate",
+      "General appearance, heart rate, circulatory status",
+      "General appearance, work of breathing, blood pressure",
+      "Capillary refill time, work of breathing, circulatory status"
+    ],
+    "correct": 0,
+    "explanation": "PAT (observable in <30 seconds WITHOUT touching): (1) APPEARANCE (TICLS: Tone, Interactivity, Consolability, Look, Speech/cry), (2) WORK OF BREATHING (retractions, nasal flaring, audible sounds), (3) CIRCULATION TO SKIN (pallor, cyanosis, mottling). Blood pressure and HR require equipment — NOT part of the PAT."
+  },
+  {
+    "question": "A 9-year-old child weighting 26 Kg presented to the emergency department with difficulty in breathing His O2 saturation was 70% on oxygen mask and ABG shows:  PH = 7,1, CO2 = 80mmHg, HCO3 = 30mmHg. Which of the following is the most appropriate step?",
+    "options": [
+      "Insert Endotracheal tube and use Ambu bag",
+      "Put the patient on mask reservoir",
+      "Use simple face mask with continuous monitoring of O2 saturation",
+      "Start chest compression in a rate of 120 per minute",
+      "Use nasal prong 3 L/min"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Insert Endotracheal tube and use Ambu bag. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "On examining a 5-year-old child with fever and skin rash, he is found to have pastia's sign. What is the most likely diagnosis?",
+    "options": [
+      "Erythema infectiosum",
+      "Scarlet fever",
+      "Chicken pox",
+      "Measles",
+      "German Measles"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Scarlet fever. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is an unfavorable prognostic factor in acute leukemia?",
+    "options": [
+      "T-ALL by immunophenotyping",
+      "Initial WBCs < 50.000/mm3",
+      "Age < 10 years old",
+      "Female sex",
+      "No mediastinal lymphadenopathy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: T-ALL by immunophenotyping. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the normal liver span in a 5-year-old child?",
+    "options": [
+      "12 cm",
+      "14 cm",
+      "8 cm",
+      "6 cm",
+      "10 cm"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: 8 cm. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is considered a criterion of chronic liver disease?",
+    "options": [
+      "Firm sharp border liver",
+      "Increased ALT and AST",
+      "Hepatomegaly",
+      "Hypogammaglobulinemia",
+      "Hepatic encephalopathy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Firm sharp border liver. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following is TRUE regarding Wilson's disease?",
+    "options": [
+      "Autosomal dominant disorder",
+      "High urinary copper",
+      "Brush-field spots",
+      "Hepatic dysfunction is usually mild",
+      "High serum ceruloplasmin"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: High urinary copper. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following laboratory tests can differentiate acute from liver disease?",
+    "options": [
+      "Serum ALT",
+      "Serum albumin",
+      "Serum bilirubin",
+      "Serum alkaline phosphatase",
+      "Serum AST"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Serum albumin. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following apply to immune thrombocytopenic purpura?",
+    "options": [
+      "Normal coagulation profile",
+      "Prolonged thrombin time (TT)",
+      "Prolonged APTT and PT",
+      "Prolonged APTT and normal PT",
+      "Prolonged PT only"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Normal coagulation profile. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Early identification and timely surgery are essential for better prognosis for biliary atresia. Which of the following is used as a screening tool for biliary atresia?",
+    "options": [
+      "Assessment of total serum bilirubin",
+      "Urine urobilinogen concentration",
+      "Abdominal ultrasonography",
+      "Serum AST, ALT",
+      "Stool color card"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Stool color card. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the most common type of anemia in infants and children in Egypt?",
+    "options": [
+      "G6PD deficiency",
+      "Beta thalassemia",
+      "Iron deficiency anemia",
+      "Sickle cell anemia",
+      "Folate deficiency"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Iron deficiency anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 5-year-old boy, with a history of low wight gain since birth, steatorrhea since 4 years. On examination there was hepatomegaly. Laboratory evaluation shows sweat chlorides. What is the most probable diagnosis?",
+    "options": [
+      "Wilson disease",
+      "Cystic fibrosis",
+      "Galactosemia",
+      "Glycogen storage disease",
+      "α1-antitrypsin deficiency"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Cystic fibrosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 25-year-old boy presented to your clinic with jaundice since 10 days of age. His laboratory evaluation shows Reticulocytic count = 1%, total serum bilirubin = 15 mg/dl, direct serum bilirubin = 4.5mg/dl, blood group A Rh + and mother blood group A Rh -. Which of the following is the most likely cause for this infant jaundice?",
+    "options": [
+      "Neonatal cholestasis",
+      "Phycological jaundice",
+      "Rh incompatibility",
+      "Hereditary spherocytosis",
+      "Breast milk jaundice"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Neonatal cholestasis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A complete blood count and RBCs indices of a 9-month-old boy shows Hb = 8 gm/dl total leukocytic count = 7,900/mm3, platelet count = 200,000/mm3 MCH = 22, MCV = 60, Reticulocytic count = 10%. What is the most probable diagnosis?",
+    "options": [
+      "Anemia of chronic infection",
+      "Beta thalassemia major",
+      "Hemorrhagic anemia due to acute blood loss",
+      "Megaloblastic anemia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Beta thalassemia major. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The bleeding profile of a 5-year-old boy with recurrent bruising shows: Bleeding time = 4 min, Clotting time = 15 min, Leukocytic count = 8900/mm3 , Prothrombin time = 12 sec,  APTT = 56 sec platelet count = 250,000/mm3. What is the most probable diagnosis?",
+    "options": [
+      "Aplastic anemia",
+      "Von Willebrand disease",
+      "Hemophilia A",
+      "Immune thrombocytopenia"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Hemophilia A. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "What is the most common cause of aplastic anemia in children?",
+    "options": [
+      "Chemicals",
+      "Idiopathic",
+      "Immunologic disorders",
+      "Fanconi anemia",
+      "Drugs"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Idiopathic. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

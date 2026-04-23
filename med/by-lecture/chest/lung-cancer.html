@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Lung Cancer</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mobd3xzo820zr",
+  "title": "Lung Cancer",
+  "description": "Question on every Chest lecture"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "As regard lung cancer; which of the following statements is WRONG? (4-2019)",
+    "options": [
+      "Hoarseness of voice occurs due phrenic nerve involvement",
+      "Puffiness of the face occurs due to superior vena cava obstruction",
+      "Dysphagia occurs due",
+      "Horner's syndrome occurs due to infiltration the cervical sympathetic chain",
+      "Bronchogenic carcinoma is a risk factor of pulmonary embolism infiltration of the esophagus"
+    ],
+    "correct": 0,
+    "explanation": "Hoarseness of voice occurs due phrenic nerve involvement is correct. Lung cancer is the leading cause of cancer death. Risk factors include smoking, asbestos, radon, and family history. NSCLC (adenocarcinoma, squamous, large cell) and SCLC are main types."
+  },
+  {
+    "question": "As regards lung cancer; which of the following statement is WRONG? (10-2017)",
+    "options": [
+      "Hoarseness of voice occurs due to phrenic nerve involvement",
+      "Puffiness of the face occurs due to superior vena cava obstruction",
+      "Dysphagia occurs due to infiltration of the esophagus",
+      "Horne's syndrome occurs due infiltration of the cervical sympathetic chain",
+      "Brassy cough due to mediastinal lymph nodes enlargement"
+    ],
+    "correct": 0,
+    "explanation": "Hoarseness of voice occurs due to phrenic nerve involvement is correct. Lung cancer is the leading cause of cancer death. Risk factors include smoking, asbestos, radon, and family history. NSCLC (adenocarcinoma, squamous, large cell) and SCLC are main types."
+  },
+  {
+    "question": "The following is false regarding superior vena cava obstruction:",
+    "options": [
+      "Manifested by puffy face",
+      "Neck veins are congested & pulsating",
+      "Caused by compression & invasion by tumor",
+      "Part from mediastinal syndrome"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Neck veins are congested & pulsating. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Bronchorrhea is due to: (10-2020)",
+    "options": [
+      "Squamous cell carcinoma",
+      "Large cell carcinoma",
+      "Alveolar cell carcinoma",
+      "Pleural mesothelioma"
+    ],
+    "correct": 2,
+    "explanation": "Alveolar cell carcinoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The commonest mediastinal mass is: (10-2020)",
+    "options": [
+      "Aortic aneurysm",
+      "Lymphoma",
+      "Thymoma",
+      "Bronchogenic cyst"
+    ],
+    "correct": 2,
+    "explanation": "Thymoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "You see a 67 year old man who has been referred to the chest clinic following a three month history of weight loss and signs which may suggest a Pancoast tumor. Which of the following symptoms from the list below is not associated with a Pancoast tumor?",
+    "options": [
+      "Anhydrosis",
+      "Enophthalmos",
+      "Hoarse voice",
+      "Mydriasis",
+      "Ptosis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Mydriasis. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "A 33-year-old woman who is a nonsmoker has lost 14 kg and has a cough. She is noted to have a lung mass on chest radiograph. Which of the following lung cancers is the most likely cell type?",
+    "options": [
+      "Squamous cell",
+      "Adenocarcinoma",
+      "Small cell",
+      "Large cell"
+    ],
+    "correct": 1,
+    "explanation": "Adenocarcinoma is correct. Lung cancer is the leading cause of cancer death. Risk factors include smoking, asbestos, radon, and family history. NSCLC (adenocarcinoma, squamous, large cell) and SCLC are main types."
+  },
+  {
+    "question": "A 67-year-old long-time smoker with chronic obstructive pulmonary disease presents with 3 days of headaches and plethoric swelling of his face and right arm. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Angioedema",
+      "Hypothyroidism",
+      "Superior vena cava syndrome",
+      "TB"
+    ],
+    "correct": 2,
+    "explanation": "Superior vena cava syndrome is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "45 year old woman with unexpected weight loss and shortness of breath presents to you in clinic. On examination, there is reduced air entry and dullness to percussion in the right lung. A pleural aspiration reveals a protein content of > 30 g/L. What is the most likely diagnosis?",
+    "options": [
+      "Bronchogenic carcinoma",
+      "Congestive heart failure",
+      "Nephrotic syndrome",
+      "Liver cirrhosis"
+    ],
+    "correct": 0,
+    "explanation": "Bronchogenic carcinoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following types of cancer is most commonly associated with myasthenia gravis?",
+    "options": [
+      "Small cell lung cancer",
+      "Non-small cell lung cancer",
+      "Mesothelioma",
+      "Thymoma"
+    ],
+    "correct": 3,
+    "explanation": "Thymoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "A 62-year-old man with limited-stage small cell lung cancer and proximal muscular weakness is most likely to have which of the following conditions?",
+    "options": [
+      "SIADH",
+      "Myasthenia gravis",
+      "Cerebellar degeneration",
+      "Eaton-Lambert syndrome"
+    ],
+    "correct": 3,
+    "explanation": "Eaton-Lambert syndrome is correct. Lung cancer is the leading cause of cancer death. Risk factors include smoking, asbestos, radon, and family history. NSCLC (adenocarcinoma, squamous, large cell) and SCLC are main types."
+  },
+  {
+    "question": "Tobacco use is associated with the following cancers except:",
+    "options": [
+      "Bladder",
+      "Liver",
+      "Pancreas",
+      "Pharynx",
+      "Colorectal"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Liver. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "A 60 year old man, former smoker, was found to have an 8 mm mass lesion in the left upper lobe on chest X-ray, during a routine evaluation in his doctor's office. He is totally asymptomatic. There are no previous chest films. To make a diagnosis, what is the next step?",
+    "options": [
+      "Repeat chest films in six months",
+      "Bronchoscopy with transbronchial biopsy",
+      "Fine needle CT guided aspiration of the lesion",
+      "Sputum cytology"
+    ],
+    "correct": 2,
+    "explanation": "Fine needle CT guided aspiration of the lesion is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "All of the following are non metastatic complications of malignancy except:",
+    "options": [
+      "Cushing syndrome",
+      "Cerebral cortical degeneration",
+      "Cerebellar degeneration",
+      "Polymyositis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Cerebral cortical degeneration. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "COMMONEST cause of hypertrophic osteoarthropathy is:",
+    "options": [
+      "Fallot's tetralogy.",
+      "Bronchiectasis.",
+      "Mesothelioma.",
+      "Bronchogenic carcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Bronchogenic carcinoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of the following is not a paraneoplastic syndrome in bronchogenic carcinoma:",
+    "options": [
+      "Cachexia.",
+      "Hemoptysis.",
+      "Polymyositis.",
+      "SIADH"
+    ],
+    "correct": 1,
+    "explanation": "Hemoptysis. is NOT a feature or risk factor for lung cancer. Lung cancer presents with cough, hemoptysis, weight loss, and may cause SVC obstruction, Pancoast syndrome, and paraneoplastic syndromes."
+  },
+  {
+    "question": "Commonest posterior mediastinal tumor is:",
+    "options": [
+      "Neurofibroma",
+      "Lymphoma",
+      "Teratodermoid",
+      "Metastatic carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Neurofibroma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Commonest middle mediastinal mass is:",
+    "options": [
+      "Lymphoma",
+      "Aortic aneurysm",
+      "Bronchogenic cyst",
+      "Thymoma"
+    ],
+    "correct": 1,
+    "explanation": "Aortic aneurysm is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Commonest cause of superior mediastinal syndrome is:",
+    "options": [
+      "Lymphoma.",
+      "Thymoma.",
+      "Bronchogenic carcinoma.",
+      "Retrosternal goiter"
+    ],
+    "correct": 2,
+    "explanation": "Bronchogenic carcinoma. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The commonest benign pulmonary neoplasm is:",
+    "options": [
+      "Lipoma",
+      "Adenoma",
+      "Fibroma",
+      "Hamartoma"
+    ],
+    "correct": 3,
+    "explanation": "Hamartoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Which of lung carcinoma is most commonly associated with Hypercalcemia:",
+    "options": [
+      "Oat cell carcinoma",
+      "Large cell carcinoma",
+      "Squamous cell carcinoma",
+      "Adenocarcinoma"
+    ],
+    "correct": 2,
+    "explanation": "Squamous cell carcinoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following are contraindications to surgical resection in bronchial carcinoma except:",
+    "options": [
+      "Distant metastasis",
+      "Malignant pleural effusion",
+      "Esophageal involvement",
+      "Ipsilateral mediastinal lymphadenopathy"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Ipsilateral mediastinal lymphadenopathy. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Scar carcinoma of lung is:",
+    "options": [
+      "Oat cell carcinoma",
+      "Large cell carcinoma",
+      "Squamous cell carcinoma",
+      "Adenocarcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Adenocarcinoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Anterior mediastinum mass on CXR EXCEPT:",
+    "options": [
+      "Dermoid cyst",
+      "Thymoma",
+      "Lymphoma",
+      "Esophageal leiomyoma"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Esophageal leiomyoma. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Bronchorrhea is due to:",
+    "options": [
+      "Squamous cell carcinoma",
+      "Large cell carcinoma",
+      "Alveolar cell carcinoma",
+      "Pleural mesothelioma"
+    ],
+    "correct": 2,
+    "explanation": "Alveolar cell carcinoma is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The most common type of lung cancer seen in non-smokers is:",
+    "options": [
+      "Adenocarcinoma",
+      "Squamous cell carcinoma",
+      "Large cell carcinoma",
+      "Small cell carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "Adenocarcinoma is correct. Lung cancer is the leading cause of cancer death. Risk factors include smoking, asbestos, radon, and family history. NSCLC (adenocarcinoma, squamous, large cell) and SCLC are main types."
+  },
+  {
+    "question": "Bronchial adenoma most commonly present as:",
+    "options": [
+      "Cough.",
+      "Stridor.",
+      "Recurrent hemoptysis.",
+      "Chest pain."
+    ],
+    "correct": 2,
+    "explanation": "Recurrent hemoptysis. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Commonest histologic variety of bronchogenic carcinoma is:",
+    "options": [
+      "Small cell carcinoma",
+      "Large cell carcinoma",
+      "Epidermoid carcinoma",
+      "Adenocarcinoma",
+      "Pancoast 's tumor"
+    ],
+    "correct": 3,
+    "explanation": "Adenocarcinoma is correct. Lung cancer is the leading cause of cancer death. Risk factors include smoking, asbestos, radon, and family history. NSCLC (adenocarcinoma, squamous, large cell) and SCLC are main types."
+  },
+  {
+    "question": "Bronchial adenoma most commonly present as:",
+    "options": [
+      "Cough",
+      "Stridor",
+      "Recurrent hemoptysis",
+      "Chest pain",
+      "Coin shadow in chest x-ray"
+    ],
+    "correct": 2,
+    "explanation": "Recurrent hemoptysis is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Bronchorrhoea is due to:",
+    "options": [
+      "Squamous cell carcinoma.",
+      "Large cell carcinoma.",
+      "Alveolar cell carcinoma.",
+      "Pleural mesothelioma"
+    ],
+    "correct": 2,
+    "explanation": "Alveolar cell carcinoma. is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "Hand examination in bronchial carcinoma may reveal the following except:",
+    "options": [
+      "Inequal pulse.",
+      "Wrist joint ankylosis.",
+      "Wasting of the small muscle of the hand.",
+      "Hypertrophic pulmonary osteo-arthropathy."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Hypertrophic pulmonary osteo-arthropathy.. This option is the exception among the choices given for the condition described."
+  },
+  {
+    "question": "Which one of the following is not a paraneoplastic syndrome in bronchogenic carcinoma:",
+    "options": [
+      "Cachexia",
+      "Haemoptysis",
+      "Polymyositis",
+      "SIADH"
+    ],
+    "correct": 1,
+    "explanation": "Haemoptysis is NOT a feature or risk factor for lung cancer. Lung cancer presents with cough, hemoptysis, weight loss, and may cause SVC obstruction, Pancoast syndrome, and paraneoplastic syndromes."
+  },
+  {
+    "question": "Commonest histologic variety of bronchogenic carcinoma is:",
+    "options": [
+      "Small cell carcinoma",
+      "Large cell carcinoma",
+      "Epidermoid carcinoma",
+      "Adenocarcinoma"
+    ],
+    "correct": 3,
+    "explanation": "Adenocarcinoma is correct. Lung cancer is the leading cause of cancer death. Risk factors include smoking, asbestos, radon, and family history. NSCLC (adenocarcinoma, squamous, large cell) and SCLC are main types."
+  },
+  {
+    "question": "Which is not a neurological paraneoplastic syndrome of bronchogenic carcinoma:",
+    "options": [
+      "Eaton-Lambert syndrome",
+      "Cerebral thrombosis",
+      "Retinal blindness",
+      "Subacute cerebellar degeneration"
+    ],
+    "correct": 1,
+    "explanation": "Cerebral thrombosis is NOT a feature or risk factor for lung cancer. Lung cancer presents with cough, hemoptysis, weight loss, and may cause SVC obstruction, Pancoast syndrome, and paraneoplastic syndromes."
+  },
+  {
+    "question": "The following are risk factors for bronchial carcinoma (T/F): (3-2017) Smoking",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following are risk factors for bronchial carcinoma (T/F): (3-2017) Air pollution",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following are risk factors for bronchial carcinoma (T/F): (3-2017) Asbestosis",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  },
+  {
+    "question": "The following are risk factors for bronchial carcinoma (T/F): (3-2017) Skin allergy",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False is the correct answer. The clinical features and findings described are most consistent with this diagnosis or management approach."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
