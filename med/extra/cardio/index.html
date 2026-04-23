@@ -11,24 +11,24 @@ document.head.appendChild(s)})();
 <title>Internal Medicine - By Lecture</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../index-engine.css">
-<meta name="description" content="Internal Medicine lectures organized by topic">
+<link rel="stylesheet" href="../../../index-engine.css">
+<meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
 <meta property="og:title" content="Internal Medicine - By Lecture">
-<meta property="og:description" content="Internal Medicine lectures organized by topic">
+<meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Internal Medicine - By Lecture">
-<meta name="twitter:description" content="Internal Medicine lectures organized by topic">
+<meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
 <meta name="theme-color" content="#0d1117">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="manifest" href="../../manifest.webmanifest">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../../favicon.svg">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
 </head>
 <body>
 
   <div class="topbar">
-    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
+    <a href="../../../index.html" class="icon-btn back-btn" title="Back">←</a>
     <div class="topbar-title">Internal Medicine - By Lecture</div>
     <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
@@ -50,7 +50,6 @@ document.head.appendChild(s)})();
     </div>
   </div>
 
-<script>
 const QUIZZES = [
   {
     title: "Davidson'S Cardiology",
@@ -104,42 +103,15 @@ const QUIZZES = [
 ];
 </script>
 
-<div class="dash-overlay" id="tracker-dashboard">
-  <div class="dash-modal">
-    <div class="dash-header">
-      <h2 id="dash-title-text">📊 Question Tracker</h2>
-      <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
-    </div>
-    <div class="dash-scope-bar" id="dash-scope-bar"></div>
-    <div class="dash-summary">
-      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
-      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
-      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
-    </div>
-    <div class="dash-body" id="dash-body"></div>
-    <div class="dash-footer">
-      <button class="btn-dash-action" onclick="exportTrackerToPDF()">📄 Export PDF</button>
-      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>
-      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
-    </div>
-  </div>
-</div>
-
-<script src="../../index-engine.js"></script>
-<script>
-(function(){
-  var s=localStorage.getItem('quiz-theme');
-  if(s) document.documentElement.setAttribute('data-theme',s);
-  if(window.__updateThemeIcon) window.__updateThemeIcon();
-  if(window.renderQuizzes) window.renderQuizzes();
-})();
-</script>
+<script src="../../../index-engine.js"></script>
+<script>(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();</script>
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('../../sw.js').catch(function () {});
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
   });
 }
 </script>
+
 </body>
 </html>
