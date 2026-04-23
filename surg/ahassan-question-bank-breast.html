@@ -2,6 +2,10 @@
 <html lang="en" data-theme="dark">
 
 <head>
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="manifest" href="../manifest.webmanifest">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
@@ -2278,6 +2282,15 @@
       document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
     })();
   </script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../sw.js').catch(function () {});
+  });
+}
+</script>
+
 </body>
 
 </html>
