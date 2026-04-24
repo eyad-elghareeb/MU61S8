@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
-s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
-document.head.appendChild(s)})();
-</script>
-<title>MU61 Quiz - Cardiology</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../index-engine.css">
-<!-- Meta tags for preview and favicon -->
-<meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
-<meta property="og:title" content="MU61 Quiz - Cardiology">
-<meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MU61 Quiz - Cardiology">
-<meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
-<meta name="theme-color" content="#0d1117">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="manifest" href="../manifest.webmanifest">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var t = localStorage.getItem('quiz-theme') || 'dark'; var s = document.createElement('style');
+      s.textContent = 'html,body{background:' + (t === 'light' ? '#f3f0eb' : '#0d1117') + ';color:' + (t === 'light' ? '#1c1917' : '#e6edf3') + ';margin:0;padding:0;overflow:hidden;height:100%}';
+      document.head.appendChild(s)
+    })();
+  </script>
+  <title>MU61 Quiz - Cardiology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../index-engine.css">
+  <!-- Meta tags for preview and favicon -->
+  <meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+  <meta property="og:title" content="MU61 Quiz - Cardiology">
+  <meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MU61 Quiz - Cardiology">
+  <meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
 </head>
+
 <body>
 
   <!-- TOP NAVIGATION -->
@@ -33,10 +39,13 @@ document.head.appendChild(s)})();
     <a href="../index.html" class="icon-btn back-btn" title="Back to Home">←</a>
     <div class="topbar-title">MU61 Quiz - Cardiology</div>
     <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
-    <span class="tracker-badge" id="tracker-badge-count"></span>
-  </button>
-  <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M3 3v18h18" />
+        <path d="M7 16l4-8 4 4 5-9" />
+      </svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
   </div>
 
   <div class="container">
@@ -53,47 +62,42 @@ document.head.appendChild(s)})();
 
     <!-- FOOTNOTE -->
     <div class="footer-note">
-      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank"
+        rel="noopener noreferrer">QuizTool</a>
     </div>
   </div>
 
-<script>
-const QUIZZES =[
-  {
-    title: "📁 By Lecture",
-    description: "Internal Medicine lectures organized by topic",
-    icon: "📚",
-    tags: ["Folder"],
-    url: "by-lecture/index.html"
-  },
-    {
-    title: "📁 Past Years",
-    description: "Internal Medicine Past years exams",
-    icon: "📚",
-    tags: ["Folder"],
-    url: "past-years/index.html"
-  },
-  {
-    title: "📁 Extra",
-    description: "Extra practice questions for Internal Medicine",
-    icon: "📦",
-    tags: ["Folder"],
-    url: "extra/index.html"
-  }
-];
-</script>
-<script src="../index-engine.js"></script>
-<script>(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();</script>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('../sw.js').catch(function () {});
-  });
-}
-</script>
+  <script>
+    const QUIZZES = [
+      {
+        title: "📁 Past Years",
+        description: "Internal Medicine Past years exams",
+        icon: "📚",
+        tags: ["Folder"],
+        url: "past-years/index.html"
+      },
+      {
+        title: "📁 Extra",
+        description: "Extra practice questions for Internal Medicine",
+        icon: "📦",
+        tags: ["Folder"],
+        url: "extra/index.html"
+      }
+    ];
+  </script>
+  <script src="../index-engine.js"></script>
+  <script>(function () { var s = localStorage.getItem('quiz-theme'); if (s) document.documentElement.setAttribute('data-theme', s); if (window.__updateThemeIcon) window.__updateThemeIcon(); if (window.renderQuizzes) window.renderQuizzes(); })();</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('../sw.js').catch(function () { });
+      });
+    }
+  </script>
 
 
 
 
 </body>
+
 </html>
