@@ -12,7 +12,7 @@
 | **Deployment** | GitHub Pages via Jekyll (serves files as-is) |
 | **Live URL** | `https://<username>.github.io/MU61S8/` |
 | **Entry point** | `index.html` (root hub) |
-| **Offline** | Full PWA — service worker caches everything |
+| **Offline** | Full PWA — robust service worker with directory support and root-asset fallback |
 
 ---
 
@@ -363,43 +363,102 @@ if ('serviceWorker' in navigator) {
 
 ---
 
-## 7. Tracker System
+## 7. Question Tracker System
 
-The tracker persists wrong and flagged questions **across sessions** for review.
+The tracker is a persistence layer that aggregates mistakes and flagged items across all sessions for long-term review.
 
-### Data flow:
-1. Quiz/bank submitted → `confirmSubmit()` → `saveTrackerData()`
-2. `saveTrackerData()` merges with existing data for that quiz UID
-3. Tracker reads `SESSION_QUESTION_INDICES` if present (bank files) to track by global index; otherwise tracks by question text
-4. Tracker data stored under `quiz_tracker_v2_<uid>`; UID list under `quiz_tracker_keys`
-5. Index pages read all tracker data and display grouped by folder scope
+### 7a. Data Lifecycle
+1. **Capture**: On `confirmSubmit()`, the engine calls `saveTrackerData()`.
+2. **Merge**: It reads existing data for the UID and merges it with the current session.
+   - Questions in the **current session** (by index if it's a bank, or by text if it's a quiz) are updated.
+   - Historical questions **not present** in the current session are preserved.
+3. **Storage**: Data is saved in `localStorage` under `quiz_tracker_v2_<uid>`. The UID is added to a global index `quiz_tracker_keys`.
 
-### Scope tabs in tracker dashboard:
-- **This Quiz** — only data for current page's UID
-- **All Quizzes** — all stored tracker data
-- **Folder tabs** — data from all quizzes within a path prefix (auto-generated from URL depth)
-
-### Clear behavior:
-`confirmClearTrackerData()` shows a modal. The modal's "Clear Now" calls `clearAllTrackerData()` which deletes **only within the current scope tab** — not all data globally.
+### 7b. Dashboard Features
+- **Scoped View**: Automatically filters to the current folder's quizzes. Tabs allow jumping to parent folders or "All Quizzes".
+- **Review Mode**: Users can select specific quizzes or folders and click "Start Review" to launch a dynamic session containing only those tracked questions.
+- **Deduplication**: The tracker identifies questions by text to prevent duplicates if the same question appears in multiple quizzes.
+- **Selective Clearing**: `confirmClearTrackerData()` only deletes data for the currently visible scope, preserving other tracked items.
 
 ---
 
-## 8. Service Worker (`sw.js`)
+## 8. Highlighter & Markup System
+
+A robust toolset for annotating questions during a session. Markups are persisted in the user's progress and restored on reload.
+
+### 8a. Highlighting
+- **Activation**: Toggle via the 🖍️ icon in the topbar or the `H` key.
+- **Colors**: Provides 4 highlight colors (Yellow, Green, Blue, Red) and an Eraser mode.
+- **Auto-Apply**: When active, simply selecting text (Mouse drag or Touch selection) automatically applies the last selected color.
+- **Persistence**: Stored in `state.highlights[qIdx]` as offsets. These are saved to `localStorage` progress automatically.
+
+### 8b. Strikethrough (Process of Elimination)
+- **Usage**: Right-click on an option label, or press the `S` key while hovering over an option.
+- **Visual**: Places a red line through the option text and dims it.
+- **Persistence**: Stored in `state.strikethrough[qIdx]`.
+
+### 8c. Technical Implementation
+Markups are applied dynamically during `renderQuestion()` by injecting `<mark>` tags into the text nodes based on stored offsets. This prevents breaking the underlying data while allowing rich visuals.
+
+---
+
+## 9. Keyboard Shortcut System
+
+The engine includes a full keyboard interface to speed up MCQ solving.
+
+| Key | Action |
+|-----|--------|
+| `←` / `→` | Previous / Next question |
+| `1` - `4` | Select option A, B, C, or D (or set highlight color in hl mode) |
+| `F` | Toggle Flag for review |
+| `H` | Toggle Highlighter mode |
+| `S` | Toggle Strikethrough (while hovering an option) |
+| `Enter` | Submit quiz (from question screen) |
+| `/` | Show / Hide keyboard shortcut help |
+| `Esc` | Close modals or help panel |
+
+---
+
+## 10. Session Management & Persistence
+
+The engine ensures that a user's progress is never lost, even if they close the browser or refresh the page.
+
+### 10a. Auto-Save Logic
+- **Triggers**: Every time an option is selected, a question is flagged, or a highlight is applied, `saveProgress()` is called.
+- **Data**: The current `state` (answers, flags, elapsed time, highlights, etc.) is serialized to JSON.
+- **Storage**: Saved in `localStorage` under `quiz_progress_v1_<uid_sanitized>`.
+
+### 10b. Restore Workflow
+1. **Detection**: On page load, the engine checks for an existing progress key for the current UID.
+2. **Toast**: If found, a toast notification appears: *"Resume previous session? [Restore] [Dismiss]"*.
+3. **Action**: 
+   - **Restore**: Overwrites the initial state with the saved data and jumps to the last seen question.
+   - **Dismiss**: Deletes the saved progress and starts fresh.
+
+---
+
+## 11. Service Worker (`sw.js`)
 
 **Never edit `sw.js` manually.** It is fully managed by `scripts/sync_quiz_assets.py`.
 
 The sync script:
-1. Scans all `.html` files (skipping `SKIP_DIRS`: `.git`, `.github`, `__pycache__`, `_site`, `scripts`, `node_modules`)
-2. Puts engine files first in `PRECACHE_REL_PATHS`: `quiz-engine.js`, `bank-engine.js`, `index-engine.js`
-3. Computes a content hash → writes `CACHE_VERSION = 'quiz-cache-<hash>'`
-4. Updates `PRECACHE_REL_PATHS` array in `sw.js`
+1. Scans all `.html` files (skipping `SKIP_DIRS`)
+2. Prioritizes engines and critical assets in `PRECACHE_REL_PATHS`
+3. Computes a content hash of all precached files → writes `CACHE_VERSION = 'mu61-quiz-<hash>'`
+4. Updates `sw.js` with the new manifest and version.
 
-To trigger manually: `python scripts/sync_quiz_assets.py` from repo root.
+### 8a. Cache Strategy
+- **Navigation (HTML)**: Network-first → Cache fallback → Root `index.html` fallback.
+- **Assets (JS/CSS/SVG)**: Cache-first → Shared Root Fallback → Network.
+- **CDNs**: Google Fonts and html2pdf.js are fetched and cached at install time.
 
-**Cache strategy:**
-- HTML navigation: network-first → cache fallback → hub fallback
-- Assets/JS/CSS: cache-first → network on miss
-- Google Fonts + html2pdf CDN: fetched and cached at install time
+### 8b. Robust Installation (REQUIRED vs Others)
+To ensure the PWA is reliable even with missing optional assets (like unique quiz icons), the installer splits work:
+- **REQUIRED**: Engines, main `index.html`, `manifest.webmanifest`, `favicon.svg`. If any fail, installation fails.
+- **Others**: Individual quiz files and deep folder assets. If these fail (e.g., 404), the SW still installs successfully.
+
+### 8c. Shared Asset Fallback (handleAsset)
+If an asset like `index-engine.css` is requested from a deep subfolder (`/gyn/dep/past-years/index-engine.css`) and isn't explicitly in the cache at that path, the SW automatically attempts to serve the root-level version (`/index-engine.css`). This prevents broken styles in offline mode regardless of path resolution issues.
 
 ---
 
@@ -474,17 +533,31 @@ Theme persists via `localStorage.getItem('quiz-theme')`. Applied to `<html data-
 
 ---
 
-## 12. What NOT To Do
+## 12. CRITICAL RULES: DO NOT BREAK
 
-- **Never edit `sw.js` manually** — always run `sync_quiz_assets.py` instead
-- **Never change a `uid`** — breaks all stored user progress and tracker data silently
-- **Never copy engine files into subfolders** — the runtime path detection handles depth automatically
-- **Never use `clearAllTrackerData()` directly in a button `onclick`** — always call `confirmClearTrackerData()` which shows the scoped modal first
-- **Never hardcode `../` paths for the engine** — the `__QUIZ_ENGINE_BASE` snippet computes depth automatically
-- **Never omit the `/* [QUIZ_CONFIG_START] */` markers** — the sync script parses these to extract metadata
-- **Never put quiz files directly in the repo root** — all content lives inside subject subfolders
-- **Never add `<head>` CSS/JS of your own** — the engine injects all styles, fonts, and links. Adding your own risks conflicts
-- **Never commit binary files** (except `icon-*.png`) — everything else is plain text
+To maintain the integrity of the production environment and the offline PWA functionality, every agent MUST follow these rules without exception:
+
+### 12a. Data Integrity (localStorage)
+- **Never change a `uid`**: Renaming a `uid` in a quiz or bank file will silently orphan all user progress, highlights, and tracker data for that file. UIDs must remain stable for the life of the file.
+- **Progress Migration**: If a schema change is made to the `state` object, you MUST provide a migration path or ensure the engine handles missing/old fields gracefully.
+
+### 12b. Offline & Service Worker
+- **Never edit `sw.js` manually**: Any manual changes will be overwritten by `scripts/sync_quiz_assets.py`. Always modify the sync script if the SW logic needs changing.
+- **Preserve `REQUIRED` assets**: The `REQUIRED` list in `sw.js` contains files essential for PWA installation. Removing one (e.g., `favicon.svg`) can cause the SW to fail installation globally.
+- **Root Fallback Integrity**: Never remove the `SHARED` asset fallback list. It is the only thing preventing unstyled pages when navigating deep folders offline.
+
+### 12c. Engine & Path Resolution
+- **Never copy engines into subfolders**: Engines (`quiz-engine.js`, `index-engine.js`, etc.) MUST only exist at the repository root.
+- **Never hardcode `../` paths**: Always use the `__QUIZ_ENGINE_BASE` snippet or the `location.pathname` logic to resolve the engine path. This ensures the site works at any folder depth.
+
+### 12d. Synchronization & CI/CD
+- **Always run sync script**: After adding new quiz files or subfolders, run `python scripts/sync_quiz_assets.py` to update the parent index files and the service worker manifest.
+- **Preserve Markers**: Never remove or modify the `/* [QUIZ_CONFIG_START/END] */` or `/* [QUESTIONS_START/END] */` markers. The sync script and authoring tools depend on these exact strings for parsing.
+- **Atomic Commits**: Ensure that `sw.js` and `index.html` changes are committed together to keep the cache manifest in sync with the file system.
+
+### 12e. Design & UI
+- **Never use `clearAllTrackerData()` directly**: Always call `confirmClearTrackerData()` first. This shows the scoped confirmation modal, preventing accidental global data loss.
+- **Preserve FOUC Prevention**: The inline script in the `<head>` that sets the background color must remain at the very top of the `<head>` to prevent white flashes on dark-mode users.
 
 ---
 
