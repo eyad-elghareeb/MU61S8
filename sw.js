@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-984ed1f138c1';
+const CACHE_VERSION = 'mu61-quiz-d05f93ed3f04';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -102,27 +102,6 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/by-lecture/l13-infertility.html',
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
-  'med/by-lecture/cardio/arrhythmia.html',
-  'med/by-lecture/cardio/clinical.html',
-  'med/by-lecture/cardio/heart-failure.html',
-  'med/by-lecture/cardio/hypertension.html',
-  'med/by-lecture/cardio/index.html',
-  'med/by-lecture/cardio/infective-endocarditis.html',
-  'med/by-lecture/cardio/ischemic-heart-disease.html',
-  'med/by-lecture/cardio/pericardial-disease.html',
-  'med/by-lecture/cardio/valvular-heart-diesease.html',
-  'med/by-lecture/chest/bronchial-asthma.html',
-  'med/by-lecture/chest/clinical.html',
-  'med/by-lecture/chest/copd.html',
-  'med/by-lecture/chest/index.html',
-  'med/by-lecture/chest/interstitial-lung-diseases.html',
-  'med/by-lecture/chest/lung-cancer.html',
-  'med/by-lecture/chest/pleural-disease.html',
-  'med/by-lecture/chest/pneumonia.html',
-  'med/by-lecture/chest/respiratory-failure.html',
-  'med/by-lecture/chest/suppurative-lung-disease.html',
-  'med/by-lecture/chest/tb.html',
-  'med/by-lecture/index.html',
   'med/extra/cardio/davidsons-cardiology.html',
   'med/extra/cardio/index.html',
   'med/extra/cardio/kasr-al-ainy-cardiology.html',
@@ -156,13 +135,6 @@ var PRECACHE_REL_PATHS = [
   'med/past-years/61st-mid.html',
   'med/past-years/index.html',
   'med/past-years/Misc.html',
-  'ped/by-chapter/chapter-1-cardiology.html',
-  'ped/by-chapter/chapter-2-chest.html',
-  'ped/by-chapter/chapter-3-emergency.html',
-  'ped/by-chapter/chapter-4-infection.html',
-  'ped/by-chapter/chapter-5-hematology.html',
-  'ped/by-chapter/chapter-6-git-hepatology.html',
-  'ped/by-chapter/index.html',
   'ped/index.html',
   'ped/past-years/57th-end-round-1.html',
   'ped/past-years/57th-end-round-2.html',
