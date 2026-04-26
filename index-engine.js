@@ -449,6 +449,7 @@
 
       // Step 4: Shorten titles by removing redundant parent text
       // e.g. If parent is "Gynecology" and child is "Gynecology Department", child becomes "Department"
+      // Cache busted version to ensure update
       for (var j = 0; j < tabs.length; j++) {
         var t = tabs[j];
         if (t.id !== 'folder' || !t.label) continue;
