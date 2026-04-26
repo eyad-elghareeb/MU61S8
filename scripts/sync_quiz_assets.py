@@ -35,6 +35,18 @@ ACRONYMS = {
     "qs": "QS",
     "stis": "STIs",
 }
+FOLDER_TITLES = {
+    "gyn": "Gynecology",
+    "cardio": "Cardiology",
+    "ai": "AI",
+    "dep": "Department",
+    "mans": "Mansoura",
+    "ped": "Paediatrics",
+    "surg": "Surgery",
+    "med": "Internal Medicine",
+    "chest": "Chest Medicine",
+    "past-years": "Past Years",
+}
 
 
 def main() -> int:
@@ -149,20 +161,10 @@ def update_index_file(index_path: Path) -> bool:
 
     # 5. Add missing subfolders
     new_subfolder_entries = []
-    folder_titles = {
-        "gyn": "Gynecology",
-        "cardio": "Cardiology",
-        "ai": "AI",
-        "dep": "Department",
-        "mans": "Mansoura",
-        "ped": "Paediatrics",
-        "surg": "Surgery",
-        "med": "Internal Medicine",
-    }
     
     for url, folder_name in sorted(valid_subfolders.items(), key=lambda x: natural_key(x[1])):
         if url not in seen_urls:
-            title = folder_titles.get(folder_name.lower(), folder_name.replace('-', ' ').replace('_', ' ').capitalize())
+            title = FOLDER_TITLES.get(folder_name.lower(), folder_name.replace('-', ' ').replace('_', ' ').capitalize())
             entry = {
                 "title": f"📁 {title}",
                 "description": f"{title} quizzes and resources",
@@ -184,11 +186,54 @@ def update_index_file(index_path: Path) -> bool:
     # but for now simple string check on content
     
     updated_text = text[:start] + new_array_content + text[end:]
+    
+    # 6. Synchronize Titles and Labels
+    updated_text = sync_titles(index_path, updated_text)
+    
     if updated_text == text:
         return False
         
     index_path.write_text(updated_text, encoding="utf-8")
     return True
+
+
+def sync_titles(index_path: Path, text: str) -> str:
+    """Synchronize <title>, .topbar-title, and hero h1 based on folder path."""
+    dir_rel = index_path.parent.relative_to(REPO_ROOT)
+    parts = dir_rel.parts
+    if not parts:
+        return text  # Root index usually has manual titles
+        
+    subject_key = parts[0].lower()
+    subject_name = FOLDER_TITLES.get(subject_key, subject_key.capitalize())
+    
+    # If subfolder (e.g. med/past-years)
+    if len(parts) > 1:
+        sub_name = parts[-1].replace('-', ' ').replace('_', ' ').capitalize()
+        # Special case: past-years -> Past Years
+        if parts[-1].lower() == "past-years":
+            sub_name = "Past Years"
+        full_title = f"MU61 Quiz - {subject_name} {sub_name}"
+        hero_title = f"Select your <span>{subject_name} {sub_name}</span>"
+        back_label = f"Back to {subject_name}"
+    else:
+        full_title = f"MU61 Quiz - {subject_name}"
+        hero_title = f"Select your <span>{subject_name} exam</span>"
+        back_label = "Back to Home"
+
+    # Update <title>
+    updated = re.sub(r"<title>.*?</title>", f"<title>{full_title}</title>", text)
+    
+    # Update .topbar-title
+    updated = re.sub(r'<div class="topbar-title">.*?</div>', f'<div class="topbar-title">{full_title}</div>', updated)
+    
+    # Update hero h1
+    updated = re.sub(r'<h1>.*?</h1>', f'<h1>{hero_title}</h1>', updated)
+    
+    # Update back button title
+    updated = re.sub(r'class="icon-btn back-btn" title=".*?"', f'class="icon-btn back-btn" title="{back_label}"', updated)
+    
+    return updated
 
 
 def build_quiz_entry(quiz_path: Path, dir_rel: Path, icon: str) -> dict[str, object]:
@@ -264,6 +309,21 @@ def update_service_worker() -> bool:
 
     if updated == text:
         return False
+
+    # Update SHARED assets in sw.js (ensure icon fallbacks are present)
+    shared_assets = [
+        'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'index-engine.css',
+        'manifest.webmanifest', 'favicon.svg',
+        'icon-48.png', 'icon-72.png', 'icon-96.png', 'icon-144.png', 'icon-192.png', 'icon-512.png'
+    ]
+    
+    shared_literal = "[\n" + ",\n".join(f"          '{a}'" for a in shared_assets) + "\n        ]"
+    updated = re.sub(
+        r"var SHARED = \[.*?\];",
+        f"var SHARED = {shared_literal};",
+        updated,
+        flags=re.DOTALL
+    )
 
     SW_PATH.write_text(updated, encoding="utf-8")
     return True
