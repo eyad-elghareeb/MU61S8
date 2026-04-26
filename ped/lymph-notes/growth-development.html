@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Growth Development</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_growth_development",
+  "title": "Growth Development",
+  "description": "Pediatrics - Growth Development MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Choose the correct answer about infant weight:",
+    "options": [
+      "Weight is doubled at 4 months and tripled at 12 months.",
+      "Weight is doubled at 3 months and tripled at 12 months.",
+      "Weight is doubled at 6 months and tripled at 15 months.",
+      "Weight is doubled at 4 months and tripled at 15 months."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because infant weight typically doubles by 4 months and triples by 12 months of age, which is a standard growth milestone. B is wrong as weight doesn't double by 3 months, C is wrong as weight doesn't triple by 15 months, and D is wrong as weight doesn't triple by 15 months."
+  },
+  {
+    "question": "A 12-year-old boy is evaluated for short stature. He has no significant past medical history and is considered otherwise healthy by his parents. He eats a normal diet and has regular meals. His height & weight have been consistently at the 5th percentile since early childhood. His physical examination is normal. I. The most likely diagnosis is:",
+    "options": [
+      "Familial short stature.",
+      "Constitutional delay of growth.",
+      "Under-nutrition.",
+      "Hypothyroidism."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because the child has consistently been at the 5th percentile with no other concerning findings, which is classic for familial short stature. B is wrong as constitutional delay typically shows delayed puberty and bone age, not consistent growth at a percentile. C is wrong as there's no evidence of under-nutrition with a normal diet. D is wrong as hypothyroidism would typically show other symptoms and abnormal growth patterns."
+  },
+  {
+    "question": "Expected finding in this child includes:",
+    "options": [
+      "Delayed puberty.",
+      "Short parents.",
+      "Normal final adult height.",
+      "Delayed bone age."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as familial short stature is characterized by short parents and a child following their genetic growth potential. A is wrong as puberty timing is typically normal in familial short stature. C is wrong as final adult height is typically appropriate for the family. D is wrong as bone age is typically appropriate for chronological age in familial short stature."
+  },
+  {
+    "question": "The causes of short stature include the following, except:",
+    "options": [
+      "Turner syndrome.",
+      "47 XXY males.",
+      "Celiac disease.",
+      "Hypothyroidism."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as 47 XXY males (Klinefelter syndrome) typically present with tall stature rather than short stature. A is wrong as Turner syndrome is a common cause of short stature in females. C is wrong as celiac disease can cause short stature due to malabsorption. D is wrong as hypothyroidism is a well-known cause of growth failure and short stature."
+  },
+  {
+    "question": "The healthy infant usually doubles his birth weight at the age of:",
+    "options": [
+      "4 weeks.",
+      "2 months.",
+      "4 months.",
+      "6 months."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (4 months) because healthy infants typically double their birth weight by 4-5 months of age. Option A (4 weeks) is too early as most infants only gain about 1-1.5 pounds in the first month. Option B (2 months) is too early as most infants haven't quite doubled their weight yet. Option D (6 months) is too late as most infants have already doubled their weight by this age."
+  },
+  {
+    "question": "The healthy infant usually triples his birth weight at the age of:",
+    "options": [
+      "4 months.",
+      "6 months.",
+      "8 months.",
+      "12 months."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (12 months) because healthy infants typically triple their birth weight by their first birthday. Option A (4 months) is too early as this is when they typically double their weight, not triple it. Option B (6 months) is still too early as they haven't quite tripled their weight yet. Option C (8 months) is also too early as most infants triple their weight closer to 12 months."
+  },
+  {
+    "question": "The age of eruption of the permanent 1st premolars is usually:",
+    "options": [
+      "6-7 years.",
+      "8-9 years.",
+      "10-12 years.",
+      "15-17 years."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (10-12 years) because the first permanent premolars usually erupt between 10-12 years of age. Option A (6-7 years) is too early as this is when the first permanent molars typically erupt. Option B (8-9 years) is too early as the premolars haven't developed yet. Option D (15-17 years) is too late as most premolars have already erupted by this age."
+  },
+  {
+    "question": "The ratio of the upper segment to the lower segment of a 3-year-old child is:",
+    "options": [
+      "1.7",
+      "1.5",
+      "1.3",
+      "1"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (1.3) because in a 3-year-old child, the ratio of upper segment to lower segment is approximately 1.3. Option A (1.7) is too high and more typical of younger infants. Option B (1.5) is still higher than the normal ratio for a 3-year-old. Option D (1) is too low and would be more typical of older children or adults where the segments are more equal in length."
+  },
+  {
+    "question": "Between 8 & 12 months of age, the weight gain of the healthy infant is about:",
+    "options": [
+      "250 gm per month.",
+      "450 gm per month.",
+      "650 gm per month.",
+      "750 gm per month."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because between 8-12 months, healthy infants typically gain about 250g per month as growth rate slows after the rapid initial months. Options B, C, and D are incorrect as they overestimate the typical weight gain during this period."
+  },
+  {
+    "question": "The ratio of upper segment to lower segment at birth is:",
+    "options": [
+      "1.7",
+      "1.5",
+      "1.3",
+      "1.0"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because at birth, the upper segment (crown to pubis) is longer than the lower segment (pubis to heel), giving a ratio of approximately 1.7. Options B, C, and D are incorrect as they represent lower ratios that don't match the newborn's body proportions."
+  },
+  {
+    "question": "The average head circumference at the age of 1year is:",
+    "options": [
+      "35 cm.",
+      "47 cm.",
+      "50 cm.",
+      "53 cm."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because the average head circumference at 1 year is approximately 47 cm, having grown from about 35 cm at birth. Options A is the newborn measurement, while C and D are too large for a 1-year-old's head circumference."
+  },
+  {
+    "question": "Which of the following is not correct about familial short stature:",
+    "options": [
+      "The child is short & healthy.",
+      "Have short parents.",
+      "Have reduced growth velocity.",
+      "The final adult height is short."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because children with familial short stature have normal growth velocity, just along a lower percentile curve. Options A, B, and D are correct characteristics of familial short stature, making C the only incorrect statement."
+  },
+  {
+    "question": "In percentile growth curves, measurement persistently below 3% is suggestive of:",
+    "options": [
+      "Malnutrition.",
+      "Endocrinal disease.",
+      "Chronic infection.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because persistent growth below the 3rd percentile can indicate malnutrition, endocrine disorders, or chronic infections, all of which can impair growth. Options A, B, and C are individually correct as each condition can lead to failure to thrive, but D encompasses all possibilities."
+  },
+  {
+    "question": "All of the following are true about microcephaly, except:",
+    "options": [
+      "It maybe primary or secondary.",
+      "Congenital cytomegalovirus infection maybe a cause.",
+      "It's always associated with motor deficit.",
+      "Hypoxic ischemic brain damage maybe a cause."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because microcephaly can be primary or secondary, caused by congenital infections like CMV, or result from hypoxic-ischemic damage, but it is not always associated with motor deficits. Option C is incorrect as some children with microcephaly may have normal motor function."
+  },
+  {
+    "question": "The most commonly used growth curve in children, although it's not the most accurate, is:",
+    "options": [
+      "Velocity growth curves.",
+      "Distance growth curves.",
+      "Percentile growth curves.",
+      "Standard growth curves."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because percentile growth curves are the most commonly used in clinical practice despite not being the most accurate, as they provide a quick reference for comparing a child's growth to the population. Velocity curves measure growth rate, distance curves measure absolute size, and standard curves are less commonly used in routine practice."
+  },
+  {
+    "question": "Which of the following is true about craniosynostosis:",
+    "options": [
+      "Mental function is commonly affected.",
+      "Skull is deformed.",
+      "Child has urinary incontinence.",
+      "Always associated with convulsions."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because craniosynostosis involves premature fusion of skull sutures, leading to characteristic skull deformities. Mental function is not always affected, urinary incontinence and convulsions are not typical features, making options A, C, and D incorrect."
+  },
+  {
+    "question": "Which of the following is correct about microcephaly:",
+    "options": [
+      "It's defined as skull circumference below 50th percentile for age.",
+      "It\u2019s always associated with motor defect.",
+      "It may be caused by congenital infections.",
+      "Aqueduct stenosis maybe a cause."
+    ],
+    "correct": 2,
+    "explanation": "Microcephaly can be caused by congenital infections such as Zika, cytomegalovirus, and rubella. Option A is incorrect as microcephaly is defined as head circumference significantly below the average (typically less than 2 standard deviations below the mean), not just below the 50th percentile. Option B is incorrect because microcephaly is not always associated with motor defects. Option D is incorrect as aqueduct stenosis typically causes macrocephaly, not microcephaly."
+  },
+  {
+    "question": "Causes of short stature include all except:",
+    "options": [
+      "Chronic hemolytic anemia.",
+      "Klinefelter syndrome.",
+      "Acquired hypothyroidism.",
+      "Long-term steroid therapy."
+    ],
+    "correct": 1,
+    "explanation": "Klinefelter syndrome is not typically associated with short stature; affected individuals are often tall. Chronic hemolytic anemia (A) can cause short stature due to chronic disease and increased metabolic demands. Acquired hypothyroidism (C) can lead to short stature if untreated. Long-term steroid therapy (D) can impair growth and cause short stature."
+  },
+  {
+    "question": "At birth, normal heart rate is:",
+    "options": [
+      "60-80 per minute.",
+      "70-120 per minute.",
+      "80-110 per minute.",
+      "110-150 per minute."
+    ],
+    "correct": 3,
+    "explanation": "The normal heart rate at birth is 110-150 per minute, which is higher than older children and adults. Option A (60-80) is too low for a newborn. Option B (70-120) is also too low for the lower end. Option C (80-110) is below the normal range for newborns."
+  },
+  {
+    "question": "During evaluation of a 5-year-old boy, his height is just below 5thpercentile. The parents brought his previous growth curves, which reveal that since early infancy, his length/height has followed a curve parallel to, but just below, the 5th percentile. His mother's height is 152 cm and his father's height is 162 cm. History & physical examination are otherwise entirely normal. Bone age is normal. What is the most likely diagnosis?",
+    "options": [
+      "Constitutional delay in growth.",
+      "Growth hormone deficiency.",
+      "Hypothyroidism.",
+      "Familial short stature."
+    ],
+    "correct": 3,
+    "explanation": "The child's growth pattern is consistent with familial short stature, as he has always been below the 5th percentile but following a parallel curve, with normal bone age and parental heights that are shorter than average. Constitutional delay in growth (A) typically involves a delay in bone age and a later growth spurt. Growth hormone deficiency (B) would show abnormal growth velocity and delayed bone age. Hypothyroidism (C) would show delayed bone age and possibly other symptoms."
+  },
+  {
+    "question": "The upper segment to lower segment ratio in a child aged 8 years is expected to be:",
+    "options": [
+      "1.3",
+      "1",
+      "1.5",
+      "1.7"
+    ],
+    "correct": 1,
+    "explanation": "At age 8 years, the upper to lower segment ratio is typically 1:1 as the child approaches the transition point where the lower segment becomes longer than the upper segment. Options A, C, and D represent ratios that are more typical of younger children or adults, not an 8-year-old."
+  },
+  {
+    "question": "A weight measurement falling on the 10th percentile for a given age indicates that:",
+    "options": [
+      "10% of normal children of the same age will have the same height.",
+      "The patient's weight is10% below the mean value for the age.",
+      "The patient's weight is 10% above the mean value for the age.",
+      "10% of normal children of the same age would have the same or smaller weight."
+    ],
+    "correct": 3,
+    "explanation": "The 10th percentile means that 10% of normal children of the same age would have the same or smaller weight, while 90% would have larger weights. Option A is incorrect as it refers to height, not weight. Options B and C are incorrect as the percentile doesn't directly indicate percentage above or below the mean, but rather the position in the distribution."
+  },
+  {
+    "question": "A possible cause of short stature is:",
+    "options": [
+      "Congenital cyanotic heart disease.",
+      "Infant of diabetic mother.",
+      "Acute renal failure.",
+      "Acute infection."
+    ],
+    "correct": 0,
+    "explanation": "Congenital cyanotic heart disease can cause chronic hypoxia and poor growth, leading to short stature. Option B (infant of diabetic mother) typically causes macrosomia, not short stature. Option C (acute renal failure) and D (acute infection) are acute conditions that don't typically cause persistent short stature."
+  },
+  {
+    "question": "One of the following statements is true about short stature in children:",
+    "options": [
+      "In most cases, it's a variant of normal.",
+      "There is often early puberty.",
+      "A history of preterm birth is irrelevant.",
+      "Maybe caused by acute renal failure."
+    ],
+    "correct": 0,
+    "explanation": "In most cases, short stature is a variant of normal (familial or constitutional growth delay). Option B is incorrect as short stature is often associated with delayed puberty. Option C is incorrect as preterm birth history is relevant to growth assessment. Option D is incorrect as acute renal failure typically causes weight loss, not necessarily short stature."
+  },
+  {
+    "question": "One of the following is correct about growth:",
+    "options": [
+      "Growth is most rapid between 2 & 3years of life.",
+      "Commonest cause of failure to thrive in infancy is renal agenesis.",
+      "Socioeconomic state may affect growth.",
+      "Growth charts are same for both sexes."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because socioeconomic factors can influence nutrition, healthcare access, and overall environment, all of which affect growth. A is wrong as growth is most rapid during infancy, not between 2-3 years. B is incorrect as renal agenesis is rare and not the commonest cause of failure to thrive. D is wrong as growth charts differ between sexes due to different growth patterns."
+  },
+  {
+    "question": "One of the following is wrong about microcephaly:",
+    "options": [
+      "It\u2019s defined as skull circumference below 3rd percentile for age.",
+      "It may be associated with motor defect.",
+      "It may be caused by congenital infection.",
+      "Aqueduct stenosis maybe a cause."
+    ],
+    "correct": 3,
+    "explanation": "D is wrong because aqueduct stenosis typically causes macrocephaly due to obstructive hydrocephalus, not microcephaly. A is correct as microcephaly is defined by head circumference below the 3rd percentile. B is correct as microcephaly can be associated with motor defects. C is correct as congenital infections like CMV, toxoplasmosis, or Zika can cause microcephaly."
+  },
+  {
+    "question": "The 1st deciduous tooth appears by:",
+    "options": [
+      "3-4 months.",
+      "4-5 months.",
+      "8-9 months.",
+      "5-7 months."
+    ],
+    "correct": 3,
+    "explanation": "D is correct as the first deciduous tooth typically appears between 5-7 months of age. A, B, and C are incorrect as these timeframes are either too early (3-4 months, 4-5 months) or too late (8-9 months) for the first tooth eruption."
+  },
+  {
+    "question": "The faster weight gain is seen at:",
+    "options": [
+      "1st year & puberty.",
+      "2nd year & puberty.",
+      "Puberty.",
+      "Infancy."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as the fastest weight gain occurs during the first year of life (infancy) and again during puberty due to rapid growth spurts. B is wrong as the second year has slower growth compared to the first year. C is incomplete as puberty is one period but not the only one. D is incomplete as infancy is one period but puberty is another period of rapid growth."
+  },
+  {
+    "question": "The average monthlyweight gain in the 1st 4months:",
+    "options": [
+      "250 gm.",
+      "500 gm.",
+      "750 gm.",
+      "1000 gm."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (750 gm) as infants typically gain about 750 grams per month during the first 4 months of life. Options A, B, and D are incorrect as they represent weight gains that are too low or too high for this developmental period."
+  },
+  {
+    "question": "In percentile growth curves, measurement below... is considered below normal:",
+    "options": [
+      "50%.",
+      "25%.",
+      "7%.",
+      "3%."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (3%) as measurements below the 3rd percentile on growth curves are considered below normal. Options A, B, and C are incorrect as they represent higher percentiles that are still within the normal range."
+  },
+  {
+    "question": "Short stature maybe due to:",
+    "options": [
+      "Malnutrition.",
+      "Growth hormone deficiency.",
+      "Diabetes mellitus.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (All of the above) as malnutrition, growth hormone deficiency, and diabetes mellitus can all contribute to short stature. Options A, B, and C are individually correct but incomplete since the question asks for all possible causes."
+  },
+  {
+    "question": "Birth length doubles at the age of:",
+    "options": [
+      "1year.",
+      "2 years.",
+      "3 years.",
+      "4 years."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (4 years) as birth length typically doubles by the age of 4 years. Options A, B, and C are incorrect as they represent ages at which length has not yet doubled from birth length."
+  },
+  {
+    "question": "A 5-year old girl presents with short stature, she has always been short but this has become more apparent over the last year, her height is less than 5th percentile and her weight is in 10thpercentile, she is asymptomatic and not dysmorphic, what would be the most useful investigation?",
+    "options": [
+      "Thyroid function test.",
+      "Karyotyping.",
+      "Kidney function test.",
+      "Full blood count."
+    ],
+    "correct": 1,
+    "explanation": "Karyotyping is correct as it can detect Turner syndrome, a common cause of short stature in girls with no other symptoms. Thyroid function tests, kidney function tests, and full blood count are less likely to reveal the cause in this asymptomatic, non-dysmorphic girl."
+  },
+  {
+    "question": "A 7-year old boy presents to your clinic for evaluation of short stature. Parents report that he has always been the shortest boy in class. He has been well with no chronic medical problems. His height is below the 5th percentile with weight on 25th percentile. His mother is 145 cm. patient's father is 155cm. no family history of any medical problems. What is your diagnosis?",
+    "options": [
+      "Hypothyroidism.",
+      "Constitutional delay in growth.",
+      "Familial short stature.",
+      "Growth hormone deficiency."
+    ],
+    "correct": 2,
+    "explanation": "Familial short stature is correct given the short stature of both parents and the child's proportionate growth pattern. Constitutional delay in growth would typically show delayed bone age, while hypothyroidism and growth hormone deficiency would usually have additional symptoms or signs."
+  },
+  {
+    "question": "A 7-year old boy presents to your clinic for evaluation of short stature. He has no history of any chronic symptoms. His height is below 5thpercentile with weight on 10th percentile. He has no abnormal features. What to do first?",
+    "options": [
+      "Thyroid function test.",
+      "GH assay.",
+      "Serum protein & full blood count.",
+      "Measure the height of mother and father."
+    ],
+    "correct": 3,
+    "explanation": "Measuring parental heights is correct as it helps determine if the short stature is familial or pathological. Thyroid function tests, GH assays, and blood tests are premature without first establishing the family growth pattern."
+  },
+  {
+    "question": "This is a 12 -year- old boy who is seen by his physician for short stature, his past history is normal. No family history of short stature but he has older male sibling age 18 years with history of delayed onset of puberty. What is the most likely cause?",
+    "options": [
+      "Hypothyroidism.",
+      "Constitutional delay in growth and puberty.",
+      "Familial short stature.",
+      "GH deficiency."
+    ],
+    "correct": 1,
+    "explanation": "Constitutional delay in growth and puberty is correct given the family history of delayed puberty in a sibling. Hypothyroidism would typically have other symptoms, familial short stature would have a family history of short stature, and GH deficiency would typically show growth deceleration rather than just short stature."
+  },
+  {
+    "question": "A 5 -year- old boypresents with short stature. His height is less than 5thpercentile. He is asymptomatic with normal features. His mid-parental predicted height percentile was 50th. Most useful investigation is?",
+    "options": [
+      "GH assay.",
+      "Karyotyping.",
+      "Kidney function test.",
+      "Skeletal survey."
+    ],
+    "correct": 0,
+    "explanation": "GH assay is the most useful investigation as the child has short stature with normal features and a discrepancy between mid-parental height (50th percentile) and actual height (<5th percentile), suggesting possible growth hormone deficiency. Karyotyping is unnecessary without dysmorphic features, kidney function tests are not indicated without renal symptoms, and skeletal survey is not needed without skeletal abnormalities."
+  },
+  {
+    "question": "A 4 -year- old child with short stature, height below 5thpercentile, upper segment to lower segment ratio is 1.5 \\ 1. Helpful investigation will be?",
+    "options": [
+      "Cranial CT.",
+      "Endocrine testing for growth hormone levels and pituitary function.",
+      "A skeletal survey.",
+      "Examination of both parents."
+    ],
+    "correct": 2,
+    "explanation": "Skeletal survey is the most helpful investigation as the increased upper to lower segment ratio suggests a skeletal dysplasia. Cranial CT is not indicated without neurological symptoms, endocrine testing would be more relevant if there were features of endocrine dysfunction, and examining parents wouldn't help diagnose a potential skeletal abnormality."
+  },
+  {
+    "question": "A 13 -year- old boy was reviewed at school for moderate learning difficulties. His height more than 95thpercentile with weight at 50thpercentile. He had bilateral testicular volumes of 2 ml and nopubic or axillary hair. His mid-parental predicted height percentile was 50th. What is the diagnosis?",
+    "options": [
+      "Constitutional tall stature.",
+      "Marfan syndrome.",
+      "Down syndrome.",
+      "Klinefelter syndrome."
+    ],
+    "correct": 3,
+    "explanation": "Klinefelter syndrome is the correct diagnosis as the boy has tall stature, learning difficulties, delayed puberty (small testes, no pubic hair), and disproportionate growth (height >95th percentile with normal weight). Constitutional tall stature would have normal pubertal development, Marfan syndrome would have skeletal abnormalities and cardiac issues, and Down syndrome would have characteristic facial features and intellectual disability."
+  },
+  {
+    "question": "The parents of a 14 -year- old boy are concerned about his short stature and lack of sexual development. He had normal growth pattern, although he was always shorter than children of his age. Examination revealed height at 5thpercentile, upper segment to lower segment ratio is 0.98. A small amount of axillary and pubic hair is present. What is the following action?",
+    "options": [
+      "Measure pituitary gonadotropin.",
+      "Obtain CT scan of pituitary gland.",
+      "Measure serum testosterone.",
+      "Reassure the parents."
+    ],
+    "correct": 3,
+    "explanation": "Reassurance is appropriate as the boy has normal growth pattern, proportionate short stature, and early signs of puberty (axillary and pubic hair), suggesting constitutional delay of growth and puberty. Measuring pituitary gonadotropins or testosterone would be premature, and CT scan is not indicated without neurological or endocrine concerns."
+  },
+  {
+    "question": "An otherwise healthy 6 -year- old child is brought to you to be evaluated because he is the shortest child in class. Careful measurement of his age. Which disorder is the cause?",
+    "options": [
+      "Achondroplasia.",
+      "Hypothyroidism.",
+      "GH deficiency.",
+      "Marfan syndrome."
+    ],
+    "correct": 2,
+    "explanation": "GH deficiency is correct as it causes proportionate short stature with normal body proportions. Achondroplasia causes disproportionate short stature with characteristic features, hypothyroidism typically presents with weight gain and constipation, and Marfan syndrome causes tall stature with long limbs."
+  },
+  {
+    "question": "Causes of microcephaly include all except:",
+    "options": [
+      "Rubella",
+      "Fanconi syndrome",
+      "Turner syndrome",
+      "Down syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Turner syndrome is correct as it does not typically cause microcephaly. Rubella, Fanconi syndrome, and Down syndrome are all known causes of microcephaly due to genetic or infectious factors affecting brain development."
+  },
+  {
+    "question": "All are causes of microcephaly except:",
+    "options": [
+      "Craniostenosis.",
+      "Congenital infection.",
+      "In-utero irradiation.",
+      "Cerebral palsy.",
+      "Hypothyroidism."
+    ],
+    "correct": 4,
+    "explanation": "Hypothyroidism is correct as it causes growth delay but not typically microcephaly. Craniostenosis causes microcephaly by restricting skull growth, congenital infections can impair brain development, and in-utero irradiation can cause microcephaly, while cerebral palsy is a consequence rather than a cause of microcephaly."
+  },
+  {
+    "question": "Which is a cause of macrocephaly:",
+    "options": [
+      "Rickets",
+      "Hemolytic anemia",
+      "Hydrocephalus",
+      "Brain tumor in an infant",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All options are correct causes of macrocephaly. Rickets can cause frontal bossing, hemolytic anemia can cause extramedullary hematopoiesis leading to skull enlargement, hydrocephalus directly increases head size, and brain tumors can cause macrocephaly in infants."
+  },
+  {
+    "question": "All are true in constitutional growth delay except:",
+    "options": [
+      "Normal hormonal level",
+      "Ultimate height is normal",
+      "Short stature since birth",
+      "Bone age is significant reduced"
+    ],
+    "correct": 2,
+    "explanation": "C is correct because constitutional growth delay typically presents with normal birth length and weight, with growth slowing later. A, B, and D are true in constitutional growth delay as hormonal levels are normal, ultimate height is normal, and bone age is delayed."
+  },
+  {
+    "question": "Premature fusion of skull bones is called:",
+    "options": [
+      "Cranio-stenosis",
+      "Microcephaly",
+      "Hydrocephaly",
+      "Macrocephaly"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as craniosynostosis refers to premature fusion of skull sutures. B is incorrect as microcephaly refers to small head size, not premature fusion. C is incorrect as hydrocephaly involves excess cerebrospinal fluid, not bone fusion. D is incorrect as macrocephaly refers to large head size."
+  },
+  {
+    "question": "A 5 -year- old female child. Her weight is at 97th percentile for age and 5thpercentile for height. Physical examination is otherwise normal. Which of the following statements best reflects the 1st management for this child?",
+    "options": [
+      "No intervention is required at this time",
+      "Subcutaneous skin fold thickness should be followed closely",
+      "A dietary history should be elicited",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as the first step should be obtaining a dietary history to assess caloric intake and nutritional status. A is incorrect as this pattern suggests possible obesity risk requiring intervention. B is less urgent than assessing dietary intake which may reveal the underlying cause."
+  },
+  {
+    "question": "About I17teeth:",
+    "options": [
+      "They are 32 in number.",
+      "The average age of appearance of lower central incisors is 16-20 months.",
+      "The average age of appearance of canines is 6-7 months.",
+      "The average age of appearance of 1st molars is 10-16 months."
+    ],
+    "correct": 3,
+    "explanation": "D is correct as the first molars typically appear between 10-16 months of age. A is incorrect as there are 20 primary teeth, not 32. B is incorrect as lower central incisors appear around 6-10 months, not 16-20. C is incorrect as canines appear around 16-23 months, not 6-7."
+  },
+  {
+    "question": "For developmental assessment, the limit age for transferring objects between hands is:",
+    "options": [
+      "6 months.",
+      "7 months.",
+      "8 months.",
+      "9 months."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B (7 months) because transferring objects between hands typically develops around 6-7 months of age as part of fine motor skill progression. Option A (6 months) is too early as this skill usually hasn't fully developed yet, while options C (8 months) and D (9 months) are too late as this milestone is typically achieved earlier."
+  },
+  {
+    "question": "An infant conies to well-baby health care visit. He sits with only minimal support, attempts to attain a toy beyond reach, laughs, rolls over, but does not have a pincer grasp. I. What is the likely age of this infant?",
+    "options": [
+      "4 months.",
+      "6 months.",
+      "8 months.",
+      "10 months."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (8 months) because the described developmental milestones (sitting with minimal support, reaching for toys, laughing, rolling over) align with 8-month-old development. Option A (4 months) is too early as infants at this age can't sit or reach intentionally, option B (6 months) is too early as they typically need more sitting support, and option D (10 months) is too late as pincer grasp usually develops around 9 months."
+  },
+  {
+    "question": "This infant can't:",
+    "options": [
+      "Raise head from prone position.",
+      "Smile responsively.",
+      "Recognize mother.",
+      "Creep or crawl."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (Creep or crawl) because an 8-month-old infant typically cannot creep or crawl yet, which usually develops around 9-10 months. Options A, B, and C are incorrect because raising head from prone, responsive smiling, and recognizing mother all develop much earlier, typically by 3-4 months of age."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

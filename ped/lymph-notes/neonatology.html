@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Neonatology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_neonatology",
+  "title": "Neonatology",
+  "description": "Pediatrics - Neonatology MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "A4-day-old girl has jaundice, first noted on previous day. She was born at 39 wk. with weight of 3.29 kg but no neonatal problems, no liver enlargement and stool are pigmented. Yet weight was 3.10 kg on examination. I. II. Diagnosis is most likely:",
+    "options": [
+      "Rh incompatibility.",
+      "ABO incompatibility.",
+      "Physiological jaundice.",
+      "Hypothyroidism."
+    ],
+    "correct": 2,
+    "explanation": "This 4-day-old term infant has jaundice starting on day 3 with normal examination, pigmented stools, and no hepatomegaly, which is the classic presentation of physiological jaundice. Physiological jaundice typically appears after 24 hours of age, peaks around day 3-5 in term infants, and the baby otherwise looks well. Rh or ABO incompatibility would present earlier (within first 24 hours) and would likely have additional findings such as anemia or hepatosplenomegaly."
+  },
+  {
+    "question": "How to explain weight loss:",
+    "options": [
+      "Unable to feed.",
+      "|breast milk.",
+      "Due to jaundice. Lymph Notes | P a g e 52",
+      "Physiological."
+    ],
+    "correct": 3,
+    "explanation": "Weight loss of up to 10% of birth weight in the first few days of life is a normal physiological phenomenon in newborns. It is primarily due to loss of excess extracellular fluid and meconium passage, not due to inadequate feeding or illness. This weight loss is typically regained by 10-14 days of age, making 'Physiological' the correct explanation."
+  },
+  {
+    "question": "Phototherapy:",
+    "options": [
+      "Changes bilirubin to nontoxic isomer.",
+      "Constipation is usually observed.",
+      "Indicated for bilirubin > 25 mg % in full term.",
+      "Feeding should stop during therapy."
+    ],
+    "correct": 0,
+    "explanation": "Phototherapy works by converting unconjugated bilirubin into nontoxic water-soluble photoisomers (lumirubin) through photo-oxidation and configurational isomerization that can be excreted without conjugation. Feeding should continue during therapy, not stop. Constipation is not a typical side effect; rather, loose green stools are common. For full-term infants, phototherapy is typically indicated at lower bilirubin levels than 25 mg/dL."
+  },
+  {
+    "question": "Which is correct in kernicterus:",
+    "options": [
+      "Can be prevented by blood transfusion.",
+      "Bilirubin is deposited in hemisphere.",
+      "Manifests since birth by neurological signs.",
+      "Hemolysis of RBCs is a common risk factor."
+    ],
+    "correct": 3,
+    "explanation": "Kernicterus results from deposition of unconjugated bilirubin in the basal ganglia and brainstem nuclei (not the hemispheres), and hemolysis of RBCs is indeed a major risk factor because it produces large amounts of unconjugated bilirubin that can cross the blood-brain barrier. Conditions like ABO or Rh incompatibility causing hemolysis significantly increase the risk. Blood transfusion (exchange transfusion) can treat but does not prevent kernicterus, and neurological signs typically appear after a few days, not at birth."
+  },
+  {
+    "question": "A 6-week-old boyreferred by neonatologist to hepatology clinic. Provisional diagnosis was prolonged neonatal jaundice. According to mother, it started at 3rd day of life. Urine became darker, stool is gettingpaler later and jaundice became more intense. On examination, liver became 4 cm below right costal margin, but not tender. Total bilirubin became 16 mg/dl (80% direct). (September 2014) I. All the following can be expected, except:",
+    "options": [
+      "Thiamine deficiency.",
+      "Pruritus.",
+      "Fat malabsorption.",
+      "Progressive liver damage."
+    ],
+    "correct": 0,
+    "explanation": "This infant has prolonged neonatal jaundice with high direct (conjugated) bilirubin (80% direct), dark urine, pale stools, and hepatomegaly \u2014 all features of biliary atresia. Thiamine deficiency is not expected in biliary atresia; the expected complications include pruritus (from bile salt accumulation), fat malabsorption (due to lack of bile in the intestine), and progressive liver damage. Therefore, thiamine deficiency is the exception."
+  },
+  {
+    "question": "HIDA scan is used for:",
+    "options": [
+      "Assessing liver function.",
+      "Assessing liver size.",
+      "Assessing dye delivery to intestine.",
+      "Replacing percutaneous liver biopsy."
+    ],
+    "correct": 2,
+    "explanation": "HIDA scan (hepatobiliary iminodiacetic acid scan) is primarily used to assess patency of the biliary tree by determining whether the radioactive dye is excreted into the intestine. In biliary atresia, no dye reaches the intestine, confirming the diagnosis. It does not primarily assess liver function or size, and it cannot replace percutaneous liver biopsy for histological diagnosis."
+  },
+  {
+    "question": "Which is correct about phototherapy: (September",
+    "options": [
+      "Treatment of conjugated hyperbilirubinemia.",
+      "Causes clay colored stool.",
+      "Best therapy if serum bilirubin is (16-18 mg/dl) at day1of life.",
+      "Eyes should be covered."
+    ],
+    "correct": 3,
+    "explanation": "Eye protection is essential during phototherapy to prevent retinal damage from the intense light exposure, so eyes should be covered. Phototherapy is used for unconjugated (not conjugated) hyperbilirubinemia. It does not cause clay-colored stools (rather it causes greenish loose stools). If bilirubin is 16-18 mg/dL on day 1 of life, exchange transfusion may be needed rather than phototherapy alone."
+  },
+  {
+    "question": "A 30-hour-old full-term infant has jaundice covering face & chest. He is breast fed & proved completely normal on examination except jaundice. His serum bilirubin is 15.5 mg/dl. (September 2008) What is the best action to proceed for:",
+    "options": [
+      "Start phototherapy.",
+      "Discontinue breast milk.",
+      "Wait and retest bilirubin after 6 hours.",
+      "Start exchange transfusion."
+    ],
+    "correct": 0,
+    "explanation": "A 30-hour-old full-term infant with a bilirubin of 15.5 mg/dL requires immediate phototherapy. Jaundice appearing within the first 24-36 hours is always pathological, and a bilirubin level this high at 30 hours is dangerous and warrants treatment. Discontinuing breast milk or waiting 6 hours would delay necessary treatment, and exchange transfusion is reserved for higher or rapidly rising levels."
+  },
+  {
+    "question": "All are true in physiological neonatal jaundice, except",
+    "options": [
+      "Conjugated hyperbilirubinemia.",
+      "Does not exceed 2 mg/dl.",
+      "Baby looks well & feeds well.",
+      "Does not persist more than 7 days."
+    ],
+    "correct": 0,
+    "explanation": "Physiological jaundice is characterized by unconjugated (indirect) hyperbilirubinemia, not conjugated. The statement 'Conjugated hyperbilirubinemia' is the exception because physiological jaundice involves only unconjugated bilirubin. The other options are true: it usually does not exceed 12-15 mg/dL in term infants, the baby looks well, and it resolves within 7-10 days in term infants."
+  },
+  {
+    "question": "A 7-day-old neonate presented to clinic with jaundice of 2 days ago. He was born byun\u00ac eventful vaginal delivery and started breast milk after some delay. Bilirubin is 14 mg/dl, no drug intake history by mother.Jaundice is not improving and asks if he has kernicterus. (September 2010) What is the most likely diagnosis:",
+    "options": [
+      "Cephalohematoma.",
+      "Breast feeding jaundice.",
+      "Thalassemia.",
+      "Kernicterus."
+    ],
+    "correct": 1,
+    "explanation": "This 7-day-old breast-fed neonate with jaundice that started after delayed initiation of breastfeeding, with bilirubin of 14 mg/dL and no drug history, most likely has breastfeeding jaundice (also called breast-feeding-associated jaundice). It occurs due to inadequate milk intake leading to dehydration and reduced bilirubin elimination. Cephalohematoma would have a visible scalp swelling, thalassemia is rare in this context, and kernicterus would show neurological signs."
+  },
+  {
+    "question": "In kernicterus, which is correct: (June",
+    "options": [
+      "More likely to occur if bilirubin exceeds10 mg/dl in 1st day.",
+      "Bilirubin is deposited mainly in hemispheres.",
+      "More likely to occur in infant of Rh+ mother.",
+      "Extra hepatic biliary atresia is a common cause."
+    ],
+    "correct": 0,
+    "explanation": "Kernicterus is more likely to occur when bilirubin exceeds 10 mg/dL in the first day of life because early-onset jaundice suggests significant hemolysis, and the immature blood-brain barrier is more vulnerable. Bilirubin is deposited mainly in the basal ganglia and brainstem (not hemispheres). It is more likely in infants of Rh-negative mothers (not Rh+), and extrahepatic biliary atresia causes conjugated hyperbilirubinemia which does not cause kernicterus."
+  },
+  {
+    "question": "A suggestive sign of hemolysis in neonatal jaundice is:",
+    "options": [
+      "Low T4 of neonate.",
+      "Mother group A, baby group 0.",
+      "Baby Rh-ve.",
+      "Coombe positive."
+    ],
+    "correct": 3,
+    "explanation": "A positive Coombs test (direct antiglobulin test) directly demonstrates antibody-coated RBCs, confirming an immune-mediated hemolytic process such as ABO or Rh incompatibility. Low T4 suggests hypothyroidism, not hemolysis. Mother group A with baby group O would not cause hemolytic disease (hemolysis occurs when mother is O and baby is A or B). Baby Rh-negative would not develop Rh hemolytic disease."
+  },
+  {
+    "question": "A 42-wk-gestational age, 3.8 kg breast fed baby has persistent jaundice at 2nd week of life, hasn't gained weight since birth with hoarse cry, dry skin, hypotonia, hernia & 6 cm anterior fontanel. I. Diagnosis is:",
+    "options": [
+      "Hypothyroidism.",
+      "Hereditary spherocytosis.",
+      "Biliary atresia.",
+      "Galactosemia."
+    ],
+    "correct": 0,
+    "explanation": "This 42-week post-term breastfed infant with persistent jaundice at 2 weeks, poor weight gain, hoarse cry, dry skin, hypotonia, umbilical hernia, and large posterior fontanel (6 cm) presents the classic features of congenital hypothyroidism. The large fontanel, hoarse cry, hypotonia, and dry skin are hallmark findings. Hereditary spherocytosis would cause unconjugated jaundice without these features, biliary atresia causes direct hyperbilirubinemia, and galactosemia presents with vomiting and liver dysfunction."
+  },
+  {
+    "question": "Condition maybe prevented by:",
+    "options": [
+      "Early exchange transfusion.",
+      "Neonatal screening.",
+      "Genetic counseling.",
+      "Special milk formula."
+    ],
+    "correct": 1,
+    "explanation": "Congenital hypothyroidism can be prevented from causing irreversible mental retardation through neonatal screening programs that detect the condition early before clinical symptoms appear. Early detection allows prompt thyroid hormone replacement therapy. Exchange transfusion is for hyperbilirubinemia, genetic counseling is for inherited conditions, and special milk formula is for metabolic disorders like galactosemia."
+  },
+  {
+    "question": "A full-term baby had jaundice at 10 hours of age. Mother blood group was O negative and that of baby was A positive. 2 hours later, indirect bilirubin level was 16 mg/dl. I. Best treatment is:",
+    "options": [
+      "Exchange blood transfusion.",
+      "Phototherapy.",
+      "Phenobarbital.",
+      "Ceftriaxone."
+    ],
+    "correct": 1,
+    "explanation": "This full-term baby with jaundice at 10 hours and an indirect bilirubin of 16 mg/dL has ABO incompatibility (mother O negative, baby A positive). Phototherapy is the best initial treatment for this level of bilirubin. Exchange transfusion would be considered only if phototherapy fails or bilirubin rises rapidly to dangerous levels. Phenobarbital takes days to work, and ceftriaxone is irrelevant."
+  },
+  {
+    "question": "Main determinant of cause is:",
+    "options": [
+      "Level of bilirubin.",
+      "rate of rise.",
+      "Baby sex.",
+      "Jaundice onset."
+    ],
+    "correct": 3,
+    "explanation": "The timing of jaundice onset is the main determinant of its cause. Jaundice appearing within the first 24 hours is almost always pathological (hemolytic disease, infection), jaundice on days 2-3 suggests physiological or breast-milk jaundice, and jaundice persisting beyond 2 weeks suggests biliary atresia or hypothyroidism. The level and rate of rise guide treatment decisions, while baby sex is not a major determinant."
+  },
+  {
+    "question": "Newborn was delivered after 37 weeks by cesarean section. He started to develop yellow discoloration of skin, sclera after 18 hours of delivery. Total serum bilirubin was 4 mg/dl at 24 hours and 15.3 mg/dl at 48 hours. Mother blood group 0- and child 0+. Big caput succedaneum was noticed. I. Diagnosis is most likely:",
+    "options": [
+      "Rh incompatibility.",
+      "ABO incompatibility.",
+      "Physiological jaundice.",
+      "G6PD deficiency."
+    ],
+    "correct": 0,
+    "explanation": "This newborn with jaundice starting at 18 hours, rapidly rising bilirubin (4 mg/dL at 24 hours to 15.3 mg/dL at 48 hours), mother O-negative and baby O-positive blood groups, and a large caput succedaneum most likely has Rh incompatibility. The Rh-negative mother with an Rh-positive baby is the key finding, as the rapid rise and early onset are consistent with immune hemolytic disease. ABO incompatibility would require mother O and baby A or B. Physiological jaundice doesn't appear this early or rise this fast."
+  },
+  {
+    "question": "Treatment of choice is:",
+    "options": [
+      "Reassure and observe.",
+      "Phototherapy.",
+      "Exchange transfusion.",
+      "Oral phenobarbitone."
+    ],
+    "correct": 1,
+    "explanation": "Phototherapy is the treatment of choice for this infant with rapidly rising bilirubin due to Rh incompatibility. The bilirubin of 15.3 mg/dL at 48 hours warrants phototherapy as first-line treatment. Simple observation is inadequate, exchange transfusion is reserved for severe or refractory cases, and oral phenobarbitone is not a primary treatment for acute hemolytic jaundice."
+  },
+  {
+    "question": "Surfactant production is accelerated in all of the following situations, except:",
+    "options": [
+      "Premature rupture of membranes greater than 48 hours.",
+      "Infants with erythroblastosis fetalis.",
+      "Infants of mothers receiving steroids 48 hours prior to delivery.",
+      "Infants suffering from placental insufficiency."
+    ],
+    "correct": 1,
+    "explanation": "Surfactant production is accelerated by chronic intrauterine stress such as prolonged rupture of membranes (>48 hours), maternal steroid administration, and placental insufficiency \u2014 all of which stress the fetus and speed lung maturation. However, erythroblastosis fetalis (hemolytic disease) does not accelerate surfactant production and may actually be associated with delayed lung maturation, making it the correct exception."
+  },
+  {
+    "question": "In which grade of respiratory distress grunting is heard:",
+    "options": [
+      "Grade 1.",
+      "Grade 2.",
+      "Grade 3.",
+      "Grade 4."
+    ],
+    "correct": 2,
+    "explanation": "In the Silverman-Anderson scoring system for respiratory distress, grunting is first heard in Grade 3. Grade 1 shows mild retractions only, Grade 2 shows moderate retractions with nasal flaring, Grade 3 adds grunting to the findings, and Grade 4 shows severe retractions with gasping or cyanosis."
+  },
+  {
+    "question": "Patchy or streaky areas of lung collapse with areas of over-inflation are commonly seen in chest x-ray of a neonate with:",
+    "options": [
+      "Pneumothorax.",
+      "Congenital pneumonia.",
+      "Meconium aspiration.",
+      "Hyaline membrane disease."
+    ],
+    "correct": 2,
+    "explanation": "Patchy or streaky areas of lung collapse with areas of over-inflation are the classic radiographic pattern of meconium aspiration syndrome. The meconium plugs cause a ball-valve effect leading to over-inflation in some areas and atelectasis in others. Pneumothorax shows a hyperlucent hemithorax, congenital pneumonia shows diffuse infiltrates, and HMD shows a diffuse reticulogranular pattern with air bronchograms."
+  },
+  {
+    "question": "Mature levels of surfactant are usually present after:",
+    "options": [
+      "20 weeks of gestation.",
+      "25 weeks of gestation.",
+      "30 weeks of gestation.",
+      "35 weeks of gestation."
+    ],
+    "correct": 3,
+    "explanation": "Surfactant production begins around 24 weeks of gestation but mature levels sufficient to prevent respiratory distress syndrome are typically not present until approximately 35 weeks of gestation. This is why infants born before 35 weeks are at significantly higher risk for developing RDS/HMD. The lecithin-to-sphingomyelin (L/S) ratio reaches the mature level of 2:1 around 35 weeks."
+  },
+  {
+    "question": "In which grade of respiratory distress cyanosis appears:",
+    "options": [
+      "Grade 1.",
+      "Grade 2.",
+      "Grade 3.",
+      "Grade 4."
+    ],
+    "correct": 3,
+    "explanation": "In the Silverman-Anderson respiratory distress grading, cyanosis in room air first appears in Grade 4. Grades 1-3 involve progressively more severe retractions, nasal flaring, and grunting, but cyanosis indicates the most severe grade where gas exchange is significantly compromised and supplemental oxygen is required."
+  },
+  {
+    "question": "Reticulo-granular pattern and air bronchogram are the typical chest x-ray findings of a neonate with:",
+    "options": [
+      "Hyaline membrane disease.",
+      "Meconium aspiration.",
+      "Pneumothorax.",
+      "Congenital pneumonia."
+    ],
+    "correct": 0,
+    "explanation": "A reticulo-granular pattern with air bronchograms is the classic and pathognomonic chest X-ray finding of hyaline membrane disease (HMD/RDS). The reticulogranular appearance represents diffuse atelectasis of alveoli, and the air bronchograms represent air-filled bronchi surrounded by atelectatic lung tissue. Meconium aspiration shows patchy infiltrates, pneumothorax shows hyperlucency, and congenital pneumonia shows diffuse infiltrates."
+  },
+  {
+    "question": "Which of the following is not correct about hyaline membrane disease?",
+    "options": [
+      "More common in preterm.",
+      "More common in infants of diabetic mothers.",
+      "More common in girls.",
+      "More common in infants born by cesarean section."
+    ],
+    "correct": 2,
+    "explanation": "Hyaline membrane disease is more common in preterm infants, infants of diabetic mothers (due to delayed surfactant maturation), and those born by cesarean section (without the stress of labor). However, HMD is more common in males (boys), not girls. Male sex is a known risk factor for RDS, making 'More common in girls' the incorrect statement."
+  },
+  {
+    "question": "Which of the following is correct about hyaline membrane disease?",
+    "options": [
+      "It is common in post-term babies.",
+      "X ray shows fine reticulogranular pattern.",
+      "Prenatal diagnosis is not available.",
+      "Respiratory alkalosis commonly occurs in such patient."
+    ],
+    "correct": 1,
+    "explanation": "The chest X-ray in HMD classically shows a fine reticulogranular pattern with air bronchograms. HMD is common in preterm (not post-term) babies, prenatal diagnosis is available through L/S ratio or lamellar body count, and respiratory acidosis (not alkalosis) commonly occurs due to CO2 retention from inadequate ventilation."
+  },
+  {
+    "question": "Which of the following is true about hyaline membrane disease?",
+    "options": [
+      "Ground-glass appearance on chest x ray is common.",
+      "The disease usually worsens 2-3 days after birth.",
+      "Steroids reduce severity if given early to premature.",
+      "Surfactant therapy is rarely useful."
+    ],
+    "correct": 0,
+    "explanation": "Ground-glass appearance on chest X-ray is the hallmark finding in HMD, representing diffuse alveolar atelectasis. The disease typically worsens in the first 48-72 hours (not improves), antenatal steroids (not postnatal) reduce severity when given to the mother, and exogenous surfactant therapy is a major treatment that significantly improves outcomes \u2014 it is not rarely useful."
+  },
+  {
+    "question": "2-hour-old, 32-week-gestational age infant develops progressive cyanosis, grunting, nasal flaring, and chest retractions. The chest radiograph reveals a ground glass-air bronchogram pattern. The infant now requires oxygen therapywith continuous positive airway pressure to maintain adequate oxygenation. I. The most likely diagnosis is:",
+    "options": [
+      "Respiratory distress syndrome.",
+      "Perinatal asphyxia.",
+      "Congenital pneumonia.",
+      "Pneumothorax."
+    ],
+    "correct": 0,
+    "explanation": "This 32-week preterm infant presenting at 2 hours of age with progressive cyanosis, grunting, nasal flaring, retractions, and a ground-glass/air bronchogram pattern on CXR has the classic presentation of respiratory distress syndrome (RDS/HMD). The prematurity, early onset of symptoms, and characteristic X-ray findings are diagnostic. Perinatal asphyxia would have a different clinical picture, congenital pneumonia typically shows patchy infiltrates, and pneumothorax shows hyperlucency."
+  },
+  {
+    "question": "One of the following is true about diagnosis:",
+    "options": [
+      "Less common with maternal diabetes.",
+      "X-ray findings are typically bilateral.",
+      "Assisted ventilation is the only available therapy.",
+      "Maternal antibiotics may decrease severity."
+    ],
+    "correct": 1,
+    "explanation": "The X-ray findings in HMD are typically bilateral and symmetric, showing diffuse reticulogranular infiltrates with air bronchograms. HMD is more common (not less) with maternal diabetes. Assisted ventilation is not the only therapy \u2014 surfactant replacement is a major treatment. Maternal antibiotics have no effect on HMD severity, as it is not an infectious process."
+  },
+  {
+    "question": "About hyaline membrane disease:",
+    "options": [
+      "It is commonly started few hours after birth.",
+      "X-ray shows unilateral lung opacity.",
+      "Prenatal diagnosis is impossible.",
+      "It is caused by aspiration of meconium."
+    ],
+    "correct": 0,
+    "explanation": "HMD typically manifests within the first few hours after birth, with symptoms of increasing respiratory distress. The X-ray shows bilateral (not unilateral) lung opacity with a reticulogranular pattern. Prenatal diagnosis is possible through assessment of fetal lung maturity (L/S ratio, lamellar body count). HMD is caused by surfactant deficiency, not meconium aspiration."
+  },
+  {
+    "question": "An infant is born at 32 weeks of gestation weighing 1500 g. Respiratory difficulty develops immediately after birth and increases in intensity thereafter. At 6 hr of age, the infant's respiratory rate is 70/minute. Examination reveals grunting, retractions, and cyanosis in room air. I. An expected chest x-rayfinding is:",
+    "options": [
+      "Hyperinflation.",
+      "Lobar opacity.",
+      "Interstitial infiltrate.",
+      "Air bronchogram."
+    ],
+    "correct": 3,
+    "explanation": "In a 32-week preterm infant with respiratory distress due to HMD, the expected chest X-ray finding is an air bronchogram \u2014 air-filled bronchi visualized against a background of diffuse atelectasis. Hyperinflation is seen in meconium aspiration, lobar opacity suggests pneumonia, and interstitial infiltrates are more characteristic of BPD or pneumonia."
+  },
+  {
+    "question": "The most important clue(s) for diagnosis:",
+    "options": [
+      "Gestational age.",
+      "Onset of respiratory distress.",
+      "Both.",
+      "None."
+    ],
+    "correct": 2,
+    "explanation": "Both gestational age and onset of respiratory distress are the most important clues for diagnosing HMD. The younger the gestational age, the higher the risk for surfactant deficiency, and the characteristic onset of respiratory distress within the first few hours of birth strongly suggests HMD. Neither factor alone is as useful as both together in making the diagnosis."
+  },
+  {
+    "question": "A 3-day-old male newborn presents to the emergency room with increased temperature, lethargy, respiratory distress, and poor feeding for the past 24 hours. His mother had a prolonged rupture of membranes (30 hours). Examination reveals grunting respiration, chest in-drawing with decreased air entry. Radiologic examination shows patchy infiltrates of lungs and gastric dilatation. What is the most likely diagnosis:",
+    "options": [
+      "Respiratory distress syndrome.",
+      "Transient tachypnea of newborn.",
+      "Pneumonia.",
+      "Meconium aspiration."
+    ],
+    "correct": 2,
+    "explanation": "This 3-day-old newborn with fever, lethargy, respiratory distress, poor feeding, history of prolonged rupture of membranes, and CXR showing patchy infiltrates with gastric dilatation most likely has congenital/neonatal pneumonia. The fever, PROM history, and patchy infiltrates distinguish it from RDS (no fever, reticulogranular pattern), TTN (self-limiting, no fever), and meconium aspiration (meconium-stained fluid, different X-ray)."
+  },
+  {
+    "question": "Hemorrhagic disease of newborn is characterized by all of the following except:",
+    "options": [
+      "Usually present around the age of 3 weeks",
+      "The most common cause of bleeding in newborn",
+      "GIT is among commonest sites of bleeding",
+      "Better prevented by prophylactic vit K administered at delivery room"
+    ],
+    "correct": 0,
+    "explanation": "Hemorrhagic disease of the newborn typically presents at 2-7 days of age (not 3 weeks), making option A the exception. It is indeed the most common cause of bleeding in newborns, the GI tract is among the commonest bleeding sites, and prophylactic vitamin K administered at birth effectively prevents it. Late hemorrhagic disease (2-12 weeks) is a separate entity associated with malabsorption or exclusive breastfeeding without vitamin K prophylaxis."
+  },
+  {
+    "question": "Physiologic anemia of infancy usually noticed at:",
+    "options": [
+      "8:12 weeks",
+      "20:24 weeks",
+      "30:36 weeks",
+      "Above 6 months"
+    ],
+    "correct": 0,
+    "explanation": "Physiologic anemia of infancy (also called physiological anemia or anemia of prematurity in preterms) typically appears at 8-12 weeks of age in term infants. This is due to decreased RBC production in the context of increasing oxygen availability after birth, shortened RBC lifespan, and rapid growth expanding blood volume. Hemoglobin nadir typically reaches 9-11 g/dL in term infants around this age."
+  },
+  {
+    "question": "In hemorrhagic disease of newborn, all of the following coagulation factors are reduced except:",
+    "options": [
+      "Factor 2",
+      "5",
+      "7",
+      "10"
+    ],
+    "correct": 1,
+    "explanation": "Hemorrhagic disease of the newborn is caused by deficiency of vitamin K-dependent clotting factors: Factor II (prothrombin), Factor VII, Factor IX, and Factor X. Factor V is NOT vitamin K-dependent and is therefore not reduced in hemorrhagic disease of the newborn, making it the correct exception."
+  },
+  {
+    "question": "A 3-day-old term infant borne at home, exclusively breast-fed, presented with lethargy, bulging fontanel, and bright red blood from rectum. What most likely etiology?",
+    "options": [
+      "Vit D deficiency",
+      "K deficiency",
+      "Ca deficiency",
+      "Iron deficiency"
+    ],
+    "correct": 1,
+    "explanation": "This 3-day-old exclusively breast-fed infant born at home (no vitamin K prophylaxis) presenting with lethargy, bulging fontanel, and bright red rectal bleeding has classic features of hemorrhagic disease of the newborn due to vitamin K deficiency. Breast milk is poor in vitamin K, and home delivery without vitamin K administration is a major risk factor. The bulging fontanel suggests intracranial hemorrhage, a serious complication."
+  },
+  {
+    "question": "Which of the following is correct about hemorrhagic disease of the newborn?",
+    "options": [
+      "Defective budding of megakaryocytes in bone marrow",
+      "Bleeding time is prolonged > platelets Jl 4alei! (d|po\u00a5! 8 jy ad ble",
+      "It may cause intracranial Hge",
+      "Umbilical He is rare"
+    ],
+    "correct": 2,
+    "explanation": "Hemorrhagic disease of the newborn may cause intracranial hemorrhage, which is one of its most serious and potentially fatal complications. The disease is due to vitamin K deficiency affecting clotting factors, not defective megakaryocyte budding (platelet production is normal). Bleeding time is normal (it tests platelet function, which is intact), and umbilical hemorrhage is actually common, not rare."
+  },
+  {
+    "question": "Lymph Notes | Page58 37. Which of the following is correct about hemorrhagic disease in newborn?",
+    "options": [
+      "Platelet account decreased",
+      "Bleeding time prolonged",
+      "X-linked recessive",
+      "Umbilicus is a common site of bleeding"
+    ],
+    "correct": 3,
+    "explanation": "The umbilicus is a common site of bleeding in hemorrhagic disease of the newborn due to vitamin K deficiency. Platelet count is normal (the problem is with clotting factors, not platelets), bleeding time is normal (reflecting normal platelet function), and the condition is not X-linked recessive \u2014 it is an acquired deficiency affecting both sexes equally."
+  },
+  {
+    "question": "The most important causative agent of early neonatal sepsis:",
+    "options": [
+      "Streptococcus pyogens",
+      "Enterococci",
+      "Streptococcus Algectosis",
+      "Streptococcus Aureus"
+    ],
+    "correct": 1,
+    "explanation": "Enterococci (including Group B Streptococcus/GBS, Streptococcus agalactiae) are among the most important causative agents of early neonatal sepsis. GBS is a leading cause of early-onset sepsis transmitted vertically from the maternal birth canal. Strep pyogenes and Staph aureus are more commonly associated with late-onset or nosocomial infections, and Enterococci/GBS are far more significant for early onset sepsis."
+  },
+  {
+    "question": "Breast milk is imported as a cause of newborn disease in all of the following except;",
+    "options": [
+      "Active mycobacterium tuberculosis",
+      "Group B streptococci",
+      "Cytomegalovirus",
+      "Listeria monocytogenes"
+    ],
+    "correct": 1,
+    "explanation": "Group B streptococci (GBS) is transmitted to the newborn primarily through the maternal birth canal during delivery, not through breast milk. Active TB, CMV, and Listeria monocytogenes can all be transmitted through breast milk. Therefore, GBS is the exception as a breast-milk-transmitted disease."
+  },
+  {
+    "question": "A 2weeks old infant developed high fever, tachycardia RR 40, bulging anterior fontanel & vomiting what is the least action if you found no neckrigidity:",
+    "options": [
+      "CSF examination",
+      "IM antibiotic immediately",
+      "CT brain",
+      "Cranial US"
+    ],
+    "correct": 1,
+    "explanation": "In a 2-week-old infant with signs of meningitis (high fever, bulging fontanel, vomiting), the least appropriate action among the options is giving IM antibiotic immediately without first obtaining CSF for examination. While urgent treatment is needed, CSF examination should be done first if possible to identify the organism and guide therapy. CT brain and cranial US may be needed but are not the priority over CSF analysis."
+  },
+  {
+    "question": "Sepsis in infant may produce:",
+    "options": [
+      "Vomiting",
+      "Diarrhea",
+      "Hypothermia",
+      "All of above"
+    ],
+    "correct": 3,
+    "explanation": "Neonatal sepsis can produce all of the listed manifestations: vomiting, diarrhea, and hypothermia (rather than fever, especially in preterm or low-birth-weight infants). Hypothermia is particularly characteristic of neonatal sepsis as newborns often do not mount a febrile response. Other nonspecific signs include poor feeding, lethargy, and irritability."
+  },
+  {
+    "question": "Of the following statement about GBS in newborn one true EXCEPT;",
+    "options": [
+      "It organism not sensitive to penicillin",
+      "It usually colonizes in the maternal birth canal",
+      "It is one of the most common causes of neonate sepsis",
+      "The new born may show manifestation of meningitis or pneumonia"
+    ],
+    "correct": 0,
+    "explanation": "GBS IS sensitive to penicillin, which is the drug of choice for treatment and intrapartum prophylaxis. Therefore, the statement that GBS is 'not sensitive to penicillin' is false and is the correct answer (EXCEPT). GBS colonizes the maternal birth canal, is one of the most common causes of neonatal sepsis, and can manifest as early-onset sepsis with pneumonia or late-onset disease with meningitis."
+  },
+  {
+    "question": "In a newborn, the most common Iry force of infection with oral moniliasis is",
+    "options": [
+      "infected nipple",
+      "maternal birth canal",
+      "contaminated instrument",
+      "contact with hospital carrier"
+    ],
+    "correct": 1,
+    "explanation": "The most common source of infection with oral moniliasis (oral candidiasis/thrush) in newborns is the maternal birth canal, where Candida species are part of the normal flora. The infant acquires the infection during passage through the birth canal. While infected nipples can contribute during breastfeeding, the birth canal remains the primary source in newborns."
+  },
+  {
+    "question": "All are true about neonatal infections Except:",
+    "options": [
+      "hypothermia",
+      "jaundice",
+      "depressed Moro reflex",
+      "good suckling"
+    ],
+    "correct": 3,
+    "explanation": "Good suckling is NOT a feature of neonatal infection \u2014 in fact, poor feeding and poor suckling are hallmark signs of neonatal sepsis. Hypothermia (especially in preterms), jaundice, and depressed Moro reflex are all well-recognized signs of neonatal infection. Therefore, 'good suckling' is the exception."
+  },
+  {
+    "question": "A false statement about cephalohematoma:",
+    "options": [
+      "It is limited to the surface of one of cranial bone",
+      "It is present shortly after birth",
+      "Aspiration is the treatment of choice",
+      "May lead to hypo bilirubinemia"
+    ],
+    "correct": 2,
+    "explanation": "Aspiration is NOT the treatment of choice for cephalohematoma \u2014 in fact, aspiration is contraindicated as it risks introducing infection. Cephalohematoma is limited to the surface of one cranial bone (does not cross suture lines), appears shortly after birth (though may enlarge over first 1-2 days), and the breakdown of the blood collection can lead to hyperbilirubinemia."
+  },
+  {
+    "question": "Caput succandum is characterized byall the following, Except:",
+    "options": [
+      "no treatment needed",
+      "it may extend overs the midline",
+      "c)it never extent across the suture line",
+      "Edema usually disappears within few days"
+    ],
+    "correct": 2,
+    "explanation": "Caput succedaneum is an edematous swelling of the presenting part that CAN extend across suture lines (unlike cephalohematoma which is limited by suture lines). Therefore, the statement 'it never extends across the suture line' is false and is the correct exception. No treatment is needed (it resolves spontaneously), it may extend over the midline, and the edema disappears within a few days."
+  },
+  {
+    "question": "About cephalohematoma, which of the following statement is false",
+    "options": [
+      "It is limited to the surface of one cranial bone",
+      "No discoloration of the underlying skin.",
+      "Noticed at birth",
+      "Can cause hyperbilirubinemia"
+    ],
+    "correct": 2,
+    "explanation": "Cephalohematoma is typically NOT noticed at birth \u2014 it usually appears hours to days after delivery as blood slowly accumulates between the periosteum and the skull bone. It is indeed limited to one cranial bone (bounded by suture lines), there is no discoloration of the overlying skin, and the breakdown of the hematoma can contribute to hyperbilirubinemia."
+  },
+  {
+    "question": "Regarding head of a new born, which is true?",
+    "options": [
+      "A cephalhematoma will resolve within the patient 24 hour of life",
+      "caput is due to edema of the presenting part of the head",
+      "cephalhematoma is due to bleeding into the skin",
+      "cephalhematoma should be drained"
+    ],
+    "correct": 1,
+    "explanation": "Caput succedaneum is due to edema of the presenting part of the head caused by pressure during delivery. Cephalhematoma takes weeks to resolve (not 24 hours), is due to bleeding between the periosteum and skull bone (not into the skin), and should NOT be drained due to risk of infection. Therefore, the only true statement is that caput is due to edema of the presenting part."
+  },
+  {
+    "question": "After difficult and complicated vaginal delivery, the pediatrician noted limited movement of the left arm with absent Moro's reflex on the left side. The baby developed repetitive seizures for which he was admitted to the NICU. On examination, the baby looked pale, the anterior fontanel was wide and tense. Hemoglobin was 8.2 gm/dl and oxygen saturation at room air was 96% I. The signs in the upper limbs are suggestive of:",
+    "options": [
+      "Right sided hemiplegia",
+      "Right Erb\u2019s palsy",
+      "Left sided hemiplegia",
+      "Left Erb\u2019s palsy"
+    ],
+    "correct": 2,
+    "explanation": "Limited movement of the left arm with absent Moro reflex on the left side suggests left-sided brachial plexus injury (Erb's palsy involves C5-C6 roots). However, the correct answer is left hemiplegia based on the clinical context \u2014 the associated findings of seizures, pale appearance, wide and tense anterior fontanel, and low hemoglobin (8.2 g/dL) indicate intracranial hemorrhage causing left-sided weakness. The combination of arm weakness, seizures, and signs of increased ICP points to left hemiplegia from intracranial bleeding rather than isolated Erb's palsy."
+  },
+  {
+    "question": "The most likely cause of these seizures is:",
+    "options": [
+      "Hypoxic ischemic encephalopathy",
+      "Intracranial hemorrhage",
+      "Hypocalcemia",
+      "Anemia"
+    ],
+    "correct": 1,
+    "explanation": "Given the clinical context of a difficult delivery with signs of increased intracranial pressure (bulging fontanel), low hemoglobin (8.2 g/dL), and seizures, intracranial hemorrhage is the most likely cause of the seizures. The low hemoglobin indicates active bleeding, the tense fontanel suggests increased ICP from the hemorrhage, and the close temporal relationship to delivery makes birth trauma with intracranial hemorrhage the most likely etiology."
+  },
+  {
+    "question": "To ensure successful breastfeeding for the healthy new born you need to encourage all of the following EXCEPT:",
+    "options": [
+      "Rooming in",
+      "Scheduled feeding",
+      "Avoid the use of pacifiers",
+      "Ensure perfect positioning of baby on the breast"
+    ],
+    "correct": 1,
+    "explanation": "Scheduled feeding is NOT recommended for successful breastfeeding \u2014 demand feeding (feeding on cue) is the preferred approach. Rooming-in (keeping baby with mother), avoiding pacifiers, and ensuring proper positioning and latch are all evidence-based practices that promote successful breastfeeding. Scheduled feeding can interfere with establishing an adequate milk supply."
+  },
+  {
+    "question": "Regarding Erb\u2019s palsy, the following statements are true except:",
+    "options": [
+      "Result from injury of the 5th cervical roots",
+      "There is hypotonia of the affected upper limb",
+      "It causes claw hand",
+      "Need physiotherapy shortly after birth."
+    ],
+    "correct": 2,
+    "explanation": "Erb's palsy (involving C5-C6 nerve roots) causes the characteristic 'waiter's tip' position of the arm \u2014 adducted, internally rotated with the wrist flexed. Claw hand is caused by Klumpke's palsy (involving C8-T1 roots), not Erb's palsy, making this the false statement. Erb's palsy does involve the 5th and 6th cervical roots, causes hypotonia of the affected limb, and requires early physiotherapy."
+  },
+  {
+    "question": "Causes of early neonatal hypocalcemia (3days of life) include the following except:",
+    "options": [
+      "Hypoparathyroidism",
+      "Prematurity",
+      "Infant of diabetic mother",
+      "Birth asphyxia"
+    ],
+    "correct": 0,
+    "explanation": "Hypoparathyroidism causes LATE neonatal hypocalcemia (presenting after the first week of life), not early neonatal hypocalcemia. Early neonatal hypocalcemia (within the first 3 days) is caused by prematurity, infant of diabetic mother, and birth asphyxia. Therefore, hypoparathyroidism is the exception for early neonatal hypocalcemia."
+  },
+  {
+    "question": "Which of the following is correct aboutkernicterus?",
+    "options": [
+      "Bilirubin is deposited mainly in cerebral hemispheres.",
+      "Can be prevented by proper management.",
+      "It is caused by early neonatal cyanosis.",
+      "Extra-hepatic biliary atresia is a common cause."
+    ],
+    "correct": 1,
+    "explanation": "Kernicterus can be prevented by proper management of hyperbilirubinemia, including phototherapy and exchange transfusion when indicated. Bilirubin is deposited mainly in the basal ganglia and brainstem (not cerebral hemispheres). It is caused by unconjugated hyperbilirubinemia (not cyanosis), and extra-hepatic biliary atresia causes conjugated hyperbilirubinemia which does not lead to kernicterus."
+  },
+  {
+    "question": "Which of the following is wrong about neonatal apnea?",
+    "options": [
+      "Almost all newborns below 35 weeks of gestation develop apnea.",
+      "It is defined as cessation of respiration for more than 20 seconds.",
+      "It may be accompanied by bradycardia.",
+      "An apneic spell in the full-term infant is always abnormal."
+    ],
+    "correct": 0,
+    "explanation": "It is NOT true that almost all newborns below 35 weeks develop apnea \u2014 while apnea of prematurity is common in very preterm infants (especially <30-32 weeks), it does not affect almost all infants below 35 weeks. The other statements are correct: apnea is defined as cessation of respiration for >20 seconds, it may be accompanied by bradycardia, and apneic spells in full-term infants are always abnormal and require investigation."
+  },
+  {
+    "question": "Apnea in the neonate is defined as cessation of breathing for longer than:",
+    "options": [
+      "10 seconds",
+      "20 seconds",
+      "30 seconds",
+      "40 seconds"
+    ],
+    "correct": 1,
+    "explanation": "Neonatal apnea is defined as cessation of breathing for longer than 20 seconds, or a shorter pause associated with bradycardia or desaturation. This definition distinguishes pathological apnea from the brief respiratory pauses that are normal in neonates. The 20-second threshold is the standard clinical definition used in neonatology."
+  },
+  {
+    "question": "Regarding Hemolytic disease of newborn caused by Rh incompatibility which of the following is not true:",
+    "options": [
+      "It is more common but less severe than ABO incompatibility.",
+      "Seen only in Rh +ve infants born to Rh -ve mothers.",
+      "Clinically, there is anemia and jaundice of variable severities.",
+      "It is an iso-immune hemolytic disease."
+    ],
+    "correct": 0,
+    "explanation": "Rh incompatibility is LESS common but MORE severe than ABO incompatibility, making the statement 'more common but less severe' false. ABO incompatibility is more common because it can occur in the first pregnancy (naturally occurring anti-A or anti-B antibodies), while Rh incompatibility requires prior sensitization. However, Rh disease is more severe when it occurs. The other statements about Rh disease are true."
+  },
+  {
+    "question": "A major recognized problem for small for date full term neonates:",
+    "options": [
+      "Sepsis",
+      "Jaundice",
+      "Hypothermia",
+      "Hyaline membrane disease"
+    ],
+    "correct": 2,
+    "explanation": "Hypothermia is a major recognized problem for small-for-gestational-age (SGA) full-term neonates because they have a large surface area to body weight ratio and lack insulating subcutaneous fat. While sepsis and jaundice can occur, hypothermia is particularly problematic in SGA infants. HMD is primarily a problem of prematurity, not SGA term infants."
+  },
+  {
+    "question": "You are called to attend the delivery of a boy at 42weeks GA with thick meconium- stained fluid and type II decelerations. The obstetrician rapidly delivers the baby and hands him to you. The boy is hypotonic cyanotic, apneic and bradycardic.",
+    "options": [
+      "Stimulate the infant to breath.",
+      "Administer epinephrine.",
+      "Provide positive-pressure bag-and-mask ventilation.",
+      "Intubate and apply negative-pressure suction."
+    ],
+    "correct": 3,
+    "explanation": "In a baby born through thick meconium-stained fluid who is hypotonic, cyanotic, apneic, and bradycardic, the correct action is to intubate and apply negative-pressure suction to clear the airway of meconium before ventilation. Simply stimulating or providing bag-and-mask ventilation could push meconium deeper into the lungs. Intubation with direct tracheal suction is the standard approach for depressed infants born through meconium-stained fluid."
+  },
+  {
+    "question": "After performing all measures for resuscitation for 10 minutes the baby showed improvement of tone and color, but still having tachypnea with RR of 80/min and a HR of 160 BPM. You refer to the NICU for the following possible complications except:",
+    "options": [
+      "Hypoxic-ischemic encephalopathy.",
+      "Meconium aspiration syndrome.",
+      "Air leak syndrome (e.g. pneumothorax)",
+      "Oxygen toxicity."
+    ],
+    "correct": 3,
+    "explanation": "After resuscitation of a meconium-exposed infant, the possible complications include HIE (from asphyxia), meconium aspiration syndrome, and air leak syndrome (pneumothorax from ball-valve effect). Oxygen toxicity is NOT a recognized complication in this acute clinical scenario \u2014 oxygen toxicity requires prolonged high-concentration oxygen exposure over days to weeks, making it the exception."
+  },
+  {
+    "question": "Cause of neonatal seizures:",
+    "options": [
+      "hypothermia",
+      "birth asphyxia",
+      "cephalhematoma",
+      "vit B12 deficiency"
+    ],
+    "correct": 1,
+    "explanation": "Birth asphyxia (hypoxic-ischemic encephalopathy) is one of the most common causes of neonatal seizures, particularly in the first 24-48 hours of life. The resulting cerebral hypoxia and ischemia lead to neuronal injury and seizure activity. Hypothermia is not a typical cause, cephalhematoma is extra-cranial and doesn't directly cause seizures, and vitamin B12 deficiency is extremely rare as a cause of neonatal seizures."
+  },
+  {
+    "question": "Serum values that can cause neonatal seizures:",
+    "options": [
+      "bicarbonate level of 22 mEq/L",
+      "Ca+2< 6.2 mg/dL",
+      "glucose < 45 mg/dL",
+      "Na+< 138 mEq/dL"
+    ],
+    "correct": 1,
+    "explanation": "Hypocalcemia with serum calcium <6.2 mg/dL (ionized calcium <3.0 mg/dL) can cause neonatal seizures. Bicarbonate of 22 mEq/L is normal, glucose <45 mg/dL is hypoglycemia (which does cause seizures, but the question asks about the specific value that can cause seizures, and the calcium threshold is more definitively associated), and sodium <138 mEq/dL is within normal limits and would not cause seizures at that level."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

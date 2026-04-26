@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_cardiology",
+  "title": "Cardiology",
+  "description": "Pediatrics - Cardiology MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Ostium secundum defect is characterized by:",
+    "options": [
+      "Left ventricular hypertrophy.",
+      "Heart failure is a common complication in early childhood.",
+      "Symptoms usually appear since birth.",
+      "Wide fixed splitting of 2nd sound."
+    ],
+    "correct": 3,
+    "explanation": "Wide fixed splitting of 2nd sound is characteristic of ostium secundum ASD due to delayed closure of the pulmonary valve from increased right ventricular output. Option A is incorrect as ASD typically causes right ventricular hypertrophy, not left. Option B is incorrect as heart failure is uncommon in isolated ASD. Option C is incorrect as symptoms often appear later in childhood when pulmonary vascular resistance decreases."
+  },
+  {
+    "question": "In patent ductus arteriosus (PDA), which of the following is not correct:",
+    "options": [
+      "A machinery murmur is heard.",
+      "Eisenmenger's syndrome can be a late complication.",
+      "It causes left to right shunting of blood.",
+      "Is induced to close by high levels of prostaglandins."
+    ],
+    "correct": 3,
+    "explanation": "PDA is not induced to close by high prostaglandins; rather, it's kept open by them. Option A is correct as PDA causes a continuous machinery murmur. Option B is correct as Eisenmenger's can develop from chronic left-to-right shunting. Option C is correct as PDA causes left-to-right shunting from higher aortic to pulmonary pressure."
+  },
+  {
+    "question": "In persistent ductus arteriosus, which of the following is correct:",
+    "options": [
+      "Undergoes anatomic closure within 24 hours of birth.",
+      "Causes cyanosis in the 1st week of life.",
+      "Induced to close by high levels of prostaglandins.",
+      "Eisenmenger syndrome can be a late complication."
+    ],
+    "correct": 3,
+    "explanation": "Eisenmenger syndrome can develop as a late complication of persistent PDA due to pulmonary hypertension and right-to-left shunting. Option A is incorrect as ductus normally closes within days of birth. Option B is incorrect as PDA causes left-to-right shunting without cyanosis. Option C is incorrect as high prostaglandins keep the ductus open, not close it."
+  },
+  {
+    "question": "The murmur heard in a child with persistent ductus arteriosus is:",
+    "options": [
+      "Mid-diastolic murmur.",
+      "Ejection systolic murmur.",
+      "Pan systolic murmur.",
+      "Machinery murmur."
+    ],
+    "correct": 3,
+    "explanation": "The machinery murmur is characteristic of PDA, resulting from continuous flow through the ductus from systole into diastole. Option A is incorrect as mid-diastolic murmurs occur in mitral stenosis or VSD. Option B is incorrect as ejection systolic murmurs occur in aortic stenosis. Option C is incorrect as pansystolic murmurs occur in VSD or mitral regurgitation."
+  },
+  {
+    "question": "Ostium secundum defect is characterized by all the following, except:",
+    "options": [
+      "Narrow, fixed splitting of the 2nd sound.",
+      "The treatment of choice is device closure when possible.",
+      "Symptoms are unusual in infancy.",
+      "Echocardiography often reveals right atrial and ventricular dilation."
+    ],
+    "correct": 0,
+    "explanation": "Ostium secundum ASD is characterized by wide, not narrow, fixed splitting of S2 due to delayed pulmonary valve closure. Option B is correct as device closure is preferred when possible. Option C is correct as isolated ASD is often asymptomatic in infancy. Option D is correct as right heart dilation occurs due to volume overload."
+  },
+  {
+    "question": "In the full term infant, the term persistent ductus arteriosus is used if the ductus has failed to close by:",
+    "options": [
+      "10 hours of age.",
+      "3 days of age.",
+      "1week of age.",
+      "1month of age."
+    ],
+    "correct": 3,
+    "explanation": "Persistent PDA is defined as failure to close by 1 month of age in full-term infants. Options A, B, and C are incorrect as the ductus normally closes within the first few days to weeks of life in healthy full-term infants."
+  },
+  {
+    "question": "A 1-year-old girl has ahistory of tachypnea, tiredness, and frequent episodes of respiratory infections. On examination, the 2nd heart sound in the 2nd left intercostal space is accentuated and there is a harsh systolic-diastolic murmur in the 2nd left intercostal space and below the clavicle, similar to a\"machine noise\".",
+    "options": [
+      "What is the most probable diagnosis:",
+      "PDA.",
+      "Aortic stenosis.",
+      "ASD.",
+      "VSD."
+    ],
+    "correct": 0,
+    "explanation": "The machinery murmur and location are classic for PDA. Option C (ASD) typically has a fixed split S2 without a murmur. Option D (VSD) has a holosystolic murmur at the lower left sternal border. Option E (aortic stenosis) has an ejection systolic murmur at the upper right sternal border."
+  },
+  {
+    "question": "Small VSD (up to 3 mm) is characterized by:",
+    "options": [
+      "Barely audible pan systolic murmur.",
+      "Loud pulmonary second sound.",
+      "May be asymptomatic.",
+      "Wide QRS complex in ECG."
+    ],
+    "correct": 2,
+    "explanation": "Small VSDs are often asymptomatic due to minimal shunting. Option A is incorrect as small VSDs may have no murmur or a soft one. Option B is incorrect as pulmonary S2 may be normal or slightly increased. Option D is incorrect as ECG is typically normal in small VSDs."
+  },
+  {
+    "question": "Which of the following is true about Eisenmenger syndrome?",
+    "options": [
+      "Usually a primary congenital cyanotic heart disease.",
+      "Considered a high indication for surgery in a baby with congenital heart disease.",
+      "Represents a serious complication of non-cyanotic heart disease.",
+      "Pulmonary hypertension is not always present."
+    ],
+    "correct": 2,
+    "explanation": "Eisenmenger syndrome is a serious complication of non-cyanotic heart disease where a left-to-right shunt reverses due to pulmonary hypertension, causing cyanosis. Option A is incorrect as it's a secondary condition, not primary. Option B is wrong as it's a contraindication for surgery. Option D is false as pulmonary hypertension is always present in Eisenmenger syndrome."
+  },
+  {
+    "question": "Prevention of rheumatic fever includes all the following, except:",
+    "options": [
+      "Accurate treatment of acute tonsillitis in children.",
+      "Antistreptococcal vaccine.",
+      "Intramuscular penicillin for children with rheumatic heart disease every 3weeks.",
+      "Community eradication of streptococcal infection."
+    ],
+    "correct": 1,
+    "explanation": "Antistreptococcal vaccine (option B) is not currently available for prevention of rheumatic fever. Option A is correct as treating streptococcal infections prevents rheumatic fever. Option C is correct as secondary prophylaxis prevents recurrence. Option D is correct as reducing streptococcal exposure prevents initial episodes."
+  },
+  {
+    "question": "Which of the following presentations suggest diagnosis of rheumatic fever:",
+    "options": [
+      "Arthralgia with fever.",
+      "Carditis with arthralgia and fever.",
+      "Chronic recurrent tonsillitis with high ESR.",
+      "Arthralgia with prolonged PR interval."
+    ],
+    "correct": 1,
+    "explanation": "Rheumatic fever diagnosis requires Jones criteria including carditis, migratory polyarthritis, chorea, erythema marginatum, or subcutaneous nodules, plus evidence of streptococcal infection. Option A is insufficient alone. Option C describes tonsillitis without cardiac involvement. Option D suggests ECG finding without other major criteria."
+  },
+  {
+    "question": "Important complication of a VSD include:",
+    "options": [
+      "Hyper-cyanotic spells.",
+      "Cardiac failure at birth.",
+      "Pulmonary hypertension.",
+      "Intellectual impairment."
+    ],
+    "correct": 2,
+    "explanation": "Pulmonary hypertension is a major complication of VSD due to increased pulmonary blood flow causing vascular changes. Option A occurs in tetralogy of Fallot. Option B is rare as VSD typically causes failure later. Option D is not a direct complication of VSD."
+  },
+  {
+    "question": "One of the following is NOT a feature of VSD:",
+    "options": [
+      "The commonest congenital heart anomaly.",
+      "Prophylactic antibiotics are not needed for small VSD prior to surgery.",
+      "The diagnostic murmur is pan systolic over left lower sternal border.",
+      "Pulmonary pressure is a major determinant of surgical treatment."
+    ],
+    "correct": 1,
+    "explanation": "Prophylactic antibiotics are needed for small VSD to prevent endocarditis, making option B incorrect. Option A is true as VSD is the most common congenital heart defect. Option C is correct as the murmur is holosystolic at the left lower sternal border. Option D is true as pulmonary hypertension affects surgical timing."
+  },
+  {
+    "question": "Which of the following is a major manifestation of rheumatic fever:",
+    "options": [
+      "Erythema nodosum.",
+      "Arthralgia.",
+      "Previous rheumatic fever.",
+      "Subcutaneous nodules."
+    ],
+    "correct": 3,
+    "explanation": "Subcutaneous nodules are a major manifestation of rheumatic fever according to Jones criteria. Option A is not a major criterion. Option B is a minor manifestation. Option C is a history, not a current manifestation."
+  },
+  {
+    "question": "MajorJones criteria include all of the following, except:",
+    "options": [
+      "Carditis.",
+      "Arthralgia.",
+      "Chorea.",
+      "Subcutaneous nodules."
+    ],
+    "correct": 1,
+    "explanation": "Arthralgia is a minor manifestation of rheumatic fever, not part of the major Jones criteria. Options A, C, and D are all major manifestations that support the diagnosis of rheumatic fever."
+  },
+  {
+    "question": "Which of the following is not true about rheumatic chorea:",
+    "options": [
+      "Commoner in females.",
+      "Early onset manifestation.",
+      "Emotional liability is common.",
+      "Spontaneous recovery occurs."
+    ],
+    "correct": 1,
+    "explanation": "Rheumatic chorea typically has a delayed onset (months after streptococcal infection), not early onset. Option A is correct as it's more common in females. Option C is correct as emotional lability is characteristic. Option D is correct as it usually resolves spontaneously."
+  },
+  {
+    "question": "The natural course of untreated ventricular septal defects includes all except:",
+    "options": [
+      "Development of pulmonary hypertension.",
+      "Infective endocarditis",
+      "Spontaneous closure of defect",
+      "Pressure load to left ventricle."
+    ],
+    "correct": 3,
+    "explanation": "Pressure load to left ventricle is incorrect as VSD causes volume overload to left ventricle, not pressure overload. Untreated VSD can lead to pulmonary hypertension, infective endocarditis, and spontaneous closure in small defects."
+  },
+  {
+    "question": "Which of the following is wrong about infective endocarditis:",
+    "options": [
+      "Splenomegaly may occur.",
+      "Clubbing is one of the earliest manifestations.",
+      "Changing cardiac signs may occur.",
+      "Pallor is a common associated finding."
+    ],
+    "correct": 1,
+    "explanation": "Clubbing is not an early manifestation of infective endocarditis; it develops later in chronic cases. Splenomegaly, changing cardiac signs, and pallor are all associated findings in infective endocarditis."
+  },
+  {
+    "question": "Transposition of great arteries:",
+    "options": [
+      "Means that there are two parallel circulations.",
+      "Usually develops hypercyanotic spells.",
+      "Develops cyanosis after the 1st month of birth.",
+      "Usually presented with pansystolic murmur."
+    ],
+    "correct": 0,
+    "explanation": "Transposition of great arteries creates two parallel circulations without mixing, making option A correct. Hypercyanotic spells occur in tetralogy of Fallot, cyanosis is present from birth, and pansystolic murmur is typical of VSD, not TGA."
+  },
+  {
+    "question": "A 10-year-old girl presents with the complaint of sudden, aimless, irregular movements of her arms, a raised wavy rash over the trunk, and fleeting polyarthritis. She had sore throat 3 weeks ago. I. Which of the following is true about her condition:",
+    "options": [
+      "Does not affect the heart.",
+      "The rash is called erythema nodosum.",
+      "The condition is due to exotoxin.",
+      "Usually involves small joints.",
+      "It is usually associated with emotional liability."
+    ],
+    "correct": 4,
+    "explanation": "Emotional liability is a common feature of rheumatic fever, which fits the presentation of chorea, rash, and arthritis following streptococcal infection. The rash is not erythema nodosum, the condition is due to streptococcal antigenicity, and it typically affects large joints."
+  },
+  {
+    "question": "Drug therapy of this girl should include:",
+    "options": [
+      "Salicylates.",
+      "Oral prednisolone.",
+      "Cyclophosphamide.",
+      "Haloperidol."
+    ],
+    "correct": 3,
+    "explanation": "Haloperidol is used for chorea in rheumatic fever, not salicylates (for arthritis), prednisolone (for carditis), or cyclophosphamide (for severe autoimmune conditions). Salicylates are first-line for arthritis but not for chorea."
+  },
+  {
+    "question": "A 6-year-old female with history of congenital heart disease presents after a dental procedure with a complaint of fever, myalgia, and generalized weakness. Examination reveals mild splenomegaly and petechiae. I. In this case:",
+    "options": [
+      "Etiology is mostly viral.",
+      "Lymphadenopathy is a common finding.",
+      "Echocardiography may show diagnostic features.",
+      "Antibiotic therapy is usually needed for 7-10 days."
+    ],
+    "correct": 2,
+    "explanation": "Echocardiography may show vegetations in infective endocarditis, which fits the presentation after dental procedure in a child with congenital heart disease. The etiology is usually bacterial, not viral, lymphadenopathy is uncommon, and antibiotic therapy is typically longer than 7-10 days."
+  },
+  {
+    "question": "What is the most likely diagnosis:",
+    "options": [
+      "Infective endocarditis.",
+      "Acute leukemia.",
+      "Systemic lupus erythematosus.",
+      "Non Hodgkin lymphoma."
+    ],
+    "correct": 0,
+    "explanation": "The presentation of fever, petechiae, splenomegaly, and recent dental procedure in a child with congenital heart disease is classic for infective endocarditis. Acute leukemia, SLE, and lymphoma have different clinical presentations and associations."
+  },
+  {
+    "question": "One of the following is true about diagnosis:",
+    "options": [
+      "The predominant organism is H. influenza.",
+      "Embolic manifestations don't occur.",
+      "Echocardiography is very helpful.",
+      "Antibiotics are usually given for 7-10 days."
+    ],
+    "correct": 2,
+    "explanation": "Echocardiography is crucial for diagnosing infective endocarditis by detecting vegetations. The predominant organism is streptococcal, not H. influenza; embolic manifestations are common; and antibiotic therapy typically lasts 2-6 weeks, not 7-10 days."
+  },
+  {
+    "question": "Transposition of great arteries is characterized by one of the following:",
+    "options": [
+      "Delayed onset of cyanosis.",
+      "Frequent cyanotic spells.",
+      "Heart failure is common.",
+      "Ejection systolic murmur propagated to the neck."
+    ],
+    "correct": 2,
+    "explanation": "Heart failure is common in transposition of great arteries due to parallel circulation and inadequate oxygen delivery. Delayed cyanosis (A) is incorrect as cyanosis appears immediately. Cyanotic spells (B) are more characteristic of tetralogy of Fallot. Ejection systolic murmur (D) is not typical as there is usually no murmur or a systolic murmur from associated defects."
+  },
+  {
+    "question": "A 2-month-old female infant, born at full term, is noted to have a harsh holo systolic heart murmur heard best at the left lower sternal border. The infant is not cyanotic and does not have hepatomegaly or tachypnea at rest. She feeds without tachypnea or diaphoresis, and weight gain is appropriate. There is no cardiomegaly on chest radiograph. Which of the following is the most likely diagnosis?",
+    "options": [
+      "VSD.",
+      "ASD.",
+      "Fallot\u2019s tetralogy.",
+      "Patent ductus arteriosus."
+    ],
+    "correct": 0,
+    "explanation": "VSD is the most likely diagnosis given the harsh holosystolic murmur at the left lower sternal border without signs of heart failure. ASD (B) typically has a softer murmur at the upper sternal border. Tetralogy of Fallot (C) would show cyanosis, and PDA (D) would have a continuous murmur and cardiomegaly."
+  },
+  {
+    "question": "A 3-year old boy is seen by a pediatrician for a chest infection. During examination, a loud systolic murmur is heard. It is loudest at the left sternal edge. The boy5s mother reports that he is under follow up with a cardiologist for his murmur and that no treatment is required as it is likely to resolve. What is the most likely diagnosis?",
+    "options": [
+      "Ventricular septal defect.",
+      "Atrial septal defect.",
+      "Aortic stenosis.",
+      "Tetralogy of Fallot."
+    ],
+    "correct": 0,
+    "explanation": "VSD is the most likely diagnosis given the loud systolic murmur at the left sternal edge and the expectation of spontaneous resolution. ASD (B) typically has a softer murmur and different location. Aortic stenosis (C) would have an ejection quality murmur, and tetralogy of Fallot (D) would show cyanosis."
+  },
+  {
+    "question": "A cardiac murmur is considered significant (as opposed to innocent) if any of the following is true, except:",
+    "options": [
+      "It is accompanied with a thrill.",
+      "It is heard all over the precordium.",
+      "It is mostly on the upper sternal border.",
+      "It is diastolic."
+    ],
+    "correct": 2,
+    "explanation": "A murmur mostly on the upper sternal border (C) is characteristic of innocent murmurs like Still's murmur. Significant murmurs are associated with a thrill (A), diffuse precordial location (B), or diastolic quality (D)."
+  },
+  {
+    "question": "A 5-week-old female infant was referred to hospital because of poor feeding and poor weight gain during the previous 2 weeks. Before this, she had been well on examination she was tachypneic and having intercostal recessions. There was a thrill, and a loud pan systolic murmur at the lower left sternal edge. The chest X-ray showed cardiomegaly and increased pulmonary vascular markings. I. What is the most likely diagnosis?",
+    "options": [
+      "VSD.",
+      "Coarctation of the aorta.",
+      "Tetralogy of Fallot.",
+      "ASD."
+    ],
+    "correct": 0,
+    "explanation": "VSD is the most likely diagnosis given the pansystolic murmur at the lower left sternal edge, heart failure signs, and increased pulmonary markings. Coarctation (B) would show femoral pulses delay, tetralogy (C) would show cyanosis, and ASD (D) would have a different murmur location."
+  },
+  {
+    "question": "One of the following is false about this diagnosis:",
+    "options": [
+      "Diuretics and Captopril are useful treatment.",
+      "Cyanosis may develop in organic untreated cases.",
+      "Spontaneous closure is rare.",
+      "Endocarditis prophylaxis is essential."
+    ],
+    "correct": 2,
+    "explanation": "Spontaneous closure is rare (C) is false as VSDs frequently close spontaneously, especially small muscular ones. Diuretics and captopril (A) are useful for symptomatic management. Cyanosis (B) may develop in large untreated VSDs. Endocarditis prophylaxis (D) is essential for unrepaired VSDs."
+  },
+  {
+    "question": "The following conditions are associated with a systolic murmur, except:",
+    "options": [
+      "Anemia.",
+      "Aortic incompetence.",
+      "Mitral incompetence.",
+      "Fever."
+    ],
+    "correct": 1,
+    "explanation": "Aortic incompetence (B) causes a diastolic murmur, not systolic. Anemia (A), mitral incompetence (C), and fever (D) all cause systolic murmurs due to increased flow or volume overload."
+  },
+  {
+    "question": "A Two-day old male is referred for evaluation of a heart murmur. The baby was born at 37 weeks\u2019 gestation to 39 year woman. He has a flat facial profile; short up slanting palpebral fissure;a small mouth with protruding tongue. I. The diagnostic tool which confirms the diagnosis is:",
+    "options": [
+      "Chest X-ray.",
+      "Karyotyping.",
+      "Serum alpha-fetoprotein.",
+      "ECG."
+    ],
+    "correct": 1,
+    "explanation": "Karyotyping (B) confirms Down syndrome which is suggested by the characteristic facial features. Chest X-ray (A) and ECG (D) would show cardiac abnormalities but not the diagnosis. Serum alpha-fetoprotein (C) is used for neural tube defect screening, not cardiac diagnosis."
+  },
+  {
+    "question": "The most common cardiac defect in such a case is:",
+    "options": [
+      "Endocardial cushion defect.",
+      "Coarctation of the aorta.",
+      "Pulmonary stenosis.",
+      "Aortic Stenosis."
+    ],
+    "correct": 0,
+    "explanation": "Endocardial cushion defect (AV canal defect) is the most common cardiac defect in Down syndrome patients due to the association with chromosome 21 trisomy. The other options are less frequently associated with Down syndrome."
+  },
+  {
+    "question": "One of the following is correct about congenital valvular aortic stenosis:",
+    "options": [
+      "It may be associated with bicuspid aortic valve.",
+      "Bacterial endocarditis is a rare complication.",
+      "The systolic murmur propagates to the axilla.",
+      "The 2nd aortic sound is usually loud."
+    ],
+    "correct": 0,
+    "explanation": "Bicuspid aortic valve is commonly associated with congenital valvular aortic stenosis. Bacterial endocarditis is not rare in this condition, the murmur radiates to the carotid arteries, and the 2nd aortic sound is typically soft or absent."
+  },
+  {
+    "question": "All the following are seen in patients with coarctation of the aorta except:",
+    "options": [
+      "Radio-femoral delay.",
+      "Pan systolic murmur at upper sternal border.",
+      "Systemic hypertension in right arm.",
+      "ECG finding of the ventricular hypertrophy."
+    ],
+    "correct": 1,
+    "explanation": "Coarctation of the aorta causes radio-femoral delay, systemic hypertension in the right arm, and left ventricular hypertrophy on ECG. A pansystolic murmur at the upper sternal border is characteristic of VSD, not coarctation."
+  },
+  {
+    "question": "All of the following are features of coarctation of the aorta, except:",
+    "options": [
+      "Systemic hypertension in the right arm.",
+      "Absent or weak femoral pulses.",
+      "ECG shows right ventricular hypertrophy.",
+      "Ejection systolic murmur at upper left sternal border."
+    ],
+    "correct": 2,
+    "explanation": "Coarctation of the aorta causes systemic hypertension in the right arm, absent/weak femoral pulses, and left ventricular hypertrophy on ECG. Right ventricular hypertrophy is not typical; it's usually left ventricular hypertrophy due to systemic hypertension."
+  },
+  {
+    "question": "A 10 year old boy applying to join the school\u2019s football team. He has a history of a heart murmur as an infant, but the thought it would go away. During the match, he experiences severe dyspnea and becomes light-headed (dizzy). On examination 1 hour later, he has a normal rhythm, pulse and blood pressure and is no longer dizzy. There is a grade 4/6 systolic ejection murmur that radiates to the neck. There is also an ejection click. An ECG reveals left ventricular hypertrophy. I. The next step in his management should be:",
+    "options": [
+      "Chest X-ray.",
+      "Exercise test.",
+      "Digitalization.",
+      "Echocardiography."
+    ],
+    "correct": 3,
+    "explanation": "Echocardiography is the next step to confirm the diagnosis of aortic stenosis, which is suggested by the systolic ejection murmur radiating to the neck, ejection click, and LVH on ECG. Chest X-ray and exercise test are not diagnostic, and digitalization is not indicated."
+  },
+  {
+    "question": "What is the most likely diagnosis:",
+    "options": [
+      "Aortic stenosis.",
+      "PDA.",
+      "ASD.",
+      "VSD."
+    ],
+    "correct": 0,
+    "explanation": "The presentation with systolic ejection murmur radiating to the neck, ejection click, and LVH on ECG is classic for aortic stenosis. PDA typically has a continuous murmur, ASD has a fixed split S2, and VSD has a holosystolic murmur."
+  },
+  {
+    "question": "About Fallot's tetralogy:",
+    "options": [
+      "The most common congenital heart disease.",
+      "Valvular pulmonary stenosis is classic.",
+      "Iron therapy is contraindicated.",
+      "Squatting increases pulmonary blood flow."
+    ],
+    "correct": 3,
+    "explanation": "Squatting increases pulmonary blood flow in Tetralogy of Fallot by increasing systemic vascular resistance, decreasing right-to-left shunting. Tetralogy is not the most common CHD, pulmonary stenosis is subvalvular, and iron therapy is not contraindicated."
+  },
+  {
+    "question": "A 2 month old infant was noted at birth to have an upper left sternal border ejection murmur. The infant at that time was not cyanotic, but slowly developed cyanosis over the next 2 months. An ECG showed right axis deviation and right ventricular hypertrophy. A chest X-ray film showed a small heart with a concave main pulmonary artery segment and diminished pulmonary blood flow. I. The most likely diagnosis is:",
+    "options": [
+      "Pulmonary stenosis.",
+      "Transposition of great arteries.",
+      "Atrial septal defect.",
+      "Tetralogy of Fallot."
+    ],
+    "correct": 3,
+    "explanation": "The progressive cyanosis, right axis deviation, RVH, small heart with concave pulmonary artery segment, and diminished pulmonary blood flow are classic for Tetralogy of Fallot. Pulmonary stenosis alone wouldn't show progressive cyanosis, and TGA/ASD would have different radiographic findings."
+  },
+  {
+    "question": "The least likelyuseful drug is:",
+    "options": [
+      "Propranolol.",
+      "Morphine.",
+      "Phenylephrine.",
+      "Furosemide."
+    ],
+    "correct": 3,
+    "explanation": "Furosemide is the least useful in this context as it's a diuretic that would worsen systemic vascular resistance, potentially exacerbating right-to-left shunting in cyanotic heart disease. Propranolol, morphine, and phenylephrine are all beneficial in managing acute cyanotic episodes by reducing oxygen demand, decreasing pulmonary vascular resistance, and increasing systemic vascular resistance respectively."
+  },
+  {
+    "question": "The onset of cyanosis in a patient with tetralogy of Fallot is usually delayed till:",
+    "options": [
+      "3 weeks of age.",
+      "6 weeks of age.",
+      "3 months of age.",
+      "6 months of age."
+    ],
+    "correct": 2,
+    "explanation": "Cyanosis in tetralogy of Fallot typically appears around 3 months of age when the infant's hemoglobin concentration decreases from the fetal level, reducing oxygen-carrying capacity and making cyanosis more apparent. Option A is too early as fetal hemoglobin is still high, option B is before the typical drop in hemoglobin, and option D is later than the usual presentation."
+  },
+  {
+    "question": "Drugs used to treat cyanotic spells in Fallot's tetralogy include all of the following, except:",
+    "options": [
+      "Oxygen.",
+      "Propranolol (Inderal).",
+      "Morphine.",
+      "Digitalis (Digoxin)."
+    ],
+    "correct": 3,
+    "explanation": "Digitalis (digoxin) is not used for treating cyanotic spells in Fallot's tetralogy as it increases myocardial oxygen demand and can precipitate arrhythmias. Oxygen, propranolol, and morphine are all appropriate treatments that reduce oxygen demand, decrease pulmonary vascular resistance, and sedate the patient respectively during cyanotic spells."
+  },
+  {
+    "question": "A newborn infant with a marked congenital cyanotic heart defect with decreased pulmonaryvascularity should be treated with:",
+    "options": [
+      "Dopamine.",
+      "Prostaglandin Ei.",
+      "Digoxin.",
+      "Indomethacin."
+    ],
+    "correct": 1,
+    "explanation": "Prostaglandin E1 is the correct treatment for a newborn with cyanotic heart defect and decreased pulmonary vascularity as it maintains ductal patency, allowing blood flow to the pulmonary circulation. Dopamine increases systemic vascular resistance, digoxin increases myocardial oxygen demand, and indomethacin would close the ductus arteriosus, worsening the condition."
+  },
+  {
+    "question": "A 2-week-old baby brought to the pediatric cardiologist for being bluish from day 1 of his birth. On examination, the baby shows central cyanosis that couldn't be corrected even with 100% oxygen. A pan systolic murmur is heard all over the precordium, mainly on the left parasternal area. The heart rate is 180/min. The liver is enlarged & tender. Chest x-ray showed an egg-shaped heart with narrow pedicle. I. The most likely diagnosis is:",
+    "options": [
+      "Fallot's tetralogy.",
+      "Single ventricle.",
+      "Truncus arteriosus.",
+      "Transposition of great arteries (TGA)."
+    ],
+    "correct": 3,
+    "explanation": "Transposition of great arteries (TGA) is the most likely diagnosis given the central cyanosis unresponsive to oxygen, egg-shaped heart on X-ray, and narrow pedicle. Fallot's tetralogy typically has a boot-shaped heart, single ventricle would show different cardiac anatomy, and truncus arteriosus would have increased pulmonary vascularity on X-ray."
+  },
+  {
+    "question": "Transposition of great arteries is characterized by all, except:",
+    "options": [
+      "Progressive cyanosis since birth.",
+      "Frequent cyanotic spells.",
+      "Heart failure is common.",
+      "Usually no audible murmur."
+    ],
+    "correct": 1,
+    "explanation": "Frequent cyanotic spells are not characteristic of transposition of great arteries, which typically presents with progressive cyanosis since birth and heart failure. However, cyanotic spells are more typical of tetralogy of Fallot. TGA usually has no audible murmur due to the parallel circulatory system, and heart failure is common due to volume overload from mixing at the ductal or atrial level."
+  },
+  {
+    "question": "Which of the following is not expected in this baby:",
+    "options": [
+      "Right axis deviation in ECG.",
+      "Hypercyanotic spells.",
+      "Right to left shunting of blood.",
+      "Heart failure."
+    ],
+    "correct": 1,
+    "explanation": "Hypercyanotic spells are not expected in this baby with transposition of great arteries, as these spells are characteristic of tetralogy of Fallot. Right axis deviation is common in TGA due to right ventricular hypertrophy, right-to-left shunting occurs due to parallel circulation, and heart failure is common due to volume overload."
+  },
+  {
+    "question": "Rheumatic carditis is characterized by:",
+    "options": [
+      "Shorter P-R interval on ECG.",
+      "Apical high-pitched, early diastolic murmur.",
+      "Decrescendo systolic murmur along the left sternal border (aortic murmur).",
+      "Tachycardia disproportionate to the degree of fever."
+    ],
+    "correct": 3,
+    "explanation": "Tachycardia disproportionate to the degree of fever is characteristic of rheumatic carditis due to the involvement of the conduction system. Shorter P-R interval is seen in pre-excitation syndromes, apical high-pitched early diastolic murmur is seen in mitral regurgitation, and decrescendo systolic murmur along the left sternal border is seen in aortic regurgitation, none of which are specific to rheumatic carditis."
+  },
+  {
+    "question": "The dose of Aspirin in the 1st 2 weeks of treatment of rheumatic arthritis is:",
+    "options": [
+      "5-10 mg/kg/day.",
+      "30-40 mg/kg/day.",
+      "60 mg/kg/day.",
+      "100 mg/kg/day."
+    ],
+    "correct": 3,
+    "explanation": "The correct dose of Aspirin in the first 2 weeks of rheumatic arthritis treatment is 100 mg/kg/day divided into 4 doses, which provides anti-inflammatory effects. Options A, B, and C are incorrect as they represent sub-therapeutic doses that would not adequately control inflammation."
+  },
+  {
+    "question": "Rheumatic endocarditis:",
+    "options": [
+      "May lead to heart failure due to endocardial involvement.",
+      "Pulmonary valve is commonly affected.",
+      "Prevalence is in 50% of cases of rheumatic fever.",
+      "Tachycardia correlated to fever."
+    ],
+    "correct": 2,
+    "explanation": "Rheumatic endocarditis affects approximately 50% of rheumatic fever cases, primarily involving the mitral valve. Option A is incorrect as endocarditis typically doesn't directly cause heart failure. Option B is wrong as the pulmonary valve is rarely affected. Option D is incorrect as tachycardia correlates with fever in all febrile illnesses, not specifically rheumatic endocarditis."
+  },
+  {
+    "question": "Diagnosis of rheumatic fever is best when child is with high ASO titer and:",
+    "options": [
+      "Polyarthritis, arthralgia.",
+      "Carditis, arthralgia, epistaxis.",
+      "Subcutaneous nodules.",
+      "Erythema marginatum."
+    ],
+    "correct": 1,
+    "explanation": "High ASO titer with carditis and arthralgia confirms rheumatic fever diagnosis per Jones' criteria. Option A is incomplete as carditis is a major criterion. Option C is incorrect as subcutaneous nodules are a minor criterion. Option D is incorrect as erythema marginatum is a minor criterion and not sufficient alone with ASO."
+  },
+  {
+    "question": "All are true about rheumatic chorea, except:",
+    "options": [
+      "More in females.",
+      "Acute phase reactant usually normal.",
+      "Involvement of cerebellum & results in hypotonia.",
+      "Increases on sleep & decreases on awaking."
+    ],
+    "correct": 3,
+    "explanation": "Rheumatic chorea typically increases with activity and decreases during sleep, making option D incorrect. Options A, B, and C are correct: chorea is more common in females, acute phase reactants are usually normal, and it involves basal ganglia causing hypotonia and purposeless movements."
+  },
+  {
+    "question": "In rheumatic fever, all are true, except:",
+    "options": [
+      "Pancarditis is present.",
+      "Myocarditis is less common than endocarditis.",
+      "Rt. side valvular involvement is uncommon.",
+      "Echocardiography with regurge = sufficient forJones' criteria."
+    ],
+    "correct": 3,
+    "explanation": "Echocardiography showing regurgitation alone is insufficient for Jones' criteria; clinical examination is required. Options A, B, and C are correct: pancarditis is present, myocarditis is less common than endocarditis, and right-sided involvement is uncommon in rheumatic fever."
+  },
+  {
+    "question": "Rheumatic fever may complicate:",
+    "options": [
+      "Tonsillitis.",
+      "Scarlet fever.",
+      "Both a & b.",
+      "Impetigo."
+    ],
+    "correct": 2,
+    "explanation": "Rheumatic fever can complicate both tonsillitis and scarlet fever, which are group A streptococcal infections. Option D is incorrect as impetigo is typically caused by Staphylococcus aureus, not group A strep, and doesn't lead to rheumatic fever."
+  },
+  {
+    "question": "In rheumatic fever:",
+    "options": [
+      "ESR is normal.",
+      "Long acting penicillin given for life per certain cases.",
+      "Rheumatic arthritis is treated by salicylates for 4 weeks.",
+      "Cortisone is started at any rheumatic activity."
+    ],
+    "correct": 1,
+    "explanation": "Long-acting penicillin is given for life in certain cases of rheumatic fever to prevent recurrence. Option A is incorrect as ESR is typically elevated. Option C is wrong as salicylates are given for 8-12 weeks, not 4. Option D is incorrect as corticosteroids are reserved for severe carditis."
+  },
+  {
+    "question": "Which murmur denotes active carditis:",
+    "options": [
+      "Carey coombs.",
+      "Mid diastolic.",
+      "Pan systolic.",
+      "Machinery."
+    ],
+    "correct": 0,
+    "explanation": "Carey Coombs murmur (mid-diastolic murmur) denotes active carditis in rheumatic fever. Option B is incomplete as it doesn't specify the Carey Coombs murmur. Option C is incorrect as pansystolic murmurs suggest regurgitation but not specifically active carditis. Option D is wrong as machinery murmur suggests PDA, not rheumatic carditis."
+  },
+  {
+    "question": "Rheumatic fever is suggested by:",
+    "options": [
+      "Symmetrical polyarthritis.",
+      "Anemia.",
+      "Clubbing.",
+      "ECG changes."
+    ],
+    "correct": 3,
+    "explanation": "ECG changes are correct as they indicate carditis, a major manifestation of rheumatic fever. Symmetrical polyarthritis is actually incorrect as rheumatic arthritis is typically migratory and asymmetric. Anemia and clubbing are not associated with rheumatic fever."
+  },
+  {
+    "question": "NB. Arthritis is asymmetrical in Rheumatic fever. 49. Rheumatic fever manifestations are all, except:",
+    "options": [
+      "Cutaneous nodules.",
+      "Chorea.",
+      "Epistaxis.",
+      "Erythema marginatum."
+    ],
+    "correct": 0,
+    "explanation": "Cutaneous nodules are a major manifestation of rheumatic fever, not an exception. Chorea, epistaxis, and erythema marginatum are all recognized manifestations of rheumatic fever."
+  },
+  {
+    "question": "One of the following is true about rheumatic chorea:",
+    "options": [
+      "More common in males.",
+      "An early-onset manifestation of rheumatic fever.",
+      "Emotional liability is common.",
+      "Spontaneous recovery never occurs."
+    ],
+    "correct": 2,
+    "explanation": "Emotional liability is common in rheumatic chorea due to basal ganglia involvement. Rheumatic chorea is more common in females, typically occurs later in the disease course, and spontaneous recovery usually occurs within months."
+  },
+  {
+    "question": "The Carey Coomb murmur is due to:",
+    "options": [
+      "Inflammation of mitral valve.",
+      "Increased diastolic flow across mitral valve.",
+      "Cardiac decompression.",
+      "Defibrillation."
+    ],
+    "correct": 0,
+    "explanation": "The Carey Coombs murmur is caused by inflammation of the mitral valve during acute rheumatic fever. Increased diastolic flow, cardiac decompression, and defibrillation are unrelated to this murmur."
+  },
+  {
+    "question": "A case of arthritis & Carey Coombs murmur, best investigation is:",
+    "options": [
+      "Echo.",
+      "ECG.",
+      "X-ray.",
+      "None of the above."
+    ],
+    "correct": 0,
+    "explanation": "Echocardiography is the best investigation as it can visualize valvular inflammation and dysfunction. ECG and X-ray are less specific for detecting valvular involvement in rheumatic fever."
+  },
+  {
+    "question": "Rheumatic arthritis is characterized by:",
+    "options": [
+      "Fleeting in nature.",
+      "Big joints affection early, then fleet to small joints.",
+      "Normal ESR.",
+      "Dramatic response to salicylates within 3 weeks."
+    ],
+    "correct": 0,
+    "explanation": "Rheumatic arthritis is fleeting in nature, typically resolving within weeks without residual damage. Big joints are affected, but the arthritis is migratory rather than sequential. ESR is usually elevated, and response to salicylates is dramatic within days, not weeks."
+  },
+  {
+    "question": "According to the revisedJones criteria for the diagnosis of rheumatic fever, all of the following are minor manifestations, except:",
+    "options": [
+      "Fever.",
+      "Arthralgia.",
+      "Previous rheumatic fever.",
+      "High ASO (Antistreptolysin 0) titer."
+    ],
+    "correct": 3,
+    "explanation": "High ASO titer is a major manifestation of rheumatic fever, not a minor one. Fever, arthralgia, and previous rheumatic fever are all recognized minor manifestations."
+  },
+  {
+    "question": "All are recognized minor criteria for diagnosis of rheumatic fever, except:",
+    "options": [
+      "Fever.",
+      "Arthralgia.",
+      "Leukocytosis.",
+      "Positive throat culture."
+    ],
+    "correct": 3,
+    "explanation": "Positive throat culture is not a minor criterion for rheumatic fever diagnosis. Fever, arthralgia, and leukocytosis are all recognized minor manifestations of rheumatic fever."
+  },
+  {
+    "question": "A mid diastolic rumbling murmur with presystolic accentuation is heard in:",
+    "options": [
+      "Mitral stenosis.",
+      "Mitral regurge.",
+      "Aortic stenosis.",
+      "Aortic regurge."
+    ],
+    "correct": 0,
+    "explanation": "Mitral stenosis causes a mid-diastolic rumbling murmur with presystolic accentuation due to turbulent blood flow across the stenotic mitral valve during ventricular filling. Mitral regurge produces a holosystolic murmur, while aortic stenosis and regurge cause systolic murmurs without presystolic accentuation."
+  },
+  {
+    "question": "According to the modified Duke criteria for the diagnosis of infective endocarditis, all of the following is minor manifestation except:",
+    "options": [
+      "Positive echocardiographic finding with new valvular regurgitation.",
+      "Predisposition e.g. congenital heart disease or history of IV drug use.",
+      "Immunologic phenomena e.g. glomerulonephritis & Osler nodes.",
+      "Fever with a temperature of more than 38\u00b0C."
+    ],
+    "correct": 0,
+    "explanation": "Positive echocardiographic findings with new valvular regurgitation are considered major criteria in the modified Duke criteria, not minor manifestations. The other options (B, C, D) are correctly identified as minor manifestations for infective endocarditis diagnosis."
+  },
+  {
+    "question": "A 5 year old boyrepeatedly visited his paediatrician complaining of difficulty initiating sleep, daytime tiredness and headache. During the frequent visits, the doctor records show normal chest and heart examination, normal temperature, heart rates and respiratoryrates for age and gender. The femoral pulse was felt well on both sides. There was no radio-femoral delay. A battery of investigations was done, namely CBC, fasting blood sugar, BUN and serum creatinine, liver functions, serum electrolytes, urine analysis and culture;all were normal. ECG was done and showed left ventricular hypertrophy. Ophthalmologic evaluation showed no abnormalities. I. What important item was missed in the doctor's records?",
+    "options": [
+      "The blood pressure.",
+      "Oxygen saturation.",
+      "Lipid profile.",
+      "Results of ENT examination."
+    ],
+    "correct": 0,
+    "explanation": "Blood pressure measurement was missed in the doctor's records, as the child's symptoms (headache, difficulty initiating sleep) and ECG findings (left ventricular hypertrophy) strongly suggest hypertension, which requires proper blood pressure assessment for diagnosis."
+  },
+  {
+    "question": "The current condition can be caused byall of the following, except:",
+    "options": [
+      "Renal artery stenosis.",
+      "Coarctation of the aorta.",
+      "Essential hypertension.",
+      "Pheochromocytoma."
+    ],
+    "correct": 1,
+    "explanation": "Coarctation of the aorta cannot cause the current condition (hypertension with LVH) because it typically presents with upper extremity hypertension and lower extremity hypotension, not systemic hypertension. Renal artery stenosis, essential hypertension, and pheochromocytoma are all potential causes of systemic hypertension."
+  },
+  {
+    "question": "All of the following can be found in infective endocarditis except:",
+    "options": [
+      "Painless haemorrhage lesions on palm and soles.",
+      "Negative blood culture.",
+      "Haemorrhagic pericardial effusion.",
+      "Arterial emboli."
+    ],
+    "correct": 2,
+    "explanation": "Hemorrhagic pericardial effusion is not typically found in infective endocarditis, as pericarditis is a rare complication. Painless hemorrhagic lesions (Janeway lesions), negative blood cultures (in culture-negative endocarditis), and arterial emboli are all well-recognized features of infective endocarditis."
+  },
+  {
+    "question": "Tetralogy of Fallot is characterized byall of the following, except:",
+    "options": [
+      "Cyanosis always present at birth.",
+      "Infundibular pulmonary stenosis.",
+      "Overriding aorta.",
+      "Right ventricular hypertrophy."
+    ],
+    "correct": 0,
+    "explanation": "Cyanosis is not always present at birth in Tetralogy of Fallot, as the severity depends on the degree of right ventricular outflow tract obstruction. Infundibular pulmonary stenosis, overriding aorta, and right ventricular hypertrophy are all characteristic features of this congenital heart defect."
+  },
+  {
+    "question": "An innocent murmur is characterized by:",
+    "options": [
+      "Harsh murmur.",
+      "Mostly systolic.",
+      "It is loud one (of grade 3/6).",
+      "Appearance of clinical syndrome only with exertion."
+    ],
+    "correct": 1,
+    "explanation": "Innocent murmurs are typically soft, musical, systolic murmurs without associated symptoms. Harsh murmurs, loud murmurs (grade 3/6), and exertional symptoms suggest pathological murmurs rather than innocent ones."
+  },
+  {
+    "question": "Innocent murmur is characterized by:",
+    "options": [
+      "Accompanied with a thrill.",
+      "Mostly systolic.",
+      "Heard all over the precordium.",
+      "Gives symptoms only on exertion."
+    ],
+    "correct": 1,
+    "explanation": "Innocent murmurs are characterized by being mostly systolic, soft, musical, and without associated thrill or symptoms. They are typically localized and not heard all over the precordium, and do not cause symptoms even with exertion."
+  },
+  {
+    "question": "A 8-month-old girl presented to the ER with tachycardia, tachypnea & poor feeding for 3 months. Physical examination revealed a continuous machinery murmur and a wide pulse pressure with prominent apical impulse. I. The most likely diagnosis is:",
+    "options": [
+      "VSD.",
+      "ASD.",
+      "PDA.",
+      "TGA."
+    ],
+    "correct": 2,
+    "explanation": "PDA is correct as it presents with a continuous machinery murmur due to blood flow from aorta to pulmonary artery throughout cardiac cycle. VSD would have a holosystolic murmur, ASD a fixed split S2, and TGA would present with cyanosis rather than continuous murmur."
+  },
+  {
+    "question": "Which of the following is not expected in this baby:",
+    "options": [
+      "Cardiomegaly.",
+      "Clubbing.",
+      "Left to right shunt.",
+      "Recurrent chest infections."
+    ],
+    "correct": 1,
+    "explanation": "Clubbing is incorrect as it's associated with cyanotic heart diseases with right-to-left shunting, not left-to-right shunts like PDA. Cardiomegaly, left-to-right shunt, and recurrent chest infections are all expected findings in PDA due to volume overload."
+  },
+  {
+    "question": "The murmur heard in a child with ventricular septal defect (VSD) is:",
+    "options": [
+      "Mid-diastolic murmur.",
+      "Ejection systolic murmur.",
+      "Pan systolic murmur.",
+      "Machinery murmur."
+    ],
+    "correct": 2,
+    "explanation": "Pan systolic murmur is correct for VSD as blood flows from left to right ventricle throughout systole, creating a murmur that begins with S1 and extends to S2. Mid-diastolic murmur is seen in mitral stenosis, ejection systolic in aortic stenosis, and machinery murmur in PDA."
+  },
+  {
+    "question": "The following are causes of pediatric hypertension, except:",
+    "options": [
+      "Renal artery stenosis.",
+      "Aortic stenosis.",
+      "Coarctation of the aorta.",
+      "Cushing syndrome."
+    ],
+    "correct": 1,
+    "explanation": "Aortic stenosis is correct as it causes left ventricular outflow obstruction leading to systolic hypertension, not systemic hypertension. Renal artery stenosis, coarctation of aorta, and Cushing syndrome are all known causes of pediatric hypertension."
+  },
+  {
+    "question": "A 9 old boy presented to the ER with severe cyanosis. According to the mother, the bluish color was present at birth and steadily increased since then. She says that the doctors ordered an Echocardiography on day 3 and said that her baby has 2 parallel circulations, one is blue and one is red. I. The diagnosis made for this baby was:",
+    "options": [
+      "Fallot's tetralogy.",
+      "TGA.",
+      "Pulmonary stenosis.",
+      "VSD."
+    ],
+    "correct": 1,
+    "explanation": "TGA is correct as it presents with cyanosis at birth due to parallel circulations with deoxygenated blood in systemic circulation. Fallot's tetralogy would have a right ventricular outflow tract obstruction, pulmonary stenosis would present with systolic murmur, and VSD would typically not present with cyanosis at birth."
+  },
+  {
+    "question": "The most important measure now is:",
+    "options": [
+      "Immediate prostaglandin infusion and arrange for balloon atrial septostomy.",
+      "Immediate infusion of indomethacin.",
+      "IV beta blocker e.g. Inderal.",
+      "IV steroids."
+    ],
+    "correct": 0,
+    "explanation": "Prostaglandin infusion and balloon septostomy is correct as it maintains ductal patency to allow mixing of blood in TGA. Indomethacin would close the ductus, beta blockers would worsen systemic flow, and steroids are not indicated in this acute cyanotic presentation."
+  },
+  {
+    "question": "A 4-month-old girl is presented with poor feeding for 2 months. The mother noticed respiratory distress that was developing and increasing over the last few days. Physical examination revealed tachycardia, tachypnea & ejection systolic murmur heard on the left parasternal area and over the back. Femoral pulses on both sides were not palpable. I. The most likely diagnosis is:",
+    "options": [
+      "VSD.",
+      "ASD.",
+      "PDA.",
+      "Coarctation of aorta."
+    ],
+    "correct": 3,
+    "explanation": "Coarctation of aorta is correct as it presents with femoral pulse delay/absence, left ventricular hypertrophy, and systolic murmur. VSD would have holosystolic murmur, ASD fixed split S2, and PDA continuous murmur without femoral pulse delay."
+  },
+  {
+    "question": "Which cardiac chamber is hypertrophied:",
+    "options": [
+      "Right ventricle.",
+      "Left ventricle.",
+      "Right atrium.",
+      "Left atrium."
+    ],
+    "correct": 1,
+    "explanation": "Left ventricle is correct as coarctation of aorta causes increased afterload leading to left ventricular hypertrophy. Right ventricular hypertrophy occurs in pulmonary hypertension, right atrial in tricuspid stenosis, and left atrial in mitral stenosis or left ventricular failure."
+  },
+  {
+    "question": "During a routine visit to the pediatrician, a 2-year-old boy was found to have an ejection systolic murmur at upper left sternal border. Detailed evaluation revealed systemic hypertension in right arm as well as weak femoral pulse. I. The ECG is expected to show:",
+    "options": [
+      "Left ventricular hypertrophy.",
+      "Right ventricular hypertrophy.",
+      "Left atrial hypertrophy.",
+      "Right atrial hypertrophy."
+    ],
+    "correct": 0,
+    "explanation": "Left ventricular hypertrophy is correct due to systemic hypertension causing increased afterload and pressure overload on the left ventricle. Right ventricular hypertrophy would occur with pulmonary hypertension, left atrial hypertrophy with mitral valve disease, and right atrial hypertrophy with tricuspid valve disease or right heart failure."
+  },
+  {
+    "question": "The most likely diagnosis is:",
+    "options": [
+      "PDA.",
+      "Congenital mitral stenosis.",
+      "Congenital aortic stenosis.",
+      "Coarctation of aorta."
+    ],
+    "correct": 3,
+    "explanation": "Coarctation of aorta is correct as it causes hypertension in upper extremities with weak femoral pulses due to narrowing of the aorta. PDA would cause continuous murmur and bounding pulses, mitral stenosis would cause diastolic murmur and left atrial enlargement, and aortic stenosis would cause systolic murmur but without differential blood pressure."
+  },
+  {
+    "question": "A 9-year-old boypresents with fever and joint pains. Initially, the pain affected right wrist, but now affects his left wrist and right ankle. He had tonsillitis 4 weeks previously. On examination, there are weak heart sounds and a systolic murmur at the left sternal edge. His left wrist and right ankle are tender and swollen. His ESR is 95 mm/hr and ASOT is 800 IU. I. What is the most likely diagnosis:",
+    "options": [
+      "Acute rheumatic fever.",
+      "Viral myocarditis.",
+      "Henoch-Schonlein disease.",
+      "Septic arthritis."
+    ],
+    "correct": 0,
+    "explanation": "Acute rheumatic fever is correct given the migratory arthritis, carditis (weak heart sounds and murmur), elevated ESR and ASOT, and history of recent streptococcal infection. Viral myocarditis would primarily present with cardiac symptoms without migratory arthritis, Henoch-Schonlein would have purpura, and septic arthritis would have localized joint infection without carditis."
+  },
+  {
+    "question": "What is the appropriate line of therapy:",
+    "options": [
+      "Broad spectrum antibiotics.",
+      "Ibuprofen.",
+      "Steroids.",
+      "Immunoglobulins."
+    ],
+    "correct": 2,
+    "explanation": "Steroids are appropriate for carditis in acute rheumatic fever to reduce inflammation and prevent cardiac damage. Broad spectrum antibiotics are for bacterial infections, ibuprofen for symptomatic relief of arthritis, and immunoglobulins are not standard treatment for rheumatic fever."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

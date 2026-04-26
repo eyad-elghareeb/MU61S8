@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Nephrology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_nephrology",
+  "title": "Nephrology",
+  "description": "Pediatrics - Nephrology MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "The presence of dysuria, urgency and frequency are suggestive of:",
+    "options": [
+      "Acute glomerulonephritis.",
+      "Acute cystitis.",
+      "Acute pyelonephritis.",
+      "Acute renal failure."
+    ],
+    "correct": 1,
+    "explanation": "Acute cystitis is suggested by dysuria, urgency, and frequency because these are classic lower urinary tract symptoms indicating bladder inflammation. Acute glomerulonephritis presents with hematuria, edema, and hypertension rather than irritative voiding symptoms. Acute pyelonephritis typically presents with fever and flank pain in addition to urinary symptoms. Acute renal failure presents with oliguria and elevated creatinine, not irritative voiding symptoms."
+  },
+  {
+    "question": "AlO-year-old boy presented with fever of 39.2 C, chills and abdominal pain in the flanks that started 3 days ago. CBC showed a TLC of 28000/cm, with band cells 25% of total. CRP was > 96 mg /dl, urine was turbid but its color was normal. Urine culture was +ve with a bacterial colony count of > 1000 CFU/ml in a freshlyvoided clean urine catch. What is the most likely diagnosis:",
+    "options": [
+      "Acute cystitis.",
+      "Acute glomerulonephritis.",
+      "Acute pyelonephritis.",
+      "Acute pancreatitis."
+    ],
+    "correct": 2,
+    "explanation": "Acute pyelonephritis is the most likely diagnosis given the high fever, chills, flank pain, leukocytosis with left shift, elevated CRP, and positive urine culture. Acute cystitis does not cause systemic symptoms like high fever and leukocytosis. Acute glomerulonephritis presents with hematuria, edema, and hypertension, not infection markers. Acute pancreatitis would cause elevated amylase and lipase, not positive urine culture."
+  },
+  {
+    "question": "The duration of antibiotic therapy in this condition is usually:",
+    "options": [
+      "5-7 days.",
+      "10-14 days.",
+      "3 weeks.",
+      "4-6 weeks."
+    ],
+    "correct": 1,
+    "explanation": "The duration of antibiotic therapy for acute pyelonephritis is typically 10-14 days to ensure complete eradication of the infection and prevent renal scarring. 5-7 days is too short for kidney infections and is used for simple cystitis. 3 weeks and 4-6 weeks are unnecessarily long for uncomplicated pyelonephritis."
+  },
+  {
+    "question": "A 9-year -old -boy presented with headache, reddish urine and slight puffiness of both eyelids that started since 4 days. On examination, the oral temperature was 37.9 degrees, pulse 90/ min, BP 140/90. Abdominal & chest examinations were normal. What is the most likely diagnosis:",
+    "options": [
+      "Acute cystitis.",
+      "Acute glomerulonephritis.",
+      "Acute pyelonephritis.",
+      "Viral hepatitis."
+    ],
+    "correct": 1,
+    "explanation": "Acute glomerulonephritis is the most likely diagnosis given the headache, reddish urine (hematuria), periorbital edema, and hypertension (140/90). Acute cystitis presents with dysuria and frequency. Acute pyelonephritis presents with fever and flank pain. Viral hepatitis would cause jaundice and hepatomegaly, not hematuria and hypertension."
+  },
+  {
+    "question": "Which of the following is unexpected in this case:",
+    "options": [
+      "Hematuria.",
+      "Proteinuria.",
+      "Polyuria.",
+      "Red cell casts in urine."
+    ],
+    "correct": 2,
+    "explanation": "Polyuria is unexpected in acute glomerulonephritis because the kidneys typically have reduced urine output (oliguria) due to glomerular inflammation. Hematuria is expected as a hallmark feature. Proteinuria is expected due to glomerular damage. Red cell casts are a classic finding in glomerulonephritis, indicating glomerular bleeding."
+  },
+  {
+    "question": "A 7-year-old boy presented with significant puffiness of both eyelids that started since 2 days. On examination, the oral temperature was 37.9 degrees, pulse 90/min BP 95/65. Respiratory rate was 20/min. Both legs were swollen with pitting edema. What is the most likely diagnosis:",
+    "options": [
+      "Nephrotic syndrome.",
+      "Acute glomerulonephritis.",
+      "Acute pyelonephritis.",
+      "Acute renal failure."
+    ],
+    "correct": 0,
+    "explanation": "Nephrotic syndrome is the most likely diagnosis given the significant periorbital edema, pitting edema of both legs, normal blood pressure, and no fever. The key feature is massive proteinuria leading to hypoalbuminemia and edema. Acute glomerulonephritis would present with hematuria and hypertension. Acute pyelonephritis would present with fever. Acute renal failure would present with oliguria and elevated creatinine."
+  },
+  {
+    "question": "In chronic renal failure all the following are true except:",
+    "options": [
+      "Anemia.",
+      "Specific gravity of urine is1030.",
+      "Increased serum creatinine.",
+      "Blood urea nitrogen is elevated."
+    ],
+    "correct": 1,
+    "explanation": "A specific gravity of 1030 is not expected in chronic renal failure because the kidneys lose their ability to concentrate urine, resulting in fixed low specific gravity (isosthenuria, around 1010). Anemia is expected due to decreased erythropoietin production. Increased serum creatinine and elevated BUN are hallmark features of chronic renal failure."
+  },
+  {
+    "question": "Chronic kidney disease is defined as the following:",
+    "options": [
+      "Stage one means GFR before 50 ml/min/1.7m2.",
+      "Stage 4 means GFR before 60 ml/min/1.7m2.",
+      "Stage 2 means GFR before 60 ml/min/1.7m2.",
+      "Stage 1 means GFR before 50 ml/min/1.7m2."
+    ],
+    "correct": 1,
+    "explanation": "Stage 4 CKD is defined as GFR 15-29 ml/min/1.73m2. The options contain inconsistent staging, but the correct answer indicates stage 4 involves severely reduced GFR. Stage 1 has GFR >=90 with kidney damage. Stage 2 has GFR 60-89. Stage 3 has GFR 30-59."
+  },
+  {
+    "question": "All of the following complicate chronic renal failure except:",
+    "options": [
+      "Hypertension encephalopathy.",
+      "Bleeding tendency.",
+      "Pulmonary embolism.",
+      "Rickets."
+    ],
+    "correct": 2,
+    "explanation": "Pulmonary embolism is not a typical complication of chronic renal failure. Hypertensive encephalopathy can occur due to fluid overload and renin-angiotensin activation. Bleeding tendency occurs due to uremic platelet dysfunction. Renal rickets occurs due to impaired vitamin D activation and phosphate retention."
+  },
+  {
+    "question": "14 years old girl is complaining from several years period to have progressive renal insufficiency. She now has an 80% reduction of GFR and elevated levels of blood urea &creatinine. Which of the following is she also likely to demonstrate:",
+    "options": [
+      "Polycythemia.",
+      "Polyuria.",
+      "Frequent episodes of hypoglycemia.",
+      "Metabolic alkalosis."
+    ],
+    "correct": 1,
+    "explanation": "Polyuria is likely in chronic renal insufficiency because the remaining nephrons undergo compensatory changes and cannot concentrate urine, leading to increased urine output. Polycythemia is incorrect as CRF causes anemia from decreased erythropoietin. Hypoglycemia is not typical as CRF may cause insulin resistance. Metabolic alkalosis is incorrect as CRF causes metabolic acidosis."
+  },
+  {
+    "question": "A 12 years old boy present with headache &blood pressure 210/110, there is no history of recent infection. The urine analysis is uncomfortable. The next step in the management of the patient is do:",
+    "options": [
+      "Measure serum complement.",
+      "Perform avoiding cysto-urethrogram.",
+      "Measure streptococcal titer.",
+      "Perform renal angiogram (renal artery stenosis)."
+    ],
+    "correct": 3,
+    "explanation": "Renal angiogram is the next step because severe hypertension (210/110) without recent infection suggests renovascular hypertension, most commonly renal artery stenosis. Measuring serum complement would be useful if post-streptococcal GN were suspected. Voiding cysto-urethrogram evaluates vesicoureteral reflux. Streptococcal titers are useful in post-infectious GN."
+  },
+  {
+    "question": "An 8 years old boy comes complaining of bed wetting for the past 2weeks he has previously been continent on examination his height below 5th percentile, his Hb is 6.5%. What the most important next step:",
+    "options": [
+      "Check the blood.",
+      "Give oral iron.",
+      "Try fluid restriction and rewarding for dry night.",
+      "Check BUN and creatinine."
+    ],
+    "correct": 3,
+    "explanation": "Checking BUN and creatinine is the most important next step because secondary enuresis with short stature and severe anemia suggests chronic renal failure. Checking blood is vague. Oral iron treats anemia but misses the underlying renal disease. Fluid restriction and rewarding are for primary enuresis, not secondary enuresis with concerning features."
+  },
+  {
+    "question": "A 4-year-old boy whom past medical history is +ve for 3 UTI presents with Bp 135/90 renal scan show bilateral renal scars. What should have been done to prevent this situation:",
+    "options": [
+      "Give antibiotic for 3-5 days for each UTI.",
+      "Do cysto-urethrography and give prophylactic antibiotic.",
+      "Abdominal U/S every 3 months.",
+      "Prescribe urinary effervescent."
+    ],
+    "correct": 1,
+    "explanation": "Performing cysto-urethrography and giving prophylactic antibiotics would have prevented the bilateral renal scars by identifying and managing vesicoureteral reflux early. Short antibiotic courses for each UTI do not prevent recurrence. Abdominal ultrasound every 3 months does not detect VUR. Urinary effervescent preparations do not prevent VUR-related scarring."
+  },
+  {
+    "question": "In nocturnal enuresis:",
+    "options": [
+      "Prognosis is worse than that of diurnal enuresis.",
+      "Girls more affected than boys.",
+      "Development delay in acquiring sphincter exam.",
+      "Most children are psychology affected."
+    ],
+    "correct": 2,
+    "explanation": "Nocturnal enuresis involves developmental delay in acquiring sphincter control, which is a key feature in its pathophysiology. The prognosis is generally good as most children outgrow it. Boys are more affected than girls. Most children are not psychologically affected, though psychological stress can contribute."
+  },
+  {
+    "question": "In pediatric ARF:",
+    "options": [
+      "Very poor prognosis.",
+      "3 stages.",
+      "RF stage 2 -> creatinine > 4 mg/dl.",
+      "Renal loss is failure > 3 wks."
+    ],
+    "correct": 3,
+    "explanation": "Renal loss in acute renal failure is defined as failure lasting more than 3 weeks, which progresses beyond the acute phase. The prognosis of pediatric ARF is actually variable, not very poor. ARF has 3 stages (initiation, maintenance, recovery). Stage 2 (injury) does not necessarily mean creatinine >4 mg/dl."
+  },
+  {
+    "question": "Normal urine output /kg/hr at infancy:",
+    "options": [
+      "1ml.",
+      "3 ml.",
+      "5.5 ml.",
+      "4.5 ml."
+    ],
+    "correct": 1,
+    "explanation": "Normal urine output in infancy is approximately 3 ml/kg/hr, which reflects the higher metabolic rate and different renal function in infants compared to older children. 1 ml/kg/hr is too low and may indicate oliguria. 4.5-5.5 ml/kg/hr would be excessive for a normal infant."
+  },
+  {
+    "question": "Indication of dialysis in ARF including all except:",
+    "options": [
+      "Severe urea.",
+      "Hypokalemia.",
+      "Fluid overload.",
+      "Metabolic acidosis."
+    ],
+    "correct": 1,
+    "explanation": "Hypokalemia is not an indication for dialysis; in fact, hyperkalemia is a common indication. Severe uremia, fluid overload unresponsive to diuretics, and metabolic acidosis unresponsive to medical therapy are all standard indications for dialysis in ARF."
+  },
+  {
+    "question": "Clinical evident renal failure GFR is ....ml/min/1.7 m2:",
+    "options": [
+      "40.",
+      "10.",
+      "90.",
+      "60."
+    ],
+    "correct": 3,
+    "explanation": "Clinically evident renal failure typically manifests when GFR falls below 60 ml/min/1.73m2, which corresponds to CKD stage 3. At 40 ml/min, the patient would already be in stage 3b. At 10 ml/min, the patient would be in end-stage renal disease. At 90 ml/min, renal function is relatively preserved."
+  },
+  {
+    "question": "Rifle is classification of:",
+    "options": [
+      "Acute R.F.",
+      "Chronic R.F.",
+      "Depend on serum urea level.",
+      "None of the above."
+    ],
+    "correct": 0,
+    "explanation": "RIFLE is a classification system for acute renal failure, categorizing it into Risk, Injury, Failure, Loss, and End-stage kidney disease. It is not for chronic renal failure, does not depend solely on serum urea level, and is a well-established classification system for ARF."
+  },
+  {
+    "question": "In ARF one test is of poor value:",
+    "options": [
+      "Stool culture.",
+      "Urine microscopy.",
+      "Blood film and coagulation screen.",
+      "Renal ultrasound scan."
+    ],
+    "correct": 0,
+    "explanation": "Stool culture is of poor value in evaluating ARF because ARF is a renal condition and stool cultures are used for gastrointestinal infections. Urine microscopy is essential for evaluating sediment. Blood film and coagulation screen help identify hemolytic-uremic syndrome. Renal ultrasound is crucial for assessing kidney size and obstruction."
+  },
+  {
+    "question": "True statement about nocturnal enuresis is:",
+    "options": [
+      "More in children.",
+      "Not related to genetic/hereditary factors.",
+      "More serious problem than diurnal enuresis.",
+      "Should be investigated by renal Isotope scan."
+    ],
+    "correct": 0,
+    "explanation": "Nocturnal enuresis is more common in children, especially boys, and most cases resolve spontaneously with age. It is related to genetic/hereditary factors. It is not necessarily more serious than diurnal enuresis. Renal isotope scan is not routinely needed for uncomplicated nocturnal enuresis."
+  },
+  {
+    "question": "In ARF, All develops except:",
+    "options": [
+      "Hyperkalemia.",
+      "Increase serum creatinine.",
+      "Hyperphosphatemia.",
+      "Metabolic alkalosis."
+    ],
+    "correct": 3,
+    "explanation": "Metabolic alkalosis does NOT develop in ARF; instead, metabolic acidosis occurs due to accumulation of acidic waste products and impaired acid excretion. Hyperkalemia, increased serum creatinine, and hyperphosphatemia are all expected findings in ARF."
+  },
+  {
+    "question": "ARF consequences include all, Except:",
+    "options": [
+      "Metabolic alkalosis.",
+      "Hyperkalemia.",
+      "Hypophosphatemia.",
+      "High creatinine."
+    ],
+    "correct": 0,
+    "explanation": "Metabolic alkalosis is not a consequence of ARF; metabolic acidosis is the expected acid-base disturbance. Hyperkalemia occurs due to impaired potassium excretion. Hypophosphatemia is incorrect as hyperphosphatemia is expected. High creatinine is a hallmark of ARF. Both A and C (alkalosis and hypophosphatemia) are incorrect in ARF."
+  },
+  {
+    "question": "Renal causes of ARF include all, except:",
+    "options": [
+      "Acute glomerulonephritis.",
+      "Ureteric stones.",
+      "Aminoglycoside antibiotic.",
+      "Hemoglobinuria. Answer: Both b & d are correct! 25. Nocturnal enuresis include all, except:",
+      "In most children, on underlying organic cause is present.",
+      "+ve family history is present.",
+      "Can be caused by physiological stress of anxiety.",
+      "Punishment of child may worsen condition."
+    ],
+    "correct": 0,
+    "explanation": "Ureteric stones are a post-renal cause of ARF, not a renal (intrinsic) cause. Acute glomerulonephritis is an intrinsic renal cause. Aminoglycoside antibiotics cause ATN (intrinsic renal). Hemoglobinuria causes pigment nephropathy (intrinsic renal). Both B and D are not intrinsic renal causes."
+  },
+  {
+    "question": "True about nocturnal enuresis is:",
+    "options": [
+      "More common in girls.",
+      "May be initial presentation of juv. DM.",
+      "Represent more serious problem than diurnal.",
+      "Should be investigated by renal isotype."
+    ],
+    "correct": 1,
+    "explanation": "Nocturnal enuresis may be the initial presentation of juvenile diabetes mellitus due to polyuria from hyperglycemia. It is more common in boys, not girls. It is not necessarily more serious than diurnal enuresis. Renal isotope scan is not required for routine evaluation of nocturnal enuresis."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

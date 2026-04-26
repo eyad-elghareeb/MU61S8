@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>GIT</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_git",
+  "title": "GIT",
+  "description": "Pediatrics - GIT MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Complications of GERD in infants include the following, except:",
+    "options": [
+      "Iron deficiency anemia.",
+      "Aspiration pneumonia.",
+      "Metabolic acidosis.",
+      "Esophageal stricture."
+    ],
+    "correct": 2,
+    "explanation": "Metabolic acidosis is not a complication of GERD in infants. GERD complications include iron deficiency anemia due to chronic blood loss from esophagitis, aspiration pneumonia from regurgitation, and esophageal stricture from chronic inflammation."
+  },
+  {
+    "question": "Glucose in oral rehydration solution (ORS) is added to:",
+    "options": [
+      "Improve the taste.",
+      "Meet the child's energy requirements.",
+      "Prevent malnutrition.",
+      "Facilitate sodium absorption."
+    ],
+    "correct": 3,
+    "explanation": "Glucose in ORS facilitates sodium absorption through the sodium-glucose cotransport system, which enhances water absorption. While glucose does provide some energy and improve taste, its primary purpose is to enhance rehydration by promoting sodium absorption."
+  },
+  {
+    "question": "Drug therapy in diarrhea:",
+    "options": [
+      "Is highly effective.",
+      "Shortens the duration of bacterial excretion in stools.",
+      "Helps rehydration.",
+      "Adds unnecessary cost."
+    ],
+    "correct": 3,
+    "explanation": "Drug therapy in diarrhea adds unnecessary cost without proven benefit. Most cases of diarrhea are self-limiting and don't require specific antimicrobial treatment, which may even prolong bacterial excretion and increase costs without improving outcomes."
+  },
+  {
+    "question": "All the following are manifestations of hypokalemia, except:",
+    "options": [
+      "Hyperreflexia.",
+      "Abdominal distension.",
+      "General weakness.",
+      "Cardiac arrhythmia."
+    ],
+    "correct": 0,
+    "explanation": "Hyperreflexia is not a manifestation of hypokalemia; instead, hypokalemia typically causes hyporeflexia. Hypokalemia can cause abdominal distension due to paralytic ileus, general weakness from muscle dysfunction, and cardiac arrhythmias due to electrolyte imbalance."
+  },
+  {
+    "question": "Manifestations of dehydration include all the following except:",
+    "options": [
+      "Weight loss.",
+      "Fontanel affection.",
+      "Decreased urine flow.",
+      "Shortened capillary refill time."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because shortened capillary refill time indicates good perfusion, not dehydration. A, B, and C are all common manifestations of dehydration as weight loss occurs from fluid loss, fontanelles become depressed in severe dehydration, and urine output decreases due to reduced renal perfusion."
+  },
+  {
+    "question": "Causes of metabolic acidosis include all the following, except:",
+    "options": [
+      "Pyloric stenosis.",
+      "Severe gastroenteritis.",
+      "Diabetic ketoacidosis.",
+      "Shock."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because pyloric stenosis causes metabolic alkalosis due to loss of gastric acid, not acidosis. B, C, and D are all causes of metabolic acidosis as they lead to accumulation of acids or bicarbonate loss."
+  },
+  {
+    "question": "Hypotonic dehydration is characterized by:",
+    "options": [
+      "Fluid movement from intracellular to extracellular compartment.",
+      "Skin turgor is mildly affected.",
+      "The tongue is moist.",
+      "Serum sodium is normal."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because in hypotonic dehydration, the tongue remains moist due to the relatively preserved extracellular fluid volume. A is incorrect as fluid moves from extracellular to intracellular compartment. B is incorrect as skin turgor is significantly affected. D is incorrect as serum sodium is decreased in hypotonic dehydration."
+  },
+  {
+    "question": "Which of the following is true in cases of hypotonic dehydration:",
+    "options": [
+      "Polyuria commonly occurs.",
+      "Tongue is usually moist.",
+      "Skin turgor is not affected.",
+      "Intracellular fluid volume is decreased."
+    ],
+    "correct": 1,
+    "explanation": "B is correct because in hypotonic dehydration, the tongue is usually moist due to the relatively preserved extracellular fluid volume. A is incorrect as polyuria does not occur. C is incorrect as skin turgor is significantly affected. D is incorrect as intracellular fluid volume is increased in hypotonic dehydration."
+  },
+  {
+    "question": "Post-enteritis (persistent) diarrhea maybe caused byall the following, except:",
+    "options": [
+      "Sugar intolerance.",
+      "Cow milk allergy.",
+      "Bacterial colonization.",
+      "Pancreatic dysfunction."
+    ],
+    "correct": 3,
+    "explanation": "Pancreatic dysfunction (D) is not a common cause of post-enteritis persistent diarrhea. Sugar intolerance (A), cow milk allergy (B), and bacterial colonization (C) are well-known causes of persistent diarrhea following an enteric infection."
+  },
+  {
+    "question": "A 4kginfant with severe dehydration (10% loss of his body weight) needs the following amount of intravenous fluid in the first 24 hours:",
+    "options": [
+      "1200 ml.",
+      "800 ml.",
+      "600 ml.",
+      "400 ml."
+    ],
+    "correct": 1,
+    "explanation": "A 4kg infant with 10% dehydration needs 800ml (B) in the first 24 hours: 100ml/kg maintenance + 100ml/kg for deficit = 200ml/kg \u00d7 4kg = 800ml. Options A, C, and D are incorrect as they don't account for both maintenance fluid requirements and fluid deficit replacement."
+  },
+  {
+    "question": "See fluid management ofDKA(emergencychapter). 11. Persistent diarrhea is a term that describes diarrhea lasting for more than:",
+    "options": [
+      "7 days.",
+      "10 days.",
+      "14 days.",
+      "1month."
+    ],
+    "correct": 2,
+    "explanation": "Persistent diarrhea is defined as diarrhea lasting more than 14 days (C). Options A (7 days), B (10 days), and D (1 month) are incorrect as they don't match the standard medical definition of persistent diarrhea."
+  },
+  {
+    "question": "Which of the following pathogens cause entero-invasive diarrhea:",
+    "options": [
+      "Rotavirus.",
+      "Cholera.",
+      "Staph.",
+      "Shigella."
+    ],
+    "correct": 3,
+    "explanation": "Shigella (D) causes entero-invasive diarrhea by invading the intestinal mucosa. Rotavirus (A) causes damage to intestinal villi, cholera (B) produces enterotoxin that causes secretion, and Staph (C) produces enterotoxin that causes food poisoning, none of which are truly invasive."
+  },
+  {
+    "question": "1-month-old boy is brought to emergency department by his mother, who states that he has projectile vomiting for the past several days. She states that he vomits every time she feeds him and his vomitus is non-bilious. On examination, the infant is mildly dehydrated and there is a palpable firm movable mass in the right upper quadrant. I. The most likely diagnosis is:",
+    "options": [
+      "Duodenal atresia.",
+      "Intussusception.",
+      "Hirschsprung disease.",
+      "Pyloric stenosis."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (Pyloric stenosis) because the classic presentation of a 1-month-old male with projectile vomiting, non-bilious vomitus, dehydration, and a palpable right upper quadrant mass is pathognomonic for hypertrophic pyloric stenosis. Option A (Duodenal atresia) typically presents with bilious vomiting, option B (Intussusception) usually presents with currant jelly stools and a sausage-shaped mass, and option C (Hirschsprung disease) presents with constipation and abdominal distension."
+  },
+  {
+    "question": "Expected findings do not include:",
+    "options": [
+      "Metabolic alkalosis.",
+      "Constipation.",
+      "Double bubble sign.",
+      "Visible peristaltic waves."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (Double bubble sign) because this finding is characteristic of duodenal atresia, not pyloric stenosis. Pyloric stenosis typically presents with metabolic alkalosis due to loss of gastric acid, visible peristaltic waves, and may be associated with constipation due to dehydration, making options A, B, and D incorrect."
+  },
+  {
+    "question": "A 5-week-old male presented with projectile vomiting after feeding and poor weight gain. On examination, visible peristalsis seen as a wave moving from left to right across the abdomen. I. The most likely diagnosis:",
+    "options": [
+      "Pyloric stenosis.",
+      "Gastro-esophageal reflux.",
+      "Acute gastritis.",
+      "Esophageal stricture."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (Pyloric stenosis) because the classic presentation of a 5-week-old male with projectile vomiting after feeding, poor weight gain, and visible peristaltic waves moving from left to right across the abdomen is highly suggestive of hypertrophic pyloric stenosis. Option B (Gastro-esophageal reflux) typically presents with non-projectile vomiting, option C (Acute gastritis) is less common in this age group, and option D (Esophageal stricture) usually presents with dysphagia and failure to thrive."
+  },
+  {
+    "question": "The recommended initial treatment is:",
+    "options": [
+      "Drugs enhancing gastric emptying.",
+      "Correction of fluid and electrolyte disturbance.",
+      "Anti-emetic drugs.",
+      "Thickening agents to the feeds."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B (Correction of fluid and electrolyte disturbance) because the initial treatment for pyloric stenosis involves correcting dehydration and electrolyte imbalances (particularly hypochloremic metabolic alkalosis) before surgical intervention. Option A (Drugs enhancing gastric emptying) is not effective for pyloric stenosis, option C (Anti-emetic drugs) does not address the underlying pathology, and option D (Thickening agents) is used for gastro-esophageal reflux, not pyloric stenosis."
+  },
+  {
+    "question": "The function of glucose in oral rehydration solution (ORS) is to:",
+    "options": [
+      "Increase sodium absorption by cotransport.",
+      "Give good taste to ORS.",
+      "Increase osmolality of ORS.",
+      "Increase Na+/K+ pump activity."
+    ],
+    "correct": 0,
+    "explanation": "Glucose in ORS facilitates sodium absorption via cotransport in the small intestine, which is essential for effective rehydration. Option B is incorrect as taste is not the primary function, option C is wrong as glucose actually decreases osmolality, and option D is incorrect as glucose doesn't directly affect Na+/K+ pump activity."
+  },
+  {
+    "question": "A 5-week-old boy presents toclinic with vomiting for the last 2weeks. He is not gaining weight properly. The mother states that the vomiting is projectile, non-bilious but she feels that he has a good suck and swallow. Examination revealed an olive-like mass felt to the right of the umbilicus. One of the following is not expected in this patient:",
+    "options": [
+      "Diarrhea.",
+      "Metabolic alkalosis.",
+      "Dehydration.",
+      "Good outcome."
+    ],
+    "correct": 0,
+    "explanation": "Diarrhea is not expected in pyloric stenosis, which presents with projectile vomiting, weight loss, and an olive-like mass. Option B is incorrect as metabolic alkalosis commonly occurs due to loss of gastric acid, option C is wrong as dehydration is common due to vomiting, and option D is incorrect as the outcome is generally good with surgical correction."
+  },
+  {
+    "question": "Watery diarrhea is commonly caused by which of the following:",
+    "options": [
+      "Rotavirus.",
+      "Shigella.",
+      "Campylobacter.",
+      "Entamoeba histolytica."
+    ],
+    "correct": 0,
+    "explanation": "Rotavirus commonly causes watery diarrhea through damage to intestinal villi leading to malabsorption. Option B is incorrect as Shigella typically causes bloody diarrhea, option C is wrong as Campylobacter often causes bloody diarrhea, and option D is incorrect as Entamoeba histolytica typically causes bloody diarrhea and amoebic colitis."
+  },
+  {
+    "question": "The pathogenesis of persistent diarrhea includes all the following, except:",
+    "options": [
+      "Sugar intolerance.",
+      "Toxin production by entero-toxigenic E. coli.",
+      "Cow milk allergy.",
+      "Bacterial overgrowth in upper small intestine."
+    ],
+    "correct": 1,
+    "explanation": "Toxin production by entero-toxigenic E. coli causes acute diarrhea, not persistent diarrhea. Option A is incorrect as sugar intolerance can lead to persistent diarrhea, option C is wrong as cow milk allergy can cause persistent diarrhea, and option D is incorrect as bacterial overgrowth in the upper small intestine is a known cause of persistent diarrhea."
+  },
+  {
+    "question": "Persistent diarrhea:",
+    "options": [
+      "Maybe associated with macerations of peri-anal skin.",
+      "Secretory type of diarrhea.",
+      "Considered if acute diarrhea lasts for 10 days or more.",
+      "Usually associated with alkaline stools."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because persistent diarrhea often leads to frequent stools causing skin irritation and maceration around the anus. B is incorrect as persistent diarrhea is typically osmotic rather than secretory. C is incorrect as persistent diarrhea is defined as lasting 14 days or more, not 10. D is incorrect as persistent diarrhea is usually associated with acidic stools due to fermentation of carbohydrates."
+  },
+  {
+    "question": "1-year-old girl was brought to ER with temperature of 39oC, watery diarrhea (6 times in the last 24 hours) and vomiting (4 times in the last 24 hours). On examination, the girl has sunken eyes, lost skin turgor, mottling, cold extremities and capillary refill time was 7 seconds. Serum electrolytes: Na+ 140 mEq/L and K+ 4 mEq/L. Normal serum potassium is 3.5-5 mEq/L. I. The most appropriate diagnosis is:",
+    "options": [
+      "Acute gastroenteritis.",
+      "Hypovolemic shock complicating gastroenteritis and dehydration.",
+      "Septic shock complicating gastroenteritis and dehydration.",
+      "Hyponatremic dehydration."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as the child shows clear signs of hypovolemic shock (sunken eyes, lost skin turgor, mottling, cold extremities, prolonged capillary refill) due to gastroenteritis and dehydration. A is incorrect as the child has progressed beyond simple gastroenteritis to shock. C is incorrect as there's no evidence of infection causing septic shock. D is incorrect as the sodium level is normal (140 mEq/L), ruling out hyponatremic dehydration."
+  },
+  {
+    "question": "Which of the following is not expected in this child:",
+    "options": [
+      "Low CVP.",
+      "Paralytic ileus.",
+      "Weight loss >10%.",
+      "Rehydration by ORS (oral rehydration solution)."
+    ],
+    "correct": 3,
+    "explanation": "D is correct as ORS is not appropriate for a child in hypovolemic shock who requires intravenous fluid resuscitation. A is expected as low CVP indicates hypovolemia. B is expected as severe dehydration can lead to paralytic ileus. C is expected as significant weight loss can occur with severe dehydration and shock."
+  },
+  {
+    "question": "A 5-week-old infant was brought to the pediatrician because of what was described by the mother as persistent vomiting that started at the age of 2weeks. The vomiting used to be forceful and white-yellow in color. It follows every meal. Revising the weight of the child, it was found to be 3400 gm at birth, 3350 gm at the age of 2 weeks, 3000 gm at the age of 4 weeks. An oval mass could be palpated in the right upper quadrant of abdomen. I. The most likely diagnosis is:",
+    "options": [
+      "Congenital pyloric stenosis.",
+      "Duodenal atresia.",
+      "Inborn error of amino acid metabolism.",
+      "Milk allergy."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as the presentation (forceful vomiting, palpable olive-shaped mass in right upper quadrant, weight loss) is classic for pyloric stenosis. B is incorrect as duodenal atresia typically presents with bilious vomiting shortly after birth. C is incorrect as inborn errors of metabolism usually present with vomiting but not with a palpable mass. D is incorrect as milk allergy typically presents with non-bilious vomiting and diarrhea, not a palpable mass."
+  },
+  {
+    "question": "Which of the following is likely in this child:",
+    "options": [
+      "Double bubble appearance in plain abdominal x-ray.",
+      "Metabolic acidosis.",
+      "Need for surgical intervention.",
+      "Bile-stained vomitus."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because the child likely has pyloric stenosis, which requires surgical intervention (pyloromyotomy). Option A is incorrect as double bubble appearance is seen in duodenal atresia, not pyloric stenosis. Option B is wrong as metabolic alkalosis, not acidosis, is typical due to loss of gastric acid. Option D is incorrect as bile-stained vomitus suggests intestinal obstruction, not pyloric stenosis."
+  },
+  {
+    "question": "A one year old presented to the emergency room with severe colicky abdominal pains associate with vomiting and bleeding per rectum. PR examination by the surgeon revealed a mass and blood on the finger on withdrawal. What is the most likely diagnosis.",
+    "options": [
+      "Pyloric stenosis.",
+      "Volvulus.",
+      "Intussusception.",
+      "Gastroenteritis."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because intussusception classically presents with colicky abdominal pain, vomiting, and currant jelly stools (blood per rectum). Option A is wrong as pyloric stenosis typically presents in younger infants without rectal bleeding. Option B is incorrect as volvulus presents with bilious vomiting and acute abdominal pain, not typically with rectal bleeding. Option D is wrong as gastroenteritis usually presents with diarrhea, not a palpable mass or rectal bleeding."
+  },
+  {
+    "question": "Painful oral ulcers include:",
+    "options": [
+      "Mondial stomatitis.",
+      "Herpetic gingivostomatitis.",
+      "Traumatic ulcer of a broken tooth.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because all the listed conditions can cause painful oral ulcers. Option A (Mondor's stomatitis) is a rare condition that can cause oral ulcers. Option B (herpetic gingivostomatitis) commonly causes painful oral ulcers. Option C (traumatic ulcer) from a broken tooth can also cause painful oral ulcers."
+  },
+  {
+    "question": "Monilial stomatitis is characterized by which of the following:",
+    "options": [
+      "It is due to candida albicans infection.",
+      "Usually starts after one year of age.",
+      "Cioxacillin is the drug of choice for management.",
+      "Formed of brown easily removed plaques."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because monilial stomatitis (oral thrush) is caused by Candida albicans infection. Option B is incorrect as it commonly affects infants and young children, not typically after one year of age. Option C is wrong as nystatin or antifungal agents, not flucloxacillin, are used for treatment. Option D is incorrect as the plaques in thrush are white, not brown, and may be difficult to remove."
+  },
+  {
+    "question": "Possible complications of severe gastroenteritis include all the following, except:",
+    "options": [
+      "Dehydration.",
+      "Metabolic alkalosis.",
+      "Acute renal failure.",
+      "Bleeding."
+    ],
+    "correct": 1,
+    "explanation": "Metabolic alkalosis is not a complication of severe gastroenteritis; instead, metabolic acidosis is common due to bicarbonate loss in stool. Dehydration, acute renal failure, and bleeding are all potential complications of severe gastroenteritis."
+  },
+  {
+    "question": "The most common cause for recurrent abdominal pains in children is:",
+    "options": [
+      "Renal stones.",
+      "Familial Mediterranean fever.",
+      "Intestinal parasites.",
+      "Inflammatory bowel disease."
+    ],
+    "correct": 2,
+    "explanation": "Intestinal parasites are the most common cause of recurrent abdominal pain in children. Renal stones, familial Mediterranean fever, and inflammatory bowel disease are less common causes."
+  },
+  {
+    "question": "One of the following is suggestive of organic origin of abdominal pain:",
+    "options": [
+      "Being periumbilical.",
+      "Presence of family problems.",
+      "Interfering with activity and sleep.",
+      "Severity of pain is mild to moderate."
+    ],
+    "correct": 2,
+    "explanation": "Pain interfering with activity and sleep suggests an organic origin. Periumbilical location, family problems, and mild to moderate pain severity are more typical of functional abdominal pain."
+  },
+  {
+    "question": "Recurrent abdominal pain may occur in all of thefollowing except:",
+    "options": [
+      "Parasitic infestations.",
+      "Lactose intolerance.",
+      "Bad selection of food.",
+      "Hypertrophic pyloric stenosis."
+    ],
+    "correct": 3,
+    "explanation": "Hypertrophic pyloric stenosis presents as a single episode of vomiting in young infants, not recurrent abdominal pain. Parasitic infestations, lactose intolerance, and poor food selection can all cause recurrent abdominal pain."
+  },
+  {
+    "question": "Features suggestive of an acute surgical abdomen in a 1-year-old infant include all except:",
+    "options": [
+      "Periumbilical.",
+      "Intermittent screaming episodes.",
+      "Guarding.",
+      "Red currant jelly stool."
+    ],
+    "correct": 0,
+    "explanation": "Periumbical pain is not specific for surgical abdomen as it's commonly seen in functional abdominal pain. Intermittent screaming episodes, guarding, and red currant jelly stool are classic signs of surgical conditions like intussusception."
+  },
+  {
+    "question": "A previously healthy 7-year-old girl comes to the office with complaints of episodic abdominal pain over the past several months. The pain is periumbilical that doesn\u2019t wake her from sleep or interfere with play. She has no fever, joint complaints or constipation or diarrhea. Growth and development have been normal. The physical examination is within normal limits. I. The most likely diagnosis is:",
+    "options": [
+      "Acute appendicitis.",
+      "Acute cholecystitis.",
+      "Parasitic infestation.",
+      "Functional abdominal pain."
+    ],
+    "correct": 3,
+    "explanation": "Functional abdominal pain is the most likely diagnosis given the episodic periumbilical pain without other concerning symptoms, normal growth, and normal exam. Acute appendicitis and cholecystitis would present with more persistent pain and other systemic symptoms, while parasitic infestation typically has additional gastrointestinal symptoms."
+  },
+  {
+    "question": "The most appropriate next step is:",
+    "options": [
+      "CT scan of abdomen",
+      "Anti-parasitic medication.",
+      "Reassurance and follow up.",
+      "Surgical consultation."
+    ],
+    "correct": 2,
+    "explanation": "Reassurance and follow-up is appropriate for functional abdominal pain. CT scan is unnecessary without red flags, anti-parasitic medication isn't indicated without evidence of parasites, and surgical consultation isn't warranted for this clinical picture."
+  },
+  {
+    "question": "A 2-year-old boy is seen casualty with the complaint of significant abdominal distention. According to the mother the condition started 20 hours ago with what she describes as severe paroxysms of colic accompanied by loud crying. This was associated with repetitive vomiting. The vomitus is bile stained and stool contains blood and mucus. I. The most likely diagnosis is:",
+    "options": [
+      "Strangulated inguinal hernia.",
+      "Mid gut volvulus.",
+      "Gastroenteritis.",
+      "Intussusception."
+    ],
+    "correct": 3,
+    "explanation": "Intussusception is the most likely diagnosis given the classic triad of paroxysmal abdominal pain, vomiting, and bloody stools. Strangulated hernia would present with a palpable mass, midgut volvulus would have bilious vomiting without blood, and gastroenteritis wouldn't typically have such severe paroxysms or bloody stools."
+  },
+  {
+    "question": "One of the following can\u2019t be present:",
+    "options": [
+      "Fluid levels on erect abdominal x-rays.",
+      "Sausage-shaped mass in right upper quadrant",
+      "Double bubble appearance on abdominal x-rays",
+      "Red currant jelly stools."
+    ],
+    "correct": 2,
+    "explanation": "The double bubble appearance is characteristic of duodenal atresia, not intussusception. Fluid levels, sausage-shaped mass, and red currant jelly stools are all classic findings in intussusception."
+  },
+  {
+    "question": "A 10-day old male presents with bilious emesis. What is the most likely diagnosis:",
+    "options": [
+      "Appendicitis.",
+      "Pyloric stenosis.",
+      "Malrotation with midgut volvulus.",
+      "Feeding intolerance."
+    ],
+    "correct": 2,
+    "explanation": "Bilious emesis in a newborn is a surgical emergency, most commonly due to malrotation with midgut volvulus. Appendicitis is rare in newborns, pyloric stenosis typically presents at 2-8 weeks with non-bilious vomiting, and feeding intolerance wouldn't typically cause bilious emesis."
+  },
+  {
+    "question": "A 21-month-old is seen because of intermittent abdominal pain that causes him to become still while drawing up his legs. He also presents with irritability & vomiting that initially was clear then become bilious. The child is lethargic between the pain episodes and he passes dark red stool. Abdomen is mildly tender with an ill-defined mass in upper right quadrant. What is most likely diagnosis:",
+    "options": [
+      "Intussusception.",
+      "Dysentery.",
+      "Acute appendicitis.",
+      "Constipation."
+    ],
+    "correct": 0,
+    "explanation": "The classic triad of intermittent abdominal pain, vomiting, and red currant jelly stools strongly suggests intussusception. Dysentery typically presents with diarrhea, appendicitis would have more localized tenderness, and constipation wouldn't cause these specific symptoms."
+  },
+  {
+    "question": "A 1-day-old male born at home is brought to the ER because of bilious vomiting, irritability, poor feeding, lethargy and an acute onset of rectal bleeding. Examination shows a temperature of 38\u00b0C, pulse of 170, evidence of poor perfusion and a distended abdomen. What is the most appropriate next step in management:",
+    "options": [
+      "Plain abdomen x-ray erect.",
+      "IV normal saline.",
+      "Nasogastric tube suction.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "This presentation suggests malrotation with midgut volvulus, a surgical emergency requiring immediate resuscitation with IV fluids, decompression with NG tube, and diagnostic imaging with abdominal x-ray. All listed steps are appropriate initial management."
+  },
+  {
+    "question": "Complications of gastroenteritis include all, except:",
+    "options": [
+      "Dehydration.",
+      "Ascites",
+      "Lactose intolerance.",
+      "Malnutrition."
+    ],
+    "correct": 1,
+    "explanation": "Dehydration, lactose intolerance, and malnutrition are common complications of gastroenteritis due to fluid loss, damage to intestinal mucosa, and decreased nutrient absorption. Ascites is not a complication of gastroenteritis as it involves abnormal fluid accumulation in the abdominal cavity, typically related to liver disease, heart failure, or other conditions."
+  },
+  {
+    "question": "Which is true about acidosis following severe gastroenteritis:",
+    "options": [
+      "Acidosis is more common than alkalosis.",
+      "Acidosis is especially noticed when diarrhoea is severe.",
+      "Metabolic acidosis is associated with increased rate and depth of respiration.",
+      "All the above."
+    ],
+    "correct": 3,
+    "explanation": "All statements are correct: acidosis is more common than alkalosis in severe gastroenteritis, it is particularly noticeable with severe diarrhea, and metabolic acidosis is associated with increased respiratory rate and depth (Kussmaul respirations) as the body attempts to compensate by blowing off CO2."
+  },
+  {
+    "question": "A mother complained that her 2-month old boy is not putting on weight because he has persistent projectile vomiting that follows each meal. On examination, there was an olive like mass on palpating his upper abdomen. What is your diagnosis?",
+    "options": [
+      "Umbilical hernia.",
+      "Congenital pyloric stenosis.",
+      "Rumination.",
+      "None of the above."
+    ],
+    "correct": 1,
+    "explanation": "The diagnosis is congenital pyloric stenosis, characterized by projectile vomiting and an olive-like mass in the upper abdomen. Umbilical hernia presents as a protrusion at the umbilicus, rumination involves regurgitation and re-chewing of food without the olive-like mass, and neither condition fits the classic presentation."
+  },
+  {
+    "question": "What investigation do you recommend?",
+    "options": [
+      "Abdominal ultrasound.",
+      "Endoscopy.",
+      "Barium enema.",
+      "None of the above."
+    ],
+    "correct": 0,
+    "explanation": "Abdominal ultrasound is the recommended investigation for pyloric stenosis as it can visualize the hypertrophied pyloric muscle and confirm the diagnosis. Endoscopy is not typically needed, barium enema is used for lower GI issues, and no investigation is not appropriate given the clinical presentation."
+  },
+  {
+    "question": "Causes of non-infective diarrhea include all except:",
+    "options": [
+      "Hypothyroidism.",
+      "Hirschsprung's disease.",
+      "Malabsorption.",
+      "Dietary errors."
+    ],
+    "correct": 0,
+    "explanation": "Hypothyroidism is not a cause of non-infective diarrhea, while Hirschsprung's disease, malabsorption, and dietary errors are known non-infective causes of diarrhea."
+  },
+  {
+    "question": "Which of the following maybe apre-renal cause for acute renal failure:",
+    "options": [
+      "Bladder stones.",
+      "Gastroenteritis.",
+      "Immune thrombocytopenic purpura.",
+      "Glomerulonephritis."
+    ],
+    "correct": 1,
+    "explanation": "Gastroenteritis causes pre-renal acute renal failure through dehydration and hypovolemia. Bladder stones cause post-renal failure, while immune thrombocytopenic purpura and glomerulonephritis cause intrinsic renal failure."
+  },
+  {
+    "question": "The commonest electrolyte and acid/base disturbance in acute diarrhea include all the following, except:",
+    "options": [
+      "Hyponatremia.",
+      "Hypokalemia.",
+      "Acidosis.",
+      "Alkalosis."
+    ],
+    "correct": 3,
+    "explanation": "Alkalosis is not a common finding in acute diarrhea, which typically causes hyponatremia, hypokalemia, and metabolic acidosis due to bicarbonate loss in stool."
+  },
+  {
+    "question": "All the following are expected in hypertonic dehydration, except:",
+    "options": [
+      "Moist tongue.",
+      "Serum sodium above 150 mEq/L.",
+      "Water loss more than sodium loss.",
+      "Water shifts from IC compartment to EC compartment."
+    ],
+    "correct": 0,
+    "explanation": "A moist tongue is not expected in hypertonic dehydration, where serum sodium is above 150 mEq/L, water loss exceeds sodium loss, and water shifts from intracellular to extracellular compartment."
+  },
+  {
+    "question": "Watery diarrhea is caused byall except:",
+    "options": [
+      "Campylobacter.",
+      "Giardiasis.",
+      "Cholera.",
+      "Rotavirus."
+    ],
+    "correct": 0,
+    "explanation": "Campylobacter typically causes bloody diarrhea, not watery diarrhea. Giardiasis, cholera, and rotavirus are all known to cause watery diarrhea in children."
+  },
+  {
+    "question": "Causes of hypokalemia include:",
+    "options": [
+      "Diarrhea.",
+      "Vomiting.",
+      "Inhaled salbutamol.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "All options are correct causes of hypokalemia: diarrhea causes potassium loss in stool, vomiting leads to potassium loss through gastric fluids, and inhaled salbutamol promotes potassium shift into cells."
+  },
+  {
+    "question": "Minimal fluid requirement of a 6-month-old infant with mild diarrhea is:",
+    "options": [
+      "50mUkg.",
+      "75mUkg.",
+      "150mUkg.",
+      "300mUkg."
+    ],
+    "correct": 2,
+    "explanation": "The minimal fluid requirement for a 6-month-old with mild diarrhea is 150 mL/kg/day, which accounts for maintenance needs plus additional losses. Options A and B are insufficient for maintenance alone, while D exceeds the requirement for mild diarrhea."
+  },
+  {
+    "question": "The solution that is used in the deficit therapy during IV rehydration of a patient with hyponatremic dehydration is glucose : saline:",
+    "options": [
+      "1:1.",
+      "2:1.",
+      "3:1.",
+      "4:1."
+    ],
+    "correct": 0,
+    "explanation": "For hyponatremic dehydration, a 1:1 glucose to saline solution is used to provide free water while correcting sodium deficit. Options B, C, and D would provide too much sodium relative to glucose, worsening the hyponatremia."
+  },
+  {
+    "question": "Which of the following is not seen in an infant with intussusception:",
+    "options": [
+      "Red currant jelly stool.",
+      "Bile-stained vomiting.",
+      "String sign in barium meal.",
+      "Coil spring appearance in barium enema."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because string sign is seen in small bowel obstruction, not intussusception. Options A, B, and D are characteristic findings in intussusception: red currant jelly stool, bile-stained vomiting, and coil spring appearance on barium enema."
+  },
+  {
+    "question": "Causes of chronic diarrhea include all except:",
+    "options": [
+      "Celiac disease.",
+      "Cystic fibrosis.",
+      "Tuberculous enteritis.",
+      "Enterobiasis."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because enterobiasis (pinworm infection) typically causes perianal itching rather than chronic diarrhea. Options A, B, and C are well-known causes of chronic diarrhea in children."
+  },
+  {
+    "question": "A 2-year-old child with diarrhea of more than 1 month. I. The patient suffers from:",
+    "options": [
+      "Gastroenteritis.",
+      "Persistent diarrhea.",
+      "Chronic diarrhea.",
+      "Dysentery."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because diarrhea lasting more than 2 weeks is classified as chronic diarrhea. Options A and D are acute conditions, while B refers to diarrhea lasting 7-14 days, which is subacute."
+  },
+  {
+    "question": "The cause of this condition maybe:",
+    "options": [
+      "Rotavirus.",
+      "Drug-induced diarrhea.",
+      "Celiac disease.",
+      "Parenteral diarrhea."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because celiac disease is a common cause of chronic diarrhea in children. Options A typically causes acute diarrhea, B is less common, and D is not a recognized cause of diarrhea."
+  },
+  {
+    "question": "One of the following is correct about enterotoxigenic diarrhea:",
+    "options": [
+      "The bacteria adhere to intestinal mucosa without penetration.",
+      "Produces toxins which lead to exudation of serum and blood.",
+      "Fluid and electrolyte disturbances are rare.",
+      "Shigella is the best example of this type."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because enterotoxigenic bacteria like ETEC produce toxins that affect intestinal cells without invasion. B is wrong as this describes invasive diarrhea like Shigella. C is wrong as fluid and electrolyte disturbances are hallmark features. D is wrong as Shigella causes invasive diarrhea, not enterotoxigenic."
+  },
+  {
+    "question": "A 3-week-old, first born male infant is seen in casualty with the complaint of projectile vomiting which is not bile stained. He appears to be hungryall the time and has lost weight since his 2weeks checkup, blood gas analysis reveals metabolic alkalosis. I. What is the most likely diagnosis:",
+    "options": [
+      "Gastroenteritis.",
+      "Sepsis.",
+      "Pyloric stenosis.",
+      "Overfeeding."
+    ],
+    "correct": 2,
+    "explanation": "C is correct as pyloric stenosis presents with projectile vomiting, hunger, weight loss, and metabolic alkalosis due to loss of gastric acid. A is wrong as gastroenteritis typically causes diarrhea, not isolated vomiting. B is wrong as sepsis would present with fever and lethargy, not these specific GI symptoms. D is wrong as overfeeding wouldn't cause metabolic alkalosis or the described vomiting pattern."
+  },
+  {
+    "question": "Diagnostic physical finding of this condition is:",
+    "options": [
+      "Abdominal tenderness.",
+      "Abdominal distension.",
+      "Hyperactive bowel sounds.",
+      "Olive shaped mass in upper abdomen."
+    ],
+    "correct": 3,
+    "explanation": "D is correct as an olive-shaped mass in the upper abdomen is pathognomonic for pyloric stenosis. A is wrong as abdominal tenderness isn't typical. B is wrong as distension occurs later if present. C is wrong as bowel sounds are often decreased due to gastric outlet obstruction."
+  },
+  {
+    "question": "Which of the following tends to cause bloody diarrhea:",
+    "options": [
+      "Cholera.",
+      "Entero-toxigenic E. coli.",
+      "Shigella.",
+      "Rota-virus."
+    ],
+    "correct": 2,
+    "explanation": "C is correct as Shigella is an invasive organism that causes bloody diarrhea (dysentery). A is wrong as cholera causes watery diarrhea. B is wrong as ETEC causes watery diarrhea. D is wrong as rotavirus typically causes watery diarrhea, though occasionally with mucus."
+  },
+  {
+    "question": "One-year-child presented for the first time with bloody diarrhea. His pulse and blood pressure were normal. No other sites of bleeding. Examination revealed no abdominal masses. Your investigations should initially include all the following, except:",
+    "options": [
+      "Stool analysis.",
+      "Coagulation profile.",
+      "Colonoscopy.",
+      "Platelet count."
+    ],
+    "correct": 2,
+    "explanation": "Colonoscopy is not the initial investigation for a one-year-old with bloody diarrhea as it's invasive; stool analysis, coagulation profile, and platelet count are appropriate initial tests to evaluate for infection, coagulopathy, or thrombocytopenia."
+  },
+  {
+    "question": "The common type of electrolyte acid-base disturbance in acute diarrhea except:",
+    "options": [
+      "Hyponatremia",
+      "Hypokalemia",
+      "Acidosis",
+      "Alkalosis"
+    ],
+    "correct": 3,
+    "explanation": "Alkalosis is not common in acute diarrhea as it typically causes metabolic acidosis due to bicarbonate loss in stool; hyponatremia, hypokalemia, and acidosis are all common electrolyte disturbances in acute diarrhea."
+  },
+  {
+    "question": "An important complication of pyloric stenosis is:",
+    "options": [
+      "Metabolic acidosis.",
+      "Hypochloremic alkalosis.",
+      "Hypochloremic acidosis.",
+      "Hyperchloremic alkalosis."
+    ],
+    "correct": 1,
+    "explanation": "Hypochloremic alkalosis is the classic complication of pyloric stenosis due to persistent vomiting leading to loss of hydrochloric acid and hydrogen ions; metabolic acidosis, hypochloremic acidosis, and hyperchloremic alkalosis are not typical complications."
+  },
+  {
+    "question": "In viral gastroenteritis, which is not a common complication:",
+    "options": [
+      "Prerenal failure.",
+      "Dehydration.",
+      "Shock.",
+      "Septicemia."
+    ],
+    "correct": 3,
+    "explanation": "Septicemia is not a common complication of viral gastroenteritis as it's typically a self-limiting infection; prerenal failure, dehydration, and shock are common complications due to fluid and electrolyte losses."
+  },
+  {
+    "question": "A 9-month-old child is referred with pallor, vomiting and diarrhea. He became unwell 48 hours ago and has rapidly deteriorated. He has wet his nappy once in the past 24 hours. He has cool mottled peripheries and a capillary refill time of 4 seconds. Pulses are equal in all 4 limbs. He responds weakly to voice. His abdomen is soft and skin turgor is reduced. I. What is the most likely type of shock:",
+    "options": [
+      "Cardiogenic.",
+      "Distributive.",
+      "Hypovolemic.",
+      "Septic."
+    ],
+    "correct": 2,
+    "explanation": "The child's presentation with pallor, vomiting, diarrhea, reduced urine output, cool mottled peripheries, prolonged capillary refill, reduced skin turgor, and weak responsiveness are classic signs of hypovolemic shock due to fluid loss from gastroenteritis. Cardiogenic shock would typically present with heart failure signs, distributive shock with warm peripheries and normal BP, and septic shock with fever and high cardiac output."
+  },
+  {
+    "question": "What is the appropriate plan of therapy:",
+    "options": [
+      "IVfluids.",
+      "Diuretics.",
+      "Digoxin.",
+      "Antibiotics."
+    ],
+    "correct": 0,
+    "explanation": "IV fluids are the appropriate initial therapy for hypovolemic shock to restore circulating volume and perfusion. Diuretics would worsen volume depletion, digoxin is for heart failure, and while antibiotics may be needed later, they don't address the immediate fluid deficit."
+  },
+  {
+    "question": "After reconstitution with water, potassium cone, in ORS is:",
+    "options": [
+      "20 mEq/L.",
+      "30 mEq/L.",
+      "80 mEq/L.",
+      "90 mEq/L."
+    ],
+    "correct": 0,
+    "explanation": "After reconstitution with water, potassium concentration in standard WHO ORS is 20 mEq/L, which is appropriate for rehydration while avoiding hyperkalemia. The other options (30, 80, 90 mEq/L) are incorrect as they represent either too high or incorrect concentrations not used in standard ORS."
+  },
+  {
+    "question": "During rehydration of a child who weighs 17 kg, the amount of maintenance therapy will be:",
+    "options": [
+      "1250 ml.",
+      "1350 ml.",
+      "1500 ml.",
+      "1700 ml."
+    ],
+    "correct": 1,
+    "explanation": "For maintenance fluid therapy, the standard calculation is 1000 ml for the first 10kg, plus 500 ml for the next 10kg, plus 20 ml/kg for each additional kg. For a 17kg child, this equals 1000 + 500 + (7\u00d720) = 1000+500+140 = 1640 ml, with 1350 ml being the closest appropriate option among the choices."
+  },
+  {
+    "question": "Which of the following statements about congenital hypertrophic pyloric stenosis is not true:",
+    "options": [
+      "Usually presents between 2-7 weeks of age.",
+      "More common in boys.",
+      "Vomiting is projectile and bile-stained.",
+      "Results in Hypochloremic alkalosis."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because vomiting in pyloric stenosis is non-bilious as it occurs before the pyloric valve. A is true as it typically presents between 2-7 weeks. B is true as it's more common in boys. D is true as persistent vomiting leads to hypochloremic metabolic alkalosis."
+  },
+  {
+    "question": "The patient is described to be hypernatremic when his serum sodium is above:",
+    "options": [
+      "130 mEq/L.",
+      "140 mEq/L.",
+      "150 mEq/L.",
+      "160 mEq/L."
+    ],
+    "correct": 2,
+    "explanation": "C is correct as hypernatremia is defined as serum sodium above 150 mEq/L. A and B are normal values. D would be considered severe hypernatremia, not the threshold for diagnosis."
+  },
+  {
+    "question": "During an acute attack of gastroenteritis, a 14 kg boy lost 520 gms of his weight, accordingly he is believed to be:",
+    "options": [
+      "Not dehydrated.",
+      "Mildly dehydrated.",
+      "Moderately dehydrated.",
+      "Severely dehydrated."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as a 520g weight loss in a 14kg child represents approximately 3.7% dehydration, which falls into the mild dehydration category (3-5%). A would be <3%, C would be 6-9%, and D would be >9%."
+  },
+  {
+    "question": "A 7 month old infant presented to your clinic with recurrent attacks of vomiting since age of 2 weeks. The child is still growing well and the mother state that condition is now improving. Diagnosis may be",
+    "options": [
+      "Pyloric stenosis.",
+      "Duodenal atresia.",
+      "Hiatus hernia.",
+      "GERD."
+    ],
+    "correct": 3,
+    "explanation": "D is correct as GERD typically presents with recurrent vomiting that improves with age and doesn't affect growth. A is unlikely as pyloric stenosis would cause progressive worsening, not improvement. B would present with bilious vomiting and failure to thrive. C would typically present with respiratory symptoms rather than just vomiting."
+  },
+  {
+    "question": "During rehydration of a child who weighs 15 kg, the amount of maintenance therapy will be:",
+    "options": [
+      "1250 ml.",
+      "1350 ml.",
+      "1500 ml.",
+      "1700 ml."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (1250 ml) because maintenance fluid requirements for children are calculated as 1000 ml for the first 10 kg plus 50 ml/kg for each additional kg, resulting in 1000 + (5 \u00d7 50) = 1250 ml. Options B, C, and D are incorrect as they overestimate the maintenance fluid requirements for a 15 kg child."
+  },
+  {
+    "question": "The patient is described to be hyponatremic when his serum sodium is below:",
+    "options": [
+      "130 mEq/L.",
+      "140 mEq/L.",
+      "150 mEq/L.",
+      "160 mEq/L."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (130 mEq/L) because hyponatremia is defined as a serum sodium level below 130 mEq/L. Options B, C, and D are incorrect as they represent normal or elevated sodium levels, not hyponatremia."
+  },
+  {
+    "question": "A 4-week-old first born male with vomiting is suspected of having pyloric stenosis. At the time you examine patient, physical examination results are normal. The best way to demonstrate abnormal findings is:",
+    "options": [
+      "Keep the patient NPO.",
+      "Give IV glucagon.",
+      "Feed the infant (test feeds).",
+      "Examine the infant at rest."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (Feed the infant) because pyloric stenosis is best diagnosed by observing the infant after feeding, when the classic olive-sized mass may be palpable and visible peristaltic waves may be observed. Options A, B, and D are incorrect as they don't provide the optimal conditions for demonstrating the pathognomonic findings of pyloric stenosis."
+  },
+  {
+    "question": "ORS is used for children with gastroenteritis, except:",
+    "options": [
+      "High fever.",
+      "Shigella dysentery.",
+      "Ileus & coma.",
+      "Mild dehydration."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (Ileus & coma) because ORS is contraindicated in patients with ileus or impaired consciousness due to risk of aspiration. Options A, B, and D are incorrect as high fever, Shigella dysentery, and mild dehydration are not contraindications for ORS use."
+  },
+  {
+    "question": "Standard ORS contains:",
+    "options": [
+      "Na+ 50 mmol/L.",
+      "K+ 20 mmol/L.",
+      "Cl' 30 mmol/L.",
+      "Glucose 160 mmol/L."
+    ],
+    "correct": 1,
+    "explanation": "Standard ORS contains K+ 20 mmol/L to replace potassium lost in diarrhea. Option A is incorrect as Na+ is 90 mmol/L, option C is wrong as Cl- is 80 mmol/L, and option D is incorrect as glucose is 111 mmol/L."
+  },
+  {
+    "question": "A male infant (weight 4.2kg) is admitted at age of 4 weeks with one week history of forceful vomiting after feeds. He is alert and eager for food but exhibits a loss of skin elasticity and has apparent distension in the left hypochondrium. I. What is the likely diagnosis:",
+    "options": [
+      "Hiatus hernia.",
+      "Congenital hypertrophic pyloric stenosis.",
+      "Duodenal atresia.",
+      "Esophageal atresia."
+    ],
+    "correct": 1,
+    "explanation": "The infant has classic signs of congenital hypertrophic pyloric stenosis: forceful vomiting after feeds, weight loss, and a palpable olive-like mass in the left hypochondrium. Option A is incorrect as hiatus hernia doesn't cause this presentation, option C is wrong as duodenal atresia presents with bilious vomiting, and option D is incorrect as esophageal atresia presents with choking and inability to swallow."
+  },
+  {
+    "question": "Which of the following is true about this infant:",
+    "options": [
+      "He has hypertonic dehydration.",
+      "Constipation is usual.",
+      "Initial fluid therapy should be glucose 5%.",
+      "Anti-cholinergic drug before feeds is useful."
+    ],
+    "correct": 1,
+    "explanation": "Constipation is usual in pyloric stenosis due to gastric outlet obstruction. Option A is incorrect as these infants typically have hypotonic dehydration from prolonged vomiting, option C is wrong as initial fluid therapy should include sodium replacement, and option D is incorrect as anti-cholinergic drugs are not used for this condition."
+  },
+  {
+    "question": "Dysentery is caused by:",
+    "options": [
+      "Enterotoxigenic E. coli.",
+      "Amoebiasis.",
+      "Giardiasis.",
+      "Rotavirus."
+    ],
+    "correct": 1,
+    "explanation": "Dysentery is caused by amoebiasis, which presents with bloody stools. Option A is incorrect as enterotoxigenic E. coli causes watery diarrhea, option C is wrong as giardiasis causes non-bloody diarrhea, and option D is incorrect as rotavirus causes watery diarrhea, not dysentery."
+  },
+  {
+    "question": "During an acute attack of gastroenteritis, a 20 kg boy lost 700 gms of his weight, accordingly he is believed to be:",
+    "options": [
+      "Not dehydrated.",
+      "Mildly dehydrated.",
+      "Moderately dehydrated.",
+      "Severely dehydrated."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B (mildly dehydrated) because a 20 kg child losing 700g represents 3.5% weight loss, which falls in the mild dehydration category (3-5%). Options A, C, and D are incorrect as they don't match the percentage of weight loss corresponding to their respective dehydration severity levels."
+  },
+  {
+    "question": "During an acute attack of gastroenteritis, a 16 kgboy lost 1280 gms of his weight, accordingly he is believed to be:",
+    "options": [
+      "Not dehydrated.",
+      "Mildly dehydrated.",
+      "Moderately dehydrated.",
+      "Severely dehydrated."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (moderately dehydrated) because a 16 kg child losing 1280g represents 8% weight loss, which falls in the moderate dehydration category (6-9%). Options A, B, and D are incorrect as they don't match the percentage of weight loss corresponding to their respective dehydration severity levels."
+  },
+  {
+    "question": "When serum sodium is 152 mEq/L, the patient is described to be:",
+    "options": [
+      "Isonatremic.",
+      "Hypernatremic.",
+      "Hyponatremic.",
+      "Dehydrated."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B (hypernatremic) because normal serum sodium is 135-145 mEq/L, and 152 mEq/L is above this range. Options A, C, and D are incorrect as they either misclassify the sodium level or describe a condition that may not be directly indicated by sodium level alone."
+  },
+  {
+    "question": "Which of the following about CHPS is wrong:",
+    "options": [
+      "More common in boys.",
+      "Presents in the first 7 days of life.",
+      "Causes projectile, non-bile-stained vomitus.",
+      "Pyloric olive mass is palpable in right upper quadrant of abdomen."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because congenital hypertrophic pyloric stenosis (CHPS) typically presents between 2-8 weeks of life, not in the first 7 days. Options A, C, and D are correct statements about CHPS, making B the wrong choice."
+  },
+  {
+    "question": "After reconstitution with water, chloride cone, in ORS is:",
+    "options": [
+      "20 mEq/L.",
+      "30 mEq/L.",
+      "80 mEq/L.",
+      "90 mEq/L."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (80 mEq/L) because standard WHO-recommended oral rehydration solution (ORS) contains 80 mEq/L of chloride after reconstitution to effectively treat dehydration and electrolyte imbalances. Option A (20 mEq/L) is too low, option B (30 mEq/L) is also insufficient, and option D (90 mEq/L) is higher than the recommended concentration for standard ORS."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

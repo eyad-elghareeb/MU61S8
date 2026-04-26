@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Infections Vaccination</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_infections_vaccination",
+  "title": "Infections Vaccination",
+  "description": "Pediatrics - Infections Vaccination MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Prolonged febrile illness occurs most likely in:\"2012\"",
+    "options": [
+      "Pneumonia",
+      "Brain abscess",
+      "Stomatitis",
+      "Tonsillitis"
+    ],
+    "correct": 1,
+    "explanation": "Brain abscess is the most likely cause of prolonged febrile illness because it presents with persistent fever and can have an indolent course. Pneumonia typically presents acutely with respiratory symptoms. Stomatitis and tonsillitis are acute infections with shorter durations and localized symptoms."
+  },
+  {
+    "question": "A 10-month-old infant presents with a 1-day history of a blanching confluent rash which started on his face and now covers his entire body. He is miserable with conjunctivitis and fever of 38.5\u00b0C. The illness started with runny nose and cough 5 days previously. (June, 2008) What is the most likely diagnosis:",
+    "options": [
+      "Scarlet fever.",
+      "Rubella.",
+      "Roseola infantum.",
+      "Measles."
+    ],
+    "correct": 3,
+    "explanation": "Measles is the most likely diagnosis because the classic presentation includes a prodrome of runny nose and cough for 5 days, followed by high fever, conjunctivitis, and a blanching confluent rash that starts on the face and spreads downward. Scarlet fever has a sandpaper rash without conjunctivitis. Rubella has a milder course with lymphadenopathy. Roseola has rash appearing after fever subsides."
+  },
+  {
+    "question": "A 5-year-old child developed maculopapular rash starting in the face and progressing downwards on the body. This was preceded by five-day febrile illness with runny nose and congested red eyes. (September, 2008) What is the most likely diagnosis:",
+    "options": [
+      "Scarlet fever.",
+      "Sweat rash.",
+      "Chicken pox.",
+      "Measles."
+    ],
+    "correct": 3,
+    "explanation": "Measles is the most likely diagnosis given the prodromal febrile illness with runny nose and red eyes (the 3 Cs: cough, coryza, conjunctivitis) followed by a maculopapular rash starting on the face and progressing downward. Scarlet fever has a sandpaper rash and no eye involvement. Sweat rash is not infectious. Chicken pox has vesicular rash in different stages."
+  },
+  {
+    "question": "Measles rash begins: (June,",
+    "options": [
+      "On chest and back.",
+      "Behind ear.",
+      "Behind neck.",
+      "On the face."
+    ],
+    "correct": 1,
+    "explanation": "Measles rash begins behind the ear, which is the classic site of onset before spreading to the face and then downward. It does not begin on the chest and back, behind the neck, or on the face (though it quickly spreads to the face after starting behind the ears)."
+  },
+  {
+    "question": "All the following infectious diseases are essentiallyassociated with rash, except:",
+    "options": [
+      "German measles.",
+      "Chicken pox.",
+      "Mumps.",
+      "Roseola infantum."
+    ],
+    "correct": 2,
+    "explanation": "Mumps is not essentially associated with rash; it primarily presents with parotitis. German measles (rubella) is associated with a maculopapular rash. Chicken pox has a vesicular rash. Roseola infantum has a characteristic rash that appears after fever subsides."
+  },
+  {
+    "question": "Which of the following is correct about measles rash: (September, 2009)?",
+    "options": [
+      "It appears on the 2nd day of fever.",
+      "It starts behind the ear.",
+      "It is a papulo-vesicular rash.",
+      "It starts one day before appearance of koplik's spots."
+    ],
+    "correct": 1,
+    "explanation": "Measles rash starts behind the ear, which is the classic location of onset. It does not appear on the 2nd day of fever (it appears around day 3-4). It is maculopapular, not papulovesicular. Koplik spots appear 1-2 days before the rash, not after."
+  },
+  {
+    "question": "Which of the following infectious diseases is essentially associated with maculopapular rash:",
+    "options": [
+      "Chicken pox.",
+      "Mumps.",
+      "Roseola infantum.",
+      "Hepatitis B."
+    ],
+    "correct": 2,
+    "explanation": "Roseola infantum (caused by HHV-6) is essentially associated with a maculopapular rash that appears after defervescence. Chicken pox has a vesicular rash. Mumps is not associated with rash. Hepatitis B does not typically cause a maculopapular rash."
+  },
+  {
+    "question": "Complications of scarlet fever include all the following, except: (June",
+    "options": [
+      "Submandibular lymphadenitis.",
+      "Otitis media.",
+      "Acute glomerulonephritis.",
+      "Pan encephalitis."
+    ],
+    "correct": 3,
+    "explanation": "Panencephalitis (SSPE) is not a complication of scarlet fever; it is a late complication of measles. Submandibular lymphadenitis, otitis media, and acute glomerulonephritis are all well-known complications of scarlet fever caused by group A streptococcus."
+  },
+  {
+    "question": "Koplik's spots:",
+    "options": [
+      "Develop synchronously with the eruptions on the skin.",
+      "Seen in the late phase of the catarrhal incubation period.",
+      "Most common during the convalescent phase.",
+      "Caused by bacterial super-infection."
+    ],
+    "correct": 1,
+    "explanation": "Koplik spots are seen in the late phase of the catarrhal (prodromal) period of measles, appearing 1-2 days before the skin rash. They do not develop synchronously with skin eruptions, are not seen during convalescence, and are not caused by bacterial super-infection but are directly caused by the measles virus."
+  },
+  {
+    "question": "Skin rash maybe seen in all the following, except:",
+    "options": [
+      "Urticaria.",
+      "Antibiotic therapy.",
+      "Mumps.",
+      "Hot weather."
+    ],
+    "correct": 2,
+    "explanation": "Mumps does not cause a skin rash; it presents with parotitis. Urticaria is a skin rash. Antibiotic therapy can cause drug rashes. Hot weather can cause heat rash (miliaria)."
+  },
+  {
+    "question": "One of the following is correct about measles rash: (September",
+    "options": [
+      "It starts on the trunk.",
+      "When it appears, the fever rises abruptly.",
+      "It is a vesiculo-papular rash.",
+      "It appears12-24 hours after onset of prodromal stage."
+    ],
+    "correct": 1,
+    "explanation": "When the measles rash appears, the fever rises abruptly, which is a characteristic feature. The rash starts behind the ears and on the face, not the trunk. It is maculopapular, not vesiculopapular. It appears 3-4 days after the onset of prodromal symptoms, not 12-24 hours."
+  },
+  {
+    "question": "Presence of a rash is essential for diagnosis in all the following, except:",
+    "options": [
+      "German measles.",
+      "Infectious mononucleosis.",
+      "Measles.",
+      "Scarlet fever."
+    ],
+    "correct": 1,
+    "explanation": "Infectious mononucleosis does not essentially require a rash for diagnosis; the diagnosis is based on fever, lymphadenopathy, pharyngitis, and atypical lymphocytes. German measles, measles, and scarlet fever all essentially require rash for diagnosis."
+  },
+  {
+    "question": "Vesicular eruption can be caused by any of the following, except: (June",
+    "options": [
+      "Chicken pox.",
+      "Herpes zoster.",
+      "Rubella.",
+      "Hand, foot and mouth disease."
+    ],
+    "correct": 2,
+    "explanation": "Rubella does not cause vesicular eruptions; it causes a maculopapular rash. Chicken pox, herpes zoster, and hand-foot-mouth disease all cause vesicular eruptions."
+  },
+  {
+    "question": "Complications of measles include all the following, except:",
+    "options": [
+      "Encephalitis.",
+      "Myocarditis.",
+      "Congenital anomalies.",
+      "Subacute sclerosing pan-encephalitis."
+    ],
+    "correct": 2,
+    "explanation": "Congenital anomalies are not a complication of measles; congenital rubella syndrome is caused by rubella, not measles. Encephalitis, myocarditis, and subacute sclerosing panencephalitis (SSPE) are all recognized complications of measles."
+  },
+  {
+    "question": "The following viral infections are essentiallyassociated with maculopapular rash: (September,",
+    "options": [
+      "Varicella.",
+      "Mumps.",
+      "Human herpes virus 6.",
+      "Hepatitis B."
+    ],
+    "correct": 2,
+    "explanation": "Human herpes virus 6 (HHV-6), which causes roseola infantum, is essentially associated with a maculopapular rash. Varicella causes vesicular rash. Mumps does not cause rash. Hepatitis B is not associated with maculopapular rash."
+  },
+  {
+    "question": "Mumps can cause all the following, except:",
+    "options": [
+      "Encephalitis.",
+      "Skin rash.",
+      "Pancreatitis.",
+      "Orchitis."
+    ],
+    "correct": 1,
+    "explanation": "Mumps does not cause a skin rash; it is characterized by parotitis. Mumps can cause encephalitis, pancreatitis, and orchitis, but not rash."
+  },
+  {
+    "question": "A skin rash is not an essential part of diagnosis in: (June",
+    "options": [
+      "Infectious mononucleosis.",
+      "Varicella-Zoster infection.",
+      "Rubella.",
+      "Measles."
+    ],
+    "correct": 0,
+    "explanation": "Infectious mononucleosis does not essentially require a rash for diagnosis, as many cases present without rash. Varicella, rubella, and measles all require rash as an essential diagnostic feature."
+  },
+  {
+    "question": "Scarlet fever:",
+    "options": [
+      "It is caused by group beta hemolytic streptococci.",
+      "It is most common between 6 months- 2 years.",
+      "Incubation period is 2-4 days.",
+      "The rash appears on the 4th day of fever."
+    ],
+    "correct": 2,
+    "explanation": "The incubation period of scarlet fever is 2-4 days. It is caused by group A beta-hemolytic streptococci (not group B). It is most common in children 5-15 years, not 6 months-2 years. The rash appears on the 2nd day of fever, not the 4th."
+  },
+  {
+    "question": "A 17-month-old girl presented to her pediatrician with fever 40\u00b0C of 2 days duration. On examination, there were no signs to explain this fever. The doctor described antipyretics only. On the 4th day of illness, the fever disappeared suddenly, and a maculopapular rash appeared in the same day. The rash started over the trunk then spread to the neck, arms and face. The rash faded within 24 hours. (July 2015) I. The most likely diagnosis is:",
+    "options": [
+      "Measles.",
+      "Rubella.",
+      "Roseola infantum.",
+      "Scarlet fever."
+    ],
+    "correct": 2,
+    "explanation": "Roseola infantum is the most likely diagnosis given the classic presentation of high fever for 3-4 days without localizing signs, followed by sudden defervescence and appearance of a maculopapular rash starting on the trunk. Measles has a prodrome with cough and conjunctivitis. Rubella has lymphadenopathy. Scarlet fever has a sandpaper rash during fever."
+  },
+  {
+    "question": "The most likely complication in this patient is:",
+    "options": [
+      "Acute rheumatic fever.",
+      "Encephalitis.",
+      "Secondary bacterial infection.",
+      "Febrile convulsions."
+    ],
+    "correct": 3,
+    "explanation": "Febrile convulsions are the most likely complication because the high fever (40 degrees C) in roseola infantum commonly triggers seizures in young children. Acute rheumatic fever is a complication of streptococcal infection. Encephalitis is a rare complication of roseola. Secondary bacterial infection is not typical."
+  },
+  {
+    "question": "ALL of the following statements are true about chickenpox (varicella) except:",
+    "options": [
+      "The IP is 5-10 days",
+      "Dry are non-infective",
+      "The rash appears in successive crops over 3-4 days",
+      "The has a centripetal distribution"
+    ],
+    "correct": 0,
+    "explanation": "The incubation period of chickenpox is not 5-10 days; it is typically 10-21 days. Dry crusts are non-infective (correct). The rash appears in successive crops over 3-4 days (correct). The rash has a centripetal distribution (more on trunk than extremities, correct)."
+  },
+  {
+    "question": "All of the following statements are about herpes simplex meningoencephalitis Except",
+    "options": [
+      "It may occur even in the absence of skin lesion.",
+      "The illness is severe with high mortality",
+      "EEG shows occipital lobe abnormalities",
+      "Acyclovir is the drug of the choice"
+    ],
+    "correct": 2,
+    "explanation": "EEG in herpes simplex meningoencephalitis shows temporal lobe (not occipital) abnormalities, as HSV has a predilection for the temporal lobes. HSV encephalitis can occur without skin lesions. It is severe with high mortality. Acyclovir is the drug of choice."
+  },
+  {
+    "question": "The IP of German measles is;",
+    "options": [
+      "1-7 days",
+      "7-10 days",
+      "2-3 weeks",
+      "5-6 weeks"
+    ],
+    "correct": 2,
+    "explanation": "The incubation period of German measles (rubella) is 2-3 weeks (14-21 days). 1-7 days is too short. 7-10 days is too short. 5-6 weeks is too long."
+  },
+  {
+    "question": "In a child with encephalitis, which of the followingviruses has a special predilection to the temporal lobes (preferentially affects the temporal lobes)",
+    "options": [
+      "Herpes simplex",
+      "Mumps virus",
+      "Rabies virus",
+      "Measles virus"
+    ],
+    "correct": 0,
+    "explanation": "Herpes simplex virus has a special predilection for the temporal lobes in encephalitis. Mumps virus typically affects the parotid glands and can cause meningoencephalitis without temporal lobe preference. Rabies affects the brainstem and limbic system. Measles can cause SSPE but not temporal-predominant encephalitis."
+  },
+  {
+    "question": "An 8-year girl presents with a low-grade fever and diffuse maculopapular rash, on examination, her physician notes mild tenderness and marked swelling of her posterior cervical and occipital lymph node, three days after the onset of illness, the rash disappeared i. the most likely diagnosis",
+    "options": [
+      "Measles",
+      "German measles",
+      "Scarlet fever",
+      "Typhoid"
+    ],
+    "correct": 1,
+    "explanation": "German measles (rubella) is the most likely diagnosis given the low-grade fever, maculopapular rash, and prominent posterior cervical and occipital lymphadenopathy. Measles has high fever, cough, and conjunctivitis. Scarlet fever has a sandpaper rash and sore throat. Typhoid has rose spots and gastrointestinal symptoms."
+  },
+  {
+    "question": "ii. one of the following is not correct about diagnosis",
+    "options": [
+      "IP 5-7 days",
+      "Complications are not common",
+      "This could have been prevented by Alive attenuated vaccine V",
+      "Throat signs are not prominent"
+    ],
+    "correct": 0,
+    "explanation": "The incubation period of rubella is 14-21 days (2-3 weeks), not 5-7 days. Complications are indeed not common. Rubella can be prevented by a live attenuated vaccine. Throat signs are not prominent in rubella."
+  },
+  {
+    "question": "IP period is 2-3 wks. Except:",
+    "options": [
+      "Mumps",
+      "Measles",
+      "Chicken pox",
+      "Diphtheria Answer: b & e are correct! 27. One\u2019s correct in mumps:",
+      "Caused by adeno virus",
+      "IP is10 days",
+      "Called epidemic parotitis",
+      "Pain aggravated by sour drinks"
+    ],
+    "correct": 2,
+    "explanation": "Mumps is called epidemic parotitis, which is the correct statement. Mumps is caused by a paramyxovirus, not adenovirus. The incubation period of mumps is 16-18 days, not 10 days. Pain is aggravated by sour drinks (this is correct but option C is more definitively correct)."
+  },
+  {
+    "question": "Mumps may cause all the following except:",
+    "options": [
+      "Encephalitis",
+      "Rash",
+      "Pancreatitis",
+      "Orchitis"
+    ],
+    "correct": 1,
+    "explanation": "Mumps does not cause a rash; it presents with parotitis and can cause encephalitis, pancreatitis, and orchitis. A rash is not a feature of mumps infection."
+  },
+  {
+    "question": "Mumps may be complicated byall except:",
+    "options": [
+      "Pancreatitis",
+      "Epididymo-orchitis",
+      "Encephalitis",
+      "Rh fever"
+    ],
+    "correct": 3,
+    "explanation": "Rheumatic fever is not a complication of mumps. Pancreatitis, epididymo-orchitis, and encephalitis are all recognized complications of mumps infection."
+  },
+  {
+    "question": "A young girl has had fungal infection with candida albicans &respiratory viruses at the time she was 3 months old. Immunological study revealed defect on both T lymphocytes & B lymphocytes activities && advised not to receive certain vaccines which of the following vaccines is contradicted for this girl? (June",
+    "options": [
+      "Hepatitis B vaccine",
+      "Hepatitis A vaccine",
+      "BCG vaccine",
+      "Salk polio vaccine"
+    ],
+    "correct": 2,
+    "explanation": "BCG vaccine is contraindicated in this girl because it is a live attenuated vaccine, and she has a combined immunodeficiency (both T and B cell defects). Live vaccines can cause disseminated infection in immunocompromised patients. Hepatitis B, Hepatitis A, and Salk polio vaccines are inactivated/killed and safe for immunocompromised patients."
+  },
+  {
+    "question": "Which of the following vaccine can be given to a child with immune deficiency? (June",
+    "options": [
+      "Oral polio vaccine",
+      "Varicella vaccine",
+      "Measles-Mumps, rubella vaccine",
+      "Hepatitis b vaccine"
+    ],
+    "correct": 3,
+    "explanation": "Hepatitis B vaccine can be given to immunodeficient children because it is a recombinant (non-live) vaccine. Oral polio vaccine (live attenuated), varicella vaccine (live attenuated), and MMR (live attenuated) are contraindicated in immunodeficiency."
+  },
+  {
+    "question": "Which of the following is not compulsory vaccine given in the 1ST year of life (June 2009)?",
+    "options": [
+      "Measles vaccine",
+      "BCG vaccine",
+      "Meningitis vaccine",
+      "Polio vaccine"
+    ],
+    "correct": 2,
+    "explanation": "Meningitis vaccine is not a compulsory vaccine in the first year of life in most standard immunization schedules. Measles, BCG, and polio vaccines are all compulsory in the first year."
+  },
+  {
+    "question": "Oral polio vaccine (sep",
+    "options": [
+      "It\u2019s known as Salk vaccine",
+      "It\u2019s alive attenuated vaccine",
+      "It\u2019s preserved at temperature15-20 degree centigrade",
+      "It\u2019s recommended to be given at 4,8,12 months age"
+    ],
+    "correct": 1,
+    "explanation": "Oral polio vaccine (Sabin) is a live attenuated vaccine. Salk vaccine is the inactivated injectable polio vaccine, not the oral one. OPV must be kept frozen, not at 15-20 degrees. The schedule is typically at 2, 4, and 6 months, not 4, 8, 12 months."
+  },
+  {
+    "question": "All the following disease can be prevented by vaccination except",
+    "options": [
+      "Measles",
+      "Mumps",
+      "Scarlet fever",
+      "Varicella"
+    ],
+    "correct": 2,
+    "explanation": "Scarlet fever cannot be prevented by vaccination because it is caused by group A streptococcus strains that produce erythrogenic toxin, and no vaccine exists for it. Measles, mumps, and varicella all have effective vaccines."
+  },
+  {
+    "question": "Which of the following vaccine can be given to child with immunodeficiency (June",
+    "options": [
+      "DPT",
+      "Varicella",
+      "MMR",
+      "Oral polio"
+    ],
+    "correct": 0,
+    "explanation": "DPT (Diphtheria-Pertussis-Tetanus) vaccine can be given to immunodeficient children because it is an inactivated (killed) vaccine. Varicella, MMR, and oral polio are all live attenuated vaccines and are contraindicated in immunodeficiency."
+  },
+  {
+    "question": "One of the following is correct about oral polio vaccine (sept",
+    "options": [
+      "it was invented byJonas Salk",
+      "it gives only humoral immunity",
+      "it should be given immediately after breast feeding",
+      "It\u2019s recommended to give a booster dose at 18 months of age"
+    ],
+    "correct": 3,
+    "explanation": "A booster dose of oral polio vaccine is recommended at 18 months of age. OPV was developed by Sabin, not Salk (who developed the inactivated vaccine). OPV provides both humoral and intestinal immunity. It should not be given immediately after breastfeeding as maternal antibodies may interfere."
+  },
+  {
+    "question": "The following infection are largely preventable by vaccines except: (June",
+    "options": [
+      "Poliomyelitis",
+      "Measles",
+      "Epstein Barr virus",
+      "Diphtheria"
+    ],
+    "correct": 2,
+    "explanation": "Epstein-Barr virus infection (infectious mononucleosis) is not preventable by vaccine. Poliomyelitis, measles, and diphtheria all have effective vaccines."
+  },
+  {
+    "question": "One of the following is not a live vaccine (June",
+    "options": [
+      "Sabin",
+      "MMR",
+      "BCG",
+      "Pneumococci"
+    ],
+    "correct": 3,
+    "explanation": "Pneumococcal vaccine is not a live vaccine; it is a polysaccharide or conjugate vaccine. Sabin (oral polio), MMR, and BCG are all live attenuated vaccines."
+  },
+  {
+    "question": "Which of the following can be prevented by vaccines (sept 2011)?",
+    "options": [
+      "scarlet fever",
+      "viral C hepatitis",
+      "infectious mononucleosis",
+      "neonatal tetanus"
+    ],
+    "correct": 3,
+    "explanation": "Neonatal tetanus can be prevented by vaccination (tetanus toxoid given to the mother during pregnancy). Scarlet fever, viral hepatitis C, and infectious mononucleosis do not have vaccines available."
+  },
+  {
+    "question": "About Rota virus vaccine",
+    "options": [
+      "It\u2019s a trivalent vaccine",
+      "It\u2019s given subcutaneous",
+      "The 1st dose is given at the age of 4 months",
+      "Vaccination should be completed before 8 months of age Answer is"
+    ],
+    "correct": 3,
+    "explanation": "Rotavirus vaccination should be completed before 8 months of age to reduce the risk of intussusception. The first dose is given at 2 months (not 4 months). It is given orally, not subcutaneously. The monovalent vaccine has 2 doses, while the pentavalent has 3 doses."
+  },
+  {
+    "question": "The meningococcal vaccine is",
+    "options": [
+      "Scapular polysaccharide vaccine",
+      "A live attenuated vaccine",
+      "A killed vaccine",
+      "A recombinant DNA vaccine"
+    ],
+    "correct": 0,
+    "explanation": "The meningococcal vaccine is a capsular polysaccharide vaccine (or conjugate vaccine). It is not a live attenuated, killed, or recombinant DNA vaccine."
+  },
+  {
+    "question": "The pentavalent rotavirus vaccine is given (June 2016. may",
+    "options": [
+      "One dose at age of 2 month",
+      "2 doses at age of 2,4 months",
+      "3 doses at age of 2,4,6 months",
+      "4 doses at the age of 2,4,6,9 months"
+    ],
+    "correct": 2,
+    "explanation": "The pentavalent rotavirus vaccine is given as 3 doses at ages 2, 4, and 6 months. One dose is insufficient. Two doses is the schedule for the monovalent vaccine. Four doses is not a standard rotavirus vaccine schedule."
+  },
+  {
+    "question": "Which of the following not vaccine preventable (June 2016, may 2017)?",
+    "options": [
+      "Hepatitis B",
+      "Invasive pneumococci",
+      "Rabies",
+      "Infectious mononucleosis"
+    ],
+    "correct": 3,
+    "explanation": "Infectious mononucleosis is not vaccine-preventable. Hepatitis B, invasive pneumococcal disease, and rabies all have effective vaccines available."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Endocrine</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_endocrine",
+  "title": "Endocrine",
+  "description": "Pediatrics - Endocrine MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "The main clinical presentation of acquired hypothyroidism include all of the following except:",
+    "options": [
+      "Short stature.",
+      "Goiter.",
+      "School underachievement.",
+      "Precocious puberty."
+    ],
+    "correct": 3,
+    "explanation": "Precocious puberty is not a feature of hypothyroidism; instead, hypothyroidism typically delays puberty. Short stature, goiter, and school underachievement are common presentations of acquired hypothyroidism."
+  },
+  {
+    "question": "Which of the following is not true about primaryhypothyroidism?",
+    "options": [
+      "It is always congenital, never acquired.",
+      "May be due to aplasia of thyroid gland.",
+      "T3, T4 are low.",
+      "TSHishigh"
+    ],
+    "correct": 0,
+    "explanation": "Primary hypothyroidism can be both congenital and acquired, not always congenital. It may be due to thyroid aplasia, and is characterized by low T3/T4 and high TSH levels."
+  },
+  {
+    "question": "All of the following may be signs of congenital hypothyroidism except: -",
+    "options": [
+      "Diarrhea.",
+      "Wide anterior fontanel.",
+      "Prolonged physiologic jaundice.",
+      "Abdominal distention and Umbilical hernia."
+    ],
+    "correct": 0,
+    "explanation": "Diarrhea is not a sign of congenital hypothyroidism; instead, constipation is common. Wide anterior fontanel, prolonged jaundice, and abdominal distension with umbilical hernia are typical signs."
+  },
+  {
+    "question": "Which of the following is correct about congenital hypothyroidism?",
+    "options": [
+      "The child is usually premature.",
+      "Associated with advanced bone age.",
+      "The majority of infants usually are normal at birth,",
+      "The thyroid gland is essentially absent."
+    ],
+    "correct": 2,
+    "explanation": "Most infants with congenital hypothyroidism appear normal at birth, which is why screening is important. They are not typically premature, have delayed bone age, and the thyroid gland is usually present but may be dysplastic."
+  },
+  {
+    "question": "In congenital hypothyroidism:",
+    "options": [
+      "Diarrhea is common.",
+      "Definite diagnosis is done by thyroid biopsy.",
+      "Coarse features always clear since birth.",
+      "The thyroid gland may enlarge in some patients."
+    ],
+    "correct": 3,
+    "explanation": "The thyroid gland may enlarge in some patients with congenital hypothyroidism, particularly in cases of dyshormonogenesis. Diarrhea is uncommon, diagnosis is made by thyroid function tests, and coarse features typically develop over time."
+  },
+  {
+    "question": "5-year-old girl complains of decreased appetite, increased urinary frequency and thirst. Her pediatrician suspects now onset of diabetes mellitus & confirms that she has elevated urine glucose & ketones.",
+    "options": [
+      "The expected blood gases is: PH Bicarbonate PCO.",
+      "7.05 16 52",
+      "7.35 22 38 Cc. 7.45 26 47",
+      "7.25 12 21 Answer: d (metabolic acidosis > PCO, is normal). Answer: d (DKA ttt > 1* saline infusion). Diet containing mainly animal fat.",
+      "Management is:",
+      "b. Limitation of exercise & sports. ce. Both.",
+      "None. 7. A5-year-old girl presented to ER with abdominal pain & recurrent vomiting in the last few days. On examination, temperature is 36.8, moderately dehydrated with impaired level of consciousness. Her breathing was deep & rapid.",
+      "The most urgent lab test you need to request is: Blood sugar. ao fF 2"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is D because diabetic ketoacidosis (DKA) causes metabolic acidosis with low bicarbonate and normal PCO2 due to compensatory hyperventilation. Option A shows severe acidosis with high PCO2 (respiratory failure), option B shows normal pH, and option C shows metabolic alkalosis which is not seen in DKA."
+  },
+  {
+    "question": "CT scan of abdomen. Blood ammonia. Respiratory acidosis. Respiratory alkalosis. Metabolic alkalosis. Metabolic acidosis. CSF examination & culture. 8. 5 year-old child complained from abnormal growth & enlargement of breasts of 4 months duration. There is no other sign of puberty (no pubic hair & no axillary hair). Growth velocity & bone age are normal. (December,",
+    "options": [
+      "\u2018The girl suffers from: Premature thelarche. Pseudo-precocious puberty. a",
+      "Premature adrenarche. c d True precocious puberty."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because premature thelarche is isolated breast development without other signs of puberty, normal growth velocity, and normal bone age. Pseudo-precocious puberty (B) would have other signs, premature adrenarche (C) involves pubic/axillary hair, and true precocious puberty (D) would have elevated gonadotropins and advanced bone age."
+  },
+  {
+    "question": "Lymph Notes | P age154",
+    "options": [
+      "The physician needs to:",
+      "Reassure the parents.",
+      "Ask for abdominal CT.",
+      "Ask for cranial CT.",
+      "Ask for hormonal study."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because premature thelarche is a benign condition that typically resolves spontaneously. Reassurance is appropriate as no further testing is needed. Abdominal CT (B), cranial CT (C), and hormonal studies (E) are not indicated for this normal variant."
+  },
+  {
+    "question": "As regardingpseudo-precocious puberty: (September,",
+    "options": [
+      "It's gonadotropin dependent.",
+      "FSH & LH are elevated.",
+      "Usually idiopathic.",
+      "Gametogenesis is absent."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because pseudo-precocious puberty is gonadotropin-independent, so FSH and LH are not elevated (A and B are wrong). It's often not idiopathic (C) but caused by various conditions. Gametogenesis is absent (D) as it's peripheral activation without true gonadal maturation."
+  },
+  {
+    "question": "Which of the following is correct about type I DM? (September,",
+    "options": [
+      "Commonly starts in the 1st year of life.",
+      "Alkalosis may form the initial presentation.",
+      "Oral hypoglycaemic are not effective therapy.",
+      "Snacks are contraindicated in between meals."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because type I diabetes is characterized by absolute insulin deficiency, making oral hypoglycemic agents ineffective as they work by increasing insulin secretion or sensitivity, which is not possible in type I DM. A is wrong as type I DM rarely presents in the first year of life (more common in childhood/adolescence). B is incorrect as diabetic ketoacidosis (acidosis, not alkalosis) is a common initial presentation. D is wrong as regular snacks are actually recommended to prevent hypoglycemia in type I DM patients on insulin therapy."
+  },
+  {
+    "question": "One of the clinical features of type I DM is: (June,",
+    "options": [
+      "Enuresis.",
+      "Diarrhea.",
+      "Weight gain.",
+      "Loss of appetite."
+    ],
+    "correct": 0,
+    "explanation": "Enuresis is correct as nocturnal enuresis can be a presenting symptom of type 1 diabetes due to osmotic diuresis from glucosuria. Weight gain is incorrect as type 1 DM typically presents with weight loss, and diarrhea and loss of appetite are not classic features."
+  },
+  {
+    "question": "The commonest cause of precocious puberty in females is:",
+    "options": [
+      "Premature onset of normal puberty.",
+      "Androgen secreting suprarenal tumor.",
+      "Iatrogenic.",
+      "Congenital adrenal hyperplasia."
+    ],
+    "correct": 0,
+    "explanation": "Premature onset of normal puberty is correct as it's the most common cause in females, accounting for over 80% of cases. Androgen-secreting tumors, iatrogenic causes, and congenital adrenal hyperplasia are less common causes of precocious puberty."
+  },
+  {
+    "question": "Manifestations of diabetic ketoacidosis include all the following, except:",
+    "options": [
+      "Sweating.",
+      "Vomiting.",
+      "Respiratory distress.",
+      "Abdominal pain."
+    ],
+    "correct": 0,
+    "explanation": "Sweating is incorrect as it's not a typical feature of diabetic ketoacidosis; instead, patients often have dry mucous membranes. Vomiting, respiratory distress (Kussmaul respirations), and abdominal pain are all common manifestations of DKA."
+  },
+  {
+    "question": "The clinical presenting features of DM are all except: (September,",
+    "options": [
+      "Weight gain.",
+      "Vomiting.",
+      "Polydipsia.",
+      "Enuresis."
+    ],
+    "correct": 0,
+    "explanation": "Weight gain is incorrect as it's not a presenting feature of diabetes; instead, patients typically experience weight loss. Vomiting, polydipsia, and enuresis are all common presenting symptoms of diabetes mellitus."
+  },
+  {
+    "question": "Type I DM is characterized byall the following, except: (June,",
+    "options": [
+      "Genetic susceptibility.",
+      "Mumps & chicken pox are common triggering factors.",
+      "Is treated only by insulin.",
+      "Oral hypoglycaemic drugs have therapeutic role."
+    ],
+    "correct": 3,
+    "explanation": "Oral hypoglycemic drugs having a therapeutic role is incorrect as type 1 DM requires insulin replacement therapy. Genetic susceptibility, viral infections like mumps and chickenpox as potential triggers, and the necessity of insulin treatment are all characteristic features of type 1 DM."
+  },
+  {
+    "question": "Complications of DM in children include all the following, except: (June,",
+    "options": [
+      "Hypoglycaemic coma.",
+      "Ketoacidotic coma.",
+      "Ammonic coma.",
+      "Skin infection."
+    ],
+    "correct": 2,
+    "explanation": "Ammonic coma is not a complication of diabetes mellitus; it's associated with liver failure. Hypoglycemic coma, ketoacidotic coma, and skin infections are all recognized complications of DM in children."
+  },
+  {
+    "question": "Management of DKA is all the following, except:",
+    "options": [
+      "IVfluids.",
+      "IV insulin infusion.",
+      "Slow IV infusion of Na bicarbonate.",
+      "Continuous monitoring of blood sugar."
+    ],
+    "correct": 2,
+    "explanation": "Slow IV infusion of sodium bicarbonate is not recommended in DKA management as it can cause cerebral edema. IV fluids, IV insulin infusion, and continuous monitoring of blood sugar are all standard components of DKA management."
+  },
+  {
+    "question": "Which of the following is not correct about type I DM:",
+    "options": [
+      "It's the most common type of DM.",
+      "The onset is usually acute & rapid.",
+      "It\u2019s strongly associated with obesity.",
+      "Insulin dependency is life-long (permanent)."
+    ],
+    "correct": 2,
+    "explanation": "Type I DM is not strongly associated with obesity; it's an autoimmune condition. It is the most common type in children, typically has an acute onset, and requires lifelong insulin dependency."
+  },
+  {
+    "question": "Diet of DM should fulfil all the following requirements, except:",
+    "options": [
+      "Rich in fibers.",
+      "Fat needs to provide 25% of total calories.",
+      "Animal fat is more preferable than plant fat.",
+      "Carbohydrate need to provide 55-60% of total calories."
+    ],
+    "correct": 2,
+    "explanation": "Animal fat is not more preferable than plant fat; plant fats are preferred due to their unsaturated nature. A diabetic diet should be rich in fiber, with carbohydrates providing 55-60% and fats 25% of total calories."
+  },
+  {
+    "question": "Which of the following is not correct about dietary management of diabetic child:",
+    "options": [
+      "Carbohydrates should supply less than 40% of calories.",
+      "Proteins should cover 15-20% of total daily caloric intake.",
+      "Fat should supply 25% of the daily total caloric intake.",
+      "Food rich in fibers should be encouraged."
+    ],
+    "correct": 0,
+    "explanation": "Carbohydrates should supply 55-60% of calories, not less than 40%. Proteins should cover 15-20%, fats 25%, and fiber-rich foods should be encouraged in diabetic dietary management."
+  },
+  {
+    "question": "Which of the following is not correct about insulin-dependent diabetes mellitus:",
+    "options": [
+      "It's also called type I DM.",
+      "The affected child not to be encouraged to participate in sports.",
+      "It's a life-long disease.",
+      "The sensitivity to insulin is normal."
+    ],
+    "correct": 1,
+    "explanation": "B is incorrect because children with insulin-dependent diabetes should be encouraged to participate in sports with proper management. A, C, and D are correct as type 1 DM is lifelong, requires insulin, and normal insulin sensitivity exists."
+  },
+  {
+    "question": "A 10-year-old girl presented to ER with abdominal pain & recurrent vomiting in the last four days. On examination, she was afebrile, moderately dehydrated with impaired consciousness . The mother said that her daughter was drinking too much water & juices in the last week. (June",
+    "options": [
+      "The most urgent lab that you need to request is:",
+      "Blood urea & creatinine.",
+      "Blood sugar.",
+      "Blood ammonia.",
+      "CSF examination & culture."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as blood sugar is urgently needed to diagnose diabetic ketoacidosis, which presents with polydipsia, vomiting, and altered consciousness. Other options are less relevant to this presentation."
+  },
+  {
+    "question": "A 9-year-old boy complaining of nocturnal enuresis of 2 months duration. He mentioned that he becomes more thirsty & drinks more fluids than before. He lost 2 Kg in the last 6 weeks. Blood urea = 20 mg/dL. Blood creatinine = 0.4 mg/dL. pH = 7.3. (June",
+    "options": [
+      "The most probable diagnosis is:",
+      "Chronic renal failure.",
+      "Primary nocturnal enuresis.",
+      "Diabetes mellitus.",
+      "Diabetic ketoacidosis."
+    ],
+    "correct": 2,
+    "explanation": "C is correct as the symptoms (polydipsia, enuresis, weight loss) with normal renal function suggest diabetes mellitus. Chronic renal failure would show elevated BUN/creatinine, and DKA would present with acidosis."
+  },
+  {
+    "question": "A 7-year-old girl was brought by her mother to the paediatrician office complaining that her axillary & pubic hair was well developed. On examination, the pubic hair was given sexual maturity grade of 4 & breast SMR was 1. (June,",
+    "options": [
+      "The most likely diagnosis is:",
+      "Premature thelarche.",
+      "Premature adrenarche.",
+      "True precocious puberty.",
+      "Pseudo precocious puberty."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as premature thelarche involves isolated breast development before age 8, while premature adrenarche involves pubic/axillary hair without breast development. True precocious puberty would show both breast and pubic hair development."
+  },
+  {
+    "question": "Which of the following is not correct about insulin dependent DM:",
+    "options": [
+      "Once diagnosed, it's a life-long disease.",
+      "The affected child should be encouraged to participate in sports.",
+      "It's also called type II DM.",
+      "Sensitivity to insulin is normal."
+    ],
+    "correct": 2,
+    "explanation": "C is incorrect as insulin-dependent DM is type I, not type II. A, B, and D are correct as type 1 DM is lifelong, sports should be encouraged, and insulin sensitivity is normal."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

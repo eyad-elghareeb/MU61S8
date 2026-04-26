@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-bfe57ff399c7';
+const CACHE_VERSION = 'mu61-quiz-82d84b5d03c6';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -153,6 +153,25 @@ var PRECACHE_REL_PATHS = [
   'med/past-years/index.html',
   'med/past-years/Misc.html',
   'ped/index.html',
+  'ped/lymph-notes/allergy.html',
+  'ped/lymph-notes/cardiology.html',
+  'ped/lymph-notes/emergency.html',
+  'ped/lymph-notes/endocrine.html',
+  'ped/lymph-notes/final-exam-may-2018.html',
+  'ped/lymph-notes/genetics.html',
+  'ped/lymph-notes/git.html',
+  'ped/lymph-notes/growth-development.html',
+  'ped/lymph-notes/haematology.html',
+  'ped/lymph-notes/hepatology.html',
+  'ped/lymph-notes/index.html',
+  'ped/lymph-notes/infections-vaccination.html',
+  'ped/lymph-notes/neonatology.html',
+  'ped/lymph-notes/nephrology.html',
+  'ped/lymph-notes/neurology.html',
+  'ped/lymph-notes/nutrition.html',
+  'ped/lymph-notes/problem-solving-paediatrics-2017-2018.html',
+  'ped/lymph-notes/respiration.html',
+  'ped/lymph-notes/rheumatology.html',
   'ped/past-years/57th-end-round-1.html',
   'ped/past-years/57th-end-round-2.html',
   'ped/past-years/57th-end-round-3.html',

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Problem Solving Paediatrics 2017-2018</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_problem_solving_paediatrics_2017_2018",
+  "title": "Problem Solving Paediatrics 2017-2018",
+  "description": "Pediatrics - Problem Solving Paediatrics 2017-2018 MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "TEST (1): 1. A 10-month-old infant presents with a 1-day history of a blanching confluent rash which started on his face and now covers his entire body. He is miserable with conjunctivitis and fever of 38.5\u00b0C. The illness started with runny nose and cough five days previously. What is the most likely diagnosis:",
+    "options": [
+      "Scarlet fever.",
+      "Sweat rash.",
+      "Chicken pox.",
+      "Measles."
+    ],
+    "correct": 3,
+    "explanation": "Measles is the most likely diagnosis because the infant has the classic presentation: prodromal illness with runny nose and cough for 5 days, followed by high fever, conjunctivitis, and a blanching confluent rash starting on the face and spreading to the body. Scarlet fever has a sandpaper rash and no cough/conjunctivitis. Chicken pox presents with vesicular rash in different stages. Sweat rash does not cause fever or conjunctivitis."
+  },
+  {
+    "question": "A mother brings to the clinic her 4-year-old son who began complaining of right knee pain 2weeks ago, is limping slightly, is fatigued, and has had a fever to 38.2\u00b0C. What is the most important diagnostic laboratory test to perform:",
+    "options": [
+      "Complete blood count with differential.",
+      "Sedimentation rate.",
+      "Epstein-Barr virus titer.",
+      "Rheumatoid factor."
+    ],
+    "correct": 0,
+    "explanation": "Complete blood count with differential is the most important initial test because the child has joint pain, fever, and fatigue, which could indicate leukemia, septic arthritis, or osteomyelitis. A CBC with differential can reveal leukocytosis, blast cells, or pancytopenia. Sedimentation rate is non-specific. EBV titer is too specific. Rheumatoid factor is rarely positive in juvenile arthritis."
+  },
+  {
+    "question": "A 12-month-old boy presents to the emergency department with a 6-hour history of vomiting, colicky abdominal pain, and irritability. On physical examination, a sausage\u00ac like mass is palpable in the right upper quadrant of the abdomen. What is the most appropriate next step in management:",
+    "options": [
+      "Order a CT scan of the abdomen.",
+      "Order a barium swallow.",
+      "Obtain a surgical consultation.",
+      "Follow up examination after 4 hours."
+    ],
+    "correct": 2,
+    "explanation": "Obtaining a surgical consultation is the most appropriate next step because the sausage-like mass in the right upper quadrant is classic for intussusception, which requires urgent surgical or air-enema reduction. CT scan delays treatment. Barium swallow is not the appropriate study for intussusception (barium or air enema is used for reduction). Waiting 4 hours risks bowel ischemia and perforation."
+  },
+  {
+    "question": "A 2-week-old infant develops fever (38.9\u00b0C), vomiting, and irritability. His heart rate is 170/m and respiratory rate is 40/m. The infant's anterior fontanel is full, but there is no nuchal rigidity. The rest of examination is unremarkable. What is the appropriate management:",
+    "options": [
+      "Oral fluid and follow up in 24 hrs.",
+      "Oral amoxicillin and follow up in1week.",
+      "Admission to hospital for investigation and treatment.",
+      "Intramuscular ceftriaxone and follow up in1week."
+    ],
+    "correct": 2,
+    "explanation": "Admission to hospital for investigation and treatment is essential because a 2-week-old infant with fever, vomiting, irritability, and a full fontanel is highly suspicious for neonatal meningitis or sepsis, which requires urgent lumbar puncture, blood cultures, and IV antibiotics. Oral antibiotics are inadequate. IM ceftriaxone with outpatient follow-up is inappropriate for this age group with possible meningitis."
+  },
+  {
+    "question": "A 2-month-old boy with a 3-day history of mild fever and runny nose suddenly develops high fever, cough and respiratory distress. Within 48 hours, the patient deteriorated and has developed a pneumatocele and a left sided pneumothorax. What is the appropriate 1st action:",
+    "options": [
+      "IV antibiotics.",
+      "Blood gases.",
+      "Chest tube.",
+      "Antipyretics."
+    ],
+    "correct": 2,
+    "explanation": "Chest tube insertion is the first action because the infant has developed a pneumothorax, which is a life-threatening emergency requiring immediate decompression. IV antibiotics are needed for the underlying staphylococcal pneumonia but are secondary to treating the pneumothorax. Blood gases and antipyretics do not address the pneumothorax."
+  },
+  {
+    "question": "A 2-week-old infant has had no immunizations, sleeps 18 h a day, weighs 3.5 kg, and takes 60 ml of standard infant formula four times a day, but no solid food and no iron or vitamin supplements. What should be of most concern about this infant:",
+    "options": [
+      "Immunization status.",
+      "Caloric intake.",
+      "Iron levels.",
+      "Circadian rhythm."
+    ],
+    "correct": 1,
+    "explanation": "Caloric intake is the most concerning issue because the infant is taking only 240 ml of formula per day (60 ml x 4 feeds), which is far below the required caloric intake for a 3.5 kg infant (approximately 350 kcal/day needed, but only receiving about 160 kcal). While immunization status and iron levels are important, inadequate caloric intake is the most immediate concern affecting growth and development."
+  },
+  {
+    "question": "A 7-year-old boy who was limping for 3 days presented to the surgical department with severe acute colicky abdominal pain. The surgery resident asked for medical consultation for a raised rash on the back of both lower limbs of the child. What is the likely cause of the acute abdomen:",
+    "options": [
+      "Rheumatic fever.",
+      "Appendicitis.",
+      "Henoch-Schonlein purpura.",
+      "Rheumatoid arthritis."
+    ],
+    "correct": 2,
+    "explanation": "Henoch-Schonlein purpura (HSP) is the most likely cause because the child has the classic triad of palpable purpura on the lower limbs, abdominal pain, and joint symptoms (limping). Rheumatic fever causes migratory polyarthritis and carditis, not purpura. Appendicitis would not cause a rash. Rheumatoid arthritis does not cause purpura or acute abdominal pain."
+  },
+  {
+    "question": "A 10-month-old female infant is brought to clinic for routine health evaluation. Her diet consists of ordinary food and a lot of fresh whole milk. On examination, she is pale, hemoglobin is 7.5 gm%; otherwise there are no abnormalities. What is the most likely diagnosis:",
+    "options": [
+      "Thalassemia.",
+      "Iron deficiency anemia.",
+      "Sickle cell anemia.",
+      "Anemia of chronic illness."
+    ],
+    "correct": 1,
+    "explanation": "Iron deficiency anemia is the most likely diagnosis because the infant's diet consists of excessive whole cow's milk (which can cause occult GI blood loss and has low iron bioavailability) and she is pale with low hemoglobin. Thalassemia would show microcytic cells but normal or high iron levels. Sickle cell anemia would show sickle cells on smear. Anemia of chronic illness would have other systemic signs."
+  },
+  {
+    "question": "TEST 2: 1. An infant can move his head from side to side while following a moving object, can lift his head from a prone position 45 degrees off the examining table, and smiles when encouraged. He can sit with support. What is the most likelyage of this infant:",
+    "options": [
+      "1month.",
+      "5 months.",
+      "9 months.",
+      "12 months."
+    ],
+    "correct": 1,
+    "explanation": "The infant is approximately 5 months old because the described milestones - following objects with head movement, lifting head 45 degrees in prone, social smiling, and sitting with support - are consistent with 4-5 month development. At 1 month, the infant cannot sit with support. At 9 months, the infant sits independently. At 12 months, the infant can stand or walk."
+  },
+  {
+    "question": "A 3-week-old baby, who was full term, is brought to the hospital. He has recently been having problems completing his feeds and todayappears short of breath. On examination, his heart rate was 180/min, respiratory rate 72/min, rectal temperature 37.4, blood pressure 80/50, and he had a 4-cm hepatomegaly. All blood tests were normal. What is the most likely diagnosis:",
+    "options": [
+      "Neonatal hepatitis.",
+      "Respiratory distress syndrome.",
+      "Heart failure.",
+      "Congenital infection."
+    ],
+    "correct": 2,
+    "explanation": "Heart failure is the most likely diagnosis given the tachycardia (180/min), tachypnea (72/min), hepatomegaly (4 cm), and feeding difficulties in a 3-week-old infant. These are classic signs of congenital heart disease presenting with heart failure. Neonatal hepatitis would cause jaundice. RDS presents in the first hours of life. Congenital infection would have other systemic signs."
+  },
+  {
+    "question": "A 3-day-old infant presents with the complaint of a yellowish skin. Both the mother and the baby have O positive blood. The baby's direct serum bilirubin is 0.2 mg/dl, with a total serum bilirubin of 11.8 mg/dl. The hemoglobin is 17 g/dl and the platelet count is 278.000/ml. Reticulocyte count is 1.5%. The peripheral smear does not show abnormalities. What is the most likely diagnosis:",
+    "options": [
+      "Rh and ABO incompatibility.",
+      "Physiologic jaundice.",
+      "Sepsis.",
+      "Congenital spherocytic anemia.",
+      "Biliary atresia."
+    ],
+    "correct": 1,
+    "explanation": "Physiologic jaundice is the most likely diagnosis because the infant is 3 days old with an indirect hyperbilirubinemia (direct bilirubin 0.2), normal hemoglobin, normal platelets, normal reticulocyte count, and normal peripheral smear. ABO incompatibility would show reticulocytosis and spherocytes. Sepsis would show other signs of illness. Biliary atresia causes direct hyperbilirubinemia."
+  },
+  {
+    "question": "A 15-month-old infant presents to the emergency department with a 4-day history of high fever without any localizing signs. She suffers a short self-limiting convulsions and is admitted for observation. The next day the fever subsides, but a red maculo-papular rash develops over her trunk and abdomen. What is the most likely diagnosis:",
+    "options": [
+      "Measles.",
+      "Rubella.",
+      "Roseola infantum.",
+      "Chicken pox."
+    ],
+    "correct": 2,
+    "explanation": "Roseola infantum (exanthem subitum) is the most likely diagnosis because the classic presentation is 3-5 days of high fever without localizing signs, followed by defervescence and appearance of a maculopapular rash. Measles has cough, coryza, and conjunctivitis before the rash. Rubella has mild fever and lymphadenopathy. Chicken pox has vesicular rash."
+  },
+  {
+    "question": "An 18-month-old boy came to the emergency department with rapid respiration and drowsiness. He had a history of vomiting and diarrhea for 3 days before the onset of his condition. By examination, HR was 160/m, RR was 60/m, temperature was 38.5\u00b0C and BP was 60/40. He had delayed capillary refill. What is the most likely action to be done:",
+    "options": [
+      "Chest x-ray.",
+      "Giving oral treatment and follow up.",
+      "Administration of IV fluids.",
+      "Blood gas analysis."
+    ],
+    "correct": 2,
+    "explanation": "Administration of IV fluids is the most critical action because the child has signs of severe dehydration and hypovolemic shock (tachycardia, tachypnea, hypotension, delayed capillary refill) due to 3 days of vomiting and diarrhea. Chest x-ray is not the priority. Oral treatment is insufficient in shock. Blood gas analysis may be done later but does not treat the shock."
+  },
+  {
+    "question": "A 4-week-old, full term, and breast fed girl has worsening yellowish discoloration of the skin, that the parents first noticed 15 days ago. On her examination, she is well appearing with good suckling and reflex activity, and is noted to have a liver edge 4 cm below her costal margin. Her total bilirubin is 12 mg/dl and direct bilirubin is 9 mg/dl. What is the most likely diagnosis:",
+    "options": [
+      "Biliary atresia.",
+      "Cephalhematoma.",
+      "Sepsis.",
+      "Breast milk jaundice."
+    ],
+    "correct": 0,
+    "explanation": "Biliary atresia is the most likely diagnosis because the 4-week-old has direct hyperbilirubinemia (direct 9 out of total 12), hepatomegaly, and progressive jaundice since 2 weeks of age. This pattern of conjugated hyperbilirubinemia is classic for biliary atresia. Cephalhematoma causes unconjugated hyperbilirubinemia. Breast milk jaundice causes unconjugated bilirubin. Sepsis is less likely without other signs."
+  },
+  {
+    "question": "A 7-week-old baby is referred with a 2-week history of vomiting. He is being formula-fed (160 ml) every 2-3 hrs. On examination, he is well, thriving, on the 90th percentile of weight and has a normal examination. What is the most likely diagnosis:",
+    "options": [
+      "Pyloric stenosis.",
+      "Gastro-esophageal reflux.",
+      "Over-feeding.",
+      "Gastro-enteritis."
+    ],
+    "correct": 2,
+    "explanation": "Over-feeding is the most likely diagnosis because the baby is thriving at the 90th percentile and has non-bilious vomiting with a large volume of formula (160 ml every 2-3 hours is excessive). Pyloric stenosis causes projectile vomiting and weight loss. GER causes smaller volume vomiting. Gastroenteritis would cause diarrhea and weight loss."
+  },
+  {
+    "question": "A 5-month-old girl presented with history of constipation and delayed developmental milestones. She had prolonged physiological jaundice. On exam, she is hypoactive, has an open mouth with large tongue. Other systemic examinations are within normal. What is the next step in management:",
+    "options": [
+      "Checking T4 and TSH.",
+      "Checking serum bilirubin.",
+      "Doing CT scan of head.",
+      "Follow up after 4 weeks."
+    ],
+    "correct": 0,
+    "explanation": "Checking T4 and TSH is the next step because the clinical picture of constipation, delayed milestones, prolonged jaundice, hypoactivity, and macroglossia strongly suggests congenital hypothyroidism. Serum bilirubin would not explain the developmental delay. CT head is not the first investigation for these symptoms. Follow-up would delay essential treatment."
+  },
+  {
+    "question": "TEST 3: 1. A 7-year-old boy arrives at the emergency department, complaining of rapid breathing and vomiting, dating 3 days ago. He has been receiving IM antibiotics for 3 days with no improvement. On examination, he has rapid deep breathing with RR 60/min, HR 90/min. Chest x-ray was normal. What is the next investigation to do:",
+    "options": [
+      "CT chest.",
+      "Upper GIT endoscopy.",
+      "Echocardiography.",
+      "Blood gases."
+    ],
+    "correct": 3,
+    "explanation": "Blood gases are the next investigation because the child has Kussmaul breathing (rapid deep breathing) with a normal chest x-ray and no improvement on antibiotics, suggesting metabolic acidosis, likely diabetic ketoacidosis. CT chest, upper GI endoscopy, and echocardiography would not be the first priority when metabolic acidosis is suspected."
+  },
+  {
+    "question": "A 9-year-old child comes to the hospital with an acute onset of generalized convulsions and disturbed conscious level. The parents did not report any similar neurological trouble beforehand. On examination, HR was 70/min, RR 20/min. What is the 1st action to after control of convulsions:",
+    "options": [
+      "Blood gases.",
+      "Blood pressure measurement.",
+      "CT brain.",
+      "Fundus examination."
+    ],
+    "correct": 2,
+    "explanation": "CT brain is the first action after controlling convulsions because the child has new-onset seizures with altered consciousness, which requires urgent neuroimaging to rule out intracranial hemorrhage, mass lesion, or cerebral edema. Blood gases and blood pressure measurement are less urgent. Fundus examination can be done after imaging."
+  },
+  {
+    "question": "An 8-year-old boy comes complaining of bedwetting for the past 2weeks. He has previously been continent. On examination, his height is below 5th percentile. His hemoglobin is 6.5 gm%. What is the most important next step:",
+    "options": [
+      "Check blood sugar.",
+      "Give oral iron.",
+      "Try fluid restriction and rewarding for dry nights.",
+      "Check blood urea and creatinine."
+    ],
+    "correct": 3,
+    "explanation": "Checking blood urea and creatinine is the most important next step because secondary enuresis with short stature and severe anemia suggests chronic renal failure. Blood sugar is less relevant without polyuria/polydipsia. Oral iron treats the anemia but misses the underlying cause. Behavioral treatment is inappropriate for secondary enuresis with concerning features."
+  },
+  {
+    "question": "A 1-year-old infant is complaining of delayed sitting and repeated chest infections. On examination, there are prominent costochondral junctions. He is exclusively breastfed, and he received multiple injections for treatment of his condition. All the following are expected complications for his condition, except:",
+    "options": [
+      "Anorexia.",
+      "Vomiting.",
+      "Oliguria.",
+      "Nephrocalcinosis."
+    ],
+    "correct": 2,
+    "explanation": "Oliguria is not an expected complication of rickets, which is the condition described (delayed sitting, rachitic rosary, exclusively breastfed, receiving vitamin D injections). Anorexia and vomiting can occur with vitamin D treatment. Nephrocalcinosis is a complication of excessive vitamin D therapy. The infant has rickets, not renal disease causing oliguria."
+  },
+  {
+    "question": "The mother of 4 months old boy complains that her child still can not support his head. On examination, the child has a flat occiput, and a transverse palmar crease. Local examination of the heart shows a hollow systolic murmur over the left parasternal area. Which of the following is a common complication of his condition:",
+    "options": [
+      "Immune thrombocytopenic purpura.",
+      "G6PD deficiency.",
+      "Leukemia.",
+      "Pyloric stenosis."
+    ],
+    "correct": 2,
+    "explanation": "Leukemia is a common complication of Down syndrome (described by flat occiput, transverse palmar crease, and VSD murmur). Children with Down syndrome have a 10-20 fold increased risk of leukemia, especially acute lymphoblastic leukemia and acute megakaryoblastic leukemia. ITP, G6PD deficiency, and pyloric stenosis are not specifically associated with Down syndrome."
+  },
+  {
+    "question": "A 9-year-old child suffers from an acute-onset weakness which initially started in the lower limbs then involved in the upper limbs. The condition was preceded 3 weeks earlier by a respiratory tract infection. On examination, there is hypotonia and hyporeflexia of both lower limbs. There is no history of convulsions. What is the most likely diagnosis:",
+    "options": [
+      "Brain tumor.",
+      "Poliomyelitis.",
+      "Guillain-Barre syndrome.",
+      "Werdnig Hoffman syndrome."
+    ],
+    "correct": 2,
+    "explanation": "Guillain-Barre syndrome is the most likely diagnosis because the ascending paralysis (starting in lower limbs then involving upper limbs), hypotonia, hyporeflexia, and preceding respiratory infection are classic features. Brain tumor causes focal neurological deficits, not ascending weakness. Poliomyelitis causes asymmetric flaccid paralysis. Werdnig-Hoffman is a chronic progressive disorder, not acute."
+  },
+  {
+    "question": "An infant weighing 1400g is born at 32 weeks. Vital signs include heart rate 140/m, respiratoryrate 80/m, temperature 35\u00b0C. The lungs are clear with bilateral breath sounds and there is no murmur. What is the most appropriate 1st step in management:",
+    "options": [
+      "Obtain CBC with differential.",
+      "Perform lumbar puncture.",
+      "Chest x-ray.",
+      "Place infant under warmer.",
+      "Administer oxygen."
+    ],
+    "correct": 3,
+    "explanation": "Placing the infant under a warmer is the first step because the preterm infant (32 weeks, 1400g) is hypothermic (35\u00b0C), which can rapidly lead to cold stress, metabolic acidosis, and worsening respiratory distress. Warming must be done first before other interventions. CBC, LP, and chest x-ray are important but secondary to thermoregulation."
+  },
+  {
+    "question": "A previouslywell 1-year-old infant has had a runny nose and has been sneezing and coughing for 2 days. Two other members of the family had similar symptoms. Four hours ago, his cough became much worse. On physical examination, he is in moderate respiratory distress with nasal flaring, hyper-expansion of the chest and easily audible wheezing without rales. Which of the following is the most likely diagnosis:",
+    "options": [
+      "Bronchiolitis.",
+      "Viral croup.",
+      "Asthma.",
+      "Epiglottitis."
+    ],
+    "correct": 0,
+    "explanation": "Bronchiolitis is the most likely diagnosis because the 1-year-old has an upper respiratory prodrome followed by wheezing, hyper-expansion, nasal flaring, and respiratory distress, which is the classic presentation of bronchiolitis, most commonly caused by RSV. Viral croup causes barking cough and stridor, not wheezing. Astma is less likely at this age with first-time wheezing. Epiglottitis causes drooling and stridor."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

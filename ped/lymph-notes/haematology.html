@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Haematology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_haematology",
+  "title": "Haematology",
+  "description": "Pediatrics - Haematology MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Ankylostoma anemia is due to:",
+    "options": [
+      "Iron deficiency.",
+      "Red cell hypoplasia in the bone marrow.",
+      "Shortening of the red cell life span.",
+      "Associated infection."
+    ],
+    "correct": 0,
+    "explanation": "Ankylostoma anemia is due to iron deficiency because the hookworm attaches to the intestinal wall and consumes blood, leading to significant blood loss and subsequent iron depletion. The other options are incorrect as hookworm anemia is not primarily due to red cell hypoplasia, shortened red cell lifespan, or associated infection."
+  },
+  {
+    "question": "All the following can be a feature of G6PD deficiency, except:",
+    "options": [
+      "Could be of a cause of neonatal jaundice.",
+      "Urine can be reddish in severe cases.",
+      "Hemolysis may be due to ingestion of certain food.",
+      "Autosomal recessive disorder."
+    ],
+    "correct": 3,
+    "explanation": "G6PD deficiency is not an autosomal recessive disorder but rather an X-linked recessive disorder, which is why option D is correct. The other options are all features of G6PD deficiency: it can cause neonatal jaundice, urine may be reddish in severe hemolytic episodes, and hemolysis can be triggered by ingestion of certain foods like fava beans."
+  },
+  {
+    "question": "Hemophilia A is characterized by:",
+    "options": [
+      "It's an X-linked dominant disorder.",
+      "Circumcision may endanger life.",
+      "Decreased activity of factor X.",
+      "Abnormal bleeding time."
+    ],
+    "correct": 1,
+    "explanation": "Circumcision may endanger life in hemophilia A patients due to the risk of severe bleeding from the procedure. Hemophilia A is an X-linked recessive disorder (not dominant), involves decreased factor VIII (not factor X), and has a normal bleeding time (prolonged coagulation time)."
+  },
+  {
+    "question": "Iron deficiency anemia is characterized by all the following, except:",
+    "options": [
+      "Low serum iron.",
+      "Pica.",
+      "Low serum free transferrin.",
+      "Caused by low iron content in cow milk fed babies."
+    ],
+    "correct": 2,
+    "explanation": "Iron deficiency anemia is characterized by low serum iron, pica, and can be caused by low iron content in cow milk fed babies. However, serum free transferrin is actually increased in iron deficiency as the body tries to compensate by producing more transferrin to transport available iron."
+  },
+  {
+    "question": "Hemophilia A is characterized by only one of the following:",
+    "options": [
+      "Decreased activity of factor VIII.",
+      "An autosomal dominant disease.",
+      "Less common than hemophilia B.",
+      "Normal partial thromboplastin time."
+    ],
+    "correct": 0,
+    "explanation": "Hemophilia A is characterized by decreased activity of factor VIII, which is correct. It is an X-linked recessive disorder, not autosomal dominant (B). Hemophilia A is more common than hemophilia B (C), and partial thromboplastin time is prolonged, not normal (D)."
+  },
+  {
+    "question": "In aplastic anemia, which of the following statements is not correct:",
+    "options": [
+      "Anemia and purpura are the main findings.",
+      "Fever and evidence of infections maybe present.",
+      "Splenomegaly is rather common.",
+      "CBC shows pancytopenia."
+    ],
+    "correct": 2,
+    "explanation": "Splenomegaly is not common in aplastic anemia; instead, the spleen is typically normal or small. The other options are correct findings: anemia and purpura are main features (A), fever and infections may occur due to pancytopenia (B), and CBC shows pancytopenia (D)."
+  },
+  {
+    "question": "Evidences of chronic hemolysis include all the following, except:",
+    "options": [
+      "Low hemoglobin.",
+      "High serum iron.",
+      "Low iron binding capacity.",
+      "Low serum ferritin."
+    ],
+    "correct": 3,
+    "explanation": "In chronic hemolysis, serum ferritin is normal or increased, not low (D). Low hemoglobin (A) occurs due to hemolysis. High serum iron (B) and low iron binding capacity (C) are seen as iron is released from destroyed red blood cells."
+  },
+  {
+    "question": "Characteristic lab findings of iron deficiency anemia are all, except:",
+    "options": [
+      "LowMCV.",
+      "Low serum iron.",
+      "High serum ferritin.",
+      "High iron binding capacity."
+    ],
+    "correct": 2,
+    "explanation": "High serum ferritin (C) is not characteristic of iron deficiency anemia; it indicates adequate iron stores. Iron deficiency anemia shows low MCV (A), low serum iron (B), and high iron binding capacity (D) as the body attempts to compensate for iron deficiency."
+  },
+  {
+    "question": "Phase 1 of coagulation cascade is tested by:",
+    "options": [
+      "PTT.",
+      "PT.",
+      "TT.",
+      "Platelet count."
+    ],
+    "correct": 0,
+    "explanation": "PTT (Partial Thromboplastin Time) tests Phase 1 of the coagulation cascade by measuring the intrinsic pathway. PT tests the extrinsic pathway, TT tests fibrin formation, and platelet count assesses platelet quantity, not coagulation phases."
+  },
+  {
+    "question": "Phase 1:PTT. Phase 2: PT. Phase 3: TT. 10. In iron metabolism, all the following statements are correct, except:",
+    "options": [
+      "Iron is absorbed more efficiently from human milk more than cow milk.",
+      "Iron is absorbed in ferric form by mucosal cells of duodenum.",
+      "When apoferritin is fully saturated with iron, further iron absorption stops.",
+      "Serum ferritin is low in iron deficiency anemia."
+    ],
+    "correct": 1,
+    "explanation": "Iron is absorbed in the ferrous (Fe2+) form, not ferric (Fe3+) form, which requires reduction before absorption. The other options are correct: human milk iron is more efficiently absorbed, apoferritin saturation regulates iron absorption, and serum ferritin is low in iron deficiency anemia."
+  },
+  {
+    "question": "The main site of hemopoiesis from 2-7 months of fetal life is:",
+    "options": [
+      "Yolk sac.",
+      "Liver.",
+      "Spleen.",
+      "Bone marrow."
+    ],
+    "correct": 1,
+    "explanation": "The liver is the main site of hemopoiesis from 2-7 months of fetal life. The yolk sac is primary in early development (first 2 months), while bone marrow starts around 5 months but doesn't become dominant until after birth."
+  },
+  {
+    "question": "1st2months (intrauterine): yolk sac. 2-7 months (intrauterine): liver. Bone marrow starts at 5th month (intrauterine) and takes over after birth. 12. In beta thalassemia major, which of the following statements is not correct:",
+    "options": [
+      "Autosomal recessive disorder.",
+      "Spleen is always enlarged and can be huge.",
+      "Hemoglobin electrophoresis shows elevated hemoglobin F (10-90%) and hemoglobin A2 (7- 15%).",
+      "Anemia is microcytic hypochromic."
+    ],
+    "correct": 2,
+    "explanation": "In beta thalassemia major, hemoglobin electrophoresis shows elevated hemoglobin F but typically decreased hemoglobin A2 (not elevated). The other options are correct: it's autosomal recessive, splenomegaly is common, and anemia is microcytic hypochromic."
+  },
+  {
+    "question": "The dose of oral iron when used to treat a child with iron deficiency anemia is:",
+    "options": [
+      "6 mg of elemental iron/Kg/day.",
+      "16 mg of elemental iron/Kg/day.",
+      "20 mg of elemental iron/Kg/day.",
+      "40 mg of elemental iron/Kg/day."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because the standard therapeutic dose of oral iron for iron deficiency anemia in children is 3-6 mg/kg/day of elemental iron, which is sufficient to replenish iron stores. Options B, C, and D are incorrect as they exceed the recommended therapeutic dose and could potentially cause toxicity without additional benefit."
+  },
+  {
+    "question": "On a routine well-child examination, a 1-year-old boy is noted to be pale. He is in the 75th percentile for weight and 25th percentile for length. Results of physical examination are otherwise normal. Lab results reveal that hemoglobin is 8 g/dl, hypochromia and microcytosis. What is the most appropriate treatment:",
+    "options": [
+      "Blood transfusion.",
+      "Oral iron therapy.",
+      "Parenteral iron therapy.",
+      "Increase milk intake."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because the child's presentation with pallor, hypochromia, and microcytosis is classic for iron deficiency anemia, which is best treated with oral iron therapy. Option A is unnecessary as the child is not in acute distress, option C is reserved for cases where oral iron is not tolerated or effective, and option D is incorrect as excessive milk intake can actually worsen iron deficiency."
+  },
+  {
+    "question": "A 6-year-old girl presented to hematology clinic because of significant pallor. On examination, this girl had many petechiae on her skin. CBC showed total WBC count of 950/mm3, hemoglobin of 6 gm/dl and platelet count of 20.000/mm3. The spleen was not enlarged. The mother attributed her weakness to the many antibiotics she received for recurrent throat infections. Normal WBCs count is 4,500 to11,000/mm?. I. The most likely diagnosis is:",
+    "options": [
+      "Immune thrombocytopenic purpura.",
+      "Acute leukemia.",
+      "Aplastic anemia.",
+      "Systemic lupus erythematosus."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because the pancytopenia (low WBC, hemoglobin, and platelets) with normal spleen size and history of antibiotic use is most consistent with aplastic anemia. Option A is incorrect as ITP typically presents with isolated thrombocytopenia, option B is incorrect as acute leukemia usually shows abnormal blasts in peripheral smear, and option D is incorrect as SLE typically shows other systemic features and autoantibodies."
+  },
+  {
+    "question": "The anemia is expected to be:",
+    "options": [
+      "Normocytic normochromic.",
+      "Microcytic hypochromic.",
+      "Macrocytic hyperchromic.",
+      "Macrocytic hypochromic."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because in aplastic anemia, the anemia is typically normocytic normochromic due to decreased production of all blood cell lines. Option B is characteristic of iron deficiency, option C is seen in B12 or folate deficiency, and option D is not a typical classification of anemia."
+  },
+  {
+    "question": "The mode of inheritance of hereditary spherocytosis is:",
+    "options": [
+      "Autosomal dominant.",
+      "Autosomal recessive.",
+      "X-linked dominant.",
+      "X-linked recessive."
+    ],
+    "correct": 0,
+    "explanation": "Hereditary spherocytosis is inherited in an autosomal dominant pattern because it results from mutations in genes encoding red blood cell membrane proteins, with one mutated copy sufficient to cause the condition. Options B, C, and D are incorrect because the condition is not linked to sex chromosomes and does not require two copies of the mutated gene to manifest."
+  },
+  {
+    "question": "In aplastic anemia, which of the following statements is correct:",
+    "options": [
+      "Anemia is usually microcytic hypochromic.",
+      "Leukocytosis is rather common.",
+      "Splenomegaly is rather common.",
+      "CBC shows pancytopenia."
+    ],
+    "correct": 3,
+    "explanation": "Aplastic anemia is characterized by pancytopenia (reduction in all blood cell lines) due to bone marrow failure. Option A is incorrect as anemia in aplastic anemia is typically normocytic, not microcytic hypochromic; option B is incorrect as leukopenia (not leukocytosis) is common; and option C is incorrect as splenomegaly is not typical in aplastic anemia."
+  },
+  {
+    "question": "All the following are true about congenital spherocytosis, except:",
+    "options": [
+      "Transmitted as an autosomal dominant trait.",
+      "Hb electrophoresis is best tool to diagnose.",
+      "It can manifest in neonatal period.",
+      "Examination often reveals splenomegaly."
+    ],
+    "correct": 1,
+    "explanation": "Hemoglobin electrophoresis is not the best diagnostic tool for congenital spherocytosis; instead, osmotic fragility test or peripheral blood smear is more appropriate. Option A is correct as it's autosomal dominant; option C is correct as it can manifest in neonates; and option D is correct as splenomegaly is a common finding."
+  },
+  {
+    "question": "A 5-year-old boy was referred to hematology clinic with provisional diagnosis by his GP as having G6PD deficiency. After lab evaluation, the mother was told that he had beta thalassemia major. I. G6PD deficiency was excluded because:",
+    "options": [
+      "Enzyme assay was normal.",
+      "Osmotic fragility was normal.",
+      "Haemoglobin A was normal.",
+      "Serum iron was high."
+    ],
+    "correct": 0,
+    "explanation": "G6PD deficiency was excluded because the enzyme assay was normal, confirming the absence of the enzyme deficiency. Option B is incorrect as osmotic fragility is not specific for G6PD; option C is incorrect as hemoglobin A would be abnormal in beta thalassemia; and option D is incorrect as serum iron is typically normal or elevated in thalassemia, not specific for G6PD."
+  },
+  {
+    "question": "The diagnosis of beta thalassemia major was confirmed because:",
+    "options": [
+      "Anemia was microcytic hypochromic.",
+      "Reticulocytic count was high.",
+      "HbF was high.",
+      "Serum iron was high."
+    ],
+    "correct": 2,
+    "explanation": "HbF (fetal hemoglobin) is high in beta thalassemia major due to compensatory increased production as beta-globin chains are deficient. Microcytic hypochromic anemia is common to many iron deficiencies, high reticulocyte count suggests hemolytic processes, and high serum iron is seen in iron overload, not thalassemia."
+  },
+  {
+    "question": "A 4-year-old boy referred to a pediatric rheumatologist with provisional diagnosis of juvenile rheumatoid arthritis. He was asked to do CBC, showed significant anemia and Hb electrophoresis, which was diagnostic. I. What is the diagnosis:",
+    "options": [
+      "B-thalassemia major.",
+      "Sickle cell anemia.",
+      "Hb C disease",
+      "Acute lymphocytic leukemia."
+    ],
+    "correct": 1,
+    "explanation": "Sickle cell anemia is diagnosed by Hb electrophoresis showing predominance of HbS. Beta-thalassemia major would show elevated HbF, HbC disease would show HbC, and ALL would show abnormal white cells, not primarily diagnosed by Hb electrophoresis."
+  },
+  {
+    "question": "Pain in hand & feet due to:",
+    "options": [
+      "Vascular occlusion.",
+      "Severe anaemia.",
+      "Concomitant vit D deficiencies.",
+      "Sequestration crisis."
+    ],
+    "correct": 0,
+    "explanation": "Pain in hands and feet (dactylitis) in sickle cell disease is due to vascular occlusion from sickled red blood cells. Severe anemia causes fatigue, not pain; vitamin D deficiency affects bones but not specifically hands/feet; sequestration crisis causes acute anemia and organ enlargement."
+  },
+  {
+    "question": "Physiologic anemia of infancy is usually noticed at:",
+    "options": [
+      "8-12 weeks of age.",
+      "20-24 weeks of age.",
+      "30-36 weeks of age.",
+      "Above the age of 6 months."
+    ],
+    "correct": 0,
+    "explanation": "Physiologic anemia of infancy occurs at 8-12 weeks when the hemoglobin level naturally decreases as fetal hemoglobin is replaced by adult hemoglobin and erythropoietin production decreases. The other options are too late for this normal developmental process."
+  },
+  {
+    "question": "Phase 2 of coagulation cascade is assessed by:",
+    "options": [
+      "Partial thromboplastin time (PTT).",
+      "Prothrombin time (PT).",
+      "Thrombin time (TT).",
+      "Platelet count."
+    ],
+    "correct": 1,
+    "explanation": "Prothrombin time (PT) assesses the extrinsic and common pathways of coagulation (Phase 2). PTT assesses the intrinsic and common pathways, TT assesses fibrinogen conversion to fibrin, and platelet count assesses platelet quantity, not the coagulation cascade phases."
+  },
+  {
+    "question": "Hemolytic anaemia characterized byall except:",
+    "options": [
+      "Anaemia unresponsive to iron therapy.",
+      "Presence of Hb in urine, during acute attack.",
+      "Increased Reticulocytic count.",
+      "Direct hyperbilirubinemia is the main presentation."
+    ],
+    "correct": 3,
+    "explanation": "Direct hyperbilirubinemia is not typical in hemolytic anemia, which usually presents with indirect hyperbilirubinemia due to increased bilirubin from red blood cell breakdown. The other options are characteristic features of hemolytic anemia."
+  },
+  {
+    "question": "A male neonate developed severe bleeding after circumcision which was done at age of 3 days. On examination, the baby looked markedly pale, with respiratory distress, tachycardia and hypotension. The capillary refill time was 6 seconds. CBC was normal apart from haemoglobin of 5 gm/dl. PTT was 67 seconds, PT was 11 seconds and TT was 15 seconds. Factor VIII assay was 4% of normal. I. The patient is suffering from:",
+    "options": [
+      "Hemophilia A.",
+      "Hemophilia B.",
+      "Von Willebrand disease.",
+      "Thrombopoietin deficiency."
+    ],
+    "correct": 0,
+    "explanation": "The patient has Hemophilia A (factor VIII deficiency) as evidenced by prolonged PTT, normal PT and TT, and low factor VIII assay. Hemophilia B involves factor IX deficiency, von Willebrand disease affects vWF protein, and thrombopoietin deficiency affects platelet production."
+  },
+  {
+    "question": "Factor VIII assay shows that the degree of severity in this patient is:",
+    "options": [
+      "Mild.",
+      "Moderate.",
+      "Severe.",
+      "Very severe."
+    ],
+    "correct": 1,
+    "explanation": "The patient has moderate Hemophilia A as factor VIII level is 4% (mild: 5-40%, moderate: 1-5%, severe: <1%). Very severe would be <1%, mild would be >5%, and moderate is 1-5%."
+  },
+  {
+    "question": "A 5-year-old boy was referred to hematology clinic with provisional diagnosis from his GP as having beta thalassemia major. After lab evaluation, the mother was told that he had G6PD deficiency. I. Beta thalassemia was excluded because:",
+    "options": [
+      "Anemia was microcytic hypochromic.",
+      "Reticulocytic count was high.",
+      "HbF was normal.",
+      "Serum iron was high."
+    ],
+    "correct": 2,
+    "explanation": "Beta thalassemia major is characterized by elevated HbF levels due to compensatory mechanisms, while G6PD deficiency typically has normal HbF. Option A is incorrect as both conditions can cause microcytic hypochromic anemia. Option B is incorrect as reticulocyte count is usually high in both conditions. Option D is incorrect as serum iron is typically normal or elevated in thalassemia, not high."
+  },
+  {
+    "question": "Which of the following can precipitate attacks of hemolysis in this child?",
+    "options": [
+      "Fava beans.",
+      "Sulphonamides.",
+      "High dose of aspirin.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "All the listed options can precipitate hemolysis in G6PD deficiency: fava beans contain oxidizing compounds, sulphonamides are oxidative drugs, and high-dose aspirin can trigger oxidative stress. This makes option D correct as it encompasses all potential triggers."
+  },
+  {
+    "question": "A previously well 4-year-old was brought to hospital because his parents noticed that his eyes looked yellow. He has recently been treated with trimethoprim\u00ac sulfamethoxazole for a urinary tract infection. His haemoglobin is 7.1 gm/dl. What investigation is the most likely to provide a diagnosis?",
+    "options": [
+      "Hemoglobin electrophoresis.",
+      "Liver function tests.",
+      "G6PD assay.",
+      "Osmotic fragility test."
+    ],
+    "correct": 2,
+    "explanation": "The most likely diagnosis is G6PD deficiency given the recent exposure to trimethoprim-sulfamethoxazole (an oxidative drug) and hemolytic anemia. Option A is incorrect as hemoglobin electrophoresis is for hemoglobinopathies. Option B is incorrect as liver function tests would be abnormal in liver disease but not specific for hemolysis. Option D is incorrect as osmotic fragility test is for hereditary spherocytosis."
+  },
+  {
+    "question": "Iron deficiency anemia is characterized by all, except:",
+    "options": [
+      "High total iron binding capacity.",
+      "Low serum ferritin.",
+      "Macrocytic hypochromic anemia.",
+      "Low serum iron."
+    ],
+    "correct": 2,
+    "explanation": "Iron deficiency anemia is characterized by microcytic hypochromic anemia, not macrocytic. Options A, B, and D are all features of iron deficiency: high TIBC, low serum ferritin, and low serum iron respectively. Option C is incorrect because macrocytic anemia is seen in vitamin B12 or folate deficiency, not iron deficiency."
+  },
+  {
+    "question": "A 5-year-old boy was referred to hematology clinic with a provisional diagnosis from his GP as having beta thalassemia major. After lab evaluation, the mother was told that he had hereditary spherocytosis. I. The diagnosis of hereditary spherocytosis was based on:",
+    "options": [
+      "G6PD assay was normal.",
+      "Osmotic fragility test was positive.",
+      "Hemoglobin A was normal.",
+      "Serum iron was high."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because osmotic fragility test is positive in hereditary spherocytosis due to defective red cell membrane making them more fragile. Option A is wrong because G6PD assay is normal in spherocytosis but low in G6PD deficiency. Option C is wrong because hemoglobin A is normal in spherocytosis but reduced in thalassemia. Option D is wrong because serum iron is not high in spherocytosis."
+  },
+  {
+    "question": "The diagnosis of beta thalassemia major was excluded because:",
+    "options": [
+      "Serum ferritin was high.",
+      "Reticulocytic count was high.",
+      "HbF was normal.",
+      "Serum iron was high."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because beta thalassemia major is characterized by elevated HbF, not normal HbF. Option A is wrong because high serum ferritin is seen in iron overload, not specific to thalassemia exclusion. Option B is wrong because high reticulocytic count is seen in hemolytic conditions like spherocytosis, not thalassemia. Option D is wrong because high serum iron is not specific to thalassemia exclusion."
+  },
+  {
+    "question": "Regarding spherocytosis, which is false:",
+    "options": [
+      "Hereditary spherocytosis may present as jaundice in the neonates.",
+      "It is AD disease and can never affect a child with healthy parents.",
+      "The severity of neonatal jaundice is usually mild.",
+      "Splenectomy is indicated in some cases of hereditary spherocytosis."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because hereditary spherocytosis is an autosomal dominant disease, meaning it can affect children with healthy parents if there's a new mutation. Option A is true as spherocytosis can present as neonatal jaundice. Option C is true as neonatal jaundice in spherocytosis is usually mild. Option D is true as splenectomy is indicated in severe cases."
+  },
+  {
+    "question": "AH of the following are laboratory features of haemolytic anaemia except:",
+    "options": [
+      "Reticulocytosis.",
+      "Decreased iron binding capacity.",
+      "Urine become darker in colour due to high serum direct bilirubin.",
+      "Blood films to show anisocytosis and target cells."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because urine becomes darker due to high indirect bilirubin, not direct bilirubin, in hemolytic anemia. Option A is correct as reticulocytosis is a feature of hemolytic anemia. Option B is correct as iron binding capacity decreases in hemolytic anemia. Option D is correct as anisocytosis and target cells can be seen in hemolytic anemias."
+  },
+  {
+    "question": "In beta thalassemia major:",
+    "options": [
+      "Normochromic RBCs.",
+      "Target cells seen in blood film.",
+      "Narrow medulla of long bones.",
+      "Anisocytosis or RBCs is constant in bone marrow."
+    ],
+    "correct": 1,
+    "explanation": "Target cells are characteristic of beta thalassemia major due to excess membrane relative to hemoglobin content. Normochromic RBCs are incorrect as thalassemia typically shows hypochromic cells. Narrow medulla of long bones is incorrect as thalassemia may show marrow expansion. Anisocytosis is not constant in bone marrow."
+  },
+  {
+    "question": "In iron deficiency anemia:",
+    "options": [
+      "Decreased iron binding capacity is expected.",
+      "Marked hepatomegaly is a common finding.",
+      "Mebendazoles sometimes used in management.",
+      "Diastolic murmur is commonly audible."
+    ],
+    "correct": 2,
+    "explanation": "Mebendazole is used in iron deficiency anemia when caused by hookworm infestation. Decreased iron binding capacity is incorrect as it's typically increased. Marked hepatomegaly is not common in iron deficiency. Diastolic murmur is not typically associated with iron deficiency anemia."
+  },
+  {
+    "question": "A false statement regarding sickle cell anaemia is:",
+    "options": [
+      "Vaso-occlusive crisis are the least common presentation of the disease.",
+      "Human parvovirus B19 is an important cause of aplastic crisis.",
+      "Splenic infarction may result in functional hyposplenisim.",
+      "Association with G6PD deficiency leads to hyperhaemolytic crisis."
+    ],
+    "correct": 0,
+    "explanation": "Vaso-occlusive crises are actually the most common presentation of sickle cell anemia, not the least common. Human parvovirus B19 is indeed a cause of aplastic crisis. Splenic infarction can lead to functional hyposplenism. G6PD deficiency association can lead to hemolytic crisis."
+  },
+  {
+    "question": "Sickle cell trait is characterized by the following, except:",
+    "options": [
+      "They are heterozygous and have one healthy gene.",
+      "RBCs content of HbS is usually more than 75%",
+      "Hypoxic condition, as shock or high altitude may induce painful crisis.",
+      "High incidence in black race and protect against malaria."
+    ],
+    "correct": 1,
+    "explanation": "In sickle cell trait, RBCs contain less than 50% HbS, not more than 75%. They are heterozygous with one healthy gene. Hypoxic conditions can induce painful crises. Sickle cell trait has high incidence in black race and provides protection against malaria."
+  },
+  {
+    "question": "Which of the following causes hemolysis in G6PD deficiency:",
+    "options": [
+      "Infection with EBV.",
+      "Ingestion of peas.",
+      "Aspirin.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "All of the options can trigger hemolysis in G6PD deficiency. Infections like EBV, ingestion of fava beans (peas), and certain medications like aspirin can all precipitate hemolytic episodes in individuals with this enzyme deficiency."
+  },
+  {
+    "question": "The factors promoting sickling are as follows, except:",
+    "options": [
+      "Anoxia.",
+      "Acidosis.",
+      "Infection.",
+      "Overhydration."
+    ],
+    "correct": 3,
+    "explanation": "Overhydration (D) does not promote sickling; in fact, dehydration is a known trigger. Anoxia (A), acidosis (B), and infection (C) all promote sickling by increasing hemoglobin S polymerization."
+  },
+  {
+    "question": "In beta thalassemia major, which of the following statements is correct:",
+    "options": [
+      "Patient is heterozygous for the abnormal beta globin gene.",
+      "Splenomegaly is uncommon.",
+      "Hemoglobin electrophoresis shows elevated hemoglobin F (10-90%) and hemoglobin A2 (7- 15%).",
+      "Anemia is microcytic hypochromic."
+    ],
+    "correct": 3,
+    "explanation": "Beta thalassemia major involves homozygous or compound heterozygous mutations, not heterozygous (A). Splenomegaly is common due to extramedullary hematopoiesis (B). Hemoglobin electrophoresis shows elevated HbF but decreased HbA2 (C). The anemia is indeed microcytic hypochromic (D)."
+  },
+  {
+    "question": "Which of the following is true concerning hemoglobin:",
+    "options": [
+      "HbA2 is formed of 2 alpha and 2 beta chains.",
+      "HbA is formed of 2 alpha and 2 gamma chains.",
+      "HbF is formed of 2 alpha and 2 delta chains.",
+      "In HbS, amino acid number 6 in beta chain is changed."
+    ],
+    "correct": 3,
+    "explanation": "HbA consists of 2 alpha and 2 beta chains (A is incorrect). HbF consists of 2 alpha and 2 gamma chains (B is incorrect). HbA2 consists of 2 alpha and 2 delta chains (C is incorrect). In HbS, glutamic acid is replaced by valine at position 6 of the beta chain (D is correct)."
+  },
+  {
+    "question": "HbA:2 alpha &2 beta. HbA2:2 alpha &2 delta. HbF:2 alpha &2gamma. 39. An-8-month old female infant is admitted because the mother noted that her infant has become yellow during the past 2 to 4 weeks. Family history is significant for mild anemia of unknown etiology in the mother. Examination reveals pallor (hematocrit 15%), jaundice & splenomegaly. I. In this infant, the following are expected lab findings, except:",
+    "options": [
+      "Reticulocytic count of 8%.",
+      "Microcytosis.",
+      "HbF >90%.",
+      "Conjugated hyperbilirubinemia."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because this infant has hemolytic anemia (evidenced by jaundice, pallor, splenomegaly, and reticulocytosis), which causes unconjugated hyperbilirubinemia, not conjugated. Option A is expected due to hemolytic anemia, option B is expected in beta-thalassemia, and option C is expected in beta-thalassemia major."
+  },
+  {
+    "question": "An expected lab finding in the infant's mother:",
+    "options": [
+      "Increased HbA2.",
+      "Bone marrow aplasia.",
+      "Increased glycosylated hemoglobin.",
+      "Increased mean corpuscular volume (MCV)."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because the mother likely has beta-thalassemia trait, which is characterized by increased HbA2. Option B is incorrect as thalassemia trait doesn't cause bone marrow aplasia. Option C is incorrect as glycosylated hemoglobin is for diabetes monitoring. Option D is incorrect as thalassemia trait typically causes microcytic (low MCV) red cells."
+  },
+  {
+    "question": "Manifestation of the splenic infarct include all, except:",
+    "options": [
+      "Abdominal pain.",
+      "Reduced splenic size.",
+      "Splenomegaly.",
+      "Vomiting."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because splenic infarct would cause reduced splenic size, not splenomegaly. Options A, B, and D are all potential manifestations of splenic infarct, including abdominal pain, reduced splenic size, and vomiting."
+  },
+  {
+    "question": "Sickle cell disease patient is susceptible to the following infection:",
+    "options": [
+      "Pneumococci.",
+      "Salmonella.",
+      "Both a & b.",
+      "None of the above."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because sickle cell disease patients are particularly susceptible to pneumococcal infections due to functional asplenia. While they can get Salmonella infections, pneumococcal infections are much more common and characteristic. Option B is partially correct but not as comprehensive as A, and option C is incorrect because Salmonella is not as characteristic as pneumococcus in sickle cell disease."
+  },
+  {
+    "question": "In child presenting with active hemolysis due to an inherited hemolytic anemia:",
+    "options": [
+      "Anemia is usually macrocytic.",
+      "The plasma conjugated bilirubin level is elevated.",
+      "Reticulocyte count will be less than 1%.",
+      "Plasma haptoglobin will be elevated.",
+      "There is excess urinary urobilinogen."
+    ],
+    "correct": 4,
+    "explanation": "E is correct because hemolysis leads to increased breakdown of heme, resulting in excess unconjugated bilirubin production and subsequent increased urinary urobilinogen. A is wrong as hemolytic anemias are typically normocytic or microcytic, not macrocytic. B is wrong because conjugated bilirubin elevation suggests liver dysfunction, not hemolysis. C is wrong as reticulocyte count should be elevated in hemolysis as bone marrow compensates. D is wrong as haptoglobin is consumed in hemolysis, not elevated."
+  },
+  {
+    "question": "All are usual findings in sickle cell disease, except:",
+    "options": [
+      "Reticulocytopenia.",
+      "Diagnosis is confirmed by Hb electrophoresis.",
+      "Renal nephropathy may occur.",
+      "Normal MCV."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because sickle cell disease typically causes reticulocytosis (elevated reticulocytes) as compensation for hemolysis, not reticulocytopenia. B is wrong as Hb electrophoresis is indeed used to confirm sickle cell diagnosis. C is wrong as renal complications are common in sickle cell disease. D is wrong as MCV is typically normal in sickle cell disease."
+  },
+  {
+    "question": "A 9-year-old previously well boy is brought to the office by his mother, she reports that 45. 46. 47. oo fF 2 he developed pallor, dark urine and jaundice over past few days, he is taking trimethoprim sulfamethoxazole for otitis media which of the following are the most likely cause of the symptoms:",
+    "options": [
+      "Hepatitis B.",
+      "Hepatitis A.",
+      "Hemolytic-uranic syndrome.",
+      "G6PD|."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because trimethoprim-sulfamethoxazole can trigger hemolysis in G6PD deficiency, which presents with pallor, dark urine (hemoglobinuria), and jaundice. A and B are wrong as hepatitis typically presents with gastrointestinal symptoms and elevated transaminases, not primarily hemolysis. C is wrong as hemolytic-uremic syndrome typically presents with thrombocytopenia and renal failure, not primarily hemolysis."
+  },
+  {
+    "question": "A 10-year-old male presents with sudden onset of jaundice, dark-colored urine, back pain, and fatigue. He was started on trimethoprim-sulfamethoxazole for an ear infection a few days ago. He has a family history of blood disorders. On examination, he is jaundiced and pale. Abdominal and cardiovascular examination is unremarkable. Which of the following is the least likely diagnosis?",
+    "options": [
+      "Autoimmune hemolytic anemia.",
+      "G6PD deficiency.",
+      "Sickle cell anemia.",
+      "\u2018Thalassemia."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because thalassemia typically presents with chronic hemolytic anemia, not acute hemolysis triggered by medications. A, B, and C are wrong as all can present with acute hemolysis: autoimmune hemolytic anemia can be triggered by infections or medications, G6PD deficiency is triggered by oxidative drugs like TMP-SMX, and sickle cell anemia can have hemolytic crises triggered by various factors."
+  },
+  {
+    "question": "An 8-year-old girl presents with fever, numerous bruises over the entire body and pain in both legs. Examination revealed pallor, ecchymoses, petechiae on the face, trunk and extremities. Spleen is palpable at 2 cm below left costal margin. CBC shows Hb 6.3 g/dl, WBCs 2800/mm\u00e9 and platelet count of 29.000/mm\u2018*. The most appropriate diagnostic test is:",
+    "options": [
+      "Bone marrow aspiration.",
+      "Skeletal survey.",
+      "Anti-platelet antibodies.",
+      "Abdominal ultrasound."
+    ],
+    "correct": 0,
+    "explanation": "Bone marrow aspiration is the most appropriate diagnostic test as this child presents with pancytopenia (low hemoglobin, white blood cells, and platelets) with pallor, bruising, and splenomegaly, suggesting acute leukemia. Skeletal survey is for bone abnormalities, anti-platelet antibodies for immune thrombocytopenia, and abdominal ultrasound for abdominal organ pathology, none of which address the underlying bone marrow pathology."
+  },
+  {
+    "question": "Lymph Notes | P age 85 48. Anemia maybe caused by deficiency of any of the following, except:",
+    "options": [
+      "Protein.",
+      "Iron.",
+      "Copper.",
+      "Folate."
+    ],
+    "correct": 2,
+    "explanation": "Copper deficiency does not typically cause anemia, while protein, iron, and folate deficiencies are well-established causes of anemia. Protein deficiency leads to impaired hemoglobin synthesis, iron deficiency causes microcytic anemia, and folate deficiency results in megaloblastic anemia."
+  },
+  {
+    "question": "Most accurate test:",
+    "options": [
+      "Hb level",
+      "Reticulocyte count",
+      "G6PD level",
+      "Osmotic fragility of RBCs"
+    ],
+    "correct": 2,
+    "explanation": "G6PD level is the most accurate test for diagnosing G6PD deficiency, a hereditary enzyme disorder that can cause hemolytic anemia. Hb level indicates anemia but not its cause, reticulocyte count shows bone marrow response but not specific diagnosis, and osmotic fragility tests for conditions like hereditary spherocytosis, not G6PD deficiency."
+  },
+  {
+    "question": "Which of the following is correct about sickle cell anemia?",
+    "options": [
+      "Hyperhemolytic crisis is usually very painful to patient.",
+      "Hepatic sequestration crisis occurs leading to enlarged tender liver. Lymph Notes | P a ge 86 53. ao fF 2 Sudden attack of aplasia of the bone marrow may follow viral infection. Splenic enlargement is significant in all children."
+    ],
+    "correct": 1,
+    "explanation": "Hepatic sequestration crisis in sickle cell anemia leads to enlarged tender liver due to trapping of sickled cells in the liver. Hyperhemolytic crisis is not typically painful, sudden aplasia of bone marrow is not a feature of sickle cell anemia, and splenic enlargement is not significant in all children as autoinfarction typically occurs early in life."
+  },
+  {
+    "question": ". An 8-year-old black male presents to emergency room complaining of severe pain in hand and feet mother gave history of repeated similar painful attacks and history of repeated blood transfusion such painful episodes are more common during hot weather and are usually treated in hospital by IV fluids What is the most likely diagnosis?",
+    "options": [
+      "Haemophilia.",
+      "Sickle cell anaemia.",
+      "Acute leukaemia.",
+      "Juvenile chronic arthritis."
+    ],
+    "correct": 1,
+    "explanation": "Sickle cell anemia is correct as it presents with painful crises triggered by heat/dehydration, occurs in black populations, and requires IV fluids during crises. Hemophilia involves bleeding not pain, leukemia would show abnormal cells, and arthritis would have joint swelling without transfusion needs."
+  },
+  {
+    "question": "Spherocytosis is:",
+    "options": [
+      "Autosomal dominant.",
+      "Sex linked dominant.",
+      "Autosomal recessive.",
+      "Sex linked recessive."
+    ],
+    "correct": 0,
+    "explanation": "Spherocytosis is autosomal dominant as it's inherited from one parent. It's not sex-linked as it affects both genders equally, and it's not recessive as it can be inherited from just one affected parent."
+  },
+  {
+    "question": "The anemia in beta thalassemia major is:",
+    "options": [
+      "Normocytic normochromic.",
+      "Microcytic hypochromic.",
+      "Macrocytic hyperchromic.",
+      "Macrocytic hypochromic."
+    ],
+    "correct": 1,
+    "explanation": "Beta thalassemia major causes microcytic hypochromic anemia due to reduced hemoglobin production. It's not normocytic as RBCs are small, not macrocytic as they're not large, and not hyperchromic as they have less hemoglobin."
+  },
+  {
+    "question": "Causes of microcytic anemia include all the following, except:",
+    "options": [
+      "Thalassemia trait.",
+      "Sickle cell disease.",
+      "Lead poisoning.",
+      "Iron deficiency."
+    ],
+    "correct": 1,
+    "explanation": "Sickle cell disease is not microcytic; it's typically normocytic. Thalassemia trait, lead poisoning, and iron deficiency all cause microcytic anemia due to impaired hemoglobin synthesis or RBC production."
+  },
+  {
+    "question": "A 5-year-old child presents with history of fever for past 2weeks, petechial spots all over the body with increasingpallor over the last month and splenomegaly 4 cm below costal margin. The most likely diagnosis is:",
+    "options": [
+      "Acute leukemia.",
+      "ITP.",
+      "Hypersplenism.",
+      "Aplastic anemia."
+    ],
+    "correct": 0,
+    "explanation": "Acute leukemia is the correct answer as it presents with prolonged fever, petechiae (due to thrombocytopenia), pallor (anemia), and splenomegaly. ITP typically presents with isolated thrombocytopenia without anemia or splenomegaly, hypersplenism would show cytopenias but not prolonged fever, and aplastic anemia would show pancytopenia without splenomegaly."
+  },
+  {
+    "question": "This 4-year old male is referred with a chief complaint of easy bruising. The parents are consanguineous. Examination reveals head circumference, height, and weight less below the 5thpercentile, dark skin and abnormal head and no Organomegaly. Blood picture shows platelet count 18,000/mm3, Hb 8 gm%, WBCs 5000/mm3. The most likely diagnosis is:",
+    "options": [
+      "ITP.",
+      "Acute leukemia.",
+      "Acquired aplastic anemia.",
+      "Fanconi anemia."
+    ],
+    "correct": 3,
+    "explanation": "Fanconi anemia is the correct answer as it presents with pancytopenia, congenital anomalies, and consanguinity. ITP would show isolated thrombocytopenia without congenital anomalies, acute leukemia would show blast cells in peripheral smear, and acquired aplastic anemia would not typically present with congenital anomalies or consanguinity."
+  },
+  {
+    "question": "Reticulocytosis is present in all of the following, except:",
+    "options": [
+      "Chronic hemolytic anemia.",
+      "Iron therapy of Iron deficiency anemia.",
+      "Aplastic anemia.",
+      "Acute hemolytic anemia."
+    ],
+    "correct": 2,
+    "explanation": "Aplastic anemia is the correct answer as it presents with pancytopenia and reticulocytopenia (decreased reticulocytes). Chronic hemolytic anemia, iron therapy for iron deficiency anemia, and acute hemolytic anemia all show reticulocytosis as the bone marrow compensates for increased red cell destruction or production."
+  },
+  {
+    "question": "Acute leukemia may present by:",
+    "options": [
+      "Purpura.",
+      "Arthritis.",
+      "Repeated bacterial infection.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "All of the above are correct as acute leukemia can present with purpura (thrombocytopenia), arthritis (leukemic infiltration or rheumatologic manifestations), and repeated bacterial infections (due to neutropenia). These are common presenting features of acute leukemia in children."
+  },
+  {
+    "question": "Over the past 3 to 4 days, a 7-year-old boy has become progressively ill with mild, mid\u00ac abdominal pain that have become steadily worse. On physical examination, he has an elevated rash on his thighs, feet, and buttocks. The rash does not blanch and he has semi-soft dark stool, which is guaiac-positive. Guaiac-positive = occult blood in stool. I. The most likely diagnosis:",
+    "options": [
+      "Acute appendicitis.",
+      "Henoch-Schonlein purpura.",
+      "Acute leukaemia.",
+      "Shigella dysentery."
+    ],
+    "correct": 1,
+    "explanation": "Henoch-Schonlein purpura is correct due to the classic triad of abdominal pain, palpable purpura, and gastrointestinal bleeding (guaiac-positive stool). Acute appendicitis would typically present with right lower quadrant pain, leukemia with systemic symptoms, and shigella with bloody diarrhea but without the characteristic rash."
+  },
+  {
+    "question": "An expected laboratoryfinding is:",
+    "options": [
+      "Marked leucocytosis.",
+      "Blast cells in peripheral blood.",
+      "Normal platelet count.",
+      "Positive stool culture."
+    ],
+    "correct": 2,
+    "explanation": "Normal platelet count is expected in Henoch-Schonlein purpura as it is a vasculitis without platelet destruction. Leucocytosis is not typical, blast cells suggest leukemia, and stool culture is usually negative as this is not an infectious condition."
+  },
+  {
+    "question": "A 4-year-old boy presents with severe pains in both of his legs. On physical examination, he is noted to have marked pallor on his lips and palpebral conjunctiva. Numerous purpuraand petechiaeare noted on his skin. His spleen is palpable 3 cm below his left costal margin. Laboratory evaluation reveals a white blood cell count of 1600/mm3, hemoglobin of 6.1g/dl and platelets of 36.000/mm3. I. The most likely diagnosis is:",
+    "options": [
+      "Acute leukemia.",
+      "Aplastic anemia.",
+      "German measles.",
+      "Immune thrombocytopenic purpura."
+    ],
+    "correct": 0,
+    "explanation": "Acute leukemia is correct given the pancytopenia (low WBC, hemoglobin, platelets), pallor, petechiae, splenomegaly, and bone pain. Aplastic anemia wouldn't show splenomegaly, German measles is viral with different symptoms, and ITP typically has isolated thrombocytopenia without other cytopenias."
+  },
+  {
+    "question": "The following is not an expected finding:",
+    "options": [
+      "Hematuria.",
+      "Repeated infections.",
+      "Lymphadenopathy.",
+      "Reticulocytosis."
+    ],
+    "correct": 3,
+    "explanation": "Reticulocytosis is not expected in acute leukemia as the bone marrow is infiltrated by blasts, impairing normal hematopoiesis. Hematuria can occur from infiltration, repeated infections are common due to neutropenia, and lymphadenopathy is a typical finding in leukemia."
+  },
+  {
+    "question": "Repeated blood transfusion is indicated in thalassemia children to:",
+    "options": [
+      "Achieve better growth.",
+      "Decrease cardiac dilation.",
+      "Both a and b.",
+      "None of the above."
+    ],
+    "correct": 2,
+    "explanation": "Repeated blood transfusions in thalassemia help achieve better growth by improving anemia and decrease cardiac dilation by reducing the heart's workload from severe anemia. Option A is incomplete as it doesn't address cardiac benefits, and option B is incomplete as it doesn't address growth benefits."
+  },
+  {
+    "question": "2 weeks after a viral illness, a two years old child developed bruising and petechiae, more prominent over the legs. He had neither hepatosplenomegaly nor lymph node enlargement. Investigations revealed a normal hemoglobin, hematocrit, and white cell count. Platelet count was 15.000/mm3. What is the most likely diagnosis?",
+    "options": [
+      "Von-Willebrand disease.",
+      "Acute lymphoblastic leukemia.",
+      "Aplastic anemia.",
+      "Immune thrombocytopenia."
+    ],
+    "correct": 3,
+    "explanation": "Immune thrombocytopenia is the most likely diagnosis as it typically follows a viral illness, presents with isolated thrombocytopenia, and lacks organomegaly. Von Willebrand disease would have bleeding history, ALL would show abnormal cells, and aplastic anemia would have pancytopenia."
+  },
+  {
+    "question": "A 22-month-old boy presents with the chief complaint of pallor. He is a picky eater taking small amounts of fresh vegetables and fruits and drinks lots of tea cups. On examination, he has pallor. Investigations revealed: WBCs 6100, hemoglobin 8.2 gm/dl, Het 19% and microcytosis with hypochromia. Which of the following you don't recommend as one of your initial management plan:",
+    "options": [
+      "Give blood transfusion.",
+      "Ask for stool analysis.",
+      "Start oral iron and change his diet habits.",
+      "Ask for renal functions."
+    ],
+    "correct": 0,
+    "explanation": "Blood transfusion is not recommended as initial management for this child with iron deficiency anemia given his stable hemoglobin level. Stool analysis checks for occult blood, diet modification addresses the cause, and renal function rules out chronic disease as a cause of anemia."
+  },
+  {
+    "question": "Seven-year-old child was presented to emergency room with acute abdominal pain and tenderness. His eyes were puffy and his urine was dark in color. On examination, there were purpuric spots over his buttocks. All the following should be done, except:",
+    "options": [
+      "Liver functions test.",
+      "Urine analysis.",
+      "Platelet count.",
+      "Immediate renal biopsy."
+    ],
+    "correct": 3,
+    "explanation": "Immediate renal biopsy is not indicated in this child with suspected Henoch-Sch\u00f6nlein purpura presenting with abdominal pain, purpura, and dark urine. LFTs, urine analysis, and platelet count are appropriate initial investigations to assess organ involvement and rule out other conditions."
+  },
+  {
+    "question": "The following is correct about G6PD deficiency:",
+    "options": [
+      "X-linked recessive.",
+      "Stool is clay in color.",
+      "Hemolysis maybe due to ingestion of amoxicillin.",
+      "Both parents of affected child should be carriers."
+    ],
+    "correct": 0,
+    "explanation": "G6PD deficiency is X-linked recessive, meaning it primarily affects males. Option B is incorrect as clay-colored stool is associated with biliary obstruction, not G6PD deficiency. Option C is incorrect because amoxicillin is not typically associated with hemolysis in G6PD deficiency (sulfonamides and antimalarials are). Option D is incorrect because only the mother needs to be a carrier for sons to be affected."
+  },
+  {
+    "question": "A 4-year-old girl was generallyunwell, feeling lethargic, looking pale and occasionally febrile over a period of 9 weeks. 2 courses of antibiotics for recurrent sore throat failed to result in any benefit. Examination showed pallor, petechiae, lymphadenopathy and mild hepatosplenomegaly. Initial lab results showed Hb 8.3 g/dl and platelets 44x 109/L. What is the most likely diagnosis:",
+    "options": [
+      "Immune thrombocytopenia.",
+      "Aplastic anemia.",
+      "Acute leukemia.",
+      "Henoch-Schonlein purpura."
+    ],
+    "correct": 2,
+    "explanation": "Acute leukemia is the most likely diagnosis given the prolonged symptoms, pallor, petechiae, lymphadenopathy, hepatosplenomegaly, and cytopenias (anemia and thrombocytopenia). Option A (ITP) typically presents with isolated thrombocytopenia without other cytopenias or organomegaly. Option B (aplastic anemia) would show pancytopenia but not the organomegaly or prolonged course described. Option D (HSP) typically presents with rash, arthritis, and abdominal pain, not the prolonged course and organomegaly seen here."
+  },
+  {
+    "question": "All of the following are characteristic of immune thrombocytopenic purpura, except:",
+    "options": [
+      "Intracranial hemorrhage is a serious complication.",
+      "Always associated with splenomegaly.",
+      "Anti-platelet antibodies are the main cause.",
+      "Is preceded by upper respiratory infection in more than 60% of cases."
+    ],
+    "correct": 1,
+    "explanation": "Immune thrombocytopenic purpura (ITP) is not always associated with splenomegaly, making option B the correct answer. Option A is correct as intracranial hemorrhage is a serious complication. Option C is correct as anti-platelet antibodies are the main cause. Option D is correct as ITP is often preceded by viral infections, particularly upper respiratory infections."
+  },
+  {
+    "question": "The following are features of sickle cell anemia, except:",
+    "options": [
+      "Homozygous form of sickle cell disease.",
+      "Repeated vaso-occlusive crisis may lead to auto splenectomy.",
+      "Hb electrophoresis reveals that HbS is in range 50-60%.",
+      "Sickle-shaped red cells are seen in peripheral blood."
+    ],
+    "correct": 2,
+    "explanation": "In sickle cell anemia (homozygous HbSS), Hb electrophoresis shows HbS in the range of 80-95%, not 50-60%, making option C correct. Option A is correct as sickle cell anemia is the homozygous form. Option B is correct as repeated vaso-occlusive crises can lead to auto-splenectomy. Option D is correct as sickle-shaped red cells are characteristic findings in peripheral blood smears."
+  },
+  {
+    "question": "Which of the following is correct about Henoch-Schonlein purpura:",
+    "options": [
+      "Arthritis is not a common finding.",
+      "Normal platelet count.",
+      "Dramatic response to aspirin therapy.",
+      "Steroid therapy is indicated to all cases."
+    ],
+    "correct": 1,
+    "explanation": "B is correct because Henoch-Schonlein purpura is a vasculitis with normal platelet count, distinguishing it from thrombocytopenic purpuras. A is incorrect as arthritis is a common finding, C is wrong as aspirin therapy is not typically dramatic, and D is incorrect as steroids are only indicated for severe cases."
+  },
+  {
+    "question": "Which of the following is correct about Henoch-Schonlein purpura:",
+    "options": [
+      "Arthritis is a common finding.",
+      "Defective budding of megakaryocytes in bone marrow.",
+      "Abdominal pain should be treated with antispasmodics.",
+      "Nephritis usually progress to end-stage renal failure."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because arthritis is indeed a common finding in Henoch-Schonlein purpura, occurring in approximately 60-80% of cases. B is incorrect as there's no defective budding of megakaryocytes, C is wrong as abdominal pain management requires more than antispasmodics, and D is incorrect as most cases of nephritis resolve without progression to end-stage renal failure."
+  },
+  {
+    "question": "Which of the following is correct about immune thrombocytopenic purpura:",
+    "options": [
+      "It\u2019s due to drug suppression of the bone marrow.",
+      "Hepatomegaly is characteristic.",
+      "Anti-platelet antibody is present.",
+      "Prognosis is poor."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because immune thrombocytopenic purpura is characterized by the presence of anti-platelet antibodies that lead to platelet destruction. A is incorrect as ITP is not due to drug suppression but rather immune-mediated destruction, B is wrong as hepatomegaly is not characteristic, and D is incorrect as the prognosis is generally good with most cases resolving spontaneously or with treatment."
+  },
+  {
+    "question": "What is the risk for a woman to be a carrier if she is the daughter of a man having hemophilia (an X-linked recessive disorder):",
+    "options": [
+      "100%.",
+      "50%.",
+      "25%.",
+      "0%."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because if a woman is the daughter of a man with hemophilia (X-linked recessive), she will inherit his X chromosome with the defective gene, making her a carrier with 100% certainty. B, C, and D are incorrect because the risk isn't 50%, 25%, or 0% - it's certain that she will be a carrier since she must inherit the affected X chromosome from her affected father."
+  },
+  {
+    "question": "All the following are correct about G6PD deficiency, except:",
+    "options": [
+      "X-linked dominant disorder.",
+      "Acute form of hemolytic anemia.",
+      "Hemolysis maybe due to drug intake.",
+      "Death may occur in severe hemolysis."
+    ],
+    "correct": 0,
+    "explanation": "G6PD deficiency is an X-linked recessive disorder, not dominant. It causes acute hemolytic anemia, often triggered by drugs or infections, and can be severe enough to cause death in extreme cases."
+  },
+  {
+    "question": "A 6-year-old boy presented with one month history of fever and one dayhistory of bleeding gums, subconjunctival bleed and purpuric rash. Investigations revealed that Hb is 6.4 gm/dl, platelets are 35.000/mm3 with no abnormal cells detected in blood film. I. Which is the most helpful for diagnosis?",
+    "options": [
+      "White cell count and condition of spleen.",
+      "Bleeding time and clotting time.",
+      "Degree and pattern of fever.",
+      "Vaccination history."
+    ],
+    "correct": 0,
+    "explanation": "White cell count and spleen condition are helpful for diagnosis as they can help differentiate between acute leukemia and other causes of pancytopenia. Bleeding/clotting times are normal in thrombocytopenia, fever pattern and vaccination history are less specific for diagnosis."
+  },
+  {
+    "question": "What is the most serious complication?",
+    "options": [
+      "Febrile convulsions.",
+      "Severe anemia.",
+      "Intracranial bleeding.",
+      "Sepsis."
+    ],
+    "correct": 2,
+    "explanation": "Intracranial bleeding is the most serious complication as it can be fatal or cause permanent neurological damage. While severe anemia and sepsis are serious, intracranial bleeding has the highest mortality and morbidity risk in this scenario."
+  },
+  {
+    "question": "Which of the following statements about Henoch-Schonlein purpura is false:",
+    "options": [
+      "Arthritis is not permanent.",
+      "Microscopic hematuria may occur.",
+      "It may be associated with abdominal pain.",
+      "Thrombocytopenia is commonly found."
+    ],
+    "correct": 3,
+    "explanation": "Thrombocytopenia is not commonly found in Henoch-Schonlein purpura; in fact, platelet count is usually normal or elevated. The other statements are true: arthritis is typically transient, hematuria can occur, and abdominal pain is a common feature."
+  },
+  {
+    "question": "The most common pediatric malignancy is:",
+    "options": [
+      "Brain tumor.",
+      "Neuroblastoma.",
+      "Lymphoma.",
+      "Leukemia."
+    ],
+    "correct": 3,
+    "explanation": "Leukemia is the most common pediatric malignancy, accounting for about 30% of all childhood cancers. Brain tumors and neuroblastoma are less common, while lymphoma is less prevalent than leukemia in children."
+  },
+  {
+    "question": "One of the following is true about purpura:",
+    "options": [
+      "It blanches with pressure.",
+      "Thrombocytopenia is always present.",
+      "It is usually associated with hemarthrosis.",
+      "Maybe caused by acute lymphoblastic leukemia."
+    ],
+    "correct": 3,
+    "explanation": "Purpura can be caused by acute lymphoblastic leukemia due to thrombocytopenia or platelet dysfunction. Purpura does not blanch with pressure (unlike petechiae), thrombocytopenia is not always present, and hemarthrosis is more characteristic of hemophilia."
+  },
+  {
+    "question": "Hemophilia A is characterized by:",
+    "options": [
+      "Decreased activity of factor IX.",
+      "Autosomal recessive disorder.",
+      "Hemarthrosis is a common complication.",
+      "Normal partial thromboplastin time."
+    ],
+    "correct": 2,
+    "explanation": "Hemophilia A is characterized by factor VIII deficiency and commonly presents with hemarthrosis due to internal bleeding. It is an X-linked recessive disorder, not autosomal recessive, and partial thromboplastin time is prolonged, not normal."
+  },
+  {
+    "question": "One of the following is correct about Henoch-Schonlein purpura:",
+    "options": [
+      "Bone marrow is the only diagnostic tool.",
+      "Abdominal pain is not a feature of the disease.",
+      "Skin lesions characteristically start in the face.",
+      "Renal affection is a common association."
+    ],
+    "correct": 3,
+    "explanation": "Renal affection (glomerulonephritis) is a common and important feature of Henoch-Schonlein purpura. Bone marrow is not diagnostic for this condition, abdominal pain is a common feature, and skin lesions typically start on the lower extremities, not the face."
+  },
+  {
+    "question": "One of the following is correct about immune thrombocytopenic purpura:",
+    "options": [
+      "Bone marrow aspiration is diagnostic.",
+      "Prolonged partial thromboplastin time.",
+      "Splenomegaly is always present.",
+      "Defective budding of megakaryocytes is seen in the blood film."
+    ],
+    "correct": 0,
+    "explanation": "Bone marrow aspiration is diagnostic for immune thrombocytopenic purpura (ITP) as it shows normal or increased megakaryocytes with normal maturation but reduced platelet production. Prolonged PTT is incorrect as ITP typically has normal coagulation studies, splenomegaly is not always present, and defective budding of megakaryocytes is not a feature of ITP."
+  },
+  {
+    "question": "A 9-year-old female is referred to the hematology department with a chief complaint of acute onset of easy bruising and \"rash\" for 3 days. She had upper respiratory infection symptoms approximately 2weeks ago. A diffuse petechial rash is noted on her neck, trunk, extremities & groin. Clinical examination is otherwise unremarkable. I. The most probable diagnosis is:",
+    "options": [
+      "Immune thrombocytopenic purpura.",
+      "Bone marrow failure.",
+      "Hemophilia A.",
+      "Acute lymphoblastic leukemia."
+    ],
+    "correct": 0,
+    "explanation": "The most probable diagnosis is immune thrombocytopenic purpura (ITP) given the history of preceding viral infection, acute onset of bruising and petechiae, and normal physical examination. Bone marrow failure, hemophilia A, and acute lymphoblastic leukemia are less likely as they would typically present with additional findings such as pallor, bleeding into joints, or organomegaly."
+  },
+  {
+    "question": "Treatment options include:",
+    "options": [
+      "Bone marrow transplantation.",
+      "Plasma transfusion.",
+      "Corticosteroids.",
+      "Vitamin K injection."
+    ],
+    "correct": 2,
+    "explanation": "Corticosteroids are a first-line treatment for immune thrombocytopenic purpura as they help reduce platelet destruction. Bone marrow transplantation is not indicated for typical ITP, plasma transfusion is not a primary treatment, and vitamin K injection would only be helpful if there was a deficiency, which is not the case in ITP."
+  },
+  {
+    "question": "Henoch-Schonlein purpura is characterized by:",
+    "options": [
+      "Purpuric eruption mostly on the face.",
+      "Chronic persistent arthritis.",
+      "Abdominal pain.",
+      "Pyelonephritis."
+    ],
+    "correct": 2,
+    "explanation": "Henoch-Schonlein purpura is characterized by abdominal pain due to vasculitis affecting the gastrointestinal tract. The purpuric eruption is typically on the lower extremities and buttocks rather than the face, arthritis in HSP is usually migratory and resolves, and pyelonephritis is not a feature of HSP."
+  },
+  {
+    "question": "A 10-year-old child boy presented with bleeding gums that wasn't provoked by trauma. On examination, there were multiple bluish ecchymotic patches and many pinpoint reddish spots over the trunk and limbs. CBC revealed a total leukocytic count 5700/mm3, Hemoglobin of 13 gm/dl and platelet count of 15.000/mm3. Liver and spleen were normal. I. The most likely diagnosis is:",
+    "options": [
+      "ITP.",
+      "Hemophilia A.",
+      "Acute leukemia.",
+      "Aplastic anemia."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (ITP) because the presentation includes isolated thrombocytopenia (platelet count of 15,000/mm3) with normal white blood cell count and hemoglobin, along with mucocutaneous bleeding manifestations like petechiae and ecchymoses. Option B (Hemophilia A) is incorrect as it presents with joint bleeding and prolonged aPTT, not isolated thrombocytopenia. Option C (Acute leukemia) is incorrect as it would typically show abnormal white blood cell count and blasts. Option D (Aplastic anemia) is incorrect as it would show pancytopenia with hypocellular bone marrow."
+  },
+  {
+    "question": "NB: normal WBCs count:4.500-11.000/mm3. II. The following is expected:",
+    "options": [
+      "Hypocellular bone marrow.",
+      "Lymphoblasts to the peripheral blood.",
+      "Anisocytosis and poikilocytosis.",
+      "Defective budding in bone marrow."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (Defective budding in bone marrow) because ITP is characterized by increased megakaryocytes with defective budding due to antiplatelet antibodies. Option A (Hypocellular bone marrow) is incorrect as ITP shows normal or increased cellularity with megakaryocytic hyperplasia. Option B (Lymphoblasts to the peripheral blood) is incorrect as this would suggest leukemia. Option C (Anisocytosis and poikilocytosis) is incorrect as these findings are more typical of hemolytic anemias or thalassemias, not ITP."
+  },
+  {
+    "question": "Beta thalassemia major is characterized by:",
+    "options": [
+      "Normal life span of RBCs.",
+      "Hypocellular bone marrow.",
+      "Decreased urobilin in urine and stools.",
+      "Target cells usually seen in peripheral blood film."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (Target cells usually seen in peripheral blood film) because beta thalassemia major is characterized by microcytic hypochromic anemia with target cells in peripheral blood due to hemoglobin precipitation. Option A (Normal life span of RBCs) is incorrect as beta thalassemia has shortened RBC survival. Option B (Hypocellular bone marrow) is incorrect as it shows hypercellular marrow with ineffective erythropoiesis. Option C (Decreased urobilin in urine and stools) is incorrect as it would show increased urobilin due to hemolysis."
+  },
+  {
+    "question": "Condition in which bleeding time is normal but partial thromboplastin time is prolonged in deficiency of factor include all, except:",
+    "options": [
+      "VII.",
+      "X.",
+      "VI.",
+      "V."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (VII) because factor VII deficiency is the only condition among the options that has a normal bleeding time but prolonged PT and aPTT, as factor VII is involved in both extrinsic and common pathways. Option B (X) is incorrect as factor X deficiency prolongs both PT and aPTT. Option C (VI) is incorrect as factor VI is actually factor Va, which when deficient prolongs aPTT. Option D (V) is incorrect as factor V deficiency prolongs aPTT."
+  },
+  {
+    "question": "PT: factor 7. PTT: factor 8, 9,11. TT: factor1, 2, 5,10. 93. Von Willebrand disease is characterized by all the following, except:",
+    "options": [
+      "Autosomal dominant inheritance.",
+      "Peripheral blood smear usually shows thrombocytopenia.",
+      "Bleeding usually manifests as epistaxis and easily bruising.",
+      "Platelets adhesion is reduced."
+    ],
+    "correct": 1,
+    "explanation": "Von Willebrand disease is characterized by abnormal platelet adhesion and prolonged bleeding time, but the peripheral blood smear does not usually show thrombocytopenia as platelet counts are typically normal. VWD is inherited in an autosomal dominant pattern (type 1), bleeding typically manifests as mucocutaneous bleeding like epistaxis and easy bruising, and platelet adhesion is reduced due to deficient or abnormal von Willebrand factor."
+  },
+  {
+    "question": "Hemophilia A is inherited as:",
+    "options": [
+      "Sex linked recessive.",
+      "Autosomal dominant.",
+      "Sex linked dominant.",
+      "Autosomal recessive."
+    ],
+    "correct": 0,
+    "explanation": "Hemophilia A is inherited as an X-linked recessive disorder, meaning the defective gene is on the X chromosome and males are primarily affected. It is not autosomal dominant, sex-linked dominant, or autosomal recessive. Females are typically carriers, and affected males inherit the defective gene from their carrier mothers."
+  },
+  {
+    "question": "A 10-month-old white male presents with a 1-day history of persistent bleeding after cutting his lip slightly. The family history is unremarkable. The patient is receiving no medication, laboratory data reveals a hemoglobin volume of 11 g\\dl platelets of 350,000, normal bleeding time, a prothrombin time of 11.8 seconds and a PTT of 100 seconds (prolonged). The most likely diagnosis is:",
+    "options": [
+      "VWD.",
+      "Hemophilia.",
+      "Purpura.",
+      "Scurvy."
+    ],
+    "correct": 1,
+    "explanation": "Hemophilia is the most likely diagnosis in a 10-month-old male with persistent bleeding after circumcision. The delayed post-circumcision bleeding is classic for hemophilia, as it is a coagulation factor deficiency causing deep bleeding. VWD would present with mucocutaneous bleeding. Purpura suggests platelet disorders. Scurvy causes perifollicular hemorrhages and gum bleeding."
+  },
+  {
+    "question": "Appropriate long-term management of the disease in the previous case include all the following, except:",
+    "options": [
+      "Avoiding aspirin.",
+      "Hepatitis vaccine.",
+      "Splenectomy.",
+      "Desmopressin for mild hemorrhage"
+    ],
+    "correct": 2,
+    "explanation": "Splenectomy is NOT appropriate long-term management for hemophilia, as hemophilia is a coagulation factor deficiency and not a platelet disorder. Avoiding aspirin is important as it impairs platelet function. Hepatitis vaccine is crucial due to risk from factor concentrates. Desmopressin (DDAVP) can be used for mild hemorrhage in mild hemophilia A by releasing endogenous factor VIII."
+  },
+  {
+    "question": "10 years later, patient in previous question experiences hemarthrosis that become refractory to standard doses of factor VIII, the most likely cause of this is:",
+    "options": [
+      "Worsening of hemophilia.",
+      "Developmental of factor VIII antibodies.",
+      "Developmental of AIDS.",
+      "Developmental of hepatitis"
+    ],
+    "correct": 1,
+    "explanation": "The development of factor VIII antibodies (inhibitors) is the most likely explanation for hemarthrosis that becomes increasingly difficult to control. About 10-30% of hemophilia A patients develop inhibitors against replacement factor VIII, rendering standard treatment ineffective. This is not worsening of hemophilia itself. AIDS and hepatitis are complications of factor replacement but would not cause refractory hemarthrosis."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

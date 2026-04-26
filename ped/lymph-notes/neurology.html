@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Neurology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_neurology",
+  "title": "Neurology",
+  "description": "Pediatrics - Neurology MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which is correct in absence seizures:",
+    "options": [
+      "poor prognosis",
+      "attack triggered by breath holding 1-2 min",
+      "impaired consciousness for 2-20 sec.",
+      "genetic predisposition has no role"
+    ],
+    "correct": 2,
+    "explanation": "Absence seizures are characterized by impaired consciousness for 2-20 seconds, which is the classic description of brief staring spells. The prognosis is generally good, not poor. They are not triggered by breath holding. There is a genetic predisposition in many cases."
+  },
+  {
+    "question": "MR child is trainable if IQ",
+    "options": [
+      "<20",
+      "20-35",
+      "35-50",
+      "50-70"
+    ],
+    "correct": 2,
+    "explanation": "A mentally retarded child is trainable if IQ is 35-50 (moderate mental retardation). IQ below 20 is profound retardation (needs total care). IQ 20-35 is severe retardation (can learn basic self-care). IQ 50-70 is mild retardation (educable)."
+  },
+  {
+    "question": "Werdnig Hoffman is a disease of:",
+    "options": [
+      "AHCS",
+      "N. fibers",
+      "N.MJ.",
+      "M.S."
+    ],
+    "correct": 0,
+    "explanation": "Werdnig-Hoffmann disease is a disease of anterior horn cells (AHC), causing degeneration of the motor neurons in the spinal cord. It is not a disease of nerve fibers, neuromuscular junction, or muscles directly."
+  },
+  {
+    "question": "Status epilepticus is used when colonic phase of seizures exceeds:",
+    "options": [
+      "10 min",
+      "15 min",
+      "20 min",
+      "30 min"
+    ],
+    "correct": 3,
+    "explanation": "Status epilepticus is defined when the clonic phase of seizures exceeds 30 minutes, or when multiple seizures occur without recovery of consciousness between them. 10, 15, and 20 minutes are all below the standard threshold for status epilepticus."
+  },
+  {
+    "question": "Regarding febrile convulsions which is wrong:",
+    "options": [
+      "2-5 % of children",
+      "peak1-2 yrs.",
+      "benign febrile forms 80-85% of all",
+      "can be caused by meningitis"
+    ],
+    "correct": 3,
+    "explanation": "Febrile convulsions cannot be caused by meningitis is the wrong statement, as meningitis must be excluded in any child with fever and seizures. The incidence is 2-5% of children. Peak age is 1-2 years. Benign febrile seizures account for 80-85% of all febrile seizures."
+  },
+  {
+    "question": "Mother brought her 6-year-old child saying that he experienced sudden loss of consciousness for 6 times in the last 2 months, he falls on the ground with extended limbs and arching of the back followed by jerking, salivation & sometimes micturition, Diagnosis is:",
+    "options": [
+      "myoclonic",
+      "complex partial",
+      "tonic-colonic",
+      "infantile spasms"
+    ],
+    "correct": 2,
+    "explanation": "Tonic-clonic seizures (grand mal) is the diagnosis given the description of sudden loss of consciousness, extended limbs (tonic phase), arching of the back, followed by jerking (clonic phase), salivation, and possible micturition. Myoclonic seizures involve brief muscle jerks without the tonic-clonic pattern. Complex partial seizures involve altered awareness without full loss of consciousness. Infantile spasms occur in infants with sudden flexion movements."
+  },
+  {
+    "question": "Worried mother brought her 5 year-old child complaining that he develops attacks of impaired consciousness without falling or any involuntary movements, in her own words; stops what he is doing for 5-20 sec. and continues his original activity as if nothing happened I. The most likely diagnosis:",
+    "options": [
+      "simple partial seizures",
+      "infantile spasms",
+      "absence seizures",
+      "myotonic seizures"
+    ],
+    "correct": 2,
+    "explanation": "Absence seizures is the most likely diagnosis given the brief episodes of impaired consciousness (5-20 seconds), stopping activity, and immediately resuming without post-ictal confusion. Simple partial seizures do not impair consciousness. Infantile spasms occur in infants with different presentation. Myotonic seizures involve sudden muscle contractions."
+  },
+  {
+    "question": "The condition has a characteristic:",
+    "options": [
+      "MRI",
+      "EEG",
+      "CSF",
+      "CBC"
+    ],
+    "correct": 1,
+    "explanation": "EEG is characteristic for absence seizures, showing the classic 3 Hz spike-and-wave pattern. MRI, CSF, and CBC are not diagnostic for absence seizures."
+  },
+  {
+    "question": "In febrile convulsions all is true except:",
+    "options": [
+      "seen at 6 m to 5 yrs.",
+      "usually lasts < 10 min",
+      "long term anticonvulsant usually not needed",
+      "seizures are calmly focal"
+    ],
+    "correct": 3,
+    "explanation": "Febrile seizures are typically generalized (not focal), making 'seizures are commonly focal' the wrong statement. They occur between 6 months and 5 years. They usually last less than 10 minutes. Long-term anticonvulsants are usually not needed for simple febrile seizures."
+  },
+  {
+    "question": "Cause of neonatal seizures: (neonatology)",
+    "options": [
+      "hypothermia",
+      "birth asphyxia",
+      "cephalhematoma",
+      "vit B12 deficiency"
+    ],
+    "correct": 1,
+    "explanation": "Birth asphyxia is the most common cause of neonatal seizures, causing hypoxic-ischemic encephalopathy. Hypothermia can cause seizures but is less common. Cephalhematoma does not directly cause seizures. Vitamin B12 deficiency is a rare cause of neonatal seizures."
+  },
+  {
+    "question": "Serum values that can cause neonatal seizures: (neonatology)",
+    "options": [
+      "bicarbonate level of 22 mEq/L",
+      "Ca+2< 6.2 mg/dL",
+      "glucose < 45 mg/dL",
+      "Na+< 138 mEq/dL"
+    ],
+    "correct": 1,
+    "explanation": "Calcium level below 6.2 mg/dL (hypocalcemia) can cause neonatal seizures. Bicarbonate of 22 mEq/L is normal. Glucose below 45 mg/dL can cause seizures but this is a less severe threshold. Sodium below 138 mEq/L is within or near normal range and unlikely to cause seizures."
+  },
+  {
+    "question": "In absence seizures:",
+    "options": [
+      "no role of genetic predisposition",
+      "child looks as vacant for 5-20 sec.",
+      "bad prognosis",
+      "triggered by breath hold"
+    ],
+    "correct": 1,
+    "explanation": "In absence seizures, the child appears vacant for 5-20 seconds, which is the classic description. There is a genetic predisposition. The prognosis is generally good. They are not triggered by breath holding."
+  },
+  {
+    "question": "benign febrile convulsions:",
+    "options": [
+      "age 2-5 yrs.",
+      "focal tonic-colonic in nature",
+      "duration < 15 min.",
+      "prolonged post-ictal drowsiness"
+    ],
+    "correct": 2,
+    "explanation": "Benign febrile convulsions typically last less than 15 minutes, which is a defining characteristic. The typical age range is 6 months to 5 years, not 2-5 years. They are generalized (not focal) in nature. There is no prolonged post-ictal drowsiness."
+  },
+  {
+    "question": "All\u2019s true in febrile convulsions except:",
+    "options": [
+      "affect 25% of children",
+      "peak1-2 yrs.",
+      "occurring due to rapid temp, rise",
+      "usually generalized tonic-colonic"
+    ],
+    "correct": 0,
+    "explanation": "Febrile convulsions do not affect 25% of children; the correct figure is 2-5%. Peak age is 1-2 years. They occur due to rapid temperature rise. They are usually generalized tonic-clonic."
+  },
+  {
+    "question": "Abnormal EEG is seen commonly in:",
+    "options": [
+      "cyanotic spells",
+      "simple febrile seizures",
+      "breath holding spells",
+      "infantile spasm"
+    ],
+    "correct": 3,
+    "explanation": "Infantile spasms commonly show an abnormal EEG pattern called hypsarrhythmia. Cyanotic spells, simple febrile seizures, and breath holding spells typically have normal EEG findings."
+  },
+  {
+    "question": "1.5-year-old went to bed his motherreported that he was flushed, convulsing during convulsion he deviated his eyes upwards his arms and legs started jerking & last for 1 min. temp. 39.2 OC & severe otitis media. The most likely diagnosis:",
+    "options": [
+      "epilepsy",
+      "CNS infection",
+      "febrile convulsions",
+      "cerebral hypoxia."
+    ],
+    "correct": 2,
+    "explanation": "Febrile convulsions is the most likely diagnosis in a 1.5-year-old with a generalized seizure associated with high fever (39.2 degrees C) and otitis media. Epilepsy would have recurrent unprovoked seizures. CNS infection would have meningeal signs. Cerebral hypoxia would have a different clinical context."
+  },
+  {
+    "question": "which investigation is indicated:",
+    "options": [
+      "CT brain",
+      "Echo",
+      "EEG",
+      "none of the above"
+    ],
+    "correct": 3,
+    "explanation": "None of the above investigations are routinely indicated for a simple febrile seizure. CT brain, echocardiography, and EEG are not routinely needed for simple febrile seizures in a child with a clear source of fever."
+  },
+  {
+    "question": "CSF examination of bacterial meningitis classically shows:",
+    "options": [
+      "Clear appearance.",
+      "Lymphocytosis.",
+      "Normal glucose level.",
+      "Increased protein level."
+    ],
+    "correct": 3,
+    "explanation": "CSF examination in bacterial meningitis classically shows increased protein level. The appearance is cloudy, not clear. There is polymorphonuclear leukocytosis, not lymphocytosis. Glucose level is low, not normal."
+  },
+  {
+    "question": "\u201cCloudyappearance, polymorphs, low glucose\u201d 18. Positive Kernig's sign in a child with meningitis means:",
+    "options": [
+      "If the neck is flexed, hips and knee will be flexed.",
+      "If the neck is flexed, hips and knee will be extended.",
+      "Inability to straighten the leg when the hip is flexed to 90 degrees.",
+      "Inability to straighten the leg when the hip is flexed to 45 degrees."
+    ],
+    "correct": 2,
+    "explanation": "Kernig's sign is the inability to straighten the leg when the hip is flexed to 90 degrees, indicating meningeal irritation. It is not about neck flexion causing leg flexion or extension, and the hip must be flexed to 90 degrees (not 45)."
+  },
+  {
+    "question": "In a child with encephalitis, which of the following viruses has special predilection to temporal lobes:",
+    "options": [
+      "Herpes simplex virus.",
+      "Rabies virus.",
+      "Mumps virus.",
+      "Measles virus."
+    ],
+    "correct": 0,
+    "explanation": "Herpes simplex virus has a special predilection for the temporal lobes, causing hemorrhagic necrosis in this region. Rabies affects the brainstem and limbic system. Mumps causes diffuse meningoencephalitis. Measles can cause SSPE but not focal temporal lobe encephalitis."
+  },
+  {
+    "question": "All of the following may be normal in cerebral palsy, except: (June,",
+    "options": [
+      "Cognitive abilities.",
+      "Sensory functions.",
+      "Motor functions.",
+      "Auditory functions."
+    ],
+    "correct": 2,
+    "explanation": "Motor functions are abnormal in cerebral palsy by definition; it is a motor disorder. Cognitive abilities, sensory functions, and auditory functions may all be normal in some children with cerebral palsy."
+  },
+  {
+    "question": "Cerebral palsy description is as follows, except: (September,",
+    "options": [
+      "Non progressive motor deformity.",
+      "Progressive motor deficit.",
+      "Perinatal insult.",
+      "Maybe associated with convulsions."
+    ],
+    "correct": 1,
+    "explanation": "Cerebral palsy is described as a non-progressive motor deficit, not progressive. It results from a perinatal insult. It may be associated with convulsions. The key feature is that the motor deficit is non-progressive, though the clinical manifestations may change with growth."
+  },
+  {
+    "question": "All the following are causes of cerebral palsy, except: (September,",
+    "options": [
+      "Rubella syndrome.",
+      "Hydrocephalus.",
+      "G6PD deficiency.",
+      "Kernicterus."
+    ],
+    "correct": 2,
+    "explanation": "G6PD deficiency is not a cause of cerebral palsy. Rubella syndrome (congenital), hydrocephalus, and kernicterus are all recognized causes of cerebral palsy."
+  },
+  {
+    "question": "All the following are characteristics of cerebral palsy, except: (June,",
+    "options": [
+      "Non progressive motor deformity.",
+      "Perinatal insult.",
+      "Peripheral sensory loss.",
+      "Non curable."
+    ],
+    "correct": 2,
+    "explanation": "Peripheral sensory loss is not a characteristic of cerebral palsy; it is a central motor disorder. Non-progressive motor deformity, perinatal insult, and being non-curable are all characteristics of cerebral palsy."
+  },
+  {
+    "question": "Hypotonic cerebral palsy usually presents with: (September,",
+    "options": [
+      "Hypotonia and hyporeflexia.",
+      "Hypotonia and preserved tendon reflexes.",
+      "Hypertonia and hyperreflexia.",
+      "Hypertonia and hyporeflexia."
+    ],
+    "correct": 1,
+    "explanation": "Hypotonic cerebral palsy usually presents with hypotonia and preserved tendon reflexes, which distinguishes it from other hypotonic conditions like spinal muscular atrophy where reflexes are absent. Hypotonia with hyporeflexia suggests a lower motor neuron disorder. Hypertonia is seen in spastic CP, not hypotonic CP."
+  },
+  {
+    "question": "Hemiplegic types of spastic cerebral palsy is characterized by (June, 2011):",
+    "options": [
+      "Leg is more affected than the arm.",
+      "Fisting of the affected hand is common.",
+      "True bulbar palsy.",
+      "Complete affection of one half of the face."
+    ],
+    "correct": 1,
+    "explanation": "Fisting of the affected hand is common in hemiplegic spastic CP. The arm is typically more affected than the leg in hemiplegic CP. True bulbar palsy is not characteristic. Complete facial weakness is not typical as the upper face is usually spared."
+  },
+  {
+    "question": "Cerebral palsy is characterized by: (6th October university)",
+    "options": [
+      "Mental retardation.",
+      "Motor disability.",
+      "Curable.",
+      "Sensory loss."
+    ],
+    "correct": 1,
+    "explanation": "Cerebral palsy is primarily characterized by motor disability. Mental retardation may or may not be present. It is not curable. Sensory loss is not a defining feature."
+  },
+  {
+    "question": "Werdnig-Hoffmann disease is characterized by:",
+    "options": [
+      "An X-linked recessive disorder.",
+      "Tongue fasciculations.",
+      "Pseudo-hypertrophy of muscles.",
+      "Subnormal mentality."
+    ],
+    "correct": 1,
+    "explanation": "Tongue fasciculations are characteristic of Werdnig-Hoffmann disease due to anterior horn cell degeneration affecting the hypoglossal nerve. It is autosomal recessive, not X-linked. Pseudo-hypertrophy is seen in Duchenne muscular dystrophy, not Werdnig-Hoffmann. Mentality is typically normal."
+  },
+  {
+    "question": "Werdnig-Hoffmann disease is a disease of:",
+    "options": [
+      "Anterior horn cells.",
+      "Nerve fibers.",
+      "Neuromuscular junction.",
+      "Muscles."
+    ],
+    "correct": 0,
+    "explanation": "Werdnig-Hoffmann disease is a disease of anterior horn cells in the spinal cord, causing progressive degeneration. It is not primarily a disease of nerve fibers, neuromuscular junction, or muscles."
+  },
+  {
+    "question": "About hydrocephalus, which of the following statements is not correct:",
+    "options": [
+      "It is defined as dilatation of the ventricular system of the brain.",
+      "Dandy-Walker malformation causes obstructive hydrocephalus.",
+      "Subarachnoid haemorrhage causes obstructive hydrocephalus.",
+      "Choroid plexus papilloma causes communicating hydrocephalus."
+    ],
+    "correct": 2,
+    "explanation": "Subarachnoid hemorrhage causes communicating (not obstructive) hydrocephalus by blocking arachnoid villi. Ventricular dilatation is the definition of hydrocephalus. Dandy-Walker malformation causes obstructive hydrocephalus. Choroid plexus papilloma causes communicating hydrocephalus by overproduction of CSF."
+  },
+  {
+    "question": "11- month old boy was brought to the neurology clinic by his parents who felt he is weaker than his sibs. In supine position, the baby's limbs were abducted and flexed. When the baby was pulled from his hands, the head lagged backwards. I. All of the following can cause this condition, except:",
+    "options": [
+      "Spastic diplegia.",
+      "Atonic cerebral palsy.",
+      "Werdnig-Hoffmann disease.",
+      "Hereditary polyneuropathy."
+    ],
+    "correct": 0,
+    "explanation": "Spastic diplegia cannot cause generalized hypotonia as described; it causes spasticity, particularly in the legs. Atonic cerebral palsy, Werdnig-Hoffmann disease, and hereditary polyneuropathy can all present as a floppy infant with hypotonia."
+  },
+  {
+    "question": "Which of the following is not expected in this patient:",
+    "options": [
+      "Weak cough and cry.",
+      "Tongue fasciculations.",
+      "Abnormal eye movement.",
+      "Late respiratory paralysis."
+    ],
+    "correct": 2,
+    "explanation": "Abnormal eye movement is not expected in Werdnig-Hoffmann disease, as it primarily affects anterior horn cells and spares cranial nerves controlling eye movements. Weak cough and cry, tongue fasciculations, and late respiratory paralysis are all expected features."
+  },
+  {
+    "question": "Myasthenia gravis is a disease of:",
+    "options": [
+      "Anterior horn cells.",
+      "Nerve fibers.",
+      "Neuromuscular junction.",
+      "Muscles."
+    ],
+    "correct": 2,
+    "explanation": "Myasthenia gravis is a disease of the neuromuscular junction, caused by autoantibodies against acetylcholine receptors. It is not a disease of anterior horn cells, nerve fibers, or muscles."
+  },
+  {
+    "question": "Which of the following causes obstructive hydrocephalus:",
+    "options": [
+      "Cerebellar medulloblastoma.",
+      "Post-meningitic subdural adhesions.",
+      "Subarachnoid hemorrhage.",
+      "Choroid plexus papilloma."
+    ],
+    "correct": 0,
+    "explanation": "Cerebellar medulloblastoma causes obstructive hydrocephalus by blocking the fourth ventricle. Post-meningitic adhesions, subarachnoid hemorrhage, and choroid plexus papilloma cause communicating hydrocephalus."
+  },
+  {
+    "question": "All of the following are features of Werdnig-Hoffmann disease except:",
+    "options": [
+      "It\u2019s an autosomal recessive disease.",
+      "It\u2019s one of the causes of floppy infant.",
+      "Tongue fasciculations.",
+      "Most cases die near adolescence with respiratory failure."
+    ],
+    "correct": 3,
+    "explanation": "Most cases of Werdnig-Hoffmann disease (type 1) die in infancy or early childhood, not near adolescence. It is autosomal recessive. It causes floppy infant syndrome. Tongue fasciculations are a hallmark feature."
+  },
+  {
+    "question": "All of the following are signs of hydrocephalus in a month old infant except:",
+    "options": [
+      "Upward deviation or rolling of eyes.",
+      "Wide anterior fontanel.",
+      "Prominent scalp veins.",
+      "Separation of sutures."
+    ],
+    "correct": 0,
+    "explanation": "Upward deviation or rolling of eyes (sunset sign) is actually a sign of hydrocephalus in infants, so this question's answer implies it is not expected in a 1-month-old because the sunset sign typically develops later. However, the key point is that wide fontanel, prominent scalp veins, and suture separation are earlier signs in young infants."
+  },
+  {
+    "question": "Hie most common cause of obstructive hydrocephalus in an infant is:",
+    "options": [
+      "Dandy-Walker syndrome.",
+      "Meningitis.",
+      "Arnold-Chiari malformation.",
+      "Aqueductal stenosis."
+    ],
+    "correct": 3,
+    "explanation": "Aqueductal stenosis is the most common cause of obstructive hydrocephalus in infants. Dandy-Walker syndrome, meningitis, and Arnold-Chiari malformation are causes but less common than aqueductal stenosis."
+  },
+  {
+    "question": "Werdnig-Hoffmann is characterized by all of the following except:",
+    "options": [
+      "X-linked recessive disorder.",
+      "Respiratory paralysis.",
+      "Tongue fasciculations.",
+      "Normal mentality."
+    ],
+    "correct": 0,
+    "explanation": "Werdnig-Hoffmann disease is an autosomal recessive disorder, not X-linked recessive. Respiratory paralysis, tongue fasciculations, and normal mentality are all characteristic features."
+  },
+  {
+    "question": "Floppy infant can be caused by any of the following except:",
+    "options": [
+      "Congenital myopathy.",
+      "Genetic syndromes.",
+      "Spinal muscle atrophy.",
+      "Rickets."
+    ],
+    "correct": 3,
+    "explanation": "Rickets does not cause floppy infant syndrome; it causes bone deformities and muscle weakness but not the flaccid hypotonia seen in floppy infant. Congenital myopathy, genetic syndromes, and spinal muscular atrophy are all causes of floppy infant."
+  },
+  {
+    "question": "Which one of the following is a cause of communicating hydrocephalus:",
+    "options": [
+      "Vein of Galen malformation.",
+      "Dandy-Walker syndrome.",
+      "Arnold-Chiari malformation.",
+      "Posterior fossa subdural hematoma."
+    ],
+    "correct": 2,
+    "explanation": "Arnold-Chiari malformation can cause communicating hydrocephalus by blocking CSF flow at the foramen magnum. Vein of Galen malformation, Dandy-Walker syndrome, and posterior fossa subdural hematoma cause obstructive hydrocephalus."
+  },
+  {
+    "question": "The mode of inheritance of Duchenne muscle dystrophy deficiencyis:",
+    "options": [
+      "Autosomal dominant",
+      "Autosomal recessive",
+      "X-linked dominant",
+      "X-linked recessive"
+    ],
+    "correct": 3,
+    "explanation": "Duchenne muscular dystrophy is inherited as an X-linked recessive disorder, affecting boys who inherit the defective gene from carrier mothers. It is not autosomal dominant, autosomal recessive, or X-linked dominant."
+  },
+  {
+    "question": "A child who presents with acute flaccid symmetrical descending paralysis is likely having:",
+    "options": [
+      "Poliomyelitis.",
+      "GBS",
+      "Post-diphtheritic paralysis",
+      "Transverse myelitis"
+    ],
+    "correct": 2,
+    "explanation": "Post-diphtheritic paralysis presents with acute flaccid symmetrical descending paralysis, starting with cranial nerve palsies and descending. Poliomyelitis causes asymmetric paralysis. GBS causes ascending paralysis. Transverse myelitis causes a sensory level."
+  },
+  {
+    "question": "GBS may related to :",
+    "options": [
+      "Direct bacterial neuritis",
+      "Autosomal recessive disorder.",
+      "Post viral sequel.",
+      "spinal cord trauma."
+    ],
+    "correct": 2,
+    "explanation": "GBS may be related to post-viral sequelae, typically following a respiratory or gastrointestinal infection 1-3 weeks before onset. It is not caused by direct bacterial neuritis, is not inherited as autosomal recessive, and is not caused by spinal cord trauma."
+  },
+  {
+    "question": "Which of the following is among the characteristics of GBS?",
+    "options": [
+      "Usually starts with upper limb paralysis.",
+      "Degeneration of the anterior horn cells",
+      "paralysis is acute and symmetric",
+      "The CSF white cells are increased"
+    ],
+    "correct": 2,
+    "explanation": "GBS paralysis is acute and symmetric, typically starting in the lower limbs (ascending). It does not usually start with upper limb paralysis. It involves demyelination of peripheral nerves, not anterior horn cell degeneration. CSF shows albuminocytologic dissociation (high protein, normal white cells), not increased white cells."
+  },
+  {
+    "question": "On examination 12 days after a mild upper respiratory infection, a 19 year old boy complains of weakness of the lower limbs, over several days the weakness progress to include his trunk, on physical examination, weakness is symmetrical and associated with hypotonia, which of the following is the most probable diagnosis?",
+    "options": [
+      "muscular dystrophy",
+      "GBS",
+      "brain tumor",
+      "poliomyelitis"
+    ],
+    "correct": 1,
+    "explanation": "GBS is the most probable diagnosis given the ascending symmetric weakness following an upper respiratory infection. Muscular dystrophy is chronic and progressive. Brain tumor causes focal neurological deficits. Poliomyelitis causes asymmetric weakness."
+  },
+  {
+    "question": "A 9-year- old child presents with acute onset of weakness which initially stated in the lower limbs and was preceded 3 weeks earlier byrespiratory tract infection . on examination there is hypotonia and hyporeflexia of both lower limbs , there is history of convulsion the most likely diagnosis is:",
+    "options": [
+      "muscular dystrophy",
+      "GBS",
+      "brain tumor",
+      "poliomyelitis"
+    ],
+    "correct": 1,
+    "explanation": "GBS is the most likely diagnosis given the acute onset of ascending weakness with hypotonia and hyporeflexia following a respiratory infection 3 weeks earlier. Muscular dystrophy is slowly progressive. Brain tumor causes focal signs and increased ICP. Poliomyelitis causes asymmetric paralysis."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

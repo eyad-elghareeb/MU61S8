@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Allergy</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_allergy",
+  "title": "Allergy",
+  "description": "Pediatrics - Allergy MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "In atopic dermatitis (eczema), which is wrong:",
+    "options": [
+      "Many children have positive family history of allergy.",
+      "Rash is itchy.",
+      "Child should avoid hot water bathes.",
+      "Condition gets more worse as the child gets older."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because atopic dermatitis often improves with age, typically resolving in adolescence or adulthood, rather than worsening. A is wrong as family history of allergy is common. B is wrong as itching is a hallmark symptom. C is wrong as hot water baths should be avoided as they can exacerbate eczema."
+  },
+  {
+    "question": "The gold standard in diagnosis of food allergy is:",
+    "options": [
+      "Skin prick tests.",
+      "Specific IgE in blood.",
+      "Double-blind placebo-controlled food challenge.",
+      "Positive family history of allergy."
+    ],
+    "correct": 2,
+    "explanation": "C is correct as double-blind placebo-controlled food challenge is the gold standard for diagnosing food allergy. A is wrong as skin prick tests have high false positives. B is wrong as specific IgE tests indicate sensitization but not necessarily clinical allergy. D is wrong as family history is a risk factor but not diagnostic."
+  },
+  {
+    "question": "In food allergy, which is wrong:",
+    "options": [
+      "Food allergies are believed to occur in about 25% of children.",
+      "Food allergy maybe IgE mediated or non IgE mediated.",
+      "The most common allergic food in infants are cow milk, eggs and peanuts.",
+      "Food allergy may cause anaphylaxis."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as food allergies actually affect about 2-8% of children, not 25%. B is wrong as food allergies can be IgE or non-IgE mediated. C is wrong as cow's milk, eggs, and peanuts are indeed common allergens in infants. D is wrong as anaphylaxis is a potential severe reaction to food allergies."
+  },
+  {
+    "question": "The most important drug that maybe life-saving in a child with severe reaction to food is:",
+    "options": [
+      "IM epinephrine (adrenaline).",
+      "IM corticosteroid.",
+      "IM anti-histamine.",
+      "Oral corticosteroid."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as IM epinephrine is first-line treatment for anaphylaxis and can be life-saving. B is wrong as corticosteroids work too slowly for acute anaphylaxis. C is wrong as antihistamines are adjunctive, not primary treatment. D is wrong as oral corticosteroids are not used for acute reactions."
+  },
+  {
+    "question": "A 12-year-old girl is seen byapediatrician for a mild case of pneumonia. She is treated with an IM injection of penicillin. About 15 minutes later, she develops extreme itchiness, wheals over chest and extremities, and begins to wheeze and complains of difficulty breathing. I. What is the most likely diagnosis:",
+    "options": [
+      "Atopic eczema.",
+      "Bronchial asthma.",
+      "Foreign body inhalation.",
+      "Anaphylaxis."
+    ],
+    "correct": 3,
+    "explanation": "D is correct as the symptoms (itching, wheals, wheezing, difficulty breathing) shortly after medication administration indicate anaphylaxis. A is wrong as eczema doesn't cause acute respiratory symptoms. B is wrong as asthma wouldn't develop so rapidly after penicillin. C is wrong as foreign body inhalation wouldn't cause these specific symptoms."
+  },
+  {
+    "question": "The most appropriate first step is:",
+    "options": [
+      "Epinephrine injection.",
+      "Tracheostomy.",
+      "Nebulized salbutamol.",
+      "Local calamine lotion."
+    ],
+    "correct": 0,
+    "explanation": "A. Epinephrine injection is correct as it's the first-line treatment for anaphylaxis, a life-threatening allergic reaction. B. Tracheostomy is unnecessary unless airway obstruction is severe and unresponsive to epinephrine. C. Nebulized salbutamol is for bronchospasm but doesn't address the systemic allergic response. D. Local calamine lotion is for skin irritation and won't address systemic symptoms."
+  },
+  {
+    "question": "A 6-month-old breast-fed girl developed dyspnea, urticarial, lip & facial swelling immediately after her 1st formula feeding. I. What is the most probable diagnosis:",
+    "options": [
+      "Lactose intolerance.",
+      "Infantile eczema.",
+      "G6PD.",
+      "Cow milk allergy."
+    ],
+    "correct": 3,
+    "explanation": "D. Cow milk allergy is correct as the symptoms (dyspnea, urticaria, swelling) immediately after first exposure suggest an IgE-mediated reaction to cow milk protein. A. Lactose intolerance causes gastrointestinal symptoms, not respiratory or allergic reactions. B. Infantile eczema is a chronic skin condition, not an acute reaction to food. C. G6PD is an enzyme deficiency causing hemolytic anemia, not allergic symptoms."
+  },
+  {
+    "question": "Which of the following is unexplained in the child:",
+    "options": [
+      "Elevated serum specific IgE.",
+      "+ve skin prick test.",
+      "May progress to stridor & wheezing.",
+      "No response to epinephrine & antihistamine."
+    ],
+    "correct": 3,
+    "explanation": "D. No response to epinephrine & antihistamine is unexplained as these are first-line treatments for anaphylaxis; lack of response suggests alternative diagnosis or atypical presentation. A. Elevated serum specific IgE is expected in IgE-mediated allergies. B. +ve skin prick test confirms sensitization to allergens. C. Progression to stridor & wheezing is common in severe allergic reactions."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

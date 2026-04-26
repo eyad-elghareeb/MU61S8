@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Respiration</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_respiration",
+  "title": "Respiration",
+  "description": "Pediatrics - Respiration MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "All the following anti-tuberculous drugs are given orally, except:",
+    "options": [
+      "Isoniazid.",
+      "Rifampicin.",
+      "Pyrazinamide.",
+      "Streptomycin."
+    ],
+    "correct": 3,
+    "explanation": "Streptomycin is an aminoglycoside antibiotic that must be given intramuscularly (IM), not orally, because it is poorly absorbed from the gastrointestinal tract. INH, rifampicin, and pyrazinamide are all well-absorbed orally and are given by mouth as first-line anti-TB drugs."
+  },
+  {
+    "question": "Regarding tuberculin test, which of the following statement is NOT correct:",
+    "options": [
+      "The dose of purified protein derivative (PPD) injected is 0.1 ml.",
+      "PPD is injected intra-dermally.",
+      "The reaction should be read within 36 hours.",
+      "It is the induration and not the erythema that counts in the interpretation."
+    ],
+    "correct": 2,
+    "explanation": "The tuberculin (Mantoux) test reaction should be read at 48\u201372 hours, not within 36 hours. Reading before 48 hours may miss the peak induration. The other statements are correct: PPD dose is 5 TU in 0.1 mL, it is injected intradermally, and induration (not erythema) is measured."
+  },
+  {
+    "question": "The dose of rifampicin (an anti-tuberculous drug) is:",
+    "options": [
+      "6-8 mg/kg/day.",
+      "10-20 mg/kg/day.",
+      "20-40 mg/kg/day.",
+      "40-60 mg/kg/day."
+    ],
+    "correct": 1,
+    "explanation": "The dose of rifampicin in children is 10\u201320 mg/kg/day (maximum 600 mg/day). It is a key first-line anti-tuberculous drug given orally."
+  },
+  {
+    "question": "In which grade of respiratory distress grunting is heard:",
+    "options": [
+      "Grade 1.",
+      "Grade 2.",
+      "Grade 3.",
+      "Grade 4."
+    ],
+    "correct": 2,
+    "explanation": "Grunting is a sign of severe respiratory distress classified as Grade 3. Grade 1 involves only tachypnea, Grade 2 includes retractions, Grade 3 adds grunting, and Grade 4 is characterized by cyanosis and altered consciousness."
+  },
+  {
+    "question": "A 6-year-old girl presented to ER with severe irritability and nonstop crying of 2 hours duration. The mother said that her girl had a runny nose since 5 days. On examination, the girl was febrile (temperature 38.7\u00b0C), a yellowish discharge was seen coming from the right ear and the left tympanic membrane was congested and bulging. I. The most likely diagnosis is:",
+    "options": [
+      "Acute otitis externa.",
+      "Acute otitis media.",
+      "Acute mastoiditis.",
+      "Acute labyrinthitis."
+    ],
+    "correct": 1,
+    "explanation": "The clinical picture of fever, irritability, ear pain, yellowish ear discharge, and a congested bulging tympanic membrane is classic for acute otitis media (AOM). Otitis externa would show canal swelling without TM bulging; mastoiditis would have post-auricular swelling and tenderness; labyrinthitis causes vertigo and nystagmus."
+  },
+  {
+    "question": "The commonest bacteria that causes this condition is:",
+    "options": [
+      "Staphylococcus aureus.",
+      "Streptococcus pneumoniae.",
+      "Pseudomonas aeruginosa.",
+      "Group A beta hemolytic streptococcus."
+    ],
+    "correct": 1,
+    "explanation": "Streptococcus pneumoniae (pneumococcus) is the most common bacterial cause of acute otitis media in children, followed by Haemophilus influenzae and Moraxella catarrhalis."
+  },
+  {
+    "question": "The dose of IM streptomycin (an anti-tuberculous drugs) is:",
+    "options": [
+      "5-8 mg/kg/day.",
+      "10-20 mg/kg/day.",
+      "20-40 mg/kg/day.",
+      "40-60 mg/kg/day."
+    ],
+    "correct": 2,
+    "explanation": "The dose of intramuscular streptomycin is 20\u201340 mg/kg/day. Streptomycin is a second-line anti-TB drug that must be given parenterally due to poor oral absorption."
+  },
+  {
+    "question": "A 4-year-old girl presented to paediatrician due to chronic ill health (the exact terms of mother). On examination, child's body weight was 12kg (below 3rd percentile) and height was 89 cm (below 3rd percentile). The mother said that her girl used to have very recurrent chest infections and almost never cough-free. She describes her cough to be loose and productive. The girl also had frequent afebrile diarrhea. At her neonatal period, she had prolonged neonatal jaundice. I. The most likely diagnosis is:",
+    "options": [
+      "Chronic persistent asthma.",
+      "Lactose intolerance.",
+      "Cystic fibrosis."
+    ],
+    "correct": 2,
+    "explanation": "The combination of failure to thrive, recurrent chest infections with productive cough, steatorrhea (frequent pale offensive greasy stools), and prolonged neonatal jaundice strongly suggests cystic fibrosis (CF). CF causes pancreatic exocrine insufficiency leading to malabsorption and recurrent pulmonary infections."
+  },
+  {
+    "question": "The type of diarrhea that is usually seen in these patients is:",
+    "options": [
+      "Bloody diarrhea.",
+      "Watery diarrhea.",
+      "Steatorrhea.",
+      "Starvation diarrhea."
+    ],
+    "correct": 2,
+    "explanation": "Cystic fibrosis causes pancreatic exocrine insufficiency, leading to fat malabsorption and steatorrhea \u2014 large, pale, offensive, greasy stools due to undigested fat. This is the characteristic type of diarrhea in CF."
+  },
+  {
+    "question": "An 8-year-old girl was diagnosed to have bacterial pneumonia since 4 days. She was hospitalized and received IV ampicillin. Today, while in hospital, her temperature went up to 39.8\u00b0C, her respiratory distress increased significantly, the right lung is stony dull on percussion and trachea is significantly shifted to the left side. Oxygen saturation in room air is 90%. I. What is the most probable cause of this deterioration:",
+    "options": [
+      "Right massive empyema.",
+      "Right tension pneumothorax.",
+      "Right lung abscess.",
+      "Type I respiratory failure."
+    ],
+    "correct": 0,
+    "explanation": "The deterioration with high fever, stony dull percussion on the right, and significant tracheal shift to the left indicates a right massive empyema (pus in the pleural space). The stony dullness differentiates it from pneumothorax (which would be hyperresonant), and the mediastinal shift is caused by the volume of pus pushing the mediastinum."
+  },
+  {
+    "question": "The least urgent intervention is:",
+    "options": [
+      "Oxygen therapy.",
+      "Intercostal tube for drainage.",
+      "Chest x-ray.",
+      "CBC."
+    ],
+    "correct": 3,
+    "explanation": "CBC is the least urgent intervention in this emergency. The priority is oxygen therapy (to correct hypoxemia), intercostal tube drainage (to drain the empyema and relieve pressure), and CXR (to confirm the diagnosis). CBC is a routine investigation that does not change acute management."
+  },
+  {
+    "question": "A 3-year-old boy was brought to endocrinology clinic because of failure to gain weight. His weight and height were below the 3rd percentile for age and sex. History was positive for abnormally recurrent chest infections, for which he was hospitalized 3 times in the last 4 months. The mother also states that her child used to have frequent large pale very offensive greasy stools. A similar condition was seen in his late brother who died at the age of 6 years. I. The most likely diagnosis is:",
+    "options": [
+      "Celiac disease.",
+      "Cow milk allergy.",
+      "Cystic fibrosis.",
+      "Lactose intolerance."
+    ],
+    "correct": 2,
+    "explanation": "The triad of failure to thrive, recurrent chest infections, and steatorrhea (large pale offensive greasy stools), plus a family history of a similar condition in a sibling who died young, is classic for cystic fibrosis \u2014 an autosomal recessive disorder."
+  },
+  {
+    "question": "The stool abnormalities are caused by:",
+    "options": [
+      "Pancreatic exocrine insufficiency.",
+      "IgE-mediated villous atrophy.",
+      "Deficiency of lactase enzyme.",
+      "Infantile cholestasis."
+    ],
+    "correct": 0,
+    "explanation": "The stool abnormalities in cystic fibrosis are caused by pancreatic exocrine insufficiency. The thick secretions obstruct the pancreatic ducts, preventing digestive enzymes (lipase, amylase, trypsin) from reaching the intestine, resulting in fat malabsorption and steatorrhea."
+  },
+  {
+    "question": "False negative tuberculin test mayhappen in the following situation except:",
+    "options": [
+      "Cachexia e.g. marasmus.",
+      "Cell mediated immunodeficiency.",
+      "Recent use of corticosteroids.",
+      "Obesity."
+    ],
+    "correct": 3,
+    "explanation": "Obesity does NOT cause a false negative tuberculin test. False negatives occur in conditions that impair cell-mediated immunity: marasmus (cachexia), cell-mediated immunodeficiency (e.g., HIV), and recent corticosteroid use. Obesity has no effect on tuberculin reactivity."
+  },
+  {
+    "question": "Ghon\u2019s focus is:",
+    "options": [
+      "Primary complex.",
+      "Miliary TB.",
+      "TB cavitation.",
+      "TB lymphadenitis."
+    ],
+    "correct": 0,
+    "explanation": "Ghon's focus is the primary complex \u2014 the combination of the initial parenchymal lung lesion and the draining hilar lymph node (Ghon complex). It is the hallmark of primary tuberculosis infection in children."
+  },
+  {
+    "question": "Which of the following is correct about otitis media:",
+    "options": [
+      "Hemophilus influenza is one of the common causative agents.",
+      "Rarely seen below 1st year of life.",
+      "Young children are more prone due to their long Eustachian tubes.",
+      "Oral penicillin V should be given for all patients."
+    ],
+    "correct": 0,
+    "explanation": "Haemophilus influenzae is one of the common causative agents of otitis media (along with Strep pneumoniae and Moraxella catarrhalis). Otitis media is common below 1 year; young children are more prone due to their shorter (not longer) Eustachian tubes; and oral penicillin V is not appropriate for all cases."
+  },
+  {
+    "question": "All the following about bronchiectasis in children is true except:",
+    "options": [
+      "There is destruction of ciliated epithelium with loss of elastic tissue.",
+      "Can be congenital or acquired.",
+      "Clubbing of fingers is rare.",
+      "Anorexia, fever and poor weight gain are common."
+    ],
+    "correct": 2,
+    "explanation": "Clubbing of fingers is common (not rare) in bronchiectasis due to chronic suppurative lung disease. The other statements are true: there is destruction of ciliated epithelium with loss of elastic tissue, it can be congenital or acquired, and anorexia/fever/poor weight gain are common."
+  },
+  {
+    "question": "A 6-year-old boy was brought to his physician because of progressively increasing respiratory distress over the last day. His temperature is 37.6\u00b0C, respiratory rate is 65/minute with a bluish tinge of his lips. Auscultation revealed minimal wheezing and diminished air entry bilaterally. I. The patient should be:",
+    "options": [
+      "Treated at home with oral salbutamol.",
+      "Treated at home with nebulized salbutamol.",
+      "Treated at home with inhaled corticosteroids.",
+      "Immediately hospitalized."
+    ],
+    "correct": 3,
+    "explanation": "This child has severe respiratory distress (RR 65/min, cyanosis, diminished air entry) that is not responding to bronchodilators. This is a medical emergency requiring immediate hospitalization for close monitoring, oxygen therapy, and possibly intensive care. Home treatment is unsafe."
+  },
+  {
+    "question": "The following is not a prophylactic agent:",
+    "options": [
+      "Inhaled sodium cromoglycate.",
+      "Inhaled budesonide.",
+      "Montelukast.",
+      "Oral salbutamol."
+    ],
+    "correct": 3,
+    "explanation": "Oral salbutamol is a short-acting beta-2 agonist used for symptom relief, NOT for prophylaxis. Prophylactic (controller) medications include inhaled sodium cromoglycate (mast cell stabilizer), inhaled budesonide (corticosteroid), and montelukast (leukotriene modifier)."
+  },
+  {
+    "question": "All of the following statements about tuberculosis in children are true, except:",
+    "options": [
+      "Chest TB is more common than other types.",
+      "Tuberculin test is always positive in any tuberculous child.",
+      "Should be included in all differential diagnosis of chronic chest problems.",
+      "BCG doesn\u2019t give full protection against TB."
+    ],
+    "correct": 1,
+    "explanation": "The tuberculin test is NOT always positive in tuberculous children. It can be negative in cases of severe malnutrition, immunodeficiency, miliary TB, or recent steroid use. The other statements are true: chest TB is most common, TB should be included in chronic illness differentials, and BCG does not give full protection."
+  },
+  {
+    "question": "All the following are true about acute bronchiolitis, except:",
+    "options": [
+      "Most cases are under 2 years old.",
+      "Most cases are caused by RSV.",
+      "Antibiotics are recommended in infants below 3 months age.",
+      "Steroids maybe helpful in some cases."
+    ],
+    "correct": 2,
+    "explanation": "Antibiotics are NOT recommended routinely in bronchiolitis, even in infants below 3 months. Bronchiolitis is a viral illness (most commonly RSV), and antibiotics have no role unless there is a secondary bacterial infection. The other statements are true."
+  },
+  {
+    "question": "One of the following is not a first line of anti-tuberculous drugs:",
+    "options": [
+      "Kanamycin.",
+      "Isoniazid.",
+      "Pyrazinamide.",
+      "Rifampicin."
+    ],
+    "correct": 0,
+    "explanation": "Kanamycin is a second-line anti-TB drug (an aminoglycoside), not a first-line drug. The first-line anti-TB drugs are isoniazid (INH), rifampicin, pyrazinamide, ethambutol, and streptomycin."
+  },
+  {
+    "question": "One of the following is true about bronchiolitis:",
+    "options": [
+      "It is a common cause of wheezing in infants.",
+      "Mainly presents by harsh expiratory sounds.",
+      "Corticosteroids therapy is often useful.",
+      "Family history of atopy is usually present."
+    ],
+    "correct": 0,
+    "explanation": "Bronchiolitis is a common cause of wheezing in infants, especially those under 2 years of age. The wheezing is typically expiratory (not harsh), corticosteroids are generally not useful, and family history of atopy is not usually present (unlike asthma)."
+  },
+  {
+    "question": "In tuberculosis:",
+    "options": [
+      "Bovine bacilli never cause infection to human.",
+      "Ghon\u2019s focus is seen in primary complex.",
+      "BCG is prepared from killed mycobacterium tuberculosis.",
+      "Pulmonary affection in primary complex is very rare."
+    ],
+    "correct": 1,
+    "explanation": "Ghon's focus is seen in the primary complex (the initial lung lesion plus draining lymph node). Bovine bacilli CAN infect humans (through unpasteurized milk), BCG is prepared from live attenuated Mycobacterium bovis (not killed TB), and pulmonary affection is common (not rare) in primary complex."
+  },
+  {
+    "question": "A 5-year-old boy presents with a 1-week-history of fever, anorexia, productive cough, and right upper quadrant abdominal pain. On examination, he is febrile, short of breath, with mild subcostal and intercostal recessions. Auscultation reveals decreased breath sounds and bronchial breathing on the right side of her chest. I. What is the most likely diagnosis:",
+    "options": [
+      "Viral hepatitis.",
+      "Right lower lobe pneumonia.",
+      "Acute appendicitis.",
+      "Congenital diaphragmatic hernia."
+    ],
+    "correct": 1,
+    "explanation": "The combination of fever, productive cough, and right upper quadrant abdominal pain with chest signs (decreased breath sounds, bronchial breathing) is classic for right lower lobe pneumonia. The RUQ pain is referred pain from diaphragmatic irritation of the right lower lobe consolidation."
+  },
+  {
+    "question": "Management includes the following except:",
+    "options": [
+      "Oxygen.",
+      "Antibiotics.",
+      "Chest x-ray.",
+      "Surgery."
+    ],
+    "correct": 3,
+    "explanation": "Surgery is not part of the management of uncomplicated lobar pneumonia. Treatment includes oxygen (for hypoxemia), antibiotics (to treat the bacterial infection), and CXR (for diagnosis and monitoring). Surgery would only be needed for complications like empyema requiring drainage."
+  },
+  {
+    "question": "Regarding cystic fibrosis, which is wrong:",
+    "options": [
+      "Autosomal recessive disease.",
+      "Failure to thrive and malabsorption are common features.",
+      "Recurrent chest infections are common.",
+      "Respiratory secretions are lower in viscosity."
+    ],
+    "correct": 3,
+    "explanation": "In cystic fibrosis, respiratory secretions have HIGHER viscosity (not lower), due to defective CFTR protein causing thick, sticky mucus. This is the hallmark of CF and the reason for recurrent infections. The other statements are correct: CF is autosomal recessive, failure to thrive is common, and recurrent chest infections occur."
+  },
+  {
+    "question": "A 4-year-old girl was brought to the ER with temp 39.8\u00b0C and breathing difficulty. On examination, the girl looked toxic though of normal consciousness, RR 64/min, working ala nasi, intercostal retractions and grunting. Her O2 saturation at room air was 90%. Chest x-ray showed opacity in right upper lobe with central trachea. I. The grade of respiratory distress is:",
+    "options": [
+      "Grade 1.",
+      "Grade 2.",
+      "Grade 3.",
+      "Grade 4."
+    ],
+    "correct": 2,
+    "explanation": "The presence of grunting indicates Grade 3 respiratory distress. Grade 3 is characterized by tachypnea + retractions + grunting. Grade 4 would additionally have cyanosis and/or altered consciousness. The toxic appearance and high fever with consolidation suggest bacterial lobar pneumonia."
+  },
+  {
+    "question": "The most likely diagnosis is:",
+    "options": [
+      "Bronchopneumonia.",
+      "Lobar pneumonia.",
+      "Right upper lobar collapse.",
+      "Foreign body aspiration."
+    ],
+    "correct": 1,
+    "explanation": "The CXR showing opacity in the right upper lobe with a central trachea, combined with high fever, toxicity, and grunting, is most consistent with lobar pneumonia. Bronchopneumonia would show patchy bilateral infiltrates; lobar collapse would show volume loss with mediastinal shift; foreign body would show hyperinflation or atelectasis."
+  },
+  {
+    "question": "Which of the following is correct about lung abscess:",
+    "options": [
+      "Bronchoscopy is used to aspirate pus.",
+      "Antibiotic therapy for 6 weeks is usually indicated.",
+      "Metastatic lung abscess is common in children.",
+      "Its clinical picture starts acutely."
+    ],
+    "correct": 1,
+    "explanation": "Lung abscess typically requires prolonged antibiotic therapy for 4\u20136 weeks. Bronchoscopy is for diagnosis, not aspiration of pus (percutaneous drainage may be used). Metastatic lung abscess is uncommon in children (more common in adults with septic emboli). Lung abscess usually has an insidious onset, not acute."
+  },
+  {
+    "question": "The commonest cause of pneumonia in infancy is: Tuberculosis. a",
+    "options": [
+      "Aspiration.",
+      "Viral.",
+      "Pneumococcal."
+    ],
+    "correct": 2,
+    "explanation": "The commonest cause of pneumonia in infancy is pneumococcal (Streptococcus pneumoniae). It is the leading bacterial cause of community-acquired pneumonia in infants and young children worldwide."
+  },
+  {
+    "question": "Suppurative lung diseases include:",
+    "options": [
+      "Asthma.",
+      "Bronchiolitis.",
+      "Emphysema.",
+      "Empyema."
+    ],
+    "correct": 3,
+    "explanation": "Empyema (pus in the pleural cavity) is a suppurative lung disease. Suppurative lung diseases are characterized by pus formation and include bronchiectasis, lung abscess, and empyema. Asthma, bronchiolitis, and emphysema are not suppurative conditions."
+  },
+  {
+    "question": "Lymph Notes | P age101 27. A 4-year-old girl presented to the ER with severe grade 3 respiratory distress with slight bluish tinge in the lips on crying. The girl looked toxic, her temp, was 39.6oC, HR 128 bpm and RR 42/min. Her mother gave a history of high fever in the last 4 days and severe cough. Chest examination revealed diminished air entry over the right lung, scattered fine consonating crepitations, and patch of bronchial breathing. The left lung was to totally normal. Chest x-ray revealed a total opacification of her right lung with no medication shift. CRC showed leukocytosis, shift to left and toxic granulations. I. The most likely diagnosis:",
+    "options": [
+      "Acute bronchitis",
+      "Acute bronchiolitis",
+      "Bacterial pneumonia",
+      "Pneumonia complicated with pleural effusion."
+    ],
+    "correct": 2,
+    "explanation": "The combination of severe grade 3 respiratory distress, high fever (39.6\u00b0C), toxic appearance, leukocytosis with left shift and toxic granulations, and total opacification of one lung is most consistent with bacterial pneumonia. The fine crepitations and bronchial breathing also support consolidation."
+  },
+  {
+    "question": "All of the following are to be anticipated (expected) in that baby, except:",
+    "options": [
+      "Low 02 saturation.",
+      "HighCRP.",
+      "Immediate mechanical ventilation",
+      "Immediate 02 and antibiotics."
+    ],
+    "correct": 2,
+    "explanation": "Immediate mechanical ventilation is NOT expected in this baby. Grade 3 respiratory distress with bacterial pneumonia would first be managed with oxygen therapy and IV antibiotics. Mechanical ventilation would only be needed if the child deteriorates despite treatment (progressing to Grade 4 or respiratory failure)."
+  },
+  {
+    "question": "All the following can be complicated by lung abscess, except:",
+    "options": [
+      "Lobar pneumonia.",
+      "Hydropneumothorax.",
+      "Tuberculosis.",
+      "Foreign body aspiration."
+    ],
+    "correct": 1,
+    "explanation": "Hydropneumothorax is NOT complicated by lung abscess. Lung abscess can complicate lobar pneumonia (especially staphylococcal), tuberculosis, and foreign body aspiration. Hydropneumothorax is a different pathology involving air and fluid in the pleural space."
+  },
+  {
+    "question": "In bronchiolitis:",
+    "options": [
+      "Coryzal symptoms usually follow the illness.",
+      "Wheezing is often but not always present.",
+      "Bronchiolitis obliterans is the most common complication.",
+      "Usually caused by parainfluenza virus."
+    ],
+    "correct": 1,
+    "explanation": "Wheezing is often but not always present in bronchiolitis \u2014 some infants may present with only tachypnea and retractions without audible wheeze. Coryzal symptoms typically PRECEDE (not follow) the illness, bronchiolitis obliterans is a rare (not the most common) complication, and RSV (not parainfluenza) is the most common cause."
+  },
+  {
+    "question": "Which of the following is true about bronchiolitis?",
+    "options": [
+      "It is one of the atopic disorders.",
+      "Most cases are caused by adenovirus.",
+      "Oxygen therapy is the main line of management.",
+      "Recurrence is very common."
+    ],
+    "correct": 2,
+    "explanation": "Oxygen therapy is the main line of management for bronchiolitis, as hypoxemia is the primary concern. Bronchiolitis is not an atopic disorder, most cases are caused by RSV (not adenovirus), and recurrence is uncommon (not very common)."
+  },
+  {
+    "question": "Two-year-old child presented to ER acute onset of respiratory distress which followed recent change of residence. His mother said that this happened after she left him playing in the garden with his toys. On examination, there were right basal lung wheezes and intercostal retractions. The left side of his chest was free: I. What\u2019s the most likely diagnosis:",
+    "options": [
+      "Bronchial asthma.",
+      "Foreign body inhalation.",
+      "Immune deficiency.",
+      "Bronchiectasis."
+    ],
+    "correct": 1,
+    "explanation": "Sudden onset of respiratory distress in a young child after a change of environment, with unilateral findings (right basal wheezes, intercostal retractions, left side free), strongly suggests foreign body inhalation. The history of playing in the garden raises suspicion for aspiration of a small object."
+  },
+  {
+    "question": "Investigation will be most helpful:",
+    "options": [
+      "Pulmonary function test.",
+      "Sputum examination.",
+      "Serum immunoglobulins.",
+      "Bronchoscopy."
+    ],
+    "correct": 3,
+    "explanation": "Bronchoscopy is the most helpful investigation for suspected foreign body inhalation, as it is both diagnostic and therapeutic \u2014 allowing direct visualization and removal of the foreign body. Pulmonary function tests and sputum examination are not useful in this acute setting."
+  },
+  {
+    "question": "Long term medication for asthma:",
+    "options": [
+      "Theophylline.",
+      "Ipratropium.",
+      "Montelukast.",
+      "Terbutaline."
+    ],
+    "correct": 2,
+    "explanation": "Montelukast is a leukotriene modifier used as a long-term controller medication for asthma. Theophylline, ipratropium, and terbutaline are primarily used as relievers or add-on bronchodilators, not as long-term controller medications."
+  },
+  {
+    "question": "All the following are complicated by lung abscess, except:",
+    "options": [
+      "Acute bronchiolitis.",
+      "Amoebiasis.",
+      "Staph pneumonia.",
+      "Foreign body aspiration."
+    ],
+    "correct": 0,
+    "explanation": "Acute bronchiolitis is NOT complicated by lung abscess. Bronchiolitis is a viral disease that does not cause necrosis of lung tissue. Lung abscess can complicate amoebiasis (via hematogenous spread or direct extension), staphylococcal pneumonia (necrotizing infection), and foreign body aspiration."
+  },
+  {
+    "question": "The most likely causative agent of acute bronchiolitis is:",
+    "options": [
+      "Adenovirus.",
+      "Para-influenza virus.",
+      "Epstein-Barr virus.",
+      "Respiratory syncytial virus."
+    ],
+    "correct": 3,
+    "explanation": "Respiratory syncytial virus (RSV) is the most common causative agent of acute bronchiolitis, accounting for approximately 60\u201380% of cases. Other causes include parainfluenza, adenovirus, and rhinovirus, but RSV is by far the most common."
+  },
+  {
+    "question": "Bronchial asthma characterized by:",
+    "options": [
+      "Common atopic disease of childhood.",
+      "Recurrence is very rare.",
+      "Low degree of reversibility of obstructive process.",
+      "Bandemia is a constant feature in peripheral blood film."
+    ],
+    "correct": 0,
+    "explanation": "Bronchial asthma is a common atopic disease of childhood characterized by recurrent episodes of wheezing and cough. Recurrence is common (not rare), the obstruction is highly reversible (not low reversibility), and bandemia is not a constant feature (eosinophilia is more typical)."
+  },
+  {
+    "question": "A 2-year-old boy is seen because of sudden onset shortness of breath and cough, he had an upper respiratory infection 4 days ago. Earlier in the day, he was playing with peanuts. His immunization is up to date examination revealed respiratory distress with inspiratory stridor auscultation showed tachycardia & decrease breath sounds in right lower base. Diagnosis:",
+    "options": [
+      "Bronchial asthma.",
+      "Viral croup.",
+      "Acute epiglottitis.",
+      "Foreign body aspiration."
+    ],
+    "correct": 3,
+    "explanation": "Sudden onset shortness of breath in a child who was playing with peanuts, with unilateral decreased breath sounds and inspiratory stridor, is classic for foreign body aspiration. The history of peanut exposure is the key clue. Asthma would be bilateral; croup would have barking cough without unilateral signs."
+  },
+  {
+    "question": "Serious complications of staphylococcal pneumonia include all the following, except:",
+    "options": [
+      "Lung abscess.",
+      "Bronchitis.",
+      "Empyema.",
+      "Lung collapse."
+    ],
+    "correct": 1,
+    "explanation": "Bronchitis is NOT a serious complication of staphylococcal pneumonia. Serious complications include lung abscess (due to necrotizing infection), empyema (pus in pleural space), and lung collapse. Simple bronchitis is a mild condition and not a complication of this severe infection."
+  },
+  {
+    "question": "Paroxysmal stage of pertussis persists for:",
+    "options": [
+      "2 weeks.",
+      "3weeks.",
+      "4 weeks.",
+      "6 weeks."
+    ],
+    "correct": 2,
+    "explanation": "The paroxysmal stage of pertussis (whooping cough) persists for about 4 weeks. The disease has 3 stages: catarrhal (1\u20132 weeks), paroxysmal (2\u20134 weeks, sometimes up to 6 weeks, but classically 4 weeks), and convalescent (1\u20132 weeks)."
+  },
+  {
+    "question": "9-month-old male is brought to clinic with history of episodes of paroxysms of cough since 1 month. Each paroxysm of cough is followed by vomiting and usuallyassociated with inspiratory characteristic sound and intense congestion of the face. Examination of the chest is unremarkable and chest x-ray is normal. I. What is the most likely diagnosis:",
+    "options": [
+      "Tuberculosis.",
+      "Whooping cough.",
+      "Bronchial asthma.",
+      "Viral croup."
+    ],
+    "correct": 1,
+    "explanation": "Paroxysms of cough followed by vomiting and an inspiratory whoop, with intense facial congestion, in a 9-month-old infant, is classic for pertussis (whooping cough). The normal chest exam and CXR help differentiate it from pneumonia or TB."
+  },
+  {
+    "question": "One of the following is true about diagnosis:",
+    "options": [
+      "Lymphopenia is common.",
+      "Steroids are usually indicated.",
+      "Pneumothorax may occur.",
+      "Montelukast is a useful therapy."
+    ],
+    "correct": 2,
+    "explanation": "Pneumothorax may occur as a complication of pertussis due to the forceful paroxysmal coughing causing alveolar rupture. Lymphopenia is not typical (lymphocytosis is more characteristic), steroids are not usually indicated, and montelukast has no role in pertussis treatment."
+  },
+  {
+    "question": "Commonest cause of bacterial pneumonia in infancy is:",
+    "options": [
+      "H. influenzae.",
+      "Streptococcus.",
+      "Staphylococcus.",
+      "Pneumococcus."
+    ],
+    "correct": 3,
+    "explanation": "Pneumococcus (Streptococcus pneumoniae) is the commonest cause of bacterial pneumonia in infancy and young children. H. influenzae and Staphylococcus are less common causes in the post-vaccination era."
+  },
+  {
+    "question": "The sound that is heard in the chest of asthmatic child is:",
+    "options": [
+      "Croup.",
+      "Snoring.",
+      "Wheezing.",
+      "Murmur."
+    ],
+    "correct": 2,
+    "explanation": "Wheezing is the characteristic sound heard in the chest of an asthmatic child. It is a high-pitched, musical, expiratory sound caused by narrowed airways. Croup is a barking cough, snoring is from upper airway obstruction, and murmur is a cardiac sound."
+  },
+  {
+    "question": "All the following are known complications of pertussis, except:",
+    "options": [
+      "Otitis media.",
+      "Convulsions.",
+      "Peripheral neuritis.",
+      "Rectal prolapse."
+    ],
+    "correct": 2,
+    "explanation": "Peripheral neuritis is NOT a known complication of pertussis. Known complications include otitis media (from Eustachian tube dysfunction), convulsions (from hypoxia during coughing paroxysms), and rectal prolapse (from increased intra-abdominal pressure during coughing)."
+  },
+  {
+    "question": "A 4-year-old girl presents with a 3-day history of fever, cough, and respiratory distress. This has progressivelyworsened. She has previously been healthy. On examination, she has fever of 39.8\u00b0C, and respiratory rate of 45/minutes with moderate recession. Oxygen saturations are 89% in air. She has crackles at right base. I. What is the most likely diagnosis:",
+    "options": [
+      "Viral pneumonia.",
+      "Whooping cough.",
+      "Bacterial pneumonia.",
+      "Bronchial asthma."
+    ],
+    "correct": 2,
+    "explanation": "A previously healthy child with high fever (39.8\u00b0C), worsening respiratory distress, hypoxemia (O2 sat 89%), and crackles at the right base is most likely to have bacterial pneumonia. The high fever, toxicity, and focal signs suggest a bacterial etiology rather than viral pneumonia or asthma."
+  },
+  {
+    "question": "Which of the following findings is expected:",
+    "options": [
+      "Consolidation of right lower lobe.",
+      "Leucopenia.",
+      "Hyper-inflated chest.",
+      "Negative C-reactive protein test."
+    ],
+    "correct": 0,
+    "explanation": "Consolidation of the right lower lobe is expected in bacterial pneumonia with crackles at the right base. Leucopenia would be unusual (leukocytosis is expected), hyperinflated chest is seen in asthma/bronchiolitis (not pneumonia), and CRP is typically elevated (not negative) in bacterial infection."
+  },
+  {
+    "question": "A mother of a previously healthy 3-year old male complains of cough and wheezes. The boy had been playing with a small toy. During examination, the right side of the heart shows hyperresonance, diminished vocal resonance and poor air entry. I. The most probable diagnosis:",
+    "options": [
+      "Foreign body aspiration.",
+      "Bronchial asthma.",
+      "Lobar pneumonia.",
+      "Acute bronchitis."
+    ],
+    "correct": 0,
+    "explanation": "A previously healthy 3-year-old with sudden onset cough and wheezes after playing with a small toy, with unilateral hyperresonance and diminished air entry, most likely has foreign body aspiration. The history of toy play and unilateral findings are key diagnostic clues."
+  },
+  {
+    "question": "One of the following is typical about diagnosis:",
+    "options": [
+      "Being healthy before illness.",
+      "The local chest findings.",
+      "Both.",
+      "Nor."
+    ],
+    "correct": 2,
+    "explanation": "Both being healthy before the illness AND having local chest findings are typical of foreign body aspiration. Children are typically well before the event, and the foreign body causes localized findings (unilateral wheeze, diminished air entry, or hyperresonance) depending on its location."
+  },
+  {
+    "question": "A 6-year-oldpatient with severe pneumonia is being treated with intravenous cefuroxime and is doing well until day 3 of hospitalization, when he develops a temperature of 39.2\u00b0C and complains of unilateral pleuritic chest pain and associated shortness of breath. I. The most likely diagnosis is:",
+    "options": [
+      "Viral myocarditis.",
+      "Pleural effusion.",
+      "Foreign body aspiration.",
+      "Diaphragmatic hernia."
+    ],
+    "correct": 1,
+    "explanation": "A hospitalized pneumonia patient who develops new fever and unilateral pleuritic chest pain with shortness of breath on day 3 likely has developed a pleural effusion \u2014 a common complication of bacterial pneumonia. The pleuritic pain and new symptoms suggest fluid accumulation in the pleural space."
+  },
+  {
+    "question": "The next step of management is:",
+    "options": [
+      "Obtain x-ray of the chest.",
+      "Perform an echocardiogram.",
+      "Arrange for bronchoscopy.",
+      "Ask for surgical consultation."
+    ],
+    "correct": 0,
+    "explanation": "The next step in management of suspected pleural effusion is to obtain a chest x-ray to confirm the diagnosis and assess the size and location of the effusion. This guides further management (e.g., thoracentesis, chest tube placement). Echo, bronchoscopy, and surgical consultation are not first steps."
+  },
+  {
+    "question": "Suppurative lung diseases include all except:",
+    "options": [
+      "Bronchiectasis.",
+      "Lung abscess.",
+      "TB.",
+      "Empyema."
+    ],
+    "correct": 2,
+    "explanation": "Tuberculosis is NOT classified as a suppurative lung disease. Suppurative lung diseases are characterized by pus formation and include bronchiectasis, lung abscess, and empyema. TB is a granulomatous disease, not primarily suppurative."
+  },
+  {
+    "question": "A 16-week-old infant is brought to clinic because of cough, labored breathing, wheezing, and fever of two days' duration following a runny nose. The baby was delivered prematurely at 28 weeks. Chest examination reveals tachypnea, intercostal retractions, nasal flaring, hyperresonance to percussion, expiratory wheezing, and prolonged expiratory phase. What is the most likely diagnosis:",
+    "options": [
+      "Asthma.",
+      "Heart failure.",
+      "Pneumonia.",
+      "Bronchiolitis."
+    ],
+    "correct": 3,
+    "explanation": "A 16-week-old infant with coryza followed by cough, wheezing, fever, tachypnea, retractions, hyperresonance, and prolonged expiration is most likely to have bronchiolitis. The age (under 6 months), preceding coryza, and expiratory wheeze are classic for RSV bronchiolitis. Prematurity increases risk."
+  },
+  {
+    "question": "A 6-year-old girl has had a dry cough without sputum for 2 months. The cough is worse after exercise and at night. Family historyrevealed that the parents have eczema. On physical examination, a wheeze in both lung fields is detected. I. What is the most likely diagnosis:",
+    "options": [
+      "Bronchial asthma.",
+      "Pertussis.",
+      "Bronchiectasis.",
+      "Interstitial pneumonia."
+    ],
+    "correct": 0,
+    "explanation": "A 6-year-old with chronic dry cough worse after exercise and at night, with bilateral wheeze and a family history of atopy (eczema in parents), is most likely to have bronchial asthma. Exercise-induced and nocturnal cough are hallmark features of childhood asthma."
+  },
+  {
+    "question": "One of the following is an expected finding:",
+    "options": [
+      "Clubbing of fingers.",
+      "Absolute lymphocytosis",
+      "High fever and elevated ESR.",
+      "Good response to bronchodilators."
+    ],
+    "correct": 3,
+    "explanation": "Good response to bronchodilators is an expected finding in asthma \u2014 this reversibility of airway obstruction is a defining feature. Clubbing is NOT seen in asthma (it suggests chronic suppurative disease), absolute lymphocytosis is seen in pertussis, and high fever with elevated ESR suggests infection."
+  },
+  {
+    "question": "All the following are common complications of pertussis, except:",
+    "options": [
+      "Secondary bronchopneumonia.",
+      "Aplastic anemia.",
+      "Pneumothorax.",
+      "Apnea in small infants."
+    ],
+    "correct": 1,
+    "explanation": "Aplastic anemia is NOT a complication of pertussis. Complications include secondary bronchopneumonia (most common), pneumothorax (from forceful coughing), and apnea in small infants (especially those under 6 months). Aplastic anemia is unrelated to pertussis."
+  },
+  {
+    "question": "An absolute indication of tonsillectomy and adenoidectomy in children is: (June",
+    "options": [
+      "Recurrent tonsillitis.",
+      "Obstructive sleep apnea.",
+      "Recurrent otitis media.",
+      "Enlarged tonsillar LNs."
+    ],
+    "correct": 1,
+    "explanation": "Obstructive sleep apnea is an absolute indication for tonsillectomy and adenoidectomy in children. Recurrent tonsillitis, recurrent otitis media, and enlarged tonsillar lymph nodes are relative indications, but airway obstruction causing sleep apnea is absolute."
+  },
+  {
+    "question": "Bronchial asthma characterized by all the following except:",
+    "options": [
+      "Hyperactive airway.",
+      "Clubbing.",
+      "Spasmodic cough.",
+      "Bilateral chest wheezes."
+    ],
+    "correct": 1,
+    "explanation": "Clubbing is NOT a feature of bronchial asthma. Asthma is characterized by hyperactive airways, spasmodic cough, and bilateral wheezes. Clubbing indicates chronic suppurative lung disease (e.g., bronchiectasis, CF) and is not seen in asthma."
+  },
+  {
+    "question": "Clubbing of fingers is associated with the following conditions, except:",
+    "options": [
+      "Bronchial asthma.",
+      "Ulcerative colitis.",
+      "Cystic fibrosis.",
+      "Bronchiectasis."
+    ],
+    "correct": 0,
+    "explanation": "Clubbing is NOT associated with bronchial asthma. It is associated with chronic suppurative conditions like bronchiectasis, cystic fibrosis, and also with inflammatory bowel diseases like ulcerative colitis. Asthma does not cause clubbing because it does not involve chronic pus formation."
+  },
+  {
+    "question": "A previously healthy 4 years old boy presented with difficult breathing for one day. Three days prior, he had developed a runny nose, cough and fever (40\u00b0C). On examination, he is awake, alert, in moderate distress, with decreased air entry over the right lower lobe with fine crepitations. His lab tests revealed leucocytosis with raised ESR. What is the appropriate next step in management:",
+    "options": [
+      "Blood culture.",
+      "Chest x-ray.",
+      "IM antibiotics.",
+      "IV antibiotics."
+    ],
+    "correct": 1,
+    "explanation": "In a child with fever and unilateral decreased air entry suggestive of pneumonia, a chest x-ray is the appropriate next step to confirm the diagnosis and identify the pattern (lobar vs. bronchopneumonia) and complications. Blood culture and IV antibiotics may follow, but CXR is needed first."
+  },
+  {
+    "question": "A 5-year-old boy presents with a1-week-history of fever, anorexia, productive cough, and right upper quadrant abdominal pain. On examination, he is febrile, short of breath, with mild subcostal and intercostal recessions. Auscultation reveals decreased breath sounds on the right side of her chest. What is the most likely helpful investigation:",
+    "options": [
+      "Liver enzymes.",
+      "Chest x-ray.",
+      "Abdominal ultrasound.",
+      "Tuberculin test."
+    ],
+    "correct": 1,
+    "explanation": "A child with fever, cough, and RUQ pain with chest signs needs a chest x-ray \u2014 the most helpful investigation. The RUQ pain is likely referred from right lower lobe pneumonia irritating the diaphragm. CXR will confirm consolidation and guide treatment."
+  },
+  {
+    "question": "Regarding acute bronchiolitis, which of the following statements is wrong:",
+    "options": [
+      "Mainly caused by adenovirus.",
+      "Mainlyoccurs during first 2 years of life.",
+      "Clinically, the child shows respiratory distress and expiratory wheezing.",
+      "Case fatality rate is less than 1%."
+    ],
+    "correct": 0,
+    "explanation": "Acute bronchiolitis is mainly caused by RSV (respiratory syncytial virus), NOT adenovirus. The other statements are correct: it mainly occurs in the first 2 years of life, presents with respiratory distress and expiratory wheezing, and has a case fatality rate of less than 1%."
+  },
+  {
+    "question": "Regarding cystic fibrosis which of the following is wrong:",
+    "options": [
+      "A gene located on chromosome 7 is defective.",
+      "Most patients have pancreatic endocrine problem.",
+      "There is excessive concentrated NaCl in sweat.",
+      "Respiratory secretions are higher in viscosity."
+    ],
+    "correct": 1,
+    "explanation": "Most patients with cystic fibrosis have pancreatic EXOCRINE (not endocrine) insufficiency. Endocrine dysfunction (diabetes mellitus) occurs in a minority of older CF patients. The other statements are correct: chromosome 7 is defective, excessive NaCl is in sweat, and respiratory secretions are more viscous."
+  },
+  {
+    "question": "The most indicative signs of pneumonia in 1-year-old child is:",
+    "options": [
+      "Fever and retractions.",
+      "Grunting and breathing difficulty.",
+      "Fever and rapid respiration.",
+      "Audible wheezing."
+    ],
+    "correct": 2,
+    "explanation": "The most indicative signs of pneumonia in a 1-year-old child are fever and rapid respiration (tachypnea). Tachypnea is the single most important sign of pneumonia in young children per WHO guidelines. Grunting suggests more severe distress (Grade 3), and wheezing suggests bronchiolitis/asthma rather than pneumonia."
+  },
+  {
+    "question": "Cystic fibrosis is characterized by all except:",
+    "options": [
+      "The concentration of sodium and chloride in sweat is abnormally high.",
+      "Recurrent chest infection is common.",
+      "Autosomal dominant.",
+      "Gene located on chromosome 7 is defective."
+    ],
+    "correct": 2,
+    "explanation": "Cystic fibrosis is autosomal RECESSIVE (not dominant). It is caused by mutations in the CFTR gene on chromosome 7, characterized by abnormal NaCl in sweat and recurrent chest infections. The autosomal recessive inheritance means both parents must be carriers."
+  },
+  {
+    "question": "Which of the following is true about bronchiolitis:",
+    "options": [
+      "Never occurs after the age of 6 years.",
+      "Most cases are caused by RSV.",
+      "Antibiotics are recommended in infants below 3 months.",
+      "Recurrence is very common."
+    ],
+    "correct": 1,
+    "explanation": "Most cases of bronchiolitis are caused by RSV (respiratory syncytial virus). It can occur after age 6 (though uncommon), antibiotics are not recommended in young infants (unless secondary bacterial infection is proven), and recurrence is not very common."
+  },
+  {
+    "question": "In bronchial asthma which statement is wrong:",
+    "options": [
+      "Chronic inflammatory disease in the airways.",
+      "Self-limited disease (most patients recover before 6 years of age).",
+      "Viral respiratory infections are among important asthma triggers.",
+      "Has polygenetic (multifactorial) inheritance."
+    ],
+    "correct": 1,
+    "explanation": "Asthma is NOT a self-limited disease \u2014 this statement is wrong. While many children improve, asthma can persist into adulthood and is a chronic inflammatory condition requiring ongoing management. The other statements are correct: it is chronic inflammatory, viral infections are triggers, and it has polygenetic inheritance."
+  },
+  {
+    "question": "Asthma triggers include all the following except:",
+    "options": [
+      "Viral respiratory infections.",
+      "Tobacco smoke.",
+      "House dust mite.",
+      "Steroids."
+    ],
+    "correct": 3,
+    "explanation": "Steroids are NOT an asthma trigger \u2014 they are used to TREAT asthma (by reducing inflammation). Common asthma triggers include viral respiratory infections, tobacco smoke, house dust mite, exercise, cold air, and allergens. Steroids (especially inhaled corticosteroids) are controller medications."
+  },
+  {
+    "question": "Regarding childhood bronchial asthma, which of the following statements is wrong:",
+    "options": [
+      "It is a chronic inflammatory disease of the airways.",
+      "All asthmatic children should be advised to avoid certain foods e.g. eggs, chocolate.",
+      "Viral respiratory infections are among the important asthma triggers.",
+      "Most patients need controller medications as well as bronchodilators."
+    ],
+    "correct": 1,
+    "explanation": "It is wrong to advise all asthmatic children to avoid certain foods (e.g., eggs, chocolate). Food avoidance is only recommended when a specific food allergy is confirmed by testing. Most asthmatic children do not have food triggers. The other statements are correct."
+  },
+  {
+    "question": "A 6-year-old asthmatic child presented to ER with severe grade III respiratory distress, bilateral diminished air entry and generalized wheezing. Oxygen saturation at room air is 88%. I. The most appropriate 1st step is:",
+    "options": [
+      "Ask for plain chest x-ray.",
+      "Oxygen and nebulized salbutamol.",
+      "Inhaled corticosteroids.",
+      "IV steroids."
+    ],
+    "correct": 1,
+    "explanation": "In a severe asthmatic attack with Grade III distress and hypoxemia (O2 sat 88%), the first step is oxygen and nebulized salbutamol (a short-acting beta-2 agonist). Oxygen corrects hypoxemia, and salbutamol provides rapid bronchodilation. CXR and IV steroids may be needed later but are not the first step."
+  },
+  {
+    "question": "Which of the following is unlikely:",
+    "options": [
+      "Positive family history of atopy.",
+      "Eosinophilia in CBC.",
+      "High total serum IgE.",
+      "Jet black hyper translucency in chest x-ray."
+    ],
+    "correct": 3,
+    "explanation": "Jet black hypertranslucency in CXR is unlikely in asthma. While asthma may show mild hyperinflation/hyperlucency due to air trapping, a 'jet black' appearance suggests pneumothorax, not asthma. Positive family atopy history, eosinophilia, and high IgE are all common in atopic asthma."
+  },
+  {
+    "question": "Long-term controller medications for asthma include all except:",
+    "options": [
+      "Inhaled corticosteroids as Fluticasone.",
+      "Leukotriene modifiers as Montelukast.",
+      "Mast cell stabilizers as sodium cromoglycate.",
+      "Short acting beta adrenergic as salbutamol."
+    ],
+    "correct": 3,
+    "explanation": "Short-acting beta agonists (e.g., salbutamol) are NOT long-term controller medications \u2014 they are relievers used for acute symptoms. Long-term controllers include inhaled corticosteroids, leukotriene modifiers (montelukast), and mast cell stabilizers (sodium cromoglycate)."
+  },
+  {
+    "question": "Regarding childhood bronchial asthma, which of the following statements is wrong:",
+    "options": [
+      "The only mechanism of airway obstruction is bronchoconstriction (bronchospasm).",
+      "During acute attack, chest is hyperinflated.",
+      "Aspirin and NSAIDs are triggers of asthma.",
+      "Prostaglandin Ei."
+    ],
+    "correct": 0,
+    "explanation": "The only mechanism of airway obstruction in asthma is NOT just bronchoconstriction \u2014 this statement is wrong. Asthma involves THREE mechanisms: bronchoconstriction (bronchospasm), airway inflammation (mucosal edema), and mucus hypersecretion (mucus plugging). All three contribute to obstruction."
+  },
+  {
+    "question": "Blood picture of a child with atopic bronchial asthma commonly shows:",
+    "options": [
+      "Neutrophils.",
+      "Eosinophils.",
+      "Monocytosis.",
+      "Lymphocytosis."
+    ],
+    "correct": 1,
+    "explanation": "In atopic bronchial asthma, the blood picture commonly shows eosinophilia. Eosinophils are key mediators of allergic inflammation and are elevated in atopic conditions including asthma, allergic rhinitis, and eczema."
+  },
+  {
+    "question": "Regarding cystic fibrosis, which of the following is wrong:",
+    "options": [
+      "Pancreatic exocrine insufficiency occurs in most patients.",
+      "Results from a defect in a gene located on chromosome number 9.",
+      "Recurrent chest infections are common.",
+      "There is increase in the sodium and chloride levels in the sweat."
+    ],
+    "correct": 1,
+    "explanation": "Cystic fibrosis results from a defect in a gene located on chromosome 7 (not chromosome 9). The CFTR gene on chromosome 7 is responsible. The other statements are correct: pancreatic exocrine insufficiency occurs in most patients, recurrent chest infections are common, and NaCl is increased in sweat."
+  },
+  {
+    "question": "Regarding Pott's disease, which is wrong:",
+    "options": [
+      "Lower thoracic spine is more commonly affected than cervical spine.",
+      "May result in angular kyphosis.",
+      "Affects body of one or more vertebrae.",
+      "Tuberculin test is always negative."
+    ],
+    "correct": 3,
+    "explanation": "The tuberculin test is NOT always negative in Pott's disease (spinal TB). It can be positive in active TB infection. Pott's disease commonly affects the lower thoracic spine, may cause angular kyphosis, and affects the vertebral body. A positive tuberculin test supports the diagnosis of TB."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

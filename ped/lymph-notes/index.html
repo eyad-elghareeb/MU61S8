@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Lymph Notes Explained</title>
+<link rel="stylesheet" href="../../index-engine.css">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back">←</a>
+    <div class="topbar-title">MU61 Quiz - Pediatrics</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()">☀</button>
+  </div>
+  <div class="container">
+    <header class="hero">
+      <h1>Lymph <span>Notes Explained</span></h1>
+      <p>Comprehensive Pediatrics MCQs based on Lymph Notes.</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">Made By: <a href="https://github.com/eyad-elghareeb/QuizTool">QuizTool</a></div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    title: "Cardiology",
+    description: "Pediatrics - Cardiology MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "84 Questions"],
+    url: "cardiology.html"
+  },
+  {
+    title: "Respiration",
+    description: "Pediatrics - Respiration MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "82 Questions"],
+    url: "respiration.html"
+  },
+  {
+    title: "Emergency",
+    description: "Pediatrics - Emergency MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "68 Questions"],
+    url: "emergency.html"
+  },
+  {
+    title: "Infections Vaccination",
+    description: "Pediatrics - Infections Vaccination MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "43 Questions"],
+    url: "infections-vaccination.html"
+  },
+  {
+    title: "Haematology",
+    description: "Pediatrics - Haematology MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "101 Questions"],
+    url: "haematology.html"
+  },
+  {
+    title: "GIT",
+    description: "Pediatrics - GIT MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "85 Questions"],
+    url: "git.html"
+  },
+  {
+    title: "Hepatology",
+    description: "Pediatrics - Hepatology MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "55 Questions"],
+    url: "hepatology.html"
+  },
+  {
+    title: "Allergy",
+    description: "Pediatrics - Allergy MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "8 Questions"],
+    url: "allergy.html"
+  },
+  {
+    title: "Endocrine",
+    description: "Pediatrics - Endocrine MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "25 Questions"],
+    url: "endocrine.html"
+  },
+  {
+    title: "Genetics",
+    description: "Pediatrics - Genetics MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "37 Questions"],
+    url: "genetics.html"
+  },
+  {
+    title: "Growth Development",
+    description: "Pediatrics - Growth Development MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "51 Questions"],
+    url: "growth-development.html"
+  },
+  {
+    title: "Neonatology",
+    description: "Pediatrics - Neonatology MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "64 Questions"],
+    url: "neonatology.html"
+  },
+  {
+    title: "Nephrology",
+    description: "Pediatrics - Nephrology MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "25 Questions"],
+    url: "nephrology.html"
+  },
+  {
+    title: "Neurology",
+    description: "Pediatrics - Neurology MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "46 Questions"],
+    url: "neurology.html"
+  },
+  {
+    title: "Nutrition",
+    description: "Pediatrics - Nutrition MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "85 Questions"],
+    url: "nutrition.html"
+  },
+  {
+    title: "Rheumatology",
+    description: "Pediatrics - Rheumatology MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "3 Questions"],
+    url: "rheumatology.html"
+  },
+  {
+    title: "Final Exam May 2018",
+    description: "Pediatrics - Final Exam May 2018 MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Final", "78 Questions"],
+    url: "final-exam-may-2018.html"
+  },
+  {
+    title: "Problem Solving Paediatrics 2017 2018",
+    description: "Pediatrics - Problem Solving Paediatrics 2017-2018 MCQs (Lymph Notes Explained)",
+    icon: "📘",
+    tags: ["Quiz", "24 Questions"],
+    url: "problem-solving-paediatrics-2017-2018.html"
+  }
+];
+</script>
+
+<script src="../../index-engine.js"></script>
+<script>
+(function(){
+  var s=localStorage.getItem('quiz-theme');
+  if(s) document.documentElement.setAttribute('data-theme',s);
+  if(window.__updateThemeIcon) window.__updateThemeIcon();
+  if(window.renderQuizzes) window.renderQuizzes();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Final Exam May 2018</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_final_exam_may_2018",
+  "title": "Final Exam May 2018",
+  "description": "Pediatrics - Final Exam May 2018 MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is correct?",
+    "options": [
+      "Each chromosome is formed of one or two genes.",
+      "A person should be homozygous for gene to get autosomal dominant disorder",
+      "Each person have 2 pairs of sex chromosomes",
+      "Recurrence risk autosomal dominant disorder is 50%"
+    ],
+    "correct": 3,
+    "explanation": "D is correct because autosomal dominant disorders have a 50% recurrence risk as each child has a 50% chance of inheriting the mutant allele. A is wrong as chromosomes contain many genes, B is wrong as heterozygous individuals can have autosomal dominant disorders, and C is wrong as humans have one pair of sex chromosomes (XX or XY)."
+  },
+  {
+    "question": "Which of the following is correct about respiratory distress:",
+    "options": [
+      "The fourth grade is characterized by presence of bradycardia, apnea & cyanosis",
+      "In the first grade there is only tachypnea",
+      "Intercostal & subcostal retraction are only seen in 2nd grade",
+      "Grunting is prominent feature in 3rd grade"
+    ],
+    "correct": 3,
+    "explanation": "D is correct as grunting is a prominent feature in grade 3 respiratory distress. A is wrong as bradycardia and apnea are features of grade 4, B is wrong as grade 1 includes nasal flaring in addition to tachypnea, and C is wrong as retractions can be seen in grades 2-4."
+  },
+  {
+    "question": "In chromosomal abnormalities:",
+    "options": [
+      "Ring chromosome is special type of deletion",
+      "Duplication is doubling of genetic material of a whole chromosome",
+      "Inversion means that the long arm is above & short is below",
+      "Isochomosome is due to division of centrosome longitudinally instead of transversely"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as ring chromosomes are a special type of deletion where both ends are lost and the remaining ends fuse. B is wrong as duplication refers to a segment of a chromosome, not the whole chromosome. C is wrong as inversion refers to the orientation of chromosome segments, not arm positions. D is wrong as isochromosomes result from abnormal division perpendicular to the centromere."
+  },
+  {
+    "question": "Microcytic anemia is caused by:",
+    "options": [
+      "Leukemia",
+      "Thalassemia major",
+      "Spherocytosis",
+      "Autoimmune hemolytic anemia"
+    ],
+    "correct": 1,
+    "explanation": "B is correct as thalassemia major causes microcytic anemia due to reduced hemoglobin synthesis. A is wrong as leukemia typically causes normocytic anemia. C is wrong as spherocytosis causes normocytic or macrocytic anemia. D is wrong as autoimmune hemolytic anemia typically causes normocytic anemia."
+  },
+  {
+    "question": "Concerning hemolytic anemia:",
+    "options": [
+      "There is increased serum iron binding capacity",
+      "Usually direct serum bilirubin markedly increased",
+      "Increased fecal urobilinogen is common",
+      "Reticulocytes is1-2% usually"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as increased fecal urobilinogen is common in hemolytic anemia due to increased bilirubin production from red cell breakdown. A is wrong as serum iron binding capacity is normal or decreased in hemolytic anemia. B is wrong as indirect bilirubin is increased, not direct bilirubin. D is wrong as reticulocyte count is elevated (5-25%) in hemolytic anemia."
+  },
+  {
+    "question": "In thalassemia major:",
+    "options": [
+      "Red cells shows macrocytosis",
+      "There is many target cells in peripheral blood",
+      "There is low serum ferritin",
+      "Bone marrow shows asplasia"
+    ],
+    "correct": 1,
+    "explanation": "B is correct because thalassemia major shows microcytic hypochromic red cells with target cells due to hemoglobin precipitation. A is wrong as thalassemia shows microcytosis, not macrocytosis. C is wrong as iron overload leads to high serum ferritin. D is wrong as bone marrow shows erythroid hyperplasia, not asplasia."
+  },
+  {
+    "question": "Non immune thrombocytopenic purpura is seen in all of the following EXCEPT:",
+    "options": [
+      "Idiopathic thrombocytopenic purpura",
+      "Hemolytic uremic syndrome",
+      "Disseminated intravascular coagulopathy",
+      "Hypersplenism"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as immune thrombocytopenic purpura (ITP) is immune-mediated, while the others are non-immune causes. B is wrong as HUS causes non-immune thrombocytopenia. C is wrong as DIC causes non-immune thrombocytopenia. D is wrong as hypersplenism causes non-immune thrombocytopenia."
+  },
+  {
+    "question": "Concerning blood gases:",
+    "options": [
+      "Both arterial & venous sampling give the same result except for C02 level",
+      "PaO2 blow 70 indicate hypoxemic respiratory failure",
+      "PaCO2 between 45-50 indicate hyperventilation",
+      "PH 7.2 & low bicarbonate indicate metabolic acidosis"
+    ],
+    "correct": 3,
+    "explanation": "D is correct as pH 7.2 and low bicarbonate indicate metabolic acidosis. A is wrong as arterial and venous sampling differ in oxygen and CO2 levels. B is wrong as PaO2 below 60 indicates hypoxemic respiratory failure. C is wrong as PaCO2 between 45-50 indicates hypoventilation, not hyperventilation."
+  },
+  {
+    "question": "In nephrotic syndrome:",
+    "options": [
+      "Idiopathic type may be due to disturbance in T cell function",
+      "Hepatic albumin synthesis is decreased",
+      "Edema occurs a result of hypoglobulinemia",
+      "Hypocholesterolemia is common"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as idiopathic nephrotic syndrome may involve T-cell dysfunction. B is wrong as hepatic albumin synthesis is increased, not decreased. C is wrong as edema results from hypoalbuminemia, not hypoglobulinemia. D is wrong as hypercholesterolemia, not hypocholesterolemia, is common."
+  },
+  {
+    "question": "In case of glomerulonephritis:",
+    "options": [
+      "Occurs after streptococcal infection by 2 or 3 days",
+      "Polyuria",
+      "Scrotal edema is a common finding",
+      "Seizures may occur"
+    ],
+    "correct": 3,
+    "explanation": "D is correct as severe hypertension in glomerulonephritis can lead to seizures. A is wrong as post-streptococcal glomerulonephritis occurs 1-3 weeks after infection. B is wrong as oliguria, not polyuria, is common. C is wrong as scrotal edema is not a typical finding in glomerulonephritis."
+  },
+  {
+    "question": "Nocturnal enuresis:",
+    "options": [
+      "Is defined as bed wetting after age of 3 years",
+      "It is due to developmental delay in acquiring sphincter control",
+      "Most children have organic causes",
+      "Primary nocturnal enuresis has high rate of recurrence"
+    ],
+    "correct": 1,
+    "explanation": "B is correct as nocturnal enuresis is primarily due to developmental delay in acquiring sphincter control. A is wrong because the age cutoff is 5 years, not 3. C is wrong as most cases are non-organic. D is wrong as primary enuresis typically has a lower recurrence rate than secondary."
+  },
+  {
+    "question": "Which of the following is correct about Moro reflex?",
+    "options": [
+      "It starts with shoulder adduction of the arms",
+      "It can be elicited by dropping of the head",
+      "It is associated with fisted hands",
+      "It becomes stronger during the 3rd month of life"
+    ],
+    "correct": 1,
+    "explanation": "B is correct as Moro reflex is elicited by sudden dropping of the head. A is wrong as it starts with shoulder abduction, not adduction. C is wrong as hands are open, not fisted. D is wrong as the reflex diminishes after 3-6 months, not strengthens."
+  },
+  {
+    "question": "A skin rash is NOT an essential part of diagnosis in:",
+    "options": [
+      "Infectious mononucleosis",
+      "Varicella zoster infection",
+      "Rubella",
+      "Measles"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as infectious mononucleosis diagnosis doesn't require a rash. B, C, and D are wrong as rash is essential for diagnosing varicella, rubella, and measles respectively."
+  },
+  {
+    "question": "All of the following may be normal in cerebral palsy EXCEPT",
+    "options": [
+      "Cognitive abilities",
+      "Sensor functions",
+      "Motor functions",
+      "Auditory functions"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as motor dysfunction is the defining feature of cerebral palsy. A, B, and D are wrong as cognitive, sensory, and auditory functions can be normal in cerebral palsy."
+  },
+  {
+    "question": "Scarlet fever:",
+    "options": [
+      "It caused by group B hemolytic streptococcus",
+      "It is most common between 6 months- 2 years",
+      "Its incubation period is 2-4 days",
+      "The rash appears on the 4th day of fever"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as scarlet fever has an incubation period of 2-4 days. A is wrong as it's caused by group A, not B streptococcus. B is wrong as it's most common in 5-15 year olds, not 6 months-2 years. D is wrong as rash typically appears on the second day of fever."
+  },
+  {
+    "question": "Which of the following is correct about kernicterus?",
+    "options": [
+      "Bilirubin is deposited mainly in cerebral hemispheres",
+      "Can be prevented by proper management",
+      "It is caused increased level of direct bilirubin",
+      "Increased albumin binding capacity increase its risk of occurrence"
+    ],
+    "correct": 1,
+    "explanation": "B is correct because kernicterus can be prevented by proper management of hyperbilirubinemia through phototherapy and exchange transfusion when needed. A is wrong as bilirubin is deposited mainly in basal ganglia and brainstem, not cerebral hemispheres. C is wrong as kernicterus is caused by indirect bilirubin, not direct bilirubin. D is wrong as increased albumin binding capacity would decrease free bilirubin and risk of kernicterus."
+  },
+  {
+    "question": "All of the following drugs are needed for neonatal resuscitation EXCEPT",
+    "options": [
+      "Epinephrine solution",
+      "Naloxone hydrochloride",
+      "Diuretics",
+      "Sodium bicarbonate"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as diuretics are not part of standard neonatal resuscitation protocols. A, B, and D are all used in specific situations during neonatal resuscitation - epinephrine for bradycardia, naloxone for opioid depression, and sodium bicarbonate for severe metabolic acidosis."
+  },
+  {
+    "question": "Which of the following is correct about neonatal seizures",
+    "options": [
+      "Clonic one is rigid posture of extremity",
+      "Myoclonic one is blinking of the eye",
+      "Tonic one is a focal jerks of distal muscle group of the body",
+      "Subtle one may appear as chewing motion"
+    ],
+    "correct": 3,
+    "explanation": "D is correct as subtle seizures may include oral-buccal movements like chewing. A is wrong as clonic seizures involve rhythmic jerking, not rigid posture. B is wrong as myoclonic seizures involve sudden jerks, not just blinking. C is wrong as tonic seizures involve sustained muscle contraction, not focal jerks."
+  },
+  {
+    "question": "Which of the following is seen during abdominal examination of the newborn:",
+    "options": [
+      "Divarication of the recti",
+      "Liver is not felt under costal margin",
+      "Testicles is not felt in scrotum",
+      "Umbilical cord should slough before the sixth day"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as divarication of recti is a normal finding in newborns due to abdominal wall muscle development. B is wrong as the liver edge is normally palpable 1-2 cm below the costal margin in newborns. C is wrong as undescended testicles (cryptorchidism) is a common finding in newborn males. D is wrong as umbilical cord typically sloughs by 7-21 days, not necessarily before the sixth day."
+  },
+  {
+    "question": "Which of the following is correct about Babinski reflex in newborn",
+    "options": [
+      "The response is downwards movements of big toe",
+      "Usually disappears by the age of one year",
+      "Its persistence beyond the one & half year is abnormal",
+      "Its persistence beyond the recommended age indicate lower motor neuron lesion"
+    ],
+    "correct": 1,
+    "explanation": "B is correct as the Babinski reflex normally disappears by 12 months of age. A is wrong as the response is upward movement of the big toe. C is wrong as persistence beyond 2 years is considered abnormal, not 1.5 years. D is wrong as persistence beyond normal age indicates upper motor neuron lesion, not lower motor neuron lesion."
+  },
+  {
+    "question": "In neonatal respiratory distress syndrome",
+    "options": [
+      "Surfactant increase the alveolar surface tension of water",
+      "Symptoms usually start to appear after 24 years",
+      "X-ray shows peripheral air bronchograms",
+      "Nasal CPAP is contraindicated"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as X-ray shows peripheral air bronchograms due to fluid-filled alveoli. A is wrong as surfactant decreases surface tension. B is wrong as symptoms typically appear within hours of birth. D is wrong as nasal CPAP is a common treatment."
+  },
+  {
+    "question": "In cranial birth injuries",
+    "options": [
+      "Caput succedaneum start few days after birth",
+      "Cephalhematoma may be associated with jaundice",
+      "Subgaleal hematoma due to bleeding under the periosteum",
+      "Intracranial hemorrhage definite diagnosis in only with CT or MRI"
+    ],
+    "correct": 1,
+    "explanation": "B is correct as cephalhematoma can lead to jaundice due to blood breakdown. A is wrong as caput succedaneum appears at birth. C is wrong as subgaleal hematoma is under the galea aponeurosis, not periosteum. D is wrong as ultrasound can diagnose intracranial hemorrhage."
+  },
+  {
+    "question": "In neuromuscular disorders",
+    "options": [
+      "Myasthenia gravis is due to anterior horn cell lesion",
+      "Werdnig Hoffmann genetic disease of neuromuscular junction",
+      "Dermatomyositis is caused by virus infection",
+      "Guillain Barre post-infectious acute paralysis"
+    ],
+    "correct": 3,
+    "explanation": "D is correct as Guillain-Barre is a post-infectious acute paralysis. A is wrong as myasthenia gravis is a neuromuscular junction disorder. B is wrong as Werdnig Hoffmann is an anterior horn cell disease. C is wrong as dermatomyositis is an autoimmune disorder, not viral."
+  },
+  {
+    "question": "In hydrocephalus",
+    "options": [
+      "Arnold-Chiari malformation is obstructive form",
+      "If occur in children hypotonia & hyporeflexia of both lowers is common",
+      "Anterior fontanel is large & sunken",
+      "Sun set appearance the eyes may be seen"
+    ],
+    "correct": 3,
+    "explanation": "D is correct as sunset appearance is characteristic of hydrocephalus. A is wrong as Arnold-Chiari is a hindbrain malformation, not typically obstructive. B is wrong as hydrocephalus typically causes hypertonia, not hypotonia. C is wrong as anterior fontanel is bulging, not sunken."
+  },
+  {
+    "question": "In neonatal endotracheal limb intubation",
+    "options": [
+      "Indicated if chest compression is necessary",
+      "In infant less than 1000 gram use size 3.5 mm",
+      "During intubation the neck should be bended slightly forwards",
+      "Slide the laryngoscope blade over the left side of the tongue"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as endotracheal intubation is needed if chest compression is necessary. B is wrong as smaller tube sizes are used for infants <1000g. C is wrong as neck should be slightly extended during intubation. D is wrong as laryngoscope should be placed over the right side of the tongue."
+  },
+  {
+    "question": "All of the following are common complications of pertussis EXCEPT",
+    "options": [
+      "Pneumonia",
+      "Intracranial hemorrhage",
+      "Peripheral neuritis",
+      "Rectal prolapse"
+    ],
+    "correct": 2,
+    "explanation": "Peripheral neuritis is not a common complication of pertussis. Pneumonia, intracranial hemorrhage, and rectal prolapse are well-documented complications of pertussis due to the severe coughing fits and associated physiological stress."
+  },
+  {
+    "question": "Which of the following is correct about juvenile diabetes mellitus",
+    "options": [
+      "Single dose of insulin before breakfast is used for treatment",
+      "A hypoglycemia is a common acute complication",
+      "Carbohydrates should be around 25% of total caloric intake",
+      "Snacks in between meals is usually not advisable"
+    ],
+    "correct": 1,
+    "explanation": "Hypoglycemia is indeed a common acute complication of juvenile diabetes mellitus due to insulin therapy. Single dose insulin is insufficient, carbohydrates should be around 50-60% of calories, and snacks between meals are often necessary to maintain blood sugar levels."
+  },
+  {
+    "question": "About short stature",
+    "options": [
+      "Familial short stature is associated with delayed growth",
+      "Growth deceleration is the early sign in constitutional delay growth",
+      "In genetic short stature CT assessment of pituitary gland should be done",
+      "In familial short stature parents are usuallyshort"
+    ],
+    "correct": 3,
+    "explanation": "Familial short stature is characterized by short parents with normal growth velocity. Constitutional delay shows growth deceleration later, genetic short stature doesn't require CT unless other symptoms are present, and familial short stature has normal timing of puberty."
+  },
+  {
+    "question": "Colostrum",
+    "options": [
+      "It is a thick white fluid",
+      "Has acidic PH",
+      "It has high fat content",
+      "It is about 40-60 ml/day"
+    ],
+    "correct": 3,
+    "explanation": "Colostrum is about 40-60 ml/day, not a thick white fluid (it's yellowish), has a slightly acidic pH, and is low in fat but rich in antibodies and proteins."
+  },
+  {
+    "question": "Which of the following is NOT constant finding in Kawshiorkor",
+    "options": [
+      "Generalized edema",
+      "Delayed growth",
+      "Decreased muscle & fat ratio",
+      "Mentality changes"
+    ],
+    "correct": 1,
+    "explanation": "Delayed growth is not a constant finding in kwashiorkor, as it can occur with adequate calories but insufficient protein. Generalized edema, decreased muscle/fat ratio, and mental changes are characteristic features of kwashiorkor."
+  },
+  {
+    "question": "Radiological finding in rickets",
+    "options": [
+      "Green stick fracture is seen severe form of active rickets",
+      "Fraying is typical in healing rickets",
+      "Concave dense white line in metaphysics is typical of healed rickets",
+      "Rarefaction is commonly seen in healed rickets"
+    ],
+    "correct": 0,
+    "explanation": "Green stick fracture is seen in severe active rickets due to weakened bones from vitamin D deficiency. Option B is incorrect as fraying occurs in active rickets, not healing. Option C is incorrect as the dense white line appears during healing, not typical of healed rickets. Option D is incorrect as rarefaction is seen in active rickets, not healed."
+  },
+  {
+    "question": "Meningococcal vaccine",
+    "options": [
+      "Live attenuated vaccine",
+      "Needs booster dose every 2-3 years",
+      "It is given in 3successive doses",
+      "It is given 0.5 ml intradermal"
+    ],
+    "correct": 1,
+    "explanation": "Meningococcal vaccine requires booster doses every 2-3 years for sustained protection. Option A is incorrect as meningococcal vaccine is not live attenuated. Option C is incorrect as it's not given in 3 successive doses. Option D is incorrect as it's given intramuscularly, not intradermally."
+  },
+  {
+    "question": "Sabin vaccine",
+    "options": [
+      "It is a killed viral vaccine",
+      "It has no systemic or local reaction but it cost is expensive",
+      "It give long lasting immunity",
+      "Its immunity starts 6 weeks after vaccination"
+    ],
+    "correct": 2,
+    "explanation": "Sabin vaccine (oral polio vaccine) provides long-lasting immunity through live attenuated virus. Option A is incorrect as Sabin is live attenuated, not killed. Option B is incorrect as it can cause rare reactions and is not particularly expensive. Option D is incorrect as immunity develops earlier than 6 weeks."
+  },
+  {
+    "question": "During cardiac evaluation",
+    "options": [
+      "Cyanotic spells occur in low pulmonary blood flow",
+      "Squatting occur in any case of congenial cyanotic heart",
+      "Pulmonary venous congestion in in infancy usually presented by orthopnea",
+      "Pulmonary stenosis commonly presented by chest pain"
+    ],
+    "correct": 0,
+    "explanation": "Cyanotic spells occur in low pulmonary blood flow conditions like tetralogy of Fallot. Option B is incorrect as squatting is specific to tetralogy of Fallot, not all cyanotic heart diseases. Option C is incorrect as pulmonary venous congestion in infancy typically presents with tachypnea, not orthopnea. Option D is incorrect as chest pain is not a common presentation of pulmonary stenosis."
+  },
+  {
+    "question": "In VSD",
+    "options": [
+      "The bigger the size the louder the murmur",
+      "The murmur is maximum over the apex",
+      "A loud pulmonary 2nd sound is essential for diagnosis",
+      "Heart failure is a common presentation"
+    ],
+    "correct": 3,
+    "explanation": "Heart failure is a common presentation in VSD due to left-to-right shunting causing volume overload. Option A is incorrect as smaller VSDs often have louder murmurs due to higher pressure gradients. Option B is wrong as the murmur is typically best heard at the left lower sternal border, not the apex. Option C is incorrect as a loud P2 suggests pulmonary hypertension, which is not essential for diagnosis."
+  },
+  {
+    "question": "About PDA",
+    "options": [
+      "Its more common in premature",
+      "Always associated with cardiomegaly",
+      "Machinery systolic murmur maximum at left infraclavicular area",
+      "Wide pulse pressure in upper limb not lower limb"
+    ],
+    "correct": 0,
+    "explanation": "PDA is more common in premature infants due to their increased sensitivity to prostaglandins that keep the ductus open. Option B is incorrect as cardiomegaly is not always present. Option C is wrong as the machinery murmur is continuous, not just systolic. Option D is incorrect as wide pulse pressure affects both upper and lower limbs in PDA."
+  },
+  {
+    "question": "In rheumatic mitral stenosis",
+    "options": [
+      "It is common in children",
+      "Shortened mitral valve leaflet is the pathological finding",
+      "A loud 2nd sound & low 1st sound if present",
+      "Dyspnea with or without exertion is common"
+    ],
+    "correct": 3,
+    "explanation": "Dyspnea with or without exertion is common in rheumatic mitral stenosis due to pulmonary congestion from elevated left atrial pressure. Option A is incorrect as mitral stenosis typically presents in adulthood after rheumatic fever in childhood. Option B is wrong as rheumatic mitral stenosis involves thickened, fused, and shortened valve leaflets, not just shortened ones. Option C is incorrect as mitral stenosis typically has a loud first heart sound and an opening snap, not a loud second sound."
+  },
+  {
+    "question": "Which of the following is a sign of poor attachment of the infant to his mother's breast?",
+    "options": [
+      "Infant's chin touching breast",
+      "His mouth wide open",
+      "His lower lip turned inward",
+      "More areola visible above than below his mouth"
+    ],
+    "correct": 2,
+    "explanation": "A lower lip turned inward indicates poor attachment as the infant should have flanged lips. Option A is correct for good attachment, not poor. Option B is also correct for good attachment, not poor. Option D describes good attachment where more areola should be visible below the infant's mouth than above."
+  },
+  {
+    "question": "In bronchiolitis:",
+    "options": [
+      "Peak incidence is 3years",
+      "Most of the cases are caused by Adenovirus",
+      "Bronchodilator is the first line of therapy",
+      "Oxygen therapy is essential severe cases"
+    ],
+    "correct": 3,
+    "explanation": "D is correct because oxygen therapy is indeed essential in severe cases of bronchiolitis to maintain adequate oxygenation. A is wrong as peak incidence is typically 3-6 months, not 3 years. B is incorrect as RSV is the most common cause, not adenovirus. C is wrong as bronchodilators are not first-line therapy; supportive care is primary."
+  },
+  {
+    "question": "Hie post-hepatic portal hypertension may be due to:",
+    "options": [
+      "Portal vein thrombosis",
+      "Viral B hepatitis",
+      "Bilharziasis",
+      "Veno-occlusive disease"
+    ],
+    "correct": 3,
+    "explanation": "D is correct because veno-occlusive disease causes hepatic post-hepatic portal hypertension by blocking hepatic venules. A is pre-hepatic, not post-hepatic. B causes hepatic damage but not specifically post-hepatic hypertension. C causes pre-hepatic portal hypertension due to periportal fibrosis."
+  },
+  {
+    "question": "Which of the following is the most common presentation in Klinfelter's syndrome?",
+    "options": [
+      "Infertility",
+      "Big size testes",
+      "Short stature",
+      "Absent erection"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as infertility is the most common presentation in Klinefelter's syndrome due to seminiferous tubule dysgenesis. B is wrong as testes are typically small, not big. C is incorrect as patients are often tall, not short. D is wrong as erectile function is usually normal."
+  },
+  {
+    "question": "Causes of cholestasis include all of the following EXCEPT",
+    "options": [
+      "Rubella",
+      "Cytomegalovirus infection",
+      "Phenylketonuria",
+      "Alagille syndrome"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as phenylketonuria does not cause cholestasis; it's a metabolic disorder affecting amino acid metabolism. A, B, and D are all known causes of cholestasis in newborns and infants, with rubella and CMV causing infectious cholestasis and Alagille syndrome causing a genetic form of cholestasis."
+  },
+  {
+    "question": "Which of the following is WRONG about tetanus?",
+    "options": [
+      "It is caused by Clostridium tetani",
+      "The endotoxin of the organism is responsible for the clinical manifestation",
+      "Contaminated wounds are the main cause",
+      "Prevention by vaccination is possible"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because tetanus is caused by the exotoxin tetanospasmin produced by Clostridium tetani, not the endotoxin. Option A is correct as Clostridium tetani does cause tetanus, option C is correct as contaminated wounds are the main source of infection, and option D is correct as vaccination with tetanus toxoid is an effective preventive measure."
+  },
+  {
+    "question": "Which of the following is correct about Iry teeth?",
+    "options": [
+      "They are 20 in numbers",
+      "The average age of appearance of lower central incisors is 10-12 months",
+      "The average age of appearance of canines 22-25 is months",
+      "The average of appearance of 1st molars in 18-20 months"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because humans typically have 20 primary teeth (deciduous teeth). Option B is incorrect as lower central incisors usually appear at 6-10 months, not 10-12 months. Option C is incorrect as canines typically appear at 16-20 months, not 22-25 months. Option D is incorrect as first molars usually appear at 12-16 months, not 18-20 months."
+  },
+  {
+    "question": "Which of the following is correct?",
+    "options": [
+      "The infant double his birth body weight at the age of 4 months",
+      "The infant triple his body birth weight at the age of 10 months",
+      "The child double his birth length at the age of 6 years",
+      "The child triple his birth length at the age of 10 years"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because infants typically double their birth weight by about 4-5 months. Option B is incorrect as infants usually triple their birth weight by around 12 months, not 10 months. Option C is incorrect as children typically double their birth length by about 4 years, not 6 years. Option D is incorrect as children usually triple their birth length by about 13 years, not 10 years."
+  },
+  {
+    "question": "Streptococcal pharyngitis",
+    "options": [
+      "Peak incidence is18 months",
+      "Unilateral follicular exudates is typical finding",
+      "Tender posterior cervical lymphadenitis is the most common finding",
+      "Peritonsillar abscess is a possible complication"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because peritonsillar abscess is a known complication of untreated streptococcal pharyngitis. Option A is incorrect as peak incidence of streptococcal pharyngitis is in school-age children (5-15 years), not 18 months. Option B is incorrect as exudates in streptococcal pharyngitis are typically bilateral, not unilateral. Option C is incorrect while tender cervical lymphadenopathy is common, it's not specifically posterior."
+  },
+  {
+    "question": "In pneumonia due to infection",
+    "options": [
+      "The commonest Gram positive organism is hemophilus influenza",
+      "The commonest Gram negative organism is pneumococci",
+      "Entrovirus is the commonest virus causing pneumonia",
+      "Giant cell pneumonia is viral in origin"
+    ],
+    "correct": 3,
+    "explanation": "D is correct because giant cell pneumonia is indeed caused by viruses, particularly measles virus. A is wrong because hemophilus influenza is Gram negative, not positive. B is wrong because pneumococci are Gram positive, not negative. C is wrong because respiratory syncytial virus (RSV) is the most common viral cause of pneumonia, not enterovirus."
+  },
+  {
+    "question": "In lung abscess which of the following is WRONG:",
+    "options": [
+      "It is a suppurative process of lung parenchyma",
+      "It is not uncommon to occur as a complication of anaerobic infection",
+      "Aspiration of infected material is a very common cause",
+      "Metastatic lung abscess is uncommon in children"
+    ],
+    "correct": 1,
+    "explanation": "B is wrong because anaerobic infection is actually a common cause of lung abscess, not uncommon. A is correct as lung abscess is defined as a suppurative process of lung parenchyma. C is correct as aspiration of infected material is indeed a very common cause. D is correct as metastatic lung abscess is uncommon in children compared to adults."
+  },
+  {
+    "question": "In Down syndrome one of the following is NOT correct",
+    "options": [
+      "Flat occiput",
+      "Upward slanting of palpebral fissure",
+      "Epicanthal fold",
+      "Simian crease is pathognomonic"
+    ],
+    "correct": 3,
+    "explanation": "D is incorrect because while simian crease is commonly seen in Down syndrome, it is not pathognomonic as it can also be present in normal individuals and other conditions. A, B, and C are all correct features of Down syndrome: flat occiput, upward slanting of palpebral fissures, and epicanthal folds are characteristic physical findings."
+  },
+  {
+    "question": "Iry microcephaly may be seen in",
+    "options": [
+      "Rickets",
+      "Achondroplasia",
+      "Edward syndrome",
+      "Klinefelter syndrome"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as microcephaly is a characteristic feature of Edward syndrome (trisomy 18). A is wrong as rickets does not typically cause microcephaly. B is wrong as achondroplasia is a form of dwarfism without microcephaly. D is wrong as Klinefelter syndrome (XXY) does not typically present with microcephaly."
+  },
+  {
+    "question": "In isotonic dehydration",
+    "options": [
+      "It represents 75% of cases of dehydration",
+      "The tongue is moist",
+      "The turgor is normal",
+      "Coma is a typical CNS finding"
+    ],
+    "correct": 0,
+    "explanation": "A is correct because isotonic dehydration represents approximately 75% of dehydration cases in children. B is wrong as the tongue is typically dry in dehydration, C is wrong because turgor is decreased in dehydration, and D is wrong as coma is not a typical finding in dehydration."
+  },
+  {
+    "question": "To manage hyperkalemia",
+    "options": [
+      "0.5 of calcium gluconate 5%",
+      "Peritoneal dialysis",
+      "4ml of NaHC0310%",
+      "Glucose 4 ml/kg + insulin (1 unite insulin for 20ml glucose 10%)"
+    ],
+    "correct": 1,
+    "explanation": "B is correct as peritoneal dialysis is an effective treatment for severe hyperkalemia. A is wrong as calcium gluconate doesn't lower potassium levels but stabilizes the membrane, C is wrong as sodium bicarbonate may worsen hyperkalemia in some cases, and D is wrong as the insulin-glucose regimen should be 0.1-0.2 units insulin per 1g glucose."
+  },
+  {
+    "question": "Soya based formula",
+    "options": [
+      "Fructose replace the lactose",
+      "Has high aluminum content",
+      "It not nutritionally adequate for normal children",
+      "It could not be used with breast milk"
+    ],
+    "correct": 1,
+    "explanation": "B is correct as soya-based formulas have higher aluminum content compared to cow's milk formulas. A is wrong as soya formulas use sucrose or corn syrup, not fructose, C is wrong as soya formulas are nutritionally adequate for normal children, and D is wrong as soya formula can be used alongside breast milk."
+  },
+  {
+    "question": "Herpetic gingivostomatitis",
+    "options": [
+      "Is associated with high fever",
+      "Usually presented with white places covering the gingival",
+      "Most common in neonates",
+      "Mycostatin is the drug of choice"
+    ],
+    "correct": 0,
+    "explanation": "A is correct as herpetic gingivostomatitis is typically associated with high fever. B is wrong as white plaques are more characteristic of candidiasis, C is wrong as it's most common in young children, not neonates, and D is wrong as acyclovir is the treatment, not mycostatin which is for fungal infections."
+  },
+  {
+    "question": "Pyloric stenosis",
+    "options": [
+      "Associated with hyperchloraemic acidosis in severe cases",
+      "It is more common in girls",
+      "It is usually discovered with first feed",
+      "It is treatment by surgical pyloromyotomy"
+    ],
+    "correct": 3,
+    "explanation": "D is correct because pyloric stenosis is treated with surgical pyloromyotomy. A is incorrect as it's associated with hypochloremic metabolic alkalosis, not acidosis. B is incorrect as it's more common in boys. C is incorrect as it's typically discovered between 2-8 weeks of age, not with the first feed."
+  },
+  {
+    "question": "In gastro-esophageal reflux one of the following is WRONG",
+    "options": [
+      "It may be asymptomatic",
+      "Symptoms usuallystart after 1st year",
+      "Dystonic movements of head & neck may be associated",
+      "Most cases resolve spontaneously"
+    ],
+    "correct": 1,
+    "explanation": "B is correct as GER symptoms typically begin in the first few months of life, not after the first year. A is incorrect as GER can indeed be asymptomatic. C is incorrect as dystonic movements can be associated with GER. D is incorrect as most cases of GER do resolve spontaneously."
+  },
+  {
+    "question": "Persistent diarrhea",
+    "options": [
+      "In sugar intolerance the stool is bloody",
+      "In cows milk allergy the stool is acidic",
+      "In bacterial overgrowth E.coli invade upper part of small intestine",
+      "Vitamin D is the most important vitamin to be replaced"
+    ],
+    "correct": 2,
+    "explanation": "C is correct as in bacterial overgrowth, E. coli can invade the upper part of the small intestine. A is incorrect as sugar intolerance causes watery, non-bloody stools. B is incorrect as cow's milk allergy can cause acidic stools but this isn't the most characteristic feature. D is incorrect that vitamin D is the most important to replace; fat-soluble vitamins are more critical."
+  },
+  {
+    "question": "Viral hepatitis",
+    "options": [
+      "The virus causes hepatitis B virus is RNA in nature",
+      "The virus causes hepatitis C virus in DNA in nature",
+      "Incubation period of hepatitis C virus is 2-6 weels",
+      "Hepatitis delta virus can be prevented by vaccination"
+    ],
+    "correct": 3,
+    "explanation": "D is correct as hepatitis delta virus can be prevented by vaccination against hepatitis B. A is incorrect as hepatitis B is DNA, not RNA. B is incorrect as hepatitis C is RNA, not DNA. C is incorrect as the incubation period for hepatitis C is typically 2-26 weeks, not 2-6 weeks."
+  },
+  {
+    "question": "What is WRONG about hereditary spherocytosis",
+    "options": [
+      "It is caused by autosomal recessive trait",
+      "It may cause neonatal jaundice",
+      "Osmotic fragility test is positive",
+      "Splenectomy improve the condition"
+    ],
+    "correct": 0,
+    "explanation": "Hereditary spherocytosis is caused by an autosomal dominant trait, not recessive, making option A incorrect. The other options are correct: it can cause neonatal jaundice, shows positive osmotic fragility test, and splenectomy improves the condition."
+  },
+  {
+    "question": "Regarding hemodynamic parameters in the different types of shock all of the following is true except",
+    "options": [
+      "Cardiac output is decreased in hypovolemic shock",
+      "Central venous pressure (CVP) is decreased in hypovolemic shock",
+      "Cardiac output is decreased in cardiogenic shock",
+      "Central venous pressure (CVP) is decreased in cardiogenic shock"
+    ],
+    "correct": 3,
+    "explanation": "In cardiogenic shock, cardiac output is decreased but central venous pressure (CVP) is typically increased due to poor heart function, making option D incorrect. The other options are correct: cardiac output and CVP are both decreased in hypovolemic shock, and cardiac output is decreased in cardiogenic shock."
+  },
+  {
+    "question": "A 5 year old boy presented to the ER with abdominal pains and recurrent vomiting in the last few days. On examination, temperature 36.8, moderately dehydrated with impaired level of consciousness. His breathing was deep and rapid",
+    "options": [
+      "The most urgent lab test you need to request is",
+      "CT scan of the brain",
+      "Blood ammonia",
+      "Blood sugar",
+      "CSF examination and culture"
+    ],
+    "correct": 2,
+    "explanation": "Blood ammonia is the most urgent test as the child's presentation suggests hepatic encephalopathy with deep rapid breathing (Kussmaul breathing) and impaired consciousness. CT scan of the brain, blood sugar, and CSF examination are less likely to reveal the cause of these specific symptoms."
+  },
+  {
+    "question": "A 13 month old girl presented to her pediatrician with fever 40 degrees of 2 days duration. On examination there were no sign to explain this fever. The doctor prescribed antipyretics only. On the fourth day of illness, the fever disappeared suddenly, and a maculopapular rash appeared in the same day. The rash stated over the trunk then spread to the neck, arms and face. The rash faded within 24 hours",
+    "options": [
+      "The most likely diagnosis is:",
+      "Measles",
+      "Rubella",
+      "Roseola infantum",
+      "Scarlet fever"
+    ],
+    "correct": 2,
+    "explanation": "The presentation with sudden fever resolution and appearance of a maculopapular rash is classic for roseola infantum (sixth disease), caused by human herpesvirus 6. Measles typically has cough, coryza, and conjunctivitis; rubella has milder symptoms and lymphadenopathy; scarlet fever has sandpaper rash and strawberry tongue."
+  },
+  {
+    "question": "A 6 year old asthmatic child presented to the ER with severe Grade 3 respiratory distress, bilateral diminished air entry and generalized wheezing. The oxygen saturation at room air is 88%",
+    "options": [
+      "The most appropriate first step:",
+      "Ask for a plain chest X-ray",
+      "Oxygen and nebulized salbutamol",
+      "Inhaled corticosteroids",
+      "IV steroids"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B. While oxygen and nebulized salbutamol (C) is important treatment, the first step should be to confirm the diagnosis with a chest X-ray to rule out other conditions like pneumothorax or pneumonia that could mimic severe asthma. Inhaled corticosteroids (D) and IV steroids (E) are important for treatment but not the first step, and asking for a chest X-ray (B) is appropriate before aggressive treatment."
+  },
+  {
+    "question": "A 5 week old male presented with projectile vomiting after feedingand poor weight gain. On examination, visible peristalsis is seen as a wave moving from left to right across the abdomen",
+    "options": [
+      "The most likely diagnosis is:",
+      "Pyloric stenosis",
+      "Gastro-esophageal reflux",
+      "Acute gastritis",
+      "Esophageal atresia"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is B. Pyloric stenosis is characterized by projectile vomiting and visible peristaltic waves moving from left to right across the abdomen, typically occurring in infants 2-8 weeks old. Gastro-esophageal reflux (C) typically presents with non-projectile vomiting, acute gastritis (D) would present with more generalized symptoms, and esophageal atresia (E) would present with immediate feeding difficulties and regurgitation."
+  },
+  {
+    "question": "A female baby was delivered by and elective cesarean section at 35 weeks of gestation due to severe maternal hypertension. The mother is a 38 years primipara with infrequent antenatal care. The baby's birth weight is 1650gms (below 10thpercentile), length 44cms (at 25th percentile) and head circumference 31cms (at 25thpercentile) on the growth curves",
+    "options": [
+      "The proper description of that baby is:",
+      "A full term, AGA (appropriate for gestational age) female newborn",
+      "A preterm, SGA (small for gestational age) female newborn",
+      "A preterm, AGA (appropriate for gestational age) female newborn",
+      "A full term, SGA (small for gestational age) female newborn"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B. The baby is preterm (35 weeks gestation) and appropriate for gestational age (AGA) as her weight, length, and head circumference are all at or above the 10th percentile for her gestational age. She is not small for gestational age (SGA) as that would require weight below the 10th percentile, and she is not full term as she was born at 35 weeks."
+  },
+  {
+    "question": "An 18 month old male was brought to the emergency room one month age with history of repeated convulsions. On examination, the patient had enlarged costochondral junctions and broad ends of bones at wrists and ankles. At that time, the doctor prescribed for him an oral drug & a single IM injection. By mistake, the baby received 15 IM injections within a month. Now he is presenting with anorexia, nausea, vomiting, polyuria and polydipsia",
+    "options": [
+      "The most likely cause of the initial convulsions is",
+      "Hyperglycemia",
+      "Hypercalcemia",
+      "Hypoglycemia",
+      "Hypocalcemia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D. Hypocalcemia is the most likely cause of the initial convulsions, as evidenced by the enlarged costochondral junctions and broad ends of bones (indicative of rickets). The subsequent symptoms of anorexia, nausea, vomiting, polyuria, and polydipsia are consistent with vitamin D toxicity, which occurred due to the excessive IM injections of vitamin D. Hyperglycemia (B), hypercalcemia (C), and hypoglycemia (E) are not supported by the clinical presentation."
+  },
+  {
+    "question": "A 9 month old boy was brought to the neurology clinic by his mother who felt he is not as good as his sibs. In supine position, the baby's limbs were abducted and flexed. When the baby was pulled from his hands, the head lagged backwards",
+    "options": [
+      "All of the following can cause this condition except",
+      "Spastic diplegia",
+      "Atonic cerebral palsy",
+      "Werding-Hoffmann disease",
+      "Congenital myopathy"
+    ],
+    "correct": 0,
+    "explanation": "Option A is correct because it asks for what cannot cause the described hypotonic presentation, while all other options (B-E) are valid causes of hypotonia. Spastic diplegia, atonic cerebral palsy, Werding-Hoffmann disease, and congenital myopathy can all present with hypotonia and head lag in infancy."
+  },
+  {
+    "question": "A 2 week old boy brought to the pediatric cardiologist for being bluish from day1 of his birth. On examination, the baby shows central cyanosis that could not be corrected even with 100% oxygen. A pan systolic murmur is heard all over the pericardium mainly on the left parasternal area. The heart rate is 180/min. The liver is enlarged and tender. Chest X-ray showed and egg-shaped heart with narrow pedicle.",
+    "options": [
+      "The most likely diagnosis is:",
+      "Fallot's Tetralogy",
+      "Single ventricle",
+      "Truncus arteriosus",
+      "Transposition of great arteries (TGA)"
+    ],
+    "correct": 3,
+    "explanation": "Option D is correct because truncus arteriosus presents with cyanosis unresponsive to oxygen, pan systolic murmur, tachycardia, hepatomegaly, and the characteristic egg-shaped heart with narrow pedicle on X-ray. Fallot's tetralogy typically has a systolic murmur but not pan systolic, while TGA usually shows a superiorly positioned aorta on X-ray."
+  },
+  {
+    "question": "A 5 year old girl presented with recurrent throat infections. On examinations, the child was significantly pale, has numerous petechiae on her skin. CBC showed a total white cell count of 1050/mm3, hemoglobin of 7gm/dl and platelet count of 25,000 /mm3. The spleen was not enlarged.",
+    "options": [
+      "The most likely diagnosis is:",
+      "Aplastic anemia",
+      "Acute leukemia",
+      "Immune thrombocytopenic purpura",
+      "Systemic lupus erthromatosus"
+    ],
+    "correct": 0,
+    "explanation": "Option A is correct because aplastic anemia presents with pancytopenia (low WBC, RBC, and platelets) without organomegaly, matching the findings. Acute leukemia would likely show organomegaly, ITP would have normal WBC and hemoglobin, and SLE would have other systemic features and autoantibodies."
+  },
+  {
+    "question": "A 10 year old boy presented with fever of 38.2, burning urination and suprapubic pain. The condition started since 2 days. Since then the child vomited 3 times, bowel habits were normal. Urine was turbid but its color was normal",
+    "options": [
+      "What is the most likely diagnosis",
+      "Acute cystitis",
+      "Acute glomerulonephritis",
+      "Acute pyelonephritis",
+      "Acute pancreatitis"
+    ],
+    "correct": 0,
+    "explanation": "Option A is correct because acute cystitis presents with dysuria, suprapubic pain, and turbid urine without systemic symptoms like fever or vomiting. Acute pyelonephritis would typically have higher fever and flank pain, while glomerulonephritis would show hematuria and proteinuria, not turbid urine."
+  },
+  {
+    "question": "A 3 year old boy presented to the ER with history of severe persistent vomiting and diarrhea over the last 36 hours. On examination the child was severely dehydrated, pale, with cold extremities. The skin was mottled, heart rate 160/min and blood pressure 50/30",
+    "options": [
+      "The child is expected to have:",
+      "Metabolic acidosis",
+      "Metabolic alkalosis",
+      "Respiratory acidosis",
+      "Respiratory alkalosis"
+    ],
+    "correct": 0,
+    "explanation": "The child is in hypovolemic shock due to severe dehydration from vomiting and diarrhea, which causes metabolic acidosis due to lactic acid accumulation from poor tissue perfusion. Metabolic alkalosis would occur from bicarbonate loss, while respiratory acidosis/alkalosis are less likely in this acute dehydration scenario."
+  },
+  {
+    "question": "At his 5th day of life the results of neonatal screening for thyroid came with low T3, low T4 and high TSH",
+    "options": [
+      "This baby is likely to have:",
+      "Diarrhea",
+      "Constipation",
+      "Tachycardia",
+      "Excessive crying"
+    ],
+    "correct": 1,
+    "explanation": "The baby has congenital hypothyroidism as evidenced by low T3/T4 and high TSH, which typically presents with constipation due to decreased gut motility. Diarrhea, tachycardia, and excessive crying are not typical symptoms of hypothyroidism."
+  },
+  {
+    "question": "During a routine visit to the pediatrician a 2 year old boy was found to have an ejection systolic murmur at upper left sternal border. Detailed evaluation revealed systemic hypertension in right arm as well as weak femoral pulse.",
+    "options": [
+      "The ECG is expected to show:",
+      "Left ventricular hypertrophy",
+      "Right ventricular hypertrophy",
+      "Left atrial hypertrophy",
+      "Right atrial hypertrophy"
+    ],
+    "correct": 0,
+    "explanation": "The child has coarctation of the aorta, causing systemic hypertension and weak femoral pulses, which leads to left ventricular hypertrophy due to increased afterload. Right ventricular hypertrophy would occur with pulmonary hypertension, while atrial hypertrophies are not the primary findings here."
+  },
+  {
+    "question": "A 15 year old boy presented with bilateral enlargement of the breasts (gynecomastia). The parents were worried about the future of their son as they noticed an apparently small testicles. The height of the patient was on the 99thpercentile for age and sex.",
+    "options": [
+      "The most likely diagnosis is:",
+      "Turner syndrome",
+      "Klinefelter syndrome",
+      "Ambigious genitalia (Intersex)",
+      "Premature adrenarche"
+    ],
+    "correct": 1,
+    "explanation": "The boy has Klinefelter syndrome (47,XXY) presenting with tall stature, gynecomastia, and small testicles. Turner syndrome affects females, ambiguous genitalia is a different condition, and premature adrenarche doesn't explain these specific findings."
+  },
+  {
+    "question": "A 4 year old boy was referred to apediatric rheumatologist with a provisional diagnosis ofJuvenile rheumatoid arthritis. He was asked to do CBC, which showed significant anemia, and Hemoglobin electrophoresis, which was diagnostic.",
+    "options": [
+      "What is the diagnosis",
+      "Beta-thalassemia major",
+      "Sickle cell anemia",
+      "Hemoglobin C disease",
+      "Acute lymphoblastic leukemia"
+    ],
+    "correct": 1,
+    "explanation": "Beta-thalassemia major is correct as it presents with significant anemia in early childhood and is diagnosed by hemoglobin electrophoresis showing absence of beta chains. Sickle cell anemia would show hemoglobin S, hemoglobin C disease would show hemoglobin C, and acute lymphoblastic leukemia would show abnormal white blood cells rather than specific hemoglobin abnormalities."
+  },
+  {
+    "question": "Lymph Notes | P a g e179 78. A 2 year old boy is seen in casualtywith the complaint of significant abdominal distension. According to the mother the condition started 20 hours ago with what she describes as severe paroxysms of colic accompanied by loud crying. This was associated with repetitive vomiting. The vomitus is bile stained and the stool contains blood and mucous.",
+    "options": [
+      "The most likely diagnosis is:",
+      "Strangulated inguinal hernia",
+      "Midgut volvulus",
+      "Gastroenteritis",
+      "Intussusception"
+    ],
+    "correct": 3,
+    "explanation": "Intussusception is correct as it presents with acute abdominal pain, vomiting, and currant jelly stools in young children. Strangulated inguinal hernia would present with an irreducible lump, midgut volvulus would present bilious vomiting without blood, and gastroenteritis typically presents with diarrhea rather than the classic triad seen in intussusception."
+  },
+  {
+    "question": "Immediately after vaginal delivery, the pediatrician in charge of resuscitation of the newborn noticed grade 3 respiratory distress with severe intercostal and suprasternal retractions. The color of the baby started to become bluish and his oxygen saturation started to decline to below 86%. The saturation and color improved once the mouth was opened and an oral airway inserted.",
+    "options": [
+      "The most likely diagnosis is:",
+      "Congenital diaphragmatic hernia",
+      "Hyaline membrane disease",
+      "Amniotic fluid aspiration",
+      "Bilateral choanal atresia"
+    ],
+    "correct": 3,
+    "explanation": "Amniotic fluid aspiration is correct as the symptoms improved with airway management, suggesting obstruction rather than structural lung disease. Congenital diaphragmatic hernia would not improve with airway opening, hyaline membrane disease typically presents later, and bilateral choanal atresia would not improve with oral airway insertion."
+  },
+  {
+    "question": "A 3 year old presented to the ER with impaired level of consciousness and shallow irregular breathing. The PaCO2 was 62 mmHg and the PaO2 was 98 mmHg at room air. There was a history of blunt trauma to the head since 3 hours.",
+    "options": [
+      "The blood gases shows that the child has:",
+      "Type1respiratory failure",
+      "Type 2 respiratory failure",
+      "Metabolic alkalosis",
+      "Metabolic acidosis"
+    ],
+    "correct": 1,
+    "explanation": "Type 1 respiratory failure is correct as evidenced by low oxygen saturation (PaO2 < 60 mmHg) with normal or high CO2. Type 2 respiratory failure would show elevated CO2, and there's no evidence of metabolic alkalosis or acidosis in the given blood gas values."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

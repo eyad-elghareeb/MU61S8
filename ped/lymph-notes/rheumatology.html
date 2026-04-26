@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Rheumatology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_rheumatology",
+  "title": "Rheumatology",
+  "description": "Pediatrics - Rheumatology MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "A1O years old girl presented with fever of 38.3 that was intermittent in the last 2 months. During the same period, the girl used to suffer from painful swelling of elbow, knees and small joints of the hands, accompanied by restricted movement of the affected joints, joint affection used to be symmetric, the girl used to complain of pain in the back of the neck. I. What is the most likely diagnosis?",
+    "options": [
+      "juvenile SLE",
+      "systemic onset juvenile rheumatoid arthritis",
+      "poly articular JRA",
+      "pauciarticular JRA"
+    ],
+    "correct": 1,
+    "explanation": "Systemic onset juvenile rheumatoid arthritis (Still's disease) is the most likely diagnosis because the presentation includes intermittent fever lasting 2 months along with symmetric polyarticular involvement of both large and small joints. Juvenile SLE would typically present with different features such as malar rash, renal involvement, or hematologic abnormalities. Polyarticular JRA involves 5 or more joints but lacks the characteristic intermittent fever of systemic onset. Pauciarticular JRA involves 4 or fewer joints and does not present with systemic fever."
+  },
+  {
+    "question": "Which of the following drugs is increasingly used early to control joint manifestation?",
+    "options": [
+      "NASIDs",
+      "Methotrexate",
+      "systemic corticosteroids",
+      "Intra articular steroids"
+    ],
+    "correct": 2,
+    "explanation": "Systemic corticosteroids are increasingly used early to control joint manifestations in systemic onset JRA because of their potent anti-inflammatory effects, especially when the disease is severe with systemic features like fever. NSAIDs are first-line but often insufficient for systemic symptoms. Methotrexate is used as a disease-modifying agent but takes weeks to work. Intra-articular steroids target individual joints and are not appropriate for widespread symmetric joint involvement."
+  },
+  {
+    "question": "In juvenile rheumatoid arthritis, all the following are true except:",
+    "options": [
+      "Chronic anterior uveitis maybe a complication.",
+      "Early use of methotrexate reduces joint damage.",
+      "Rheumatoid factor is always positive.",
+      "May affect big and small joints."
+    ],
+    "correct": 2,
+    "explanation": "Rheumatoid factor is NOT always positive in juvenile rheumatoid arthritis. In fact, RF is positive in only a minority of JRA cases, mainly in the polyarticular subtype that resembles adult rheumatoid arthritis. Chronic anterior uveitis is a known complication especially in pauciarticular JRA. Early methotrexate use does reduce joint damage. JRA can affect both large and small joints."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

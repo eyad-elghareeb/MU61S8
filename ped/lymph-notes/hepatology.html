@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Hepatology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_hepatology",
+  "title": "Hepatology",
+  "description": "Pediatrics - Hepatology MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "All of the following are consequences of cholestasis except:",
+    "options": [
+      "Deficiency of vitamin A, D and K.",
+      "Dark colored stool.",
+      "Fat malabsorption.",
+      "Intense pruritus."
+    ],
+    "correct": 1,
+    "explanation": "B is correct because cholestasis causes pale or clay-colored stools due to lack of bilirubin reaching the intestines, not dark colored stools. A, C, and D are incorrect because cholestasis impairs fat-soluble vitamin absorption (A), causes fat malabsorption (C), and leads to pruritus due to bile salt accumulation (D)."
+  },
+  {
+    "question": "Concerning viral hepatitis as a primary illness:",
+    "options": [
+      "There are 4 famous hepatotropic viruses.",
+      "Hepatitis A virus is a DNA virus.",
+      "Hepatitis D virus is transmitted by feco-oral route.",
+      "The incubation period of hepatitis B virus is 50-150 days."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because hepatitis B has an incubation period of 50-150 days. A is incorrect as there are 5 major hepatotropic viruses (A, B, C, D, E). B is incorrect as hepatitis A is an RNA virus. C is incorrect as hepatitis D requires hepatitis B for replication and is transmitted parenterally, not feco-orally."
+  },
+  {
+    "question": "As regards viral hepatitis, which of the following is not correct:",
+    "options": [
+      "The incubation period of hepatitis B is between 2-6 months.",
+      "Till today, there is no vaccine available for hepatitis C.",
+      "Hepatitis A can't be prevented by vaccination.",
+      "Chronicityis not likely with hepatitis A and hepatitis E."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because hepatitis A can be effectively prevented by vaccination. A is incorrect as hepatitis B incubation is indeed 2-6 months. B is incorrect as hepatitis C vaccines are under development but not yet widely available. D is correct as hepatitis A and E rarely cause chronicity."
+  },
+  {
+    "question": "A 5 year old boypresented to ER with disturbed level of consciousness, persistent vomiting with blood-stained vomitus and progressive jaundice of 2 days duration. On examination, the liver was enlarged & tender, and a lot of bruises are seen scattered over his skin. Lab results showed elevated serum transferases (AST & ALT), elevated blood ammonia, low serum albumin, low blood sugar & prolonged prothrombin time (PT). I. Which of the followingdescribes the current boy's situation?",
+    "options": [
+      "Acute viral hepatitis.",
+      "Acute hepatic failure.",
+      "Coma for differential diagnosis.",
+      "Acute hemolytic crisis."
+    ],
+    "correct": 1,
+    "explanation": "B is correct because the child presents with acute hepatic failure characterized by jaundice, encephalopathy, coagulopathy, and elevated ammonia. A is incorrect as acute viral hepatitis typically doesn't present with encephalopathy or coagulopathy. C is incorrect as coma is a symptom, not a diagnosis. D is incorrect as hemolytic crisis wouldn't show elevated transaminases or prolonged PT."
+  },
+  {
+    "question": "Reduction of blood ammonia can be achieved byall of the following except:",
+    "options": [
+      "Neomycin (oral).",
+      "Lactulose (oral or enema).",
+      "Reduction of protein intake.",
+      "IV vitamin K."
+    ],
+    "correct": 3,
+    "explanation": "IV vitamin K is not used to reduce blood ammonia as it helps with clotting factors, not ammonia metabolism. Neomycin reduces ammonia production by gut bacteria, lactulose promotes excretion of ammonia through stool, and reducing protein intake decreases ammonia precursor."
+  },
+  {
+    "question": "The incubation period of hepatitis B is:",
+    "options": [
+      "2-6 days.",
+      "2-6 weeks.",
+      "2-6 months.",
+      "None of the above."
+    ],
+    "correct": 2,
+    "explanation": "The incubation period of hepatitis B is 2-6 months, which is longer than hepatitis A (2-6 weeks) and much longer than hepatitis E (2-6 weeks). Options A and B are incorrect as they represent shorter incubation periods typical of other viral hepatitis types."
+  },
+  {
+    "question": "Which of the following diseases is not yet vaccine preventable?",
+    "options": [
+      "Hepatitis A.",
+      "Hepatitis B.",
+      "Hepatitis C.",
+      "Rabies."
+    ],
+    "correct": 2,
+    "explanation": "Hepatitis C is not yet vaccine preventable, while vaccines are available for hepatitis A, hepatitis B, and rabies. Options A, B, and D are incorrect as these diseases have effective vaccines available."
+  },
+  {
+    "question": "As regards viral hepatitis, which of the following is correct:",
+    "options": [
+      "Hepatitis B is not associated with carrier state.",
+      "Anti-HAV IgM antibodies indicate recent infection.",
+      "Hepatitis A can't be prevented by vaccination.",
+      "The incubation period of hepatitis A is 2-6 months."
+    ],
+    "correct": 1,
+    "explanation": "Anti-HAV IgM antibodies indicate recent infection with hepatitis A. Option A is incorrect as hepatitis B has a significant carrier state. Option C is incorrect as hepatitis A can be prevented by vaccination. Option D is incorrect as hepatitis A incubation period is typically 2-6 weeks, not months."
+  },
+  {
+    "question": "A 3-year-old girl presented to toxicology center after accidentally ingesting 12 tablets of paracetamol (500 mg/tablet). On examination she had persistent vomiting, disturbed level of consciousness, deeply yellow sclera and hematemesis. Urine is normal. I. The clinical data suggests that the intoxication apparently caused:",
+    "options": [
+      "Acute liver cell failure.",
+      "Acute renal failure.",
+      "Acute heart failure.",
+      "Acute pancreatitis."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (Acute liver cell failure) because paracetamol overdose primarily causes hepatotoxicity, leading to liver failure. The symptoms of vomiting, disturbed consciousness, jaundice (yellow sclera), and hematemesis are consistent with acute liver failure. Options B, C, and D are incorrect because paracetamol overdose does not typically cause acute renal failure, heart failure, or pancreatitis as primary manifestations."
+  },
+  {
+    "question": "Which of the following is not expected in this baby?",
+    "options": [
+      "Elevated serum transferases (AST & ALT).",
+      "Normal serum bilirubin.",
+      "Elevated blood ammonia.",
+      "Prolonged prothrombin time."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B (Normal serum bilirubin) because the patient has jaundice (deeply yellow sclera), which indicates elevated bilirubin levels. Options A, C, and D are expected in acute liver failure as they represent liver cell damage (elevated transferases), impaired detoxification (elevated ammonia), and impaired synthetic function (prolonged PT)."
+  },
+  {
+    "question": "Which of the following is not among the laboratory evidences of acute liver injury:",
+    "options": [
+      "Hyperglycemia.",
+      "Hypoalbuminemia.",
+      "High blood ammonia.",
+      "INR= 2, uncorrectable with vitamin K."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (Hyperglycemia) because acute liver injury typically causes hypoglycemia due to impaired gluconeogenesis, not hyperglycemia. Options B, C, and D are laboratory evidences of acute liver injury as they represent impaired synthetic function (hypoalbuminemia), impaired detoxification (high ammonia), and coagulopathy (elevated INR)."
+  },
+  {
+    "question": "Important liver function includes:",
+    "options": [
+      "Maintenance of blood glucose concentration.",
+      "Excretion of nitrogen waste as ammonia.",
+      "Control of insulin release.",
+      "Production of gamma globulin."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (Maintenance of blood glucose concentration) because the liver plays a crucial role in glucose homeostasis through glycogen storage and gluconeogenesis. Option B is incorrect because the liver converts ammonia to urea for excretion. Option C is incorrect because insulin release is primarily controlled by pancreatic beta cells. Option D is incorrect because gamma globulins are primarily produced by plasma cells, not the liver."
+  },
+  {
+    "question": "The incubation period of hepatitis A is:",
+    "options": [
+      "One week.",
+      "2 to 6 weeks.",
+      "2 to 6 months.",
+      "3 months."
+    ],
+    "correct": 1,
+    "explanation": "The incubation period of hepatitis A is 2 to 6 weeks, which is shorter than hepatitis B. One week is too short for any viral hepatitis. 2-6 months is the incubation period of hepatitis B. 3 months is not a standard incubation period for hepatitis A."
+  },
+  {
+    "question": "Fulminant hepatitis is characterized byall of the following, except:",
+    "options": [
+      "Serum bilirubin above 10 mg/dl.",
+      "Serum bilirubin below 3 mg/dl.",
+      "Blood ammonia above 150 mcg/dl.",
+      "Positive PCR."
+    ],
+    "correct": 1,
+    "explanation": "Fulminant hepatitis is characterized by severely elevated bilirubin (above 10 mg/dl), not bilirubin below 3 mg/dl. Serum bilirubin below 3 mg/dl is inconsistent with fulminant hepatitis as it indicates massive liver destruction. Blood ammonia above 150 mcg/dl and positive PCR are expected findings in fulminant hepatitis."
+  },
+  {
+    "question": "The usual incubation period of viral hepatitis A is:",
+    "options": [
+      "8-13 days.",
+      "20-90 days.",
+      "50-150 days.",
+      "15-40 days."
+    ],
+    "correct": 3,
+    "explanation": "The usual incubation period of viral hepatitis A is 15-40 days. 8-13 days is too short. 20-90 days is the range for hepatitis B. 50-150 days also corresponds to hepatitis B."
+  },
+  {
+    "question": "Fulminant hepatitis is characterized by:",
+    "options": [
+      "Vasculopathy.",
+      "Encephalopathy.",
+      "Peripheral neuropathy.",
+      "Retinopathy."
+    ],
+    "correct": 1,
+    "explanation": "Fulminant hepatitis is characterized by encephalopathy, which is a hallmark feature of acute liver failure. Vasculopathy, peripheral neuropathy, and retinopathy are not characteristic features of fulminant hepatitis."
+  },
+  {
+    "question": "Hepatomegaly is not a feature of:",
+    "options": [
+      "Heart failure.",
+      "Aplastic anemia.",
+      "Gaucher disease.",
+      "Chronic hemolytic anemia."
+    ],
+    "correct": 1,
+    "explanation": "Aplastic anemia does not cause hepatomegaly because it involves bone marrow failure without liver pathology. Heart failure causes hepatomegaly from venous congestion. Gaucher disease causes hepatomegaly from lipid-laden macrophage infiltration. Chronic hemolytic anemia causes hepatomegaly from extramedullary hematopoiesis and iron overload."
+  },
+  {
+    "question": "One of the following is commonly seen in liver cell failure:",
+    "options": [
+      "Advanced bone age.",
+      "Encephalopathy.",
+      "Hypoammonemia.",
+      "Spooning of nails."
+    ],
+    "correct": 1,
+    "explanation": "Encephalopathy is commonly seen in liver cell failure due to the accumulation of ammonia and other toxins that cross the blood-brain barrier. Advanced bone age is not associated with liver failure. Hypoammonemia is incorrect as liver failure causes hyperammonemia. Spooning of nails (koilonychia) is associated with iron deficiency, not liver failure."
+  },
+  {
+    "question": "A 7-year-old boy presents with malaise, nausea, vomiting, loss of appetite, and fever with chills for the past week. He has had tea-colored urine for one day. On examination, he is jaundiced. There is tenderness in right hypochondrium and an enlarged soft liver about 3 cm below the right costal margin. Which of the following is an expected finding?",
+    "options": [
+      "Severe pallor.",
+      "Manifestations of heart failure.",
+      "Markedly elevated liver enzymes.",
+      "Gall stones."
+    ],
+    "correct": 2,
+    "explanation": "Markedly elevated liver enzymes are expected in this presentation of acute viral hepatitis, as the liver cell damage releases AST and ALT into the bloodstream. Severe pallor is not typical of viral hepatitis. Manifestations of heart failure are not expected in hepatitis. Gall stones are not a typical feature of acute viral hepatitis."
+  },
+  {
+    "question": "Liver cell failure is characterized by all the following, except:",
+    "options": [
+      "Gynecomastia.",
+      "Hypoammonemia.",
+      "Encephalopathy.",
+      "Bad oral smell."
+    ],
+    "correct": 1,
+    "explanation": "Liver cell failure causes hyperammonemia, not hypoammonemia, because the failing liver cannot convert ammonia to urea. Gynecomastia occurs due to impaired estrogen metabolism. Encephalopathy is a hallmark of liver failure. Bad oral smell (fetor hepaticus) is a classic sign of liver failure."
+  },
+  {
+    "question": "As regards acute viral hepatitis:",
+    "options": [
+      "Hepatitis C is transmitted by feco-oral route.",
+      "Incubation period of hepatitis A is 2-6 months.",
+      "Hepatitis B is not associated with carrier state.",
+      "Hepatitis A can be prevented by vaccination."
+    ],
+    "correct": 3,
+    "explanation": "Hepatitis A can be effectively prevented by vaccination, making this the correct statement. Hepatitis C is transmitted parenterally, not feco-orally. Hepatitis A incubation is 2-6 weeks, not months. Hepatitis B is associated with a chronic carrier state."
+  },
+  {
+    "question": "Which of the following is true about hepatitis B virus:",
+    "options": [
+      "It's an RNA virus.",
+      "It's transmitted by feco-oral transmission.",
+      "There is no available vaccine against hepatitis B.",
+      "Hepatitis B surface antibody is a protective antibody."
+    ],
+    "correct": 3,
+    "explanation": "Hepatitis B surface antibody (anti-HBs) is a protective antibody that indicates immunity from vaccination or resolved infection. Hepatitis B is a DNA virus, not RNA. It is transmitted parenterally, not feco-orally. An effective vaccine against hepatitis B exists."
+  },
+  {
+    "question": "Which of the following is a cause of post-hepatic portal hypertension:",
+    "options": [
+      "Veno-occlusive disease.",
+      "Sclerosing cholangitis.",
+      "Congenital hepatic fibrosis.",
+      "Portal vein thrombosis."
+    ],
+    "correct": 0,
+    "explanation": "Veno-occlusive disease is a cause of post-hepatic portal hypertension as it obstructs hepatic venous outflow. Sclerosing cholangitis is an intra-hepatic cause. Congenital hepatic fibrosis is an intra-hepatic cause. Portal vein thrombosis is a pre-hepatic cause."
+  },
+  {
+    "question": "Which of the following is not a manifestation of portal hypertension:",
+    "options": [
+      "Splenomegaly.",
+      "Ascites.",
+      "Dilated anterior abdominal wall veins.",
+      "Hemoptysis."
+    ],
+    "correct": 3,
+    "explanation": "Hemoptysis is not a manifestation of portal hypertension; it is a respiratory finding. Splenomegaly occurs from congestive splenomegaly. Ascites results from increased hydrostatic pressure. Dilated anterior abdominal wall veins (caput medusae) develop from portosystemic collateral circulation."
+  },
+  {
+    "question": "Post-hepatic causes of portal hypertension include all except:",
+    "options": [
+      "Budd Chiari syndrome.",
+      "Galactosemia.",
+      "Pericardial effusion.",
+      "Congestive heart failure."
+    ],
+    "correct": 1,
+    "explanation": "Galactosemia is an intra-hepatic cause of portal hypertension, not a post-hepatic cause. Budd Chiari syndrome is post-hepatic. Pericardial effusion and congestive heart failure cause post-hepatic portal hypertension by increasing hepatic venous pressure."
+  },
+  {
+    "question": "Emergency treatment of esophageal varices includes:",
+    "options": [
+      "Vitamin C.",
+      "Nasogastric tube placement.",
+      "Irrigation of stomach by hot saline.",
+      "Platelet transfusion."
+    ],
+    "correct": 1,
+    "explanation": "Nasogastric tube placement is part of emergency treatment to monitor bleeding and prevent aspiration in esophageal varices. Vitamin C is not relevant. Hot saline irrigation is not standard treatment. Platelet transfusion alone does not address variceal bleeding."
+  },
+  {
+    "question": "All are compatible with diagnosis of portal hypertension, except:",
+    "options": [
+      "History of exchange transfusion.",
+      "Hematemesis.",
+      "Hepatitis A infection.",
+      "Iron deficiency anemia."
+    ],
+    "correct": 2,
+    "explanation": "Hepatitis A infection is not compatible with portal hypertension because it rarely causes chronic liver disease. Exchange transfusion can cause portal vein thrombosis. Hematemesis suggests variceal bleeding. Iron deficiency anemia can result from chronic GI bleeding from varices."
+  },
+  {
+    "question": "Intra-hepatic portal hypertension maybe due to:",
+    "options": [
+      "Umbilical vein catheterization.",
+      "Budd-Chiari syndrome.",
+      "Wilson disease.",
+      "Constrictive pericarditis."
+    ],
+    "correct": 2,
+    "explanation": "Wilson disease is an intra-hepatic cause of portal hypertension as it causes chronic liver damage and cirrhosis. Umbilical vein catheterization is pre-hepatic. Budd-Chiari syndrome is post-hepatic. Constrictive pericarditis is post-hepatic."
+  },
+  {
+    "question": "Pre-hepatic portal hypertension maybe due to:",
+    "options": [
+      "Umbilical sepsis.",
+      "Wilson disease.",
+      "Budd Chiari syndrome.",
+      "Autoimmune hepatitis."
+    ],
+    "correct": 0,
+    "explanation": "Umbilical sepsis can cause portal vein thrombosis, which is a pre-hepatic cause of portal hypertension. Wilson disease is intra-hepatic. Budd Chiari syndrome is post-hepatic. Autoimmune hepatitis is intra-hepatic."
+  },
+  {
+    "question": "Post-hepatic causes of portal hypertension include:",
+    "options": [
+      "Umbilical sepsis.",
+      "Wilson disease.",
+      "Budd Chiari syndrome.",
+      "Autoimmune hepatitis."
+    ],
+    "correct": 2,
+    "explanation": "Budd Chiari syndrome is a post-hepatic cause of portal hypertension because it involves obstruction of hepatic venous outflow. Umbilical sepsis is pre-hepatic. Wilson disease and autoimmune hepatitis are intra-hepatic causes."
+  },
+  {
+    "question": "Splenic venous thrombosis causes:",
+    "options": [
+      "No portal hypertension.",
+      "Pre-hepatic portal hypertension.",
+      "Intra-hepatic portal hypertension.",
+      "Post-hepatic portal hypertension."
+    ],
+    "correct": 1,
+    "explanation": "Splenic venous thrombosis causes pre-hepatic portal hypertension because the obstruction is in the splenic vein before the liver. It does not cause no portal hypertension, intra-hepatic, or post-hepatic portal hypertension."
+  },
+  {
+    "question": "Veno-occlusive disease causes:",
+    "options": [
+      "No portal hypertension.",
+      "Pre-hepatic hypertension.",
+      "Intra-hepatic hypertension.",
+      "Post-hepatic hypertension."
+    ],
+    "correct": 2,
+    "explanation": "Veno-occlusive disease causes intra-hepatic portal hypertension because the obstruction is within the small hepatic venules inside the liver. It does not cause pre-hepatic or post-hepatic portal hypertension."
+  },
+  {
+    "question": "In Wilson disease, one of the following is not correct:",
+    "options": [
+      "Low serum ceruloplasmin.",
+      "Low urinary copper excretion.",
+      "Slit lamp examination may reveal Kayser-Fleischer ring.",
+      "Copper chelating agents are the main treatment."
+    ],
+    "correct": 1,
+    "explanation": "In Wilson disease, urinary copper excretion is elevated, not low, because copper accumulates in tissues and is then excreted in increased amounts. Low serum ceruloplasmin is correct in Wilson disease. Kayser-Fleischer rings are characteristic. Copper chelating agents like penicillamine are the main treatment."
+  },
+  {
+    "question": "Emergency treatment of esophageal varices includes:",
+    "options": [
+      "Blood transfusion.",
+      "Nasogastric tube placement.",
+      "Vitamin K.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "Emergency treatment of esophageal varices includes all of the above: blood transfusion to replace lost blood, nasogastric tube placement to monitor bleeding and prevent aspiration, and vitamin K to correct coagulopathy. All three are essential components of emergency management."
+  },
+  {
+    "question": "The supra-hepatic portal hypertension maybe due to:",
+    "options": [
+      "Umbilical catheterization.",
+      "Viral B hepatitis.",
+      "Bilharziasis.",
+      "Budd Chiari syndrome."
+    ],
+    "correct": 3,
+    "explanation": "Budd Chiari syndrome is a supra-hepatic (post-hepatic) cause of portal hypertension, involving obstruction of hepatic venous outflow. Umbilical catheterization causes pre-hepatic portal hypertension. Viral B hepatitis causes intra-hepatic portal hypertension. Bilharziasis causes intra-hepatic portal hypertension."
+  },
+  {
+    "question": "The following are causes of ascites, except:",
+    "options": [
+      "Malnutrition.",
+      "Congestive heart failure.",
+      "Portal hypertension.",
+      "Nephrotic syndrome."
+    ],
+    "correct": 0,
+    "explanation": "Malnutrition is not a typical cause of ascites; it causes edema from hypoalbuminemia but not true ascites. Congestive heart failure causes ascites from increased venous pressure. Portal hypertension causes ascites from increased hydrostatic pressure. Nephrotic syndrome can cause ascites from severe hypoalbuminemia."
+  },
+  {
+    "question": "1-months-old term infant has persistent jaundice. His stools were green 2weeks ago and now are pale in color. Physical examination findings are unremarkable, except for a liver that is palpable 2 cm below the costal margin. The infant's total bilirubin is 6.1 mg/dl and direct bilirubin is 4.2 mg/dl. I. The most likely diagnosis is:",
+    "options": [
+      "Biliary atresia.",
+      "Hypothyroidism.",
+      "Congenital spherocytosis.",
+      "Wilson disease."
+    ],
+    "correct": 0,
+    "explanation": "Biliary atresia is the most likely diagnosis given the persistent jaundice in a 1-month-old with pale stools (previously green, now pale indicating progression of biliary obstruction), hepatomegaly, and predominantly direct hyperbilirubinemia. Hypothyroidism causes prolonged indirect jaundice. Congenital spherocytosis causes indirect hyperbilirubinemia. Wilson disease is extremely rare in neonates."
+  },
+  {
+    "question": "The initial step of management is:",
+    "options": [
+      "Refer to ophthalmologic consultation.",
+      "Give parenteral vitamin K.",
+      "Order a complete blood count.",
+      "Start thyroxine therapy."
+    ],
+    "correct": 1,
+    "explanation": "Parenteral vitamin K is the initial step because cholestatic infants are at risk of vitamin K deficiency and life-threatening hemorrhage due to malabsorption of fat-soluble vitamins. Ophthalmologic consultation is not urgent. CBC is important but secondary to preventing bleeding. Thyroxine is not indicated without confirmed hypothyroidism."
+  },
+  {
+    "question": "A 6-week-old boy was referred from the neonatologist to the hepatology clinic with a provisional diagnosis of prolonged neonatal jaundice. According to the mother, the jaundice was recognized on the 3rd day of life. However, she believes that in the last few weeks, the urine is getting darker, stool color is becoming more pale and the jaundice is becoming more intense. On examination, the liver is enlarged 4cm below the right costal margin, but not tender. Total serum bilirubin was 16 mg/dl with 80% of the direct type. I. All of the following can be expected in this infant, except:",
+    "options": [
+      "Thiamin deficiency.",
+      "Pruritus.",
+      "Fat malabsorption.",
+      "Progressive liver damage."
+    ],
+    "correct": 0,
+    "explanation": "Thiamin deficiency is not expected in cholestasis; the primary deficiencies are of fat-soluble vitamins (A, D, E, K). Pruritus is expected from bile salt accumulation. Fat malabsorption is expected from impaired bile flow. Progressive liver damage is expected from ongoing cholestasis."
+  },
+  {
+    "question": "HIDA scan is used to:",
+    "options": [
+      "Accurately assess the size of the liver.",
+      "Accurately assess the liver cell functions.",
+      "Assess dye delivery to the intestine.",
+      "Replace the percutaneous liver biopsy."
+    ],
+    "correct": 2,
+    "explanation": "HIDA scan is used to assess dye delivery to the intestine, which helps differentiate biliary atresia (no excretion) from neonatal hepatitis (delayed but eventual excretion). It does not accurately assess liver size, liver cell functions, or replace liver biopsy."
+  },
+  {
+    "question": "Serum ceruloplasmin and urinary copper excretion are done to diagnose:",
+    "options": [
+      "Celiac disease.",
+      "Wilson disease.",
+      "Niemann-Pick disease.",
+      "Tyrosinemia."
+    ],
+    "correct": 1,
+    "explanation": "Serum ceruloplasmin and urinary copper excretion are diagnostic tests for Wilson disease, which is characterized by low ceruloplasmin and high urinary copper. These tests are not used for celiac disease, Niemann-Pick disease, or tyrosinemia."
+  },
+  {
+    "question": "A 4-year-old girl presented to the ER by her mother who was worried because of a recently noticed dark-colored urine. The mother stated that her kid had low grade fever, nausea, vomiting, anorexia and recurring abdominal pain in the 5 days that preceded the onset of the dark urine. On examination, the girl was jaundiced. Her liver was enlarged and tender. Serum transferases (ALT and AST) were elevated and serum bilirubin was 12 mg/dl. The doctor asked for anti-HAV antibodies. I. The class of anti-HAV antibodies that help in diagnosis is:",
+    "options": [
+      "IgG.",
+      "IgA.",
+      "IgM.",
+      "IgE."
+    ],
+    "correct": 2,
+    "explanation": "IgM anti-HAV antibodies indicate acute/recent hepatitis A infection. IgG indicates past infection or immunity. IgA is not the primary diagnostic antibody for HAV. IgE is related to allergic reactions, not hepatitis A diagnosis."
+  },
+  {
+    "question": "The icteric stage of hepatitis A lasts:",
+    "options": [
+      "Less than1week.",
+      "2-4 weeks.",
+      "6 weeks.",
+      "None of the above."
+    ],
+    "correct": 1,
+    "explanation": "The icteric stage of hepatitis A typically lasts 2-4 weeks, with gradual resolution of jaundice. Less than 1 week is too short. 6 weeks would be unusually prolonged. The icteric phase follows the pre-icteric phase and is the most clinically recognizable stage."
+  },
+  {
+    "question": "All the following maybe seen in cases of cholestasis, except:",
+    "options": [
+      "Deficiency of vitamin B6.",
+      "Pruritus (skin itching).",
+      "Fat malabsorption.",
+      "Pale clay-colored stool."
+    ],
+    "correct": 0,
+    "explanation": "Vitamin B6 deficiency is not associated with cholestasis; cholestasis primarily causes deficiencies of fat-soluble vitamins (A, D, E, K). Pruritus, fat malabsorption, and pale clay-colored stool are all classic features of cholestasis."
+  },
+  {
+    "question": "A full-term infant presented at the age of 5 weeks with poor feeding, vomiting, significant pallor, jaundice and dark urine. History revealed bruising over forehead and shoulders, although he was given 1 mg vitamin K IM at delivery room. Hemoglobin 8.1 g/dl, platelet count 410.000/cubic ml, prothrombin time 27 seconds (normally 12-14 seconds), total serum bilirubin 18 mg/dl, direct bilirubin 15.4mg/dl. The gallbladder was not visualized by ultrasound. Radionuclide scan of liver showed good hepatic uptake of isotope with no excretion into the intestine. I. This baby is likely to have:",
+    "options": [
+      "Choledochal cyst.",
+      "Alpha-1anti-trypsin deficiency.",
+      "Extra-hepatic biliary atresia.",
+      "Crigler-Najjar syndrome."
+    ],
+    "correct": 2,
+    "explanation": "Extra-hepatic biliary atresia is the most likely diagnosis given the progressive conjugated hyperbilirubinemia, dark urine, pale stools, non-visualization of gallbladder on ultrasound, and no excretion on radionuclide scan. Choledochal cyst would show a cystic structure on ultrasound. Alpha-1 antitrypsin deficiency is intra-hepatic. Crigler-Najjar causes unconjugated hyperbilirubinemia."
+  },
+  {
+    "question": "The stool of this patient is expected to be:",
+    "options": [
+      "Pale.",
+      "Dark.",
+      "Bloody.",
+      "None of the above."
+    ],
+    "correct": 0,
+    "explanation": "The stool of a patient with biliary atresia is expected to be pale (acholic) because bile cannot reach the intestine due to the obstructed bile ducts. Dark stool would indicate presence of bile. Bloody stool suggests GI bleeding and is not characteristic of biliary atresia."
+  },
+  {
+    "question": "Which of the following should be avoided in an infant with galactosemia:",
+    "options": [
+      "Egg.",
+      "Rice.",
+      "Milk.",
+      "Wheat."
+    ],
+    "correct": 2,
+    "explanation": "Milk must be avoided in galactosemia because it contains lactose, which is broken down into glucose and galactose, and galactosemia is the inability to metabolize galactose. Egg, rice, and wheat do not contain significant galactose and are safe for patients with galactosemia."
+  },
+  {
+    "question": "Incubation period of hepatitis A virus is:",
+    "options": [
+      "2 weeks- 2 months.",
+      "6 weeks- 6 months.",
+      "2 days- 2 weeks.",
+      "6 days- 6 weeks."
+    ],
+    "correct": 0,
+    "explanation": "The incubation period of hepatitis A virus is approximately 2 weeks to 2 months. 6 weeks-6 months corresponds to hepatitis B. 2 days-2 weeks is too short. 6 days-6 weeks is too short for the full range of hepatitis A incubation."
+  },
+  {
+    "question": "A 14-day-old male was evaluated because of yellowish skin and sclera. The infant was full-term breast fed. Examination showed normal vital signs, jaundice and slightly protuberant abdomen. Liver was palpable 2-3 cm below costal margin and there was no splenomegaly or obvious masses. The laboratory evaluation showed a total bilirubin of 17.1 mg/dl with a direct bilirubin 7.1 mg/dl. Diagnostic workup would include all the following, except:",
+    "options": [
+      "Glucose-6-phosphate dehydrogenase.",
+      "Gamma glutamyl transferase.",
+      "Alpha1antitrypsin level.",
+      "Alanine aminotransferase."
+    ],
+    "correct": 0,
+    "explanation": "G6PD deficiency is not part of the diagnostic workup for conjugated hyperbilirubinemia, as it causes unconjugated (indirect) hyperbilirubinemia. GGT, alpha-1 antitrypsin level, and ALT are all appropriate tests for evaluating neonatal cholestasis with direct hyperbilirubinemia."
+  },
+  {
+    "question": "One of the following is true about cholestasis:",
+    "options": [
+      "The cause maybe pre-hepatic, hepatic or post-hepatic.",
+      "Diagnosis implies elevated serum conjugated bilirubin more than 50% of total bilirubin.",
+      "Differentiation between neonatal hepatitis and biliary atresia can be difficult.",
+      "Surgical treatment is preferably delayed to 6 months of age."
+    ],
+    "correct": 2,
+    "explanation": "Differentiation between neonatal hepatitis and biliary atresia can be difficult, which is a true and clinically important statement. The cause of cholestasis is not classified as pre-hepatic, hepatic, or post-hepatic (that classification is for jaundice). Diagnosis does not require conjugated bilirubin more than 50% (20% is the cutoff). Surgical treatment should not be delayed to 6 months; it should be done by 60 days for best outcomes."
+  },
+  {
+    "question": "Cholestasis is not characterized by:",
+    "options": [
+      "Pale clay colored stool.",
+      "Vitamin E deficiency.",
+      "Increased serum albumin.",
+      "Increased total serum bilirubin."
+    ],
+    "correct": 2,
+    "explanation": "Cholestasis is not characterized by increased serum albumin; in fact, chronic cholestasis may lead to decreased albumin from liver dysfunction. Pale clay-colored stool, vitamin E deficiency, and increased total serum bilirubin are all characteristic features of cholestasis."
+  },
+  {
+    "question": "A 12-week-old infant presented with poor feeding and vomiting and a history of bruising on his forehead and shoulders. His urine had become dark and stools pale. He was pale, jaundiced, had several bruises and hepatomegaly. Investigations showed bilirubin of 11 mg/dl, 80% conjugated. The radionuclide scan showed no excretion at 24 hours and a liver biopsy was done. I. What is the most likely diagnosis:",
+    "options": [
+      "Biliary atresia.",
+      "Neonatal hepatitis.",
+      "Choledochal cyst.",
+      "Hypothyroidism."
+    ],
+    "correct": 0,
+    "explanation": "Biliary atresia is the most likely diagnosis given the progressive conjugated hyperbilirubinemia (80% conjugated), dark urine, pale stools, hepatomegaly, bruising, and no excretion on radionuclide scan at 24 hours. Neonatal hepatitis would show some excretion on scan. Choledochal cyst would show a cystic structure. Hypothyroidism causes prolonged indirect jaundice."
+  },
+  {
+    "question": "The cause of bruising in this patient is:",
+    "options": [
+      "Hypoprothrombinemia.",
+      "Thrombocytopenia.",
+      "Hyperbilirubinemia.",
+      "Vitamin E malabsorption."
+    ],
+    "correct": 0,
+    "explanation": "Hypoprothrombinemia is the cause of bruising in this patient because biliary atresia causes malabsorption of vitamin K, which is essential for the synthesis of clotting factors (prothrombin and factors II, VII, IX, X). Thrombocytopenia is not the primary issue here. Hyperbilirubinemia does not cause bruising. Vitamin E malabsorption causes neurologic problems, not bruising."
+  },
+  {
+    "question": "Lymph Notes | P a ge 135 50. A 4-week-old boy was brought to his pediatrician due to persistence of neonatal jaundice. On examination, the liver was enlarged but not tender and the spleen was normal. The urine was dark and the stools were clay colored. Total serum bilirubin was 14 mg/dl, 80% of which were as direct bilirubin. The test of reducing substances in urine was positive. I. The most likely diagnosis is:",
+    "options": [
+      "Idiopathic hepatitis.",
+      "Biliary atresia.",
+      "Galactosemia.",
+      "Tyrosinemia."
+    ],
+    "correct": 2,
+    "explanation": "Galactosemia is the most likely diagnosis given the conjugated hyperbilirubinemia, positive reducing substances in urine (galactose), and the timing in a 4-week-old. Biliary atresia would not cause positive reducing substances. Idiopathic hepatitis is less specific. Tyrosinemia is rarer and would show elevated tyrosine metabolites."
+  },
+  {
+    "question": "The following is not expected in this patient:",
+    "options": [
+      "Deficiency of fat soluble vitamins.",
+      "Cataract.",
+      "Continuation of breast feeding is encouraged.",
+      "Pruritus."
+    ],
+    "correct": 2,
+    "explanation": "Continuation of breast feeding is NOT recommended in galactosemia because breast milk contains lactose (glucose + galactose), which the infant cannot metabolize. Deficiency of fat-soluble vitamins is expected from cholestasis. Cataract is a known complication of galactosemia. Pruritus is expected from cholestasis."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

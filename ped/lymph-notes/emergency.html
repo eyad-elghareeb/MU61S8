@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Emergency</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_emergency",
+  "title": "Emergency",
+  "description": "Pediatrics - Emergency MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "An 8-year-old male presents to the emergency department with decreased mental status. He has been drinking and urinating more frequently over the past several weeks. He was hard to wake up this morning and complained of abdominal pain. Physical examination reveals dry mucus membranes and cracked lips. His abdomen is mildly tender to palpation diffusely, but there is no re-bound or guarding. I. Expected findings don't include:",
+    "options": [
+      "A blood glucose level of 560 mg/dl.",
+      "A blood pH value of 7.18.",
+      "Clear chest x-ray.",
+      "Low serum osmolarity."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because in diabetic ketoacidosis (DKA), serum osmolarity is typically elevated due to hyperglycemia, not low. A is correct as hyperglycemia is expected in DKA. B is correct as metabolic acidosis lowers pH. C is correct as DKA doesn't typically affect the lungs."
+  },
+  {
+    "question": "N.B. DKA= hypertonic dehydration. II. Hie most immediate initial therapy is:",
+    "options": [
+      "IV normal saline.",
+      "IV sodium bicarbonate.",
+      "IV mannitol.",
+      "IV potassium."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as IV normal saline is the initial fluid resuscitation for DKA to restore intravascular volume. B is incorrect as bicarbonate isn't routinely recommended. C is incorrect as mannitol isn't used for DKA. D is incorrect as potassium is given after initial fluids and once serum levels are known."
+  },
+  {
+    "question": "The most important drug that maybe life-saving in a child with anaphylaxis is:",
+    "options": [
+      "IM epinephrine (adrenaline).",
+      "IV corticosteroid.",
+      "IM antihistamine.",
+      "Oral corticosteroid."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as epinephrine is the first-line treatment for anaphylaxis, causing vasoconstriction and reducing edema. B is incorrect as steroids work too slowly for acute anaphylaxis. C is incorrect as antihistamines don't address the cardiovascular component. D is incorrect as oral medications aren't effective in acute anaphylaxis."
+  },
+  {
+    "question": "The child who can't be aroused by painful stimuli, but responds by moaning or withdrawal movements is described to be in which grade of coma:",
+    "options": [
+      "Grade 1.",
+      "Grade 2.",
+      "Grade 3.",
+      "Grade 4."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as Grade 2 coma involves response to pain with moaning or withdrawal. A is incorrect as Grade 1 involves response to voice. C is incorrect as Grade 3 involves only abnormal posturing. D is incorrect as Grade 4 involves no response."
+  },
+  {
+    "question": "In type 1respiratory failure all of the following are true except:",
+    "options": [
+      "The basic defect is in oxygenation.",
+      "PaCO2 is always elevated.",
+      "Acute metabolic acidosis is a common acid base disturbance.",
+      "Pneumonia is among its leading causes."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as in Type 1 respiratory failure, PaCO2 is normal or low, not elevated. A is correct as Type 1 involves oxygenation problems. C is correct as metabolic acidosis can cause Type 1 failure. D is correct as pneumonia is a common cause of Type 1 failure."
+  },
+  {
+    "question": "Possible causes of acute respiratory failure include:",
+    "options": [
+      "Cerebral palsy.",
+      "Drug intoxication.",
+      "Acute bronchitis.",
+      "DKA."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as drug intoxication can depress respiratory drive or cause aspiration leading to respiratory failure. A is wrong as cerebral palsy affects movement, not acutely causing respiratory failure. C is wrong as acute bronchitis typically causes respiratory distress but not failure. D is wrong as DKA causes metabolic acidosis, not primary respiratory failure."
+  },
+  {
+    "question": "A 6-year-old boy presented with impaired level of consciousness of 6 hours duration. The patient had no response at all to painful stimuli. The mother said he was drinking a lot of water and juices in the last 10 days and passing plenty of urine. The child is not known to be diabetic. On arrival, his oral temperature was 37.2\u00b0C, HR 115/minute, BP 80/50. Respiration was deep at a rate of 39 breaths per minute. CBC was normal apart from a slightly high hemoglobin level (17 gm/dl). I. The child is described to have:",
+    "options": [
+      "Stupor.",
+      "Delirium.",
+      "Light coma.",
+      "Deep coma."
+    ],
+    "correct": 3,
+    "explanation": "D is correct as deep coma indicates no response to any stimuli, including pain. A is wrong as stupor implies some response to stimuli. B is wrong as delirium involves confusion and agitation, not unresponsiveness. C is wrong as light coma would still have some response to stimuli."
+  },
+  {
+    "question": "The most likely diagnosis is:",
+    "options": [
+      "Diabetic ketoacidosis.",
+      "Intracranial hemorrhage.",
+      "Hypoglycemia.",
+      "Renal failure."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as the presentation includes polyuria, polydipsia, Kussmaul respirations, and possible dehydration consistent with DKA. B is wrong as intracranial hemorrhage would typically present with focal neurological signs. C is wrong as hypoglycemia would cause tachycardia, not Kussmaul respirations. D is wrong as renal failure would present with oliguria and edema, not polyuria."
+  },
+  {
+    "question": "In a patient with grade 3 coma (deep coma), which of the following is true:",
+    "options": [
+      "Can be aroused for short periods.",
+      "Can breathe spontaneously.",
+      "Responds to painful stimuli by withdrawal movements.",
+      "Is brain dead."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as patients in deep coma can maintain spontaneous breathing. A is wrong as deep coma patients cannot be aroused. C is wrong as deep coma patients show no response to painful stimuli. D is wrong as brain death requires absence of brainstem function, which isn't implied by deep coma alone."
+  },
+  {
+    "question": "All are signs of poor peripheral perfusion, except:",
+    "options": [
+      "Peripheral cyanosis.",
+      "Increased core-peripheral temperature difference > 2\u00b0C.",
+      "Capillary refill of 4 seconds.",
+      "Skin mottling.",
+      "Cold extremities."
+    ],
+    "correct": 2,
+    "explanation": "C is correct as capillary refill of 4 seconds is normal, not a sign of poor perfusion. A, B, D, and E are all incorrect as they are well-established signs of poor peripheral perfusion."
+  },
+  {
+    "question": "A 3-year-old boy presented to ER with impaired level of consciousness and shallow irregular breathing. The PaCO2 was 62mmHg and the PaO2 was 98 mmHg at room air. There was a history of blunt trauma to the head since 3 hours. I. Blood gases shows that the child has:",
+    "options": [
+      "Type1respiratory failure.",
+      "Type 2 respiratory failure.",
+      "Metabolic alkalosis.",
+      "Metabolic acidosis."
+    ],
+    "correct": 1,
+    "explanation": "Type 2 respiratory failure is correct because the child has hypercapnia (PaCO2 > 60mmHg) with normal oxygenation. Type 1 failure would have hypoxemia without hypercapnia, and metabolic acidosis/alkalosis are not indicated by the blood gas results."
+  },
+  {
+    "question": "The most likely cause is:",
+    "options": [
+      "Intracranial hemorrhage.",
+      "Drug intoxication.",
+      "Respiratory muscle fatigue.",
+      "Diabetic ketoacidosis."
+    ],
+    "correct": 0,
+    "explanation": "Intracranial hemorrhage is the most likely cause given the history of head trauma leading to impaired consciousness and irregular breathing. Drug intoxication and respiratory muscle fatigue are less likely without additional history, and DKA would typically present with metabolic acidosis."
+  },
+  {
+    "question": "The most urgent management of hypovolemic shock is:",
+    "options": [
+      "Oxygen therapy.",
+      "Assisted ventilation.",
+      "IVfluids.",
+      "IV antibiotics."
+    ],
+    "correct": 2,
+    "explanation": "IV fluids are the most urgent management for hypovolemic shock as they restore intravascular volume. While oxygen and assisted ventilation may be needed, and antibiotics for infection, fluid resuscitation takes priority in shock."
+  },
+  {
+    "question": "Acute congestive heart failure is not common in:",
+    "options": [
+      "Fallot tetralogy.",
+      "Acute renal failure.",
+      "Ventricular septal defect (VSD).",
+      "Severe tachycardia."
+    ],
+    "correct": 0,
+    "explanation": "Fallot tetralogy is not commonly associated with acute congestive heart failure as it typically presents with cyanosis rather than pulmonary overcirculation. The other options (acute renal failure, VSD, severe tachycardia) can all lead to heart failure."
+  },
+  {
+    "question": "One of the following is correct about croup:",
+    "options": [
+      "It\u2019s mostly due to viral infection.",
+      "Cold air aggravates the condition.",
+      "Females are much more affected than males.",
+      "Cause soft musical sound."
+    ],
+    "correct": 0,
+    "explanation": "Croup is mostly due to viral infection (parainfluenza virus). Cold air may improve symptoms, not aggravate them; males are more commonly affected than females; and croup presents with a harsh, barking cough, not a soft musical sound."
+  },
+  {
+    "question": "Common causes of stridor during include the following except:",
+    "options": [
+      "Laryngeal foreign body.",
+      "Acute spasmodic laryngitis.",
+      "Large adenoid.",
+      "Hypocalcemia tetany."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because large adenoids typically cause nasal obstruction rather than stridor. A and B are wrong as laryngeal foreign bodies and acute spasmodic laryngitis directly cause stridor. D is wrong as hypocalcemia tetany can cause laryngospasm leading to stridor."
+  },
+  {
+    "question": "In respiratory failure, all the following statements are true except:",
+    "options": [
+      "Can be caused by upper air way obstruction.",
+      "PaCO2 is always elevated in type 2 respiratory failure.",
+      "All hypoxic patients need endotracheal intubation & mechanical ventilation.",
+      "Acute metabolic acidosis is the typical in type 1RF."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because not all hypoxic patients require intubation; some can be managed with oxygen therapy alone. A is wrong as upper airway obstruction can cause respiratory failure. B is wrong as type 2 respiratory failure is defined by elevated PaCO2. D is wrong as metabolic acidosis is not typical in type 1 respiratory failure."
+  },
+  {
+    "question": "In which grade of respiratory distress cyanosis appears:",
+    "options": [
+      "Grade 1.",
+      "Grade 2.",
+      "Grade 3.",
+      "Grade 4."
+    ],
+    "correct": 3,
+    "explanation": "D is correct as cyanosis appears in the most severe grade (grade 4) of respiratory distress when oxygenation is severely compromised. A, B, and C are wrong as cyanosis typically doesn't appear in earlier grades of respiratory distress."
+  },
+  {
+    "question": "In respiratory failure, which of the following is not correct:",
+    "options": [
+      "Can be caused by bronchial asthma.",
+      "Fatigue of respiratory muscle can lead to type 2 RE",
+      "All patients should be mechanically ventilated.",
+      "Acute respiratory acidosis is typical finding in type 2 RE"
+    ],
+    "correct": 2,
+    "explanation": "C is correct because not all patients with respiratory failure require mechanical ventilation; some can be managed with other interventions. A is wrong as bronchial asthma can cause respiratory failure. B is wrong as respiratory muscle fatigue can lead to type 2 respiratory failure. D is wrong as acute respiratory acidosis is typical in type 2 respiratory failure."
+  },
+  {
+    "question": "The O2analyzer is a device used for:",
+    "options": [
+      "Knowing the FiO2 in a head box.",
+      "Knowing the FiO2of gas coming from ventilator.",
+      "Knowing the patient's PaCO2.",
+      "Knowing the patients SaO2."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as an O2 analyzer measures the fraction of inspired oxygen (FiO2) in a head box. B is wrong as it doesn't measure FiO2 from a ventilator. C is wrong as it doesn't measure PaCO2. D is wrong as it doesn't measure SaO2 directly."
+  },
+  {
+    "question": "Bag &mask ventilation is contraindicated in:",
+    "options": [
+      "Birth asphyxia.",
+      "Neonatal apnea.",
+      "Hyaline membrane disease.",
+      "Diaphragmatic hernia."
+    ],
+    "correct": 3,
+    "explanation": "Bag & mask ventilation is contraindicated in diaphragmatic hernia because it can worsen lung compression by forcing air into the herniated abdominal contents. The other options are conditions where ventilation support is indicated."
+  },
+  {
+    "question": "Regarding hemodynamic parameters in different types of shock, all are true, except:",
+    "options": [
+      "Cardiac output is decreased in hypovolemic shock.",
+      "Central venous pressure is decreased in hypovolemic shock.",
+      "Cardiac output is decreased in cardiogenic shock.",
+      "Central venous pressure is decreased in cardiogenic shock."
+    ],
+    "correct": 3,
+    "explanation": "Central venous pressure is decreased in hypovolemic shock, not cardiogenic shock where it's typically elevated due to poor cardiac function. The other options correctly describe hemodynamic parameters in their respective shock types."
+  },
+  {
+    "question": "What is the most appropriate management of hypovolemic shock:",
+    "options": [
+      "Dopamine infusion.",
+      "Adrenaline.",
+      "Sodium bicarbonate.",
+      "IVfluids."
+    ],
+    "correct": 3,
+    "explanation": "IV fluids are the most appropriate management for hypovolemic shock as they directly address the volume deficit. Dopamine, adrenaline, and sodium bicarbonate are not first-line treatments for hypovolemia."
+  },
+  {
+    "question": "All the following are true, except:",
+    "options": [
+      "Pulse oximeter is a device that measures oxygen saturation.",
+      "Pulse oximetry is simple and non-invasive.",
+      "Oxygen saturation is considered normal when it is >85%.",
+      "Pulse oximeter can't measure hyper-oxygenation of the blood."
+    ],
+    "correct": 2,
+    "explanation": "Oxygen saturation is considered normal when >95%, not >85%. The other statements correctly describe pulse oximetry as a simple, non-invasive device that measures oxygen saturation but cannot detect hyper-oxygenation."
+  },
+  {
+    "question": "Which of the following drugs is an afterload reducing agent:",
+    "options": [
+      "Digoxin.",
+      "Captopril.",
+      "Furosemide (Lasix).",
+      "Epinephrine. Answer: b (vasodilator). 23. Croup is caused by:",
+      "Rhinovirus.",
+      "Adenovirus.",
+      "Parainfluenza virus.",
+      "Influenza virus."
+    ],
+    "correct": 2,
+    "explanation": "Captopril is an afterload reducing agent as it's a vasodilator that decreases systemic vascular resistance. Digoxin increases contractility, furosemide reduces preload, and epinephrine increases both contractility and afterload."
+  },
+  {
+    "question": "A 15-month-old infant has a history of poor oral fluid intake, occasional vomiting, rapid breathing, and decreased urine output (< 1ml/kg/hour). Examination reveals a heart rate of 150 beats per minute, blood pressure of120/80 mmHg, and a respiratory rate of 60/minute. There are bilateral basal crepitations and the liver is palpable 4 cm below the right costal margin. What is the most appropriate next step:",
+    "options": [
+      "Boluses of normal saline 20 ml/kg IV.",
+      "Start digoxin IV (digitalizing dose).",
+      "Give a dose of IV furosemide.",
+      "Initiate IV antibiotics."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because the infant has signs of heart failure (tachycardia, tachypnea, hepatomegaly, pulmonary crepitations) and fluid overload, so IV furosemide would help reduce fluid volume. A is wrong as fluid bolus could worsen heart failure. B is incorrect as digoxin is for rate control in specific arrhythmias, not acute heart failure. D is wrong as there's no evidence of infection."
+  },
+  {
+    "question": "In arterial blood gases analysis (ABG), all the following are true except:",
+    "options": [
+      "Normal PaO2 is 95-100 mmHg.",
+      "Normal PaCO2 is 35-40 mmHg.",
+      "Normal pH is 7.1-7.25.",
+      "Normal bicarbonate is 22-26 mEq/L."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because normal pH is 7.35-7.45, not 7.1-7.25 which indicates acidosis. A is correct as normal PaO2 is indeed 95-100 mmHg. B is correct as normal PaCO2 is 35-40 mmHg. D is correct as normal bicarbonate is 22-26 mEq/L."
+  },
+  {
+    "question": "Which of the following is not a feature of right sided heart failure:",
+    "options": [
+      "Ascites.",
+      "Hepatomegaly.",
+      "Limb edema.",
+      "Pulmonary edema."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because pulmonary edema is a feature of left-sided heart failure, not right-sided. A, B, and C are all features of right-sided heart failure due to systemic venous congestion and increased pressure."
+  },
+  {
+    "question": "A 10-year-old girl is involved in a motor car accident, sustaining multiple injuries to her head, arms, and abdomen. Her BP is 90/60 mmHg, and her pulse is 120/minute. She has breathing difficulty, cyanotic lips, and rigid abdomen. I. The most likely diagnosis is:",
+    "options": [
+      "Septic shock.",
+      "Cardiogenic shock.",
+      "Hypovolemic shock.",
+      "Obstructive shock."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because hypovolemic shock is most likely given the history of trauma, hypotension, tachycardia, and signs of blood loss. A is wrong as there's no evidence of infection. B is incorrect as cardiogenic shock would typically have different findings like muffled heart sounds. D is wrong as obstructive shock would have specific physical findings like jugular venous distention."
+  },
+  {
+    "question": "The most appropriate next step in management is:",
+    "options": [
+      "Do ultrasound abdomen.",
+      "Give crystalloid solution.",
+      "Administer inotropic drugs.",
+      "Perform exploratory laparotomy."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as the first step in hypovolemic shock is fluid resuscitation with crystalloid solution. A could be done later but isn't the immediate priority. C might be needed later if fluid resuscitation fails. D might be necessary but should follow initial stabilization."
+  },
+  {
+    "question": "The management of diabetic ketoacidosis must include all except:",
+    "options": [
+      "IVfluids.",
+      "IV insulin infusion.",
+      "Slow IV infusion of sodium bicarbonate.",
+      "Continuous monitoring of blood sugar."
+    ],
+    "correct": 2,
+    "explanation": "C is correct because sodium bicarbonate is not routinely recommended in DKA management as it can cause paradoxical CNS acidosis and hypokalemia. A and B are standard treatments for DKA, while D is essential for monitoring response to therapy."
+  },
+  {
+    "question": "A 5-year-old male is brought to the emergency room with harsh barking cough. He has history of coryza, nasal congestion & sore throat. His symptoms have been present for about a week. Examination reveals T 38\u00b0C, HR 100, RR 22. He has mild respiratory distress, stridor, intercostal interactions & nasal flaring. What is the most likely diagnosis?",
+    "options": [
+      "Diphtheria.",
+      "Croup.",
+      "Epiglottitis.",
+      "Angioedema."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as the barking cough, viral prodrome, and age are classic for croup. A is wrong as diphtheria presents with a gray membrane. C is wrong as epiglottitis typically presents with rapid onset, toxic appearance, and drooling. D is wrong as angioedema lacks the viral prodrome."
+  },
+  {
+    "question": "Which of the following is not true about croup:",
+    "options": [
+      "Harsh inspiratory sound.",
+      "Steam inhalation improves the condition.",
+      "All patients should be hospitalized.",
+      "Acute viral laryngitis is a common cause."
+    ],
+    "correct": 2,
+    "explanation": "C is correct as not all croup patients require hospitalization; mild cases can be managed at home. A is correct as croup presents with a harsh inspiratory sound. B is correct as steam inhalation can provide temporary relief. D is correct as viral laryngitis is the most common cause."
+  },
+  {
+    "question": "Regarding stridor, all are true except:",
+    "options": [
+      "It is a harsh inspiratory sound.",
+      "It is caused by partial obstruction of upper airways.",
+      "Grade 2 stridor is defined as stridor on exertion.",
+      "Patients with grade 3 stridor need hospital admission."
+    ],
+    "correct": 2,
+    "explanation": "C is incorrect as grade 2 stridor is defined as stridor at rest, not just on exertion. A is correct as stridor is a harsh inspiratory sound. B is correct as it results from partial upper airway obstruction. D is correct as grade 3 stridor indicates significant obstruction requiring admission."
+  },
+  {
+    "question": "A 5-year-old boy developed severe sore throat, drippling of saliva. History of fever & increasing breathing difficulty over 8 hours. He looks toxic & unable to speak. Was sitting immobile upright with an open mouth to optimize the airway. Her airway was maintained with endotracheal tube: I. What is the most likely diagnosis?",
+    "options": [
+      "Acute bronchitis.",
+      "Acute epiglottitis.",
+      "Acute laryngitis.",
+      "Acute laryngotracheitis."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as the toxic appearance, drooling, rapid progression, and tripod position are classic for epiglottitis. A is wrong as bronchitis doesn't cause airway obstruction or drooling. C is wrong as laryngitis typically has a slower progression. D is wrong as laryngotracheitis (croup) doesn't typically cause drooling or a toxic appearance."
+  },
+  {
+    "question": "What is the likely possible agent?",
+    "options": [
+      "Hemophilus influenza.",
+      "Respiratory syncytial viruses.",
+      "Para influenza virus.",
+      "Staphylococcus aureus."
+    ],
+    "correct": 0,
+    "explanation": "Correct: Hemophilus influenza is a common cause of epiglottitis in children, which presents with high fever, stridor, and difficulty breathing. Wrong: RSV and para influenza typically cause lower respiratory infections like bronchiolitis, not epiglottitis. Wrong: Staph aureus is not a typical cause of epiglottitis."
+  },
+  {
+    "question": "The DINAMAP is a device used to measure:",
+    "options": [
+      "Blood pressure. Oxygen saturation. FiO. Cardiac output. a0 5"
+    ],
+    "correct": 0,
+    "explanation": "Correct: DINAMAP is a device specifically designed to measure blood pressure automatically. Wrong: Oxygen saturation is measured by pulse oximetry, FiO2 is a fraction of inspired oxygen, and cardiac output requires different measurement techniques like echocardiography."
+  },
+  {
+    "question": "Manifestation of hypovolemic shock include all except:",
+    "options": [
+      "Pallor & cold extremities.",
+      "Tachycardia.",
+      "High CVP.",
+      "Increased SVR."
+    ],
+    "correct": 2,
+    "explanation": "Correct: Hypovolemic shock typically presents with low CVP (central venous pressure) due to reduced blood volume. Wrong: Pallor, cold extremities, tachycardia, and increased SVR (systemic vascular resistance) are all classic manifestations of hypovolemic shock as compensatory mechanisms."
+  },
+  {
+    "question": "Lymph Notes | P a ge 46 38. A 10-year-old girl presented to ER with abdominal pains and recurrent vomiting in the last few days. On examination, she was afebrile (temperature 36.8\u00b0C), moderately dehydrated with impaired LOC (level of consciousness). The mother said that her daughter was drinking too much water and juices in the last week. I. The most urgent lab tests you need to request is:",
+    "options": [
+      "Blood urea and serum creatinine.",
+      "Blood sugar.",
+      "Blood ammonia.",
+      "CSF examination and culture."
+    ],
+    "correct": 1,
+    "explanation": "Correct: The presentation suggests diabetic ketoacidosis (DKA), making blood sugar the most urgent test. Wrong: While BUN and creatinine may be elevated in DKA, they are not as immediately critical as blood sugar. Wrong: Blood ammonia is relevant in liver disease, not this presentation. Wrong: CSF examination is for neurological infections, not suggested here."
+  },
+  {
+    "question": "Breathing is expected to be:",
+    "options": [
+      "Rapid and deep.",
+      "Rapid and shallow.",
+      "Slow and deep.",
+      "Slow and shallow."
+    ],
+    "correct": 0,
+    "explanation": "Correct: Rapid and deep breathing (Kussmaul respirations) is typical in diabetic ketoacidosis as a compensatory mechanism for metabolic acidosis. Wrong: Rapid and shallow breathing suggests other conditions like pulmonary issues. Wrong: Slow and deep or shallow breathing patterns are not characteristic of DKA."
+  },
+  {
+    "question": "The child is expected to have:",
+    "options": [
+      "Metabolic acidosis.",
+      "Metabolic alkalosis.",
+      "Respiratory acidosis.",
+      "Respiratory alkalosis."
+    ],
+    "correct": 0,
+    "explanation": "Metabolic acidosis is correct as it's common in pediatric emergencies due to dehydration, sepsis, or diabetic ketoacidosis. Other options are incorrect as they don't typically present in acute pediatric emergencies."
+  },
+  {
+    "question": "A child with a Glasgow coma score of 15 is expected to be:",
+    "options": [
+      "Fully conscious.",
+      "In grade I coma (stupor).",
+      "In grade II coma (light coma).",
+      "In grade III coma (deep coma)."
+    ],
+    "correct": 0,
+    "explanation": "A Glasgow Coma Scale of 15 indicates full consciousness as it's the maximum score. Other options are incorrect as they represent lower scores corresponding to varying degrees of coma."
+  },
+  {
+    "question": "Which of the following is likely to cause afterload heart failure:",
+    "options": [
+      "Severe tachycardia.",
+      "Rheumatic myocarditis.",
+      "Systemic hypertension.",
+      "Myocardial infarction."
+    ],
+    "correct": 2,
+    "explanation": "Systemic hypertension increases afterload, potentially causing heart failure. Other options are incorrect as they primarily affect myocardial contractility or cause other types of heart failure."
+  },
+  {
+    "question": "Which lab finding is considered abnormal:",
+    "options": [
+      "Serum K+ of 4 mEq/L.",
+      "Serum creatinine of 2 mg/dl.",
+      "Blood urea of 25 mg/dl.",
+      "PH of blood 7.4."
+    ],
+    "correct": 1,
+    "explanation": "Serum creatinine of 2 mg/dl is abnormal as it exceeds the normal range of 0.5-1.5 mg/dl. Other options are within normal ranges for pediatric patients."
+  },
+  {
+    "question": "N.B. Normal serum urea: 20-40 mg/dl. Normal serum creatinine:0.5-1.5 mg/dl. 42. Main step in the management of coma in children include all of the following except:",
+    "options": [
+      "Keep open airway.",
+      "Artificial breathing.",
+      "Cardiac decompression.",
+      "Defibrillation."
+    ],
+    "correct": 2,
+    "explanation": "Cardiac decompression is not part of initial coma management. Other options are correct as they are essential steps in managing unconscious children to ensure oxygenation and circulation."
+  },
+  {
+    "question": "Main step in management of coma in children include all except:",
+    "options": [
+      "Maintain oxygenation.",
+      "Cardiac decompression.",
+      "Check blood sugar.",
+      "Keep airway open."
+    ],
+    "correct": 1,
+    "explanation": "Cardiac decompression is not a standard step in coma management. The other options are essential initial steps: maintaining oxygenation, checking blood sugar for hypoglycemia, and ensuring a patent airway."
+  },
+  {
+    "question": "The term status epilepticus is used when the clonic phase of a tonic clonic seizure exceeds...minutes:",
+    "options": [
+      "10.",
+      "15.",
+      "20.",
+      "30."
+    ],
+    "correct": 3,
+    "explanation": "Status epilepticus is defined as a seizure lasting more than 30 minutes or recurrent seizures without recovery between them. The other options are below the established threshold for this diagnosis."
+  },
+  {
+    "question": "The acidotic breathing is:",
+    "options": [
+      "Shallow rapid.",
+      "Deep rapid.",
+      "Irregular slow.",
+      "Irregular rapid."
+    ],
+    "correct": 1,
+    "explanation": "Acidotic breathing (Kussmaul breathing) is deep and rapid as the body tries to compensate for metabolic acidosis by blowing off CO2. Shallow breathing doesn't effectively remove acid, and irregular patterns aren't characteristic of acidosis."
+  },
+  {
+    "question": "In pediatric emergency situations:",
+    "options": [
+      "Primary survey aims at discovering the failing system.",
+      "Hypoxia is a relatively common event.",
+      "Infants have relatively small tongue.",
+      "Specific treatment is the first priority."
+    ],
+    "correct": 1,
+    "explanation": "Hypoxia is common in pediatric emergencies and must be addressed promptly. The primary survey aims at identifying immediate threats, not failing systems; infants have large tongues relative to their airways; and specific treatment follows initial stabilization."
+  },
+  {
+    "question": "Advantages of flow-inflating (anesthesia) bags include all except:",
+    "options": [
+      "Easy to use.",
+      "Stiff lung can be recognized.",
+      "Any leak is determined.",
+      "Delivers 100% oxygen at all times."
+    ],
+    "correct": 0,
+    "explanation": "Flow-inflating bags are difficult to use and require training, unlike self-inflating bags. The other options are advantages: they allow recognition of stiff lungs, detection of leaks, and can deliver 100% oxygen when properly used."
+  },
+  {
+    "question": "Common findings in infants with congestive heart failure include all the following except:",
+    "options": [
+      "Tachypnea.",
+      "Tachycardia.",
+      "Excessive sweating.",
+      "Splenomegaly."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because splenomegaly is not a typical finding in congestive heart failure in infants. A, B, and C are common findings due to increased sympathetic activity and fluid overload."
+  },
+  {
+    "question": "The most common cause of pediatric shock is:",
+    "options": [
+      "Acute gastroenteritis.",
+      "Diabetic ketoacidosis.",
+      "Rheumatic heart disease.",
+      "Air embolism."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as acute gastroenteritis leading to hypovolemic shock is the most common cause of pediatric shock. B, C, and D are less common causes of pediatric shock."
+  },
+  {
+    "question": "Congestive heart failure in infants rarely causes:",
+    "options": [
+      "Feeding difficulty.",
+      "Pedal edema.",
+      "Hepatomegaly.",
+      "Tachycardia."
+    ],
+    "correct": 1,
+    "explanation": "B is correct because pedal edema is rare in infants with congestive heart failure due to their compliant interstitial tissues. A, C, and D are common manifestations in infants."
+  },
+  {
+    "question": "Important liver function includes:",
+    "options": [
+      "Maintenance of blood glucose concentration.",
+      "Excretion of nitrogen waste as ammonia.",
+      "Control of insulin release.",
+      "Production of gamma globulin."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as the liver maintains blood glucose through glycogen storage and gluconeogenesis. B is wrong as the liver excretes urea, not ammonia. C is incorrect as insulin release is controlled by the pancreas. D is wrong as gamma globulin is produced by plasma cells."
+  },
+  {
+    "question": "Liver cell failure is characterized by all the following, except:",
+    "options": [
+      "Gynecomastia.",
+      "Hypoammonemia.",
+      "Encephalopathy.",
+      "Bad oral smell."
+    ],
+    "correct": 1,
+    "explanation": "B is correct because liver cell failure typically causes hyperammonemia, not hypoammonemia. A, C, and D are all characteristic features of liver failure."
+  },
+  {
+    "question": "A 9-month-old child is referred with pallor, vomiting and diarrhea. He became unwell 48 hours ago and has rapidly deteriorated. He has wet his nappy once in the past 24 hours. He has cool mottled peripheries and a capillary refill time of 4 seconds. Pulses are equal in all 4 limbs. He responds weakly to voice. His abdomen is soft and skin turgor is reduced. I. What is the most likely type of shock:",
+    "options": [
+      "Cardiogenic.",
+      "Distributive.",
+      "Hypovolemic.",
+      "Septic."
+    ],
+    "correct": 2,
+    "explanation": "C is correct as the child shows signs of hypovolemic shock (cool peripheries, prolonged capillary refill, reduced skin turgor, decreased urine output). A and D are incorrect as there's no cardiac dysfunction or evidence of infection. B is incorrect as distributive shock typically presents with warm peripheries and normal or bounding pulses."
+  },
+  {
+    "question": "What is the appropriate plan of therapy:",
+    "options": [
+      "IVfluids.",
+      "Diuretics.",
+      "Digoxin.",
+      "Antibiotics."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as IV fluids are the primary treatment for hypovolemic shock to restore circulating volume. B, C, and D are incorrect as diuretics would worsen volume status, digoxin is for cardiac failure, and antibiotics aren't indicated without evidence of infection."
+  },
+  {
+    "question": "During therapywith oxygen, all are true except:",
+    "options": [
+      "Oxygen should be warm.",
+      "Oxygen should be humidified.",
+      "Use the least possible FiO2 that can achieve acceptable level of PaO2.",
+      "Discontinue oxygen therapy when oxygen saturation is regularly above 85%."
+    ],
+    "correct": 3,
+    "explanation": "D is incorrect as oxygen therapy should typically be continued until saturation is above 92%, not 85%. A, B, and C are correct as oxygen should be warm and humidified, and the lowest effective FiO2 should be used to minimize oxygen toxicity."
+  },
+  {
+    "question": "A 2-week-old infant presents to emergency department with a 1-day-history of decreased feeding and lethargy. He was born at term and the delivery was uncomplicated. On physical examination, his temperature was 39\u00b0C, his heart rate is 150 beats/minute, his respiratory rate is 60 breaths per minute, his blood pressure is 50/30 mmHg, and his extremities are cool and pale with poor pulses. I. The most appropriate test is:",
+    "options": [
+      "ECG and echo.",
+      "CBC and blood culture.",
+      "Lumbar puncture and CT head.",
+      "Serum electrolytes and CT chest."
+    ],
+    "correct": 1,
+    "explanation": "B is correct as the infant's presentation suggests sepsis, requiring CBC and blood culture to identify infection and guide treatment. A is incorrect as there's no cardiac involvement. C is incorrect as there's no neurological symptoms. D is incorrect as electrolytes and CT chest aren't the most urgent tests."
+  },
+  {
+    "question": "The most likely diagnosis is:",
+    "options": [
+      "Septic shock.",
+      "Hypovolemia.",
+      "Acute hemolysis.",
+      "Cardiogenic shock."
+    ],
+    "correct": 0,
+    "explanation": "A is correct as the infant presents with fever, lethargy, and signs of shock (cool extremities, poor pulses) consistent with septic shock. B is incorrect as hypovolemia wouldn't explain fever. C is incorrect as there's no evidence of hemolysis. D is incorrect as there's no cardiac dysfunction."
+  },
+  {
+    "question": "Fluid of choice in hypovolemic shock is:",
+    "options": [
+      "Glucose 10%.",
+      "Half normal saline.",
+      "Sodium bicarbonate.",
+      "Ringer's lactate."
+    ],
+    "correct": 3,
+    "explanation": "Ringer's lactate is the fluid of choice in hypovolemic shock as it closely resembles extracellular fluid and helps restore intravascular volume effectively. Glucose 10% provides free water without electrolytes, half normal saline has lower sodium content, and sodium bicarbonate is used for specific acid-base disorders, not for volume resuscitation."
+  },
+  {
+    "question": "Usual signs of heart failure in infants include:",
+    "options": [
+      "Edema and ascites.",
+      "Hepatosplenomegaly.",
+      "Congested neck veins.",
+      "Tachycardia and hepatomegaly."
+    ],
+    "correct": 3,
+    "explanation": "Tachycardia and hepatomegaly are common signs of heart failure in infants due to increased heart rate and systemic venous congestion. Edema and ascites are less common in infants, and congested neck veins are difficult to assess in infants with a short, fat neck."
+  },
+  {
+    "question": "Causes of metabolic acidosis include all except:",
+    "options": [
+      "Pyloric stenosis.",
+      "Severe gastroenteritis.",
+      "Diabetic ketoacidosis.",
+      "Shock."
+    ],
+    "correct": 0,
+    "explanation": "Pyloric stenosis causes metabolic alkalosis due to loss of gastric acid, not acidosis. Severe gastroenteritis, diabetic ketoacidosis, and shock all cause metabolic acidosis through different mechanisms including bicarbonate loss, ketone production, and lactic acidosis respectively."
+  },
+  {
+    "question": "In metabolic acidosis, all the following are true except:",
+    "options": [
+      "PH of blood is below normal.",
+      "Breathing is rapid and shallow.",
+      "Hypoxia can be a cause.",
+      "Serum bicarbonate is decreased."
+    ],
+    "correct": 1,
+    "explanation": "In metabolic acidosis, blood pH is below normal, serum bicarbonate is decreased, and hypoxia can be a cause. However, breathing is typically rapid and deep (Kussmaul respirations) as a compensatory mechanism, not shallow."
+  },
+  {
+    "question": "In shock, all the following are true except:",
+    "options": [
+      "CVP is elevated in cardiogenic shock.",
+      "CVP is indicative of preload.",
+      "SVR is indicative of afterload.",
+      "CVP is elevated in hypovolemic shock."
+    ],
+    "correct": 3,
+    "explanation": "CVP is typically low in hypovolemic shock due to reduced venous return, not elevated. CVP is elevated in cardiogenic shock, indicates preload, and SVR indicates afterload, making these statements correct."
+  },
+  {
+    "question": "A 5-year-old girl is presenting with drowsiness and vomiting. She has no significant medical history. On examination, she appears unwell and irritable. She is clinically dehydrated and has diffuse abdominal tenderness. Her temperature is 37.8\u00b0C, respiratoryrate 45, heart rate 170 and BP 90/50. Her breath smells strange. I. The most important investigation needed:",
+    "options": [
+      "Chest x-ray.",
+      "Blood culture.",
+      "Check urine for glucose.",
+      "Echo."
+    ],
+    "correct": 2,
+    "explanation": "Checking urine for glucose is correct because the child's presentation with strange breath smell, vomiting, dehydration, and tachycardia suggests diabetic ketoacidosis. Chest x-ray, blood culture, and echo are not the most urgent investigations in this scenario."
+  },
+  {
+    "question": "Dehydration in this case is mainly due to:",
+    "options": [
+      "Diarrhea.",
+      "Polyuria.",
+      "Anorexia.",
+      "Tachypnea."
+    ],
+    "correct": 1,
+    "explanation": "Polyuria is correct because in diabetic ketoacidosis, osmotic diuresis from glucosuria leads to significant fluid loss and dehydration. Diarrhea, anorexia, and tachypnea are not the primary causes of dehydration in this case."
+  },
+  {
+    "question": "Manifestations of diabetic ketoacidosis include all except:",
+    "options": [
+      "Sweating.",
+      "Vomiting.",
+      "Respiratory distress.",
+      "Abdominal pain."
+    ],
+    "correct": 0,
+    "explanation": "Sweating is incorrect because diabetic ketoacidosis typically presents with dry mucous membranes and skin due to dehydration, not sweating. Vomiting, respiratory distress, and abdominal pain are all common manifestations of diabetic ketoacidosis."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

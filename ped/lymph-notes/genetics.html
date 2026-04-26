@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Genetics</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "ped_lymph_genetics",
+  "title": "Genetics",
+  "description": "Pediatrics - Genetics MCQs (Lymph Notes Explained)",
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "All the following are later medical problems in Down syndrome, except:",
+    "options": [
+      "Hearing impairment due to secretory otitis media.",
+      "Hyperthyroidism.",
+      "Visual impairment due to cataract.",
+      "Increased incidence of leukemia."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because hyperthyroidism is not a later medical problem in Down syndrome; instead, hypothyroidism is more commonly associated. Options A, C, and D are correct as hearing impairment due to otitis media, visual impairment due to cataracts, and increased leukemia incidence are all known later medical problems in Down syndrome."
+  },
+  {
+    "question": "Ring chromosome is a special type of chromosomal:",
+    "options": [
+      "Deletion.",
+      "Duplication.",
+      "Translocation.",
+      "Inversion."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because a ring chromosome is formed when a chromosome breaks at both ends and the fragments fuse, resulting in a deletion of genetic material. Options B, C, and D are incorrect as duplication involves extra genetic material, translocation involves exchange between chromosomes, and inversion involves reversed chromosome segments without loss of material."
+  },
+  {
+    "question": "A couple comes to see a pediatrician with their second son who has Down syndrome. Their first son is unaffected. They tell that there is a strong family history of Down syndrome, with one of their son's cousins also being affected and his uncle is also being affected. I. What is the most likely cause of Down syndrome in this family?",
+    "options": [
+      "Non-disjunction.",
+      "Balanced translocation.",
+      "Robertsonian translocation.",
+      "Mosaic."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because the family history suggests an inherited form of Down syndrome, which is most commonly due to Robertsonian translocation, particularly involving chromosome 21. Options A, B, and D are less likely as non-disjunction typically occurs sporadically, balanced translocation carriers are usually unaffected, and mosaicism is not typically inherited in families."
+  },
+  {
+    "question": "The following tests would be advised if this mother got pregnant, except:",
+    "options": [
+      "Maternal ABO and Rh typing.",
+      "Maternal alpha-fetoprotein.",
+      "Estriol level in mother's urine.",
+      "Maternal human gonadotropin."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A because maternal ABO and Rh typing is not part of routine prenatal screening for Down syndrome; it's done for blood compatibility issues. Options B, C, and D are incorrect as maternal alpha-fetoprotein, estriol level, and human chorionic gonadotropin are all part of the triple or quad screen used to assess risk for Down syndrome."
+  },
+  {
+    "question": "Which of the following is not true about Klinefelter syndrome?",
+    "options": [
+      "It is a chromosomal disorder of males.",
+      "It causes infertility in males.",
+      "Affected males are usually taller than average.",
+      "It is transmitted by autosomal recessive inheritance."
+    ],
+    "correct": 3,
+    "explanation": "Klinefelter syndrome is a chromosomal disorder affecting males with an extra X chromosome (47,XXY), causing infertility and increased height. Option D is incorrect because Klinefelter syndrome is not transmitted by autosomal recessive inheritance but rather occurs due to nondisjunction during meiosis."
+  },
+  {
+    "question": "All the following are transmitted by X-linked recessive inheritance, except:",
+    "options": [
+      "Glucose-6-phosphate dehydrogenase deficiency.",
+      "Galactosemia.",
+      "Hemophilia B.",
+      "Duchenne muscular dystrophy."
+    ],
+    "correct": 1,
+    "explanation": "Galactosemia is not transmitted by X-linked recessive inheritance but follows autosomal recessive inheritance. Options A, C, and D are correct as they are all X-linked recessive disorders, while galactosemia is autosomal recessive."
+  },
+  {
+    "question": "In genetic counseling, which of the following is not correct:",
+    "options": [
+      "Recurrence risk of non-disjunction types of down syndrome increases with higher maternal age.",
+      "Recurrence risk is generally very low (1%) in chromosomal abnormalities.",
+      "Recurrence risk is quite high (25-50) in single gene inheritance.",
+      "Recurrence risk in multifactorial (polygenic) inheritance is between 15-25%."
+    ],
+    "correct": 3,
+    "explanation": "Option D is incorrect because the recurrence risk in multifactorial inheritance is typically 2-7% for most conditions, not 15-25%. Options A, B, and C are correct as they accurately describe recurrence risks for non-disjunction Down syndrome, chromosomal abnormalities, and single gene inheritance respectively."
+  },
+  {
+    "question": "The mode of inheritance in galactosemia is:",
+    "options": [
+      "X-linked recessive inheritance.",
+      "X-linked dominant inheritance.",
+      "Autosomal recessive inheritance.",
+      "Autosomal dominant inheritance."
+    ],
+    "correct": 2,
+    "explanation": "Galactosemia follows autosomal recessive inheritance, requiring two copies of the mutated gene for the disorder to manifest. Options A, B, and D are incorrect as galactosemia is not X-linked or autosomal dominant but rather autosomal recessive."
+  },
+  {
+    "question": "Which is not true about Klinefelter syndrome?",
+    "options": [
+      "It is a rare chromosomal disorder of males, affecting1/100.000 males.",
+      "Clinical manifestations usually don't appear before puberty.",
+      "Causes infertility in males.",
+      "Affected males are usually taller than average."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because Klinefelter syndrome affects approximately 1 in 500-1,000 males, not 1 in 100,000 as stated. B is incorrect as manifestations often appear before puberty. C is incorrect as infertility is a common feature. D is incorrect as affected males are typically taller than average."
+  },
+  {
+    "question": "Clinical situations suspecting chromosomal abnormalities include all, except:",
+    "options": [
+      "Abnormal features.",
+      "Mental retardation.",
+      "Ambiguous genitalia.",
+      "Precocious puberty."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because precocious puberty is not typically associated with chromosomal abnormalities. A, B, and C are incorrect as abnormal features, mental retardation, and ambiguous genitalia are all clinical situations that may suggest chromosomal abnormalities."
+  },
+  {
+    "question": "In which of the following diseases may polygenic inheritance play a role:",
+    "options": [
+      "Hereditary spherocytosis.",
+      "Bronchial asthma.",
+      "Hemophilia B.",
+      "Sickle cell anemia."
+    ],
+    "correct": 1,
+    "explanation": "B is correct because bronchial asthma involves multiple genes and environmental factors, fitting polygenic inheritance. A is incorrect as hereditary spherocytosis is typically autosomal dominant. C is incorrect as hemophilia B is X-linked recessive. D is incorrect as sickle cell anemia is autosomal recessive."
+  },
+  {
+    "question": "Which is not true about Klinefelter syndrome?",
+    "options": [
+      "Infertility is the commonest presenting feature.",
+      "Affects males only.",
+      "The basic chromosomal disorder is presence of extra X chromosome.",
+      "Patients usually have short stature."
+    ],
+    "correct": 3,
+    "explanation": "D is correct because patients with Klinefelter syndrome typically have tall stature, not short stature. A is incorrect as infertility is indeed the commonest presenting feature. B is incorrect as it affects males only. C is incorrect as the basic chromosomal disorder is the presence of an extra X chromosome."
+  },
+  {
+    "question": "The mode of inheritance of achondroplasia is:",
+    "options": [
+      "Autosomal dominant.",
+      "Autosomal recessive.",
+      "X-linked recessive.",
+      "X-linked dominant."
+    ],
+    "correct": 0,
+    "explanation": "Achondroplasia is inherited in an autosomal dominant pattern because it is caused by a mutation in the FGFR3 gene on chromosome 4, and only one copy of the mutated gene is sufficient to cause the condition. Options B, C, and D are incorrect because achondroplasia is not linked to sex chromosomes and does not require two copies of the mutated gene for expression."
+  },
+  {
+    "question": "In genetic counseling, which of the following has the highest recurrence risk:",
+    "options": [
+      "Chromosomal abnormalities.",
+      "Single gene disorders.",
+      "Diseases with multifactorial inheritance.",
+      "None of the above."
+    ],
+    "correct": 1,
+    "explanation": "Single gene disorders have the highest recurrence risk in genetic counseling because they follow predictable Mendelian inheritance patterns with 25%, 50%, or 75% recurrence risks depending on the mode of inheritance. Chromosomal abnormalities and multifactorial diseases generally have lower recurrence risks (typically 1-3% for chromosomal abnormalities and 2-7% for multifactorial disorders)."
+  },
+  {
+    "question": "Chromosomal aberration in trisomy 21 can be one of the following:",
+    "options": [
+      "Structural.",
+      "Numerical.",
+      "Both.",
+      "None."
+    ],
+    "correct": 2,
+    "explanation": "Trisomy 21 involves both numerical (an extra chromosome 21) and structural (such as Robertsonian translocation) chromosomal aberrations, making option C correct. Options A and B are incomplete as they only cover one aspect of the possible abnormalities, while option D is incorrect as trisomy 21 definitely involves chromosomal aberrations."
+  },
+  {
+    "question": "A young ladywith normal premarital ultrasound complained that her first male baby was diagnosed in utero to have bilateral renal enlargement, and her second labor ended with a twin (2 girls), one of them suffered from the same problem. Although her husband was apparentlynormal, his renal ultrasound was not. Which mode of inheritance do you suggest:",
+    "options": [
+      "Autosomal dominant.",
+      "Autosomal recessive.",
+      "Sex-linked.",
+      "Gene mutation."
+    ],
+    "correct": 0,
+    "explanation": "The pattern of inheritance is autosomal dominant because the condition affects both males and females, appears in multiple generations, and has a 50% transmission risk from affected parents. Autosomal recessive (B) is unlikely given the affected parent, sex-linked inheritance (C) doesn't fit the pattern of affecting both sexes equally, and gene mutation (D) is too vague as a mode of inheritance."
+  },
+  {
+    "question": "All are examples of sex linked diseases, except:",
+    "options": [
+      "G6PD deficiency.",
+      "Galactosemia.",
+      "Hemophilia.",
+      "None of the above."
+    ],
+    "correct": 1,
+    "explanation": "Galactosemia is an autosomal recessive disorder, not sex-linked. G6PD deficiency and hemophilia are X-linked recessive disorders, making them sex-linked. The 'None of the above' option is incorrect since galactosemia is not sex-linked."
+  },
+  {
+    "question": "Genetic counseling is indicated in:",
+    "options": [
+      "Families with inherited disorders.",
+      "Pregnant mothers in contact with German measles.",
+      "Pregnant mothers exposed to irradiations.",
+      "All of the above."
+    ],
+    "correct": 0,
+    "explanation": "Genetic counseling is specifically indicated for families with inherited disorders to assess recurrence risks and provide information. While pregnant mothers with German measles or radiation exposure may need counseling, it's not specifically genetic counseling but rather regarding teratogenic risks."
+  },
+  {
+    "question": "Recurrence risk in autosomal recessive diseases is:",
+    "options": [
+      "75%.",
+      "25%.",
+      "50%.",
+      "100%."
+    ],
+    "correct": 1,
+    "explanation": "The recurrence risk for autosomal recessive diseases is 25% for each pregnancy when both parents are carriers. The 75% risk applies to autosomal dominant disorders, while 50% is for X-linked recessive disorders, and 100% is for dominant disorders with full penetrance."
+  },
+  {
+    "question": "Genetic counseling is indicated in all the following, except:",
+    "options": [
+      "History of repeated stillbirths.",
+      "Maternal diabetes.",
+      "Previous history of child with thalassemia major.",
+      "Families with inherited disorders."
+    ],
+    "correct": 1,
+    "explanation": "Genetic counseling is indicated for families with inherited disorders, history of repeated stillbirths, or previous child with thalassemia major. Maternal diabetes, while important for prenatal care, is not specifically a genetic indication for genetic counseling."
+  },
+  {
+    "question": "What is the risk for a woman to be a carrier if she is the daughter of a man having hemophilia (X-linked recessive disorder):",
+    "options": [
+      "100%.",
+      "50%.",
+      "25%.",
+      "0%."
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A (100%) because hemophilia is X-linked recessive. The affected man has one mutated X chromosome, which he passes to all his daughters, making them obligate carriers. The wrong options (B, C, D) are incorrect because they suggest less than 100% risk, which doesn't account for the X-linked inheritance pattern where all daughters of an affected father will inherit the mutated allele."
+  },
+  {
+    "question": "Characteristic features of autosomal recessive inheritance include:",
+    "options": [
+      "50% risk of recurrence.",
+      "More males are affected.",
+      "Consanguineous marriage is not a feature.",
+      "The trait appears in sibs rather than parents or offspring."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because in autosomal recessive inheritance, the trait appears in siblings when both parents are carriers, but not in parents or offspring. Option A is incorrect as recurrence risk is 25% for each sibling, not 50%. Option B is wrong as autosomal recessive disorders affect males and females equally. Option C is incorrect because consanguinity increases the risk of autosomal recessive disorders."
+  },
+  {
+    "question": "One of the following anomalies is not associated with down syndrome:",
+    "options": [
+      "Mental retardation.",
+      "Congenital heart disease.",
+      "Simian crease.",
+      "Webbing of neck."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D (Webbing of neck) because webbing of the neck is associated with Turner syndrome (45,X), not Down syndrome. Options A, B, and C are all characteristic features of Down syndrome, including mental retardation, congenital heart disease (especially AV canal defects), and simian crease (single palmar crease)."
+  },
+  {
+    "question": "All the following are examples of multifactorial inheritance, except:",
+    "options": [
+      "Congenital heart disorders.",
+      "Club foot.",
+      "Osteogenesis imperfecta.",
+      "Congenital pyloric stenosis."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (Osteogenesis imperfecta) because it is typically inherited as an autosomal dominant disorder, not multifactorial. Options A, B, and D are examples of multifactorial inheritance, where both genetic and environmental factors contribute to the development of the condition."
+  },
+  {
+    "question": "In autosomal dominant disorders:",
+    "options": [
+      "Such disease is not manifested in the heterozygous.",
+      "Phenylketonuria is a good example.",
+      "Variability of expression is very uncommon.",
+      "The offspring of apparently healthy individuals are usually unaffected."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because in autosomal dominant disorders, an affected individual has a 50% chance of passing the mutant allele to each offspring, but unaffected individuals do not carry the mutant allele and thus cannot pass it on. Option A is wrong as autosomal dominant disorders are expressed in heterozygotes. Option B is wrong as phenylketonuria is autosomal recessive. Option C is wrong as variability of expression is common in autosomal dominant disorders."
+  },
+  {
+    "question": "Which of the following is true about autosomal recessive disorder?",
+    "options": [
+      "Affected person married to a homozygous normal individual has an equal chance of producing either normal or affected offspring.",
+      "Most of the affected persons are offspring of apparently normal parents.",
+      "After birth of one affected offspring, recurrence risk is 50%.",
+      "Parents of affected person are usually not consanguineous."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because in autosomal recessive disorders, affected individuals are typically born to unaffected parents who are both carriers. Option A is wrong as an affected person married to a homozygous normal individual will produce all carrier offspring, not affected ones. Option C is wrong as the recurrence risk is 25%, not 50%. Option D is wrong as consanguinity increases the risk of autosomal recessive disorders."
+  },
+  {
+    "question": "Which is true about down syndrome:",
+    "options": [
+      "About 5% are due to mosaicism.",
+      "Incidence increases with increased paternal age.",
+      "Hypertonia is a common finding.",
+      "Delayed milestones of development is nearly a constant finding."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because delayed developmental milestones are a nearly constant finding in Down syndrome due to intellectual disability. Option A is wrong as mosaicism accounts for about 1-2% of cases, not 5%. Option B is wrong as increased maternal age, not paternal age, is associated with Down syndrome. Option C is wrong as hypotonia, not hypertonia, is commonly seen in Down syndrome."
+  },
+  {
+    "question": "The following is an important cause of language delay:",
+    "options": [
+      "Cleft lip.",
+      "Turner syndrome.",
+      "Visual impairment.",
+      "Deafness."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because deafness is a significant cause of language delay as it impairs the ability to hear and thus acquire spoken language. Option A is wrong as cleft lip primarily affects physical appearance and feeding, not language development. Option B is wrong as Turner syndrome primarily affects growth and sexual development, not language. Option C is wrong as while visual impairment can affect development, it's not as directly linked to language delay as deafness."
+  },
+  {
+    "question": "About autosomal recessive inheritance:",
+    "options": [
+      "It is not manifested in the heterozygous.",
+      "After birth of one affected offspring, recurrence risk is 50%.",
+      "Parents of affected person are usually not consanguineous.",
+      "Offspring of apparently healthy individuals are unaffected."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because autosomal recessive disorders require two copies of the mutated gene to be expressed, so heterozygous carriers are typically unaffected. B is incorrect because the recurrence risk is 25% for each subsequent pregnancy, not 50%. C is incorrect because consanguinity increases the risk of autosomal recessive disorders. D is incorrect because unaffected parents can be carriers and have affected offspring."
+  },
+  {
+    "question": "Which is correct about down syndrome:",
+    "options": [
+      "About 1% is due to mosaicism.",
+      "Late maternal age is commonly seen in translocation type.",
+      "Hyper reflexia is common finding.",
+      "Delayed milestones is seen in 25% of cases."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because about 1% of Down syndrome cases are due to mosaicism, where some cells have the extra chromosome 21 and others don't. B is incorrect because advanced maternal age is associated with trisomy 21, not translocation type. C is incorrect because hypotonia, not hyperreflexia, is common in Down syndrome. D is incorrect because delayed milestones are seen in the majority of cases, not just 25%."
+  },
+  {
+    "question": "The following are found in newborn infant with down syndrome, except:",
+    "options": [
+      "Hypotonia.",
+      "Asymmetrical growth retardation.",
+      "Brachycephaly.",
+      "Upward slanting palpebral fissure."
+    ],
+    "correct": 1,
+    "explanation": "B is correct because asymmetrical growth retardation is not typically seen in Down syndrome; growth retardation is usually symmetrical. A is incorrect as hypotonia is a common finding in Down syndrome. C is incorrect as brachycephaly (short, broad head) is characteristic. D is incorrect as upward slanting palpebral fissures are a typical feature."
+  },
+  {
+    "question": "Turner syndrome is characterized byall except:",
+    "options": [
+      "Tall stature.",
+      "Webbing of neck.",
+      "Cubitus valgus.",
+      "Gonadal dysgenesis."
+    ],
+    "correct": 0,
+    "explanation": "A is correct because Turner syndrome is characterized by short stature, not tall stature. B is incorrect as webbing of the neck is a common feature. C is incorrect as cubitus valgus (increased carrying angle at the elbow) is characteristic. D is incorrect as gonadal dysgenesis (underdeveloped ovaries) is a hallmark feature."
+  },
+  {
+    "question": "Which of the following is not true about Turner syndrome?",
+    "options": [
+      "Short stature.",
+      "Webbing of neck.",
+      "The basic chromosomal disorder is the presence of one X chromosome only.",
+      "Precocious puberty."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D because Turner syndrome is associated with delayed or absent puberty, not precocious puberty. Options A, B, and C are true characteristics of Turner syndrome, which involves monosomy X or structural abnormalities of the X chromosome."
+  },
+  {
+    "question": "All are characteristics of autosomal recessive inheritance, except:",
+    "options": [
+      "Affected individuals are only homozygous.",
+      "When parents have one affected child, the risk to each subsequent offspring is1in 2.",
+      "Unaffected individuals can be normal or carriers.",
+      "Strongly related to consanguineous marriage."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because in autosomal recessive inheritance, when parents have one affected child, the risk to each subsequent offspring is 1 in 4, not 1 in 2. Options A, C, and D are accurate descriptions of autosomal recessive inheritance patterns."
+  },
+  {
+    "question": "In which of the following may polygenic inheritance playa role:",
+    "options": [
+      "Duchenne muscular dystrophy.",
+      "Hereditary spherocytosis.",
+      "Type1diabetes mellitus.",
+      "Sickle cell anemia."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C because type 1 diabetes mellitus is influenced by multiple genes and environmental factors, consistent with polygenic inheritance. Options A, B, and D are examples of single-gene disorders, not polygenic inheritance."
+  },
+  {
+    "question": "A 15-year-old boy presented with bilateral enlargement of the breasts (gynecomastia). The parents were worried about the future of their son as they noticed apparently small testicles. The height of the patient was on the 99th percentile for age and sex. I. The most likely diagnosis:",
+    "options": [
+      "Turner syndrome.",
+      "Klinefelter syndrome.",
+      "Ambiguous genitalia (intersex).",
+      "Premature adrenarche."
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B because Klinefelter syndrome (47,XXY) commonly presents with gynecomastia, tall stature, and small testicles in adolescents. Turner syndrome (A) affects females, ambiguous genitalia (C) presents differently, and premature adrenarche (D) doesn't typically cause these findings."
+  },
+  {
+    "question": "The genetic defect of this condition is:",
+    "options": [
+      "Autosomal dominant inheritance.",
+      "X-linked recessive inheritance.",
+      "Sex chromosome abnormality.",
+      "Polygenic inheritance."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C (Sex chromosome abnormality) because conditions like Turner syndrome (45,X) result from abnormalities in sex chromosomes. Option A is wrong as autosomal dominant disorders affect autosomes, not sex chromosomes. Option B is incorrect as X-linked recessive disorders affect males more severely and involve mutations on the X chromosome, not chromosome abnormalities. Option D is wrong because polygenic inheritance involves multiple genes and environmental factors, not chromosome abnormalities."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
