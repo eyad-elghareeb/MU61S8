@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L7-Heart Failure</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof8zundpql1f",
+  "title": "L7-Heart Failure",
+  "description": "Questions on every Cardio lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "A 28-year-old man who is known to have hypertrophic cardiomyopathy has an out of hospital cardiac arrest and is successfully resuscitated. What is the most appropriate mode of treatment:",
+    "options": [
+      "Alcohol septal ablation.",
+      "Amiodarone.",
+      "Beta Blocker.",
+      "Implantable defibrillator.",
+      "Myomectomy."
+    ],
+    "correct": 3,
+    "explanation": "An implantable cardioverter-defibrillator (ICD) is the most appropriate treatment for a survivor of cardiac arrest from HCM. ICD provides definitive protection against recurrent fatal ventricular arrhythmias. Amiodarone and beta-blockers reduce symptoms but do not match ICD efficacy for secondary prevention. Alcohol ablation and myomectomy reduce LVOT obstruction but don't prevent SCD."
+  },
+  {
+    "question": "Which of the following situations is consistent with edema, ascites and central venous pressure 18 mg water?",
+    "options": [
+      "Laennec's cirrhosis.",
+      "Congestive heart failure.",
+      "Inferior venacaval obstruction.",
+      "Nephrotic syndrome.",
+      "Liver cirrhosis."
+    ],
+    "correct": 1,
+    "explanation": "Congestive heart failure produces oedema (from sodium retention), ascites (from elevated venous pressure causing hepatic congestion), and markedly elevated CVP (18 cmH2O). Liver cirrhosis causes portal hypertension but NOT elevated CVP. Nephrotic syndrome causes oedema but CVP is normal or low. IVC obstruction causes lower limb oedema."
+  },
+  {
+    "question": "Which of the following signs is consistent with cardiogenic shock?",
+    "options": [
+      "Bradycardia.",
+      "Warm extremities.",
+      "Gallop.",
+      "Plethoric facies.",
+      "Polyuria."
+    ],
+    "correct": 2,
+    "explanation": "A gallop rhythm (S3 or S4) is a sign of cardiogenic shock, indicating severe LV dysfunction. Tachycardia (not bradycardia) is expected as a compensatory response. Cold, clammy extremities (not warm) indicate peripheral vasoconstriction from low output. Oliguria (not polyuria) occurs from reduced renal perfusion."
+  },
+  {
+    "question": "The following is a sign of congestive heart failure:",
+    "options": [
+      "Papilledema.",
+      "Bilateral basal rales over lung bases.",
+      "Splinter hemorrhages.",
+      "Big joint arthritis.",
+      "Finger clubbing."
+    ],
+    "correct": 1,
+    "explanation": "Bilateral basal crepitations (rales) over the lung bases are a classic sign of left heart failure from pulmonary oedema. Papilloedema indicates raised ICP. Splinter haemorrhages are seen in infective endocarditis. Big joint arthritis is rheumatic. Finger clubbing indicates chronic hypoxia or IE but not specifically CHF."
+  },
+  {
+    "question": "A 63-year-old woman on digitalis for chronic AF experiences fatigue nausea and anorexia. Her pulse is regular at 40 beats /min. Which of the following is the most appropriate management step?",
+    "options": [
+      "An increase in digitalis dose.",
+      "Complete cessation of digitalis.",
+      "Addition of beta blocker.",
+      "Addition of calcium channel blocker.",
+      "Addition of amiodarone."
+    ],
+    "correct": 1,
+    "explanation": "This patient has digitalis toxicity: nausea, anorexia, fatigue, and a regular pulse at 40/min (regularisation of AF → complete AV block, a serious digitalis toxic arrhythmia). The immediate action is complete cessation of digitalis. Increasing the dose would be fatal. Adding a beta-blocker or calcium channel blocker would worsen the bradycardia."
+  },
+  {
+    "question": "Which drug is used for managing cardiogenic shock:",
+    "options": [
+      "Dopamine.",
+      "Intravenous fluids.",
+      "Aspirin.",
+      "Phenytoin.",
+      "Propranolol."
+    ],
+    "correct": 0,
+    "explanation": "Dopamine (and other positive inotropes like dobutamine, noradrenaline) is used to manage cardiogenic shock by increasing cardiac output and blood pressure. IV fluids may be needed if there is RV infarction but can worsen pulmonary oedema in LV cardiogenic shock. Aspirin treats the underlying MI. Phenytoin is an anticonvulsant. Propranolol is a negative inotrope."
+  },
+  {
+    "question": "Pulsus alternans is best detected by:",
+    "options": [
+      "Jugular veins examination.",
+      "ECG.",
+      "Cardiac auscultation.",
+      "Sphygmomanometer.",
+      "Chest auscultation."
+    ],
+    "correct": 3,
+    "explanation": "Pulsus alternans (alternating strong and weak pulses) is best detected by sphygmomanometry: inflating the cuff above systolic pressure and slowly deflating reveals that only alternating beats are heard first (the stronger beats), then all beats at a lower pressure (the weaker beats). This is a sign of severe left ventricular dysfunction."
+  },
+  {
+    "question": "Digoxin is contraindicated in:",
+    "options": [
+      "Thyrotoxic heart failure.",
+      "Wolf Parkinson white syndrome.",
+      "AF.",
+      "Left ventricular failure."
+    ],
+    "correct": 1,
+    "explanation": "Digoxin is contraindicated in WPW syndrome because it shortens the refractory period of the accessory pathway, potentially accelerating conduction during AF and leading to VF. Digoxin is USED for rate control in AF and is a treatment option in LV failure. Thyrotoxic heart failure may respond to rate control with digoxin."
+  },
+  {
+    "question": "A 28 - year - old man who is known to have hypertrophic cardiomyopathy has an out of hospital cardiac arrest and is successfully resuscitated. What is the most appropriate mode of treatment:",
+    "options": [
+      "Alcohol septal ablation",
+      "Amiodarone",
+      "Beta blocker",
+      "Implantable defibrillator",
+      "Myomectomy"
+    ],
+    "correct": 3,
+    "explanation": "ICD implantation is the standard of care for survivors of cardiac arrest from HCM, providing secondary prevention of SCD. This supersedes antiarrhythmics and septal reduction therapies in this high-risk setting."
+  },
+  {
+    "question": "Which of the following conditions is considered as contraindication Blockers:",
+    "options": [
+      "Sinus tachycardia",
+      "Sinus syndrome",
+      "Chronic controlled HF",
+      "Systemic hypertension",
+      "Portal hypertension"
+    ],
+    "correct": 1,
+    "explanation": "Sick sinus syndrome (sinus syndrome) is a contraindication to beta-blockers as they worsen sinus node dysfunction and may cause dangerous bradycardia. Beta-blockers are actually indicated in sinus tachycardia, systemic hypertension, and chronic stable/controlled heart failure."
+  },
+  {
+    "question": "Which of the following situations is consistent with edema, ascites central venous pressure 18 cm water:",
+    "options": [
+      "Laennec's cirrhosis",
+      "Congestive heart failure",
+      "Inferior vena cava obstruction",
+      "Nephrotic syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Elevated CVP (18 cmH2O) with oedema and ascites is characteristic of congestive heart failure. Hepatic cirrhosis causes oedema and ascites from portal hypertension but does not raise CVP. Nephrotic syndrome causes oedema with low CVP. IVC obstruction causes lower limb oedema but not elevated CVP."
+  },
+  {
+    "question": "Which of the following signs is consistent with cardiogenic shock:",
+    "options": [
+      "Bradycardia",
+      "Warm extremities",
+      "Gallop",
+      "Plethoric facies",
+      "Polyuria"
+    ],
+    "correct": 2,
+    "explanation": "Gallop rhythm (S3) is consistent with cardiogenic shock, indicating severe LV dysfunction and elevated filling pressures. Cardiogenic shock presents with tachycardia, cold/clammy extremities, and oliguria — the opposite of options A, B, D, and E."
+  },
+  {
+    "question": "The following is a sign of congestive heart failure:",
+    "options": [
+      "Papilledema",
+      "Bilateral basal rales over lung bases",
+      "Splinter hemorrhages",
+      "Big joint arthritis",
+      "Finger clubbing"
+    ],
+    "correct": 1,
+    "explanation": "Bilateral basal rales are the hallmark of pulmonary oedema from left heart failure. Papilloedema indicates raised ICP. Splinter haemorrhages indicate endocarditis. Big joint arthritis is rheumatic fever. Finger clubbing occurs in chronic lung disease or endocarditis."
+  },
+  {
+    "question": "A 63-year-old woman on digitalis for chronic AF experiences fatigue, nausea & anorexia. Her pulse is regular at 40 beats/min. Which of the following are the most appropriate management steps:",
+    "options": [
+      "An increase in digitalis dose",
+      "Complete cessation of digitalis",
+      "Addition of Beta blocker",
+      "Addition of Calcium channel blocker",
+      "Addition of amiodarone"
+    ],
+    "correct": 1,
+    "explanation": "A regular slow pulse (40/min) in AF on digoxin indicates digitalis toxicity causing complete AV block. The immediate step is to stop digitalis completely. Increasing the dose would be fatal. Adding rate-lowering drugs would worsen the bradycardia."
+  },
+  {
+    "question": "loop diuretics causes all Except:",
+    "options": [
+      "Hypercalcemia",
+      "Hypokalemia",
+      "Hypocalcemia",
+      "Hyperuricemia",
+      "Hyperglycemia"
+    ],
+    "correct": 0,
+    "explanation": "Loop diuretics (furosemide) cause HYPOCALCAEMIA (not hypercalcaemia) by increasing calcium excretion in the urine. They also cause: hypokalaemia (K+ loss), hyponatraemia, hypomagnesaemia, hyperuricaemia (reduced urate excretion), and hyperglycaemia (impaired insulin secretion). Thiazide diuretics, in contrast, cause hypercalcaemia."
+  },
+  {
+    "question": "Digoxin is contraindicated in:",
+    "options": [
+      "Thyrotoxic heart failure",
+      "Wolf-Parkinson-White syndrome",
+      "AF",
+      "Left ventricular failure"
+    ],
+    "correct": 1,
+    "explanation": "WPW syndrome is an absolute contraindication to digoxin. In WPW with AF, digoxin accelerates conduction through the accessory pathway, potentially causing extremely rapid ventricular rates and degeneration to VF. Digoxin is used therapeutically in AF (rate control) and LV failure (symptom improvement)."
+  },
+  {
+    "question": "Which drug is used for managing cardiogenic shock:",
+    "options": [
+      "Dopamine",
+      "Intravenous fluids",
+      "Aspirin",
+      "Phenytoin Propranolol"
+    ],
+    "correct": 0,
+    "explanation": "Dopamine is a catecholamine with dose-dependent effects: at low doses renal vasodilation, at intermediate doses positive inotropy, at high doses vasoconstriction — all useful in cardiogenic shock. Propranolol (beta-blocker) is a negative inotrope and would worsen shock."
+  },
+  {
+    "question": "A 65-year-old male with left ventricular systolic dysfunction was dyspneic on climbing stairs but not at rest. The patient was commenced on Ramipril and Furosemide. Which one of the following drugs would improve the patient's prognosis further:",
+    "options": [
+      "Amiodarone",
+      "Digoxin",
+      "Diltiazem",
+      "Isosorbide Mononitrate",
+      "Metoprolol"
+    ],
+    "correct": 4,
+    "explanation": "Metoprolol (and other cardioselective beta-blockers) significantly improve prognosis in stable systolic HF by reducing mortality, sudden death, and hospitalisations (MERIT-HF trial). Amiodarone does not improve survival. Digoxin reduces symptoms but not mortality. Diltiazem can worsen systolic dysfunction. Nitrates relieve symptoms only."
+  },
+  {
+    "question": "A 70-year-old man with dilated cardiomyopathy remains symptomatic in NYHA class 2 due to chronic heart failure. On examination his pulse is 90 regulars, BP 140/90, heart sounds normal, chest auscultation did not reveal any abnormalities. He is currently taking Lisinopril 30 mg daily and Furosemide 80mg daily. What is the best treatment option:",
+    "options": [
+      "Amiodarone",
+      "Carvedilol",
+      "Digoxin",
+      "Spironolactone",
+      "Valsartan"
+    ],
+    "correct": 1,
+    "explanation": "Carvedilol (non-selective beta-blocker with alpha-blocking properties) is the appropriate addition for stable NYHA class II CHF already on ACE inhibitor and diuretic. Multiple trials (COPERNICUS, CARVEDILOL) demonstrate mortality benefit. Spironolactone is for NYHA class III-IV. Digoxin improves symptoms, not mortality. Amiodarone has no mortality benefit in CHF."
+  },
+  {
+    "question": "A 55-year-old woman has had worsening shortness of breath for several years. She now must sleep sitting up on two pillows. She has difficulty swallowing. There is no history of chest pain. She is afebrile. Recently, she suffered a stroke with left hemiparesis. A chest X- ray reveals a near-normal left ventricular size with a prominent left atrial border. Which of the following conditions are most likely to account for these findings:",
+    "options": [
+      "Aortic Coarctation",
+      "Cardiomyopathy",
+      "Essential hypertension",
+      "Left renal artery stenosis",
+      "Mitral valve stenosis"
+    ],
+    "correct": 4,
+    "explanation": "Mitral stenosis explains all findings: orthopnoea and dyspnoea (pulmonary oedema from elevated LA pressure), dysphagia (massive LA compresses oesophagus), stroke from LA thrombus/AF embolism, normal LV size with prominent LA border on CXR. Cardiomyopathy and hypertension would show LV enlargement."
+  },
+  {
+    "question": "A 65-year-old male attends clinic complaining of breathlessness. He has end stage cardiac failure due to dilated cardiomyopathy. Currently he takes Furosemide, Lisinopril and Carvedilol. Which one of the following drugs should be added to his current therapy:",
+    "options": [
+      "Digoxin",
+      "Diltiazem",
+      "Isosorbide Mononitrate",
+      "Nicorandil",
+      "Vitamin C"
+    ],
+    "correct": 0,
+    "explanation": "Digoxin is appropriate to add in end-stage CHF with DCM for symptom relief and to reduce hospitalisations (DIG trial). It is especially useful when already on diuretic, ACE inhibitor, and beta-blocker. Diltiazem is a negative inotrope and should be avoided in systolic dysfunction. Nitrates and nicorandil are not first-line additions."
+  },
+  {
+    "question": "A 60-year-old-man presents with features of left ventricular failure. He is comfortable at rest but ordinary physical activity results in fatigue and shortness of breath. Which of the following New York Heart Association's classifications best match the severity of this man's disease:",
+    "options": [
+      "NYHA Class I",
+      "NYHA Class II",
+      "NYHA Class III",
+      "NYHA Class IV",
+      "NYHA Class V"
+    ],
+    "correct": 1,
+    "explanation": "NYHA Class II: comfortable at rest, but ordinary physical activity causes symptoms (fatigue, dyspnoea). Class I: no symptoms. Class III: comfortable at rest but less-than-ordinary activity causes symptoms. Class IV: symptoms at rest. There is no NYHA Class V."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

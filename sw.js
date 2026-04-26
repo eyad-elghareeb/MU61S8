@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-aee0f1f2aad0';
+const CACHE_VERSION = 'mu61-quiz-bfe57ff399c7';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -102,6 +102,23 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/by-lecture/l13-infertility.html',
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
+  'med/dr.-maf/cardio/index.html',
+  'med/dr.-maf/cardio/l1-ihd.html',
+  'med/dr.-maf/cardio/l4-htn.html',
+  'med/dr.-maf/cardio/l5-pericardial-diseases.html',
+  'med/dr.-maf/cardio/l6-infective-endocarditis.html',
+  'med/dr.-maf/cardio/l7-heart-failure.html',
+  'med/dr.-maf/cardio/l23-valvular-heart-disease.html',
+  'med/dr.-maf/cardio/l89-arrhythmia.html',
+  'med/dr.-maf/chest/index.html',
+  'med/dr.-maf/chest/l1-bronchial-asthma.html',
+  'med/dr.-maf/chest/l2-copd.html',
+  'med/dr.-maf/chest/l3-suppurative-lung-disease.html',
+  'med/dr.-maf/chest/l4-tb.html',
+  'med/dr.-maf/chest/l5-pneumonia.html',
+  'med/dr.-maf/chest/s1-lung-cancer.html',
+  'med/dr.-maf/chest/s2-interstitial-lung-disease.html',
+  'med/dr.-maf/index.html',
   'med/extra/cardio/davidsons-cardiology.html',
   'med/extra/cardio/index.html',
   'med/extra/cardio/kasr-al-ainy-cardiology.html',

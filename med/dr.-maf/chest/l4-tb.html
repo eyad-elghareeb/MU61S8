@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L4-TB</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof97x5aws07o",
+  "title": "L4-TB",
+  "description": "Questions on every Chest lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which antituberculosis drug is contraindicated in patients with a history of optic neuritis?",
+    "options": [
+      "Rifampicin.",
+      "Streptomycin.",
+      "Isoniazid.",
+      "Pyrazinamide.",
+      "Ethambutol."
+    ],
+    "correct": 4,
+    "explanation": "Ethambutol is contraindicated in patients with optic neuritis because it can cause dose-dependent optic neuropathy."
+  },
+  {
+    "question": "The definitive diagnosis of TB is:",
+    "options": [
+      "Isolation of Mycobacterium tuberculosis in pure culture.",
+      "Tuberculin skin test.",
+      "Interferon gamma release assay.",
+      "Chest radiology."
+    ],
+    "correct": 0,
+    "explanation": "Culture isolation of M. tuberculosis in pure culture is the definitive (gold standard) diagnostic method."
+  },
+  {
+    "question": "Which of the following antituberculosis drugs is not hepatotoxic?",
+    "options": [
+      "Rifampicin.",
+      "Streptomycin.",
+      "Isoniazid.",
+      "Pyrazinamide."
+    ],
+    "correct": 1,
+    "explanation": "Streptomycin is not hepatotoxic; its main toxicities are nephrotoxicity and ototoxicity. Rifampicin, isoniazid, and pyrazinamide are all hepatotoxic."
+  },
+  {
+    "question": "For treatment of pulmonary TB in patients with renal disease, the following drugs can be given EXCEPT:",
+    "options": [
+      "Rifampicin.",
+      "Rifabutin.",
+      "Ethambutol.",
+      "Pyrazinamide.",
+      "Streptomycin."
+    ],
+    "correct": 4,
+    "explanation": "Streptomycin is renally excreted and nephrotoxic; it should be avoided in renal disease or used with dose adjustment and therapeutic drug monitoring."
+  },
+  {
+    "question": "Which of the following antituberculosis drugs is contraindicated in pregnancy?",
+    "options": [
+      "Rifampicin.",
+      "Isoniazid.",
+      "Ethambutol.",
+      "Streptomycin."
+    ],
+    "correct": 3,
+    "explanation": "Streptomycin is contraindicated in pregnancy because it is ototoxic to the fetus. Rifampicin, isoniazid, and ethambutol are generally considered safe."
+  },
+  {
+    "question": "The definitive diagnosis of acute pulmonary TB is:",
+    "options": [
+      "Isolation of Mycobacterium TB in pure culture.",
+      "Positive tuberculin skin test.",
+      "Detection of interferon gamma in the serum.",
+      "Lung calcification in chest radiology."
+    ],
+    "correct": 0,
+    "explanation": "Bacteriological culture remains the definitive diagnostic test for pulmonary tuberculosis."
+  },
+  {
+    "question": "The commonest form of extrapulmonary tuberculosis is:",
+    "options": [
+      "Pleural tuberculosis.",
+      "Tuberculous lymphadenitis.",
+      "Abdominal tuberculosis.",
+      "Tuberculous pericarditis.",
+      "Bone and joint tuberculosis."
+    ],
+    "correct": 1,
+    "explanation": "Tuberculous lymphadenitis (scrofula) is the most common form of extrapulmonary TB."
+  },
+  {
+    "question": "One of the following is not a standard drug used for TB treatment:",
+    "options": [
+      "Rifampicin.",
+      "Ethambutol.",
+      "Streptomycin.",
+      "Azathioprine.",
+      "Pyrazinamide."
+    ],
+    "correct": 3,
+    "explanation": "Azathioprine is an immunosuppressant used in autoimmune diseases, not an anti-TB drug."
+  },
+  {
+    "question": "The most common manifestation of CNS tuberculosis is:",
+    "options": [
+      "Encephalitis.",
+      "Meningitis.",
+      "Myelitis.",
+      "Peripheral neuropathy.",
+      "Brain abscess."
+    ],
+    "correct": 1,
+    "explanation": "Tuberculous meningitis is the most common manifestation of CNS tuberculosis."
+  },
+  {
+    "question": "A 30-year-old farmer complains of fever, weight loss, night sweats and persistent cough. What is the most likely diagnosis?",
+    "options": [
+      "Renal cell carcinoma.",
+      "Thyrotoxicosis.",
+      "Pulmonary tuberculosis.",
+      "Anorexia nervosa.",
+      "Staphylococcus aureus pneumonia."
+    ],
+    "correct": 2,
+    "explanation": "The constitutional symptoms of fever, weight loss, night sweats, and chronic cough are classic for pulmonary tuberculosis."
+  },
+  {
+    "question": "Pott's disease is commonest in:",
+    "options": [
+      "Upper thoracic region.",
+      "Cervical and upper thoracic region.",
+      "Sacral region.",
+      "Lower thoracic and lumbar region."
+    ],
+    "correct": 3,
+    "explanation": "Spinal tuberculosis (Pott's disease) most commonly affects the lower thoracic and lumbar vertebrae."
+  },
+  {
+    "question": "Indications of using corticosteroids in patients with tuberculosis include:",
+    "options": [
+      "Tuberculosis of the serous sacs (e.g., pericarditis, peritonitis).",
+      "Cavity pulmonary tuberculosis.",
+      "Multidrug-resistant tuberculosis.",
+      "Hepatitis induced by anti-tuberculosis drugs.",
+      "Tuberculous pyelonephritis."
+    ],
+    "correct": 0,
+    "explanation": "Steroids are indicated in TB pericarditis, meningitis, and pleuritis to reduce inflammation and prevent constriction or adhesive complications."
+  },
+  {
+    "question": "TB cannot be presented by:",
+    "options": [
+      "Cavitary lesion in the lung.",
+      "Pleural effusion.",
+      "Cachexia.",
+      "Mediastinal lymphadenopathy.",
+      "Pulmonary embolism."
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary embolism is not a presentation of tuberculosis."
+  },
+  {
+    "question": "Which of the anti-tuberculosis drugs should be totally avoided in pregnancy?",
+    "options": [
+      "Isoniazid.",
+      "Pyrazinamide.",
+      "Rifampicin.",
+      "Streptomycin.",
+      "Ethambutol."
+    ],
+    "correct": 3,
+    "explanation": "Streptomycin is ototoxic to the fetus and is the only first-line drug that should be avoided in pregnancy."
+  },
+  {
+    "question": "The following are signs of pulmonary TB EXCEPT:",
+    "options": [
+      "Crepitations.",
+      "Wheezy chest.",
+      "Cavernous breath sound.",
+      "Shortening of the trachea.",
+      "Tracheal shift."
+    ],
+    "correct": 3,
+    "explanation": "Tracheal shortening is not a recognized sign of pulmonary TB."
+  },
+  {
+    "question": "TB can be transmitted via the following EXCEPT:",
+    "options": [
+      "Droplet infection.",
+      "Infected milk.",
+      "Mosquito bite.",
+      "Via placenta to the fetus."
+    ],
+    "correct": 2,
+    "explanation": "Tuberculosis is not transmitted by mosquito bites. It spreads via respiratory droplets, contaminated milk (bovine TB), and transplacentally."
+  },
+  {
+    "question": "The gold standard for diagnosis of pulmonary TB is:",
+    "options": [
+      "Positive sputum Ziehl-Neelsen examination for TB.",
+      "Upper zonal infiltration in chest x-ray.",
+      "Positive tuberculin test.",
+      "ELISA test positive."
+    ],
+    "correct": 0,
+    "explanation": "Sputum smear microscopy for acid-fast bacilli (AFB) is the practical gold standard for diagnosing infectious pulmonary TB in most settings."
+  },
+  {
+    "question": "Convulsions may be produced by all of the antituberculous drugs EXCEPT:",
+    "options": [
+      "Ciprofloxacin.",
+      "Prothionamide.",
+      "Isoniazid.",
+      "Cycloserine."
+    ],
+    "correct": 1,
+    "explanation": "Prothionamide is less commonly associated with seizures compared to isoniazid, cycloserine, and high-dose ciprofloxacin, which lower the seizure threshold."
+  },
+  {
+    "question": "Which is not common in primary pulmonary tuberculosis?",
+    "options": [
+      "Cavity.",
+      "Fibrosis.",
+      "Lymphadenopathy.",
+      "Pleural effusion."
+    ],
+    "correct": 0,
+    "explanation": "Cavitation is uncommon in primary TB; it is characteristic of post-primary (reactivation) TB. Primary TB features lymphadenopathy, effusion, and fibrosis."
+  },
+  {
+    "question": "Non-complicated TB pleural effusion is treated with:",
+    "options": [
+      "Anti-TB drugs with pleurodesis.",
+      "Anti-TB drugs with excision of the pleura.",
+      "Anti-TB drugs with intercostal tube.",
+      "Anti-TB drugs with corticosteroids."
+    ],
+    "correct": 3,
+    "explanation": "Corticosteroids may be added to anti-TB therapy for pleural effusion to accelerate fluid resorption and prevent pleural thickening."
+  },
+  {
+    "question": "Which statement about tuberculosis is CORRECT?",
+    "options": [
+      "Hemoptysis is diagnostic for TB.",
+      "Bacteriological diagnosis is certain for the disease.",
+      "Radiological diagnosis is certain for the disease.",
+      "Treatment is monotherapy."
+    ],
+    "correct": 1,
+    "explanation": "Bacteriological confirmation (culture or smear) is required for a certain diagnosis of TB. Hemoptysis and radiology are suggestive but not definitive, and treatment must use multiple drugs."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

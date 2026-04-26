@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>S1-Lung Cancer</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof98ae7n3967",
+  "title": "S1-Lung Cancer",
+  "description": "Questions on every Chest lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "As regards lung cancer, which of the following statements is WRONG?",
+    "options": [
+      "Hoarseness of voice occurs due to phrenic nerve involvement.",
+      "Puffiness of the face occurs due to superior vena cava obstruction.",
+      "Dysphagia occurs due to infiltration of the esophagus.",
+      "Horner's syndrome occurs due to infiltration of the cervical sympathetic chain.",
+      "Bronchogenic carcinoma is a risk factor of pulmonary embolism."
+    ],
+    "correct": 0,
+    "explanation": "Hoarseness is caused by recurrent laryngeal nerve (not phrenic nerve) involvement, often by left hilar tumors or mediastinal lymphadenopathy."
+  },
+  {
+    "question": "The following is false regarding superior vena cava obstruction:",
+    "options": [
+      "Manifested by puffy face.",
+      "Neck veins are congested and pulsating.",
+      "Caused by compression and invasion by tumor.",
+      "Part of mediastinal syndrome."
+    ],
+    "correct": 1,
+    "explanation": "In SVC obstruction the neck veins are congested but not pulsating; pulsatile JVP suggests tricuspid regurgitation."
+  },
+  {
+    "question": "Bronchorrhea is due to:",
+    "options": [
+      "Squamous cell carcinoma.",
+      "Large cell carcinoma.",
+      "Alveolar cell carcinoma.",
+      "Pleural mesothelioma."
+    ],
+    "correct": 2,
+    "explanation": "Bronchoalveolar cell carcinoma (adenocarcinoma in situ) can produce copious watery sputum known as bronchorrhea."
+  },
+  {
+    "question": "The commonest mediastinal mass is:",
+    "options": [
+      "Aortic aneurysm.",
+      "Lymphoma.",
+      "Thymoma.",
+      "Bronchogenic cyst."
+    ],
+    "correct": 2,
+    "explanation": "Thymoma is the most common anterior mediastinal mass in adults. Neurogenic tumors are most common posteriorly."
+  },
+  {
+    "question": "You see a 67-year-old man referred to the chest clinic with a three-month history of weight loss and signs suggesting a Pancoast tumor. Which symptom is NOT associated with a Pancoast tumor?",
+    "options": [
+      "Anhidrosis.",
+      "Enophthalmos.",
+      "Hoarse voice.",
+      "Mydriasis.",
+      "Ptosis."
+    ],
+    "correct": 3,
+    "explanation": "Pancoast tumors cause Horner's syndrome (miosis, ptosis, anhidrosis, enophthalmos) and hoarseness from recurrent laryngeal nerve involvement. Mydriasis (pupil dilation) is the opposite of the miosis seen in Horner's."
+  },
+  {
+    "question": "A 33-year-old nonsmoking woman has lost 14 kg and has a cough. She is noted to have a lung mass on chest radiograph. Which lung cancer cell type is most likely?",
+    "options": [
+      "Squamous cell.",
+      "Adenocarcinoma.",
+      "Small cell.",
+      "Large cell."
+    ],
+    "correct": 1,
+    "explanation": "Adenocarcinoma is the most common lung cancer in nonsmokers and in women."
+  },
+  {
+    "question": "A 67-year-old long-time smoker with COPD presents with 3 days of headaches and plethoric swelling of his face and right arm. What is the most likely diagnosis?",
+    "options": [
+      "Angioedema.",
+      "Hypothyroidism.",
+      "Superior vena cava syndrome.",
+      "Tuberculosis."
+    ],
+    "correct": 2,
+    "explanation": "Superior vena cava obstruction from lung cancer causes facial plethora, arm swelling, and headache."
+  },
+  {
+    "question": "A 45-year-old woman with unexpected weight loss and shortness of breath presents with reduced air entry and dullness to percussion in the right lung. Pleural aspiration reveals protein >30 g/L. What is the most likely diagnosis?",
+    "options": [
+      "Bronchogenic carcinoma.",
+      "Congestive heart failure.",
+      "Nephrotic syndrome.",
+      "Liver cirrhosis."
+    ],
+    "correct": 0,
+    "explanation": "An exudative pleural effusion (protein >30 g/L or pleural fluid/serum protein ratio >0.5) with weight loss suggests malignant pleural involvement from bronchogenic carcinoma."
+  },
+  {
+    "question": "Which type of cancer is most commonly associated with myasthenia gravis?",
+    "options": [
+      "Small cell lung cancer.",
+      "Non-small cell lung cancer.",
+      "Mesothelioma.",
+      "Thymoma."
+    ],
+    "correct": 3,
+    "explanation": "Thymoma is the malignancy most strongly associated with myasthenia gravis."
+  },
+  {
+    "question": "A 62-year-old man with limited-stage small cell lung cancer and proximal muscular weakness is most likely to have which condition?",
+    "options": [
+      "SIADH.",
+      "Myasthenia gravis.",
+      "Cerebellar degeneration.",
+      "Eaton-Lambert syndrome."
+    ],
+    "correct": 3,
+    "explanation": "Lambert-Eaton myasthenic syndrome is a paraneoplastic disorder associated with small cell lung cancer, causing proximal muscle weakness."
+  },
+  {
+    "question": "Tobacco use is associated with the following cancers EXCEPT:",
+    "options": [
+      "Bladder.",
+      "Liver.",
+      "Pancreas.",
+      "Pharynx.",
+      "Colorectal."
+    ],
+    "correct": 1,
+    "explanation": "Although smoking is linked to many cancers, the association with hepatocellular carcinoma is less direct than with bladder, pancreatic, pharyngeal, and colorectal cancers."
+  },
+  {
+    "question": "A 60-year-old former smoker was found to have an 8 mm mass lesion in the left upper lobe on chest X-ray during a routine evaluation. He is totally asymptomatic. What is the next step?",
+    "options": [
+      "Repeat chest films in six months.",
+      "Bronchoscopy with transbronchial biopsy.",
+      "Fine needle CT-guided aspiration of the lesion.",
+      "Sputum cytology."
+    ],
+    "correct": 2,
+    "explanation": "For peripheral lung nodules, CT-guided fine needle aspiration (FNA) is the most effective minimally invasive diagnostic procedure."
+  },
+  {
+    "question": "All of the following are non-metastatic complications of malignancy EXCEPT:",
+    "options": [
+      "Cushing syndrome.",
+      "Cerebral cortical degeneration.",
+      "Cerebellar degeneration.",
+      "Polymyositis."
+    ],
+    "correct": 1,
+    "explanation": "All listed conditions can be paraneoplastic syndromes. Cerebral cortical degeneration (limbic encephalitis) is a recognized paraneoplastic syndrome, most commonly associated with small cell lung cancer."
+  },
+  {
+    "question": "The commonest cause of hypertrophic osteoarthropathy is:",
+    "options": [
+      "Fallot's tetralogy.",
+      "Bronchiectasis.",
+      "Mesothelioma.",
+      "Bronchogenic carcinoma."
+    ],
+    "correct": 3,
+    "explanation": "Hypertrophic pulmonary osteoarthropathy is most commonly associated with lung cancer, especially adenocarcinoma."
+  },
+  {
+    "question": "Which of the following is not a paraneoplastic syndrome in bronchogenic carcinoma?",
+    "options": [
+      "Cachexia.",
+      "Hemoptysis.",
+      "Polymyositis.",
+      "SIADH."
+    ],
+    "correct": 1,
+    "explanation": "Hemoptysis is a local effect of tumor invasion, not a paraneoplastic syndrome. Cachexia, polymyositis, and SIADH are systemic paraneoplastic manifestations."
+  },
+  {
+    "question": "The commonest posterior mediastinal tumor is:",
+    "options": [
+      "Neurofibroma.",
+      "Lymphoma.",
+      "Teratodermoid.",
+      "Metastatic carcinoma."
+    ],
+    "correct": 0,
+    "explanation": "Neurogenic tumors (neurofibroma, neurilemmoma) are the most common masses in the posterior mediastinum."
+  },
+  {
+    "question": "The commonest middle mediastinal mass is:",
+    "options": [
+      "Lymphoma.",
+      "Aortic aneurysm.",
+      "Bronchogenic cyst.",
+      "Thymoma."
+    ],
+    "correct": 1,
+    "explanation": "Aortic aneurysm and lymphadenopathy are common middle mediastinal masses. Bronchogenic cysts are the most common congenital middle mediastinal lesions."
+  },
+  {
+    "question": "The commonest cause of superior mediastinal syndrome is:",
+    "options": [
+      "Lymphoma.",
+      "Thymoma.",
+      "Bronchogenic carcinoma.",
+      "Retrosternal goiter."
+    ],
+    "correct": 2,
+    "explanation": "Bronchogenic carcinoma is the most common cause of superior vena cava (mediastinal) syndrome in adults."
+  },
+  {
+    "question": "The commonest benign pulmonary neoplasm is:",
+    "options": [
+      "Lipoma.",
+      "Adenoma.",
+      "Fibroma.",
+      "Hamartoma."
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary hamartoma is the most common benign lung tumor, though bronchial adenoma (carcinoid) is the most common benign endobronchial tumor."
+  },
+  {
+    "question": "Which lung carcinoma is most commonly associated with hypercalcemia?",
+    "options": [
+      "Oat cell carcinoma.",
+      "Large cell carcinoma.",
+      "Squamous cell carcinoma.",
+      "Adenocarcinoma."
+    ],
+    "correct": 2,
+    "explanation": "Squamous cell carcinoma secretes parathyroid hormone-related peptide (PTHrP), which causes humoral hypercalcemia of malignancy."
+  },
+  {
+    "question": "The following are contraindications to surgical resection in bronchial carcinoma EXCEPT:",
+    "options": [
+      "Distant metastasis.",
+      "Malignant pleural effusion.",
+      "Esophageal involvement.",
+      "Ipsilateral mediastinal lymphadenopathy."
+    ],
+    "correct": 3,
+    "explanation": "Ipsilateral mediastinal (N2) lymphadenopathy may still be resectable with neoadjuvant chemoradiotherapy. Distant metastases, malignant effusion, and esophageal invasion are contraindications."
+  },
+  {
+    "question": "Scar carcinoma of lung is:",
+    "options": [
+      "Oat cell carcinoma.",
+      "Large cell carcinoma.",
+      "Squamous cell carcinoma.",
+      "Adenocarcinoma."
+    ],
+    "correct": 3,
+    "explanation": "Scar carcinoma typically refers to adenocarcinoma arising in areas of pulmonary fibrosis or old scarring."
+  },
+  {
+    "question": "Anterior mediastinum mass on CXR EXCEPT:",
+    "options": [
+      "Dermoid cyst.",
+      "Thymoma.",
+      "Lymphoma.",
+      "Esophageal leiomyoma."
+    ],
+    "correct": 3,
+    "explanation": "Esophageal leiomyoma is located in the posterior or middle mediastinum, not the anterior compartment."
+  },
+  {
+    "question": "The most common type of lung cancer seen in non-smokers is:",
+    "options": [
+      "Adenocarcinoma.",
+      "Squamous cell carcinoma.",
+      "Large cell carcinoma.",
+      "Small cell carcinoma."
+    ],
+    "correct": 0,
+    "explanation": "Adenocarcinoma is the predominant histological type in never-smokers and in women."
+  },
+  {
+    "question": "Bronchial adenoma most commonly presents as:",
+    "options": [
+      "Cough.",
+      "Stridor.",
+      "Recurrent hemoptysis.",
+      "Chest pain."
+    ],
+    "correct": 2,
+    "explanation": "Bronchial adenomas (carcinoid tumors) are highly vascular and most commonly present with recurrent hemoptysis."
+  },
+  {
+    "question": "The commonest histologic variety of bronchogenic carcinoma is:",
+    "options": [
+      "Small cell carcinoma.",
+      "Large cell carcinoma.",
+      "Epidermoid (squamous) carcinoma.",
+      "Adenocarcinoma.",
+      "Pancoast tumor."
+    ],
+    "correct": 3,
+    "explanation": "Adenocarcinoma has overtaken squamous cell carcinoma as the most common histological subtype of lung cancer worldwide."
+  },
+  {
+    "question": "Phrenic nerve infiltration in bronchial carcinoma presents with:",
+    "options": [
+      "Reversed tidal percussion.",
+      "Audible bronchial breath sound.",
+      "Generalized expiratory wheezes.",
+      "Positive D'Espine sign."
+    ],
+    "correct": 0,
+    "explanation": "Phrenic nerve palsy causes paradoxical mediastinal movement and altered percussion findings. D'Espine sign indicates mediastinal lymphadenopathy."
+  },
+  {
+    "question": "Hand examination in bronchial carcinoma may reveal the following EXCEPT:",
+    "options": [
+      "Inequal pulse.",
+      "Wrist joint ankylosis.",
+      "Wasting of the small muscles of the hand.",
+      "Hypertrophic pulmonary osteo-arthropathy."
+    ],
+    "correct": 3,
+    "explanation": "Hypertrophic pulmonary osteoarthropathy (HPOA) affects the wrists and ankles, causing clubbing and periostitis; it is a recognized feature of lung cancer."
+  },
+  {
+    "question": "Which one of the following is not a paraneoplastic syndrome in bronchogenic carcinoma?",
+    "options": [
+      "Cachexia.",
+      "Hemoptysis.",
+      "Polymyositis.",
+      "SIADH."
+    ],
+    "correct": 1,
+    "explanation": "Hemoptysis is a local tumor effect. Cachexia, polymyositis, and SIADH are systemic paraneoplastic syndromes."
+  },
+  {
+    "question": "Which is not a neurological paraneoplastic syndrome of bronchogenic carcinoma?",
+    "options": [
+      "Eaton-Lambert syndrome.",
+      "Cerebral thrombosis.",
+      "Retinal blindness.",
+      "Subacute cerebellar degeneration."
+    ],
+    "correct": 1,
+    "explanation": "Cerebral thrombosis is not a classic paraneoplastic syndrome. Eaton-Lambert syndrome, cancer-associated retinopathy, and subacute cerebellar degeneration are recognized paraneoplastic neurological syndromes of lung cancer."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

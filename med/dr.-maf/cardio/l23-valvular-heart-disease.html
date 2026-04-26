@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L2&3-Valvular Heart Disease</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof8wo5uvb27e",
+  "title": "L2&3-Valvular Heart Disease",
+  "description": "Questions on every Cardio lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is associated with early diastolic murmur:",
+    "options": [
+      "Aortic regurgitation.",
+      "Mitral stenosis.",
+      "Ventricular septal defect.",
+      "Aortic stenosis.",
+      "Atrial septal defect."
+    ],
+    "correct": 0,
+    "explanation": "Aortic regurgitation produces a high-pitched, blowing, early diastolic decrescendo murmur best heard at the left sternal border. Mitral stenosis causes a mid-diastolic rumble with presystolic accentuation. VSD and ASD cause systolic murmurs. Aortic stenosis causes an ejection systolic murmur."
+  },
+  {
+    "question": "Treatment of symptomatic severe non pliable heavily calcific mitral stenosis includes:",
+    "options": [
+      "Percutaneous Balloon Mitral Valvuloplasty (PBMV).",
+      "Mitral valve repair.",
+      "Mitral valve replacement.",
+      "Medical treatment only.",
+      "Trans-catheter valve implantation."
+    ],
+    "correct": 2,
+    "explanation": "Symptomatic severe non-pliable, heavily calcified mitral stenosis requires mitral valve replacement as the definitive treatment. PBMV is only suitable for pliable, non-calcified valves. Valve repair is not feasible in heavily calcified valves. Medical treatment alone is not definitive for severe symptomatic stenosis."
+  },
+  {
+    "question": "Which of the following is associated with a weak S1?",
+    "options": [
+      "Hyper-dynamic states.",
+      "Short PR interval.",
+      "Mitral regurge.",
+      "Left to right shunt.",
+      "Atrial premature beats."
+    ],
+    "correct": 2,
+    "explanation": "Mitral regurgitation causes a weak S1 because the mitral valve leaflets fail to coapt properly, reducing the force of valve closure. Hyperdynamic states, short PR interval, left-to-right shunts, and atrial premature beats are associated with a loud S1 (mitral valve closes from a wider open position)."
+  },
+  {
+    "question": "Which of the following situations is a common cause of syncope?",
+    "options": [
+      "Severe aortic stenosis.",
+      "Hypertension.",
+      "Chronic kidney diseases.",
+      "First degree AV block.",
+      "Sinus tachycardia."
+    ],
+    "correct": 0,
+    "explanation": "Severe aortic stenosis causes exertional syncope because the fixed obstruction to LV outflow prevents the cardiac output from rising with exertion, leading to cerebral hypoperfusion. Hypertension, CKD, first-degree AV block, and sinus tachycardia do not typically cause syncope."
+  },
+  {
+    "question": "Which of the following signs is consistent with severe aortic regurge?",
+    "options": [
+      "Narrow pulse pressure.",
+      "Slow rising pulse.",
+      "Collapsing Corrigan's pulse.",
+      "Systolic apical retraction.",
+      "Apical S4 added sound."
+    ],
+    "correct": 2,
+    "explanation": "Collapsing (water-hammer/Corrigan's) pulse is the classic peripheral sign of severe AR, caused by wide pulse pressure from rapid diastolic runoff. Narrow pulse pressure and slow-rising pulse are features of aortic stenosis. Systolic apical retraction suggests constrictive pericarditis. Apical S4 is associated with reduced LV compliance."
+  },
+  {
+    "question": "In C.H.F. the circulating plasma volume Is:",
+    "options": [
+      "Decreased",
+      "Variable,usually decreased",
+      "Unchanged",
+      "Increased",
+      "Unknown"
+    ],
+    "correct": 3,
+    "explanation": "In CHF, reduced cardiac output activates the renin-angiotensin-aldosterone system (RAAS) and ADH release, causing sodium and water retention, thereby INCREASING circulating plasma volume. This compensatory mechanism leads to oedema and congestion."
+  },
+  {
+    "question": "In coarctation of the aorta there is usually:",
+    "options": [
+      "Bounding pulsations",
+      "Pistol-shot femoral pulses",
+      "Right ventricular enlargement seen on X-ray",
+      "Decreased femoral B.P., increased brachial B.p",
+      "An inter-ventricular septal defect."
+    ],
+    "correct": 1,
+    "explanation": "According to the source, the answer is B (Pistol-shot femoral pulses). Clinically, coarctation of the aorta is characterised by weak/absent femoral pulses and radio-femoral delay with hypertension in the upper limbs. Pistol-shot femoral pulses are typically associated with aortic regurgitation. Left (not right) ventricular hypertrophy is seen on X-ray."
+  },
+  {
+    "question": "The triad found in Beri-Beri is:",
+    "options": [
+      "Cardiac failure, neuritis, edema",
+      "Cardiac failure, edema, glossitis",
+      "Cardiac failure, glossitis, neuritis",
+      "Edema, glossitis, neuritis",
+      "Angular fissures, glossitis, neuritis"
+    ],
+    "correct": 0,
+    "explanation": "Beri-beri (thiamine/B1 deficiency) classically presents with the triad of high-output cardiac failure, peripheral neuritis, and oedema. Glossitis and angular fissures are features of riboflavin/niacin deficiency, not thiamine deficiency."
+  },
+  {
+    "question": "In C.H.F. of Beri-beri: heart disease the cardiac output is:",
+    "options": [
+      "Variable",
+      "Decreased",
+      "Unchanged",
+      "Increased",
+      "Of no significance"
+    ],
+    "correct": 3,
+    "explanation": "Beri-beri heart disease (thiamine deficiency) causes a high-output cardiac failure. Thiamine is essential for oxidative metabolism; its deficiency leads to peripheral vasodilation, reducing SVR, causing a compensatory increase in cardiac output. Despite the high output, the heart eventually fails."
+  },
+  {
+    "question": "Asthmatic wheezing in C.H.F:",
+    "options": [
+      "Only occurs in patients with a history o f bronchial asthma",
+      "Occurs only i n presence o f allergen",
+      "Comes on in morning attacks",
+      "Does not occur in cases of C.H.F. with chronic lung disease",
+      "Is caused by bronchial spasm from pulmonary congestion."
+    ],
+    "correct": 4,
+    "explanation": "Cardiac asthma in CHF is caused by bronchospasm secondary to pulmonary congestion and oedema, which irritates bronchial receptors. It is not related to allergies or prior asthma history. Cardiac asthma typically occurs at night (paroxysmal nocturnal dyspnoea), not specifically in morning attacks."
+  },
+  {
+    "question": "A 69-year-old man with history of congestive heart failure secondary to hypertension and atrial fibrillation present with increasing nausea, headache, and blurred vision in both eyes over the past 3 days. He also complains of seeing \"yellow halos around lights: His medications include hydrochlorothiazide, enalapril, and digoxin. His blood pressure is 135/85 mmHg, pulse is 56/min with irregular rhythm, and RR is 16/min. Which of the following is the most probable cause of these symptoms?",
+    "options": [
+      "Acute narrow-angle glaucoma",
+      "Digoxin toxicity",
+      "Diuretic-induced hypokalemia",
+      "Enalapril overdose",
+      "Malignant hypertension"
+    ],
+    "correct": 1,
+    "explanation": "Digoxin toxicity classically presents with nausea, vomiting, visual disturbances (xanthopsia – yellow/green halos), and bradycardia/arrhythmias. His pulse is 56/min irregular. Hydrochlorothiazide-induced hypokalemia potentiates digoxin toxicity. Narrow-angle glaucoma causes eye pain. Malignant hypertension requires BP >180/120. Enalapril overdose causes hypotension."
+  },
+  {
+    "question": "A 56-year-old male with left ventricular systolic dysfunction was dyspneic on climbing stairs but not at rest. The patient was started on Ramipril and furosemide. Which one o f the following drugs would improve the patient's prognosis?",
+    "options": [
+      "Amiodarone",
+      "Amlodipine",
+      "Bisoprolol",
+      "Digoxin",
+      "Nitrate therapy"
+    ],
+    "correct": 2,
+    "explanation": "Beta-blockers (bisoprolol) improve prognosis in stable systolic heart failure by reducing neurohormonal activation, cardiac remodelling, sudden death, and overall mortality. Amiodarone does not improve survival in CHF. Amlodipine is neutral. Digoxin reduces symptoms but not mortality. Nitrates relieve symptoms but don't improve survival."
+  },
+  {
+    "question": "A 60-year-old man has left ventricular failure and clinically he is classified as NYHA Class Ill. He takes furosemide, aspirin, and Ramipril. The addition of which one of the following would be expected to further improve his prognosis?",
+    "options": [
+      "Acebutolol",
+      "Bisoprolol",
+      "Esmolol",
+      "Propranolol",
+      "Sotalol"
+    ],
+    "correct": 1,
+    "explanation": "Bisoprolol is a cardioselective beta-blocker proven in large trials (CIBIS-II) to reduce mortality in NYHA Class II–III CHF. Acebutolol and propranolol are non-cardioselective and have less evidence. Esmolol is ultra-short acting for acute settings. Sotalol is primarily anti-arrhythmic and may worsen HF."
+  },
+  {
+    "question": "Sudden death is common in:",
+    "options": [
+      "VSD",
+      "MS",
+      "Aortic stenosis",
+      "PDA"
+    ],
+    "correct": 2,
+    "explanation": "Sudden cardiac death is most common in severe aortic stenosis due to the critical fixed outflow obstruction, which prevents adaptation to physical stress, causing fatal arrhythmias or haemodynamic collapse. VSD and PDA can cause pulmonary hypertension but less sudden death. MS causes gradual deterioration."
+  },
+  {
+    "question": "Which of the following added sounds is characteristic for severe mitral stenosis?",
+    "options": [
+      "Systolic click.",
+      "Tumor plop.",
+      "Pericardial knock.",
+      "Opening snap.",
+      "Prosthetic clicks."
+    ],
+    "correct": 3,
+    "explanation": "The opening snap (OS) is characteristic of mitral stenosis, produced by the sudden tensing of the thickened but pliable mitral leaflets at maximum opening. A shorter A2-OS interval indicates more severe stenosis. Systolic click is for MVP. Tumour plop is for atrial myxoma. Pericardial knock is for constrictive pericarditis."
+  },
+  {
+    "question": "Heart valve least commonly affected by rheumatic pathology is:",
+    "options": [
+      "Mitral valve.",
+      "Aortic valve.",
+      "Pulmonary valve.",
+      "Tricuspid valve."
+    ],
+    "correct": 2,
+    "explanation": "The pulmonary valve is the least commonly affected valve in rheumatic heart disease. Rheumatic disease affects valves in order of frequency: mitral (most common), aortic, tricuspid, then pulmonary. The lower pressure in the right heart makes the pulmonary valve relatively resistant to rheumatic involvement."
+  },
+  {
+    "question": "Loud first heart sound is heard in:",
+    "options": [
+      "Mitral stenosis.",
+      "Mitral regurgitation.",
+      "Mitral valve prolapses.",
+      "Calcified mitral stenosis"
+    ],
+    "correct": 0,
+    "explanation": "A loud S1 is characteristic of non-calcified mitral stenosis: the valve leaflets are widely separated at the start of systole (due to elevated left atrial pressure) and snap shut forcefully. In calcified MS, S1 is soft. MR causes a soft S1. MVP causes a mid-systolic click, not a loud S1."
+  },
+  {
+    "question": "Treatment o f symptomatic severe non pliable heavily calcific mitral stenosis includes:",
+    "options": [
+      "Percutaneous Balloon Mitral valvuloplasty",
+      "Mitral valve repair",
+      "Mitral valve replacement",
+      "Medical treatment only"
+    ],
+    "correct": 2,
+    "explanation": "Mitral valve replacement is required for symptomatic severe MS with heavily calcified, non-pliable valves. PBMV is contraindicated with heavy calcification or significant MR. Repair is not feasible with calcified valves. Medical treatment alone is not curative."
+  },
+  {
+    "question": "Which of the following signs is consistent with severe aortic regurge:",
+    "options": [
+      "Narrow pulse pressure",
+      "Slow rising pulse",
+      "Collapsing Corrigan's pulse",
+      "Systolic apical retraction",
+      "Apical S4 added sound"
+    ],
+    "correct": 2,
+    "explanation": "Corrigan's collapsing (water-hammer) pulse is the hallmark of severe AR, caused by wide pulse pressure from large stroke volume and rapid diastolic runoff. Narrow pulse pressure and slow-rising pulse characterise AS. Systolic apical retraction is seen in constrictive pericarditis."
+  },
+  {
+    "question": "Which one o f the following signs i s consistent with peripheral sign of AR?",
+    "options": [
+      "Narrow pulse pressure",
+      "Capillary pulsation",
+      "Pulsus alterans",
+      "Low volume pulse",
+      "Levine sign"
+    ],
+    "correct": 1,
+    "explanation": "Capillary pulsation (Quincke's sign) is a peripheral sign of aortic regurgitation, seen as alternating flushing and blanching of the nail bed due to wide pulse pressure. Narrow pulse pressure and low-volume pulse are features of AS. Pulsus alternans indicates severe LV failure. Levine's sign (fist on chest) is for cardiac ischaemia."
+  },
+  {
+    "question": "Which one o f the following added sounds is characteristic for severe mitral stenosis:",
+    "options": [
+      "Systolic click",
+      "Tumor plop",
+      "Treesure snap",
+      "Prosthetic click"
+    ],
+    "correct": 3,
+    "explanation": "According to the source, the answer is D (Prosthetic click). Note: The term 'Treesure snap' appears to be a misspelling of 'Treasure snap' or may refer to the opening snap. The opening snap is the classical additional sound in MS. Prosthetic clicks are heard with mechanical prosthetic valves. Systolic click is for MVP. Tumour plop is for atrial myxoma."
+  },
+  {
+    "question": "Early radiological changes in M.S is:",
+    "options": [
+      "Enlargement of aortic knob",
+      "Straightening of left cardiac border",
+      "Forward displacement of oesophagus",
+      "Right ventricular prominence",
+      "Right atrial prominence"
+    ],
+    "correct": 1,
+    "explanation": "The earliest radiological change in mitral stenosis is straightening of the left cardiac border due to left atrial appendage enlargement. This fills in the normal concavity between the aortic knuckle and the left ventricle. Later changes include left atrial enlargement (double shadow), pulmonary congestion, and RV prominence."
+  },
+  {
+    "question": "In mitral incompetence:",
+    "options": [
+      "Hemoptysis is less frequent than in M.S",
+      "Paroxysmal pulmonary edema i s common",
+      "The first heart sound is diminished",
+      "An apical pre-systolic murmur predominates",
+      "Most patients develop early cardiac failure."
+    ],
+    "correct": 0,
+    "explanation": "Hemoptysis is less frequent in mitral regurgitation than in mitral stenosis. In MS, elevated left atrial pressure ruptures pulmonary veins/capillaries causing haemoptysis. In MR, the regurgitation is accommodated in the large, compliant left atrium, causing less haemoptysis. MR causes a pansystolic, not presystolic, murmur. S1 is soft in MR."
+  },
+  {
+    "question": "Patients with A.S. frequently develop:",
+    "options": [
+      "Exertional dyspnoea and angina",
+      "Wide pulse pressure",
+      "Systemic embolisation",
+      "Atrial fibrillation",
+      "Right ventricular hypertrophy."
+    ],
+    "correct": 0,
+    "explanation": "The classic triad of aortic stenosis symptoms is angina, syncope, and dyspnoea (and heart failure). Exertional dyspnoea and angina are the most frequently encountered. AS causes NARROW (not wide) pulse pressure. Systemic embolisation and AF are features of MS. RVH is not typical of AS."
+  },
+  {
+    "question": "The most likely diagnosis with a palpable pulse in the liver and palpable venous pulse in the neck is:",
+    "options": [
+      "Mitral insufficiency",
+      "Tricuspid insufficiency",
+      "Hepatic vein thrombosis",
+      "Aneurysm of the thoracic aorta",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Tricuspid regurgitation causes the regurgitant systolic pulse to propagate backwards through the right atrium to the neck veins (prominent CV waves/pulsatile neck veins) and to the liver (pulsatile hepatomegaly). Mitral insufficiency affects left-sided pressures. Hepatic vein thrombosis causes hepatomegaly without pulsatile liver."
+  },
+  {
+    "question": "The onset of AF in mitral stenosis may result in:",
+    "options": [
+      "Opening snap",
+      "Myocardial infarction",
+      "Thromboembolism",
+      "Bacterial endocarditis",
+      "Pre-systolic murmur"
+    ],
+    "correct": 2,
+    "explanation": "AF in MS leads to loss of atrial contraction, blood stasis in the dilated left atrium, and thrombus formation, causing thromboembolism (stroke, peripheral embolism). AF also abolishes the presystolic murmur (not creates it). AF does not cause MI or endocarditis in this context."
+  },
+  {
+    "question": "The E.C.G in severe aortic regurgitation usually shows:",
+    "options": [
+      "No abnormalities",
+      "Right ventricular hypotrophy",
+      "Left ventricular hypertrophy",
+      "Nonspecific S-T segment abnormalities",
+      "Right axis deviation"
+    ],
+    "correct": 2,
+    "explanation": "Severe AR causes chronic LV volume overload leading to eccentric LV hypertrophy. The ECG shows left ventricular hypertrophy (tall R waves in V5–V6, deep S in V1–V2, left axis deviation). RVH, right axis deviation, and ST changes are not typical of AR."
+  },
+  {
+    "question": "Complications of M.S. are all but one:",
+    "options": [
+      "Mural thrombus",
+      "Paralysis of left recurrent laryngeal nerve",
+      "Hemoptysis",
+      "Left ventricular hypertrophy"
+    ],
+    "correct": 3,
+    "explanation": "Left ventricular hypertrophy is NOT a complication of MS. In MS, the LV is protected from the stenosis and is typically normal or small. The enlarged left atrium can compress the left recurrent laryngeal nerve (Ortner's syndrome). Mural thrombus and hemoptysis are recognized complications."
+  },
+  {
+    "question": "Which of the following i s associated with M.S:",
+    "options": [
+      "A-F",
+      "Arterial embolism",
+      "Pulmonary infarction",
+      "Non of these",
+      "All of these"
+    ],
+    "correct": 4,
+    "explanation": "All of these are associated with MS. Atrial fibrillation arises from left atrial enlargement. Arterial embolism results from left atrial thrombus. Pulmonary infarction can occur from pulmonary venous hypertension and pulmonary embolism. All three are well-recognized complications."
+  },
+  {
+    "question": "The valves most affected in rheumatic H.D. are:",
+    "options": [
+      "Mitral and aortic",
+      "Mitral and pulmonary",
+      "Mitral and tricuspid",
+      "Tricuspid & pulmonary"
+    ],
+    "correct": 0,
+    "explanation": "Rheumatic heart disease most commonly affects the mitral valve (most frequent), followed by the aortic valve. Combined mitral and aortic involvement is the most common multi-valve pattern. The pulmonary valve is rarely affected; tricuspid involvement is less common than mitral/aortic."
+  },
+  {
+    "question": "The characteristic murmur of aortic insufficiency is:",
+    "options": [
+      "Low pitched and rumbling",
+      "High pitched and blowing",
+      "Best heard at the apex",
+      "Best heard with patient supine",
+      "Heard best on the patients' side"
+    ],
+    "correct": 1,
+    "explanation": "The murmur of aortic regurgitation is high-pitched and blowing (early diastolic decrescendo). It is best heard at the left sternal border with the patient sitting forward, not supine. A low-pitched rumbling murmur is characteristic of mitral stenosis (heard at the apex)."
+  },
+  {
+    "question": "Cardiovascular syphilis is usually affecting:",
+    "options": [
+      "Peripheral arteries",
+      "Myocardium",
+      "Coronary arteries",
+      "Aorta",
+      "Veins"
+    ],
+    "correct": 2,
+    "explanation": "According to the source, the answer is C (Coronary arteries). Note: Clinically, cardiovascular (tertiary) syphilis primarily affects the ascending aorta (aortitis, causing aortic regurgitation and aneurysm). Coronary ostial stenosis from syphilitic aortitis can occur but is secondary. The primary target is the aorta (option D). This may represent an error in the source document."
+  },
+  {
+    "question": "Pistol shot pulse in the femoral artery may be due to:",
+    "options": [
+      "Coarctation of aorta",
+      "P.D.A",
+      "Truncus arteriosus",
+      "Aortic regurge"
+    ],
+    "correct": 3,
+    "explanation": "Pistol-shot pulse in the femoral artery is a peripheral sign of aortic regurgitation, caused by the wide pulse pressure (rapid diastolic runoff). The sound is caused by sudden arterial distension. Coarctation of the aorta causes REDUCED femoral pulses with radio-femoral delay."
+  },
+  {
+    "question": "In M.S. with A-F:",
+    "options": [
+      "P waves are tall and broad",
+      "Pre-systolic harsh murmur is present",
+      "Digitalis is indicated if heart rate is fast",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "In MS with AF and a rapid ventricular rate, digoxin (digitalis) is indicated to slow the ventricular rate by increasing AV nodal block. P waves are absent in AF (not tall and broad). The presystolic murmur disappears when AF develops (loss of atrial contraction eliminates the presystolic accentuation)."
+  },
+  {
+    "question": "Which ONE of the following statements about disorders associated with bicuspid aortic valve is TRUE:",
+    "options": [
+      "The finding occurs more often i n females than males",
+      "No association with a n abnormal origin t o the coronary arteries",
+      "No association with coarctation of the aorta",
+      "Decreased risk o f aortic dissection",
+      "An increased risk o f endocarditis"
+    ],
+    "correct": 4,
+    "explanation": "Bicuspid aortic valve carries an increased risk of infective endocarditis due to the turbulent flow and structural abnormality. It occurs more often in MALES (2:1). It IS associated with coarctation of the aorta and abnormal coronary artery origins. It INCREASES (not decreases) the risk of aortic dissection and dilatation."
+  },
+  {
+    "question": "76-year-old woman presents with a history of syncopal episodes and echocardiography; she is found to have severe aortic stenosis. Which ONE of the following features is MOST likely to be found on examination?",
+    "options": [
+      "Pulsus bisferiens",
+      "A widely split-second heart sound",
+      "A thrill over the right anterior second intercostal space",
+      "A wide pulse pressure",
+      "A pan-systolic murmur"
+    ],
+    "correct": 2,
+    "explanation": "In severe AS, a systolic thrill is palpable in the right anterior second intercostal space (aortic area) due to high-velocity turbulent flow. Pulsus bisferiens is a feature of AR or HOCM. The second heart sound is paradoxically split or single (not widely split). Pulse pressure is NARROW. A pansystolic murmur is for MR/VSD."
+  },
+  {
+    "question": "Which ONE of the following features suggests an alternative or other diagnosis to that of severe mitral stenosis?",
+    "options": [
+      "Right ventricular hypertrophy",
+      "Left ventricular dilatation",
+      "Dilated left atrium",
+      "Tricuspid regurgitation",
+      "Absence of a diastolic murmur at rest"
+    ],
+    "correct": 1,
+    "explanation": "Left ventricular dilatation suggests an alternative diagnosis to MS. In MS, the LV is protected from the obstruction and is typically SMALL or normal. LV dilatation suggests AR, MR, DCM, or other conditions. RVH, dilated LA, and tricuspid regurgitation are all expected complications of severe MS from pulmonary hypertension."
+  },
+  {
+    "question": "In a patient with tricuspid incompetence, which ONE o f the following findings is the MOST likely to be present?",
+    "options": [
+      "Giant A waves in the neck veins",
+      "A soft pulmonary component to the second heart second",
+      "Evidence of a right ventricular heave",
+      "An increased risk of pulmonary embolism",
+      "A murmur which decreases with inspiration"
+    ],
+    "correct": 2,
+    "explanation": "Right ventricular heave (parasternal lift) is a prominent finding in tricuspid regurgitation from right ventricular volume overload. Giant V waves (not A waves) are seen in the JVP. The TR murmur INCREASES with inspiration (Carvallo's sign) due to increased venous return. TR alone does not increase PE risk."
+  },
+  {
+    "question": "A 23-year-old woman comes for a Check-Up visit. She enjoys good health and exercises regularly. Her height is 172 cm and weight i s 66 kg. Her blood pressure is 120/80 mm Hg, pulse is 74/mm, and RR is 12/mm, Physical examination is unremarkable except for heart auscultation, which reveals an isolated mid-systolic click. Which of the following is the most common cause of this auscultatory finding?",
+    "options": [
+      "Bicuspid aortic valve",
+      "Congenital pulmonary stenosis",
+      "Mitral valve prolapse",
+      "Ruptured papillary muscle",
+      "Tricuspid regurgitation"
+    ],
+    "correct": 2,
+    "explanation": "Mitral valve prolapse (MVP) is the most common cause of an isolated mid-systolic click, occurring when the mitral leaflets prolapse into the LA during systole. It is more common in young, thin women. Bicuspid aortic valve causes an early ejection click. Pulmonary stenosis causes an ejection click. Ruptured papillary muscle is an acute event."
+  },
+  {
+    "question": "A n elderly man with a history of asthma, congestive heart failure, and peptic ulcer with bronchospasm and rapid atrial fibrillation. He receives disease is admitted frequent nebulized salbutamol and IV digoxin loading. His regular medications are continued. Twenty-four hours after admission, his serum potassium i s noted to be 2.8 mEg/L. Which one of his medications i s most likely to have caused this abnormality?",
+    "options": [
+      "ACE inhibitor",
+      "Digoxin",
+      "Ranitidine",
+      "Salbutamol",
+      "Spironolactone"
+    ],
+    "correct": 3,
+    "explanation": "Salbutamol (beta-2 agonist) causes hypokalaemia by stimulating Na/K-ATPase, driving potassium intracellularly. This effect is dose-dependent and significant with nebulised doses. ACE inhibitors and spironolactone cause HYPERKALAEMIA. Digoxin does not cause hypokalaemia. Ranitidine does not significantly affect potassium."
+  },
+  {
+    "question": "A 65-year-old man has an ejection systolic murmur and narrow pulse pressure on clinical examination. There is no history of chest pain, breathlessness or syncope. An ECHO confirms aortic stenosis and shows a n aortic valve gradient of 40mmHg. There is good left ventricular function. Which of the following management options are the most proper choice in this case?",
+    "options": [
+      "Anticoagulation",
+      "Aortic valve plasty",
+      "Follow-up",
+      "Routine aortic valve replacement",
+      "Urgent aortic valve replacement"
+    ],
+    "correct": 2,
+    "explanation": "This patient has moderate asymptomatic AS (gradient 40mmHg) with preserved LV function and no symptoms. Current guidelines recommend watchful waiting with regular follow-up (echocardiography every 1–2 years). Valve replacement is indicated when symptoms develop or gradient exceeds severe range (>40mmHg mean / >4 m/s velocity). Anticoagulation and valvuloplasty are not appropriate."
+  },
+  {
+    "question": "A 40-year-old man presents with recent of onset exertional dyspnea. Blood pressure i s 160/50 mmHg, pulse is 92/min. Cardiac examination reveals a prominent and laterally displaced apical impulse. A soft diastolic decrescendo murmur is heard along the left sternal border. Bilateral crackles are present at the lung base. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Aortic insufficiency",
+      "Aortic stenosis",
+      "Hypertrophic obstructive cardiomyopathy",
+      "Infective endocarditis",
+      "Mitral stenosis"
+    ],
+    "correct": 0,
+    "explanation": "Wide pulse pressure (160/50 = 110 mmHg), laterally displaced apex (LV dilatation/volume overload), and a diastolic decrescendo murmur at the left sternal border are classic signs of aortic insufficiency (regurgitation). AS causes narrow pulse pressure and an ejection systolic murmur. MS causes a mid-diastolic rumble at the apex."
+  },
+  {
+    "question": "A healthy 25-year-old woman comes for a Check-Up visit. Cardiac auscultation reveals a low-pitch grade II, III mid-diastolic murmur over apex. Which of the following is the most proper next step in diagnosis?",
+    "options": [
+      "Antistreptolysin O titers",
+      "Cardiac catheterization",
+      "Doppler ultrasound",
+      "Echocardiography",
+      "Radionuclide angiography"
+    ],
+    "correct": 3,
+    "explanation": "Echocardiography is the investigation of choice for a cardiac murmur, providing non-invasive information about valve morphology, haemodynamics, and LV function. It would confirm or exclude mitral stenosis. ASO titres are for rheumatic fever workup but echocardiography comes first. Cardiac catheterisation is invasive and not first-line."
+  },
+  {
+    "question": "All are bedside differential diagnosis of MS except:",
+    "options": [
+      "Carey Coombs murmur",
+      "Left atrial myxoma",
+      "Austin Flint murmur",
+      "Mitral valve prolapse syndrome",
+      "Chronic MR"
+    ],
+    "correct": 3,
+    "explanation": "Mitral valve prolapse syndrome does NOT mimic the mid-diastolic murmur of mitral stenosis. Carey Coombs murmur (rheumatic fever), left atrial myxoma (tumour plop + murmur), and Austin Flint murmur (AR causing relative MS) all produce a mid-diastolic murmur that can be confused with MS. Chronic MR can have an S3 and short MDM."
+  },
+  {
+    "question": "The least common complication of MS is:",
+    "options": [
+      "Cerebral thrombosis.",
+      "Sub-acute bacterial endocarditis.",
+      "Pulmonary hypertension.",
+      "Atrial fibrillation.",
+      "Hemoptysis"
+    ],
+    "correct": 1,
+    "explanation": "Sub-acute bacterial endocarditis is the LEAST common complication of mitral stenosis because the low-pressure, sluggish flow across the stenotic valve is less prone to infective endocarditis than high-velocity regurgitant lesions. AF, pulmonary hypertension, cerebral thrombosis/embolism, and haemoptysis are all more frequent complications."
+  },
+  {
+    "question": "Which chamber of heart fails first in MS:",
+    "options": [
+      "Right atrium.",
+      "Right ventricle.",
+      "Left atrium.",
+      "Left ventricle.",
+      "Bi-ventricular"
+    ],
+    "correct": 2,
+    "explanation": "The left atrium fails first in mitral stenosis due to the obstruction at the mitral valve causing pressure overload and dilatation of the LA. The elevated LA pressure transmits backwards causing pulmonary hypertension, and eventually right heart failure. The LV is protected and typically normal in size."
+  },
+  {
+    "question": "The most common cause of mitral stenosis is:",
+    "options": [
+      "Left atrial myxoma.",
+      "Pulmonary Embolism.",
+      "Rheumatic heart disease.",
+      "Degenerative heart disease.",
+      "Congenital heart disease"
+    ],
+    "correct": 2,
+    "explanation": "Rheumatic heart disease is by far the most common cause of mitral stenosis worldwide. Recurrent rheumatic fever causes progressive thickening, fusion, and calcification of the mitral leaflets and subvalvular apparatus. Congenital MS is rare. LA myxoma and PE can obstruct flow but are not causes of true stenosis."
+  },
+  {
+    "question": "Each one o f the following associated with a loud S1 except:",
+    "options": [
+      "Hyper-dynamic states",
+      "Short PR interval",
+      "Mitral regurge",
+      "Left to right shunt",
+      "Atrial/Premature beats"
+    ],
+    "correct": 1,
+    "explanation": "According to the source, the answer is B (Short PR interval). A short PR interval causes the mitral valve to be more open when systole begins, and closes with greater force — this is actually associated with a LOUD S1. Mitral regurgitation (C) is associated with a SOFT S1 due to poor leaflet coaptation. The source answer may reflect that short PR is the exception, as it causes loudness (not softness)."
+  },
+  {
+    "question": "Which of the following is considered as common cause of AF?",
+    "options": [
+      "Young populations",
+      "Congenital",
+      "Digitalis intoxication",
+      "Hypothyroidism",
+      "Mitral stenosis"
+    ],
+    "correct": 4,
+    "explanation": "Mitral stenosis is one of the most common cardiac causes of AF. Left atrial enlargement from MS disrupts atrial electrical conduction and creates a substrate for AF. Hyperthyroidism (not hypothyroidism) causes AF. Digitalis toxicity causes AF but is not a common cause. Congenital heart disease is rare as an AF cause."
+  },
+  {
+    "question": "Treatment of symptomatic severe non pliable heavily calcific mitral stenosis includes:",
+    "options": [
+      "Percutaneous Balloon Mitral Valvuloplasty (PBMV)",
+      "Mitral valve repair",
+      "Mitral valve replacement",
+      "Medical treatment, only",
+      "Trans-catheter valve implantation"
+    ],
+    "correct": 2,
+    "explanation": "Symptomatic severe MS with non-pliable, heavily calcified leaflets requires mitral valve replacement. PBMV is only suitable for pliable, non-calcified valves without significant MR. Repair is not feasible with heavy calcification. Medical treatment alone does not correct the anatomical obstruction."
+  },
+  {
+    "question": "Which of the following is a possible manifestation of aortic regurgitation?",
+    "options": [
+      "Congested Pulsating liver",
+      "Narrow pulse pressure",
+      "Slapping apex",
+      "Pistol shot",
+      "White nails"
+    ],
+    "correct": 3,
+    "explanation": "Pistol-shot (Traube's sign) over the femoral artery is a peripheral sign of AR, caused by the wide pulse pressure and rapid diastolic runoff. Narrow pulse pressure and slow-rising pulse are features of AS. Congested pulsating liver is seen in TR. Slapping apex and white nails are not characteristic of AR."
+  },
+  {
+    "question": "Which of the following is usually absent in the mitral stenosis?",
+    "options": [
+      "Opening snap",
+      "Mid-diastolic murmur",
+      "S3",
+      "Right ventricular enlargement"
+    ],
+    "correct": 2,
+    "explanation": "S3 (third heart sound) is usually ABSENT in mitral stenosis because the LV filling is restricted by the stenotic valve and LV compliance is typically normal or reduced. S3 is a sign of rapid LV filling (as in AR or MR). Opening snap and mid-diastolic murmur are characteristic of MS. RV enlargement develops with pulmonary hypertension."
+  },
+  {
+    "question": "Acute mitral regurgitation is characterized by all except:",
+    "options": [
+      "Abrupt onset of symptoms",
+      "S4 gallop",
+      "Apical systolic murmur",
+      "Cardiac enlargement"
+    ],
+    "correct": 3,
+    "explanation": "Cardiac enlargement is ABSENT in acute MR because the LV has not had time to dilate compensatorily. Acute MR (e.g., from papillary muscle rupture) presents with abrupt onset of symptoms, S4 gallop (non-compliant LV), and an apical systolic murmur. Cardiac enlargement develops in chronic MR only."
+  },
+  {
+    "question": "What condition results in a loud P2 component of the S2 heart sound?",
+    "options": [
+      "Pulmonary hypertension",
+      "Systemic hypertension",
+      "Hypertrophic obstructive cardiomyopathy",
+      "Pulmonic valve stenosis"
+    ],
+    "correct": 3,
+    "explanation": "According to the source, the answer is D (Pulmonic valve stenosis). Clinically, pulmonary hypertension (A) is the classic cause of a loud P2. In pulmonic stenosis, P2 is typically soft and delayed. This may represent an error in the source document."
+  },
+  {
+    "question": "Hemoptysis is commonly seen in:",
+    "options": [
+      "Aortic stenosis",
+      "Pulmonary stenosis",
+      "Mitral stenosis",
+      "Tricuspid stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Hemoptysis is a well-known complication of mitral stenosis due to elevated left atrial and pulmonary venous pressure rupturing bronchial varices or pulmonary capillaries. Aortic stenosis, pulmonary stenosis, and tricuspid stenosis do not significantly elevate pulmonary venous pressure."
+  },
+  {
+    "question": "Commonest cause of aortic regurgitation is:",
+    "options": [
+      "Rheumatic",
+      "Aortic root dilatation",
+      "Bicuspid aortic valve",
+      "Infective endocarditis"
+    ],
+    "correct": 0,
+    "explanation": "Rheumatic fever is the most common cause of chronic aortic regurgitation worldwide, particularly in developing countries, causing leaflet thickening and retraction. Aortic root dilatation (from hypertension, Marfan's) is the leading cause in developed countries. Bicuspid aortic valve and infective endocarditis are also causes but less common overall."
+  },
+  {
+    "question": "Acute severe aortic regurgitation is caused by all except:",
+    "options": [
+      "Infective endocarditis",
+      "Rheumatic carditis",
+      "Chest trauma",
+      "Aortic dissection"
+    ],
+    "correct": 1,
+    "explanation": "Rheumatic carditis causes CHRONIC, not acute, aortic regurgitation through slow progressive valve damage. Acute severe AR is caused by infective endocarditis (leaflet destruction), chest trauma (leaflet/aortic injury), and aortic dissection (disruption of valve support). Rheumatic AR develops over years."
+  },
+  {
+    "question": "Syncope at rest in aortic stenosis is due to:",
+    "options": [
+      "Bradycardia",
+      "Ventricular arrhythmias",
+      "Hypotension",
+      "Complete heart block"
+    ],
+    "correct": 1,
+    "explanation": "Syncope at rest in AS is caused by ventricular arrhythmias (VT/VF), while exertional syncope is caused by inability to increase cardiac output. Bradycardia and complete heart block are less common. Hypotension alone does not fully explain rest syncope. Arrhythmias from myocardial hypertrophy and fibrosis are the primary mechanism."
+  },
+  {
+    "question": "Most common cause of chronic regurgitation in our country is:",
+    "options": [
+      "Rheumatic",
+      "Dilated cardiomyopathy",
+      "Restrictive cardiomyopathy",
+      "Ischemia"
+    ],
+    "correct": 0,
+    "explanation": "Rheumatic heart disease is the most common cause of chronic mitral regurgitation in developing countries (including Egypt/Middle East), causing valve leaflet retraction, thickening, and scarring. In developed countries, myxomatous degeneration (MVP) leads. Ischaemic MR and dilated cardiomyopathy are less frequent causes."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

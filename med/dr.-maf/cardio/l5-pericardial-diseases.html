@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L5-Pericardial Diseases</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof8yc3sko7zw",
+  "title": "L5-Pericardial Diseases",
+  "description": "Questions on every Cardio lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "What are the classic signs of a cardiac tamponade?",
+    "options": [
+      "Hypotension, muffled heart sounds, Increased jugular venous distension.",
+      "Tachycardia, dyspnea, fever.",
+      "Bradycardia, weakness in arms, diaphoresis.",
+      "Hypertension, palpitations, chest pain",
+      "Right pleural effusion."
+    ],
+    "correct": 0,
+    "explanation": "Beck's triad of cardiac tamponade: hypotension (reduced cardiac output), muffled heart sounds (fluid dampening), and raised JVP (obstructed venous return). Tachycardia, fever, and dyspnea are non-specific. Bradycardia, hypertension, and right pleural effusion are not classic features."
+  },
+  {
+    "question": "Which of the following conditions is the most common cause of constrictive pericarditis?",
+    "options": [
+      "Rheumatic fever.",
+      "Neoplasm.",
+      "Acute benign pericarditis.",
+      "Tuberculosis.",
+      "Undetermined."
+    ],
+    "correct": 3,
+    "explanation": "Tuberculosis is the most common identifiable cause of constrictive pericarditis worldwide. The chronic granulomatous infection leads to fibrosis and calcification of the pericardium. Rheumatic fever primarily affects heart valves. Neoplasm and acute benign pericarditis are less common causes. A significant proportion is idiopathic/undetermined, but TB leads among identifiable causes."
+  },
+  {
+    "question": "Which of the following signs is consistent with cardiac tamponade?",
+    "options": [
+      "Water hummer pulse.",
+      "Warm hands.",
+      "Severely congested neck veins with blood pressure.",
+      "Unequal radial pulse.",
+      "Capillary pulsation."
+    ],
+    "correct": 2,
+    "explanation": "In cardiac tamponade, increased intrapericardial pressure impedes venous return, causing severe JVP elevation (congested neck veins) while simultaneously reducing cardiac output (low blood pressure). Water-hammer pulse, warm hands, and capillary pulsation are features of aortic regurgitation. Unequal radial pulses suggest aortic dissection."
+  },
+  {
+    "question": "Shock due to cardiac tamponade is best treated by:",
+    "options": [
+      "Blood transfusion.",
+      "Pericardiocentesis.",
+      "IV narcotics.",
+      "IM Epinephrine.",
+      "Trendlenberg position."
+    ],
+    "correct": 1,
+    "explanation": "Pericardiocentesis (needle drainage of the pericardial effusion) is the definitive treatment for cardiac tamponade, immediately relieving the compressive effect on the heart and restoring cardiac output. Blood transfusion does not address the compression. IV narcotics and Trendelenburg positioning may worsen haemodynamics. IM epinephrine is not indicated."
+  },
+  {
+    "question": "Jugular venous pressure is usually Increased In:",
+    "options": [
+      "Addisonlan crisis.",
+      "Hypovolemic shock.",
+      "Diabetic ketoacidosis.",
+      "Cardiac tamponade.",
+      "Septic shock."
+    ],
+    "correct": 3,
+    "explanation": "Cardiac tamponade raises intrapericardial pressure, obstructing venous return and causing JVP elevation. Addisonian crisis, hypovolaemic shock, and DKA all cause volume depletion leading to low JVP. Septic shock typically causes peripheral vasodilation and low JVP."
+  },
+  {
+    "question": "Which of the Following is correct as regard cardiac tamponade:",
+    "options": [
+      "Neck veins are collapsed",
+      "Neck veins are congested",
+      "Normal pulse character",
+      "Accentuated heart sounds"
+    ],
+    "correct": 1,
+    "explanation": "In cardiac tamponade, elevated intrapericardial pressure obstructs venous return, causing marked neck vein congestion (elevated JVP). Neck veins are not collapsed (that would indicate hypovolaemia). Pulsus paradoxus (not a normal pulse) is characteristic. Heart sounds are MUFFLED, not accentuated."
+  },
+  {
+    "question": "What are the classic signs of a cardiac tamponade:",
+    "options": [
+      "Hypotension, muffled heart sounds, increased jugular venous distension",
+      "Tachycardia, dyspnea, fever",
+      "Bradycardia, weakness in arms, diaphoresis",
+      "Hypertension, palpitations, chest pain",
+      "Right pleural effusion"
+    ],
+    "correct": 0,
+    "explanation": "Beck's triad defines cardiac tamponade: hypotension (reduced output), muffled heart sounds (fluid between ventricles and chest wall), and elevated JVP (obstructed venous return). The other options are non-specific or wrong."
+  },
+  {
+    "question": "Which of the following is consistent with cardiac tamponade?",
+    "options": [
+      "Water hummer pulse",
+      "Warm hands",
+      "Severely congested neck veins with low blood pressure",
+      "Unequal radial pulse",
+      "Capillary pulsation"
+    ],
+    "correct": 2,
+    "explanation": "Severely congested neck veins (elevated JVP) combined with low blood pressure (hypotension) is the hallmark of cardiac tamponade. Water-hammer pulse and capillary pulsation are signs of aortic regurgitation. Unequal radial pulses suggest aortic dissection or coarctation."
+  },
+  {
+    "question": "shock due to cardiac tamponade is best treated by:",
+    "options": [
+      "Blood transfusion",
+      "Pericardiocentesis",
+      "IV narcotics",
+      "Epinephrine IM",
+      "Trendelenburg position"
+    ],
+    "correct": 1,
+    "explanation": "Pericardiocentesis is the definitive and life-saving treatment for tamponade, removing the fluid compressing the heart and restoring cardiac output. Other measures (fluids, vasopressors) are temporary bridges. IV narcotics and Trendelenburg position are not appropriate treatments."
+  },
+  {
+    "question": "Pericarditis may be caused by all but one:",
+    "options": [
+      "Rheumatic fever",
+      "Uraemia",
+      "Myocardial infarction",
+      "S.L.E",
+      "Wolf Parkinson white syndrome"
+    ],
+    "correct": 4,
+    "explanation": "Wolf-Parkinson-White (WPW) syndrome is a conduction disorder (accessory pathway) and does NOT cause pericarditis. Rheumatic fever, uraemia, myocardial infarction (Dressler's syndrome and early reactive pericarditis), and SLE are all recognized causes of pericarditis."
+  },
+  {
+    "question": "In chronic constrictive pericarditis the end diastolic filling pressure in the right ventricle compared to normal is:",
+    "options": [
+      "Decreased",
+      "The same",
+      "Increased",
+      "Variable",
+      "Markedly decreased"
+    ],
+    "correct": 2,
+    "explanation": "In constrictive pericarditis, the thickened, rigid pericardium restricts cardiac filling, causing equalisation and elevation of diastolic pressures in all four chambers. Right ventricular end-diastolic pressure is therefore INCREASED. This equalisation of pressures is a diagnostic hallmark on cardiac catheterisation."
+  },
+  {
+    "question": "Which ONE of the following is MOST likely to be found in a patient with longstanding constrictive pericarditis?",
+    "options": [
+      "A wide pulse pressure",
+      "A rise in systolic pressure on inspiration",
+      "Pulsus alternans",
+      "A fall in venous pressure on inspiration",
+      "Ascites"
+    ],
+    "correct": 4,
+    "explanation": "Ascites is common in constrictive pericarditis due to chronic elevation of right-sided pressures causing hepatic congestion and protein-losing enteropathy. Pulse pressure is narrow (not wide). Kussmaul's sign (rise in venous pressure on inspiration) is characteristic, not a fall. Pulsus alternans is a sign of severe LV failure."
+  },
+  {
+    "question": "A 46-year-old woman complains of dyspnea on exertion and orthopnea that started 7 months ago. She has a prior history of pericarditis, which had been treated with indomethacin. An ECG shows low voltage in the limb leads. A chest radiograph reveals pericardial calcification, and echocardiography shows pericardial thickening. Cardiac catheterization reveals equal pressures in the four cardiac chambers during diastole with all pressures elevated. Which of the following findings would help to diagnose her condition?",
+    "options": [
+      "Exaggerated S1 and S2",
+      "Fourth heart sound (S4)",
+      "Third heart sound (S3)",
+      "Increased neck vein distention on inspiration",
+      "Predominance of left-sided symptoms over right sided symptoms"
+    ],
+    "correct": 3,
+    "explanation": "Kussmaul's sign (increased neck vein distension on inspiration) is pathognomonic of constrictive pericarditis. In normal individuals, JVP falls on inspiration. In constriction, the rigid pericardium prevents the right ventricle from accommodating increased venous return. S4 and S3 are absent in constriction. Left-sided symptoms do NOT predominate."
+  },
+  {
+    "question": "A 38 year old man with old TB presented with dyspnea. On examination BP 120/70 mmHg, Pulse 120/min regular, and there is elevation of the jugular venous pressure during inspiration. Heart examination was unremarkable. What is most likely diagnosis?",
+    "options": [
+      "Constrictive pericarditis",
+      "Cor-Pulmonale",
+      "Dilated cardiomyopathy",
+      "Hypertrophic cardiomyopathy",
+      "Myocarditis"
+    ],
+    "correct": 0,
+    "explanation": "This patient with a TB history has Kussmaul's sign (JVP rise on inspiration), which is classic for constrictive pericarditis from TB-related fibrosis. Cor pulmonale would show signs of pulmonary disease. DCM and HCM cause different haemodynamics. Myocarditis typically presents acutely with heart failure signs, not isolated Kussmaul's sign."
+  },
+  {
+    "question": "A 51-year-old complains of dyspnea on exertion. He has distant heart sounds on auscultation of the chest. A chest radiograph reveals that there is a thin rim of calcification surrounding the cardiac outline. Which of the following conditions is most likely responsible for these findings?",
+    "options": [
+      "Coxsackie B virus",
+      "Metastatic carcinoma",
+      "Sarcoidosis",
+      "Tuberculosis",
+      "Uremia"
+    ],
+    "correct": 3,
+    "explanation": "Pericardial calcification on CXR with distant heart sounds and dyspnoea is classic for TB-related constrictive pericarditis. TB pericarditis heals with fibrosis and calcification. Coxsackie B causes viral pericarditis without calcification. Metastatic carcinoma causes effusion, not calcification. Sarcoidosis and uraemia rarely cause pericardial calcification."
+  },
+  {
+    "question": "Pericardial rub is best audible in all except:",
+    "options": [
+      "By pressing the chest piece of stethoscope.",
+      "After holding the breath.",
+      "On the left side of lower sternum.",
+      "In lying down position",
+      "None of above"
+    ],
+    "correct": 3,
+    "explanation": "Pericardial rub is BEST heard in the upright position leaning forward, NOT in the lying down position. It is enhanced by pressing the stethoscope firmly, by asking the patient to hold their breath (distinguishing it from pleural rub), and is loudest at the left sternal border."
+  },
+  {
+    "question": "Classical JVP finding in cardiac tamponade is:",
+    "options": [
+      "Prominent a-wave.",
+      "Prominent x-descent.",
+      "Prominent y-descent.",
+      "Small v-wave",
+      "Kussmaul's sign"
+    ],
+    "correct": 1,
+    "explanation": "In cardiac tamponade, the JVP shows a prominent x-descent (due to systolic descent of the heart) but an absent or blunted y-descent (because the rigid pericardial fluid prevents rapid ventricular filling during diastole). Kussmaul's sign (JVP rise on inspiration) and prominent y-descent are features of constrictive pericarditis, not tamponade."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

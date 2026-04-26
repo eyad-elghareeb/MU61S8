@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L8&9-Arrhythmia</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof90h852u5ir",
+  "title": "L8&9-Arrhythmia",
+  "description": "Questions on every Cardio lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "In atrial fibrillation, which one of the following is not true:",
+    "options": [
+      "Atrial rate is 350-400/min",
+      "F wave in neck veins",
+      "Pulse deficit is >10.",
+      "Ventricular rate is 100-150/min",
+      "Irregular irregularity of radial pulse"
+    ],
+    "correct": 2,
+    "explanation": "Pulse deficit >10 is NOT characteristic of AF; in AF the deficit can be any value and is typically small to moderate. In AF: atrial rate is 350–600/min (option A is approximately correct), f-waves are seen in the JVP (not distinct a-waves), ventricular rate is typically 100–150/min untreated, and the radial pulse is irregularly irregular."
+  },
+  {
+    "question": "U wave in ECG is characteristically found in:",
+    "options": [
+      "Hyperkalemia",
+      "Hyponatremia",
+      "Hypocalcemia",
+      "Hypokalemia.",
+      "Hypercalcemia"
+    ],
+    "correct": 3,
+    "explanation": "Prominent U waves on ECG are characteristically seen in hypokalaemia. The U wave represents repolarization of the Purkinje fibres and is exaggerated by low potassium. Hyperkalaemia causes peaked T waves and widened QRS. Hypocalcaemia causes prolonged QT. Hypernatraemia and hypercalcaemia have different ECG changes."
+  },
+  {
+    "question": "Which of the following conditions is considered as a contraindication to B-blockers:",
+    "options": [
+      "sinus tachycardia.",
+      "sick sinus syndrome.",
+      "chronic controlled HF.",
+      "systemic hypertension.",
+      "Portal hypertension."
+    ],
+    "correct": 1,
+    "explanation": "Sick sinus syndrome (SSS) is a contraindication to beta-blockers because they further depress sinus node automaticity, worsening bradycardia and pauses. Beta-blockers are actually indicated in sinus tachycardia (for rate control), systemic hypertension, and stable/controlled heart failure (proven mortality benefit)."
+  },
+  {
+    "question": "Which of the following is considered as normal pacemaker of the heart:",
+    "options": [
+      "Sinoatrial node.",
+      "Atrioventricular node.",
+      "Atrial myocardium.",
+      "His Purkinjean systemic.",
+      "Ventricular myocardium."
+    ],
+    "correct": 0,
+    "explanation": "The sinoatrial (SA) node is the normal pacemaker of the heart, spontaneously depolarising at 60–100 beats/min. The AV node has an intrinsic rate of 40–60/min and acts as a backup pacemaker. The His-Purkinje system fires at 20–40/min. Atrial and ventricular myocardium have no intrinsic pacemaker activity."
+  },
+  {
+    "question": "Which of the following ECG signs is consistent with first degree atrioventricular block:",
+    "options": [
+      "Short PR interval.",
+      "P wave not followed by an ORS complex.",
+      "Wide ORS complex.",
+      "Prolonged PR interval and each P wave is followed by an QRS complex.",
+      "Atrioventricular dissociation."
+    ],
+    "correct": 3,
+    "explanation": "First-degree AV block is defined by a prolonged PR interval (>0.20 seconds / >200ms) with every P wave followed by a QRS complex. Short PR interval is seen in WPW or LGL syndrome. P wave not followed by QRS is third-degree (complete) block. AV dissociation is complete heart block. Wide QRS is bundle branch block."
+  },
+  {
+    "question": "Diagnostic signs of pericardial tamponade include:",
+    "options": [
+      "Increased venous pressure with inspiration",
+      "A-F is usually present",
+      "Pulsus paradoxus",
+      "A and C",
+      "All the above"
+    ],
+    "correct": 3,
+    "explanation": "Pericardial tamponade includes Kussmaul's sign (A – raised JVP on inspiration) and pulsus paradoxus (C – exaggerated fall in BP on inspiration >10mmHg). AF is NOT usually present. Therefore A and C are correct, making D the answer."
+  },
+  {
+    "question": "In ventricular flutter heart rate is usually:",
+    "options": [
+      "90 beats/min",
+      "120 beats/min",
+      "150 beats/min",
+      "200 beats/min",
+      "300 beats/min"
+    ],
+    "correct": 3,
+    "explanation": "Ventricular flutter is characterised by a rapid, regular rhythm at approximately 200–300 beats/min (typically around 200–250/min) with a sinusoidal ECG pattern. It represents an intermediate form between VT and VF. At 200 beats/min there is no organised cardiac output."
+  },
+  {
+    "question": "All of the following statements are true for sinus bradycardia except:",
+    "options": [
+      "Pulse rate of 50/min",
+      "May indicate excellent physical condition",
+      "Varying intensity of S1",
+      "Normal sinus origin and conduction",
+      "Patient on digitalis"
+    ],
+    "correct": 2,
+    "explanation": "Varying intensity of S1 is NOT a feature of sinus bradycardia. It is characteristic of complete heart block (due to varying P-R relationship). In sinus bradycardia, the S1 is consistent because each beat has a normal, fixed PR interval. Athletes may have physiological bradycardia. Digitalis can cause sinus bradycardia."
+  },
+  {
+    "question": "A 65-year-old man with a history of peripheral vascular disease develops thromboembolic disease in his left leg accompanied by dry gangrene. Laboratory tests show elevated serum lactic. acid, and his arterial pH is 7.27. An ECG in this patient is most likely to show which of the following?",
+    "options": [
+      "Peaked T waves",
+      "QT prolongation",
+      "ST depression",
+      "T wave inversion",
+      "U waves"
+    ],
+    "correct": 0,
+    "explanation": "Metabolic acidosis with lactic acidosis causes hyperkalaemia (H+/K+ exchange across cell membranes), which produces peaked (tall, narrow, tented) T waves on ECG. QT prolongation is seen in hypocalcaemia. ST depression indicates ischaemia or digoxin effect. U waves are seen in hypokalaemia."
+  },
+  {
+    "question": "A 70-year-old woman has a history of dyspnea and palpitations for six months. An ECG at that time showed atrial fibrillation. She was given digoxin, diuretics and aspirin. She now presents with two short-lived episodes of altered sensation in the left face, left arm and leg. There is poor coordination of the left hand. ECHO was normal as was a CT head scan. What is the most appropriate next step in management:",
+    "options": [
+      "Anticoagulation",
+      "Carotid endarterectomy",
+      "Clopidogrel",
+      "Corticosteroid treatment",
+      "No action"
+    ],
+    "correct": 0,
+    "explanation": "This patient with AF has had two TIAs (transient neurological deficits fully resolving), likely embolic from the AF. She requires anticoagulation (warfarin/DOAC) to prevent stroke. Aspirin alone is insufficient for AF-related stroke prevention. Carotid endarterectomy is for carotid stenosis. Clopidogrel alone is inadequate."
+  },
+  {
+    "question": "Which sound is absent in arterial fibrillation:",
+    "options": [
+      "SI",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "correct": 3,
+    "explanation": "S4 (atrial gallop) is absent in atrial fibrillation because S4 is produced by forceful atrial contraction against a non-compliant ventricle. In AF, there is no organised atrial contraction, so S4 cannot be generated. S1, S2, and S3 can all be present in AF."
+  },
+  {
+    "question": "Which of the following ECG signs is consistent with first degree atrioventricular block:",
+    "options": [
+      "Short PR interval",
+      "P wave not followed by a QRS complex",
+      "Wide QRS complex",
+      "Prolonged PR interval and each P wave is followed by a QRS complex",
+      "Atrioventricular dissociation"
+    ],
+    "correct": 3,
+    "explanation": "First-degree AV block: every P wave is followed by a QRS complex (1:1 conduction) but with a prolonged PR interval >200ms. Short PR is WPW. P without QRS is 3rd-degree block. Wide QRS is BBB. AV dissociation is complete heart block."
+  },
+  {
+    "question": "ECG in the first-degree heart block shows:",
+    "options": [
+      "Prolonged QT interval",
+      "ST segment elevation",
+      "ST segment depression",
+      "Prolonged PR interval",
+      "Wide QRS complex"
+    ],
+    "correct": 3,
+    "explanation": "First-degree heart block is defined solely by a prolonged PR interval (>0.20 seconds) on ECG, with all P waves conducted to ventricles. The QT interval, ST segment, and QRS width are not affected in isolated first-degree block."
+  },
+  {
+    "question": "Regular Cannon wave of neck veins detonates the presence of:",
+    "options": [
+      "AV-Nodal Rhythm",
+      "Ventricular Fibrillation",
+      "Complete Heart Block",
+      "First degree Heart Block"
+    ],
+    "correct": 3,
+    "explanation": "According to the source, the answer is D (First degree Heart Block). Note: Clinically, regular cannon A-waves are produced by simultaneous atrial and ventricular contraction against a closed tricuspid valve. This is seen in AV-nodal (junctional) rhythm (option A), where the P wave occurs within or just before the QRS. This may be an error in the source."
+  },
+  {
+    "question": "Cannon A waves in neck veins are seen in:",
+    "options": [
+      "Pulmonary hypertension",
+      "Tricuspid incompetence",
+      "Right atrial myxoma",
+      "Complete heart block",
+      "Constrictive pericarditis"
+    ],
+    "correct": 3,
+    "explanation": "Irregular cannon A-waves (intermittent large waves) in the JVP are seen in complete heart block, where occasional P waves coincide with closed tricuspid valve. Regular cannon A-waves are seen in junctional/nodal rhythm. Large A-waves are seen in pulmonary hypertension. CV waves are seen in tricuspid regurgitation."
+  },
+  {
+    "question": "Paroxysmal atrial Tachycardia can be terminated with:",
+    "options": [
+      "Valsalva maneuver",
+      "Vasopressors",
+      "Digitalis preparations",
+      "None of these",
+      "All of these"
+    ],
+    "correct": 4,
+    "explanation": "Paroxysmal atrial/supraventricular tachycardia can be terminated by all listed methods: Valsalva manoeuvre (increases vagal tone), vasopressors (reflex vagal activation through baroreceptors), and digitalis preparations (increases vagal tone and AV nodal block). All of the above is correct."
+  },
+  {
+    "question": "The normal range of heart rate per minute in adult humans is:",
+    "options": [
+      "30-50.",
+      "60-90.",
+      "100-140.",
+      "160-180.",
+      "200-220."
+    ],
+    "correct": 1,
+    "explanation": "The normal adult resting heart rate is 60–100 beats per minute. A rate below 60 is bradycardia; above 100 is tachycardia. Rates of 30–50 indicate significant bradycardia. Rates of 100–220 indicate various tachyarrhythmias."
+  },
+  {
+    "question": "Ca Cannon a waves in neck veins are seen in:",
+    "options": [
+      "Pulmonary hypertension.",
+      "Tricuspid incompetence.",
+      "Right atrial myxoma.",
+      "Complete heart block.",
+      "Constrictive pericarditis."
+    ],
+    "correct": 3,
+    "explanation": "Intermittent (irregular) cannon A-waves are seen in complete heart block when atria and ventricles contract simultaneously. Regular cannon A-waves occur in junctional tachycardia. Prominent A-waves (not cannon) are seen in pulmonary hypertension and tricuspid stenosis. Giant CV waves characterise tricuspid regurgitation."
+  },
+  {
+    "question": "Which sound is absent in atrial fibrillation:",
+    "options": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "correct": 3,
+    "explanation": "S4 is absent in AF because it requires organised atrial contraction preceding ventricular systole. AF eliminates organised atrial contraction. S1, S2, and S3 can all be heard in AF (S3 if there is rapid ventricular filling from volume overload)."
+  },
+  {
+    "question": "Pulsus Bigeminus best detected by:",
+    "options": [
+      "Cardiac auscultation.",
+      "Chest auscultation.",
+      "Sphygmomanometer.",
+      "Jugular veins examination.",
+      "ECG."
+    ],
+    "correct": 4,
+    "explanation": "Pulsus bigeminus (paired beats: normal followed by premature) is best detected by ECG, which shows the alternating normal and premature beats. At the bedside, auscultation may hear the bigeminal rhythm, but ECG confirms the diagnosis and identifies the type of premature beat."
+  },
+  {
+    "question": "Regular cannon wave of neck veins denotes the presence of:",
+    "options": [
+      "AV-nodal rhythm.",
+      "Ventricular fibrillation.",
+      "Complete heart block.",
+      "First degree heart block."
+    ],
+    "correct": 0,
+    "explanation": "Regular cannon A-waves in the JVP are produced by atrial contraction against a closed tricuspid valve, occurring regularly. This is the hallmark of AV-nodal (junctional) rhythm where P waves are hidden within or just before QRS complexes, causing simultaneous atrial and ventricular contraction."
+  },
+  {
+    "question": "Which of the following conditions leads to pulse deficit:",
+    "options": [
+      "Ventricular tachycardia.",
+      "AF.",
+      "Supraventricular tachycardia.",
+      "Heart block."
+    ],
+    "correct": 1,
+    "explanation": "Pulse deficit (apical rate > peripheral pulse rate) is most characteristic of AF, where the irregular and variable ventricular filling prevents some beats from generating sufficient stroke volume to be felt peripherally. Sustained VT usually produces a regular albeit fast rhythm. SVT and heart block are less typically associated with significant pulse deficit."
+  },
+  {
+    "question": "A 62-year-old male undergoes cardioversion for idiopathic atrial fibrillation.Post-procedure he was shown to be in sinus rhythm. Medication at admission included Warfarin, digoxin and atenolol, which he had been taking for the last six weeks. Which of the following agents should he continue to take until he is seen in clinic in six weeks' time?",
+    "options": [
+      "Aspirin",
+      "Atenolol",
+      "Digoxin",
+      "Sotalol",
+      "Warfarin"
+    ],
+    "correct": 4,
+    "explanation": "Warfarin must be continued for at least 4 weeks after cardioversion to prevent thromboembolism, as atrial mechanical function takes time to recover after sinus rhythm is restored ('atrial stunning'). Post-cardioversion anticoagulation is mandatory regardless of pre-cardioversion anticoagulation status."
+  },
+  {
+    "question": "A patient presents with atrial fibrillation and later reverts to sinus rhythm. He asked you about prognosis and recurrence Under which of the following circumstances is the patient more likely to remain in sinus rhythm?",
+    "options": [
+      "Age > 75 Years Old",
+      "Been Commenced On Warfarin",
+      "Left Atrium Size > 6 Cm On Echo",
+      "Short History Of AF",
+      "Ventricular Rate On Presentation Of 130 Bpm"
+    ],
+    "correct": 3,
+    "explanation": "A short history of AF is the strongest predictor for maintaining sinus rhythm after cardioversion. Longer duration of AF causes atrial remodelling making recurrence more likely. Large left atrium (>6cm) predicts AF recurrence. Advanced age also predicts recurrence. Warfarin prevents stroke but does not maintain sinus rhythm."
+  },
+  {
+    "question": "A 60-year-old man presented with an episode of right sided weakness that lasted 10 minutes and fully resolved. Examination reveals that he is in atrial fibrillation Which of the following is the most appropriate management regime:",
+    "options": [
+      "Aspirin",
+      "No additional drug treatment",
+      "Warfarin, INR range 2-3",
+      "Warfarin, INR range 2-3 for 6 months then aspirin",
+      "Warfarin, INR range 3-4"
+    ],
+    "correct": 2,
+    "explanation": "This patient has AF with a TIA (high-risk feature for stroke). Warfarin with target INR 2–3 is the appropriate long-term anticoagulation. Aspirin alone is insufficient for AF-related stroke prevention in high-risk patients. INR 3–4 is for mechanical heart valves. There is no evidence to switch to aspirin after 6 months in AF."
+  },
+  {
+    "question": "A 45-year-old male on treatment for chest infection presented with Palpitations ECG revealed prolongation of the QT interval and was told that There is increased risk of life-threatening arrhythmia. Which of the following anti-microbial is responsible for his findings:",
+    "options": [
+      "Amoxi-Clav",
+      "Cefuroxime",
+      "Erythromycin",
+      "Gentamicin",
+      "Isoniazid"
+    ],
+    "correct": 2,
+    "explanation": "Erythromycin (and other macrolide antibiotics) can prolong the QT interval by blocking cardiac IKr potassium channels, predisposing to Torsades de Pointes (a life-threatening polymorphic VT). Amoxicillin-clavulanate, cefuroxime, and gentamicin do not significantly prolong QT. Isoniazid does not cause QT prolongation."
+  },
+  {
+    "question": "A 60-year-old man with a history of controlled hypertension presents with acute onset weakness of his left arm, which resolved over 12 hours. He had suffered two similar episodes over the last three months. Examination reveals a blood pressure of 135/85 mmHg and pulse is 80/min with irregular irregularity. ECG reveals absent p wave. CT brain scan is normal. What is the most appropriate management?",
+    "options": [
+      "Amiodarone",
+      "Aspirin",
+      "Digoxin",
+      "Dipyridamole",
+      "Warfarin"
+    ],
+    "correct": 4,
+    "explanation": "This patient has AF (irregular pulse, absent P waves on ECG) with recurrent TIAs (high stroke risk). Long-term anticoagulation with warfarin (or a DOAC) is the most appropriate management to prevent AF-related cardioembolic stroke. Aspirin and dipyridamole are insufficient. Amiodarone treats the AF rhythm but is not the primary stroke prevention. Digoxin controls ventricular rate only."
+  },
+  {
+    "question": "A 26-year-old professional footballer collapses while playing football. He is rushed to the ER, and is found to be in ventricular tachycardia. He is defibrillated successfully and his 12 lead ECG demonstrates normal sinus rhythm, without ST segment changes. Ventricular tachycardia recurs and despite prolonged resuscitation, he dies. What is the most likely diagnosis:",
+    "options": [
+      "Aortic stenosis",
+      "Cocaine intoxication",
+      "Hypertrophic cardiomyopathy",
+      "Myocardial infarction",
+      "Pulmonary embolism"
+    ],
+    "correct": 2,
+    "explanation": "Hypertrophic cardiomyopathy (HCM) is the most common cause of sudden cardiac death in young athletes. The asymmetric septal hypertrophy creates an arrhythmogenic substrate for fatal VT/VF during exercise. The normal ECG (no ST changes) makes MI unlikely. Cocaine intoxication is possible but less likely in a professional athlete with recurrent VT."
+  },
+  {
+    "question": "A 70-year-old male was receiving amiodarone 200 mg daily for intermittent atrial fibrillation. However, he was aware of tiredness and lethargy. He appeared clinically euthyroid with no palpable goiter. Investigations revealed:\no Serum total T4 23 nmol/L (9-26)\no Serum total T3 0.8 nmolL (0.9-2.8)\no Serum TSIH 8.2 mU/L (<5)\nWhich of the following statements would explain these results:",
+    "options": [
+      "Abnormal thyroxin binding globulin",
+      "Amiodarone-induced hypothyroidism",
+      "Sick euthyroid syndrome",
+      "Spontaneous hypothyroidism",
+      "TSH secreting pituitary adenoma"
+    ],
+    "correct": 1,
+    "explanation": "Amiodarone inhibits T4-to-T3 conversion and can cause hypothyroidism (high TSH, low T3, normal-high T4). The findings—elevated TSH (8.2), low T3 (0.8), and normal T4 (23)—are consistent with amiodarone-induced hypothyroidism. In sick euthyroid, TSH is usually low or normal. Spontaneous hypothyroidism is possible but amiodarone is the most likely cause given the context."
+  },
+  {
+    "question": "72-year-old man with type 2 diabetes mellitus presented following the sudden onset of palpitations. An ECG revealed rate of 180/ min, irregular QRS with absent p wave. He commenced on Amiodarone with no improvement.Which of the following has been shown to be of greatest benefit in reducing his future risk of vascular events:",
+    "options": [
+      "Anticoagulation",
+      "Aspirin",
+      "Continuation of Amiodarone",
+      "DC cardioversion",
+      "Digoxin"
+    ],
+    "correct": 0,
+    "explanation": "This diabetic patient with AF has high vascular risk. Anticoagulation (warfarin/DOAC) provides the greatest reduction in stroke and vascular events in AF, especially in high-risk patients (diabetes, age). Aspirin alone is insufficient. DC cardioversion restores rhythm but doesn't prevent future events if AF recurs. Digoxin and amiodarone control rate/rhythm but don't reduce vascular events."
+  },
+  {
+    "question": "A 30-year-old man presents with a history of transient loss of consciousness and palpitations. His ECG shows wide QRS complex regular tachycardia. Which of the following treatments should be avoided:",
+    "options": [
+      "Adenosine",
+      "Amiodarone",
+      "DC cardioversion",
+      "Flecainide",
+      "Verapamil"
+    ],
+    "correct": 2,
+    "explanation": "According to the source, the answer is C (DC cardioversion should be avoided). Note: Clinically, DC cardioversion is actually the treatment of choice for haemodynamically unstable wide-complex tachycardia. However, if the question implies the patient is stable and the rhythm could be WPW-related AF, then verapamil (E) should be avoided as it can accelerate conduction through the accessory pathway. The source answer appears atypical."
+  },
+  {
+    "question": "A 68 year-old woman, with rapid irregular palpitations and hypotension, is admitted for DC cardioversion. The procedure resulted in successful restoration of sinus rhythm. Which one of the following drugs should be added:",
+    "options": [
+      "Amiodarone",
+      "Digoxin",
+      "Diltiazem",
+      "Sotalol",
+      "Verapamil"
+    ],
+    "correct": 0,
+    "explanation": "Amiodarone should be added after successful cardioversion to maintain sinus rhythm and prevent AF recurrence. It is the most effective antiarrhythmic for AF maintenance. Digoxin controls ventricular rate but does not maintain sinus rhythm. Diltiazem and verapamil are rate-control agents. Sotalol can maintain sinus rhythm but amiodarone is more effective."
+  },
+  {
+    "question": "Which is not the cause of sinus bradycardia:",
+    "options": [
+      "Myxedema.",
+      "Complete heart block.",
+      "Hypothermia.",
+      "Obstructive jaundice.",
+      "Increased intracranial tension"
+    ],
+    "correct": 1,
+    "explanation": "Complete heart block (third-degree AV block) is NOT a cause of sinus bradycardia. In complete heart block, the sinus rate may be normal but conduction to the ventricles is blocked, causing a slow ventricular escape rhythm. Sinus bradycardia causes include hypothyroidism (myxoedema), hypothermia, obstructive jaundice (bile acid effects), and raised ICP (Cushing's reflex)."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L2-COPD</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof94jryhszs0",
+  "title": "L2-COPD",
+  "description": "Questions on every Chest lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "One of the following could improve survival in cor pulmonale:",
+    "options": [
+      "Warfarin.",
+      "Theophylline.",
+      "Antioxidant.",
+      "Furosemide.",
+      "Long-term oxygen therapy."
+    ],
+    "correct": 4,
+    "explanation": "Long-term oxygen therapy (LTOT) for >15 hours daily improves survival in COPD patients with chronic hypoxemia and cor pulmonale."
+  },
+  {
+    "question": "When caring for a patient with emphysema requiring supplemental oxygen, the healthcare provider carefully titrates the oxygen to the lowest effective dose in order to avoid:",
+    "options": [
+      "Obstructive apnea.",
+      "Respiratory alkalosis.",
+      "Hypoventilation.",
+      "Hyperventilation.",
+      "Tachycardia."
+    ],
+    "correct": 2,
+    "explanation": "COPD patients rely on hypoxic respiratory drive; excessive oxygen can abolish this drive leading to hypoventilation and dangerous CO2 retention."
+  },
+  {
+    "question": "In a COPD categorized as Group B, which of the following therapeutic strategies is best treatment?",
+    "options": [
+      "Long-acting beta-2 agonist taken regularly.",
+      "Short-acting beta-2 agonist taken as needed.",
+      "Short-acting antimuscarinic agent taken regularly.",
+      "Short-acting bronchodilator and theophylline.",
+      "Oral corticosteroids."
+    ],
+    "correct": 0,
+    "explanation": "GOLD Group B (low risk, more symptoms) is best managed with a regular long-acting bronchodilator (LABA or LAMA)."
+  },
+  {
+    "question": "After evaluating a patient at the bedside, you find barrel chest, pursed-lip breathing and scalene hypertonicity. Your provisional diagnosis is:",
+    "options": [
+      "Emphysema.",
+      "Asthma.",
+      "Chronic bronchitis.",
+      "Pulmonary embolic disease.",
+      "Congestive heart failure."
+    ],
+    "correct": 0,
+    "explanation": "Barrel chest, pursed-lip breathing, and accessory muscle use are classic signs of emphysema/COPD with hyperinflation."
+  },
+  {
+    "question": "The healthcare provider is teaching a patient with emphysema pursed-lip breathing. Pursed-lip breathing helps patients with emphysema because it:",
+    "options": [
+      "Helps the patient achieve maximum inhalation.",
+      "Increases the respiratory rate.",
+      "Helps keep the small airways open and prevents air trapping.",
+      "Increases oxygenation rate.",
+      "Creates negative pressure in the airways."
+    ],
+    "correct": 2,
+    "explanation": "Pursed-lip breathing increases end-expiratory pressure, preventing small airway collapse and reducing air trapping."
+  },
+  {
+    "question": "To differentiate between asthma and COPD by spirometry we choose:",
+    "options": [
+      "Reversibility test.",
+      "Reduced FEV1.",
+      "Reduced FVC.",
+      "Reduced TLC.",
+      "Decreased DLCO."
+    ],
+    "correct": 0,
+    "explanation": "Asthma shows significant bronchodilator reversibility (>12% and >200 mL FEV1 increase), whereas COPD has fixed or poorly reversible obstruction."
+  },
+  {
+    "question": "On examination, a patient with COPD may have:",
+    "options": [
+      "Kyphosis.",
+      "Bronchial breathing.",
+      "Dullness on percussion.",
+      "Increased tactile vocal fremitus.",
+      "Barrel-shaped chest."
+    ],
+    "correct": 4,
+    "explanation": "Hyperinflation produces a barrel-shaped chest. Dullness and increased TVF suggest consolidation (pneumonia)."
+  },
+  {
+    "question": "Generalized chest wheezes is caused by:",
+    "options": [
+      "COPD.",
+      "Foreign body inhalation.",
+      "Endobronchial TB.",
+      "Bronchial stenosis.",
+      "Right lobar pneumonia."
+    ],
+    "correct": 0,
+    "explanation": "COPD causes diffuse wheezing from widespread airway narrowing and secretions."
+  },
+  {
+    "question": "Risk factors for development of chronic obstructive lung disease do include all EXCEPT:",
+    "options": [
+      "Cigarette smoking.",
+      "Occupational exposure to particulate dust.",
+      "Family history of atopy.",
+      "Environmental pollution.",
+      "Alpha-1-antitrypsin deficiency."
+    ],
+    "correct": 2,
+    "explanation": "Family history of atopy is a risk factor for asthma, not COPD. The others are well-established COPD risk factors."
+  },
+  {
+    "question": "The following are recognized causes of hemoptysis EXCEPT:",
+    "options": [
+      "Tuberculosis.",
+      "Bronchiectasis.",
+      "Chronic obstructive pulmonary disease.",
+      "Mitral stenosis."
+    ],
+    "correct": 2,
+    "explanation": "COPD is not a classic cause of hemoptysis. Tuberculosis, bronchiectasis, and mitral stenosis are the traditional causes."
+  },
+  {
+    "question": "Which one of the following disorders is associated with pulmonary emphysema?",
+    "options": [
+      "Glutathione deficiency.",
+      "Alpha-1-antitrypsin deficiency.",
+      "Alpha-2-macroglobulin deficiency.",
+      "Protein C deficiency."
+    ],
+    "correct": 1,
+    "explanation": "Alpha-1-antitrypsin deficiency causes panacinar emphysema, particularly affecting the lung bases."
+  },
+  {
+    "question": "A 70-year-old man is admitted with acute severe exacerbation of COPD and does not respond to oxygen and nebulized bronchodilators. What is the next step?",
+    "options": [
+      "Inhaled salbutamol.",
+      "Long-term oxygen therapy.",
+      "Intermittent positive pressure ventilation (IPPV/NIV).",
+      "Nebulized salbutamol, ipratropium, oral prednisolone and oral amoxicillin."
+    ],
+    "correct": 2,
+    "explanation": "Non-invasive positive pressure ventilation (NIV) is indicated for acute hypercapnic respiratory failure in COPD unresponsive to initial medical therapy."
+  },
+  {
+    "question": "The severity of COPD is assessed using post-bronchodilator spirometry. Which values would you expect in a patient with moderate COPD?",
+    "options": [
+      "FEV1/FVC <0.7, FEV1 30–49% predicted.",
+      "FEV1/FVC <0.7, FEV1 ≥80% predicted.",
+      "FEV1/FVC <0.7, FEV1 <30% predicted.",
+      "FEV1/FVC <0.7, FEV1 50–79% predicted.",
+      "FEV1/FVC <0.7, FEV1 60–70% predicted."
+    ],
+    "correct": 3,
+    "explanation": "GOLD defines moderate COPD as post-bronchodilator FEV1/FVC <0.70 with FEV1 50–80% predicted."
+  },
+  {
+    "question": "Which is not a cause of finger clubbing?",
+    "options": [
+      "Empyema.",
+      "Bronchogenic carcinoma.",
+      "COPD.",
+      "Cystic fibrosis.",
+      "Mesothelioma."
+    ],
+    "correct": 2,
+    "explanation": "COPD does not typically cause clubbing. Empyema, lung cancer, cystic fibrosis, and mesothelioma are recognized causes."
+  },
+  {
+    "question": "The most common cause of a chronic slightly productive cough in the adult population is:",
+    "options": [
+      "Asthma.",
+      "Chronic bronchial inflammation.",
+      "Heart failure.",
+      "None of the above."
+    ],
+    "correct": 1,
+    "explanation": "Chronic bronchitis from cigarette smoking is the most common cause of a chronic productive cough in adults."
+  },
+  {
+    "question": "Which of the following are the most likely physical examination findings in a patient with emphysema?",
+    "options": [
+      "Diffuse expiratory wheezing.",
+      "Clubbing of the fingers.",
+      "Bibasilar inspiratory crackles with increased jugular venous pressure.",
+      "Inspiratory stridor.",
+      "Third heart sound."
+    ],
+    "correct": 0,
+    "explanation": "Emphysema produces diffuse expiratory wheezing and hyperinflation. Clubbing is not typical. Crackles with elevated JVP suggest left heart failure."
+  },
+  {
+    "question": "In a subject with an arterial PCO2 of 30 mmHg, you would consider all of the following in the differential diagnosis EXCEPT:",
+    "options": [
+      "Acute airway obstruction.",
+      "Interstitial lung disease.",
+      "Pulmonary embolism.",
+      "Diabetic ketoacidosis."
+    ],
+    "correct": 0,
+    "explanation": "Acute airway obstruction causes hypercapnia (high PCO2), not hypocapnia. The other conditions cause hypocapnia through hyperventilation."
+  },
+  {
+    "question": "A 56-year-old woman admits to a 60-pack-year smoking history. She complains of fatigue and dyspnea with minimal exertion, and a cough that is productive each morning. Which of the following is the most likely finding in this patient?",
+    "options": [
+      "Normal diffusing capacity of lung for carbon monoxide (DLCO).",
+      "Decreased residual volume.",
+      "Normal to slightly increased forced expiratory volume in first second (FEV1).",
+      "Decreased FEV1/FVC.",
+      "Decreased forced vital capacity (FVC)."
+    ],
+    "correct": 3,
+    "explanation": "COPD is defined by a post-bronchodilator FEV1/FVC ratio <0.70. DLCO is reduced in emphysema, and residual volume is increased."
+  },
+  {
+    "question": "A 30-year-old man presents to your clinic with a cough and finger clubbing. Which of these is not a respiratory cause of finger clubbing?",
+    "options": [
+      "Empyema.",
+      "Mesothelioma.",
+      "Bronchogenic carcinoma.",
+      "Cystic fibrosis.",
+      "COPD."
+    ],
+    "correct": 4,
+    "explanation": "COPD is not associated with finger clubbing. The other conditions are recognized respiratory causes."
+  },
+  {
+    "question": "In COPD:",
+    "options": [
+      "The common cause is alpha-1-antitrypsin deficiency.",
+      "The disease occurs in smokers.",
+      "A small volume pulse suggests CO2 retention.",
+      "Stopping smoking will not improve prognosis in severe cases."
+    ],
+    "correct": 1,
+    "explanation": "Cigarette smoking is the most important risk factor for COPD. Alpha-1-antitrypsin deficiency is a rare cause. Smoking cessation improves prognosis at all stages."
+  },
+  {
+    "question": "The elastic recoil of the lung is severely diminished in:",
+    "options": [
+      "Chronic bronchitis.",
+      "Emphysema.",
+      "Bronchogenic carcinoma.",
+      "Bronchial asthma."
+    ],
+    "correct": 1,
+    "explanation": "Emphysema destroys alveolar walls and elastic fibers, leading to loss of elastic recoil."
+  },
+  {
+    "question": "Low voltage ECG is seen in:",
+    "options": [
+      "Thin chest wall.",
+      "Consolidation.",
+      "Hyperthyroidism.",
+      "Emphysema."
+    ],
+    "correct": 3,
+    "explanation": "Hyperinflation in emphysema increases the distance between the heart and the ECG electrodes, producing low voltage complexes."
+  },
+  {
+    "question": "The commonest cause of respiratory failure is:",
+    "options": [
+      "Emphysema.",
+      "Fibrosing alveolitis.",
+      "Bronchial asthma.",
+      "Chronic bronchitis."
+    ],
+    "correct": 3,
+    "explanation": "Chronic bronchitis is the most common cause of type II respiratory failure."
+  },
+  {
+    "question": "A 65-year-old woman used to smoke 50 cigarettes a day for 40 years. She had increasing dyspnea, no cough. Chest X-ray shows increased lung size and flattening of the diaphragms. She developed worsening peripheral edema. Which cardiac finding is most likely?",
+    "options": [
+      "Constrictive pericarditis.",
+      "Left ventricular aneurysm.",
+      "Mitral valve stenosis.",
+      "Non-bacterial thrombotic endocarditis.",
+      "Right ventricular hypertrophy."
+    ],
+    "correct": 4,
+    "explanation": "Severe COPD leads to pulmonary hypertension and cor pulmonale, manifesting as right ventricular hypertrophy and peripheral edema."
+  },
+  {
+    "question": "The following are risk factors in developing COPD EXCEPT:",
+    "options": [
+      "Smoking.",
+      "Air pollution.",
+      "Recurrent infection.",
+      "Genetic factors.",
+      "Traumatic injury."
+    ],
+    "correct": 4,
+    "explanation": "Trauma is not a recognized risk factor for COPD."
+  },
+  {
+    "question": "Neck vein examination in COPD:",
+    "options": [
+      "Is normal.",
+      "Inspiratory congestion.",
+      "Expiratory congestion.",
+      "Inspiratory and expiratory congestion."
+    ],
+    "correct": 2,
+    "explanation": "In severe COPD with air trapping, the jugular venous pressure may rise during expiration."
+  },
+  {
+    "question": "Closing volume of the lung is increased in:",
+    "options": [
+      "Cigarette smoking.",
+      "Obesity.",
+      "Anaemia.",
+      "Bronchiectasis."
+    ],
+    "correct": 0,
+    "explanation": "Cigarette smoking increases closing volume due to small airway disease and loss of elastic recoil."
+  },
+  {
+    "question": "Reduced compliance of lung is seen in all EXCEPT:",
+    "options": [
+      "Diffuse interstitial fibrosis.",
+      "Atelectasis.",
+      "Left ventricular failure.",
+      "Emphysema."
+    ],
+    "correct": 3,
+    "explanation": "Emphysema has increased compliance due to loss of elastic recoil. The other conditions reduce lung compliance."
+  },
+  {
+    "question": "Which is true in a predominant 'blue bloater'?",
+    "options": [
+      "Vital capacity is markedly diminished.",
+      "History of repeated episodes of respiratory insufficiency.",
+      "Elastic recoil is much diminished.",
+      "Pulmonary hypertension does not complicate the disease."
+    ],
+    "correct": 1,
+    "explanation": "Blue bloaters (chronic bronchitis phenotype) experience recurrent respiratory infections and insufficiency with edema."
+  },
+  {
+    "question": "Which is false regarding emphysema?",
+    "options": [
+      "PaO2 65–75 mmHg.",
+      "Increased diffusion capacity.",
+      "PaCO2 35–40 mmHg.",
+      "Decreased elastic recoil."
+    ],
+    "correct": 1,
+    "explanation": "Emphysema causes decreased DLCO due to alveolar destruction. Diffusion capacity is reduced, not increased."
+  },
+  {
+    "question": "Alpha-1-antitrypsin deficiency PiZZ type have predominant:",
+    "options": [
+      "Paraseptal emphysema.",
+      "Centriacinar emphysema.",
+      "Paracicatricial emphysema.",
+      "Panacinar emphysema."
+    ],
+    "correct": 3,
+    "explanation": "Alpha-1-antitrypsin deficiency causes panacinar emphysema, typically with basal predominance."
+  },
+  {
+    "question": "In severe COPD, arterial blood gas shows:",
+    "options": [
+      "Increased PaO2.",
+      "Decreased PaO2.",
+      "Increased PaCO2.",
+      "Decreased PaCO2."
+    ],
+    "correct": 1,
+    "explanation": "Severe COPD causes hypoxemia (decreased PaO2) and often hypercapnia (increased PaCO2). Decreased PaO2 is the consistent finding."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

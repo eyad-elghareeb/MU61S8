@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L1-Bronchial Asthma</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof944h291ts2",
+  "title": "L1-Bronchial Asthma",
+  "description": "Questions on every Chest lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Extrinsic asthma is characterized by which one of the following:",
+    "options": [
+      "Childhood onset.",
+      "Negative family history of allergy.",
+      "Negative skin test to common allergens.",
+      "Normal serum IgE.",
+      "No obvious allergen exposure."
+    ],
+    "correct": 0,
+    "explanation": "Extrinsic (allergic, atopic) asthma typically begins in childhood and is associated with a positive family history of allergy, positive skin-prick tests, elevated serum IgE, and identifiable allergen exposure. Intrinsic asthma begins later in adulthood."
+  },
+  {
+    "question": "Which one of the following drugs is a long-acting beta-2 agonist?",
+    "options": [
+      "Salbutamol.",
+      "Terbutaline.",
+      "Formoterol.",
+      "Orciprenaline.",
+      "Ipratropium bromide."
+    ],
+    "correct": 2,
+    "explanation": "Formoterol and salmeterol are long-acting beta-2 agonists (LABAs) used for maintenance therapy. Salbutamol, terbutaline, and orciprenaline are short-acting (SABAs). Ipratropium is an antimuscarinic bronchodilator."
+  },
+  {
+    "question": "Which medication will provide the patient with the fastest relief from signs and symptoms of an asthma attack?",
+    "options": [
+      "Theophylline.",
+      "Tiotropium.",
+      "Albuterol.",
+      "Cromolyn.",
+      "Formoterol."
+    ],
+    "correct": 2,
+    "explanation": "Albuterol (salbutamol) is a short-acting beta-2 agonist (SABA) that produces rapid bronchodilation within minutes, making it the rescue drug of choice for acute symptoms."
+  },
+  {
+    "question": "What is the warning sign you should take care of when you admit a patient with severe attack of bronchial asthma?",
+    "options": [
+      "Easily fatigued with physical activity.",
+      "Reduced peak flow meter reading.",
+      "Cyanosis.",
+      "Wheezing with activity.",
+      "Nighttime coughing."
+    ],
+    "correct": 2,
+    "explanation": "Cyanosis indicates severe hypoxemia and is a warning sign of life-threatening asthma requiring urgent intensive management."
+  },
+  {
+    "question": "Which of the following drugs is a long-acting beta-2 agonist?",
+    "options": [
+      "Salbutamol.",
+      "Terbutaline.",
+      "Formoterol.",
+      "Orciprenaline.",
+      "Noradrenalin."
+    ],
+    "correct": 2,
+    "explanation": "Formoterol is a LABA. Salbutamol, terbutaline, and orciprenaline are short-acting. Noradrenalin (norepinephrine) is a vasopressor, not a bronchodilator."
+  },
+  {
+    "question": "To differentiate between asthma and COPD by spirometry we choose:",
+    "options": [
+      "Reversibility test.",
+      "Reduced FEV1.",
+      "Reduced FVC.",
+      "Reduced TLC.",
+      "Increased FVC."
+    ],
+    "correct": 0,
+    "explanation": "Asthma demonstrates significant bronchodilator reversibility (increase in FEV1 >12% and >200 mL), whereas COPD shows largely fixed or poorly reversible airflow obstruction."
+  },
+  {
+    "question": "Extrinsic asthma is characterized by:",
+    "options": [
+      "Non-obvious precipitating factor.",
+      "Childhood onset.",
+      "Negative family history of allergy and negative skin test to common allergens.",
+      "Absent atopic tendency."
+    ],
+    "correct": 1,
+    "explanation": "Extrinsic asthma is the allergic form that usually starts in childhood, with positive family history, positive skin tests, and atopic features."
+  },
+  {
+    "question": "In a case of bronchial asthma, pulmonary function tests are characterized by any of the following EXCEPT:",
+    "options": [
+      "Restrictive ventilatory defect.",
+      "Obstructive ventilatory defect.",
+      "Diurnal variation in peak expiratory flow rate with morning dipping.",
+      "Significant reversibility indicated by an increase of >12% or 200 mL in FEV1 after a short-acting beta-2 agonist."
+    ],
+    "correct": 0,
+    "explanation": "Asthma is an obstructive airway disease. A restrictive pattern is not typical and should prompt evaluation for other conditions (e.g., fibrosis, obesity, neuromuscular disease)."
+  },
+  {
+    "question": "In bronchial asthma, controller medications include all of the following drugs EXCEPT:",
+    "options": [
+      "Inhaled corticosteroid.",
+      "Short-acting beta-2 agonist.",
+      "Leukotriene modifiers.",
+      "Sodium cromoglycate.",
+      "Nedocromil sodium."
+    ],
+    "correct": 1,
+    "explanation": "Short-acting beta-2 agonists are reliever (rescue) medications, not controllers. Controllers include inhaled corticosteroids, leukotriene modifiers, and cromones (cromoglycate/nedocromil)."
+  },
+  {
+    "question": "Which one of the following is NOT a criterion of acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration.",
+      "Respiratory rate >30/min.",
+      "Pulse <100/min.",
+      "Pulsus paradoxus with drop of systolic blood pressure >10 mmHg."
+    ],
+    "correct": 2,
+    "explanation": "Acute severe asthma presents with tachycardia (pulse >100/min). A pulse <100/min is not a criterion; bradycardia is a pre-arrest sign."
+  },
+  {
+    "question": "Indications of mechanical ventilation in bronchial asthma include the following:",
+    "options": [
+      "Respiratory rate <20 breaths per minute.",
+      "Expiratory wheezes.",
+      "No previous history of mechanical ventilation.",
+      "Hypercapnia."
+    ],
+    "correct": 3,
+    "explanation": "Hypercapnia and respiratory acidosis indicate severe airway obstruction and ventilatory failure, requiring mechanical ventilation."
+  },
+  {
+    "question": "Detection of allergen can be done by any of the following EXCEPT:",
+    "options": [
+      "Skin-prick tests.",
+      "Chest x-ray.",
+      "Detection of total and specific IgE.",
+      "Specific bronchoprovocation test using inhaled antigens."
+    ],
+    "correct": 1,
+    "explanation": "Chest x-ray is an imaging modality and cannot detect specific allergens. Skin-prick tests, serum IgE levels, and bronchoprovocation are standard allergy tests."
+  },
+  {
+    "question": "Which of the following is not a criterion for acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration.",
+      "Respiratory rate >30/min.",
+      "Pulse <100 bpm.",
+      "Pulsus paradoxus."
+    ],
+    "correct": 2,
+    "explanation": "Acute severe asthma is characterized by tachycardia. A pulse below 100 bpm does not meet severity criteria."
+  },
+  {
+    "question": "Detection of allergen can be done by any of the following EXCEPT:",
+    "options": [
+      "Skin-prick tests.",
+      "Chest x-ray.",
+      "Detection of total and specific IgE.",
+      "Specific bronchoprovocation test using inhaled antigens."
+    ],
+    "correct": 1,
+    "explanation": "Chest x-ray cannot detect allergens; it is used to evaluate lung parenchyma and complications."
+  },
+  {
+    "question": "Which of the following is not a criterion for acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration.",
+      "Respiratory rate 30/min.",
+      "Pulse <100 bpm.",
+      "Pulsus paradoxus."
+    ],
+    "correct": 2,
+    "explanation": "Tachycardia (>100 bpm) is expected in severe asthma. A slower pulse is not consistent with the diagnosis of acute severe attack."
+  },
+  {
+    "question": "Extrinsic asthma is characterized by which one of the following:",
+    "options": [
+      "Childhood onset.",
+      "Negative family history of allergy.",
+      "Negative skin test to common allergens.",
+      "Normal serum IgE."
+    ],
+    "correct": 0,
+    "explanation": "Extrinsic asthma typically begins in childhood and is associated with atopy, positive family history, positive skin tests, and elevated IgE."
+  },
+  {
+    "question": "Which one of the following is not a criterion of acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration.",
+      "Respiratory rate >30/min.",
+      "Pulse <100/min.",
+      "Pulsus paradoxus with drop of systolic blood pressure >10 mmHg."
+    ],
+    "correct": 2,
+    "explanation": "Severe asthma causes tachycardia. Pulse <100/min is not a severity criterion."
+  },
+  {
+    "question": "Extrinsic asthma is characterized by:",
+    "options": [
+      "Non-obvious precipitating factor.",
+      "Childhood onset.",
+      "Negative family history of allergy.",
+      "Negative skin test to common allergens.",
+      "Absent atopic tendency."
+    ],
+    "correct": 1,
+    "explanation": "Extrinsic (allergic) asthma is characterized by childhood onset, positive family history, positive skin tests, and atopic tendency."
+  },
+  {
+    "question": "As regards bronchial asthma, which of the following statements is correct?",
+    "options": [
+      "Parasympathetic stimulation leads to bronchodilatation.",
+      "Parasympathetic stimulation decreases mucous secretions.",
+      "Sympathetic stimulation causes bronchoconstriction.",
+      "Immunological mechanism is important in the genesis of the disease in atopic patients."
+    ],
+    "correct": 3,
+    "explanation": "In atopic asthma, IgE-mediated type I hypersensitivity is central. Parasympathetic stimulation causes bronchoconstriction and increased mucus; sympathetic stimulation causes bronchodilation."
+  },
+  {
+    "question": "As regards theophylline in bronchial asthma, which statement is correct?",
+    "options": [
+      "Dose of oral theophylline: 12 mg/kg/day in divided doses.",
+      "Safe on the heart with any serum level.",
+      "Serum level of theophylline should be measured and not exceed 20 mcg/mL.",
+      "Very safe on the stomach."
+    ],
+    "correct": 2,
+    "explanation": "Theophylline has a narrow therapeutic index (10–20 mcg/mL). Toxicity causes arrhythmias, seizures, and gastrointestinal upset."
+  },
+  {
+    "question": "Which of the following is not a criterion for acute severe asthma?",
+    "options": [
+      "Use of accessory muscles of respiration.",
+      "Respiratory rate >30/min.",
+      "Pulse <100 bpm.",
+      "Pulsus paradoxus.",
+      "The patient is unable to complete one sentence."
+    ],
+    "correct": 2,
+    "explanation": "Severe asthma presents with tachycardia, not bradycardia. The inability to speak, pulsus paradoxus, accessory muscle use, and tachypnea are all severity markers."
+  },
+  {
+    "question": "Bronchial breath sound is found in all EXCEPT:",
+    "options": [
+      "Collapse with patent bronchus.",
+      "Bronchial asthma.",
+      "Superficial big cavity with patent bronchus.",
+      "Bronchopleural fistula."
+    ],
+    "correct": 1,
+    "explanation": "Bronchial breath sounds indicate consolidation or a patent bronchus adjacent to a cavity. Asthma produces diffuse wheeze and poor air entry, not bronchial breathing."
+  },
+  {
+    "question": "Which does not belong to the triad of symptomatic bronchial asthma?",
+    "options": [
+      "Chest pain.",
+      "Dyspnea.",
+      "Wheeze.",
+      "Cough."
+    ],
+    "correct": 0,
+    "explanation": "The classic triad of asthma is dyspnea, wheeze, and cough. Chest pain is not a cardinal feature."
+  },
+  {
+    "question": "Which of the following occupations is associated with new-onset asthma?",
+    "options": [
+      "Paint sprayer.",
+      "Insulation installer.",
+      "Typist.",
+      "Truck driver."
+    ],
+    "correct": 0,
+    "explanation": "Paint sprayers are exposed to isocyanates and other chemicals that are well-recognized causes of occupational asthma."
+  },
+  {
+    "question": "In asthma:",
+    "options": [
+      "Peak flow rate is low during exacerbations.",
+      "FEV1:FVC ratio is normal.",
+      "FVC is low.",
+      "JVP is elevated."
+    ],
+    "correct": 0,
+    "explanation": "During exacerbations, peak expiratory flow is reduced. FEV1/FVC is typically reduced (obstructive pattern). FVC may be normal or increased. JVP is not elevated in uncomplicated asthma."
+  },
+  {
+    "question": "In asthma:",
+    "options": [
+      "Airway hyper-responsiveness is a major feature.",
+      "Exacerbations are not precipitated by particular weather conditions.",
+      "Attacks can be precipitated by use of paracetamol.",
+      "Peak flow is elevated during exacerbations."
+    ],
+    "correct": 0,
+    "explanation": "Airway hyper-responsiveness is a hallmark of asthma. Weather changes, aspirin (not paracetamol), and allergens can trigger attacks. PEF is reduced during exacerbations."
+  },
+  {
+    "question": "A 23-year-old female has intermittent episodes of breathlessness and cough. She has a past history of eczema and her FEV1/FVC ratio is reduced. What is the most likely diagnosis?",
+    "options": [
+      "Asthma.",
+      "Chronic obstructive pulmonary disease.",
+      "Cryptogenic fibrosing alveolitis.",
+      "Heart failure."
+    ],
+    "correct": 0,
+    "explanation": "Young age, atopic history (eczema), intermittent symptoms, and obstructive spirometry strongly suggest asthma."
+  },
+  {
+    "question": "Exacerbation agents for bronchial asthma include:",
+    "options": [
+      "Some drugs.",
+      "Cockroach.",
+      "Food additives.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "Drugs (aspirin, beta-blockers), cockroach allergens, and food additives can all exacerbate asthma."
+  },
+  {
+    "question": "A 38-year-old male presents with episodic wheeze and nonproductive cough which occurs particularly at night. He has been employed in the plastics industry. Which of the following confirms his worries about relation to work?",
+    "options": [
+      "Absent family history of asthma.",
+      "Commencement of symptoms on his first day of work.",
+      "Elevated serum IgE concentration.",
+      "Improved symptomatology when being on holiday.",
+      "Increased bronchial reactivity."
+    ],
+    "correct": 3,
+    "explanation": "Improvement of symptoms away from work is a key diagnostic feature of occupational asthma."
+  },
+  {
+    "question": "Which does not belong to the clinical manifestation of bronchial asthma?",
+    "options": [
+      "Chest pain.",
+      "Dyspnea.",
+      "Wheeze.",
+      "Cough.",
+      "Rhonchi."
+    ],
+    "correct": 0,
+    "explanation": "Chest pain is not a typical manifestation of asthma. Dyspnea, wheeze, cough, and rhonchi are characteristic."
+  },
+  {
+    "question": "In allergic asthma, the most important mediators for pathogenesis are:",
+    "options": [
+      "Thromboxane A2.",
+      "Leukotrienes.",
+      "Prostaglandins.",
+      "Bradykinin.",
+      "Neuropeptides."
+    ],
+    "correct": 1,
+    "explanation": "Leukotrienes (LTC4, LTD4, LTE4) are potent bronchoconstrictors and key inflammatory mediators in allergic asthma."
+  },
+  {
+    "question": "All of the following may aggravate bronchial asthma EXCEPT:",
+    "options": [
+      "Pituitary snuff.",
+      "Acetylsalicylic acid.",
+      "Beta-blockers.",
+      "Sodium salicylate."
+    ],
+    "correct": 3,
+    "explanation": "Aspirin (acetylsalicylic acid), beta-blockers, and pituitary snuff can trigger bronchospasm. Sodium salicylate is much less likely to cause asthma exacerbation."
+  },
+  {
+    "question": "Allergic bronchopulmonary aspergillosis occurs in:",
+    "options": [
+      "Pulmonary tuberculous cavity.",
+      "Cystic lesion of sarcoid.",
+      "Atopic asthmatic person.",
+      "Immunocompromised host."
+    ],
+    "correct": 2,
+    "explanation": "ABPA is a hypersensitivity reaction to Aspergillus fumigatus that occurs in atopic asthmatics and patients with cystic fibrosis."
+  },
+  {
+    "question": "Which does not belong to the triad of symptomatic bronchial asthma?",
+    "options": [
+      "Chest pain.",
+      "Dyspnoea.",
+      "Wheeze.",
+      "Cough."
+    ],
+    "correct": 0,
+    "explanation": "The classic triad is dyspnoea, wheeze, and cough. Chest pain is not included."
+  },
+  {
+    "question": "Laennec's pearls and Curschmann's spirals in sputum are characteristically seen in:",
+    "options": [
+      "Pulmonary tuberculosis.",
+      "Farmer's lung.",
+      "Chronic bronchitis.",
+      "Bronchial asthma."
+    ],
+    "correct": 3,
+    "explanation": "These mucus casts are characteristic findings in the sputum of asthmatic patients."
+  },
+  {
+    "question": "Which is not in the list of bedside severity assessment of bronchial asthma?",
+    "options": [
+      "Kussmaul's sign.",
+      "Pulsus paradoxus.",
+      "Silent chest.",
+      "Central cyanosis."
+    ],
+    "correct": 0,
+    "explanation": "Kussmaul's sign (JVP rising on inspiration) is seen in constrictive pericarditis. Pulsus paradoxus, silent chest, and central cyanosis are markers of severe or life-threatening asthma."
+  },
+  {
+    "question": "Your patient, a 53-year-old overweight woman, presents with increasing asthma symptoms. She also reports heartburn. What would you expect the physician to prescribe?",
+    "options": [
+      "Proton pump inhibitor.",
+      "Initiate corticosteroid inhalers.",
+      "Antihistamines.",
+      "NSAID.",
+      "Start long-acting beta-2 agonist."
+    ],
+    "correct": 0,
+    "explanation": "GERD can trigger asthma; a proton pump inhibitor treats reflux and may improve asthma control."
+  },
+  {
+    "question": "The initial management of severe acute bronchial asthma does not include:",
+    "options": [
+      "20% oxygen delivered by a controlled flow mask.",
+      "Salbutamol inhalation.",
+      "Hydrocortisone 200 mg IV and prednisolone 40 mg orally together.",
+      "Arterial blood gas analysis.",
+      "Chest x-ray."
+    ],
+    "correct": 2,
+    "explanation": "Steroids are essential, but giving both IV hydrocortisone and oral prednisolone simultaneously is redundant; standard practice uses one route."
+  },
+  {
+    "question": "Partly controlled asthma is characterized by any of the following EXCEPT:",
+    "options": [
+      "Daytime symptoms more than twice/week.",
+      "Any limitations of activities.",
+      "Any nocturnal symptoms/awakening.",
+      "Need for reliever/rescue treatment more than twice/week.",
+      "Normal lung function."
+    ],
+    "correct": 4,
+    "explanation": "Normal lung function suggests well-controlled asthma. Partly controlled asthma is associated with abnormal spirometry."
+  },
+  {
+    "question": "Which of the following is characteristic of extrinsic asthma?",
+    "options": [
+      "Childhood onset.",
+      "Positive family history.",
+      "Normal IgE level.",
+      "Negative skin test.",
+      "Intermittent asthma."
+    ],
+    "correct": 0,
+    "explanation": "Extrinsic asthma is characterized by childhood onset, positive family history, elevated IgE, positive skin tests, and intermittent pattern."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L5-Pneumonia</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof97lisluvzq",
+  "title": "L5-Pneumonia",
+  "description": "Questions on every Chest lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Clinical signs of consolidation include:",
+    "options": [
+      "Wheezes.",
+      "Crepitations.",
+      "Decreased tactile vocal fremitus.",
+      "Hyperresonance.",
+      "Increased air entry."
+    ],
+    "correct": 1,
+    "explanation": "Consolidation produces crepitations (crackles) due to air moving through fluid-filled alveoli."
+  },
+  {
+    "question": "The common cause of infectious pneumonia is:",
+    "options": [
+      "Streptococcus pneumoniae.",
+      "Klebsiella pneumoniae.",
+      "Staphylococcus pneumonia.",
+      "Legionella pneumonia.",
+      "Viral pneumonia."
+    ],
+    "correct": 0,
+    "explanation": "Streptococcus pneumoniae is the most common bacterial cause of community-acquired pneumonia."
+  },
+  {
+    "question": "Pneumatoceles occur commonly with:",
+    "options": [
+      "Streptococcus pneumonia.",
+      "Viral pneumonia.",
+      "Haemophilus influenzae pneumonia.",
+      "Mycoplasma pneumonia.",
+      "Staphylococcus aureus pneumonia."
+    ],
+    "correct": 4,
+    "explanation": "Staphylococcus aureus pneumonia, particularly in children, is associated with pneumatocele formation."
+  },
+  {
+    "question": "A 70-year-old female developed hospital-acquired pneumonia; she had cyanosis, tachycardia with fever and cough. Chest X-ray revealed fluid in the pleural space. The likely diagnosis is:",
+    "options": [
+      "Emphysema.",
+      "Hydrothorax.",
+      "Empyema.",
+      "Pneumothorax.",
+      "Bronchial asthma."
+    ],
+    "correct": 2,
+    "explanation": "Pleural fluid in the setting of pneumonia suggests a parapneumonic effusion or empyema."
+  },
+  {
+    "question": "Atypical pneumonia can be caused by all of the following organisms EXCEPT:",
+    "options": [
+      "Legionella pneumonia.",
+      "Moraxella catarrhalis.",
+      "Mycoplasma pneumonia.",
+      "Chlamydia pneumonia."
+    ],
+    "correct": 1,
+    "explanation": "Moraxella catarrhalis causes typical bacterial pneumonia, not atypical pneumonia."
+  },
+  {
+    "question": "Hospital-acquired pneumonia (HAP) is defined as pneumonia occurring:",
+    "options": [
+      "Before 24 hours of hospital admission.",
+      "After 24 hours of hospital admission.",
+      "Before 24–48 hours of hospital admission.",
+      "After 24–48 hours of hospital admission."
+    ],
+    "correct": 3,
+    "explanation": "HAP is defined as pneumonia occurring ≥48 hours after hospital admission."
+  },
+  {
+    "question": "In lobar pneumonia, which is NOT true?",
+    "options": [
+      "Trachea deviated to the opposite side.",
+      "Woody dullness on percussion.",
+      "Tubular breath sound.",
+      "Presence of whispering pectoriloquy.",
+      "Tachypnea."
+    ],
+    "correct": 0,
+    "explanation": "In lobar pneumonia the trachea remains central or may be slightly drawn toward the affected side; deviation to the opposite side suggests tension pneumothorax or large pleural effusion."
+  },
+  {
+    "question": "General examination of a case of pneumonia may reveal all of the following signs EXCEPT:",
+    "options": [
+      "Working alae nasi.",
+      "Fever 39°C.",
+      "Bradycardia.",
+      "Tachypnea."
+    ],
+    "correct": 2,
+    "explanation": "Pneumonia causes tachycardia and tachypnea. Relative bradycardia may suggest Legionella or typhoid fever."
+  },
+  {
+    "question": "All the following signs may be found in a case with pneumonia EXCEPT:",
+    "options": [
+      "Diminished respiratory movement on the affected site.",
+      "Decreased tactile vocal fremitus on the affected side.",
+      "Dullness on the affected side.",
+      "Bronchial breathing."
+    ],
+    "correct": 1,
+    "explanation": "Consolidation increases (not decreases) tactile vocal fremitus because sound travels better through solid tissue."
+  },
+  {
+    "question": "All of the following are indices of severe pneumonia EXCEPT:",
+    "options": [
+      "Fever 40°C.",
+      "Tachycardia 125 beats/min.",
+      "Respiratory rate <20 breaths/min.",
+      "Hypotension with diastolic BP <60 mmHg."
+    ],
+    "correct": 2,
+    "explanation": "Severe pneumonia is marked by tachypnea (RR >30), not a normal or low respiratory rate."
+  },
+  {
+    "question": "In a patient with consolidation, which one of the following is increased commonly?",
+    "options": [
+      "Myotactic irritability.",
+      "Vocal fremitus.",
+      "Rhonchial fremitus.",
+      "Palpable coarse crepitations."
+    ],
+    "correct": 1,
+    "explanation": "Consolidation increases vocal (tactile) fremitus because solid lung transmits vibrations more efficiently."
+  },
+  {
+    "question": "Drug-induced eosinophilic pneumonia is caused by all EXCEPT:",
+    "options": [
+      "Penicillins.",
+      "Nitrofurantoin.",
+      "Chlorpropamide.",
+      "Hydrochlorothiazides."
+    ],
+    "correct": 3,
+    "explanation": "Hydrochlorothiazide is not a typical cause of eosinophilic pneumonia. Nitrofurantoin, penicillins, and sulfonamides are recognized causes."
+  },
+  {
+    "question": "Which is not an example of hypersensitivity pneumonitis?",
+    "options": [
+      "Bagassosis.",
+      "Byssinosis.",
+      "Farmer's lung.",
+      "Maple bark disease."
+    ],
+    "correct": 1,
+    "explanation": "Byssinosis is an organic dust disease (cotton worker's lung) caused by endotoxin exposure, not hypersensitivity pneumonitis."
+  },
+  {
+    "question": "In lobar pneumonia, which of the following is true in arterial blood?",
+    "options": [
+      "Decreased PO2 and increased PCO2.",
+      "Decreased PO2 and decreased PCO2.",
+      "Decreased PO2 and normal PCO2.",
+      "Normal PO2 and increased PCO2."
+    ],
+    "correct": 1,
+    "explanation": "Lobar pneumonia causes hypoxemia from shunting; hyperventilation typically produces hypocapnia (decreased PCO2)."
+  },
+  {
+    "question": "Viral pneumonia may have:",
+    "options": [
+      "Signs of consolidation in chest.",
+      "Splenomegaly.",
+      "High WBC count.",
+      "Foul-smelling expectoration."
+    ],
+    "correct": 1,
+    "explanation": "Viral infections such as EBV and CMV can cause splenomegaly. Bacterial pneumonia causes high WBC and purulent sputum."
+  },
+  {
+    "question": "All are commonly seen in Legionella pneumophila-induced pneumonia EXCEPT:",
+    "options": [
+      "Cavitation.",
+      "Hyponatraemia.",
+      "Proteinuria.",
+      "Confusion."
+    ],
+    "correct": 0,
+    "explanation": "Cavitation is uncommon in Legionella pneumonia. Hyponatremia, proteinuria, and confusion are characteristic extrapulmonary features."
+  },
+  {
+    "question": "Which of the following is false regarding indications of hospitalization in pneumonia?",
+    "options": [
+      "Respiratory rate >30/min with dyspnoea.",
+      "Temperature >103°F.",
+      "Pulse rate >140 beats/min.",
+      "Signs of meningism."
+    ],
+    "correct": 1,
+    "explanation": "High fever alone is not an indication for hospitalization; the other options are markers of severe pneumonia requiring admission."
+  },
+  {
+    "question": "Characteristics of Mycoplasma pneumoniae pneumonia are all EXCEPT:",
+    "options": [
+      "Headache.",
+      "Non-productive cough.",
+      "Pleural effusion.",
+      "Bullous myringitis."
+    ],
+    "correct": 2,
+    "explanation": "Pleural effusion is uncommon in Mycoplasma pneumonia. Bullous myringitis is a characteristic feature."
+  },
+  {
+    "question": "Which of the following does NOT cause atypical pneumonia?",
+    "options": [
+      "Legionella spp.",
+      "Mycoplasma.",
+      "Klebsiella.",
+      "Chlamydia spp.",
+      "Coxiella burnetii."
+    ],
+    "correct": 2,
+    "explanation": "Klebsiella pneumoniae causes typical lobar bacterial pneumonia, not atypical pneumonia."
+  },
+  {
+    "question": "Which of the following is NOT a clinical index of severe pneumonia?",
+    "options": [
+      "Tachypnea >30 breaths/min.",
+      "Bradycardia.",
+      "Hypotension (systolic <90 mmHg, diastolic <60 mmHg).",
+      "Fever >40°C."
+    ],
+    "correct": 1,
+    "explanation": "Bradycardia is not a feature of severe pneumonia; tachycardia and tachypnea are expected."
+  },
+  {
+    "question": "An 80-year-old man presents with bilateral cavitating bronchopneumonia after an episode of influenza. What is the most likely causative organism?",
+    "options": [
+      "Staphylococcus aureus.",
+      "Chlamydia psittaci.",
+      "Pneumocystis jiroveci.",
+      "Mycoplasma pneumoniae.",
+      "Legionella pneumophila."
+    ],
+    "correct": 0,
+    "explanation": "Post-influenza cavitating bronchopneumonia is classically caused by Staphylococcus aureus."
+  },
+  {
+    "question": "A 24-year-old student presents with severe headache, fever, dry cough and arthralgia. He has recently bought several parrots. What is the most likely causative organism?",
+    "options": [
+      "Staphylococcus aureus.",
+      "Chlamydia psittaci.",
+      "Pneumocystis jiroveci.",
+      "Mycoplasma pneumoniae.",
+      "Legionella pneumophila."
+    ],
+    "correct": 1,
+    "explanation": "Psittacosis (ornithosis) is caused by Chlamydia psittaci and is acquired from parrots and other birds."
+  },
+  {
+    "question": "A 40-year-old man with HIV presents with fever, dry cough, weight loss and exertional dyspnoea. What is the most likely causative organism?",
+    "options": [
+      "Staphylococcus aureus.",
+      "Chlamydia psittaci.",
+      "Pneumocystis jiroveci.",
+      "Mycoplasma pneumoniae.",
+      "Legionella pneumophila."
+    ],
+    "correct": 2,
+    "explanation": "Pneumocystis jiroveci pneumonia (PCP) is the classic opportunistic infection in HIV/AIDS, presenting with subacute dry cough and dyspnoea."
+  },
+  {
+    "question": "A 75-year-old man presents with headache, dry cough, anemia and a skin rash. Blood tests detect cold agglutinins. What is the most likely causative organism?",
+    "options": [
+      "Staphylococcus aureus.",
+      "Chlamydia psittaci.",
+      "Pneumocystis jiroveci.",
+      "Mycoplasma pneumoniae.",
+      "Legionella pneumophila."
+    ],
+    "correct": 3,
+    "explanation": "Mycoplasma pneumoniae infection is associated with cold agglutinins, hemolytic anemia, and skin rashes."
+  },
+  {
+    "question": "A 25-year-old air conditioning technician, who suffered flu-like symptoms a week ago, has developed a dry cough. Chest radiograph shows multilobar shadowing. Blood tests show hyponatremia and lymphopenia, and urinalysis reveals proteinuria. What is the most likely causative organism?",
+    "options": [
+      "Staphylococcus aureus.",
+      "Chlamydia psittaci.",
+      "Pneumocystis jiroveci.",
+      "Mycoplasma pneumoniae.",
+      "Legionella pneumophila."
+    ],
+    "correct": 4,
+    "explanation": "Legionella pneumophila is associated with exposure to air conditioning systems, hyponatremia, lymphopenia, and proteinuria."
+  },
+  {
+    "question": "Standard therapy for community-acquired pneumococcal pneumonia not requiring hospital admission is:",
+    "options": [
+      "Intravenous ceftazidime.",
+      "Oral amoxicillin.",
+      "Intravenous cefuroxime and erythromycin.",
+      "Intravenous co-trimoxazole.",
+      "Oral tetracycline."
+    ],
+    "correct": 1,
+    "explanation": "Uncomplicated community-acquired pneumococcal pneumonia in ambulatory patients is treated with oral amoxicillin."
+  },
+  {
+    "question": "A 35-year-old patient on the ward admitted to hospital 10 days ago presents with severe pneumonia. What is the most appropriate initial antibiotic?",
+    "options": [
+      "Intravenous ceftazidime.",
+      "Oral amoxicillin.",
+      "Intravenous cefuroxime and erythromycin.",
+      "Intravenous co-trimoxazole.",
+      "Oral tetracycline."
+    ],
+    "correct": 0,
+    "explanation": "Late-onset hospital-acquired pneumonia is often caused by gram-negative bacilli including Pseudomonas; ceftazidime provides antipseudomonal coverage."
+  },
+  {
+    "question": "A 40-year-old builder presents with severe community-acquired pneumonia. Atypical pathogens are suspected. What is the most appropriate therapy?",
+    "options": [
+      "Intravenous ceftazidime.",
+      "Oral amoxicillin.",
+      "Intravenous cefuroxime and erythromycin.",
+      "Intravenous co-trimoxazole.",
+      "Oral tetracycline."
+    ],
+    "correct": 2,
+    "explanation": "Severe community-acquired pneumonia with atypical coverage requires a beta-lactam (cefuroxime) plus a macrolide (erythromycin)."
+  },
+  {
+    "question": "A 22-year-old HIV-positive individual on antiretroviral therapy presents with Pneumocystis jiroveci pneumonia. What is the treatment of choice?",
+    "options": [
+      "Intravenous ceftazidime.",
+      "Oral amoxicillin.",
+      "Intravenous cefuroxime and erythromycin.",
+      "Intravenous co-trimoxazole.",
+      "Oral tetracycline."
+    ],
+    "correct": 3,
+    "explanation": "High-dose intravenous co-trimoxazole (trimethoprim-sulfamethoxazole) is the first-line treatment for Pneumocystis jiroveci pneumonia."
+  },
+  {
+    "question": "A 19-year-old man contracts pneumonia with symptoms of headache, fever and dry cough. Serology shows evidence of chlamydia infection. What is the most appropriate therapy?",
+    "options": [
+      "Intravenous ceftazidime.",
+      "Oral amoxicillin.",
+      "Intravenous cefuroxime and erythromycin.",
+      "Intravenous co-trimoxazole.",
+      "Oral tetracycline."
+    ],
+    "correct": 4,
+    "explanation": "Chlamydia pneumonia is treated with tetracyclines (e.g., doxycycline) or macrolides."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

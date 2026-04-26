@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>S2-Interstitial Lung Disease</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof98utx4bjv2",
+  "title": "S2-Interstitial Lung Disease",
+  "description": "Questions on every Chest lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Interstitial pulmonary fibrosis is associated with the following EXCEPT:",
+    "options": [
+      "Sarcoidosis.",
+      "Asbestosis.",
+      "Carcinoid tumor.",
+      "Radiation exposure."
+    ],
+    "correct": 2,
+    "explanation": "Carcinoid tumor is not associated with pulmonary fibrosis. Sarcoidosis, asbestosis, and radiation exposure are recognized causes of interstitial fibrosis."
+  },
+  {
+    "question": "In interstitial lung diseases, lung function tests most often show:",
+    "options": [
+      "Reduced carbon monoxide diffusing capacity (DLCO).",
+      "Increased total lung capacity (TLC).",
+      "Airflow obstruction.",
+      "Elevated arterial PCO2."
+    ],
+    "correct": 0,
+    "explanation": "ILD causes impaired gas transfer with reduced DLCO. TLC is reduced (restrictive pattern), and PCO2 is usually normal or low until end-stage."
+  },
+  {
+    "question": "A 22-year-old woman presents with worsening cough and shortness of breath over 6 weeks. Her serum calcium is 12.5 mg/dL and chest X-ray reveals bilateral hilar lymphadenopathy. She has erythema nodosum on her legs. What is the most likely diagnosis?",
+    "options": [
+      "Sarcoidosis.",
+      "Mycoplasma pneumonia.",
+      "Acute lymphoblastic leukemia.",
+      "Squamous cell carcinoma of the lung."
+    ],
+    "correct": 0,
+    "explanation": "Bilateral hilar lymphadenopathy, hypercalcemia, and erythema nodosum in a young woman constitute Löfgren syndrome (acute sarcoidosis)."
+  },
+  {
+    "question": "A 22-year-old woman presents with fatigue, arthralgias, and a dry cough for 6 weeks. She has bilateral pretibial tender erythematous raised nodules. Which is the best next step?",
+    "options": [
+      "Chest radiograph.",
+      "High-resolution CT.",
+      "Empiric treatment for postnasal drip.",
+      "Antinuclear antibody.",
+      "Initiation of antituberculosis therapy."
+    ],
+    "correct": 0,
+    "explanation": "Erythema nodosum with systemic symptoms suggests sarcoidosis. Chest radiograph is the appropriate first-line investigation to assess for hilar lymphadenopathy."
+  },
+  {
+    "question": "A 50-year-old man with no past medical history presents with a four-month history of dry cough and shortness of breath on exertion. Blood tests reveal high ESR and serum ACE. Chest X-ray reveals bilateral hilar lymphadenopathy. What is the most likely diagnosis?",
+    "options": [
+      "Idiopathic pulmonary fibrosis.",
+      "Bronchogenic carcinoma.",
+      "Sarcoidosis.",
+      "Bronchial asthma."
+    ],
+    "correct": 2,
+    "explanation": "Elevated serum ACE and bilateral hilar lymphadenopathy are classic features of sarcoidosis."
+  },
+  {
+    "question": "A 69-year-old man presents with dyspnea, cyanosis and finger clubbing. His chest X-ray shows bilateral lower zone reticulonodular shadowing. What is the most likely diagnosis?",
+    "options": [
+      "Bronchiectasis.",
+      "Pulmonary fibrosis.",
+      "Bronchitis.",
+      "COPD."
+    ],
+    "correct": 1,
+    "explanation": "Basal reticulonodular shadowing with clubbing is characteristic of fibrotic interstitial lung disease."
+  },
+  {
+    "question": "Which of the following drugs is most likely to cause pulmonary fibrosis?",
+    "options": [
+      "Amlodipine.",
+      "Aspirin.",
+      "Amiodarone.",
+      "Alendronate."
+    ],
+    "correct": 2,
+    "explanation": "Amiodarone is a well-recognized cause of drug-induced pulmonary fibrosis and pneumonitis."
+  },
+  {
+    "question": "A 40-year-old woman complains of shortness of breath climbing stairs, progressive over four months. Chest X-rays show bilateral hilar adenopathy with mild diffuse infiltrate. What is the most likely diagnosis?",
+    "options": [
+      "Interstitial pulmonary fibrosis (IPF).",
+      "Sarcoidosis.",
+      "Wegener's granulomatosis.",
+      "Asbestosis."
+    ],
+    "correct": 1,
+    "explanation": "Bilateral hilar adenopathy in a younger woman with diffuse infiltrates strongly suggests sarcoidosis."
+  },
+  {
+    "question": "Which of the following is not correct regarding sarcoidosis?",
+    "options": [
+      "Often cavitates.",
+      "Spontaneous remission is usual.",
+      "Bilateral hilar lymphadenopathy.",
+      "Tuberculin test is negative."
+    ],
+    "correct": 0,
+    "explanation": "Sarcoidosis rarely cavitates. Spontaneous remission is common, bilateral hilar lymphadenopathy is characteristic, and tuberculin skin test is typically negative (anergy)."
+  },
+  {
+    "question": "Crepitations not influenced by coughing are found in:",
+    "options": [
+      "Acute pulmonary edema.",
+      "Pneumonia.",
+      "Fibrosing alveolitis.",
+      "Lung abscess."
+    ],
+    "correct": 2,
+    "explanation": "Fine end-inspiratory crackles (Velcro rales) in fibrosing alveolitis are unchanged by coughing, unlike the crackles of pneumonia or edema."
+  },
+  {
+    "question": "Which of the following is the most common malignancy associated with asbestos exposure?",
+    "options": [
+      "Pleural mesothelioma.",
+      "Non-Hodgkin lymphoma.",
+      "Bronchogenic carcinoma.",
+      "Fibrosarcoma."
+    ],
+    "correct": 2,
+    "explanation": "Although mesothelioma is highly specific for asbestos, bronchogenic carcinoma is the most common malignancy associated with asbestos exposure."
+  },
+  {
+    "question": "Pink, frothy, and profuse sputum is seen in:",
+    "options": [
+      "Pneumoconiosis.",
+      "Lobar pneumonia.",
+      "Acute pulmonary edema.",
+      "Aspergilloma."
+    ],
+    "correct": 2,
+    "explanation": "Pink frothy sputum is the classic presentation of acute cardiogenic pulmonary edema."
+  },
+  {
+    "question": "A patient with hemoptysis and having a depressed bridge of the nose is diagnostic of:",
+    "options": [
+      "Rickets.",
+      "Wegener's granulomatosis.",
+      "Congenital syphilis.",
+      "Rhinocerebral mucormycosis."
+    ],
+    "correct": 1,
+    "explanation": "Saddle nose deformity (depressed nasal bridge) with hemoptysis suggests granulomatosis with polyangiitis (Wegener's)."
+  },
+  {
+    "question": "Caplan's syndrome is coal worker's pneumoconiosis associated with:",
+    "options": [
+      "SLE.",
+      "Scleroderma.",
+      "Rheumatoid arthritis.",
+      "Ankylosing spondylitis."
+    ],
+    "correct": 2,
+    "explanation": "Caplan syndrome describes rheumatoid arthritis complicated by pneumoconiosis with large lung nodules."
+  },
+  {
+    "question": "Which is not a bedside feature of fibrosing alveolitis?",
+    "options": [
+      "Orthopnea.",
+      "Anemia.",
+      "Clubbing.",
+      "Crepitations."
+    ],
+    "correct": 1,
+    "explanation": "While anemia can occur in chronic disease, it is not a characteristic bedside feature of fibrosing alveolitis. Clubbing and basal crepitations are typical."
+  },
+  {
+    "question": "Acute lung injury (ARDS) should be differentiated from:",
+    "options": [
+      "Acute left ventricular failure.",
+      "Congestive cardiac failure.",
+      "Acute severe asthma.",
+      "Spontaneous pneumothorax."
+    ],
+    "correct": 0,
+    "explanation": "ARDS and acute LVF both present with bilateral infiltrates and hypoxemia; pulmonary capillary wedge pressure measurement distinguishes them."
+  },
+  {
+    "question": "The classic dermatological manifestation of chronic sarcoidosis is:",
+    "options": [
+      "Erythema nodosum.",
+      "Maculopapular rash.",
+      "Lupus pernio.",
+      "Subcutaneous nodules."
+    ],
+    "correct": 2,
+    "explanation": "Lupus pernio (violaceous indurated plaques on the nose and cheeks) is the characteristic chronic cutaneous manifestation of sarcoidosis."
+  },
+  {
+    "question": "Pulmonary fibrosis is not produced by:",
+    "options": [
+      "Tuberculosis.",
+      "Cor pulmonale.",
+      "Progressive systemic sclerosis.",
+      "Rheumatoid arthritis."
+    ],
+    "correct": 1,
+    "explanation": "Cor pulmonale is a complication of chronic lung disease and pulmonary hypertension, not a cause of pulmonary fibrosis."
+  },
+  {
+    "question": "The cranial nerve most commonly affected in sarcoidosis is:",
+    "options": [
+      "VII (facial).",
+      "II (optic).",
+      "V (trigeminal).",
+      "X (vagus)."
+    ],
+    "correct": 0,
+    "explanation": "Facial nerve palsy is the most common cranial neuropathy in neurosarcoidosis."
+  },
+  {
+    "question": "The commonest cause of death in sarcoidosis is:",
+    "options": [
+      "Cor pulmonale.",
+      "Pneumonia.",
+      "Nephrocalcinosis.",
+      "Neurosarcoidosis."
+    ],
+    "correct": 0,
+    "explanation": "Advanced pulmonary fibrosis leading to cor pulmonale and respiratory failure is the most common cause of death in sarcoidosis."
+  },
+  {
+    "question": "Which of the following is NOT responsible for development of interstitial lung disease?",
+    "options": [
+      "Carbamazepine.",
+      "Methotrexate.",
+      "Amiodarone.",
+      "Carbimazole."
+    ],
+    "correct": 3,
+    "explanation": "Carbimazole is not associated with ILD. Carbamazepine, methotrexate, and amiodarone are all recognized causes of drug-induced interstitial lung disease."
+  },
+  {
+    "question": "Which one of the following disorders characteristically produces type 1 respiratory failure?",
+    "options": [
+      "Kyphoscoliosis.",
+      "Guillain-Barre polyneuropathy.",
+      "ARDS.",
+      "Inhaled foreign body in a major airway."
+    ],
+    "correct": 2,
+    "explanation": "ARDS causes hypoxemic (Type I) respiratory failure with normal or low PCO2 due to V/Q mismatch and shunting."
+  },
+  {
+    "question": "In cryptogenic fibrosing alveolitis:",
+    "options": [
+      "Coarse crackles are heard on auscultation.",
+      "Spirometry shows a reduced FVC.",
+      "There is a good prognosis.",
+      "Clubbing is not a clinical feature."
+    ],
+    "correct": 1,
+    "explanation": "CFA causes a restrictive pattern with reduced FVC and TLC. Fine (not coarse) crackles are heard. Clubbing is common, and prognosis is poor."
+  },
+  {
+    "question": "All the following are restrictive lung diseases EXCEPT:",
+    "options": [
+      "Sarcoidosis.",
+      "Cystic fibrosis.",
+      "Myasthenia gravis.",
+      "Obesity."
+    ],
+    "correct": 1,
+    "explanation": "Cystic fibrosis is an obstructive airway disease. Sarcoidosis, myasthenia gravis (respiratory muscle weakness), and obesity cause restrictive patterns."
+  },
+  {
+    "question": "Therapy in idiopathic pulmonary fibrosis includes all EXCEPT:",
+    "options": [
+      "Colchicine.",
+      "Cyclophosphamide.",
+      "Interferon-gamma.",
+      "Prednisolone."
+    ],
+    "correct": 2,
+    "explanation": "Interferon-gamma has not shown efficacy in IPF. Immunosuppressants (prednisolone, cyclophosphamide) and colchicine have been used, though antifibrotics (pirfenidone, nintedanib) are now standard."
+  },
+  {
+    "question": "Which is not a recognized feature of fibrosing alveolitis?",
+    "options": [
+      "Clubbing.",
+      "Crepitations.",
+      "Recurrent hemoptysis.",
+      "Circulating rheumatoid factor."
+    ],
+    "correct": 2,
+    "explanation": "Recurrent hemoptysis is not typical of fibrosing alveolitis. Clubbing, basal crepitations, and positive rheumatoid factor (in associated connective tissue disease) are recognized features."
+  },
+  {
+    "question": "A patient with rheumatoid arthritis complains of progressive breathlessness. Which is the most likely cause?",
+    "options": [
+      "Asthma.",
+      "Fibrosing alveolitis.",
+      "Pulmonary nodules.",
+      "Pulmonary embolism."
+    ],
+    "correct": 1,
+    "explanation": "Rheumatoid arthritis commonly causes interstitial lung disease (fibrosing alveolitis), which presents with progressive dyspnea."
+  },
+  {
+    "question": "Melanoptysis (black sputum) is seen in:",
+    "options": [
+      "Coal worker's pneumoconiosis.",
+      "Goodpasture's syndrome.",
+      "Ochronosis.",
+      "Maple syrup urine disease."
+    ],
+    "correct": 0,
+    "explanation": "Black sputum (melanoptysis) results from inhalation of coal dust in coal worker's pneumoconiosis."
+  },
+  {
+    "question": "Bilateral hilar lymphadenopathy is seen in all EXCEPT:",
+    "options": [
+      "Sarcoidosis.",
+      "Bronchogenic carcinoma.",
+      "Pneumoconiosis.",
+      "Lymphoma."
+    ],
+    "correct": 2,
+    "explanation": "While sarcoidosis, bronchogenic carcinoma, and lymphoma cause bilateral hilar lymphadenopathy, simple pneumoconiosis does not typically produce this pattern (silicosis can cause eggshell calcification of nodes)."
+  },
+  {
+    "question": "Which one of the following is false in silicosis?",
+    "options": [
+      "Predominant involvement of lower lobes.",
+      "Develops into progressive massive fibrosis.",
+      "Predisposes to TB.",
+      "Hilar nodes may show eggshell calcification."
+    ],
+    "correct": 0,
+    "explanation": "Silicosis predominantly affects the upper lobes, not the lower lobes."
+  },
+  {
+    "question": "Eggshell calcification in chest X-ray is characteristic of:",
+    "options": [
+      "Tuberculosis.",
+      "Silicosis.",
+      "Asbestosis.",
+      "Histoplasmosis."
+    ],
+    "correct": 1,
+    "explanation": "Eggshell calcification of hilar lymph nodes is a classic feature of silicosis."
+  },
+  {
+    "question": "Serum angiotensin converting enzyme level is increased in all EXCEPT:",
+    "options": [
+      "Sarcoidosis.",
+      "Primary biliary cirrhosis.",
+      "Silicosis.",
+      "Asbestosis."
+    ],
+    "correct": 1,
+    "explanation": "Serum ACE is elevated in granulomatous diseases such as sarcoidosis and silicosis. It is not characteristically elevated in primary biliary cirrhosis or asbestosis."
+  },
+  {
+    "question": "Asbestosis may be complicated by all EXCEPT:",
+    "options": [
+      "COPD.",
+      "Mesothelioma.",
+      "Bronchogenic carcinoma.",
+      "Pulmonary fibrosis."
+    ],
+    "correct": 0,
+    "explanation": "Asbestosis causes pulmonary fibrosis, mesothelioma, and bronchogenic carcinoma. COPD is not a direct complication of asbestos exposure."
+  },
+  {
+    "question": "Which is not associated with interstitial lung disease?",
+    "options": [
+      "Graft versus host disease.",
+      "Scleroderma.",
+      "Bronchiectasis.",
+      "Idiopathic pulmonary hemosiderosis."
+    ],
+    "correct": 2,
+    "explanation": "Bronchiectasis is an obstructive/supurative airway disease, not an interstitial lung disease."
+  },
+  {
+    "question": "Chronic silicosis is related to an increased risk of which of the following?",
+    "options": [
+      "Infection with invasive aspergillus.",
+      "Infection with TB.",
+      "Lung cancer.",
+      "Rheumatoid arthritis.",
+      "All of the above."
+    ],
+    "correct": 4,
+    "explanation": "Silicosis increases the risk of TB, lung cancer, rheumatoid arthritis (Caplan syndrome), and fungal infections."
+  },
+  {
+    "question": "Typical features of sarcoidosis include all EXCEPT:",
+    "options": [
+      "Hilar lymphadenopathy.",
+      "Cranial neuropathy.",
+      "Conjunctivitis.",
+      "Erosive polyarthritis.",
+      "Swollen parotid glands."
+    ],
+    "correct": 3,
+    "explanation": "Sarcoid arthritis is typically non-erosive (Löfgren syndrome). Erosive polyarthritis suggests rheumatoid arthritis."
+  },
+  {
+    "question": "Interstitial pulmonary fibrosis is associated with all of the following EXCEPT:",
+    "options": [
+      "Sarcoidosis.",
+      "Asbestosis.",
+      "Carcinoid syndrome.",
+      "Radiation exposure."
+    ],
+    "correct": 2,
+    "explanation": "Carcinoid syndrome is not associated with pulmonary fibrosis."
+  },
+  {
+    "question": "A 40-year-old male who has been working in a granite factory for 20 years presents with cough and upper lobe infiltrate. What is the most likely diagnosis?",
+    "options": [
+      "Asbestosis.",
+      "Silicosis.",
+      "Idiopathic pulmonary fibrosis.",
+      "Tuberculosis."
+    ],
+    "correct": 1,
+    "explanation": "Granite exposure causes silicosis, which characteristically produces upper lobe infiltrates and nodules."
+  },
+  {
+    "question": "Which of the following diseases is found in insulation workers?",
+    "options": [
+      "Asbestosis.",
+      "Silicosis.",
+      "Sarcoidosis.",
+      "None of the above."
+    ],
+    "correct": 0,
+    "explanation": "Insulation workers are exposed to asbestos, causing asbestosis, mesothelioma, and lung cancer."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

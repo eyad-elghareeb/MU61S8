@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L6-Infective Endocarditis</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof8yyxhfpsrs",
+  "title": "L6-Infective Endocarditis",
+  "description": "Questions on every Cardio lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "One of the following signs is consistent with major Dukes criteria of infective endocarditis:",
+    "options": [
+      "Osler nodes.",
+      "Fleeting arthritis.",
+      "Negative blood culture.",
+      "Freely mobile mass attached to cardiac valve.",
+      "Roth spot"
+    ],
+    "correct": 3,
+    "explanation": "A freely mobile mass attached to a cardiac valve (vegetation) on echocardiography is a MAJOR Duke criterion. Osler's nodes, Roth spots, and fleeting arthritis are MINOR criteria (peripheral stigmata/immunologic phenomena). Negative blood culture actually counts against the diagnosis."
+  },
+  {
+    "question": "The following is a sign of infective endocarditis:",
+    "options": [
+      "Huntingdon's chorea.",
+      "Jaundice.",
+      "Osler's nodes.",
+      "Spider navel.",
+      "Erythema marginatum."
+    ],
+    "correct": 2,
+    "explanation": "Osler's nodes are painful, tender nodules on the pads of fingers/toes, caused by immune complex deposition or septic microemboli — a classic sign of infective endocarditis. Huntington's chorea is a neurological disease. Jaundice and spider naevi indicate liver disease. Erythema marginatum is a feature of rheumatic fever."
+  },
+  {
+    "question": "Heart valve (s) commonly affected in IV drug abusers is:",
+    "options": [
+      "Pulmonary valve.",
+      "Aortic valve.",
+      "Tricuspid valve.",
+      "Mitral valve.",
+      "Aortic and mitral valve."
+    ],
+    "correct": 2,
+    "explanation": "The tricuspid valve is most commonly affected in intravenous drug abusers because injected bacteria enter directly into the right-sided circulation. Staphylococcus aureus is the most common causative organism. Right-sided endocarditis causes septic pulmonary emboli. Left-sided valves are more commonly affected in non-IVDA patients."
+  },
+  {
+    "question": "The following are recognized features of infective endocarditis except:",
+    "options": [
+      "Erythema marginatum.",
+      "Roth spots.",
+      "Proteinuria.",
+      "Osler's nodes.",
+      "Splenomegaly."
+    ],
+    "correct": 0,
+    "explanation": "Erythema marginatum is a feature of RHEUMATIC FEVER, not infective endocarditis. Recognized features of IE include Roth spots (retinal hemorrhages), proteinuria/haematuria (immune complex glomerulonephritis), Osler's nodes, and splenomegaly."
+  },
+  {
+    "question": "Infective endocarditis is a recognized complication in:",
+    "options": [
+      "Atrial septal defect.",
+      "Ventricular septal defect.",
+      "Dilated cardiomyopathy.",
+      "Pulmonary hypertension."
+    ],
+    "correct": 1,
+    "explanation": "VSD is a recognized risk factor for infective endocarditis because the high-velocity jet of blood through the defect damages the endocardium, predisposing to infection. ASD generally does NOT increase endocarditis risk (low-pressure shunt). DCM and pulmonary hypertension do not directly predispose to endocarditis."
+  },
+  {
+    "question": "One of the following signs is consistent with major Dukes criteria of infective endocarditis:",
+    "options": [
+      "Osler nodes",
+      "Fleeting arthritis",
+      "Negative blood culture",
+      "Freely mobile mass attached to cardiac valve",
+      "Roth spot"
+    ],
+    "correct": 3,
+    "explanation": "An echocardiographic vegetation (freely mobile mass on a cardiac valve) is a major Duke criterion. Osler's nodes, Roth spots, and arthritis are minor criteria. Negative blood culture is not diagnostic of IE."
+  },
+  {
+    "question": "The following is a sign of infective Endocarditis:",
+    "options": [
+      "Huntingdon's chorea",
+      "Jaundice",
+      "Osler's nodes",
+      "Spider naevi",
+      "Erythema Marginatum"
+    ],
+    "correct": 2,
+    "explanation": "Osler's nodes (tender finger/toe pad nodules) are a classic sign of IE. Huntington's chorea is a neurological disease. Jaundice and spider naevi indicate hepatic disease. Erythema marginatum is a feature of rheumatic fever, not IE."
+  },
+  {
+    "question": "The following are recognized features of infective endocarditis Except:",
+    "options": [
+      "Erythema marginatum",
+      "Roth spots",
+      "Proteinuria",
+      "Osler's nodes",
+      "Splenomegaly"
+    ],
+    "correct": 0,
+    "explanation": "Erythema marginatum is a major criterion for rheumatic fever, not IE. IE features include Roth spots, Osler's nodes, Janeway lesions, splenomegaly, proteinuria (immune complex nephritis), and splinter haemorrhages."
+  },
+  {
+    "question": "Among the bacterial endocarditis, the species of causative organisms most prone to develop resistance to penicillin is:",
+    "options": [
+      "Haemolytic streptococcus",
+      "Staph aureus",
+      "Stept viridans",
+      "Pneumococcus",
+      "None of these"
+    ],
+    "correct": 2,
+    "explanation": "Streptococcus viridans (oral streptococci) most frequently develops penicillin resistance or tolerance in the context of endocarditis, requiring combination therapy. While Staph aureus is more virulent, penicillinase production is well-known but aminoglycoside combinations are used. Strep viridans tolerance to penicillin necessitates gentamicin synergy."
+  },
+  {
+    "question": "Verrucous endocarditis (Libman-Sachs) is seem in:",
+    "options": [
+      "S.A.B.E",
+      "S.L.E",
+      "Post myocardial infarction syndrome.",
+      "Acute bacterial endocarditis",
+      "Rheumatic pancarditis"
+    ],
+    "correct": 1,
+    "explanation": "Libman-Sacks endocarditis is a non-infective (sterile) verrucous endocarditis associated with SLE and antiphospholipid syndrome. It affects both sides of the valve leaflets, unlike rheumatic disease (atrial surface) or infective endocarditis (ventricular surface). It is caused by immune complex deposition."
+  },
+  {
+    "question": "Subacute bacterial endocarditis:",
+    "options": [
+      "Rarely if ever occurs without pre-existing valve abnormality.",
+      "90% are caused by non haemolytic Streptococci",
+      "May result in calcified valve leaflets",
+      "May occur on a septal defect or P.D.A",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All of the above are correct for SABE: it almost always requires a pre-existing valve/structural abnormality; non-haemolytic Streptococci (Strep viridans) cause ~70-80%; vegetations may heal with calcification; it can affect septal defects and PDA. All statements are true."
+  },
+  {
+    "question": "Mycotic aneurysm of the aorta may be associated with:",
+    "options": [
+      "Bacterial endocarditis",
+      "Systemic moniliasis",
+      "Chest trauma",
+      "None of these",
+      "All of these"
+    ],
+    "correct": 0,
+    "explanation": "Mycotic aneurysm of the aorta is most commonly caused by bacterial endocarditis, where septic emboli lodge in the vasa vasorum of the aortic wall, causing weakening and aneurysm formation. Systemic moniliasis (candida) and chest trauma are less common causes. Bacterial endocarditis is the primary association."
+  },
+  {
+    "question": "A 28-year-old man presents to the ER with fever, chills, and malaise for the past 3 days. He also complains of nausea, headaches, and anorexia. The patient admits occasional IV drug use. Examination of his palms and soles reveals painless macules; on auscultation, a loud holosystolic murmur is noted. Which of the following is the most appropriate next step in diagnosis?",
+    "options": [
+      "Cardiac catheterization",
+      "Chest CT scan with contrast",
+      "ECG",
+      "Echocardiogram",
+      "Test for syphilis"
+    ],
+    "correct": 3,
+    "explanation": "This IVDA patient with fever, painless macules (Janeway lesions — evidence of IE), and a new murmur has probable infective endocarditis. Echocardiography (preferably transoesophageal) is the most important next step to confirm vegetations, assess valve damage, and guide treatment. Blood cultures should also be obtained. Catheterisation is invasive and not first-line."
+  },
+  {
+    "question": "A 40-year-old female with mitral stenosis consults for advice regarding operative procedures. In which of the following circumstances would antibiotic prophylaxis of infective endocarditis be required?",
+    "options": [
+      "Caesarian section",
+      "Cardiac catheterization",
+      "Dental scaling",
+      "Removal of a lipoma",
+      "Termination of pregnancy"
+    ],
+    "correct": 2,
+    "explanation": "Dental scaling (and other dental procedures breaching the gingival mucosa) require antibiotic prophylaxis in high-risk patients with structural heart disease such as MS. Caesarean section, cardiac catheterisation (sterile procedure), lipoma removal (clean surgery), and termination of pregnancy are not standard indications for IE prophylaxis."
+  },
+  {
+    "question": "A 50-year-old female presents with dyspnea, a new murmur and fever and positive blood culture. Antibiotics were started according to culture and sensitivity. Which of the following investigations is used to monitor the treatment?",
+    "options": [
+      "Blood culture",
+      "C Reactive Protein",
+      "Echocardiography",
+      "Erythrocyte Sedimentation Rate",
+      "Serum bactericidal titers of antibiotics"
+    ],
+    "correct": 1,
+    "explanation": "C-Reactive Protein (CRP) is the best marker to monitor response to antibiotic treatment in IE. It falls with successful treatment. Blood cultures are done to diagnose, not monitor. Echocardiography monitors structural changes but not treatment response directly. ESR is slow to change. Serum bactericidal titres are used in some centres but CRP is most practical."
+  },
+  {
+    "question": "A 50-year-old female presents with dyspnea, a new murmur and fever and positive blood culture. Which of the following is associated with the best prognosis?",
+    "options": [
+      "Aortic valve infection",
+      "Culture negative endocarditis",
+      "Low complement levels",
+      "Staphylococcus aureus infection",
+      "Streptococcus viridians infection"
+    ],
+    "correct": 4,
+    "explanation": "Streptococcus viridans (oral streptococci) infection carries the best prognosis in IE with cure rates >90%. Staphylococcus aureus endocarditis is the most virulent and carries high mortality. Aortic valve involvement has worse prognosis than mitral. Culture-negative IE is difficult to treat. Low complement levels suggest severe immune complex disease."
+  },
+  {
+    "question": "A 52-year-old male presents with a 3 week history of fever, deteriorating breathlessness and fatigue. Two years ago he underwent prosthetic valve replacement for a calcified bicuspid aortic valve. On examination he has a temperature of 37.7°C and four episodes of infarction. Vegetations are demonstrated through trans-esophageal echocardiography. Which of the following is the most likely causative organism?",
+    "options": [
+      "Candida spp.",
+      "Enterococcus",
+      "Staphylococcus aureus",
+      "Staphylococcus epidermidis",
+      "Streptococcus viridians"
+    ],
+    "correct": 4,
+    "explanation": "According to the source, the answer is E (Streptococcus viridians). For late prosthetic valve endocarditis (>2 months post-surgery), Strep viridans is the most common causative organism (same as native valve IE). For early prosthetic valve IE (<2 months), Staph epidermidis is most common. This presentation at 2 years post-surgery is late PVE."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

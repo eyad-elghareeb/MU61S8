@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L1-IHD</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof8vfv7z0xjj",
+  "title": "L1-IHD",
+  "description": "Questions on every Cardio lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "According to recent guidelines, the best management of acute myocardial infarction is:",
+    "options": [
+      "Tissue Plasminogen Activator.",
+      "Streptokinase.",
+      "Primary PCI (percutaneous coronary intervention).",
+      "Glycoprotein lb / Illa inhibitors.",
+      "Low molecular weight heparin"
+    ],
+    "correct": 2,
+    "explanation": "Primary PCI is the current gold standard for STEMI management, achieving superior vessel patency and outcomes compared with fibrinolytics when performed within 90–120 minutes. TPA and streptokinase are thrombolytics used only when PCI is unavailable. GP IIb/IIIa inhibitors are adjuncts, not primary reperfusion. LMWH is anticoagulant support only."
+  },
+  {
+    "question": "Which one of the following is non-modifiable risk factor coronary artery disease?",
+    "options": [
+      "Systemic hypertension.",
+      "Male sex.",
+      "Dislipidemia.",
+      "Diabetes mellitus.",
+      "Smoking."
+    ],
+    "correct": 1,
+    "explanation": "Male sex cannot be changed and is therefore a non-modifiable CAD risk factor. Systemic hypertension, dyslipidemia, diabetes mellitus, and smoking are all modifiable through treatment or lifestyle changes."
+  },
+  {
+    "question": "The most sensitive & specific cardiac biomarker of myocardial necrosis in Acute MI is:",
+    "options": [
+      "D-Dimer.",
+      "LDH.",
+      "Troponin.",
+      "TSH.",
+      "CRP."
+    ],
+    "correct": 2,
+    "explanation": "Troponin (I and T) is the gold-standard biomarker for myocardial necrosis, combining highest sensitivity and specificity. D-dimer detects thromboembolic events. LDH is non-specific. TSH measures thyroid function. CRP is a general inflammatory marker."
+  },
+  {
+    "question": "Which one of the following criteria is consistent with non-ST elevation Myocardial infarction?",
+    "options": [
+      "Thrombolysis is highly recommended.",
+      "Elevated cardiac enzymes.",
+      "ST elevation is characteristic finding in ECG.",
+      "Chest Pain duration is less than 15 minutes.",
+      "Early coronary angiography & stenting is not recommended."
+    ],
+    "correct": 1,
+    "explanation": "Elevated cardiac enzymes (troponin) define NSTEMI by confirming myocardial necrosis. Thrombolysis is NOT indicated in NSTEMI. ST elevation defines STEMI, not NSTEMI. Chest pain <15 min is more typical of stable angina. Early angiography IS recommended in high-risk NSTEMI."
+  },
+  {
+    "question": "Which of the following is a possible early complication of acute Myocardial infarction?",
+    "options": [
+      "Dressler syndrome.",
+      "Cardiogenic shock.",
+      "Post myocardial angina.",
+      "Frozen shoulder.",
+      "Ischemic cardiomyopathy."
+    ],
+    "correct": 1,
+    "explanation": "Cardiogenic shock is an early complication (hours to days), caused by >40% myocardial destruction reducing cardiac output. Dressler syndrome is autoimmune and occurs weeks later. Post-MI angina, frozen shoulder, and ischemic cardiomyopathy are late or chronic complications."
+  },
+  {
+    "question": "The difference between non-ST elevation MI and unstable angina is:",
+    "options": [
+      "Presence of ECG changes.",
+      "Chest pain typical of ischemia.",
+      "Elevation biomarkers of myocardial necrosis.",
+      "General physical signs.",
+      "Local cardiac signs."
+    ],
+    "correct": 2,
+    "explanation": "Elevated cardiac biomarkers (troponin) distinguish NSTEMI from unstable angina by confirming actual myocardial cell death. Both conditions may show ECG changes and ischemic chest pain. Physical signs are similar in both."
+  },
+  {
+    "question": "One of the following is not a complication of acute myocardial infarction:",
+    "options": [
+      "Cardiogenic shock.",
+      "Papillary muscle dysfunction.",
+      "Cardiac rupture.",
+      "Mitral stenosis."
+    ],
+    "correct": 3,
+    "explanation": "Mitral stenosis is NOT a complication of acute MI. MI can cause mitral regurgitation via papillary muscle dysfunction or rupture, but stenosis is typically rheumatic in origin. Cardiogenic shock, papillary muscle dysfunction, and cardiac rupture are well-recognized post-MI complications."
+  },
+  {
+    "question": "According to recent guidelines best management of Acute myocardial infarction is:",
+    "options": [
+      "Tissue plasminogen activator",
+      "Streptokinase",
+      "Primary PCI (percutaneous coronary intervention)",
+      "Glycoprotein Ilb / Illa inhibitors",
+      "Low molecular weight heparin"
+    ],
+    "correct": 2,
+    "explanation": "Primary PCI is the gold standard when available within the recommended time window, achieving lower mortality and reinfarction rates than fibrinolytics. TPA and streptokinase are alternatives when PCI is unavailable. GP IIb/IIIa inhibitors and LMWH are adjuncts."
+  },
+  {
+    "question": "Which one of the following is non-modifiable risk factor of coronary artery disease:",
+    "options": [
+      "Systemic hypertension",
+      "Male sex",
+      "Dislipidemia",
+      "Diabetes mellitus",
+      "Smoking"
+    ],
+    "correct": 1,
+    "explanation": "Male sex is a non-modifiable CAD risk factor. All other options—hypertension, dyslipidemia, diabetes, and smoking—can be treated or eliminated."
+  },
+  {
+    "question": "Which one following criterion is consistent with non-ST elevation myocardial infarction:",
+    "options": [
+      "Thrombolysis is highly recommended",
+      "Elevated cardiac enzyme",
+      "ST elevation is characteristic finding in ECG",
+      "Chest pain duration is less than 15 minutes",
+      "Early coronary angiography & stenting is not recommended"
+    ],
+    "correct": 1,
+    "explanation": "Elevated cardiac enzymes confirm myocardial necrosis and distinguish NSTEMI from unstable angina. Thrombolysis is contraindicated in NSTEMI. ST elevation defines STEMI. Brief pain (<15 min) suggests stable angina. Early angiography is recommended in high-risk NSTEMI."
+  },
+  {
+    "question": "The most sensitive and specific cardiac biomarker of myocardial necrosis acute MI is:",
+    "options": [
+      "CRP",
+      "D-dimer",
+      "LDH",
+      "Troponin",
+      "TSH"
+    ],
+    "correct": 3,
+    "explanation": "Troponin is the gold-standard marker for myocardial necrosis. CRP is a non-specific inflammatory marker. D-dimer is for thromboembolic disease. LDH is a non-specific enzyme. TSH is a thyroid function test."
+  },
+  {
+    "question": "Which one of the following situations is absolute contraindications to fibrinolytic therapy?",
+    "options": [
+      "Thyrotoxicosis",
+      "Diabetes mellitus",
+      "Mild systemic hypertension",
+      "Aortic dissection Minor bleeding"
+    ],
+    "correct": 3,
+    "explanation": "Aortic dissection is an absolute contraindication: fibrinolytics would lyse the tamponading clot, risking catastrophic hemorrhage and aortic rupture. Thyrotoxicosis, diabetes mellitus, and mild hypertension are not absolute contraindications to fibrinolytic therapy."
+  },
+  {
+    "question": "Which of the following Is a possible early complication Myocardial Infarction:",
+    "options": [
+      "Dressler syndrome",
+      "Cardiogenic shock",
+      "Post-myocardial angina",
+      "Frozen shoulder"
+    ],
+    "correct": 1,
+    "explanation": "Cardiogenic shock is an early complication occurring when >40% of myocardium is damaged, causing severe pump failure. Dressler syndrome is autoimmune pericarditis occurring weeks later. Post-MI angina and frozen shoulder are late complications."
+  },
+  {
+    "question": "The difference between Non-ST Elevation MI & Unstable angina:",
+    "options": [
+      "Presence of ECG changes",
+      "Chest pain typical ischemia",
+      "Elevation biomarkers of myocardial necrosis",
+      "General physical signs",
+      "Local cardiac signs"
+    ],
+    "correct": 2,
+    "explanation": "Elevated cardiac biomarkers (troponin) distinguish NSTEMI from unstable angina. In unstable angina, troponin is normal, indicating no myocardial cell death. Both conditions can present with ECG changes and ischemic chest pain."
+  },
+  {
+    "question": "S.G.O.T. rises to a peak after acute myocardial infarction at:",
+    "options": [
+      "1 hour",
+      "6 hours",
+      "12 hours",
+      "24 hours",
+      "48 hours"
+    ],
+    "correct": 3,
+    "explanation": "SGOT (AST) rises within 8–12 hours of MI onset and peaks at approximately 24 hours. It returns to normal in 3–4 days. CK-MB peaks at 12–24h, troponin peaks at 24–48h, and LDH peaks at 3–5 days."
+  },
+  {
+    "question": "The most frequent complications of acute myocardial infarctions:",
+    "options": [
+      "Heart block",
+      "Pulmonary embolism",
+      "Systemic arterial embolism",
+      "Rupture of the papillary muscles",
+      "Pulmonary oedema and shock"
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary oedema and cardiogenic shock are the most frequent and life-threatening complications, resulting from acute LV failure. Heart block, pulmonary embolism, systemic embolism, and papillary muscle rupture are less common."
+  },
+  {
+    "question": "Following acute myocardial infarction, which of the following arrhythmias might occur:",
+    "options": [
+      "Paroxysmal A-F",
+      "Paroxysmal ventricular tachycardia",
+      "Nodal rhythm",
+      "Heart blocks",
+      "Any of the above."
+    ],
+    "correct": 4,
+    "explanation": "All listed arrhythmias can occur post-MI due to disruption of the conduction system, electrolyte disturbances, and ischaemia. These include AF, VT, junctional rhythms, and various heart blocks. VF is the most fatal early arrhythmia."
+  },
+  {
+    "question": "Postinfarction syndrome (Dressler's syndrome) occurs after acute myocardial infarction, presenting as:",
+    "options": [
+      "Ventricular aneurysm",
+      "Pericarditis & pleuritis",
+      "Cardiac tamponade",
+      "Pleural effusion and rash",
+      "Any of the above"
+    ],
+    "correct": 1,
+    "explanation": "Dressler's syndrome is an autoimmune pericarditis and pleuritis occurring 2–10 weeks post-MI, presenting with fever, pleuritic chest pain, and pericardial/pleural effusions. Ventricular aneurysm is a separate mechanical complication. Cardiac tamponade and rash are not typical features."
+  },
+  {
+    "question": "Dressler's syndrome is best treated with:",
+    "options": [
+      "Demerol",
+      "Antibiotics",
+      "Dinitrates",
+      "Corticosteroids",
+      "Digitalis"
+    ],
+    "correct": 3,
+    "explanation": "Dressler's syndrome is an autoimmune inflammatory condition best treated with NSAIDs/aspirin or corticosteroids. Demerol is an analgesic. Antibiotics treat bacterial infections. Dinitrates are for angina. Digitalis is for heart failure/AF."
+  },
+  {
+    "question": "One of the following is not a complication of acute Myocardial infraction:",
+    "options": [
+      "Cardiogenic shock",
+      "Embolism",
+      "Cardiac rupture",
+      "Mitral stenosis",
+      "Papillary muscle dysfunction"
+    ],
+    "correct": 3,
+    "explanation": "Mitral stenosis is NOT a post-MI complication. MI can cause mitral regurgitation but not stenosis, which is typically rheumatic. Cardiogenic shock, systemic/pulmonary embolism, cardiac free-wall rupture, and papillary muscle dysfunction are all recognized MI complications."
+  },
+  {
+    "question": "Precipitating factors in angina pectoris include all but one of the following:",
+    "options": [
+      "Heavy meal",
+      "Cold weather",
+      "Physical activity",
+      "Gall bladder disease",
+      "Emotions"
+    ],
+    "correct": 3,
+    "explanation": "Gall bladder disease does NOT precipitate angina pectoris. Classic precipitants are physical exertion (increases O2 demand), cold weather (vasoconstriction), heavy meals (diverts blood), and emotional stress (sympathetic activation). Gallbladder disease causes referred pain but does not cause myocardial ischaemia."
+  },
+  {
+    "question": "Which ONE of the following abnormalities is MOST likely to be found in a patient diagnosed with syndrome X (metabolic syndrome)?",
+    "options": [
+      "hypouricemia",
+      "hypercholesterolemia",
+      "hematuria",
+      "hypoinsulinemia",
+      "hypertriglyceridemia"
+    ],
+    "correct": 4,
+    "explanation": "Hypertriglyceridemia is a core feature of metabolic syndrome, along with central obesity, hypertension, low HDL, and insulin resistance (hyperinsulinemia, NOT hypoinsulinemia). Hypouricemia and hematuria are not features. Hypercholesterolemia is less specific than hypertriglyceridemia for metabolic syndrome."
+  },
+  {
+    "question": "In a man presenting with acute chest pain and ECG evidence of acute myocardial infarction, which ONE of the following features indicates a poorer prognosis?",
+    "options": [
+      "Atrial fibrillation at onset",
+      "Ventricular fibrillation occurring on day 5 post-infarction",
+      "Left ventricular ejection fraction in range 40-50",
+      "Patient aged 75 or over",
+      "Inferior rather than an anterior infarction"
+    ],
+    "correct": 1,
+    "explanation": "VF occurring on day 5 post-MI (late VF) indicates persistent myocardial electrical instability beyond the acute phase and carries a very poor prognosis. Early VF (within 48h) is relatively benign. Inferior MI generally has better prognosis than anterior MI. Age 75+ and reduced EF also worsen prognosis but late VF is the most ominous choice listed."
+  },
+  {
+    "question": "A 55-year-old! man with hypertension presents with exertional chest pain which occurs after walking uphill and which has persisted unchanged over the previous 3 months. Which One of the following statements is TRUE?",
+    "options": [
+      "Nitrates should improve exercise tolerance by reducing the venous return.",
+      "Cardio selective beta-blockers are likely to be more effective than non-cardio selective beta-blockers in preventing the progression of angina.",
+      "Digoxin therapy should be introduced to improve exercise tolerance.",
+      "Calcium-channel blockers will reduce the disk of sudden death.",
+      "Beta-blockers does not prevent the tachycardia induced by nitrate therapy."
+    ],
+    "correct": 0,
+    "explanation": "Nitrates reduce venous return (preload), decreasing myocardial wall tension and oxygen demand, thereby improving exercise tolerance. Cardioselective and non-cardioselective beta-blockers have similar anti-anginal efficacy. Digoxin has no role in stable angina. Calcium channel blockers do not reduce sudden cardiac death. Beta-blockers DO prevent reflex tachycardia from nitrates."
+  },
+  {
+    "question": "A 52-year-old man with a 30-pack-year history of cigarette smoking presents for follow up. He was told that he had \"high cholesterol\" about 2 years ago, and he has a history of mild hypertension for which he has never been treated. He had a myocardial infarction (MI) 6 months ago. His post-MI courses has been uncomplicated, his exercise stress test was satisfactory, and he has experienced no subsequent chest pain. His medications include aspirin 150 mg/day. Physical examination is normal except for a fourth heart sound. Which of the following is the most appropriate next step in management to prevent significant morbidity and mortality?",
+    "options": [
+      "Add a beta blocker",
+      "Add enalapril",
+      "Add nifedipine",
+      "Increase the aspirin",
+      "Prescribe nitroglycerin"
+    ],
+    "correct": 0,
+    "explanation": "Beta-blockers are strongly indicated post-MI to reduce mortality, reinfarction, and sudden cardiac death. The S4 suggests reduced LV compliance. Enalapril is important if there were LV systolic dysfunction. Nifedipine does not reduce post-MI mortality. Increasing aspirin or adding nitrates does not improve long-term prognosis."
+  },
+  {
+    "question": "A 54-year-old man presents to the ER complaining of epigastric discomfort, which began while he was exercising after dinner about one and half hour earlier. He has not received medical care for several years. On examination, he is moderately obese and in obvious discomfort and seems restless. His BP is 160/100 mmHg, and his examination is otherwise unremarkable. His ECG showed elevated S-T segment in leads II, III and AVF. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Anterolateral myocardial infarction",
+      "Costochondritis",
+      "Gastro esophageal reflux",
+      "Inferior wall myocardial infarction",
+      "Pericarditis"
+    ],
+    "correct": 3,
+    "explanation": "ST elevation in leads II, III, and AVF localises to the inferior wall, supplied by the right coronary artery. Anterolateral MI shows changes in V1–V6 and I, aVL. Costochondritis is musculoskeletal. GERD does not cause ST elevation. Pericarditis causes diffuse saddle-shaped ST elevation in all leads."
+  },
+  {
+    "question": "A 54-year-old man presents to the ER complaining of epigastric discomfort, which began while he was exercising after dinner about one-half hour earlier. He has not received medical care for several years. On examination, he is moderately obese and in obvious discomfort and seems restless. His BP is 160/100 mmHg, and his examination is otherwise unremarkable. His ECG showed elevated S-T segment in leads II, III and AVF. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Arrange for cardiac intensive care bed",
+      "Arrange for urgent echocardiogram",
+      "Begin thrombolytic therapy in the emergency department",
+      "Reassurance and arrange outpatient follow-up",
+      "Trial of antacid immediately"
+    ],
+    "correct": 2,
+    "explanation": "This patient has acute inferior STEMI requiring immediate reperfusion. When primary PCI is unavailable in the required time frame, thrombolytic therapy in the ER is appropriate. Waiting for an echocardiogram or arranging ICU bed without reperfusion wastes critical time. Reassurance and antacids would be dangerous errors."
+  },
+  {
+    "question": "A 55-year-old male smoker with diabetes and hypertension presents with complaints of chest pain on exertion. Exercise stress testing shows reversible ischemia in the anteroseptal portion of the heart after exercising for 4 minutes. Cardiac catheterization reveals an 80% stenosis of the left main coronary artery, which of the following is the most appropriate intervention?",
+    "options": [
+      "Beta blocker",
+      "Coronary artery bypass grafting",
+      "Percutaneous balloon angioplasty",
+      "Re-examination in 6 months",
+      "Sublingual nitroglycerin as needed"
+    ],
+    "correct": 1,
+    "explanation": "Left main coronary artery stenosis ≥50–70% is a Class I indication for CABG due to the large territory at risk. CABG is superior to PCI for left main disease, especially in diabetics. Medical therapy alone (beta-blockers, nitrates) is insufficient for critical left main stenosis. Waiting 6 months would be dangerous."
+  },
+  {
+    "question": "A 55-year-old woman presents to the ER because of chest pain. The pain, which has lasted 3 hours, Is substernal and dull in nature, with no relation to respiration or position. Lightheadedness, and nausea. She has received oxygen, aspirin, a continuous Infusion of nitroglycerin, and a beta blocker. Her Chest x. Ray film Is normal, and her ECG Is remarkable for Inverted T waves In leads Il, IlI, and AVF, which of the following is the most Important next step In management?",
+    "options": [
+      "Cardiac catheterization",
+      "Heparin",
+      "IV thrombolytic therapy",
+      "Nifedipine",
+      "Percutaneous coronary angioplasty"
+    ],
+    "correct": 1,
+    "explanation": "This presentation (T-wave inversions in inferior leads, 3-hour chest pain) is consistent with NSTEMI. After aspirin and antianginals, anticoagulation with heparin is the critical next step. IV thrombolytics are contraindicated in NSTEMI. Catheterization and PCA follow risk stratification but are not the immediate next step."
+  },
+  {
+    "question": "A 48-year-old male Is referred with Impotence on Sildenafil. He has a history of angina, hypertension and type diabetes. Which one of the following drugs that he takes would present a contraindication?",
+    "options": [
+      "Aspirin",
+      "Isosorbide Mononitrate",
+      "Lisinopril",
+      "Metformin",
+      "Thiazide"
+    ],
+    "correct": 1,
+    "explanation": "Isosorbide Mononitrate (nitrate) is absolutely contraindicated with sildenafil (PDE5 inhibitor). Both lower blood pressure via nitric oxide pathways; combined use can cause severe, potentially fatal hypotension. Aspirin, lisinopril, metformin, and thiazides do not have a dangerous interaction with sildenafil."
+  },
+  {
+    "question": "A 58-year-old man presents with sudden onset chest pain. He has a known history of Ischemic heart disease. ECG shows ST segment elevation In V1-V5 without reciprocal depression. In which territory Is the Infarction most Likely to have taken place:",
+    "options": [
+      "Anterior",
+      "Inferior-lateral",
+      "Inferior",
+      "Lateral",
+      "Posterior"
+    ],
+    "correct": 0,
+    "explanation": "ST elevation in V1–V5 (precordial leads) indicates anterior MI, typically due to LAD occlusion. Inferior MI shows ST elevation in II, III, aVF. Lateral MI affects I, aVL, V5–V6. Posterior MI shows ST depression in V1–V4. Inferolateral MI affects both inferior and lateral leads."
+  },
+  {
+    "question": "A 65-year-old man presents with severe central crushing chest pain. ECG shows evidence of an inferior myocardial infarction. He receives tissue Plasminogen activator (tPA), Heparin and Aspirin. Four hours after initial presentation, he starts feeling dizzy and breathless. His pulse is 40 bpm regular, BP 80/50. Heart sounds are soft and chest clear to auscultation. ECG shows 2:1 AV block with T wave inversion inferiorly. IV atropine was administered but had no effect. What is the next most important treatment?",
+    "options": [
+      "Insert a permanent pacemaker.",
+      "Insert a temporary pacemaker.",
+      "IV Dopamine.",
+      "IV Isoprenaline.",
+      "Monitor his progress"
+    ],
+    "correct": 1,
+    "explanation": "This patient has symptomatic high-degree AV block post-inferior MI with haemodynamic compromise (BP 80/50, HR 40) unresponsive to atropine. A temporary pacemaker is the correct next step. A permanent pacemaker is not appropriate acutely as most post-inferior-MI AV blocks are transient (due to AV nodal ischaemia). IV dopamine provides only partial haemodynamic support without addressing the rate."
+  },
+  {
+    "question": "A 72-year-old woman presented with acute severe chest pain with an ECG revealing ST segment elevation in leads II,III and AVF. She was treated with thrombolysis but two days later became acutely unwell. Examination revealed a loud systolic murmur at the apex which radiated into the axilla with associated with pulmonary edema. What is the most likely diagnosis?",
+    "options": [
+      "Acute left ventricular failure",
+      "Cardiogenic shock",
+      "Pericarditis",
+      "Ruptured papillary muscle",
+      "Ventricular septal defect"
+    ],
+    "correct": 3,
+    "explanation": "Ruptured papillary muscle classically occurs 2–7 days post-MI and causes acute severe mitral regurgitation: loud apical systolic murmur radiating to the axilla and sudden pulmonary oedema. VSD causes a harsh parasternal murmur. Pericarditis causes friction rub. LVF and cardiogenic shock do not create a new murmur."
+  },
+  {
+    "question": "A 60-year-old diabetic male presents for follow up after having sustained a myocardial infarction five years previously. He takes metformin 500 mg t.d.s., Bendroflumethiazide 2.5 mg daily and aspirin 150 mg daily. His body mass index is 33.5 kg/m, with a pulse of 82 beats per minute, regular and a blood pressure of 155/95 mmHg. His cholesterol concentration is 132 mg/dL What is the most appropriate strategy for this patient?",
+    "options": [
+      "24hour ambulatory ECG",
+      "Atorvastatin",
+      "Increase aspirin to 300 mg daily",
+      "Orlistat",
+      "Ramipril"
+    ],
+    "correct": 4,
+    "explanation": "Ramipril (ACE inhibitor) is the priority addition: it reduces post-MI mortality, provides renoprotection in diabetics, and controls hypertension. His cholesterol is already reasonable at 132 mg/dL. Ambulatory ECG is for arrhythmia workup. Orlistat addresses obesity but is less urgent. Increasing aspirin dose does not improve outcomes."
+  },
+  {
+    "question": "A 54-year-old man presents with central crushing chest pain. Examination is normal. 12-lead ECG shows ST segment elevation in leads II, III, AVF and ST depression in VI, V2 and V3. Which coronary artery is occluded?",
+    "options": [
+      "Circumflex",
+      "Left Anterior Descending",
+      "Left Main Stem",
+      "Obtuse Marginal",
+      "Right Coronary Artery"
+    ],
+    "correct": 4,
+    "explanation": "ST elevation in II, III, and AVF indicates inferior MI. Reciprocal ST depression in V1–V3 suggests posterior extension of the infarction. This pattern is characteristic of right coronary artery (RCA) occlusion, which supplies the inferior and posterior walls. The LAD supplies the anterior wall; circumflex supplies the lateral wall."
+  },
+  {
+    "question": "A 63-year-old man with a history of high blood pressure presents to the ER with sudden-onset tearing chest pain radiating to the back.",
+    "options": [
+      "Angina",
+      "Atrial fibrillation",
+      "Costochondritis",
+      "Herpes zoster infection",
+      "Lobar pneumonia",
+      "Pneumothorax",
+      "Tension pneumothorax",
+      "Aortic dissection",
+      "Cardiac tamponade",
+      "Esophageal spasm",
+      "Infective endocarditis",
+      "Pericarditis",
+      "Pulmonary embolus"
+    ],
+    "correct": 4,
+    "explanation": "Source answer: E (Lobar pneumonia, index 4). Note: Clinically, sudden tearing chest pain radiating to the back in a hypertensive patient is the classic presentation of aortic dissection (option H). The source answers for this matching block appear to be transposed; the expected clinical answer is H (Aortic dissection)."
+  },
+  {
+    "question": "A 40-year-old woman develops sudden-onset dyspnea at rest following hip replacement surgery. On examination, she has tachycardia and her (ECG) shows right axis deviation.",
+    "options": [
+      "Angina",
+      "Atrial fibrillation",
+      "Costochondritis",
+      "Herpes zoster infection",
+      "Lobar pneumonia",
+      "Pneumothorax",
+      "Tension pneumothorax",
+      "Aortic dissection",
+      "Cardiac tamponade",
+      "Esophageal spasm",
+      "Infective endocarditis",
+      "Pericarditis",
+      "Pulmonary embolus"
+    ],
+    "correct": 7,
+    "explanation": "Source answer: H (Aortic dissection, index 7). Note: Clinically, sudden dyspnea after orthopaedic surgery with right heart strain (right axis deviation, tachycardia) is the classic presentation of pulmonary embolism (option M). The source answer key appears transposed from the clinical correct answers."
+  },
+  {
+    "question": "A 60-year-old man complains of central crushing chest pain radiating to both arms after running to catch a bus. Pain was relieved by rest and his ECG recording 1 h later was unremarkable.",
+    "options": [
+      "Angina",
+      "Atrial fibrillation",
+      "Costochondritis",
+      "Herpes zoster infection",
+      "Lobar pneumonia",
+      "Pneumothorax",
+      "Tension pneumothorax",
+      "Aortic dissection",
+      "Cardiac tamponade",
+      "Esophageal spasm",
+      "Infective endocarditis",
+      "Pericarditis",
+      "Pulmonary embolus"
+    ],
+    "correct": 12,
+    "explanation": "Source answer: M (Pulmonary embolus, index 12). Note: Clinically, exertional central crushing chest pain radiating to both arms, relieved by rest, with a normal resting ECG is the classic description of stable angina pectoris (option A). The source answer key appears transposed."
+  },
+  {
+    "question": "A 21-year-old high-jumper presents with acute-onset dyspnea and increased right-sided pleuritic chest pain. Examination reveals resonance and reduced expansion on the right side.",
+    "options": [
+      "Angina",
+      "Atrial fibrillation",
+      "Costochondritis",
+      "Herpes zoster infection",
+      "Lobar pneumonia",
+      "Pneumothorax",
+      "Tension pneumothorax",
+      "Aortic dissection",
+      "Cardiac tamponade",
+      "Esophageal spasm",
+      "Infective endocarditis",
+      "Pericarditis",
+      "Pulmonary embolus"
+    ],
+    "correct": 10,
+    "explanation": "Source answer: K (Infective endocarditis, index 10). Note: Clinically, acute unilateral dyspnea with hyperresonance and reduced expansion in a young athlete indicates spontaneous pneumothorax (option F). The source answer key appears transposed."
+  },
+  {
+    "question": "A 23-year-old woman presents with localized left-sided chest pain that is exacerbated by coughing and is particularly painful on light pressure to that area. Pain is relieved by aspirin. The ECG is unremarkable.",
+    "options": [
+      "Angina",
+      "Atrial fibrillation",
+      "Costochondritis",
+      "Herpes zoster infection",
+      "Lobar pneumonia",
+      "Pneumothorax",
+      "Tension pneumothorax",
+      "Aortic dissection",
+      "Cardiac tamponade",
+      "Esophageal spasm",
+      "Infective endocarditis",
+      "Pericarditis",
+      "Pulmonary embolus"
+    ],
+    "correct": 6,
+    "explanation": "Source answer: G (Tension pneumothorax, index 6). Note: Clinically, reproducible chest pain worsened by palpation and coughing with a normal ECG and response to aspirin is classic costochondritis (option C). The source answer key appears transposed."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

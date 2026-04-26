@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L3-Suppurative Lung Disease</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof95f8p8tpm6",
+  "title": "L3-Suppurative Lung Disease",
+  "description": "Questions on every Chest lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Cough in bronchiectasis is:",
+    "options": [
+      "Associated with expectoration of little amount of sputum.",
+      "Dry cough.",
+      "Related to posture.",
+      "Brassy in nature."
+    ],
+    "correct": 2,
+    "explanation": "Bronchiectasis cough is characteristically related to posture (worse on lying down) due to pooling of secretions in dependent bronchi."
+  },
+  {
+    "question": "Kartagener's syndrome is associated with the following EXCEPT:",
+    "options": [
+      "Situs inversus.",
+      "Subluxation of lens.",
+      "Bronchiectasis.",
+      "Sinusitis.",
+      "Infertility."
+    ],
+    "correct": 1,
+    "explanation": "Kartagener's syndrome (primary ciliary dyskinesia) comprises situs inversus, bronchiectasis, sinusitis, and infertility. Lens subluxation is seen in Marfan syndrome."
+  },
+  {
+    "question": "Clubbing occurs earliest with:",
+    "options": [
+      "Mesothelioma of pleura.",
+      "Fallot's tetralogy.",
+      "Lung abscess.",
+      "Bronchiectasis."
+    ],
+    "correct": 2,
+    "explanation": "Lung abscess causes rapid clubbing due to chronic suppuration and bacterial products."
+  },
+  {
+    "question": "A 60-year-old man has had cough and sputum for over 15 years. Now he complains that his sputum is blood-tinged, particularly when he first awakens. His chest X-rays show 'tram-lines' at both lung bases. These findings suggest:",
+    "options": [
+      "Carcinoma of the lung.",
+      "Bronchiectasis.",
+      "Interstitial lung disease.",
+      "Heart failure."
+    ],
+    "correct": 1,
+    "explanation": "Tram-lines on chest X-ray indicate thickened bronchial walls from bronchiectasis. Copious purulent sputum and hemoptysis are classic features."
+  },
+  {
+    "question": "A 40-year-old male presents with a long history of productive cough and breathlessness, halitosis, hemoptysis, and bilateral inspiratory crackles. Which treatment is likely to decrease the frequency of his exacerbation?",
+    "options": [
+      "Cyclic antibiotic therapy.",
+      "Inhaled corticosteroid.",
+      "Nebulized bronchodilator.",
+      "Postural drainage.",
+      "Surgical resection."
+    ],
+    "correct": 3,
+    "explanation": "Postural drainage and airway clearance techniques reduce secretions and the frequency of exacerbations in bronchiectasis."
+  },
+  {
+    "question": "A 43-year-old man produces a cupful of foul purulent sputum every day. Examination reveals digital clubbing and coarse crackles at the left base. What is the most likely diagnosis?",
+    "options": [
+      "Bronchiectasis.",
+      "Acute lung abscess.",
+      "Bronchoalveolar cell carcinoma.",
+      "Sarcoidosis."
+    ],
+    "correct": 0,
+    "explanation": "Copious purulent sputum, clubbing, and coarse crackles are the classic triad of bronchiectasis."
+  },
+  {
+    "question": "Clubbing is present in all EXCEPT:",
+    "options": [
+      "Fibrosing alveolitis.",
+      "Cystic fibrosis.",
+      "Emphysema.",
+      "Bronchiectasis."
+    ],
+    "correct": 2,
+    "explanation": "Emphysema does not cause clubbing. Fibrosing alveolitis, cystic fibrosis, and bronchiectasis are recognized causes."
+  },
+  {
+    "question": "Lung abscess is not a complication of:",
+    "options": [
+      "Malignancy.",
+      "Bronchopneumonia.",
+      "Wegener's granulomatosis.",
+      "Suppurative staphylococcal pneumonia."
+    ],
+    "correct": 1,
+    "explanation": "Bronchopneumonia typically produces diffuse patchy consolidation rather than a localized cavitating abscess. Lung abscess is more commonly secondary to aspiration, necrotizing pneumonia, or malignancy."
+  },
+  {
+    "question": "All are examples of honeycomb lung EXCEPT:",
+    "options": [
+      "Tuberous sclerosis.",
+      "Scleroderma.",
+      "Lung abscess.",
+      "Bronchiectasis."
+    ],
+    "correct": 2,
+    "explanation": "Honeycomb lung represents end-stage fibrotic lung disease. Lung abscess is a localized cavitary lesion, not honeycombing."
+  },
+  {
+    "question": "The complications of lung abscess include:",
+    "options": [
+      "Cerebral abscess.",
+      "Reactive hemorrhage.",
+      "Axillary vein thrombosis.",
+      "Bilateral hilar infiltrate."
+    ],
+    "correct": 0,
+    "explanation": "Lung abscess can lead to cerebral abscess via septic embolization."
+  },
+  {
+    "question": "Which is not a cause of finger clubbing?",
+    "options": [
+      "Empyema.",
+      "Bronchogenic carcinoma.",
+      "COPD.",
+      "Cystic fibrosis.",
+      "Mesothelioma."
+    ],
+    "correct": 2,
+    "explanation": "COPD is not associated with clubbing. Empyema, lung cancer, cystic fibrosis, and mesothelioma are recognized causes."
+  },
+  {
+    "question": "Which is the common site for lung abscess?",
+    "options": [
+      "Right lung.",
+      "Left lung.",
+      "Both equally.",
+      "Heart."
+    ],
+    "correct": 0,
+    "explanation": "The right lung is more commonly affected because the right main bronchus is more vertical, allowing easier aspiration of infected material."
+  },
+  {
+    "question": "Which is not a cause of bronchiectasis?",
+    "options": [
+      "Acute bronchitis.",
+      "Whooping cough.",
+      "Kartagener syndrome.",
+      "Tuberculosis."
+    ],
+    "correct": 0,
+    "explanation": "Acute bronchitis resolves without permanent bronchial dilation. Whooping cough, Kartagener's, and TB are well-recognized causes of bronchiectasis."
+  },
+  {
+    "question": "Which is not a part of Kartagener's syndrome?",
+    "options": [
+      "Dextrocardia.",
+      "Sinusitis.",
+      "Impotence.",
+      "Bronchiectasis.",
+      "Infertility."
+    ],
+    "correct": 2,
+    "explanation": "Kartagener's syndrome causes infertility (from immotile sperm due to ciliary dyskinesia), not impotence."
+  },
+  {
+    "question": "Pyogenic lung abscess is caused by:",
+    "options": [
+      "Staphylococcus aureus.",
+      "Gram-negative bacilli.",
+      "Anaerobes.",
+      "All of the above."
+    ],
+    "correct": 1,
+    "explanation": "Pyogenic lung abscess is most commonly caused by polymicrobial flora including gram-negative bacilli and anaerobes, particularly following aspiration."
+  },
+  {
+    "question": "Which is not a recognized complication of cystic fibrosis?",
+    "options": [
+      "Atelectasis.",
+      "Bronchiectasis.",
+      "Pleural effusion.",
+      "Pulmonary hypertension."
+    ],
+    "correct": 2,
+    "explanation": "Pleural effusion is not a typical complication of cystic fibrosis. Atelectasis, bronchiectasis, and pulmonary hypertension are common."
+  },
+  {
+    "question": "Bronchopleural fistula is commonly due to:",
+    "options": [
+      "Pulmonary tuberculosis.",
+      "Bronchogenic carcinoma.",
+      "Lung cyst.",
+      "Honeycomb lung."
+    ],
+    "correct": 0,
+    "explanation": "Tuberculosis can erode into the pleural space and create a bronchopleural fistula."
+  },
+  {
+    "question": "Which of the following is used to treat cystic fibrosis?",
+    "options": [
+      "Low-molecular-weight heparin.",
+      "High-dose glucocorticoids.",
+      "Dornase alfa.",
+      "Zafirlukast."
+    ],
+    "correct": 2,
+    "explanation": "Dornase alfa (recombinant human DNase) breaks down DNA in purulent sputum, reducing viscosity in cystic fibrosis."
+  },
+  {
+    "question": "What is the most common etiologic cause of emphysema?",
+    "options": [
+      "Infection.",
+      "Alpha-1-antitrypsin deficiency.",
+      "Sulfur dioxide inhalation.",
+      "Asbestos exposure.",
+      "Cigarette smoking."
+    ],
+    "correct": 4,
+    "explanation": "Cigarette smoking is by far the most common cause of emphysema. Alpha-1-antitrypsin deficiency is a rare genetic cause."
+  },
+  {
+    "question": "Which one of the following is not a criterion of empyema?",
+    "options": [
+      "Identification of organism by Gram stain.",
+      "pH <7.2.",
+      "Fetid-smelling aspirate.",
+      "Serous fluid.",
+      "Pleural WBCs >15,000/mm3."
+    ],
+    "correct": 3,
+    "explanation": "Empyema is defined by purulent (not serous) pleural fluid, low pH, positive Gram stain, and high leukocyte count."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

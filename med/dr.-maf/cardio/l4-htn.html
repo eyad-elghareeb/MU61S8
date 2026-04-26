@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L4-HTN</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mof8xduw4har6",
+  "title": "L4-HTN",
+  "description": "Questions on every Cardio lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is not a recognized cause of secondary hypertension:",
+    "options": [
+      "Primary hyperaldosteronism",
+      "Acromegaly",
+      "Addison's disease.",
+      "Estrogen containing oral contraceptives",
+      "Coarctation of the aorta"
+    ],
+    "correct": 2,
+    "explanation": "Addison's disease (primary adrenal insufficiency) causes HYPOTENSION due to aldosterone and cortisol deficiency, not hypertension. All other options cause secondary hypertension: primary hyperaldosteronism (Conn's syndrome — sodium retention), acromegaly (GH effects), OCP (oestrogen-mediated RAAS activation), and coarctation of the aorta."
+  },
+  {
+    "question": "A 65-year-old man with a known history of severe bronchospasm with a history of dry irritant cough after taking an antihypertensive drug prescribed by his GP. Now his BP is 160/100 mmHg. Which of the following drugs would be the preferred drug for this patient?",
+    "options": [
+      "Captopril.",
+      "Atenolol.",
+      "Enalapril.",
+      "Amlodipine.",
+      "Propranolol."
+    ],
+    "correct": 3,
+    "explanation": "Amlodipine (calcium channel blocker) is the preferred drug. ACE inhibitors (captopril, enalapril) cause the dry cough described — a class side effect. Beta-blockers (atenolol, propranolol) are contraindicated in bronchospasm/asthma. Amlodipine is effective, well-tolerated, and has no respiratory side effects."
+  },
+  {
+    "question": "Pregnancy associated hypertension is better treated with:",
+    "options": [
+      "Candesartan.",
+      "Captopril.",
+      "Doxazocin.",
+      "Alpha methyl dopa.",
+      "Perindopril."
+    ],
+    "correct": 3,
+    "explanation": "Alpha-methyldopa is the first-line treatment for hypertension in pregnancy with a proven safety record over decades. ACE inhibitors (captopril, perindopril) and ARBs (candesartan) are contraindicated in pregnancy (teratogenic — cause renal malformations in foetus). Doxazosin has limited data in pregnancy."
+  },
+  {
+    "question": "Pregnancy associated hypertension should not be treated with:",
+    "options": [
+      "Labetalol.",
+      "Alpha methyldopa.",
+      "Hydralazine.",
+      "Amlodipine.",
+      "Valsartan."
+    ],
+    "correct": 4,
+    "explanation": "Valsartan (ARB) is contraindicated in pregnancy because angiotensin II receptor blockers cause foetal renal dysplasia, oligohydramnios, and skull hypoplasia. Labetalol, alpha-methyldopa, hydralazine, and amlodipine are all safe and commonly used antihypertensives in pregnancy."
+  },
+  {
+    "question": "Which of the following is not a recognized cause of secondary hypertension:",
+    "options": [
+      "Primary hyperaldosteronism",
+      "Acromegaly",
+      "Addison's disease",
+      "Estrogen containing oral contraceptives"
+    ],
+    "correct": 2,
+    "explanation": "Addison's disease causes hypotension (aldosterone/cortisol deficiency). Primary hyperaldosteronism (sodium retention), acromegaly (GH/IGF-1 effects), and oestrogen-containing OCP (RAAS activation) all cause secondary hypertension."
+  },
+  {
+    "question": "Paroxysmal hypertension is characteristic of:",
+    "options": [
+      "Coarctation of aorta",
+      "Cushing disease",
+      "Adrenal TB",
+      "Pheochromocytoma",
+      "Nephrotic syndrome"
+    ],
+    "correct": 3,
+    "explanation": "Phaeochromocytoma classically causes paroxysmal (episodic) hypertension with headache, sweating, and palpitations, due to sudden catecholamine release. Coarctation and Cushing's disease cause sustained hypertension. Adrenal TB causes adrenal insufficiency (hypotension). Nephrotic syndrome can cause hypertension but not paroxysmal."
+  },
+  {
+    "question": "In which of the following patients, the blood pressure is most likely to be Increased:",
+    "options": [
+      "Diabetic with autonomic dysfunction",
+      "Diabetic with atherosclerosis",
+      "Diabetic with cardiomyopathy",
+      "Diabetic with upper gut bleeding",
+      "Diabetic with sepsis"
+    ],
+    "correct": 1,
+    "explanation": "A diabetic with atherosclerosis is most likely to have hypertension due to reduced vascular compliance and increased peripheral resistance from atherosclerotic disease. Autonomic dysfunction causes orthostatic hypotension. Cardiomyopathy reduces cardiac output. Upper GI bleeding and sepsis both cause hypotension."
+  },
+  {
+    "question": "A 67-year-old man presents with insomnia, irritability, and palpitations for 3 months. He is currently taking amiodarone for cardiac arrhythmias, fluoxetine for depression and enalapril for hypertension. His blood pressure is 130/70 mmHg; his pulse is 90 min and regular. Which of the following is the most appropriate next step:",
+    "options": [
+      "Administration of propranolol",
+      "Measurements of thyroxin and TSH",
+      "Referral for psychiatric consultation",
+      "Substitution of antidepressant drug",
+      "Substitution of antihypertensive drug"
+    ],
+    "correct": 1,
+    "explanation": "Amiodarone causes thyroid dysfunction (both hypothyroidism and hyperthyroidism) in up to 15% of patients. This patient's symptoms (insomnia, irritability, palpitations, tachycardia) suggest amiodarone-induced hyperthyroidism. Measuring TFTs (T4 and TSH) is the most appropriate next step before attributing symptoms to depression or changing medications."
+  },
+  {
+    "question": "A 56-year-old woman with a long history of untreated hypertension is brought to the ER because of severe headache and confusion. The patient is oriented towards a person, but not to time or place. Her blood pressure is 230/140 mm Hg, pulse is 86/min, and RR is 18/min Funduscopic examination reveals optic disk edema, and a dipstick test shows protein in the urine. Which of the following Is the most appropriate pharmacotherapy:",
+    "options": [
+      "Clonidine",
+      "Esmolol",
+      "Furosemide",
+      "Hydralazine",
+      "Sodium nitroprusside"
+    ],
+    "correct": 4,
+    "explanation": "This patient has a hypertensive emergency (BP 230/140 with end-organ damage: encephalopathy, papilloedema, proteinuria/hypertensive nephropathy). Sodium nitroprusside is the drug of choice for hypertensive emergency, providing rapid, titratable reduction of BP via IV infusion. Esmolol is for aortic dissection. Furosemide treats volume overload. Hydralazine causes reflex tachycardia."
+  },
+  {
+    "question": "A 45-year-old woman presents for a Check-Up visit. She has no complaints but has a history of diabetes and a family history of hypertension. On physical examination, the patient's blood pressure Is 150/100 mm Hg. Laboratory results were normal. Which of the following agents would be most appropriate for the management of her hypertension:",
+    "options": [
+      "Atenolol",
+      "Captopril",
+      "Furosemide",
+      "Hydrochlorothiazide",
+      "Isordil"
+    ],
+    "correct": 1,
+    "explanation": "Captopril (ACE inhibitor) is the most appropriate choice for a diabetic hypertensive patient. ACE inhibitors are the first-line antihypertensive in diabetics due to their renoprotective effects (reducing proteinuria and slowing diabetic nephropathy progression). Beta-blockers can mask hypoglycaemia. Thiazides can worsen glycaemic control. Isordil is not an antihypertensive."
+  },
+  {
+    "question": "A 70-year-old woman with a history of diabetes mellitus, hypertension, chronic obstructive lung disease, and congestive heart failure are admitted to the hospital for a deep vein thrombosis of the lower right extremity. Heparin starts at the time of admission. Her outpatient medications Include NPH insulin, furosemide, albuterol, and metoprolol. Admission laboratories show an elevated potassium level (6.0 mEq/L), which is confirmed on repeat testing. Which of the following medications should be discontinued:",
+    "options": [
+      "Albuterol",
+      "Enalapril",
+      "Furosemide",
+      "Heparin"
+    ],
+    "correct": 1,
+    "explanation": "Enalapril (ACE inhibitor) is the most likely cause of hyperkalaemia (K+ 6.0 mEq/L). ACE inhibitors block angiotensin II-mediated aldosterone secretion, reducing renal potassium excretion. Albuterol (beta-2 agonist) actually causes hypokalaemia. Furosemide causes hypokalaemia. Heparin can cause hyperkalaemia but Enalapril is listed and is the most common cause."
+  },
+  {
+    "question": "A 35-year-old lady at 14 weeks gestation is found to have a blood pressure of 160/100 mmHg. Her father is known to have hypertension. Electrocardiogram demonstrates features of left ventricular hypertrophy. What Is the most likely diagnosis:",
+    "options": [
+      "Eclampsia",
+      "Essential hypertension",
+      "Pre-eclampsia",
+      "Pregnancy-induced hypertension",
+      "Renal hypertension"
+    ],
+    "correct": 1,
+    "explanation": "Essential (primary) hypertension is the most likely diagnosis. Evidence: (1) hypertension at 14 weeks gestation (pre-eclampsia occurs after 20 weeks), (2) family history of hypertension, (3) LVH on ECG (indicating chronic/long-standing hypertension). Eclampsia requires seizures. Pregnancy-induced hypertension appears after 20 weeks without pre-existing disease."
+  },
+  {
+    "question": "A 50-year-old man with hypertension already on furosemide, Ramipril and digoxin is found to have poor left ventricular function on echocardiogram Which antihypertensive should be added:",
+    "options": [
+      "Carvedilol",
+      "Diltiazem",
+      "Doxazosin",
+      "Hydralazine",
+      "Nifedipine"
+    ],
+    "correct": 0,
+    "explanation": "Carvedilol (beta-blocker with alpha-blocking properties) is the appropriate addition for hypertension with poor LV systolic function. It reduces mortality in CHF and controls blood pressure. Diltiazem and nifedipine are negative inotropes and should be avoided in systolic dysfunction. Doxazosin and hydralazine lack the mortality benefit of carvedilol in this setting."
+  },
+  {
+    "question": "A 58-year-old male is admitted with a blood pressure of 210/120, headache, sweating and episodic runs of ventricular tachycardia. Investigations confirm the presence of the right adrenal mass. Which one of the following would be the most appropriate initial therapy:",
+    "options": [
+      "Amiodarone",
+      "Atenolol",
+      "Lidocaine",
+      "Phenoxybenzamine",
+      "Propafenone"
+    ],
+    "correct": 3,
+    "explanation": "Phenoxybenzamine (irreversible alpha-1/alpha-2 blocker) is the initial treatment of choice for phaeochromocytoma. Alpha-blockade must precede beta-blockade to prevent paradoxical hypertensive crisis from unopposed alpha stimulation. Beta-blockers (atenolol) must NEVER be given first in phaeochromocytoma. Amiodarone and lidocaine treat arrhythmias but not the underlying catecholamine excess."
+  },
+  {
+    "question": "All the following produce systemic hypertension except:",
+    "options": [
+      "Polycystic kidney disease.",
+      "Pheochromocytoma",
+      "Addison's disease.",
+      "Conn's syndrome.",
+      "Unilateral renal artery stenosis"
+    ],
+    "correct": 2,
+    "explanation": "Addison's disease (adrenocortical insufficiency) causes hypotension due to deficiency of aldosterone and cortisol, leading to sodium loss, hyperkalaemia, and volume depletion. All other options cause secondary hypertension: polycystic kidneys (RAAS activation), phaeochromocytoma (catecholamines), Conn's syndrome (excess aldosterone), and renal artery stenosis (RAAS activation)."
+  },
+  {
+    "question": "A 45-year-old female presents with a two-day history of fever and joint pain. She has a past history of hypertension for which she is receiving anti-hypertensive. On examination, she has a temperature of 38℃, a facial rash and slight swelling with tenderness of the wrist and ankle joints. Which of the following anti-hypertensive is most likely to be responsible for her presentation:",
+    "options": [
+      "Alpha-methyldopa",
+      "Bendroflumethiazide",
+      "Hydralazine",
+      "Minoxidil",
+      "Phenoxybenzamine"
+    ],
+    "correct": 2,
+    "explanation": "Hydralazine causes a drug-induced lupus-like syndrome characterised by fever, arthralgia, facial rash, and positive ANA. Other drugs causing drug-induced lupus include procainamide and isoniazid. Alpha-methyldopa causes autoimmune haemolytic anaemia. Bendroflumethiazide causes gout, not lupus. Minoxidil causes hirsutism and fluid retention."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
