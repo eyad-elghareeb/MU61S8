@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>L6-Pleural Diseases</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mohh3v6vfympk",
+  "title": "L6-Pleural Diseases",
+  "description": "Questions on every Chest lecture form Dr. MAF Team"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is not a cause of transudative pleural effusion:",
+    "options": [
+      "Congestive cardiac failure",
+      "Nephrotic syndrome",
+      "Hepatic amebiasis",
+      "Liver cirrhosis with ascites",
+      "Hypoalbuminemia"
+    ],
+    "correct": 2,
+    "explanation": "Transudative pleural effusions result from imbalances in hydrostatic or oncotic pressure, such as in congestive heart failure, nephrotic syndrome, cirrhosis with ascites, and hypoalbuminemia. Hepatic amebiasis is an infectious/inflammatory process that increases capillary permeability and causes an exudative effusion, not a transudate."
+  },
+  {
+    "question": "Which of the following can cause exudative pleural effusion?",
+    "options": [
+      "Congestive cardiac failure",
+      "Nephrotic syndrome",
+      "Hepatic amebiasis",
+      "Liver cirrhosis with ascites",
+      "Hypoalbuminemia"
+    ],
+    "correct": 2,
+    "explanation": "Exudative effusions are caused by inflammation, infection, or malignancy. Hepatic amebiasis spreads to the pleura producing an exudate. Congestive heart failure, nephrotic syndrome, liver cirrhosis with ascites, and hypoalbuminemia all produce transudates due to pressure or protein changes."
+  },
+  {
+    "question": "Intercostal tube drainage in pneumothorax is not indicated in one of the following cases:",
+    "options": [
+      "Tension pneumothorax",
+      "Presence of dyspnea",
+      "Small asymptomatic pneumothorax",
+      "Patient on mechanical ventilation",
+      "Pneumothorax of more than 50% of hemithorax"
+    ],
+    "correct": 2,
+    "explanation": "A small asymptomatic primary spontaneous pneumothorax can often be managed conservatively with observation and oxygen. Tube drainage is indicated for tension pneumothorax, symptomatic pneumothorax, pneumothorax in ventilated patients, and large pneumothorax (>50%)."
+  },
+  {
+    "question": "Clinical signs of pleural effusion include:",
+    "options": [
+      "Decreased tactile vocal fremitus",
+      "Resonant percussion not over the affected area",
+      "Bronchial breath sound",
+      "Precipitation & wheezes",
+      "Increased air entry"
+    ],
+    "correct": 0,
+    "explanation": "Pleural effusion dampens sound transmission, leading to decreased tactile vocal fremitus. Resonant percussion is characteristic of normal lung, not effusion (which gives stony dullness). Bronchial breathing, wheezes, and increased air entry are not signs of an effusion; breath sounds are diminished."
+  },
+  {
+    "question": "The following is a criterion of an exudative pleural effusion:",
+    "options": [
+      "Pleural fluid protein = 2.5 gm/dl",
+      "Pleural fluid LDH = 220 IU/L",
+      "Pleural fluid glucose = 120 mg/dl",
+      "Pleural fluid pH > 7",
+      "Specific gravity 1010"
+    ],
+    "correct": 1,
+    "explanation": "Light's criteria define an exudate: pleural fluid LDH > 200 IU/L (here 220 IU/L qualifies). Protein 2.5 g/dL is below the >3.0 threshold, glucose is not a Light's criterion, pH >7 does not define exudate, and specific gravity 1010 (<1.016) suggests a transudate."
+  },
+  {
+    "question": "Which one of the following is an indication for intercostal tube drainage in empyema?",
+    "options": [
+      "Pleural fluid pH< 7.2",
+      "Pleural fluid protein/serum protein >0.5",
+      "Absolute LDH value >200 IU/L",
+      "Specific gravity >1016",
+      "Pleural fluid protein >3 gm/dl"
+    ],
+    "correct": 0,
+    "explanation": "Frank pus, positive Gram stain/culture, or a pleural fluid pH <7.2 indicates complicated parapneumonic effusion or empyema requiring drainage. Elevated protein, LDH, and specific gravity define an exudate but do not alone mandate chest tube insertion."
+  },
+  {
+    "question": "Trachea is shifted to other side in massive pleural effusion unless there is:",
+    "options": [
+      "Ipsilateral pleural fibrosis",
+      "Contralateral lung collapse",
+      "Large pleural effusion",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "A massive effusion normally pushes the trachea to the opposite side. Ipsilateral pleural fibrosis fixes the mediastinum, preventing or reducing the shift. Contralateral lung collapse pulls the trachea to the collapsed side, which might mask or counteract the shift, but the specific exception asked is ipsilateral fibrosis. A large pleural effusion itself would cause shift."
+  },
+  {
+    "question": "Hemorrhagic pleural effusion may be seen in:",
+    "options": [
+      "Nephrotic syndrome",
+      "Pulmonary infarction",
+      "Myxedema",
+      "Systemic lupus erythematosus"
+    ],
+    "correct": 1,
+    "explanation": "Pulmonary infarction due to pulmonary embolism commonly produces a hemorrhagic effusion. Nephrotic syndrome causes a transudate, myxedema a serous effusion, and SLE typically produces a serous or serosanguinous but not grossly bloody effusion."
+  },
+  {
+    "question": "Transudative type of pleural effusion is a feature of:",
+    "options": [
+      "Tuberculosis",
+      "Lung cancer",
+      "Liver cell failure",
+      "Rheumatoid disease",
+      "Systemic lupus"
+    ],
+    "correct": 2,
+    "explanation": "Liver cell failure with ascites leads to hepatic hydrothorax, a transudate. Tuberculosis, lung cancer, rheumatoid disease, and SLE typically produce exudative effusions due to inflammation or malignancy."
+  },
+  {
+    "question": "Pure oxygen therapy may produce all of the following EXCEPT:",
+    "options": [
+      "Acute lung injury",
+      "Respiratory depression",
+      "Fibrosis of the lung",
+      "Consolidation of the lung"
+    ],
+    "correct": 3,
+    "explanation": "High-concentration oxygen can cause acute lung injury (ARDS), fibrosis with prolonged exposure, and respiratory depression in CO₂-retaining patients. Consolidation is typically due to infection or fluid, not a direct complication of oxygen therapy."
+  },
+  {
+    "question": "Bilateral pleural effusion is commonly seen in all EXCEPT:",
+    "options": [
+      "SLE",
+      "Nephrotic syndrome",
+      "Pulmonary tuberculosis",
+      "Congestive cardiac failure",
+      "After coronary artery bypass graft"
+    ],
+    "correct": 0,
+    "explanation": "The source answer indicates SLE (option A) is the exception. While bilateral effusions can occur in SLE, they are more typical of nephrotic syndrome, congestive heart failure, and post-CABG. Pulmonary tuberculosis usually causes a unilateral effusion."
+  },
+  {
+    "question": "Pleural rub is characteristically:",
+    "options": [
+      "Uniphasic",
+      "Superficial, scratchy",
+      "Alters with coughing",
+      "Never palpable",
+      "Present over a pleural effusion"
+    ],
+    "correct": 1,
+    "explanation": "A pleural friction rub is a superficial, scratchy, or grating sound, typically biphasic (heard in both inspiration and expiration). It does not change with coughing, can be palpable as a fremitus, and disappears when fluid separates the pleural surfaces."
+  },
+  {
+    "question": "Hemorrhagic pleural effusion is not characteristic of:",
+    "options": [
+      "Systemic lupus erythematosus",
+      "Acute pulmonary thromboembolism",
+      "Tuberculous effusion",
+      "Acute pancreatitis",
+      "Metastatic cancer"
+    ],
+    "correct": 0,
+    "explanation": "Per the source, SLE is not characteristic of hemorrhagic effusion. Pulmonary embolism with infarction, tuberculosis, acute pancreatitis, and metastatic cancer can all produce bloody pleural fluid."
+  },
+  {
+    "question": "The following are causes of transudative pleural effusion (except):",
+    "options": [
+      "Congestive heart failure",
+      "Tuberculosis pleural effusion",
+      "Liver cirrhosis",
+      "Nephritic syndrome"
+    ],
+    "correct": 1,
+    "explanation": "Transudates result from systemic factors altering hydrostatic/oncotic pressure—CHF, cirrhosis, nephritic syndrome. Tuberculous effusion is an exudate due to pleural inflammation."
+  },
+  {
+    "question": "On clinical examination of patient with right sided massive pleural effusion, the following are true (except):",
+    "options": [
+      "Decreased chest movement on right side",
+      "Decreased tactile vocal fremitus (TVF) on left side",
+      "Stony dullness on right side",
+      "Decreased breath sound on right side"
+    ],
+    "correct": 1,
+    "explanation": "Massive right pleural effusion causes decreased chest movement, stony dullness, and diminished breath sounds on the right. Tactile vocal fremitus is decreased on the affected (right) side, not the left. The statement about decreased TVF on the left side is false."
+  },
+  {
+    "question": "All of the following are suggestive for respiratory failure (except):",
+    "options": [
+      "Coma",
+      "Crepitation",
+      "RR >20",
+      "Central cyanosis"
+    ],
+    "correct": 1,
+    "explanation": "Respiratory failure can present with altered consciousness (coma), tachypnoea (RR >20), and central cyanosis. Crepitations (crackles) indicate parenchymal lung disease but are not a direct sign of respiratory failure."
+  },
+  {
+    "question": "Pleural rub may be found in:",
+    "options": [
+      "COPD",
+      "Bronchiectasis",
+      "Nephrotic syndrome",
+      "Liver cell failure"
+    ],
+    "correct": 1,
+    "explanation": "A pleural rub suggests pleural inflammation. Bronchiectasis can be associated with recurrent chest infections that cause pleural inflammation. COPD, nephrotic syndrome, and liver failure do not typically produce a rub."
+  },
+  {
+    "question": "Empyema is diagnosed by:",
+    "options": [
+      "pH< 7.2",
+      "WBC >15000 /mm3",
+      "Positive culture of the pleural aspirate",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Empyema is frank pus in the pleural space. Diagnosis is confirmed by positive culture, but supportive findings include pH <7.2 and high white blood cell count. All listed features are consistent with empyema."
+  },
+  {
+    "question": "Pleural exudate is characterized by the following (except):",
+    "options": [
+      "Specific gravity is more than 1029",
+      "Pleural fluid protein/serum protein is more than 0.5",
+      "Pleural fluid LDH/serum LDH is more than 0.6",
+      "Absolute LDH is more than 200"
+    ],
+    "correct": 0,
+    "explanation": "Light's criteria for an exudate include protein ratio >0.5, LDH ratio >0.6, and absolute LDH >200 IU/L. A specific gravity >1016 is expected; stating >1029 is not a standard criterion and is incorrect."
+  },
+  {
+    "question": "The following may cause hemorrhagic pleural effusion (except):",
+    "options": [
+      "Venous thromboembolism",
+      "Liver cell failure",
+      "Malignancy",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "Venous thromboembolism with pulmonary infarction, malignancy, and tuberculosis can all cause bloody pleural effusions. Liver cell failure produces a transudative, usually straw-colored effusion, not hemorrhagic."
+  },
+  {
+    "question": "On radiological examination of a case of left sided pleural effusion, blunting of costophrenic angle on P/A film needs at least:",
+    "options": [
+      "500 ml of effusion",
+      "300 ml of effusion",
+      "100 ml of effusion",
+      "900 ml of effusion"
+    ],
+    "correct": 1,
+    "explanation": "On a posteroanterior (PA) chest radiograph, approximately 200–300 ml of pleural fluid is needed to blunt the costophrenic angle. Smaller amounts may be seen on lateral decubitus films."
+  },
+  {
+    "question": "Which is false regarding transudative pleural effusion:",
+    "options": [
+      "Protein < 3.0 g/100 mL",
+      "Pleural fluid/serum LDH ratio < 0.6",
+      "pH< 7.2",
+      "Specific gravity < 1.016"
+    ],
+    "correct": 2,
+    "explanation": "Transudates typically have protein <3.0 g/dL, LDH ratio <0.6, and specific gravity <1.016. The pH is usually >7.2; a pH <7.2 suggests a complicated effusion or empyema, not a simple transudate."
+  },
+  {
+    "question": "Which is an example of exudative pleural effusion:",
+    "options": [
+      "Nephrotic syndrome",
+      "Constrictive pericarditis",
+      "SVC syndrome",
+      "Rheumatoid arthritis"
+    ],
+    "correct": 3,
+    "explanation": "Rheumatoid arthritis can cause an exudative pleural effusion due to autoimmune inflammation. Nephrotic syndrome, constrictive pericarditis, and SVC syndrome are associated with transudates."
+  },
+  {
+    "question": "Which of the following drugs may produce pleural effusion:",
+    "options": [
+      "Losartan",
+      "Miltefosine",
+      "Amiodarone",
+      "Propranolol"
+    ],
+    "correct": 2,
+    "explanation": "Amiodarone is well known to cause pulmonary toxicity, including pleural effusions. Losartan, miltefosine, and propranolol are not commonly associated with pleural effusion."
+  },
+  {
+    "question": "Bilateral pleural effusion is commonly seen in:",
+    "options": [
+      "SLE",
+      "Nephrotic syndrome",
+      "Pulmonary tuberculosis",
+      "Congestive cardiac failure"
+    ],
+    "correct": 3,
+    "explanation": "Congestive cardiac failure is the most common cause of bilateral pleural effusions due to increased hydrostatic pressure. Nephrotic syndrome and SLE can cause bilateral effusions, but CHF is the classic cause; pulmonary tuberculosis is usually unilateral."
+  },
+  {
+    "question": "A high amylase in pleural fluid is found in all except:",
+    "options": [
+      "Oesophageal rupture",
+      "Bronchogenic carcinoma",
+      "Sarcoidosis",
+      "Acute pancreatitis"
+    ],
+    "correct": 2,
+    "explanation": "Elevated pleural fluid amylase is seen in oesophageal rupture (salivary amylase), acute pancreatitis (pancreatic amylase), and sometimes in bronchogenic carcinoma. Sarcoidosis does not cause a high amylase effusion."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

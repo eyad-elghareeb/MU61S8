@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var t = localStorage.getItem('quiz-theme') || 'dark'; var s = document.createElement('style');
+      s.textContent = 'html,body{background:' + (t === 'light' ? '#f3f0eb' : '#0d1117') + ';color:' + (t === 'light' ? '#1c1917' : '#e6edf3') + ';margin:0;padding:0;overflow:hidden;height:100%}';
+      document.head.appendChild(s)
+    })();
+  </script>
+  <title>MU61 Quiz - Paediatrics O.salah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../index-engine.css">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+
+<body>
+
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Paediatrics">←</a>
+    <div class="topbar-title">MU61 Quiz - Paediatrics O.salah</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Paediatrics O.salah</span></h1>
+      <p>Pediatrics department book questions and extra MCQs.</p>
+    </header>
+
+    <div class="quiz-grid" id="quiz-grid"></div>
+
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+  <script>
+    const QUIZZES = [
+  {
+    title: "Allergy and Immunology",
+    description: "Pediatric Allergy and Immunology MCQs",
+    icon: "🛡️",
+    tags: ["Bank", "79 Questions"],
+    url: "peds---allergy-and-immunology.html"
+  },
+  {
+    title: "Cardiology",
+    description: "Pediatric Cardiology MCQs",
+    icon: "❤️",
+    tags: ["Bank", "128 Questions"],
+    url: "peds---cardiology.html"
+  },
+  {
+    title: "Chest",
+    description: "Pediatric Chest MCQs",
+    icon: "🫁",
+    tags: ["Bank", "117 Questions"],
+    url: "peds---chest.html"
+  },
+  {
+    title: "Endocrinology",
+    description: "Pediatric Endocrinology MCQs",
+    icon: "💎",
+    tags: ["Bank", "147 Questions"],
+    url: "peds---endocrinology.html"
+  },
+  {
+    title: "Genetics",
+    description: "Pediatric Genetics MCQs",
+    icon: "🧬",
+    tags: ["Bank", "112 Questions"],
+    url: "peds---genetics.html"
+  },
+  {
+    title: "GIT",
+    description: "Pediatric Gastroenterology MCQs",
+    icon: "🧪",
+    tags: ["Bank", "99 Questions"],
+    url: "peds---git.html"
+  },
+  {
+    title: "Growth and Development",
+    description: "Pediatric Growth and Development MCQs",
+    icon: "📏",
+    tags: ["Bank", "67 Questions"],
+    url: "peds---growth-and-development.html"
+  },
+  {
+    title: "Hematology",
+    description: "Pediatric Hematology MCQs",
+    icon: "🩸",
+    tags: ["Bank", "194 Questions"],
+    url: "peds---hematology.html"
+  },
+  {
+    title: "Hepatology",
+    description: "Pediatric Hepatology MCQs",
+    icon: "🧪",
+    tags: ["Bank", "71 Questions"],
+    url: "peds---hepatology.html"
+  },
+  {
+    title: "Infections",
+    description: "Pediatric Infections MCQs",
+    icon: "🦠",
+    tags: ["Bank", "115 Questions"],
+    url: "peds---infections.html"
+  },
+  {
+    title: "Neonatology",
+    description: "Pediatric Neonatology MCQs",
+    icon: "👶",
+    tags: ["Bank", "157 Questions"],
+    url: "peds---neonatology.html"
+  },
+  {
+    title: "Nephrology",
+    description: "Pediatric Nephrology MCQs",
+    icon: "🧪",
+    tags: ["Bank", "108 Questions"],
+    url: "peds---nephrology.html"
+  },
+  {
+    title: "Neurology",
+    description: "Pediatric Neurology MCQs",
+    icon: "🧠",
+    tags: ["Bank", "96 Questions"],
+    url: "peds---neurology.html"
+  },
+  {
+    title: "Nutrition",
+    description: "Pediatric Nutrition MCQs",
+    icon: "🍎",
+    tags: ["Bank", "144 Questions"],
+    url: "peds---nutrition.html"
+  },
+  {
+    title: "Pediatric Intensive Care",
+    description: "Pediatric PICU MCQs",
+    icon: "🚑",
+    tags: ["Bank", "9 Questions"],
+    url: "peds---pediatric-intensive-care.html"
+  },
+  {
+    title: "Physiatry & Psychiatry",
+    description: "Pediatric Physiatry & Psychiatry MCQs",
+    icon: "🧘",
+    tags: ["Bank", "22 Questions"],
+    url: "peds---physiatry-&-psychiatry.html"
+  }
+];
+  </script>
+
+  <script src="../../index-engine.js"></script>
+  <script>(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('../../sw.js').catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>60th Final</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   QUIZ DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [QUIZ_CONFIG_START] */
+const QUIZ_CONFIG = {
+  "uid": "mohhl8u755ryn",
+  "title": "60th Final",
+  "description": "Past years Exams in pediatrics"
+};
+/* [QUIZ_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTIONS ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,   // index of the correct option (0-based)
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTIONS_START] */
+const QUESTIONS = [
+  {
+    "question": "Which of the following is characteristic of laryngeal foreign bodies?",
+    "options": [
+      "Unilateral wheezing",
+      "Bilateral wheezing",
+      "Decreased breath sounds",
+      "Hoarseness or aphonia",
+      "Drooling"
+    ],
+    "correct": 3,
+    "explanation": "Laryngeal foreign bodies classically present with hoarseness or aphonia due to direct vocal cord involvement, along with stridor. Unilateral wheezing and decreased breath sounds are characteristic of bronchial foreign bodies. Bilateral wheezing suggests tracheal or lower airway pathology. Drooling is more suggestive of esophageal foreign bodies or epiglottitis."
+  },
+  {
+    "question": "A chest x-ray of a 9-month-old infant with clinical signs of pneumonia, showed multiple pneumatoceles. What is the most likely etiologic agent?",
+    "options": [
+      "Staphylococcus aureus",
+      "Hemophilus influenza",
+      "Streptococcal pneumoniae",
+      "Moraxella catarrhalis",
+      "Viruses"
+    ],
+    "correct": 0,
+    "explanation": "Staphylococcus aureus is the classic causative agent of pneumonia associated with multiple pneumatoceles, as well as empyema and lung abscesses. Hemophilus influenzae, Streptococcus pneumoniae, Moraxella catarrhalis, and viral pneumonias typically do not produce pneumatoceles as a characteristic feature."
+  },
+  {
+    "question": "Which of the following is a clinical finding in children with large unilateral pneumothorax?",
+    "options": [
+      "Increased tactile vocal fremitus",
+      "Decreased breath sound intensity",
+      "Crepitations",
+      "Bronchial breathing",
+      "Unilateral wheezing"
+    ],
+    "correct": 1,
+    "explanation": "A large unilateral pneumothorax causes decreased breath sound intensity on the affected side due to lung collapse and air accumulation in the pleural space. Increased tactile vocal fremitus, crepitations, and bronchial breathing are signs of lung consolidation, not pneumothorax. Unilateral wheezing suggests bronchial obstruction rather than pneumothorax."
+  },
+  {
+    "question": "Which of the following is an indication for hospitalization in infants with acute bronchiolitis!",
+    "options": [
+      "Oxygen saturation of 95%",
+      "Fine crackles by auscultation",
+      "Duration of illness is three days or more",
+      "Fever of 39 °C or more",
+      "Apnea"
+    ],
+    "correct": 4,
+    "explanation": "Apnea is a critical indication for hospitalization in infants with acute bronchiolitis. Other indications include poor feeding, lethargy, toxic appearance, hypoxemia (SaO2 < 92-93%), hypercapnia, moderate to severe respiratory distress, and dehydration. Oxygen saturation of 95% is generally acceptable. Fine crackles, duration of illness, and fever alone are not primary criteria for admission."
+  },
+  {
+    "question": "A 3-year-old boy is admitted to your hospital with severe pallor, his CBC showed: Hemoglobin: 6 g/dl, MCV: 115 fl, MCH: 31 pg, MCHC: 32 g%, reticulocyte count: 1%, total leucocytic count: 3,900 cells/eu mm, platelet count: 120,000 cells/cu mm. What is the most probable diagnosis?",
+    "options": [
+      "Hemorrhagic anemia due to acute blood loss",
+      "Iron deficiency anemia",
+      "Beta thalassemia major",
+      "Vitamin B12 deficiency",
+      "Aplastic anemia"
+    ],
+    "correct": 4,
+    "explanation": "Aplastic anemia presents with pancytopenia (low hemoglobin, low WBC, and low platelets), macrocytic anemia (MCV 115 fl), and a low reticulocyte count (1%) indicating bone marrow failure. Hemorrhagic anemia and iron deficiency typically present with microcytic hypochromic features. Beta thalassemia major shows microcytic anemia with high reticulocyte count. Vitamin B12 deficiency causes macrocytic anemia but usually does not present with such marked pancytopenia."
+  },
+  {
+    "question": "Which of the following is considered a feature of acute hemolytic anemia?",
+    "options": [
+      "Purpura and echymosis",
+      "Splenomegaly",
+      "Growth retardation",
+      "Mongoloid facies",
+      "Increased reticulocyte count"
+    ],
+    "correct": 4,
+    "explanation": "Acute hemolytic anemia is characterized by an increased reticulocyte count as the bone marrow compensates for accelerated red blood cell destruction. Purpura and ecchymosis suggest platelet or coagulation disorders. Splenomegaly may occur in chronic hemolysis but is not the defining feature. Growth retardation and mongoloid facies are not associated with acute hemolytic anemia."
+  },
+  {
+    "question": "Which of the following is correct about glucose 6 phosphate dehydrogenase (G6PD) deficiency?",
+    "options": [
+      "It is an x - linked dominant disorder",
+      "Stool is black in severe cases",
+      "Hemolysis may be due to ingestion of certain drugs",
+      "It has no sexy predilection",
+      "Microcytic hypochromic anemia"
+    ],
+    "correct": 2,
+    "explanation": "In G6PD deficiency, hemolysis can be triggered by ingestion of certain oxidative drugs such as primaquine, sulfonamides, and aspirin. It is an X-linked recessive disorder, not dominant. Black stool suggests gastrointestinal bleeding. Males are predominantly affected due to X-linked inheritance. The anemia is typically normocytic normochromic, not microcytic hypochromic."
+  },
+  {
+    "question": "A three years old boy with epistaxis and purpura, his platelet count is 225.000/mm3 and the bleeding time is 7 min. What is your next step to reach the diagnosis?",
+    "options": [
+      "Clotting time",
+      "Clotting factor assay",
+      "Platelet function tests",
+      "Bone marrow examination",
+      "APTT"
+    ],
+    "correct": 2,
+    "explanation": "The patient presents with bleeding symptoms (epistaxis and purpura) with a normal platelet count but prolonged bleeding time, suggesting a primary hemostasis disorder such as von Willebrand disease or platelet dysfunction. Platelet function tests are the appropriate next step. Clotting time, clotting factor assay, and APTT assess the coagulation cascade. Bone marrow examination is indicated when thrombocytopenia is present."
+  },
+  {
+    "question": "What is the main line of treatment of non-Hodgkin lymphoma?",
+    "options": [
+      "Radiotherapy",
+      "Chemotherapy",
+      "Combined chemo and radiotherapy",
+      "Surgery",
+      "Conservative"
+    ],
+    "correct": 1,
+    "explanation": "Chemotherapy is the main line of treatment for non-Hodgkin lymphoma. Radiotherapy may be used for localized disease or in combination with chemotherapy in certain cases, but chemotherapy remains the primary treatment modality. Surgery and conservative management are not standard primary treatments for this condition."
+  },
+  {
+    "question": "Which of the following antibiotics is used for chemoprophylaxis for close contacts of patient with acute bacterial meningitis?",
+    "options": [
+      "Rifampicin",
+      "Amoxicillin",
+      "Cefotaxime",
+      "Ampicillin",
+      "Vancomycin"
+    ],
+    "correct": 0,
+    "explanation": "Rifampicin is the antibiotic used for chemoprophylaxis in close contacts of patients with acute bacterial meningitis, particularly for meningococcal and Haemophilus influenzae type b meningitis. Amoxicillin, cefotaxime, ampicillin, and vancomycin are therapeutic agents but not standard prophylactic drugs for contacts."
+  },
+  {
+    "question": "A 3-day old boy presented by persistent vomiting followed by convulsions and disturbed conscious level. CSF was clear and showed 5 WBCs/HPF, glucose 80 mg/dl, protein 40 mg/dl and negative Gram stain. Blood glucose was 90 mg/dl at the same time. What is your interpretation of the CSF analysis described above?",
+    "options": [
+      "Bacterial meningitis",
+      "Viral encephalitis",
+      "TB meningitis",
+      "Normal",
+      "Autoimmune encephalitis"
+    ],
+    "correct": 3,
+    "explanation": "The CSF analysis is normal: clear fluid, 5 WBCs/HPF (normal range), glucose 80 mg/dl (approximately 60-70% of blood glucose of 90), protein 40 mg/dl (within normal limits), and negative Gram stain. Bacterial meningitis would show cloudy CSF, markedly elevated WBCs, low glucose, and high protein. Viral encephalitis typically shows mild lymphocytic pleocytosis. TB meningitis characteristically shows low glucose and very high protein."
+  },
+  {
+    "question": "Which of the following conditions can be associated with a false positive tuberculin test?",
+    "options": [
+      "Disseminated infection",
+      "Live viral vaccine",
+      "Infection with atypical mycobacteria",
+      "Active infection",
+      "Immunodeficiency"
+    ],
+    "correct": 2,
+    "explanation": "Infection with atypical mycobacteria can cause false positive tuberculin skin tests due to cross-reactivity with shared antigens. Disseminated infection and active TB cause true positive reactions. Live viral vaccines and immunodeficiency typically cause false negative reactions due to anergy or immune suppression."
+  },
+  {
+    "question": "Which of the following is the appropriate treatment of tuberculous peripheral LN in low INH resistance areas?",
+    "options": [
+      "Two months quadruple therapy (INH, RIF, PYZ, Ethambutol) + 10 months (INH, RIF)",
+      "Two months quadruple therapy (INH, RIF, PYZ, Ethambutol) + 4 months (INH, RIF)",
+      "Two months triple therapy (INH, RIF, PYZ) + 4 months (INH, RIF)",
+      "Two months double therapy (INH, RIF) + 10 months (INH, RIF, PY, Ethambutol)",
+      "Two months quadruple therapy (INH, RIF, PYZ, Ethambutol) + 6 months (INH, RIF)"
+    ],
+    "correct": 2,
+    "explanation": "For tuberculous peripheral lymphadenopathy in areas with low INH resistance and low HIV prevalence, the recommended regimen is 2 months of triple therapy (INH, Rifampicin, Pyrazinamide) followed by 4 months of dual therapy (INH, Rifampicin), for a total of 6 months. This is a shorter regimen than that used for pulmonary tuberculosis."
+  },
+  {
+    "question": "Which of the following clinical signs is pathognomonic of rubella?",
+    "options": [
+      "Post auricular lymphadenopathy",
+      "Severe prodromal stage",
+      "Cicurmoral pallor",
+      "Maculopapular rash",
+      "Koplik spots"
+    ],
+    "correct": 0,
+    "explanation": "Post-auricular lymphadenopathy is considered pathognomonic for rubella. Rubella typically has a mild prodromal stage, not severe. Circumoral pallor is characteristic of scarlet fever. Maculopapular rash occurs in many viral exanthems and is not specific. Koplik spots are pathognomonic for measles, not rubella."
+  },
+  {
+    "question": "Which of the following signs is characteristic of poliomyelitis paralysis?",
+    "options": [
+      "Symmetrical paralysis",
+      "Complete recovery",
+      "Associated with sensory loss",
+      "Purely motor",
+      "Extensor planter reflex"
+    ],
+    "correct": 3,
+    "explanation": "Poliomyelitis causes purely motor paralysis due to destruction of anterior horn cells in the spinal cord. The paralysis is typically asymmetrical. Complete recovery is uncommon, with most patients having residual paralysis. Sensory loss does not occur as the posterior columns remain intact. Extensor plantar reflex indicates upper motor neuron lesions; polio causes lower motor neuron signs with flaccid paralysis."
+  },
+  {
+    "question": "Which of the following infectious disease is associated with \"risus sardonicus\"?",
+    "options": [
+      "Acute poliomyelitis",
+      "Tetanus",
+      "Pertussis",
+      "Mumps",
+      "Meningitis"
+    ],
+    "correct": 1,
+    "explanation": "Risus sardonicus (sardonic smile) is the characteristic sustained spasm of facial muscles seen in tetanus, caused by tetanospasmin toxin affecting the masseter and facial muscles. It is not associated with acute poliomyelitis, pertussis, mumps, or meningitis."
+  },
+  {
+    "question": "What is the incubation period of scarlet fever?",
+    "options": [
+      "1 day",
+      "2-4 days",
+      "5-10 days",
+      "2-3 weeks",
+      "4-5 weeks"
+    ],
+    "correct": 1,
+    "explanation": "The incubation period of scarlet fever is typically 2-4 days. Scarlet fever is caused by group A beta-hemolytic streptococcus and presents with fever, sore throat, strawberry tongue, and a characteristic sandpaper-like rash."
+  },
+  {
+    "question": "What is the most common cause of bilateral pinpoint non-reactive pupils?",
+    "options": [
+      "Drug poisoning",
+      "Pontine lesion",
+      "Severe anoxia",
+      "Sympathetic injury",
+      "Tonsillar herniation"
+    ],
+    "correct": 1,
+    "explanation": "Pontine lesions, particularly pontine hemorrhage, are the most common cause of bilateral pinpoint non-reactive pupils due to disruption of sympathetic pathways and damage to the pupillary reflex arcs. Drug poisoning (e.g., opioids) can cause pinpoint pupils but they usually remain reactive. Severe anoxia and tonsillar herniation typically cause fixed dilated pupils. Sympathetic injury causes Horner's syndrome."
+  },
+  {
+    "question": "What is the earliest sign of respiratory distress in children?",
+    "options": [
+      "Cyanosis",
+      "Grunting",
+      "Sweating",
+      "Tachypnea",
+      "Working ala nasi"
+    ],
+    "correct": 3,
+    "explanation": "Tachypnea is the earliest sign of respiratory distress in children, representing the first compensatory mechanism to maintain oxygenation. Cyanosis is a late sign indicating severe hypoxemia. Grunting, sweating, and nasal flaring (working ala nasi) appear as respiratory distress progresses but typically after tachypnea has already developed."
+  },
+  {
+    "question": "What is the normal intracranial pressure?",
+    "options": [
+      "30 mmHg",
+      "20 mmHg",
+      "25 mmHg",
+      "15 mmHg",
+      "<10 mmHg"
+    ],
+    "correct": 4,
+    "explanation": "Normal intracranial pressure is less than 10-15 mmHg in children and adults. Values above 20 mmHg are considered elevated and may require intervention. Intracranial pressure measured via lumbar puncture is normally less than 20 cm H2O."
+  },
+  {
+    "question": "A 6-week-old male infant presented to the emergency department. On initial examination, the patient was determined to be moderately dehydrated. The following values were obtained from an arterial blood sample: pH 7.58, PCO2 51 mmHg, HCO3 39 mmol/. What is the primary underlying disorder?",
+    "options": [
+      "No disorder",
+      "Metabolic acidosis",
+      "Metabolic alkalosis",
+      "Respiratory acidosis",
+      "Respiratory alkalosis"
+    ],
+    "correct": 2,
+    "explanation": "The ABG shows elevated pH (7.58, alkalosis), elevated HCO3 (39 mmol/L, primary increase), and elevated PCO2 (51 mmHg, compensatory hypoventilation). This pattern indicates metabolic alkalosis with respiratory compensation. Metabolic acidosis would show low pH and low bicarbonate. Respiratory acidosis would show low pH and high PCO2. Respiratory alkalosis would show low PCO2 with low bicarbonate."
+  },
+  {
+    "question": "A child with cardiac arrest with ventricular fibrillation is admitted to the emergency department. What is the most appropriate action?",
+    "options": [
+      "Chest compression",
+      "Give DC shock",
+      "Administer epinephrine",
+      "Administer antiarrhythmic drugs",
+      "Administer atropine"
+    ],
+    "correct": 1,
+    "explanation": "For ventricular fibrillation, the most appropriate immediate action is defibrillation (DC shock), as it is the definitive treatment to restore organized electrical activity. Chest compressions are important but secondary to prompt defibrillation. Epinephrine and antiarrhythmic drugs are adjuncts used if defibrillation is unsuccessful. Atropine is indicated for bradycardia, not ventricular fibrillation."
+  },
+  {
+    "question": "What is the only type of shock which is associated with bradycardia from the start?",
+    "options": [
+      "Hypovolemic shock",
+      "Septic shock",
+      "Neurogenic shock",
+      "Obstructive shock",
+      "Anaphylactic shock"
+    ],
+    "correct": 2,
+    "explanation": "Neurogenic shock, caused by spinal cord injury or severe brainstem injury, is characterized by bradycardia due to loss of sympathetic tone and unopposed vagal activity. Hypovolemic, septic, obstructive, and anaphylactic shocks all typically present with tachycardia as a compensatory response to maintain cardiac output."
+  },
+  {
+    "question": "Which of the following is considered an alarm feature for organic causes of constipation?",
+    "options": [
+      "Large calibre stool",
+      "Presence of faecal soiling",
+      "Rectal dilatation",
+      "Empty tight rectum",
+      "Stool frequency less than 3/week"
+    ],
+    "correct": 3,
+    "explanation": "An empty tight rectum on digital examination is an alarm feature suggesting organic causes of constipation such as Hirschsprung disease (aganglionic megacolon). Large caliber stool, fecal soiling, and stool frequency less than 3 per week are more consistent with functional constipation. Rectal dilatation may suggest chronic fecal retention but does not indicate organic disease as specifically as an empty tight rectum."
+  },
+  {
+    "question": "A 12-month-old girl has been spitting up her meals since the age of one month. Her growth is at the 95th percentile, and she is otherwise asymptomatic and without findings diagnosis, on physical examination. Which of the following is the most likely?",
+    "options": [
+      "Pyloric stenosis",
+      "Partial duodenal atresia",
+      "Hypothyroidism",
+      "Gastroesophageal reflux",
+      "Tracheoesophageal fistula"
+    ],
+    "correct": 3,
+    "explanation": "Gastroesophageal reflux is the most likely diagnosis in an infant with chronic spitting up since one month of age, excellent growth at the 95th percentile, and normal physical examination. Pyloric stenosis typically presents at 4-6 weeks with projectile vomiting and poor weight gain. Partial duodenal atresia and tracheoesophageal fistula present earlier with more severe symptoms. Hypothyroidism causes poor feeding and growth failure."
+  },
+  {
+    "question": "A lethargic infant with a 2-day history of diarrhea presenting with marked depressed fontanelle, tachycardia and very sunken eyes. Which of the following is the correct percentage of dehydration?",
+    "options": [
+      "Less than 1%",
+      "1% to 2%",
+      "5% to 9%",
+      "10% to 15%",
+      "3% to 4%"
+    ],
+    "correct": 3,
+    "explanation": "Marked depressed fontanelle, tachycardia, very sunken eyes, and lethargy indicate severe dehydration of 10% to 15% of body weight. Mild dehydration (<5%) shows minimal physical signs. Moderate dehydration (5-9%) shows sunken eyes and fontanelle but the infant is usually irritable rather than lethargic."
+  },
+  {
+    "question": "The amount of maintenance fluids given for dehydrated infants which have a body weight less than 10 kg is?",
+    "options": [
+      "80 ml/kg",
+      "90 ml/kg",
+      "100 ml/kg",
+      "110 ml/kg",
+      "120 ml/kg"
+    ],
+    "correct": 2,
+    "explanation": "Maintenance fluid requirements for infants weighing less than 10 kg are 100 ml/kg/day according to the Holliday-Segar method. For children weighing 10-20 kg, the requirement is 1000 ml plus 50 ml/kg for each kg over 10. For children over 20 kg, it is 1500 ml plus 20 ml/kg for each kg over 20."
+  },
+  {
+    "question": "A 14-year-old girl has a 9-month history of diarrhea, abdominal pain, fever, and weight loss. She has had several episodes of blood in her stools. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Cystic fibrosis",
+      "Chronic pancreatitis",
+      "Inflammatory bowel disease",
+      "Bulimia",
+      "Functional abdominal pain"
+    ],
+    "correct": 2,
+    "explanation": "Inflammatory bowel disease (Crohn's disease or ulcerative colitis) presents with chronic diarrhea, abdominal pain, fever, weight loss, and hematochezia in adolescents. Cystic fibrosis causes malabsorptive diarrhea with steatorrhea but not typically bloody stools. Chronic pancreatitis causes malabsorption and pain. Bulimia and functional abdominal pain do not cause bloody diarrhea, fever, or significant weight loss."
+  },
+  {
+    "question": "Which of the following is a cause of secretory diarrhea?",
+    "options": [
+      "Neuroblastoma",
+      "Laxative abuse",
+      "Lactase deficiency",
+      "Irritable bowel syndrome",
+      "Thyrotoxicosis"
+    ],
+    "correct": 0,
+    "explanation": "Neuroblastoma can secrete vasoactive intestinal peptide (VIP), causing secretory diarrhea known as VIPoma syndrome. Laxative abuse can cause various types of diarrhea depending on the agent. Lactase deficiency causes osmotic diarrhea. Irritable bowel syndrome causes functional diarrhea. Thyrotoxicosis causes hypermotility but not true secretory diarrhea."
+  },
+  {
+    "question": "Which of the following statements about HBV seromarkers is correct?",
+    "options": [
+      "Persistence of HBAq more than 4 months indicates chronicity",
+      "Presence of HBeAg indicates low infectivity",
+      "HBcAg can be detected in blood sample of acute cases",
+      "HBe IgM antibody is present in chronic cases",
+      "HBsAb is the only positive marker that can be found in vaccinated individuals"
+    ],
+    "correct": 4,
+    "explanation": "In vaccinated individuals, only HBsAb (anti-HBs antibody) is positive because the hepatitis B vaccine contains only the surface antigen, inducing protective antibodies without exposing the recipient to other viral components. Persistence of HBsAg (surface antigen) for more than 6 months indicates chronic infection. HBeAg indicates high infectivity, not low. HBcAg is not typically detectable in blood. Anti-HBc IgM is present in acute infection, not chronic cases."
+  },
+  {
+    "question": "Which of the following is considered a criteria of chronic liver disease?",
+    "options": [
+      "ALT elevation",
+      "Hepatomegaly",
+      "AST elevation",
+      "Firm sharp border liver",
+      "Hypogammaglobulinemia"
+    ],
+    "correct": 3,
+    "explanation": "A firm sharp border liver is characteristic of chronic liver disease and cirrhosis due to hepatic fibrosis and contraction. ALT and AST elevations are non-specific and can occur in acute hepatitis. Hepatomegaly can be present in both acute and chronic liver conditions. Hypogammaglobulinemia is not typical; chronic liver disease may actually be associated with hypergammaglobulinemia."
+  },
+  {
+    "question": "Which of the following cardiac lesions would result in increased amount of pulmonary blood flow and cyanosis?",
+    "options": [
+      "Atrial septal defect",
+      "Truncus arteriosus",
+      "Tetralogy of Fallot",
+      "Moderate pulmonary stenosis",
+      "Pulmonary atresia"
+    ],
+    "correct": 1,
+    "explanation": "Truncus arteriosus is a cyanotic congenital heart defect with increased pulmonary blood flow due to a single great vessel overriding a ventricular septal defect, causing both cyanosis and pulmonary overcirculation. Tetralogy of Fallot and pulmonary atresia cause cyanosis with decreased pulmonary blood flow. Atrial septal defect causes increased pulmonary flow but is typically acyanotic."
+  },
+  {
+    "question": "A 12 year old boy has migratory arthritis with red warm and swollen joints. He had serologic evidence of recent group-A streptococcal infection. Arthritis in this patient is characterized by?",
+    "options": [
+      "Appears after fever subsides",
+      "Heals without deformity",
+      "Involves large and small joints equally",
+      "Usually non painful",
+      "Seen only in patients with concurrent carditis"
+    ],
+    "correct": 1,
+    "explanation": "Rheumatic fever arthritis is migratory, affects large joints, is very painful, and heals completely without residual deformity. It typically appears with fever, not after it subsides. It primarily involves large joints (knees, ankles, elbows, wrists), not small joints equally. It can occur in patients without concurrent carditis."
+  },
+  {
+    "question": "Which of the following is a characteristic of lymphadenopathy of Kawasaki disease?",
+    "options": [
+      "Usually, unilateral",
+      "Less than 1.5 cm in diameter",
+      "Commonly axillary",
+      "Non-tender",
+      "Hard in consistency"
+    ],
+    "correct": 0,
+    "explanation": "Kawasaki disease lymphadenopathy is typically unilateral and cervical, measuring more than 1.5 cm in diameter. It is usually tender and non-fluctuant. It is not commonly axillary. While it may be firm, the most characteristic feature is its unilateral cervical location rather than being hard or non-tender."
+  },
+  {
+    "question": "One of the following is a sign of right-sided heart failure?",
+    "options": [
+      "Edema lower limb",
+      "Tachypnea",
+      "Orthopnea",
+      "Wheezing",
+      "Pulmonary edema"
+    ],
+    "correct": 0,
+    "explanation": "Lower limb edema is a classic sign of right-sided heart failure due to systemic venous congestion and increased capillary hydrostatic pressure. Tachypnea, orthopnea, wheezing, and pulmonary edema are signs of left-sided heart failure resulting from pulmonary venous congestion and fluid accumulation in the lungs."
+  }
+];
+/* [QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'quiz-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

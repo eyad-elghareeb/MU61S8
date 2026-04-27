@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-bcc9547870e2';
+const CACHE_VERSION = 'mu61-quiz-7aaeaca90bb6';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -116,6 +116,7 @@ var PRECACHE_REL_PATHS = [
   'med/dr.-maf/chest/l3-suppurative-lung-disease.html',
   'med/dr.-maf/chest/l4-tb.html',
   'med/dr.-maf/chest/l5-pneumonia.html',
+  'med/dr.-maf/chest/l6-pleural-diseases.html',
   'med/dr.-maf/chest/s1-lung-cancer.html',
   'med/dr.-maf/chest/s2-interstitial-lung-disease.html',
   'med/dr.-maf/index.html',
@@ -173,6 +174,23 @@ var PRECACHE_REL_PATHS = [
   'ped/lymph-notes/problem-solving-paediatrics-2017-2018.html',
   'ped/lymph-notes/respiration.html',
   'ped/lymph-notes/rheumatology.html',
+  'ped/o.salah/index.html',
+  'ped/o.salah/peds---allergy-and-immunology.html',
+  'ped/o.salah/peds---cardiology.html',
+  'ped/o.salah/peds---chest.html',
+  'ped/o.salah/peds---endocrinology.html',
+  'ped/o.salah/peds---genetics.html',
+  'ped/o.salah/peds---git.html',
+  'ped/o.salah/peds---growth-and-development.html',
+  'ped/o.salah/peds---hematology.html',
+  'ped/o.salah/peds---hepatology.html',
+  'ped/o.salah/peds---infections.html',
+  'ped/o.salah/peds---neonatology.html',
+  'ped/o.salah/peds---nephrology.html',
+  'ped/o.salah/peds---neurology.html',
+  'ped/o.salah/peds---nutrition.html',
+  'ped/o.salah/peds---pediatric-intensive-care.html',
+  'ped/o.salah/peds---physiatry-&-psychiatry.html',
   'ped/past-years/57th-end-round-1.html',
   'ped/past-years/57th-end-round-2.html',
   'ped/past-years/57th-end-round-3.html',

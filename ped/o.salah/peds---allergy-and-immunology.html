@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Peds - Allergy and Immunology</title>
+
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "19dcff6a1d9e2hms",
+  "title": "Peds - Allergy and Immunology",
+  "description": "79 questions on Pediatric Allergy and Immunology",
+  "icon": "🛡️"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which statement is true in the management of anaphylaxis?",
+    "options": [
+      "Hypotension is rare and self-limited",
+      "Absorption of intramuscular epinephrine is too slow to save the patient's life",
+      "Antihistamines are life saving",
+      "Beta blockers are used to treat hypertension in patients with anaphylaxis",
+      "Epinephrine 1: 1000 concentration is given in 0.01 mg/kg per dose"
+    ],
+    "correct": 4,
+    "explanation": "Epinephrine 1:1000 concentration is given at 0.01 mg/kg per dose for anaphylaxis. This is the standard treatment for anaphylaxis, as it rapidly reverses symptoms by causing vasoconstriction and reducing edema. Hypotension is common and not self-limited, antihistamines are not life-saving, and beta blockers are contraindicated in anaphylaxis as they can worsen hypotension."
+  },
+  {
+    "question": "Dark coloration under the eyes may be caused by:",
+    "options": [
+      "Anemia",
+      "Allergic rhinitis",
+      "Nephritic syndrome",
+      "Measles",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Dark coloration under the eyes (allergic shiners) is commonly caused by allergic rhinitis due to venous congestion from chronic nasal inflammation. While anemia can cause paleness, nephrotic syndrome typically causes periorbital edema, and measles causes a characteristic rash, not specifically dark under-eye coloration."
+  },
+  {
+    "question": "A 12-year-old presents with sneezing, clear rhinorrhea and nasal itching physical examination reveals boggy, pale nasal edema with a clear discharge the most likely diagnosis is:",
+    "options": [
+      "Foreign body",
+      "Vasomotor rhinitis",
+      "Neutropenic rhinitis",
+      "Nasal mastocytosis",
+      "Allergic rhinitis"
+    ],
+    "correct": 4,
+    "explanation": "The symptoms of sneezing, clear rhinorrhea, nasal itching, and physical findings of boggy, pale nasal edema with clear discharge are classic for allergic rhinitis. Foreign body would typically present with unilateral symptoms, vasomotor rhinitis lacks itching, neutropenic rhinitis is not a recognized condition, and nasal mastocytosis is rare."
+  },
+  {
+    "question": "The following is true about atopic dermatitis:",
+    "options": [
+      "Infants with atopic eczema may develop asthma later",
+      "Never affects the flexural areas",
+      "Non-pruritic during infancy",
+      "Topical agents have no role in the treatment",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Infants with atopic eczema have a higher risk of developing asthma later in life (the atopic march). Atopic dermatitis commonly affects flexural areas, is pruritic at all ages, and topical agents (especially corticosteroids) are a mainstay of treatment."
+  },
+  {
+    "question": "A true statement about atopic dermatitis:",
+    "options": [
+      "Is characterized by wheals",
+      "Normal serum IgE in 80% of patients",
+      "Tendency to spare the nose",
+      "Erythema of the napkin area",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Atopic dermatitis is characterized by erythema of the napkin area (diaper area) in infants. It is not characterized by wheals (that's urticaria), most patients have elevated serum IgE, it commonly affects the face including the nose, and not all features listed are correct."
+  },
+  {
+    "question": "Features characteristically associated with atopic dermatitis include all of the following EXCEPT:",
+    "options": [
+      "Allergic rhinitis/asthma",
+      "Elevated serum IGE level",
+      "Peripheral blood eosinophilia",
+      "Lymphopenia",
+      "Itching"
+    ],
+    "correct": 3,
+    "explanation": "Lymphopenia is not typically associated with atopic dermatitis. The condition is associated with allergic rhinitis/asthma, elevated serum IgE, peripheral blood eosinophilia, and itching, but not lymphopenia."
+  },
+  {
+    "question": "The mainstay of treatment of atopic dermatitis is:",
+    "options": [
+      "Specific immunotherapy",
+      "Topical corticosteroids",
+      "Systemic glucocorticoids",
+      "Epinephrine",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "Topical corticosteroids are the mainstay of treatment for atopic dermatitis. Specific immunotherapy is for allergic conditions, systemic glucocorticoids are reserved for severe cases, and epinephrine is for anaphylaxis, not routine treatment."
+  },
+  {
+    "question": "Urticaria may be caused by:",
+    "options": [
+      "Food allergy",
+      "Insect bites",
+      "Animal dander",
+      "Antibiotics",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Urticaria can be caused by food allergies, insect bites, animal dander, and antibiotics, among many other triggers. All of the listed options are potential causes of urticaria."
+  },
+  {
+    "question": "A 4-year-old child developed acute itchy skin rash characterized by wheals covering a large area of his body his temperature was 37.2 degreesC. The most probable cause of his rash is:",
+    "options": [
+      "Measles",
+      "Hay fever",
+      "Psoriasis",
+      "Urticaria"
+    ],
+    "correct": 3,
+    "explanation": "The acute itchy skin rash with wheals covering a large area of the body is characteristic of urticaria. Measles typically presents with fever, cough, coryza, conjunctivitis, and a maculopapular rash that progresses cephalocaudally. Hay fever is allergic rhinitis, and psoriasis presents with well-demarcated, erythematous plaques with silvery scales."
+  },
+  {
+    "question": "The most appropriate drug treatment for him is:",
+    "options": [
+      "Antibiotics",
+      "Antiviral",
+      "Antifungal",
+      "Antihistamines"
+    ],
+    "correct": 3,
+    "explanation": "Antihistamines are the appropriate drug treatment for urticaria. Antibiotics, antivirals, and antifungals are not indicated unless there's evidence of a specific infection, which is not suggested by the presentation."
+  },
+  {
+    "question": "Which statement is true about urticaria/angioedema?",
+    "options": [
+      "It is a rare allergic disorder in children",
+      "Not caused by local contact with allergens",
+      "Food allergy is common",
+      "Edema occurs independent parts of the body",
+      "Topical corticosteroids are the mainstay of therapy"
+    ],
+    "correct": 2,
+    "explanation": "Food allergy is a common cause of urticaria/angioedema in children. Urticaria/angioedema is not rare in children, can be caused by local contact with allergens, and edema typically affects dependent parts of the body. Topical corticosteroids are not the mainstay of therapy."
+  },
+  {
+    "question": "A true statement about angioedema is:",
+    "options": [
+      "It usually causes pleural effusion",
+      "Caused by disruption of superficial cutaneous mast cells",
+      "May cause suffocation",
+      "Treated by topical steroid",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Angioedema may cause suffocation due to upper airway edema. It does not typically cause pleural effusion, is caused by deeper tissue involvement than just superficial cutaneous mast cells, and is not treated by topical steroids."
+  },
+  {
+    "question": "A true statement about angioedema:",
+    "options": [
+      "Is usually causes pleural effusion",
+      "May cause suffocation",
+      "Treated by topical steroids",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "Angioedema may cause suffocation due to upper airway edema. It does not typically cause pleural effusion, is not treated by topical steroids, and option 'b' is correct, making 'none of the above' incorrect."
+  },
+  {
+    "question": "Primary immunodeficiency PID should be suspected when there is one or more of the following EXCEPT:",
+    "options": [
+      "Multiple infections despite aggressive treatment [at least 2 severe infections/year]",
+      "Infections with unusual or opportunistic organisms [aspergillus, pneumocystis].",
+      "Uncommon site of infection [ liver abscess or osteomyelitis].",
+      "One episode of meningococcal meningitis",
+      "Positive family history"
+    ],
+    "correct": 3,
+    "explanation": "A single episode of meningococcal meningitis does not necessarily indicate primary immunodeficiency, as it can occur in immunocompetent individuals. The other options are established indicators for suspecting PID."
+  },
+  {
+    "question": "Which one is the most likely diagnosis of a 14-year-old female who presents a history of recurrent sinopulmonary infection, low IgG and IgA and idiopathic thrombocytopenic purpura?",
+    "options": [
+      "X-Linked agammaglobulinemia",
+      "Severe combined immunodeficiency",
+      "Common variable immunodeficiency",
+      "Ataxia-telangiectasia",
+      "Cystic fibrosis"
+    ],
+    "correct": 2,
+    "explanation": "Severe combined immunodeficiency typically presents with severe infections in early infancy, not recurrent sinopulmonary infections in a 14-year-old. The presentation is most consistent with common variable immunodeficiency, which often presents in adolescence or early adulthood with recurrent infections and low immunoglobulin levels."
+  },
+  {
+    "question": "Useful test for evaluation of possible B cell (antibody) deficiency include all of the following EXCEPT:",
+    "options": [
+      "Isohemagglutinins",
+      "Antibodies to tetanus",
+      "Flow cytometry for CD3 + T cells",
+      "Serum IGA level",
+      "Total IgG level"
+    ],
+    "correct": 2,
+    "explanation": "Flow cytometry for CD3+ T cells is used to evaluate T cell function, not B cell (antibody) deficiency. The other tests are useful for evaluating B cell function and antibody levels."
+  },
+  {
+    "question": "A 6 months old infant with history of failure to thrive, recurrent oral candidiasis, pneumocystis jiroveci pneumonia. Which of the following is LEAST useful diagnostic test?",
+    "options": [
+      "Immunoglobulin levels and functional antibody",
+      "Enumeration of T cells and lymphocyte proliferation assay",
+      "Anti-HIV antibody",
+      "Delayed type hypersensitivity skin test",
+      "Nitroblue tetrazolium test and phagocytic test"
+    ],
+    "correct": 1,
+    "explanation": "In X-linked agammaglobulinemia (XLA), IVIG replacement is indicated. However, in severe combined immunodeficiency, the treatment is typically bone marrow transplant or gene therapy, not just IVIG. The other conditions listed may benefit from IVIG."
+  },
+  {
+    "question": "Intravenous immunoglobulin IVIG replacement is indicated in all of the following EXCEPT:",
+    "options": [
+      "X linked agammaglobulinemia (XLA)",
+      "Severe combined immunodeficiency",
+      "Chronic granulomatous disease (CGD)",
+      "Transient hypogammaglobulinemia of infancy",
+      "Common variable immunodeficiency"
+    ],
+    "correct": 1,
+    "explanation": "Meningococcal meningitis is the characteristic infection in patients with complement deficiency, particularly deficiencies in the terminal complement components. The other infections listed are not specifically associated with complement deficiency."
+  },
+  {
+    "question": "Which one is the characteristic infection in patients with complement deficiency?",
+    "options": [
+      "Poliomyelitis",
+      "Meningococcal meningitis",
+      "Pneumocystis jiroveci pneumonia",
+      "Acute tonsillitis",
+      "Herpes virus infections"
+    ],
+    "correct": 0,
+    "explanation": "An absolute lymphocytic count of 800/cmm is low and should raise suspicion of primary immunodeficiency. The other values (platelet count, neutrophil count, hemoglobin) are within normal ranges and not specifically indicative of immunodeficiency."
+  },
+  {
+    "question": "In a child with repeated infections, which of the following complete blood count finding should raise suspicion of 1ry immunodeficiency?",
+    "options": [
+      "Absolute lymphocytic count of 800/cmm",
+      "Platelet count of 300,000/cmm",
+      "Absolute neutrophil count of 11,000/cmm",
+      "Hemoglobin concentration of 9 gm/dL",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "Ataxia-telangiectasia is not characterized by patches of skin hyperpigmentation. It is associated with IgA and IgG deficiency, progressive cerebellar degeneration and ataxia, increased liability for malignancy, and monitoring of chest conditions with chest radiographs."
+  },
+  {
+    "question": "The following statements apply to cases of ataxia-telangiectasia EXCEPT:",
+    "options": [
+      "IgA and IgG deficiency with recurrent infections",
+      "Progressive cerebellar degeneration and ataxia",
+      "Patches of skin hyperpigmentation or hyperpigmentation",
+      "Increased liability for malignancy",
+      "Chest condition should be monitored with frequent chest radiograph"
+    ],
+    "correct": 4,
+    "explanation": "AIDS is treated with antiretrovirals for a long-term course, not just 2 months. The other statements are true: HIV-1 causes AIDS, can be transmitted via breast milk, vaginal delivery is a risk factor for vertical transmission, and T helper cell count is a key diagnostic parameter."
+  },
+  {
+    "question": "The false statement about acquired immune deficiency syndrome AIDS:",
+    "options": [
+      "It is caused by human immunodeficiency virus 1 (HIV-1)",
+      "HIV-1 can be transmitted to a neonate via breast milk",
+      "Vaginal delivery is a risk factor for vertical transmission",
+      "There is no T helper cell count",
+      "Treated with antiretrovirals for a 2 months course"
+    ],
+    "correct": 3,
+    "explanation": "Oligoarticular juvenile idiopathic arthritis is defined by affection of 4 or fewer joints in the first 6 months, not 5 or less. The other statements are correct about JIA."
+  },
+  {
+    "question": "The false statement in diagnosis of juvenile idiopathic arthritis is:",
+    "options": [
+      "Age of onset is less than 16 years",
+      "Polyarticular onset type may be rheumatoid Factor negative",
+      "Onset type is defined by number of joints involved in the first 6 months",
+      "oligoarticular arthritis is defined by affection of 5 or less",
+      "Joints systemic disease is characterized by quotidian fever"
+    ],
+    "correct": 0,
+    "explanation": "Painless nasopharyngeal ulcers are not a criterion for SLE diagnosis. The other options (pericarditis, thrombocytopenia, chronic erosive arthritis, proteinuria) are all recognized criteria for SLE diagnosis."
+  },
+  {
+    "question": "Criteria for diagnosis of systemic lupus erythematosus (SLE) include all the following EXCEPT:",
+    "options": [
+      "Painless nasopharyngeal ulcers",
+      "Pericarditis",
+      "Thrombocytopenia",
+      "Chronic erosive arthritis",
+      "Proteinuria"
+    ],
+    "correct": 1,
+    "explanation": "Systemic lupus erythematosus has a higher prevalence among certain ethnic groups including Orientals. It is characterized by photosensitivity, can affect the CNS, and has a female preponderance, not male."
+  },
+  {
+    "question": "9-year-old female patient presented with history of systemic lupus Erythematosus. Systemic lupus erythematosus is characterized by:",
+    "options": [
+      "Low prevalence among orientals",
+      "Photosensitivity to sunlight",
+      "Never affects the CNS",
+      "Male preponderance"
+    ],
+    "correct": 1,
+    "explanation": "Seizures are a component of the ACR classification criteria for SLE diagnosis. Leukocytosis, subcutaneous nodules, high ESR, and erosive arthritis are not specific criteria for SLE."
+  },
+  {
+    "question": "Which of the following is a component of the ACR classification criteria for diagnosis of systemic lupus erythematosus?",
+    "options": [
+      "Leukocytosis more than 15000 WBC/mm3",
+      "Seizures",
+      "Subcutaneous nodules",
+      "High erythrocyte sedimentation rate",
+      "Erosive arthritis involving two or more peripheral joints"
+    ],
+    "correct": 4,
+    "explanation": "All of the listed features (photosensitivity, nephritis, pleuritis, thrombocytopenic purpura) can occur in systemic lupus erythematosus and should raise suspicion for the disease."
+  },
+  {
+    "question": "A clinical situation in which systemic lupus erythematosus (SLE) should be suspected:",
+    "options": [
+      "Photosensitivity",
+      "Nephritis",
+      "Pleuritis",
+      "Thrombocytopenic purpura",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All of the listed features (conjunctivitis, peeling of the skin of palms, knee arthritis, coronary aneurysm) can occur in Kawasaki disease, which is a vasculitis of childhood."
+  },
+  {
+    "question": "The following may occur in Kawasaki disease:",
+    "options": [
+      "Conjunctivitis",
+      "Peeling of the skin of Palms",
+      "Knee arthritis",
+      "Coronary aneurysm",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "Familial Mediterranean fever (FMF) is characterized by brief attacks at irregular intervals with abdominal and chest pain, fever, and serositis. The other options describe different fever patterns seen in other conditions."
+  },
+  {
+    "question": "The fever pattern in familial Mediterranean fever (FMF) is in the form of:",
+    "options": [
+      "Regular attacks lasting 2 weeks each",
+      "Brief attacks at irregular intervals with abdominal and chest pain",
+      "Fever and rigors occurring every third or fourth day followed by temperature drop and profuse sweating",
+      "Night-time fever accompanied by anorexia and loss of weight",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "A ten-day course of oral antibiotics is not sufficient to treat septic arthritis; it typically requires several weeks of intravenous antibiotics followed by oral antibiotics. The other statements are true: septic arthritis is more common in males, mostly caused by Staphylococcus aureus, often affects the hip, and is typically monoarticular."
+  },
+  {
+    "question": "Which of the following is a false statement concerning septic arthritis?",
+    "options": [
+      "It is a more common in males",
+      "It is mostly caused by staph aureus",
+      "The hip is usually affected",
+      "It is monoarticular in most cases",
+      "A ten days course of oral antibiotics is needed to achieve cure"
+    ],
+    "correct": 0,
+    "explanation": "Red urine can be caused by blood, urates, foods such as beets/blackberries/colorings, and drugs such as rifampin and chloroquine. All listed options are recognized causes of red urine."
+  },
+  {
+    "question": "Organisms associated with reactive arthritis include:",
+    "options": [
+      "Shigella",
+      "Chlamydia trachomatis",
+      "Yersinia enterocolitica",
+      "Campylobacter jejuni",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Reactive arthritis is associated with several gastrointestinal and genitourinary infections, including Shigella, Chlamydia trachomatis, Yersinia enterocolitica, and Campylobacter jejuni."
+  },
+  {
+    "question": "Which statement is false in the management of anaphylaxis?",
+    "options": [
+      "Antihistamines may improve urticaria and itching but are not life saving",
+      "Hypotension is treated by saline 0.9% infusion",
+      "Absorption of subcutaneous epinephrine is too slow to save the patient's life",
+      "Beta blockers are used to treat hypertension in patients with anaphylaxis",
+      "The dose of epinephrine is 0.01 mg/kg body weight per dose"
+    ],
+    "correct": 3,
+    "explanation": "Beta blockers are contraindicated in anaphylaxis as they can exacerbate hypotension and bronchospasm. Epinephrine is the first-line treatment."
+  },
+  {
+    "question": "The mainstay of treatment of atopic dermatitis is:",
+    "options": [
+      "Oral antibiotics",
+      "Topical corticosteroids",
+      "Systemic glucocorticoids",
+      "Epinephrine",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "The mainstay of treatment for atopic dermatitis is topical corticosteroids, not oral antibiotics or systemic glucocorticoids."
+  },
+  {
+    "question": "The following are true about urticaria/angioedema except:",
+    "options": [
+      "It is a common allergic disorder in children",
+      "Not caused by local contact with allergens",
+      "Food allergy is a common cause",
+      "It is usually a self-limiting condition.",
+      "Oral antihistamines are the main stay of therapy."
+    ],
+    "correct": 1,
+    "explanation": "Urticaria/angioedema can be caused by local contact with allergens, making this statement false."
+  },
+  {
+    "question": "Clinical manifestations of anaphylaxis include:",
+    "options": [
+      "Flushing, urticaria or angioedema",
+      "Hypotension",
+      "Respiratory distress",
+      "Abdominal cramps",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All listed manifestations (flushing/urticaria/angioedema, hypotension, respiratory distress, abdominal cramps) are clinical features of anaphylaxis."
+  },
+  {
+    "question": "The following statement is true about childhood allergic rhinitis:",
+    "options": [
+      "Symptoms are intermittent and never persistent",
+      "Symptoms include paroxysmal sneezing, and nasal itching",
+      "Dark circles under the eyes are have no relation to its pathology",
+      "The child with allergic rhinitis rarely develops asthma",
+      "Systemic steroids are the main line of therapy"
+    ],
+    "correct": 1,
+    "explanation": "Allergic rhinitis symptoms can be both intermittent and persistent, making this statement false."
+  },
+  {
+    "question": "The following statement is true about allergy diagnosis:",
+    "options": [
+      "Specific IgE assay can diagnose cell-mediated allergic reactions",
+      "Total IgE is usually elevated in atopic persons but may be elevated in other conditions",
+      "Skin prick testing is not sensitive in allergen detection",
+      "Challenge tests are safe but less accurate in allergen detection.",
+      "History taking is of limited role in guiding allergy diagnosis"
+    ],
+    "correct": 1,
+    "explanation": "Specific IgE assays detect IgE-mediated (not cell-mediated) allergic reactions. Total IgE is elevated in atopy but also in other conditions."
+  },
+  {
+    "question": "One of the following statements is true about septic arthritis:",
+    "options": [
+      "Staph. aureus is the most commonly incriminated organism",
+      "It is more common in males with a peak age >5 years",
+      "It is polyarticular in over 90% of cases",
+      "Blood culture and ESR usually reveals no abnormalities",
+      "Oral antibiotic therapy for 10 days is sufficient treatment"
+    ],
+    "correct": 0,
+    "explanation": "Staphylococcus aureus is the most common organism causing septic arthritis, especially in children."
+  },
+  {
+    "question": "A 4-year old boy presented in the emergency room by his mother. Three days ago, he developed fever, rash over his legs and feet and abdominal pains with recurrent vomiting. On examination, his vital signs are normal. His abdomen is tender to palpation and he has a palpable purpuric rash on his feet and lower legs associated with diffuse non-pitting edema. The most appropriate next step for this patient is:",
+    "options": [
+      "Administration of ibuprofen or paracetamol.",
+      "Urine analysis.",
+      "Blood culture.",
+      "Administration of systemic steroids."
+    ],
+    "correct": 1,
+    "explanation": "This presentation suggests Henoch-Schönlein purpura, and initial management includes symptomatic treatment with analgesics like ibuprofen or paracetamol."
+  },
+  {
+    "question": "In Kawasaki disease, all are true except:",
+    "options": [
+      "Unexplained fever of more than 5 days' duration.",
+      "In acute phase, C-reactive protein is usually normal.",
+      "Bilateral non-suppurative conjunctivitis.",
+      "Pharyngeal injection, dry fissured lips, injected lips, and \"strawberry\" tongue."
+    ],
+    "correct": 1,
+    "explanation": "In acute Kawasaki disease, C-reactive protein is typically elevated, not normal."
+  },
+  {
+    "question": "The presence of failure to thrive together with post - vaccination disseminated BCG infection and marked lymphopenia can describe:",
+    "options": [
+      "Selective IgA deficiency.",
+      "Severe combined Immunodeficiency.",
+      "Common variable immunodeficiency.",
+      "X-linked agammaglobulinemia."
+    ],
+    "correct": 1,
+    "explanation": "Failure to thrive with disseminated BCG infection and lymphopenia suggests severe combined immunodeficiency (SCID)."
+  },
+  {
+    "question": "All are clinical features of systemic lupus erythematosus except:",
+    "options": [
+      "Photosensitivity.",
+      "Gottron papules",
+      "Alopecia.",
+      "Arthritis."
+    ],
+    "correct": 1,
+    "explanation": "Gottron papules are characteristic of dermatomyositis, not systemic lupus erythematosus."
+  },
+  {
+    "question": "10-A 4-year old girl presented to your office by her mother. She has a daily recurring spiking fever associated with evanescent rash of 2 weeks duration. On examination, she has fever (39C), with faint salmon-colored urticarial rash over the trunk. She has mild arthralgia of her knees and ankles. She has mild generalized lymphadenopathy and mild hepatosplenomegaly. The most appropriate initial investigation for this patient is:",
+    "options": [
+      "Complete blood picture with differential count.",
+      "Bone marrow aspirate.",
+      "Serum Ferritin.",
+      "Rheumatoid factor"
+    ],
+    "correct": 0,
+    "explanation": "This presentation suggests systemic onset juvenile idiopathic arthritis (Still's disease), and initial investigation should include a complete blood count with differential."
+  },
+  {
+    "question": "Patients with active dermatomyositis have all of the following except:",
+    "options": [
+      "Bilateral, proximal and symmetrical muscle weakness.",
+      "Heliotrope discoloration around the eyes.",
+      "Normal muscle enzymes.",
+      "Skin rash over the face and cheeks."
+    ],
+    "correct": 2,
+    "explanation": "Active dermatomyositis typically shows elevated muscle enzymes, not normal levels."
+  },
+  {
+    "question": "Intravenous immunoglobulin is the main stay of treatment of which disease:",
+    "options": [
+      "Henoch-Schonlein purpura.",
+      "Systemic onset juvenile idiopathic arthritis.",
+      "Kawasaki disease.",
+      "Selective immunoglobulin A deficiency."
+    ],
+    "correct": 2,
+    "explanation": "Intravenous immunoglobulin is the mainstay of treatment for Kawasaki disease."
+  },
+  {
+    "question": "Low B-cell count with absent all immunoglobulins (IgG, IgM, IgG) in a 7 months old infant can describe:",
+    "options": [
+      "X-linked agammaglobulinemia.",
+      "DiGeorge Syndrome.",
+      "Chronic granulomatous disease.",
+      "Common variable immunodeficiency."
+    ],
+    "correct": 0,
+    "explanation": "Low B-cell count with absent immunoglobulins is characteristic of X-linked agammaglobulinemia."
+  },
+  {
+    "question": "Increased susceptibility to Neisseria Meningitidis is found in which type of primary immunodeficiency (PID):",
+    "options": [
+      "B-cell deficiency.",
+      "T-cell deficiency.",
+      "Phagocytic deficiency.",
+      "Complement deficiency."
+    ],
+    "correct": 3,
+    "explanation": "Increased susceptibility to Neisseria meningitidis is associated with complement deficiencies."
+  },
+  {
+    "question": "Common variable immunodeficiency (CVID) is a primary immunodeficiency where there is a defect in:",
+    "options": [
+      "Humoral immunity defect.",
+      "T-cell defect.",
+      "Phagocytic defect.",
+      "None of the above."
+    ],
+    "correct": 0,
+    "explanation": "Common variable immunodeficiency is characterized by defects in humoral immunity (B-cell function)."
+  },
+  {
+    "question": "Primary immunodeficiency (PID) should be suspected in all of the following except:",
+    "options": [
+      "Multiple infections despite aggressive therapy.",
+      "Unusual infection site e.g. osteomyelitis, liver abscess",
+      "Infection by an opportunistic organism.",
+      "Delayed teething."
+    ],
+    "correct": 3,
+    "explanation": "Delayed teething is not a criterion for suspecting primary immunodeficiency."
+  },
+  {
+    "question": "Leucocyte adhesion defect (LAD) is a primary immunodeficiency where the defect is sorted in:",
+    "options": [
+      "Humoral immunity.",
+      "T-cell.",
+      "Phagocytes.",
+      "Combined B and T-cell defect."
+    ],
+    "correct": 2,
+    "explanation": "Leucocyte adhesion defect (LAD) is a phagocytic disorder affecting neutrophil migration."
+  },
+  {
+    "question": "Tuberculosis test or candida skin test can be used to show:",
+    "options": [
+      "How well T-cell are functioning.",
+      "How well B-cell are functioning.",
+      "How well phagocytes are functioning.",
+      "None of the above."
+    ],
+    "correct": 0,
+    "explanation": "Tuberculosis and candida skin tests assess T-cell function, as they measure delayed-type hypersensitivity."
+  },
+  {
+    "question": "Successful management of allergic disorders is based upon",
+    "options": [
+      "Prevention",
+      "Avoidance of allergens or irritants",
+      "Pharmacological therapy",
+      "immunotherapy",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Successful management of allergic disorders involves prevention, allergen avoidance, pharmacological therapy, and immunotherapy."
+  },
+  {
+    "question": "Elevated total IgE is encountered in",
+    "options": [
+      "Parasites is",
+      "Hodgkin disease",
+      "Atopy",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Elevated total IgE is seen in parasites, Hodgkin disease, and atopy."
+  },
+  {
+    "question": "Specific immunotherapy is resorted to in cases of",
+    "options": [
+      "Pollen allergy",
+      "Fish allergy",
+      "Cow milk allergy",
+      "Strawberry allergy",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Specific immunotherapy is typically used for pollen allergies, not food allergies like fish, cow milk, or strawberry."
+  },
+  {
+    "question": "Allergic rhinitis",
+    "options": [
+      "Could be seasonal",
+      "Could be perennial",
+      "Commonly associated with mouth breathing",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Allergic rhinitis can be seasonal or perennial and is commonly associated with mouth breathing."
+  },
+  {
+    "question": "Atopic dermatitis is characterized by",
+    "options": [
+      "Erythema",
+      "Edema",
+      "Crusting and scaling",
+      "None of the above",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Atopic dermatitis is characterized by erythema, edema, crusting, and scaling."
+  },
+  {
+    "question": "Epinephrine used in treatment of severe urticaria is",
+    "options": [
+      "Of 1:1000 concentration",
+      "Given in doses of 0,01 ml/kg body weight",
+      "Given subcutaneously",
+      "Hazardous in some predisposed patients",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Epinephrine for severe urticaria is 1:1000 concentration, given subcutaneously at 0.01 ml/kg, and can be hazardous in some patients."
+  },
+  {
+    "question": "Anaphylaxis could result from",
+    "options": [
+      "Latex",
+      "Insect sting",
+      "Intravenous immune globulin therapy",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Anaphylaxis can result from latex, insect stings, and IVIG therapy."
+  },
+  {
+    "question": "Treatment of anaphylaxis include",
+    "options": [
+      "Oxygen therapy",
+      "IM epinephrine",
+      "IV antihistamines",
+      "Systemic corticosteroids",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Treatment of anaphylaxis includes oxygen therapy, IM epinephrine, IV antihistamines, and systemic corticosteroids."
+  },
+  {
+    "question": "Regarding Kawasaki's disease",
+    "options": [
+      "Conjunctivitis is a recognized feature",
+      "It is caused by a spirochete",
+      "It never causes myocarditis",
+      "Fever is not a typical Feature",
+      "Is associated with profound thrombocytopenia"
+    ],
+    "correct": 0,
+    "explanation": "Conjunctivitis is a recognized feature of Kawasaki disease, which is not caused by a spirochete and can cause myocarditis. Fever is a typical feature, and it's associated with thrombocytosis, not thrombocytopenia."
+  },
+  {
+    "question": "A 17-year-old man presented with a strongly positive Mantoux test. Which one of the following statements regarding this immune reaction is correct?",
+    "options": [
+      "it is a cell mediated immune response",
+      "the response is mediated by B lymphocytes",
+      "the area of induration will be less than 10 mm in diameter",
+      "the reaction typically develops within 24 hours",
+      "if a skin biopsy were taken, immunohistochemistry would show immune complex deposition"
+    ],
+    "correct": 0,
+    "explanation": "The Mantoux test is a delayed-type hypersensitivity reaction mediated by T-lymphocytes (cell-mediated immunity). It typically develops 48-72 hours after administration, not within 24 hours. Induration of 10mm or more is considered positive in many cases, especially with risk factors for TB."
+  },
+  {
+    "question": "5-year-old girl with hypogammaglobulinemia and absent immunoglobulin A (IgA) receives infusions of immune globulin monthly. Shortly after her most recent infusion began, she developed hypotension, wheezing, and several urticarial lesions. Which of the following best explains her reaction?",
+    "options": [
+      "Anaphylactic reaction due to IgE anti-IgA antibodies",
+      "Gram-negative sepsis due to contaminated immune globulin",
+      "Idiosyncratic reaction due to rapid infusion of immune globulin",
+      "Serum sickness reaction from foreign serum in the immune globulin",
+      "Transfusion reaction due to ABO incompatibility"
+    ],
+    "correct": 0,
+    "explanation": "The reaction described is anaphylaxis, which is mediated by IgE antibodies. In patients with IgA deficiency, there is a risk of developing anti-IgA antibodies, which can cause anaphylactic reactions when exposed to IgA-containing products like immune globulin."
+  },
+  {
+    "question": "4-year-old boy is brought to the physician because of temperatures to 39.4 degreesC (102.9 degreesF) for 8 days. Examination shows anterior cervical lymphadenopathy, nonexudative conjunctivitis bilaterally, a strawberry tongue, erythematous truncal rash, and edema of the hands and feet. Which of the following is the most appropriate pharmacotherapy to prevent complications of this illness?",
+    "options": [
+      "Intravenous immunoglobulin",
+      "Intravenous penicillin",
+      "Intravenous prednisone",
+      "Oral isoniazid",
+      "Oral rifampin"
+    ],
+    "correct": 0,
+    "explanation": "The clinical presentation is classic for Kawasaki disease, which can lead to coronary artery complications. Intravenous immunoglobulin (IVIG) administered within the first 10 days of illness significantly reduces the risk of coronary artery aneurysms."
+  },
+  {
+    "question": "Atopic dermatitis is characterized by the following",
+    "options": [
+      "Erythema",
+      "edema",
+      "intense pruritis,",
+      "exudation, crusting and scaling",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Atopic dermatitis (eczema) is characterized by all of these features: erythema (redness), edema (swelling), intense pruritus (itching), and exudation, crusting, and scaling of the skin."
+  },
+  {
+    "question": "The following are causes of red urine",
+    "options": [
+      "Blood",
+      "Urates",
+      "Food as beets, blackberries, colorings",
+      "Drugs; Rifampin, chloroquine",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Red urine can be caused by blood (hematuria), urates (crystals), certain foods (beets, blackberries, food colorings), and drugs (rifampin, chloroquine). All of these are potential causes of red discoloration of urine."
+  },
+  {
+    "question": "Influenza vaccine is indicated in all of the following conditions:",
+    "options": [
+      "Cystic fibrosis",
+      "Congenital heart disease",
+      "Asthma",
+      "all of the above",
+      "none of the above"
+    ],
+    "correct": 3,
+    "explanation": "Influenza vaccine is indicated for children with chronic medical conditions including cystic fibrosis, congenital heart disease, and asthma. These conditions increase the risk of complications from influenza infection."
+  },
+  {
+    "question": "A female child appears in a clinic for a routine checkup. She developed a transient urticarial rash after the previous vaccination. She is due for the same vaccination. The next step in management:",
+    "options": [
+      "Don't give vaccination",
+      "Give half of the vaccine",
+      "Vaccine should be given",
+      "Give three-fourth of the vaccine",
+      "Give antihistamine 30 minutes before vaccination."
+    ],
+    "correct": 2,
+    "explanation": "A previous urticarial rash after vaccination is not a contraindication to future vaccination. The vaccine should be given as scheduled. Antihistamines are not routinely recommended before vaccination unless there was a previous severe reaction."
+  },
+  {
+    "question": "The side-effect of rotavirus vaccine:",
+    "options": [
+      "Flu-like symptoms",
+      "Hepatitis",
+      "Intussusception",
+      "Localized abscess",
+      "Malrotation"
+    ],
+    "correct": 2,
+    "explanation": "Intussusception is a known but rare side effect of rotavirus vaccination. It typically occurs within the first week after the first dose of the vaccine. The other options are not associated with rotavirus vaccine."
+  },
+  {
+    "question": "A child developed anaphylactic reaction to an egg. The child should not receive the following vaccination:",
+    "options": [
+      "Hepatitis B vaccine",
+      "DTaP",
+      "Hib",
+      "Influenza vaccine",
+      "IPV"
+    ],
+    "correct": 3,
+    "explanation": "Children with severe egg allergy may be at risk for anaphylactic reactions to influenza vaccine, which is grown in eggs. However, most children with egg allergy can receive the vaccine with precautions. The other vaccines listed are not grown in eggs and are safe for children with egg allergy."
+  },
+  {
+    "question": "Live measles vaccine should not be given in a patient with the following conditions except:",
+    "options": [
+      "Malignancy",
+      "Organ transplantation",
+      "Active tuberculosis",
+      "AIDS",
+      "Family member has AIDS"
+    ],
+    "correct": 2,
+    "explanation": "Live measles vaccine should not be given to immunocompromised patients, including those with malignancy, organ transplantation, or AIDS. However, having a family member with AIDS is not a contraindication to vaccination."
+  },
+  {
+    "question": "A HIV-infected severely immunocompromised child should receive all of the following vaccinations except:",
+    "options": [
+      "DTaP",
+      "IPV",
+      "Influenza",
+      "HBV",
+      "Varicella"
+    ],
+    "correct": 4,
+    "explanation": "Varicella vaccine is a live vaccine and should not be given to severely immunocompromised HIV-infected children. The other vaccines listed (DTaP, IPV, Influenza, HBV) are inactivated and can be safely administered."
+  },
+  {
+    "question": "Live virus vaccine:",
+    "options": [
+      "IPV",
+      "MMR",
+      "DTaP",
+      "Hepatitis",
+      "Hemophilus influenza type b"
+    ],
+    "correct": 1,
+    "explanation": "MMR (measles, mumps, rubella) is a live attenuated virus vaccine. IPV is inactivated, DTaP is a toxoid, Hepatitis B is recombinant protein, and Hib is a conjugate vaccine."
+  },
+  {
+    "question": "Influenza vaccine is indicated in all of the following except:",
+    "options": [
+      "Cystic fibrosis",
+      "Chronic sinusitis",
+      "Sickle cell anemia",
+      "Congenital heart disease",
+      "Bronchopulmonary dysplasia"
+    ],
+    "correct": 1,
+    "explanation": "Influenza vaccine is indicated for children with chronic medical conditions including cystic fibrosis, sickle cell anemia, congenital heart disease, and bronchopulmonary dysplasia. Chronic sinusitis alone is not typically considered an indication for annual influenza vaccination."
+  },
+  {
+    "question": "Influenza vaccine is indicated in all of the following conditions except:",
+    "options": [
+      "Cystic fibrosis",
+      "Recurrent otitis media",
+      "Sickle cell anemia",
+      "Congenital heart disease",
+      "Asthma"
+    ],
+    "correct": 1,
+    "explanation": "Influenza vaccine is indicated for children with chronic medical conditions including cystic fibrosis, sickle cell anemia, congenital heart disease, and asthma. Recurrent otitis media alone is not typically considered an indication for annual influenza vaccination."
+  },
+  {
+    "question": "A child is recovered from a Kawasaki disease. He is receiving a low-dose of aspirin therapy. The following vaccination can reduce the risk of Reye syndrome:",
+    "options": [
+      "MMR",
+      "DtaP",
+      "IPV",
+      "Influenza vaccine",
+      "Varicella"
+    ],
+    "correct": 3,
+    "explanation": "Children on aspirin therapy for conditions like Kawasaki disease are at risk for Reye syndrome if they contract influenza or varicella. Influenza vaccination reduces this risk by preventing infection."
+  },
+  {
+    "question": "A mother wants to breast feed her newborn infant. She is HBsAg-positive. The next step in management is:",
+    "options": [
+      "Give HBIG and resume breast feeding",
+      "Give hepatitis B vaccine and resume breast feeding",
+      "Resume breast feeding without HBIG",
+      "Resume breast feeding without hepatitis B vaccine",
+      "Give HBIG and hepatitis B vaccine, and resume breast feeding"
+    ],
+    "correct": 4,
+    "explanation": "HBsAg-positive mothers can breastfeed their infants. The infant should receive both HBIG (hepatitis B immune globulin) and hepatitis B vaccine within 12 hours of birth to prevent perinatal transmission."
+  },
+  {
+    "question": "A 9-month-old infant's hepatitis profile reveals anti-HBs positive and HBsAg negative. The most likely interpretation is:",
+    "options": [
+      "The infant should receive HBIG",
+      "The infant should receive one more dose of hepatitis B vaccine.",
+      "The infant should receive two more dose of hepatitis B vaccines.",
+      "The infant should receive three more dose of hepatitis B vaccines.",
+      "The infant is protected and does not require hepatitis B vaccines."
+    ],
+    "correct": 1,
+    "explanation": "Anti-HBs positive and HBsAg negative indicates immunity to hepatitis B. However, the infant should receive one more dose of hepatitis B vaccine to complete the series and ensure adequate protection."
+  },
+  {
+    "question": "A 12-month-old infant's hepatitis profile reveals anti-HBs negative and HBsAg-positive. The most likely interpretation is:",
+    "options": [
+      "Refer to a pediatric hepatologist.",
+      "The infant is protected",
+      "The infant should receive HBIG",
+      "The infant should receive one dose of hepatitis B vaccine.",
+      "The infant should receive three doses of hepatitis B vaccines."
+    ],
+    "correct": 0,
+    "explanation": "Anti-HBs negative and HBsAg positive indicates chronic hepatitis B infection. This requires referral to a pediatric hepatologist for further management and monitoring."
+  },
+  {
+    "question": "The following is a live virus vaccine:",
+    "options": [
+      "Mumps",
+      "DTP",
+      "Pneumococcal",
+      "Hepatitis",
+      "Meningococcal"
+    ],
+    "correct": 0,
+    "explanation": "Mumps vaccine is a live attenuated virus vaccine. DTP is a toxoid, pneumococcal and meningococcal vaccines are conjugate vaccines, and hepatitis B vaccine is a recombinant protein vaccine."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

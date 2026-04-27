@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Peds - Infections</title>
+
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "19dcff6a1f3bqz6g",
+  "title": "Peds - Infections",
+  "description": "115 questions on Pediatric Infections",
+  "icon": "🦠"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Erythema infectiosum is caused by:",
+    "options": [
+      "Rhinovirus",
+      "Adenovirus",
+      "Parvovirus B-19",
+      "Parainfluenza virus",
+      "Human herpes virus"
+    ],
+    "correct": 2,
+    "explanation": "Erythema infectiosum (fifth disease) is caused by Parvovirus B19. Rhinovirus causes the common cold, adenovirus causes respiratory and conjunctival infections, parainfluenza causes croup and bronchiolitis, and human herpes virus 6 causes roseola infantum."
+  },
+  {
+    "question": "A child develops acute rheumatic fever. He has recently recovered from fever with rash. Most probably the rash was due to:",
+    "options": [
+      "Chicken pox",
+      "Erythema infectiosum",
+      "Measles",
+      "Scarlet fever",
+      "Roseola infantum"
+    ],
+    "correct": 3,
+    "explanation": "Acute rheumatic fever is a sequelae of group A streptococcal infection. Scarlet fever is caused by group A streptococcus producing an erythrogenic toxin, so a preceding scarlet fever rash strongly suggests the streptococcal origin. Chicken pox, measles, erythema infectiosum, and roseola are viral and do not lead to rheumatic fever."
+  },
+  {
+    "question": "Which of the following viruses Causes sub-acute sclerosing panencephalitis? (OCT 2007)",
+    "options": [
+      "Poliovirus",
+      "Epstein Barn",
+      "Herpes simplex",
+      "Herpes zoster",
+      "Measles"
+    ],
+    "correct": 4,
+    "explanation": "Subacute sclerosing panencephalitis (SSPE) is a rare, fatal degenerative disease caused by persistent measles virus infection of the CNS. It typically occurs years after the initial measles infection. Poliovirus, Epstein-Barr virus, herpes simplex, and herpes zoster do not cause SSPE."
+  },
+  {
+    "question": "In chicken pox, all the following are true: (OCT 2007)",
+    "options": [
+      "Can be prevented by vaccination",
+      "Neurological complications are possible",
+      "Virus is present in dry crusts",
+      "Antibiotics are not indicated for the treatment of uncomplicated cases",
+      "Rash is pleomorphic"
+    ],
+    "correct": 2,
+    "explanation": "The statement that the virus is present in dry crusts is FALSE. Varicella-zoster virus is present in vesicle fluid but NOT in dry scabs/crusts. Chicken pox can be prevented by vaccination, neurological complications like cerebellitis are possible, antibiotics are not indicated for uncomplicated cases, and the rash is pleomorphic (different stages simultaneously present)."
+  },
+  {
+    "question": "Infectious mononucleosis is characterized by all the following EXCEPT: (OCT 2007)",
+    "options": [
+      "Infection is transmitted by kissing and exchange of saliva",
+      "Sabin-Feldman test becomes positive in the second week of illness",
+      "Splenomegaly is observed in approximately 50% of patients",
+      "Enlarged tender liver is found in about one third of patients",
+      "Generalized lymphadenopathy of gradual onset is characteristic"
+    ],
+    "correct": 1,
+    "explanation": "The Sabin-Feldman dye test is used for diagnosing toxoplasmosis, not infectious mononucleosis. Infectious mononucleosis is diagnosed by the heterophile antibody test (Monospot). The other options are true: EBV is transmitted via saliva, splenomegaly occurs in ~50%, hepatomegaly in ~33%, and generalized lymphadenopathy is characteristic."
+  },
+  {
+    "question": "Erythema infectiosum is caused by:",
+    "options": [
+      "Rhino virus",
+      "Adenovirus",
+      "Parvovirus B-19",
+      "Parainfluenza virus",
+      "Human herpes virus 6"
+    ],
+    "correct": 2,
+    "explanation": "Erythema infectiosum (fifth disease) is caused by Parvovirus B19, characterized by a slapped-cheek rash and reticulated body rash. Rhinovirus causes common colds, adenovirus causes respiratory/conjunctival illness, parainfluenza causes croup, and human herpes virus 6 causes roseola infantum (sixth disease)."
+  },
+  {
+    "question": "The causative agent in infectious mononucleosis is:",
+    "options": [
+      "Cytomegalovirus",
+      "Toxoplasma gondii",
+      "Leptospira icterohaemorrhagica",
+      "Epstein Barr virus",
+      "Varicella zoster virus"
+    ],
+    "correct": 3,
+    "explanation": "Infectious mononucleosis is caused by Epstein-Barr virus (EBV). CMV can cause a similar mononucleosis-like syndrome but is less common. Toxoplasma gondii causes toxoplasmosis, Leptospira causes leptospirosis, and varicella-zoster causes chickenpox and shingles."
+  },
+  {
+    "question": "Measles is characterized by all of the following except one:",
+    "options": [
+      "Specific exanthem",
+      "Cough",
+      "Coryza",
+      "Conjunctivitis",
+      "Pastia's sign"
+    ],
+    "correct": 4,
+    "explanation": "Pastia's sign (linear petechial rash in skin creases) is characteristic of scarlet fever, not measles. Measles is characterized by the triad of cough, coryza, and conjunctivitis (the 3 C's) along with a specific maculopapular exanthem and Koplik spots."
+  },
+  {
+    "question": "Concerning chicken pox:",
+    "options": [
+      "The incubation period is 7 days",
+      "Aspirin can be used as an anti-pyretic",
+      "Transmission is only by contact",
+      "Encephalitis is a recognized complication",
+      "There is no effective vaccine"
+    ],
+    "correct": 3,
+    "explanation": "Encephalitis is a recognized complication of chickenpox (especially cerebellitis). The other options are false: the incubation period is 2-3 weeks (not 7 days), aspirin is contraindicated due to Reye syndrome risk, transmission is by both airborne droplets and contact (not only contact), and an effective varicella vaccine exists."
+  },
+  {
+    "question": "What characteristically happens if you incorrectly treat a patient with infectious mononucleosis by giving him/her ampicillin:",
+    "options": [
+      "A rash develops",
+      "Nothing",
+      "Severe anaphylactic reaction occurs",
+      "Excessive nausea/vomiting occurs",
+      "Splenomegaly develops"
+    ],
+    "correct": 0,
+    "explanation": "Administering ampicillin to a patient with infectious mononucleosis classically causes a diffuse maculopapular rash in 90-100% of cases. This is not a true allergy but a hypersensitivity reaction specific to ampicillin during acute EBV infection. It does not cause anaphylaxis, excessive vomiting, or splenomegaly."
+  },
+  {
+    "question": "The incubation period of chickenpox is:",
+    "options": [
+      "2 days",
+      "Less than 1week",
+      "1-2 weeks",
+      "2-3 weeks",
+      "More than 3 weeks"
+    ],
+    "correct": 3,
+    "explanation": "The incubation period of chickenpox is typically 2-3 weeks (14-21 days), with most cases appearing 14-16 days after exposure. Two days or less than one week is too short, and more than three weeks is uncommon."
+  },
+  {
+    "question": "The 12-year-old child with a sore throat and a fever develops a sandpaper like red rash on his chest. Examination of his mouth reveals a strawberry tongue and red enlarged tonsils. What is the most likely diagnosis?",
+    "options": [
+      "Mononucleosis",
+      "Scarlet fever",
+      "Rheumatic fever",
+      "Necrotizing fasciitis",
+      "Diphtheria"
+    ],
+    "correct": 1,
+    "explanation": "This clinical picture — sandpaper-like rash, strawberry tongue, pharyngitis with fever — is classic for scarlet fever, caused by group A streptococcus producing erythrogenic toxin. Mononucleosis lacks sandpaper rash, rheumatic fever presents with migratory polyarthritis and carditis, necrotizing fasciitis is a deep soft tissue infection, and diphtheria has a gray membrane."
+  },
+  {
+    "question": "Recognized complications of measles include all of the following EXCEPT:",
+    "options": [
+      "Encephalitis",
+      "Febrile convulsions",
+      "Diarrhea",
+      "Infertility in males",
+      "Corneal ulceration"
+    ],
+    "correct": 3,
+    "explanation": "Infertility in males is NOT a recognized complication of measles. Recognized complications include encephalitis, febrile convulsions, diarrhea, corneal ulceration (especially in vitamin A deficient children), pneumonia, and SSPE. Mumps orchitis can cause infertility, but measles does not affect male fertility."
+  },
+  {
+    "question": "A 5-year-old child developed a diffuse erythematous rash all over his body associated with sore throat on examination he was feverish and showed a congested pharynx with strawberry tongue. What is the most likely diagnosis?",
+    "options": [
+      "Sweat rash",
+      "Chicken pox",
+      "Scarlet fever",
+      "Measles"
+    ],
+    "correct": 2,
+    "explanation": "The combination of diffuse erythematous rash, sore throat, fever, congested pharynx, and strawberry tongue is diagnostic of scarlet fever. Sweat rash is not a medical diagnosis, chicken pox has vesicular pleomorphic rash, and measles has a maculopapular rash with Koplik spots and the 3 C's (cough, coryza, conjunctivitis)."
+  },
+  {
+    "question": "Which of the following might be a remote complication:",
+    "options": [
+      "Hepatitis",
+      "Pancreatitis",
+      "Glomerulonephritis",
+      "Encephalitis"
+    ],
+    "correct": 2,
+    "explanation": "Glomerulonephritis (especially post-streptococcal glomerulonephritis) is a classic remote/late complication that develops weeks after the initial infection. Hepatitis and encephalitis are typically acute complications, and pancreatitis is also generally an acute complication rather than a remote one."
+  },
+  {
+    "question": "All statements are true regarding measles rash EXCEPT:",
+    "options": [
+      "Special Marsh from Limbs to Face",
+      "Maculopapular",
+      "Maybe hemorrhagic",
+      "Disappears with branny desquamation",
+      "Associated with slight itching"
+    ],
+    "correct": 0,
+    "explanation": "Measles rash spreads cephalocaudally — from the face and behind the ears downward to the trunk and extremities — NOT from limbs to face. The rash is maculopapular, may be hemorrhagic in severe cases, disappears with branny desquamation, and may have slight itching."
+  },
+  {
+    "question": "Which of the following is true of koplik's spots?",
+    "options": [
+      "Are diagnostic for measles",
+      "Located opposite the incisor teeth",
+      "Only appear when fever is over 39",
+      "They appear as red papules on the Palmar surface of the hands",
+      "Typically appear 2 days after the rash"
+    ],
+    "correct": 0,
+    "explanation": "Koplik spots are pathognomonic (diagnostic) for measles. They appear on the buccal mucosa opposite the molars (not incisors), appear before the rash (not after), and are bluish-white dots on an erythematous base (not red papules on hands). They typically appear 1-2 days before the exanthem."
+  },
+  {
+    "question": "All are true about hepatitis B vaccine EXCEPT:",
+    "options": [
+      "It is prepared by recombinant DNA technology in yeast cells",
+      "It is given intramuscularly in 3 doses",
+      "It must not be frozen",
+      "It contains the hepatitis B surface antigens not the infectious \"Dane\" particle",
+      "It may result in Hepatitis B disease in a recipient"
+    ],
+    "correct": 4,
+    "explanation": "The hepatitis B vaccine CANNOT cause hepatitis B disease because it contains only recombinant HBsAg protein — there is no live or intact virus. All other statements are true: it is produced by recombinant DNA technology in yeast, given IM in 3 doses, must not be frozen, and contains only the surface antigen (not the Dane particle)."
+  },
+  {
+    "question": "Local reaction following BCG vaccination occurs:",
+    "options": [
+      "2 to 3 days after vaccination",
+      "6 to 8 days after vaccination",
+      "6-8 weeks after vaccination",
+      "6 months after vaccination",
+      "No local reaction is expected to occur"
+    ],
+    "correct": 2,
+    "explanation": "The local reaction following BCG vaccination (papule → vesicle → ulcer → scar) typically occurs 6-8 weeks after vaccination due to the delayed-type hypersensitivity response to the live attenuated mycobacteria. Reactions within days would suggest an accelerated or previous immune response, and 6 months is too late."
+  },
+  {
+    "question": "The following are true regarding BCG vaccination in Egypt EXCEPT:",
+    "options": [
+      "Live attenuated",
+      "Intradermally administered",
+      "Dose of vaccine 0.1 CC",
+      "Time of administration is before 3 months of age",
+      "Tuberculin testing is a prerequisite in all cases before vaccinations"
+    ],
+    "correct": 4,
+    "explanation": "Tuberculin testing is NOT a prerequisite before BCG vaccination in all cases, especially in newborns and young infants who have not been previously exposed. BCG is a live attenuated vaccine given intradermally at a dose of 0.1 cc before 3 months of age in Egypt. Tuberculin testing is only needed for older children."
+  },
+  {
+    "question": "childhood immunization with DPT vaccine is absolutely contraindicated in:",
+    "options": [
+      "Immunocompromised patients",
+      "Down syndrome",
+      "Cerebral palsy",
+      "Family history of conversions",
+      "Convulsions occurring in the same infant following the previous dose of pertussis"
+    ],
+    "correct": 4,
+    "explanation": "Convulsions following a previous dose of pertussis vaccine are an absolute contraindication to further pertussis-containing vaccine doses. Immunocompromised patients can receive the acellular pertussis component, and Down syndrome, cerebral palsy, and family history of convulsions are not contraindications."
+  },
+  {
+    "question": "DPT vaccine is contraindicated: (OCT 2010)",
+    "options": [
+      "In immunocompromised patients",
+      "When there is a history of seizures after a previous dose of the vaccine",
+      "After the 1st year of life",
+      "In malnourished children",
+      "In all of the above"
+    ],
+    "correct": 1,
+    "explanation": "A history of seizures after a previous dose of DPT is a specific contraindication to further pertussis-containing vaccine. Immunocompromised patients can receive killed/inactivated vaccines (including DTaP), age above 12 months is not a contraindication (though whole-cell DPT is preferred under age 7), and malnutrition is not a contraindication."
+  },
+  {
+    "question": "A contraindication to vaccination is:",
+    "options": [
+      "A family history of metabolic disease",
+      "The presence of bronchial asthma",
+      "A history of irritability following a previous dose of the vaccine",
+      "Temperature above 39",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "None of the listed options is an absolute contraindication to vaccination. Family history of metabolic disease, bronchial asthma, mild irritability after a previous dose, and moderate fever are not contraindications. True contraindications include severe allergic reaction to a previous dose or vaccine component, and encephalopathy within 7 days of pertussis vaccination."
+  },
+  {
+    "question": "Select only the correct statement:",
+    "options": [
+      "A child who has epilepsy shouldn't be given MMR vaccine",
+      "A child who is immunocompromised shouldn't receive BCG vaccine",
+      "A child who has fever of any degree shouldn't be immunized",
+      "A child who is Low weight shouldn't be immunized",
+      "Meningococcal vaccine is given before 2 years of age"
+    ],
+    "correct": 1,
+    "explanation": "Immunocompromised children should NOT receive BCG vaccine because it is a live attenuated vaccine that can cause disseminated BCG disease. Epilepsy is not a contraindication to MMR, mild fever is not a contraindication, low weight is not a contraindication, and meningococcal vaccine is typically given after 2 years of age."
+  },
+  {
+    "question": "With regards to BCG vaccine the following statements are correct EXCEPT:",
+    "options": [
+      "It is an anti-tuberculosis vaccine",
+      "It is considered immune modulator",
+      "Live attenuated vaccine",
+      "Given strictly by subcutaneous injection",
+      "Validity is variable"
+    ],
+    "correct": 3,
+    "explanation": "BCG vaccine is given strictly by intradermal injection (not subcutaneous). All other statements are true: BCG is an anti-tuberculosis vaccine, it is considered an immune modulator, it is a live attenuated vaccine, and its protective efficacy (validity) is variable across different populations."
+  },
+  {
+    "question": "The following are true regarding BCG vaccination in Egypt EXCEPT:",
+    "options": [
+      "Live attenuated",
+      "Intradermally administered",
+      "Dose of the vaccine is 0.1 CC",
+      "Time of administration is before 3 months of age",
+      "Tuberculin testing is a prerequisite in all cases before vaccination"
+    ],
+    "correct": 4,
+    "explanation": "Tuberculin testing is NOT a prerequisite in all cases before BCG vaccination. For newborns and young infants (before 3 months of age in Egypt), tuberculin testing is unnecessary since they have not had prior mycobacterial exposure. BCG is a live attenuated vaccine given intradermally at 0.1 cc."
+  },
+  {
+    "question": "Immunization with DPT vaccine who pertussis is absolutely contraindicated in:",
+    "options": [
+      "Children above 12 months of age",
+      "Down syndrome",
+      "Cerebral palsy",
+      "Family history of convulsions",
+      "Convulsions occurring in the same in front following the previous dose of pertussis"
+    ],
+    "correct": 4,
+    "explanation": "Convulsions in the same infant following a previous dose of pertussis vaccine is an absolute contraindication to further pertussis-containing immunization. Age above 12 months, Down syndrome, cerebral palsy, and family history of convulsions are not contraindications to DPT vaccination."
+  },
+  {
+    "question": "CSF findings in acute bacterial meningitis include the following, EXCEPT:",
+    "options": [
+      "Polyuria and polydipsia",
+      "Diarrhea",
+      "Nephrocalcinosis",
+      "Hypercalcemia",
+      "Anorexia"
+    ],
+    "correct": 0,
+    "explanation": "This question appears to have mismatched answer options — the listed choices (polyuria, diarrhea, nephrocalcinosis, hypercalcemia, anorexia) are not CSF findings and seem to belong to a different question, likely about a metabolic or endocrine condition. None of these options represent CSF parameters. Polyuria and polydipsia are the most clearly unrelated to any meningitis presentation."
+  },
+  {
+    "question": "CSF for finding in acute bacterial meningitis include the following except one:",
+    "options": [
+      "Increased CSF glucose",
+      "Increased CSF cells",
+      "Increased CSF protein",
+      "Positive CSF gram stain for bacterial pathogen",
+      "Elevated opening pressure"
+    ],
+    "correct": 0,
+    "explanation": "In acute bacterial meningitis, CSF glucose is DECREASED (not increased) due to consumption by bacteria and impaired glucose transport. The other findings are correct: increased cells (polymorphonuclear predominance), increased protein, positive Gram stain, and elevated opening pressure are all characteristic."
+  },
+  {
+    "question": "The viral infection most likely to cause CNS involvement and focal neurological findings is:",
+    "options": [
+      "Coxsackie virus",
+      "Herpes simplex",
+      "Enterovirus",
+      "Rabies",
+      "Rhinovirus"
+    ],
+    "correct": 1,
+    "explanation": "Herpes simplex virus (HSV) encephalitis is the viral infection most likely to cause focal neurological findings, typically affecting the temporal lobes and causing focal seizures, hemiparesis, and aphasia. Coxsackie and enterovirus usually cause diffuse meningoencephalitis, rabies causes brainstem encephalitis, and rhinovirus does not cause CNS disease."
+  },
+  {
+    "question": "CSF findings in acute bacterial meningitis include the following EXCEPT:",
+    "options": [
+      "Increased CSF glucose",
+      "Increased CSF cells",
+      "Increased CSF protein",
+      "Positive CSF gram stain for bacterial pathogen",
+      "Elevated opening pressure"
+    ],
+    "correct": 0,
+    "explanation": "In acute bacterial meningitis, CSF glucose is decreased (hypoglycorrhachia), not increased. Bacteria and inflammatory cells consume glucose, and transport across the blood-brain barrier is impaired. Increased cells, increased protein, positive Gram stain, and elevated opening pressure are all expected findings."
+  },
+  {
+    "question": "Fever, headache and convulsions 1-day duration with neck stiffness the appropriate investigation is:",
+    "options": [
+      "Complete blood picture",
+      "Cranial ultrasound",
+      "Examination for a of refraction",
+      "Cerebrospinal fluid examination",
+      "Magnetic resonance imaging"
+    ],
+    "correct": 3,
+    "explanation": "Cerebrospinal fluid examination (lumbar puncture) is the most appropriate investigation for suspected meningitis presenting with fever, headache, convulsions, and neck stiffness. CSF analysis can confirm the diagnosis and identify the organism. CBC is nonspecific, cranial ultrasound is limited, and MRI is not the first-line investigation for acute meningitis."
+  },
+  {
+    "question": "The 5-year-old child complains of fever, severe headache and convulsions one day duration with neck stiffness and papilloedema. The most appropriate investigation is:",
+    "options": [
+      "Complete blood picture",
+      "Pelviabdominal ultrasound",
+      "Examination for errors of refraction",
+      "Blood cultures",
+      "CT brain"
+    ],
+    "correct": 4,
+    "explanation": "With papilloedema present (indicating increased intracranial pressure), a CT brain must be performed BEFORE lumbar puncture to rule out a mass lesion or cerebral edema that could cause brain herniation during LP. CSF examination is still needed but only after imaging confirms it is safe. Blood cultures should also be drawn but CT is the priority investigation."
+  },
+  {
+    "question": "The paralysis in poliomyelitis is:",
+    "options": [
+      "Bilateral symmetrical",
+      "Maximal from the start",
+      "Descending paralysis",
+      "Intermittent in course",
+      "Progressive over few weeks"
+    ],
+    "correct": 4,
+    "explanation": "Poliomyelitis paralysis is progressive over a period of time — it typically worsens over days and can continue progressing over a few weeks as more anterior horn cells are affected. It is characteristically asymmetric (not bilateral symmetrical), not maximal from the start, not typically descending, and not intermittent."
+  },
+  {
+    "question": "Respiratory polio may be caused by:",
+    "options": [
+      "Paralysis of the diaphragm",
+      "Respiratory center affection",
+      "Bulbar palsy",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Respiratory failure in poliomyelitis can be caused by all of the listed mechanisms: paralysis of the diaphragm and intercostal muscles (spinal form), respiratory center involvement, and bulbar palsy affecting cranial nerve nuclei controlling airway and breathing muscles. Therefore 'all of the above' is correct."
+  },
+  {
+    "question": "which of the following is true concerning whooping cough (pertussis)?",
+    "options": [
+      "Is a greater threat to children during the second 6 months of life, after maternal antibody has declined than during the first 6 months",
+      "May lead to hemiplegia",
+      "Is characteristically associated with a polymorph leukocytosis",
+      "Complications usually occur during the catarrhal stage",
+      "Rapidly resolves with antibiotic treatment"
+    ],
+    "correct": 1,
+    "explanation": "Pertussis may lead to hemiplegia as a rare neurological complication due to cerebral hypoxia from severe paroxysmal coughing spells. Pertussis is most dangerous in the first 6 months (not second), it causes lymphocytosis (not polymorph leukocytosis), complications occur during the paroxysmal stage (not catarrhal), and antibiotics do not rapidly resolve the cough."
+  },
+  {
+    "question": "All of the following are associated with increased susceptibility to tuberculosis EXCEPT:",
+    "options": [
+      "Steroids",
+      "Adolescence",
+      "Malnutrition",
+      "Diabetes mellitus",
+      "Acquired immunodeficiency syndrome (AIDS)"
+    ],
+    "correct": 1,
+    "explanation": "Adolescence is NOT typically associated with increased susceptibility to tuberculosis. Risk factors include immunosuppression (steroids, AIDS), malnutrition, diabetes mellitus, very young age, and elderly age. Adolescence per se does not significantly increase TB susceptibility compared to these well-established risk factors."
+  },
+  {
+    "question": "A true statement concerning primary pulmonary tuberculosis in children is it is not associated with:",
+    "options": [
+      "Hilar lymph adenopathy",
+      "Sputum contains large number of acid-fast bacilli",
+      "It is usually an open lesion",
+      "Triple therapy is indicated",
+      "Blood culture is positive for acid fast bacilli"
+    ],
+    "correct": 2,
+    "explanation": "Primary pulmonary TB in children is characteristically a CLOSED lesion (not open). Open (cavitary) lesions with abundant AFB in sputum are features of secondary/reactivation TB in adults. Hilar lymphadenopathy is a hallmark of primary TB, and triple therapy is indicated. The closed nature explains why sputum AFB and blood cultures are typically negative."
+  },
+  {
+    "question": "The most common type of extrapulmonary tuberculosis is:",
+    "options": [
+      "TB meningitis",
+      "TB enteritis",
+      "TB lymphadenitis",
+      "TB arthritis",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Tuberculous lymphadenitis (scrofula) is the most common form of extrapulmonary tuberculosis, particularly involving cervical lymph nodes. TB meningitis, TB enteritis, and TB arthritis are less common extrapulmonary manifestations. Lymphadenitis accounts for approximately 30-40% of extrapulmonary TB cases."
+  },
+  {
+    "question": "The best diagnostic tool of pulmonary tuberculosis is",
+    "options": [
+      "Isolation of mycobacterium tuberculosis",
+      "Positive chest X-ray results",
+      "Positive tuberculin test results",
+      "Mother has active TB",
+      "Father has active TB"
+    ],
+    "correct": 0,
+    "explanation": "Isolation (culture) of Mycobacterium tuberculosis is the gold standard for diagnosing pulmonary TB, providing definitive proof of infection. Chest X-ray findings and tuberculin tests suggest but do not confirm active TB. Parent history of active TB indicates exposure risk but not definitive diagnosis in the child."
+  },
+  {
+    "question": "A 17-year-old man presented with a strongly positive Mantoux test, which one of the following statements regarding his immune reaction is correct?",
+    "options": [
+      "It is a cell mediated immune response",
+      "The response is mediated by B lymphocytes",
+      "The area of induration will be less than 10 mm in diameter",
+      "The reaction typically develops within 24 hours",
+      "If a skin biopsy taken, immunohistochemistry would show immune complex deposition"
+    ],
+    "correct": 0,
+    "explanation": "The Mantoux (tuberculin skin) test is a type IV delayed-type hypersensitivity reaction, which is a cell-mediated immune response involving T lymphocytes and macrophages. It is NOT mediated by B lymphocytes (which mediate humoral immunity), induration is typically ≥10 mm in immunocompetent individuals, the reaction develops over 48-72 hours (not 24), and it shows granulomatous inflammation (not immune complex deposition)."
+  },
+  {
+    "question": "Congenital infections include all the following EXCEPT:",
+    "options": [
+      "Toxoplasmosis",
+      "Rubella",
+      "Cytomegalovirus",
+      "Rota virus",
+      "Syphilis"
+    ],
+    "correct": 3,
+    "explanation": "Rotavirus is a gastrointestinal pathogen causing diarrheal illness and is NOT a congenital (TORCH) infection. The classic TORCH congenital infections are Toxoplasmosis, Other (syphilis, varicella, parvovirus B19), Rubella, Cytomegalovirus, and Herpes simplex. Rotavirus does not cross the placenta or cause congenital disease."
+  },
+  {
+    "question": "Congenital infection is associated with the following EXCEPT:",
+    "options": [
+      "Cataract",
+      "Deafness",
+      "Cardiac abnormalities",
+      "Microcephaly",
+      "Genitourinary abnormalities"
+    ],
+    "correct": 4,
+    "explanation": "Genitourinary abnormalities are not a classic feature of congenital (TORCH) infections. Congenital infections are typically associated with cataract (especially rubella), deafness (rubella and CMV), cardiac abnormalities (particularly PDA and pulmonary artery stenosis in rubella), and microcephaly (CMV, toxoplasmosis)."
+  },
+  {
+    "question": "All are true about mumps EXCEPT:",
+    "options": [
+      "Can be prevented by active immunization",
+      "Has a 2-3-week incubation period",
+      "Rarely affects the testes before puberty",
+      "Is rarely complicated by meningitis",
+      "May lead to pancreatitis"
+    ],
+    "correct": 3,
+    "explanation": "It is FALSE that mumps is 'rarely' complicated by meningitis — aseptic meningitis is actually the most common complication of mumps, occurring in up to 10% of cases. Mumps can be prevented by the MMR vaccine, has a 2-3 week incubation period, rarely causes orchitis before puberty, and may lead to pancreatitis."
+  },
+  {
+    "question": "Permanent deafness may follow all of the following EXCEPT:",
+    "options": [
+      "Scarlet fever",
+      "Mumps",
+      "Meningitis",
+      "Rubella",
+      "Streptomycin therapy"
+    ],
+    "correct": 0,
+    "explanation": "Scarlet fever does not typically cause permanent deafness. In contrast, mumps can cause sensorineural hearing loss, meningitis can cause permanent deafness, congenital rubella is a leading cause of congenital sensorineural deafness, and streptomycin is ototoxic and can cause permanent hearing loss."
+  },
+  {
+    "question": "The most frequent complication of mumps in childhood is:",
+    "options": [
+      "Orchitis",
+      "Deafness",
+      "Meningo-encephalitis",
+      "Myocarditis",
+      "Nephritis"
+    ],
+    "correct": 2,
+    "explanation": "Meningo-encephalitis (aseptic meningitis) is the most frequent complication of mumps in childhood, occurring in up to 10% of cases. Orchitis is common in post-pubertal males but rare before puberty. Deafness is rare, and myocarditis and nephritis are very uncommon complications of mumps."
+  },
+  {
+    "question": "In Mumps all of the following statements are true EXCEPT:",
+    "options": [
+      "The incubation period is usually 21 days",
+      "Orchitis is typically bilateral",
+      "Aseptic meningitis is a complication",
+      "Amylase may be increased despite no evidence of pancreatitis clinically",
+      "Sublingual swelling may occur"
+    ],
+    "correct": 1,
+    "explanation": "Orchitis in mumps is typically UNILATERAL (approximately 70% of cases), not bilateral. Bilateral orchitis occurs in about 30% of affected males. The incubation period of ~21 days is correct, aseptic meningitis is a known complication, amylase may be elevated from salivary gland involvement (not necessarily pancreatitis), and sublingual swelling can occur."
+  },
+  {
+    "question": "All of the following statements regarding Entamoeba histolytica infection are correct, EXCEPT:",
+    "options": [
+      "It is transmitted by the ingestion of cysts",
+      "The digestive enzymes release trophozoites from the cysts",
+      "Intestinal flora contribute to the intestinal damage caused by the trophozoites",
+      "The intestinal lesions are superficial",
+      "Hepatic abscesses are a common complication"
+    ],
+    "correct": 3,
+    "explanation": "The intestinal lesions caused by Entamoeba histolytica are NOT superficial — they are deep, flask-shaped ulcers that penetrate through the mucosa into the submucosa. The name 'histolytica' reflects its tissue-destroying capability. E. histolytica is transmitted by cyst ingestion, digestive enzymes release trophozoites, intestinal flora contribute to damage, and hepatic abscesses are a common complication."
+  },
+  {
+    "question": "The incubation period of chickenpox is usually about:",
+    "options": [
+      "2 days",
+      "Less than 1 week",
+      "2 to 3 weeks",
+      "More than 3 weeks",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The incubation period of chickenpox is usually about 2 to 3 weeks (14-21 days), with an average of 14-16 days. Two days and less than one week are far too short, and more than 3 weeks is beyond the typical range."
+  },
+  {
+    "question": "hepatitis B c. Toxoid",
+    "options": [
+      "Killed viral",
+      "Live attenuated virus"
+    ],
+    "correct": 0,
+    "explanation": "The hepatitis B vaccine is best classified as an inactivated/killed-type vaccine (it is actually a recombinant subunit vaccine containing only HBsAg protein, with no viral genetic material). It is certainly NOT a live attenuated virus — it contains no live virus and cannot cause hepatitis B infection. Between the two options given, 'killed viral' is the closer classification."
+  },
+  {
+    "question": "Incubation period of scarlet fever is",
+    "options": [
+      "5 hours",
+      "2 to 7 Days",
+      "2 weeks",
+      "3 weeks",
+      "none of the above"
+    ],
+    "correct": 1,
+    "explanation": "The incubation period of scarlet fever is typically 2 to 7 days, as it follows group A streptococcal pharyngitis. Five hours is far too short, and 2-3 weeks is far too long for a bacterial infection transmitted via respiratory droplets."
+  },
+  {
+    "question": "enteric fever is caused by",
+    "options": [
+      "salmonella typhi and paratyphi",
+      "rotavirus",
+      "streptococcal infection",
+      "listeria monocytogenes",
+      "none of the above"
+    ],
+    "correct": 0,
+    "explanation": "Enteric (typhoid) fever is caused by Salmonella typhi and Salmonella paratyphi (serotypes A, B, and C). Rotavirus causes gastroenteritis, streptococcal infections cause pharyngitis and skin infections, and Listeria monocytogenes causes neonatal sepsis and meningitis."
+  },
+  {
+    "question": "normal CSF pressure is",
+    "options": [
+      "between 100 to 150 mmH2O",
+      "between 100 to 300 mmH2O",
+      "between 50 to 80 mmH2O",
+      "between 20 to 50 mmH2O",
+      "none of the above"
+    ],
+    "correct": 0,
+    "explanation": "Normal CSF opening pressure is approximately 100-150 mmH2O in older children and adults (with broader ranges of 80-180 mmH2O cited in various sources). 100-300 mmH2O is too high at the upper end, while 50-80 and 20-50 mmH2O are too low and represent neonatal ranges."
+  },
+  {
+    "question": "etiology of cerebrospinal meningitis could be",
+    "options": [
+      "viral",
+      "bacterial",
+      "chemical",
+      "post vaccination",
+      "all of the above"
+    ],
+    "correct": 4,
+    "explanation": "The etiology of cerebrospinal meningitis can be all of the above: viral (enteroviruses, HSV, mumps), bacterial (Neisseria meningitidis, Streptococcus pneumoniae, Haemophilus influenzae), chemical (irritant substances), and post-vaccination (rare aseptic meningitis following certain vaccines like the older mumps vaccine strains)."
+  },
+  {
+    "question": "the duration of spasmodic stage of whooping cough is",
+    "options": [
+      "1 week",
+      "2 to 6 weeks",
+      "6 to 8 weeks",
+      "8 to 10 weeks",
+      "none of the above"
+    ],
+    "correct": 1,
+    "explanation": "The spasmodic (paroxysmal) stage of whooping cough typically lasts 2 to 6 weeks, characterized by paroxysms of coughing followed by an inspiratory whoop. One week is too short, and 6-10 weeks would represent unusually prolonged cases. The entire illness can last 6-10 weeks (the '100-day cough')."
+  },
+  {
+    "question": "incubation period of mumps is",
+    "options": [
+      "2 to 3 weeks",
+      "1 week",
+      "4 weeks",
+      "5 days",
+      "none of the above"
+    ],
+    "correct": 0,
+    "explanation": "The incubation period of mumps is typically 2 to 3 weeks (16-18 days on average, with a range of 12-25 days). One week is too short, 4 weeks is beyond the typical range, and 5 days is far too brief for this viral infection."
+  },
+  {
+    "question": "complications of mumps include",
+    "options": [
+      "meningoencephalitis",
+      "orchitis",
+      "pancreatitis",
+      "deafness",
+      "all of the above"
+    ],
+    "correct": 4,
+    "explanation": "All of the listed options are recognized complications of mumps: meningoencephalitis is the most common, orchitis occurs in post-pubertal males, pancreatitis can occur with elevated amylase, and sensorineural deafness is a rare but important complication. Therefore 'all of the above' is correct."
+  },
+  {
+    "question": "all statements are true regarding measles rash except",
+    "options": [
+      "special march from limbs to face",
+      "maculopapular",
+      "maybe hemorrhagic",
+      "disappears with brany desquamation",
+      "associated with slight itching"
+    ],
+    "correct": 0,
+    "explanation": "Measles rash does NOT spread from limbs to face — it spreads cephalocaudally, beginning at the hairline and behind the ears, then spreading to the face, neck, trunk, and finally extremities. The rash is maculopapular, may be hemorrhagic in severe cases, disappears with branny desquamation, and is associated with slight itching."
+  },
+  {
+    "question": "Measles it is characterized by all of the following except",
+    "options": [
+      "coryza",
+      "conjunctivitis",
+      "cough",
+      "specific exanthem",
+      "Pastia's sign"
+    ],
+    "correct": 4,
+    "explanation": "Measles is characterized by the '3 Cs': cough, coryza, and conjunctivitis, along with a specific maculopapular exanthem. Pastia's sign (accentuation of rash in skin creases) is characteristic of scarlet fever, not measles."
+  },
+  {
+    "question": "CSF findings in acute bacterial meningitis include the following except one",
+    "options": [
+      "increased CSF glucose",
+      "increased CSF cells",
+      "increased CSF protein",
+      "positive CSF gram stain for bacterial pathogen",
+      "elevated opening pressure"
+    ],
+    "correct": 0,
+    "explanation": "In acute bacterial meningitis, CSF glucose is typically decreased (not increased). CSF findings include elevated opening pressure, pleocytosis (increased cells), elevated protein, positive Gram stain, and low glucose. Increased CSF glucose is the exception."
+  },
+  {
+    "question": "local reaction following BCG vaccination occurs",
+    "options": [
+      "2-3 days after vaccination",
+      "6-8 days after vaccination",
+      "6-8 weeks after vaccination",
+      "6 months after vaccination"
+    ],
+    "correct": 2,
+    "explanation": "The local reaction following BCG vaccination typically occurs 6-8 weeks after vaccination, presenting as a small papule that progresses to ulceration and scarring. This delayed-type hypersensitivity reaction reflects the development of cell-mediated immunity."
+  },
+  {
+    "question": "childhood immunization with DTP vaccine is absolutely contraindicated in:",
+    "options": [
+      "immunocompromised patients",
+      "down Syndrome",
+      "cerebral palsy",
+      "family history of convulsions",
+      "convulsions occurring in the same infant following the previous dose of pertussis"
+    ],
+    "correct": 4,
+    "explanation": "An absolute contraindication to the pertussis component of DTP vaccine is a history of seizures or severe neurological reaction following a previous dose. This is because the whole-cell pertussis component can cause neurological adverse events, and re-exposure poses significant risk."
+  },
+  {
+    "question": "which of the following is true of Koplik's spots?",
+    "options": [
+      "Are diagnostic of measles",
+      "Located opposite the incisor teeth",
+      "Only appear when fever is over 39 degreesC",
+      "They appear as red papules on the palmar surface of the hands",
+      "Typically appear two days after the rash"
+    ],
+    "correct": 0,
+    "explanation": "Koplik spots are pathognomonic (diagnostic) for measles. They appear as small white lesions on an erythematous base on the buccal mucosa opposite the molars, typically 1-2 days BEFORE the rash appears. They are not limited to high fever and do not appear on the hands."
+  },
+  {
+    "question": "Which of the following statements is characteristic of acute hepatitis B infection:",
+    "options": [
+      "Most patients present with splenomegaly",
+      "It confers immunity to hepatitis",
+      "it commonly presents with distal joint arthritis",
+      "there is increased infectivity in the presence of the e-antigen",
+      "pruritis is an important early symptom"
+    ],
+    "correct": 3,
+    "explanation": "The presence of hepatitis B e-antigen (HBeAg) indicates active viral replication and is associated with increased infectivity. HBeAg-positive patients have higher viral loads and greater risk of transmitting the infection compared to HBeAg-negative patients."
+  },
+  {
+    "question": "Concerning chickenpox",
+    "options": [
+      "The incubation period is 7 days",
+      "Aspirin is a useful anti-pyretic",
+      "Transmission is only by contact",
+      "Encephalitis is a recognized complication",
+      "There is no effective vaccine"
+    ],
+    "correct": 3,
+    "explanation": "Encephalitis is a recognized complication of chickenpox. The incubation period is 2-3 weeks (not 7 days), aspirin is contraindicated due to Reye syndrome risk, transmission is by both airborne and contact routes, and an effective varicella vaccine exists."
+  },
+  {
+    "question": "In mumps all of the following statements are true EXCEPT:",
+    "options": [
+      "The incubation period is usually 21 days",
+      "Orchitis is typically bilateral",
+      "A septic meningitis is a complication",
+      "amylase may be increased despite no evidence of pancreatitis clinically",
+      "sublingual swelling may occur"
+    ],
+    "correct": 1,
+    "explanation": "In mumps, orchitis is typically UNILATERAL (not bilateral), affecting about 20-30% of postpubertal males. All other statements are true: the incubation period is about 16-21 days, aseptic meningitis is a recognized complication, amylase may be elevated without clinical pancreatitis, and sublingual swelling can occur."
+  },
+  {
+    "question": "Which of the following is true concerning whooping cough (pertussis)?",
+    "options": [
+      "Is a greater threat to children during the second 6 months of life, after maternal antibody has declined, than during the first 6 months",
+      "May lead to hemiplegia",
+      "Is characteristically associated with a polymorph leucocytosis",
+      "Complications usually occur during the catarrhal stage",
+      "Rapidly resolves with antibiotic treatment"
+    ],
+    "correct": 1,
+    "explanation": "Pertussis may lead to hemiplegia as a result of cerebral hypoxia during severe paroxysmal coughing episodes. Pertussis is most dangerous in the first 6 months (not the second), causes lymphocytosis (not polymorph leukocytosis), complications occur in the paroxysmal stage, and antibiotics do not rapidly resolve symptoms."
+  },
+  {
+    "question": "The causative agent in infectious mono nucleus is:",
+    "options": [
+      "Cytomegalo virus.",
+      "Toxoplasma gondii.",
+      "Leptospiracteraheniorrhagica.",
+      "Epstein -barr virus.",
+      "Varicella-zoster virus."
+    ],
+    "correct": 3,
+    "explanation": "Epstein-Barr virus (EBV) is the causative agent of infectious mononucleosis. While CMV can cause a similar mononucleosis-like syndrome, EBV is the classic and most common cause. Toxoplasma, Leptospira, and Varicella-zoster are not causes of infectious mononucleosis."
+  },
+  {
+    "question": "A woman, who is positive for hepatitis B surface antigen (HBsAg), but negative for hepatitis B antigen (HBeAg), delivers at term. What would be the best management for this woman's infant?",
+    "options": [
+      "Administer gamma globulin intramuscularly immediately and at 1 month of age",
+      "Administer hepatitis B (HB) vaccine immediately and at 1 month and 6 months of age",
+      "Administer hepatitis B immune globulin (HB1G) if cord blood is positive for HBsAg",
+      "Administer HBIG and HB vaccine immediately and HB Vaccine again at 1 month and 6 months of age",
+      "Advise mother that breastfeeding is contraindicated"
+    ],
+    "correct": 3,
+    "explanation": "For infants born to HBsAg-positive mothers, the recommended management is to administer both HBIG and HB vaccine within 12 hours of birth, followed by HB vaccine at 1-2 months and 6 months of age. This combined passive-active immunization provides the best protection against perinatal HBV transmission."
+  },
+  {
+    "question": "the most frequent complication of mumps in childhood is:",
+    "options": [
+      "Epididymitis.",
+      "Deafness.",
+      "Meningo-encephalitis.",
+      "Myocarditis.",
+      "Nephritis."
+    ],
+    "correct": 2,
+    "explanation": "Meningo-encephalitis (aseptic meningitis) is the most frequent complication of mumps in childhood, occurring in up to 10-15% of cases. Orchitis is more common in postpubertal males, and deafness, myocarditis, and nephritis are less common complications."
+  },
+  {
+    "question": "The following are true regarding BCG vaccination in Egypt EXCEPT.",
+    "options": [
+      "Live attenuated.",
+      "Intradermal 1y administered.",
+      "Dose of the vaccine is 0.1 cc",
+      "Time of administration is before 3 months of age.",
+      "Tuberculin testing is a prerequisite in all cases before vaccination"
+    ],
+    "correct": 4,
+    "explanation": "Tuberculin testing is NOT a prerequisite before BCG vaccination, especially in newborns and young infants. BCG is a live attenuated vaccine given intradermally at a dose of 0.1 cc before 3 months of age in Egypt. Tuberculin testing is not required because infants are unlikely to have been previously exposed to TB."
+  },
+  {
+    "question": "An immunocompromised child who is susceptible to varicella and at high risk for developing severe varicella should receive Varicella-Zoster Immune Globulin (VariZIG) or IGIV within what time period after exposure?",
+    "options": [
+      "48 hours",
+      "72 hours",
+      "96 hours",
+      "120 hours",
+      "144 hours"
+    ],
+    "correct": 2,
+    "explanation": "Varicella-Zoster Immune Globulin (VariZIG) or IGIV should be administered within 96 hours (ideally as soon as possible) after exposure to varicella in high-risk immunocompromised children. Administration beyond this window has limited efficacy in preventing or attenuating disease."
+  },
+  {
+    "question": "An 8-month-old male infant who recently came to the United States with his family from Mexico presents to your office with a 4-day history of fever associated cough, coryza, and conjunctivitis. On the third day of illness, a maculopapular rash began along the hairline and spread to involve the face, neck, trunk, and extremities. You strongly suspect the diagnosis of measles. The complication that causes the most morbidity in young children with this disease is",
+    "options": [
+      "encephalitis",
+      "hemorrhagic shock",
+      "pneumonia",
+      "myocarditis",
+      "hepatitis"
+    ],
+    "correct": 2,
+    "explanation": "Pneumonia (giant cell pneumonia or secondary bacterial pneumonia) is the complication that causes the most morbidity and mortality in young children with measles. While encephalitis is serious, pneumonia is far more common and accounts for the majority of measles-related deaths globally."
+  },
+  {
+    "question": "An 8-year-old girl develops fever of 102 degreesF (38.8 degreesC), bilateral swelling of the parotid glands, and headache. You suspect mumps. The most likely complication of mumps is",
+    "options": [
+      "pancreatitis",
+      "meningitis",
+      "sensorineural hearing loss",
+      "myocarditis",
+      "glomerulonephritis"
+    ],
+    "correct": 1,
+    "explanation": "Meningitis (aseptic meningitis) is the most common complication of mumps, occurring in up to 10-15% of patients. Pancreatitis, sensorineural hearing loss, myocarditis, and glomerulonephritis are less common complications."
+  },
+  {
+    "question": "A 4-year-old boy with sickle cell disease (homozygous hemoglobin SS disease) develops mild fever of 100.5 degreesF (38 degreesC) associated with fatigue for 2 days. On physical examination he is noted to have pallor. Laboratory results reveal a WBC count of 6800/mm3, hemoglobin 5.4 g/dL; the reticulocyte count is 0.7%; and the platelet count is 150,000/mm3. The most likely etiology of the severe anemia in this child is",
+    "options": [
+      "parvovirus B19",
+      "human herpes virus type VI",
+      "human herpes virus type VIII",
+      "coxsackie virus A16",
+      "adenovirus"
+    ],
+    "correct": 0,
+    "explanation": "Parvovirus B19 causes aplastic crisis in children with sickle cell disease by infecting and destroying erythroid precursors in the bone marrow, leading to abrupt cessation of erythropoiesis. The combination of severe anemia with a very low reticulocyte count (0.7%) in a sickle cell patient is classic for parvovirus B19-induced aplastic crisis."
+  },
+  {
+    "question": "A Koplik spot is a pathognomonic sign of measles. Koplik spots usually appear as follows:",
+    "options": [
+      "Grayish white dots appear opposite the lower molars.",
+      "Bluish white dots appear opposite the upper molars.",
+      "Pinkish white dots appear opposite the lower molars.",
+      "Grayish yellow dots appear opposite the lower molars.",
+      "Yellowish white dots appear opposite the lower molars."
+    ],
+    "correct": 0,
+    "explanation": "Koplik spots appear as small grayish-white dots on an erythematous base on the buccal mucosa opposite the lower molars. They are pathognomonic for measles and appear 1-2 days before the exanthem. The 'grains of salt on a red background' appearance is classic."
+  },
+  {
+    "question": "The American Academy of Pediatrics recommends the following supplementation for children between 6 months and 2 years of age who are hospitalized for measles or complications and for children older than 6 months of age with measles and immunodeficiency:",
+    "options": [
+      "Iron",
+      "Folic acid",
+      "Vitamin",
+      "Vitamin",
+      "Calcium"
+    ],
+    "correct": 2,
+    "explanation": "The AAP recommends Vitamin A supplementation for children between 6 months and 2 years of age hospitalized with measles or its complications, and for children older than 6 months with measles and immunodeficiency. Vitamin A deficiency increases measles severity and mortality, and supplementation reduces both."
+  },
+  {
+    "question": "A 16-year-old unvaccinated homeless youth seeks evaluation approximately 3 weeks after exposure to hepatitis B from needle sharing with a known carrier. In addition to testing for other infectious diseases contracted by needle sharing, the following are the most likely laboratory findings indicating a hepatitis B infection if labs were taken the day of the visit:",
+    "options": [
+      "HBV DNA negative, HBV core protein IgM negative, HBsAg negative",
+      "HBV DNA positive, HBV core protein IgM positive, HBsAg positive",
+      "HBV DNA positive, HBV core protein IgM positive, HBsAg negative",
+      "HBV DNA positive, HBV core protein IgM negative, HBsAg negative",
+      "HBV DNA positive, HBV core protein IgM negative, HBsAg positive"
+    ],
+    "correct": 4,
+    "explanation": "At 3 weeks post-exposure to hepatitis B (within the incubation period), HBV DNA would be positive (earliest marker), HBsAg would likely be positive (appears 1-10 weeks post-exposure), but anti-HBc IgM would still be negative as it typically appears with clinical symptoms around 6-12 weeks. This pattern indicates early established infection before the immune response has fully developed."
+  },
+  {
+    "question": "A young man presents with symptoms of ongoing fever and sore throat for the past week along with mild headache and malaise. On examination of the oropharynx, he has reddened and enlarged tonsils without exudate with fine petechiae over the uvula and soft palate. There is bilateral cervical adenopathy present. Abdominal examination reveals an enlarged spleen. A rapid group A Streptococcus test from yesterday is negative. Hematologic tests from the day before show a slightly elevated white blood cell count and a mild thrombocytopenia of 120,000 platelets/µL. A blood smear shows atypical lymphocytosis. The best treatment for the patient's condition is:",
+    "options": [
+      "Acyclovir",
+      "Corticosteroids",
+      "Chemotherapy",
+      "Symptomatic treatment",
+      "Amoxicillin"
+    ],
+    "correct": 3,
+    "explanation": "This patient has infectious mononucleosis (EBV infection), characterized by fever, sore throat, splenomegaly, and atypical lymphocytosis. The treatment is primarily supportive/symptomatic. Acyclovir is not effective for EBV, corticosteroids are reserved for complications like airway obstruction, and ampicillin/amoxicillin would cause a characteristic rash."
+  },
+  {
+    "question": "Sensorineural hearing loss is usually noted:",
+    "options": [
+      "Perforated ear drug",
+      "Otitis media",
+      "Congenital CMV",
+      "Tympanostomy tube",
+      "Wax in external auditory canal"
+    ],
+    "correct": 2,
+    "explanation": "Congenital CMV infection is a common cause of sensorineural hearing loss, which involves the inner ear or auditory nerve. The other options (perforated eardrum, otitis media, tympanostomy tube, wax impaction) are causes of conductive hearing loss, which involves the external or middle ear."
+  },
+  {
+    "question": "A 14-year-old boy with pneumonia was just discharged from the hospital after being treated with broad spectrum antibiotics for 2 weeks. He started having diarrhea on day 14 of illness. Stool testing revealed positive Clostridium difficile toxin by ELISA. Which of the following is the best treatment option at this point?",
+    "options": [
+      "Oral metronidazole.",
+      "Oral vancomycin.",
+      "IV vancomycin.",
+      "Rifampin.",
+      "No treatment is needed."
+    ],
+    "correct": 0,
+    "explanation": "Oral metronidazole is the standard first-line treatment for initial non-severe Clostridium difficile infection in children. Oral vancomycin is reserved for severe or recurrent cases. IV vancomycin does not reach the colonic lumen effectively. Discontinuation of the offending antibiotic and supportive care are also important."
+  },
+  {
+    "question": "You have diagnosed a 1-year-old infant with pertussis after he presents with difficulty breathing and \"fits\" of coughing for the past 2 days. Which of the following is the most common complication of pertussis?",
+    "options": [
+      "Death",
+      "Rib fractures",
+      "Pneumonia",
+      "Seizures",
+      "Encephalopathy"
+    ],
+    "correct": 2,
+    "explanation": "Pneumonia is the most common complication of pertussis, particularly in infants. It can be a primary bacterial pneumonia (often caused by Bordetella pertussis itself) or a secondary bacterial pneumonia. Other complications include seizures, encephalopathy, and death, but pneumonia is by far the most frequent."
+  },
+  {
+    "question": "A 5-year-old previously healthy male is brought by his mother to the emergency department. She reports he was doing well, but since this morning he has had trouble breathing and is refusing to eat. In the ED, he is ill appearing, and has temperature 38 degreesC, RR 40, BP 90/50, and HR 100 bpm. He has bilateral chest retractions, and is leaning forward on the examination table and has also started drooling. What is the next best step?",
+    "options": [
+      "Obtain a lateral neck x-ray.",
+      "Start IV fluids.",
+      "Admit the patient for observation.",
+      "Immediately start IV ceftriaxone.",
+      "Consult the anesthesia service."
+    ],
+    "correct": 4,
+    "explanation": "This child presents with classic acute epiglottitis (tripod position, drooling, respiratory distress, toxic appearance). The most critical next step is to secure the airway by consulting anesthesia/ENT for possible intubation. Attempting imaging or throat examination could precipitate complete airway obstruction."
+  },
+  {
+    "question": "A baby was diagnosed with neonatal Streptococcus meningitis 2 weeks ago. He completed a full course of therapy and presents to your clinic for follow up. Which of the following is an important test to perform?",
+    "options": [
+      "Repeat CSF cultures",
+      "Ig levels",
+      "Hearing test",
+      "Brain MRI",
+      "Repeat blood cultures"
+    ],
+    "correct": 2,
+    "explanation": "Hearing test is an essential follow-up test after neonatal meningitis because sensorineural hearing loss is a common sequela, occurring in up to 30% of survivors. Early identification allows for timely intervention with hearing aids or cochlear implants to optimize language development."
+  },
+  {
+    "question": "A 15-year-old male with sickle cell disease presents with fevers for 2 days and vague complaints of arthralgias. He has a history of multiple sickle cell crises and subsequent admissions. For which of the following infections is this patient at higher risk?",
+    "options": [
+      "Klebsiella spp.",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae",
+      "E. coli",
+      "Enterococcus"
+    ],
+    "correct": 2,
+    "explanation": "Patients with sickle cell disease develop functional asplenia by 6-12 months of age, making them particularly susceptible to encapsulated organisms, especially Streptococcus pneumoniae. This is why penicillin prophylaxis and pneumococcal vaccination are critical in sickle cell disease management."
+  },
+  {
+    "question": "A 17-year-old previously healthy female presents to the ED with fever of 102 degreesF, headache, photophobia, and stiff neck. She noted flu-like symptoms a couple of days ago, and now complains of increased headache. She and her parent have not noted any unusual rashes. There are no known ill contacts. Her immunizations are \"up-to-date\" according to her father. She recently returned from a \"prospective freshman\" visit with an overnight stay at a college. She has no known drug allergies. Vital signs in ED include HR of 150 bpm, RR 18 bpm, and BP 88/55 mm Hg. Her WBC is 18 with a left shift. Blood cultures have been sent, and LP was just performed with results pending. The best option for empiric antibiotic therapy is:",
+    "options": [
+      "Vancomycin and ceftriaxone",
+      "Ampicillin and gentamicin",
+      "Chloramphenicol",
+      "Vancomycin",
+      "Cefazolin"
+    ],
+    "correct": 0,
+    "explanation": "Vancomycin plus ceftriaxone is the standard empiric antibiotic regimen for suspected bacterial meningitis in this age group. Vancomycin covers penicillin-resistant S. pneumoniae, while ceftriaxone covers N. meningitidis and H. influenzae. This combination provides broad coverage until culture and susceptibility results are available."
+  },
+  {
+    "question": "A full-term SGA (small for gestational age) male newborn was admitted to NICU. Head CT scan revealed diffuse calcifications in the brain. Most likely diagnosis:",
+    "options": [
+      "CMV",
+      "Rubella",
+      "Craniopharyngioma",
+      "Toxoplasmosis",
+      "Herpes"
+    ],
+    "correct": 0,
+    "explanation": "Congenital CMV infection is the most common congenital infection and the most likely diagnosis in an SGA newborn with intracranial calcifications. CMV characteristically causes periventricular or diffuse calcifications, SGA, sensorineural hearing loss, petechiae, and thrombocytopenia."
+  },
+  {
+    "question": "A newborn is diagnosed with congenital rubella. The most common clinical presentation:",
+    "options": [
+      "Intrauterine growth retardation",
+      "Cataract",
+      "Microophthalmia",
+      "Sensorineural hearing loss",
+      "'Blueberry-muffin' skin lesion"
+    ],
+    "correct": 3,
+    "explanation": "Sensorineural hearing loss is the most common clinical manifestation of congenital rubella, affecting up to 70-90% of infected infants. While IUGR, cataracts, microophthalmia, and blueberry-muffin rash are all features of congenital rubella, hearing loss is the single most common presentation."
+  },
+  {
+    "question": "The most common infectious cause of congenital sensorineural hearing loss (SNHL) in children is:",
+    "options": [
+      "Congenital rubella infections",
+      "Congenital herpes infections",
+      "Congenital syphilis infections",
+      "Congenital toxoplasmosis infections",
+      "Congenital CMV infections"
+    ],
+    "correct": 4,
+    "explanation": "Congenital CMV infection is the most common infectious cause of congenital sensorineural hearing loss (SNHL) in children, accounting for approximately 20-25% of all childhood hearing loss. Although rubella was historically significant, widespread vaccination has made CMV the leading cause."
+  },
+  {
+    "question": "A newborn is diagnosed with a congenital rubella syndrome. All of the following clinical features are present except:",
+    "options": [
+      "Mental retardation",
+      "Hydrocephalus",
+      "Cataracts",
+      "Deafness",
+      "Cardiovascular anomalies"
+    ],
+    "correct": 1,
+    "explanation": "Hydrocephalus is NOT a typical feature of congenital rubella syndrome. The classic triad includes sensorineural deafness, cataracts, and cardiovascular anomalies (especially PDA and pulmonary artery stenosis). Mental retardation is also associated. Hydrocephalus is more characteristic of congenital toxoplasmosis."
+  },
+  {
+    "question": "Maternal therapies or vaccinations can prevent or reduce all of the following neonatal infections except:",
+    "options": [
+      "Hepatitis",
+      "Rubella",
+      "Varicella zoster",
+      "CMV",
+      "Toxoplasmosis"
+    ],
+    "correct": 3,
+    "explanation": "CMV currently has no available vaccine and no proven effective maternal therapy to prevent congenital infection. Hepatitis B can be prevented by vaccine and HBIG, rubella by vaccine, varicella by vaccine and VariZIG, and toxoplasmosis risk can be reduced by maternal spiramycin treatment and hygiene measures."
+  },
+  {
+    "question": "A child appears with upper respiratory tract infection and a characteristic rash. The rash appeared within 24-48 hours after the onset of symptoms. The rash began around the neck and subsequently involved trunk and extremities. The rash is diffuse, finely papular, and erythematous. The bright red discoloration of the skin, which blanches on pressure. The skin feels rough and has goose-pimple appearance. The rash is more prominent along the creases of the elbows, axillae, and groins. She also has pharyngitis. The most likely diagnosis is:",
+    "options": [
+      "Kawasaki disease",
+      "Rubella",
+      "Roseola",
+      "Toxic shock syndrome",
+      "Scarlet fever"
+    ],
+    "correct": 4,
+    "explanation": "This presentation is classic for scarlet fever: sandpaper-like (finely papular) erythematous rash, Pastia lines in skin creases, pharyngitis, and rash spreading from neck to trunk/extremities. This is caused by Group A Streptococcus producing erythrogenic exotoxin."
+  },
+  {
+    "question": "The most common cause of bacterial pharyngitis is:",
+    "options": [
+      "Group C Streptococcus",
+      "Group G Streptococcus",
+      "Group A Streptococcus",
+      "Corynebacterium diphtheriae",
+      "Arcanobacterium haemolyticum"
+    ],
+    "correct": 2,
+    "explanation": "Group A Streptococcus (S. pyogenes) is the most common bacterial cause of acute pharyngitis, accounting for approximately 15-30% of pharyngitis cases in children. It is the only common bacterial cause that requires antibiotic treatment to prevent rheumatic fever and other complications."
+  },
+  {
+    "question": "All of the following conditions can cause microcephaly except:",
+    "options": [
+      "Asymmetric SGA",
+      "CMV",
+      "Congenital rubella",
+      "Congenital toxoplasmosis",
+      "Hypoxic-ischemic encephalopathy"
+    ],
+    "correct": 0,
+    "explanation": "Asymmetric SGA (also called 'wasting') typically spares head growth, meaning brain growth is preserved and head circumference is proportionate to gestational age. Therefore, asymmetric SGA does NOT cause microcephaly. CMV, congenital rubella, congenital toxoplasmosis, and hypoxic-ischemic encephalopathy can all cause microcephaly."
+  },
+  {
+    "question": "All of the following congenital infections can cause microcephaly except:",
+    "options": [
+      "Congenital herpes",
+      "CMV",
+      "Congenital rubella",
+      "Congenital toxoplasmosis",
+      "Congenital syphilis"
+    ],
+    "correct": 4,
+    "explanation": "Congenital syphilis does not typically cause microcephaly. Its classic features include skeletal abnormalities (saddle nose, saber shins, frontal bossing), Hutchinson teeth, interstitial keratitis, and rhinitis (snuffles). Congenital herpes, CMV, rubella, and toxoplasmosis can all cause microcephaly."
+  },
+  {
+    "question": "The most common cause of congenital viral sensorineural hearing loss is:",
+    "options": [
+      "CMV",
+      "Mumps",
+      "Rubella",
+      "Rubeola",
+      "Parvovirus B19"
+    ],
+    "correct": 0,
+    "explanation": "CMV is the most common cause of congenital viral sensorineural hearing loss. Congenital CMV infection accounts for the majority of non-genetic SNHL in children. With widespread rubella vaccination, CMV has become the leading infectious cause."
+  },
+  {
+    "question": "A 5-year-old boy came for routine check-up. He is up to date in his immunization except varicella vaccine. He was not infected with chicken pox. The following statement is true:",
+    "options": [
+      "He does not need vaccination because he has protective antibody from a subclinical infection.",
+      "The complications of vaccination are fatal.",
+      "The vaccination is not effective at this age.",
+      "The vaccination is recommended.",
+      "Chicken pox is a mild disease, there is no need to give vaccine."
+    ],
+    "correct": 3,
+    "explanation": "Varicella vaccination is recommended for all children who have not had chickenpox and have not been previously vaccinated, regardless of age. The vaccine is safe, effective, and important for preventing complications of varicella including severe disease, secondary bacterial infections, and Reye syndrome."
+  },
+  {
+    "question": "The following CSF findings are appropriate for patients with a tuberculous meningitis:",
+    "options": [
+      "Leukocyte counts are 2000, mostly polymorphs, glucose is 8 mg/dL, and protein is 350 mg/dL",
+      "Leukocyte counts are 200, mostly lymphocytes, glucose is 50 mg/dL, and protein is 60 mg/dL.",
+      "Leukocyte counts are 350, mostly monocytes, glucose is 40 mg/dL, and protein is 70 mg/dL",
+      "Leukocyte counts are 4,500, mostly lymphocytes, glucose is 30 mg/dL, and protein is 100 mg/dL.",
+      "Leukocyte counts are 400, mostly lymphocytes, glucose is 35 mg/dL, and protein is 3,900 mg/dL"
+    ],
+    "correct": 4,
+    "explanation": "Tuberculous meningitis CSF findings characteristically show moderate lymphocytic pleocytosis (50-500 cells), markedly low glucose, and very high protein (often >1000 mg/dL, especially with spinal block). The combination of 400 lymphocytes, glucose of 35 mg/dL, and protein of 3,900 mg/dL is most consistent with TB meningitis with spinal block."
+  },
+  {
+    "question": "The presence of purulent materials inside the knee joint indicates:",
+    "options": [
+      "Idiopathic",
+      "Rheumatoid arthritis",
+      "Septic arthritis",
+      "Hemophilia",
+      "Tuberculosis"
+    ],
+    "correct": 2,
+    "explanation": "The presence of purulent (pus-like) material inside a joint indicates septic arthritis, which is a medical emergency requiring prompt diagnosis and treatment. Purulence signifies active bacterial infection within the joint space, distinguishing it from inflammatory, hemorrhagic, or granulomatous causes."
+  },
+  {
+    "question": "Most common method of spread of miliary tuberculosis is:",
+    "options": [
+      "Blood",
+      "Nerve",
+      "Lymphatic vessels",
+      "Direct spread",
+      "Upper airway"
+    ],
+    "correct": 0,
+    "explanation": "Miliary tuberculosis spreads hematogenously (through the bloodstream). When a tuberculous focus erodes into a blood vessel, large numbers of bacilli are disseminated throughout the body, forming numerous small granulomas resembling millet seeds (hence 'miliary')."
+  },
+  {
+    "question": "Morbiliform rash noted with ampicillin or amoxicillin therapy for pharyngitis is caused by",
+    "options": [
+      "Scarlet fever",
+      "EBV",
+      "CMV",
+      "Measles",
+      "Kawasaki disease"
+    ],
+    "correct": 1,
+    "explanation": "A morbilliform rash developing after ampicillin or amoxicillin therapy for pharyngitis is a classic sign of infectious mononucleosis caused by EBV. This rash occurs in up to 90% of EBV-infected patients given ampicillin and is not a true drug allergy but rather an immune-mediated reaction specific to the EBV infection context."
+  },
+  {
+    "question": "A child appears with joint pain, hepatosplenomegaly, lymphadenopathy, and pericardial effusion. The child experiences quotidian (occuring everyday) fever with temperature spikes at least 39C. Fever is associated with salmon colored rash over the trunk and proximal extremities. Most likely diagnosis:",
+    "options": [
+      "Juvenile rheumatoid arthritis",
+      "Salmonella infection",
+      "Congestive heart failure",
+      "Sarcoidosis",
+      "Listeria infection"
+    ],
+    "correct": 0,
+    "explanation": "This is classic systemic juvenile idiopathic arthritis (JIA, formerly Still's disease), characterized by quotidian (daily) fever spikes, evanescent salmon-colored rash, arthritis, hepatosplenomegaly, lymphadenopathy, and serositis (pericardial effusion). These systemic features distinguish it from other forms of JIA."
+  },
+  {
+    "question": "The peripheral blood smear in a child with sore throat large, vacuolated lymphocytes. The most likely diagnosis is:",
+    "options": [
+      "Thyrotoxicosis",
+      "Addison disease",
+      "Tuberculosis",
+      "Brucellosis",
+      "Infectious mononucleosis"
+    ],
+    "correct": 4,
+    "explanation": "Large, vacuolated (atypical) lymphocytes on peripheral blood smear in the setting of sore throat are characteristic of infectious mononucleosis caused by EBV. These atypical lymphocytes are actually activated T-cells responding to the EBV-infected B-lymphocytes."
+  },
+  {
+    "question": "A child appears with fever, sore throat, and abdominal pain. A physical examination reveals generalized lymphadenopathies and splenomegaly. The child was treated with an antibiotic and developed rashes all over the body. The most likely antibiotic that was used for this patient is:",
+    "options": [
+      "Azithromycin",
+      "Erythromycin",
+      "Chloramphenicol",
+      "Ampicillin",
+      "Trimethoprim-sulfamethoxazole"
+    ],
+    "correct": 3,
+    "explanation": "This child has infectious mononucleosis (EBV), and the development of a generalized rash after antibiotic treatment is classic for ampicillin. This occurs in up to 90% of EBV patients receiving ampicillin and is a well-known clinical phenomenon, not representing a true penicillin allergy."
+  },
+  {
+    "question": "The best diagnostic clue of pulmonary tuberculosis (TB) is:",
+    "options": [
+      "Isolation of Mycobacterium tuberculosis",
+      "Positive chest x-ray results",
+      "Positive PPD test results",
+      "Mother has active TB",
+      "Father has active TB"
+    ],
+    "correct": 0,
+    "explanation": "Isolation (culture) of Mycobacterium tuberculosis is the gold standard and best diagnostic tool for pulmonary TB. While chest X-ray, PPD test, and contact history are useful screening tools, definitive diagnosis requires identification of the organism through culture or molecular methods."
+  },
+  {
+    "question": "The carrier state of the sickle cell disease is resistant to the following infection:",
+    "options": [
+      "Malaria",
+      "Cholera",
+      "Tuberculosis",
+      "H. influenzae type b",
+      "Enterococcus"
+    ],
+    "correct": 0,
+    "explanation": "Sickle cell trait (carrier state, HbAS) provides a survival advantage against Plasmodium falciparum malaria. The infected sickled red blood cells are preferentially removed by the spleen, and the intracellular environment is less favorable for parasite growth, conferring resistance to severe malaria."
+  },
+  {
+    "question": "A 15-year-old girl appears with fever, malaise, and sore throat for the last 10 days. She developed abdominal discomfort for the last 1 to 2 days. She said that fever and sore throat are not getting better despite amoxicillin therapy for the last 48 hours. She developed rashes for the last 2 days. Vital signs: Temperature 39 degreesC, pulse rate 88 per minute (normal 60 - 105), respiratory rate 19 per minute (normal 17 - 21), and blood pressure 110/80 (normal) In the above case, Physical examination may reveal all of the following except:",
+    "options": [
+      "Lymphadenopathy",
+      "Splenomegaly",
+      "Pharyngitis",
+      "Tonsillitis",
+      "Sinusitis"
+    ],
+    "correct": 4,
+    "explanation": "This patient has infectious mononucleosis (EBV), characterized by fever, sore throat, lymphadenopathy, splenomegaly, and rash after amoxicillin. Physical findings include lymphadenopathy, splenomegaly, pharyngitis, and tonsillitis. Sinusitis is NOT a feature of infectious mononucleosis."
+  },
+  {
+    "question": "In the above case, Most common organism:",
+    "options": [
+      "S. pneumoniae",
+      "S. aureus",
+      "S. epidermidis",
+      "Pseudomonas",
+      "Epstein-Barr Virus (EBV)"
+    ],
+    "correct": 4,
+    "explanation": "The clinical presentation (fever, sore throat, lymphadenopathy, splenomegaly, rash after amoxicillin) is classic for infectious mononucleosis caused by Epstein-Barr Virus (EBV). The bacterial organisms listed (S. pneumoniae, S. aureus, S. epidermidis, Pseudomonas) do not cause this syndrome."
+  },
+  {
+    "question": "An infant suffers from maculopapular rashes that disappears as develops fever",
+    "options": [
+      "rubella",
+      "scarlet fever",
+      "roseolla infantum",
+      "Measles",
+      "chicken pox"
+    ],
+    "correct": 2,
+    "explanation": "Roseola infantum (exanthem subitum, sixth disease) is characterized by 3-5 days of high fever followed by the appearance of a maculopapular rash as the fever subsides. This distinctive pattern of 'rash appears as fever disappears' is pathognomonic for roseola, caused by Human Herpesvirus 6."
+  },
+  {
+    "question": "Reye hepatic encephalopahy can occur due to use of the following medication:",
+    "options": [
+      "Acetaminophen",
+      "NSAIDs",
+      "Phenytoin",
+      "Phenobarbital",
+      "Aspirin"
+    ],
+    "correct": 4,
+    "explanation": "Reye syndrome (hepatic encephalopathy) is associated with aspirin use in children with viral infections, particularly influenza and varicella. This is why aspirin is contraindicated in children with viral illnesses. Acetaminophen and ibuprofen are the preferred antipyretics in pediatric patients."
+  },
+  {
+    "question": "Roseola (exanthem subitum, sixth disease) infection is due to the following organisms:",
+    "options": [
+      "Human herpesvirus 5",
+      "Human herpesvirus 6",
+      "Human herpesvirus 8",
+      "Herpes simplex virus type 1",
+      "Herpes simplex virus type 2"
+    ],
+    "correct": 1,
+    "explanation": "Roseola infantum (exanthem subitum) is caused by Human herpesvirus 6 (HHV-6). HHV-5 is CMV, HHV-8 is Kaposi sarcoma-associated herpesvirus, and HSV-1/HSV-2 cause oral and genital herpes respectively."
+  },
+  {
+    "question": "A child is diagnosed with congenital CMV infection. The audiometric evaluation of this child should reveal:",
+    "options": [
+      "Air conduction is normal and bone conduction is normal.",
+      "Air conduction is normal and bone conduction is abnormal.",
+      "Air conduction is abnormal and bone conduction is normal.",
+      "Air conduction is absent but bone conduction is present.",
+      "Air conduction is abnormal and bone conduction is abnormal."
+    ],
+    "correct": 4,
+    "explanation": "Congenital CMV causes sensorineural hearing loss (SNHL), in which both air conduction and bone conduction are abnormal. This distinguishes it from conductive hearing loss, where bone conduction is preserved while air conduction is impaired. SNHL results from damage to the cochlea or auditory nerve."
+  },
+  {
+    "question": "The preferred therapy for patients with S. pneumoniae meningitis is:",
+    "options": [
+      "Penicillin and cefotaxime",
+      "Ampicillin and ceftriaxone",
+      "Penicillin and vancomycin",
+      "Vancomycin",
+      "Vancomycin and cefotaxime"
+    ],
+    "correct": 4,
+    "explanation": "Vancomycin plus cefotaxime (or ceftriaxone) is the preferred empiric therapy for S. pneumoniae meningitis, covering both penicillin-susceptible and resistant strains until susceptibility results are available. Vancomycin alone is insufficient, and penicillin-based regimens may fail against resistant strains."
+  },
+  {
+    "question": "The following medication should be avoided in patients with influenza:",
+    "options": [
+      "Acetaminophen",
+      "Ibuprofen",
+      "Aspirin",
+      "Antihistamine",
+      "Naproxen sodium"
+    ],
+    "correct": 2,
+    "explanation": "Aspirin should be avoided in patients with influenza due to the risk of Reye syndrome, a potentially fatal condition involving hepatic failure and encephalopathy. Acetaminophen or ibuprofen are the preferred antipyretics for children with influenza."
+  },
+  {
+    "question": "The best diagnostic antibody titer in patients with a streptococcal skin infection is:",
+    "options": [
+      "Antistreptolysin O titer is elevated.",
+      "Serum C3 level is decreased.",
+      "Serum C3 level is increased",
+      "Antistreptolysin O titer is decreased",
+      "Deoxyribonuclease (DNase) B antigen is present."
+    ],
+    "correct": 4,
+    "explanation": "Anti-DNase B antibody titer is the best diagnostic serologic test for streptococcal skin infections. Unlike pharyngeal infections where ASO titers are typically elevated, skin infections produce less streptolysin O, making ASO less reliable. Anti-DNase B remains elevated and is more specific for cutaneous streptococcal infections."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

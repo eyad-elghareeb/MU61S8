@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Peds - Genetics</title>
+
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "19dcff6a1e6i9mwc",
+  "title": "Peds - Genetics",
+  "description": "112 questions on Pediatric Genetics",
+  "icon": "🧬"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "46, XY,18q- describes a:",
+    "options": [
+      "Male with deletion from the long arm of chromosome 18",
+      "Male with translocation from chromosome 18 to the chromosome",
+      "Male with Klinefelter syndrome",
+      "Male with trisomy 18 syndrome",
+      "Normal male karyotype"
+    ],
+    "correct": 0,
+    "explanation": "46, XY indicates a male karyotype. 18q- indicates a deletion from the long arm (q) of chromosome 18. This is not Klinefelter syndrome (47,XXY), trisomy 18, or a normal karyotype."
+  },
+  {
+    "question": "Isochromosomes are:",
+    "options": [
+      "Translocation chromosome",
+      "Mosaic disjunction chromosomes",
+      "X chromosomes",
+      "None of the above",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Isochromosomes are chromosomes that have identical arms, either two short arms or two long arms. They are not translocation chromosomes, mosaic disjunction chromosomes, or specifically X chromosomes."
+  },
+  {
+    "question": "Which one of the following conditions has abnormal chromosome karyotype?",
+    "options": [
+      "Cystic fibrosis",
+      "Phenylketonuria",
+      "Turners syndrome",
+      "Spina bifida",
+      "Omphalocele"
+    ],
+    "correct": 2,
+    "explanation": "Turner syndrome (45,X) is a chromosomal disorder. Cystic fibrosis, phenylketonuria, spina bifida, and omphalocele are not primarily chromosomal disorders but rather single gene or multifactorial disorders."
+  },
+  {
+    "question": "Which of the following is an example of disorders of sex chromosomes?",
+    "options": [
+      "Marfan syndrome",
+      "Edward syndrome",
+      "Klinefelter syndrome",
+      "Down syndrome",
+      "Spherocytosis"
+    ],
+    "correct": 2,
+    "explanation": "Klinefelter syndrome (47,XXY) is a disorder of sex chromosomes. Marfan syndrome, Edward syndrome, Down syndrome, and spherocytosis are not sex chromosome disorders."
+  },
+  {
+    "question": "The following are single Gene disorders EXCEPT:",
+    "options": [
+      "Cystic fibrosis",
+      "Type 1 diabetes mellitus",
+      "Duchenne muscular dystrophy",
+      "Marfan syndrome",
+      "B thalassemia major"
+    ],
+    "correct": 1,
+    "explanation": "Type 1 diabetes mellitus is a multifactorial disorder, not a single gene disorder. Cystic fibrosis, Duchenne muscular dystrophy, Marfan syndrome, and beta thalassemia major are all single gene disorders."
+  },
+  {
+    "question": "A child with Down syndrome may have which of the following?",
+    "options": [
+      "Dolichocephaly",
+      "Tall stature",
+      "Hypertonia in the neonatal period",
+      "Duodenal atresia",
+      "Normal mentality"
+    ],
+    "correct": 3,
+    "explanation": "Down syndrome may present with duodenal atresia. Dolichocephaly is not typical (brachycephaly is more common), tall stature is not characteristic (short stature is common), and hypotonia rather than hypertonia is typical in neonates. Normal mentality is not a feature as intellectual disability is common."
+  },
+  {
+    "question": "The following are features of Down syndrome EXCEPT:",
+    "options": [
+      "Macrocephaly",
+      "Silky hair",
+      "Protruded tongue",
+      "Depressed nasal Bridge",
+      "Epicanthic folds"
+    ],
+    "correct": 0,
+    "explanation": "Macrocephaly is not a feature of Down syndrome (microcephaly or normal head size is more common). Silky hair, protruded tongue, depressed nasal bridge, and epicanthic folds are all characteristic features of Down syndrome."
+  },
+  {
+    "question": "The worst familial prognosis in Down syndrome found in:",
+    "options": [
+      "Chromosomal nondisjunction",
+      "Translocation 21/21",
+      "Mosaicism",
+      "Translocation 9/21",
+      "Translocation 14/21"
+    ],
+    "correct": 3,
+    "explanation": "Translocation 9/21 in Down syndrome is associated with a higher recurrence risk in families compared to nondisjunction, mosaicism, or other translocations like 14/21 or 21/21."
+  },
+  {
+    "question": "A child was genetically proved to be a case of mosaic down syndrome his mother could have all the following EXCEPT:",
+    "options": [
+      "46 chromosomes on karyotyping",
+      "Giant chromosome on karyotyping",
+      "Normal facial features",
+      "Other normal off springs",
+      "Two X chromosomes"
+    ],
+    "correct": 1,
+    "explanation": "A mother with mosaic Down syndrome could have 46 chromosomes on karyotyping (if the abnormal cell line is not present in blood), giant chromosomes (not a standard finding), normal facial features, other normal offspring, and two X chromosomes. However, having 46 chromosomes is possible in mosaic cases if the abnormal cell line is not present in the tested tissue."
+  },
+  {
+    "question": "A true statement concerning Down syndrome:",
+    "options": [
+      "The incidence is 1 in 1500",
+      "Speech delay is due to do Microglossia",
+      "The palpebral fissures slope upwards",
+      "Brush field spots are found in the mouth",
+      "All of the above"
+    ],
+    "correct": 0,
+    "explanation": "The incidence of Down syndrome is approximately 1 in 700, not 1 in 1500. Speech delay is not due to microglossia. Palpebral fissures slope downward, not upward. Brushfield spots are found in the iris, not the mouth."
+  },
+  {
+    "question": "A 25-day old newborn infant with Down syndrome was found to have a cardiac murmur. Down Syndrome is caused by:",
+    "options": [
+      "Single Gene defect",
+      "Multifactorial polygenic inheritance",
+      "Autosomal chromosomal aberration",
+      "Sex chromosome abnormality"
+    ],
+    "correct": 2,
+    "explanation": "Down syndrome is caused by autosomal chromosomal aberration (trisomy 21), not a single gene defect, multifactorial inheritance, or sex chromosome abnormality."
+  },
+  {
+    "question": "Which of the following cardiac lesion is most likely in this baby:",
+    "options": [
+      "Hypoplastic left heart syndrome",
+      "Total anomalous venous return",
+      "Coarctation of the aorta",
+      "Atrioventricular defect"
+    ],
+    "correct": 3,
+    "explanation": "The most common cardiac lesion associated with Down syndrome is atrioventricular septal defect (AV canal defect). Hypoplastic left heart, TAPVR, and coarctation are less commonly associated."
+  },
+  {
+    "question": "2 years old male infant 6th born of non-consanguineous marriage and 42 years old mother presenting with mental retardation, hypotonia, short stature, wide gap between the first and second toes and upward slant of palpebral fissure the most probably karyotype of the foregoing case is:",
+    "options": [
+      "47 XY +21",
+      "47 XX + 21",
+      "46 XY",
+      "47 XY +13",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "The clinical features described (mental retardation, hypotonia, short stature, wide gap between first and second toes, upward slanting palpebral fissures) are classic for Down syndrome, which has a karyotype of 47,XY,+21 in males."
+  },
+  {
+    "question": "Trisomy 18 (Edward's syndrome) is usually associated with all of the following EXCEPT:",
+    "options": [
+      "Mental retardation",
+      "Failure to thrive",
+      "Polydactyly",
+      "Low set ears",
+      "Congenital heart disease"
+    ],
+    "correct": 2,
+    "explanation": "Trisomy 18 (Edward's syndrome) is associated with mental retardation, failure to thrive, low set ears, and congenital heart disease. Polydactyly is not a typical feature (it's more associated with Trisomy 13)."
+  },
+  {
+    "question": "Clinical features in Edwards syndrome include the following EXCEPT:",
+    "options": [
+      "Undescended testicles in males",
+      "Omphalocele",
+      "Rocker bottom heels",
+      "Prominent occiput",
+      "Hypotonia"
+    ],
+    "correct": 4,
+    "explanation": "Edwards syndrome typically presents with hypertonia, not hypotonia. Other features include undescended testicles in males, omphalocele, rocker bottom heels, and prominent occiput."
+  },
+  {
+    "question": "10 days old female neonate presenting with intrauterine growth retardation, clenched hands, rocker bottom feet and prominent occiput. The most probable type of the foregoing case is:",
+    "options": [
+      "47 XY +18",
+      "47 XX +13",
+      "47 XXX",
+      "47 XX +18",
+      "47 XX +21"
+    ],
+    "correct": 3,
+    "explanation": "The clinical features (IUGR, clenched hands, rocker bottom feet, prominent occiput) are classic for Trisomy 18 (Edward's syndrome). In a female, the karyotype would be 47,XX,+18."
+  },
+  {
+    "question": "Which of the following signs is common in Turner's syndrome?",
+    "options": [
+      "Congenital abnormalities of the external genitalia",
+      "An atrial septal defect",
+      "Retinitis pigmentosa",
+      "Short stature",
+      "Normal puberty"
+    ],
+    "correct": 3,
+    "explanation": "Short stature is a common feature of Turner syndrome. While congenital abnormalities of the external genitalia and ASD can occur, retinitis pigmentosa is not typically associated. Normal puberty is not common as most have ovarian dysgenesis."
+  },
+  {
+    "question": "Which of the following signs is associated with turner syndrome?",
+    "options": [
+      "Congenital abnormalities of the external genitalia",
+      "An atrial septal defect",
+      "Retinitis pigmentosa",
+      "Short stature",
+      "Polydactyly"
+    ],
+    "correct": 3,
+    "explanation": "Short stature is a cardinal feature of Turner syndrome. While congenital abnormalities of the external genitalia and ASD can occur, retinitis pigmentosa and polydactyly are not typically associated."
+  },
+  {
+    "question": "Select the true statement about Turner syndrome:",
+    "options": [
+      "Is an example of autosomal numerical chromosomal aberration",
+      "Usually associated with severe mental retardation",
+      "Affected patients are phenotypically female",
+      "Commonly associated with cardiovascular abnormalities especially pulmonary stenosis",
+      "Normal stature is a common feature"
+    ],
+    "correct": 2,
+    "explanation": "Turner syndrome affects phenotypic females (45,X or variants). It is a sex chromosome abnormality, not autosomal. Severe mental retardation is not typical. Cardiovascular abnormalities like coarctation are more common than pulmonary stenosis. Short stature is a common feature, not normal stature."
+  },
+  {
+    "question": "A newborn female is noted to have edema of the hands and feet which of the following should be included in the differential diagnosis:",
+    "options": [
+      "Turner syndrome",
+      "Congenital nephrosis",
+      "Sepsis",
+      "Lymphoedema",
+      "Congenital heart disease"
+    ],
+    "correct": 3,
+    "explanation": "Lymphedema of the hands and feet is a classic feature of Turner syndrome due to lymphatic obstruction. While Turner syndrome can cause edema, congenital nephrosis, sepsis, and congenital heart disease are more likely to present with other symptoms besides just edema."
+  },
+  {
+    "question": "Klinefelter's syndrome is associated with:",
+    "options": [
+      "Small testicular volume less <5 ml",
+      "Increased incidence of congenital malformations",
+      "Increased the incidence of color blindness",
+      "Severe mental retardation",
+      "Short stature"
+    ],
+    "correct": 0,
+    "explanation": "Klinefelter syndrome is associated with small testicular volume (<5 ml is characteristic). Increased congenital malformations, color blindness, and severe mental retardation are not typical features. Tall stature is more common than short stature."
+  },
+  {
+    "question": "Klinefelter syndrome manifests with all EXCEPT:",
+    "options": [
+      "Infertility",
+      "Gynecomastia",
+      "Mental retardation",
+      "Premature Balding",
+      "High serum gonadotropins"
+    ],
+    "correct": 3,
+    "explanation": "Klinefelter syndrome typically presents with infertility, gynecomastia, and high serum gonadotropins. Premature balding is not a feature; rather, they often have reduced body hair. Mild to moderate intellectual disability may occur but severe mental retardation is not typical."
+  },
+  {
+    "question": "A mentally retarded 15-year-old boy is found to have macro-orchidism and large prominent ears. He most likely has:",
+    "options": [
+      "Cerebral gigantism",
+      "Acromegaly",
+      "Hypothyroidism",
+      "Hyperthyroidism",
+      "Fragile x syndrome"
+    ],
+    "correct": 4,
+    "explanation": "The combination of mental retardation, macro-orchidism, and large prominent ears is classic for Fragile X syndrome. Cerebral gigantism (Sotos syndrome) involves overgrowth, acromegaly involves adult growth hormone excess, and thyroid disorders typically don't present with this specific triad."
+  },
+  {
+    "question": "Autosomal recessive inheritance implies:",
+    "options": [
+      "The Gene mutation is expressed in a heterozygous state",
+      "Either parent can be a carrier",
+      "Males are more often affected than females",
+      "Two heterozygous parents have 25% chance of having an affected child",
+      "Carrier state has severe phenotype"
+    ],
+    "correct": 3,
+    "explanation": "Autosomal recessive inheritance means two heterozygous parents have a 25% chance of having an affected child. The mutation is expressed in a homozygous state, not heterozygous. Males and females are equally affected. The carrier state is typically asymptomatic."
+  },
+  {
+    "question": "All of the following are inherited as autosomal recessive EXCEPT:",
+    "options": [
+      "Beta thalassemia",
+      "Sickle cell disease",
+      "Galactosaemia",
+      "Hereditary spherocytosis",
+      "Phenylketonuria"
+    ],
+    "correct": 3,
+    "explanation": "Hereditary spherocytosis is inherited as an autosomal dominant disorder, not autosomal recessive. Beta thalassemia, sickle cell disease, galactosaemia, and phenylketonuria are all autosomal recessive disorders."
+  },
+  {
+    "question": "The following is true about the offspring of a female carrier of a X-Linked recessive disorder and a normal male:",
+    "options": [
+      "Half of their children will be symptomatic",
+      "Half of their daughter will be symptomatic",
+      "Half of their sons will be asymptomatic carriers",
+      "All their daughters will be carriers",
+      "Half of their sons will be symptomatic"
+    ],
+    "correct": 4,
+    "explanation": "For X-linked recessive disorders, daughters of a carrier mother and normal father will all be carriers (heterozygous) but not symptomatic, while sons have a 50% chance of being affected. Option e correctly states that half of their sons will be symptomatic."
+  },
+  {
+    "question": "Sex Linked disorders include all of the following EXCEPT:",
+    "options": [
+      "G6PD",
+      "Haemophilia",
+      "Myasthenia gravis",
+      "Duchenne muscular dystrophy"
+    ],
+    "correct": 2,
+    "explanation": "Myasthenia gravis is an autoimmune disorder, not a sex-linked disorder. G6PD deficiency, hemophilia, and Duchenne muscular dystrophy are all X-linked disorders."
+  },
+  {
+    "question": "A person with heterozygous AD disorder married a normal person the recurrence risk in the Offspring is:",
+    "options": [
+      "25%",
+      "50%",
+      "75%",
+      "5%",
+      "All the above"
+    ],
+    "correct": 1,
+    "explanation": "In autosomal dominant inheritance, when one parent is affected and the other is normal, each child has a 50% chance of inheriting the disorder. The recurrence risk is 50%, not 25%."
+  },
+  {
+    "question": "All of the following are examples of multifactorial inheritance EXCEPT:",
+    "options": [
+      "Cleft lip and palate",
+      "Congenital heart disease",
+      "Essential hypertension",
+      "Incontinentia pigmenti",
+      "Bronchial asthma"
+    ],
+    "correct": 3,
+    "explanation": "Incontinentia pigmenti is an X-linked dominant disorder, not a multifactorial inheritance condition. Cleft lip and palate, congenital heart disease, essential hypertension, and bronchial asthma are all examples of multifactorial inheritance."
+  },
+  {
+    "question": "An autosomal recessive disorder is characterized by all of the following EXCEPT:",
+    "options": [
+      "Both parents are carriers",
+      "Consanguinity increases its recurrence risk",
+      "A 50% recurrence risk in each pregnancy if both parents are carriers",
+      "Horizontal transmission in a family pedigree",
+      "No sex predilection"
+    ],
+    "correct": 3,
+    "explanation": "In autosomal recessive disorders, if both parents are carriers, each child has a 25% chance of being affected, not 50%. The other options are correct characteristics of autosomal recessive disorders."
+  },
+  {
+    "question": "Amniocentesis wouldn't be recommended:",
+    "options": [
+      "For routine determination of fetal sex",
+      "When maternal age is over 40 years",
+      "For known inherited translocation",
+      "For prevention of x-linked recessive disorders",
+      "Because of a previous trisomic child"
+    ],
+    "correct": 0,
+    "explanation": "Amniocentesis is not recommended for routine determination of fetal sex due to ethical considerations and risks. It is indicated for advanced maternal age, previous chromosomal abnormality, known translocation, and prevention of X-linked disorders."
+  },
+  {
+    "question": "Indications for chorionic villus sampling include all of the following EXCEPT:",
+    "options": [
+      "Suspected rhesus disease",
+      "Chromosomal analysis",
+      "Enzyme analysis for inborn errors of metabolism",
+      "DNA analysis for Duchenne muscular dystrophy",
+      "Suspected congenital infection"
+    ],
+    "correct": 4,
+    "explanation": "Chorionic villus sampling is not used for suspected congenital infections, as it doesn't diagnose infections. It is indicated for chromosomal analysis, enzyme analysis, and DNA analysis for specific disorders."
+  },
+  {
+    "question": "The following congenital abnormality is a deformation:",
+    "options": [
+      "Coarctation of the aorta",
+      "Haemangioma",
+      "Talipes",
+      "Cleft lip",
+      "Imperforate anus"
+    ],
+    "correct": 2,
+    "explanation": "Talipes (clubfoot) is a deformation, which is an abnormality due to mechanical forces. Coarctation of the aorta, hemangioma, cleft lip, and imperforate anus are all malformations, not deformations."
+  },
+  {
+    "question": "A 3600g breastfed female 42 weeks GA, is noted to have persistent hyperbilirubinemia at 2 weeks of age this infant has not gained weight since birth and has hoarse cry decreased tone constipation and an umbilical hernia anterior fontanel measured 4 x 6 cm. The most likely diagnosis is:",
+    "options": [
+      "Biliary atresia",
+      "Hypothyroidism",
+      "Hereditary spherocytosis",
+      "Galactosaemia"
+    ],
+    "correct": 1,
+    "explanation": "The infant's symptoms (persistent hyperbilirubinemia, failure to gain weight, hoarse cry, decreased tone, constipation, umbilical hernia, large anterior fontanel) are classic for congenital hypothyroidism. Biliary atresia would present with jaundice but not these other features."
+  },
+  {
+    "question": "This condition can be early prevented by:",
+    "options": [
+      "Early exchange transfusion",
+      "Neonatal screening",
+      "Genetic screening",
+      "Give a special milk formula"
+    ],
+    "correct": 1,
+    "explanation": "Early exchange transfusion is not a prevention method for hypothyroidism. Neonatal screening, genetic screening, and special formula (for galactosemia) are preventive measures for various conditions, but for hypothyroidism, early detection via screening and thyroid hormone replacement is key."
+  },
+  {
+    "question": "Classic galactosemia is characterized by all of the following EXCEPT:",
+    "options": [
+      "An autosomal recessive disorder",
+      "Treated by avoidance of galactose",
+      "Affects only males",
+      "Hepatomegaly",
+      "Renal damage"
+    ],
+    "correct": 2,
+    "explanation": "Classic galactosemia affects both males and females equally, as it is an autosomal recessive disorder. The other options are correct characteristics of galactosemia."
+  },
+  {
+    "question": "Which of the following statements regarding phenylketonuria is correct?",
+    "options": [
+      "Serum tyrosine levels are typically High",
+      "Urinary phenylalanine metabolize are typically high",
+      "Mental retardation occurs if the patient adheres to a phenylalanine free diet",
+      "In is classically due to deficiency of tyrosine hydroxylase",
+      "Inheritance is x linked recessive"
+    ],
+    "correct": 1,
+    "explanation": "In PKU, serum tyrosine levels are typically low due to the block in phenylalanine metabolism. The other options are incorrect: urinary phenylalanine metabolites are high, mental retardation occurs if untreated, it's due to phenylalanine hydroxylase deficiency, and it's autosomal recessive."
+  },
+  {
+    "question": "Untreated PKU is characterized by a specific odor of the urine which is:",
+    "options": [
+      "Mousy",
+      "Cabbage",
+      "Maple syrup",
+      "Cat urine",
+      "Sweaty feet"
+    ],
+    "correct": 0,
+    "explanation": "Untreated PKU is characterized by a mousy odor of the urine due to phenylketones. Maple syrup odor is associated with maple syrup urine disease, cabbage odor with trimethylaminuria, cat urine with phenylketonuria in some cases, and sweaty feet with isovaleric acidemia."
+  },
+  {
+    "question": "Phenylalanine is:",
+    "options": [
+      "An essential amino acid",
+      "Cannot be formed by the body",
+      "Must be supplied in the diet",
+      "Mandatory for growth and bodybuilding",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Phenylalanine is an essential amino acid that cannot be synthesized by the body and must be supplied in the diet. It is mandatory for growth and protein synthesis, making all options correct."
+  },
+  {
+    "question": "Intelligence of a person is determined by:",
+    "options": [
+      "Hereditary factors",
+      "Nutrition you during intrauterine and postnatal periods",
+      "Environmental stimulation",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "Intelligence is determined by a combination of hereditary factors, nutrition during development, and environmental stimulation. None of these factors alone can fully determine intelligence."
+  },
+  {
+    "question": "Mental impairment can be associated in all of the following diseases EXCEPT:",
+    "options": [
+      "Cerebral palsy",
+      "Duchenne muscular dystrophy",
+      "Fragile x syndrome",
+      "Werdnig Hoffman disease",
+      "Trisomies"
+    ],
+    "correct": 1,
+    "explanation": "Cerebral palsy is not typically associated with mental impairment, though it can be in severe cases. Duchenne muscular dystrophy, fragile X syndrome, Werdnig Hoffman disease, and trisomies can all be associated with mental impairment."
+  },
+  {
+    "question": "Severe mental impairment can be associated in all of the following diseases EXCEPT:",
+    "options": [
+      "Cerebral palsy",
+      "Duchenne muscular dystrophy",
+      "Fragile x syndrome",
+      "Severe advanced hydrocephalus",
+      "Trisomies"
+    ],
+    "correct": 0,
+    "explanation": "Cerebral palsy is primarily a motor disorder and not typically associated with severe mental impairment, though it can occur in severe cases. Duchenne muscular dystrophy, fragile X syndrome, severe hydrocephalus, and trisomies can all be associated with severe mental impairment."
+  },
+  {
+    "question": "Hypoglycemia is found in all of the following EXCEPT:",
+    "options": [
+      "Galactosemia",
+      "Infant of diabetic mother",
+      "Hypopituitarism",
+      "Phenylketonuria",
+      "Low birth weight"
+    ],
+    "correct": 3,
+    "explanation": "Phenylketonuria is not associated with hypoglycemia. Galactosemia, infant of diabetic mother, hypopituitarism, and low birth weight can all present with hypoglycemia."
+  },
+  {
+    "question": "The following are inherited in an X-linked manner;",
+    "options": [
+      "Duchenne muscular dystrophy",
+      "Haemophilia",
+      "Cystic fibrosis",
+      "Sickle cell disease",
+      "Hurler syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Hemophilia is X-linked recessive. Duchenne muscular dystrophy is also X-linked recessive. Cystic fibrosis is autosomal recessive, sickle cell disease is autosomal recessive, and Hurler syndrome is autosomal recessive."
+  },
+  {
+    "question": "The following congenital abnormality is a deformation",
+    "options": [
+      "Coarctation of the aorta",
+      "Haemangioma",
+      "Talipes",
+      "Cleft lip",
+      "Imperforate anus"
+    ],
+    "correct": 2,
+    "explanation": "Talipes (clubfoot) is a deformation caused by abnormal positioning in utero. Coarctation of the aorta, hemangioma, cleft lip, and imperforate anus are malformations, not deformations."
+  },
+  {
+    "question": "The following is true about the offspring of a female carrier of an X-linked recessive disorder and a normal male",
+    "options": [
+      "Half of their children will symptomatic",
+      "Half of their daughters will be symptomatic",
+      "Half of their sons will be asymptomatic carriers",
+      "All their daughters will be carrier",
+      "Half of their sons will be symptomatic"
+    ],
+    "correct": 4,
+    "explanation": "For X-linked recessive disorders, daughters of a carrier mother and normal father will all be carriers (heterozygous) but not symptomatic, while sons have a 50% chance of being affected. Option e correctly states that half of their sons will be symptomatic."
+  },
+  {
+    "question": "A mentally retarded 15-year-old boy is found to have macro-orchidism and large, prominent ears. He most, likely has:",
+    "options": [
+      "cerebral giantism",
+      "acromegaly",
+      "hypothyroidism",
+      "trisomy 21",
+      "fragile X syndrome"
+    ],
+    "correct": 4,
+    "explanation": "The clinical presentation of mental retardation, macro-orchidism, and large prominent ears is classic for fragile X syndrome. Cerebral giantism (Sotos syndrome) typically involves overgrowth, acromegaly occurs in adulthood, hypothyroidism doesn't cause macro-orchidism, and trisomy 21 doesn't typically present with macro-orchidism."
+  },
+  {
+    "question": "Phenylalanine is",
+    "options": [
+      "An essential amino acid",
+      "Cannot be formed by the body",
+      "Must be supplied in the diet",
+      "Mandatory for growth and body building",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Phenylalanine is an essential amino acid that cannot be synthesized by the body and must be supplied in the diet. It is mandatory for growth and protein synthesis, making all options correct."
+  },
+  {
+    "question": "an autosomal recessive disorder is characterized by all the following except",
+    "options": [
+      "Both parents are carriers",
+      "Consanguinity increases its recurrence risk",
+      "A 50% recurrence risk in each pregnancy if both parents are carriers",
+      "A horizontal transmission in a family pedigree.",
+      "No sex predilection"
+    ],
+    "correct": 3,
+    "explanation": "In autosomal recessive disorders, if both parents are carriers, each child has a 25% chance of being affected, not 50%. The other options are correct characteristics of autosomal recessive disorders."
+  },
+  {
+    "question": "Untreated PKU is characterized by all the following except",
+    "options": [
+      "Mental retardation",
+      "Fair complexion",
+      "Hepatosplenomegaly",
+      "Mousy odor of the urine",
+      "Irritability"
+    ],
+    "correct": 2,
+    "explanation": "Untreated PKU is not characterized by hepatosplenomegaly. It is characterized by mental retardation, fair complexion, mousy odor of urine, and irritability. Hepatosplenomegaly is not a typical feature of PKU."
+  },
+  {
+    "question": "The karyotype of a male infant with non-disjunction DS will show",
+    "options": [
+      "47, XY, +21",
+      "46, XY",
+      "47, XX, +21",
+      "47, XXY",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Non-disjunction Down syndrome results in trisomy 21, giving a karyotype of 47,XY,+21 in males. 46,XY is normal male karyotype. 47,XX,+21 would be a female with Down syndrome. 47,XXY is Klinefelter syndrome."
+  },
+  {
+    "question": "Classie galactosemia is characterized by all of the following except",
+    "options": [
+      "An autosomal recessive disorder",
+      "Treated by avoidance of lactose",
+      "Affects only males",
+      "Hepatomegaly",
+      "Renal damage"
+    ],
+    "correct": 2,
+    "explanation": "Classic galactosemia is an autosomal recessive disorder (so not only males), treated by avoidance of lactose/galactose, and causes hepatomegaly and renal damage. The statement 'affects only males' is incorrect as it affects both sexes equally."
+  },
+  {
+    "question": "All the following are X linked recessive disorders except",
+    "options": [
+      "G6PD deficiency",
+      "Red green color blindness",
+      "Hemophilia",
+      "Duchenne muscular dystrophy",
+      "Hurler syndrome"
+    ],
+    "correct": 4,
+    "explanation": "G6PD deficiency, red-green color blindness, hemophilia, and Duchenne muscular dystrophy are all X-linked recessive. Hurler syndrome is an autosomal recessive disorder (mucopolysaccharidosis type I), not X-linked."
+  },
+  {
+    "question": "All of the following disorders follow the Mendelian pattern of inheritance except:",
+    "options": [
+      "Marfan syndrome",
+      "Galactosemia",
+      "Hurler syndrome",
+      "Wilson syndrome",
+      "Turner syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Non-disjunction Down syndrome in a male gives 47,XY,+21. This is the standard trisomy 21 karyotype resulting from meiotic non-disjunction."
+  },
+  {
+    "question": "A person with a balanced Robertsonian chromosome translocation. Choose the correct answer:",
+    "options": [
+      "A translocation involving two metacentric chromosomes",
+      "A total chromosome complement of 45 instead of 46",
+      "Around 50% chance of having a child with Down syndrome if the translocation involves chromosome 21",
+      "Unlikely to have a child with normal chromosomes",
+      "Much more likely to have developmental delay than someone with a normal karyotype"
+    ],
+    "correct": 2,
+    "explanation": "Trisomy 21 is characterized by duodenal atresia, common AV canal, upward slanting of the eyes, and simian crease. Congenital hypertrophic pyloric stenosis is NOT a characteristic feature of trisomy 21."
+  },
+  {
+    "question": "Turner syndrome in neonates and infants is characterized by",
+    "options": [
+      "Neck webbing",
+      "Puffy hands & feet",
+      "Small hyperconvex nails",
+      "Coarctation of the aorta in 15% of the cases",
+      "all of the above"
+    ],
+    "correct": 2,
+    "explanation": "Classic galactosemia is autosomal recessive (not only males), treated by avoidance of lactose, causes hepatomegaly and renal damage. 'Affects only males' is the exception as it affects both sexes."
+  },
+  {
+    "question": "All the following are AD disorders except",
+    "options": [
+      "Neurofibromatosis",
+      "Spherocytosis",
+      "Achondroplasia",
+      "Marfan syndrome",
+      "Sickle cell disease"
+    ],
+    "correct": 4,
+    "explanation": "G6PD deficiency, red-green color blindness, hemophilia, and Duchenne muscular dystrophy are all X-linked recessive. Hurler syndrome is autosomal recessive."
+  },
+  {
+    "question": "Klinefelter syndrome manifests with all except",
+    "options": [
+      "Infertility",
+      "Gynecomastia",
+      "Mental retardation",
+      "Premature balding",
+      "High serum gonadotropins"
+    ],
+    "correct": 4,
+    "explanation": "Marfan syndrome, galactosemia, Hurler syndrome, and Wilson syndrome all follow Mendelian patterns. Turner syndrome (45,XO) is a chromosomal abnormality, not a Mendelian single-gene disorder."
+  },
+  {
+    "question": "Which of the following statements regarding Phenylketonuria is correct?",
+    "options": [
+      "serum tyrosine levels are typically high",
+      "urinary phenylalanine metabolites are typically high",
+      "Mental retardation occurs if the patient adheres to phenylalanine free diet",
+      "Is classically due to deficiency of tyrosine hydroxylase",
+      "Inheritance is X-linked recessive"
+    ],
+    "correct": 1,
+    "explanation": "A balanced Robertsonian translocation involves two acrocentric chromosomes, resulting in a total of 45 chromosomes instead of 46. The translocation carrier is phenotypically normal because no genetic material is lost."
+  },
+  {
+    "question": "Which one of the following conditions has abnormal chromosome karyotype?",
+    "options": [
+      "Cystic fibrosis",
+      "phenylketonuria",
+      "Turner's syndrome",
+      "Spina bifida",
+      "Omphalocele"
+    ],
+    "correct": 2,
+    "explanation": "Down syndrome is characterized by wide carrying angle, increased leukemia risk, duodenal atresia, and atlantoaxial instability. Congenital hypertrophic pyloric stenosis is NOT a characteristic feature."
+  },
+  {
+    "question": "Patients with Turner syndrome should have analysis of their chromosomes for Y chromosome material because they may",
+    "options": [
+      "becomes masculinized",
+      "grow tall",
+      "become pregnant",
+      "develop gonadoblastoma",
+      "none of the above"
+    ],
+    "correct": 4,
+    "explanation": "Turner syndrome in neonates presents with neck webbing, puffy hands and feet, small hyperconvex nails, and coarctation of the aorta in about 15% of cases. All listed features are characteristic."
+  },
+  {
+    "question": "Cardio-facial manifestations of Down syndrome include the following item",
+    "options": [
+      "Flat facial profile",
+      "Scaphocephaly",
+      "hypertelorism",
+      "Tie tongue",
+      "Bat ears"
+    ],
+    "correct": 4,
+    "explanation": "Neurofibromatosis, spherocytosis, achondroplasia, and Marfan syndrome are all autosomal dominant disorders. Sickle cell disease is autosomal recessive."
+  },
+  {
+    "question": "Clinical features in trisomy 18 include the following except:",
+    "options": [
+      "Severe failure to thrive with Mental retardation",
+      "Clenched hands with second and fifth fingers overlapping third fourth fingers.",
+      "Rocker-bottom",
+      "Prominent occiput",
+      "Hypotonia"
+    ],
+    "correct": 3,
+    "explanation": "Klinefelter syndrome manifests with infertility, gynecomastia, and high serum gonadotropins. Mental retardation is typically mild if present (not a hallmark), and premature balding is not a feature."
+  },
+  {
+    "question": "A prenatal evaluation of a fetus reveals short femur length, edema, hydrops, and normal chromosomes. The most likely diagnosis is:",
+    "options": [
+      "Noonan syndrome",
+      "Turner syndrome",
+      "Klinefelter syndrome",
+      "Down syndrome",
+      "Hypoplastic left heart syndrome"
+    ],
+    "correct": 1,
+    "explanation": "In PKU, urinary phenylalanine metabolites are typically high due to the metabolic block. Serum tyrosine levels are typically low (not high), it is due to phenylalanine hydroxylase deficiency (not tyrosine hydroxylase), and inheritance is autosomal recessive (not X-linked)."
+  },
+  {
+    "question": "All of the following features are present in Noonan syndrome except:",
+    "options": [
+      "Aortic stenosis",
+      "Short stature",
+      "Web neck",
+      "Cubitus valgus",
+      "widely separated nipples"
+    ],
+    "correct": 2,
+    "explanation": "Turner syndrome has an abnormal karyotype (45,XO or variants). Cystic fibrosis, phenylketonuria, and spina bifida are single-gene or multifactorial disorders with normal karyotypes."
+  },
+  {
+    "question": "All of the following are characteristics of autosomal dominant inheritance except:",
+    "options": [
+      "Affected individuals are present in every generation.",
+      "Males and females are equally affected.",
+      "Phenotypically normal family members can transmit the disease to their children.",
+      "A child of an affected parent has a 50% chance of inheriting the disease.",
+      "A significant proportion of cases are due to a new mutation."
+    ],
+    "correct": 3,
+    "explanation": "Patients with Turner syndrome and Y chromosome material are at risk for gonadoblastoma because the dysgenetic gonads containing Y material can undergo malignant transformation."
+  },
+  {
+    "question": "A full-term boy with Down syndrome appears with bilious vomiting. Physical examination reveals non-tender, soft abdomen. Abdominal X-ray reveals double-bubble sign. Most likely diagnosis:",
+    "options": [
+      "Pyloric stenosis",
+      "Jejunal atresia",
+      "Hirschsprung disease",
+      "Duodenal atresia",
+      "Gastroesophageal reflux"
+    ],
+    "correct": 0,
+    "explanation": "The classic karyotype of Turner syndrome is 45,XO, indicating monosomy X. 46,XX is normal female, 47,XXY is Klinefelter syndrome, and 45,YO is not compatible with life."
+  },
+  {
+    "question": "A 36-year-old mother is pregnant. She is worried about Down syndrome. All of the following findings suggest Down syndrome except:",
+    "options": [
+      "Increased HCG",
+      "Nuchal fat",
+      "Decreased alpha feto protein",
+      "Decreased unconjugated estriol",
+      "VSD"
+    ],
+    "correct": 0,
+    "explanation": "Cardio-facial manifestations of Down syndrome include flat facial profile. Scaphocephaly, hypertelorism, tie tongue, and bat ears are not characteristic of Down syndrome."
+  },
+  {
+    "question": "A 7-year-old healthy boy with Down syndrome appears in a clinic for a routine check-up. The investigation may be appropriate:",
+    "options": [
+      "Upper GI series",
+      "Ophthalmologic examination",
+      "Echocardiogram",
+      "Hematologic evaluation",
+      "Cervical X-ray"
+    ],
+    "correct": 4,
+    "explanation": "Trisomy 18 features include severe failure to thrive, mental retardation, clenched hands, rocker-bottom feet, and prominent occiput. Hypotonia is NOT typical; hypertonia is more common in trisomy 18."
+  },
+  {
+    "question": "The true statement about the highest risk of delivering an infant with Down syndrome:",
+    "options": [
+      "A 31-year-old woman with a balanced translocation between chromosomes 14 and 21.",
+      "A 39-year-old woman whose husband is 60 years old.",
+      "A 25-year-old woman who has a child with Down syndrome.",
+      "A 42-year-old woman without a family history of Down syndrome.",
+      "A 30-year-old woman history of recurrent spontaneous abortions."
+    ],
+    "correct": 2,
+    "explanation": "Galactosemia is caused by galactose-1-phosphate uridyl transferase deficiency (option c), not trisomy 21. Down syndrome is trisomy 21 (option a). Turner syndrome is 45,XO (option d). Marble bone disease is due to defective osteoclasts (option e). Edward syndrome is trisomy 18 (option b)."
+  },
+  {
+    "question": "The true statement about the risk of recurrence of Down syndrome is 100%:",
+    "options": [
+      "Centric fusion of chromosome 21 and 14 translocation.",
+      "Centric fusion of chromosome 21 and 13 translocation.",
+      "Centric fusion of chromosome 21 and 15 translocation.",
+      "Centric fusion of chromosome 21 and 11 translocation.",
+      "If mother is a balanced 21/21 translocation carrier."
+    ],
+    "correct": 2,
+    "explanation": "Galactosemia is caused by galactose-1-phosphate uridyl transferase deficiency. Down syndrome is trisomy 21. Turner syndrome is 45,XO. Marble bone disease is due to defective osteoclasts. Edward syndrome is trisomy 18."
+  },
+  {
+    "question": "All of the following signs are true about Turner syndrome except:",
+    "options": [
+      "Short stature",
+      "Infertility",
+      "Abnormal ovaries",
+      "Bicuspid aortic valve",
+      "Mental retardation"
+    ],
+    "correct": 2,
+    "explanation": "Galactosemia = galactose-1-phosphate uridyl transferase deficiency. Down syndrome = trisomy 21. Turner syndrome = 45,XO. Marble bone disease = defective osteoclasts. Edward syndrome = trisomy 18."
+  },
+  {
+    "question": "A 6-year-old boy with Down syndrome is diagnosed to have acute appendicitis. Anesthesiologist may require the following investigation prior to general anesthesia:",
+    "options": [
+      "Echocardiogram",
+      "EKG",
+      "Lateral neck x-ray",
+      "Upper GI series",
+      "Barium enema"
+    ],
+    "correct": 2,
+    "explanation": "Galactosemia = galactose-1-P uridyl transferase deficiency. Down syndrome = trisomy 21. Turner syndrome = 45,XO. Marble bone disease = defective osteoclasts. Edward syndrome = trisomy 18."
+  },
+  {
+    "question": "When a mother is balanced 21/21 translocation carrier, the risk of recurrence of Down syndrome in children is:",
+    "options": [
+      "10%",
+      "25%",
+      "50%",
+      "66%",
+      "100%"
+    ],
+    "correct": 2,
+    "explanation": "Galactosemia = galactose-1-P uridyl transferase deficiency. Down syndrome = trisomy 21. Turner syndrome = 45,XO. Marble bone disease = defective osteoclasts. Edward syndrome = trisomy 18."
+  },
+  {
+    "question": "A patient with Down syndrome develops pulmonary hypertension and right ventricular failure. He has a history of habitual snoring. Physical examination reveals obesity and pectus excavatum deformities. EKG reveals a right ventricular hypertrophy. Most likely diagnosis is:",
+    "options": [
+      "Large VSD",
+      "Hypoplastic lungs",
+      "Pleural effusion",
+      "Endocardial cushion defect",
+      "Obstructive sleep apnea / hypoventilation"
+    ],
+    "correct": 3,
+    "explanation": "Turner syndrome does NOT have 47,XXY karyotype (that is Klinefelter syndrome). Turner syndrome features widely separated nipples, primary amenorrhea, and short stature with 45,XO karyotype."
+  },
+  {
+    "question": "A 20-week-old female fetus was aborted. Physical examination reveals cystic hygroma. Most likely diagnosis:",
+    "options": [
+      "Turner syndrome",
+      "Down syndrome",
+      "Noonan syndrome",
+      "Trisomy 18",
+      "Trisomy 16"
+    ],
+    "correct": 3,
+    "explanation": "Midline defects with microphthalmia, cleft lip/palate, microcephaly, and congenital heart disease suggest trisomy 13 (Patau syndrome), which is characterized by severe midline defects."
+  },
+  {
+    "question": "Chromosomal abnormalities in Turner syndrome include all of the following except:",
+    "options": [
+      "45,",
+      "45, X / 46, XX",
+      "46, X, I (Xp)",
+      "46, X, r (X)",
+      "46, X, I (Xq)"
+    ],
+    "correct": 6,
+    "explanation": "Prominent occiput, rocker-bottom feet, overlapping fingers, and congenital heart disease are characteristic of trisomy 18 (Edwards syndrome)."
+  },
+  {
+    "question": "A prenatal evaluation of a fetus reveals short femur length, edema, hydrops, and normal chromosomes. The most likely diagnosis is:",
+    "options": [
+      "Noonan syndrome",
+      "Turner syndrome",
+      "Klinefelter syndrome",
+      "Down syndrome",
+      "Hypoplastic left heart syndrome"
+    ],
+    "correct": 5,
+    "explanation": "A tall 15-year-old male with long limbs, gynecomastia, and infantile testes is classic for Klinefelter syndrome (47,XXY)."
+  },
+  {
+    "question": "A newborn female appears with a redundant skin in neck. The most likely diagnosis is:",
+    "options": [
+      "Down syndrome",
+      "Hemangioma.",
+      "Turner syndrome",
+      "William syndrome",
+      "Prader-Wille syndrome"
+    ],
+    "correct": 4,
+    "explanation": "Coarse features, hepatosplenomegaly, joint limitation, kyphosis, and cardiac valve dysfunction suggest mucopolysaccharidosis."
+  },
+  {
+    "question": "The most common abnormality of chromosome number is:",
+    "options": [
+      "Monosomy",
+      "Trisomy",
+      "Turner syndrome",
+      "Klinefelter syndrome",
+      "Tetrasomy"
+    ],
+    "correct": 0,
+    "explanation": "Short female with webbed neck, shield chest, puffy hands/feet, coarctation of aorta, and horseshoe kidneys is classic Turner syndrome."
+  },
+  {
+    "question": "The most common renal anomaly in patients with Turner syndrome:",
+    "options": [
+      "Ectopic kidney",
+      "Polycystic kidney (autosomal recessive)",
+      "Polycystic kidney (autosomal dominant)",
+      "Multicystic dysplastic kidney",
+      "Horseshoe kidney"
+    ],
+    "correct": 1,
+    "explanation": "Low birth weight, hypotonia, microcephaly, cleft lip/palate, and cat-like cry are characteristic of Cri du chat syndrome (deletion 5p)."
+  },
+  {
+    "question": "All of the following are features of Klinefelter syndrome except:",
+    "options": [
+      "Gynecomastia",
+      "Short stature",
+      "Small testes",
+      "Azoospermia",
+      "Infertility"
+    ],
+    "correct": 2,
+    "explanation": "Blond hair, intellectual disability, blue eyes, seizures, and behavioral problems suggest phenylketonuria (PKU), which causes these features when untreated."
+  },
+  {
+    "question": "The most common chromosomal abnormality in patients with Klinefelter syndrome is:",
+    "options": [
+      "47, XYY",
+      "46, XX / 47, XXY",
+      "46, XY / 48, XXYY",
+      "47, XXY",
+      "45, X / 46, XY / 47, XXY"
+    ],
+    "correct": 0,
+    "explanation": "Short femur length, edema, hydrops with normal chromosomes suggests Noonan syndrome, which can present prenatally with these features and has a normal karyotype."
+  },
+  {
+    "question": "The preferred therapy in patients with Klinefelter syndrome is:",
+    "options": [
+      "FSH",
+      "LH",
+      "Estrogen",
+      "Testosterone",
+      "Human chorionic gonadotropin"
+    ],
+    "correct": 0,
+    "explanation": "Noonan syndrome features include pulmonic stenosis (not aortic stenosis), short stature, web neck, cubitus valgus, and widely separated nipples. Aortic stenosis is NOT a typical feature."
+  },
+  {
+    "question": "A boy is affected with a genetically transmitted disease. He has one brother who is not affected. He has two sisters; one is affected and other is not affected. His father is normal but the mother has the disease. His mother's sisters (aunt) are all affected but the mother's brothers are not affected. His father's siblings are not affected. His maternal grandfather was affected but maternal grandmother was normal. The disease is most likely transmitted:",
+    "options": [
+      "X-linked recessive",
+      "X-linked dominant",
+      "Autosomal dominant",
+      "Autosomal recessive",
+      "Multifactorial"
+    ],
+    "correct": 2,
+    "explanation": "In autosomal dominant inheritance, phenotypically normal family members cannot transmit the disease (they would need the affected allele). Affected individuals in every generation, equal male/female affection, 50% chance to offspring, and new mutations are all AD features."
+  },
+  {
+    "question": "A girl is affected with genetically transmitted disease. She has one brother and one sister. Both of them are not affected. Her father is affected with the disease but her mother is normal. Her father's one brother (uncle) and one sister (aunt) are normal. Her mother's siblings and parents are normal. Her paternal grandfather had the disease but paternal grandmother was normal. Her cousins i.e., uncle's (father's brother) siblings are normal. The disease is most likely transmitted:",
+    "options": [
+      "Autosomal dominant",
+      "Autosomal recessive",
+      "X-linked dominant",
+      "X-linked recessive",
+      "Multifactorial"
+    ],
+    "correct": 3,
+    "explanation": "Bilious vomiting with double-bubble sign in a baby with Down syndrome is diagnostic of duodenal atresia. Pyloric stenosis causes non-bilious vomiting, and Hirschsprung causes constipation."
+  },
+  {
+    "question": "A 30-year-old man has genetically transmitted disease (homozygous). His wife is normal. They have 2 sons and 3 daughters. They are carriers of the disease (heterozygous). The man's parents were the carrier. He has one sister who is not affected, another sister is a carrier, and one brother is affected and other brother is a carrier. His paternal grandmother was a carrier and paternal grandfather was not affected. His maternal grandfather was a carrier and maternal grandmother was not affected. The disease is most likely transmitted:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 4,
+    "explanation": "VSD is not a specific prenatal marker for Down syndrome. Increased HCG, nuchal translucency, decreased alpha-fetoprotein, and decreased unconjugated estriol are the screening markers."
+  },
+  {
+    "question": "Mode of inheritance in cleft lip and palate:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 4,
+    "explanation": "A 7-year-old with Down syndrome should have cervical spine X-ray to screen for atlantoaxial instability, which is important before any anesthesia or sports participation."
+  },
+  {
+    "question": "Most common mode of transmission in G6PD deficiency:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 3,
+    "explanation": "Advanced maternal age (42 years) without family history carries the highest risk for a new case of Down syndrome due to non-disjunction, which increases with maternal age."
+  },
+  {
+    "question": "The mode of inheritance of PKU (phenylketonuria) is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 4,
+    "explanation": "If the mother is a balanced 21/21 translocation carrier, all viable offspring will have Down syndrome (100% recurrence risk) because she can only produce gametes with either the translocation chromosome or no chromosome 21."
+  },
+  {
+    "question": "The mode of inheritance in patients with osteogenesis imperfecta:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 4,
+    "explanation": "Turner syndrome features include short stature, infertility, abnormal ovaries, and bicuspid aortic valve. Mental retardation is NOT a feature of Turner syndrome; intelligence is typically normal."
+  },
+  {
+    "question": "The mode of inheritance of Crigler-Najjar syndrome (type I) is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 2,
+    "explanation": "Children with Down syndrome need lateral neck X-ray before anesthesia to check for atlantoaxial instability, which occurs in about 15% of Down syndrome patients."
+  },
+  {
+    "question": "The mode of inheritance of Crigler-Najjar syndrome (type II) is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 4,
+    "explanation": "When the mother is a balanced 21/21 translocation carrier, the risk of recurrence is 100% because all her viable gametes will either have the translocation chromosome (resulting in trisomy 21) or be missing chromosome 21 (not viable)."
+  },
+  {
+    "question": "The most common mode of inheritance in patients with hereditary spherocytosis is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 4,
+    "explanation": "Pulmonary hypertension with right ventricular failure, obesity, habitual snoring, and pectus excavatum in a child with Down syndrome suggests obstructive sleep apnea with cor pulmonale."
+  },
+  {
+    "question": "The mode of inheritance in patients with a Duchenne muscular dystrophy is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 0,
+    "explanation": "Cystic hygroma in a 20-week fetus is most commonly associated with Turner syndrome (45,XO). This is a classic prenatal finding."
+  },
+  {
+    "question": "The mode of inheritance in patients with a Marfan syndrome is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 2,
+    "explanation": "46,X,I(Xp) (isochromosome of the short arm) is NOT a Turner syndrome karyotype. Turner syndrome chromosomal abnormalities include 45,X, 45,X/46,XX mosaicism, 46,X,I(Xq) (isochromosome of long arm), and 46,X,r(X) (ring chromosome). Isochromosome of Xp would not cause Turner features."
+  },
+  {
+    "question": "The mode of inheritance in patients with a Wilson disease is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 0,
+    "explanation": "Short femur, edema, hydrops with normal chromosomes suggests Noonan syndrome, which can present prenatally with these features."
+  },
+  {
+    "question": "The mode of inheritance in patients with a hypophosphatemic rickets is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 2,
+    "explanation": "Redundant skin in the neck of a newborn female is most likely Turner syndrome, which presents with webbed neck (pterygium colli)."
+  },
+  {
+    "question": "All of the following statements are true about x-linked recessive inheritance except:",
+    "options": [
+      "Incidence is much higher in the males than in females.",
+      "This disorder is less common in females with Turner syndrome.",
+      "The gene is transferred from an affected man to all his daughters.",
+      "The gene is never transmitted from father to son.",
+      "A significant portion of sporadic cases are due to new gene mutations."
+    ],
+    "correct": 1,
+    "explanation": "Trisomy (having an extra chromosome) is the most common abnormality of chromosome number. Monosomy is less common and often lethal, and specific syndromes like Turner and Klinefelter are less common than trisomies overall."
+  },
+  {
+    "question": "A newborn appears with vomiting, diarrhea, and jaundice. Physical examination reveals cataract and hepatosplenomegaly. Urinalysis reveals reducing substance in urine. Preliminary diagnosis is galactosemia. The following statements are true about galactosemia except:",
+    "options": [
+      "Elimination of galactose from diet invalidates enzyme assay.",
+      "Decreased galactose 1-phosphate uridyl transferase activity",
+      "Elevated galactose 1-phosphate level",
+      "Cataract is due to increased galactitol.",
+      "Never do galactose tolerance test"
+    ],
+    "correct": 4,
+    "explanation": "Horseshoe kidney is the most common renal anomaly in Turner syndrome, occurring in about 30-40% of patients."
+  },
+  {
+    "question": "A 3-day-old male appears with history of poor feeding and vomiting. Physical examination reveals lethargy, jaundice, a full anterior fontanelle, and hepatomegaly. Sepsis work up was performed. Blood culture and CSF culture reveal Gram-negative rods. Urine is positive for reducing substances. Most likely diagnosis:",
+    "options": [
+      "Group B Streptococcus meningitis",
+      "S. aureus bacteremia",
+      "G6PD deficiency with meningitis",
+      "'ABO' hemolytic disease with meningitis",
+      "Galactosemia"
+    ],
+    "correct": 1,
+    "explanation": "Klinefelter syndrome features include gynecomastia, small testes, azoospermia, and infertility. Short stature is NOT a feature; patients with Klinefelter syndrome are typically tall with long limbs."
+  },
+  {
+    "question": "Patients with galactosemia are at increased risk for neonatal sepsis due to the following organism:",
+    "options": [
+      "E. coli",
+      "Group B Streptococcus",
+      "Staphylococcus aureus",
+      "Candida albicans",
+      "Pseudomonas aeruginosa"
+    ],
+    "correct": 3,
+    "explanation": "47,XXY is the most common chromosomal abnormality in Klinefelter syndrome, accounting for about 80-90% of cases."
+  },
+  {
+    "question": "A newborn has galactosemia. Elimination of galactose from diet reverses all of the following conditions except:",
+    "options": [
+      "Cataracts",
+      "Growth failure",
+      "Hepatic dysfunction",
+      "Renal dysfunction",
+      "Learning disabilities"
+    ],
+    "correct": 3,
+    "explanation": "Testosterone replacement therapy is the preferred treatment for Klinefelter syndrome to promote masculine development, improve muscle mass, and prevent osteoporosis."
+  },
+  {
+    "question": "A newborn appears with jaundice, vomiting, hypoglycemia, convulsion, and lethargy. A physical examination reveals cataracts, vitreous hemorrhage, and hepatosplenomegaly. The most likely enzyme defect is:",
+    "options": [
+      "Galactokinase deficiency",
+      "Fructokinase deficiency",
+      "Glycogen synthetase deficiency",
+      "Phosphorylase kinase deficiency",
+      "Uridyl transferase deficiency"
+    ],
+    "correct": 1,
+    "explanation": "The pedigree shows affected females passing the disease to both sons and daughters (never father-to-son), which is X-linked dominant inheritance. Affected mother passes to 50% of sons and 50% of daughters."
+  },
+  {
+    "question": "An 18-year-old-girl has PKU (phenylketonuria). She got married and wanted to have a baby. She is asymptomatic. She should begin low phenylalanine diet:",
+    "options": [
+      "After pregnancy test results",
+      "After the baby is delivered",
+      "Before conception",
+      "Just before the delivery",
+      "During lactation"
+    ],
+    "correct": 0,
+    "explanation": "The pedigree shows affected father passing the disease to all daughters but no sons, which is characteristic of autosomal dominant inheritance (the father is heterozygous, passing the dominant allele to 50% of offspring)."
+  },
+  {
+    "question": "A 6-month-old girl appeared in a clinic for vomiting and developmental delay. The girl was asymptomatic at birth. She has poor head control. Mother noticed mousy odor in her diaper. Physical examination revealed fair skin, blond hair, and eczematous skin lesions. Most likely diagnosis:",
+    "options": [
+      "Phenylketonuria (PKU)",
+      "Pompe disease",
+      "Tay-Sachs disease",
+      "Maple syrup urine disease",
+      "Alkaptonuria"
+    ],
+    "correct": 0,
+    "explanation": "The pedigree shows affected homozygous individual with carrier parents, which is autosomal recessive inheritance. Both parents are carriers, and the affected individual inherited two recessive alleles."
+  },
+  {
+    "question": "A pregnant mother with PKU (phenylketonuria) is supposed to take low phenyl alanine diet. She is noncompliant. The least likely effects on fetus:",
+    "options": [
+      "Hydrocephalus",
+      "Microcephaly",
+      "Increased risk of abortion",
+      "Mental retardation",
+      "Congenital cardiac defect"
+    ],
+    "correct": 4,
+    "explanation": "Cleft lip and palate follows multifactorial inheritance, involving both genetic and environmental factors. It is not a simple Mendelian pattern."
+  },
+  {
+    "question": "An infant is being treated with phenylalanine-restricted diet. He develops rash, lethargy, anemia, anorexia, diarrhea, and failure to thrive. The most likely diagnosis is:",
+    "options": [
+      "Secondary infection",
+      "Viral gastroenteritis",
+      "Phenylalanine deficiency",
+      "Phenylalanine toxicity",
+      "Iron deficiency anemia"
+    ],
+    "correct": 2,
+    "explanation": "G6PD deficiency is inherited as an X-linked recessive trait. The gene is located on the X chromosome."
+  },
+  {
+    "question": "The enzyme deficiency in PKU is:",
+    "options": [
+      "Phenylalanine hydrogenase",
+      "Phenylalanine synthetase",
+      "Phenylalanine hydroxy synthase",
+      "Phenylalanine aminotransferase",
+      "Phenylalanine hydroxylase"
+    ],
+    "correct": 0,
+    "explanation": "PKU (phenylketonuria) is inherited as an autosomal recessive trait. Both parents must be carriers for a child to be affected."
+  },
+  {
+    "question": "A newborn appears with a mousy or musty odor in the urine. The most likely diagnosis is:",
+    "options": [
+      "Hawkins Nuria",
+      "Tyrosinemia",
+      "Phenylketonuria",
+      "Glutaric acidemia (type II)",
+      "Multiple carboxylase deficiency"
+    ],
+    "correct": 1,
+    "explanation": "Osteogenesis imperfecta is most commonly inherited as autosomal dominant (type I and type IV). Some severe forms can be autosomal recessive."
+  },
+  {
+    "question": "The most important organ affected in PKU is:",
+    "options": [
+      "CNS",
+      "Peripheral nervous system",
+      "Cardiovascular",
+      "Liver",
+      "Gastrointestinal tract"
+    ],
+    "correct": 0,
+    "explanation": "Crigler-Najjar syndrome type I is inherited as autosomal recessive. It causes severe unconjugated hyperbilirubinemia."
+  },
+  {
+    "question": "All the following are examples of multifactorial inheritance except?",
+    "options": [
+      "Cleft lip and palate",
+      "Congenital heart diseases",
+      "Essential hypertension",
+      "Incontenentia pigmenti",
+      "Bronchial asthma"
+    ],
+    "correct": 1,
+    "explanation": "Crigler-Najjar syndrome type II is inherited as autosomal dominant. It is less severe than type I and responds to phenobarbital therapy."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

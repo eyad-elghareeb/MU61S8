@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Peds - Hepatology</title>
+
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "19dcff6a1f1un4eg",
+  "title": "Peds - Hepatology",
+  "description": "71 questions on Pediatric Hepatology",
+  "icon": "🫘"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "The following statements about Hepatitis B virus are true EXCEPT:",
+    "options": [
+      "Incubation period of 100 to 120 Days",
+      "It is an RNA virus",
+      "No fecal oral route of transmission is recorded",
+      "Chronicity of infection is common",
+      "It can be prevented by Vaccines"
+    ],
+    "correct": 1,
+    "explanation": "Hepatitis B is a DNA virus, not an RNA virus. The other statements are correct: it has an incubation period of 100-120 days, doesn't spread through fecal-oral route, commonly becomes chronic, and can be prevented by vaccination."
+  },
+  {
+    "question": "The following is true regarding Hepatitis A EXCEPT:",
+    "options": [
+      "Contagious disease",
+      "High rate of subclinical illness",
+      "Incubation period is one to two weeks",
+      "Infections are more severe in adults",
+      "Chronicity is never seen"
+    ],
+    "correct": 3,
+    "explanation": "Hepatitis A has an incubation period of 15-50 days (typically 2-4 weeks), not one to two weeks. The other statements are correct: it's contagious, has high subclinical rates, is more severe in adults, and never becomes chronic."
+  },
+  {
+    "question": "Which of the following statements is characteristic of acute hepatitis B infection:",
+    "options": [
+      "Most patients present with splenomegaly",
+      "It confers immunity to hepatitis",
+      "It commonly presents with distal joint arthritis",
+      "There is increased infectivity in the presence of the e-antigen",
+      "Pruritus is an important early symptom"
+    ],
+    "correct": 3,
+    "explanation": "Acute hepatitis B doesn't commonly present with distal joint arthritis. The other statements are correct: increased infectivity occurs with e-antigen presence, it doesn't confer immunity (can become chronic), pruritus isn't typically an early symptom, and splenomegaly isn't a common presentation."
+  },
+  {
+    "question": "Hepatitis B:",
+    "options": [
+      "Is usually diagnosed by viral culture",
+      "Has an incubation period that averages 5-10 days",
+      "Is most infectious is the patient is HBcAg positive",
+      "Doesn't cause chronic infection in children",
+      "Antibiotics may be used in its treatment"
+    ],
+    "correct": 0,
+    "explanation": "Hepatitis B is not diagnosed by viral culture. The other statements are incorrect: incubation period is 60-120 days (not 5-10 days), it's most infectious when HBsAg and HBeAg are positive, it can cause chronic infection in children, and antibiotics are not used for treatment."
+  },
+  {
+    "question": "Hepatitis can be the result of:",
+    "options": [
+      "Overactive immune system",
+      "Drugs",
+      "Chemicals",
+      "Environmental toxins",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the options listed can cause hepatitis: overactive immune system (autoimmune hepatitis), drugs (drug-induced hepatitis), chemicals (chemical hepatitis), and environmental toxins (toxic hepatitis)."
+  },
+  {
+    "question": "All types of Hepatitis are characterized by all of the following EXCEPT:",
+    "options": [
+      "Distortion of normal hepatic architecture",
+      "Normal bile flow",
+      "Kupffer cell enlargement and proliferation",
+      "Acute and/or chronic inflammation",
+      "Variable degrees of hepatocellular necrosis"
+    ],
+    "correct": 1,
+    "explanation": "Hepatitis is characterized by abnormal bile flow, not normal bile flow. The other options are correct features of hepatitis: distortion of hepatic architecture, Kupffer cell changes, inflammation, and hepatocellular necrosis."
+  },
+  {
+    "question": "Risk factors for hepatitis A include all of the following EXCEPT:",
+    "options": [
+      "Recent travel or migration to an endemic area",
+      "Sewage workers",
+      "Multiple transfusion of blood and all its products",
+      "Chronic institutionalization",
+      "Day care employee or children"
+    ],
+    "correct": 2,
+    "explanation": "Multiple transfusions of blood and products are not a risk factor for hepatitis A (they are for hepatitis B and C). The other options are correct risk factors for hepatitis A."
+  },
+  {
+    "question": "Average incubation period of hepatitis B is:",
+    "options": [
+      "60 to 90 days",
+      "30 days",
+      "10 to 45 days",
+      "180-280 days",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "The average incubation period of hepatitis B is 60-90 days, not 30 days. The other options are incorrect: 10-45 days is for hepatitis A, 180-280 days is too long."
+  },
+  {
+    "question": "All of the following are true EXCEPT:",
+    "options": [
+      "HBsAg documents recovery and/or immunity",
+      "Anti HBcIgM is a marker of acute infection",
+      "Anti- HBcIgG is a marker of past or chronic infection",
+      "HBeAg is an indicator of infectivity",
+      "HBV DNA is active viral replication indicator"
+    ],
+    "correct": 0,
+    "explanation": "HBsAg indicates current infection, not recovery/immunity (which is indicated by anti-HBs). The other statements are correct: anti-HBcIgM indicates acute infection, anti-HBcIgG indicates past/chronic infection, HBeAg indicates infectivity, and HBV DNA indicates active replication."
+  },
+  {
+    "question": "Autoimmune hepatitis could be treated with:",
+    "options": [
+      "Interferon",
+      "Lamivudine",
+      "Interferon and ribavirin",
+      "Corticosteroids and azathioprine",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Autoimmune hepatitis is treated with corticosteroids and azathioprine, not interferon and ribavirin (which are used for viral hepatitis). Interferon alone or with ribavirin is for viral hepatitis, not autoimmune."
+  },
+  {
+    "question": "The main source of infection with viral hepatitis C is:",
+    "options": [
+      "Blood and blood derivatives",
+      "Body fluids",
+      "Feces",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "The main source of hepatitis C infection is blood and blood derivatives, not all body fluids. While some body fluids can potentially transmit HCV, blood is the primary source."
+  },
+  {
+    "question": "All of the following may result in portal hypertension due to obstruction of portal circulation at the level of the liver (hepatic) EXCEPT:",
+    "options": [
+      "Schistosomiasis",
+      "Cirrhosis",
+      "Congenital hepatic fibrosis",
+      "Vitamin A intoxication",
+      "Budd Chiari syndrome"
+    ],
+    "correct": 3,
+    "explanation": "Vitamin A intoxication does not cause portal hypertension at the hepatic level. The other options do: schistosomiasis, cirrhosis, congenital hepatic fibrosis, and Budd-Chiari syndrome all obstruct portal circulation at the liver level."
+  },
+  {
+    "question": "Clinical clues for diagnosis of portal hypertension include:",
+    "options": [
+      "Splenomegaly",
+      "Hematemesis",
+      "Melena",
+      "Ascites",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the listed options are clinical clues for portal hypertension: splenomegaly, hematemesis, melena, and ascites."
+  },
+  {
+    "question": "Causes of predominantly direct hyperbilirubinemia include all EXCEPT:",
+    "options": [
+      "Dubin Johnson syndrome",
+      "Rotor's disease",
+      "Extra hepatic biliary atresia",
+      "Gilbert's disease",
+      "Stone in common bile duct"
+    ],
+    "correct": 3,
+    "explanation": "Gilbert's disease causes indirect (unconjugated) hyperbilirubinemia, not direct hyperbilirubinemia. The other options cause direct hyperbilirubinemia."
+  },
+  {
+    "question": "Causes of biphasic hyperbilirubinemia include all EXCEPT:",
+    "options": [
+      "Hepatitis B virus infection",
+      "Chronic active hepatitis",
+      "Wilson's disease",
+      "Galactosaemia",
+      "ABO incompatibility"
+    ],
+    "correct": 4,
+    "explanation": "ABO incompatibility causes indirect hyperbilirubinemia, not biphasic hyperbilirubinemia. The other options can cause biphasic patterns."
+  },
+  {
+    "question": "Extrahepatic biliary atresia made by any of the following EXCEPT:",
+    "options": [
+      "Dark urine",
+      "Dark colored stools",
+      "Hepatosplenomegaly",
+      "Jaundice",
+      "Elevated liver enzymes"
+    ],
+    "correct": 1,
+    "explanation": "Dark urine is not a feature used to diagnose extrahepatic biliary atresia (it's actually a feature of conjugated hyperbilirubinemia which is present). The other options are features: dark stools (acholic), hepatosplenomegaly, jaundice, and elevated liver enzymes."
+  },
+  {
+    "question": "Indirect hyperbilirubinemia is a feature of all the following EXCEPT:",
+    "options": [
+      "Galactosemia",
+      "Breast milk jaundice",
+      "ABO incompatibility",
+      "Cigler-Najjar syndrome",
+      "Congenital spherocytosis"
+    ],
+    "correct": 4,
+    "explanation": "Congenital spherocytosis causes hemolytic anemia with indirect hyperbilirubinemia, not direct hyperbilirubinemia. The other options can cause indirect hyperbilirubinemia."
+  },
+  {
+    "question": "Conjugated hyperbilirubinemia is seen in:",
+    "options": [
+      "Gilbert's syndrome",
+      "Crigler-Najjar syndrome",
+      "Dubin Johnson syndrome",
+      "Breast milk jaundice",
+      "ABO incompatibility"
+    ],
+    "correct": 2,
+    "explanation": "Dubin-Johnson syndrome causes direct (conjugated) hyperbilirubinemia. The other options cause indirect hyperbilirubinemia."
+  },
+  {
+    "question": "A two-week-old infant is young jaundiced the baby's stools are pale and his urine darkly colored. Hehe has hepatomegaly elevated AST, ALT, conjugated bilirubin and unconjugated bilirubin. Ultrasound fails to demonstrate a gall bladder. Which of the following is the most likely diagnosis",
+    "options": [
+      "Alpha 1-antitrypsin deficiency",
+      "Biliary atresia",
+      "Cystic fibrosis",
+      "Hepatitis",
+      "Neonatal hepatitis"
+    ],
+    "correct": 1,
+    "explanation": "The presentation is most consistent with biliary atresia: pale stools (acholic), dark urine (conjugated bilirubin), hepatomegaly, elevated enzymes, and absent gallbladder on ultrasound. Alpha-1-antitrypsin deficiency would typically show a gallbladder."
+  },
+  {
+    "question": "Which of the following is not a manifestation of biliary cirrhosis ?",
+    "options": [
+      "Deep jaundice",
+      "Ascites",
+      "Bilious vomiting",
+      "Clubbing",
+      "Itching"
+    ],
+    "correct": 2,
+    "explanation": "Bilious vomiting is not a manifestation of biliary cirrhosis. The other options are: deep jaundice, ascites, clubbing, and itching (pruritus)."
+  },
+  {
+    "question": "Hepatosplenomegaly is recognized feature of all EXCEPT:",
+    "options": [
+      "Chronic active hepatitis",
+      "Thalassemia",
+      "Portal hypertension due to portal vein thrombosis",
+      "Neonatal herpes simplex infection",
+      "Lymphomas"
+    ],
+    "correct": 3,
+    "explanation": "Portal hypertension due to portal vein thrombosis typically doesn't cause hepatosplenomegaly (it may cause splenomegaly but not hepatomegaly). The other options commonly cause hepatosplenomegaly."
+  },
+  {
+    "question": "Child with Wilson disease can present by the following:",
+    "options": [
+      "Acute hepatitis",
+      "Hemolytic anemia",
+      "Any neurological sign",
+      "Slurred speech",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the listed options are correct presentations of Wilson disease in children: acute hepatitis, hemolytic anemia, any neurological sign, and specifically slurred speech."
+  },
+  {
+    "question": "The most common cause of acute hepatitis with transaminases above 1000 IU/L is",
+    "options": [
+      "HAV",
+      "HBV",
+      "HCV",
+      "EBV",
+      "CMV"
+    ],
+    "correct": 3,
+    "explanation": "HCV is not the most common cause of acute hepatitis with transaminases above 1000 IU/L. HAV is the most common cause of acute hepatitis with such elevated transaminases."
+  },
+  {
+    "question": "The differences between adult and pediatric hepatitis include:",
+    "options": [
+      "Autoimmune hepatitis is not known in children",
+      "Metabolic causes are more common in children",
+      "HCV is not present in children",
+      "Toxic hepatitis is a pediatric disease",
+      "HAV cannot occur in adults"
+    ],
+    "correct": 1,
+    "explanation": "Autoimmune hepatitis is known in children, though it's less common than in adults. The other statements are incorrect: metabolic causes are more common in children, HCV can be present in children, toxic hepatitis can occur in all ages, and HAV can occur in adults (though often milder)."
+  },
+  {
+    "question": "A 2-week-old infant is jaundiced the baby's stool is pale and his urine is dark he has hepatomegaly, elevated AST, ALT, conjugated bilirubin and unconjugated bilirubin. ultrasound fails to demonstrate a gallbladder. Which of the following is most likely diagnosis?",
+    "options": [
+      "Alpha 1 antitrypsin deficiency",
+      "biliary atresia",
+      "cystic fibrosis",
+      "hepatitis",
+      "hepatitis"
+    ],
+    "correct": 1,
+    "explanation": "This is a duplicate of question 19. The most likely diagnosis is biliary atresia based on the presentation: pale stools, dark urine, hepatomegaly, elevated enzymes, and absent gallbladder."
+  },
+  {
+    "question": "the following is true regarding hepatitis",
+    "options": [
+      "air born infection",
+      "always symptomatic",
+      "incubation period 46 days",
+      "infections more severe in adults",
+      "can progress into liver cirrhosis"
+    ],
+    "correct": 4,
+    "explanation": "Hepatitis can progress into liver cirrhosis. The other statements are incorrect: hepatitis is not airborne, not always symptomatic, has variable incubation periods (not specifically 46 days), and severity varies by age (hepatitis A is more severe in adults)."
+  },
+  {
+    "question": "metabolic causes of neonatal cholestasis include the following except",
+    "options": [
+      "galactosemia",
+      "fructosemia",
+      "tyrosinemia",
+      "Gilbert Syndrome",
+      "Zellweger syndrome"
+    ],
+    "correct": 3,
+    "explanation": "Gilbert Syndrome does not cause neonatal cholestasis (it causes mild indirect hyperbilirubinemia). The other options are metabolic causes of neonatal cholestasis."
+  },
+  {
+    "question": "hepatitis can be the result of",
+    "options": [
+      "overactive immune system",
+      "drugs",
+      "chemicals",
+      "environmental toxins",
+      "all of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the listed options can cause hepatitis: overactive immune system (autoimmune), drugs, chemicals, and environmental toxins."
+  },
+  {
+    "question": "all types of Hepatitis are characterized with all of the following except",
+    "options": [
+      "distortion of normal hepatic architecture",
+      "normal bile flow",
+      "Kupffer cells enlargement and proliferation",
+      "acute and chronic inflammation",
+      "variable degrees of hepatocellular necrosis"
+    ],
+    "correct": 1,
+    "explanation": "Hepatitis is characterized by abnormal bile flow, not normal bile flow. The other options are correct features of hepatitis."
+  },
+  {
+    "question": "risk factors of Hepatitis A include all of the following except",
+    "options": [
+      "recent travel or migration to an endemic area",
+      "sewage workers",
+      "multiple transfusion of blood and or its products",
+      "chronic institutionalization",
+      "daycare employee or children"
+    ],
+    "correct": 2,
+    "explanation": "Multiple transfusions of blood and products are not a risk factor for hepatitis A (they are for hepatitis B and C). The other options are correct risk factors for hepatitis A."
+  },
+  {
+    "question": "average incubation period of hepatitis B is",
+    "options": [
+      "60 to 90 days",
+      "30 days",
+      "10 to 45 days",
+      "180 to 210 days",
+      "none of the above"
+    ],
+    "correct": 0,
+    "explanation": "The average incubation period of hepatitis B is 60 to 90 days, which is longer than hepatitis A but shorter than hepatitis C."
+  },
+  {
+    "question": "all of the following are true except",
+    "options": [
+      "HBsAg documents recovery and/or immunity",
+      "Anti HBcIgM is a marker of acute infection",
+      "Anti HBcIgG is a marker of post or chronic infection",
+      "HBeAg is an indicator of infectivity",
+      "HBV DNA is active viral replication indicator"
+    ],
+    "correct": 0,
+    "explanation": "HBsAg does not document recovery or immunity; it indicates current infection. Anti-HBs documents recovery and/or immunity."
+  },
+  {
+    "question": "autoimmune hepatitis could be treated with",
+    "options": [
+      "interferon",
+      "Lamivudine",
+      "Interferon and ribavirin",
+      "corticosteroids and azathioprine",
+      "all of the above"
+    ],
+    "correct": 3,
+    "explanation": "Autoimmune hepatitis is typically treated with corticosteroids and azathioprine, not antiviral medications like interferon or lamivudine."
+  },
+  {
+    "question": "the main source of infection with viral hepatitis E is",
+    "options": [
+      "blood and blood derivatives",
+      "body fluids",
+      "feces",
+      "all of the above",
+      "none of the above"
+    ],
+    "correct": 2,
+    "explanation": "The main source of infection with hepatitis E is fecal-oral transmission, typically through contaminated water."
+  },
+  {
+    "question": "Clinical clues for the diagnosis of portal hypertension include",
+    "options": [
+      "Splenomegaly",
+      "hematemesis",
+      "melena",
+      "ascites",
+      "all of the above"
+    ],
+    "correct": 4,
+    "explanation": "All listed options (splenomegaly, hematemesis, melena, ascites) are clinical clues for portal hypertension."
+  },
+  {
+    "question": "Which of the following must be present in every infant with extrahepatic biliary atresia:",
+    "options": [
+      "low serum albumin",
+      "prolonged prothombin time",
+      "Markedly elevated ALP and GGT",
+      "Elevated liver enzymes",
+      "Normal colored stools"
+    ],
+    "correct": 4,
+    "explanation": "Normal colored stools are a key feature of extrahepatic biliary atresia, as bile cannot reach the intestine to color the stool."
+  },
+  {
+    "question": "The following could be a presentation of Wilson's disease in a 14 years old female:",
+    "options": [
+      "Hepatic presentation",
+      "Neurological presentation",
+      "Renal affection",
+      "Hematological presentation",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Wilson's disease can present with hepatic, neurological, renal, and hematological manifestations in a 14-year-old."
+  },
+  {
+    "question": "What is the most common clinical presentation of portal hypertension",
+    "options": [
+      "Abdominal pain",
+      "Ascites",
+      "Bleeding from esophageal varices",
+      "Abdominal mass"
+    ],
+    "correct": 2,
+    "explanation": "Bleeding from esophageal varices is the most common and serious clinical presentation of portal hypertension."
+  },
+  {
+    "question": "A 6-year-old girl appeared with a febrile illness and upper respiratory tract infections. She was treated conservatively and improved. Six days later, she started severe vomiting. She was brought to the ER. Delirium, combative behavior, and stupor are noted within two hours. The physical examination reveals mild hepatomegaly. The laboratory test results reveal elevated liver enzymes, lactic dehydrogenase, creatinine kinase, and ammonia. The most likely diagnosis is:",
+    "options": [
+      "Viral hepatitis",
+      "Disseminated intravascular coagulation",
+      "Viral meningitis",
+      "Autoimmune hepatitis",
+      "Reye syndrome"
+    ],
+    "correct": 4,
+    "explanation": "Reye syndrome is characterized by encephalopathy and fatty liver following a viral illness, with elevated liver enzymes and ammonia."
+  },
+  {
+    "question": "The side effect of ceftriaxone is:",
+    "options": [
+      "Cholestasis",
+      "Anaphylactic reaction",
+      "Hepatic vein thrombosis",
+      "Biliary sludge",
+      "Acute nephritis"
+    ],
+    "correct": 3,
+    "explanation": "Ceftriaxone can cause biliary sludge formation due to its excretion in bile and calcium binding."
+  },
+  {
+    "question": "All of the following are clinical manifestations in patients with fulminant liver failure except:",
+    "options": [
+      "Progressive jaundice",
+      "Vomiting",
+      "Fever",
+      "Fetor hepaticus",
+      "A rapid increase in liver size"
+    ],
+    "correct": 4,
+    "explanation": "A rapid increase in liver size is not typical in fulminant liver failure; instead, the liver may shrink due to massive necrosis."
+  },
+  {
+    "question": "An initial therapy in infants with cholestatic jaundice is:",
+    "options": [
+      "Phenobarbital",
+      "Gentamicin",
+      "Vitamin",
+      "Vitamin",
+      "Ursodeoxycholic acid"
+    ],
+    "correct": 4,
+    "explanation": "Initial therapy for cholestatic jaundice in infants includes fat-soluble vitamins (A, D, E, K) to address malabsorption."
+  },
+  {
+    "question": "The mode of inheritance in patients with a Wilson disease is:",
+    "options": [
+      "Autosomal recessive",
+      "Autosomal dominant",
+      "X-linked recessive",
+      "X-linked dominant",
+      "Multifactorial"
+    ],
+    "correct": 0,
+    "explanation": "Wilson disease is inherited in an autosomal recessive pattern, requiring mutations in both copies of the ATP7B gene."
+  },
+  {
+    "question": "A 13-year-old rapidly growing boy has an elevated alkaline phosphatase level. The rest of the LFTs are normal. The most likely diagnosis is:",
+    "options": [
+      "Obstructive liver disease",
+      "Acute hepatitis",
+      "Acute hepatitis",
+      "Hepatoblastoma",
+      "Normal"
+    ],
+    "correct": 4,
+    "explanation": "In a rapidly growing adolescent, elevated alkaline phosphatase with normal LFTs is most likely due to normal bone growth."
+  },
+  {
+    "question": "An ultrasonographic examination of an infant with Biliary atresia reveals all of the following except:",
+    "options": [
+      "Small gallbladder",
+      "'Triangular cord sign'",
+      "Absent gallbladder",
+      "Increased echogenicity of the liver",
+      "No visualization of the common bile duct"
+    ],
+    "correct": 2,
+    "explanation": "The 'triangular cord sign' is a specific finding in biliary atresia on ultrasound, not absent gallbladder."
+  },
+  {
+    "question": "An ophthalmologic examination of a child with a Wilson disease reveals:",
+    "options": [
+      "Brush field spots in the iris",
+      "Cataracts",
+      "Glaucoma",
+      "Retinitis pigmentosa",
+      "Kayser-Fleischer ring in the cornea"
+    ],
+    "correct": 4,
+    "explanation": "Kayser-Fleischer rings in the cornea are the characteristic ophthalmologic finding in Wilson disease."
+  },
+  {
+    "question": "All of the following hepatic conditions can occur in patients with a Wilson disease except:",
+    "options": [
+      "Asymptomatic hepatomegaly",
+      "Subacute hepatitis",
+      "Chronic hepatitis",
+      "Hepatoblastoma",
+      "Fulminant hepatic failure"
+    ],
+    "correct": 3,
+    "explanation": "Hepatoblastoma is not associated with Wilson disease; the other options are possible hepatic manifestations."
+  },
+  {
+    "question": "The predominant clinical manifestation in younger patients with a Wilson disease is:",
+    "options": [
+      "Hemolysis",
+      "Neurologic manifestations",
+      "Behavioral changes",
+      "Hepatic manifestations",
+      "Kayser-Fleischer rings in the cornea"
+    ],
+    "correct": 3,
+    "explanation": "In younger patients with Wilson disease, hepatic manifestations are predominant, while neurological manifestations appear later."
+  },
+  {
+    "question": "A mother wants to breast feed her newborn infant. She is HBsAg-positive. The next step in management is:",
+    "options": [
+      "Give HBIG and resume breast feeding",
+      "Give hepatitis B vaccine and resume breast feeding",
+      "Resume breast feeding without HBIG",
+      "Resume breast feeding without hepatitis B vaccine",
+      "Give HBIG and hepatitis B vaccine, and resume breast feeding"
+    ],
+    "correct": 4,
+    "explanation": "HBsAg-positive mothers should receive HBIG and hepatitis B vaccine to their newborns, and breastfeeding can be resumed."
+  },
+  {
+    "question": "A 9-month-old infant's hepatitis profile reveals anti-HBs positive and HBsAg-negative. The most likely interpretation is:",
+    "options": [
+      "The infant should receive HBIG",
+      "The infant should receive one more dose of hepatitis B vaccine.",
+      "The infant should receive two more dose of hepatitis B vaccines.",
+      "The infant should receive three more dose of hepatitis B vaccines.",
+      "The infant is protected and does not require hepatitis B vaccines."
+    ],
+    "correct": 4,
+    "explanation": "Anti-HBs positive and HBsAg-negative indicates immunity to hepatitis B, and no further vaccination is needed."
+  },
+  {
+    "question": "The most important risk factor for acquisition of hepatitis B virus in children born to HBsAg-positive mother is:",
+    "options": [
+      "Breast feeding",
+      "Kissing the infant",
+      "Perinatal exposure",
+      "Exposure to contaminated stool",
+      "Exposure to contaminated urine"
+    ],
+    "correct": 2,
+    "explanation": "Perinatal exposure is the most significant risk factor for hepatitis B transmission from mother to child."
+  },
+  {
+    "question": "The first sign of liver damage:",
+    "options": [
+      "Increased SGOT",
+      "Increased SGPT",
+      "Increased alkaline phosphatase",
+      "Increased PT (prothrombin time)",
+      "Increased PTT (partial thromboplastin time)"
+    ],
+    "correct": 1,
+    "explanation": "Increased SGPT (ALT) is typically the first sign of liver damage, as it's more specific for hepatocellular injury."
+  },
+  {
+    "question": "An infant develops jaundice. The best way to distinguish biliary atresia from neonatal hepatitis:",
+    "options": [
+      "Ultrasonography of liver",
+      "Serum direct bilirubin",
+      "Hepatobiliary scan",
+      "Serum alkaline phosphatase",
+      "Abdominal CT scan"
+    ],
+    "correct": 2,
+    "explanation": "Hepatobiliary scan with technetium-99m is the best initial test to distinguish biliary atresia from neonatal hepatitis."
+  },
+  {
+    "question": "Angiotensin I (inactive decapeptide) is formed in:",
+    "options": [
+      "Liver",
+      "Kidneys",
+      "Lungs",
+      "Adrenals",
+      "Pancreas"
+    ],
+    "correct": 2,
+    "explanation": "Angiotensin I is formed in the lungs when angiotensinogen is cleaved by renin from the kidneys."
+  },
+  {
+    "question": "Angiotensin II (active octapeptide) is formed in:",
+    "options": [
+      "Liver",
+      "Kidneys",
+      "Lungs",
+      "Adrenals",
+      "Pituitary"
+    ],
+    "correct": 2,
+    "explanation": "Angiotensin II is formed in the lungs when angiotensin I is cleaved by angiotensin-converting enzyme (ACE)."
+  },
+  {
+    "question": "A 3-day-old male appears with history of poor feeding and vomiting. Physical examination reveals lethargy, jaundice, a full anterior fontanelle, and hepatomegaly. Sepsis work up was performed. Blood culture and CSF culture reveal Gram-negative rods. Urine is positive for reducing substances. Most likely diagnosis:",
+    "options": [
+      "Group B Streptococcus meningitis",
+      "S. aureus bacteremia",
+      "G6PD deficiency with meningitis",
+      "'ABO' hemolytic disease with meningitis",
+      "Galactosemia"
+    ],
+    "correct": 4,
+    "explanation": "The presentation suggests galactosemia, with Gram-negative rods indicating E. coli sepsis, and positive reducing substances in urine."
+  },
+  {
+    "question": "The side-effect of rotavirus vaccine:",
+    "options": [
+      "Flu-like symptoms",
+      "Hepatitis",
+      "Intussusception",
+      "Localized abscess",
+      "Malrotation"
+    ],
+    "correct": 2,
+    "explanation": "Intussusception is a known but rare side effect of the rotavirus vaccine, occurring in approximately 1-2 per 100,000 doses."
+  },
+  {
+    "question": "A 2-year-old boy appears with irritability, pruritus, and ataxia. He had Kasai procedure (Hepatoportoenterostomy) at 3 months of age. Physical examination reveals hepatosplenomegaly and decreased deep tendon reflexes. Laboratory findings reveal a normal PT, calcium, phosphorus, bilirubin, and SGOT; mildly elevated SGPT; highly elevated alkaline phosphatase. Most likely deficiency:",
+    "options": [
+      "Vitamin",
+      "Vitamin",
+      "Vitamin",
+      "Vitamin",
+      "Magnesium"
+    ],
+    "correct": 0,
+    "explanation": "The patient likely has vitamin E deficiency, which can cause neurological symptoms like ataxia and decreased reflexes after Kasai procedure."
+  },
+  {
+    "question": "A 11-month-old male infant recently arrived in USA from an Asian country. His immunization status is unknown. Mother is positive for hepatitis B surface antigen. The infant should receive:",
+    "options": [
+      "Hepatitis B vaccine (3 doses within 6 months)",
+      "Hepatitis B vaccine (2 doses within 4 months)",
+      "HBIG (1 dose) and hepatitis B vaccine (2 doses within 6 months)",
+      "HBIG (1 dose) and hepatitis B vaccine (3 doses within 6 months)",
+      "Hepatitis B vaccine (1 dose)"
+    ],
+    "correct": 3,
+    "explanation": "The infant should receive HBIG and hepatitis B vaccine (3 doses within 6 months) due to unknown immunization status and HBsAg-positive mother."
+  },
+  {
+    "question": "An infant is diagnosed with Alagille syndrome (intrahepatic biliary atresia). Physical examination reveals signs of rickets (e.g., bow legs and prominent wrists). Laboratory findings reveal a normal CBC, serum alkaline phosphatase (1400 U/L), serum Ca 6.9 mg/dL, phosphorous 2.8 mg/dL, mildly elevated SGOT and SGPT, and total bilirubin 4.0 mg/dL. The next in the management:",
+    "options": [
+      "Phosphate supplementation",
+      "Calcium supplementation",
+      "Ursodeoxycholic acid",
+      "Total parenteral nutrition",
+      "Vitamin"
+    ],
+    "correct": 2,
+    "explanation": "The patient has rickets due to vitamin D deficiency, which is common in cholestatic liver diseases like Alagille syndrome."
+  },
+  {
+    "question": "Cholestasis is associated with:",
+    "options": [
+      "Pyloric stenosis",
+      "Hypothyroidism",
+      "Steatorrhea",
+      "Hypopituitarism",
+      "G6PD deficiency"
+    ],
+    "correct": 1,
+    "explanation": "Cholestasis is associated with hypothyroidism. Hypothyroidism can cause neonatal cholestasis due to reduced bile flow. Pyloric stenosis presents with vomiting, not cholestasis. Steatorrhea is a symptom of malabsorption, not directly related to cholestasis. Hypopituitarism and G6PD deficiency are not typically associated with cholestasis."
+  },
+  {
+    "question": "A child was referred for an ophthalmologic evaluation that revealed Kayser-Fleischer ring in both eyes. Most likely diagnosis:",
+    "options": [
+      "Down syndrome",
+      "Wilson disease",
+      "Marfan syndrome",
+      "Homocystinuria",
+      "Congenital rubella"
+    ],
+    "correct": 1,
+    "explanation": "Kayser-Fleischer rings are pathognomonic for Wilson disease, a disorder of copper metabolism. These are greenish-brown rings deposited in the corneal limbus due to copper deposition. Down syndrome, Marfan syndrome, homocystinuria, and congenital rubella do not typically present with Kayser-Fleischer rings."
+  },
+  {
+    "question": "A routine physical examination of a child reveals a palpable liver 2 cm below the right costal margin. The next step in management is:",
+    "options": [
+      "Liver function tests",
+      "Hepatic ultrasonography",
+      "Plain abdominal x-ray",
+      "Hepatobiliary scan",
+      "Reassurance"
+    ],
+    "correct": 0,
+    "explanation": "When a palpable liver is found in a child, the next step should be to evaluate liver function with liver function tests. This helps determine if the hepatomegaly is due to liver disease, infection, metabolic disorders, or other causes. Ultrasonography may be indicated later based on initial findings, but LFTs are the most appropriate first step."
+  },
+  {
+    "question": "The jaundice appears clinically in children when the serum concentration of bilirubin reaches:",
+    "options": [
+      "1-2 mg/dL",
+      "2-3 mg/dL",
+      "3-4 mg/dL",
+      "4-5 mg/dL",
+      "5-6 mg/dL"
+    ],
+    "correct": 4,
+    "explanation": "Jaundice becomes clinically apparent when serum bilirubin reaches approximately 4-5 mg/dL in children. This is due to the yellow discoloration of tissues and sclerae from bilirubin deposition. Lower levels (1-3 mg/dL) may cause biochemical jaundice but not visible clinical jaundice."
+  },
+  {
+    "question": "The jaundice may not appear clinically in neonates until the bilirubin level is over:",
+    "options": [
+      "1 mg/dL",
+      "2 mg/dL",
+      "3 mg/dL",
+      "4 mg/dL",
+      "5 mg/dL"
+    ],
+    "correct": 4,
+    "explanation": "In neonates, jaundice may not be clinically apparent until bilirubin levels exceed 4 mg/dL. Neonates have higher hemoglobin levels and increased bilirubin production from red blood cell breakdown, but also have immature liver function that affects bilirubin clearance."
+  },
+  {
+    "question": "The most common clinical manifestation in patients with portal hypertension is:",
+    "options": [
+      "Ascites",
+      "Jaundice",
+      "Palmar erythema",
+      "Vascular telangiectasia",
+      "Bleeding from esophageal varices"
+    ],
+    "correct": 4,
+    "explanation": "The most common clinical manifestation of portal hypertension is bleeding from esophageal varices. Portal hypertension increases pressure in the portal venous system, leading to collateral circulation development and variceal formation, which can rupture and cause life-threatening bleeding."
+  },
+  {
+    "question": "A previously healthy 9-year-old male presents to the ER with asymptomatic jaundice and is found to have a total bilirubin of 11 mg/dL with a direct component of 8.5 mg/dL. Which of the following tests is the most useful indicator of hepatic synthetic function?",
+    "options": [
+      "Cortisol",
+      "Total and free carnitine and acylcarnitine",
+      "Complete blood count with platelets",
+      "Prothrombin time (PT)",
+      "Antinuclear antibody"
+    ],
+    "correct": 3,
+    "explanation": "Prothrombin time (PT) is the most useful indicator of hepatic synthetic function among the options. The liver synthesizes clotting factors, and elevated PT indicates impaired synthetic function. The other options are not primarily indicators of hepatic synthetic function."
+  },
+  {
+    "question": "A 4-week-old infant male presents to clinic for routine well-child examination. Liver edge is palpable 2 cm below the right costal margin, but is not palpable below the xiphoid process. His physical examination is otherwise unremarkable and he has been growing and gaining weight well. What is the next most appropriate step?",
+    "options": [
+      "Order nonurgent abdominal ultrasound.",
+      "Send viral hepatitis panel.",
+      "Obtain complete blood count with platelets and comprehensive metabolic panel including AST, ALT, and bilirubin fractions.",
+      "Obtain urine succinyl acetone.",
+      "Reexamine liver carefully at next routine well-child examination for change."
+    ],
+    "correct": 4,
+    "explanation": "For a 4-week-old infant with a palpable liver edge 2 cm below the right costal margin who is otherwise healthy and growing well, the most appropriate next step is to reexamine at the next routine visit. This is likely a normal variant of liver position in infants, and no immediate testing is warranted if the child is thriving."
+  },
+  {
+    "question": "A 14-year-old boy seen in your clinic has a history of Wilson disease. Which of the following tissues may accumulate excessive copper if the disease is left inadequately treated?",
+    "options": [
+      "Skeletal system",
+      "Pancreas",
+      "Ovaries",
+      "Brain",
+      "Salivary glands"
+    ],
+    "correct": 3,
+    "explanation": "In inadequately treated Wilson disease, copper accumulates primarily in the brain, leading to neurological symptoms. While copper can accumulate in various tissues, the brain is particularly vulnerable and neurological manifestations are common in untreated or poorly treated Wilson disease."
+  },
+  {
+    "question": "Which of the following is an incorrect statement about portal hypertension?",
+    "options": [
+      "Thrombotic events are rarely the cause of portal hypertension in children.",
+      "Portal hypertension is defined as a portal pressure gradient of above 10 to 12 mm Hg.",
+      "An enlarged spleen found on physical examination is consistent with a diagnosis of portal hypertension.",
+      "Imaging tests are indicated to confirm the diagnosis of portal hypertension.",
+      "Children with portal hypertension may require an upper endoscopy to evaluate for esophageal varices."
+    ],
+    "correct": 0,
+    "explanation": "The incorrect statement is that thrombotic events are rarely the cause of portal hypertension in children. In fact, thrombotic events (including portal vein thrombosis) are a significant cause of portal hypertension in children, contrary to the statement."
+  },
+  {
+    "question": "A 5-week-old African American infant who is exclusively breastfed is brought to the pediatrician because he \"looks yellow.\" She notes that his stools changed from bright yellow to gray in the last 2 weeks. Physical examination reveals a well-nourished infant with icteric sclerae, and a liver edge palpable 4 cm below the right costal margin. Laboratory evaluation is notable for a total bilirubin of 7.3 mg/dL, direct bilirubin of 3.1 mg/dL, alanine aminotransferase of 127 U/L, and γ-glutamyl transpeptidase of 800 U/L. An abdominal ultrasound is obtained that is normal except for nonvisualization of the gallbladder. Of the following, the most appropriate next step is:",
+    "options": [
+      "Echocardiogram",
+      "Hemoglobin electrophoresis",
+      "Hepatobiliary scintigraphy",
+      "Measurement of urine-reducing substances",
+      "Sweat chloride testing"
+    ],
+    "correct": 2,
+    "explanation": "The most appropriate next step is hepatobiliary scintigraphy. The infant's presentation with cholestatic jaundice, elevated direct bilirubin, elevated transaminases, and nonvisualization of the gallbladder on ultrasound is highly suggestive of biliary atresia. Hepatobiliary scintigraphy can evaluate biliary excretion and is a key diagnostic test for biliary atresia."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

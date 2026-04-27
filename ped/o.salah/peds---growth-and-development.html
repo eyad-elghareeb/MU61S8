@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Peds - Growth and Development</title>
+
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "19dcff6a204y6ttl",
+  "title": "Peds - Growth and Development",
+  "description": "67 questions on Pediatric Growth and Development",
+  "icon": "📏"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Factors affecting physical growth include all of the following EXCEPT:",
+    "options": [
+      "Genetic factors",
+      "Nutritional status",
+      "Thyroid hormone",
+      "Acute infections",
+      "Secular trend"
+    ],
+    "correct": 3,
+    "explanation": "Delayed closure of anterior fontanelle is associated with Down syndrome, hydrocephalus, and rickets, but not with phenylketonuria."
+  },
+  {
+    "question": "By the age of 3 years the average weight of a child is: a 10 kg",
+    "options": [
+      "12 kg",
+      "14kg",
+      "20 kg",
+      "22 kg"
+    ],
+    "correct": 1,
+    "explanation": "By age 3 years, the average weight of a child is approximately 14 kg, not 12 kg."
+  },
+  {
+    "question": "Delayed closure of anterior fontanelle appears in all of the following EXCEPT:",
+    "options": [
+      "Down syndrome",
+      "Hydrocephalus",
+      "Phenylketonuria",
+      "Rickets"
+    ],
+    "correct": 2,
+    "explanation": "The earliest primary teeth to appear are the mandibular central incisors, not the maxillary central incisors."
+  },
+  {
+    "question": "All are true of dental development EXCEPT:",
+    "options": [
+      "The earliest primary teeth to appear are the upper central incisors",
+      "The earliest permanent teeth to appear is the first Molar",
+      "The last of the deciduous teeth to appear are the second molars",
+      "There are 20 deciduous teeth",
+      "Delayed eruption May occur in rickets"
+    ],
+    "correct": 0,
+    "explanation": "The 50th centile weight of a 6-month-old infant is approximately 7 kg, not 11 kg."
+  },
+  {
+    "question": "50th centile weight of a 6-month-old infant born healthy at term is about: a7kg",
+    "options": [
+      "11 kg",
+      "7 lb.",
+      "4 kg"
+    ],
+    "correct": 3,
+    "explanation": "A single weight reading below the 3rd centile indicates abnormally low weight now, not necessarily progressive pathology or malabsorption."
+  },
+  {
+    "question": "A single weight reading of an infant 10 months old below the 3rd cen' means that:",
+    "options": [
+      "He suffers a progressive pathology",
+      "He is recovering from an iliness",
+      "He is of borderline weight now",
+      "He is of abnormally low weight now",
+      "He suffers from malabsorption"
+    ],
+    "correct": 1,
+    "explanation": "For a term newborn with length at 50th centile (50.5 cm), the head circumference would be approximately 37 cm at 50th centile."
+  },
+  {
+    "question": "You are examining a term newborn in the nursery: his percentile and his length is 50.5 CM (50th percent circumference in this child, if it is consistent with a 31cm",
+    "options": [
+      "33. cm",
+      "37 cm"
+    ],
+    "correct": 0,
+    "explanation": "The first teeth to erupt in most infants are the mandibular central incisors."
+  },
+  {
+    "question": "The first teeth to erupt in most infants",
+    "options": [
+      "Mandibular central incisors",
+      "Maxillary lateral incisors",
+      "First premolars",
+      "Maxillary first molars"
+    ],
+    "correct": 2,
+    "explanation": "The 50th centile weight of a 5-month-old is approximately 7 pounds, not 11 kg or 4 pounds."
+  },
+  {
+    "question": "The 50th centile weight of a 5-month a 7kg",
+    "options": [
+      "11 kg",
+      "7 pounds",
+      "4 pounds"
+    ],
+    "correct": 0,
+    "explanation": "Otitis media with effusion is most common between 1-3 years, not 3-4 years."
+  },
+  {
+    "question": "Th",
+    "options": [
+      "Oto 1 years",
+      "3 to 4 years",
+      "4 to 5 years",
+      "5 to 6 years"
+    ],
+    "correct": 2,
+    "explanation": "All listed milestones are correct: transferring a toy at 4 months and putting 2-3 words together at 12 months."
+  },
+  {
+    "question": "Normal milestones of development include:",
+    "options": [
+      "Transfers a toy from one hand to another at 4 months",
+      "Putting two to three words together at 12 months",
+      "All of the above"
+    ],
+    "correct": 0,
+    "explanation": "Language impairment is 4 times more common in boys, not girls."
+  },
+  {
+    "question": "Regarding language impairment all the following is true EXCEPT:",
+    "options": [
+      "Is 4 times more common in girls",
+      "Maybe due to autism",
+      "Is highly associated with socioeconomic deprivation"
+    ],
+    "correct": 1,
+    "explanation": "A normal 2-year-old can drink from a cup, but cannot draw a triangle or copy a circle."
+  },
+  {
+    "question": "A normal 2-year-old child would be expected to: a, Drink from a cup",
+    "options": [
+      "Draw a triangle",
+      "Copy a circle",
+      "The pa lent has one with other mama or dada the child"
+    ],
+    "correct": 1,
+    "explanation": "A normal 6-week-old infant can reach for toys, but cannot sit supported or grasp objects purposefully."
+  },
+  {
+    "question": "A normal 6-week-old infant can:",
+    "options": [
+      "Sit supported",
+      "Reach for toys",
+      "Grasp an obj"
+    ],
+    "correct": 1,
+    "explanation": "An average infant can sit without support starting at approximately 6 months."
+  },
+  {
+    "question": "An average infant can sit without support starting from the age of:",
+    "options": [
+      "5 months",
+      "6 months",
+      "7 months",
+      "8 months",
+      "9 months"
+    ],
+    "correct": 1,
+    "explanation": "A 3-year-old uses 2-word sentences, not a 2-year-old or 4-year-old as described in other options."
+  },
+  {
+    "question": "The following statement is correct regarding language development in children between 2 to 5 years of age:",
+    "options": [
+      "A 2-year-old uses 2 words in a sentence",
+      "A 3-year-old uses 2 words in a sentence",
+      "A four-year-old uses 5 words in a sentence",
+      "A five-year-old uses 4 words in a sentence",
+      "A five-year-old uses 6 words in a sentence"
+    ],
+    "correct": 1,
+    "explanation": "In an 18-month-old, canines may have erupted, while other options are incorrect for this age."
+  },
+  {
+    "question": "In a normal 18-months old infant which statement is true:",
+    "options": [
+      "Length is 75 cm",
+      "Canines may have erupted",
+      "Walks up and down stairs alone",
+      "Weight is 8 kg",
+      "He can tell a story"
+    ],
+    "correct": 1,
+    "explanation": "A normal 2-year-old can drink from a cup, but cannot draw a triangle, copy a circle, ride a tricycle, or hop on one foot."
+  },
+  {
+    "question": "A normal two-year-old child would be expected to:",
+    "options": [
+      "Drink from a cup",
+      "Draw a triangle",
+      "Copy a circle",
+      "Ride a tricycle",
+      "Hop on one foot."
+    ],
+    "correct": 3,
+    "explanation": "A 1-year-old is not typically happy to go to strangers; they usually have stranger anxiety."
+  },
+  {
+    "question": "The following would be expected of a one year old except",
+    "options": [
+      "walks with one hand held",
+      "Food pincer grip",
+      "Drinks from a cup",
+      "Happy to go to strangers",
+      "Understands simple commands"
+    ],
+    "correct": 1,
+    "explanation": "The 50th centile weight of a 5-month-old is approximately 7 pounds, not 11 kg or 4 kg/pounds."
+  },
+  {
+    "question": "The 50th centile weight of a 5-month-old infant born healthy a, 7Kg",
+    "options": [
+      "b- 11 kg.",
+      "7 pounds",
+      "4kg",
+      "4 pounds"
+    ],
+    "correct": 2,
+    "explanation": "A single weight reading below 3rd centile means the child is of abnormally low weight now, not necessarily progressive pathology."
+  },
+  {
+    "question": "A. single rending of weight of an infant at 10 months age of below centile means that: 'a. He suffers a progressive pathology",
+    "options": [
+      "He is recovering from an illness",
+      "He is of borderline weight now",
+      "He is of abnormally low weight now",
+      "He will never recover",
+      "Non accurate measure of obesity",
+      "Excellent estimate of undernutrition",
+      "Has no centile curves"
+    ],
+    "correct": 1,
+    "explanation": "Menarche does not coincide with peak growth velocity; it occurs after peak velocity in girls."
+  },
+  {
+    "question": "During puberty in girls, all of the following arc true except",
+    "options": [
+      "Breast enlargement occurs before axillary hair growth",
+      "menarche coincides with peak growth velocity",
+      "early breast enlargement is often asymmetrical",
+      "Menarche frequently occurs after the appearance of pubic hair"
+    ],
+    "correct": 0,
+    "explanation": "Permanent teething does not cause significant constitutional symptoms; this is a common misconception."
+  },
+  {
+    "question": "Regarding teething",
+    "options": [
+      "Permanent teething causes significant constitutional symptoms",
+      "Neonatal teeth can be found in special situations"
+    ],
+    "correct": 0,
+    "explanation": "Microcephaly is defined as head circumference more than 2 SD below mean for age."
+  },
+  {
+    "question": "Microcrania is:",
+    "options": [
+      "Skull circumference that is more than 2 SD below mean for age",
+      "Constantly due to genetic abnormalities",
+      "Always associated with exaggerated deep reflexes",
+      "Congenital infections are not possible- causes"
+    ],
+    "correct": 1,
+    "explanation": "Drug therapy is not mandatory for nocturnal enuresis in a 3.5-year-old; behavioral management is first-line."
+  },
+  {
+    "question": "In a three- and half-year-old female with nocturnal enuresis:",
+    "options": [
+      "Drug therapy is mandatory",
+      "ls absolutely physiological"
+    ],
+    "correct": 1,
+    "explanation": "Speech development in girls usually develops earlier than in males."
+  },
+  {
+    "question": "Speech development",
+    "options": [
+      "Depends only on brain development",
+      "Girls usually develops earlier than males",
+      "Once developed, it can never regress",
+      "Is not affected in autism"
+    ],
+    "correct": 2,
+    "explanation": "Delayed speech until age 4 is not a normal variant and may indicate autism or other developmental issues."
+  },
+  {
+    "question": "Delayed speech with no single word till the age of 4 years",
+    "options": [
+      "Is normal variant",
+      "May be a feature of autism",
+      "Means always a state of mental retardation",
+      "ls duo to tongue tie",
+      "May be due to early walking"
+    ],
+    "correct": 0,
+    "explanation": "Language impairment is more common in boys, not girls."
+  },
+  {
+    "question": "Regarding language impairment Alll the following is true except",
+    "options": [
+      "Times more common in girls",
+      "May be due to autism",
+      "May be due to congenital deafness",
+      "ay be associated with motor impairment",
+      "Is highly associated with socio-economic deprivation"
+    ],
+    "correct": 2,
+    "explanation": "Length is partially determined by nutritional adequacy, not solely by genetic factors."
+  },
+  {
+    "question": "Length of a two- and half-year-old child:",
+    "options": [
+      "LH surge dependent",
+      "Is partially determined by nutritional adequacy",
+      "Never related to parental length"
+    ],
+    "correct": 4,
+    "explanation": "Arachnodactyly is found in hereditary factors like Marfan syndrome, not in the listed conditions."
+  },
+  {
+    "question": "Arachnodactyly is found in",
+    "options": [
+      "Pituitary dwarfism",
+      "Down syndrome",
+      "Turner syndrome",
+      "Achondroplasia",
+      "Hereditary factors periods",
+      "Nutritional during intrauterine and postnatal",
+      "Environmental stimulation \"",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "Arachnodactyly (long, slender fingers) is a characteristic feature of Marfan syndrome, which is an autosomal dominant connective tissue disorder. It is not found in pituitary dwarfism, Down syndrome, Turner syndrome, achondroplasia, or phenylketonuria."
+  },
+  {
+    "question": "Regarding puberty the following is true",
+    "options": [
+      "Age varies between males and females",
+      "Mere menstruation does not guarantee female fertility",
+      "May be",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Puberty age varies between males and females, menstruation alone doesn't guarantee fertility, and multiple factors influence puberty timing."
+  },
+  {
+    "question": "Regarding Intrauterine growth the following Is true:",
+    "options": [
+      "Hormones are the only Involved factors",
+      "Maternal health does non influence it"
+    ],
+    "correct": 0,
+    "explanation": "Hormones are not the only involved factors in intrauterine growth; maternal health significantly influences it through nutrition, stress, and other factors."
+  },
+  {
+    "question": "Factors affecting growth & development include: a, Genetic makeup b, Intrauterine growth relaxation",
+    "options": [
+      "Chronic illness",
+      "Psychological & emotional factors",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "Growth and development are influenced by genetic makeup, intrauterine growth, chronic illness, and psychological/emotional factors."
+  },
+  {
+    "question": "Posterior fontanel Is usually completely closed by",
+    "options": [
+      "2 mo. of",
+      "6 mo. of age",
+      "18 mo. of age",
+      "12 mo. of age one of the above"
+    ],
+    "correct": 0,
+    "explanation": "The posterior fontanel is typically closed by 2 months of age, while the anterior fontanel closes between 12-18 months."
+  },
+  {
+    "question": "Permanent teeth start to erupt at",
+    "options": [
+      "6 yrs of age",
+      "9 yrs. of age",
+      "11 yrs. of age",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Permanent teeth typically start to erupt at around 6 years of age, beginning with the first molars."
+  },
+  {
+    "question": "A seven months old male infant is capable of doing all the following except",
+    "options": [
+      "Full head control",
+      "Social smile",
+      "Recognizes his mother",
+      "Setting unsupported",
+      "Dry by night"
+    ],
+    "correct": 4,
+    "explanation": "A 7-month-old typically has full head control, social smile, recognizes mother, but cannot sit unsupported or stay dry at night."
+  },
+  {
+    "question": "The bladder capacity for a 3 yrs. old child is",
+    "options": [
+      "120ml",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "The bladder capacity for a 3-year-old is approximately 120ml, but this option is not listed, making 'none of the above' correct."
+  },
+  {
+    "question": "Arm span to total height ratio around a at all ages b, 1.5at6yrs",
+    "options": [
+      "1.7 at all ages",
+      "1.8 at 6 yrs."
+    ],
+    "correct": 0,
+    "explanation": "The arm span to total height ratio is approximately 1.7 at all ages, not 1.5 or 1.8 as suggested in other options."
+  },
+  {
+    "question": "An adolescent girl appears for a routine physical fe 3. The next steP » examination reveals breast asymmetry and Tanner stag management is:",
+    "options": [
+      "Ultrasonography",
+      "Mammography",
+      "MRI",
+      "Breast tissue biopsy",
+      "Reassurance"
+    ],
+    "correct": 4,
+    "explanation": "Breast asymmetry in an adolescent with normal Tanner staging typically requires reassurance rather than invasive testing."
+  },
+  {
+    "question": "In girls, the growth spurt peaks at:",
+    "options": [
+      "10% years of age",
+      "11 years of age",
+      "12 years of age",
+      "13 years of age"
+    ],
+    "correct": 2,
+    "explanation": "In girls, the growth spurt typically peaks at around 12 years of age."
+  },
+  {
+    "question": "In boys, the growth spurt peaks at:",
+    "options": [
+      "12% years of age",
+      "13% years of age",
+      "14 years of age"
+    ],
+    "correct": 2,
+    "explanation": "In boys, the growth spurt typically peaks at around 14 years of age."
+  },
+  {
+    "question": "In girls, the growth stops at:",
+    "options": [
+      "14 years of age",
+      "15 years of age",
+      "16 years of age",
+      "17 years of age"
+    ],
+    "correct": 3,
+    "explanation": "In girls, growth typically stops around 17 years of age when growth plates close."
+  },
+  {
+    "question": "In boys, the growth stops at:",
+    "options": [
+      "16 years of age",
+      "17 years of age",
+      "18 years of age"
+    ],
+    "correct": 2,
+    "explanation": "In boys, growth typically stops around 18 years of age when growth plates close."
+  },
+  {
+    "question": "The most children started to walk independently about:",
+    "options": [
+      "9 months of age",
+      "10 months of age",
+      "11 months of age",
+      "14 months of age"
+    ],
+    "correct": 3,
+    "explanation": "Most children start walking independently around 12-14 months of age, with 14 months being the upper limit of normal."
+  },
+  {
+    "question": "In children, all 20 primary teeth have erupted by: @. 2 years of age",
+    "options": [
+      "3 years of age",
+      "4 years of age",
+      "5 years of age"
+    ],
+    "correct": 0,
+    "explanation": "All 20 primary teeth typically have erupted by 2.5-3 years of age."
+  },
+  {
+    "question": "A child can build a tower of two cubes. The most likely age of this child is:",
+    "options": [
+      "12 months",
+      "15 months",
+      "20 months"
+    ],
+    "correct": 1,
+    "explanation": "A child who can build a tower of two cubes is most likely around 15 months old."
+  },
+  {
+    "question": "A child can speak 10-15 words. The most likely age of this child is:",
+    "options": [
+      "12 months",
+      "15 months",
+      "18 months",
+      "20 months"
+    ],
+    "correct": 2,
+    "explanation": "A child who can speak 10-15 words is most likely around 18 months old."
+  },
+  {
+    "question": "A child can hold a bottle by:",
+    "options": [
+      "5 months of age",
+      "6 months of age",
+      "7 months of age",
+      "8 months of age",
+      "9 months of age"
+    ],
+    "correct": 0,
+    "explanation": "A child can typically hold a bottle by 5 months of age as fine motor skills develop."
+  },
+  {
+    "question": "A child can hold a cup by:",
+    "options": [
+      "6-7 months of age",
+      "7-8 months of age",
+      "8-9 months of age",
+      "9-10 months of age"
+    ],
+    "correct": 2,
+    "explanation": "A child can typically hold a cup by 8-9 months of age as motor skills improve."
+  },
+  {
+    "question": "Children can feed themselves by the end of:",
+    "options": [
+      "18 months of age",
+      "24 months of age",
+      "30 months of age",
+      "36 months of age",
+      "48 months of age"
+    ],
+    "correct": 1,
+    "explanation": "Children can typically feed themselves with utensils by 24 months of age."
+  },
+  {
+    "question": "A child normally reaches double birth weight at:",
+    "options": [
+      "2 months",
+      "4 months",
+      "6 months",
+      "8 months",
+      "10 months"
+    ],
+    "correct": 1,
+    "explanation": "A child normally reaches double birth weight at around 4-6 months of age."
+  },
+  {
+    "question": "A child normally reaches triple birth weight at:",
+    "options": [
+      "10 months",
+      "12 months",
+      "16 months",
+      "18 months"
+    ],
+    "correct": 1,
+    "explanation": "A child normally reaches triple birth weight at around 12 months of age."
+  },
+  {
+    "question": "Newborns may lose up to 10% of tl life, but with normal ni After 2 weeks of age, @ following increments of weight?",
+    "options": [
+      "15 g/day",
+      "45 g/day",
+      "60 g/day",
+      "120 g/day"
+    ],
+    "correct": 1,
+    "explanation": "After 2 weeks of age, a normal infant gains approximately 45g/day, though this varies."
+  },
+  {
+    "question": "A 6-month-old girl comes in for her checkup with her mother and grandmother. A look in the girl's mouth reveals no teeth. What is the usual age for the eruption of the primary teeth?",
+    "options": [
+      "2-4 months",
+      "4-6 months"
+    ],
+    "correct": 1,
+    "explanation": "Primary teeth typically begin erupting between 4-6 months of age, though this can vary."
+  },
+  {
+    "question": "The girl's grandmother goes on to report that she is sure that her granddaughter will be lefthanded, just like her. Consistent use of a dominant hand is established at which of the following ages?",
+    "options": [
+      "12 months",
+      "24 months",
+      "4-6 years",
+      "7 years",
+      "9 years"
+    ],
+    "correct": 2,
+    "explanation": "Consistent use of a dominant hand is established between 4-6 years of age as lateralization develops."
+  },
+  {
+    "question": "Which of the following gestational ages describes the embryonic period?",
+    "options": [
+      "up to 5 weeks",
+      "up to 9 weeks",
+      "up to 12 weeks",
+      "up to 16 weeks"
+    ],
+    "correct": 1,
+    "explanation": "The embryonic period extends up to 9 weeks gestation, after which it's the fetal period."
+  },
+  {
+    "question": "Pediatric residents are performing camp physicals for Girl Scouts. A9-year- old girl asks how she will know that she is beginning puberty. In girls, which of the following is the first visible sign of puberty?",
+    "options": [
+      "development of breast buds",
+      "appearance of early pubic hair",
+      "menarche",
+      "enlargement of the clitoris"
+    ],
+    "correct": 0,
+    "explanation": "In girls, the first visible sign of puberty is typically breast bud development (thelarche)."
+  },
+  {
+    "question": "The median age for entering puberty in boys is at what age?",
+    "options": [
+      "8 years",
+      "12 years",
+      "13 years",
+      "15 years"
+    ],
+    "correct": 1,
+    "explanation": "The median age for entering puberty in boys is around 12 years, though this has been decreasing."
+  },
+  {
+    "question": "In children, obesity is defined as a body mass index (BMI) above which Percentile for age and",
+    "options": [
+      "50% ig! gender?",
+      "75%",
+      "95%",
+      "120%",
+      "150%"
+    ],
+    "correct": 2,
+    "explanation": "In children, obesity is defined as a BMI above the 95th percentile for age and gender."
+  },
+  {
+    "question": "A mother concerned about her 10-year-old's weight calle Your Oat can be out how to calculate her child's BMI. Your office nurse tells her the calculated only if one knows which of the following values?",
+    "options": [
+      "Weight",
+      "Height",
+      "Weight and height",
+      "Weight, height, and age",
+      "Weight, height, gender, and age"
+    ],
+    "correct": 2,
+    "explanation": "BMI calculation requires both weight and height measurements, though age and gender are needed for percentile ranking."
+  },
+  {
+    "question": "A pediatric endocrinologist has diagnosed constitutional growth delay ina 14- year-old boy. Which of the following are consistent with this diagnosis?",
+    "options": [
+      "Bone age is normal compared to chronologic age",
+      "prognosis for a normal adult height is good",
+      "Family history for childhood short stature",
+      "Infant was small for size at birth"
+    ],
+    "correct": 1,
+    "explanation": "Constitutional growth delay is characterized by delayed bone age compared to chronologic age, good prognosis for normal adult height, family history of short stature, and normal birth size. Options a and d are incorrect because bone age is typically delayed, not normal, and infants are typically appropriate for gestational age at birth."
+  },
+  {
+    "question": "Which of the following is the correct sequence for ti",
+    "options": [
+      "central incisors, fst molars, second molars, canines. (c) Primary teeth?",
+      "central incisors, lateral incisors, canines, first molars",
+      "central incisors, canines, first molars, second molars"
+    ],
+    "correct": 1,
+    "explanation": "The correct sequence for primary teeth eruption is: central incisors, lateral incisors, canines, first molars. This typically begins around 6-8 months of age with the lower central incisors."
+  },
+  {
+    "question": "A 1-week-old infant male presents to his primary care provider's office for his first visit. His mother is concerned because he sleeps a lot. Which of the following is the average amount of sleep per day experienced by infants in the first month of life?",
+    "options": [
+      "12 hours",
+      "14 hours",
+      "16 hours",
+      "20 hours"
+    ],
+    "correct": 3,
+    "explanation": "Newborns in the first month of life typically sleep 16-18 hours per day, with the closest option being 16 hours. Sleep is distributed in short periods throughout the 24-hour day."
+  },
+  {
+    "question": "Which of the following best describes the correct sequence for eruption of permanent teeth?",
+    "options": [
+      "central incisors, first premolars, canines, second molars",
+      "first molars, central incisors, canines, first premolars",
+      "central incisors, lateral incisors, canines, first molars",
+      "first molars, lateral incisors, canines, first premolars",
+      "lateral incisors, first molars, canines, first premolars"
+    ],
+    "correct": 3,
+    "explanation": "The correct sequence for permanent teeth eruption is: first molars (around age 6), then central incisors (age 6-7), lateral incisors (age 7-8), canines (age 9-12), and premolars (age 10-12). The sequence given in option c is correct for the initial eruption pattern."
+  },
+  {
+    "question": "In normal neonates, ossification centers are usually radiographically visible at birth in which of the following sites?",
+    "options": [
+      "patella",
+      "lunate (carpal)",
+      "proximal tibia",
+      "head of the femur",
+      "distal tibia"
+    ],
+    "correct": 4,
+    "explanation": "At birth, the ossification centers visible on X-ray include the distal femur and proximal tibia. The patella, lunate, and head of the femur typically ossify later in infancy or childhood."
+  },
+  {
+    "question": "In normal neonates, ossification centers are usually radiographically visible at birth in which of the following sites?",
+    "options": [
+      "patella",
+      "distal femur",
+      "head of the femur",
+      "distal tibia"
+    ],
+    "correct": 1,
+    "explanation": "At birth, the patella is the only structure among the options that typically has an ossification center visible on X-ray. The distal femur, head of the femur, and distal tibia ossification centers appear later in infancy."
+  },
+  {
+    "question": "The peak velocity of growth during adolescence averages which of the following?",
+    "options": [
+      "1-2 cm/yr.",
+      "3-4 cm/yr.",
+      "5-6 cm/yr.",
+      "7-8 em/yr.",
+      "9-10 cm/yr."
+    ],
+    "correct": 4,
+    "explanation": "The peak velocity of growth during adolescence averages 7-8 cm/year, occurring during the pubertal growth spurt. This typically occurs earlier in girls (around age 12) than in boys (around age 14)."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

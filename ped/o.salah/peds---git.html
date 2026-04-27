@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Peds - GIT</title>
+
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "19dcff6a1e8x9avt",
+  "title": "Peds - GIT",
+  "description": "99 questions on Pediatric GIT",
+  "icon": "🫀"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "The most common cause of viral gastroenteritis in infants is:",
+    "options": [
+      "Echo",
+      "Rota virus",
+      "Coxsackie virus",
+      "Adenovirus",
+      "Parvovirus B-19"
+    ],
+    "correct": 1,
+    "explanation": "Rotavirus is the most common cause of viral gastroenteritis in infants and young children worldwide, particularly affecting those aged 6 months to 2 years. Other viruses like enteric adenovirus, astrovirus, and norovirus are less frequent causes. Parvovirus B19 does not cause gastroenteritis."
+  },
+  {
+    "question": "Rotavirus diarrhea is characterized by all of the following EXCEPT:",
+    "options": [
+      "Bloody diarrhea",
+      "Self-limited course",
+      "More common in the cool months of the year",
+      "May cause lactose intolerance",
+      "Usually accompanied by vomiting"
+    ],
+    "correct": 0,
+    "explanation": "Rotavirus causes watery, non-bloody diarrhea; bloody stools suggest invasive bacterial infection such as Shigella or Campylobacter. Rotavirus diarrhea is typically self-limited (3-8 days), peaks in cooler months, may cause transient lactose intolerance due to brush border damage, and is characteristically preceded by vomiting."
+  },
+  {
+    "question": "Which of the following statements applies to infants with gastroenteritis?",
+    "options": [
+      "In most instances require treatment with an antibiotic which is not absorbed from the gut",
+      "May have blood in their stools",
+      "Should be admitted to hospital if they are unable to tolerate fluid only",
+      "Always develop lactose intolerance",
+      "Should have a barium meal if the initial refeeding with milk is unsuccessful"
+    ],
+    "correct": 2,
+    "explanation": "Infants with gastroenteritis who cannot tolerate oral fluids require hospital admission for intravenous rehydration, as failure to maintain hydration can rapidly become life-threatening. Most cases are viral and do not need antibiotics. Lactose intolerance is a possible but not universal complication. Barium meal is not indicated for persistent diarrhea after refeeding."
+  },
+  {
+    "question": "2 years old child is admitted with a 2-day history of diarrhea which of the following statements correctly applies to his condition?",
+    "options": [
+      "Hyponatremia is expected",
+      "Adenovirus is the commonest pathogen isolated",
+      "He should be treated with antidiarrheal agent",
+      "Dehydration is best assessed clinically rather than biochemically",
+      "He should be treated with boiled water alone for 24 hours"
+    ],
+    "correct": 3,
+    "explanation": "Clinical assessment using WHO guidelines (general condition, eyes, thirst, skin pinch) is the standard and most reliable method for evaluating dehydration severity in children with diarrhea. Hyponatremia is not always expected, rotavirus is more common than adenovirus, antidiarrheal agents are contraindicated in young children, and boiled water alone lacks essential electrolytes."
+  },
+  {
+    "question": "Rotavirus gastroenteritis is:",
+    "options": [
+      "A less common cause of acute diarrhea",
+      "Highly infectious",
+      "Unusual with hospitalized cases",
+      "A non-preventable disease",
+      "The course is mild and uncomplicated"
+    ],
+    "correct": 1,
+    "explanation": "Rotavirus is highly infectious with a very low infectious dose (as few as 10 viral particles), facilitating rapid spread in households and hospitals. It is the most common cause of acute diarrhea in children, can cause hospital outbreaks, and is preventable through vaccination. The disease can cause severe dehydrating diarrhea."
+  },
+  {
+    "question": "A 6-month-old infant presents to the clinic with watery diarrhea and moderate dehydration the most likely organism causing diarrhea is:",
+    "options": [
+      "Entamoeba histolytica",
+      "Rotavirus",
+      "Giardia lamblia",
+      "Shigella"
+    ],
+    "correct": 1,
+    "explanation": "Rotavirus is the most common cause of watery diarrhea with dehydration in infants aged 6 months to 2 years. Entamoeba and Giardia typically cause chronic rather than acute dehydrating diarrhea. Shigella usually causes bloody dysentery rather than watery diarrhea."
+  },
+  {
+    "question": "In treatment of this infant all are right EXCEPT:",
+    "options": [
+      "Antibiotics have only a small role to play",
+      "The main problem is restoration of normal fluid and electrolyte balance",
+      "ORS is usually effective in mild and moderate cases",
+      "Irrespective to type of dehydration the ratio of glucose to saline is 3 to1"
+    ],
+    "correct": 3,
+    "explanation": "The glucose-to-saline ratio must be tailored to the type of dehydration: hyponatremic dehydration requires more saline (e.g., 2:1 ratio), while hypernatremic dehydration requires more glucose/water (e.g., 4:1 ratio). A fixed 3:1 ratio regardless of dehydration type is incorrect and potentially dangerous."
+  },
+  {
+    "question": "The most common single cause of infantile gastroenteritis is:",
+    "options": [
+      "Campylobacter jejuni",
+      "Rotavirus",
+      "Yersinia",
+      "Enterocolitica E. Coli",
+      "Parvovirus B-19"
+    ],
+    "correct": 1,
+    "explanation": "Rotavirus remains the most common single cause of infantile gastroenteritis worldwide, responsible for approximately 40% of hospitalizations for diarrhea in children under 5 years. Campylobacter, Yersinia, and E. coli are bacterial causes that are less common. Parvovirus B19 does not cause gastroenteritis."
+  },
+  {
+    "question": "Which of the following statements applies to infants with gastroenteritis?",
+    "options": [
+      "In most instances require treatment with an antibiotic which is not absorbed from the gut",
+      "May have blood in their stools",
+      "Should be admitted to hospital if they are unable to tolerate fluid orally",
+      "Always develop lactose intolerance",
+      "Astrovirus is the most common cause"
+    ],
+    "correct": 2,
+    "explanation": "Inability to tolerate oral fluids is a clear indication for hospital admission, as these infants require intravenous fluid therapy to prevent life-threatening dehydration. Most gastroenteritis is viral and does not need antibiotics. Blood in stools may occur with bacterial causes but is not universal. Rotavirus, not astrovirus, is the most common cause."
+  },
+  {
+    "question": "Predisposing risk factors for gastroenteritis include:",
+    "options": [
+      "Exclusive breastfeeding",
+      "Well-nourished Infant",
+      "Not vaccinated by pertussis",
+      "Environmental pollution",
+      "Passive smoking"
+    ],
+    "correct": 3,
+    "explanation": "Environmental pollution (contaminated water, poor sanitation) is a well-established risk factor for gastroenteritis as it facilitates transmission of enteric pathogens. Exclusive breastfeeding is protective against gastroenteritis. Well-nourished infants have lower risk. Pertussis vaccination does not prevent gastroenteritis."
+  },
+  {
+    "question": "Signs of hypertonic dehydration include all EXCEPT:",
+    "options": [
+      "Lethargy and hypotonia",
+      "Irritability",
+      "Dry tongue",
+      "Only moderate loss of skin turgor",
+      "Hyperthermia"
+    ],
+    "correct": 0,
+    "explanation": "In hypernatremic (hypertonic) dehydration, the child is typically irritable and hyperreflexic, not lethargic and hypotonic. Lethargy and hypotonia are features of hyponatremic (hypotonic) dehydration. The characteristic findings of hypernatremic dehydration include irritability, dry mucous membranes, only moderate loss of skin turgor (due to fluid shift maintaining intravascular volume), and hyperthermia."
+  },
+  {
+    "question": "All are true about oral rehydration solution EXCEPT:",
+    "options": [
+      "Used to treat mild to moderate diarrhea",
+      "Contain glucose to facilitate absorption of water and electrolytes",
+      "Contains sodium 100-150 mEq/L",
+      "Contains an alkalinizing agent",
+      "Used in gastroenteritis to prevent dehydration"
+    ],
+    "correct": 2,
+    "explanation": "Standard WHO ORS contains sodium 75 mEq/L (reduced osmolarity formulation), not 100-150 mEq/L. A sodium concentration of 100-150 mEq/L would be dangerously high and could cause hypernatremia. ORS does contain glucose to facilitate sodium absorption via the SGLT1 cotransporter, an alkalinizing agent (citrate or bicarbonate), and is used for both treatment and prevention of dehydration."
+  },
+  {
+    "question": "To calculate maintenance fluid from body weight one of the followings is true:",
+    "options": [
+      "If the weight is above 20 kg it is 1500 + 20 ml/kg for each kg above 20",
+      "If the weight is above 20 kg it is 1200 + 20 ml/kg for each kg above 20",
+      "If the weight is between 11 and 20 kg it is 1500 + 50 ml/kg for each kg above 10 kg",
+      "If the weight is between 11 and 20 kg it is 1200 + 50 ml/kg for each kg above 10 kg",
+      "If the weight is below 10 kg it is 1500 ml/day"
+    ],
+    "correct": 0,
+    "explanation": "The Holliday-Segar method calculates maintenance fluids as follows: 0-10 kg = 100 mL/kg/day (up to 1000 mL); 10-20 kg = 1000 mL + 50 mL/kg for each kg above 10 (up to 1500 mL); above 20 kg = 1500 mL + 20 mL/kg for each kg above 20. Option 0 correctly states the formula for weights above 20 kg."
+  },
+  {
+    "question": "An infant presented with repeated loose stools and his mother reported that he is always thirsty on examination his tongue was very dry, his skin was warm to touch but with some loss of skin turgor. 2 hours later he started to convulse which of the following results you most likely in the case?",
+    "options": [
+      "Serum sodium level of 160 mEq/L",
+      "Serum sodium level of 125 mEq/L",
+      "Serum potassium level of 6 mEq/L",
+      "Serum potassium level of 2.5 mEq/L",
+      "Serum calcium of 5 mg/dL"
+    ],
+    "correct": 0,
+    "explanation": "This clinical picture is classic for hypernatremic dehydration: intense thirst, very dry mucous membranes, warm skin, only moderate loss of skin turgor (fluid shifts from intracellular to extracellular space preserving turgor), and seizures from brain cell shrinkage or rapid osmotic shifts. Serum sodium of 160 mEq/L confirms hypernatremia. Hyponatremia would cause lethargy, not irritability with thirst."
+  },
+  {
+    "question": "Glucose in ORS is added to:",
+    "options": [
+      "Improve the taste of ORS",
+      "Meet the child's energy requirements",
+      "Increase osmolality of ORS to 400 mOsmol",
+      "Promote the absorption of sodium",
+      "Prevent malnutrition"
+    ],
+    "correct": 3,
+    "explanation": "Glucose in ORS promotes sodium absorption via the sodium-glucose cotransporter (SGLT1) in the intestinal brush border. This coupled transport allows sodium to be absorbed against its concentration gradient, with water following osmotically. This is the scientific basis for ORS therapy. The glucose concentration is not intended for nutrition or taste improvement."
+  },
+  {
+    "question": "Signs of severe dehydration include all of the following EXCEPT:",
+    "options": [
+      "Rapid feeble pulse",
+      "Deep sunken fontanelle",
+      "Absent tears",
+      "Skin pinch retracts very slowly",
+      "Body weight loss of 5%"
+    ],
+    "correct": 4,
+    "explanation": "Body weight loss of 5% corresponds to mild-moderate dehydration, not severe. Severe dehydration involves weight loss of 10% or more. Rapid feeble pulse, deeply sunken fontanelle, absent tears, and very slow skin pinch retraction are all signs of severe dehydration."
+  },
+  {
+    "question": "The following feature is pathognomonic for hypernatremic dehydration:",
+    "options": [
+      "Parched tongue",
+      "Depressed anterior fontanelle",
+      "Loss of skin turgor",
+      "Hypoglycemia"
+    ],
+    "correct": 0,
+    "explanation": "A parched (extremely dry) tongue and mucous membranes out of proportion to the apparent clinical dehydration is the most characteristic finding of hypernatremic dehydration. Depressed fontanelle occurs in all types of severe dehydration. Marked loss of skin turgor is more typical of hyponatremic dehydration; in hypernatremia, turgor is relatively preserved due to intracellular-to-extracellular fluid shifts."
+  },
+  {
+    "question": "Which of the following is true regarding an infant with moderate dehydration?",
+    "options": [
+      "The diarrheal fluid tends to be hypertonic shallow",
+      "Respiration is a sign of acidosis",
+      "Vomiting can cause acidosis",
+      "Weight loss is between 2 to 4% of pre-dehydration weight",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "None of the listed statements are correct. Diarrheal fluid is typically isotonic; deep (Kussmaul) respiration, not just 'respiration,' indicates acidosis; vomiting causes metabolic alkalosis (loss of HCl), not acidosis; and moderate dehydration corresponds to 5-9% weight loss, not 2-4% (which would be mild dehydration)."
+  },
+  {
+    "question": "The most common single cause of dehydrating diarrhea is:",
+    "options": [
+      "Campylobacter jejuni",
+      "Rotavirus",
+      "Yersinia enterocolitica",
+      "E coli",
+      "Parvovirus B19"
+    ],
+    "correct": 1,
+    "explanation": "Rotavirus is the most common single cause of dehydrating diarrhea in children worldwide. Its ability to cause severe fluid loss leading to dehydration, especially in infants and young children, makes it the leading cause of diarrhea-related hospitalizations. E. coli and Campylobacter are less common causes of dehydrating diarrhea."
+  },
+  {
+    "question": "Antimotility agents have a role in therapy of acute diarrhea in infants caused by:",
+    "options": [
+      "Shigella",
+      "Salmonella",
+      "E coli",
+      "Campylobacter",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "Antimotility agents (e.g., loperamide) are NOT recommended in infants and young children with acute diarrhea, regardless of the causative organism. They can prolong illness, mask ongoing fluid losses, and increase the risk of toxic megacolon, especially with invasive bacterial infections like Shigella and Salmonella."
+  },
+  {
+    "question": "In diarrhea antibiotics can be used in the following infections EXCEPT:",
+    "options": [
+      "Enterotoxigenic E coli",
+      "Salmonella",
+      "Shigella",
+      "Campylobacter jejuni",
+      "Rotavirus diarrhea"
+    ],
+    "correct": 4,
+    "explanation": "Antibiotics have no role in treating rotavirus diarrhea, as it is a viral infection. Antibiotics may be beneficial for Shigella (shortens duration), Campylobacter (erythromycin if given early), and sometimes ETEC. Salmonella gastroenteritis usually does not require antibiotics except in severe cases or high-risk patients."
+  },
+  {
+    "question": "Common causes of vomiting in infants include the following EXCEPT:",
+    "options": [
+      "Overfeeding",
+      "Gastroenteritis",
+      "Gastroesophageal reflux",
+      "Increased intracranial tension",
+      "Systemic infection"
+    ],
+    "correct": 3,
+    "explanation": "Increased intracranial tension, while it can cause vomiting (often projectile), is not a COMMON cause of vomiting in infants. The common causes include overfeeding, gastroenteritis, gastroesophageal reflux, and systemic infections (e.g., UTIs). Increased ICP is a rare but important cause that must not be missed."
+  },
+  {
+    "question": "Common causes of vomiting in infants include the following:",
+    "options": [
+      "Overfeeding",
+      "Gastroenteritis",
+      "Systemic infection",
+      "Gastro-oesophageal reflux",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All listed options are common causes of vomiting in infants. Overfeeding exceeds gastric capacity, gastroenteritis causes mucosal irritation, systemic infections (especially UTIs) cause vomiting through systemic effects, and gastroesophageal reflux results from an immature lower esophageal sphincter."
+  },
+  {
+    "question": "All of the following metabolic alteration can occur in congenital hypertrophic pyloric stenosis EXCEPT:",
+    "options": [
+      "Hypokalemia",
+      "Hypochloremia",
+      "Decreased serum PH",
+      "Dehydration",
+      "Alkalosis"
+    ],
+    "correct": 2,
+    "explanation": "Pyloric stenosis causes persistent vomiting of gastric contents rich in HCl and potassium, leading to hypochloremic metabolic ALKALOSIS (increased pH), not decreased pH (acidosis). Hypokalemia occurs due to renal potassium loss (in exchange for sodium conservation), hypochloremia from loss of chloride, and dehydration from persistent vomiting."
+  },
+  {
+    "question": "Regarding hypokalemia, all are true EXCEPT:",
+    "options": [
+      "Hypertonia and increased tendon reflexes",
+      "Abdominal distention and paralytic ileus",
+      "Cardiac arrhythmias and poor quality of heart sounds",
+      "ECG changes",
+      "Lethargy"
+    ],
+    "correct": 0,
+    "explanation": "Hypokalemia causes hypotonia (not hypertonia) and decreased (not increased) tendon reflexes. Hypertonia and increased reflexes are features of hyperkalemia, not hypokalemia. Hypokalemia causes muscle weakness, paralytic ileus, cardiac arrhythmias, ECG changes (flattened T waves, U waves), and lethargy."
+  },
+  {
+    "question": "Concerning minerals all the following are true EXCEPT:",
+    "options": [
+      "Sodium is a major regulator of plasma osmolarity",
+      "Potassium is the principal intracellular cation",
+      "The percentage of water in the body decreases with age",
+      "Increased dietary sodium with help decrease potassium loss",
+      "In the first 4 days of life there is a net sodium loss"
+    ],
+    "correct": 3,
+    "explanation": "Increased dietary sodium does NOT decrease potassium loss; in fact, high sodium intake increases renal potassium excretion through the Na-K exchange mechanism in the distal tubules (under aldosterone influence). Sodium is the major extracellular osmolar regulator, potassium is the main intracellular cation, body water percentage decreases with age, and neonates have net sodium loss in the first few days."
+  },
+  {
+    "question": "Metabolic alkalosis can result from:",
+    "options": [
+      "Lactic acidosis",
+      "Hyperalimentation",
+      "Prolonged gastric aspiration",
+      "Renal tubular acidosis",
+      "Renal failure"
+    ],
+    "correct": 2,
+    "explanation": "Prolonged gastric aspiration removes hydrochloric acid from the stomach, leading to hypochloremic metabolic alkalosis. Lactic acidosis and renal failure cause metabolic acidosis. Renal tubular acidosis causes hyperchloremic metabolic acidosis. Hyperalimentation typically causes metabolic acidosis due to amino acid load."
+  },
+  {
+    "question": "Pediatric causes of hypernatremia include all of the following EXCEPT:",
+    "options": [
+      "Ingestion of sea water",
+      "Cardiac failure",
+      "Hyponatremia enemas",
+      "NaCl to induce vomiting",
+      "Diabetes insipidus"
+    ],
+    "correct": 1,
+    "explanation": "Cardiac failure does NOT cause hypernatremia; it typically causes dilutional hyponatremia due to fluid retention and increased ADH secretion. Sea water ingestion (high NaCl content), hypertonic enemas, excessive NaCl ingestion, and diabetes insipidus (free water loss) are all recognized causes of hypernatremia."
+  },
+  {
+    "question": "Which of the following is associated with hypernatremia?",
+    "options": [
+      "Cholera",
+      "Diabetes mellites",
+      "Inappropriate ADH secretion",
+      "Diabetes insipidus",
+      "Pyloric stenosis"
+    ],
+    "correct": 3,
+    "explanation": "Diabetes insipidus causes hypernatremia due to loss of free water (lack of ADH effect or renal unresponsiveness to ADH). Cholera causes isotonic or hyponatremic dehydration. Diabetes mellitus can cause hyponatremia (dilutional or from osmotic diuresis with water loss). SIADH causes hyponatremia. Pyloric stenosis causes metabolic alkalosis, not hypernatremia."
+  },
+  {
+    "question": "Metabolic acidosis can occur with:",
+    "options": [
+      "Mild to moderate bronchial asthma",
+      "Excess intravenous administration of sodium bicarbonate",
+      "Hysterical hyperventilation",
+      "Excess vomiting",
+      "Renal failure"
+    ],
+    "correct": 4,
+    "explanation": "Renal failure causes metabolic acidosis due to the kidney's inability to excrete hydrogen ions and reabsorb/regenerate bicarbonate. Asthma causes respiratory alkalosis (hyperventilation). Excess NaHCO3 causes metabolic alkalosis. Hysterical hyperventilation causes respiratory alkalosis. Vomiting causes metabolic alkalosis (loss of HCl)."
+  },
+  {
+    "question": "Fetal cardiac dysrhythmia is most commonly related to:",
+    "options": [
+      "Hypernatremia",
+      "Hyponatremia",
+      "Hyperkalemia",
+      "Hypophosphatemia",
+      "Hyperglycemia"
+    ],
+    "correct": 2,
+    "explanation": "Hyperkalemia is the most common electrolyte disturbance causing cardiac dysrhythmias, both in fetuses and postnatally. Potassium plays a critical role in cardiac repolarization, and elevated levels cause conduction abnormalities ranging from peaked T waves to ventricular fibrillation."
+  },
+  {
+    "question": "Big and Tall T wave in ECG of an infant with gastroenteritis means:",
+    "options": [
+      "Hypokalemia",
+      "Hyponatremia",
+      "Hypernatremia",
+      "Hyperkalemia",
+      "Hypocalcemia"
+    ],
+    "correct": 3,
+    "explanation": "Tall, peaked (tented) T waves are the earliest and most characteristic ECG finding of hyperkalemia, resulting from accelerated repolarization. In gastroenteritis, hyperkalemia can occur from renal impairment or tissue breakdown. Hypokalemia causes flattened T waves and U waves, not tall T waves."
+  },
+  {
+    "question": "Which of these major nutrients is least likely to have decreased absorption during diarrhea?",
+    "options": [
+      "Fat",
+      "Monosaccharides",
+      "Protein",
+      "Starch",
+      "Disaccharides"
+    ],
+    "correct": 1,
+    "explanation": "Monosaccharides (glucose, galactose) are absorbed directly via specific transporters in the intestinal brush border without requiring enzymatic digestion, so their absorption is least affected during diarrhea. Fat requires bile and lipase, protein needs proteolytic enzymes, starch requires amylase, and disaccharides need brush border enzymes (lactase, sucrase) which are often damaged in diarrhea."
+  },
+  {
+    "question": "Gastro-esophageal reflux is usually not associated with:",
+    "options": [
+      "Regurgitation following feeding",
+      "Self-limited course in some cases",
+      "Bile-stained vomitus",
+      "Possible wheezy chest",
+      "Repeated aspiration"
+    ],
+    "correct": 2,
+    "explanation": "Gastroesophageal reflux produces non-bilious regurgitation because the refluxed material comes from the stomach (above the pylorus). Bile-stained vomitus indicates obstruction distal to the ampulla of Vater and is NOT associated with GER. GER can cause postprandial regurgitation, wheezing (reflux-triggered bronchospasm), and recurrent aspiration."
+  },
+  {
+    "question": "A child with moderate malnutrition following a chronic diarrheal illness is likely to have:",
+    "options": [
+      "A greater fall off in length centiles than in of weight centiles",
+      "There is a normal subcutaneous fat stores but inadequate muscle bulk",
+      "Loss of skin turgor",
+      "Hypokalemia",
+      "Iron deficiency anemia"
+    ],
+    "correct": 3,
+    "explanation": "Chronic diarrhea commonly leads to hypokalemia due to ongoing potassium losses through the gastrointestinal tract combined with inadequate intake. In malnutrition, weight falls more than length (not the reverse), subcutaneous fat is depleted, and while iron deficiency can occur, hypokalemia is more directly and consistently related to chronic diarrhea."
+  },
+  {
+    "question": "A 10-month-old girl presents with abdominal pain and diarrhoea which has recently had pink staining. She was well until 12 hours ago when she had some loose stools and episodes of crying and holding her abdomen. On examination she looks intermittently uncomfortable. Her abdomen is slightly distended, and she has a curved firm mass 10 cm long extending from the right iliac fossa towards the hepatic flexure. What is the most likely diagnosis?",
+    "options": [
+      "Inborn errors of metabolism",
+      "Constipation/encopresis",
+      "Intussusception",
+      "Renal anomalies",
+      "Malignancy e.g. Neuroblastoma, Wilms, lymphoma"
+    ],
+    "correct": 2,
+    "explanation": "This is the classic presentation of intussusception: intermittent colicky abdominal pain, red currant jelly stools (pink staining), and a sausage-shaped mass in the right abdomen (ileo-cecal intussusception). The age (10 months) and acute onset are typical. This is a surgical emergency requiring prompt reduction."
+  },
+  {
+    "question": "Which one of the following statements is true regarding giardia lamblia?",
+    "options": [
+      "May cause intestinal malabsorption",
+      "Often causes of bloody diarrhea",
+      "May be a cause of hemolytic uremic syndrome",
+      "May be excluded by stool microscopy",
+      "May be treated with co-trimoxazole"
+    ],
+    "correct": 0,
+    "explanation": "Giardia lamblia can cause intestinal malabsorption (steatorrhea, failure to thrive) due to damage to the intestinal brush border. It does not typically cause bloody diarrhea (it is a non-invasive pathogen). HUS is caused by Shiga toxin-producing E. coli, not Giardia. Stool microscopy may miss Giardia due to intermittent shedding. Treatment is with metronidazole or tinidazole, not co-trimoxazole."
+  },
+  {
+    "question": "In a premature infant who is suspected of having necrotizing enterocolitis NEC each of the following is correct EXCEPT:",
+    "options": [
+      "Septicemia is associated with an increased risk of NEC",
+      "NEC is thought to be caused by systemic hypertension",
+      "The finding of air in the portal vein indicates severe illness",
+      "Respiratory distress increases the risk of NEC",
+      "Apgar scores inversely correlate with the risk of NEC"
+    ],
+    "correct": 1,
+    "explanation": "NEC is associated with intestinal ischemia/hypoperfusion (not systemic hypertension). Risk factors include prematurity, septicemia, respiratory distress, and low Apgar scores (reflecting perinatal stress/hypoxia). Portal venous air (pneumatosis portalis) indicates severe, advanced NEC with high mortality."
+  },
+  {
+    "question": "Mark the incorrect statement:",
+    "options": [
+      "Overfeeding is a cause of vomiting in infants",
+      "Vomiting constipation and distention raise suspicion of intestinal obstruction",
+      "Rotavirus diarrhea usually manifests as tenesmus and mucoid bloody stool",
+      "Milk protein intolerance is a cause of chronic diarrhea",
+      "Peptic ulcer is a cause of hematemesis and melena"
+    ],
+    "correct": 2,
+    "explanation": "Rotavirus causes watery, non-bloody diarrhea without tenesmus. Tenesmus and mucoid bloody stool are characteristic of invasive bacterial infections such as Shigella dysentery. All other statements are correct: overfeeding causes vomiting, the triad of vomiting/constipation/distention suggests obstruction, milk protein intolerance causes chronic diarrhea, and peptic ulcers cause hematemesis and melena."
+  },
+  {
+    "question": "Mark the true statements regarding hypertrophic pyloric stenosis:",
+    "options": [
+      "The disease presents during the first 4 to 6 weeks of Life",
+      "Bilious vomiting is a characteristic finding",
+      "It results in metabolic acidosis",
+      "Diagnosed by barium enema",
+      "Treatment is by antiemetics"
+    ],
+    "correct": 0,
+    "explanation": "Hypertrophic pyloric stenosis typically presents at 3-6 weeks of age with progressive projectile NON-bilious vomiting. It causes hypochloremic metabolic ALKALOSIS (not acidosis) from loss of gastric HCl. Diagnosis is confirmed by ultrasound (not barium enema). Definitive treatment is surgical pyloromyotomy, not antiemetics."
+  },
+  {
+    "question": "A 3-year-old child presents with failure to thrive chronic diarrhea since the age of 7 months and abdomen is distended the most probable diagnosis is:",
+    "options": [
+      "Cystic fibrosis",
+      "Celiac disease",
+      "TB abdomen",
+      "Primary lactose intolerance"
+    ],
+    "correct": 1,
+    "explanation": "Celiac disease typically presents after the introduction of gluten (around 6 months of age) with failure to thrive, chronic diarrhea, and abdominal distention. The onset at 7 months (shortly after gluten introduction) is characteristic. While cystic fibrosis also causes these symptoms, it typically presents earlier. Primary lactose intolerance is rare at this age. TB abdomen is less common."
+  },
+  {
+    "question": "Gastroesophageal reflux disease my present with the following:",
+    "options": [
+      "Vomiting following meals",
+      "Weight loss",
+      "Nocturnal cough",
+      "Heartburn",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "GERD can present with all listed symptoms: postprandial vomiting (most common), weight loss (from poor intake or calorie loss), nocturnal cough (from microaspiration or reflex bronchospasm), and heartburn (acid regurgitation, especially in older children)."
+  },
+  {
+    "question": "18-month-old girl presents with abdominal pain and diarrhea and red stool. She had episodes of crying and holding her abdomen she looks intermittently uncomfortable abdomen is slightly distended with a curved mass extending from the right iliac fossa towards the hepatic flexure. The most likely diagnosis is:",
+    "options": [
+      "Inborn errors of metabolism",
+      "Constipation or encopresis",
+      "Intussusceptions",
+      "Renal anomalies",
+      "Malignancies e.g. Neuroblastoma Wilms tumor, lymphoma"
+    ],
+    "correct": 2,
+    "explanation": "This is the classic triad of intussusception: intermittent abdominal pain (crying episodes), red currant jelly stool, and a sausage-shaped mass in the right abdomen. The age and presentation are typical for ileo-cecal intussusception, the most common type in children. This is a surgical emergency requiring prompt air or hydrostatic enema reduction."
+  },
+  {
+    "question": "Gastroesophageal reflux disease may present with the following EXCEPT:",
+    "options": [
+      "Vomiting following meals",
+      "Weight loss",
+      "Nocturnal cough",
+      "Heartburn",
+      "Metabolic acidosis"
+    ],
+    "correct": 4,
+    "explanation": "Metabolic acidosis is NOT a presentation of GERD. GERD can cause postprandial vomiting, weight loss from poor intake, nocturnal cough from aspiration or reflex bronchospasm, and heartburn from acid regurgitation. Metabolic acidosis would suggest a different etiology such as renal failure, diarrhea, or shock."
+  },
+  {
+    "question": "Severely dehydrated child with ph. 7.1 and serum sodium 122 mEq/dL",
+    "options": [
+      "IV glucose 5% and 0.9% in a ratio of 1 to 1",
+      "IV glucose 5% and saline or 0.9% in a ratio of 4 to 1",
+      "Oral rehydration solution IV glucose 5% and saline or 0.9% in a ratio of 1 to1 + sodium bicarbonate infusion",
+      "IV glucose 5% and 7.9% in a ratio of 2 to 1"
+    ],
+    "correct": 2,
+    "explanation": "This child has severe dehydration with hyponatremia (Na 122) and severe metabolic acidosis (pH 7.1), requiring a comprehensive approach: IV fluids with a 1:1 glucose-to-saline ratio (more saline for hyponatremia), ORS for ongoing replacement, and sodium bicarbonate infusion to correct the severe acidosis. A 4:1 ratio would worsen hyponatremia, and no option without bicarbonate addresses the severe acidosis."
+  },
+  {
+    "question": "An infant presented with repeated bouts of loose stools, his mother reported that he is always thirsty, on examination his tongue was very dry. His skin was warm to touch but with some loss of skin turgor. 2 hours later, he started to convulse. Which result of the following can explain features in the case.",
+    "options": [
+      "Serum sodium level of 160 mEq/L l1",
+      "Serum sodium level of 125 mEq/L l1",
+      "Serum potassium level of 6 mEq/L l1",
+      "Serum potassium level of 2.5 mEq/L l1",
+      "Serum calcium level of 5 mg/dL."
+    ],
+    "correct": 0,
+    "explanation": "This classic presentation of hypernatremic dehydration includes intense thirst, very dry mucous membranes, warm skin with only moderate turgor loss, and seizures (from brain shrinkage and osmotic shifts). Serum sodium of 160 mEq/L confirms the diagnosis. Hyponatremia would cause lethargy rather than thirst and seizures. Hypokalemia and hypocalcemia do not explain the full clinical picture."
+  },
+  {
+    "question": "Which of the following is true regarding an infant with moderate dehydration?",
+    "options": [
+      "Diarrheal fluid tends to be hypertonic",
+      "Shallow respiration is a sign of acidosis",
+      "vomiting can cause acidosis",
+      "Weight loss is 2-4% of pre dehydration weight",
+      "none of the above"
+    ],
+    "correct": 4,
+    "explanation": "None of the statements are correct. Diarrheal fluid is typically isotonic; deep (Kussmaul) respiration, not shallow respiration, indicates metabolic acidosis; vomiting causes metabolic alkalosis (loss of HCl), not acidosis; and moderate dehydration corresponds to 5-9% weight loss, not 2-4%."
+  },
+  {
+    "question": "gastroesophageal reflux disease may present with the following except",
+    "options": [
+      "vomiting following meals",
+      "weight loss",
+      "nocturnal cough",
+      "heartburn",
+      "all of the above"
+    ],
+    "correct": 4,
+    "explanation": "GERD can present with all of the listed symptoms: vomiting after meals, weight loss from poor intake, nocturnal cough from aspiration or reflex bronchospasm, and heartburn from acid regurgitation. Since all are recognized presentations, the answer is 'all of the above' (meaning none is an exception)."
+  },
+  {
+    "question": "in diarrhea the use of antibiotics will shorten the course of",
+    "options": [
+      "enterotoxigenic E Coli",
+      "salmonella",
+      "shigella",
+      "Campylobacter jejuni",
+      "rotavirus"
+    ],
+    "correct": 2,
+    "explanation": "Antibiotics most clearly shorten the duration of shigellosis and are recommended as standard treatment. Antibiotics are generally NOT recommended for uncomplicated Salmonella gastroenteritis (may prolong carriage). ETEC may benefit but is often self-limited. Campylobacter responds to erythromycin if given early but evidence for course shortening is less robust. Rotavirus is viral and antibiotics are ineffective."
+  },
+  {
+    "question": "a 10-month-old girl presents with abdominal pain and diarrhea which has recently had pink staining. she was well until 12 hours ago when she had some loose stools and episodes of crying and holding her abdomen. on examination she looks intermittently uncomfortable; her abdomen is slightly distended and she has a curved firm mass 10 cm long extending from the right iliac fossa towards the hepatic flexure. what is the most likely diagnosis?",
+    "options": [
+      "inborn errors of metabolism",
+      "constipation/encopresis",
+      "intussusception",
+      "renal anomalies",
+      "malignancy e.g. neuroblastoma, Wilms tumour, lymphoma"
+    ],
+    "correct": 2,
+    "explanation": "This is the classic presentation of intussusception: intermittent colicky abdominal pain (crying episodes), red currant jelly stools (pink staining), and a sausage-shaped abdominal mass extending from the right iliac fossa. The age (10 months) and acute onset are typical. Intussusception is a surgical emergency requiring prompt reduction."
+  },
+  {
+    "question": "glucose in oral rehydration solution is added to",
+    "options": [
+      "improve the taste of the rehydration solution",
+      "meet the child's energy requirements",
+      "increase osmolality of ORS to 400 mOsmol",
+      "promote the absorption of sodium",
+      "prevent malnutrition"
+    ],
+    "correct": 3,
+    "explanation": "Glucose in ORS promotes sodium absorption via the sodium-glucose cotransporter (SGLT1) in the intestinal brush border. This coupled transport is the physiological basis for ORS therapy, as it allows sodium and water to be absorbed even during secretory diarrhea. The glucose concentration is optimized for this purpose, not for nutrition or palatability."
+  },
+  {
+    "question": "the most common single cause of infantile gastroenteritis is",
+    "options": [
+      "Campylobacter jejuni",
+      "Rota virus",
+      "yersinia enterocolitica",
+      "e-coli",
+      "Parvovirus B-19"
+    ],
+    "correct": 1,
+    "explanation": "Rotavirus is the most common single cause of infantile gastroenteritis worldwide. It accounts for approximately 40% of hospitalizations for diarrhea in children under 5 years. Campylobacter, Yersinia, and E. coli are less common bacterial causes. Parvovirus B19 does not cause gastroenteritis."
+  },
+  {
+    "question": "common causes of vomiting in infants include the following",
+    "options": [
+      "overfeeding",
+      "gastroenteritis",
+      "systemic infection",
+      "gastroesophageal reflux",
+      "all of the above"
+    ],
+    "correct": 4,
+    "explanation": "All listed options are common causes of vomiting in infants. Overfeeding exceeds the infant's gastric capacity, gastroenteritis causes mucosal irritation, systemic infections (especially UTIs and sepsis) cause vomiting through systemic effects, and gastroesophageal reflux results from an immature lower esophageal sphincter."
+  },
+  {
+    "question": "which of the following statements applies to infants with gastroenteritis?",
+    "options": [
+      "in most instances require treatment with an antibiotic which is not",
+      "may have blood in their stools",
+      "should be admitted to hospital if they are unable to tolerate fluid orally",
+      "always develops lactose intolerance",
+      "astrovirus is the most common cause"
+    ],
+    "correct": 2,
+    "explanation": "Infants with gastroenteritis who cannot tolerate oral fluids should be admitted to hospital for intravenous rehydration, as failure to maintain hydration can become life-threatening. Most cases are viral and do not require antibiotics. Blood in stools may occur but is not universal. Rotavirus (not astrovirus) is the most common cause."
+  },
+  {
+    "question": "predisposing risk factors for gastroenteritis include",
+    "options": [
+      "exclusive breastfeeding",
+      "Well-nourished infant",
+      "non vaccinated by pertussis",
+      "environmental pollution",
+      "passive smoking"
+    ],
+    "correct": 3,
+    "explanation": "Environmental pollution (contaminated water, poor sanitation) is a well-established risk factor for gastroenteritis as it facilitates transmission of enteric pathogens. Exclusive breastfeeding and good nutrition are protective factors. Pertussis vaccination does not prevent gastroenteritis. Passive smoking is not a significant risk factor for gastroenteritis."
+  },
+  {
+    "question": "which of the following statements is true regarding Giardia lamblia?",
+    "options": [
+      "may cause intestinal malabsorption",
+      "often causes a bloody diarrhea",
+      "may cause hemolytic uremic syndrome",
+      "may be excluded by stool microscopy",
+      "may be treated by co-trimoxazole"
+    ],
+    "correct": 0,
+    "explanation": "Giardia lamblia can cause intestinal malabsorption (steatorrhea, failure to thrive) by damaging the intestinal brush border. It is a non-invasive pathogen and does NOT typically cause bloody diarrhea. HUS is caused by Shiga toxin-producing E. coli. Stool microscopy cannot reliably exclude Giardia due to intermittent cyst shedding. Treatment is metronidazole, not co-trimoxazole."
+  },
+  {
+    "question": "a 2-year-old child is admitted with a 2-day history of diarrhea. which of the following statements correctly applies to this condition?",
+    "options": [
+      "hyponatremia is expected",
+      "adenovirus is the most common pathogen isolated",
+      "he should be treated with anti-diarrheal agents",
+      "dehydration is best assessed clinically rather than biochemical",
+      "he should be treated with boiled water alone for 24 hours"
+    ],
+    "correct": 3,
+    "explanation": "Clinical assessment using WHO guidelines (general condition, eyes, thirst, skin pinch) is the standard and most reliable method for evaluating dehydration severity in children with diarrhea. Hyponatremia is not always present. Rotavirus is more common than adenovirus. Antidiarrheal agents are contraindicated in young children. Boiled water alone lacks essential electrolytes and is dangerous."
+  },
+  {
+    "question": "Signs of hypertonic dehydration include all EXCEPT:",
+    "options": [
+      "Lethargy and hypotonia.",
+      "Irritability.",
+      "Dry tongue.",
+      "Only moderate loss of skin turgor.",
+      "Hyperthermia."
+    ],
+    "correct": 0,
+    "explanation": "Lethargy and hypotonia are features of HYPOTONIC (hyponatremic) dehydration, not hypertonic (hypernatremic) dehydration. In hypernatremic dehydration, the child is characteristically irritable and may have hyperreflexia. Other features include very dry mucous membranes, only moderate loss of skin turgor (due to fluid shift preserving extracellular volume), and hyperthermia."
+  },
+  {
+    "question": "A female child is diagnosed with hyperkalemia. Physical examination reveals irregular and rapid heart rates. The serum K level is 7.5 mEq/L The first drug of choice in this patient:",
+    "options": [
+      "Intravenous glucose and insulin",
+      "Oral kayexalate",
+      "Slow intravenous calcium gluconate with ECG monitoring",
+      "Intravenous sodium bicarbonate",
+      "Intravenous salbutamol"
+    ],
+    "correct": 2,
+    "explanation": "In life-threatening hyperkalemia (K > 7.0) with cardiac arrhythmias, IV calcium gluconate is the FIRST drug of choice to stabilize the cardiac membrane and prevent fatal arrhythmias. It does not lower potassium but protects the heart. Glucose+insulin, bicarbonate, and salbutamol shift potassium into cells but take time to work. Kayexalate removes potassium from the body but acts slowly."
+  },
+  {
+    "question": "The true statement about pyloric stenosis:",
+    "options": [
+      "More common in first-born female child.",
+      "Incidence of pyloric stenosis is 20% if father has pyloric stenosis.",
+      "Usually presents with bilious vomiting.",
+      "Hypochloremic metabolic alkalosis is present.",
+      "Ultrasonographic finding is not conclusive."
+    ],
+    "correct": 3,
+    "explanation": "Hypochloremic metabolic alkalosis is the hallmark metabolic abnormality of pyloric stenosis, resulting from persistent vomiting of gastric HCl. It is more common in first-born MALES (not females). Vomiting is characteristically NON-bilious. Ultrasound is the diagnostic modality of choice (target sign, pyloric muscle thickness >4mm, channel length >14mm)."
+  },
+  {
+    "question": "A rapid correction of fluid in a child with hypernatremic dehydration results in:",
+    "options": [
+      "IVH",
+      "Subdural hemorrhage",
+      "Cerebral cells atrophy",
+      "Cerebral cells swelling",
+      "PVL (periventricular leukomalacia)"
+    ],
+    "correct": 3,
+    "explanation": "Rapid correction of hypernatremia causes cerebral cell swelling (cerebral edema) because brain cells accumulate idiogenic osmoles during hypernatremia to maintain intracellular osmolality. When serum sodium is rapidly lowered, water shifts into brain cells along the osmotic gradient, causing swelling, seizures, and potentially herniation."
+  },
+  {
+    "question": "A 3-year-old boy appeared in the ER with history of diarrhea for the last 3 to 4 days. Physical examination reveals dry mucous membrane, sunken eyes, no tears, and mild tachycardia. The best therapeutic approach:",
+    "options": [
+      "Oral rehydration therapy",
+      "Intravenous D10 water",
+      "NPO plus IV hydration",
+      "Intravenous D5 water",
+      "Intravenous 3% sodium chloride"
+    ],
+    "correct": 0,
+    "explanation": "The clinical findings (dry mucous membranes, sunken eyes, no tears, mild tachycardia) indicate moderate dehydration, which is best treated with oral rehydration therapy (ORT). WHO guidelines recommend ORT as the treatment of choice for mild to moderate dehydration. IV fluids are reserved for severe dehydration, shock, or failure of ORT. D5W and D10W are not appropriate as they lack electrolytes."
+  },
+  {
+    "question": "Most common organism causing infantile diarrhea:",
+    "options": [
+      "Shigella",
+      "Salmonella typhimurium",
+      "E coli",
+      "Rotavirus",
+      "Campylobacter fetus"
+    ],
+    "correct": 3,
+    "explanation": "Rotavirus is the most common organism causing infantile diarrhea worldwide. It is responsible for approximately 40% of hospitalizations for acute diarrhea in children under 5. Shigella, Salmonella, E. coli, and Campylobacter are bacterial causes that are less common than rotavirus in this age group."
+  },
+  {
+    "question": "The correct composition of OHS (oral hydrating solution):",
+    "options": [
+      "Na 90, K 40, Cl 85, bicarbonate 30, glucose 140, osmolality 290",
+      "Na 75, K 40, Cl 50, citrate 10, glucose 120, osmolality 300",
+      "Na 45, K 20, Cl 35, citrate 30, glucose 140, osmolality 250",
+      "Na 45, K 40, Cl 35, citrate 20, glucose 140, osmolality 260",
+      "Na 90, K 20, Cl 35, bicarbonate 40, glucose 140, osmolality 310"
+    ],
+    "correct": 1,
+    "explanation": "The current WHO reduced osmolarity ORS formulation features sodium 75 mEq/L and citrate (replacing bicarbonate), which distinguishes it from the original formula. The key characteristics are reduced sodium (75 vs 90) and the use of citrate as the alkalinizing agent, resulting in lower osmolality. This formulation reduces stool output and the need for unscheduled IV therapy compared to the original formulation."
+  },
+  {
+    "question": "The best diagnostic method of Hirschsprung disease:",
+    "options": [
+      "Barium enema",
+      "Upper GI series",
+      "Plain abdominal x-ray",
+      "Abdominal CT scan",
+      "Rectal suction biopsy"
+    ],
+    "correct": 4,
+    "explanation": "Rectal suction biopsy is the gold standard for diagnosing Hirschsprung disease, as it allows histological confirmation of aganglionosis (absence of ganglion cells in the submucosal plexus). Barium enema may suggest the diagnosis by showing a transition zone but is not definitive. Upper GI series, plain X-ray, and CT scan are not diagnostic for this condition."
+  },
+  {
+    "question": "Most common cause of hypovolemic hyponatremia in children is:",
+    "options": [
+      "Increased ADH secretion",
+      "Diabetes insipidus",
+      "Diabetes mellitus",
+      "Gastroenteritis",
+      "Meningitis"
+    ],
+    "correct": 3,
+    "explanation": "Gastroenteritis is the most common cause of hypovolemic hyponatremia in children due to loss of both sodium and water through vomiting and diarrhea, with disproportionately greater sodium loss. SIADH causes euvolemic hyponatremia. Diabetes insipidus causes hypernatremia (free water loss). Diabetes mellitus causes hyponatremia through different mechanisms. Meningitis causes SIADH-related hyponatremia."
+  },
+  {
+    "question": "Most common cause of hypernatremia in hospitalized patients is:",
+    "options": [
+      "Iatrogenic",
+      "Diabetes insipidus",
+      "Diabetes mellitus",
+      "Prolactinoma",
+      "Food contains high sodium for growth"
+    ],
+    "correct": 0,
+    "explanation": "Iatrogenic causes (inappropriate IV fluid administration, excessive sodium intake, inadequate free water provision) are the most common cause of hypernatremia in hospitalized patients. This is especially true in critically ill children who cannot communicate thirst and depend on caregivers for fluid management."
+  },
+  {
+    "question": "A child is being treated for hypernatremic dehydration. Suddenly, she develops seizures. Most likely cause of seizure is:",
+    "options": [
+      "Movement of water from serum into brain cells",
+      "Movement of water from brain cells into serum",
+      "Movement of sodium from serum into brain cells",
+      "Movement of sodium from brain cells into serum",
+      "Increased ADH secretion"
+    ],
+    "correct": 0,
+    "explanation": "During rapid correction of hypernatremia, water moves from the serum (lower osmolality) into brain cells (higher osmolality due to accumulated idiogenic osmoles), causing cerebral edema and seizures. This is why hypernatremia must be corrected slowly (no more than 10-12 mEq/L per 24 hours)."
+  },
+  {
+    "question": "In hypernatremic dehydration, a rapid correction results in seizures due to:",
+    "options": [
+      "Idiogenic osmoles inside the brain cells",
+      "Decreased size of brain cells",
+      "Rupture of brain cells",
+      "Increased size of the ventricles",
+      "Intraventricular hemorrhage"
+    ],
+    "correct": 0,
+    "explanation": "During hypernatremia, brain cells accumulate idiogenic osmoles to maintain intracellular osmolality and prevent excessive shrinkage. When serum sodium is rapidly corrected, these idiogenic osmoles draw water into brain cells, causing cerebral edema and seizures. The idiogenic osmoles cannot be quickly removed, making rapid correction dangerous."
+  },
+  {
+    "question": "During therapy for hypernatremic dehydration, the goal is to decrease the serum sodium by:",
+    "options": [
+      "Less than 12 mEq/L/day",
+      "More than 12 mEq/L/day",
+      "Less than 10 mEq/L/day",
+      "Less than 5 mEq/L/day",
+      "Less than 3 mEq/L/day"
+    ],
+    "correct": 0,
+    "explanation": "The recommended maximum rate of correction for hypernatremia is less than 12 mEq/L per 24 hours to prevent cerebral edema from rapid osmotic shifts. Correcting faster increases the risk of seizures and brain herniation. Slower correction (10-12 mEq/L/day) allows idiogenic osmoles in brain cells to dissipate gradually."
+  },
+  {
+    "question": "All of the following conditions cause metabolic acidosis with a normal anion gap except:",
+    "options": [
+      "Lactic acidosis",
+      "Diarrhea",
+      "Renal tubular acidosis type 1",
+      "Renal tubular acidosis type 2",
+      "Urinary tract diversions"
+    ],
+    "correct": 0,
+    "explanation": "Lactic acidosis causes a HIGH anion gap metabolic acidosis (due to accumulation of unmeasured lactate anions). Diarrhea, RTA types 1 and 2, and urinary diversions all cause normal anion gap (hyperchloremic) metabolic acidosis, where the decrease in bicarbonate is compensated by an increase in chloride."
+  },
+  {
+    "question": "A normal anion gap is:",
+    "options": [
+      "4-6",
+      "6-8",
+      "8-16",
+      "16-20",
+      "20-24"
+    ],
+    "correct": 2,
+    "explanation": "The normal anion gap is 8-16 mEq/L, calculated as Na - (Cl + HCO3). It represents the unmeasured anions in the serum (proteins, phosphates, sulfates, organic acids). Values outside this range suggest either high anion gap metabolic acidosis (>16) or low anion gap states."
+  },
+  {
+    "question": "The most common cause of metabolic alkalosis in children is:",
+    "options": [
+      "Emesis",
+      "Diarrhea",
+      "Cystic fibrosis",
+      "Post hypercapnia",
+      "Gitelman syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Emesis (vomiting) is the most common cause of metabolic alkalosis in children, due to loss of gastric hydrochloric acid. This results in hypochloremic metabolic alkalosis, often accompanied by hypokalemia from renal potassium wasting. Diarrhea causes metabolic acidosis. CF, post-hypercapnia, and Gitelman syndrome are less common causes of metabolic alkalosis."
+  },
+  {
+    "question": "The preferred oral electrolyte solution (ORS) to treat infantile diarrhea is:",
+    "options": [
+      "Sodium concentration more than 80 mEq/L",
+      "Sodium concentration more than 75 mEq/L",
+      "Sodium concentration more than 50 mEq/L",
+      "Sodium concentration less than 50 mEq/L",
+      "Sodium concentration less than 45 mEq/L"
+    ],
+    "correct": 2,
+    "explanation": "The preferred ORS for infantile diarrhea has a sodium concentration of 75 mEq/L (WHO reduced osmolarity formulation), which falls in the range of more than 50 mEq/L. Concentrations above 80 mEq/L risk hypernatremia, while concentrations below 50 mEq/L are insufficient for adequate sodium replacement in diarrheal losses."
+  },
+  {
+    "question": "The most common cause of metabolic acidosis in children is:",
+    "options": [
+      "Renal tubular acidosis type",
+      "Renal tubular acidosis type II",
+      "Persistent vomiting",
+      "Diarrhea",
+      "Gram-negative sepsis"
+    ],
+    "correct": 3,
+    "explanation": "Diarrhea is the most common cause of metabolic acidosis in children, resulting from excessive loss of bicarbonate in the stool. This produces a normal anion gap (hyperchloremic) metabolic acidosis. Persistent vomiting causes metabolic alkalosis. RTA and gram-negative sepsis (lactic acidosis) are less common causes."
+  },
+  {
+    "question": "All of the following statements are true about ORS (oral rehydration solution) except:",
+    "options": [
+      "A patient with mild dehydration should receive 50 mL/kg ORS within 4 hours.",
+      "A patient with moderate dehydration should receive 100 mL/kg ORS within 4 hours.",
+      "Stools volume should be measured and replaced with ORS solution.",
+      "Breast feeding or formula feeding should be allowed after rehydration in infants.",
+      "ORS should be given in small amounts at short intervals (e.g., one teaspoon every 1-2 minutes)."
+    ],
+    "correct": 2,
+    "explanation": "It is impractical and unnecessary to precisely measure stool volume for replacement. Ongoing stool losses are estimated (approximately 5-10 mL/kg per stool) rather than measured. The other statements are correct WHO guidelines: 50 mL/kg for mild dehydration, 100 mL/kg for moderate, continued breastfeeding, and small frequent administration of ORS."
+  },
+  {
+    "question": "A child appears with a moderate amount of bleeding through the mouth. All of the following findings indicate a hemoptysis except:",
+    "options": [
+      "Bright red color",
+      "Frothy",
+      "Nausea",
+      "Accompanied by cough",
+      "Alkaline pH"
+    ],
+    "correct": 2,
+    "explanation": "Nausea is associated with hematemesis (vomiting blood from the GI tract), not hemoptysis (coughing blood from the respiratory tract). Hemoptysis is characterized by bright red blood, frothy appearance (mixed with air and sputum), accompanying cough, and alkaline pH of respiratory secretions."
+  },
+  {
+    "question": "A child appears with a massive bleeding through the mouth and nose. The following finding does not indicate a hematemesis:",
+    "options": [
+      "Dark red blood",
+      "Acidic pH",
+      "Nausea",
+      "Frothy",
+      "Presence of food particles"
+    ],
+    "correct": 3,
+    "explanation": "A frothy appearance is characteristic of hemoptysis (respiratory origin), not hematemesis. Hematemesis (GI origin) presents with dark red or coffee-ground blood, acidic pH (gastric contents), nausea, and food particles. The frothy quality of hemoptysis comes from blood mixed with air and respiratory secretions."
+  },
+  {
+    "question": "The side effect of following medication is hypokalemia:",
+    "options": [
+      "Hydralazine",
+      "Minoxidil",
+      "Propranolol",
+      "Furosemide",
+      "Enalaprilat"
+    ],
+    "correct": 3,
+    "explanation": "Furosemide, a loop diuretic, causes significant urinary potassium loss leading to hypokalemia, which is one of its most clinically important side effects. Hydralazine and minoxidil are vasodilators without significant potassium effects. Propranolol may slightly increase potassium. Enalaprilat (ACE inhibitor) may cause hyperkalemia by reducing aldosterone."
+  },
+  {
+    "question": "The first electrocardiographic (ECG) changes noted in hyperkalemia is:",
+    "options": [
+      "Increased PR intervals",
+      "Flattening of the P waves",
+      "Widening of the QRS complex",
+      "Peaking of the T waves",
+      "Ventricular fibrillation"
+    ],
+    "correct": 3,
+    "explanation": "Tall, peaked (tented) T waves are the earliest and most characteristic ECG change in hyperkalemia, resulting from accelerated ventricular repolarization. As potassium rises further, P waves flatten, PR interval prolongs, QRS widens, and ultimately ventricular fibrillation may occur."
+  },
+  {
+    "question": "The first manifestation in patients with a hyperkalemia is:",
+    "options": [
+      "Tingling",
+      "Numbness",
+      "Weakness",
+      "Cardiac toxicity",
+      "Syncope"
+    ],
+    "correct": 2,
+    "explanation": "Muscle weakness is typically the first clinical manifestation of hyperkalemia, usually beginning in the lower extremities and progressing upward. While ECG changes (cardiac toxicity) may be detected before symptoms, the first symptom that patients notice is weakness. Tingling and numbness may also occur but typically follow weakness."
+  },
+  {
+    "question": "The preferred therapy in patients with a metabolic acidosis is:",
+    "options": [
+      "Sodium bicarbonate",
+      "THAM solution",
+      "Sodium citrate",
+      "Excessive fluid therapy",
+      "Treat the underlying cause"
+    ],
+    "correct": 4,
+    "explanation": "The primary treatment for metabolic acidosis is addressing the underlying cause (e.g., improving tissue perfusion for lactic acidosis, treating diarrhea, managing renal failure). Sodium bicarbonate is reserved for severe acidosis (pH < 7.1) and is not first-line therapy. Treating the cause corrects the acid-base disturbance more safely and effectively."
+  },
+  {
+    "question": "The preferred initial therapy in patients with a metabolic acidosis and respiratory acidosis is:",
+    "options": [
+      "Sodium bicarbonate",
+      "Potassium citrate",
+      "Hemodialysis",
+      "Treat the underlying metabolic cause",
+      "Ventilator therapy to correct the respiratory acidosis"
+    ],
+    "correct": 4,
+    "explanation": "In combined metabolic and respiratory acidosis, the respiratory component must be corrected first with ventilator support. The patient cannot compensate for metabolic acidosis through hyperventilation if already in respiratory failure. Correcting the respiratory acidosis first improves oxygenation, reduces CO2, and partially corrects the pH before addressing the metabolic cause."
+  },
+  {
+    "question": "A child appears with a history of vomiting and diarrhea for the last 24 hours. He has a mild dehydration. The following findings is noted during the physical examination:",
+    "options": [
+      "Lethargy",
+      "Sunken eyes",
+      "Dry mucous membranes",
+      "Normal",
+      "Delayed capillary refill"
+    ],
+    "correct": 2,
+    "explanation": "In mild dehydration (3-5% weight loss), dry mucous membranes are the most commonly detectable clinical finding. Lethargy, sunken eyes, and delayed capillary refill are signs of moderate-to-severe dehydration. While the examination may appear nearly normal, slightly dry mucous membranes are typically present."
+  },
+  {
+    "question": "A child appears with a history of vomiting and diarrhea for the last 3 days. He has a moderate dehydration. All of the following findings are present except:",
+    "options": [
+      "Decreased tears",
+      "Mild tenting of the skin",
+      "Pale",
+      "Irritable",
+      "Hypotension"
+    ],
+    "correct": 4,
+    "explanation": "Hypotension is a sign of SEVERE dehydration, not moderate. In moderate dehydration, blood pressure is typically maintained through compensatory tachycardia and vasoconstriction. Decreased tears, mild tenting of the skin (decreased turgor), pallor, and irritability are all features of moderate dehydration."
+  },
+  {
+    "question": "A child appears with a history of severe vomiting and diarrhea for the last 5 days. She was able to tolerate a small amount of oral rehydrating solutions. The condition worsens for the last 24 hours. She has a severe dehydration. All of the following findings are noted except:",
+    "options": [
+      "Mottled skin",
+      "Hypotension",
+      "normal urine output",
+      "Weak pulses",
+      "Parched mucous membranes"
+    ],
+    "correct": 2,
+    "explanation": "Normal urine output is incompatible with severe dehydration. In severe dehydration, the kidneys maximally conserve water, resulting in oliguria or anuria. Mottled skin, hypotension, weak pulses, and parched mucous membranes are all characteristic findings of severe dehydration with compromised perfusion."
+  },
+  {
+    "question": "Most common cause of volume depletion in children is:",
+    "options": [
+      "Cystic fibrosis",
+      "Burns",
+      "Gastroenteritis",
+      "Excessive exercise",
+      "Inadequate intake of sodium"
+    ],
+    "correct": 2,
+    "explanation": "Gastroenteritis is by far the most common cause of volume depletion (dehydration) in children, resulting from the combined losses of water and electrolytes through vomiting and diarrhea. Cystic fibrosis, burns, and excessive exercise are less common causes in the general pediatric population."
+  },
+  {
+    "question": "Most common cause of hypokalemia in children is:",
+    "options": [
+      "Decreased intake",
+      "Gastroenteritis",
+      "Hyperaldosteronism",
+      "Laxative abuse",
+      "Hypokalemic periodic paralysis"
+    ],
+    "correct": 1,
+    "explanation": "Gastroenteritis is the most common cause of hypokalemia in children due to combined potassium losses through vomiting and diarrhea, along with poor dietary intake during illness. Decreased intake alone rarely causes hypokalemia (kidneys conserve potassium effectively). Hyperaldosteronism, laxative abuse, and periodic paralysis are much less common in children."
+  },
+  {
+    "question": "Gastric fluid contains a large amount of the following component:",
+    "options": [
+      "Sodium chloride",
+      "Potassium chloride",
+      "Hydrochloric acid",
+      "Sodium bicarbonate",
+      "Acetic acid"
+    ],
+    "correct": 2,
+    "explanation": "Gastric fluid contains a large amount of hydrochloric acid (HCl), secreted by parietal cells of the stomach. This is why vomiting of gastric contents leads to metabolic alkalosis (loss of H+ and Cl-). Gastric fluid also contains some sodium and potassium but in much smaller amounts than HCl. Sodium bicarbonate is found in pancreatic secretions, not gastric fluid."
+  },
+  {
+    "question": "Preferred therapy for patients with a moderate to severe metabolic alkalosis is:",
+    "options": [
+      "Furosemide",
+      "Thiazide diuretic",
+      "Discontinue potassium",
+      "Sodium bicarbonate",
+      "To treat underlying cause"
+    ],
+    "correct": 4,
+    "explanation": "The preferred therapy for metabolic alkalosis is treating the underlying cause (e.g., stopping vomiting, correcting volume depletion, administering potassium chloride for hypokalemia). Furosemide and thiazide diuretics would worsen alkalosis by causing further volume and potassium loss. Sodium bicarbonate would worsen alkalosis. Potassium should be supplemented, not discontinued."
+  },
+  {
+    "question": "Most common esophageal disorder in children is:",
+    "options": [
+      "Decreased motility",
+      "Increased motility",
+      "Esophageal bleeding",
+      "Esophageal ulcers",
+      "Gastroesophageal reflux disease (GERD)"
+    ],
+    "correct": 4,
+    "explanation": "Gastroesophageal reflux disease (GERD) is the most common esophageal disorder in children. It results from an incompetent lower esophageal sphincter allowing gastric contents to reflux into the esophagus. While some degree of gastroesophageal reflux is physiologic in infants, pathologic GERD causes symptoms requiring management."
+  },
+  {
+    "question": "A child appears with hematemesis. Physical examination reveals splenomegaly. Most likely diagnosis is:",
+    "options": [
+      "Esophageal perforation",
+      "Esophageal foreign body",
+      "Esophageal varices",
+      "Gastric ulcers",
+      "GERD (gastroesophageal reflux disease)"
+    ],
+    "correct": 2,
+    "explanation": "Hematemesis with splenomegaly strongly suggests portal hypertension leading to esophageal varices. The splenomegaly results from portal hypertension (congestive splenomegaly), and the hematemesis occurs from ruptured esophageal varices. This combination is pathognomonic for portal hypertension, which in children may be caused by portal vein thrombosis or cirrhosis."
+  },
+  {
+    "question": "A child with severe dehydration has a low serum albumin level. All of the following conditions can manifest like that except:",
+    "options": [
+      "Malnutrition",
+      "Nephrotic syndrome",
+      "Liver disease",
+      "Protein losing enteropathy",
+      "Dehydration with hemoconcentration"
+    ],
+    "correct": 4,
+    "explanation": "In dehydration with hemoconcentration, serum albumin would be elevated (or appear normal due to reduced plasma volume), not low. Hemoconcentration increases the concentration of all plasma proteins. Malnutrition, nephrotic syndrome (renal protein loss), liver disease (decreased synthesis), and protein-losing enteropathy (GI protein loss) all cause genuinely low serum albumin."
+  },
+  {
+    "question": "All of the following physical findings are signs of dehydration except:",
+    "options": [
+      "Tachycardia",
+      "Sunken eyes",
+      "Tachypnea",
+      "Oliguria",
+      "Bradycardia"
+    ],
+    "correct": 4,
+    "explanation": "Bradycardia is NOT a sign of dehydration; it is a late and ominous sign of severe cardiovascular collapse. Dehydration causes tachycardia as a compensatory response to maintain cardiac output. Sunken eyes, tachypnea (compensating for metabolic acidosis), and oliguria (renal water conservation) are all classic signs of dehydration."
+  },
+  {
+    "question": "A child has hyponatremic dehydration. His serum sodium level is 125. He is receiving sodium deficit therapy. After 24 hours, his serum sodium level becomes 140. Most likely complication is:",
+    "options": [
+      "Subdural hemorrhage",
+      "Subarachnoid hemorrhage",
+      "Hypernatremia",
+      "Central pontine myelinolysis",
+      "Intracerebral hemorrhage"
+    ],
+    "correct": 3,
+    "explanation": "The serum sodium rose from 125 to 140 mEq/L, a change of 15 mEq/L in 24 hours, which exceeds the recommended maximum correction rate of 10-12 mEq/L/day. Rapid correction of hyponatremia can cause central pontine myelinolysis (osmotic demyelination syndrome), a serious neurological condition characterized by destruction of myelin in the pons."
+  },
+  {
+    "question": "The most common cause of childhood emergency department visits, hospitalizations, and missed school days is:",
+    "options": [
+      "Gastroenteritis",
+      "Pneumonias",
+      "Asthma",
+      "Child abuse",
+      "Motor vehicle accidents"
+    ],
+    "correct": 2,
+    "explanation": "Asthma is the most common cause of childhood emergency department visits, hospitalizations, and missed school days in developed countries. It is the most common chronic disease of childhood, affecting approximately 10% of children. While gastroenteritis is common, asthma accounts for more ED visits and missed school days cumulatively."
+  },
+  {
+    "question": "The following medical condition is commonly noted in patients with an asthma:",
+    "options": [
+      "Gastroesophageal reflux",
+      "RSV pneumonia",
+      "Streptococcus pneumonia",
+      "Cardiomyopathy",
+      "Thoracic cage deformities"
+    ],
+    "correct": 0,
+    "explanation": "Gastroesophageal reflux is commonly associated with asthma, with a well-established bidirectional relationship. GERD can trigger asthma symptoms through vagal reflex or microaspiration, and asthma medications (particularly bronchodilators) can worsen GERD by relaxing the lower esophageal sphincter. Up to 50-80% of asthmatic patients have GERD."
+  },
+  {
+    "question": "A child has severe dehydration and subsequently develops hematuria. CBC reveals thrombocytopenia. Most likely sequelae of severe dehydration in this patient is:",
+    "options": [
+      "Hypertension",
+      "Nephrotic syndrome",
+      "Glomerulonephritis",
+      "Renal vein thrombosis",
+      "Renal artery thrombosis"
+    ],
+    "correct": 3,
+    "explanation": "Severe dehydration with hemoconcentration predisposes to renal vein thrombosis, especially in infants. The classic triad includes hematuria, thrombocytopenia (from platelet consumption in the thrombus), and a palpable flank mass. This is a well-recognized complication of severe dehydration causing sluggish blood flow and hypercoagulability."
+  },
+  {
+    "question": "A child has severe dehydration. CBC reveals a lower limit of normal hemoglobin for his age. Most likely interpretation is:",
+    "options": [
+      "The child has no dehydration",
+      "The child has mild dehydration",
+      "The child has moderate dehydration",
+      "The child has polycythemia",
+      "The child has anemia"
+    ],
+    "correct": 4,
+    "explanation": "In severe dehydration, hemoconcentration should elevate the hemoglobin level above normal. A hemoglobin at the lower limit of normal despite hemoconcentration indicates that the true hemoglobin is actually much lower, masked by the reduced plasma volume. When rehydrated and the plasma volume is restored, the hemoglobin will drop further, revealing significant anemia."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

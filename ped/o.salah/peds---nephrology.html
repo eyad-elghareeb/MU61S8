@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Peds - Nephrology</title>
+
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "19dcff6a1fbgy2b4",
+  "title": "Peds - Nephrology",
+  "description": "108 questions on Pediatric Nephrology",
+  "icon": "🫘"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "The following are consistent with nephrotic syndrome EXCEPT:",
+    "options": [
+      "Puffiness of the eyelids",
+      "Serum albumin of 1.6 gm%",
+      "Serum cholesterol of 440 mg%",
+      "Total protein in 24 hours urine of 4 mg",
+      "Normal urine volume"
+    ],
+    "correct": 3,
+    "explanation": "Nephrotic syndrome is defined by heavy proteinuria (>40 mg/m²/hr), hypoalbuminemia, edema, and hyperlipidemia. A 24-hour urine total protein of only 4 mg is negligible and contradicts the massive proteinuria required for diagnosis. Puffiness of eyelids (edema), serum albumin of 1.6 gm% (hypoalbuminemia), and serum cholesterol of 440 mg% (hyperlipidemia) are all consistent with nephrotic syndrome."
+  },
+  {
+    "question": "Minimal change nephrotic syndrome is treated by:",
+    "options": [
+      "Diuretics and the corticosteroids",
+      "Digitalis",
+      "Peritoneal dialysis",
+      "Hemodialysis",
+      "Renal transplantation"
+    ],
+    "correct": 0,
+    "explanation": "Minimal change nephrotic syndrome (MCNS) is treated primarily with corticosteroids (prednisone 2 mg/kg/day), which induce remission in over 90% of cases. Diuretics are used adjunctively for symptomatic edema. Digitalis is for heart failure, and dialysis or transplantation are not indicated for MCNS as kidney function is preserved."
+  },
+  {
+    "question": "In minimal change nephrotic syndrome, all are true EXCEPT:",
+    "options": [
+      "Hypo-albuminemia",
+      "Low serum complements",
+      "Hyperlipidemia",
+      "Heavy proteinuria",
+      "Normal kidney function"
+    ],
+    "correct": 1,
+    "explanation": "In MCNS, serum complement levels (C3, C4) are NORMAL. Low serum complement is characteristic of membranoproliferative GN, SLE nephritis, or post-streptococcal GN, not MCNS. Hypoalbuminemia, hyperlipidemia, heavy proteinuria, and normal kidney function are all typical features of MCNS."
+  },
+  {
+    "question": "In minimal lesion nephrotic syndrome, all are true EXCEPT:",
+    "options": [
+      "There is proteinuria without gross hematuria",
+      "Serum BUN and creatinine are normal",
+      "Ascites could be present",
+      "Hypertension is a common feature",
+      "Liable for relapses"
+    ],
+    "correct": 3,
+    "explanation": "Hypertension is NOT a common feature of minimal change nephrotic syndrome; most patients are normotensive or have only transient mild hypertension. MCNS is characterized by proteinuria without gross hematuria, normal BUN and creatinine, possible ascites from severe edema, and a high relapse rate."
+  },
+  {
+    "question": "In nephrotic syndrome all the following is true EXCEPT:",
+    "options": [
+      "The prognosis is better in children than in adults",
+      "The patients are more than usually susceptible to bacterial infection",
+      "The Plasma level of IgG may be diminished",
+      "Highly selective proteinuria increases the likelihood of complete recovery",
+      "Remission occur only with minimal change lesion"
+    ],
+    "correct": 4,
+    "explanation": "Remissions can occur with other forms of nephrotic syndrome besides minimal change disease, though they are less common and less complete. The prognosis is indeed better in children, patients are susceptible to infections (due to urinary IgG loss and immunosuppressive therapy), IgG levels may be diminished, and highly selective proteinuria is a favorable prognostic indicator."
+  },
+  {
+    "question": "One of the following findings is not typical of minimal lesion nephrotic syndrome:",
+    "options": [
+      "Gross hematuria and hypertension",
+      "Normal serum complement",
+      "Generalized edema",
+      "Proteinuria > 3000 mg/m2/day",
+      "High serum cholesterol level"
+    ],
+    "correct": 0,
+    "explanation": "Gross hematuria and hypertension are NOT typical of minimal change nephrotic syndrome. MCNS typically presents with selective proteinuria, normal serum complement, generalized edema, and hypercholesterolemia. Gross hematuria and hypertension would suggest other glomerular diseases such as IgA nephropathy or post-streptococcal GN."
+  },
+  {
+    "question": "The most common clinical presentation of membranous nephropathy in children is:",
+    "options": [
+      "Asymptomatic microscopic hematuria",
+      "Nephritic syndrome",
+      "Nephrotic syndrome",
+      "Complete absence of symptoms with normal results on urine analysis",
+      "Acute renal failure"
+    ],
+    "correct": 2,
+    "explanation": "Membranous nephropathy most commonly presents as nephrotic syndrome, characterized by heavy proteinuria, hypoalbuminemia, edema, and hyperlipidemia. It is the second most common cause of nephrotic syndrome in adults but is less common in children. Microscopic hematuria may accompany the nephrotic syndrome but is not the primary presentation."
+  },
+  {
+    "question": "All of the following are true about nephrotic syndrome EXCEPT:",
+    "options": [
+      "Elevated serum cholesterol",
+      "Hypoalbuminemia",
+      "Reduced renal sodium reabsorption",
+      "85% experience minimal change disease",
+      "Heavy albuminuria"
+    ],
+    "correct": 2,
+    "explanation": "In nephrotic syndrome, there is INCREASED renal sodium reabsorption, not reduced, which contributes to edema formation. Elevated serum cholesterol (due to increased hepatic lipoprotein synthesis), hypoalbuminemia (from urinary protein loss), heavy albuminuria, and the fact that about 85% of children with nephrotic syndrome have minimal change disease are all true statements."
+  },
+  {
+    "question": "All the following is true about minimal change nephrotic syndrome EXCEPT:",
+    "options": [
+      "More common in males",
+      "Always associated with hypertension",
+      "Liable for many relapses",
+      "Increased susceptibility to infection",
+      "It usually occurs between the age of 2 to 7 years"
+    ],
+    "correct": 1,
+    "explanation": "MCNS is NOT always associated with hypertension; in fact, most patients are normotensive. Hypertension is uncommon in MCNS and its presence should raise suspicion for alternative diagnoses. MCNS is more common in males (2:1 ratio), prone to relapses, associated with increased infection risk (due to low IgG and immunosuppressive therapy), and typically presents between ages 2-7 years."
+  },
+  {
+    "question": "In treating the first attack of minimal change nephrotic syndrome it is advisable to start with:",
+    "options": [
+      "Corticosteroid therapy immediately",
+      "Indomethacin",
+      "Chlorambucil",
+      "Anticoagulants",
+      "Furosemide and or spironolactone"
+    ],
+    "correct": 0,
+    "explanation": "Corticosteroid therapy (prednisone 2 mg/kg/day, max 60 mg) should be started immediately for the first attack of MCNS, as it induces remission in over 90% of cases within 2-4 weeks. Indomethacin and chlorambucil are not first-line agents. Diuretics may be used adjunctively for severe edema but are not the primary treatment."
+  },
+  {
+    "question": "In nephrotic syndrome you can find the following:",
+    "options": [
+      "Heavy proteinuria",
+      "Hypoproteinemia",
+      "Generalized edema",
+      "Hypercholesterolemia",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Nephrotic syndrome is characterized by all four features: heavy proteinuria (>40 mg/m²/hr or protein/creatinine ratio >2), hypoproteinemia (especially hypoalbuminemia), generalized edema (due to decreased oncotic pressure), and hypercholesterolemia (due to increased hepatic lipoprotein synthesis). Therefore, 'All of the above' is correct."
+  },
+  {
+    "question": "The most characteristic finding in urine analysis in post streptococcal glomerulonephritis is:",
+    "options": [
+      "Small volume",
+      "High specific gravity",
+      "Red cells in excess",
+      "Red cell casts",
+      "Proteinuria"
+    ],
+    "correct": 3,
+    "explanation": "Red cell casts are the most characteristic and pathognomonic urinary finding in post-streptococcal glomerulonephritis, as they specifically indicate glomerular origin of bleeding. While small volume, high specific gravity, excess red cells, and proteinuria are also present, RBC casts are the most specific finding that distinguishes glomerular disease from other causes of hematuria."
+  },
+  {
+    "question": "In classical acute nephritis in the children all are true EXCEPT:",
+    "options": [
+      "Hypertension",
+      "Macroscopic hematuria",
+      "Follows streptococcal infection",
+      "Management is by corticosteroid therapy",
+      "Needs fluid restriction"
+    ],
+    "correct": 3,
+    "explanation": "Acute post-streptococcal glomerulonephritis is NOT treated with corticosteroids; management is supportive with fluid restriction, salt restriction, and blood pressure control. Corticosteroids are not beneficial and may be harmful. Hypertension, macroscopic (cola-colored) hematuria, preceding streptococcal infection, and need for fluid restriction are all true features."
+  },
+  {
+    "question": "Of the following laboratory findings, one is not typical of post streptococcal nephritis:",
+    "options": [
+      "Gross hematuria",
+      "Normal serum complement",
+      "Oliguria",
+      "Mild proteinuria",
+      "RBC casts in urine"
+    ],
+    "correct": 1,
+    "explanation": "In post-streptococcal glomerulonephritis, serum complement C3 is DEPRESSED (low), not normal. C3 typically returns to normal within 6-8 weeks. A normal serum complement would argue against the diagnosis. Gross hematuria, oliguria, mild proteinuria, and RBC casts are all typical findings in PSGN."
+  },
+  {
+    "question": "A 10-year-old boy is noted to have hematuria and proteinuria on a routine physical examination. His findings are minimal edema and hypertension the most likely diagnosis is:",
+    "options": [
+      "Acute hemolytic anemia",
+      "Acute glomerulonephritis",
+      "Acute hepatitis",
+      "Acute cystitis",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "The triad of hematuria, proteinuria, and hypertension with edema is classic for acute glomerulonephritis. Acute hemolytic anemia would present with pallor and jaundice, not hematuria with hypertension. Acute hepatitis would present with jaundice and liver dysfunction. Acute cystitis presents with dysuria and frequency without hypertension or edema."
+  },
+  {
+    "question": "A child had impetigo followed two weeks later by oliguria, red urine and hypertension probable diagnosis is:",
+    "options": [
+      "Nephrotic syndrome",
+      "Hereditary nephritis",
+      "Acute post-streptococcal glomerulonephritis",
+      "IgA nephritis",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Impetigo (streptococcal skin infection) followed 1-3 weeks later by oliguria, hematuria, and hypertension is the classic presentation of acute post-streptococcal glomerulonephritis. Nephrotic syndrome presents with edema and heavy proteinuria without hypertension as a primary feature. IgA nephritis coincides with infection rather than following it by weeks."
+  },
+  {
+    "question": "For the foregoing case the urinary findings include:",
+    "options": [
+      "Increased specific gravity",
+      "RBC casts",
+      "Proteinuria",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "In acute post-streptococcal glomerulonephritis, all three urinary findings are present: increased specific gravity (due to oliguria and concentrated urine), RBC casts (pathognomonic for glomerular inflammation), and proteinuria (usually mild to moderate). Therefore, 'All of the above' is the correct answer."
+  },
+  {
+    "question": "The following is true regarding post-streptococcal glomerulonephritis:",
+    "options": [
+      "Mostly self-limiting disease",
+      "Needs to drink liberal fluids during disease",
+      "Never turns into renal failure",
+      "Heavy proteinuria is a constant finding",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Post-streptococcal glomerulonephritis is mostly self-limiting, with over 95% of children achieving complete recovery. Fluids should be restricted, not liberal, due to oliguria and edema. While rare, it can occasionally progress to renal failure. Proteinuria is typically mild, not heavy. Thus, the correct statement is that it is mostly self-limiting."
+  },
+  {
+    "question": "Which of the following is not a cause of hematuria?",
+    "options": [
+      "Urinary tract infections",
+      "Renal Stones",
+      "Acute post-streptococcal glomerulonephritis",
+      "Idiopathic thrombocytopenic purpura",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Idiopathic thrombocytopenic purpura (ITP) is not a typical cause of hematuria. ITP primarily causes mucocutaneous bleeding (petechiae, purpura, epistaxis, gum bleeding) due to thrombocytopenia, but hematuria is not a characteristic feature. UTIs, renal stones, and post-streptococcal GN are all well-established causes of hematuria."
+  },
+  {
+    "question": "The following are causes of red urine EXCEPT:",
+    "options": [
+      "Hematuria",
+      "Hemoglobinuria",
+      "Homogentisic acid",
+      "Food as beets, blueberries and colorings",
+      "Drugs: Rifampicin, chloroquine"
+    ],
+    "correct": 2,
+    "explanation": "Homogentisic acid (in alkaptonuria) causes urine to turn dark brown or black on standing, not typically red. Hematuria causes red urine from RBCs, hemoglobinuria causes red/dark urine from free hemoglobin, beets cause red urine (beeturia), and rifampicin causes orange-red urine. Homogentisic acid is the exception as it produces black rather than red discoloration."
+  },
+  {
+    "question": "Presence of urinary RBCs casts indicates that the origin of hematuria is:",
+    "options": [
+      "The glomeruli",
+      "The renal pelvis",
+      "The ureters",
+      "The urinary bladder",
+      "The urethra"
+    ],
+    "correct": 0,
+    "explanation": "RBC casts are formed in the renal tubules from glomerular-derived blood and are pathognomonic for glomerular disease. They indicate that the hematuria originates from the glomeruli. Hematuria from the renal pelvis, ureters, bladder, or urethra does not produce RBC casts because the blood does not pass through the tubular system where casts are formed."
+  },
+  {
+    "question": "Mark the correct statement on hematuria:",
+    "options": [
+      "It is the presence of RBCs in urine",
+      "It is the presence of hemoglobin in urine",
+      "It always causes red urine",
+      "Clear urine excludes it",
+      "Terminal hematuria indicates urethritis"
+    ],
+    "correct": 0,
+    "explanation": "Hematuria is defined as the presence of red blood cells in urine. Hemoglobin in urine is hemoglobinuria, a different condition. Hematuria does not always cause red urine (microscopic hematuria is not visible), and clear urine does not exclude it. Terminal hematuria suggests bladder neck or posterior urethral pathology, not specifically urethritis."
+  },
+  {
+    "question": "Glomerular hematuria is characterized by all of the following EXCEPT:",
+    "options": [
+      "Brown or cola colored urine",
+      "Dysmorphic RBCs",
+      "Dysuria and disturbed urine stream",
+      "Proteinuria 2+ or more",
+      "Hypertension may be present"
+    ],
+    "correct": 2,
+    "explanation": "Dysuria and disturbed urine stream suggest lower urinary tract pathology (e.g., UTI, urethritis), not glomerular hematuria. Glomerular hematuria is characterized by brown/cola-colored urine, dysmorphic RBCs (from passage through the glomerular basement membrane), significant proteinuria (2+ or more), and possible hypertension from the underlying glomerular disease."
+  },
+  {
+    "question": "Painful terminal hematuria may be due to:",
+    "options": [
+      "Glomerulonephritis",
+      "Nephrotic syndrome",
+      "Renal tumour",
+      "Bladder stone",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Painful terminal hematuria is characteristic of bladder stones. The stone irritates the bladder neck and posterior urethra at the end of micturition, causing pain and terminal bleeding. Glomerulonephritis and nephrotic syndrome cause painless hematuria. Renal tumors typically cause painless total hematuria."
+  },
+  {
+    "question": "An incorrect statement about acute renal failure is:",
+    "options": [
+      "Prerenal causes are the most frequent causes in children",
+      "Urine sodium excretion can differentiate between prerenal and renal causes",
+      "Bladder catheterization is essential to exclude retention",
+      "Diuretics are absolutely contraindicated",
+      "Decision to start and maintain dialysis depends on the clinical examination"
+    ],
+    "correct": 3,
+    "explanation": "Diuretics are NOT absolutely contraindicated in acute renal failure. They may be used to manage fluid overload, convert oliguric to non-oliguric ARF, and aid in potassium excretion. Prerenal causes are indeed the most common in children, urine sodium helps differentiate prerenal (low FeNa) from intrinsic (high FeNa) causes, bladder catheterization excludes post-renal obstruction, and dialysis decisions are clinical."
+  },
+  {
+    "question": "Etiology of prerenal acute renal failure include all the following EXCEPT:",
+    "options": [
+      "Haemorrhage",
+      "Septicemia",
+      "Systemic lupus erythematosus",
+      "Disseminated intravascular coagulation",
+      "Respiratory distress syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Systemic lupus erythematosus (SLE) causes INTRINSIC renal failure (lupus nephritis), not prerenal ARF. SLE directly damages the glomeruli and renal parenchyma. Hemorrhage, septicemia (via vasodilation and hypoperfusion), DIC (microvascular thrombosis and hypoperfusion), and RDS (hypoxemia and hypoperfusion) all cause prerenal ARF through decreased renal perfusion."
+  },
+  {
+    "question": "In chronic renal failure all are true EXCEPT:",
+    "options": [
+      "Short stature",
+      "Normochromic normocytic anemia",
+      "Hyperphosphatemia",
+      "Hypertension",
+      "Increase in creatinine clearance"
+    ],
+    "correct": 4,
+    "explanation": "Chronic renal failure causes a DECREASE in creatinine clearance, not an increase, as the glomerular filtration rate declines progressively. Short stature (growth failure), normochromic normocytic anemia (from decreased erythropoietin), hyperphosphatemia (from decreased phosphate excretion), and hypertension are all well-recognized features of CRF."
+  },
+  {
+    "question": "In chronic renal failure there are all EXCEPT:",
+    "options": [
+      "Short stature",
+      "Normochromic normocytic anaemia",
+      "Hypophosphatasia",
+      "Hypertension",
+      "Renal osteodystrophy"
+    ],
+    "correct": 2,
+    "explanation": "Hypophosphatasia is a rare inherited metabolic disorder affecting bone mineralization, not a feature of CRF. CRF causes hyperphosphatemia (not hypophosphatasia), along with short stature from growth failure, normochromic normocytic anemia from decreased erythropoietin, hypertension, and renal osteodystrophy from secondary hyperparathyroidism."
+  },
+  {
+    "question": "In chronic renal failure:",
+    "options": [
+      "Bone disease is a common feature",
+      "Bone disease is related to low serum albumin",
+      "Serum phosphate is low",
+      "Tetany is common due to hypocalcemia",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Bone disease (renal osteodystrophy) is a common feature of CRF, resulting from hyperphosphatemia, hypocalcemia, decreased 1,25-dihydroxyvitamin D, and secondary hyperparathyroidism. Bone disease is related to these mineral abnormalities, not to low serum albumin. Serum phosphate is high (not low), and tetany is uncommon despite hypocalcemia because metabolic acidosis increases ionized calcium."
+  },
+  {
+    "question": "A 13-year-old girl presents with fever. Vomiting severe irritative voiding symptoms and pronounced costovertebral angle tenderness. she has leukocytosis with a left shift. urinalysis shows pyuria, mild hematuria and gram-negative bacteriuria. which of the following drugs would best treat this patient's condition:",
+    "options": [
+      "Ampicillin and gentamicin",
+      "Erythromycin",
+      "Steroids at 2mg/kg/day",
+      "Phenazopyridine and nitrofurantoin",
+      "Tetracycline"
+    ],
+    "correct": 0,
+    "explanation": "This presentation is classic for acute pyelonephritis (fever, CVA tenderness, voiding symptoms, gram-negative bacteriuria). Ampicillin plus gentamicin provides excellent empiric coverage for the most common uropathogens including E. coli and is the standard parenteral regimen for acute pyelonephritis. Erythromycin and tetracycline are not effective against gram-negatives. Nitrofurantoin does not achieve adequate tissue levels for pyelonephritis."
+  },
+  {
+    "question": "Polyuria Can be found with:",
+    "options": [
+      "Diabetes mellitus",
+      "Urinary tract infection",
+      "Early phase of acute renal failure",
+      "First day of acute glomerulonephritis",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Diabetes mellitus causes true polyuria through osmotic diuresis from glucosuria. UTI causes frequency and urgency (polyuria mistaken), not true increased urine volume. Acute renal failure and acute glomerulonephritis both cause oliguria (decreased urine output), not polyuria."
+  },
+  {
+    "question": "The diaper of a newborn infant shows orange staining the most common cause is:",
+    "options": [
+      "Haematuria",
+      "Jaundice",
+      "Bleeding tendency",
+      "Uricosuria",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Uricosuria (uric acid crystals in urine) is the most common cause of orange staining ('brick dust' appearance) on newborn diapers. This is a normal, benign finding resulting from high uric acid excretion in neonates. Hematuria causes red staining, jaundice causes yellow staining, and bleeding tendency would cause red/blood staining."
+  },
+  {
+    "question": "Acute glomerulonephritis is characterized by the following except:",
+    "options": [
+      "Oliguria",
+      "Polyuria",
+      "Hypertension",
+      "Hematuria and RBCs casts"
+    ],
+    "correct": 1,
+    "explanation": "Acute glomerulonephritis is characterized by oliguria (decreased urine output), not polyuria. The decreased GFR from glomerular inflammation leads to reduced urine production. Hypertension (from fluid retention and RAAS activation) and hematuria with RBC casts (from glomerular bleeding) are characteristic features of AGN."
+  },
+  {
+    "question": "In post-streptococcal glomerulonephritis there is:",
+    "options": [
+      "History of Tonsillitis",
+      "High ASO titer",
+      "Depressed C3 level",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Post-streptococcal glomerulonephritis is characterized by all three findings: a history of preceding streptococcal tonsillitis or skin infection, elevated ASO titer (indicating recent streptococcal infection), and depressed C3 complement level (due to immune complex consumption). Therefore, 'All of the above' is correct."
+  },
+  {
+    "question": "Treatment of post-streptococcal glomerulonephritis include:",
+    "options": [
+      "Fluid restriction",
+      "Control of hypertension",
+      "Decrease protein and salt in the diet",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Treatment of PSGN is supportive and includes all three measures: fluid restriction (to manage edema and prevent fluid overload), control of hypertension (with antihypertensives if needed), and dietary modification with reduced protein and salt intake. There is no specific curative treatment; the disease is self-limiting in most cases."
+  },
+  {
+    "question": "Nephrotic syndrome is characterized by the following except:",
+    "options": [
+      "Heavy proteinuria",
+      "Acidosis",
+      "Edema",
+      "Hypoproteinemia",
+      "Hypercholesterolemia"
+    ],
+    "correct": 1,
+    "explanation": "Acidosis is NOT a characteristic feature of nephrotic syndrome. The four defining features are heavy proteinuria, hypoalbuminemia (hypoproteinemia), edema, and hypercholesterolemia. Acidosis is more characteristic of renal tubular acidosis or chronic renal failure, not nephrotic syndrome."
+  },
+  {
+    "question": "The daily dose of oral corticosteroids for treatment of nephrotic syndrome is:",
+    "options": [
+      "20 mg/kg body weight",
+      "2 mg/kg body weight (maximum dose is 60 mg)",
+      "200 mg regardless the body weight",
+      "0.1-0.2 mg/kg body weight"
+    ],
+    "correct": 1,
+    "explanation": "The standard daily dose of oral prednisone for initial treatment of nephrotic syndrome is 2 mg/kg body weight per day (maximum 60 mg/day), as per ISKDC and KDIGO guidelines. This dose is given for 4-6 weeks followed by alternate-day tapering. 20 mg/kg is too high, 200 mg fixed dose is incorrect, and 0.1-0.2 mg/kg is far too low."
+  },
+  {
+    "question": "Acute renal failure is likely to develop after:",
+    "options": [
+      "Acute gastroenteritis and severe dehydration",
+      "Excessive burns",
+      "Severe form of acute glomerulonephritis",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "All three conditions can lead to acute renal failure. Severe dehydration from gastroenteritis causes prerenal ARF (and can progress to intrinsic ARF). Excessive burns cause ARF through hypovolemia, myoglobinuria, and systemic inflammation. Severe acute glomerulonephritis directly damages the glomeruli causing intrinsic ARF."
+  },
+  {
+    "question": "The following conditions cause pitting edema except:",
+    "options": [
+      "Congestive heart failure",
+      "Nephrotic syndrome",
+      "Liver cirrhosis",
+      "Kwashiorkor",
+      "Filariasis (lymphatic obstruction)"
+    ],
+    "correct": 4,
+    "explanation": "Filariasis causes lymphatic obstruction leading to lymphedema, which is characteristically NON-pitting. CHF, nephrotic syndrome, liver cirrhosis, and kwashiorkor all cause pitting edema through fluid accumulation in the interstitial space due to altered hydrostatic or oncotic pressures. Lymphedema from lymphatic obstruction is firm and non-pitting."
+  },
+  {
+    "question": "In classical acute nephritis in children all are true except:",
+    "options": [
+      "Hypertension",
+      "Macroscopic haematuria",
+      "Follows streptococcal infection",
+      "Management is by corticosteroid therapy",
+      "Needs fluid restriction"
+    ],
+    "correct": 3,
+    "explanation": "Corticosteroid therapy is NOT indicated for acute post-streptococcal glomerulonephritis. Management is supportive with fluid and salt restriction, blood pressure control, and treatment of complications. Hypertension, macroscopic hematuria (cola-colored urine), preceding streptococcal infection, and the need for fluid restriction are all true features of classical acute nephritis."
+  },
+  {
+    "question": "Nephrotic syndrome is characterized by:",
+    "options": [
+      "Generalized oedema",
+      "Hyperproteinemia",
+      "Hypocholesterolemia",
+      "Increase in low molecular weight proteins in blood",
+      "All of the above"
+    ],
+    "correct": 0,
+    "explanation": "Nephrotic syndrome is characterized by generalized edema from hypoalbuminemia and decreased oncotic pressure. Hyperproteinemia is incorrect (the correct finding is hypoproteinemia). Hypocholesterolemia is incorrect (hypercholesterolemia occurs). Low molecular weight proteins are lost in urine, not increased in blood. Only generalized edema among the listed options is correct."
+  },
+  {
+    "question": "Total amount of plasma proteins in blood ranges from:",
+    "options": [
+      "2-4 gm%",
+      "9-11 gm%",
+      "6-8 gm%",
+      "5-12.5 gm%",
+      "1-3 gm%"
+    ],
+    "correct": 2,
+    "explanation": "The normal range for total plasma proteins is 6-8 gm% (g/dL). Albumin constitutes approximately 3.5-5.0 g/dL and globulins 2.0-3.5 g/dL. Values of 2-4 or 1-3 g/dL are too low (seen in conditions like nephrotic syndrome or malnutrition), while 9-11 g/dL is too high (seen in conditions like multiple myeloma)."
+  },
+  {
+    "question": "The findings one might expect in a 6-year-old boy with brown urine and healing impetigo include each of the following except:",
+    "options": [
+      "Hypertension",
+      "Dyspnea",
+      "Periorbital edema",
+      "Polyuria"
+    ],
+    "correct": 3,
+    "explanation": "This clinical scenario describes acute post-streptococcal glomerulonephritis following impetigo. Expected findings include hypertension (from fluid retention), dyspnea (from pulmonary edema or congestive heart failure), and periorbital edema. Polyuria is NOT expected; instead, oliguria (decreased urine output) is the hallmark of AGN due to reduced glomerular filtration."
+  },
+  {
+    "question": "In renal Rickets (Glomerular) there is:",
+    "options": [
+      "Early onset of rickets",
+      "Good response to vitamin",
+      "High serum calcium",
+      "High serum phosphorus",
+      "Low serum alkaline phosphatase"
+    ],
+    "correct": 3,
+    "explanation": "In glomerular (renal) rickets, there is high serum phosphorus due to decreased renal phosphate excretion. This contrasts with tubular rickets where phosphate is low. Renal rickets has late (not early) onset, poor response to conventional vitamin D therapy (requires active form calcitriol), low (not high) serum calcium, and high (not low) alkaline phosphatase."
+  },
+  {
+    "question": "The most characteristic finding in urine analysis in poststreptococcal glomerulonephritis is:",
+    "options": [
+      "Small volume",
+      "High specific gravity",
+      "Red cells in excess",
+      "Red cell casts",
+      "Proteinuria"
+    ],
+    "correct": 3,
+    "explanation": "Red cell casts are the most characteristic and specific urinary finding in poststreptococcal glomerulonephritis, as they are pathognomonic for glomerular bleeding. While small volume, high specific gravity, excess red cells, and proteinuria all occur, RBC casts are the most diagnostically specific finding that distinguishes glomerular disease from other causes of hematuria."
+  },
+  {
+    "question": "In acute glomerulonephritis, all are true except",
+    "options": [
+      "May be related to prior group A, β haemolytic streptococcal infection",
+      "Results in significant oliguria in the majority of cases",
+      "Is a recognized cause of headache and convulsions",
+      "Is an indication for long-term penicillin prophylaxis",
+      "Results in hypocomplementaemia"
+    ],
+    "correct": 3,
+    "explanation": "Acute post-streptococcal glomerulonephritis is NOT an indication for long-term penicillin prophylaxis; that is indicated for rheumatic fever, not PSGN. PSGN does not recur with subsequent streptococcal infections in the same way. AGN is related to prior GAS infection, can cause headache and convulsions (hypertensive encephalopathy), and causes hypocomplementemia. Significant oliguria occurs but not in the majority of cases."
+  },
+  {
+    "question": "All the following are recognized features of Henoch-Schonlein purpura except:",
+    "options": [
+      "A maculopapular skin rash over the buttocks",
+      "Abdominal colic",
+      "Generalized lymphadenopathy",
+      "Hematuria"
+    ],
+    "correct": 2,
+    "explanation": "Generalized lymphadenopathy is NOT a recognized feature of Henoch-Schonlein purpura (HSP). The classic tetrad of HSP includes palpable purpura (typically over buttocks and lower extremities), abdominal colic, arthritis/arthralgia, and renal involvement (hematuria). Generalized lymphadenopathy suggests other conditions such as malignancy or systemic infection."
+  },
+  {
+    "question": "A false statement about acute post-streptococcal glomerulonephritis is:",
+    "options": [
+      "There is oliguria",
+      "Hypertension is rare",
+      "Congestive heart failure may occur",
+      "Renal function may be impaired"
+    ],
+    "correct": 1,
+    "explanation": "Hypertension is COMMON in acute post-streptococcal glomerulonephritis, not rare. It occurs in approximately 50-80% of cases due to fluid retention and RAAS activation. The statement that 'hypertension is rare' is therefore false. Oliguria, potential congestive heart failure (from volume overload), and transient renal impairment are all true features of APSGN."
+  },
+  {
+    "question": "Which of the following is not a cause of hematuria:",
+    "options": [
+      "Urinary tract infection",
+      "Renal stones",
+      "Acute post-streptococcal glomerulonephritis",
+      "Idiopathic thrombocytopenic purpura",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Idiopathic thrombocytopenic purpura (ITP) is not a typical cause of hematuria. ITP causes mucocutaneous bleeding (petechiae, purpura, epistaxis) from thrombocytopenia, but hematuria is not a characteristic manifestation. UTI, renal stones, and post-streptococcal GN are all well-established causes of hematuria."
+  },
+  {
+    "question": "Minimal lesion nephrotic syndrome is characterized by all except:",
+    "options": [
+      "Pitting oedema is a constant feature",
+      "Hypertension is always present",
+      "Selective proteinuria exceeding 3 g/24 hours",
+      "Relapses may occur"
+    ],
+    "correct": 1,
+    "explanation": "Hypertension is NOT always present in minimal change nephrotic syndrome; in fact, most patients are normotensive. Hypertension is uncommon in MCNS and its presence should suggest an alternative diagnosis. Pitting edema, selective (not non-selective) proteinuria exceeding nephrotic range, and frequent relapses are characteristic features of MCNS."
+  },
+  {
+    "question": "In chronic renal failure there are all except:",
+    "options": [
+      "Short stature",
+      "Normochromic normocytic anemia",
+      "Hypophosphatemia",
+      "Hypertension",
+      "Increase in creatinine clearance"
+    ],
+    "correct": 4,
+    "explanation": "In chronic renal failure, creatinine clearance is DECREASED (not increased) as GFR progressively declines. This is a fundamental defining feature of CRF. Short stature (growth failure), normochromic normocytic anemia (from decreased EPO), and hypertension are all true features. Hypophosphatemia is also incorrect (CRF causes hyperphosphatemia), but the increase in creatinine clearance is the most fundamentally wrong statement."
+  },
+  {
+    "question": "In renal osteodystrophy, all the following are true except:",
+    "options": [
+      "Radiological findings of rickets in bones",
+      "High alkaline phosphatase activity",
+      "Low serum phosphorous",
+      "Impaired skeletal growth (growth failure)",
+      "Anemia"
+    ],
+    "correct": 2,
+    "explanation": "In renal osteodystrophy, serum phosphorus is HIGH (not low) due to decreased renal phosphate excretion. The high phosphorus contributes to secondary hyperparathyroidism. Radiological rickets findings, elevated alkaline phosphatase (from increased bone turnover), impaired skeletal growth, and anemia (from decreased EPO) are all true features of renal osteodystrophy."
+  },
+  {
+    "question": "Of the following findings one is NOT typical of minimal lesion nephrotic syndrome",
+    "options": [
+      "Gross hematuria and hypertension",
+      "Normal serum complement",
+      "Generalized edema",
+      "Proteinuria > 3000 mg/ mV day",
+      "High serum cholesterol level"
+    ],
+    "correct": 0,
+    "explanation": "Gross hematuria and hypertension are NOT typical of minimal change nephrotic syndrome. MCNS characteristically presents with selective proteinuria, normal complement levels, generalized edema, and hypercholesterolemia. Gross hematuria and hypertension would suggest other glomerular pathologies such as IgA nephropathy, membranoproliferative GN, or post-streptococcal GN."
+  },
+  {
+    "question": "Mark the correct statement on hematuria",
+    "options": [
+      "It is the presence of RBCs in urine",
+      "It is the presence of hemoglobin in urine",
+      "It always causes red urine",
+      "Clear urine excludes it",
+      "Terminal hematuria indicates urethritis"
+    ],
+    "correct": 0,
+    "explanation": "Hematuria is defined as the presence of red blood cells (RBCs) in urine. Option B describes hemoglobinuria, not hematuria. Microscopic hematuria does not cause visible red urine, and clear-appearing urine does not exclude microscopic hematuria. Terminal hematuria typically indicates bladder neck or posterior urethral pathology, not specifically urethritis."
+  },
+  {
+    "question": "In Nephrotic Syndrome all the following is true EXCEPT:",
+    "options": [
+      "the prognosis is better in children than in adults",
+      "the patients are more than usually susceptible lo bacterial",
+      "the plasma level of 'IgG may be diminished",
+      "highly selective proteinuria increases the likelihood of complete recovery",
+      "Remissions occur only with the minimal change lesion"
+    ],
+    "correct": 4,
+    "explanation": "Remissions can occur with other histologic lesions besides minimal change disease, such as focal segmental glomerulosclerosis or membranoproliferative GN, though less commonly. The prognosis is indeed better in children, patients are susceptible to bacterial infections due to urinary loss of IgG and opsonins, IgG levels may be diminished from urinary losses, and highly selective proteinuria does favor a good prognosis."
+  },
+  {
+    "question": "Which of these features is associated with renal osteodystrophy?",
+    "options": [
+      "Increased gut absorption of calcium",
+      "Distal myopathy",
+      "Hypophosphatemia",
+      "increased serum alkaline phosphatase",
+      "Skeletal features of osteomalacia arid hyperparathyroidism"
+    ],
+    "correct": 4,
+    "explanation": "Renal osteodystrophy is characterized by skeletal features of both osteomalacia (from impaired 1,25-vitamin D synthesis) and secondary hyperparathyroidism (from hypocalcemia and hyperphosphatemia). Gut calcium absorption is decreased, not increased. Proximal (not distal) myopathy may occur. Phosphorus is elevated, not low, and alkaline phosphatase is increased."
+  },
+  {
+    "question": "Normal or elevated 25-hydroxy D3 with depressed 1,25 VD3 is found in:",
+    "options": [
+      "nutritional rickets",
+      "vitamin D dependent rickets-1",
+      "vitamin D dependent rickets- II",
+      "X-linked hypophosphatemic rickets",
+      "one of the above"
+    ],
+    "correct": 1,
+    "explanation": "Vitamin D-dependent rickets type 1 is caused by a deficiency of 1-alpha-hydroxylase in the kidney, resulting in normal or elevated 25-OH vitamin D but low 1,25-OH vitamin D. Nutritional rickets shows low 25-OH D, VDDR-II shows elevated 1,25-D (due to VDR mutation with lost feedback), and X-linked hypophosphatemic rickets shows inappropriately normal or low 1,25-D but the primary defect is phosphate wasting."
+  },
+  {
+    "question": "One of the following laboratory findings one is NOT typical of post streptococcal nephritis",
+    "options": [
+      "Gross hematuria",
+      "Normal serum complement",
+      "Oliguria",
+      "Mild proteinuria",
+      "RBC casts in urine."
+    ],
+    "correct": 1,
+    "explanation": "A normal serum complement is NOT typical of post-streptococcal glomerulonephritis; C3 is characteristically depressed in over 90% of cases due to immune complex consumption. Gross hematuria, oliguria, mild proteinuria, and RBC casts are all typical findings in PSGN."
+  },
+  {
+    "question": "The best treatment for pediatric patients showing evidence of end-stage renal disease (ESRD) is",
+    "options": [
+      "long-term peritoneal dialysis and a low-protein diet",
+      "long-term hemodialysis and a low-protein diet",
+      "a low-protein diet and dihydroxycholecalciferol (vitamin D3)",
+      "living related donor renal transplantation",
+      "renal transplantation with a cadaveric kidney"
+    ],
+    "correct": 3,
+    "explanation": "Living related donor renal transplantation is the best treatment for pediatric ESRD, offering the best long-term outcomes, growth potential, and quality of life. Dialysis (peritoneal or hemodialysis) is a bridge to transplantation, not the definitive treatment. Cadaveric kidneys have inferior graft survival compared to living related donor kidneys."
+  },
+  {
+    "question": "A six year old is admitted unconscious. His breath smells of acetone. Blood gas estimation is: pH 7.05, pCO2 24 mmHg, bicarbonate 12 mmol/l, blood glucose 500 mg/dl. Which of the following statements is correct?",
+    "options": [
+      "Urea likely to be low",
+      "He has a respiratory acidosis",
+      "He has metabolic alkalosis",
+      "He should be treated with subcutaneous insulin",
+      "He has a metabolic acidosis"
+    ],
+    "correct": 4,
+    "explanation": "This child has diabetic ketoacidosis (DKA), evidenced by acetone breath, pH 7.05 (severe acidemia), low pCO2 of 24 mmHg (respiratory compensation), low bicarbonate of 12 mmol/L, and blood glucose of 500 mg/dL. This is a metabolic acidosis with appropriate respiratory compensation (hyperventilation lowering pCO2), not a respiratory acidosis or metabolic alkalosis. DKA requires IV insulin, not subcutaneous."
+  },
+  {
+    "question": "The following statements are consistent with nephrotic syndrome except",
+    "options": [
+      "puffiness of eye lids",
+      "Serum albumen of 1.6 gm%",
+      "serum cholesterol of 440 mg%",
+      "Total protein in 24 hours urine of 4mg",
+      "Normal urine volume"
+    ],
+    "correct": 3,
+    "explanation": "A total protein in 24-hour urine of only 4 mg is inconsistent with nephrotic syndrome, which requires massive proteinuria exceeding 40 mg/m2/hr (typically >1 g/24 hr). Puffiness of eyelids (edema), serum albumin of 1.6 gm% (hypoalbuminemia), cholesterol of 440 mg% (hyperlipidemia), and normal urine volume can all be seen in nephrotic syndrome."
+  },
+  {
+    "question": "The true statement about hematuria:",
+    "options": [
+      "Less than 5 RBC per high power field",
+      "Hematuria means renal disease",
+      "Hematuria with proteinuria indicate kidney source",
+      "Does not occur in fever, exercise, and gastroenteritis"
+    ],
+    "correct": 2,
+    "explanation": "Hematuria with proteinuria indicates a kidney (glomerular) source, as proteinuria suggests glomerular filtration of proteins alongside RBCs. Less than 5 RBC/HPF is normal, not hematuria (which requires >5 RBC/HPF). Hematuria does not always mean renal disease (can be from lower UT), and hematuria can occur with fever, exercise, and gastroenteritis."
+  },
+  {
+    "question": "A female child is diagnosed with hyperkalemia. Physical examination reveals irregular and rapid heart rates. The serum K level is 7.5 mEq/L. The first drug of choice in this patient:",
+    "options": [
+      "Intravenous glucose and insulin",
+      "Oral kayexalate",
+      "Slow intravenous calcium gluconate with ECG monitoring",
+      "Intravenous sodium bicarbonate",
+      "Intravenous salbutamol"
+    ],
+    "correct": 2,
+    "explanation": "In life-threatening hyperkalemia (K 7.5 mEq/L) with cardiac arrhythmias, IV calcium gluconate is the first-line treatment to stabilize the myocardial membrane and prevent fatal arrhythmias. While glucose+insulin, sodium bicarbonate, and salbutamol shift potassium intracellularly, and kayexalate removes potassium from the body, calcium gluconate acts fastest to protect the heart."
+  },
+  {
+    "question": "Most common cause of ESRD (end stage renal disease) in children:",
+    "options": [
+      "Glomerulonephritis",
+      "Focal segmental glomerulosclerosis",
+      "Pyelonephritis",
+      "Metabolic",
+      "Congenital renal disease"
+    ],
+    "correct": 4,
+    "explanation": "Congenital renal disease (including renal hypoplasia/dysplasia, obstructive uropathy, and reflux nephropathy) is the most common cause of ESRD in children, particularly in younger age groups. Glomerulonephritis and FSGS are more common causes in older children and adults but account for fewer total cases in the pediatric ESRD population."
+  },
+  {
+    "question": "A 6-year-old boy appeared in the ER with periorbital and peripheral pitting edemas for the last 24 hours. He had no fever. Physical examination revealed temperature 37 C degrees, heart rate 105 per minute, blood pressure 88/54, bilateral pitting and periorbital edemas. Urinalysis revealed proteinuria 3+; 24-hour urine revealed proteinuria more than 2g. The serum had a low albumin and calcium; a high cholesterol and triglyceride. The serum C3 level is normal. The next step in management:",
+    "options": [
+      "Renal biopsy",
+      "Prednisone therapy",
+      "Fluid restriction",
+      "Cyclophosphamide therapy",
+      "Chlorthiazide therapy"
+    ],
+    "correct": 1,
+    "explanation": "This 6-year-old presents with classic minimal change nephrotic syndrome (edema, heavy proteinuria, hypoalbuminemia, hyperlipidemia, normal C3, and normal BP). The next step is prednisone therapy, which is the first-line treatment for initial presentation of childhood nephrotic syndrome. Renal biopsy is not needed initially in this age group with typical MCNS features. Cyclophosphamide is reserved for steroid-resistant or frequently relapsing cases."
+  },
+  {
+    "question": "A 8-year old boy appears in a clinic for a routine check up. Urinalysis reveals microscopic hematuria. He is asymptomatic. Physical examination is unremarkable. Most likely diagnosis:",
+    "options": [
+      "Nephrotic syndrome",
+      "Acute glomerulonephritis",
+      "Polycystic kidney",
+      "Renal stone",
+      "Absence of renal disease"
+    ],
+    "correct": 4,
+    "explanation": "In an asymptomatic 8-year-old boy with only microscopic hematuria on routine checkup and an unremarkable physical examination, the most likely scenario is absence of significant renal disease. Isolated microscopic hematuria without proteinuria, hypertension, or other findings is often benign or transient. Nephrotic syndrome requires heavy proteinuria and edema, acute GN would have additional symptoms, and polycystic kidney or stones would typically have other findings."
+  },
+  {
+    "question": "A 4½ year-old-boy is incontinent at night. His mother is worried. The next step in management is:",
+    "options": [
+      "Rule out UTI",
+      "VCUG",
+      "Bladder ultrasonography",
+      "Put urinary catheter every night",
+      "Reassurance"
+    ],
+    "correct": 4,
+    "explanation": "Nocturnal enuresis in a 4.5-year-old boy is a common developmental variant that typically resolves spontaneously. Reassurance is the appropriate next step, as the vast majority of children outgrow this condition. Invasive workup (VCUG, bladder ultrasound) is not indicated for primary nocturnal enuresis at this age without red flags. Catheterization is never appropriate for enuresis."
+  },
+  {
+    "question": "The preferred study to determine the renal scar is:",
+    "options": [
+      "Ultrasonography",
+      "Radionuclide VCUG",
+      "Contrast VCUG",
+      "DMSA scan",
+      "Power Doppler Ultrasonography"
+    ],
+    "correct": 3,
+    "explanation": "DMSA (dimercaptosuccinic acid) scan is the gold standard for detecting renal cortical scars, as it provides high-resolution imaging of functional renal cortex. Ultrasonography detects structural abnormalities but not scars well. VCUG (contrast or radionuclide) evaluates vesicoureteral reflux and anatomy, not scarring. Power Doppler ultrasound is less sensitive than DMSA for scar detection."
+  },
+  {
+    "question": "The most common organism in patients with hemolytic uremic syndrome is:",
+    "options": [
+      "S. pneumoniae",
+      "Shigella",
+      "Campylobacter",
+      "Bartonella",
+      "E. coli"
+    ],
+    "correct": 4,
+    "explanation": "E. coli, specifically Shiga toxin-producing E. coli (STEC) such as serotype O157:H7, is by far the most common organism associated with hemolytic uremic syndrome. S. pneumoniae causes a less common form of HUS. Shigella and Campylobacter can rarely cause HUS, while Bartonella is not typically associated with HUS."
+  },
+  {
+    "question": "The preferred diagnostic method in patients with renal vein thrombosis is:",
+    "options": [
+      "Intravenous pyelography",
+      "Ultrasonography",
+      "Renal scan",
+      "VCUG",
+      "Doppler flow studies"
+    ],
+    "correct": 4,
+    "explanation": "Doppler flow studies (Doppler ultrasonography) are the preferred non-invasive diagnostic method for renal vein thrombosis, as they can directly visualize flow patterns and thrombus within the renal vein. Standard ultrasonography may show an enlarged kidney but is less specific. IVP, renal scan, and VCUG do not directly evaluate the renal vasculature."
+  },
+  {
+    "question": "Hemorrhagic cystitis is a complication of the following drug:",
+    "options": [
+      "Cyclophosphamide",
+      "Methotrexate",
+      "Bleomycin",
+      "Cisplatin",
+      "L-Asparaginase"
+    ],
+    "correct": 0,
+    "explanation": "Cyclophosphamide is well-known for causing hemorrhagic cystitis due to its toxic metabolite acrolein, which accumulates in the bladder and causes urothelial damage. Prophylactic mesna and aggressive hydration are used to prevent this complication. Methotrexate, bleomycin, cisplatin, and L-asparaginase do not typically cause hemorrhagic cystitis."
+  },
+  {
+    "question": "The most common cause of gross hematuria is:",
+    "options": [
+      "Urinary tract infections",
+      "Meatal stenosis",
+      "Trauma",
+      "IgA nephropathy",
+      "Glomerulonephritis"
+    ],
+    "correct": 0,
+    "explanation": "Urinary tract infections are the most common overall cause of gross hematuria in children. While IgA nephropathy is the most common glomerular cause and glomerulonephritis is an important cause, UTIs are more prevalent in the general pediatric population. Trauma and meatal stenosis are less common causes."
+  },
+  {
+    "question": "The most common cause of chronic glomerular disease is:",
+    "options": [
+      "IgA nephropathy",
+      "SLE",
+      "Glomerulonephritis",
+      "Henoch-Schonlein purpura",
+      "Reiter syndrome"
+    ],
+    "correct": 0,
+    "explanation": "IgA nephropathy (Berger disease) is the most common chronic glomerular disease worldwide. It frequently presents with recurrent episodes of gross hematuria following upper respiratory infections. SLE nephritis, post-infectious GN, HSP nephritis, and Reiter syndrome are less common causes of chronic glomerular disease."
+  },
+  {
+    "question": "The following 'phayngeal strain of group A Streptococcus are nephritogenic:",
+    "options": [
+      "My type 4",
+      "M type 9",
+      "M type 12",
+      "M type 15"
+    ],
+    "correct": 2,
+    "explanation": "M type 12 is one of the most important nephritogenic pharyngeal serotypes of group A streptococci, commonly causing epidemics of PSGN after throat infections. The classic nephritogenic pharyngeal M types are 1, 4, 12, and 25. M types 49, 55, 57, and 59 are primarily associated with skin infections (pyoderma) leading to nephritis."
+  },
+  {
+    "question": "All of the following conditions cause gross hematuria except:",
+    "options": [
+      "IgA nephropathy",
+      "Alport syndrome",
+      "SLE nephritis",
+      "Posterior urethral valve",
+      "Henoch-Schonlein purpura nephritis"
+    ],
+    "correct": 3,
+    "explanation": "Posterior urethral valves (PUV) primarily cause obstructive uropathy with poor urinary stream, UTIs, and renal dysfunction, but not typically gross hematuria. IgA nephropathy, Alport syndrome, SLE nephritis, and HSP nephritis are all well-recognized causes of gross hematuria through glomerular inflammation or capillary damage."
+  },
+  {
+    "question": "A 14-year-old girl noticed blood in the urine. Her menstrual periods are irregular. She is constipated. The routine urinalysis reveals blood. She denies suprapubic tenderness and flank pain. The most likely diagnosis is:",
+    "options": [
+      "Asymptomatic UTI",
+      "Hemorrhoidal bleeding",
+      "Glomerular disease",
+      "Ureteral bleeding",
+      "Urine contaminated with menstrual bleeding"
+    ],
+    "correct": 4,
+    "explanation": "In a 14-year-old girl with irregular menstrual periods and blood found on urinalysis without pain, the most likely diagnosis is contamination of the urine sample with menstrual blood. This is a common and often overlooked cause of apparent hematuria in menstruating females. A repeat urine specimen should be obtained when she is not menstruating."
+  },
+  {
+    "question": "The most common cause of end-stage renal disease (ESRD) in children is:",
+    "options": [
+      "Metabolic disease",
+      "Glomerulonephritides",
+      "Congenital renal disease",
+      "IgA nephropathies",
+      "Focal segmental glomerular sclerosis"
+    ],
+    "correct": 2,
+    "explanation": "Congenital renal disease (including renal hypoplasia/dysplasia, obstructive uropathy, and reflux nephropathy) is the most common cause of ESRD in the pediatric population, especially in younger children. Glomerulonephritides and FSGS are more common in older children and adults. IgA nephropathy and metabolic diseases account for fewer cases of pediatric ESRD."
+  },
+  {
+    "question": "The first electrocardiographic (ECG) changes noted in hyperkalemia is:",
+    "options": [
+      "Increased PR intervals",
+      "Flattening of the P waves",
+      "Widening of the QRS complex",
+      "Peaking of the T waves",
+      "Ventricular fibrillation"
+    ],
+    "correct": 3,
+    "explanation": "Peaking (tenting) of the T waves is the earliest ECG change in hyperkalemia, typically appearing at serum K levels of 5.5-6.5 mEq/L. As hyperkalemia worsens, PR interval prolongation, P wave flattening, QRS widening, and eventually ventricular fibrillation occur. Recognizing peaked T waves early allows prompt treatment before life-threatening arrhythmias develop."
+  },
+  {
+    "question": "The first manifestation in patients with a hyperkalemia is:",
+    "options": [
+      "Tingling",
+      "Numbness",
+      "Weakness",
+      "Cardiac toxicity",
+      "Syncope"
+    ],
+    "correct": 2,
+    "explanation": "Muscle weakness is typically the first clinical manifestation of hyperkalemia, often beginning in the proximal muscles and progressing in an ascending pattern. Tingling and numbness are more characteristic of hypocalcemia. Cardiac toxicity is a later and potentially fatal manifestation. Syncope is an advanced sign of severe cardiac involvement."
+  },
+  {
+    "question": "The preferred therapy in patients with a metabolic acidosis is:",
+    "options": [
+      "Sodium bicarbonate",
+      "THAM solution",
+      "Sodium citrate",
+      "Excessive fluid therapy",
+      "Treat the underlying cause"
+    ],
+    "correct": 4,
+    "explanation": "The preferred therapy for metabolic acidosis is treating the underlying cause. While sodium bicarbonate, THAM, and sodium citrate can temporarily correct the pH, they do not address the root problem and may cause complications such as volume overload or hypernatremia. Bicarbonate therapy is reserved for severe acidosis (pH <7.1) or specific situations like proximal RTA."
+  },
+  {
+    "question": "The ionized or free calcium in serum is:",
+    "options": [
+      "Slightly less than 10% of the total serum calcium",
+      "Slightly less than 25% of the total serum calcium",
+      "Slightly less than 50% of the total serum calcium",
+      "Slightly less than 60% of the total serum calcium",
+      "Slightly less than 70% of the total serum calcium"
+    ],
+    "correct": 2,
+    "explanation": "Ionized (free) calcium constitutes slightly less than 50% of total serum calcium. Approximately 40% is bound to proteins (mainly albumin), and about 10% is complexed with anions like citrate and phosphate. The ionized fraction is the physiologically active form, and its measurement is crucial in conditions affecting protein binding."
+  },
+  {
+    "question": "The following serotype of group A beta-hemolytic streptococci can cause epidemics of nephritis after throat infections is:",
+    "options": [
+      "Serotype 1",
+      "Serotype 6",
+      "Serotype 12",
+      "Serotype 49",
+      "Serotype 55"
+    ],
+    "correct": 2,
+    "explanation": "Serotype 12 (M type 12) is the most commonly identified nephritogenic serotype of group A beta-hemolytic streptococci associated with epidemics of nephritis following throat (pharyngeal) infections. Other nephritogenic throat serotypes include M types 1 and 4. Serotype 49 is predominantly associated with skin infections leading to nephritis."
+  },
+  {
+    "question": "The following serotype of group A beta-hemolytic streptococci (Streptococcus pyogenes) can cause epidemics of nephritis after skin infections is:",
+    "options": [
+      "Serotype 24",
+      "Serotype 49",
+      "Serotype 55",
+      "Serotype 57",
+      "Serotype 59"
+    ],
+    "correct": 1,
+    "explanation": "Serotype 49 (M type 49) is the most common nephritogenic serotype of group A beta-hemolytic streptococci associated with epidemics of nephritis following skin infections (pyoderma/impetigo). Other skin-associated nephritogenic serotypes include M types 55, 57, and 59. Serotype 24 is not typically nephritogenic."
+  },
+  {
+    "question": "The most common complication of acute poststreptococcal glomerulonephritis is",
+    "options": [
+      "Hypertension",
+      "Seizures",
+      "Cardiac failure",
+      "Hyperkalemia",
+      "Hyperphosphatemia"
+    ],
+    "correct": 0,
+    "explanation": "Hypertension is the most common complication of acute poststreptococcal glomerulonephritis, occurring in up to 80% of cases due to fluid retention and renin-angiotensin activation. While seizures (from hypertensive encephalopathy), cardiac failure, hyperkalemia, and hyperphosphatemia can occur, hypertension is by far the most frequent complication."
+  },
+  {
+    "question": "A 6-year-old girl appears with lethargy, malaise, abdominal pain, fever, oliguria, and edema for the last 48 hours. She experienced pharyngitis 10 days prior to this episode. A physical examination reveals hypertension, edema, and mild abdominal tenderness. Urinalysis reveals RBCs, RBC cast, polymorphonuclear leukocytes, and proteinuria. The serum C3 level is reduced. All of the following statements are true about this condition except:",
+    "options": [
+      "Complete recovery occurs in more than 95% of cases.",
+      "The risk of recurrence is extremely high.",
+      "A 10-day course of oral penicillin therapy is recommended to limit the spread of the specific strain of the organism.",
+      "The diagnosis must be questioned in patients with chronic renal dysfunction."
+    ],
+    "correct": 1,
+    "explanation": "The risk of recurrence in poststreptococcal glomerulonephritis is actually very LOW, not high. PSGN typically does not recur because protective immunity develops against the specific nephritogenic strain. Over 95% of children recover completely, a 10-day penicillin course helps limit spread, and chronic renal dysfunction should prompt reconsideration of the diagnosis."
+  },
+  {
+    "question": "All of the following conditions can cause transient proteinuria except:",
+    "options": [
+      "Exercise",
+      "Dehydration",
+      "Congestive heart failure",
+      "Seizure",
+      "low grade fever"
+    ],
+    "correct": 2,
+    "explanation": "Congestive heart failure causes more persistent proteinuria due to chronically elevated renal venous pressure and is not typically classified as a cause of transient proteinuria. Exercise, dehydration, seizures, and low-grade fever all cause transient (functional) proteinuria that resolves when the underlying stimulus is removed."
+  },
+  {
+    "question": "The most common cause of nephrotic syndrome in children is:",
+    "options": [
+      "Membranous nephropathy",
+      "Minimal change disease",
+      "Focal segmental glomerulosclerosis",
+      "Mesangial proliferation",
+      "Membranoproliferative glomerulonephritis"
+    ],
+    "correct": 1,
+    "explanation": "Minimal change disease is the most common cause of nephrotic syndrome in children, accounting for approximately 70-90% of cases in children under 6 years of age. FSGS is the second most common, while membranous nephropathy, mesangial proliferation, and membranoproliferative GN are less common causes in the pediatric population."
+  },
+  {
+    "question": "A 4-year-old boy appears with mild edema around the eyes and lower extremities for the last 24 hours. He has idiopathic nephrotic syndrome. All of the following laboratory findings are suggestive of this disease except:",
+    "options": [
+      "Urinalysis reveals 3+ or 4+ proteinuria",
+      "Spot urine protein to creatinine ratio is 1.2",
+      "Serum creatinine level is normal.",
+      "Serum albumin level is less than 2.5 g/dL",
+      "Serum C3 and C4 levels are normal."
+    ],
+    "correct": 1,
+    "explanation": "A spot urine protein-to-creatinine ratio of 1.2 is NOT in the nephrotic range; nephrotic-range proteinuria requires a ratio greater than 2.0 (mg/mg). A ratio of 1.2 indicates moderate but sub-nephrotic proteinuria. The other findings—3+ to 4+ proteinuria, normal serum creatinine, albumin <2.5 g/dL, and normal C3/C4—are all typical of idiopathic (minimal change) nephrotic syndrome."
+  },
+  {
+    "question": "The most common organism responsible for urinary tract infections (UTIs) is:",
+    "options": [
+      "Adenovirus",
+      "E. coli",
+      "Klebsiella",
+      "Proteus",
+      "Staphylococcus saprophyticus"
+    ],
+    "correct": 1,
+    "explanation": "E. coli is responsible for approximately 75-90% of all urinary tract infections in children. Klebsiella and Proteus are less common gram-negative causes, Staphylococcus saprophyticus is more relevant in adolescent females, and adenovirus causes hemorrhagic cystitis but not typical bacterial UTI."
+  },
+  {
+    "question": "The preferred therapy for patients with E. coli cystitis is:",
+    "options": [
+      "Nitrofurantoin",
+      "Amoxicillin",
+      "Penicillin",
+      "Azithromycin",
+      "Trimethoprim-sulfamethoxazole"
+    ],
+    "correct": 0,
+    "explanation": "Nitrofurantoin is the preferred therapy for E. coli cystitis because it achieves high urinary concentrations, has low resistance rates among E. coli isolates, and does not disrupt normal gut flora. Amoxicillin and penicillin have high resistance rates. Azithromycin is not standard for UTI. TMP-SMX remains an alternative but has higher resistance rates in many regions."
+  },
+  {
+    "question": "The following medication should not be used in children with a febrile UTI:",
+    "options": [
+      "Ampicillin",
+      "Cefixime",
+      "Nitrofurantoin",
+      "Gentamicin",
+      "Trimethoprim-sulfamethoxazole"
+    ],
+    "correct": 2,
+    "explanation": "Nitrofurantoin should not be used in febrile UTI because it does not achieve adequate serum or tissue concentrations; it concentrates only in urine, making it unsuitable for pyelonephritis (kidney involvement). Febrile UTI suggests upper tract infection requiring antibiotics that achieve good tissue levels, such as cefixime, gentamicin, ampicillin, or TMP-SMX."
+  },
+  {
+    "question": "The preferred prophylactic therapy against recurrent UTIs is:",
+    "options": [
+      "Amoxicillin",
+      "Cefalexin",
+      "Ampicillin",
+      "Erythromycin",
+      "Trimethoprim-sulfamethoxazole"
+    ],
+    "correct": 4,
+    "explanation": "Trimethoprim-sulfamethoxazole (TMP-SMX) is the preferred prophylactic therapy against recurrent UTIs in children. It is given at one-third to one-half the therapeutic dose, typically at bedtime. Amoxicillin and ampicillin have higher resistance rates, cephalexin is a second-line option, and erythromycin is not effective against common UTI organisms."
+  },
+  {
+    "question": "A child is being treated for UTI. The follow-up urine culture should be performed:",
+    "options": [
+      "48 hours after onset of antibiotic therapy",
+      "72 hours after onset of antibiotic therapy",
+      "Immediately after the termination of antibiotic therapy",
+      "1 week after the termination of antibiotic therapy",
+      "1 month after the termination of antibiotic therapy"
+    ],
+    "correct": 3,
+    "explanation": "A follow-up urine culture should be performed 1 week after the termination of antibiotic therapy to document eradication of the infection. Culturing immediately after therapy may yield false negatives due to residual antibiotic in the urine, while waiting 1 month may miss early relapse. Cultures at 48-72 hours are done to assess treatment response, not for test of cure."
+  },
+  {
+    "question": "A child was treated for UTI. A long-term follow-up urine cultures should be performed regardless of predisposing anatomic abnormalities. The follow-up should be as follows:",
+    "options": [
+      "Periodically for 6 months, if the child is asymptomatic.",
+      "Periodically for 1-2 years, even when the child is asymptomatic.",
+      "Periodically for 3-5 years, even when the child is asymptomatic.",
+      "Periodically for 6-8 years, even when the child is asymptomatic.",
+      "Periodically for 3 months, if the child is asymptomatic."
+    ],
+    "correct": 1,
+    "explanation": "After treatment for UTI, long-term follow-up urine cultures should be performed periodically for 1-2 years, even when the child is asymptomatic. This is to detect asymptomatic bacteriuria and prevent progressive renal damage. Six months or 3 months is too short, while 3-5 years or 6-8 years is longer than typically recommended."
+  },
+  {
+    "question": "The most urinary tract infections (UTIs) occur due to:",
+    "options": [
+      "Bacterial spread from blood",
+      "Descending infections",
+      "Ascending infections",
+      "Bacterial spread through lymphatics",
+      "Bacterial spread from perinephric tissues"
+    ],
+    "correct": 2,
+    "explanation": "Most urinary tract infections occur via ascending infections, where periurethral bacteria (typically fecal flora) ascend through the urethra to the bladder and potentially to the kidneys. Hematogenous spread is rare and occurs mainly in neonates. Descending infections, lymphatic spread, and perinephric spread are uncommon routes of UTI pathogenesis."
+  },
+  {
+    "question": "The preferred prophylactic therapy in patients with vesicoureteral reflux is:",
+    "options": [
+      "Ampicillin",
+      "Amoxicillin",
+      "Trimethoprim-sulfamethoxazole",
+      "Gentamicin",
+      "Cefotaxime"
+    ],
+    "correct": 2,
+    "explanation": "Trimethoprim-sulfamethoxazole is the preferred prophylactic antibiotic for vesicoureteral reflux, given once daily at a low dose. It provides effective urinary bacteriostatic levels while minimizing resistance and side effects. Ampicillin and amoxicillin have higher resistance rates, and gentamicin and cefotaxime are parenteral agents not suitable for long-term prophylaxis."
+  },
+  {
+    "question": "A child appears with hematuria. All of the following findings usually suggest hematuria from lower urinary tract except:",
+    "options": [
+      "Presence of dysuria",
+      "Presence of blood clots",
+      "Presence of white blood cells casts",
+      "Absence of red blood cell casts",
+      "Normal renal sonographic findings"
+    ],
+    "correct": 2,
+    "explanation": "White blood cell casts suggest renal (upper tract) inflammation, not lower urinary tract hematuria. WBC casts form in the renal tubules and indicate pyelonephritis or interstitial nephritis. Dysuria, blood clots, absence of RBC casts, and normal renal sonographic findings are all features suggesting lower urinary tract origin of hematuria."
+  },
+  {
+    "question": "The most important component to determine the plasma osmolality is:",
+    "options": [
+      "Sodium",
+      "Potassium",
+      "Glucose",
+      "BUN",
+      "Creatinine"
+    ],
+    "correct": 0,
+    "explanation": "Sodium is the most important determinant of plasma osmolality, as reflected in the formula: calculated osmolality = 2[Na+] + [Glucose]/18 + [BUN]/2.8. Sodium is multiplied by 2 (accounting for its accompanying anions), making it the largest contributor. Potassium, glucose, and BUN contribute less, and creatinine is not part of the osmolality calculation."
+  },
+  {
+    "question": "The following condition increases plasma osmolality:",
+    "options": [
+      "Hyponatremia",
+      "Hypercalcemia",
+      "Hyperphosphatemia",
+      "Hyperkalemia",
+      "Hyperglycemia"
+    ],
+    "correct": 4,
+    "explanation": "Hyperglycemia increases plasma osmolality, as glucose is an effective osmol. This is clinically important in diabetic ketoacidosis and hyperosmolar hyperglycemic state. Hyponatremia decreases osmolality. Hypercalcemia, hyperphosphatemia, and hyperkalemia have minimal effects on plasma osmolality because these electrolytes are present at much lower concentrations than sodium or glucose."
+  },
+  {
+    "question": "A child with severe dehydration has a low serum albumin level. All of the following conditions can manifest like that except:",
+    "options": [
+      "Malnutrition",
+      "Nephrotic syndrome",
+      "Liver disease",
+      "Protein losing enteropathy",
+      "Dehydration with hemoconcentration"
+    ],
+    "correct": 4,
+    "explanation": "Dehydration with hemoconcentration would cause an ELEVATED serum albumin level, not a low one, due to reduced plasma volume concentrating proteins. Malnutrition, nephrotic syndrome (urinary protein loss), liver disease (decreased synthesis), and protein-losing enteropathy (GI protein loss) are all recognized causes of hypoalbuminemia."
+  },
+  {
+    "question": "A 10-month-old boy appears with fever. Physical examination is unremarkable. The next step in managing this patient is:",
+    "options": [
+      "Spinal tap",
+      "Urine culture",
+      "Blood smear",
+      "Chest x-ray",
+      "Antibiotic therapy"
+    ],
+    "correct": 1,
+    "explanation": "In a 10-month-old boy with fever and an unremarkable physical examination, urine culture is the next essential step. Infants under 12 months with unexplained fever have a high prevalence of occult UTI (up to 8-10%), and UTI must be ruled out before attributing fever to a viral illness. A spinal tap is indicated only if meningitis is suspected, and antibiotics should not be started without prior culture."
+  },
+  {
+    "question": "A previously healthy 5-year-old child is brought urgently to the ED for evaluation. He has had bloody diarrhea for the past day. He has become increasingly listless over the past several hours and his parents are very concerned. He has no known medical problems. The patient has not traveled anywhere recently and owns no pets. Several days ago, his family ate out at a fish restaurant. The patient had a hamburger because he does not like fish. No one else in the family is ill. Physical examination reveals a very ill appearing child. He is at least moderately dehydrated. Laboratory analysis is significant for hemoglobin of 7.2 g/dl, platelets of 30,000, BUN 80 and creatinine 2.3. Serum potassium level is 5.6. Peripheral blood smear show fragmented RBCS. The MOST LIKELY diagnosis is",
+    "options": [
+      "food poisoning",
+      "bone marrow failure",
+      "SLE",
+      "hemolytic uremic syndrome",
+      "sepsis"
+    ],
+    "correct": 3,
+    "explanation": "This child has hemolytic uremic syndrome (HUS), presenting with the classic triad of microangiopathic hemolytic anemia (hemoglobin 7.2 with fragmented RBCs), thrombocytopenia (platelets 30,000), and acute renal failure (BUN 80, creatinine 2.3). The preceding bloody diarrhea from an undercooked hamburger (E. coli O157:H7) is the classic precipitant. Food poisoning alone, bone marrow failure, SLE, and sepsis do not explain all three components."
+  },
+  {
+    "question": "in the above case, WHICH of the following therapies would be contraindicated at this time?",
+    "options": [
+      "Dialysis, if and when indicated, to maintain proper fluid and electrolyte balance",
+      "Parenteral (IV) antibiotic therapy upon hospital admission",
+      "Supportive care, including hydration and ongoing evaluation of fluid status",
+      "monitoring of the patient's cardiac rhythm",
+      "Transfusion of packed red blood cells (PRBCs) for symptomatic anemia"
+    ],
+    "correct": 1,
+    "explanation": "Parenteral (IV) antibiotic therapy is contraindicated in STEC-associated HUS because antibiotics can increase the release of Shiga toxin from lysed bacteria, potentially worsening the disease. Dialysis when indicated, supportive care with hydration, cardiac monitoring (for hyperkalemia), and PRBC transfusion for symptomatic anemia are all appropriate supportive measures."
+  },
+  {
+    "question": "A 6-year-old girl is brought to the emergency room because her urine is red. She has been healthy her whole life, and has recently returned from an outing with her grandmother to a local amusement park. Her urine dip for heme is positive, suggesting which of the following is a possibility?",
+    "options": [
+      "Ingestion of blackberries",
+      "Ingestion of beets",
+      "Phenolphthalein catharsis",
+      "Presence of myoglobin",
+      "Ingestion of rifampicin antibiotic"
+    ],
+    "correct": 3,
+    "explanation": "The positive heme dipstick indicates the presence of hemoglobin or myoglobin (or intact RBCs) in the urine. Myoglobin would produce a positive heme dipstick, making this a possibility. Blackberries, beets, phenolphthalein, and rifampicin can cause red urine discoloration but would produce a NEGATIVE heme dipstick since they contain no heme-containing compounds."
+  },
+  {
+    "question": "All of the following conditions are associated with hyperlipidemia except:",
+    "options": [
+      "Hyperthyroidism",
+      "Diabetes mellitus",
+      "Nephrotic syndrome",
+      "hypothyrodism",
+      "Congenital biliary atresia"
+    ],
+    "correct": 0,
+    "explanation": "Hyperthyroidism is NOT associated with hyperlipidemia; in fact, it typically causes decreased lipid levels due to increased metabolic rate and enhanced lipid breakdown. Diabetes mellitus, nephrotic syndrome, hypothyroidism, and congenital biliary atresia are all well-known causes of secondary hyperlipidemia."
+  },
+  {
+    "question": "A new born boy was diagnosed prenatally with bilateral hydronephrosis, distended bladder, and oligohydramnios. What will be the most likely diagnosis?",
+    "options": [
+      "urethral strictures",
+      "anterior urethral valves",
+      "prune-belly syndrome",
+      "posterior urethral valves",
+      "meatal stenosis"
+    ],
+    "correct": 3,
+    "explanation": "Posterior urethral valves (PUV) are the most common cause of lower urinary tract obstruction in male newborns, presenting prenatally with bilateral hydronephrosis, a distended bladder, and oligohydramnios (from decreased fetal urine output). Anterior urethral valves are much rarer. Prune-belly syndrome includes bilateral hydronephrosis but also has characteristic abdominal wall musculature deficiency and cryptorchidism."
+  },
+  {
+    "question": "A boy has returned home from visiting his grandmother in a rural area. He spent most of his time swimming, playing in the yard, helping in the gardens, and his grandma says \"he was generally dirty!\" He was noted 2 weeks ago to have \"infected mosquito bites\" on his neck and chin for which the local doctor had him just scrub with soap. His mother brings him into the office with the complaint of dark urine, swelling around his eyes, and shortness of breath. You also find him to have hypertension. Which of the following is the most likely cause of his problem?",
+    "options": [
+      "IgA nephropathy",
+      "Poststreptococcal glomerulonephritis",
+      "Idiopathic hypercalciuria",
+      "Pyelonephritis",
+      "Sexually transmitted disease"
+    ],
+    "correct": 1,
+    "explanation": "This boy has poststreptococcal glomerulonephritis (PSGN). The 'infected mosquito bites' on his neck and chin 2 weeks ago were likely impetigo (streptococcal skin infection), followed 1-3 weeks later by the classic presentation of dark urine (hematuria), periorbital edema, shortness of breath, and hypertension. IgA nephropathy typically follows upper respiratory infections within 1-2 days, and pyelonephritis would present with fever and irritative voiding symptoms."
+  },
+  {
+    "question": "A 4-year-old boy and his family have recently visited a local park. Several of the family members developed \"gastroenteritis\" with fever and diarrhea, but the 4-year-old's stool was slightly different, as it contained blood. His mother reports that in the past 24 hours he developed pallor and lethargy; she relates that his face looks swollen and that he has been urinating very little. Laboratory evaluation reveals a hematocrit of 28% and a platelet count of 72,000/µL. He has blood and protein in the urine. Which of the following diagnoses is most likely to explain these symptoms?",
+    "options": [
+      "Henoch-Schonlein purpura",
+      "IgA nephropathy",
+      "Intussusception",
+      "Meckel diverticulum",
+      "Hemolytic-uremic syndrome"
+    ],
+    "correct": 4,
+    "explanation": "This child has hemolytic-uremic syndrome (HUS), characterized by the triad of microangiopathic hemolytic anemia (pallor, low hematocrit), thrombocytopenia (platelet count 72,000), and acute renal failure (oliguria, facial swelling, hematuria, proteinuria). The preceding bloody diarrhea following a park visit suggests STEC infection. HSP has palpable purpura but not thrombocytopenia, IgA nephropathy lacks thrombocytopenia, and intussusception and Meckel diverticulum do not cause this triad."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

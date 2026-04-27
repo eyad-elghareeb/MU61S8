@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Peds - Chest</title>
+
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "19dcff6a1df2ywxo",
+  "title": "Peds - Chest",
+  "description": "117 questions on Pediatric Chest",
+  "icon": "🫁"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Common causes of stridor in a one-year-old infant includes all of the following EXCEPT:",
+    "options": [
+      "Laryngeal foreign body",
+      "Acute spasmodic laryngitis",
+      "Large adenoids",
+      "Hypocalcemic tetany",
+      "Laryngomalacia"
+    ],
+    "correct": 3,
+    "explanation": "Hypocalcemic tetany is not a common cause of stridor in infants. Stridor is typically caused by upper airway obstruction or inflammation, while hypocalcemic tetany involves neuromuscular excitability due to low calcium levels."
+  },
+  {
+    "question": "Characteristics of croup include:",
+    "options": [
+      "Stridor",
+      "Gradual onset",
+      "Barking cough",
+      "Improvement with moistened air",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All listed options (stridor, gradual onset, barking cough, improvement with moistened air) are characteristic features of croup, which is a viral infection causing upper airway inflammation."
+  },
+  {
+    "question": "A patient comes into your office with severe respiratory distress a deep barky cough and strider you diagnose the child with croup and decide to admit the child along with securing an airway what are other treatment option?",
+    "options": [
+      "Albuterol jet nebulizer",
+      "Ice cream PO",
+      "Racemic epinephrine and steroids",
+      "Antihistamines",
+      "No other treatment options are available"
+    ],
+    "correct": 2,
+    "explanation": "Racemic epinephrine and steroids are standard treatments for croup. Albuterol is for wheezing, antihistamines are not indicated, and ice cream may provide comfort but isn't a treatment."
+  },
+  {
+    "question": "Differential diagnosis of croup includes all the following EXCEPT:",
+    "options": [
+      "Angioneurotic edema",
+      "Bronchiolitis",
+      "Diphtheria",
+      "Foreign body",
+      "Laryngitis"
+    ],
+    "correct": 4,
+    "explanation": "Laryngitis is not typically included in the differential diagnosis of croup, as croup itself is a form of viral laryngotracheitis. The other options represent different conditions that can mimic croup."
+  },
+  {
+    "question": "The most common etiological agent for acute bronchitis in infancy is:",
+    "options": [
+      "Influenza virus",
+      "Parainfluenza virus",
+      "Rhinovirus",
+      "Respiratory syncytial virus"
+    ],
+    "correct": 3,
+    "explanation": "Rhinovirus is the most common etiological agent for acute bronchitis in infancy, causing inflammation of the bronchial tubes."
+  },
+  {
+    "question": "A five-year-old the comes to the emergency department with fever, sore throat, hoarseness and stridor developing over one day. he also appears to be drooling which is the most appropriate initial step in management:",
+    "options": [
+      "Get a lateral cervical neck X-ray",
+      "Draw a CBC and blood cultures",
+      "Prepare for emergency intubation",
+      "Do a detailed history and physical examination",
+      "Send him home"
+    ],
+    "correct": 2,
+    "explanation": "For a child with suspected epiglottitis (indicated by drooling, stridor, and rapid progression), preparing for emergency intubation is the most appropriate initial step, as airway obstruction can develop quickly."
+  },
+  {
+    "question": "5-year-old girl has severe sore throat drooling of saliva a high fever and increasing breathing difficulty over 8 hours she looks sick and unable to speak she was sitting immobile upright with an open mouth to optimize the airway. Her airway was developed guaranteed with a nasotracheal tube. Which is the most likely diagnosis?",
+    "options": [
+      "Acute bronchitis",
+      "Acute laryngitis",
+      "Acute epiglottitis",
+      "Acute bronchiolitis"
+    ],
+    "correct": 2,
+    "explanation": "The presentation (severe sore throat, drooling, fever, breathing difficulty, sitting upright) is classic for acute epiglottitis, a medical emergency caused by bacterial infection of the epiglottis."
+  },
+  {
+    "question": "The most likely responsible agent is:",
+    "options": [
+      "Hemophilus influenza",
+      "Respiratory syncytial virus",
+      "Para influenza virus",
+      "Staphylococcus aureus"
+    ],
+    "correct": 0,
+    "explanation": "Before vaccination, Hemophilus influenzae type b was the most common cause of epiglottitis. The other options are more associated with other respiratory conditions."
+  },
+  {
+    "question": "The causes of wheezing in a child include the following:",
+    "options": [
+      "Bronchial asthma",
+      "Foreign body in the airway",
+      "Acute bronchiolitis",
+      "Allergic bronchopulmonary aspergillosis",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All listed options (bronchial asthma, foreign body, acute bronchiolitis, allergic bronchopulmonary aspergillosis) can cause wheezing in children, as they all involve airway obstruction or inflammation."
+  },
+  {
+    "question": "Mother of a previously healthy 3-year-old male complains of cough and wheeze the boy presented with Dyspnea and cyanosis he had been playing with a small toy during examination the right side of his chest revealed hyperresonance diminished vocal resonance and poor air entry. The most appropriate diagnosis is:",
+    "options": [
+      "Bronchial asthma",
+      "Lobar pneumonia",
+      "Foreign body aspiration",
+      "Acute bronchiolitis"
+    ],
+    "correct": 2,
+    "explanation": "The presentation (sudden onset, history of playing with small toy, unilateral findings) strongly suggests foreign body aspiration, which can cause unilateral obstruction and air trapping."
+  },
+  {
+    "question": "One of the following is typical about diagnosis:",
+    "options": [
+      "Being healthy before illness",
+      "The local chest findings",
+      "Both",
+      "None"
+    ],
+    "correct": 2,
+    "explanation": "The local chest findings (unilateral hyperresonance, diminished breath sounds) are typical for foreign body aspiration, while being healthy before illness is not specific to this diagnosis."
+  },
+  {
+    "question": "The etiologic agent for bronchiolitis is:",
+    "options": [
+      "Mumps virus",
+      "Streptococcus Viridans",
+      "Pneumococci",
+      "Hemophilus influenza",
+      "Respiratory syncytial virus"
+    ],
+    "correct": 4,
+    "explanation": "Respiratory syncytial virus (RSV) is the most common etiological agent for bronchiolitis, particularly in infants and young children."
+  },
+  {
+    "question": "Treatment of acute bronchiolitis includes the following EXCEPT:",
+    "options": [
+      "Hospitalization if distressed",
+      "Humidified oxygen",
+      "Bronchodilators at least single dose trial",
+      "Antibiotics in all patients",
+      "Ventilatory assistance in case of respiratory failure"
+    ],
+    "correct": 3,
+    "explanation": "Antibiotics are not indicated for acute bronchiolitis as it's usually viral. Antibiotics might be considered only if bacterial superinfection is suspected."
+  },
+  {
+    "question": "The following drugs are used in treatment of bronchial asthma EXCEPT:",
+    "options": [
+      "Theophylline",
+      "Leukotriene modifiers",
+      "Inhaled steroids",
+      "Beta blockers",
+      "Regular short acting β2-agonist"
+    ],
+    "correct": 3,
+    "explanation": "Beta blockers are contraindicated in asthma as they can cause bronchoconstriction. The other options are all used in asthma treatment."
+  },
+  {
+    "question": "Bronchial asthma is characterized by:",
+    "options": [
+      "Intermittent attacks of dyspnea wheezing and cough",
+      "Usually precipitated by exposure to an allergen",
+      "Eosinophilia",
+      "Elevated serum IgE",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All listed options (intermittent attacks, allergen precipitation, eosinophilia, elevated IgE) are characteristic features of bronchial asthma."
+  },
+  {
+    "question": "Status asthmaticus can be treated by all of the following EXCEPT:",
+    "options": [
+      "O2 Inhalation",
+      "Nebulized bronchodilators",
+      "Systemic steroid intake",
+      "Leukotriene antagonists",
+      "Intravenous aminophylline drip"
+    ],
+    "correct": 3,
+    "explanation": "Leukotriene antagonists are not typically used for acute treatment of status asthmaticus. They are more for maintenance therapy. The other options are acute treatments."
+  },
+  {
+    "question": "Extrinsic (atopic) asthma is characterized by:",
+    "options": [
+      "Intermittent attacks of dyspnea, wheezing and cough",
+      "Usually precipitated by exposure to an allergen",
+      "Eosinophilia",
+      "Elevated serum IgE",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All listed options (intermittent attacks, allergen precipitation, eosinophilia, elevated IgE) are characteristic features of extrinsic (atopic) asthma."
+  },
+  {
+    "question": "Which of the following investigations is most helpful in the assessment of a child presenting with an acute asthma attack?",
+    "options": [
+      "White cell count and differential",
+      "Arterial blood gases",
+      "Chest X-ray",
+      "Pulmonary function tests",
+      "O2 saturation monitoring"
+    ],
+    "correct": 1,
+    "explanation": "Arterial blood gases are most helpful in assessing the severity of an asthma attack, particularly to detect hypoxemia or hypercapnia, which guide treatment decisions."
+  },
+  {
+    "question": "Which of the following physical findings would be least likely on examination of a child with moderate to severe asthma?",
+    "options": [
+      "Tachypnea",
+      "Wheezing",
+      "Clubbing",
+      "Decreased air entry over the chest",
+      "An increased anteroposterior diameter of the chest"
+    ],
+    "correct": 2,
+    "explanation": "Clubbing is not typically associated with asthma. It's more commonly seen in chronic conditions like cystic fibrosis or bronchiectasis. The other options are common in asthma."
+  },
+  {
+    "question": "The following drugs are used in bronchial asthma as relievers EXCEPT:",
+    "options": [
+      "B2 agonists nebulization",
+      "Leukotriene antagonists",
+      "Corticosteroids nebulization",
+      "Anticholinergics",
+      "Theophylline infusion"
+    ],
+    "correct": 1,
+    "explanation": "B2 agonists are quick-relief medications for asthma. Leukotriene antagonists are controllers, not relievers. The other options can provide relief during acute attacks."
+  },
+  {
+    "question": "Medications used in the treatment of acute exacerbation of bronchial asthma include all the following EXCEPT:",
+    "options": [
+      "Inhaled short acting beta agonists",
+      "Intravenous theophylline",
+      "Inhaled anticholinergics",
+      "Inhaled long acting beta agonists",
+      "Systemic corticosteroids"
+    ],
+    "correct": 3,
+    "explanation": "Inhaled long-acting beta agonists are used for maintenance therapy, not for acute exacerbations. The other options are used in acute asthma attacks."
+  },
+  {
+    "question": "The most important investigation in the diagnosis of asthma in children is:",
+    "options": [
+      "A chest radiography",
+      "Serum eosinophilia",
+      "Pulmonary function tests",
+      "Sputum analysis",
+      "Blood gases analysis"
+    ],
+    "correct": 2,
+    "explanation": "Pulmonary function tests are the most important investigation for diagnosing asthma in children, showing reversible airflow obstruction. Other tests may support but are not diagnostic."
+  },
+  {
+    "question": "All are used in treatment of bronchial asthma EXCEPT:",
+    "options": [
+      "Inhaled corticosteroids",
+      "Systemic corticosteroids",
+      "Anticholinergic inhalation",
+      "Beta-adrenergic blockers",
+      "Leukotrienes modifiers"
+    ],
+    "correct": 3,
+    "explanation": "Beta-adrenergic blockers are contraindicated in asthma as they can precipitate bronchoconstriction. The other options are all used in asthma treatment."
+  },
+  {
+    "question": "Clinical signs consistent with lobar consolidation include all EXCEPT:",
+    "options": [
+      "Reduced chest movement",
+      "Impaired note progression over affected Lobe",
+      "Bronchial breathing",
+      "Increase tactile vocal fremitus and the Bronchophony",
+      "Deviation of trachea towards affected Lobe"
+    ],
+    "correct": 4,
+    "explanation": "In lobar consolidation, the trachea is not deviated toward the affected lobe. Deviation typically occurs with tension pneumothorax or large pleural effusion."
+  },
+  {
+    "question": "Empyema is most often associated with:",
+    "options": [
+      "Haemophilus influenzae",
+      "Klebsiella",
+      "Staphylococci",
+      "Streptococci",
+      "Pneumococci"
+    ],
+    "correct": 2,
+    "explanation": "Staphylococci are most commonly associated with empyema, particularly in postoperative settings or following penetrating trauma."
+  },
+  {
+    "question": "A 3-month-old boy develops respiratory distress with fever tachypnea, stridor and chest indrawing during an upper respiratory tract infection the most likely diagnosis is:",
+    "options": [
+      "Asthma",
+      "Laryngotracheobronchitis",
+      "Bronchiolitis",
+      "Pneumonia.",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "The presentation (age, respiratory distress during URI) is most consistent with bronchiolitis, which is common in this age group and typically follows viral URIs."
+  },
+  {
+    "question": "Pleural effusion complicating staphylococcal pneumonia is characterized by all EXCEPT:",
+    "options": [
+      "High protein content",
+      "High glucose relative to blood level",
+      "Marked increase in neutrophils",
+      "Decrease air entry on affected side",
+      "Thoracentesis should be done in all cases"
+    ],
+    "correct": 1,
+    "explanation": "In pleural effusion, glucose levels are typically low relative to blood levels, not high. The other options are characteristic of pleural effusion."
+  },
+  {
+    "question": "Which of the following signs is elicited in pleural effusion?",
+    "options": [
+      "Increased movement on the affected side",
+      "Diminished intensity of breath sounds on the affected side",
+      "Shift of the trachea towards the affected side",
+      "Increase vocal resonance on the affected side",
+      "Hyper-resonance on percussion of the affected site"
+    ],
+    "correct": 1,
+    "explanation": "In pleural effusion, there is decreased movement on the affected side due to fluid. The other options are characteristic findings."
+  },
+  {
+    "question": "What is the cut-off rate for fast breathing in a child who is exactly 12 months old?",
+    "options": [
+      "60 breaths per minute",
+      "50 breaths per minute",
+      "40 breaths per minute",
+      "30 breaths per minute",
+      "20 breaths per minute"
+    ],
+    "correct": 0,
+    "explanation": "For a child who is exactly 12 months old, the cut-off rate for fast breathing is 60 breaths per minute, according to WHO guidelines."
+  },
+  {
+    "question": "Parental smoking increase the risk of the following:",
+    "options": [
+      "Acute otitis media",
+      "Chronic secretory otitis media",
+      "Sudden infant death syndrome",
+      "Hospital admission with bronchiolitis",
+      "Low birth weight"
+    ],
+    "correct": 4,
+    "explanation": "Parental smoking increases the risk of all listed conditions: acute otitis media, chronic secretory otitis media, SIDS, hospital admission with bronchiolitis, and low birth weight."
+  },
+  {
+    "question": "What is the cut-off point for fast breathing in a 3- month- old child?",
+    "options": [
+      "10 breaths/ minute or more",
+      "20 breaths/ minute or more",
+      "30 breaths/ minute or more",
+      "50 breaths/ minute or more",
+      "60 breaths/ minute or more"
+    ],
+    "correct": 3,
+    "explanation": "For a 3-month-old child, the cut-off point for fast breathing (tachypnea) is 50 breaths per minute or more, according to WHO guidelines for assessing pneumonia in children."
+  },
+  {
+    "question": "Tuberculosis is caused by",
+    "options": [
+      "Atypical bacteria",
+      "DNA virus",
+      "RNA virus",
+      "Mycobacteria",
+      "fungi"
+    ],
+    "correct": 3,
+    "explanation": "Tuberculosis is caused by Mycobacterium tuberculosis, which are acid-fast bacteria, not viruses, atypical bacteria, or fungi."
+  },
+  {
+    "question": "Tuberculosis spreads through -",
+    "options": [
+      "Contaminated water",
+      "Droplets in air",
+      "Contaminated food",
+      "Blood transfusion",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "Tuberculosis primarily spreads through airborne droplets when an infected person coughs, sneezes, or talks. It is not typically spread through contaminated water, food, or blood transfusion."
+  },
+  {
+    "question": "The following drugs are used in treatment of bronchial asthma EXCEPT:",
+    "options": [
+      "Theophylline.",
+      "Leukotriene modifiers.",
+      "Inhaled steroids.",
+      "Beta blockers.",
+      "Regular short acting B2 agonist."
+    ],
+    "correct": 3,
+    "explanation": "Beta blockers are contraindicated in bronchial asthma as they can cause bronchoconstriction. The other options (theophylline, leukotriene modifiers, inhaled steroids, and short-acting B2 agonists) are all used in asthma treatment."
+  },
+  {
+    "question": "Causes of bronchiectasis in children include all except;",
+    "options": [
+      "HIV infection",
+      "Asthma",
+      "Foreign body aspiration",
+      "Cystic fibrosis",
+      "Pneumococcal infection"
+    ],
+    "correct": 1,
+    "explanation": "HIV infection is not typically a direct cause of bronchiectasis. The other options (asthma, foreign body aspiration, cystic fibrosis, and pneumococcal infection) are known causes of bronchiectasis in children."
+  },
+  {
+    "question": "DOTS in reference to tuberculosis treatment is:",
+    "options": [
+      "Duration of tuberculosis treatment schedule",
+      "Direct observed therapy short course",
+      "The induration of tuberculin testing",
+      "Short course of anti-tuberculosis therapy",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "DOTS stands for Directly Observed Treatment, Short-course, which is a strategy recommended by WHO for tuberculosis control. It involves direct observation of patients taking their medications to ensure completion of treatment."
+  },
+  {
+    "question": "Positive tuberculin test",
+    "options": [
+      "Redness at the site of test",
+      "Induration at site of injection",
+      "Severe tenderness at test size",
+      "Change of the skin Colour",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "A positive tuberculin test is indicated by induration (firm swelling) at the site of injection, not just redness, tenderness, or color change. The size of induration determines the positivity based on risk factors."
+  },
+  {
+    "question": "Clinical signs consistent with lobar consolidation include all EXCEPT:",
+    "options": [
+      "Reduced chest movements.",
+      "Impaired note on percussion over the affected lobe.",
+      "Bronchial breathing.",
+      "Increased tactile vocal fremitus & bronchophony.",
+      "Deviation of the trachea towards the affected lobe."
+    ],
+    "correct": 4,
+    "explanation": "In lobar consolidation, the trachea does not deviate toward the affected lobe. Deviation toward the affected side occurs in conditions like atelectasis, while deviation away occurs in tension pneumothorax or large pleural effusion."
+  },
+  {
+    "question": "Which of the following signs is elicited in pleural effusion?",
+    "options": [
+      "Increased movement on the affected side.",
+      "Diminished intensity of breath sounds on the affected side.",
+      "Shift of the trachea towards the affected side.",
+      "Increased vocal resonance on the affected side.",
+      "Hyper-resonance on percussion of the affected side."
+    ],
+    "correct": 1,
+    "explanation": "In pleural effusion, there is decreased movement on the affected side, not increased. Other signs include diminished breath sounds, dullness on percussion, and decreased vocal resonance."
+  },
+  {
+    "question": "Treatment of pediatric empyema includes all except;",
+    "options": [
+      "Antibiotics",
+      "Mucolytics",
+      "Pleural drainage",
+      "Surgical",
+      "Fibrinolysis"
+    ],
+    "correct": 1,
+    "explanation": "Mucolytics are not typically used in the treatment of pediatric empyema. The standard treatment includes antibiotics, pleural drainage, surgical intervention if needed, and sometimes fibrinolysis."
+  },
+  {
+    "question": "In tension pneumothorax; the true statement is;",
+    "options": [
+      "It is a life-threatening condition",
+      "Observation is the first line of treatment",
+      "Chronic heart failure may occur",
+      "High flow Oxygen is contraindicated",
+      "Pneumococcal infection is the primary cause"
+    ],
+    "correct": 0,
+    "explanation": "Tension pneumothorax is indeed a life-threatening condition requiring immediate intervention. Observation is not appropriate, and high-flow oxygen is typically indicated, not contraindicated."
+  },
+  {
+    "question": "Bronchiolitis cause by all of the following except",
+    "options": [
+      "mumps",
+      "Measles",
+      "RSV",
+      "Mycoplasma",
+      "Parainfluenza"
+    ],
+    "correct": 3,
+    "explanation": "Mycoplasma is not a common cause of bronchiolitis. Bronchiolitis is most commonly caused by respiratory syncytial virus (RSV), with parainfluenza, mumps, and measles also being potential causes."
+  },
+  {
+    "question": "Previously well one year old baby has had runny nose, cough and sneezing for 2 days. The 2 other member of the family had similar condition. On examination he is in moderate respiratory distress with nasal flaring, hyperexpansion of the chest and easily audible wheezing, what is the most probable diagnosis",
+    "options": [
+      "Acute bronchitis",
+      "Acute bronchiolitis",
+      "Asthma",
+      "Epiglottitis"
+    ],
+    "correct": 1,
+    "explanation": "The presentation with respiratory distress, wheezing, and a preceding upper respiratory infection in a young infant is most consistent with acute bronchiolitis, typically caused by RSV."
+  },
+  {
+    "question": "a child with inspiratory stridor, high fever, drooling sitting with great dyspnea, what is most likely diagnosis",
+    "options": [
+      "laryngitis",
+      "croup",
+      "acute epiglottitis",
+      "Bronchial asthma",
+      "Pneumonia"
+    ],
+    "correct": 2,
+    "explanation": "The presentation with inspiratory stridor, high fever, drooling, and sitting in a position of respiratory distress is classic for acute epiglottitis, a medical emergency."
+  },
+  {
+    "question": "The most causative organism responsible for epiglottitis is",
+    "options": [
+      "H. Influenza",
+      "Parvovirus",
+      "Adenovirus",
+      "Salmonella"
+    ],
+    "correct": 0,
+    "explanation": "Haemophilus influenzae type B (Hib) is the most common causative organism for epiglottitis, though vaccination has significantly reduced its incidence."
+  },
+  {
+    "question": "Regarding treatment of croup, all true except",
+    "options": [
+      "IV fluids",
+      "Humidified oxygen",
+      "Sedative",
+      "Racemic epinephrine",
+      "Corticosteroid"
+    ],
+    "correct": 2,
+    "explanation": "Sedatives are contraindicated in croup treatment as they can suppress respiratory drive. The other options (IV fluids, humidified oxygen, racemic epinephrine, and corticosteroids) are appropriate treatments."
+  },
+  {
+    "question": "What is the cut-off rate for fast breathing in a child who is exactly 12 months old?",
+    "options": [
+      "60 breaths per minute",
+      "50 breaths per minute",
+      "40 breaths per minute",
+      "30 breaths per minute",
+      "20 breaths per minute"
+    ],
+    "correct": 0,
+    "explanation": "For a child who is exactly 12 months old, the cut-off rate for fast breathing is 40 breaths per minute or more, according to WHO guidelines for assessing pneumonia in children."
+  },
+  {
+    "question": "Characteristics of Croup include",
+    "options": [
+      "stridor",
+      "gradual onset",
+      "parky cough",
+      "Improvement with moistened air.",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the listed characteristics (stridor, gradual onset, barking cough, and improvement with moistened air) are typical features of croup (laryngotracheobronchitis)."
+  },
+  {
+    "question": "Regarding upper respiratory tract infections:",
+    "options": [
+      "Simple nasal obstruction will cause feeding difficulty in infants",
+      "The commonest organisms causing common cold is rhinovirus",
+      "Otitis media is a common complication of common cold in infancy",
+      "Pharyngitis may be bacterial or viral",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the statements are true: nasal obstruction can cause feeding difficulties in infants, rhinovirus is the most common cause of the common cold, otitis media is a common complication, and pharyngitis can be bacterial or viral."
+  },
+  {
+    "question": "Which of (he following investigations is most helpful in the assessment of a child presenting with an acute asthma attack?",
+    "options": [
+      "White cell count and differential",
+      "Arterial blood gases",
+      "Chest x-ray",
+      "Pulmonary function tests",
+      "O2 saturation monitoring"
+    ],
+    "correct": 1,
+    "explanation": "Arterial blood gases are most helpful in assessing the severity of an acute asthma attack, as they provide information about oxygenation, ventilation, and acid-base status."
+  },
+  {
+    "question": "A 5-year-old comes to the Emergency Department with fever, sore throat, hoarseness, and stridor developing over one to two days. He also appears to be drooling. Which of the following is the most appropriate initial step in management?",
+    "options": [
+      "Get a lateral cervical neck x-ray",
+      "Draw a CBC and blood cultures",
+      "Prepare for emergency intubation",
+      "Do a detailed history and physical",
+      "Send him home"
+    ],
+    "correct": 2,
+    "explanation": "The most appropriate initial step is to prepare for emergency intubation, as epiglottitis can rapidly progress to complete airway obstruction. Examination of the throat should be avoided to prevent airway obstruction."
+  },
+  {
+    "question": "Empyema is most often associated with",
+    "options": [
+      "Hemophilus influenzas",
+      "Klebsiella",
+      "Staphylococci",
+      "Streptococci",
+      "Pneumococci"
+    ],
+    "correct": 4,
+    "explanation": "Empyema is most often associated with pneumococcal infection, though other organisms like Staphylococcus aureus and Streptococcus pneumoniae can also cause it."
+  },
+  {
+    "question": "A 6 years old fully immunized boy presented with 3 hours history of fever 39.5 and sore throat. The child appears alert but anxious and toxic. He has mild respiratory distress, stridor and is drooling, he is setting in examination room leaning forward and his neck is extended what is the most appropriate immediate management:",
+    "options": [
+      "examine the throat and obtain culture",
+      "obtain an ABG and start IV fluids",
+      "prepare to establish airway",
+      "admit the child and place him in a mist tent"
+    ],
+    "correct": 2,
+    "explanation": "The most appropriate immediate management is to prepare to establish the airway, as the child's presentation suggests epiglottitis, which can rapidly progress to airway obstruction."
+  },
+  {
+    "question": "A 3 months old boy develops respiratory distress with fever, tachypnea, stridor and chest indrawing during an upper respiratory tract infection. The most likely diagnosis is",
+    "options": [
+      "Asthma",
+      "Laryngotracheobronchitis",
+      "Bronchiolitis",
+      "Pneumonia",
+      "Tuberculosis"
+    ],
+    "correct": 1,
+    "explanation": "In a 3-month-old with respiratory distress during an upper respiratory infection, laryngotracheobronchitis (croup) is the most likely diagnosis, characterized by stridor and chest indrawing."
+  },
+  {
+    "question": "Common causes of stricter in a one-year-old infant include the following EXCEPT",
+    "options": [
+      "Laryngeal foreign body",
+      "Acute spasmodic laryngitis",
+      "Large adenoids",
+      "Hypocalcemic tetany",
+      "Croup"
+    ],
+    "correct": 3,
+    "explanation": "Large adenoids are not a common cause of stridor in a one-year-old. The other options (laryngeal foreign body, acute spasmodic laryngitis, hypocalcemic tetany, and croup) are known causes."
+  },
+  {
+    "question": "In acute epiglottitis the following arc true except",
+    "options": [
+      "Can be prevented by vaccination",
+      "Drooling of saliva",
+      "Intubation / tracheostomy may be needed",
+      "Antibiotics are not indicated",
+      "It is commonly due to I-LIB infection"
+    ],
+    "correct": 3,
+    "explanation": "Intubation or tracheostomy may be needed in severe cases of epiglottitis, but antibiotics are definitely indicated to treat the underlying infection. Epiglottitis can be prevented by Hib vaccination."
+  },
+  {
+    "question": "Complications of pneumonia include:",
+    "options": [
+      "pleural effusion",
+      "myocarditis",
+      "lung abscess",
+      "respiratory failure",
+      "all of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the listed options (pleural effusion, myocarditis, lung abscess, and respiratory failure) are potential complications of pneumonia."
+  },
+  {
+    "question": "Treatment of acute Bronchiolitis include the following except:",
+    "options": [
+      "Hospitalization if distressed.",
+      "Humidified oxygen.",
+      "Ribavirin",
+      "bronchodilators at least single dose trial.",
+      "Antibiotics in all patients."
+    ],
+    "correct": 3,
+    "explanation": "Bronchodilators are not routinely recommended for bronchiolitis, though a single trial may be considered in some cases. The other options are appropriate components of treatment."
+  },
+  {
+    "question": "Risk factors for bronchial asthma include the following except:",
+    "options": [
+      "Twins",
+      "Maternal smoking",
+      "Overcrowding",
+      "Positive family history of atopic diseases",
+      "Intense allergenic exposure in infancy"
+    ],
+    "correct": 0,
+    "explanation": "Twins are not a recognized risk factor for bronchial asthma. The other options (maternal smoking, overcrowding, positive family history, and intense allergenic exposure) are established risk factors."
+  },
+  {
+    "question": "The causes of wheezy child include the following:",
+    "options": [
+      "Bronchial asthma",
+      "Foreign body in the airway",
+      "Acute bronchiolitis",
+      "Allergic bronchopulmonary aspergillosis.",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the listed conditions (bronchial asthma, foreign body in the airway, acute bronchiolitis, and allergic bronchopulmonary aspergillosis) can cause wheezing in children."
+  },
+  {
+    "question": "Croup syndromes are characterized by all the following except",
+    "options": [
+      "Distinctive brassy cough",
+      "Hoarseness of voice",
+      "Expiratory stridor",
+      "Respiratory distress",
+      "Being an acute condition"
+    ],
+    "correct": 0,
+    "explanation": "Croup syndromes are characterized by hoarseness, expiratory stridor, respiratory distress, and being acute. The distinctive brassy cough is more characteristic of other conditions like tracheobronchitis."
+  },
+  {
+    "question": "Etiology of viral pneumonia include all the following except",
+    "options": [
+      "RSV",
+      "Adenovirus",
+      "Hemophilus influenzae",
+      "Influenza",
+      "Parainfluenza"
+    ],
+    "correct": 2,
+    "explanation": "Hemophilus influenzae is a bacterial pathogen, not a viral one. The other options (RSV, adenovirus, influenza, parainfluenza) are all viral causes of pneumonia."
+  },
+  {
+    "question": "Auscultation in a case of bronchopneumonia usually reveals:",
+    "options": [
+      "sonorous rhonchi and non consonating crepitations",
+      "harsh vesicular breathing",
+      "diminished air entry and sibilant rhonchi",
+      "bronchial breathing and consonating crepitations",
+      "none of the above"
+    ],
+    "correct": 0,
+    "explanation": "Bronchopneumonia typically reveals scattered findings on auscultation including sonorous rhonchi and non-consonating crepitations. Harsh vesicular breathing suggests bronchitis, diminished air entry with sibilant rhonchi suggests asthma or bronchiolitis, and bronchial breathing with consonating crepitations suggests lobar pneumonia."
+  },
+  {
+    "question": "Local findings over an affected area with pneumococcal pneumonia include",
+    "options": [
+      "Increased TVF",
+      "Dullness on percussion",
+      "Tubular breathing",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Pneumococcal pneumonia classically presents with increased tactile vocal fremitus (TVF), dullness on percussion, and tubular breathing over the affected area due to consolidation of the lung tissue."
+  },
+  {
+    "question": "You are awakened in the night by your 2-year-old son, who has developed noisy breathing on inspiration, marked retractions of the chest wall, flaring of the nostrils, and a barking cough. He has had a mild upper respiratory infection (URI) for 2 days. The most likely diagnosis is",
+    "options": [
+      "Asthma",
+      "Epiglottitis",
+      "Bronchiolitis",
+      "Viral croup",
+      "Foreign body in the right mainstem bronchus"
+    ],
+    "correct": 3,
+    "explanation": "The presentation with barking cough, inspiratory stridor, retractions, and URI symptoms is classic for viral croup (laryngotracheobronchitis). Asthma typically presents with wheezing, epiglottitis has rapid onset and high fever, bronchiolitis has wheezing and lower respiratory symptoms, and foreign body typically has sudden onset without URI prodrome."
+  },
+  {
+    "question": "Pneumococcal pneumonia could) be complicated with",
+    "options": [
+      "Empyema",
+      "Heart failure",
+      "Lung abscess",
+      "Respiratory failure",
+      "All of the above"
+    ],
+    "correct": 5,
+    "explanation": "Pneumococcal pneumonia can be complicated by empyema (pus in pleural space), lung abscess, respiratory failure, and rarely heart failure due to hypoxia or sepsis."
+  },
+  {
+    "question": "Complications of staph Aureus pneumonia include",
+    "options": [
+      "Osteomyelitis",
+      "Meningitis",
+      "Pericarditis",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Staphylococcus aureus pneumonia can spread hematogenously causing osteomyelitis, meningitis, and pericarditis. These are known complications of staphylococcal infections."
+  },
+  {
+    "question": "The main causative agent of bronchiolitis is",
+    "options": [
+      "RSV",
+      "Adenovirus",
+      "Mycoplasma",
+      "Herpes virus",
+      "Rhinovirus"
+    ],
+    "correct": 0,
+    "explanation": "Respiratory syncytial virus (RSV) is the most common cause of bronchiolitis in infants and young children, particularly during winter months."
+  },
+  {
+    "question": "Treatment of bronchiolitis include all the following except",
+    "options": [
+      "Humidified oxygen",
+      "Sedatives",
+      "Ribavirin",
+      "IV fluids",
+      "Antibiotics for secondary infection"
+    ],
+    "correct": 1,
+    "explanation": "Sedatives are contraindicated in bronchiolitis as they can suppress respiratory drive. Treatment includes humidified oxygen, supportive care, IV fluids for dehydration, and antibiotics only if secondary bacterial infection is suspected."
+  },
+  {
+    "question": "Bronchial asthma is",
+    "options": [
+      "A diffuse obstructive lung disease",
+      "Associated with hyperactive airways",
+      "High degree of reversibility of airway obstruction",
+      "Associated with chronic airway inflammation",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Asthma is characterized by diffuse airway obstruction, hyperreactive airways, reversible obstruction, and chronic inflammation. All these features are present in asthma."
+  },
+  {
+    "question": "Features of acute bronchiolitis include all of the following except:",
+    "options": [
+      "it usually starts with upper respiratory tract infections",
+      "respiratory syncytial virus is a common etiology",
+      "it occurs most commonly in winter",
+      "marked inflation of the lungs in CXR",
+      "good response to B adrenergic agonists"
+    ],
+    "correct": 4,
+    "explanation": "Bronchiolitis typically shows hyperinflation with flattened diaphragms on CXR, not marked inflation. It usually starts with URI symptoms, is commonly caused by RSV, occurs in winter, and does not typically respond to beta-agonists."
+  },
+  {
+    "question": "A 2-month-old boy with 3 days history of mild fever and runny nose, suddenly he developed high fever, cough and respiratory distress. Within 48 hours the patient deteriorated, CXR revealed pneumothorax, what is the first action to be done?",
+    "options": [
+      "In antibiotics",
+      "Blood gases",
+      "Chest tube",
+      "antipyretics"
+    ],
+    "correct": 2,
+    "explanation": "In a deteriorating infant with pneumothorax (as suggested by CXR finding), the first action should be immediate chest tube insertion to relieve tension and allow lung re-expansion. Antibiotics, blood gases, and antipyretics are important but not the immediate first step."
+  },
+  {
+    "question": "A 9-month-old baby presents in winter with coryza, respiratory distress and difficulty feeding. There is no history of cough in the past. On examination there are crackles and wheezing. What is the most likely diagnosis?",
+    "options": [
+      "Pneumonia",
+      "Bronchiolitis",
+      "Asthma",
+      "Inhaled foreign body",
+      "Whooping cough"
+    ],
+    "correct": 1,
+    "explanation": "The presentation with coryza, respiratory distress, difficulty feeding, crackles, and wheezing in a winter season infant is classic for bronchiolitis, which is most commonly caused by RSV."
+  },
+  {
+    "question": "The following conditions are causes of stridor EXCEPT:",
+    "options": [
+      "Inhaled foreign body",
+      "Vascular ring",
+      "Laryngomalacia",
+      "Bronchiolitis",
+      "Croup"
+    ],
+    "correct": 3,
+    "explanation": "Bronchiolitis causes lower airway obstruction with wheezing, not stridor. Stridor is caused by upper airway obstruction from conditions like inhaled foreign body, vascular ring, laryngomalacia, and croup."
+  },
+  {
+    "question": "All of the following are triggers for asthma in a susceptible child except:",
+    "options": [
+      "Dust mite",
+      "Air pollution",
+      "Cigarette smoke",
+      "Gastro-oesophageal reflux",
+      "Exercise"
+    ],
+    "correct": 4,
+    "explanation": "Gastro-oesophageal reflux is not typically considered a trigger for asthma exacerbations, though it can coexist. Dust mites, air pollution, cigarette smoke, and exercise are well-established asthma triggers."
+  },
+  {
+    "question": "Which of the following is the accepted definition of asthma?",
+    "options": [
+      "Cough or wheeze in a child who has tested positive for allergens on skin prick testing",
+      "Cough or wheeze in a child with a strong family history of asthma",
+      "Recurrent cough or wheeze that responds to bronchodilator therapy",
+      "Persistent cough or wheeze in a child exposed to passive smoking in the home",
+      "All of the above"
+    ],
+    "correct": 2,
+    "explanation": "The accepted definition of asthma is recurrent cough or wheeze that responds to bronchodilator therapy. While other factors may suggest asthma, the key diagnostic feature is reversibility of symptoms with bronchodilators."
+  },
+  {
+    "question": "It is important to use an appropriate device for administering asthma treatment. An MDI (metered dose inhaler) with a spacer device is appropriate for what age child?",
+    "options": [
+      "An infant",
+      "A preschool child",
+      "A school age child with severe asthma",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "MDI with spacer is appropriate for all age groups, including infants, preschool children, and school-age children. It's an effective delivery method for inhaled medications across all pediatric ages."
+  },
+  {
+    "question": "Which one of the following signs is not likely to occur when asthma is life threatening?",
+    "options": [
+      "Confusion",
+      "Hyperactivity",
+      "A silent chest",
+      "Hypotension",
+      "Being too breathless to talk"
+    ],
+    "correct": 1,
+    "explanation": "Hyperactivity is not a sign of life-threatening asthma. In fact, as respiratory failure approaches, children typically become quiet and less active. Confusion, silent chest, hypotension, and inability to talk are concerning signs of severe asthma."
+  },
+  {
+    "question": "A child with poor control of their asthma is likely to have any of the following symptoms or signs except:",
+    "options": [
+      "Clubbing",
+      "Poor growth",
+      "Chronic chest deformity",
+      "Frequent acute exacerbations",
+      "Persistent cough at night"
+    ],
+    "correct": 0,
+    "explanation": "Clubbing is not associated with asthma. Poor growth, chronic chest deformities (like pectus deformities), frequent exacerbations, and persistent nocturnal cough are all potential consequences of poorly controlled asthma."
+  },
+  {
+    "question": "The preferred study to measure the airflow in patients with asthma is:",
+    "options": [
+      "Spirometry",
+      "Chest X-ray",
+      "Chest CT scan",
+      "Chest MRI",
+      "Peak expiratory flow monitoring"
+    ],
+    "correct": 0,
+    "explanation": "Spirometry is the preferred method to objectively measure airflow obstruction in asthma patients. It provides measurements like FEV1, FVC, and FEV1/FVC ratio that help diagnose and monitor asthma."
+  },
+  {
+    "question": "Most common associated finding in children with asthma is:",
+    "options": [
+      "GERD",
+      "Recurrent pharyngitis",
+      "Recurrent tonsillitis",
+      "Recurrent sinusitis",
+      "Recurrent otitis media"
+    ],
+    "correct": 4,
+    "explanation": "Recurrent otitis media is the most common associated finding in children with asthma, likely due to similar inflammatory pathways and possibly related to allergic rhinitis."
+  },
+  {
+    "question": "A 14-year-old girl has been suffering from asthma for the last 3 years. Pulmonary function test (PFT) was performed. Which of the following result is appropriate for this patient?",
+    "options": [
+      "Increased residual volume (RV), decreased vital capacity (VC), decreased forced expiratory volume (FEV1)",
+      "Decreased RV, decreased VC, decreased FEV1",
+      "Decreased RV, increased VC, decreased FEV1",
+      "Increased RV, increased VC, increased FEV1",
+      "Decreased RV, decreased VC, increased FEV1"
+    ],
+    "correct": 0,
+    "explanation": "Asthma is characterized by air trapping, leading to increased residual volume (RV) and total lung capacity, with decreased vital capacity (VC) and forced expiratory volume (FEV1) due to obstruction."
+  },
+  {
+    "question": "A child had been suffering from asthma for the last 2 years. The condition worsens since his parents purchased a dog and a cat. Most likely cause for worsening asthma:",
+    "options": [
+      "Only dog can produce asthma",
+      "Only cat can produce asthma",
+      "None of them produce asthma",
+      "Both of them produce asthma",
+      "Properly washed animals and their company is good for asthma patient."
+    ],
+    "correct": 3,
+    "explanation": "Both dogs and cats are common allergens that can trigger asthma in susceptible individuals. Pet dander contains proteins that can provoke allergic reactions and asthma exacerbations."
+  },
+  {
+    "question": "A child is diagnosed with allergic rhinitis. He is allergic to pollen and dust mites. The child may develop in future:",
+    "options": [
+      "Anaphylactic reaction to immunization",
+      "Allergy to medication",
+      "Asthma",
+      "Otitis media",
+      "Nasolacrimal duct obstruction"
+    ],
+    "correct": 2,
+    "explanation": "Children with allergic rhinitis have an increased risk of developing asthma, a phenomenon known as the 'atopic march'. The other options are not directly linked to allergic rhinitis."
+  },
+  {
+    "question": "The most important diagnostic evaluation in a severe asthmatic patient:",
+    "options": [
+      "Chest X-ray",
+      "Pulmonary CT scan",
+      "Arterial blood gas (ABG)",
+      "Pulmonary function test",
+      "Radionuclide pulmonary scan"
+    ],
+    "correct": 2,
+    "explanation": "In severe asthma, arterial blood gas (ABG) analysis is crucial to assess for hypercarbia, hypoxia, and acid-base status, which helps guide treatment decisions and identify impending respiratory failure."
+  },
+  {
+    "question": "A 3-year-old boy appears in the ER with history of respiratory distress, barking cough, and stridor for the last 2 hours. The boy has no fever. Physical examination reveals temperature 37 degreesC, respiratory rate 30 per minute, and blood pressure 85/50. Most likely diagnosis:",
+    "options": [
+      "Croup",
+      "Foreign body inside trachea",
+      "Asthma",
+      "Epiglottitis",
+      "Foreign body inside bronchus"
+    ],
+    "correct": 0,
+    "explanation": "The presentation with barking cough, stridor, and respiratory distress without fever is classic for croup (viral laryngotracheobronchitis). Foreign body would typically have sudden onset without URI prodrome, epiglottitis has high fever and toxic appearance, and asthma presents with wheezing."
+  },
+  {
+    "question": "A female child appears in the ER with a severe asthma attack. She has been using albuterol inhalation pump. Physical examination reveals tachypnea, intercostal and subcostal retractions, and expiratory wheezes. She is in a respiratory failure. The most important finding suggests impending respiratory failure:",
+    "options": [
+      "Hypoxia",
+      "Hypercarbia",
+      "Fatigue",
+      "Lethargy",
+      "Hypocarbia"
+    ],
+    "correct": 1,
+    "explanation": "Hypercarbia (elevated CO2) is the most specific indicator of impending respiratory failure in asthma. Hypoxia, fatigue, lethargy, and hypocarbia are also concerning but hypercarbia indicates severe ventilation-perfusion mismatch."
+  },
+  {
+    "question": "A mother has asthma. Father is normal. She has one boy. The risk of asthma to this boy:",
+    "options": [
+      "2%",
+      "4%",
+      "10%",
+      "25%",
+      "50%"
+    ],
+    "correct": 4,
+    "explanation": "The risk of asthma in a child increases with family history. With one asthmatic parent, the risk is approximately 25-30%, with both parents affected it rises to 50-70%."
+  },
+  {
+    "question": "A 12-year-old boy with asthma wants to participate in sports. The medication recommended before sports to avoid exercise-induced asthma:",
+    "options": [
+      "Beta-agonist bronchodilator",
+      "Theophylline",
+      "Cromolyn sodium",
+      "Antihistamine",
+      "Corticosteroids"
+    ],
+    "correct": 0,
+    "explanation": "Short-acting beta-agonist bronchodilators (like albuterol) are the recommended pre-treatment for exercise-induced asthma, taken 10-15 minutes before exercise."
+  },
+  {
+    "question": "Most common organism of acute bronchiolitis:",
+    "options": [
+      "Influenza virus",
+      "RSV",
+      "Parainfluenza virus",
+      "Rhinovirus",
+      "Coxsackievirus"
+    ],
+    "correct": 1,
+    "explanation": "Respiratory syncytial virus (RSV) is the most common cause of acute bronchiolitis in infants and young children worldwide."
+  },
+  {
+    "question": "The most common organism responsible for community-acquired bacterial pneumonia:",
+    "options": [
+      "S. aureus",
+      "S. epidermidis",
+      "Pseudomonas",
+      "Listeria",
+      "Streptococcus pneumonia"
+    ],
+    "correct": 4,
+    "explanation": "Streptococcus pneumoniae is the most common cause of community-acquired bacterial pneumonia in children. It's a common pathogen that colonizes the upper respiratory tract and can invade the lower respiratory tract to cause pneumonia."
+  },
+  {
+    "question": "A good asthma management means that almost all children with asthma can experience all of the following except:",
+    "options": [
+      "Sleep well without disturbance due to a chronic cough",
+      "Attend school regularly",
+      "Participate fully in sports activities",
+      "Avoid severe exacerbations of asthma",
+      "Little or no adverse effects from asthma medications"
+    ],
+    "correct": 0,
+    "explanation": "While good asthma management aims to minimize symptoms and allow normal activities, some children may still experience occasional chronic cough during sleep despite optimal treatment. This is not necessarily a sign of poor control but may be a residual symptom in some cases."
+  },
+  {
+    "question": "Most common cause of childhood bacterial pneumonia:",
+    "options": [
+      "S. aureus",
+      "Streptococcus pneumoniae",
+      "Pseudomonas",
+      "Streptococcus pyogenes",
+      "Group B Streptococcus"
+    ],
+    "correct": 1,
+    "explanation": "Streptococcus pneumoniae is the most common cause of bacterial pneumonia in children. It's a leading pathogen that can cause serious infections, particularly in young children."
+  },
+  {
+    "question": "Most common pneumonia due to virus:",
+    "options": [
+      "Rhinovirus",
+      "RSV",
+      "Echovirus",
+      "Herpes",
+      "CMV"
+    ],
+    "correct": 1,
+    "explanation": "Respiratory syncytial virus (RSV) is the most common viral cause of pneumonia in children, especially in infants and young children. It typically causes lower respiratory tract infections during the winter months."
+  },
+  {
+    "question": "Most common organism in pneumonia for school age and older children:",
+    "options": [
+      "Streptococcal pneumoniae",
+      "Chlamydia trachomatis",
+      "S. aureus",
+      "E. coli",
+      "Mycoplasma"
+    ],
+    "correct": 0,
+    "explanation": "Streptococcal pneumoniae remains the most common bacterial pathogen causing pneumonia in school-age children and older children, though Mycoplasma pneumoniae becomes more common in adolescents."
+  },
+  {
+    "question": "During the month of January ten children (up to 2 years) were admitted in a pediatric ward with respiratory symptoms. Eight of them were born prematurely. Most likely organism:",
+    "options": [
+      "Haemophilus influenzae type b",
+      "Rhinovirus",
+      "Streptococcus pneumoniae",
+      "S. aureus",
+      "Respiratory syncytial virus"
+    ],
+    "correct": 4,
+    "explanation": "Respiratory syncytial virus (RSV) is the most likely pathogen in this scenario. It commonly causes respiratory illness in premature infants, particularly during winter months, and can lead to severe lower respiratory infections in this vulnerable population."
+  },
+  {
+    "question": "A 4-year-old female child appears in ER with history of stridor and mild respiratory distress for the last 12 hours. Mother denies fever. Physical examination reveals tachypnea and barking cough. Most likely organism:",
+    "options": [
+      "Hemophilus influenzae",
+      "Respiratory syncytial virus",
+      "Rhinovirus",
+      "Group A beta hemolytic Streptococcus",
+      "Parainfluenza virus"
+    ],
+    "correct": 4,
+    "explanation": "Parainfluenza virus is the most likely cause of this presentation with stridor, barking cough, and respiratory distress without fever. This classic triad is characteristic of croup, which is most commonly caused by parainfluenza virus type 1."
+  },
+  {
+    "question": "All of the following are adverse effects of frequently administered beta agonist therapy in patients with severe asthma except:",
+    "options": [
+      "Irritability",
+      "Tachycardia",
+      "Tremor",
+      "Hypokalemia",
+      "Hyponatremia"
+    ],
+    "correct": 4,
+    "explanation": "Hyponatremia is not a typical adverse effect of beta-agonist therapy. Beta-agonists can cause hypokalemia, tachycardia, tremor, and irritability, but they do not typically cause hyponatremia."
+  },
+  {
+    "question": "The important side effect of intravenous magnesium sulfate therapy in patients with asthma is:",
+    "options": [
+      "Hypotension",
+      "Hypertension",
+      "Constipation",
+      "Sedation",
+      "Respiratory stimulation"
+    ],
+    "correct": 0,
+    "explanation": "The important side effect of intravenous magnesium sulfate therapy in asthma patients is hypotension. Magnesium sulfate can cause vasodilation leading to hypotension, along with other potential side effects like flushing and nausea."
+  },
+  {
+    "question": "All of the following therapies are indicated in hospitalized patients with an acute severe asthma attack except:",
+    "options": [
+      "Oxygen",
+      "Inhaled beta-agonist",
+      "Systemic glucocorticoid",
+      "Fluids at or slightly below maintenance",
+      "Fluids above maintenance"
+    ],
+    "correct": 3,
+    "explanation": "Fluids at or slightly below maintenance are indicated in hospitalized patients with acute severe asthma to avoid overhydration, which can worsen respiratory status. Fluids above maintenance are not recommended as they can lead to pulmonary edema in these patients."
+  },
+  {
+    "question": "A severely asthmatic patient is receiving oxygen, inhaled beta-agonist, and systemic glucocorticoid therapies. The child is intubated because of respiratory failure. All of the following therapies are useful in this patient except:",
+    "options": [
+      "Intravenous beta-agonist",
+      "Intravenous theophylline",
+      "Heliox",
+      "Intramuscular magnesium sulfate",
+      "Intravenous magnesium sulfate"
+    ],
+    "correct": 1,
+    "explanation": "Intravenous theophylline is not typically useful in this scenario. While it was historically used, its role has diminished due to narrow therapeutic index and availability of more effective alternatives. The other options (IV beta-agonist, heliox, magnesium sulfate) can be beneficial in severe asthma."
+  },
+  {
+    "question": "All of the following measures can reduce the development of asthma except:",
+    "options": [
+      "Influenza vaccine",
+      "Healthy diet",
+      "Breast feeding more than 4 months",
+      "Active life style",
+      "Avoid environmental tobacco smoke beginning prenatally"
+    ],
+    "correct": 3,
+    "explanation": "Active lifestyle does not reduce the development of asthma. In fact, exercise can sometimes trigger asthma symptoms. The other options (influenza vaccine, healthy diet, breastfeeding, avoiding tobacco smoke) have been associated with reduced asthma risk."
+  },
+  {
+    "question": "The presence of the following organisms on culture of lower airways or sputum is diagnostic of cystic fibrosis in children:",
+    "options": [
+      "Streptococcus pneumoniae",
+      "Mucoid forms of Pseudomonas",
+      "Mycoplasma pneumoniae",
+      "RSV",
+      "Chlamydia trachomatis"
+    ],
+    "correct": 1,
+    "explanation": "Mucoid forms of Pseudomonas are diagnostic of cystic fibrosis in children. The presence of mucoid Pseudomonas aeruginosa in respiratory cultures is highly specific for cystic fibrosis and indicates chronic infection."
+  },
+  {
+    "question": "The most common organism isolated in patients with pneumothorax, especially in infants is:",
+    "options": [
+      "S. aureus",
+      "S. epidermidis",
+      "Streptococcus pneumoniae",
+      "Pseudomonas aeruginosa",
+      "Group B Streptococcus"
+    ],
+    "correct": 0,
+    "explanation": "Staphylococcus aureus is the most common organism isolated in patients with pneumothorax, especially in infants. It's a common pathogen that can cause necrotizing pneumonia leading to pneumothorax."
+  },
+  {
+    "question": "The preferred diagnostic study in patients with bronchiectasis is:",
+    "options": [
+      "Chest x-ray (AP view)",
+      "Bronchoscopy",
+      "Chest x-ray (lateral view)",
+      "Bronchography",
+      "CT scan"
+    ],
+    "correct": 4,
+    "explanation": "CT scan is the preferred diagnostic study in patients with bronchiectasis as it provides detailed visualization of bronchial dilation, wall thickening, and other structural changes that are characteristic of bronchiectasis."
+  },
+  {
+    "question": "The most common cause of bronchiectasis in the developed countries is:",
+    "options": [
+      "Cystic fibrosis",
+      "Ciliary dyskinesia",
+      "TB",
+      "Measles",
+      "Right middle lobe syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Cystic fibrosis is the most common cause of bronchiectasis in developed countries. It leads to chronic lung infections and inflammation that progressively damage the airways, resulting in bronchiectasis."
+  },
+  {
+    "question": "Posteroanterior x-ray of a neck reveals a \"steeple sign\". The most likely diagnosis is:",
+    "options": [
+      "Fracture clavicle",
+      "Fracture cervical vertebra",
+      "Croup",
+      "Laryngeal polyps",
+      "Tracheoesophageal fistula"
+    ],
+    "correct": 2,
+    "explanation": "The 'steeple sign' on a posteroanterior x-ray is characteristic of croup (laryngotracheobronchitis). This sign represents subglottic narrowing due to inflammation and edema in the subglottic region."
+  },
+  {
+    "question": "The most common organism in patients with a croup (laryngotracheobronchitis) is:",
+    "options": [
+      "Influenza type",
+      "Adenovirus",
+      "Respiratory syncytial virus",
+      "Mycoplasma pneumoniae",
+      "Parainfluenza viruses"
+    ],
+    "correct": 4,
+    "explanation": "Parainfluenza viruses are the most common cause of croup (laryngotracheobronchitis). Parainfluenza virus type 1 is particularly associated with this condition, which typically affects children aged 6 months to 3 years."
+  },
+  {
+    "question": "A 3-year-old boy appears with a barking cough, hoarseness, low-grade fever, and dyspnea for the last 6 hours. The child has been suffering from rhinorrhea, mild cough, pharyngitis, and fever for the last 3 days. His condition worsens with agitation and crying. A physical examination reveals tachypnea, mild retractions, inflamed pharynx, coryza, and hoarse voice. The most likely diagnosis is:",
+    "options": [
+      "Acute epiglottitis",
+      "Spasmodic croup",
+      "Croup",
+      "Acute pharyngitis",
+      "Acute infectious laryngitis"
+    ],
+    "correct": 2,
+    "explanation": "This presentation with barking cough, hoarseness, low-grade fever, and dyspnea following upper respiratory symptoms is classic for croup (laryngotracheobronchitis). The worsening with agitation and crying is typical of croup."
+  },
+  {
+    "question": "The gold standard to measure airflow in asthma patients is:",
+    "options": [
+      "Peak expiratory flow monitoring",
+      "Peak inspiratory flow monitoring",
+      "End-expiratory chest x-ray",
+      "Spirometry",
+      "Bronchoprovocation challenges"
+    ],
+    "correct": 3,
+    "explanation": "Spirometry is the gold standard for measuring airflow in asthma patients. It provides objective measurements of lung function including FEV1, FVC, and FEV1/FVC ratio, which are essential for diagnosis and monitoring of asthma."
+  },
+  {
+    "question": "The preferred diagnostic study in patients with a pulmonary abscess is:",
+    "options": [
+      "Chest x-ray",
+      "Lung scan",
+      "Lung CT scan",
+      "Bronchoscopy",
+      "Sputum culture"
+    ],
+    "correct": 2,
+    "explanation": "CT scan is the preferred diagnostic study for pulmonary abscess as it provides detailed visualization of the abscess cavity, its location, size, and relationship to surrounding structures, which is crucial for diagnosis and management."
+  },
+  {
+    "question": "Lateral x-ray of the upper airway in a 2-year-old boy reveals a \"thumb sign\". The most likely diagnosis is:",
+    "options": [
+      "Laryngeal polyps",
+      "Epiglottitis",
+      "Subglottic hemangioma",
+      "Laryngeal edema",
+      "Subglottic stenosis"
+    ],
+    "correct": 1,
+    "explanation": "The 'thumb sign' on a lateral x-ray of the upper airway is characteristic of epiglottitis. This sign represents swollen, thickened epiglottis that resembles a thumb on radiography."
+  },
+  {
+    "question": "The most common site of pulmonary atelectasis in children is:",
+    "options": [
+      "Right upper lobe",
+      "Right middle lobe",
+      "Right lower lobe",
+      "Left upper lobe",
+      "Left lower lobe"
+    ],
+    "correct": 1,
+    "explanation": "The right middle lobe is the most common site of pulmonary atelectasis in children. This is due to its anatomy, including its acute angle with the right main bronchus and poor collateral ventilation."
+  },
+  {
+    "question": "A 16-year-old healthy adolescent appears with sudden onset fever, respiratory distress, and cough. He has been suffering from acute tonsillopharyngitis for the last 3 days. The chest x-ray reveals multiple bilateral cavitary nodules and mild pleural effusions. The preferred therapy is:",
+    "options": [
+      "Penicillin",
+      "Ciprofloxacin",
+      "Vancomycin",
+      "Gentamicin",
+      "Ceftazidime"
+    ],
+    "correct": 1,
+    "explanation": "Penicillin is the preferred therapy for this presentation with cavitary nodules and pleural effusions following acute tonsillopharyngitis, which is consistent with necrotizing pneumonia caused by Streptococcus pyogenes (Group A Strep)."
+  },
+  {
+    "question": "The following medication should be avoided in patients with influenza:",
+    "options": [
+      "Acetaminophen",
+      "Ibuprofen",
+      "Aspirin",
+      "Antihistamine",
+      "Naproxen sodium"
+    ],
+    "correct": 2,
+    "explanation": "Aspirin should be avoided in patients with influenza due to the risk of Reye's syndrome, a rare but serious complication that can cause liver failure and encephalopathy. The other medications listed are safe to use."
+  },
+  {
+    "question": "A male child was brought to the ER with history of fever (103 degreesF) and respiratory distress. He had fever for the last 3 days. He developed respiratory distress for the last 8 hours. Physical examination reveals rales over the right upper chest wall and tachypnea. Chest X-ray reveals right upper lobe pneumonia with a bulging fissure. Most likely organism:",
+    "options": [
+      "S. aureus",
+      "Streptococcus pneumoniae",
+      "Klebsiella",
+      "Mycoplasma pneumonia",
+      "Streptococcus pyogenes"
+    ],
+    "correct": 2,
+    "explanation": "Klebsiella pneumoniae is the most likely organism in this case of right upper lobe pneumonia with a bulging fissure. This presentation is classic for Klebsiella pneumonia, which often causes lobar pneumonia with bulging fissures."
+  },
+  {
+    "question": "A child appears with a fever, cough, sputum production, tachypnea, dyspnea, hemoptysis, and weight loss. A physical examination reveals intercostals retractions, crackles, decreased breath sounds, and dullness to percussion in the right upper chest area. The chest x-ray reveals parenchymal inflammations with a cavity containing air-fluid level in the right upper lobe. The most likely diagnosis is:",
+    "options": [
+      "Right upper lobe TB",
+      "Right upper lobe pneumonia",
+      "Right upper lobe abscess",
+      "Right upper lobe cyst",
+      "Right upper lobe obstruction"
+    ],
+    "correct": 2,
+    "explanation": "The most likely diagnosis is a right upper lobe abscess. The presence of a cavity with an air-fluid level on chest x-ray, along with symptoms like fever, cough, sputum production, and hemoptysis, is characteristic of a lung abscess."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
