@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-62ddc22b5e1b';
+const CACHE_VERSION = 'mu61-quiz-d3beb63ccedb';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -357,40 +357,45 @@ function handleNavigate(event, request) {
     var cache = await caches.open(CACHE_NAME);
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 2500);
+    var netRes = null;
 
     try {
       var res = await fetch(request, { signal: controller.signal });
       clearTimeout(timeoutId);
       if (res && res.ok) {
-        try {
-          await cache.put(request, res.clone());
-        } catch (_) { }
+        try { await cache.put(request, res.clone()); } catch (_) { }
+        return res; // only return good responses from network
       }
-      return res;
+      netRes = res; // non-ok (404/500) — keep for last resort, try cache first
     } catch (err) {
       clearTimeout(timeoutId);
-      /* Offline or timeout: try exact match first */
-      var cached = await cache.match(request);
-      if (cached) return cached;
-
-      /* Try matching without query/hash (some browsers append them) */
-      var url = new URL(request.url);
-      var cleanUrl = url.origin + url.pathname;
-      cached = await cache.match(cleanUrl);
-      if (cached) return cached;
-
-      /* Directory support: if URL ends in / or has no extension, try appending index.html */
-      if (url.pathname.endsWith('/') || !url.pathname.split('/').pop().includes('.')) {
-        var indexUrl = cleanUrl.endsWith('/') ? cleanUrl + 'index.html' : cleanUrl + '/index.html';
-        cached = await cache.match(indexUrl);
-        if (cached) return cached;
-      }
-
-      /* Last resort: serve the main hub page */
-      var fb = await cache.match(hrefFromScope(self.registration.scope, 'index.html'));
-      if (fb) return fb;
-      throw err;
+      // Offline or timeout — fall through to cache
     }
+
+    /* Try exact cache match */
+    var cached = await cache.match(request);
+    if (cached) return cached;
+
+    /* Try matching without query/hash */
+    var url = new URL(request.url);
+    var cleanUrl = url.origin + url.pathname;
+    cached = await cache.match(cleanUrl);
+    if (cached) return cached;
+
+    /* Directory support: if URL ends in / or has no extension, try appending index.html */
+    if (url.pathname.endsWith('/') || !url.pathname.split('/').pop().includes('.')) {
+      var indexUrl = cleanUrl.endsWith('/') ? cleanUrl + 'index.html' : cleanUrl + '/index.html';
+      cached = await cache.match(indexUrl);
+      if (cached) return cached;
+    }
+
+    /* Last resort: serve the main hub page */
+    var fb = await cache.match(hrefFromScope(self.registration.scope, 'index.html'));
+    if (fb) return fb;
+
+    /* If we had a non-ok network response, return it (better than nothing) */
+    if (netRes) return netRes;
+    throw new Error('No cache match and network failed');
   })();
 }
 
