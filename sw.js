@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-7aaeaca90bb6';
+const CACHE_VERSION = 'mu61-quiz-810ea97c6c77';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -201,6 +201,7 @@ var PRECACHE_REL_PATHS = [
   'ped/past-years/58th-final.html',
   'ped/past-years/59th-final.html',
   'ped/past-years/59th-midterm.html',
+  'ped/past-years/60th-final.html',
   'ped/past-years/60th-midterm.html',
   'ped/past-years/61st-midterm.html',
   'ped/past-years/index.html',
