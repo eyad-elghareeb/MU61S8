@@ -357,7 +357,8 @@ def update_service_worker() -> bool:
     shared_assets = [
         'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'index-engine.css',
         'manifest.webmanifest', 'favicon.svg',
-        'icon-48.png', 'icon-72.png', 'icon-96.png', 'icon-144.png', 'icon-192.png', 'icon-512.png'
+        'icon-48.png', 'icon-72.png', 'icon-96.png', 'icon-144.png', 'icon-192.png', 'icon-512.png',
+        'tracker-map.json'
     ]
     
     shared_literal = "[\n" + ",\n".join(f"          '{a}'" for a in shared_assets) + "\n        ]"

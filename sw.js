@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-c2a05cd7af6b';
+const CACHE_VERSION = 'mu61-quiz-a3c5b69dca44';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -439,7 +439,8 @@ function handleAsset(event, request) {
           'icon-96.png',
           'icon-144.png',
           'icon-192.png',
-          'icon-512.png'
+          'icon-512.png',
+          'tracker-map.json'
         ];
         if (SHARED.indexOf(filename) !== -1) {
           cached = await cache.match(hrefFromScope(scope, filename));
