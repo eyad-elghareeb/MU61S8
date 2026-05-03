@@ -41,6 +41,8 @@ FOLDER_TITLES = {
     "ai": "AI",
     "dep": "Department",
     "mans": "Mansoura",
+    "mansoura": "Mansoura old Qs",
+    "by-chapter": "Question by chapter",
     "ped": "Paediatrics",
     "surg": "Surgery",
     "med": "Internal Medicine",

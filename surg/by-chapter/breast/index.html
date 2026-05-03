@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Surgery Breast</title>
+<link rel="stylesheet" href="../../../index-engine.css">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Surgery">←</a>
+    <div class="topbar-title">MU61 Quiz - Surgery Breast</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()">☀</button>
+  </div>
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Surgery Breast</span></h1>
+      <p>Test your knowledge across various Surgery topics.</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    title: "A.Hassan Question Bank Breast",
+    description: "A.Hassan Qs on Breast Chapter",
+    icon: "📘",
+    tags: ["QS", "194 Questions"],
+    url: "ahassan-question-bank-breast.html"
+  },
+  {
+    title: "AIO Breast",
+    description: "AIO Questions on breast chapter",
+    icon: "📘",
+    tags: ["Quiz", "61 Questions"],
+    url: "aio-breast.html"
+  },
+  {
+    title: "Dr. Magdy Questions (Breast)",
+    description: "Dr. Magdy Bank in breast",
+    icon: "📘",
+    tags: ["Quiz", "156 Questions"],
+    url: "dr-magdy-questions-breast.html"
+  }
+];
+</script>
+
+<div class="dash-overlay" id="tracker-dashboard">
+  <div class="dash-modal">
+    <div class="dash-header">
+      <h2 id="dash-title-text">📊 Question Tracker</h2>
+      <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
+    </div>
+    <div class="dash-scope-bar" id="dash-scope-bar"></div>
+    <div class="dash-summary">
+      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
+      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
+      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
+    </div>
+    <div class="dash-body" id="dash-body"></div>
+    <div class="dash-footer">
+      <button class="btn-dash-action" onclick="exportTrackerToPDF()">📄 Export PDF</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>
+      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../../index-engine.js"></script>
+<script>
+(function(){
+  var s=localStorage.getItem('quiz-theme');
+  if(s) document.documentElement.setAttribute('data-theme',s);
+  if(window.__updateThemeIcon) window.__updateThemeIcon();
+  if(window.renderQuizzes) window.renderQuizzes();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Hernia</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "1a6d61352c",
+  "title": "Hernia",
+  "description": "MCQs on hernia types, complications, and surgical repair from Dr. Matary 2020.",
+  "icon": "🕳️"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Vascular injury during operation for Femoral hernia, usually affect which artery:",
+    "options": [
+      "Femoral artery",
+      "Inferior epigastric artery",
+      "External iliac artery",
+      "Aberrant obturator artery"
+    ],
+    "correct": 3,
+    "explanation": "Abnormal obturator artery may be present which represents enlarged pubic branch of the inferior epigastric artery when obturator artery is congenitally absent (30% of cases). In 10% of cases, it is present in dangerous site (behind lacunar ligament, as we might cut the ligament during repair of hernia). In 20% of cases, it is present in safe site behind the symphysis pubis or lateral to the ring."
+  },
+  {
+    "question": "Most frequent cause of recurrence in indirect inguinal hernia is:",
+    "options": [
+      "Inadequate closure of the external oblique aponeurosis",
+      "Inadequate closure internal ring",
+      "Inadequate closure of transversalis fascia",
+      "Low ligation of sac"
+    ],
+    "correct": 3,
+    "explanation": "Recurrence after herniotomy and hernioplasty due to inaccurate execution of the technique (low ligation of the sac) at the primary operation is considered the most common and hernioplasty through a different approach to avoid dissection through the scar tissue."
+  },
+  {
+    "question": "Which of the following are true regarding burst abdomens?",
+    "options": [
+      "The incidence is around 10-15%",
+      "Midline and vertical incisions are less likely to burst than transverse incisions",
+      "Catgut is associated with a lower risk of burst abdomen",
+      "A serosanguinous discharge is the forerunner of disruption in half of these cases"
+    ],
+    "correct": 3,
+    "explanation": "Serosanguinous discharge is often a warning sign and called red sign."
+  },
+  {
+    "question": "The following structures may be injured during surgery to repair an inguinal hernia:",
+    "options": [
+      "The ilioinguinal, genitofemoral, iliohypogastric, and lateral femoral cutaneous nerves",
+      "The femoral nerve",
+      "The popliteal nerve",
+      "The nerve to the psoas major muscle",
+      "The pudendal nerve"
+    ],
+    "correct": 0,
+    "explanation": "The iliohypogastric nerve, because it lies on the conjoined tendon outside the inguinal canal, may be injured during dissection of the upper flap of the external oblique aponeurosis or fixation of the mesh to the conjoined tendon. It may also become trapped in sutures during closure of the external oblique aponeurosis. The ilioinguinal nerve, because it lies in the inguinal canal along with the spermatic cord, may be injured during dissection of the cord. The genital branch of the genitofemoral nerve, because it lies within the spermatic cord, may be injured during dissection of the hernia sac."
+  },
+  {
+    "question": "A 28-year-old professional football player has sudden pain and swelling in the right groin when attempting to intercept a pass. He is admitted to the local emergency department. On examination, there is a tender swelling in the right groin. The scrotum and penis show no abnormality. What is the next step in management?",
+    "options": [
+      "Needle aspiration to exclude hematoma",
+      "Forceful manual reduction",
+      "Laparotomy within 20 minutes",
+      "Preoperative preparation and exploration of the groin with hernia repair",
+      "Morphine and re-evaluation within 12 hours"
+    ],
+    "correct": 3,
+    "explanation": "28-years, tender swelling in the groin and the scrotum and penis show no abnormalities mostly strangulated oblique inguinal hernia so management will be urgent operation after preoperative preparation."
+  },
+  {
+    "question": "Following laparoscopic preperitoneal repair of an inguinal hernia, a 50-year-old male complains of severe burning pain, which radiates down the lateral side of the ipsilateral thigh. The most likely cause is injury to which of the following:",
+    "options": [
+      "Ilioinguinal nerve",
+      "Iliohypogastric nerve",
+      "Genitofemoral nerve",
+      "Femoral nerve",
+      "Lateral femoral cutaneous nerve"
+    ],
+    "correct": 4,
+    "explanation": "The lateral femoral cutaneous nerve supplies sensation to the lateral side of the thigh. Injury during laparoscopic preperitoneal repair can cause burning pain radiating down the lateral thigh."
+  },
+  {
+    "question": "For closure of a midline abdominal incision, all the following statements are true, except:",
+    "options": [
+      "It can be closed by either interrupted or continuous fascial sutures",
+      "Fascial sutures should be placed at least 1cm from the edge",
+      "Peritoneal closure does not add to the wound's tensile strength",
+      "Fascial sutures should be tied under tension in order to avoid burst abdomen"
+    ],
+    "correct": 3,
+    "explanation": "Suturing under tension is one of causes of burst abdomen."
+  },
+  {
+    "question": "All are true about spigelian hernia EXCEPT:",
+    "options": [
+      "Strangulation is common",
+      "Occurs at the arcuate line",
+      "Lies deep to internal oblique muscle",
+      "Occurs from a defect of the spigelian fascia which is the medial extension of the fascia transversalis"
+    ],
+    "correct": 3,
+    "explanation": "It is due to defect in the semi lunar line at the level of arcuate line."
+  },
+  {
+    "question": "Injury of the ilioinguinal nerve during hernia repair may result in:",
+    "options": [
+      "Oblique inguinal hernia",
+      "Direct inguinal hernia",
+      "Femoral hernia",
+      "Loss of sensation over the scrotum"
+    ],
+    "correct": 3,
+    "explanation": "Injury of ilioinguinal nerve during hernia repair leads to sensory loss of scrotum."
+  },
+  {
+    "question": "A 60-year-old male presents with an inguinal hernia of recent onset. Which of the following statements are TRUE:",
+    "options": [
+      "The hernia is more likely to be direct than indirect",
+      "Presents through the posterior wall of the inguinal canal, lateral to the deep inguinal ring",
+      "Is more likely than a femoral hernia to strangulate",
+      "The sac is congenital"
+    ],
+    "correct": 3,
+    "explanation": "Indirect hernia is more common than direct hernia among any age and sex. Femoral hernia is more likely to strangulate than inguinal hernia. Commonest aetiology of indirect hernia is congenital (preformed) sac."
+  },
+  {
+    "question": "The following statements about hydrocele of a hernial sac are true EXCEPT that it:",
+    "options": [
+      "Is a pyriform swelling in the upper part of the cord",
+      "Results from distension of an empty inguinal hernia sac",
+      "Does not alter its mobility by traction on the testis",
+      "Shows an expansile impulse on coughing",
+      "Is excised through an inguinal incision"
+    ],
+    "correct": 3,
+    "explanation": "Hydrocele of hernia sac is due to reduction of the contents of the sac. The omentum obstructs the opening of the sac. Only fluid passes to the sac. It is cystic translucent inguinoscrotal swelling, its treatment is excision."
+  },
+  {
+    "question": "All are True of spigelian hernia EXCEPT:",
+    "options": [
+      "Occurs at arcuate line",
+      "Lies beneath internal oblique muscle",
+      "Midline in position",
+      "CT and US are more informative"
+    ],
+    "correct": 2,
+    "explanation": "It is due to defect in the semi lunar line at the level of arcuate line."
+  },
+  {
+    "question": "The differential diagnosis of an inguinoscrotal swelling includes all of the following except:",
+    "options": [
+      "Oblique inguinal hernia",
+      "Hydrocele of a hernial sac",
+      "Bubonocele",
+      "Lipoma of the cord"
+    ],
+    "correct": 2,
+    "explanation": "Bubonocele is adult type oblique inguinal hernia which is limited to inguinal canal and is seen as a bulge or a swelling in the groin."
+  },
+  {
+    "question": "Which of the following statements is true regarding femoral hernia:",
+    "options": [
+      "Should not be repaired through an infra inguinal approach",
+      "More common in males than females",
+      "Femoral hernias are more common than inguinal hernias in females",
+      "Could lead to bowel obstruction frequently as a Richter type of hernia"
+    ],
+    "correct": 0,
+    "explanation": "Femoral hernia can be repaired through inguinal approach and it is called Lotheissen's approach."
+  },
+  {
+    "question": "Which of the following hernia is most likely to recur after primary repair?",
+    "options": [
+      "Epigastric hernia",
+      "Spigelian hernia",
+      "Indirect hernia",
+      "Femoral hernia",
+      "Incisional hernia"
+    ],
+    "correct": 4,
+    "explanation": "Primary repair of incisional hernias can be associated with a 30% to 50% or higher recurrence rate, depending on the size of the hernia. Except for small incisional hernias, prosthetic mesh is necessary to reduce recurrence rates to 10% or possibly less. Patients with incisional hernias usually have predisposing factors, such as obesity, chronic debilitating illness, diabetes, advanced age, and smoking. The predisposing factors also play a role in the failure of primary repair. Recurrence rates after the other listed hernia repairs should all be 5% or less."
+  },
+  {
+    "question": "Which of the following is true regarding the anatomy of the abdominal wall?",
+    "options": [
+      "The inguinal or Poupart's ligament is the lower, free edge of the aponeurosis of the transversus abdominis muscle",
+      "The rectus sheath is composed of aponeurotic fibers from the internal and external oblique and the transversus abdominis muscles",
+      "The rectus sheath completely envelops the anterior and posterior surfaces of the rectus abdominis muscle from its origin in the costal cartilages to its insertion on the pubis",
+      "The lymphatic vessels of the abdominal wall drain almost exclusively into the superficial and deep inguinal lymph node chains"
+    ],
+    "correct": 1,
+    "explanation": "The rectus sheath is formed by the aponeuroses of the transverse abdominal and the external and internal oblique muscles. It contains the rectus abdominis and pyramidalis muscles. It can be divided into anterior and posterior laminae."
+  },
+  {
+    "question": "The abdominal wall is innervated almost exclusively from branches of the first through fourth lumbar spinal nerves. By definition, a hernia results from a defect in which of the following structures?",
+    "options": [
+      "Transversalis fascia",
+      "Peritoneum",
+      "Internal oblique fascia",
+      "Internal and external oblique fascia",
+      "Rectus sheath"
+    ],
+    "correct": 0,
+    "explanation": "This is a thin fascia, which lines the inner surface of the transversus abdominis muscle. Forms the posterior wall of rectus sheath below the arcuate line (a little above pubic tubercle), extends as the anterior wall of femoral sheath. Prolonged as internal spermatic fascia. And is supplied by first lumbar nerves (iliohypogastric and ilioinguinal nerves)."
+  },
+  {
+    "question": "The clinical features of an abdominal wall mass that should suggest a malignant etiology include all of the following except:",
+    "options": [
+      "The occurrence of severe, unrelenting pain in an abdominal wall mass",
+      "Non-reducible masses arising from below the superficial fascia",
+      "Size greater than 5 cm",
+      "A recent increase in size",
+      "Fixation to the abdominal wall or underlying organs"
+    ],
+    "correct": 0,
+    "explanation": "A large fixated non-reducible mass in the anterior abdominal wall raises the suspicion towards malignancy greatly while the presence of a severe pain in a mass directs the suspicion towards strangulated hernia especially if there is history of reducibility and expansile impulse on cough."
+  },
+  {
+    "question": "All of the following are causes of hernia irreducibility, the commonest is:",
+    "options": [
+      "Omental content",
+      "Adhesions",
+      "Overcrowding",
+      "Narrow neck"
+    ],
+    "correct": 1,
+    "explanation": "Adhesions between the sac and the contents or between the contents are considered the most common cause of irreducibility occurring in most cases of incarceration."
+  },
+  {
+    "question": "Which of the following is more common in multiparous women?",
+    "options": [
+      "Indirect inguinal hernia",
+      "Lumbar hernia",
+      "Umbilical hernia",
+      "Direct inguinal hernia"
+    ],
+    "correct": 2,
+    "explanation": "More common in middle-aged females due to multiple pregnancies as it causes raised intra-abdominal pressure and weak anterior abdominal wall due to repeated pregnancy."
+  },
+  {
+    "question": "Swellings that may be present in the midline of the abdomen include all of the following, except:",
+    "options": [
+      "Divarication of the recti",
+      "Fatty hernia of the linea alba",
+      "Epigastric hernia",
+      "Spigelian hernia"
+    ],
+    "correct": 3,
+    "explanation": "Spigelian hernia is due to defect in the semi lunar line at the level of arcuate line and occurs paramedian in the abdomen."
+  },
+  {
+    "question": "In repair of a femoral hernia, the structure most vulnerable to major injury lies:",
+    "options": [
+      "Medially",
+      "Laterally",
+      "Anteriorly",
+      "Posteriorly"
+    ],
+    "correct": 1,
+    "explanation": "The femoral vein lies immediately lateral to the femoral canal. Careful attention to this structure is essential in repair of femoral hernia."
+  },
+  {
+    "question": "A 36 year old man presented with a red and swollen lump in the left groin, an inguinal hernia is suspected and at the time of operation the lump is found to contain a small loop of gangrenous bowel. This type of hernia is best described as",
+    "options": [
+      "Irreducible",
+      "Strangulated",
+      "Obstructed",
+      "Richter's"
+    ],
+    "correct": 1,
+    "explanation": "Strangulation is defined as interference with the blood supply of the contents with impending gangrene may occur within 4-6 hours. So, in this case a gangrenous part is present indicating affection of the arterial supply."
+  },
+  {
+    "question": "The most common type of hernia in females is:",
+    "options": [
+      "Femoral hernia",
+      "Direct inguinal hernia",
+      "Indirect inguinal hernia",
+      "Lumbar hernia"
+    ],
+    "correct": 2,
+    "explanation": "The most common type of hernia in both males and females is indirect inguinal hernia. While, femoral hernia has higher incidence in females compared to males."
+  },
+  {
+    "question": "A 50-year-old man presents with a complaint of a 1-cm moderately painful, tender mass situated one-third of the way between the xiphisternum and the umbilicus. What is the most likely diagnosis?",
+    "options": [
+      "Fibrosarcoma of the abdominal wall",
+      "Omphalocele",
+      "Spigelian hernia",
+      "Fat necrosis",
+      "Epigastric hernia"
+    ],
+    "correct": 4,
+    "explanation": "Epigastric hernia is a defect in the linea alba between the umbilicus and the xiphisternum. It usually contains preperitoneal fat rather than omentum or bowel. It may cause pain and is commonly encountered in older patients. Sometimes it is located on either side of the midline. Spigelian hernia occurs lateral to the linea semilunaris."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

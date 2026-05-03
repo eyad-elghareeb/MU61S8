@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Breast Surgery</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "dee36f1b99",
+  "title": "Breast Surgery",
+  "description": "MCQs on breast anatomy, diseases, and surgical management from Dr. Matary 2020.",
+  "icon": "🩺"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "The medial mammary artery is a tributary of the",
+    "options": [
+      "2nd, 3rd and 4th intercostal arteries",
+      "Internal mammary artery",
+      "Thoracoacromial artery",
+      "Posterior intercostal arteries"
+    ],
+    "correct": 0,
+    "explanation": "Anatomy."
+  },
+  {
+    "question": "Absence of the breast (amastia) is associated with",
+    "options": [
+      "Turner's syndrome",
+      "Kleinfelter's syndrome",
+      "Poland syndrome",
+      "Fleischer's syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Amastia associated with absence of sternal border of pectoralis major muscle, absence of ribs 2-5 & deformities of hands and vertebrae. More common in males."
+  },
+  {
+    "question": "The axillary lymph nodes are divided into three levels I, II, III by:",
+    "options": [
+      "The axillary artery.",
+      "The axillary vein.",
+      "The pectoralis minor muscle.",
+      "The clavicle.",
+      "The nerve to latissimus dorsi."
+    ],
+    "correct": 2,
+    "explanation": "The axillary lymph nodes are divided by the pectoralis minor muscle into three levels. Level I nodes are low in the axilla, Level II behind the muscle, Level III medial at the apex."
+  },
+  {
+    "question": "Etiology of breast abscess include:",
+    "options": [
+      "Mostly in lactating women.",
+      "Due to Staph from baby mouth.",
+      "Bad hygiene.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "Infection is caused by coagulase positive Staphylococcus aureus. Organisms from the mouth of the suckling infant gain access through nipple cracks."
+  },
+  {
+    "question": "What is true about breast abscess:",
+    "options": [
+      "Fluctuation is an early sign.",
+      "Usually unilocular.",
+      "Best treated with antibiotics.",
+      "Requires incision and break up of all trabeculae."
+    ],
+    "correct": 3,
+    "explanation": "Abscess formation is treated by incision and drainage. The surgeon's finger breaks down the septa between the loculi to form a single cavity."
+  },
+  {
+    "question": "33 years old, breast feeding woman is 10 days postpartum. She has a 4-day history of a slight crack on the surface of her left nipple. She presents with a 2-day history of severe continuous pain in the left breast which has prevented her from sleeping. On examination the outer quadrants of the left breast to be red, warm and tender with a hard 3 cm lump at the edge of the left nipple. The most likely diagnosis is:",
+    "options": [
+      "Breast cyst",
+      "Fat necrosis",
+      "Breast abscess",
+      "Periductal mastitis"
+    ],
+    "correct": 2,
+    "explanation": "Stage of acute abscess: Suppuration is diagnosed if pain is throbbing, temperature is hectic, physical signs get localized. Breast abscess is one of the sites where the surgeon should not wait for fluctuation."
+  },
+  {
+    "question": "What is common consensus about breast abscess:",
+    "options": [
+      "Fluctuation is late sign.",
+      "Area of induration is sector shaped.",
+      "Must be drained if no resolution within 48 hours of antibiotics.",
+      "Counter incision is made in most dependent part.",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All of the above."
+  },
+  {
+    "question": "Clinical findings of fibroadenosis include:",
+    "options": [
+      "Cyclic pain.",
+      "Cyclic swelling.",
+      "Cyclic discharge.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "Fibrocystic disease is thought to represent a variation of the normal changes in a healthy breast with menstrual cycles, pregnancy, lactation, and menopausal involution."
+  },
+  {
+    "question": "A 35-year-old professional dancer presents with a well-defined, tense, smooth mass in the upper outer quadrant of the left breast. She states that the mass becomes larger just before onset of her periods. Aspiration yields a clear yellow fluid and the mass disappears. The most likely diagnosis is:",
+    "options": [
+      "Fibroadenoma in a cyst.",
+      "Fibrocystic disease of the breast.",
+      "Carcinoma in a cyst.",
+      "Lipoma.",
+      "Galactocele."
+    ],
+    "correct": 1,
+    "explanation": "Painful, small lumps. Unilateral. Upper outer quadrant is the commonest site. A cyst is fully aspirated, contains clear fluid and disappears completely after aspiration."
+  },
+  {
+    "question": "Triple assessment include the following except:",
+    "options": [
+      "Clinical evaluation.",
+      "Imaging.",
+      "Laboratory investigations.",
+      "Cytology."
+    ],
+    "correct": 2,
+    "explanation": "Triple assessment means comparing the results of: Clinical examination, Soft tissue mammography or ultrasonography, Tru-cut needle biopsy."
+  },
+  {
+    "question": "Bleeding on zonal pressure is highly suggestive of:",
+    "options": [
+      "Breast abscess.",
+      "Duct papilloma.",
+      "Cancer breast.",
+      "Cystosarcoma phylloides."
+    ],
+    "correct": 1,
+    "explanation": "The commonest symptom is bloody, or blood stained nipple discharge from a single duct."
+  },
+  {
+    "question": "Best treatment for duct papilloma is:",
+    "options": [
+      "Follow up.",
+      "Local excision.",
+      "Local excision with safety margin.",
+      "Chemotherapy and/or radiation."
+    ],
+    "correct": 2,
+    "explanation": "Treatment is done by excision of the affected duct (micro-dochectomy) through a circumareolar incision."
+  },
+  {
+    "question": "Risk factors of cancer breast include all the following except:",
+    "options": [
+      "Mutation in suppressor genes (BRCA I, II).",
+      "Early menarche.",
+      "Carcinoma in situ.",
+      "Prolonged lactation.",
+      "White races."
+    ],
+    "correct": 3,
+    "explanation": "Delayed marriage, pregnancy & lactation are protective of carcinoma but prolonged lactation is a risk factor of acute lactational mastitis."
+  },
+  {
+    "question": "Contraindications to conservative surgery for breast cancer include:",
+    "options": [
+      "Large tumor.",
+      "Paget's disease of nipple.",
+      "Previous irradiation.",
+      "Distant metastasis.",
+      "All of the above."
+    ],
+    "correct": 4,
+    "explanation": "Contraindications include pregnancy, extensive microcalcification, multicentric disease, and collagen vascular disease."
+  },
+  {
+    "question": "Chemotherapy is the primary palliative treatment in the following conditions:",
+    "options": [
+      "Visceral metastasis.",
+      "Advanced case in premenopausal woman.",
+      "Negative hormonal receptors with distant metastasis.",
+      "All of the above."
+    ],
+    "correct": 3,
+    "explanation": "Chemotherapy is the basic treatment of metastatic disease; response 60-80%. It is given for visceral metastases, for hormone negative patients and failure of hormone therapy."
+  },
+  {
+    "question": "The main presentation of Paget disease is:",
+    "options": [
+      "Mass under the nipple",
+      "Bleeding per nipple",
+      "Unilateral red scaly nipple",
+      "Bilateral itchy red vesicles"
+    ],
+    "correct": 2,
+    "explanation": "The first symptom is often an abnormal pricking sensation of the nipple, with superficial erosion."
+  },
+  {
+    "question": "Which of the following statements about Paget's disease of the nipple is incorrect?",
+    "options": [
+      "Is a unilateral affection of the breast.",
+      "Is always related to an underlying cancer.",
+      "Is a rare disease of middle-aged and elderly women.",
+      "Has a characteristic histology.",
+      "Carries a worse prognosis than other breast cancers."
+    ],
+    "correct": 4,
+    "explanation": "The best prognosis is provided by the in situ carcinoma, and Paget's disease due to round cell infiltration with radio-sensitivity, while the worst is the inflammatory carcinoma."
+  },
+  {
+    "question": "Lobular carcinoma of breast All true except:",
+    "options": [
+      "Is more common than ductal carcinoma.",
+      "In situ state is considered risk factor for malignancy.",
+      "With in situ carcinoma mammography of both breasts is mandatory.",
+      "Usually bilateral and multicentric."
+    ],
+    "correct": 0,
+    "explanation": "Duct carcinoma is more common & potential for invasive cancer 30-50%."
+  },
+  {
+    "question": "When stage I breast cancer is treated by partial mastectomy and dissection, further therapy should include:",
+    "options": [
+      "Nothing.",
+      "Chemotherapy.",
+      "Antioestrogen agents.",
+      "Radiation of the affected breast.",
+      "Oophorectomy if premenopausal."
+    ],
+    "correct": 3,
+    "explanation": "The term conservative breast therapy includes a combination of surgery and radiotherapy."
+  },
+  {
+    "question": "The most common site for scirrhous carcinoma of the breast is:",
+    "options": [
+      "Upper outer quadrant.",
+      "Upper inner quadrant.",
+      "Lower outer quadrant.",
+      "Lower inner quadrant.",
+      "Retroareolar region."
+    ],
+    "correct": 0,
+    "explanation": "The most common type is scirrhous, the most common site is upper outer quadrant."
+  },
+  {
+    "question": "A premenopausal 44-year-old woman undergoes a quadrantectomy and node dissection for a 2-cm infiltrating carcinoma of the left breast. The margins are clear, and 5 out of 15 lymph nodes are involved. ER and PR are positive. Recommended adjuvant therapy should include which of the following?",
+    "options": [
+      "Radiotherapy alone",
+      "Estrogen therapy alone",
+      "Modified radical mastectomy",
+      "Chemotherapy alone",
+      "Chemotherapy, radiotherapy, and tamoxifen"
+    ],
+    "correct": 4,
+    "explanation": "All methods of adjuvant therapy are recommended in addition to surgery."
+  },
+  {
+    "question": "Which is the type of chemotherapy given to a female with local advanced breast carcinoma to reduce the size of the tumor so as to facilitate more effective surgery:",
+    "options": [
+      "Adjuvant chemotherapy.",
+      "Neoadjuvant therapy.",
+      "Palliative chemotherapy.",
+      "Hormonal therapy."
+    ],
+    "correct": 1,
+    "explanation": "Neoadjuvant is given before surgery to down stage the tumor level."
+  },
+  {
+    "question": "Regarding Ductal carcinoma in situ (DCIS) of the breast all the following statements are true except:",
+    "options": [
+      "Can be distinguished from invasive carcinoma on fine-needle Aspiration cytology (FNAC).",
+      "Accounts for around 15-20% of screen-detected breast cancers.",
+      "Is associated with axillary node metastases in 1% of cases.",
+      "Can be treated by mastectomy or lumpectomy with or without radiotherapy."
+    ],
+    "correct": 0,
+    "explanation": "FNAC is a cellular differentiation but TRUCUT biopsy can differentiate between in situ & invasive type (tissue differentiation)."
+  },
+  {
+    "question": "A patient with a breast cancer that measures 5 cm with fixed axillary nodes and no distant metastasis is considered:",
+    "options": [
+      "T2, N2, MO",
+      "T3, N2, MO",
+      "T2, N1, MO",
+      "T3, N1, MO"
+    ],
+    "correct": 1,
+    "explanation": "Tumor 5cm T3, fixed LN N2, no distant metastasis MO."
+  },
+  {
+    "question": "The skin manifestations of breast cancer includes all of the following except:",
+    "options": [
+      "Ulceration.",
+      "Puckering.",
+      "Cancer en cuirasse.",
+      "Pigmentation."
+    ],
+    "correct": 3,
+    "explanation": "Pigmentation is not a skin manifestation of breast cancer."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
