@@ -132,19 +132,30 @@ def update_index_file(index_path: Path) -> bool:
         if not url: continue
         
         is_valid = False
+        quiz_path = None
         if url.startswith(("http://", "https://")):
             is_valid = True
         elif "/" in url:
             # Subfolder or relative path (e.g. med/index.html)
-            # Check if it exists relative to the current index file
-            if (index_dir / url).exists():
+            quiz_path = index_dir / url
+            if quiz_path.exists():
                 is_valid = True
         else:
             # Local file in current directory
             if url in valid_local_files:
+                quiz_path = index_dir / url
                 is_valid = True
         
         if is_valid and url not in seen_urls:
+            # Enrich existing entry with latest metadata from file if possible
+            if quiz_path and quiz_path.is_file() and quiz_path.name != "index.html":
+                new_meta = build_quiz_entry(quiz_path, dir_rel, entry.get("icon", "📘"))
+                if new_meta:
+                    # Update entry fields with latest from file
+                    for key in ["uid", "title", "description", "tags"]:
+                        if key in new_meta:
+                            entry[key] = new_meta[key]
+            
             updated_entries.append(entry)
             seen_urls.add(url)
     
@@ -257,6 +268,7 @@ def build_quiz_entry(quiz_path: Path, dir_rel: Path, icon: str) -> dict[str, obj
     primary_tag = infer_primary_tag(title, description, dir_rel, quiz_path.stem)
 
     return {
+        "uid": config.get("uid", ""),
         "title": title,
         "description": description,
         "icon": icon,
@@ -474,6 +486,7 @@ def append_entries_to_array_literal(array_literal: str, new_entries: list[str]) 
 
 
 def serialize_quiz_entry(entry: dict[str, object]) -> str:
+    uid = json.dumps(entry.get("uid", ""), ensure_ascii=False)
     title = json.dumps(entry["title"], ensure_ascii=False)
     description = json.dumps(entry["description"], ensure_ascii=False)
     icon = json.dumps(entry["icon"], ensure_ascii=False)
@@ -482,6 +495,7 @@ def serialize_quiz_entry(entry: dict[str, object]) -> str:
 
     return (
         "  {\n"
+        f"    uid: {uid},\n"
         f"    title: {title},\n"
         f"    description: {description},\n"
         f"    icon: {icon},\n"

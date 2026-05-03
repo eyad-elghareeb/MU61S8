@@ -958,6 +958,31 @@
   window.startReviewMode = function() {
     var data = getDataForScope(currentScope, currentScopePath);
     
+    // Dynamic Path Healing: If a quiz in the current folder matches a tracker UID, 
+    // update the path to the current location. This ensures Review Mode works after moves.
+    if (window.QUIZZES) {
+      window.QUIZZES.forEach(function(q) {
+        if (q.uid) {
+          data.forEach(function(d) {
+            if (d.uid === q.uid) {
+              var currentAbsPath = new URL(q.url, window.location.href).pathname;
+              if (d.path !== currentAbsPath) {
+                d.path = currentAbsPath;
+                try {
+                  var raw = localStorage.getItem(getStorageKey(d.uid));
+                  if (raw) {
+                    var stored = JSON.parse(raw);
+                    stored.path = currentAbsPath;
+                    localStorage.setItem(getStorageKey(d.uid), JSON.stringify(stored));
+                  }
+                } catch(err) {}
+              }
+            }
+          });
+        }
+      });
+    }
+
     data = data.filter(function(d) {
         return _selectedQuizzes[d.uid] !== false;
     });
