@@ -53,6 +53,30 @@ FOLDER_TITLES = {
 
 def main() -> int:
     changed_files: list[Path] = []
+    
+    global_tracker_map = {}
+    for html_path in discover_html_files():
+        text = html_path.read_text(encoding="utf-8")
+        config = extract_quiz_config(text)
+        if config and config.get("uid"):
+            uid = config["uid"]
+            rel_path = html_path.relative_to(REPO_ROOT).as_posix()
+            folder_path = html_path.parent.relative_to(REPO_ROOT).as_posix()
+            if folder_path == ".":
+                folder_path = ""
+            else:
+                folder_path += "/"
+            global_tracker_map[uid] = {
+                "path": rel_path,
+                "folderPath": folder_path
+            }
+            
+    tracker_map_path = REPO_ROOT / "tracker-map.json"
+    new_tracker_map = json.dumps(global_tracker_map, separators=(',', ':'))
+    old_tracker_map = tracker_map_path.read_text(encoding="utf-8") if tracker_map_path.exists() else ""
+    if old_tracker_map != new_tracker_map:
+        tracker_map_path.write_text(new_tracker_map, encoding="utf-8")
+        changed_files.append(tracker_map_path)
 
     for index_path in discover_index_files():
         if update_index_file(index_path):
@@ -308,7 +332,7 @@ def update_service_worker() -> bool:
     # Engine files must always be first in the precache list for prioritized installation
     # Engines are specifically placed first to ensure cache robustness logic in sw.js works.
     engine_paths = []
-    for eng in ["quiz-engine.js", "bank-engine.js", "index-engine.js"]:
+    for eng in ["quiz-engine.js", "bank-engine.js", "index-engine.js", "tracker-map.json"]:
         if (REPO_ROOT / eng).exists():
             engine_paths.append(eng)
             
