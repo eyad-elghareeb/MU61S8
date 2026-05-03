@@ -2356,36 +2356,20 @@ function startQuiz() {
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => {
     s.classList.remove('active');
-    // Clean up stale inline opacity left by the screen-transition wrapper
-    // so returning to this screen later doesn't render it invisible
     if (s.style.opacity === '0') s.style.opacity = '';
   });
   const target = document.getElementById(id);
-  // Clear any lingering inline opacity on the target screen itself
   if (target.style.opacity === '0') target.style.opacity = '';
-  // Force animation restart by removing and re-adding the class with a reflow
-  target.classList.add('active');
-  target.style.animation = 'none';
-  target.offsetHeight; /* trigger reflow */
-  target.style.animation = '';
-  
-  // Also restart animations on start-card if showing start screen
+
+  // Restart child animations with a SINGLE reflow on the container.
   if (id === 'start-screen') {
-    const startCard = target.querySelector('.start-card');
-    if (startCard) {
-      startCard.style.animation = 'none';
-      startCard.offsetHeight; /* trigger reflow */
-      startCard.style.animation = '';
-      
-      const startIcon = target.querySelector('.start-icon');
-      if (startIcon) {
-        startIcon.style.animation = 'none';
-        startIcon.offsetHeight; /* trigger reflow */
-        startIcon.style.animation = '';
-      }
-    }
+    const animEls = target.querySelectorAll('.start-card, .start-icon');
+    animEls.forEach(el => { el.style.animation = 'none'; });
+    void target.offsetHeight; // one reflow resets all children at once
+    animEls.forEach(el => { el.style.animation = ''; });
   }
-  
+
+  target.classList.add('active');
   if (id === 'start-screen') updateStartScreenStats();
 }
 
@@ -2414,7 +2398,7 @@ function startTimer() {
         updateTimerDisplay();
       }
     }
-  }, 100);
+  }, 500); // 500ms is enough — display only needs updating every second
 }
 
 function stopTimer() {
