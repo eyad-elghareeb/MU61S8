@@ -2707,7 +2707,6 @@ function checkSavedProgress() {
 
     // Validate the saved data
     if (data.version !== STORAGE_VERSION) {
-
       localStorage.removeItem(STORAGE_KEY);
       return;
     }
@@ -3139,6 +3138,16 @@ checkSavedProgress();
     } catch(e) {}
   })();
 
+  function getSafeTrackerKeys() {
+    try {
+      var raw = localStorage.getItem(KEYS_LIST_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch(e) {
+      console.warn('Recovered corrupted tracker keys list');
+      return [];
+    }
+  }
+
   window.saveTrackerData = function() {
     try {
       var cfg = getConfig();
@@ -3179,7 +3188,10 @@ checkSavedProgress();
 
       var storageKey = getStorageKey(cfg.uid || location.pathname);
       var existingRaw = localStorage.getItem(storageKey);
-      var existingData = existingRaw ? JSON.parse(existingRaw) : null;
+      var existingData = null;
+      if (existingRaw) {
+        try { existingData = JSON.parse(existingRaw); } catch (e) {}
+      }
 
       // Merge with existing data to ensure we don't overwrite previous sessions
       if (existingData) {
@@ -3204,7 +3216,7 @@ checkSavedProgress();
 
       if (!wrongQs.length && !flaggedQs.length) {
          localStorage.removeItem(storageKey);
-         var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+         var keys = getSafeTrackerKeys();
          localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(keys.filter(function(k) { return k !== (cfg.uid || location.pathname); })));
          updateDashboardBadge();
          return;
@@ -3232,7 +3244,7 @@ checkSavedProgress();
         if (folderTitle) data.folderTitle = folderTitle;
         try {
           localStorage.setItem(getStorageKey(data.uid), JSON.stringify(data));
-          var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+          var keys = getSafeTrackerKeys();
           if (keys.indexOf(data.uid) === -1) { keys.push(data.uid); }
           localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(keys));
           updateDashboardBadge();
@@ -3257,7 +3269,7 @@ checkSavedProgress();
      ══════════════════════════════════════════ */
   function getAllTrackerData() {
     try {
-      var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+      var keys = getSafeTrackerKeys();
       var results = [];
       keys.forEach(function(uid) {
         var raw = localStorage.getItem(getStorageKey(uid));
@@ -3303,7 +3315,7 @@ checkSavedProgress();
      BADGE — count on the dashboard button
      ══════════════════════════════════════════ */
   window.updateDashboardBadge = function() {
-    var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+    var keys = getSafeTrackerKeys();
     var total = 0;
     keys.forEach(function(uid) {
       var raw = localStorage.getItem(getStorageKey(uid));
@@ -3433,7 +3445,7 @@ checkSavedProgress();
 
       if (!data.wrong.length && !data.flagged.length) {
         localStorage.removeItem(getStorageKey(uid));
-        var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+        var keys = getSafeTrackerKeys();
         localStorage.setItem(KEYS_LIST_KEY, JSON.stringify(keys.filter(function(k) { return k !== uid; })));
       } else {
         localStorage.setItem(getStorageKey(uid), JSON.stringify(data));
@@ -3446,7 +3458,7 @@ checkSavedProgress();
   window.clearAllTrackerData = function() {
     if (!confirm('Clear all tracked questions? This cannot be undone.')) return;
     try {
-      var keys = JSON.parse(localStorage.getItem(KEYS_LIST_KEY) || '[]');
+      var keys = getSafeTrackerKeys();
       keys.forEach(function(uid) { localStorage.removeItem(getStorageKey(uid)); });
       localStorage.removeItem(KEYS_LIST_KEY);
       renderDashboard();
