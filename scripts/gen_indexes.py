@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+import os
+import sys
+from pathlib import Path
+
+# Repository Root (parent of this scripts folder)
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
+TEMPLATE = """<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -11,7 +18,7 @@ document.head.appendChild(s)}})();
 <title>MU61 Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../index-engine.css">
+<link rel="stylesheet" href="{engine_prefix}index-engine.css">
 <!-- Meta tags for preview and favicon -->
 <meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
 <meta property="og:title" content="MU61 Quiz">
@@ -20,9 +27,9 @@ document.head.appendChild(s)}})();
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0d1117">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="manifest" href="../../../manifest.webmanifest">
-<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../../../favicon.svg">
+<link rel="manifest" href="{engine_prefix}manifest.webmanifest">
+<link rel="icon" href="{engine_prefix}favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{engine_prefix}favicon.svg">
 </head>
 <body>
   <div class="topbar">
@@ -52,7 +59,7 @@ document.head.appendChild(s)}})();
 const QUIZZES = [];
 </script>
 
-<script src="../../../index-engine.js"></script>
+<script src="{engine_prefix}index-engine.js"></script>
 <script>
 (function(){{
   var s=localStorage.getItem('quiz-theme');
@@ -64,9 +71,52 @@ const QUIZZES = [];
 <script>
 if ('serviceWorker' in navigator) {{
   window.addEventListener('load', function () {{
-    navigator.serviceWorker.register('../../../sw.js').catch(function () {{}});
+    navigator.serviceWorker.register('{engine_prefix}sw.js').catch(function () {{}});
   }});
 }}
 </script>
 </body>
 </html>
+"""
+
+def generate_index(target_dir_path: str):
+    target_path = Path(target_dir_path).resolve()
+    
+    # Calculate depth relative to REPO_ROOT
+    try:
+        rel_path = target_path.relative_to(REPO_ROOT)
+    except ValueError:
+        print(f"Error: {target_dir_path} is not inside the repository root ({REPO_ROOT})")
+        return
+
+    depth = len(rel_path.parts)
+    prefix = "../" * depth
+    
+    # Ensure directory exists
+    target_path.mkdir(parents=True, exist_ok=True)
+    
+    index_file = target_path / "index.html"
+    
+    # Don't overwrite if it already exists and isn't empty? 
+    # Actually, the user might want to force it. Let's provide a message.
+    if index_file.exists():
+        print(f"Overwriting existing {index_file.relative_to(REPO_ROOT)}")
+    else:
+        print(f"Creating {index_file.relative_to(REPO_ROOT)}")
+
+    # Use simple replace to avoid {} escaping hell with .format()
+    content = TEMPLATE.replace("{engine_prefix}", prefix)
+    
+    index_file.write_text(content, encoding="utf-8")
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python scripts/gen_indexes.py <folder_path1> <folder_path2> ...")
+        # Example targets from previous task if run without args
+        print("Example: python scripts/gen_indexes.py surg/by-chapter surg/past-years")
+        sys.exit(1)
+    
+    for folder in sys.argv[1:]:
+        generate_index(folder)
+    
+    print("\nNext step: Run 'python scripts/sync_quiz_assets.py' to update index contents.")
