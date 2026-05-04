@@ -40,7 +40,6 @@ SCRIPT_PATH = Path(__file__).resolve()
 SCRIPTS_DIR = SCRIPT_PATH.parent
 PROJECT_ROOT = SCRIPTS_DIR.parent.resolve()
 SYNC_SCRIPT = SCRIPTS_DIR / "sync_quiz_assets.py"
-QUIZTOOL_ROOT = Path(r"D:\Study\Projects\QuizTool")
 HOST = "127.0.0.1"
 PORT = 5500
 
@@ -60,30 +59,11 @@ ASSET_SUFFIXES = {
     ".ico",
     ".txt",
 }
-QUIZTOOL_REFERENCES = {
-    "pdf-exporter.html": {
+# Built-in tools served as templates
+BUILTIN_TOOLS = {
+    "pdf-exporter": {
         "label": "PDF Exporter",
-        "description": "Export QuizTool quiz and bank pages to PDF from file or URL.",
-    },
-    "quiz-editor.html": {
-        "label": "Quiz Editor",
-        "description": "Standalone QuizTool editor patterns for question editing.",
-    },
-    "index-editor.html": {
-        "label": "Index Editor",
-        "description": "Standalone QuizTool hub/index editor patterns.",
-    },
-    "quiz-template.html": {
-        "label": "Quiz Template",
-        "description": "Reference template for new quiz pages.",
-    },
-    "question-bank-template.html": {
-        "label": "Bank Template",
-        "description": "Reference template for new question-bank pages.",
-    },
-    "index-template.html": {
-        "label": "Index Template",
-        "description": "Reference template for new hub pages.",
+        "description": "Export quiz and bank pages to PDF with customizable layouts.",
     },
 }
 
@@ -503,9 +483,13 @@ DASHBOARD_HTML = r"""
     .tab-btn {
       border-radius: 999px;
       min-height: 38px;
-      padding: 0.58rem 0.85rem;
+      padding: 0.58rem 1rem;
       cursor: pointer;
       font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text-muted);
+      transition: var(--transition);
     }
     .tab-btn.active {
       background: var(--accent-dim);
@@ -598,8 +582,13 @@ DASHBOARD_HTML = r"""
       border-radius: 8px;
       padding: 0.45rem 0.65rem;
       cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
+    }
+    .modal-tab-content {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal-tab-content.active {
+      display: block;
     }
     .mini-btn:hover {
       border-color: var(--accent);
@@ -845,11 +834,8 @@ DASHBOARD_HTML = r"""
         </div>
       </div>
       <div class="topbar-actions">
-        <button class="btn" onclick="openNewFolderModal()">New Folder</button>
-        <button class="btn" onclick="openNewFileModal()">New File</button>
-        <a class="btn" href="/admin/quiztool/pdf-exporter.html" target="_blank" rel="noopener">PDF Export</a>
-        <button class="btn" onclick="openGitModal()">Git</button>
-        <button class="btn btn-primary" onclick="runSync()">Run Sync</button>
+        <button class="btn" onclick="openActivityModal()">Activity Log</button>
+        <button class="btn" onclick="openGitModal()">Git & Sync</button>
         <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
       </div>
     </div>
@@ -862,7 +848,10 @@ DASHBOARD_HTML = r"""
               <h2>Project Files</h2>
               <div class="sidebar-subtitle" id="sidebar-summary">Loading files...</div>
             </div>
-            <button class="icon-btn" onclick="refreshWorkspace()" title="Refresh">↻</button>
+            <div style="display: flex; gap: 0.4rem; align-items: center;">
+              <button class="icon-btn" onclick="openCreateModal()" title="Create New...">+</button>
+              <button class="icon-btn" onclick="refreshWorkspace()" title="Refresh">↻</button>
+            </div>
           </div>
 
           <div class="search-wrap">
@@ -879,11 +868,8 @@ DASHBOARD_HTML = r"""
 
         <div class="content-stack">
           <section class="panel" id="workspace-panel"></section>
-          <section class="activity" id="activity-panel"></section>
         </div>
       </section>
-
-      <section class="stats-grid" id="stats-grid"></section>
     </div>
   </div>
 
@@ -916,6 +902,8 @@ DASHBOARD_HTML = r"""
       dirty: false,
       activity: [],
       modalOpen: false,
+      modalQuestions: [],
+      modalTab: 'basic',
     };
 
     const FILTERS = [
@@ -971,7 +959,7 @@ DASHBOARD_HTML = r"""
 
     function logActivity(title, detail = '', tone = 'info') {
       state.activity.unshift({ title, detail, tone, time: nowTime() });
-      state.activity = state.activity.slice(0, 12);
+      state.activity = state.activity.slice(0, 30);
       renderActivity();
     }
 
@@ -1019,7 +1007,6 @@ DASHBOARD_HTML = r"""
       state.folders = filePayload.folders || [];
       state.projectState = projectState;
       renderFilters();
-      renderStats();
       renderTree();
       if (preserveCurrent && state.currentFile) {
         const stillExists = state.files.some(file => file.path === state.currentFile);
@@ -1041,27 +1028,6 @@ DASHBOARD_HTML = r"""
       }
       const dirtyCount = projectState?.git?.dirtyCount || 0;
       logActivity('Workspace refreshed', dirtyCount ? `${dirtyCount} git changes detected.` : 'Working tree is clean.', 'info');
-    }
-
-    function renderStats() {
-      const statsGrid = document.getElementById('stats-grid');
-      const summary = state.projectState?.summary;
-      if (!summary) {
-        statsGrid.innerHTML = '';
-        return;
-      }
-      const cards = [
-        { value: summary.totalHtmlFiles, label: 'HTML Files' },
-        { value: summary.quizCount, label: 'Quizzes' },
-        { value: summary.bankCount, label: 'Banks' },
-        { value: summary.indexCount, label: 'Index Pages' },
-      ];
-      statsGrid.innerHTML = cards.map(card => `
-        <div class="stat-card">
-          <div class="stat-value">${escapeHtml(card.value)}</div>
-          <div class="stat-label">${escapeHtml(card.label)}</div>
-        </div>
-      `).join('');
     }
 
     function renderFilters() {
@@ -1182,22 +1148,28 @@ DASHBOARD_HTML = r"""
     }
 
     function renderActivity() {
-      const panel = document.getElementById('activity-panel');
-      const items = state.activity.length ? state.activity.slice(0, 4).map(item => `
-        <div class="activity-entry">
-          <div class="activity-title ${badgeClassForTone(item.tone)}">${escapeHtml(item.title)}</div>
-          <div class="activity-meta">${escapeHtml(item.time)}${item.detail ? '\n' + escapeHtml(item.detail) : ''}</div>
+      const modalActive = state.modalOpen && state.modalTab === 'activity';
+      if (!modalActive) return;
+      const body = document.getElementById('activity-modal-body');
+      if (!body) return;
+
+      const items = state.activity.length ? state.activity.map(item => `
+        <div class="activity-entry" style="margin-bottom: 0.8rem; border-bottom: 1px solid var(--border); padding-bottom: 0.8rem;">
+          <div class="activity-title ${badgeClassForTone(item.tone)}" style="font-weight: 700; font-size: 0.95rem;">${escapeHtml(item.title)}</div>
+          <div class="activity-meta" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; white-space: pre-wrap;">${escapeHtml(item.time)}${item.detail ? '\n' + escapeHtml(item.detail) : ''}</div>
         </div>
-      `).join('') : `<div class="empty-state">Actions, sync output, and git feedback will appear here.</div>`;
-      panel.innerHTML = `
-        <div class="panel-header">
-          <div>
-            <div class="panel-title">Recent Activity</div>
-            <div class="muted">Latest save, sync, move, and git results.</div>
-          </div>
-        </div>
-        <div class="activity-list">${items}</div>
-      `;
+      `).join('') : `<div class="empty-state">No activity yet. Actions, sync output, and git feedback will appear here.</div>`;
+      body.innerHTML = items;
+    }
+
+    function openActivityModal() {
+      state.modalTab = 'activity';
+      openModal({
+        title: 'Recent Activity',
+        subtitle: 'Latest project actions and system feedback.',
+        body: '<div id="activity-modal-body" class="activity-list" style="max-height: 500px; overflow-y: auto;"></div>',
+        onOpen: () => renderActivity()
+      });
     }
 
     function gitStatusSummary(git) {
@@ -1211,9 +1183,6 @@ DASHBOARD_HTML = r"""
       const panel = document.getElementById('workspace-panel');
       const summary = state.projectState?.summary || {};
       const git = state.projectState?.git || {};
-      const refs = state.projectState?.quiztoolReferences || [];
-      const pdfRef = refs.find(ref => ref.id === 'pdf-exporter.html');
-      const nonPdfRefs = refs.filter(ref => ref.id !== 'pdf-exporter.html');
       const recentFiles = state.files.slice(0, 6);
       panel.innerHTML = `
         <div class="panel-header">
@@ -1253,26 +1222,15 @@ DASHBOARD_HTML = r"""
             </div>
           </div>
           <div class="overview-card">
-            <div class="section-title">QuizTool Tools</div>
+            <div class="section-title">Built-in Tools</div>
             <div class="overview-list">
-              ${pdfRef ? `
-                <div class="overview-item">
-                  <div class="overview-dot"></div>
-                  <div>
-                    <strong><a href="/admin/quiztool/pdf-exporter.html" target="_blank" rel="noopener">PDF Exporter</a></strong>
-                    <div class="muted">Open the QuizTool PDF exporter and load a quiz by file or URL.</div>
-                  </div>
+              <div class="overview-item">
+                <div class="overview-dot"></div>
+                <div>
+                  <strong><a href="/admin/pdf-exporter" target="_blank" rel="noopener">PDF Exporter</a></strong>
+                  <div class="muted">Generate printable PDF versions of your quizzes and banks.</div>
                 </div>
-              ` : ''}
-              ${nonPdfRefs.length ? nonPdfRefs.map(ref => `
-                <div class="overview-item">
-                  <div class="overview-dot"></div>
-                  <div>
-                    <strong><a href="/admin/reference/${encodeURIComponent(ref.id)}" target="_blank" rel="noopener">${escapeHtml(ref.label)}</a></strong>
-                    <div class="muted">${escapeHtml(ref.description)}</div>
-                  </div>
-                </div>
-              `).join('') : (!pdfRef ? '<div class="muted">No QuizTool reference assets were found at the configured path.</div>' : '')}
+              </div>
             </div>
           </div>
           <div class="overview-card">
@@ -1311,7 +1269,7 @@ DASHBOARD_HTML = r"""
       const meta = state.currentData.meta || {};
       const livePreviewPath = `/admin/preview/${encodePath(state.currentFile)}`;
       const previewUrl = `/admin/preview/${encodePath(state.currentFile)}?v=${Date.now()}`;
-      const pdfExporterUrl = `/admin/quiztool/pdf-exporter.html?url=${encodeURIComponent(window.location.origin + livePreviewPath)}`;
+      const pdfExporterUrl = `/admin/pdf-exporter?url=${encodeURIComponent(window.location.origin + livePreviewPath)}`;
       const canStructuredEdit = ['quiz', 'bank', 'index'].includes(meta.type);
       panel.innerHTML = `
         <div class="panel-header">
@@ -1423,8 +1381,7 @@ DASHBOARD_HTML = r"""
     }
 
     function renderQuestionCard(question, index) {
-      const options = (question.options || ['', '', '', '']).slice(0, 4);
-      while (options.length < 4) options.push('');
+      const options = question.options || ['', '', '', ''];
       return `
         <div class="editor-card">
           <div class="editor-card-header">
@@ -1433,7 +1390,7 @@ DASHBOARD_HTML = r"""
               <button class="mini-btn" onclick="moveQuestion(${index}, -1)" ${index === 0 ? 'disabled' : ''}>Up</button>
               <button class="mini-btn" onclick="moveQuestion(${index}, 1)" ${index === (state.currentData.meta.questions || []).length - 1 ? 'disabled' : ''}>Down</button>
               <button class="mini-btn" onclick="duplicateQuestion(${index})">Duplicate</button>
-              <button class="mini-btn delete" onclick="removeQuestion(${index})">Remove</button>
+              <button class="mini-btn delete" onclick="removeQuestion(${index})">Remove Q</button>
             </div>
           </div>
           <div class="field">
@@ -1442,12 +1399,16 @@ DASHBOARD_HTML = r"""
           </div>
           <div class="field">
             <label>Options</label>
-            ${options.map((option, optionIndex) => `
-              <div class="option-row">
-                <input type="radio" name="correct-${index}" value="${optionIndex}" ${question.correct === optionIndex ? 'checked' : ''} onchange="syncQuizBankEditor()">
-                <input class="text-input q-option" data-index="${index}" data-option="${optionIndex}" value="${escapeHtml(option)}" oninput="syncQuizBankEditor()" placeholder="Option ${String.fromCharCode(65 + optionIndex)}">
-              </div>
-            `).join('')}
+            <div class="option-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              ${options.map((option, optionIndex) => `
+                <div class="option-row" style="display: flex; align-items: center; gap: 0.4rem;">
+                  <input type="radio" name="correct-${index}" value="${optionIndex}" ${question.correct === optionIndex ? 'checked' : ''} onchange="syncQuizBankEditor()">
+                  <input class="text-input q-option" data-index="${index}" data-option="${optionIndex}" value="${escapeHtml(option)}" oninput="syncQuizBankEditor()" placeholder="Option ${String.fromCharCode(65 + optionIndex)}" style="flex:1;">
+                  ${options.length > 2 ? `<button class="mini-btn delete" onclick="removeOption(${index}, ${optionIndex})" title="Remove Option">×</button>` : ''}
+                </div>
+              `).join('')}
+              <button class="mini-btn" onclick="addOption(${index})" style="grid-column: span 2; border-style: dashed; margin-top: 0.25rem;">+ Add Option</button>
+            </div>
           </div>
           <div class="field">
             <label>Explanation</label>
@@ -1675,6 +1636,27 @@ DASHBOARD_HTML = r"""
       syncQuizBankEditor();
     }
 
+    function addOption(qIdx) {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      list[qIdx].options.push('');
+      renderFilePanel();
+      setTab('editor');
+      syncQuizBankEditor();
+    }
+
+    function removeOption(qIdx, oIdx) {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      list[qIdx].options.splice(oIdx, 1);
+      if (list[qIdx].correct >= list[qIdx].options.length) {
+        list[qIdx].correct = 0;
+      }
+      renderFilePanel();
+      setTab('editor');
+      syncQuizBankEditor();
+    }
+
     function moveIndexCard(index, delta) {
       const list = state.currentData?.meta?.quizzes;
       if (!list) return;
@@ -1790,6 +1772,31 @@ DASHBOARD_HTML = r"""
       `).join('');
     }
 
+    function openCreateModal() {
+      openModal({
+        title: 'Create New',
+        subtitle: 'Choose what you want to add to the project.',
+        body: `
+          <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <button class="meta-card" onclick="closeModal(); openNewFileModal()" style="text-align: left; cursor: pointer; border: 1px solid var(--border); background: var(--surface2); color: var(--text); transition: 0.2s;">
+              <div class="meta-label">New Content</div>
+              <div class="meta-value" style="font-size: 1.1rem; color: var(--accent);">Quiz or Bank</div>
+              <div class="muted" style="font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.4;">Structured MCQ content with stable UIDs and automatic parent hub indexing.</div>
+            </button>
+            <button class="meta-card" onclick="closeModal(); openNewFolderModal()" style="text-align: left; cursor: pointer; border: 1px solid var(--border); background: var(--surface2); color: var(--text); transition: 0.2s;">
+              <div class="meta-label">New Structure</div>
+              <div class="meta-value" style="font-size: 1.1rem; color: var(--accent);">Subject Folder</div>
+              <div class="muted" style="font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.4;">Creates a new directory and a managed hub index.html page automatically.</div>
+            </button>
+          </div>
+          <div class="modal-actions" style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+             <a class="btn" href="/admin/pdf-exporter" target="_blank" rel="noopener" onclick="closeModal()">Open Standalone PDF Exporter</a>
+             <button class="btn" onclick="closeModal()">Cancel</button>
+          </div>
+        `
+      });
+    }
+
     function openNewFolderModal() {
       openModal({
         title: 'Create Folder',
@@ -1817,46 +1824,202 @@ DASHBOARD_HTML = r"""
     }
 
     function openNewFileModal() {
-      openModal({
-        title: 'Create File',
-        subtitle: 'New quiz and bank pages follow the repo schema and derive path-based UIDs automatically.',
-        body: `
+      state.modalQuestions = [{ question: '', options: ['', '', '', ''], correct: 0, explanation: '' }];
+      state.modalTab = 'basic';
+      renderNewFileModal();
+    }
+
+    function renderNewFileModal() {
+      const isBank = document.getElementById('file-type')?.value === 'bank';
+      const body = `
+        <div class="tab-row" style="margin-bottom: 1.5rem;">
+          <button class="tab-btn ${state.modalTab === 'basic' ? 'active' : ''}" onclick="setModalTab('basic')">1. Basic Info</button>
+          <button class="tab-btn ${state.modalTab === 'questions' ? 'active' : ''}" onclick="setModalTab('questions')">2. Questions</button>
+        </div>
+
+        <div class="modal-tab-content ${state.modalTab === 'basic' ? 'active' : ''}" id="modal-tab-basic">
           <div class="field-grid">
             <div class="field">
               <label>Type</label>
-              <select class="select-input" id="file-type" onchange="syncNewFileIconField()">
-                <option value="quiz">Quiz</option>
-                <option value="bank">Question Bank</option>
+              <select class="select-input" id="file-type" onchange="onFileTypeChange()">
+                <option value="quiz" ${document.getElementById('file-type')?.value === 'quiz' ? 'selected' : ''}>Quiz</option>
+                <option value="bank" ${document.getElementById('file-type')?.value === 'bank' ? 'selected' : ''}>Question Bank</option>
               </select>
             </div>
             <div class="field">
               <label>Folder</label>
-              <select class="select-input" id="file-folder">${folderOptions('.') }</select>
+              <select class="select-input" id="file-folder">${folderOptions(document.getElementById('file-folder')?.value || '.') }</select>
             </div>
             <div class="field full">
               <label>Title</label>
-              <input class="text-input" id="file-title" placeholder="L1 Anatomy">
+              <input class="text-input" id="file-title" value="${escapeHtml(document.getElementById('file-title')?.value || '')}" placeholder="L1 Anatomy">
             </div>
             <div class="field full">
               <label>Description</label>
-              <textarea class="text-area" id="file-description" placeholder="Short start-screen description"></textarea>
+              <textarea class="text-area" id="file-description" placeholder="Short start-screen description">${escapeHtml(document.getElementById('file-description')?.value || '')}</textarea>
             </div>
             <div class="field">
               <label>Filename Override</label>
-              <input class="text-input" id="file-name" placeholder="Optional: l1-anatomy">
-              <small>Leave blank to derive a kebab-case filename from the title.</small>
+              <input class="text-input" id="file-name" value="${escapeHtml(document.getElementById('file-name')?.value || '')}" placeholder="Optional: l1-anatomy">
+              <small>Leave blank to derive from title.</small>
             </div>
-            <div class="field" id="bank-icon-wrap" style="display:none;">
+            <div class="field" id="bank-icon-wrap" style="display:${document.getElementById('file-type')?.value === 'bank' ? 'grid' : 'none'};">
               <label>Bank Icon</label>
-              <input class="text-input" id="file-icon" value="🗃️">
+              <input class="text-input" id="file-icon" value="${escapeHtml(document.getElementById('file-icon')?.value || '🗃️')}">
             </div>
           </div>
-          <div class="modal-actions">
-            <button class="btn btn-primary" onclick="createFile()">Create File</button>
+          <div class="modal-actions" style="margin-top:2rem;">
+            <button class="btn btn-primary" onclick="setModalTab('questions')">Next: Setup Questions →</button>
           </div>
-        `,
-        onOpen: syncNewFileIconField,
+        </div>
+
+        <div class="modal-tab-content ${state.modalTab === 'questions' ? 'active' : ''}" id="modal-tab-questions">
+          <div class="section-title">Question Source</div>
+          <div class="field-grid" style="margin-bottom: 1rem;">
+             <div class="field full">
+               <label>Import from JSON (Optional)</label>
+               <textarea class="text-area code" id="file-import-json" style="height: 120px;" 
+                 placeholder='Paste a JSON array or drop a .json file here...' 
+                 oninput="onModalJsonInput()" 
+                 ondragover="event.preventDefault(); this.classList.add('dragover')" 
+                 ondragleave="this.classList.remove('dragover')" 
+                 ondrop="onModalJsonDrop(event)"></textarea>
+               <small>Pasting or dropping valid JSON will overwrite the visual list below.</small>
+             </div>
+          </div>
+
+          <div class="section-title">Visual Builder</div>
+          <div class="editor-list" id="modal-question-list" style="max-height: 400px; overflow-y: auto; margin-bottom: 1rem; border: 1px solid var(--border); padding: 0.5rem; border-radius: 8px;">
+            ${renderModalQuestionList()}
+          </div>
+          <button class="btn" onclick="addModalQuestion()">Add Question</button>
+
+          <div class="modal-actions" style="margin-top:2rem; border-top: 1px solid var(--border); padding-top: 1.5rem;">
+            <button class="btn" onclick="setModalTab('basic')">← Back</button>
+            <button class="btn btn-primary" onclick="createFile()">Create File with ${state.modalQuestions.length} Questions</button>
+          </div>
+        </div>
+      `;
+
+      openModal({
+        title: 'Create New Quiz or Bank',
+        subtitle: 'Setup your file and questions in one go. You can always edit more later.',
+        body,
+        onOpen: () => {
+          // No-op, we handle rendering via renderNewFileModal now
+        }
       });
+    }
+
+    function setModalTab(tab) {
+      syncModalQuestionsFromUI();
+      state.modalTab = tab;
+      renderNewFileModal();
+    }
+
+    function onFileTypeChange() {
+      const type = document.getElementById('file-type').value;
+      const wrap = document.getElementById('bank-icon-wrap');
+      if (wrap) wrap.style.display = type === 'bank' ? 'grid' : 'none';
+    }
+
+    function renderModalQuestionList() {
+      if (!state.modalQuestions.length) return '<div class="muted" style="padding:1rem;">No questions added yet.</div>';
+      return state.modalQuestions.map((q, i) => `
+        <div class="editor-card" style="margin-bottom: 0.5rem; padding: 0.75rem; background: var(--surface2); border: 1px solid var(--border);">
+          <div class="editor-card-header" style="margin-bottom: 0.5rem;">
+             <div class="editor-card-title">Q${i+1}</div>
+             <button class="mini-btn delete" onclick="removeModalQuestion(${i})">Remove Q</button>
+          </div>
+          <input class="text-input mq-q" data-idx="${i}" value="${escapeHtml(q.question)}" placeholder="Question text" style="margin-bottom:0.5rem;">
+          <div class="option-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            ${(q.options || []).map((opt, oi) => `
+              <div class="option-row" style="padding: 0.25rem; display: flex; align-items: center; gap: 0.25rem;">
+                <input type="radio" name="mq-correct-${i}" value="${oi}" ${q.correct === oi ? 'checked' : ''}>
+                <input class="text-input mq-opt" data-idx="${i}" data-oidx="${oi}" value="${escapeHtml(opt)}" placeholder="Opt ${String.fromCharCode(65+oi)}" style="flex:1;">
+                ${q.options.length > 2 ? `<button class="mini-btn delete" onclick="removeModalOption(${i}, ${oi})" title="Remove Option">×</button>` : ''}
+              </div>
+            `).join('')}
+            <button class="mini-btn" onclick="addModalOption(${i})" style="grid-column: span 2; border-style: dashed;">+ Add Option</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function syncModalQuestionsFromUI() {
+      const questions = [];
+      const rows = document.querySelectorAll('#modal-question-list .editor-card');
+      rows.forEach((row, i) => {
+        const question = row.querySelector('.mq-q').value;
+        const options = Array.from(row.querySelectorAll('.mq-opt')).map(input => input.value);
+        const correct = parseInt(row.querySelector(`input[name="mq-correct-${i}"]:checked`)?.value || '0');
+        questions.push({ question, options, correct, explanation: '' });
+      });
+      if (questions.length) state.modalQuestions = questions;
+    }
+
+    function addModalQuestion() {
+      syncModalQuestionsFromUI();
+      state.modalQuestions.push({ question: '', options: ['', '', '', ''], correct: 0, explanation: '' });
+      renderNewFileModal();
+    }
+
+    function removeModalQuestion(index) {
+      syncModalQuestionsFromUI();
+      state.modalQuestions.splice(index, 1);
+      renderNewFileModal();
+    }
+
+    function addModalOption(qIdx) {
+      syncModalQuestionsFromUI();
+      state.modalQuestions[qIdx].options.push('');
+      renderNewFileModal();
+    }
+
+    function removeModalOption(qIdx, oIdx) {
+      syncModalQuestionsFromUI();
+      state.modalQuestions[qIdx].options.splice(oIdx, 1);
+      if (state.modalQuestions[qIdx].correct >= state.modalQuestions[qIdx].options.length) {
+        state.modalQuestions[qIdx].correct = 0;
+      }
+      renderNewFileModal();
+    }
+
+    function onModalJsonDrop(e) {
+      e.preventDefault();
+      const textarea = document.getElementById('file-import-json');
+      textarea.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        textarea.value = event.target.result;
+        onModalJsonInput();
+      };
+      reader.readAsText(file);
+    }
+
+    function onModalJsonInput() {
+      const textarea = document.getElementById('file-import-json');
+      const val = textarea.value.trim();
+      if (!val) return;
+      try {
+        const parsed = JSON.parse(val);
+        const questions = Array.isArray(parsed) ? parsed : (parsed.questions || parsed.QUESTION_BANK || []);
+        if (Array.isArray(questions)) {
+          state.modalQuestions = questions.map(q => ({
+            question: q.question || '',
+            options: q.options || ['', '', '', ''],
+            correct: q.correct || 0,
+            explanation: q.explanation || ''
+          }));
+          renderNewFileModal();
+          showToast(`Imported ${state.modalQuestions.length} questions from JSON`, 'success');
+        }
+      } catch (e) {
+        // Silent fail while typing
+      }
     }
 
     function syncNewFileIconField() {
@@ -1940,9 +2103,10 @@ DASHBOARD_HTML = r"""
           </div>
 
           <div class="modal-actions" style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
-            <div style="flex: 1; display: flex; gap: 0.5rem;">
+            <div style="flex: 1; display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <button class="ghost-btn" onclick="pullChanges()">Pull</button>
               <button class="ghost-btn" onclick="commitChanges()">Commit Only</button>
+              <button class="ghost-btn" onclick="runSync()" style="border-color: var(--accent); color: var(--accent);">Run Sync Now</button>
             </div>
             <button class="btn btn-primary" onclick="gitSync()">Sync & Push</button>
           </div>
@@ -1966,22 +2130,42 @@ DASHBOARD_HTML = r"""
     }
 
     async function createFile() {
+      syncModalQuestionsFromUI();
       const type = document.getElementById('file-type').value;
       const folder = document.getElementById('file-folder').value;
       const title = document.getElementById('file-title').value;
       const description = document.getElementById('file-description').value;
       const filename = document.getElementById('file-name').value;
       const icon = document.getElementById('file-icon')?.value || '🗃️';
+      const questions = state.modalQuestions;
+
+      if (!title) {
+        showToast('Title is required.', 'warn');
+        setModalTab('basic');
+        return;
+      }
+
       const result = await fetchJson('/admin/create-file', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, folder, title, description, filename, icon }),
+        body: JSON.stringify({ type, folder, title, description, filename, icon, questions }),
       });
       closeModal();
       showToast(result.message || 'File created.', 'success');
       logActivity('Created file', result.path || title, 'success');
+      
+      // Expand target folder before refresh so it shows up
+      if (folder && folder !== '.') state.openFolders.add(folder);
+      
       await runSync({ silentToast: true, preserveCurrent: false });
-      if (result.path) await loadFile(result.path);
+      if (result.path) {
+        await loadFile(result.path);
+        // Scroll sidebar to new file
+        setTimeout(() => {
+          const activeRow = document.querySelector('.tree-row.active');
+          if (activeRow) activeRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
     }
 
     async function moveFile() {
@@ -2476,6 +2660,277 @@ const QUESTIONS = {json.dumps(questions, indent=2)};
 </html>
 """
 
+PDF_EXPORTER_HTML = r"""<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Exporter - Built-in</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    :root {
+      --bg: #0d1117; --surface: #161b22; --surface2: #1c2330; --border: #30363d;
+      --text: #e6edf3; --text-muted: #8b949e; --accent: #f0a500; --correct: #2ea043;
+      --wrong: #da3633; --radius: 12px; --shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+    [data-theme="light"] {
+      --bg: #f3f0eb; --surface: #ffffff; --surface2: #f8f6f1; --border: #d0ccc5;
+      --text: #1c1917; --text-muted: #78716c; --accent: #c27803; --shadow: 0 4px 24px rgba(0,0,0,0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { margin: 0; font-family: 'Outfit', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+    .topbar { position: sticky; top: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0.75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; z-index: 100; }
+    .topbar-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
+    .container { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; width: 100%; flex: 1; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow); }
+    .controls { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 2rem; background: var(--surface2); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border); align-items: center; justify-content: center; }
+    .btn { padding: 0.6rem 1.2rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Outfit', sans-serif; }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+    .btn-success { background: var(--correct); color: white; border-color: var(--correct); }
+    .status-msg { margin-top: 1rem; font-weight: 500; text-align: center; }
+    .status-msg.error { color: var(--wrong); }
+    .status-msg.success { color: var(--correct); }
+    .toggle-wrap { display: flex; align-items: center; gap: 0.5rem; user-select: none; cursor: pointer; font-weight: 500; }
+    .toggle-wrap input { cursor: pointer; }
+    
+    /* Preview & Print Area */
+    #print-area { background: white; color: black; padding: 2.5rem; border-radius: 8px; box-shadow: var(--shadow); display: none; margin-top: 2rem; }
+    [data-theme="dark"] #print-area { color: black; }
+    
+    .quiz-header { text-align: center; border-bottom: 2px solid #000; margin-bottom: 2rem; padding-bottom: 1rem; }
+    .quiz-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .quiz-header p { font-size: 1.1rem; color: #444; }
+    
+    .question-item { margin-bottom: 2rem; page-break-inside: avoid; }
+    .question-text { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .options-list { list-style: none; margin-left: 1rem; }
+    .option-item { margin-bottom: 0.4rem; display: flex; gap: 0.75rem; }
+    .option-letter { font-weight: 700; min-width: 1.5rem; }
+    .answer-key { margin-top: 0.75rem; padding: 0.75rem; background: #f0f0f0; border-left: 4px solid #000; font-size: 0.95rem; }
+    .answer-key.hidden { display: none; }
+    .answer-key strong { color: #d32f2f; }
+    
+    /* 2-Column Layout */
+    .textbook-layout { column-count: 2; column-gap: 2.5rem; column-rule: 1px solid #ccc; }
+    .textbook-layout .quiz-header { column-span: all; margin-bottom: 1.5rem; padding-bottom: 0.75rem; }
+    .textbook-layout .question-item { break-inside: avoid; margin-bottom: 1.5rem; }
+    
+    /* Styled Mode */
+    .styled-output .quiz-header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; border-radius: 16px; padding: 2.5rem 2rem; border: none; }
+    .styled-output .quiz-header h1 { color: #fff; }
+    .styled-output .quiz-header p { color: rgba(255,255,255,0.8); }
+    .styled-output .question-item { background: #fff; border: 1.5px solid #e0e0e0; border-radius: 14px; padding: 1.25rem 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .styled-output .q-badge { display: inline-block; background: var(--accent); color: #000; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; margin-bottom: 0.65rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .styled-output .option-item { border: 1.5px solid #e8e8e8; background: #fafafa; border-radius: 10px; padding: 0.75rem 1rem; }
+    .styled-output .option-letter { width: 26px; height: 26px; border-radius: 7px; background: #f0f0f0; border: 1.5px solid #d0d0d0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+    
+    /* MCQ Notes Mode */
+    .mcq-notes-layout .question-item { margin-bottom: 0.75rem; }
+    .mcq-notes-layout .question-text { font-size: 0.9rem; margin-bottom: 0.35rem; }
+    .mcq-notes-layout .compact-answer { font-size: 0.9rem; font-weight: 600; color: var(--correct); margin-left: 20px; }
+    
+    @media print {
+      body { background: white !important; color: black !important; }
+      .topbar, .card, .controls, .no-print { display: none !important; }
+      .container { max-width: none; margin: 0; padding: 0; }
+      #print-area { display: block !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
+      .styled-output .question-item { box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar no-print">
+    <div class="topbar-title">Built-in PDF Exporter</div>
+    <button class="btn" onclick="toggleTheme()">☀️</button>
+  </div>
+  
+  <div class="container">
+    <div class="card">
+      <h2 style="margin-top:0">Export Quiz to PDF</h2>
+      <p class="muted" style="margin-bottom:1.5rem;">Rendering logic synced with QuizTool PDF Exporter.</p>
+      
+      <div style="display: flex; gap: 0.5rem;">
+        <input type="text" id="quiz-url" style="flex:1; padding: 0.7rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); color: var(--text);" placeholder="Enter quiz URL...">
+        <button class="btn btn-primary" onclick="loadFromUrl()">Load Quiz</button>
+      </div>
+      <div id="status" class="status-msg"></div>
+    </div>
+
+    <div id="preview-controls" class="controls" style="display: none;">
+      <label class="toggle-wrap"><input type="checkbox" id="show-answers" checked onchange="updatePreview()"> <span>Show Answers</span></label>
+      <label class="toggle-wrap"><input type="checkbox" id="two-column" onchange="updatePreview()"> <span>2-Column</span></label>
+      <label class="toggle-wrap"><input type="checkbox" id="styled-mode" onchange="updatePreview()"> <span>✨ Styled</span></label>
+      <label class="toggle-wrap"><input type="checkbox" id="mcq-notes-mode" onchange="updatePreview()"> <span>📝 MCQ Notes</span></label>
+      
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 1rem;">
+        <label class="toggle-wrap" title="Lower quality is safer for very long quizzes"><input type="checkbox" id="high-quality"> <span>HQ (Scale 2)</span></label>
+        <button class="btn btn-success" onclick="generatePdfFile()">💾 Save PDF File</button>
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Print Dialog</button>
+      </div>
+    </div>
+    
+    <div id="print-area"></div>
+  </div>
+
+  <script>
+    let quizData = { config: {}, questions: [] };
+
+    async function loadFromUrl() {
+      const url = document.getElementById('quiz-url').value.trim();
+      if (!url) return;
+      const status = document.getElementById('status');
+      status.textContent = 'Fetching quiz file...';
+      status.className = 'status-msg';
+
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error(`HTTP error! status: ${resp.status}`);
+        const content = await resp.text();
+        
+        const findBlock = (start, end, fallbackRegex) => {
+          const startIdx = content.indexOf(start);
+          const endIdx = content.indexOf(end);
+          if (startIdx !== -1 && endIdx !== -1) {
+            const block = content.slice(startIdx + start.length, endIdx);
+            const match = block.match(/(const|let|var)\s+\w+\s*=\s*([\s\S]*?);?$/);
+            if (match) return match[2].trim();
+          }
+          const generalMatch = content.match(fallbackRegex);
+          return generalMatch ? generalMatch[2].trim() : null;
+        };
+
+        const configJson = findBlock('/* [QUIZ_CONFIG_START] */', '/* [QUIZ_CONFIG_END] */', /(const|let|var)\s+QUIZ_CONFIG\s*=\s*([\s\S]*?);?(\n|\r|$)/) ||
+                          findBlock('/* [BANK_CONFIG_START] */', '/* [BANK_CONFIG_END] */', /(const|let|var)\s+BANK_CONFIG\s*=\s*([\s\S]*?);?(\n|\r|$)/);
+        
+        const questionsJson = findBlock('/* [QUESTIONS_START] */', '/* [QUESTIONS_END] */', /(const|let|var)\s+QUESTIONS\s*=\s*([\s\S]*?);?(\n|\r|$)/) ||
+                             findBlock('/* [QUESTION_BANK_START] */', '/* [QUESTION_BANK_END] */', /(const|let|var)\s+QUESTION_BANK\s*=\s*([\s\S]*?);?(\n|\r|$)/);
+
+        if (!configJson || !questionsJson) throw new Error('Could not find quiz data blocks in the file.');
+
+        quizData.config = new Function('return ' + configJson)();
+        quizData.questions = new Function('return ' + questionsJson)();
+
+        status.textContent = `Loaded "${quizData.config.title}" (${quizData.questions.length} questions).`;
+        status.className = 'status-msg success';
+        document.getElementById('preview-controls').style.display = 'flex';
+        updatePreview();
+      } catch (err) {
+        status.textContent = `Error: ${err.message}`;
+        status.className = 'status-msg error';
+      }
+    }
+
+    function updatePreview() {
+      const showAnswers = document.getElementById('show-answers').checked;
+      const useTwoColumn = document.getElementById('two-column').checked;
+      const useStyled = document.getElementById('styled-mode').checked;
+      const useMcqNotes = document.getElementById('mcq-notes-mode').checked;
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+      const area = document.getElementById('print-area');
+      
+      area.className = '';
+      if (useTwoColumn) area.classList.add('textbook-layout');
+      if (useStyled) area.classList.add('styled-output');
+      if (useMcqNotes) area.classList.add('mcq-notes-layout');
+
+      let html = '';
+      
+      // Header
+      if (useStyled) {
+        html += `<div class="quiz-header">
+          ${quizData.config.icon ? `<div style="font-size:2.5rem; margin-bottom:0.5rem;">${quizData.config.icon}</div>` : ''}
+          <h1>${quizData.config.title}</h1>
+          <p>${quizData.config.description || ''}</p>
+        </div>`;
+      } else {
+        html += `<div class="quiz-header">
+          <h1>${quizData.config.title}</h1>
+          <p>${quizData.config.description || ''}</p>
+        </div>`;
+      }
+
+      quizData.questions.forEach((q, i) => {
+        if (useMcqNotes) {
+          html += `<div class="question-item">
+            <div class="question-text">${i + 1}. ${q.question}</div>
+            <div class="compact-answer">${letters[q.correct]}. ${q.options[q.correct]}</div>
+          </div>`;
+        } else if (useStyled) {
+          html += `<div class="question-item">
+            <div class="q-badge">Question ${i + 1}</div>
+            <div class="question-text">${q.question}</div>
+            <div class="options-list">
+              ${q.options.map((opt, oi) => `<div class="option-item"><span class="option-letter">${letters[oi]}</span><span class="option-text">${opt}</span></div>`).join('')}
+            </div>
+            ${showAnswers ? `<div class="answer-key"><strong>✓ Correct: ${letters[q.correct]}. ${q.options[q.correct]}</strong>${q.explanation ? `<div style="margin-top:0.4rem; font-size:0.85rem; color:#555;">${q.explanation}</div>` : ''}</div>` : ''}
+          </div>`;
+        } else {
+          html += `<div class="question-item">
+            <div class="question-text">${i + 1}. ${q.question}</div>
+            <div class="options-list">
+              ${q.options.map((opt, oi) => `<div class="option-item"><span class="option-letter">${letters[oi]}.</span><span class="option-text">${opt}</span></div>`).join('')}
+            </div>
+            <div class="answer-key ${showAnswers ? '' : 'hidden'}"><strong>Correct Answer: ${letters[q.correct]}</strong>${q.explanation ? `<div style="margin-top:0.4rem;">${q.explanation}</div>` : ''}</div>
+          </div>`;
+        }
+      });
+
+      area.innerHTML = html;
+      area.style.display = 'block';
+    }
+
+    async function generatePdfFile() {
+      const element = document.getElementById('print-area');
+      const filename = (quizData.config.title || 'quiz').toLowerCase().replace(/[^a-z0-9]/g, '-') + '.pdf';
+      const useHq = document.getElementById('high-quality').checked;
+      
+      const opt = { 
+        margin: 0.5, 
+        filename, 
+        image: { type: 'jpeg', quality: 0.98 }, 
+        html2canvas: { 
+          scale: useHq ? 2 : 1, 
+          useCORS: true,
+          logging: false 
+        }, 
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } 
+      };
+      
+      try {
+        const btn = document.querySelector('.btn-success');
+        btn.disabled = true; btn.textContent = 'Generating...';
+        await html2pdf().set(opt).from(element).save();
+        btn.disabled = false; btn.textContent = '💾 Save PDF File';
+      } catch (err) { 
+        console.error(err);
+        alert('Error: ' + err.message + '\n\nTry disabling "HQ" mode or use the "Print Dialog" button for very long quizzes.');
+        const btn = document.querySelector('.btn-success');
+        btn.disabled = false; btn.textContent = '💾 Save PDF File';
+      }
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('quiz-theme', newTheme);
+    }
+
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const url = params.get('url');
+      if (url) { document.getElementById('quiz-url').value = url; loadFromUrl(); }
+      const theme = localStorage.getItem('quiz-theme');
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</body>
+</html>
+"""
+
 
 def create_bank_html(config: dict[str, Any], questions: list[dict[str, Any]] | None = None) -> str:
     questions = questions or [
@@ -2598,21 +3053,15 @@ def get_project_name() -> str:
     return PROJECT_ROOT.name
 
 
-def discover_quiztool_references() -> list[dict[str, str]]:
-    refs: list[dict[str, str]] = []
-    if not QUIZTOOL_ROOT.exists():
-        return refs
-    for filename, meta in QUIZTOOL_REFERENCES.items():
-        path = QUIZTOOL_ROOT / filename
-        if path.exists():
-            refs.append(
-                {
-                    "id": filename,
-                    "label": meta["label"],
-                    "description": meta["description"],
-                }
-            )
-    return refs
+def get_builtin_tools() -> list[dict[str, str]]:
+    return [
+        {
+            "id": key,
+            "label": meta["label"],
+            "description": meta["description"],
+        }
+        for key, meta in BUILTIN_TOOLS.items()
+    ]
 
 
 def run_subprocess(args: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
@@ -2713,7 +3162,7 @@ def get_project_state() -> Any:
             "projectName": get_project_name(),
             "summary": build_summary(),
             "git": get_git_status(),
-            "quiztoolReferences": discover_quiztool_references(),
+            "builtinTools": get_builtin_tools(),
         }
     )
 
@@ -2760,14 +3209,15 @@ def preview_file(filename: str) -> Any:
         return str(exc), 400
 
     content = read_text(file_path)
-    # Fix engine base path for preview. We compute the depth in Python and inject a fixed prefix.
-    # This is more robust than trying to adjust the browser's location-based logic in a complex regex.
+    # Fix engine base path for preview. We must account for the /admin/preview/ prefix
+    # by replacing the dynamic location-based logic with a fixed relative path.
     depth = len(Path(normalized).parent.parts) if normalized != "." else 0
     prefix = '../' * depth
     content = re.sub(
-        r"(window\.__QUIZ_ENGINE_BASE\s*=\s*['\"].*?['\"]\s*\.repeat\(Math\.max\(0,\s*location\.pathname\.split\(['\"].*?['\"]\)\.filter\(Boolean\)\.length\s*-\s*\d+\)\);)",
+        r"window\.__QUIZ_ENGINE_BASE\s*=\s*['\"].*?['\"]\s*\.repeat\(Math\.max\(0,\s*location\.pathname\.split\(\s*['\"/].*?['\"]\s*\)\.filter\(Boolean\)\.length\s*-\s*\d+\)\);?",
         f"window.__QUIZ_ENGINE_BASE='{prefix}';",
         content,
+        flags=re.MULTILINE
     )
     return content, 200, {"Content-Type": "text/html; charset=utf-8"}
 
@@ -2845,10 +3295,11 @@ def create_file() -> Any:
     file_path = ensure_unique_html_path(folder_path, base_stem)
     uid = derive_uid(folder_rel, file_path.stem)
 
+    questions = payload.get("questions")
     if file_type == "quiz":
-        content = create_quiz_html({"uid": uid, "title": title, "description": description})
+        content = create_quiz_html({"uid": uid, "title": title, "description": description}, questions)
     else:
-        content = create_bank_html({"uid": uid, "title": title, "description": description, "icon": icon})
+        content = create_bank_html({"uid": uid, "title": title, "description": description, "icon": icon}, questions)
 
     write_text(file_path, content)
     return jsonify(
@@ -3003,26 +3454,9 @@ def git_push() -> Any:
     return jsonify({"message": "Push completed successfully.", "output": push_result.stdout.strip()})
 
 
-@app.get("/admin/reference/<path:filename>")
-def quiztool_reference(filename: str) -> Any:
-    if filename not in QUIZTOOL_REFERENCES:
-        return jsonify({"message": "Reference asset not allowed."}), 404
-    path = QUIZTOOL_ROOT / filename
-    if not path.exists():
-        return jsonify({"message": "Reference asset not found."}), 404
-    return send_file(path)
-
-
-@app.get("/admin/quiztool/<path:filename>")
-def quiztool_asset(filename: str) -> Any:
-    asset_path = (QUIZTOOL_ROOT / filename).resolve()
-    if not is_relative_to(asset_path, QUIZTOOL_ROOT):
-        return jsonify({"message": "Invalid QuizTool asset path."}), 400
-    if not asset_path.exists() or asset_path.is_dir():
-        return jsonify({"message": "QuizTool asset not found."}), 404
-    if asset_path.suffix.lower() not in ASSET_SUFFIXES:
-        return jsonify({"message": "Unsupported QuizTool asset type."}), 404
-    return send_from_directory(QUIZTOOL_ROOT, filename)
+@app.get("/admin/pdf-exporter")
+def pdf_exporter() -> Any:
+    return render_template_string(PDF_EXPORTER_HTML)
 
 
 @app.get("/")
