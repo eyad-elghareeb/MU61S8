@@ -272,7 +272,8 @@ DASHBOARD_HTML = r"""
       font-size: 1.1rem;
     }
     .page {
-      width: min(1520px, calc(100vw - 2rem));
+      width: calc(100vw - 2.5rem);
+      max-width: 1920px;
       margin: 1rem auto 1.5rem;
       display: grid;
       gap: 1rem;
@@ -285,7 +286,7 @@ DASHBOARD_HTML = r"""
     }
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 0.75rem;
     }
     .stat-card {
@@ -309,8 +310,8 @@ DASHBOARD_HTML = r"""
     }
     .main-grid {
       display: grid;
-      grid-template-columns: 330px minmax(0, 1fr);
-      gap: 1rem;
+      grid-template-columns: minmax(380px, 24%) minmax(0, 1fr);
+      gap: 1.25rem;
       align-items: start;
     }
     .sidebar {
@@ -472,7 +473,7 @@ DASHBOARD_HTML = r"""
     }
     .panel-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 0.7rem;
       margin-bottom: 1rem;
     }
@@ -535,7 +536,7 @@ DASHBOARD_HTML = r"""
     }
     .field-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 0.9rem;
     }
     .field {
@@ -623,7 +624,7 @@ DASHBOARD_HTML = r"""
     }
     .overview-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
       gap: 1rem;
     }
     .overview-card {
@@ -1308,7 +1309,7 @@ DASHBOARD_HTML = r"""
         return;
       }
       const meta = state.currentData.meta || {};
-      const livePreviewPath = `/${encodePath(state.currentFile)}`;
+      const livePreviewPath = `/admin/preview/${encodePath(state.currentFile)}`;
       const previewUrl = `/admin/preview/${encodePath(state.currentFile)}?v=${Date.now()}`;
       const pdfExporterUrl = `/admin/quiztool/pdf-exporter.html?url=${encodeURIComponent(window.location.origin + livePreviewPath)}`;
       const canStructuredEdit = ['quiz', 'bank', 'index'].includes(meta.type);
@@ -1322,7 +1323,7 @@ DASHBOARD_HTML = r"""
             <button class="btn" onclick="openMoveModal()">Move or Rename</button>
             <button class="btn" onclick="convertFile()" ${['quiz', 'bank'].includes(meta.type) ? '' : 'disabled'}>Convert</button>
             <button class="btn btn-danger" onclick="openDeleteModal()">Delete</button>
-            <a class="btn" href="${pdfExporterUrl}" target="_blank" rel="noopener">Export PDF</a>
+            <button class="btn" onclick="openPdfModal('${pdfExporterUrl}')">Export PDF</button>
             <a class="btn" href="${livePreviewPath}" target="_blank" rel="noopener">Open Preview</a>
             <button class="btn btn-primary" onclick="saveFile()">Save</button>
           </div>
@@ -1766,6 +1767,20 @@ DASHBOARD_HTML = r"""
       document.getElementById('modal').classList.remove('open');
       document.getElementById('modal-body').innerHTML = '';
     }
+    
+    function openPdfModal(url) {
+      openModal({
+        title: 'Export PDF',
+        subtitle: 'The PDF exporter provides a print-ready view of the current file.',
+        body: `
+          <iframe class="preview-frame" src="${url}" style="min-height: 680px;" title="PDF Exporter"></iframe>
+          <div class="modal-actions">
+            <a class="btn btn-primary" href="${url}" target="_blank" rel="noopener">Open in New Tab</a>
+            <button class="btn" onclick="closeModal()">Close</button>
+          </div>
+        `
+      });
+    }
 
     function folderOptions(selected = '.') {
       return state.folders.map(folder => `
@@ -1895,33 +1910,41 @@ DASHBOARD_HTML = r"""
 
     function openGitModal() {
       const git = state.projectState?.git || {};
-      const changed = (git.changedPaths || []).map(item => `<div class="badge">${escapeHtml(item.status)} ${escapeHtml(item.path)}</div>`).join('') || '<div class="muted">No changed paths.</div>';
+      const changed = (git.changedPaths || []).map(item => `
+        <div class="badge" title="${escapeHtml(item.path)}">
+          <span class="${item.status === 'M' ? 'status-info' : 'status-good'}">${escapeHtml(item.status)}</span> 
+          ${escapeHtml(item.path.split('/').pop())}
+        </div>
+      `).join('') || '<div class="muted">No changed paths.</div>';
+      
       openModal({
-        title: 'Git Actions',
-        subtitle: 'Pull first when needed, then commit and push from the same modal.',
+        title: 'Git Repository',
+        subtitle: git.available ? `On branch: ${git.branch}` : 'Not a git repository',
         body: `
           <div class="panel-grid">
-            ${renderMetaCard('Branch', git.branch || 'unknown')}
-            ${renderMetaCard('Dirty Paths', git.dirtyCount ?? 0)}
+            ${renderMetaCard('Status', git.dirtyCount ? `${git.dirtyCount} changes` : 'Clean')}
             ${renderMetaCard('Ahead', git.ahead ?? 0)}
             ${renderMetaCard('Behind', git.behind ?? 0)}
           </div>
-          <div class="field">
+          
+          <div class="field" style="margin-top: 1rem;">
+            <label>Changed Files</label>
+            <div class="badge-row" style="max-height: 120px; overflow: auto; padding: 0.5rem; border: 1px solid var(--border); border-radius: 8px;">
+              ${changed}
+            </div>
+          </div>
+
+          <div class="field" style="margin-top: 1rem;">
             <label>Commit Message</label>
-            <input class="text-input" id="commit-message" value="Refactor admin dashboard">
+            <input class="text-input" id="commit-message" value="Update quiz content" placeholder="e.g. Add L10 PCOS quiz">
           </div>
-          <div class="field">
-            <label>Changed Paths</label>
-            <div class="badge-row">${changed}</div>
-          </div>
-          <div class="field">
-            <label>Recommended Flow</label>
-            <div class="muted">Use Pull Latest before commit/push to reduce avoidable merge issues.</div>
-          </div>
-          <div class="modal-actions">
-            <button class="btn" onclick="pullChanges()">Pull Latest</button>
-            <button class="btn" onclick="commitChanges()">Commit</button>
-            <button class="btn btn-primary" onclick="pushChanges()">Push</button>
+
+          <div class="modal-actions" style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+            <div style="flex: 1; display: flex; gap: 0.5rem;">
+              <button class="ghost-btn" onclick="pullChanges()">Pull</button>
+              <button class="ghost-btn" onclick="commitChanges()">Commit Only</button>
+            </div>
+            <button class="btn btn-primary" onclick="gitSync()">Sync & Push</button>
           </div>
         `,
       });
@@ -2030,6 +2053,50 @@ DASHBOARD_HTML = r"""
       logActivity('Git push', result.output || result.message || '', 'success');
       await refreshWorkspace({ preserveCurrent: true });
       closeModal();
+    }
+
+    async function gitSync() {
+      const message = document.getElementById('commit-message').value;
+      if (!message) {
+        showToast('Commit message is required for sync.', 'warn');
+        return;
+      }
+      
+      showToast('Starting Git Sync...', 'info');
+      logActivity('Git Sync started', 'Pulling, committing, and pushing...', 'info');
+      
+      try {
+        // 1. Pull
+        const pullRes = await fetchJson('/admin/git-pull', { 
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({})
+        });
+        logActivity('Git Pull result', pullRes.output || pullRes.message, 'success');
+        
+        // 2. Commit (also does git add -A)
+        const commitRes = await fetchJson('/admin/git-commit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message }),
+        });
+        logActivity('Git Commit result', commitRes.output || commitRes.message, 'success');
+        
+        // 3. Push
+        const pushRes = await fetchJson('/admin/git-push', { 
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({})
+        });
+        logActivity('Git Push result', pushRes.output || pushRes.message, 'success');
+        
+        showToast('Git Sync completed!', 'success');
+        await refreshWorkspace({ preserveCurrent: true });
+        closeModal();
+      } catch (err) {
+        showToast('Git Sync failed. Check activity log.', 'error');
+        logActivity('Git Sync error', err.message || String(err), 'error');
+      }
     }
 
     function setupKeyboard() {
@@ -2693,9 +2760,13 @@ def preview_file(filename: str) -> Any:
         return str(exc), 400
 
     content = read_text(file_path)
+    # Fix engine base path for preview. We compute the depth in Python and inject a fixed prefix.
+    # This is more robust than trying to adjust the browser's location-based logic in a complex regex.
+    depth = len(Path(normalized).parent.parts) if normalized != "." else 0
+    prefix = '../' * depth
     content = re.sub(
-        r"window\.__QUIZ_ENGINE_BASE\s*=\s*'\.\./'\.repeat\(Math\.max\(0,location\.pathname\.split\('/'\)\.filter\(Boolean\)\.length-2\)\);",
-        "window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.replace(/^\\/admin\\/preview\\//,'').split('/').filter(Boolean).length-1));",
+        r"window\.__QUIZ_ENGINE_BASE\s*=\s*['\"].*?['\"]\s*\.repeat\(Math\.max\(0,.*?\.length-\d+\)\);",
+        f"window.__QUIZ_ENGINE_BASE='{prefix}';",
         content,
     )
     return content, 200, {"Content-Type": "text/html; charset=utf-8"}

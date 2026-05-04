@@ -371,6 +371,7 @@ A local Flask-based web interface for managing quiz projects. Runs on `http://lo
 
 ### 6a. Features
 - **Workspace Overview**: Project stats, recent files, git cleanliness summary, and links to reusable `QuizTool` reference editors/templates from `D:\Study\Projects\QuizTool`
+- **Responsive Workspace**: Fluid layout with a responsive sidebar (`minmax(380px, 24%)`) and auto-fitting grids for optimal space utilization on all screen sizes.
 - **File Browser**: Searchable/filterable tree view of all HTML files in the project
 - **File Manager**: Create folders, create/move/rename/delete quiz or bank files
 - **Path-Safe Generation**:
@@ -380,13 +381,13 @@ A local Flask-based web interface for managing quiz projects. Runs on `http://lo
   - **Quiz/Bank Editor**: Edit `QUIZ_CONFIG`/`BANK_CONFIG` metadata, reorder/duplicate/remove questions, and update options/explanations
   - **Index Editor**: Edit `QUIZZES` array entries, reorder cards, and update page title/hero copy
 - **Multi-Tab Viewer**:
-  - **Preview**: Live iframe preview via an admin-specific preview route that rewrites quiz/bank engine base paths correctly and serves shared root assets such as `index-engine.js`, `index-engine.css`, `quiz-engine.js`, `bank-engine.js`, and `sw.js`
+  - **Preview**: Live iframe preview via an admin-specific preview route that rewrites quiz/bank engine base paths correctly and serves shared root assets
   - **Editor**: Structured metadata and content editor (for quiz/bank/index files)
   - **Metadata**: Parsed JSON metadata view
   - **Raw HTML**: Raw HTML editor for direct text editing
-- **PDF Export**: Direct link into `QuizTool`’s `pdf-exporter.html`, including per-file export links that prefill the current quiz URL
+- **PDF Export**: Integrated viewer with pre-filled URLs for the current file; supports direct download or opening in a new tab.
 - **Activity Feed**: Compact recent activity panel for the latest save/sync/git results
-- **Git Integration**: Manual pull, commit, and push via the local Git CLI (no `GitPython` dependency required)
+- **Git Integration**: Cohesive "Sync & Push" flow (Pull -> Commit -> Push) with visual file status indicators and manual controls.
 - **Sync**: Run `sync_quiz_assets.py` to auto-update indexes, tracker map, and service worker after content changes
 - **Conversion**: Convert quiz ↔ bank files while preserving the existing `uid`
 
