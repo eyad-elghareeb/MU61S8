@@ -152,9 +152,10 @@ DASHBOARD_HTML = r"""
       text-decoration: none;
     }
     .shell {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
     .topbar {
       position: sticky;
@@ -252,17 +253,23 @@ DASHBOARD_HTML = r"""
       font-size: 1.1rem;
     }
     .page {
-      width: calc(100vw - 2.5rem);
-      max-width: 1920px;
-      margin: 1rem auto 1.5rem;
+      flex: 1;
+      width: 100vw;
+      max-width: 100%;
+      margin: 0;
+      padding: 1rem;
       display: grid;
-      gap: 1rem;
+      grid-template-rows: 1fr;
+      min-height: 0;
     }
     .panel, .sidebar, .activity {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
     .stats-grid {
       display: grid;
@@ -292,13 +299,13 @@ DASHBOARD_HTML = r"""
       display: grid;
       grid-template-columns: minmax(380px, 24%) minmax(0, 1fr);
       gap: 1.25rem;
-      align-items: start;
+      height: 100%;
+      min-height: 0;
     }
     .sidebar {
       padding: 1rem;
-      position: sticky;
-      top: 74px;
-      max-height: calc(100vh - 92px);
+      height: 100%;
+      min-height: 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -428,6 +435,9 @@ DASHBOARD_HTML = r"""
     .content-stack {
       display: grid;
       gap: 1.1rem;
+      height: 100%;
+      grid-template-rows: 1fr;
+      min-height: 0;
     }
     .panel {
       padding: 1rem;
@@ -1000,8 +1010,8 @@ DASHBOARD_HTML = r"""
 
     async function refreshWorkspace({ preserveCurrent = true } = {}) {
       const [filePayload, projectState] = await Promise.all([
-        fetchJson('/admin/files'),
-        fetchJson('/admin/project-state'),
+        fetchJson(`/admin/files?t=${Date.now()}`),
+        fetchJson(`/admin/project-state?t=${Date.now()}`),
       ]);
       state.files = filePayload.files || [];
       state.folders = filePayload.folders || [];
@@ -1245,7 +1255,7 @@ DASHBOARD_HTML = r"""
       `;
     }
 
-    async function loadFile(path, { silent = false, keepTab = false } = {}) {
+    async function loadFile(path, { silent = false, keepTab = false, tab = null } = {}) {
       if (state.dirty && path !== state.currentFile) {
         const proceed = window.confirm('You have unsaved changes. Open another file anyway?');
         if (!proceed) return;
@@ -1254,6 +1264,7 @@ DASHBOARD_HTML = r"""
       state.currentFile = path;
       state.currentData = data;
       if (!keepTab) state.currentTab = 'preview';
+      else if (tab) state.currentTab = tab;
       setDirty(false);
       renderFilePanel();
       renderTree();
@@ -1269,50 +1280,41 @@ DASHBOARD_HTML = r"""
       const meta = state.currentData.meta || {};
       const livePreviewPath = `/admin/preview/${encodePath(state.currentFile)}`;
       const previewUrl = `/admin/preview/${encodePath(state.currentFile)}?v=${Date.now()}`;
-      const pdfExporterUrl = `/admin/pdf-exporter?url=${encodeURIComponent(window.location.origin + livePreviewPath)}`;
       const canStructuredEdit = ['quiz', 'bank', 'index'].includes(meta.type);
+
+      let content = '';
+      if (state.currentTab === 'preview') {
+        content = `<iframe class="preview-frame" src="${previewUrl}" style="flex: 1; min-height: 0;" title="Preview"></iframe>`;
+      } else if (state.currentTab === 'editor' && canStructuredEdit) {
+        content = renderStructuredEditor(meta);
+      } else if (state.currentTab === 'metadata') {
+        content = `<textarea class="text-area code" readonly>${escapeHtml(JSON.stringify(meta, null, 2))}</textarea>`;
+      } else {
+        content = `<textarea id="raw-html" class="text-area code" style="flex: 1;" oninput="onRawInput()">${escapeHtml(state.currentData.content || '')}</textarea>`;
+      }
+
       panel.innerHTML = `
         <div class="panel-header">
           <div>
-            <div class="panel-title">${escapeHtml(meta.title || state.currentFile)}</div>
+            <div class="panel-title">${meta.title || meta.filename || 'New File'}</div>
             <div class="panel-path">${escapeHtml(state.currentFile)}</div>
           </div>
           <div class="panel-actions">
-            <button class="btn" onclick="openMoveModal()">Move or Rename</button>
-            <button class="btn" onclick="convertFile()" ${['quiz', 'bank'].includes(meta.type) ? '' : 'disabled'}>Convert</button>
-            <button class="btn btn-danger" onclick="openDeleteModal()">Delete</button>
-            <button class="btn" onclick="openPdfModal('${pdfExporterUrl}')">Export PDF</button>
-            <a class="btn" href="${livePreviewPath}" target="_blank" rel="noopener">Open Preview</a>
-            <button class="btn btn-primary" onclick="saveFile()">Save</button>
+            <button class="btn btn-primary" onclick="saveFile()">Save Changes</button>
+            <button class="btn" onclick="openMoveModal()">Move/Rename</button>
+            <button class="btn delete" onclick="openDeleteModal()">Delete</button>
           </div>
         </div>
-        <div class="panel-grid">
-          ${renderMetaCard('Type', meta.type || 'html')}
-          ${renderMetaCard('UID', meta.uid || '—')}
-          ${renderMetaCard('Questions', meta.question_count ?? '—')}
-          ${renderMetaCard('Icon', meta.icon || '—')}
-        </div>
+
         <div class="tab-row">
-          ${renderTabButton('preview', 'Preview')}
-          ${canStructuredEdit ? renderTabButton('editor', 'Structured Editor') : ''}
-          ${renderTabButton('metadata', 'Metadata')}
-          ${renderTabButton('raw', 'Raw HTML')}
+          <button class="tab-btn ${state.currentTab === 'preview' ? 'active' : ''}" onclick="loadFile(state.currentFile, { keepTab: true, tab: 'preview' })">Preview</button>
+          <button class="tab-btn ${state.currentTab === 'editor' ? 'active' : ''}" onclick="loadFile(state.currentFile, { keepTab: true, tab: 'editor' })">Editor</button>
+          <button class="tab-btn ${state.currentTab === 'metadata' ? 'active' : ''}" onclick="loadFile(state.currentFile, { keepTab: true, tab: 'metadata' })">Metadata</button>
+          <button class="tab-btn ${state.currentTab === 'raw' ? 'active' : ''}" onclick="loadFile(state.currentFile, { keepTab: true, tab: 'raw' })">Raw HTML</button>
         </div>
-        <div class="subpanel ${state.currentTab === 'preview' ? 'active' : ''}" id="tab-preview">
-          <iframe class="preview-frame" src="${previewUrl}" title="Preview of ${escapeHtml(state.currentFile)}"></iframe>
-        </div>
-        <div class="subpanel ${state.currentTab === 'editor' ? 'active' : ''}" id="tab-editor">
-          ${canStructuredEdit ? renderStructuredEditor(meta) : '<div class="empty-state">Structured editing is not available for this file type.</div>'}
-        </div>
-        <div class="subpanel ${state.currentTab === 'metadata' ? 'active' : ''}" id="tab-metadata">
-          <textarea class="text-area code" readonly>${escapeHtml(JSON.stringify(meta, null, 2))}</textarea>
-        </div>
-        <div class="subpanel ${state.currentTab === 'raw' ? 'active' : ''}" id="tab-raw">
-          <div class="field">
-            <label for="raw-html">Raw HTML</label>
-            <small>Saving from this panel writes the current textarea exactly as shown.</small>
-            <textarea id="raw-html" class="text-area code" oninput="onRawInput()">${escapeHtml(state.currentData.content || '')}</textarea>
-          </div>
+
+        <div class="panel-body" style="flex: 1; overflow: auto; min-height: 0; margin-top: 1rem; display: flex; flex-direction: column;">
+          ${content}
         </div>
       `;
     }
@@ -1755,7 +1757,7 @@ DASHBOARD_HTML = r"""
         title: 'Export PDF',
         subtitle: 'The PDF exporter provides a print-ready view of the current file.',
         body: `
-          <iframe class="preview-frame" src="${url}" style="min-height: 680px;" title="PDF Exporter"></iframe>
+         <iframe class="preview-frame" src="/admin/preview/${state.currentFile}" style="flex: 1; min-height: 0;" title="File Preview"></iframe>
           <div class="modal-actions">
             <a class="btn btn-primary" href="${url}" target="_blank" rel="noopener">Open in New Tab</a>
             <button class="btn" onclick="closeModal()">Close</button>
@@ -1798,6 +1800,7 @@ DASHBOARD_HTML = r"""
     }
 
     function openNewFolderModal() {
+      const folderDatalist = (state.folders || []).map(f => `<option value="${escapeHtml(f)}">`).join('');
       openModal({
         title: 'Create Folder',
         subtitle: 'Creates the folder and a matching hub index page with correct root asset prefixes.',
@@ -1805,7 +1808,11 @@ DASHBOARD_HTML = r"""
           <div class="field-grid">
             <div class="field full">
               <label>Folder Path</label>
-              <input class="text-input" id="folder-path" placeholder="gyn/new-topic">
+              <input class="text-input" id="folder-path" list="folder-suggestions" placeholder="gyn/new-topic">
+              <datalist id="folder-suggestions">
+                ${folderDatalist}
+              </datalist>
+              <small>Choose an existing parent or type a new path.</small>
             </div>
             <div class="field">
               <label>Folder Title</label>
@@ -2126,6 +2133,14 @@ DASHBOARD_HTML = r"""
       closeModal();
       showToast(result.message || 'Folder created.', 'success');
       logActivity('Created folder', result.path || name, 'success');
+      if (result.path) {
+        const parts = result.path.split('/');
+        let current = '';
+        for (const p of parts) {
+          current = current ? `${current}/${p}` : p;
+          state.openFolders.add(current);
+        }
+      }
       await runSync({ silentToast: true, preserveCurrent: false });
     }
 
@@ -2155,7 +2170,14 @@ DASHBOARD_HTML = r"""
       logActivity('Created file', result.path || title, 'success');
       
       // Expand target folder before refresh so it shows up
-      if (folder && folder !== '.') state.openFolders.add(folder);
+      if (folder && folder !== '.') {
+        const parts = folder.split('/');
+        let current = '';
+        for (const p of parts) {
+          current = current ? `${current}/${p}` : p;
+          state.openFolders.add(current);
+        }
+      }
       
       await runSync({ silentToast: true, preserveCurrent: false });
       if (result.path) {
