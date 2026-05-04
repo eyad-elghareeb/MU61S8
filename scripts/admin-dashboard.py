@@ -1529,7 +1529,7 @@ DASHBOARD_HTML = r"""
     }
 
     function replaceAssignedBlock(html, constName, openChar, closeChar, value) {
-      const openPattern = new RegExp(`const\\s+${constName}\\s*=\\s*\\${openChar}`);
+      const openPattern = new RegExp(`(const|let|var)\\s+${constName}\\s*=\\s*\\${openChar}`);
       const match = html.match(openPattern);
       if (!match) return html;
       const startIdx = html.indexOf(match[0]);
@@ -1548,7 +1548,7 @@ DASHBOARD_HTML = r"""
       }
       if (endIdx === -1) return html;
       const serialized = JSON.stringify(value, null, 2);
-      return `${html.slice(0, startIdx)}const ${constName} = ${serialized}${html.slice(endIdx + 1)}`;
+      return `${html.slice(0, startIdx)}${match[1]} ${constName} = ${serialized}${html.slice(endIdx + 1)}`;
     }
 
     function updateRawAndMeta() {
@@ -2765,7 +2765,7 @@ def preview_file(filename: str) -> Any:
     depth = len(Path(normalized).parent.parts) if normalized != "." else 0
     prefix = '../' * depth
     content = re.sub(
-        r"window\.__QUIZ_ENGINE_BASE\s*=\s*['\"].*?['\"]\s*\.repeat\(Math\.max\(0,.*?\.length-\d+\)\);",
+        r"(window\.__QUIZ_ENGINE_BASE\s*=\s*['\"].*?['\"]\s*\.repeat\(Math\.max\(0,\s*location\.pathname\.split\(['\"].*?['\"]\)\.filter\(Boolean\)\.length\s*-\s*\d+\)\);)",
         f"window.__QUIZ_ENGINE_BASE='{prefix}';",
         content,
     )
