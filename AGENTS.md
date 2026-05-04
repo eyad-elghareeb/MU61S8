@@ -62,6 +62,7 @@ MU61S8/
 │   └── ...
 │
 └── scripts/
+    ├── admin-dashboard.py      ← Local Flask admin dashboard (dev tool)
     ├── sync_quiz_assets.py     ← CI: auto-indexes new files + updates sw.js
     └── standardize_quiz_files.py  ← One-time formatter for quiz files
 ```
@@ -311,7 +312,7 @@ if ('serviceWorker' in navigator) {
 
 ---
 
-## 6. Global Function API
+## 7. Global Function API
 
 ### quiz-engine.js exposes globally:
 
@@ -364,7 +365,50 @@ if ('serviceWorker' in navigator) {
 
 ---
 
-## 7. Question Tracker System
+## 6. Admin Dashboard (`scripts/admin-dashboard.py`)
+
+A local Flask-based web interface for managing quiz projects. Runs on `http://localhost:5500/admin/` and provides:
+
+### 6a. Features
+- **File Browser**: Tree view of all HTML files in project
+- **File Manager**: Create folders, create/move/delete quiz or bank files
+- **Structured Editors**:
+  - **Quiz/Bank Editor**: Edit `QUIZ_CONFIG`/`BANK_CONFIG` metadata, add/remove/edit questions, options, and explanations
+  - **Index Editor**: Edit `QUIZZES` array entries (title, description, icon, tags, URL)
+- **Multi-Tab Viewer**:
+  - **Preview**: Live iframe preview of the file
+  - **Editor**: Structured metadata and content editor (for quiz/bank/index files)
+  - **Metadata**: Parsed JSON metadata view
+  - **Raw HTML**: Raw HTML editor for direct text editing
+- **Git Integration**: Manual commit with message and push (requires GitPython)
+- **Sync**: Run `sync_quiz_assets.py` to auto-update indexes and service worker
+
+### 6b. Running the Dashboard
+
+```bash
+cd your-quiz-project/
+pip install flask GitPython  # Optional: GitPython for Git features
+python scripts/admin-dashboard.py
+# Opens http://localhost:5500/admin/ automatically
+```
+
+### 6c. File Type Detection
+
+Files are automatically classified as:
+- **quiz**: Contains `QUIZ_CONFIG` + `QUESTIONS`
+- **bank**: Contains `BANK_CONFIG` + `QUESTION_BANK`
+- **index**: Contains `QUIZZES` array
+- **html**: Generic HTML file (raw editor only)
+
+### 6d. Structured Editor Limitations
+- Quiz/bank editors automatically rebuild valid HTML when metadata or questions change
+- Index editor parses and updates the `QUIZZES` const block
+- UIDs are preserved automatically; changing config fields syncs to the raw editor
+- Not recommended for complex custom HTML; use Raw HTML tab for advanced edits
+
+---
+
+## 8. Question Tracker System
 
 The tracker is a persistence layer that aggregates mistakes and flagged items across all sessions for long-term review.
 
@@ -384,7 +428,7 @@ The tracker is a persistence layer that aggregates mistakes and flagged items ac
 
 ---
 
-## 8. Highlighter & Markup System
+## 9. Highlighter & Markup System
 
 A robust toolset for annotating questions during a session. Markups are persisted in the user's progress and restored on reload.
 
@@ -404,7 +448,7 @@ Markups are applied dynamically during `renderQuestion()` by injecting `<mark>` 
 
 ---
 
-## 9. Keyboard Shortcut System
+## 10. Keyboard Shortcut System
 
 The engine includes a full keyboard interface to speed up MCQ solving.
 
@@ -421,7 +465,7 @@ The engine includes a full keyboard interface to speed up MCQ solving.
 
 ---
 
-## 10. Session Management & Persistence
+## 11. Session Management & Persistence
 
 The engine ensures that a user's progress is never lost, even if they close the browser or refresh the page.
 
@@ -439,7 +483,7 @@ The engine ensures that a user's progress is never lost, even if they close the 
 
 ---
 
-## 11. Service Worker (`sw.js`)
+## 12. Service Worker (`sw.js`)
 
 **Never edit `sw.js` manually.** It is fully managed by `scripts/sync_quiz_assets.py`.
 
@@ -464,7 +508,7 @@ If an asset like `index-engine.css` is requested from a deep subfolder (`/gyn/de
 
 ---
 
-## 9. CI/CD Workflows
+## 13. CI/CD Workflows
 
 ### `.github/workflows/sync-quiz-assets.yml`
 **Trigger:** push to `main`
@@ -478,7 +522,7 @@ If an asset like `index-engine.css` is requested from a deep subfolder (`/gyn/de
 
 ---
 
-## 10. Common Tasks
+## 14. Common Tasks
 
 ### Add a new quiz file to an existing folder
 
@@ -514,7 +558,7 @@ Edit the `QUIZ_CONFIG` `title` / `description` fields in the quiz file. The sync
 
 ---
 
-## 11. CSS / Theme Variables
+## 15. CSS / Theme Variables
 
 All styling uses CSS custom properties defined in `quiz-engine.js` (injected `<style>`) and `index-engine.css`.
 
@@ -535,7 +579,7 @@ Theme persists via `localStorage.getItem('quiz-theme')`. Applied to `<html data-
 
 ---
 
-## 12. CRITICAL RULES: DO NOT BREAK
+## 16. CRITICAL RULES: DO NOT BREAK
 
 To maintain the integrity of the production environment and the offline PWA functionality, every agent MUST follow these rules without exception:
 
@@ -563,7 +607,7 @@ To maintain the integrity of the production environment and the offline PWA func
 
 ---
 
-## 13. File Naming Conventions
+## 17. File Naming Conventions
 
 | Type | Convention | Example |
 |------|-----------|---------|
@@ -575,7 +619,7 @@ To maintain the integrity of the production environment and the offline PWA func
 
 ---
 
-## 14. Performance & Offline Resilience Architecture
+## 18. Performance & Offline Resilience Architecture
 
 The platform includes several optimizations to ensure high performance on mobile devices and robust offline capability:
 
@@ -613,7 +657,7 @@ When the tracker dashboard is opened, the engine fetches `tracker-map.json` in t
 
 ---
 
-## 15. Dependency Map
+## 19. Dependency Map
 
 ```
 index.html
