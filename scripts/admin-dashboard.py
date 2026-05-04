@@ -61,6 +61,10 @@ ASSET_SUFFIXES = {
     ".txt",
 }
 QUIZTOOL_REFERENCES = {
+    "pdf-exporter.html": {
+        "label": "PDF Exporter",
+        "description": "Export QuizTool quiz and bank pages to PDF from file or URL.",
+    },
     "quiz-editor.html": {
         "label": "Quiz Editor",
         "description": "Standalone QuizTool editor patterns for question editing.",
@@ -132,8 +136,8 @@ DASHBOARD_HTML = r"""
       --wrong: #da3633;
       --blue: #58a6ff;
       --purple: #d2a8ff;
-      --radius: 14px;
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      --radius: 12px;
+      --shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
       --transition: 0.2s ease;
     }
     [data-theme="light"] {
@@ -150,7 +154,7 @@ DASHBOARD_HTML = r"""
       --wrong: #dc2626;
       --blue: #2563eb;
       --purple: #7c3aed;
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.09);
+      --shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
@@ -158,10 +162,7 @@ DASHBOARD_HTML = r"""
       margin: 0;
       font-family: 'Outfit', sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(240, 165, 0, 0.12), transparent 32%),
-        radial-gradient(circle at top right, rgba(88, 166, 255, 0.08), transparent 26%),
-        var(--bg);
+      background: var(--bg);
     }
     button, input, select, textarea {
       font: inherit;
@@ -183,9 +184,8 @@ DASHBOARD_HTML = r"""
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 1rem 1.4rem;
-      background: color-mix(in srgb, var(--surface) 92%, transparent);
-      backdrop-filter: blur(14px);
+      padding: 0.95rem 1.4rem;
+      background: var(--surface);
       border-bottom: 1px solid var(--border);
     }
     .brand {
@@ -195,15 +195,14 @@ DASHBOARD_HTML = r"""
       min-width: 0;
     }
     .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--accent), #ffd88a);
+      background: var(--accent);
       color: #17120a;
       font-weight: 800;
-      box-shadow: 0 10px 24px var(--accent-dim);
     }
     .brand-copy {
       min-width: 0;
@@ -235,25 +234,23 @@ DASHBOARD_HTML = r"""
     }
     .btn, .ghost-btn {
       border-radius: 999px;
-      padding: 0.75rem 1rem;
+      min-height: 42px;
+      padding: 0.7rem 1rem;
       cursor: pointer;
       font-weight: 600;
     }
     .btn:hover, .ghost-btn:hover, .icon-btn:hover, .filter-btn:hover, .tab-btn:hover {
       border-color: var(--accent);
       color: var(--accent);
-      transform: translateY(-1px);
     }
     .btn-primary {
       background: var(--accent);
       color: #17120a;
       border-color: transparent;
-      box-shadow: 0 8px 22px var(--accent-dim);
     }
     .btn-primary:hover {
       color: #17120a;
       opacity: 0.92;
-      transform: translateY(-1px);
     }
     .btn-danger {
       color: var(--wrong);
@@ -265,9 +262,9 @@ DASHBOARD_HTML = r"""
       border-color: var(--wrong);
     }
     .icon-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -275,102 +272,30 @@ DASHBOARD_HTML = r"""
       font-size: 1.1rem;
     }
     .page {
-      width: min(1600px, calc(100vw - 2rem));
-      margin: 1.25rem auto 2rem;
-      display: grid;
-      gap: 1.25rem;
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
-      gap: 1.2rem;
-    }
-    .hero-card, .panel, .sidebar, .activity {
-      background: color-mix(in srgb, var(--surface) 95%, transparent);
-      border: 1px solid var(--border);
-      border-radius: calc(var(--radius) + 2px);
-      box-shadow: var(--shadow);
-    }
-    .hero-card {
-      padding: 1.5rem;
-      overflow: hidden;
-      position: relative;
-    }
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -48px -48px auto;
-      width: 180px;
-      height: 180px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(240, 165, 0, 0.18), transparent 70%);
-      pointer-events: none;
-    }
-    .hero-card h1 {
-      margin: 0 0 0.65rem;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.05;
-    }
-    .hero-card h1 span {
-      color: var(--accent);
-    }
-    .hero-card p {
-      margin: 0;
-      color: var(--text-muted);
-      max-width: 58ch;
-      line-height: 1.65;
-    }
-    .rule-list {
-      display: grid;
-      gap: 0.7rem;
-      margin-top: 1.25rem;
-    }
-    .rule-item {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      padding: 0.9rem 1rem;
-      border-radius: 14px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-    }
-    .rule-badge {
-      flex: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
-      background: var(--accent-dim);
-      color: var(--accent);
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: 0.82rem;
-    }
-    .hero-side {
+      width: min(1520px, calc(100vw - 2rem));
+      margin: 1rem auto 1.5rem;
       display: grid;
       gap: 1rem;
-      padding: 1.35rem;
     }
-    .quick-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+    .panel, .sidebar, .activity {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.9rem;
-      margin-top: 1rem;
+      gap: 0.75rem;
     }
     .stat-card {
-      padding: 1rem;
-      border-radius: 16px;
-      background: var(--surface2);
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      background: var(--surface);
       border: 1px solid var(--border);
     }
     .stat-value {
-      font-size: 1.85rem;
+      font-size: 1.6rem;
       font-weight: 800;
       color: var(--accent);
       line-height: 1;
@@ -384,15 +309,15 @@ DASHBOARD_HTML = r"""
     }
     .main-grid {
       display: grid;
-      grid-template-columns: 350px minmax(0, 1fr);
-      gap: 1.25rem;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 1rem;
       align-items: start;
     }
     .sidebar {
-      padding: 1.1rem;
+      padding: 1rem;
       position: sticky;
-      top: 84px;
-      max-height: calc(100vh - 110px);
+      top: 74px;
+      max-height: calc(100vh - 92px);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -419,11 +344,11 @@ DASHBOARD_HTML = r"""
     }
     .search-input, .text-input, .select-input, .text-area {
       width: 100%;
-      border-radius: 14px;
+      border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--surface2);
       color: var(--text);
-      padding: 0.9rem 1rem;
+      padding: 0.8rem 0.9rem;
       outline: none;
       transition: border-color var(--transition), background var(--transition);
     }
@@ -481,15 +406,14 @@ DASHBOARD_HTML = r"""
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.58rem 0.72rem;
-      border-radius: 12px;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
       cursor: pointer;
       transition: background var(--transition), transform var(--transition), color var(--transition);
       margin-bottom: 0.16rem;
     }
     .tree-row:hover {
       background: var(--surface2);
-      transform: translateX(2px);
     }
     .tree-row.active {
       background: var(--accent-dim);
@@ -525,7 +449,7 @@ DASHBOARD_HTML = r"""
       gap: 1.1rem;
     }
     .panel {
-      padding: 1.25rem;
+      padding: 1rem;
     }
     .panel-header {
       display: flex;
@@ -549,14 +473,14 @@ DASHBOARD_HTML = r"""
     .panel-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.8rem;
+      gap: 0.7rem;
       margin-bottom: 1rem;
     }
     .meta-card {
       background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 0.95rem;
+      border-radius: 10px;
+      padding: 0.8rem 0.9rem;
     }
     .meta-label {
       color: var(--text-muted);
@@ -577,7 +501,8 @@ DASHBOARD_HTML = r"""
     }
     .tab-btn {
       border-radius: 999px;
-      padding: 0.62rem 0.9rem;
+      min-height: 38px;
+      padding: 0.58rem 0.85rem;
       cursor: pointer;
       font-weight: 600;
     }
@@ -599,9 +524,9 @@ DASHBOARD_HTML = r"""
     }
     .preview-frame {
       width: 100%;
-      min-height: 620px;
+      min-height: 600px;
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 10px;
       background: #fff;
     }
     .editor-grid {
@@ -644,11 +569,11 @@ DASHBOARD_HTML = r"""
     }
     .editor-card {
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 10px;
       background: var(--surface2);
-      padding: 1rem;
+      padding: 0.95rem;
       display: grid;
-      gap: 0.9rem;
+      gap: 0.8rem;
     }
     .editor-card-header {
       display: flex;
@@ -669,7 +594,7 @@ DASHBOARD_HTML = r"""
       border: 1px solid var(--border);
       background: var(--surface3);
       color: var(--text-muted);
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 0.45rem 0.65rem;
       cursor: pointer;
       font-size: 0.85rem;
@@ -703,7 +628,7 @@ DASHBOARD_HTML = r"""
     }
     .overview-card {
       padding: 1rem;
-      border-radius: 16px;
+      border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--surface2);
       display: grid;
@@ -751,11 +676,13 @@ DASHBOARD_HTML = r"""
     .status-bad { color: var(--wrong); }
     .status-info { color: var(--blue); }
     .activity {
-      padding: 1.05rem 1.15rem;
+      padding: 0.7rem 0.8rem;
+      max-height: 220px;
+      overflow: auto;
     }
     .activity-entry {
-      padding: 0.85rem 0.95rem;
-      border-radius: 14px;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
       background: var(--surface2);
       border: 1px solid var(--border);
     }
@@ -764,11 +691,12 @@ DASHBOARD_HTML = r"""
     }
     .activity-title {
       font-weight: 700;
-      margin-bottom: 0.28rem;
+      margin-bottom: 0.15rem;
+      font-size: 0.9rem;
     }
     .activity-meta {
       color: var(--text-muted);
-      font-size: 0.84rem;
+      font-size: 0.78rem;
       white-space: pre-wrap;
       word-break: break-word;
     }
@@ -781,7 +709,6 @@ DASHBOARD_HTML = r"""
       justify-content: center;
       padding: 1rem;
       z-index: 100;
-      backdrop-filter: blur(8px);
     }
     .modal.open {
       display: flex;
@@ -792,9 +719,9 @@ DASHBOARD_HTML = r"""
       overflow: auto;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 14px;
       box-shadow: var(--shadow);
-      padding: 1.25rem;
+      padding: 1.1rem;
     }
     .modal-header {
       display: flex;
@@ -834,11 +761,10 @@ DASHBOARD_HTML = r"""
     }
     .toast {
       padding: 0.9rem 1rem;
-      border-radius: 16px;
+      border-radius: 10px;
       border: 1px solid var(--border);
-      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      background: var(--surface);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
     }
     .toast.info { border-color: color-mix(in srgb, var(--blue) 40%, var(--border)); }
     .toast.success { border-color: color-mix(in srgb, var(--correct) 50%, var(--border)); }
@@ -860,13 +786,13 @@ DASHBOARD_HTML = r"""
     .empty-state {
       padding: 1.4rem;
       border: 1px dashed var(--border);
-      border-radius: 16px;
+      border-radius: 10px;
       color: var(--text-muted);
       text-align: center;
       background: var(--surface2);
     }
     @media (max-width: 1200px) {
-      .hero, .main-grid {
+      .main-grid {
         grid-template-columns: 1fr;
       }
       .sidebar {
@@ -895,10 +821,10 @@ DASHBOARD_HTML = r"""
       .stats-grid, .panel-grid, .field-grid, .overview-grid {
         grid-template-columns: 1fr;
       }
-      .panel-actions, .quick-actions, .modal-actions {
+      .panel-actions, .modal-actions {
         justify-content: stretch;
       }
-      .panel-actions > *, .quick-actions > *, .modal-actions > * {
+      .panel-actions > *, .modal-actions > * {
         width: 100%;
       }
       .preview-frame {
@@ -920,6 +846,7 @@ DASHBOARD_HTML = r"""
       <div class="topbar-actions">
         <button class="btn" onclick="openNewFolderModal()">New Folder</button>
         <button class="btn" onclick="openNewFileModal()">New File</button>
+        <a class="btn" href="/admin/quiztool/pdf-exporter.html" target="_blank" rel="noopener">PDF Export</a>
         <button class="btn" onclick="openGitModal()">Git</button>
         <button class="btn btn-primary" onclick="runSync()">Run Sync</button>
         <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
@@ -927,49 +854,6 @@ DASHBOARD_HTML = r"""
     </div>
 
     <div class="page">
-      <section class="hero">
-        <div class="hero-card">
-          <h1>Refactor, curate, and publish <span>without leaving the repo</span></h1>
-          <p>
-            This dashboard follows the MU61S8 rules: it keeps engine paths at the root, generates path-based
-            UIDs for new files, and treats the sync script as the source of truth for indexes and the service worker.
-          </p>
-          <div class="rule-list">
-            <div class="rule-item">
-              <div class="rule-badge">1</div>
-              <div><strong>Stable data</strong><div class="muted">Existing quiz and bank UIDs are preserved so progress and tracker data stay intact.</div></div>
-            </div>
-            <div class="rule-item">
-              <div class="rule-badge">2</div>
-              <div><strong>Path-safe creation</strong><div class="muted">New pages use root engines, correct depth prefixes, and index pages that match the site architecture.</div></div>
-            </div>
-            <div class="rule-item">
-              <div class="rule-badge">3</div>
-              <div><strong>Sync-first workflow</strong><div class="muted">File actions can immediately run the sync script so indexes and <code>sw.js</code> stay aligned.</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-card hero-side">
-          <div>
-            <div class="panel-title">Quick Actions</div>
-            <div class="quick-actions" style="margin-top:0.8rem;">
-              <button class="ghost-btn" onclick="renderOverview()">Workspace Overview</button>
-              <button class="ghost-btn" onclick="refreshWorkspace()">Refresh Files</button>
-              <button class="ghost-btn" onclick="showToast('Tip: press Ctrl+S to save the current file.', 'info')">Show Shortcut</button>
-            </div>
-          </div>
-          <div>
-            <div class="panel-title">Working Rhythm</div>
-            <div class="muted" style="margin-top:0.55rem; line-height:1.65;">
-              Structured editors are inspired by the QuizTool standalone editors, while raw HTML and preview stay
-              side by side for final verification.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="stats-grid" id="stats-grid"></section>
-
       <section class="main-grid">
         <aside class="sidebar">
           <div class="sidebar-header">
@@ -997,6 +881,8 @@ DASHBOARD_HTML = r"""
           <section class="activity" id="activity-panel"></section>
         </div>
       </section>
+
+      <section class="stats-grid" id="stats-grid"></section>
     </div>
   </div>
 
@@ -1296,7 +1182,7 @@ DASHBOARD_HTML = r"""
 
     function renderActivity() {
       const panel = document.getElementById('activity-panel');
-      const items = state.activity.length ? state.activity.map(item => `
+      const items = state.activity.length ? state.activity.slice(0, 4).map(item => `
         <div class="activity-entry">
           <div class="activity-title ${badgeClassForTone(item.tone)}">${escapeHtml(item.title)}</div>
           <div class="activity-meta">${escapeHtml(item.time)}${item.detail ? '\n' + escapeHtml(item.detail) : ''}</div>
@@ -1305,8 +1191,8 @@ DASHBOARD_HTML = r"""
       panel.innerHTML = `
         <div class="panel-header">
           <div>
-            <div class="panel-title">Activity Feed</div>
-            <div class="muted">Recent sync, save, move, and git operations.</div>
+            <div class="panel-title">Recent Activity</div>
+            <div class="muted">Latest save, sync, move, and git results.</div>
           </div>
         </div>
         <div class="activity-list">${items}</div>
@@ -1325,12 +1211,14 @@ DASHBOARD_HTML = r"""
       const summary = state.projectState?.summary || {};
       const git = state.projectState?.git || {};
       const refs = state.projectState?.quiztoolReferences || [];
+      const pdfRef = refs.find(ref => ref.id === 'pdf-exporter.html');
+      const nonPdfRefs = refs.filter(ref => ref.id !== 'pdf-exporter.html');
       const recentFiles = state.files.slice(0, 6);
       panel.innerHTML = `
         <div class="panel-header">
           <div>
             <div class="panel-title">Workspace Overview</div>
-            <div class="muted">Project health, helper tools, and guardrails from the repo instructions.</div>
+            <div class="muted">Project status, recent files, and helper tools.</div>
           </div>
           <div class="badge-row">
             <div class="badge ${badgeClassForTone(git.dirtyCount ? 'warn' : 'success')}">${escapeHtml(gitStatusSummary(git))}</div>
@@ -1364,9 +1252,18 @@ DASHBOARD_HTML = r"""
             </div>
           </div>
           <div class="overview-card">
-            <div class="section-title">QuizTool References</div>
+            <div class="section-title">QuizTool Tools</div>
             <div class="overview-list">
-              ${refs.length ? refs.map(ref => `
+              ${pdfRef ? `
+                <div class="overview-item">
+                  <div class="overview-dot"></div>
+                  <div>
+                    <strong><a href="/admin/quiztool/pdf-exporter.html" target="_blank" rel="noopener">PDF Exporter</a></strong>
+                    <div class="muted">Open the QuizTool PDF exporter and load a quiz by file or URL.</div>
+                  </div>
+                </div>
+              ` : ''}
+              ${nonPdfRefs.length ? nonPdfRefs.map(ref => `
                 <div class="overview-item">
                   <div class="overview-dot"></div>
                   <div>
@@ -1374,7 +1271,7 @@ DASHBOARD_HTML = r"""
                     <div class="muted">${escapeHtml(ref.description)}</div>
                   </div>
                 </div>
-              `).join('') : '<div class="muted">No QuizTool reference assets were found at the configured path.</div>'}
+              `).join('') : (!pdfRef ? '<div class="muted">No QuizTool reference assets were found at the configured path.</div>' : '')}
             </div>
           </div>
           <div class="overview-card">
@@ -1411,7 +1308,9 @@ DASHBOARD_HTML = r"""
         return;
       }
       const meta = state.currentData.meta || {};
-      const previewUrl = `/${encodePath(state.currentFile)}?v=${Date.now()}`;
+      const livePreviewPath = `/${encodePath(state.currentFile)}`;
+      const previewUrl = `/admin/preview/${encodePath(state.currentFile)}?v=${Date.now()}`;
+      const pdfExporterUrl = `/admin/quiztool/pdf-exporter.html?url=${encodeURIComponent(window.location.origin + livePreviewPath)}`;
       const canStructuredEdit = ['quiz', 'bank', 'index'].includes(meta.type);
       panel.innerHTML = `
         <div class="panel-header">
@@ -1423,7 +1322,8 @@ DASHBOARD_HTML = r"""
             <button class="btn" onclick="openMoveModal()">Move or Rename</button>
             <button class="btn" onclick="convertFile()" ${['quiz', 'bank'].includes(meta.type) ? '' : 'disabled'}>Convert</button>
             <button class="btn btn-danger" onclick="openDeleteModal()">Delete</button>
-            <a class="btn" href="${previewUrl}" target="_blank" rel="noopener">Open Preview</a>
+            <a class="btn" href="${pdfExporterUrl}" target="_blank" rel="noopener">Export PDF</a>
+            <a class="btn" href="${livePreviewPath}" target="_blank" rel="noopener">Open Preview</a>
             <button class="btn btn-primary" onclick="saveFile()">Save</button>
           </div>
         </div>
@@ -1998,7 +1898,7 @@ DASHBOARD_HTML = r"""
       const changed = (git.changedPaths || []).map(item => `<div class="badge">${escapeHtml(item.status)} ${escapeHtml(item.path)}</div>`).join('') || '<div class="muted">No changed paths.</div>';
       openModal({
         title: 'Git Actions',
-        subtitle: 'Commit and push from the local repository. These actions operate on the full worktree.',
+        subtitle: 'Pull first when needed, then commit and push from the same modal.',
         body: `
           <div class="panel-grid">
             ${renderMetaCard('Branch', git.branch || 'unknown')}
@@ -2014,7 +1914,12 @@ DASHBOARD_HTML = r"""
             <label>Changed Paths</label>
             <div class="badge-row">${changed}</div>
           </div>
+          <div class="field">
+            <label>Recommended Flow</label>
+            <div class="muted">Use Pull Latest before commit/push to reduce avoidable merge issues.</div>
+          </div>
           <div class="modal-actions">
+            <button class="btn" onclick="pullChanges()">Pull Latest</button>
             <button class="btn" onclick="commitChanges()">Commit</button>
             <button class="btn btn-primary" onclick="pushChanges()">Push</button>
           </div>
@@ -2099,6 +2004,18 @@ DASHBOARD_HTML = r"""
       });
       showToast(result.message || 'Commit created.', 'success');
       logActivity('Git commit', result.output || result.message || '', 'success');
+      await refreshWorkspace({ preserveCurrent: true });
+      closeModal();
+    }
+
+    async function pullChanges() {
+      const result = await fetchJson('/admin/git-pull', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      });
+      showToast(result.message || 'Pull completed.', 'success');
+      logActivity('Git pull', result.output || result.message || '', 'success');
       await refreshWorkspace({ preserveCurrent: true });
       closeModal();
     }
@@ -2750,6 +2667,40 @@ def load_file() -> Any:
     return jsonify({"content": content, "meta": parse_file_metadata(content)})
 
 
+@app.get("/admin/preview/<path:filename>")
+def preview_file(filename: str) -> Any:
+    normalized = normalize_rel_path(filename)
+    suffix = Path(normalized).suffix.lower()
+
+    if suffix != ".html":
+        try:
+            asset_path = resolve_project_path(normalized, must_exist=True)
+        except FileNotFoundError:
+            return "Not Found", 404
+        except ValueError as exc:
+            return str(exc), 400
+        if asset_path.is_dir():
+            return "Not Found", 404
+        if asset_path.suffix.lower() not in ASSET_SUFFIXES:
+            return "Unsupported asset type.", 404
+        return send_file(asset_path)
+
+    try:
+        file_path = resolve_project_path(normalized, must_exist=True, file_only=True)
+    except FileNotFoundError:
+        return "Not Found", 404
+    except ValueError as exc:
+        return str(exc), 400
+
+    content = read_text(file_path)
+    content = re.sub(
+        r"window\.__QUIZ_ENGINE_BASE\s*=\s*'\.\./'\.repeat\(Math\.max\(0,location\.pathname\.split\('/'\)\.filter\(Boolean\)\.length-2\)\);",
+        "window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.replace(/^\\/admin\\/preview\\//,'').split('/').filter(Boolean).length-1));",
+        content,
+    )
+    return content, 200, {"Content-Type": "text/html; charset=utf-8"}
+
+
 @app.post("/admin/save-file")
 def save_file() -> Any:
     payload = request.get_json(silent=True) or {}
@@ -2954,6 +2905,22 @@ def git_commit() -> Any:
     return jsonify({"message": "Commit created successfully.", "output": commit_result.stdout.strip()})
 
 
+@app.post("/admin/git-pull")
+def git_pull() -> Any:
+    if not git_available():
+        return jsonify({"message": "Git is not available for this repository."}), 400
+
+    pull_result = run_subprocess(["git", "pull", "--rebase", "--autostash"])
+    if pull_result.returncode != 0:
+        return jsonify(
+            {
+                "message": "Git pull failed.",
+                "output": (pull_result.stdout or pull_result.stderr).strip(),
+            }
+        ), 500
+    return jsonify({"message": "Pull completed successfully.", "output": pull_result.stdout.strip()})
+
+
 @app.post("/admin/git-push")
 def git_push() -> Any:
     if not git_available():
@@ -2973,6 +2940,18 @@ def quiztool_reference(filename: str) -> Any:
     if not path.exists():
         return jsonify({"message": "Reference asset not found."}), 404
     return send_file(path)
+
+
+@app.get("/admin/quiztool/<path:filename>")
+def quiztool_asset(filename: str) -> Any:
+    asset_path = (QUIZTOOL_ROOT / filename).resolve()
+    if not is_relative_to(asset_path, QUIZTOOL_ROOT):
+        return jsonify({"message": "Invalid QuizTool asset path."}), 400
+    if not asset_path.exists() or asset_path.is_dir():
+        return jsonify({"message": "QuizTool asset not found."}), 404
+    if asset_path.suffix.lower() not in ASSET_SUFFIXES:
+        return jsonify({"message": "Unsupported QuizTool asset type."}), 404
+    return send_from_directory(QUIZTOOL_ROOT, filename)
 
 
 @app.get("/")

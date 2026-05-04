@@ -380,12 +380,13 @@ A local Flask-based web interface for managing quiz projects. Runs on `http://lo
   - **Quiz/Bank Editor**: Edit `QUIZ_CONFIG`/`BANK_CONFIG` metadata, reorder/duplicate/remove questions, and update options/explanations
   - **Index Editor**: Edit `QUIZZES` array entries, reorder cards, and update page title/hero copy
 - **Multi-Tab Viewer**:
-  - **Preview**: Live iframe preview of the saved file using the real site path
+  - **Preview**: Live iframe preview via an admin-specific preview route that rewrites quiz/bank engine base paths correctly and serves shared root assets such as `index-engine.js`, `index-engine.css`, `quiz-engine.js`, `bank-engine.js`, and `sw.js`
   - **Editor**: Structured metadata and content editor (for quiz/bank/index files)
   - **Metadata**: Parsed JSON metadata view
   - **Raw HTML**: Raw HTML editor for direct text editing
-- **Activity Feed**: Save/sync/git output is surfaced inside the dashboard instead of only the terminal
-- **Git Integration**: Manual commit and push via the local Git CLI (no `GitPython` dependency required)
+- **PDF Export**: Direct link into `QuizTool`’s `pdf-exporter.html`, including per-file export links that prefill the current quiz URL
+- **Activity Feed**: Compact recent activity panel for the latest save/sync/git results
+- **Git Integration**: Manual pull, commit, and push via the local Git CLI (no `GitPython` dependency required)
 - **Sync**: Run `sync_quiz_assets.py` to auto-update indexes, tracker map, and service worker after content changes
 - **Conversion**: Convert quiz ↔ bank files while preserving the existing `uid`
 
@@ -411,6 +412,7 @@ Files are automatically classified as:
 - Index editor parses and updates the `QUIZZES` const block plus the page `<title>` and hero section
 - Existing UIDs are preserved automatically; new files generate path-based UIDs by default
 - Preview reflects the last saved version of the file, not unsaved editor changes
+- The inline preview is intended for local verification; the separate **Open Preview** action still loads the file directly from its real project path
 - Not recommended for complex custom HTML beyond the known schemas; use Raw HTML for advanced edits
 
 ---
