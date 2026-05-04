@@ -370,24 +370,30 @@ if ('serviceWorker' in navigator) {
 A local Flask-based web interface for managing quiz projects. Runs on `http://localhost:5500/admin/` and provides:
 
 ### 6a. Features
-- **File Browser**: Tree view of all HTML files in project
-- **File Manager**: Create folders, create/move/delete quiz or bank files
+- **Workspace Overview**: Project stats, recent files, git cleanliness summary, and links to reusable `QuizTool` reference editors/templates from `D:\Study\Projects\QuizTool`
+- **File Browser**: Searchable/filterable tree view of all HTML files in the project
+- **File Manager**: Create folders, create/move/rename/delete quiz or bank files
+- **Path-Safe Generation**:
+  - New folders automatically get a proper `index.html` hub page with depth-aware root asset prefixes
+  - New quiz/bank files derive **stable path-based UIDs** using the `folder_subfolder_filename` pattern from this guide
 - **Structured Editors**:
-  - **Quiz/Bank Editor**: Edit `QUIZ_CONFIG`/`BANK_CONFIG` metadata, add/remove/edit questions, options, and explanations
-  - **Index Editor**: Edit `QUIZZES` array entries (title, description, icon, tags, URL)
+  - **Quiz/Bank Editor**: Edit `QUIZ_CONFIG`/`BANK_CONFIG` metadata, reorder/duplicate/remove questions, and update options/explanations
+  - **Index Editor**: Edit `QUIZZES` array entries, reorder cards, and update page title/hero copy
 - **Multi-Tab Viewer**:
-  - **Preview**: Live iframe preview of the file
+  - **Preview**: Live iframe preview of the saved file using the real site path
   - **Editor**: Structured metadata and content editor (for quiz/bank/index files)
   - **Metadata**: Parsed JSON metadata view
   - **Raw HTML**: Raw HTML editor for direct text editing
-- **Git Integration**: Manual commit with message and push (requires GitPython)
-- **Sync**: Run `sync_quiz_assets.py` to auto-update indexes and service worker
+- **Activity Feed**: Save/sync/git output is surfaced inside the dashboard instead of only the terminal
+- **Git Integration**: Manual commit and push via the local Git CLI (no `GitPython` dependency required)
+- **Sync**: Run `sync_quiz_assets.py` to auto-update indexes, tracker map, and service worker after content changes
+- **Conversion**: Convert quiz ↔ bank files while preserving the existing `uid`
 
 ### 6b. Running the Dashboard
 
 ```bash
 cd your-quiz-project/
-pip install flask GitPython  # Optional: GitPython for Git features
+pip install flask
 python scripts/admin-dashboard.py
 # Opens http://localhost:5500/admin/ automatically
 ```
@@ -402,9 +408,10 @@ Files are automatically classified as:
 
 ### 6d. Structured Editor Limitations
 - Quiz/bank editors automatically rebuild valid HTML when metadata or questions change
-- Index editor parses and updates the `QUIZZES` const block
-- UIDs are preserved automatically; changing config fields syncs to the raw editor
-- Not recommended for complex custom HTML; use Raw HTML tab for advanced edits
+- Index editor parses and updates the `QUIZZES` const block plus the page `<title>` and hero section
+- Existing UIDs are preserved automatically; new files generate path-based UIDs by default
+- Preview reflects the last saved version of the file, not unsaved editor changes
+- Not recommended for complex custom HTML beyond the known schemas; use Raw HTML for advanced edits
 
 ---
 

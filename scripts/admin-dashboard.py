@@ -1,1099 +1,2466 @@
 #!/usr/bin/env python3
 """
-Admin Dashboard for Quiz Projects
-===============================
-A local Flask server providing a web-based admin interface for managing
-quiz/bank files in static quiz sites (compatible with MU61S8/QuizTool).
+Admin dashboard for MU61S8-style static quiz repositories.
 
-Features:
-- File tree explorer
-- Embedded editing tools (reused from QuizTool)
-- File/folder management
-- Quiz ↔ Bank conversion
-- Manual Git commit/push
-- Auto-sync indexes
+The dashboard is a local Flask app that helps manage quiz, bank, and hub pages
+without a build step. It intentionally follows the repository rules documented
+in AGENTS.md:
 
-Requirements:
-    pip install flask GitPython
+- preserve stable UIDs for existing files
+- generate new files with path-based UIDs
+- create proper index pages that load root engines/assets by depth
+- never edit sw.js directly; run the sync script instead
 
-Usage:
-    cd your-quiz-project/
-    python scripts/admin-dashboard.py
-
-Then open http://localhost:5500/admin/ in your browser.
+The UI borrows interaction patterns from the standalone QuizTool editors while
+keeping the workflow inside one local dashboard.
 """
 
-import os
+from __future__ import annotations
+
+import copy
 import json
-import uuid
+import os
+import re
 import shutil
 import subprocess
-import re
+import sys
 import threading
 import webbrowser
 from pathlib import Path
-from flask import Flask, request, jsonify, send_from_directory, render_template_string
+from typing import Any
 
-# Try to import GitPython
-try:
-    import git
-    GIT_AVAILABLE = True
-except ImportError:
-    GIT_AVAILABLE = False
-    print("Warning: GitPython not installed. Git features will be disabled.")
+from flask import Flask, jsonify, render_template_string, request, send_file, send_from_directory
+
 
 app = Flask(__name__)
+app.config["JSON_SORT_KEYS"] = False
 
-# Project root (where this script is run from)
-PROJECT_ROOT = Path.cwd()
 
-# Paths
-SCRIPTS_DIR = PROJECT_ROOT / 'scripts'
-SYNC_SCRIPT = SCRIPTS_DIR / 'sync_quiz_assets.py'
-INDEX_TEMPLATE = PROJECT_ROOT / 'index-template.html'  # If available
+SCRIPT_PATH = Path(__file__).resolve()
+SCRIPTS_DIR = SCRIPT_PATH.parent
+PROJECT_ROOT = SCRIPTS_DIR.parent.resolve()
+SYNC_SCRIPT = SCRIPTS_DIR / "sync_quiz_assets.py"
+QUIZTOOL_ROOT = Path(r"D:\Study\Projects\QuizTool")
+HOST = "127.0.0.1"
+PORT = 5500
 
-# Dashboard HTML template
+SKIP_DIRS = {".git", ".github", "__pycache__"}
+EDITABLE_SUFFIXES = {".html"}
+ASSET_SUFFIXES = {
+    ".html",
+    ".css",
+    ".js",
+    ".json",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".svg",
+    ".webmanifest",
+    ".ico",
+    ".txt",
+}
+QUIZTOOL_REFERENCES = {
+    "quiz-editor.html": {
+        "label": "Quiz Editor",
+        "description": "Standalone QuizTool editor patterns for question editing.",
+    },
+    "index-editor.html": {
+        "label": "Index Editor",
+        "description": "Standalone QuizTool hub/index editor patterns.",
+    },
+    "quiz-template.html": {
+        "label": "Quiz Template",
+        "description": "Reference template for new quiz pages.",
+    },
+    "question-bank-template.html": {
+        "label": "Bank Template",
+        "description": "Reference template for new question-bank pages.",
+    },
+    "index-template.html": {
+        "label": "Index Template",
+        "description": "Reference template for new hub pages.",
+    },
+}
+
+
+TRACKER_MODAL_HTML = """
+<div class="dash-overlay" id="tracker-dashboard">
+  <div class="dash-modal">
+    <div class="dash-header">
+      <h2 id="dash-title-text">Question Tracker</h2>
+      <button class="dash-close-btn" onclick="closeTrackerDashboard()">x</button>
+    </div>
+    <div class="dash-scope-bar" id="dash-scope-bar"></div>
+    <div class="dash-summary">
+      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
+      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
+      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
+    </div>
+    <div class="dash-body" id="dash-body"></div>
+    <div class="dash-footer">
+      <button class="btn-dash-action" onclick="exportTrackerToPDF()">Export PDF</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">Clear All</button>
+      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+"""
+
+
 DASHBOARD_HTML = r"""
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - {{ project_name }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0d1117;
-            --surface: #161b22;
-            --surface2: #1c2330;
-            --border: #30363d;
-            --text: #e6edf3;
-            --text-muted: #8b949e;
-            --accent: #f0a500;
-            --accent-dim: rgba(240,165,0,0.12);
-            --radius: 12px;
-            --shadow: 0 4px 24px rgba(0,0,0,0.4);
-            --wrong: #da3633;
-            --wrong-bg: rgba(218,54,51,0.12);
-            --flagged: #58a6ff;
-            --flagged-bg: rgba(88,166,255,0.12);
-            --correct: #2ea043;
-            --correct-bg: rgba(46,160,67,0.12);
-            --transition: 0.2s ease;
-        }
-        [data-theme="light"] {
-            --bg: #f3f0eb;
-            --surface: #ffffff;
-            --surface2: #f8f6f1;
-            --border: #d0ccc5;
-            --text: #1c1917;
-            --text-muted: #78716c;
-            --accent: #c27803;
-            --accent-dim: rgba(194,120,3,0.10);
-            --shadow: 0 4px 24px rgba(0,0,0,0.10);
-            --skip: #3b82f6;
-            --correct-bg: rgba(34,197,94,0.12);
-            --wrong-bg: rgba(239,68,68,0.12);
-            --flagged-bg: rgba(59,130,246,0.12);
-        }
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 1rem; }
-        .header { text-align: center; margin-bottom: 2rem; }
-        .header h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .header h1 span { color: var(--accent); }
-        .header p { color: var(--text-muted); }
-        .main-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; height: auto; min-height: calc(100vh - 200px); }
-        @media (min-width: 900px) {
-            .main-grid { grid-template-columns: 320px 1fr; height: calc(100vh - 200px); }
-        }
-        .sidebar { background: var(--surface); border-radius: var(--radius); padding: 1.25rem; overflow-y: auto; border: 1px solid var(--border); box-shadow: var(--shadow); }
-        .content { background: var(--surface); border-radius: var(--radius); padding: 1.5rem; overflow-y: auto; border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column; }
-        .file-tree { list-style: none; }
-        .file-tree li { margin: 0.25rem 0; }
-        .file-tree .folder { cursor: pointer; font-weight: 600; color: var(--accent); }
-        .file-tree .file { cursor: pointer; padding: 0.25rem; border-radius: 6px; }
-        .file-tree .file:hover { background: var(--surface2); }
-        .btn { padding: 0.75rem 1.2rem; border-radius: var(--radius); border: none; background: var(--accent); color: #000; cursor: pointer; font-weight: 700; transition: transform var(--transition), opacity var(--transition), box-shadow var(--transition); box-shadow: 0 4px 12px var(--accent-dim); }
-        .btn:hover { opacity: 0.94; transform: translateY(-2px); box-shadow: 0 6px 16px var(--accent-dim); }
-        .btn:active { transform: translateY(0); }
-        .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); box-shadow: none; }
-        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 1000; }
-        .modal-content { background: var(--surface); margin: 3rem auto; padding: 2rem; border-radius: calc(var(--radius) * 1.2); width: min(90%, 900px); max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes popIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .close { float: right; font-size: 1.8rem; cursor: pointer; color: var(--text-muted); }
-        .form-group { margin-bottom: 1.25rem; }
-        label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text); }
-        input, textarea, select { width: 100%; padding: 0.85rem 1rem; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--border); background: var(--surface2); color: var(--text); outline: none; transition: border-color var(--transition); }
-        input:focus, textarea:focus, select:focus { border-color: var(--accent); }
-        textarea { min-height: 280px; font-family: inherit; }
-        .actions { margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-end; flex-wrap: wrap; }
-        .editor-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
-        .editor-path { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.35rem; word-break: break-word; }
-        .editor-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-        .metadata-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
-        .meta-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; transition: transform var(--transition), border-color var(--transition); }
-        .meta-card:hover { transform: translateY(-2px); border-color: var(--accent); }
-        .meta-card strong { display: block; margin-bottom: 0.35rem; color: var(--text-muted); }
-        .preview-tabs { display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
-        .preview-panel, .metadata-panel, .raw-panel { display: none; }
-        .panel-visible { display: block; animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        .preview-frame { width: 100%; min-height: 520px; border: 1px solid var(--border); border-radius: 14px; background: #000; }
-        .code-editor { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.95rem; line-height: 1.5; white-space: pre-wrap; resize: vertical; }
-        .file-tree { list-style: none; padding-left: 0; }
-        .file-tree li { margin: 0.25rem 0; position: relative; }
-        .file-tree ul { list-style: none; padding-left: 1.25rem; margin-top: 0.25rem; border-left: 1px solid var(--border); margin-left: 0.75rem; }
-        .file-tree .folder, .file-tree .file { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.85rem; border-radius: 8px; transition: all var(--transition); width: 100%; user-select: none; }
-        .file-tree .folder:hover, .file-tree .file:hover { background: var(--surface2); transform: translateX(3px); color: var(--text); }
-        .file-tree .folder { font-weight: 700; color: var(--accent); }
-        .file-tree .file { color: var(--text); font-size: 0.95rem; }
-        .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.5rem; background: var(--surface); border-bottom: 1px solid var(--border); margin-bottom: 1rem; border-radius: 0 0 var(--radius) var(--radius); }
-        .topbar-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; letter-spacing: 0.02em; }
-        .topbar-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-        .tab-button { padding: 0.65rem 1.2rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition); font-weight: 600; }
-        .tab-button:hover { border-color: var(--accent); transform: translateY(-1px); }
-        .tab-button.active { background: var(--accent); color: #000; border-color: transparent; transform: none; }
-        .editor-panel { display: none; }
-        .editor-panel.panel-visible { display: block; }
-        .question-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem; }
-        .question-card .question-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-        .question-card .question-index { font-weight: 700; color: var(--accent); }
-        .question-card .remove-question { background: transparent; border: 1px solid var(--wrong); color: var(--wrong); border-radius: 10px; padding: 0.45rem 0.75rem; cursor: pointer; font-weight: 600; }
-        .question-card .remove-question:hover { background: var(--wrong); color: #fff; }
-        .editor-field { margin-bottom: 1rem; }
-        .editor-field label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text); }
-        .editor-field input, .editor-field textarea { width: 100%; padding: 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-family: inherit; }
-        .editor-option-row { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 0.5rem; }
-        .editor-options-list { display: flex; flex-direction: column; gap: 0; }
-        .editor-option-row .option-radio { width: 18px; height: 18px; cursor: pointer; accent-color: var(--correct); flex-shrink: 0; }
-        .editor-option { flex: 1; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - {{ project_name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1c2330;
+      --surface3: #11161d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #f0a500;
+      --accent-dim: rgba(240, 165, 0, 0.12);
+      --correct: #2ea043;
+      --wrong: #da3633;
+      --blue: #58a6ff;
+      --purple: #d2a8ff;
+      --radius: 14px;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      --transition: 0.2s ease;
+    }
+    [data-theme="light"] {
+      --bg: #f3f0eb;
+      --surface: #ffffff;
+      --surface2: #f8f6f1;
+      --surface3: #f0ece5;
+      --border: #d0ccc5;
+      --text: #1c1917;
+      --text-muted: #78716c;
+      --accent: #c27803;
+      --accent-dim: rgba(194, 120, 3, 0.1);
+      --correct: #16a34a;
+      --wrong: #dc2626;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.09);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(240, 165, 0, 0.12), transparent 32%),
+        radial-gradient(circle at top right, rgba(88, 166, 255, 0.08), transparent 26%),
+        var(--bg);
+    }
+    button, input, select, textarea {
+      font: inherit;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.4rem;
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), #ffd88a);
+      color: #17120a;
+      font-weight: 800;
+      box-shadow: 0 10px 24px var(--accent-dim);
+    }
+    .brand-copy {
+      min-width: 0;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .brand-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .btn, .icon-btn, .filter-btn, .tab-btn, .ghost-btn {
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition), opacity var(--transition);
+    }
+    .btn, .ghost-btn {
+      border-radius: 999px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn:hover, .ghost-btn:hover, .icon-btn:hover, .filter-btn:hover, .tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #17120a;
+      border-color: transparent;
+      box-shadow: 0 8px 22px var(--accent-dim);
+    }
+    .btn-primary:hover {
+      color: #17120a;
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+    .btn-danger {
+      color: var(--wrong);
+      border-color: color-mix(in srgb, var(--wrong) 60%, var(--border));
+    }
+    .btn-danger:hover {
+      color: #fff;
+      background: var(--wrong);
+      border-color: var(--wrong);
+    }
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .page {
+      width: min(1600px, calc(100vw - 2rem));
+      margin: 1.25rem auto 2rem;
+      display: grid;
+      gap: 1.25rem;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
+      gap: 1.2rem;
+    }
+    .hero-card, .panel, .sidebar, .activity {
+      background: color-mix(in srgb, var(--surface) 95%, transparent);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      box-shadow: var(--shadow);
+    }
+    .hero-card {
+      padding: 1.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -48px -48px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(240, 165, 0, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-card h1 {
+      margin: 0 0 0.65rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+    }
+    .hero-card h1 span {
+      color: var(--accent);
+    }
+    .hero-card p {
+      margin: 0;
+      color: var(--text-muted);
+      max-width: 58ch;
+      line-height: 1.65;
+    }
+    .rule-list {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 1.25rem;
+    }
+    .rule-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+    }
+    .rule-badge {
+      flex: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+    .hero-side {
+      display: grid;
+      gap: 1rem;
+      padding: 1.35rem;
+    }
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+    .stat-card {
+      padding: 1rem;
+      border-radius: 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+    }
+    .stat-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 350px minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .sidebar {
+      padding: 1.1rem;
+      position: sticky;
+      top: 84px;
+      max-height: calc(100vh - 110px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .sidebar-header h2, .section-title, .panel-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .sidebar-subtitle, .muted {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .search-wrap {
+      position: relative;
+      margin-bottom: 0.9rem;
+    }
+    .search-input, .text-input, .select-input, .text-area {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      padding: 0.9rem 1rem;
+      outline: none;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .search-input {
+      padding-left: 2.7rem;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 0.95rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.55;
+    }
+    .search-input:focus, .text-input:focus, .select-input:focus, .text-area:focus {
+      border-color: var(--accent);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 0.9rem;
+    }
+    .filter-btn {
+      border-radius: 999px;
+      padding: 0.55rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+    .filter-btn.active {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .tree-wrap {
+      min-height: 0;
+      overflow: auto;
+      padding-right: 0.2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 0.1rem;
+      padding-top: 0.9rem;
+    }
+    .file-tree, .file-tree ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .file-tree ul {
+      margin-left: 0.95rem;
+      padding-left: 0.9rem;
+      border-left: 1px solid var(--border);
+    }
+    .tree-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.58rem 0.72rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), color var(--transition);
+      margin-bottom: 0.16rem;
+    }
+    .tree-row:hover {
+      background: var(--surface2);
+      transform: translateX(2px);
+    }
+    .tree-row.active {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 65%, var(--border));
+    }
+    .tree-icon {
+      width: 20px;
+      text-align: center;
+      flex: none;
+    }
+    .tree-copy {
+      min-width: 0;
+      flex: 1;
+    }
+    .tree-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tree-meta {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      margin-top: 0.12rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .content-stack {
+      display: grid;
+      gap: 1.1rem;
+    }
+    .panel {
+      padding: 1.25rem;
+    }
+    .panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .panel-path {
+      margin-top: 0.35rem;
+      color: var(--text-muted);
+      word-break: break-word;
+      font-size: 0.92rem;
+    }
+    .panel-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .meta-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.95rem;
+    }
+    .meta-label {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+    .meta-value {
+      font-weight: 700;
+      word-break: break-word;
+    }
+    .tab-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+    .tab-btn {
+      border-radius: 999px;
+      padding: 0.62rem 0.9rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .tab-btn.active {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .subpanel {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+    .subpanel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .preview-frame {
+      width: 100%;
+      min-height: 620px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #fff;
+    }
+    .editor-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+    .field {
+      display: grid;
+      gap: 0.45rem;
+    }
+    .field.full {
+      grid-column: 1 / -1;
+    }
+    .field label {
+      font-weight: 600;
+    }
+    .field small {
+      color: var(--text-muted);
+    }
+    .text-area {
+      min-height: 110px;
+      resize: vertical;
+    }
+    .text-area.code {
+      min-height: 520px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      white-space: pre;
+    }
+    .editor-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .editor-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface2);
+      padding: 1rem;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .editor-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .editor-card-title {
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .mini-actions {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+    .mini-btn {
+      border: 1px solid var(--border);
+      background: var(--surface3);
+      color: var(--text-muted);
+      border-radius: 10px;
+      padding: 0.45rem 0.65rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .mini-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .mini-btn.delete:hover {
+      border-color: var(--wrong);
+      color: var(--wrong);
+    }
+    .option-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.65rem;
+      align-items: center;
+      margin-bottom: 0.55rem;
+    }
+    .option-row input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--correct);
+      cursor: pointer;
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .overview-card {
+      padding: 1rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      display: grid;
+      gap: 0.75rem;
+    }
+    .overview-list, .activity-list {
+      display: grid;
+      gap: 0.8rem;
+    }
+    .overview-list a:hover {
+      color: var(--accent);
+    }
+    .overview-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .overview-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: 0.45rem;
+      flex: none;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .status-good { color: var(--correct); }
+    .status-warn { color: var(--accent); }
+    .status-bad { color: var(--wrong); }
+    .status-info { color: var(--blue); }
+    .activity {
+      padding: 1.05rem 1.15rem;
+    }
+    .activity-entry {
+      padding: 0.85rem 0.95rem;
+      border-radius: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+    }
+    .activity-entry + .activity-entry {
+      margin-top: 0.7rem;
+    }
+    .activity-title {
+      font-weight: 700;
+      margin-bottom: 0.28rem;
+    }
+    .activity-meta {
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.58);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .modal.open {
+      display: flex;
+    }
+    .modal-card {
+      width: min(760px, 100%);
+      max-height: min(88vh, 980px);
+      overflow: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+    }
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .modal-header h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 0.7rem;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .close-btn {
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text-muted);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .toast-stack {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 120;
+      display: grid;
+      gap: 0.65rem;
+      width: min(420px, calc(100vw - 2rem));
+    }
+    .toast {
+      padding: 0.9rem 1rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .toast.info { border-color: color-mix(in srgb, var(--blue) 40%, var(--border)); }
+    .toast.success { border-color: color-mix(in srgb, var(--correct) 50%, var(--border)); }
+    .toast.warn { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+    .toast.error { border-color: color-mix(in srgb, var(--wrong) 55%, var(--border)); }
+    .kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.8rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .empty-state {
+      padding: 1.4rem;
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      color: var(--text-muted);
+      text-align: center;
+      background: var(--surface2);
+    }
+    @media (max-width: 1200px) {
+      .hero, .main-grid {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        max-height: none;
+      }
+    }
+    @media (max-width: 900px) {
+      .stats-grid, .panel-grid, .field-grid, .overview-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .topbar-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+    @media (max-width: 640px) {
+      .page {
+        width: min(100vw - 1rem, 100%);
+        margin-top: 0.7rem;
+      }
+      .stats-grid, .panel-grid, .field-grid, .overview-grid {
+        grid-template-columns: 1fr;
+      }
+      .panel-actions, .quick-actions, .modal-actions {
+        justify-content: stretch;
+      }
+      .panel-actions > *, .quick-actions > *, .modal-actions > * {
+        width: 100%;
+      }
+      .preview-frame {
+        min-height: 420px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="shell">
     <div class="topbar">
-        <div class="topbar-title">Admin Dashboard</div>
-        <div class="topbar-actions">
-            <button class="btn btn-secondary" onclick="refreshTree()">Refresh</button>
-            <button class="btn btn-secondary" onclick="showModal('new-folder')">New Folder</button>
-            <button class="btn btn-secondary" onclick="showModal('new-file')">New File</button>
-            <button class="btn btn-secondary" onclick="showModal('git-actions')">Git Actions</button>
-            <button class="btn btn-secondary" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" style="width: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center;">☀</button>
+      <div class="brand">
+        <div class="brand-mark">MU</div>
+        <div class="brand-copy">
+          <div class="brand-title">Admin Dashboard</div>
+          <div class="brand-subtitle">{{ project_name }} <span id="save-indicator">ready</span></div>
         </div>
-    </div>
-    <div class="container">
-        <header class="header">
-            <h1>Admin Dashboard - <span>{{ project_name }}</span></h1>
-            <p>Browse quizzes, edit HTML, and manage Git from one local interface.</p>
-        </header>
-
-        <div class="main-grid">
-            <aside class="sidebar">
-                <h3>File Tree</h3>
-                <ul class="file-tree" id="file-tree"></ul>
-                <div class="actions">
-                    <button class="btn" onclick="showModal('new-folder')">New Folder</button>
-                    <button class="btn" onclick="showModal('new-file')">New File</button>
-                </div>
-            </aside>
-
-            <main class="content">
-                <div id="content-area">
-                    <p>Select a file from the tree to edit, or use the buttons to create new content.</p>
-                </div>
-            </main>
-        </div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn" onclick="openNewFolderModal()">New Folder</button>
+        <button class="btn" onclick="openNewFileModal()">New File</button>
+        <button class="btn" onclick="openGitModal()">Git</button>
+        <button class="btn btn-primary" onclick="runSync()">Run Sync</button>
+        <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+      </div>
     </div>
 
-    <!-- Modals -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modal-body"></div>
+    <div class="page">
+      <section class="hero">
+        <div class="hero-card">
+          <h1>Refactor, curate, and publish <span>without leaving the repo</span></h1>
+          <p>
+            This dashboard follows the MU61S8 rules: it keeps engine paths at the root, generates path-based
+            UIDs for new files, and treats the sync script as the source of truth for indexes and the service worker.
+          </p>
+          <div class="rule-list">
+            <div class="rule-item">
+              <div class="rule-badge">1</div>
+              <div><strong>Stable data</strong><div class="muted">Existing quiz and bank UIDs are preserved so progress and tracker data stay intact.</div></div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-badge">2</div>
+              <div><strong>Path-safe creation</strong><div class="muted">New pages use root engines, correct depth prefixes, and index pages that match the site architecture.</div></div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-badge">3</div>
+              <div><strong>Sync-first workflow</strong><div class="muted">File actions can immediately run the sync script so indexes and <code>sw.js</code> stay aligned.</div></div>
+            </div>
+          </div>
         </div>
+        <div class="hero-card hero-side">
+          <div>
+            <div class="panel-title">Quick Actions</div>
+            <div class="quick-actions" style="margin-top:0.8rem;">
+              <button class="ghost-btn" onclick="renderOverview()">Workspace Overview</button>
+              <button class="ghost-btn" onclick="refreshWorkspace()">Refresh Files</button>
+              <button class="ghost-btn" onclick="showToast('Tip: press Ctrl+S to save the current file.', 'info')">Show Shortcut</button>
+            </div>
+          </div>
+          <div>
+            <div class="panel-title">Working Rhythm</div>
+            <div class="muted" style="margin-top:0.55rem; line-height:1.65;">
+              Structured editors are inspired by the QuizTool standalone editors, while raw HTML and preview stay
+              side by side for final verification.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-grid" id="stats-grid"></section>
+
+      <section class="main-grid">
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <div>
+              <h2>Project Files</h2>
+              <div class="sidebar-subtitle" id="sidebar-summary">Loading files...</div>
+            </div>
+            <button class="icon-btn" onclick="refreshWorkspace()" title="Refresh">↻</button>
+          </div>
+
+          <div class="search-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+            <input id="file-search" class="search-input" type="text" placeholder="Search by path, title, or UID..." oninput="setSearch(this.value)">
+          </div>
+
+          <div class="filter-row" id="filter-row"></div>
+
+          <div class="tree-wrap">
+            <div id="file-tree-root"></div>
+          </div>
+        </aside>
+
+        <div class="content-stack">
+          <section class="panel" id="workspace-panel"></section>
+          <section class="activity" id="activity-panel"></section>
+        </div>
+      </section>
     </div>
+  </div>
 
-    <script>
-        let currentFile = null;
-        let currentFileData = null;
-        let fileTree = {};
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-title">Action</h3>
+          <div class="muted" id="modal-subtitle"></div>
+        </div>
+        <button class="close-btn" onclick="closeModal()">x</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
 
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('admin-theme', newTheme);
-            document.getElementById('theme-toggle').textContent = newTheme === 'light' ? '🌙' : '☀';
+  <div class="toast-stack" id="toast-stack"></div>
+
+  <script>
+    const state = {
+      files: [],
+      folders: [],
+      projectState: null,
+      filter: 'all',
+      search: '',
+      openFolders: new Set(['']),
+      currentFile: null,
+      currentData: null,
+      currentTab: 'preview',
+      dirty: false,
+      activity: [],
+      modalOpen: false,
+    };
+
+    const FILTERS = [
+      { key: 'all', label: 'All' },
+      { key: 'quiz', label: 'Quiz' },
+      { key: 'bank', label: 'Bank' },
+      { key: 'index', label: 'Index' },
+      { key: 'html', label: 'Other HTML' },
+    ];
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function clone(obj) {
+      return JSON.parse(JSON.stringify(obj));
+    }
+
+    function encodePath(path) {
+      return String(path).split('/').map(encodeURIComponent).join('/');
+    }
+
+    function badgeClassForTone(tone) {
+      if (tone === 'success') return 'status-good';
+      if (tone === 'warn') return 'status-warn';
+      if (tone === 'error') return 'status-bad';
+      return 'status-info';
+    }
+
+    function nowTime() {
+      return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function setDirty(dirty) {
+      state.dirty = !!dirty;
+      const indicator = document.getElementById('save-indicator');
+      if (indicator) indicator.textContent = state.dirty ? 'unsaved changes' : 'ready';
+    }
+
+    function showToast(message, tone = 'info') {
+      const stack = document.getElementById('toast-stack');
+      const toast = document.createElement('div');
+      toast.className = `toast ${tone}`;
+      toast.textContent = message;
+      stack.prepend(toast);
+      window.setTimeout(() => toast.remove(), 3600);
+    }
+
+    function logActivity(title, detail = '', tone = 'info') {
+      state.activity.unshift({ title, detail, tone, time: nowTime() });
+      state.activity = state.activity.slice(0, 12);
+      renderActivity();
+    }
+
+    function toggleTheme() {
+      const root = document.documentElement;
+      const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('admin-theme', next);
+      syncThemeButton();
+    }
+
+    function syncThemeButton() {
+      const btn = document.getElementById('theme-toggle');
+      const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      if (btn) btn.textContent = current === 'light' ? '🌙' : '☀';
+    }
+
+    function restoreTheme() {
+      const saved = localStorage.getItem('admin-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+      syncThemeButton();
+    }
+
+    async function fetchJson(url, options = {}) {
+      const response = await fetch(url, options);
+      let payload;
+      try {
+        payload = await response.json();
+      } catch (error) {
+        payload = { message: 'Invalid server response' };
+      }
+      if (!response.ok) {
+        throw new Error(payload.message || payload.error || 'Request failed');
+      }
+      return payload;
+    }
+
+    async function refreshWorkspace({ preserveCurrent = true } = {}) {
+      const [filePayload, projectState] = await Promise.all([
+        fetchJson('/admin/files'),
+        fetchJson('/admin/project-state'),
+      ]);
+      state.files = filePayload.files || [];
+      state.folders = filePayload.folders || [];
+      state.projectState = projectState;
+      renderFilters();
+      renderStats();
+      renderTree();
+      if (preserveCurrent && state.currentFile) {
+        const stillExists = state.files.some(file => file.path === state.currentFile);
+        if (!stillExists) {
+          state.currentFile = null;
+          state.currentData = null;
+          setDirty(false);
         }
-        (function() {
-            var savedTheme = localStorage.getItem('admin-theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            window.addEventListener('DOMContentLoaded', () => {
-                const btn = document.getElementById('theme-toggle');
-                if(btn) btn.textContent = savedTheme === 'light' ? '🌙' : '☀';
-            });
-        })();
+      }
+      if (!state.currentFile) {
+        renderOverview();
+      } else {
+        const active = state.files.find(file => file.path === state.currentFile);
+        if (active) {
+          loadFile(active.path, { silent: true, keepTab: true });
+        } else {
+          renderOverview();
+        }
+      }
+      const dirtyCount = projectState?.git?.dirtyCount || 0;
+      logActivity('Workspace refreshed', dirtyCount ? `${dirtyCount} git changes detected.` : 'Working tree is clean.', 'info');
+    }
 
-        function updateMetadataPanel(meta) {
-            return `
-                <div class="metadata-grid">
-                    <div class="meta-card"><strong>Type</strong><span>${meta.type || 'html'}</span></div>
-                    <div class="meta-card"><strong>UID</strong><span>${meta.uid || '—'}</span></div>
-                    <div class="meta-card"><strong>Title</strong><span>${escapeHtml(meta.title || '—')}</span></div>
-                    <div class="meta-card"><strong>Description</strong><span>${escapeHtml(meta.description || '—')}</span></div>
-                    ${meta.type === 'index' ? `<div class="meta-card"><strong>Hero Title</strong><span>${escapeHtml(meta.hero_title || '—')}</span></div>` : ''}
-                    <div class="meta-card"><strong>Questions</strong><span>${meta.question_count != null ? meta.question_count : '—'}</span></div>
-                    <div class="meta-card"><strong>Icon</strong><span>${escapeHtml(meta.icon || '—')}</span></div>
+    function renderStats() {
+      const statsGrid = document.getElementById('stats-grid');
+      const summary = state.projectState?.summary;
+      if (!summary) {
+        statsGrid.innerHTML = '';
+        return;
+      }
+      const cards = [
+        { value: summary.totalHtmlFiles, label: 'HTML Files' },
+        { value: summary.quizCount, label: 'Quizzes' },
+        { value: summary.bankCount, label: 'Banks' },
+        { value: summary.indexCount, label: 'Index Pages' },
+      ];
+      statsGrid.innerHTML = cards.map(card => `
+        <div class="stat-card">
+          <div class="stat-value">${escapeHtml(card.value)}</div>
+          <div class="stat-label">${escapeHtml(card.label)}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderFilters() {
+      const row = document.getElementById('filter-row');
+      row.innerHTML = FILTERS.map(filter => `
+        <button class="filter-btn ${state.filter === filter.key ? 'active' : ''}" onclick="setFilter('${filter.key}')">
+          ${escapeHtml(filter.label)}
+        </button>
+      `).join('');
+    }
+
+    function setFilter(filter) {
+      state.filter = filter;
+      renderFilters();
+      renderTree();
+    }
+
+    function setSearch(value) {
+      state.search = String(value || '').toLowerCase();
+      renderTree();
+    }
+
+    function getFilteredFiles() {
+      return state.files.filter(file => {
+        const matchesType = state.filter === 'all' ? true : file.type === state.filter;
+        if (!matchesType) return false;
+        if (!state.search) return true;
+        const haystack = [
+          file.path,
+          file.title || '',
+          file.uid || '',
+          file.description || '',
+        ].join(' ').toLowerCase();
+        return haystack.includes(state.search);
+      });
+    }
+
+    function buildTreeFromFiles(files) {
+      const root = {};
+      for (const file of files) {
+        const parts = file.path.split('/');
+        let cursor = root;
+        let running = '';
+        for (let i = 0; i < parts.length - 1; i += 1) {
+          const part = parts[i];
+          running = running ? `${running}/${part}` : part;
+          if (!cursor[part]) {
+            cursor[part] = { kind: 'folder', path: running, children: {} };
+          }
+          cursor = cursor[part].children;
+        }
+        cursor[parts[parts.length - 1]] = { kind: 'file', record: file };
+      }
+      return root;
+    }
+
+    function sortTreeEntries(entries) {
+      return Object.entries(entries).sort((a, b) => {
+        const aFolder = a[1].kind === 'folder';
+        const bFolder = b[1].kind === 'folder';
+        if (aFolder !== bFolder) return aFolder ? -1 : 1;
+        return a[0].localeCompare(b[0]);
+      });
+    }
+
+    function renderTree() {
+      const filtered = getFilteredFiles();
+      const treeRoot = document.getElementById('file-tree-root');
+      const tree = buildTreeFromFiles(filtered);
+      const summary = document.getElementById('sidebar-summary');
+      summary.textContent = `${filtered.length} visible files across ${state.folders.length} folders`;
+      if (!filtered.length) {
+        treeRoot.innerHTML = `<div class="empty-state">No files match the current search or filter.</div>`;
+        return;
+      }
+      treeRoot.innerHTML = renderTreeLevel(tree, '');
+    }
+
+    function renderTreeLevel(node, parentPath) {
+      const items = sortTreeEntries(node).map(([name, item]) => {
+        if (item.kind === 'folder') {
+          const open = state.search ? true : state.openFolders.has(item.path);
+          return `
+            <li>
+              <div class="tree-row" onclick="toggleFolder('${escapeHtml(item.path)}')">
+                <div class="tree-icon">${open ? '📂' : '📁'}</div>
+                <div class="tree-copy">
+                  <div class="tree-name">${escapeHtml(name)}</div>
+                  <div class="tree-meta">${escapeHtml(item.path || 'root')}</div>
                 </div>
-            `;
+              </div>
+              <ul style="display:${open ? 'block' : 'none'}">${renderTreeLevel(item.children, item.path)}</ul>
+            </li>
+          `;
         }
+        const file = item.record;
+        const active = state.currentFile === file.path ? 'active' : '';
+        const subMeta = [file.type, file.uid || file.title || ''].filter(Boolean).join(' • ');
+        return `
+          <li>
+            <div class="tree-row ${active}" onclick="loadFile('${escapeHtml(file.path)}')">
+              <div class="tree-icon">${escapeHtml(file.icon || '📄')}</div>
+              <div class="tree-copy">
+                <div class="tree-name">${escapeHtml(file.name)}</div>
+                <div class="tree-meta">${escapeHtml(subMeta)}</div>
+              </div>
+            </div>
+          </li>
+        `;
+      });
+      return `<ul class="file-tree">${items.join('')}</ul>`;
+    }
 
-        async function loadFileTree() {
-            const response = await fetch('/admin/files');
-            fileTree = await response.json();
-            renderFileTree(fileTree, document.getElementById('file-tree'));
-        }
+    function toggleFolder(path) {
+      if (state.openFolders.has(path)) state.openFolders.delete(path);
+      else state.openFolders.add(path);
+      renderTree();
+    }
 
-        function renderFileTree(tree, container, parentPath = '') {
-            container.innerHTML = '';
-            for (const [name, item] of Object.entries(tree)) {
-                const li = document.createElement('li');
-                if (item.type === 'folder') {
-                    const path = item.path || (parentPath ? `${parentPath}/${name}` : name);
-                    const id = `folder-${path.replace(/[^a-zA-Z0-9_-]/g, '_')}`;
-                    const safeName = escapeHtml(name).replace(/'/g, "\\'");
-                    li.innerHTML = `<span class="folder" id="lbl-${id}" onclick="toggleFolder('${id}', '${safeName}')"><span class="folder-icon">📁</span> ${escapeHtml(name)}</span>`;
-                    const subUl = document.createElement('ul');
-                    subUl.id = id;
-                    subUl.style.display = 'none';
-                    renderFileTree(item.children, subUl, path);
-                    li.appendChild(subUl);
-                } else {
-                    li.innerHTML = `<span class="file" onclick="loadFile('${encodeURIComponent(item.path)}')">${item.icon || '📄'} ${escapeHtml(name)}</span>`;
-                }
-                container.appendChild(li);
-            }
-        }
+    function renderActivity() {
+      const panel = document.getElementById('activity-panel');
+      const items = state.activity.length ? state.activity.map(item => `
+        <div class="activity-entry">
+          <div class="activity-title ${badgeClassForTone(item.tone)}">${escapeHtml(item.title)}</div>
+          <div class="activity-meta">${escapeHtml(item.time)}${item.detail ? '\n' + escapeHtml(item.detail) : ''}</div>
+        </div>
+      `).join('') : `<div class="empty-state">Actions, sync output, and git feedback will appear here.</div>`;
+      panel.innerHTML = `
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Activity Feed</div>
+            <div class="muted">Recent sync, save, move, and git operations.</div>
+          </div>
+        </div>
+        <div class="activity-list">${items}</div>
+      `;
+    }
 
-        function toggleFolder(id, name) {
-            const ul = document.getElementById(id);
-            const lbl = document.getElementById(`lbl-${id}`);
-            if (!ul) return;
-            if (ul.style.display === 'none') {
-                ul.style.display = 'block';
-                if(lbl) lbl.innerHTML = `<span class="folder-icon">📂</span> ${name}`;
-            } else {
-                ul.style.display = 'none';
-                if(lbl) lbl.innerHTML = `<span class="folder-icon">📁</span> ${name}`;
-            }
-        }
+    function gitStatusSummary(git) {
+      if (!git?.available) return 'Git repository not detected.';
+      const branch = git.branch || 'unknown';
+      if (!git.dirtyCount) return `Branch ${branch} is clean.`;
+      return `${git.dirtyCount} changed path(s) on branch ${branch}.`;
+    }
 
-        async function loadFile(path) {
-            currentFile = decodeURIComponent(path);
-            const response = await fetch(`/admin/load-file?path=${encodeURIComponent(currentFile)}`);
-            const data = await response.json();
-            const meta = data.meta || {};
-            const previewPath = `/preview/${encodeURIComponent(currentFile)}`;
-            currentFileData = { content: data.content, meta };
-            const editorTabVisible = ['quiz', 'bank', 'index'].includes(meta.type);
-            document.getElementById('content-area').innerHTML = `
-                <div class="editor-header">
+    function renderOverview() {
+      const panel = document.getElementById('workspace-panel');
+      const summary = state.projectState?.summary || {};
+      const git = state.projectState?.git || {};
+      const refs = state.projectState?.quiztoolReferences || [];
+      const recentFiles = state.files.slice(0, 6);
+      panel.innerHTML = `
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Workspace Overview</div>
+            <div class="muted">Project health, helper tools, and guardrails from the repo instructions.</div>
+          </div>
+          <div class="badge-row">
+            <div class="badge ${badgeClassForTone(git.dirtyCount ? 'warn' : 'success')}">${escapeHtml(gitStatusSummary(git))}</div>
+            <div class="badge">${escapeHtml(summary.folderCount || 0)} folders</div>
+            <div class="badge">${escapeHtml(summary.totalQuestions || 0)} parsed questions</div>
+          </div>
+        </div>
+        <div class="overview-grid">
+          <div class="overview-card">
+            <div class="section-title">Repository Rules</div>
+            <div class="overview-list">
+              <div class="overview-item"><div class="overview-dot"></div><div><strong>Never rename deployed UIDs.</strong><div class="muted">New file creation follows folder and filename path patterns automatically.</div></div></div>
+              <div class="overview-item"><div class="overview-dot"></div><div><strong>Use sync after content changes.</strong><div class="muted">This keeps generated indexes, tracker maps, and <code>sw.js</code> in step.</div></div></div>
+              <div class="overview-item"><div class="overview-dot"></div><div><strong>Keep engines at the root.</strong><div class="muted">Generated quiz, bank, and index pages compute their prefixes from folder depth.</div></div></div>
+            </div>
+          </div>
+          <div class="overview-card">
+            <div class="section-title">Recent Files</div>
+            <div class="overview-list">
+              ${recentFiles.length ? recentFiles.map(file => `
+                <a href="#" onclick="event.preventDefault(); loadFile('${escapeHtml(file.path)}')">
+                  <div class="overview-item">
+                    <div class="overview-dot"></div>
                     <div>
-                        <h3>Editing</h3>
-                        <p class="editor-path">${currentFile}</p>
+                      <strong>${escapeHtml(file.title || file.name)}</strong>
+                      <div class="muted">${escapeHtml(file.path)}</div>
                     </div>
-                    <div class="editor-actions">
-                        <button class="btn btn-secondary" onclick="showModal('move-file')">Move</button>
-                        <button class="btn btn-secondary" onclick="convertFile()">Convert</button>
-                        <button class="btn btn-secondary" onclick="window.open('${previewPath}', '_blank')">Open Preview</button>
-                        <button class="btn" onclick="saveFile()" id="save-button">Save</button>
-                    </div>
+                  </div>
+                </a>
+              `).join('') : '<div class="muted">No HTML files found yet.</div>'}
+            </div>
+          </div>
+          <div class="overview-card">
+            <div class="section-title">QuizTool References</div>
+            <div class="overview-list">
+              ${refs.length ? refs.map(ref => `
+                <div class="overview-item">
+                  <div class="overview-dot"></div>
+                  <div>
+                    <strong><a href="/admin/reference/${encodeURIComponent(ref.id)}" target="_blank" rel="noopener">${escapeHtml(ref.label)}</a></strong>
+                    <div class="muted">${escapeHtml(ref.description)}</div>
+                  </div>
                 </div>
-                <div class="metadata-grid">
-                    <div class="meta-card"><strong>Type</strong><span>${meta.type || 'html'}</span></div>
-                    <div class="meta-card"><strong>UID</strong><span>${meta.uid || '—'}</span></div>
-                    <div class="meta-card"><strong>Title</strong><span>${escapeHtml(meta.title || '—')}</span></div>
-                    <div class="meta-card"><strong>Description</strong><span>${escapeHtml(meta.description || '—')}</span></div>
-                    <div class="meta-card"><strong>Questions</strong><span>${meta.question_count != null ? meta.question_count : '—'}</span></div>
-                    <div class="meta-card"><strong>Icon</strong><span>${escapeHtml(meta.icon || '—')}</span></div>
-                </div>
-                <div class="preview-tabs">
-                    <button class="tab-button active" data-tab="preview" onclick="setPreviewTab('preview')">Preview</button>
-                    <button class="tab-button" data-tab="editor" id="editor-tab-button" style="display: ${editorTabVisible ? 'inline-flex' : 'none'}" onclick="setPreviewTab('editor')">Editor</button>
-                    <button class="tab-button" data-tab="metadata" onclick="setPreviewTab('metadata')">Metadata</button>
-                    <button class="tab-button" data-tab="raw" onclick="setPreviewTab('raw')">Raw HTML</button>
-                </div>
-                <div id="preview-panel" class="preview-panel panel-visible">
-                    <iframe class="preview-frame" src="${previewPath}" title="Preview of ${currentFile}"></iframe>
-                </div>
-                <div id="editor-panel" class="editor-panel"></div>
-                <div id="metadata-panel" class="metadata-panel">
-                    <div class="form-group"><label>Parsed Metadata</label><textarea readonly class="code-editor" rows="12">${escapeHtml(JSON.stringify(meta, null, 2))}</textarea></div>
-                </div>
-                <div id="raw-panel" class="raw-panel">
-                    <div class="form-group">
-                        <label>Raw HTML</label>
-                        <textarea id="file-content" class="code-editor" rows="24">${escapeHtml(data.content)}</textarea>
-                    </div>
-                </div>
-            `;
-            updateEditorButtons();
-            if (editorTabVisible) renderEditorPanel();
-            document.getElementById('file-content').addEventListener('input', () => {
-                document.getElementById('save-button').textContent = 'Save*';
-            });
+              `).join('') : '<div class="muted">No QuizTool reference assets were found at the configured path.</div>'}
+            </div>
+          </div>
+          <div class="overview-card">
+            <div class="section-title">Keyboard</div>
+            <div class="overview-list">
+              <div class="overview-item"><div class="overview-dot"></div><div><span class="kbd">Ctrl</span> + <span class="kbd">S</span><div class="muted">Save the current file.</div></div></div>
+              <div class="overview-item"><div class="overview-dot"></div><div><span class="kbd">Esc</span><div class="muted">Close the active modal.</div></div></div>
+              <div class="overview-item"><div class="overview-dot"></div><div><span class="kbd">/</span><div class="muted">Focus the file search box when you are not typing in an editor.</div></div></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    async function loadFile(path, { silent = false, keepTab = false } = {}) {
+      if (state.dirty && path !== state.currentFile) {
+        const proceed = window.confirm('You have unsaved changes. Open another file anyway?');
+        if (!proceed) return;
+      }
+      const data = await fetchJson(`/admin/load-file?path=${encodeURIComponent(path)}`);
+      state.currentFile = path;
+      state.currentData = data;
+      if (!keepTab) state.currentTab = 'preview';
+      setDirty(false);
+      renderFilePanel();
+      renderTree();
+      if (!silent) logActivity('Loaded file', path, 'info');
+    }
+
+    function renderFilePanel() {
+      const panel = document.getElementById('workspace-panel');
+      if (!state.currentData) {
+        renderOverview();
+        return;
+      }
+      const meta = state.currentData.meta || {};
+      const previewUrl = `/${encodePath(state.currentFile)}?v=${Date.now()}`;
+      const canStructuredEdit = ['quiz', 'bank', 'index'].includes(meta.type);
+      panel.innerHTML = `
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">${escapeHtml(meta.title || state.currentFile)}</div>
+            <div class="panel-path">${escapeHtml(state.currentFile)}</div>
+          </div>
+          <div class="panel-actions">
+            <button class="btn" onclick="openMoveModal()">Move or Rename</button>
+            <button class="btn" onclick="convertFile()" ${['quiz', 'bank'].includes(meta.type) ? '' : 'disabled'}>Convert</button>
+            <button class="btn btn-danger" onclick="openDeleteModal()">Delete</button>
+            <a class="btn" href="${previewUrl}" target="_blank" rel="noopener">Open Preview</a>
+            <button class="btn btn-primary" onclick="saveFile()">Save</button>
+          </div>
+        </div>
+        <div class="panel-grid">
+          ${renderMetaCard('Type', meta.type || 'html')}
+          ${renderMetaCard('UID', meta.uid || '—')}
+          ${renderMetaCard('Questions', meta.question_count ?? '—')}
+          ${renderMetaCard('Icon', meta.icon || '—')}
+        </div>
+        <div class="tab-row">
+          ${renderTabButton('preview', 'Preview')}
+          ${canStructuredEdit ? renderTabButton('editor', 'Structured Editor') : ''}
+          ${renderTabButton('metadata', 'Metadata')}
+          ${renderTabButton('raw', 'Raw HTML')}
+        </div>
+        <div class="subpanel ${state.currentTab === 'preview' ? 'active' : ''}" id="tab-preview">
+          <iframe class="preview-frame" src="${previewUrl}" title="Preview of ${escapeHtml(state.currentFile)}"></iframe>
+        </div>
+        <div class="subpanel ${state.currentTab === 'editor' ? 'active' : ''}" id="tab-editor">
+          ${canStructuredEdit ? renderStructuredEditor(meta) : '<div class="empty-state">Structured editing is not available for this file type.</div>'}
+        </div>
+        <div class="subpanel ${state.currentTab === 'metadata' ? 'active' : ''}" id="tab-metadata">
+          <textarea class="text-area code" readonly>${escapeHtml(JSON.stringify(meta, null, 2))}</textarea>
+        </div>
+        <div class="subpanel ${state.currentTab === 'raw' ? 'active' : ''}" id="tab-raw">
+          <div class="field">
+            <label for="raw-html">Raw HTML</label>
+            <small>Saving from this panel writes the current textarea exactly as shown.</small>
+            <textarea id="raw-html" class="text-area code" oninput="onRawInput()">${escapeHtml(state.currentData.content || '')}</textarea>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderMetaCard(label, value) {
+      return `<div class="meta-card"><div class="meta-label">${escapeHtml(label)}</div><div class="meta-value">${escapeHtml(value)}</div></div>`;
+    }
+
+    function renderTabButton(key, label) {
+      return `<button class="tab-btn ${state.currentTab === key ? 'active' : ''}" onclick="setTab('${key}')">${escapeHtml(label)}</button>`;
+    }
+
+    function setTab(tab) {
+      state.currentTab = tab;
+      renderFilePanel();
+    }
+
+    function renderStructuredEditor(meta) {
+      if (meta.type === 'quiz' || meta.type === 'bank') {
+        return renderQuizBankEditor(meta);
+      }
+      if (meta.type === 'index') {
+        return renderIndexEditor(meta);
+      }
+      return '<div class="empty-state">Structured editing is not available for this file type.</div>';
+    }
+
+    function renderQuizBankEditor(meta) {
+      const isBank = meta.type === 'bank';
+      const questions = meta.questions || [];
+      return `
+        <div class="editor-grid">
+          <div class="field-grid">
+            <div class="field">
+              <label>UID</label>
+              <input class="text-input" id="cfg-uid" value="${escapeHtml(meta.config?.uid || '')}" oninput="syncQuizBankEditor()">
+              <small>Keep this stable for deployed files to preserve progress and tracker data.</small>
+            </div>
+            <div class="field">
+              <label>Title</label>
+              <input class="text-input" id="cfg-title" value="${escapeHtml(meta.config?.title || '')}" oninput="syncQuizBankEditor()">
+            </div>
+            <div class="field full">
+              <label>Description</label>
+              <textarea class="text-area" id="cfg-description" oninput="syncQuizBankEditor()">${escapeHtml(meta.config?.description || '')}</textarea>
+            </div>
+            ${isBank ? `
+              <div class="field">
+                <label>Icon</label>
+                <input class="text-input" id="cfg-icon" value="${escapeHtml(meta.config?.icon || '🗃️')}" oninput="syncQuizBankEditor()">
+              </div>
+            ` : ''}
+          </div>
+          <div class="panel-grid">
+            ${renderMetaCard('Questions', questions.length)}
+            ${renderMetaCard('Mode', isBank ? 'Bank' : 'Quiz')}
+            ${renderMetaCard('Engine', isBank ? 'bank-engine.js' : 'quiz-engine.js')}
+            ${renderMetaCard('Preview', 'Saved file output')}
+          </div>
+          <div class="editor-list">
+            ${questions.map((question, index) => renderQuestionCard(question, index)).join('')}
+          </div>
+          <button class="btn" onclick="addQuestion()">Add Question</button>
+        </div>
+      `;
+    }
+
+    function renderQuestionCard(question, index) {
+      const options = (question.options || ['', '', '', '']).slice(0, 4);
+      while (options.length < 4) options.push('');
+      return `
+        <div class="editor-card">
+          <div class="editor-card-header">
+            <div class="editor-card-title">Question ${index + 1}</div>
+            <div class="mini-actions">
+              <button class="mini-btn" onclick="moveQuestion(${index}, -1)" ${index === 0 ? 'disabled' : ''}>Up</button>
+              <button class="mini-btn" onclick="moveQuestion(${index}, 1)" ${index === (state.currentData.meta.questions || []).length - 1 ? 'disabled' : ''}>Down</button>
+              <button class="mini-btn" onclick="duplicateQuestion(${index})">Duplicate</button>
+              <button class="mini-btn delete" onclick="removeQuestion(${index})">Remove</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Question</label>
+            <textarea class="text-area q-question" data-index="${index}" oninput="syncQuizBankEditor()">${escapeHtml(question.question || '')}</textarea>
+          </div>
+          <div class="field">
+            <label>Options</label>
+            ${options.map((option, optionIndex) => `
+              <div class="option-row">
+                <input type="radio" name="correct-${index}" value="${optionIndex}" ${question.correct === optionIndex ? 'checked' : ''} onchange="syncQuizBankEditor()">
+                <input class="text-input q-option" data-index="${index}" data-option="${optionIndex}" value="${escapeHtml(option)}" oninput="syncQuizBankEditor()" placeholder="Option ${String.fromCharCode(65 + optionIndex)}">
+              </div>
+            `).join('')}
+          </div>
+          <div class="field">
+            <label>Explanation</label>
+            <textarea class="text-area q-explanation" data-index="${index}" oninput="syncQuizBankEditor()">${escapeHtml(question.explanation || '')}</textarea>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderIndexEditor(meta) {
+      const quizzes = meta.quizzes || [];
+      return `
+        <div class="editor-grid">
+          <div class="field-grid">
+            <div class="field">
+              <label>Page Title</label>
+              <input class="text-input" id="index-title" value="${escapeHtml(meta.title || '')}" oninput="syncIndexEditor()">
+            </div>
+            <div class="field">
+              <label>Hero Title</label>
+              <input class="text-input" id="index-hero-title" value="${escapeHtml(meta.hero_title || '')}" oninput="syncIndexEditor()">
+              <small>HTML is allowed here, for example <code>Select your &lt;span&gt;Gynecology exam&lt;/span&gt;</code>.</small>
+            </div>
+            <div class="field full">
+              <label>Hero Description</label>
+              <textarea class="text-area" id="index-description" oninput="syncIndexEditor()">${escapeHtml(meta.description || '')}</textarea>
+            </div>
+          </div>
+          <div class="editor-list">
+            ${quizzes.map((quiz, index) => renderIndexCard(quiz, index)).join('')}
+          </div>
+          <button class="btn" onclick="addIndexCard()">Add Card</button>
+        </div>
+      `;
+    }
+
+    function renderIndexCard(quiz, index) {
+      return `
+        <div class="editor-card">
+          <div class="editor-card-header">
+            <div class="editor-card-title">Card ${index + 1}</div>
+            <div class="mini-actions">
+              <button class="mini-btn" onclick="moveIndexCard(${index}, -1)" ${index === 0 ? 'disabled' : ''}>Up</button>
+              <button class="mini-btn" onclick="moveIndexCard(${index}, 1)" ${index === (state.currentData.meta.quizzes || []).length - 1 ? 'disabled' : ''}>Down</button>
+              <button class="mini-btn" onclick="duplicateIndexCard(${index})">Duplicate</button>
+              <button class="mini-btn delete" onclick="removeIndexCard(${index})">Remove</button>
+            </div>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label>Title</label>
+              <input class="text-input idx-title" data-index="${index}" value="${escapeHtml(quiz.title || '')}" oninput="syncIndexEditor()">
+            </div>
+            <div class="field">
+              <label>URL</label>
+              <input class="text-input idx-url" data-index="${index}" value="${escapeHtml(quiz.url || '')}" oninput="syncIndexEditor()">
+            </div>
+            <div class="field">
+              <label>Icon</label>
+              <input class="text-input idx-icon" data-index="${index}" value="${escapeHtml(quiz.icon || '')}" oninput="syncIndexEditor()">
+            </div>
+            <div class="field">
+              <label>Tags</label>
+              <input class="text-input idx-tags" data-index="${index}" value="${escapeHtml((quiz.tags || []).join(', '))}" oninput="syncIndexEditor()" placeholder="Folder, 30 Questions">
+            </div>
+            <div class="field full">
+              <label>Description</label>
+              <textarea class="text-area idx-description" data-index="${index}" oninput="syncIndexEditor()">${escapeHtml(quiz.description || '')}</textarea>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function onRawInput() {
+      if (!state.currentData) return;
+      state.currentData.content = document.getElementById('raw-html').value;
+      setDirty(true);
+    }
+
+    function replaceAssignedBlock(html, constName, openChar, closeChar, value) {
+      const openPattern = new RegExp(`const\\s+${constName}\\s*=\\s*\\${openChar}`);
+      const match = html.match(openPattern);
+      if (!match) return html;
+      const startIdx = html.indexOf(match[0]);
+      const blockStart = startIdx + match[0].length - 1;
+      let depth = 0;
+      let endIdx = -1;
+      for (let i = blockStart; i < html.length; i += 1) {
+        if (html[i] === openChar) depth += 1;
+        else if (html[i] === closeChar) {
+          depth -= 1;
+          if (depth === 0) {
+            endIdx = i;
+            break;
+          }
         }
+      }
+      if (endIdx === -1) return html;
+      const serialized = JSON.stringify(value, null, 2);
+      return `${html.slice(0, startIdx)}const ${constName} = ${serialized}${html.slice(endIdx + 1)}`;
+    }
 
-        function setPreviewTab(tab) {
-            document.querySelectorAll('.preview-tabs button').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
-            document.getElementById('preview-panel').classList.toggle('panel-visible', tab === 'preview');
-            document.getElementById('editor-panel').classList.toggle('panel-visible', tab === 'editor');
-            document.getElementById('metadata-panel').classList.toggle('panel-visible', tab === 'metadata');
-            document.getElementById('raw-panel').classList.toggle('panel-visible', tab === 'raw');
-            if (tab === 'editor') {
-                renderEditorPanel();
-            }
+    function updateRawAndMeta() {
+      const raw = document.getElementById('raw-html');
+      const metadataPanel = document.querySelector('#tab-metadata textarea');
+      if (raw) raw.value = state.currentData.content;
+      if (metadataPanel) metadataPanel.value = JSON.stringify(state.currentData.meta, null, 2);
+      setDirty(true);
+    }
+
+    function syncQuizBankEditor() {
+      if (!state.currentData) return;
+      const meta = state.currentData.meta;
+      const uid = document.getElementById('cfg-uid')?.value || '';
+      const title = document.getElementById('cfg-title')?.value || '';
+      const description = document.getElementById('cfg-description')?.value || '';
+      const icon = document.getElementById('cfg-icon')?.value || '🗃️';
+      const cards = Array.from(document.querySelectorAll('.editor-card'));
+      const questions = cards.map((card, index) => {
+        const questionText = card.querySelector('.q-question')?.value || '';
+        const options = Array.from(card.querySelectorAll('.q-option')).map(input => input.value || '');
+        const checked = card.querySelector(`input[name="correct-${index}"]:checked`);
+        const correct = checked ? Number(checked.value) : 0;
+        const explanation = card.querySelector('.q-explanation')?.value || '';
+        return { question: questionText, options, correct, explanation };
+      });
+      meta.config = meta.config || {};
+      meta.config.uid = uid;
+      meta.config.title = title;
+      meta.config.description = description;
+      if (meta.type === 'bank') meta.config.icon = icon;
+      meta.uid = uid;
+      meta.title = title;
+      meta.description = description;
+      meta.icon = meta.type === 'bank' ? icon : undefined;
+      meta.questions = questions;
+      meta.question_count = questions.length;
+      const configName = meta.type === 'bank' ? 'BANK_CONFIG' : 'QUIZ_CONFIG';
+      const arrayName = meta.type === 'bank' ? 'QUESTION_BANK' : 'QUESTIONS';
+      let updated = state.currentData.content;
+      updated = replaceAssignedBlock(updated, configName, '{', '}', meta.config);
+      updated = replaceAssignedBlock(updated, arrayName, '[', ']', questions);
+      state.currentData.content = updated;
+      updateRawAndMeta();
+    }
+
+    function syncIndexEditor() {
+      if (!state.currentData) return;
+      const meta = state.currentData.meta;
+      const title = document.getElementById('index-title')?.value || '';
+      const heroTitle = document.getElementById('index-hero-title')?.value || '';
+      const description = document.getElementById('index-description')?.value || '';
+      const cards = Array.from(document.querySelectorAll('.editor-card')).map(card => {
+        const cardTitle = card.querySelector('.idx-title')?.value || '';
+        const cardDescription = card.querySelector('.idx-description')?.value || '';
+        const cardUrl = card.querySelector('.idx-url')?.value || '';
+        const cardIcon = card.querySelector('.idx-icon')?.value || '';
+        const tags = (card.querySelector('.idx-tags')?.value || '')
+          .split(',')
+          .map(tag => tag.trim())
+          .filter(Boolean);
+        const entry = { title: cardTitle, description: cardDescription, url: cardUrl };
+        if (cardIcon) entry.icon = cardIcon;
+        if (tags.length) entry.tags = tags;
+        return entry;
+      });
+      meta.title = title;
+      meta.hero_title = heroTitle;
+      meta.description = description;
+      meta.quizzes = cards;
+      meta.question_count = cards.length;
+      let updated = state.currentData.content;
+      updated = replaceAssignedBlock(updated, 'QUIZZES', '[', ']', cards);
+      if (title) {
+        updated = updated.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(title)}</title>`);
+        updated = updated.replace(/<div class="topbar-title">[\s\S]*?<\/div>/i, `<div class="topbar-title">${escapeHtml(title)}</div>`);
+      }
+      const heroPattern = /<header class="hero">[\s\S]*?<\/header>/i;
+      if (heroPattern.test(updated)) {
+        updated = updated.replace(
+          heroPattern,
+          `<header class="hero">\n      <h1>${heroTitle}</h1>\n      <p>${escapeHtml(description)}</p>\n    </header>`
+        );
+      }
+      state.currentData.content = updated;
+      updateRawAndMeta();
+    }
+
+    function moveQuestion(index, delta) {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      const next = index + delta;
+      if (next < 0 || next >= list.length) return;
+      [list[index], list[next]] = [list[next], list[index]];
+      renderFilePanel();
+      setTab('editor');
+      syncQuizBankEditor();
+    }
+
+    function duplicateQuestion(index) {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      list.splice(index + 1, 0, clone(list[index]));
+      renderFilePanel();
+      setTab('editor');
+      syncQuizBankEditor();
+    }
+
+    function removeQuestion(index) {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      list.splice(index, 1);
+      renderFilePanel();
+      setTab('editor');
+      syncQuizBankEditor();
+    }
+
+    function addQuestion() {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      list.push({ question: '', options: ['', '', '', ''], correct: 0, explanation: '' });
+      renderFilePanel();
+      setTab('editor');
+      syncQuizBankEditor();
+    }
+
+    function moveIndexCard(index, delta) {
+      const list = state.currentData?.meta?.quizzes;
+      if (!list) return;
+      const next = index + delta;
+      if (next < 0 || next >= list.length) return;
+      [list[index], list[next]] = [list[next], list[index]];
+      renderFilePanel();
+      setTab('editor');
+      syncIndexEditor();
+    }
+
+    function duplicateIndexCard(index) {
+      const list = state.currentData?.meta?.quizzes;
+      if (!list) return;
+      list.splice(index + 1, 0, clone(list[index]));
+      renderFilePanel();
+      setTab('editor');
+      syncIndexEditor();
+    }
+
+    function removeIndexCard(index) {
+      const list = state.currentData?.meta?.quizzes;
+      if (!list) return;
+      list.splice(index, 1);
+      renderFilePanel();
+      setTab('editor');
+      syncIndexEditor();
+    }
+
+    function addIndexCard() {
+      const list = state.currentData?.meta?.quizzes;
+      if (!list) return;
+      list.push({ title: '', description: '', url: '', icon: '', tags: [] });
+      renderFilePanel();
+      setTab('editor');
+      syncIndexEditor();
+    }
+
+    async function saveFile() {
+      if (!state.currentFile || !state.currentData) {
+        showToast('No file is loaded.', 'warn');
+        return;
+      }
+      const raw = document.getElementById('raw-html');
+      const content = raw ? raw.value : state.currentData.content;
+      const result = await fetchJson('/admin/save-file', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: state.currentFile, content }),
+      });
+      state.currentData.content = content;
+      setDirty(false);
+      showToast(result.message || 'File saved.', 'success');
+      logActivity('Saved file', state.currentFile, 'success');
+      await runSync({ silentToast: true, preserveCurrent: true });
+    }
+
+    async function runSync({ silentToast = false, preserveCurrent = true } = {}) {
+      const result = await fetchJson('/admin/run-sync', { method: 'POST' });
+      if (!silentToast) showToast(result.message || 'Sync completed.', result.returncode === 0 ? 'success' : 'warn');
+      logActivity('Sync completed', result.output || result.stderr || 'No output.', result.returncode === 0 ? 'success' : 'warn');
+      await refreshWorkspace({ preserveCurrent });
+    }
+
+    async function convertFile() {
+      if (!state.currentFile) return;
+      const confirmMessage = 'Convert this file while keeping its UID and questions?';
+      if (!window.confirm(confirmMessage)) return;
+      const result = await fetchJson('/admin/convert-file', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: state.currentFile }),
+      });
+      showToast(result.message || 'File converted.', 'success');
+      logActivity('Converted file', `${state.currentFile}\n${result.message || ''}`, 'success');
+      await runSync({ silentToast: true, preserveCurrent: true });
+    }
+
+    function openModal({ title, subtitle = '', body, onOpen = null }) {
+      state.modalOpen = true;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-subtitle').textContent = subtitle;
+      document.getElementById('modal-body').innerHTML = body;
+      document.getElementById('modal').classList.add('open');
+      if (typeof onOpen === 'function') onOpen();
+    }
+
+    function closeModal() {
+      state.modalOpen = false;
+      document.getElementById('modal').classList.remove('open');
+      document.getElementById('modal-body').innerHTML = '';
+    }
+
+    function folderOptions(selected = '.') {
+      return state.folders.map(folder => `
+        <option value="${escapeHtml(folder)}" ${folder === selected ? 'selected' : ''}>
+          ${escapeHtml(folder === '.' ? 'root' : folder)}
+        </option>
+      `).join('');
+    }
+
+    function openNewFolderModal() {
+      openModal({
+        title: 'Create Folder',
+        subtitle: 'Creates the folder and a matching hub index page with correct root asset prefixes.',
+        body: `
+          <div class="field-grid">
+            <div class="field full">
+              <label>Folder Path</label>
+              <input class="text-input" id="folder-path" placeholder="gyn/new-topic">
+            </div>
+            <div class="field">
+              <label>Folder Title</label>
+              <input class="text-input" id="folder-title" placeholder="New Topic">
+            </div>
+            <div class="field">
+              <label>Hero Description</label>
+              <input class="text-input" id="folder-description" placeholder="Quizzes and resources for this section.">
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-primary" onclick="createFolder()">Create Folder</button>
+          </div>
+        `,
+      });
+    }
+
+    function openNewFileModal() {
+      openModal({
+        title: 'Create File',
+        subtitle: 'New quiz and bank pages follow the repo schema and derive path-based UIDs automatically.',
+        body: `
+          <div class="field-grid">
+            <div class="field">
+              <label>Type</label>
+              <select class="select-input" id="file-type" onchange="syncNewFileIconField()">
+                <option value="quiz">Quiz</option>
+                <option value="bank">Question Bank</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Folder</label>
+              <select class="select-input" id="file-folder">${folderOptions('.') }</select>
+            </div>
+            <div class="field full">
+              <label>Title</label>
+              <input class="text-input" id="file-title" placeholder="L1 Anatomy">
+            </div>
+            <div class="field full">
+              <label>Description</label>
+              <textarea class="text-area" id="file-description" placeholder="Short start-screen description"></textarea>
+            </div>
+            <div class="field">
+              <label>Filename Override</label>
+              <input class="text-input" id="file-name" placeholder="Optional: l1-anatomy">
+              <small>Leave blank to derive a kebab-case filename from the title.</small>
+            </div>
+            <div class="field" id="bank-icon-wrap" style="display:none;">
+              <label>Bank Icon</label>
+              <input class="text-input" id="file-icon" value="🗃️">
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-primary" onclick="createFile()">Create File</button>
+          </div>
+        `,
+        onOpen: syncNewFileIconField,
+      });
+    }
+
+    function syncNewFileIconField() {
+      const type = document.getElementById('file-type')?.value;
+      const wrap = document.getElementById('bank-icon-wrap');
+      if (wrap) wrap.style.display = type === 'bank' ? 'grid' : 'none';
+    }
+
+    function openMoveModal() {
+      if (!state.currentFile) return;
+      const current = state.currentFile.split('/').pop().replace(/\.html$/i, '');
+      const parent = state.currentFile.includes('/') ? state.currentFile.slice(0, state.currentFile.lastIndexOf('/')) : '.';
+      openModal({
+        title: 'Move or Rename File',
+        subtitle: 'The file contents stay intact. Existing UIDs are not rewritten automatically.',
+        body: `
+          <div class="field-grid">
+            <div class="field">
+              <label>Target Folder</label>
+              <select class="select-input" id="move-folder">${folderOptions(parent || '.') }</select>
+            </div>
+            <div class="field">
+              <label>New Filename</label>
+              <input class="text-input" id="move-name" value="${escapeHtml(current)}">
+              <small>Use a kebab-case name without <code>.html</code>.</small>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-primary" onclick="moveFile()">Apply</button>
+          </div>
+        `,
+      });
+    }
+
+    function openDeleteModal() {
+      if (!state.currentFile) return;
+      openModal({
+        title: 'Delete File',
+        subtitle: 'This removes the file from disk. Run sync afterward to refresh generated indexes.',
+        body: `
+          <div class="empty-state" style="text-align:left;">
+            <strong>${escapeHtml(state.currentFile)}</strong><br>
+            Delete this file from the project?
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-danger" onclick="deleteFile()">Delete File</button>
+          </div>
+        `,
+      });
+    }
+
+    function openGitModal() {
+      const git = state.projectState?.git || {};
+      const changed = (git.changedPaths || []).map(item => `<div class="badge">${escapeHtml(item.status)} ${escapeHtml(item.path)}</div>`).join('') || '<div class="muted">No changed paths.</div>';
+      openModal({
+        title: 'Git Actions',
+        subtitle: 'Commit and push from the local repository. These actions operate on the full worktree.',
+        body: `
+          <div class="panel-grid">
+            ${renderMetaCard('Branch', git.branch || 'unknown')}
+            ${renderMetaCard('Dirty Paths', git.dirtyCount ?? 0)}
+            ${renderMetaCard('Ahead', git.ahead ?? 0)}
+            ${renderMetaCard('Behind', git.behind ?? 0)}
+          </div>
+          <div class="field">
+            <label>Commit Message</label>
+            <input class="text-input" id="commit-message" value="Refactor admin dashboard">
+          </div>
+          <div class="field">
+            <label>Changed Paths</label>
+            <div class="badge-row">${changed}</div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn" onclick="commitChanges()">Commit</button>
+            <button class="btn btn-primary" onclick="pushChanges()">Push</button>
+          </div>
+        `,
+      });
+    }
+
+    async function createFolder() {
+      const name = document.getElementById('folder-path').value;
+      const title = document.getElementById('folder-title').value;
+      const description = document.getElementById('folder-description').value;
+      const result = await fetchJson('/admin/create-folder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, title, description }),
+      });
+      closeModal();
+      showToast(result.message || 'Folder created.', 'success');
+      logActivity('Created folder', result.path || name, 'success');
+      await runSync({ silentToast: true, preserveCurrent: false });
+    }
+
+    async function createFile() {
+      const type = document.getElementById('file-type').value;
+      const folder = document.getElementById('file-folder').value;
+      const title = document.getElementById('file-title').value;
+      const description = document.getElementById('file-description').value;
+      const filename = document.getElementById('file-name').value;
+      const icon = document.getElementById('file-icon')?.value || '🗃️';
+      const result = await fetchJson('/admin/create-file', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, folder, title, description, filename, icon }),
+      });
+      closeModal();
+      showToast(result.message || 'File created.', 'success');
+      logActivity('Created file', result.path || title, 'success');
+      await runSync({ silentToast: true, preserveCurrent: false });
+      if (result.path) await loadFile(result.path);
+    }
+
+    async function moveFile() {
+      const folder = document.getElementById('move-folder').value;
+      const filename = document.getElementById('move-name').value;
+      const previous = state.currentFile;
+      const result = await fetchJson('/admin/move-file', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: state.currentFile, folder, filename }),
+      });
+      closeModal();
+      showToast(result.message || 'File moved.', 'success');
+      logActivity('Moved file', `${previous}\n→ ${result.path}`, 'success');
+      state.currentFile = result.path;
+      await runSync({ silentToast: true, preserveCurrent: false });
+      await loadFile(result.path, { keepTab: false });
+    }
+
+    async function deleteFile() {
+      const deleted = state.currentFile;
+      const result = await fetchJson('/admin/delete-file', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: state.currentFile }),
+      });
+      closeModal();
+      showToast(result.message || 'File deleted.', 'success');
+      logActivity('Deleted file', deleted, 'warn');
+      state.currentFile = null;
+      state.currentData = null;
+      setDirty(false);
+      await runSync({ silentToast: true, preserveCurrent: false });
+      renderOverview();
+    }
+
+    async function commitChanges() {
+      const message = document.getElementById('commit-message').value;
+      const result = await fetchJson('/admin/git-commit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      });
+      showToast(result.message || 'Commit created.', 'success');
+      logActivity('Git commit', result.output || result.message || '', 'success');
+      await refreshWorkspace({ preserveCurrent: true });
+      closeModal();
+    }
+
+    async function pushChanges() {
+      const result = await fetchJson('/admin/git-push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      });
+      showToast(result.message || 'Push completed.', 'success');
+      logActivity('Git push', result.output || result.message || '', 'success');
+      await refreshWorkspace({ preserveCurrent: true });
+      closeModal();
+    }
+
+    function setupKeyboard() {
+      window.addEventListener('keydown', (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
+          if (state.currentFile) {
+            event.preventDefault();
+            saveFile();
+          }
+          return;
         }
-
-        function updateEditorButtons() {
-            const editorTab = document.getElementById('editor-tab-button');
-            if (!editorTab) return;
-            const showEditor = currentFileData && ['quiz', 'bank', 'index'].includes(currentFileData.meta.type);
-            editorTab.style.display = showEditor ? 'inline-flex' : 'none';
+        if (event.key === 'Escape' && state.modalOpen) {
+          closeModal();
+          return;
         }
-
-        function renderEditorPanel() {
-            const panel = document.getElementById('editor-panel');
-            if (!panel || !currentFileData) {
-                return;
-            }
-            const meta = currentFileData.meta;
-            if (meta.type === 'quiz' || meta.type === 'bank') {
-                renderQuizBankEditor(panel, meta);
-            } else if (meta.type === 'index') {
-                renderIndexEditor(panel, meta);
-            } else {
-                panel.innerHTML = '<p>Structured editing not available for this file type.</p>';
-            }
+        if (event.key === '/' && !state.modalOpen) {
+          const tag = document.activeElement?.tagName?.toLowerCase();
+          if (!['input', 'textarea', 'select'].includes(tag)) {
+            event.preventDefault();
+            document.getElementById('file-search')?.focus();
+          }
         }
+      });
 
-        function renderQuizBankEditor(panel, meta) {
-            const questions = meta.questions || [];
-            const isBank = meta.type === 'bank';
-            panel.innerHTML = `
-                <div class="editor-field">
-                    <label>UID</label>
-                    <input type="text" id="editor-uid" value="${escapeHtml(meta.config?.uid || '')}" oninput="syncEditorData()">
-                </div>
-                <div class="editor-field">
-                    <label>Title</label>
-                    <input type="text" id="editor-title" value="${escapeHtml(meta.config?.title || '')}" oninput="syncEditorData()">
-                </div>
-                <div class="editor-field">
-                    <label>Description</label>
-                    <textarea id="editor-description" rows="3" oninput="syncEditorData()">${escapeHtml(meta.config?.description || '')}</textarea>
-                </div>
-                ${isBank ? `
-                    <div class="editor-field">
-                        <label>Icon</label>
-                        <input type="text" id="editor-icon" value="${escapeHtml(meta.config?.icon || '🗃️')}" oninput="syncEditorData()">
-                    </div>
-                ` : ''}
-                <div id="questions-list"></div>
-                <button class="btn btn-secondary" style="width:100%;margin-top:1rem;" onclick="addEditorQuestion()">+ Add Question</button>
-            `;
-            const questionsList = document.getElementById('questions-list');
-            questionsList.innerHTML = '';
-            questions.forEach((question, index) => {
-                const card = document.createElement('div');
-                card.className = 'question-card';
-                card.innerHTML = `
-                    <div class="question-header">
-                        <span class="question-index">Question ${index + 1}</span>
-                        <button class="remove-question" type="button" onclick="removeEditorQuestion(${index})">Remove</button>
-                    </div>
-                    <div class="editor-field">
-                        <label>Question</label>
-                        <textarea class="editor-question" rows="3" oninput="syncEditorData()">${escapeHtml(question.question || '')}</textarea>
-                    </div>
-                    <div class="editor-field">
-                        <label>Options <span style="color:var(--text-muted);font-weight:400;font-size:0.8rem;">(● = correct answer)</span></label>
-                        <div class="editor-options-list">
-                        ${question.options.map((opt, optIndex) => `
-                            <div class="editor-option-row">
-                                <input type="radio" name="correct-${index}" class="option-radio" value="${optIndex}" ${question.correct === optIndex ? 'checked' : ''} onchange="syncEditorData()">
-                                <input class="editor-option" type="text" value="${escapeHtml(opt || '')}" placeholder="Option ${String.fromCharCode(65 + optIndex)}" oninput="syncEditorData()">
-                            </div>`).join('')}
-                        </div>
-                    </div>
-                    <div class="editor-field">
-                        <label>Explanation</label>
-                        <textarea class="editor-explanation" rows="2" oninput="syncEditorData()">${escapeHtml(question.explanation || '')}</textarea>
-                    </div>
-                `;
-                questionsList.appendChild(card);
-            });
-        }
+      window.addEventListener('beforeunload', (event) => {
+        if (!state.dirty) return;
+        event.preventDefault();
+        event.returnValue = '';
+      });
 
-        function renderIndexEditor(panel, meta) {
-            const quizzes = meta.quizzes || [];
-            panel.innerHTML = `
-                <div class="editor-field">
-                    <label>Page Title</label>
-                    <input type="text" id="index-page-title" value="${escapeHtml(meta.title || '')}" oninput="syncEditorData()">
-                </div>
-                <div class="editor-field">
-                    <label>Hero Title (HTML allowed)</label>
-                    <input type="text" id="index-hero-title" value="${escapeHtml(meta.hero_title || '')}" oninput="syncEditorData()">
-                </div>
-                <div class="editor-field">
-                    <label>Hero Description</label>
-                    <textarea id="index-hero-desc" rows="2" oninput="syncEditorData()">${escapeHtml(meta.description || '')}</textarea>
-                </div>
-                <hr style="border:0;border-top:1px solid var(--border);margin:1.5rem 0;">
-                <div class="editor-field">
-                    <label>Index Cards</label>
-                    <p class="hint" style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Edit card title, description, icon, tags, and URL. This updates the QUIZZES array in the index page.</p>
-                </div>
-                <div id="index-entries"></div>
-                <button class="btn btn-secondary" style="width:100%;margin-top:1rem;" onclick="addIndexCard()">+ Add Card</button>
-            `;
-            const entries = document.getElementById('index-entries');
-            entries.innerHTML = '';
-            quizzes.forEach((quiz, index) => {
-                const card = document.createElement('div');
-                card.className = 'question-card';
-                card.innerHTML = `
-                    <div class="question-header">
-                        <span class="question-index">Card ${index + 1}</span>
-                        <button class="remove-question" type="button" onclick="removeIndexCard(${index})">Remove</button>
-                    </div>
-                    <div class="editor-field">
-                        <label>Title</label>
-                        <input class="index-title" type="text" value="${escapeHtml(quiz.title || '')}" oninput="syncEditorData()">
-                    </div>
-                    <div class="editor-field">
-                        <label>Description</label>
-                        <textarea class="index-description" rows="2" oninput="syncEditorData()">${escapeHtml(quiz.description || '')}</textarea>
-                    </div>
-                    <div class="editor-field">
-                        <label>Icon</label>
-                        <input class="index-icon" type="text" value="${escapeHtml(quiz.icon || '')}" oninput="syncEditorData()">
-                    </div>
-                    <div class="editor-field">
-                        <label>URL</label>
-                        <input class="index-url" type="text" value="${escapeHtml(quiz.url || '')}" oninput="syncEditorData()">
-                    </div>
-                    <div class="editor-field">
-                        <label>Tags (comma separated)</label>
-                        <input class="index-tags" type="text" value="${escapeHtml((quiz.tags || []).join(', '))}" oninput="syncEditorData()">
-                    </div>
-                `;
-                entries.appendChild(card);
-            });
-        }
+      document.getElementById('modal').addEventListener('click', (event) => {
+        if (event.target.id === 'modal') closeModal();
+      });
+    }
 
-        function syncEditorData() {
-            if (!currentFileData) return;
-            const meta = currentFileData.meta;
-            if (meta.type === 'quiz' || meta.type === 'bank') {
-                const title = document.getElementById('editor-title')?.value || '';
-                const description = document.getElementById('editor-description')?.value || '';
-                const uid = document.getElementById('editor-uid')?.value || '';
-                const icon = document.getElementById('editor-icon')?.value || '🗃️';
-                const questions = Array.from(document.querySelectorAll('.question-card')).map(card => {
-                    const questionText = card.querySelector('.editor-question')?.value || '';
-                    const options = Array.from(card.querySelectorAll('.editor-option')).map(input => input.value || '');
-                    const checkedRadio = card.querySelector('.option-radio:checked');
-                    const correct = checkedRadio ? parseInt(checkedRadio.value, 10) : 0;
-                    const explanation = card.querySelector('.editor-explanation')?.value || '';
-                    return { question: questionText, options, correct, explanation };
-                });
-                meta.config = meta.config || {};
-                meta.config.uid = uid;
-                meta.config.title = title;
-                meta.config.description = description;
-                if (meta.type === 'bank') meta.config.icon = icon;
-                meta.questions = questions;
-                const currentHtml = document.getElementById('file-content')?.value || currentFileData.content;
-                currentFileData.content = replaceQuizBankBlock(currentHtml, meta.type, meta.config, questions);
-            } else if (meta.type === 'index') {
-                const pageTitle = document.getElementById('index-page-title')?.value || '';
-                const heroTitle = document.getElementById('index-hero-title')?.value || '';
-                const heroDesc = document.getElementById('index-hero-desc')?.value || '';
-                
-                meta.title = pageTitle;
-                meta.hero_title = heroTitle;
-                meta.description = heroDesc;
+    async function boot() {
+      restoreTheme();
+      setupKeyboard();
+      renderActivity();
+      await refreshWorkspace({ preserveCurrent: false });
+      showToast('Dashboard ready. Search files with / and save with Ctrl+S.', 'info');
+    }
 
-                const quizzes = Array.from(document.querySelectorAll('#index-entries .question-card')).map(card => {
-                    const title = card.querySelector('.index-title')?.value || '';
-                    const description = card.querySelector('.index-description')?.value || '';
-                    const icon = card.querySelector('.index-icon')?.value || '';
-                    const url = card.querySelector('.index-url')?.value || '';
-                    const tags = (card.querySelector('.index-tags')?.value || '').split(',').map(tag => tag.trim()).filter(Boolean);
-                    const entry = { title, description, url };
-                    if (icon) entry.icon = icon;
-                    if (tags.length) entry.tags = tags;
-                    return entry;
-                });
-                meta.quizzes = quizzes;
-                
-                let currentHtml = document.getElementById('file-content')?.value || currentFileData.content;
-                currentHtml = replaceQuizzesBlock(currentHtml, quizzes);
-                
-                if (pageTitle) {
-                    currentHtml = currentHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(pageTitle)}</title>`);
-                    currentHtml = currentHtml.replace(/<div class="topbar-title">[\s\S]*?<\/div>/i, `<div class="topbar-title">${escapeHtml(pageTitle)}</div>`);
-                }
-                if (heroTitle || heroDesc) {
-                    currentHtml = currentHtml.replace(/<header class="hero">\s*<h1>[\s\S]*?<\/h1>\s*<p>[\s\S]*?<\/p>\s*<\/header>/i, `<header class="hero">\n      <h1>${heroTitle}</h1>\n      <p>${escapeHtml(heroDesc)}</p>\n    </header>`);
-                }
-                
-                currentFileData.content = currentHtml;
-            }
-            const rawArea = document.getElementById('file-content');
-            if (rawArea) {
-                rawArea.value = currentFileData.content;
-            }
-            updateMetadataDisplay();
-            const saveButton = document.getElementById('save-button');
-            if (saveButton) saveButton.textContent = 'Save*';
-        }
-
-        function replaceConfigBlock(html, blockName, configObj) {
-            const configJson = JSON.stringify(configObj, null, 2);
-            const startMatch = html.match(new RegExp('const\\s+' + blockName + '\\s*=\\s*\\{'));
-            if (startMatch) {
-                const startIdx = html.indexOf(startMatch[0]);
-                const blockStart = startIdx + startMatch[0].length - 1;
-                let braceCount = 0;
-                let blockEnd = -1;
-                for (let i = blockStart; i < html.length; i++) {
-                    if (html[i] === '{') braceCount++;
-                    else if (html[i] === '}') {
-                        braceCount--;
-                        if (braceCount === 0) {
-                            blockEnd = i;
-                            break;
-                        }
-                    }
-                }
-                if (blockEnd !== -1) {
-                    const before = html.substring(0, startIdx);
-                    const after = html.substring(blockEnd + 1);
-                    return before + 'const ' + blockName + ' = ' + configJson + after;
-                }
-            }
-            return html;
-        }
-
-        function replaceArrayBlock(html, arrayName, arrayObj) {
-            const arrayJson = JSON.stringify(arrayObj, null, 2);
-            const startMatch = html.match(new RegExp('const\\s+' + arrayName + '\\s*=\\s*\\['));
-            if (startMatch) {
-                const startIdx = html.indexOf(startMatch[0]);
-                const blockStart = startIdx + startMatch[0].length - 1;
-                let bracketCount = 0;
-                let blockEnd = -1;
-                for (let i = blockStart; i < html.length; i++) {
-                    if (html[i] === '[') bracketCount++;
-                    else if (html[i] === ']') {
-                        bracketCount--;
-                        if (bracketCount === 0) {
-                            blockEnd = i;
-                            break;
-                        }
-                    }
-                }
-                if (blockEnd !== -1) {
-                    const before = html.substring(0, startIdx);
-                    const after = html.substring(blockEnd + 1);
-                    return before + 'const ' + arrayName + ' = ' + arrayJson + after;
-                }
-            }
-            return html;
-        }
-
-        function replaceQuizBankBlock(html, type, config, questions) {
-            let result = html;
-            const blockName = type === 'bank' ? 'BANK_CONFIG' : 'QUIZ_CONFIG';
-            const arrayName = type === 'bank' ? 'QUESTION_BANK' : 'QUESTIONS';
-            result = replaceConfigBlock(result, blockName, config);
-            result = replaceArrayBlock(result, arrayName, questions);
-            return result;
-        }
-
-        function replaceQuizzesBlock(html, quizzes) {
-            return replaceArrayBlock(html, 'QUIZZES', quizzes);
-        }
-
-        function addEditorQuestion() {
-            if (!currentFileData) return;
-            currentFileData.meta.questions = currentFileData.meta.questions || [];
-            currentFileData.meta.questions.push({ question: '', options: ['', '', '', ''], correct: 0, explanation: '' });
-            renderEditorPanel();
-            syncEditorData();
-        }
-
-        function removeEditorQuestion(index) {
-            if (!currentFileData) return;
-            currentFileData.meta.questions.splice(index, 1);
-            renderEditorPanel();
-            syncEditorData();
-        }
-
-        function addIndexCard() {
-            if (!currentFileData) return;
-            currentFileData.meta.quizzes = currentFileData.meta.quizzes || [];
-            currentFileData.meta.quizzes.push({ title: '', description: '', url: '', icon: '', tags: [] });
-            renderEditorPanel();
-            syncEditorData();
-        }
-
-        function removeIndexCard(index) {
-            if (!currentFileData) return;
-            currentFileData.meta.quizzes.splice(index, 1);
-            renderEditorPanel();
-            syncEditorData();
-        }
-
-        function updateMetadataDisplay() {
-            const metaText = document.querySelector('#metadata-panel textarea');
-            if (metaText && currentFileData) {
-                metaText.value = JSON.stringify(currentFileData.meta, null, 2);
-            }
-        }
-
-        async function saveFile() {
-            const contentField = document.getElementById('file-content');
-            if (!contentField) {
-                alert('No file is loaded.');
-                return;
-            }
-            const content = contentField.value;
-            const response = await fetch('/admin/save-file', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ path: currentFile, content })
-            });
-            const result = await response.json();
-            alert(result.message);
-            if (response.ok) {
-                runSync();
-            }
-        }
-
-        async function convertFile() {
-            const response = await fetch('/admin/convert-file', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ path: currentFile })
-            });
-            const result = await response.json();
-            alert(result.message);
-            if (response.ok) {
-                loadFile(currentFile); // Reload
-                runSync();
-            }
-        }
-
-        async function runSync() {
-            await fetch('/admin/run-sync', { method: 'POST' });
-            refreshTree();
-        }
-
-        function refreshTree() {
-            loadFileTree();
-        }
-
-        function showModal(type) {
-            let body = '';
-            if (type === 'new-folder') {
-        
-                body = `
-                    <h3>Create New Folder</h3>
-                    <div class="form-group">
-                        <label>Folder Name:</label>
-                        <input type="text" id="new-folder-name" placeholder="e.g. gyn/new-topic">
-                    </div>
-                    <div class="actions">
-                        <button class="btn" onclick="createFolder()">Create</button>
-                    </div>
-                `;
-            } else if (type === 'new-file') {
-                body = `
-                    <h3>Create New File</h3>
-                    <div class="form-group">
-                        <label>Type:</label>
-                        <select id="new-file-type">
-                            <option value="quiz">Quiz</option>
-                            <option value="bank">Question Bank</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Title:</label>
-                        <input type="text" id="new-file-title" placeholder="L1 Anatomy">
-                    </div>
-                    <div class="form-group">
-                        <label>Description:</label>
-                        <input type="text" id="new-file-desc" placeholder="Short description">
-                    </div>
-                    <div class="form-group">
-                        <label>Folder:</label>
-                        <select id="new-file-folder"></select>
-                    </div>
-                    <div class="actions">
-                        <button class="btn" onclick="createFile()">Create</button>
-                    </div>
-                `;
-                setTimeout(populateFolderDropdown, 0);
-            } else if (type === 'move-file') {
-                body = `
-                    <h3>Move File</h3>
-                    <div class="form-group">
-                        <label>Target Folder:</label>
-                        <select id="move-file-folder"></select>
-                    </div>
-                    <div class="actions">
-                        <button class="btn" onclick="moveFile()">Move</button>
-                    </div>
-                `;
-                setTimeout(populateFolderDropdown, 0);
-            } else if (type === 'git-actions') {
-                body = `
-                    <h3>Git Actions</h3>
-                    <div class="form-group">
-                        <label>Commit Message:</label>
-                        <input type="text" id="commit-message" value="Update quiz files">
-                    </div>
-                    <div class="actions">
-                        <button class="btn" onclick="commitChanges()">Commit</button>
-                        <button class="btn btn-secondary" onclick="pushChanges()">Push</button>
-                    </div>
-                `;
-            }
-            document.getElementById('modal-body').innerHTML = body;
-            document.getElementById('modal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-        }
-
-        async function createFolder() {
-            const name = document.getElementById('new-folder-name').value;
-            const response = await fetch('/admin/create-folder', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name })
-            });
-            const result = await response.json();
-            alert(result.message);
-            if (response.ok) {
-                closeModal();
-                refreshTree();
-                runSync();
-            }
-        }
-
-        async function createFile() {
-            const type = document.getElementById('new-file-type').value;
-            const title = document.getElementById('new-file-title').value;
-            const desc = document.getElementById('new-file-desc').value;
-            const folder = document.getElementById('new-file-folder').value;
-            const response = await fetch('/admin/create-file', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ type, title, description: desc, folder })
-            });
-            const result = await response.json();
-            alert(result.message);
-            if (response.ok) {
-                closeModal();
-                refreshTree();
-                runSync();
-            }
-        }
-
-        async function moveFile() {
-            const folder = document.getElementById('move-file-folder').value;
-            const response = await fetch('/admin/move-file', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ path: currentFile, folder })
-            });
-            const result = await response.json();
-            alert(result.message);
-            if (response.ok) {
-                currentFile = result.path;
-                closeModal();
-                refreshTree();
-                loadFile(currentFile);
-            }
-        }
-
-        async function commitChanges() {
-            const message = document.getElementById('commit-message').value;
-            const response = await fetch('/admin/git-commit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message })
-            });
-            const result = await response.json();
-            alert(result.message);
-            if (response.ok) {
-                closeModal();
-            }
-        }
-
-        async function pushChanges() {
-            const response = await fetch('/admin/git-push', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
-            });
-            const result = await response.json();
-            alert(result.message);
-            if (response.ok) {
-                closeModal();
-            }
-        }
-
-        async function populateFolderDropdown() {
-            const response = await fetch('/admin/folders');
-            if (!response.ok) return;
-            const folders = await response.json();
-            const createSelect = document.getElementById('new-file-folder');
-            const moveSelect = document.getElementById('move-file-folder');
-            if (createSelect) {
-                createSelect.innerHTML = '';
-                folders.forEach(folder => {
-                    const opt = document.createElement('option');
-                    opt.value = folder;
-                    opt.textContent = folder === '.' ? 'root' : folder;
-                    createSelect.appendChild(opt);
-                });
-            }
-            if (moveSelect) {
-                moveSelect.innerHTML = '';
-                folders.forEach(folder => {
-                    const opt = document.createElement('option');
-                    opt.value = folder;
-                    opt.textContent = folder === '.' ? 'root' : folder;
-                    moveSelect.appendChild(opt);
-                });
-            }
-        }
-
-        function escapeHtml(unsafe) {
-            return unsafe
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        // Load initial data
-        loadFileTree();
-    </script>
+    boot().catch((error) => {
+      console.error(error);
+      showToast(error.message || 'Failed to load dashboard.', 'error');
+      logActivity('Dashboard error', error.message || String(error), 'error');
+    });
+  </script>
 </body>
 </html>
 """
 
-# Utility functions
-def get_project_name():
-    """Get project name from manifest or directory"""
-    manifest = PROJECT_ROOT / 'manifest.webmanifest'
-    if manifest.exists():
-        try:
-            with open(manifest, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                return data.get('name', 'Quiz Project')
-        except:
-            pass
-    return PROJECT_ROOT.name
 
-def scan_files():
-    """Scan for HTML files and build tree structure"""
-    tree = {}
+def is_relative_to(path: Path, base: Path) -> bool:
+    try:
+        path.relative_to(base)
+        return True
+    except ValueError:
+        return False
+
+
+def to_posix(path: Path) -> str:
+    return path.as_posix()
+
+
+def normalize_rel_path(raw_path: str) -> str:
+    cleaned = str(raw_path or "").strip().replace("\\", "/").strip("/")
+    return "." if cleaned in {"", "."} else cleaned
+
+
+def resolve_project_path(raw_path: str, *, must_exist: bool = False, file_only: bool = False) -> Path:
+    rel = normalize_rel_path(raw_path)
+    candidate = PROJECT_ROOT if rel == "." else (PROJECT_ROOT / rel).resolve()
+    if not is_relative_to(candidate, PROJECT_ROOT):
+        raise ValueError("Path escapes the project root.")
+    if must_exist and not candidate.exists():
+        raise FileNotFoundError("Path does not exist.")
+    if file_only and candidate.suffix.lower() not in EDITABLE_SUFFIXES:
+        raise ValueError("Only HTML files are editable through this dashboard.")
+    return candidate
+
+
+def relative_path(path: Path) -> str:
+    return to_posix(path.relative_to(PROJECT_ROOT))
+
+
+def should_skip_dir(name: str) -> bool:
+    return name in SKIP_DIRS or name.startswith(".")
+
+
+def slugify(text: str, *, default: str = "untitled") -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+    slug = re.sub(r"-{2,}", "-", slug)
+    return slug or default
+
+
+def snakeify(text: str, *, default: str = "item") -> str:
+    slug = re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")
+    slug = re.sub(r"_{2,}", "_", slug)
+    return slug or default
+
+
+def title_from_segment(segment: str) -> str:
+    segment = segment.replace(".", " ").replace("-", " ").replace("_", " ")
+    words = [word for word in segment.split() if word]
+    return " ".join(word.capitalize() for word in words) or "Untitled"
+
+
+def read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def write_text(path: Path, content: str) -> None:
+    path.write_text(content, encoding="utf-8")
+
+
+def iter_html_files() -> list[Path]:
+    html_files: list[Path] = []
     for root, dirs, files in os.walk(PROJECT_ROOT):
-        # Skip hidden dirs and scripts
-        dirs[:] = [d for d in dirs if not d.startswith('.') and d != 'scripts' and d != '__pycache__']
-
-        rel_root = os.path.relpath(root, PROJECT_ROOT)
-        parts = [] if rel_root == '.' else rel_root.split(os.sep)
-        rel_parts = []
-        current = tree
-        for part in parts:
-            rel_parts.append(part)
-            current_rel_path = os.path.join(*rel_parts)
-            if part not in current:
-                current[part] = {'type': 'folder', 'path': os.path.normpath(current_rel_path), 'children': {}}
-            current = current[part]['children']
-
-        for file in files:
-            if file.endswith('.html'):
-                path = os.path.normpath(os.path.join(rel_root, file)) if rel_root != '.' else file
-                icon = '📄'
-                if file == 'index.html':
-                    icon = '🏠'
-                elif file.lower().startswith('all-') or file.lower().endswith('-bank.html'):
-                    icon = '🗃️'
-                current[file] = {'type': 'file', 'path': path, 'icon': icon}
-
-    return tree
+        dirs[:] = [d for d in dirs if not should_skip_dir(d)]
+        for filename in files:
+            if filename.lower().endswith(".html"):
+                html_files.append(Path(root) / filename)
+    return sorted(html_files, key=lambda item: relative_path(item).lower())
 
 
-def scan_folders():
-    """Return a list of folder paths for dropdowns"""
-    folders = ['.']
-    for root, dirs, files in os.walk(PROJECT_ROOT):
-        dirs[:] = [d for d in dirs if not d.startswith('.') and d != 'scripts' and d != '__pycache__']
-        rel_root = os.path.relpath(root, PROJECT_ROOT)
-        if rel_root != '.':
-            folders.append(rel_root)
+def scan_folders() -> list[str]:
+    folders = ["."]
+    for root, dirs, _files in os.walk(PROJECT_ROOT):
+        dirs[:] = [d for d in dirs if not should_skip_dir(d)]
+        rel = Path(root).relative_to(PROJECT_ROOT)
+        if str(rel) != ".":
+            folders.append(to_posix(rel))
     return sorted(set(folders))
 
-def extract_block(content, prefix, open_char, close_char):
-    import re
-    match = re.search(rf'const\s+{prefix}\s*=\s*\{open_char}', content)
+
+def extract_assigned_literal(content: str, const_name: str, open_char: str, close_char: str) -> str | None:
+    match = re.search(rf"const\s+{re.escape(const_name)}\s*=\s*{re.escape(open_char)}", content)
     if not match:
         return None
-    start_idx = match.start()
-    block_start = content.find(open_char, start_idx)
-    if block_start == -1:
+    start = content.find(open_char, match.start())
+    if start == -1:
         return None
-    brace_count = 0
-    for i in range(block_start, len(content)):
-        if content[i] == open_char:
-            brace_count += 1
-        elif content[i] == close_char:
-            brace_count -= 1
-            if brace_count == 0:
-                return content[block_start:i+1]
+    depth = 0
+    for index in range(start, len(content)):
+        char = content[index]
+        if char == open_char:
+            depth += 1
+        elif char == close_char:
+            depth -= 1
+            if depth == 0:
+                return content[start : index + 1]
     return None
 
-def sanitize_json(block):
-    import re
-    block = re.sub(r'(?<!:)\/\/.*', '', block)
-    block = re.sub(r'/\*.*?\*/', '', block, flags=re.DOTALL)
-    block = re.sub(r'([{,]\s*)([a-zA-Z_][a-zA-Z0-9_]*)\s*:', r'\1"\2":', block)
-    block = re.sub(r"'([^'\\]*(?:\\.[^'\\]*)*)'", lambda m: '"' + m.group(1).replace('"', '\\"') + '"', block)
-    block = re.sub(r',\s*([\]}])', r'\1', block)
+
+def sanitize_jsonish(block: str) -> str:
+    block = re.sub(r"(?<!:)//.*", "", block)
+    block = re.sub(r"/\*.*?\*/", "", block, flags=re.DOTALL)
+    block = re.sub(r"([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:", r'\1"\2":', block)
+    block = re.sub(
+        r"'([^'\\]*(?:\\.[^'\\]*)*)'",
+        lambda match: '"' + match.group(1).replace('"', '\\"') + '"',
+        block,
+    )
+    block = re.sub(r",\s*([\]}])", r"\1", block)
     return block
 
-def parse_quiz_file(content):
-    """Extract QUIZ_CONFIG or BANK_CONFIG from HTML"""
-    block = extract_block(content, 'QUIZ_CONFIG', '{', '}')
-    if block:
-        try:
-            return 'QUIZ_CONFIG', json.loads(block)
-        except:
-            try:
-                return 'QUIZ_CONFIG', json.loads(sanitize_json(block))
-            except:
-                pass
-    block = extract_block(content, 'BANK_CONFIG', '{', '}')
-    if block:
-        try:
-            return 'BANK_CONFIG', json.loads(block)
-        except:
-            try:
-                return 'BANK_CONFIG', json.loads(sanitize_json(block))
-            except:
-                pass
-    return None, None
 
-def parse_question_array(content, array_name):
-    block = extract_block(content, array_name, '[', ']')
-    if block:
-        try:
-            return json.loads(block)
-        except:
-            try:
-                return json.loads(sanitize_json(block))
-            except:
-                pass
-    return []
-
-def parse_index_array(content):
-    block = extract_block(content, 'QUIZZES', '[', ']')
-    if block:
-        try:
-            return json.loads(block)
-        except:
-            try:
-                return json.loads(sanitize_json(block))
-            except:
-                pass
-    return None
+def parse_jsonish(block: str) -> Any:
+    return json.loads(block)
 
 
-def parse_file_metadata(content):
-    config_type, config = parse_quiz_file(content)
-    if config_type == 'QUIZ_CONFIG':
-        questions = parse_question_array(content, 'QUESTIONS')
+def parse_literal(content: str, const_name: str, open_char: str, close_char: str) -> Any | None:
+    block = extract_assigned_literal(content, const_name, open_char, close_char)
+    if block is None:
+        return None
+    try:
+        return parse_jsonish(block)
+    except json.JSONDecodeError:
+        try:
+            return parse_jsonish(sanitize_jsonish(block))
+        except json.JSONDecodeError:
+            return None
+
+
+def parse_file_metadata(content: str) -> dict[str, Any]:
+    quiz_config = parse_literal(content, "QUIZ_CONFIG", "{", "}")
+    if isinstance(quiz_config, dict):
+        questions = parse_literal(content, "QUESTIONS", "[", "]") or []
         return {
-            'type': 'quiz',
-            'uid': config.get('uid'),
-            'title': config.get('title'),
-            'description': config.get('description'),
-            'question_count': len(questions),
-            'config': config,
-            'questions': questions
+            "type": "quiz",
+            "uid": quiz_config.get("uid"),
+            "title": quiz_config.get("title"),
+            "description": quiz_config.get("description"),
+            "question_count": len(questions),
+            "config": quiz_config,
+            "questions": questions,
         }
 
-    if config_type == 'BANK_CONFIG':
-        bank_questions = parse_question_array(content, 'QUESTION_BANK')
+    bank_config = parse_literal(content, "BANK_CONFIG", "{", "}")
+    if isinstance(bank_config, dict):
+        bank_questions = parse_literal(content, "QUESTION_BANK", "[", "]") or []
         return {
-            'type': 'bank',
-            'uid': config.get('uid'),
-            'title': config.get('title'),
-            'description': config.get('description'),
-            'icon': config.get('icon'),
-            'question_count': len(bank_questions),
-            'config': config,
-            'questions': bank_questions
+            "type": "bank",
+            "uid": bank_config.get("uid"),
+            "title": bank_config.get("title"),
+            "description": bank_config.get("description"),
+            "icon": bank_config.get("icon"),
+            "question_count": len(bank_questions),
+            "config": bank_config,
+            "questions": bank_questions,
         }
 
-    quizzes = parse_index_array(content)
-    if quizzes is not None:
-        title_match = re.search(r'<title>(.*?)</title>', content, re.IGNORECASE)
-        desc_match = re.search(r'<header class="hero">\s*<h1>(.*?)</h1>\s*<p>(.*?)</p>', content, re.DOTALL | re.IGNORECASE)
-        
-        title = title_match.group(1).strip() if title_match else None
-        hero_title = desc_match.group(1).strip() if desc_match else None
-        hero_description = desc_match.group(2).strip() if desc_match else None
-
+    quizzes = parse_literal(content, "QUIZZES", "[", "]")
+    if isinstance(quizzes, list):
+        title_match = re.search(r"<title>(.*?)</title>", content, re.IGNORECASE | re.DOTALL)
+        hero_match = re.search(
+            r'<header class="hero">\s*<h1>(.*?)</h1>\s*<p>(.*?)</p>',
+            content,
+            re.IGNORECASE | re.DOTALL,
+        )
         return {
-            'type': 'index',
-            'title': title,
-            'description': hero_description,
-            'hero_title': hero_title,
-            'question_count': len(quizzes),
-            'quizzes': quizzes
+            "type": "index",
+            "title": title_match.group(1).strip() if title_match else None,
+            "hero_title": hero_match.group(1).strip() if hero_match else "",
+            "description": hero_match.group(2).strip() if hero_match else "",
+            "question_count": len(quizzes),
+            "quizzes": quizzes,
         }
 
-    return {'type': 'html', 'question_count': 0}
+    return {"type": "html", "question_count": 0}
 
 
-def generate_uid(prefix='file'):
-    """Generate unique ID"""
-    return f"{prefix}_{uuid.uuid4().hex[:8]}"
+def infer_icon(meta_type: str, name: str) -> str:
+    if name == "index.html" or meta_type == "index":
+        return "🏠"
+    if meta_type == "quiz":
+        return "📝"
+    if meta_type == "bank":
+        return "🗃️"
+    return "📄"
 
-def create_quiz_html(config, questions=None):
-    """Generate HTML for quiz file"""
-    if questions is None:
-        questions = [{"question": "Sample question?", "options": ["A", "B", "C", "D"], "correct": 0, "explanation": "Sample explanation."}]
 
-    config_json = json.dumps(config, indent=2)
-    questions_json = json.dumps(questions, indent=2)
+def collect_file_records() -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for html_path in iter_html_files():
+        content = read_text(html_path)
+        meta = parse_file_metadata(content)
+        rel = relative_path(html_path)
+        stat = html_path.stat()
+        records.append(
+            {
+                "path": rel,
+                "name": html_path.name,
+                "folder": to_posix(html_path.parent.relative_to(PROJECT_ROOT))
+                if html_path.parent != PROJECT_ROOT
+                else ".",
+                "type": meta.get("type", "html"),
+                "title": meta.get("title") or html_path.stem,
+                "description": meta.get("description") or "",
+                "uid": meta.get("uid") or "",
+                "question_count": meta.get("question_count", 0),
+                "icon": infer_icon(meta.get("type", "html"), html_path.name),
+                "modified": stat.st_mtime,
+            }
+        )
+    records.sort(key=lambda record: record["path"].lower())
+    return records
 
-    html = f'''<!DOCTYPE html>
+
+def find_existing_uids() -> set[str]:
+    uids: set[str] = set()
+    for path in iter_html_files():
+        meta = parse_file_metadata(read_text(path))
+        uid = meta.get("uid")
+        if uid:
+            uids.add(uid)
+    return uids
+
+
+def derive_uid(folder: str, stem: str) -> str:
+    parts = [] if folder in {"", "."} else folder.split("/")
+    parts.append(stem)
+    return snakeify("_".join(parts), default="quiz_file")
+
+
+def ensure_unique_html_path(folder_path: Path, stem: str) -> Path:
+    candidate = folder_path / f"{stem}.html"
+    counter = 2
+    while candidate.exists():
+        candidate = folder_path / f"{stem}-{counter}.html"
+        counter += 1
+    return candidate
+
+
+def relative_prefix(folder_rel: str) -> str:
+    if folder_rel in {"", "."}:
+        return ""
+    depth = len(Path(folder_rel).parts)
+    return "../" * depth
+
+
+def build_index_page_context(folder_rel: str, title: str = "", description: str = "") -> dict[str, str]:
+    parts = [] if folder_rel in {"", "."} else folder_rel.split("/")
+    prefix = relative_prefix(folder_rel)
+    if not parts:
+        page_title = "MU61 Quiz"
+        hero_title = "Select your <span>subject</span>"
+        hero_description = description or "Choose a section to begin."
+        topbar_title = "MU61 Quiz"
+        back_link = ""
+    elif len(parts) == 1:
+        subject = title or title_from_segment(parts[0])
+        page_title = f"MU61 Quiz - {subject}"
+        hero_title = f"Select your <span>{subject} exam</span>"
+        hero_description = description or f"{subject} quizzes and resources."
+        topbar_title = page_title
+        back_link = f'<a href="../index.html" class="icon-btn back-btn" title="Back">←</a>'
+    else:
+        subject = title_from_segment(parts[0])
+        scope = title or " ".join(title_from_segment(part) for part in parts[1:])
+        page_title = f"MU61 Quiz - {subject} {scope}"
+        hero_title = f"Select your <span>{subject} {scope}</span>"
+        hero_description = description or f"{scope} quizzes and folders for {subject}."
+        topbar_title = page_title
+        back_link = f'<a href="../index.html" class="icon-btn back-btn" title="Back">←</a>'
+
+    return {
+        "page_title": page_title,
+        "hero_title": hero_title,
+        "hero_description": hero_description,
+        "topbar_title": topbar_title,
+        "prefix": prefix,
+        "back_link": back_link,
+    }
+
+
+def create_quiz_html(config: dict[str, Any], questions: list[dict[str, Any]] | None = None) -> str:
+    questions = questions or [
+        {
+            "question": "Sample question?",
+            "options": ["A", "B", "C", "D"],
+            "correct": 0,
+            "explanation": "Sample explanation.",
+        }
+    ]
+    return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -1101,37 +2468,41 @@ def create_quiz_html(config, questions=None):
 <script>
 (function(){{var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
 s.textContent='html,body{{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}}';
-document.head.appendChild(s);}})();
+document.head.appendChild(s)}})();
 </script>
 <title>{config['title']}</title>
 </head>
 <body>
 <script>
 /* [QUIZ_CONFIG_START] */
-const QUIZ_CONFIG = {config_json};
+const QUIZ_CONFIG = {json.dumps(config, indent=2)};
 /* [QUIZ_CONFIG_END] */
 
 /* [QUESTIONS_START] */
-const QUESTIONS = {questions_json};
+const QUESTIONS = {json.dumps(questions, indent=2)};
 /* [QUESTIONS_END] */
 </script>
 <script>
-(function(){{window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
-document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"></scr'+'ipt>');}})();
+(function(){{
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'quiz-engine.js"><\\/scr'+'ipt>');
+}})();
 </script>
 </body>
-</html>'''
-    return html
+</html>
+"""
 
-def create_bank_html(config, questions=None):
-    """Generate HTML for bank file"""
-    if questions is None:
-        questions = [{"question": "Sample question?", "options": ["A", "B", "C", "D"], "correct": 0, "explanation": "Sample explanation."}]
 
-    config_json = json.dumps(config, indent=2)
-    questions_json = json.dumps(questions, indent=2)
-
-    html = f'''<!DOCTYPE html>
+def create_bank_html(config: dict[str, Any], questions: list[dict[str, Any]] | None = None) -> str:
+    questions = questions or [
+        {
+            "question": "Sample question?",
+            "options": ["A", "B", "C", "D"],
+            "correct": 0,
+            "explanation": "Sample explanation.",
+        }
+    ]
+    return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -1139,336 +2510,496 @@ def create_bank_html(config, questions=None):
 <script>
 (function(){{var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
 s.textContent='html,body{{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}}';
-document.head.appendChild(s);}})();
+document.head.appendChild(s)}})();
 </script>
 <title>{config['title']}</title>
 </head>
 <body>
 <script>
 /* [BANK_CONFIG_START] */
-const BANK_CONFIG = {config_json};
+const BANK_CONFIG = {json.dumps(config, indent=2)};
 /* [BANK_CONFIG_END] */
 
 /* [QUESTION_BANK_START] */
-const QUESTION_BANK = {questions_json};
+const QUESTION_BANK = {json.dumps(questions, indent=2)};
 /* [QUESTION_BANK_END] */
 </script>
 <script>
-(function(){{window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
-document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'bank-engine.js"></scr'+'ipt>');}})();
+(function(){{
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'bank-engine.js"><\\/scr'+'ipt>');
+}})();
 </script>
 </body>
-</html>'''
-    return html
+</html>
+"""
 
-# Flask Routes
-@app.route('/')
-def index():
-    """Serve the main quiz site"""
-    return send_from_directory(PROJECT_ROOT, 'index.html')
 
-@app.route('/<path:filename>')
-def static_files(filename):
-    """Serve static files"""
-    return send_from_directory(PROJECT_ROOT, filename)
-
-@app.route('/admin/')
-def admin():
-    """Serve admin dashboard"""
-    project_name = get_project_name()
-    return render_template_string(DASHBOARD_HTML, project_name=project_name)
-
-@app.route('/admin/files')
-def get_files():
-    """Get file tree as JSON"""
-    tree = scan_files()
-    return jsonify(tree)
-
-@app.route('/admin/folders')
-def get_folders():
-    """Get folder list as JSON"""
-    folders = scan_folders()
-    return jsonify(folders)
-
-@app.route('/admin/load-file')
-def load_file():
-    """Load file content"""
-    path = request.args.get('path')
-    if not path:
-        return jsonify({'error': 'No path provided'}), 400
-
-    file_path = PROJECT_ROOT / path
-    if not file_path.exists():
-        return jsonify({'error': 'File not found'}), 404
-
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        meta = parse_file_metadata(content)
-        return jsonify({'content': content, 'meta': meta})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/preview/<path:filename>')
-def preview_file(filename):
-    file_path = PROJECT_ROOT / filename
-    if not file_path.exists() or not file_path.is_file():
-        return 'Not Found', 404
-
-    if file_path.suffix.lower() == '.html':
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-
-            # Adjust preview path logic so engine loader calculates base correctly.
-            # Handle both GitHub Pages (with repo name) and local server (no repo name)
-            content = re.sub(
-                r"window\.__QUIZ_ENGINE_BASE\s*=\s*'\.\./'\.repeat\(Math\.max\(0,location\.pathname\.split\('/'\)\.filter\(Boolean\)\.length\s*-\s*2\)\);",
-                "// Admin-Dashboard Preview Adjustment\nwindow.__QUIZ_ENGINE_BASE = '../'.repeat(Math.max(0, location.pathname.replace(/^\\/preview/, '').split('/').filter(Boolean).length - 1));",
-                content
-            )
-            return content, 200, {'Content-Type': 'text/html; charset=utf-8'}
-        except Exception as e:
-            return f'Error loading preview: {e}', 500
-
-    return send_from_directory(PROJECT_ROOT, filename)
-
-@app.route('/admin/save-file', methods=['POST'])
-def save_file():
-    """Save file content"""
-    data = request.get_json()
-    path = data.get('path')
-    content = data.get('content')
-
-    if not path or content is None:
-        return jsonify({'message': 'Missing path or content'}), 400
-
-    file_path = PROJECT_ROOT / path
-    try:
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(content)
-        return jsonify({'message': 'File saved successfully'})
-    except Exception as e:
-        return jsonify({'message': f'Error saving file: {str(e)}'}), 500
-
-@app.route('/admin/create-folder', methods=['POST'])
-def create_folder():
-    """Create new folder with index.html"""
-    data = request.get_json()
-    name = data.get('name')
-
-    if not name:
-        return jsonify({'message': 'Missing folder name'}), 400
-
-    folder_path = PROJECT_ROOT / name
-    if folder_path.exists():
-        return jsonify({'message': 'Folder already exists'}), 400
-
-    try:
-        folder_path.mkdir(parents=True)
-        index_path = folder_path / 'index.html'
-
-        depth = len(Path(name).parts)
-        engine_path = '../' * depth + 'index-engine.js'
-        index_html = f'''<!DOCTYPE html>
+def create_index_html(folder_rel: str, title: str = "", description: str = "") -> str:
+    ctx = build_index_page_context(folder_rel, title=title, description=description)
+    return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{name}</title>
+<script>
+(function(){{var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;min-height:100%}}';
+document.head.appendChild(s)}})();
+</script>
+<title>{ctx['page_title']}</title>
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" type="image/svg+xml" href="{ctx['prefix']}favicon.svg">
+<link rel="apple-touch-icon" href="{ctx['prefix']}favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{ctx['prefix']}index-engine.css">
+<link rel="manifest" href="{ctx['prefix']}manifest.webmanifest">
 </head>
 <body>
-<h1>{name}</h1>
-<p>Select your {name} exam.</p>
-<div class="quiz-grid" id="quiz-grid"></div>
+  <div class="topbar">
+    {ctx['back_link']}
+    <div class="topbar-title">{ctx['topbar_title']}</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>{ctx['hero_title']}</h1>
+      <p>{ctx['hero_description']}</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">Managed locally through the admin dashboard.</div>
+  </div>
+
 <script>
 const QUIZZES = [];
 </script>
-<script src="{engine_path}"></script>
+
+{TRACKER_MODAL_HTML}
+
+<script src="{ctx['prefix']}index-engine.js"></script>
+<script>
+(function(){{
+  var s=localStorage.getItem('quiz-theme');
+  if(s) document.documentElement.setAttribute('data-theme', s);
+  if(window.__updateThemeIcon) window.__updateThemeIcon();
+  if(window.renderQuizzes) window.renderQuizzes();
+}})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {{
+  window.addEventListener('load', function () {{
+    navigator.serviceWorker.register('{ctx['prefix']}sw.js').catch(function () {{}});
+  }});
+}}
+</script>
 </body>
-</html>'''
+</html>
+"""
 
-        with open(index_path, 'w', encoding='utf-8') as f:
-            f.write(index_html)
 
-        return jsonify({'message': f'Folder "{name}" created successfully'})
-    except Exception as e:
-        return jsonify({'message': f'Error creating folder: {str(e)}'}), 500
-
-@app.route('/admin/create-file', methods=['POST'])
-def create_file():
-    """Create new quiz or bank file"""
-    data = request.get_json()
-    file_type = data.get('type')
-    title = data.get('title')
-    description = data.get('description', '')
-    folder = data.get('folder', '.')
-
-    if not all([file_type, title]):
-        return jsonify({'message': 'Missing required fields'}), 400
-
-    uid = generate_uid(file_type)
-    safe_name = title.lower().replace(' ', '-').replace('/', '-').replace('\\', '-')
-    filename = f"{safe_name}.html"
-    target_folder = PROJECT_ROOT / folder
-    if not target_folder.exists():
-        return jsonify({'message': 'Target folder does not exist'}), 400
-
-    if file_type == 'quiz':
-        config = {
-            'uid': uid,
-            'title': title,
-            'description': description
-        }
-        html = create_quiz_html(config)
-    elif file_type == 'bank':
-        config = {
-            'uid': uid,
-            'title': title,
-            'description': description,
-            'icon': '🗃️'
-        }
-        html = create_bank_html(config)
-    else:
-        return jsonify({'message': 'Invalid file type'}), 400
-
-    file_path = target_folder / filename
-    try:
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(html)
-        return jsonify({'message': f'{file_type.title()} file "{filename}" created successfully', 'path': os.path.relpath(file_path, PROJECT_ROOT)})
-    except Exception as e:
-        return jsonify({'message': f'Error creating file: {str(e)}'},), 500
-
-@app.route('/admin/move-file', methods=['POST'])
-def move_file():
-    """Move file to a new folder"""
-    data = request.get_json()
-    path = data.get('path')
-    folder = data.get('folder')
-
-    if not path or folder is None:
-        return jsonify({'message': 'Missing path or folder'}), 400
-
-    source = PROJECT_ROOT / path
-    target_folder = PROJECT_ROOT / folder
-    if not source.exists():
-        return jsonify({'message': 'File not found'}), 404
-    if not target_folder.exists() or not target_folder.is_dir():
-        return jsonify({'message': 'Target folder not found'}), 404
-
-    try:
-        destination = target_folder / source.name
-        shutil.move(str(source), str(destination))
-        return jsonify({'message': f'Moved to {folder}', 'path': os.path.relpath(destination, PROJECT_ROOT)})
-    except Exception as e:
-        return jsonify({'message': f'Error moving file: {str(e)}'},), 500
-
-@app.route('/admin/convert-file', methods=['POST'])
-def convert_file():
-    """Convert quiz to bank or vice versa"""
-    data = request.get_json()
-    path = data.get('path')
-
-    if not path:
-        return jsonify({'message': 'Missing file path'}), 400
-
-    file_path = PROJECT_ROOT / path
-    if not file_path.exists():
-        return jsonify({'message': 'File not found'}), 404
-
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-
-        config_type, config = parse_quiz_file(content)
-        if not config:
-            return jsonify({'message': 'Could not parse file config'}), 400
-
-        if config_type == 'QUIZ_CONFIG':
-            # Convert to bank
-            questions_match = re.search(r'const\s+QUESTIONS\s*=\s*(\[.*?\]);', content, re.DOTALL)
-            if questions_match:
-                questions = json.loads(questions_match.group(1))
-                bank_config = {
-                    'uid': generate_uid('bank'),
-                    'title': config['title'],
-                    'description': config['description'],
-                    'icon': '🗃️'
-                }
-                html = create_bank_html(bank_config, questions)
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write(html)
-                return jsonify({'message': 'Converted quiz to question bank'})
-        elif config_type == 'BANK_CONFIG':
-            # Convert to quiz
-            bank_match = re.search(r'const\s+QUESTION_BANK\s*=\s*(\[.*?\]);', content, re.DOTALL)
-            if bank_match:
-                questions = json.loads(bank_match.group(1))
-                quiz_config = {
-                    'uid': generate_uid('quiz'),
-                    'title': config['title'],
-                    'description': config['description']
-                }
-                html = create_quiz_html(quiz_config, questions)
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write(html)
-                return jsonify({'message': 'Converted question bank to quiz'})
-
-        return jsonify({'message': 'Conversion not supported for this file'}), 400
-    except Exception as e:
-        return jsonify({'message': f'Error converting file: {str(e)}'}), 500
-
-@app.route('/admin/run-sync', methods=['POST'])
-def run_sync():
-    """Run the sync script to update indexes"""
-    if SYNC_SCRIPT.exists():
+def get_project_name() -> str:
+    manifest = PROJECT_ROOT / "manifest.webmanifest"
+    if manifest.exists():
         try:
-            result = subprocess.run(['python', str(SYNC_SCRIPT)], cwd=PROJECT_ROOT, capture_output=True, text=True)
-            return jsonify({'message': 'Sync completed', 'output': result.stdout})
-        except Exception as e:
-            return jsonify({'message': f'Sync failed: {str(e)}'}), 500
+            data = json.loads(read_text(manifest))
+            return data.get("name") or data.get("short_name") or PROJECT_ROOT.name
+        except Exception:
+            pass
+    return PROJECT_ROOT.name
+
+
+def discover_quiztool_references() -> list[dict[str, str]]:
+    refs: list[dict[str, str]] = []
+    if not QUIZTOOL_ROOT.exists():
+        return refs
+    for filename, meta in QUIZTOOL_REFERENCES.items():
+        path = QUIZTOOL_ROOT / filename
+        if path.exists():
+            refs.append(
+                {
+                    "id": filename,
+                    "label": meta["label"],
+                    "description": meta["description"],
+                }
+            )
+    return refs
+
+
+def run_subprocess(args: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        args,
+        cwd=str(cwd or PROJECT_ROOT),
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+
+
+def git_available() -> bool:
+    if not (PROJECT_ROOT / ".git").exists():
+        return False
+    try:
+        result = run_subprocess(["git", "rev-parse", "--is-inside-work-tree"])
+        return result.returncode == 0
+    except FileNotFoundError:
+        return False
+
+
+def get_git_status() -> dict[str, Any]:
+    if not git_available():
+        return {
+            "available": False,
+            "branch": None,
+            "dirtyCount": 0,
+            "changedPaths": [],
+            "ahead": 0,
+            "behind": 0,
+        }
+
+    branch = run_subprocess(["git", "rev-parse", "--abbrev-ref", "HEAD"]).stdout.strip()
+    upstream = run_subprocess(["git", "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}"])
+    ahead = 0
+    behind = 0
+    if upstream.returncode == 0 and upstream.stdout.strip():
+        counts = run_subprocess(
+            ["git", "rev-list", "--left-right", "--count", f"{branch}...{upstream.stdout.strip()}"]
+        )
+        if counts.returncode == 0:
+            raw_counts = counts.stdout.strip().split()
+            if len(raw_counts) == 2:
+                ahead = int(raw_counts[0])
+                behind = int(raw_counts[1])
+
+    short = run_subprocess(["git", "status", "--short"]).stdout.splitlines()
+    changed_paths = []
+    for line in short:
+        if not line.strip():
+            continue
+        status = line[:2].strip() or "??"
+        path = line[3:] if len(line) > 3 else line
+        changed_paths.append({"status": status, "path": path})
+
+    return {
+        "available": True,
+        "branch": branch,
+        "dirtyCount": len(changed_paths),
+        "changedPaths": changed_paths,
+        "ahead": ahead,
+        "behind": behind,
+    }
+
+
+def build_summary() -> dict[str, Any]:
+    files = collect_file_records()
+    quiz_count = sum(1 for file in files if file["type"] == "quiz")
+    bank_count = sum(1 for file in files if file["type"] == "bank")
+    index_count = sum(1 for file in files if file["type"] == "index")
+    total_questions = sum(int(file["question_count"] or 0) for file in files if file["type"] in {"quiz", "bank"})
+    return {
+        "totalHtmlFiles": len(files),
+        "quizCount": quiz_count,
+        "bankCount": bank_count,
+        "indexCount": index_count,
+        "folderCount": len(scan_folders()),
+        "totalQuestions": total_questions,
+    }
+
+
+@app.get("/admin/")
+def admin() -> str:
+    return render_template_string(DASHBOARD_HTML, project_name=get_project_name())
+
+
+@app.get("/admin/files")
+def get_files() -> Any:
+    return jsonify({"files": collect_file_records(), "folders": scan_folders()})
+
+
+@app.get("/admin/project-state")
+def get_project_state() -> Any:
+    return jsonify(
+        {
+            "projectName": get_project_name(),
+            "summary": build_summary(),
+            "git": get_git_status(),
+            "quiztoolReferences": discover_quiztool_references(),
+        }
+    )
+
+
+@app.get("/admin/load-file")
+def load_file() -> Any:
+    path = request.args.get("path", "")
+    if not path:
+        return jsonify({"message": "Missing file path."}), 400
+    try:
+        file_path = resolve_project_path(path, must_exist=True, file_only=True)
+    except FileNotFoundError:
+        return jsonify({"message": "File not found."}), 404
+    except ValueError as exc:
+        return jsonify({"message": str(exc)}), 400
+
+    content = read_text(file_path)
+    return jsonify({"content": content, "meta": parse_file_metadata(content)})
+
+
+@app.post("/admin/save-file")
+def save_file() -> Any:
+    payload = request.get_json(silent=True) or {}
+    path = payload.get("path", "")
+    content = payload.get("content")
+    if not path or content is None:
+        return jsonify({"message": "Missing path or content."}), 400
+    try:
+        file_path = resolve_project_path(path, must_exist=True, file_only=True)
+    except FileNotFoundError:
+        return jsonify({"message": "File not found."}), 404
+    except ValueError as exc:
+        return jsonify({"message": str(exc)}), 400
+
+    write_text(file_path, str(content))
+    return jsonify({"message": f"Saved {relative_path(file_path)}."})
+
+
+@app.post("/admin/create-folder")
+def create_folder() -> Any:
+    payload = request.get_json(silent=True) or {}
+    raw_name = payload.get("name", "")
+    title = str(payload.get("title", "")).strip()
+    description = str(payload.get("description", "")).strip()
+    folder_rel = normalize_rel_path(raw_name)
+    if folder_rel == ".":
+        return jsonify({"message": "Please provide a folder path."}), 400
+
+    try:
+        folder_path = resolve_project_path(folder_rel)
+    except ValueError as exc:
+        return jsonify({"message": str(exc)}), 400
+
+    if folder_path.exists():
+        return jsonify({"message": "Folder already exists."}), 400
+
+    folder_path.mkdir(parents=True, exist_ok=False)
+    index_path = folder_path / "index.html"
+    write_text(index_path, create_index_html(folder_rel, title=title, description=description))
+    return jsonify({"message": f'Created folder "{folder_rel}".', "path": relative_path(index_path)})
+
+
+@app.post("/admin/create-file")
+def create_file() -> Any:
+    payload = request.get_json(silent=True) or {}
+    file_type = str(payload.get("type", "")).strip().lower()
+    folder_rel = normalize_rel_path(payload.get("folder", "."))
+    title = str(payload.get("title", "")).strip()
+    description = str(payload.get("description", "")).strip()
+    filename_hint = str(payload.get("filename", "")).strip()
+    icon = str(payload.get("icon", "🗃️")).strip() or "🗃️"
+
+    if file_type not in {"quiz", "bank"}:
+        return jsonify({"message": "Type must be quiz or bank."}), 400
+    if not title:
+        return jsonify({"message": "Title is required."}), 400
+
+    try:
+        folder_path = resolve_project_path(folder_rel, must_exist=True)
+    except FileNotFoundError:
+        return jsonify({"message": "Target folder does not exist."}), 404
+    except ValueError as exc:
+        return jsonify({"message": str(exc)}), 400
+    if not folder_path.is_dir():
+        return jsonify({"message": "Target path is not a folder."}), 400
+
+    base_stem = slugify(filename_hint or title, default="untitled")
+    if file_type == "bank" and not filename_hint and not base_stem.startswith("all-"):
+        base_stem = f"all-{base_stem}"
+
+    file_path = ensure_unique_html_path(folder_path, base_stem)
+    uid = derive_uid(folder_rel, file_path.stem)
+
+    if file_type == "quiz":
+        content = create_quiz_html({"uid": uid, "title": title, "description": description})
     else:
-        return jsonify({'message': 'Sync script not found'}), 404
+        content = create_bank_html({"uid": uid, "title": title, "description": description, "icon": icon})
 
-@app.route('/admin/git-commit', methods=['POST'])
-def git_commit():
-    """Commit staged changes locally"""
-    if not GIT_AVAILABLE:
-        return jsonify({'message': 'GitPython not installed'}), 500
+    write_text(file_path, content)
+    return jsonify(
+        {
+            "message": f'Created {file_type} file "{file_path.name}".',
+            "path": relative_path(file_path),
+            "uid": uid,
+        }
+    )
 
-    data = request.get_json()
-    message = data.get('message', 'Update quiz files')
 
-    try:
-        repo = git.Repo(PROJECT_ROOT)
-        repo.git.add(A=True)
-        repo.index.commit(message)
-        return jsonify({'message': 'Changes committed successfully'})
-    except Exception as e:
-        return jsonify({'message': f'Git commit failed: {str(e)}'}), 500
-
-@app.route('/admin/git-push', methods=['POST'])
-def git_push():
-    """Push committed changes to origin"""
-    if not GIT_AVAILABLE:
-        return jsonify({'message': 'GitPython not installed'}), 500
+@app.post("/admin/move-file")
+def move_file() -> Any:
+    payload = request.get_json(silent=True) or {}
+    raw_path = payload.get("path", "")
+    folder_rel = normalize_rel_path(payload.get("folder", "."))
+    filename = slugify(str(payload.get("filename", "")).strip() or Path(raw_path).stem, default="untitled")
 
     try:
-        repo = git.Repo(PROJECT_ROOT)
-        origin = repo.remote('origin')
-        origin.push()
-        return jsonify({'message': 'Changes pushed successfully'})
-    except Exception as e:
-        return jsonify({'message': f'Git push failed: {str(e)}'}), 500
+        source = resolve_project_path(raw_path, must_exist=True, file_only=True)
+        target_folder = resolve_project_path(folder_rel, must_exist=True)
+    except FileNotFoundError:
+        return jsonify({"message": "Source or target path was not found."}), 404
+    except ValueError as exc:
+        return jsonify({"message": str(exc)}), 400
 
-def open_browser():
-    webbrowser.open('http://127.0.0.1:5500/admin/')
+    if not target_folder.is_dir():
+        return jsonify({"message": "Target path is not a folder."}), 400
 
-if __name__ == '__main__':
+    destination = target_folder / f"{filename}.html"
+    if destination.exists() and destination != source:
+        return jsonify({"message": "A file with that name already exists in the target folder."}), 400
+
+    shutil.move(str(source), str(destination))
+    return jsonify({"message": "File moved successfully.", "path": relative_path(destination)})
+
+
+@app.post("/admin/delete-file")
+def delete_file() -> Any:
+    payload = request.get_json(silent=True) or {}
+    raw_path = payload.get("path", "")
+    try:
+        file_path = resolve_project_path(raw_path, must_exist=True, file_only=True)
+    except FileNotFoundError:
+        return jsonify({"message": "File not found."}), 404
+    except ValueError as exc:
+        return jsonify({"message": str(exc)}), 400
+
+    file_path.unlink()
+    return jsonify({"message": f"Deleted {relative_path(file_path)}."})
+
+
+@app.post("/admin/convert-file")
+def convert_file() -> Any:
+    payload = request.get_json(silent=True) or {}
+    raw_path = payload.get("path", "")
+    try:
+        file_path = resolve_project_path(raw_path, must_exist=True, file_only=True)
+    except FileNotFoundError:
+        return jsonify({"message": "File not found."}), 404
+    except ValueError as exc:
+        return jsonify({"message": str(exc)}), 400
+
+    content = read_text(file_path)
+    meta = parse_file_metadata(content)
+    if meta["type"] == "quiz":
+        questions = copy.deepcopy(meta.get("questions") or [])
+        config = {
+            "uid": meta.get("uid") or derive_uid(normalize_rel_path(relative_path(file_path.parent)), file_path.stem),
+            "title": meta.get("title") or file_path.stem,
+            "description": meta.get("description") or "",
+            "icon": "🗃️",
+        }
+        write_text(file_path, create_bank_html(config, questions))
+        return jsonify({"message": "Converted quiz to question bank while preserving UID."})
+    if meta["type"] == "bank":
+        questions = copy.deepcopy(meta.get("questions") or [])
+        config = {
+            "uid": meta.get("uid") or derive_uid(normalize_rel_path(relative_path(file_path.parent)), file_path.stem),
+            "title": meta.get("title") or file_path.stem,
+            "description": meta.get("description") or "",
+        }
+        write_text(file_path, create_quiz_html(config, questions))
+        return jsonify({"message": "Converted question bank to quiz while preserving UID."})
+    return jsonify({"message": "Only quiz and bank files can be converted."}), 400
+
+
+@app.post("/admin/run-sync")
+def run_sync() -> Any:
+    if not SYNC_SCRIPT.exists():
+        return jsonify({"message": "Sync script not found."}), 404
+
+    result = run_subprocess([sys.executable, str(SYNC_SCRIPT)], cwd=PROJECT_ROOT)
+    message = "Sync completed successfully." if result.returncode == 0 else "Sync completed with errors."
+    return jsonify(
+        {
+            "message": message,
+            "returncode": result.returncode,
+            "output": result.stdout.strip(),
+            "stderr": result.stderr.strip(),
+        }
+    )
+
+
+@app.post("/admin/git-commit")
+def git_commit() -> Any:
+    if not git_available():
+        return jsonify({"message": "Git is not available for this repository."}), 400
+    payload = request.get_json(silent=True) or {}
+    message = str(payload.get("message", "")).strip() or "Update quiz project files"
+
+    add_result = run_subprocess(["git", "add", "-A"])
+    if add_result.returncode != 0:
+        return jsonify({"message": "Git add failed.", "output": add_result.stderr.strip()}), 500
+
+    commit_result = run_subprocess(["git", "commit", "-m", message])
+    if commit_result.returncode != 0:
+        return jsonify(
+            {
+                "message": "Git commit failed.",
+                "output": (commit_result.stdout or commit_result.stderr).strip(),
+            }
+        ), 500
+
+    return jsonify({"message": "Commit created successfully.", "output": commit_result.stdout.strip()})
+
+
+@app.post("/admin/git-push")
+def git_push() -> Any:
+    if not git_available():
+        return jsonify({"message": "Git is not available for this repository."}), 400
+
+    push_result = run_subprocess(["git", "push"])
+    if push_result.returncode != 0:
+        return jsonify({"message": "Git push failed.", "output": push_result.stderr.strip()}), 500
+    return jsonify({"message": "Push completed successfully.", "output": push_result.stdout.strip()})
+
+
+@app.get("/admin/reference/<path:filename>")
+def quiztool_reference(filename: str) -> Any:
+    if filename not in QUIZTOOL_REFERENCES:
+        return jsonify({"message": "Reference asset not allowed."}), 404
+    path = QUIZTOOL_ROOT / filename
+    if not path.exists():
+        return jsonify({"message": "Reference asset not found."}), 404
+    return send_file(path)
+
+
+@app.get("/")
+def root_index() -> Any:
+    return send_from_directory(PROJECT_ROOT, "index.html")
+
+
+@app.get("/<path:filename>")
+def static_files(filename: str) -> Any:
+    candidate = (PROJECT_ROOT / filename).resolve()
+    if not is_relative_to(candidate, PROJECT_ROOT):
+        return jsonify({"message": "Invalid path."}), 400
+    if not candidate.exists() or candidate.is_dir():
+        return jsonify({"message": "File not found."}), 404
+    if candidate.suffix.lower() not in ASSET_SUFFIXES:
+        return jsonify({"message": "Unsupported asset type."}), 404
+    return send_from_directory(PROJECT_ROOT, filename)
+
+
+def open_browser() -> None:
+    webbrowser.open(f"http://{HOST}:{PORT}/admin/")
+
+
+if __name__ == "__main__":
     print(f"Starting Admin Dashboard for {get_project_name()}")
-    print("Opening http://localhost:5500/admin/ in your browser")
+    print(f"Opening http://{HOST}:{PORT}/admin/ in your browser")
     print("Press Ctrl+C to stop")
-    if os.environ.get('WERKZEUG_RUN_MAIN') != 'true':
+    if os.environ.get("WERKZEUG_RUN_MAIN") != "true":
         threading.Timer(1.0, open_browser).start()
-    app.run(host='127.0.0.1', port=5500, debug=True)
+    app.run(host=HOST, port=PORT, debug=True)
