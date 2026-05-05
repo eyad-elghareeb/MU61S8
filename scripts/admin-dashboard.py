@@ -3034,13 +3034,7 @@ document.head.appendChild(s)}})();
       <p>{ctx['hero_description']}</p>
     </header>
     <div class="quiz-grid" id="quiz-grid"></div>
-    <div class="footer-note">Managed locally through the admin dashboard.</div>
-  </div>
-
-<script>
-const QUIZZES = [];
-</script>
-
+    <div class="footer-note">Made By: <a href="https://github.com/eyad-elghareeb/QuizTool">QuizTool</a></div>
 {TRACKER_MODAL_HTML}
 
 <script src="{ctx['prefix']}index-engine.js"></script>
