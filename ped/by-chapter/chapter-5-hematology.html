@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <link rel="apple-touch-icon" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.webmanifest">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chapter 5: Hematology</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "moba8oe4lvjri",
+  "title": "Chapter 5: Hematology",
+  "description": "Questions on each pediatric chapter",
+  "icon": "👶"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "The clinical manifestations of anaphylactoid purpura include all the following Except: (12-2012)",
+    "options": [
+      "Generalized lymphadenopathy",
+      "Arthritis",
+      "Hematuria",
+      "Bloody diarrhea",
+      "Purpuric rash"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Generalized lymphadenopathy. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following does not present as hemolytic disease of the newborn:",
+    "options": [
+      "Hereditary spherocytosis",
+      "Glucose 6 phosphate dehydrogenase deficiency",
+      "Sickle cell trait",
+      "ABO incompatibility",
+      "Rh incompatibility"
+    ],
+    "correct": 2,
+    "explanation": "Sickle cell TRAIT (HbAS): RBC lifespan is essentially normal (~100–120 days). No haemolytic anaemia. No HDN. HDN requires immune-mediated (ABO/Rh) or severe structural RBC pathology (hereditary spherocytosis, G6PD deficiency). Sickle cell DISEASE (HbSS) causes jaundice but not classic HDN."
+  },
+  {
+    "question": "All the following investigations are important in follow up of patient in Hodgkin's lymphoma: (12-2012)",
+    "options": [
+      "ESR",
+      "X-ray chest",
+      "CBC",
+      "Abdominal U/S",
+      "Serum iron estimation"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Serum iron estimation. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "All of the following types of anemia are normocytic normochromic Except:",
+    "options": [
+      "Congenital micro spherocytosis",
+      "Sickle cell anemia",
+      "Aplastic anemia",
+      "Folic acid deficiency anemia",
+      "Immune hemolytic anemia"
+    ],
+    "correct": 3,
+    "explanation": "Folic acid deficiency causes MACROCYTIC megaloblastic anaemia (high MCV, hypersegmented neutrophils) — NOT normocytic. Sickle cell, aplastic, immune haemolytic, and congenital spherocytosis are normocytic. Therefore folic acid deficiency is the EXCEPTION."
+  },
+  {
+    "question": "French-American-British (FAB) classification of acute leukemia is based on: (12-2012)",
+    "options": [
+      "Immunological background",
+      "Morphologic background",
+      "Chemical background",
+      "Genetic background",
+      "Clinical background"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Morphologic background. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In sickle cell anemia the most common crisis occur is: (12-2012)",
+    "options": [
+      "Hyperhemolytic crisis",
+      "Thrombotic crisis",
+      "Sequestration crisis",
+      "Aplastic crisis",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Thrombotic crisis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A normal platelet count with prolonged bleeding time is seen in: (8-2020)",
+    "options": [
+      "Hemophilia A",
+      "Von Willebrand disease",
+      "Leukemia",
+      "Hypersplenism",
+      "Aplastic anemia"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Hemophilia A. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The cut off number of transfused blood units to start an iron chelating agent in chronic hemolytic anemia patients is: (12-2018)",
+    "options": [
+      "5 - 7 times",
+      "8 - 10 times",
+      "12 - 15 times",
+      "15 - 20 times",
+      "1 - 2 times"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: 8 - 10 times. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following causes of anemia is associated with macrocytosis: (8-2020)",
+    "options": [
+      "Folic acid deficiency",
+      "Sickle cell anemia",
+      "Aplastic anemia",
+      "Congenital spherocytosis",
+      "Beta thalassemia"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Folic acid deficiency. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following metabolic abnormalities may be associated with tumor lysis syndrome: (8-2020 / 4-2019 / 12-2018)",
+    "options": [
+      "Hypernatremia",
+      "Hyperkalemia",
+      "Hypokalemia",
+      "Hyponatremia",
+      "Hypomagnesemia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Hyperkalemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 6 year old male patient presented with microcephaly, microphthalmia, absent thumb, ectopic kidney & recurrent epistaxis & his HB = 8 gm/dl, MCV = 93 f1, MCH = 27 pg, PLT = 30000 /cmm, WBC = 3000/cmm. The most informative diagnostic test explaining the underling etiology is: (4-2019 / 12-2018)",
+    "options": [
+      "Chromosomal breakage test",
+      "Hemoglobin electrophoresis",
+      "Schilling test",
+      "Osmotic fragility test",
+      "Sickling test"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Chromosomal breakage test. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Reticulocytic count is expected to be low in one of the following conditions:",
+    "options": [
+      "Acute hemorrhage",
+      "Aplastic anemia",
+      "Sickle cell disease",
+      "Hereditary spherocytosis",
+      "Thalassemia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Aplastic anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most common type of relapse in acute leukemia is: (12-2019 / 4-2017)",
+    "options": [
+      "Clinical relapse",
+      "Medullary relapse",
+      "CNS relapse",
+      "Testicular relapse",
+      "Laboratory relapse"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Medullary relapse. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A nine-year-old boy presented with high grade fever&a right neck swelling Examination revealed a large single right posterior cervical lymph node together with a large right axillary lymph node. Biopsy of the cervical lymph node confirmed the diagnosis of Hodgkin's lymphoma. Bone marrow examination was normal. This patient's disease falls into which of the following staging classification: (12-2018)",
+    "options": [
+      "Stage I-A",
+      "Stage I-B",
+      "Stage II-A",
+      "Stage II-B",
+      "Stage III-A"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Stage II-B. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Which of the following causes of anemia is associated with microcytosis: (4-2019)",
+    "options": [
+      "Folic acid deficiency",
+      "Immune hemolytic anemia",
+      "Hypothyroidism",
+      "Sickle cell anemia",
+      "B-Thalassemia"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: B-Thalassemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The commonest cause of non-thrombocytopenia purpura in children is: (4-2019 / 12-2016 / 12-2013)",
+    "options": [
+      "Disseminated intravascular hemolysis (DIC)",
+      "Anaphylactoid purpura",
+      "Acute lymphoblastic leukemia",
+      "Hypersplenism",
+      "Aplastic anemia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Anaphylactoid purpura. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is microcytic hypochromic anemia: (12-2019 / 4-2018)",
+    "options": [
+      "Aplastic anemia",
+      "Iron deficiency anemia",
+      "Leukemia",
+      "Sickle cell anemia",
+      "Spherocytosis"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Iron deficiency anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 6 year-old boy with hereditary spherocytosis developed transient aplastic crisis following a recent viral infection. The most probable incriminated viral infection is:",
+    "options": [
+      "German measles virus",
+      "Human herpes virus 6",
+      "Adenovirus",
+      "Parvovirus type B 19",
+      "Varicella virus"
+    ],
+    "correct": 3,
+    "explanation": "Parvovirus B19 infects erythroid progenitor cells (expressing P antigen/globoside) → transient pure red cell aplasia (7–10 days). In chronic haemolytic anaemia (sickle cell, thalassaemia, spherocytosis, G6PD deficiency), where RBC lifespan is already short, even brief cessation of erythropoiesis causes profound aplastic crisis."
+  },
+  {
+    "question": "One of the following is bad prognostic criteria of acute lymphoblastic leukemia: (8-2020 / 12-2019 / 4-2018)",
+    "options": [
+      "Leukocytes 2000/mm3",
+      "Age 5 years",
+      "White race",
+      "Male sex",
+      "Anemia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Male sex. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding No Hodgkin lymphoma: (4-2016)",
+    "options": [
+      "Less common than Hodgkin's lymphoma",
+      "Abdominal mass is the most common clinical presentation",
+      "Systemic symptoms are common",
+      "Unicentric in origin",
+      "It is the commonest malignant disease in children"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Abdominal mass is the most common clinical presentation. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is the most appropriate combination of the famous triad in acute leukemia: (4-2015)",
+    "options": [
+      "Fever - Pallor - Abdominal enlargement",
+      "Pallor - Purpura - Bone aches",
+      "Fever - Pallor - Purpura",
+      "Purpura - Fever - Lymphadenopathy",
+      "Fever - Purpura - Abdominal enlargement"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Fever - Pallor - Purpura. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is not among causes of normocytic normochromic anemia:",
+    "options": [
+      "Anemia of newborn",
+      "Aplastic anemia",
+      "Leukemia",
+      "Hemorrhagic anemia",
+      "Iron deficiency anemia"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Iron deficiency anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In Acute Leukemia, which of the following is bad prognostic criteria:",
+    "options": [
+      "Age more than 2 years",
+      "Leukocytosis > 50.000 /cm",
+      "No mediastinal mass",
+      "No CNS manifestations",
+      "No testicular infiltration"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Leukocytosis > 50.000 /cm. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following can cause thrombocytopenia with decreased megakarocyte in BM: (12-2019 / 4-2016)",
+    "options": [
+      "ITP",
+      "Aplastic anemia",
+      "Hypersplenism",
+      "DIC",
+      "Drug-induced thrombocytopenia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Aplastic anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The most common infecting agent associated with development of transient aplastic crisis in children with chronic hemolytic anemia is: (4-2019 / 12-2018)",
+    "options": [
+      "German measles virus",
+      "Human herpes virus 6",
+      "Adenovirus",
+      "Parvovirus type B 19",
+      "Varicella virus"
+    ],
+    "correct": 3,
+    "explanation": "Parvovirus B19 infects erythroid progenitor cells (expressing P antigen/globoside) → transient pure red cell aplasia (7–10 days). In chronic haemolytic anaemia (sickle cell, thalassaemia, spherocytosis, G6PD deficiency), where RBC lifespan is already short, even brief cessation of erythropoiesis causes profound aplastic crisis."
+  },
+  {
+    "question": "Which of the following is normocytic normochromic anemia: (12-2013)",
+    "options": [
+      "Aplastic anemia",
+      "Q-Thalassemia",
+      "Folic acid deficiency anemia",
+      "Iron deficiency anemia",
+      "Anemia of newborn"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Aplastic anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Among histological subtypes of classic Hodgkin disease, the most common one in children is: (12-2019)",
+    "options": [
+      "Nodular sclerosis",
+      "Lymphocyte predominance",
+      "Lymphocyte depletion",
+      "Mixed cellularity"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Mixed cellularity. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is not among causes of microcytic hypochromic anemia: (12-2015)",
+    "options": [
+      "Hereditary micro spherocytosis",
+      "Thalassemia",
+      "Iron deficiency",
+      "Sideroblastic anemia",
+      "Anemia of chronic disease"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Hereditary micro spherocytosis. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is not a screening test for a child with bleeding tendency: (12-2016 / 12-2017)",
+    "options": [
+      "Clotting time",
+      "Bleeding time",
+      "Thrombin time",
+      "Partial thromboplastin time",
+      "Prothrombin time"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Thrombin time. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A low reticulocytic count is associated with one of the following disorders: (12-2019)",
+    "options": [
+      "Acute hemorrhage",
+      "Aplastic anemia",
+      "Sickle cell anemia",
+      "Hereditary spherocytosis",
+      "Thalassemia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Aplastic anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following sentences is false about acute leukemia: (12-2015)",
+    "options": [
+      "The most common type is the pre-B cells ALL",
+      "Anemia is poor prognostic value",
+      "Blast cell more than 25% in the bone marrow is diagnostic",
+      "Leukocytic count more than 100000 is called hyperleukocytosis",
+      "Radiation therapy has a role in leukemia therapy"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Anemia is poor prognostic value. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In hereditary spherocytosis, one of the following is false: (4-2018)",
+    "options": [
+      "Splenectomy is the treatment of choice",
+      "Gall stones are common",
+      "Autosomal recessive",
+      "Can be presented in neonates",
+      "Increase osmotic fragility is the diagnostic test"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Autosomal recessive. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Regarding Hodgkin's disease, all the following are true Except: (4-2015)",
+    "options": [
+      "Less common than Non-Hodgkin's lymphoma",
+      "Most common site is cervical lymph nodes",
+      "Extra-lymphatic spread is common",
+      "Related to Epstein-Barr virus infection"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Extra-lymphatic spread is common. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is not criterion of pediatric Hodgkin's lymphoma: (12-2017)",
+    "options": [
+      "Arise in cervical lymph nodes in most cases",
+      "Affected lymph nodes are rubbery and discrete",
+      "Bone marrow infiltration is common",
+      "Pruritis is one of B symptoms"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Bone marrow infiltration is common. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Iron deficiency anemia is characterized by all the following Except: (4-2015)",
+    "options": [
+      "Microcytic hypochromic anemia",
+      "Splenomegaly may be present",
+      "Usually occur at age 2 - 4 years",
+      "Pagophagia (Pica)",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Usually occur at age 2 - 4 years. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "A 6 year-old boy with hereditary spherocytosis developed transient aplastic crisis following a recent viral infection. The most probable incriminated viral infection is:",
+    "options": [
+      "German measles virus",
+      "Human herpes virus 6",
+      "Adenovirus",
+      "Parvovirus type B 19",
+      "Varicella virus"
+    ],
+    "correct": 3,
+    "explanation": "Parvovirus B19 infects erythroid progenitor cells (expressing P antigen/globoside) → transient pure red cell aplasia (7–10 days). In chronic haemolytic anaemia (sickle cell, thalassaemia, spherocytosis, G6PD deficiency), where RBC lifespan is already short, even brief cessation of erythropoiesis causes profound aplastic crisis."
+  },
+  {
+    "question": "Regarding pathological features of Hodgkin's disease, one of the following is correct: (12-2014)",
+    "options": [
+      "Mixed cellularity type is most common in pediatrics",
+      "Lymphocyte depletion type is associated with good prognosis",
+      "Lymphocyte predominance type is most common in adults",
+      "Nodular sclerosis type is associated with bad prognosis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Mixed cellularity type is most common in pediatrics. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "One of the following is false about CNS leukemia: (4-2016)",
+    "options": [
+      "Bad prognosis",
+      "Increased intracranial tension",
+      "Relapse is common",
+      "Squint due to 7th cranial nerve affection",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Squint due to 7th cranial nerve affection. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The following conditions are associated with prolonged prothrombin time and partial thromboplastin time Except: (12-2014)",
+    "options": [
+      "Factor XI deficiency",
+      "Factor X deficiency",
+      "Liver disease",
+      "Factor V deficiency"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Factor XI deficiency. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "All the following are microcytic hypochromic anemia Except: (4-2014 / 4-2013)",
+    "options": [
+      "Beta Thalassemia",
+      "Anemia of chronic infection",
+      "Lead poisoning",
+      "Sickle cell anemia",
+      "Iron deficiency anemia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Sickle cell anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Laboratory findings in a case of thalassaemia include all of the following Except: (4-2013)",
+    "options": [
+      "High serum ferritin",
+      "Reticulocytosis",
+      "Decreased osmotic fragility",
+      "Normocytic hypochromic anemia",
+      "Hyperbilirubinemia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is D: Normocytic hypochromic anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Manifestations of hemophilia may include the following Except: (4-2014 / 4-2013)",
+    "options": [
+      "Purpuric eruption",
+      "Ecchymotic patches",
+      "Post circumcision bleeding",
+      "Hemoarthrosis",
+      "Excessive bleeding after tooth extraction"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Purpuric eruption. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The combination of fever, joint pains and skin rash in children may be caused by all Except: (4-2013)",
+    "options": [
+      "Juvenile rheumatoid arthritis",
+      "Acute lymphoblastic leukemia",
+      "Aplastic anemia",
+      "Anaphylactoid purpura",
+      "Acute rheumatic fever"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is C: Aplastic anemia. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In Acute Leukemia, which of the following is bad prognostic criteria: (4-2014)",
+    "options": [
+      "Age less than 2 years",
+      "Leuococytosis > 50.000 /cmm",
+      "Mediastinal mass",
+      "CNS manifestation",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: All of the above. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Anaphylactoid purpura may be associated with all the following Except: (4-2013)",
+    "options": [
+      "Urticarial maculopapular rash distributed mainly on extensor surface of limbs",
+      "Hepatosplenomegaly",
+      "Microscopic hematuria and mild proteinuria",
+      "Abdominal pain with occult blood in stools",
+      "Joint pain"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Hepatosplenomegaly. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Thrombocytopenia in children may caused by all the following Except: (12-2013)",
+    "options": [
+      "DIC",
+      "Anaphylactoid purpura",
+      "Acute lymphoblastic leukemia",
+      "Hypersplenism",
+      "Aplastic anemia"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Anaphylactoid purpura. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "Causes of autoimmune hemolytic anemia include all the following Except: (4-2013)",
+    "options": [
+      "Chronic liver disease",
+      "Collagen disorders",
+      "Acute leukemia",
+      "Viral infections as herpes simplex",
+      "Rh incompatibility"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is E: Rh incompatibility. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In Acute Leukemia, all of the following are bad prognostic criteria Except: (12-2013)",
+    "options": [
+      "Female sex",
+      "Age less than 2 years",
+      "Leukocytosis > 50.000 /cmm",
+      "Mediastinal mass",
+      "CNS manifestations"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: Female sex. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "The blast cell percent in normal bone marrow is: (4-2013)",
+    "options": [
+      "0 - 5%",
+      "0 - 10%",
+      "5 - 15%",
+      "10 - 20%",
+      "> 25%"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is A: 0 - 5%. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  },
+  {
+    "question": "In acute leukemia all of the following are bad prognostic criteria Except: (4-2013)",
+    "options": [
+      "Male sex",
+      "Age: 2 - 10 years",
+      "Leukocytosis > 50.000 /cmm",
+      "Mediastinal mass",
+      "CNS manifestations"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is B: Age: 2 - 10 years. This reflects a key teaching point in paediatric medicine. Review the relevant chapter section for full clinical context."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../sw.js').catch(function () {});
+  });
+}
+</script>
+
+</body>
+</html>
