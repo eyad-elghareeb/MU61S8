@@ -367,10 +367,10 @@ if ('serviceWorker' in navigator) {
 
 ## 6. Admin Dashboard (`scripts/admin-dashboard.py`)
 
-A local Flask-based web interface for managing quiz projects. Runs on `http://localhost:5500/admin/` and provides:
+A local Flask-based web interface for managing quiz projects. Runs on `http://localhost:5500/admin/`. This script is bundled into all generated projects from QuizTool and provides:
 
 ### 6a. Features
-- **Workspace Overview**: Project stats, recent files, git cleanliness summary, and links to reusable `QuizTool` reference editors/templates from `D:\Study\Projects\QuizTool`
+- **Workspace Overview**: Project stats, recent files, git cleanliness summary, and links to reusable `QuizTool` reference editors/templates
 - **Responsive Workspace**: Fluid layout with a responsive sidebar (`minmax(380px, 24%)`) and auto-fitting grids for optimal space utilization on all screen sizes.
 - **File Browser**: Searchable/filterable tree view of all HTML files in the project
 - **File Manager**: Create folders, create/move/rename/delete quiz or bank files
