@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-6d275104e7cb';
+const CACHE_VERSION = 'mu61-quiz-cc4d1957ebe0';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -13,6 +13,7 @@ var PRECACHE_REL_PATHS = [
   'quiz-engine.js',
   'bank-engine.js',
   'index-engine.js',
+  'sync-engine.js',
   'tracker-map.json',
   'index.html',
   'gyn/ai/index.html',
@@ -441,6 +442,7 @@ function handleAsset(event, request) {
           'quiz-engine.js',
           'bank-engine.js',
           'index-engine.js',
+          'sync-engine.js',
           'index-engine.css',
           'manifest.webmanifest',
           'favicon.svg',
