@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-01d0c65150f4';
+const CACHE_VERSION = 'mu61-quiz-bd28ac22f6e4';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -9,11 +9,17 @@ const GOOGLE_FONT_CSS =
 const HTML2PDF_CDN =
   'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
 
+/* Lazy-loaded by sync-engine.js when user opens QR tab or scanner */
+const QRCODE_CDN =
+  'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+
+const HTML5QRCODE_CDN =
+  'https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js';
+
 var PRECACHE_REL_PATHS = [
   'quiz-engine.js',
   'bank-engine.js',
   'index-engine.js',
-  'sync-engine.js',
   'tracker-map.json',
   'index.html',
   'gyn/ai/index.html',
@@ -252,8 +258,6 @@ var PRECACHE_REL_PATHS = [
   'icon-512.png',
   'index-engine.css',
   'manifest.webmanifest',
-  'sync-engine.js',
-  'sync-engine.src.js',
   'tracker-map.json'
 ];
 
@@ -324,7 +328,6 @@ self.addEventListener('install', function (event) {
         'quiz-engine.js',
         'bank-engine.js',
         'index-engine.js',
-        'sync-engine.js',
         'index-engine.css',
         'index.html',
         'manifest.webmanifest',
@@ -351,6 +354,18 @@ self.addEventListener('install', function (event) {
       /* 3. Cross-origin CDN resources */
       await precacheGoogleFonts(cache);
       await precacheHtml2Pdf(cache);
+
+      /* 4. (Optional) Lazy-loaded CDN libs for QR sync — tolerate failures */
+      var lazyCDNs = [QRCODE_CDN, HTML5QRCODE_CDN];
+      await Promise.all(
+        lazyCDNs.map(function (url) {
+          return fetch(url, { mode: 'cors', credentials: 'omit' })
+            .then(function (res) {
+              if (res.ok) return cache.put(url, res);
+            })
+            .catch(function () { });
+        })
+      );
 
       await self.skipWaiting();
     })()
@@ -442,7 +457,6 @@ function handleAsset(event, request) {
           'quiz-engine.js',
           'bank-engine.js',
           'index-engine.js',
-          'sync-engine.js',
           'index-engine.css',
           'manifest.webmanifest',
           'favicon.svg',
