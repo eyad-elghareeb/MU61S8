@@ -587,7 +587,6 @@ const SyncEngine = {
         _currentCameraIndex: 0,
         _useFront: false,
         _scanChunks: {},
-        _scanTotal: 0,
 
         _createModalHTML: function() {
             return `
@@ -1009,7 +1008,6 @@ const SyncEngine = {
             }
         },
 
-        _scanChunks: {},
 
         _updateScanProgress: function(current, total) {
             const progSec = document.getElementById('sync-scan-progress');
