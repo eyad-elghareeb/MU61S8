@@ -669,6 +669,7 @@ To maintain the integrity of the production environment and the offline PWA func
 
 ### 12d. Synchronization & CI/CD
 - **Always run sync script**: After adding new quiz files or subfolders, run `python scripts/sync_quiz_assets.py` to update the parent index files and the service worker manifest.
+- **Keep sync engine mirrored from QuizTool**: This repo vendors `sync-engine.src.js` and `sync-engine.js` from QuizTool. When QuizTool's sync engine changes, copy both files here together after rebuilding, and keep the sync modal opening on the "Nearby Devices" tab by default.
 - **Preserve Markers**: Never remove or modify the `/* [QUIZ_CONFIG_START/END] */` or `/* [QUESTIONS_START/END] */` markers. The sync script and authoring tools depend on these exact strings for parsing.
 - **Atomic Commits**: Ensure that `sw.js` and `index.html` changes are committed together to keep the cache manifest in sync with the file system.
 
