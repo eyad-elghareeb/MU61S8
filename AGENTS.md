@@ -367,11 +367,14 @@ if ('serviceWorker' in navigator) {
 
 ---
 
-## 6. Admin Dashboard (`scripts/admin-dashboard.py`)
+## 6. Admin Dashboard (Python & Tauri)
 
-A local Flask-based web interface for managing quiz projects. Runs on `http://localhost:5500/admin/` by default (configurable via `--port` CLI arg or `QUIZTOOL_ADMIN_PORT` env var). This script is bundled into all generated projects from QuizTool and provides:
+A local management interface for quiz projects, available in two versions:
 
-> **Note:** The admin dashboard can also be launched directly from QuizTool's project generator after creating or downloading a project — click "🛠️ Open Admin Dashboard" in the generator UI.
+1.  **Python Version (`scripts/admin-dashboard.py`)**: A Flask-based web interface bundled into every project. Runs on `http://localhost:5500/admin/` by default.
+2.  **Tauri Version (`quiztool-admin.exe`)**: A native standalone desktop application for QuizTool. Offers zero-dependency execution and enhanced system integration.
+
+> **Note:** The admin dashboard can also be launched directly from QuizTool's project generator — click "🛠️ Open Admin Dashboard" in the generator UI.
 
 ### 6a. Features
 - **Workspace Overview**: Project stats, recent files, git cleanliness summary, and links to reusable `QuizTool` reference editors/templates
