@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-ad9c596593c8';
+const CACHE_VERSION = 'mu61-quiz-dc38374c6483';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -147,6 +147,31 @@ var PRECACHE_REL_PATHS = [
   'med/extra/chest/single-best-answer-chest.html',
   'med/extra/damietta-qs.html',
   'med/extra/index.html',
+  'med/extra/mnu/cardio/00-Mayo-Clinic-Cardiology-Board-Review.html',
+  'med/extra/mnu/cardio/01-Cardiac-Electrophysiology.html',
+  'med/extra/mnu/cardio/02-Coronary-Artery-Disease-Risk-Factors.html',
+  'med/extra/mnu/cardio/03-Cardiac-Catheterization-and-Intervention.html',
+  'med/extra/mnu/cardio/04-Myocardial-Infarction.html',
+  'med/extra/mnu/cardio/05-Congestive-Heart-Failure-and-Cardiac-Transplantation.html',
+  'med/extra/mnu/cardio/06-Valvular-Heart-Disease.html',
+  'med/extra/mnu/cardio/07-Noninvasive-Cardiac-Imaging.html',
+  'med/extra/mnu/cardio/08-Cardiac-Pharmacology.html',
+  'med/extra/mnu/cardio/index.html',
+  'med/extra/mnu/chest/00-Clinical-Pearls-in-Respiratory-Medicine-MCQs.html',
+  'med/extra/mnu/chest/01-Bronchology.html',
+  'med/extra/mnu/chest/02-Chest-Radiology.html',
+  'med/extra/mnu/chest/03-Critical-Care-in-Respiratory-Medicine.html',
+  'med/extra/mnu/chest/04-General-Respiratory-Medicine.html',
+  'med/extra/mnu/chest/05-Lung-Function-Testing.html',
+  'med/extra/mnu/chest/06-Intrathoracic-Tumors.html',
+  'med/extra/mnu/chest/07-Obstructive-Airway-Diseases.html',
+  'med/extra/mnu/chest/08-Pleural-Disease.html',
+  'med/extra/mnu/chest/09-Pneumonia.html',
+  'med/extra/mnu/chest/10-Respiratory-Physiology.html',
+  'med/extra/mnu/chest/11-Obstructive-Sleep-Apnea.html',
+  'med/extra/mnu/chest/12-Tuberculosis.html',
+  'med/extra/mnu/chest/index.html',
+  'med/extra/mnu/index.html',
   'med/index.html',
   'med/past-years/57th-end-round-1.html',
   'med/past-years/57th-end-round-2.html',

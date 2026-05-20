@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Myocardial Infarction</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwi3jd7",
+  "title": "Myocardial Infarction",
+  "description": "Mayo Clinic Cardiology Board Review \u2014 Myocardial Infarction",
+  "icon": "\ud83e\udec0"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A 67-year-old man is admitted with an acute inferior wall MI. He is taken directly to the catheterization laboratory and at coronary angiography is found to have an occluded RCA. He has minor disease in the LAD. The most likely pre- existing culprit lesion that precipitated the acute coronary occlusion is which of the following coronary lesions?",
+    "options": [
+      "The highest grade stenosis",
+      "The most proximal stenosis",
+      "A non-flow limiting (\u2b0d50%) stenosis",
+      "A coronary aneurysm"
+    ],
+    "correct": 2,
+    "explanation": "In an ACS, in contrast to chronic stable angina or demand ischemia secondary to cardiac arrhythmia or hypotension, the pre-existing \u201cvulnerable plaque\u201d is often NOT hemody- namically significant until the time of rupture. Currently research is attempting to find improved methods of identifying coronary plaques with a higher likelihood of future rupture. This finding highlights the importance of aggressive long-term coronary risk fac- tor management for all patients in addition to emergency revascularization by PCI."
+  },
+  {
+    "question": "You are asked to see a 41-year-old woman who presents in her 32nd week of preg- nancy with sudden onset severe chest discomfort. She has a history of systemic HTN prior to pregnancy controlled on two oral hypotensive agents. Control of HTN has been excellent during pregnancy. She has a past history of smoking but has not used tobacco during the pregnancy. The patient presented to the ED for evaluation. She is markedly diaphoretic. When you see her, she has received 2 SL NTG and has persistent chest pain. She denies cocaine usage. An ECG is obtained and shows 2 mm ST segment elevation in the anterior pre- cordial leads V2, V3, V4. You would recommend which of the following?",
+    "options": [
+      "Perform an emergency coronary angiography and PCI if indicated by the coronary anatomy",
+      "Administer thrombolytic therapy with tPA in order to minimize radiation exposure to the baby",
+      "Start a glycoprotein IIB/IIIA inhibitor and wait 1hr to assess the clinical response and then, if needed, proceed to cardiac catheterization only if there is no improvement in symptoms or ECG findings",
+      "Perform a CT scan of the chest to rule out aortic dissection or pulmonary embolism",
+      "Start aspirin therapy, administer IV NTG, and admit to the CCU for obser- vation"
+    ],
+    "correct": 0,
+    "explanation": "Due in part to the availability of assisted reproductive techniques, there has been an increase in pregnancy rates among middle-aged women. CAD including ACS may be infrequently encountered during pregnancy. This patient has features of an acute anterior wall MI by clinical and ECG parameters. Emergency coronary angiography is indicated. If coronary intervention is required, additional therapy with other med- ications could be considered. The diagnosis of acute coronary disease should be con- firmed before therapy is instituted. The differential diagnosis should include spontaneous coronary artery dissection, aortic dissection with ostial coronary involve- ment (bilateral upper extremity pulses and BP should be evaluated as well as a care- ful cardiac auscultation for the diastolic murmur of AR) and pulmonary embolism. Note ascending aortic dissection usually involves the RCA rather than the left main coronary artery or its branches."
+  },
+  {
+    "question": "A 50-year-old man went to the ED because he had substernal chest pressure for 2 hrs. He has been healthy and has no history of heart disease, HTN, hyperlipi- demia or DM. He smokes one pack of cigarettes daily. His initial HR was 124 bpm, sinus rhythm and BP was 150/100 mmHg. Cardiac examination was otherwise normal. ECG showed 3 mm ST segment elevation in leads II, III, and aVF and was otherwise normal. He was given a thrombolytic agent and the chest pain and ECG changes resolved within 1 hr. Treatment with a beta blocker and aspirin was initiated and the patient was admitted to the coronary care unit. Four hours later he had an asymptomatic 7-beat run of VT. Occasional single ventricular premature con- tractions were observed over the next 24 hrs. He was transferred to a step-down bed. His hospital course was uncomplicated. The patient was ready for dismissal on day 3. (continued ) Which of the following clinical variables is associated with increased 30-day mortality risk?",
+    "options": [
+      "Age 50 years",
+      "Male sex",
+      "History of cigarette smoking",
+      "Initial HR of 120 bpm",
+      "Initial BP of 150/100 mmHg"
+    ],
+    "correct": 3,
+    "explanation": "Tachycardia on presentation is associated with increased 30-day mortality. The other variables are not associated with an increased short-term risk."
+  },
+  {
+    "question": "Which of the following is correct concerning invasive and non-invasive assess- ment of arrhythmia potential after MI?",
+    "options": [
+      "Complex ventricular ectopy predicts risk of recurrent MI but not cardiac death",
+      "Late potentials on signal-averaged ECG are of little predictive value",
+      "Decreased HR variability fails to identify high-risk patients",
+      "The therapeutic implications of positive noninvasive test results are uncertain",
+      "Invasive EP testing early after MI is predictive of long-term ventricular arrhythmias"
+    ],
+    "correct": 3,
+    "explanation": "Complex ventricular ectopy following MI predicts a higher risk of future cardiac death. Both late potentials on signal-averaged ECG and decreased HR variability identify patients at increased risk of sudden death; the therapeutic implications of these findings are uncertain."
+  },
+  {
+    "question": "Which of the following statements is true about post-MI stress testing in patients treated with thrombolytic therapy versus patients not treated with this therapy?",
+    "options": [
+      "The positive predictive value of stress testing is lower in the thrombolytic patients",
+      "Mid-LV cavity obliteration during dobutamine echocardiography is a more powerful prognostic variable in the thrombolytic patients",
+      "Increased lung uptake on a adenosine technetium-99 m sestamibi scan has similar prognostic value in both thrombolytic and non-thrombolytic patients",
+      "ST-segment elevation during exercise is of prognostic value only in throm- bolytic patients",
+      "Positive test results are associated with a higher risk of three-vessel disease in thrombolytic versus non-thrombolytic patients"
+    ],
+    "correct": 0,
+    "explanation": "Although a positive stress test following thrombolytic therapy may identify patients at higher risk, the positive predictive value for future CV events is lower than patients with stable chronic angina."
+  },
+  {
+    "question": "Which of the following clinical and stress testing variables is associated with the worst prognosis in patients after AMI?",
+    "options": [
+      "Inability to perform an exercise test",
+      "ST-segment depression in the lateral precordial leads",
+      "ST-segment elevation at the site of Q waves",
+      "An increase in systolic BP \u2b0e 60 mmHg above baseline",
+      "Ventricular bigeminy during the first 2 mins of recovery"
+    ],
+    "correct": 0,
+    "explanation": "In studies from the pre-thrombolytic era and studies of patients treated with throm- bolysis, the highest risk patient subset has consistently been those unable to perform an exercise test for any reason."
+  },
+  {
+    "question": "A 65-year-old man presents with unstable angina and an elevated troponin level. Comorbidities include adult-onset DM treated with metformin and essential HTN treated with metoprolol. Angiography shows three-vessel CAD with three discrete proximal flow limiting lesions and normal LV function. Treatment of choice is:",
+    "options": [
+      "Medical therapy and functional testing to assess the extent of myocardial ischemia",
+      "Multivessel PTCA starting with the tightest stenosis",
+      "Multivessel stenting starting with the proximal LAD stenosis",
+      "CABG including a LIMA graft"
+    ],
+    "correct": 3,
+    "explanation": "CABG is still the preferred option in diabetic patients with significant three-vessel CAD and high-risk features (positive biomarkers in this presentation of unstable angina). However, PCI in low-risk unstable angina carries a class IIb recommendation, even with multivessel disease (2005 ACC update to PCI). However, \u201cformal surgical consultation is recommended\u201d in these scenarios. Class IIa: 1. It is reasonable that PCI be performed in patients with UA/NSTEMI and single- vessel or multivessel CAD who are undergoing medical therapy with focal saphe- nous vein graft lesions or multiple stenoses who are poor candidates for reoperative surgery. (Level of evidence: C) 2. In the absence of high-risk features associated with UA/NSTEMI, it is reason- able to perform PCI in patients with amenable lesions and no contraindication for PCI with either an early invasive or early conservative strategy. (Level of evidence: B) 3. Use of PCI is reasonable in patients with UA/NSTEMI with significant left main CAD (\u000150% diameter stenosis) who are candidates for revascularization but are not eligible for CABG. (Level of evidence: B) Class IIb: 1. In the absence of high-risk features associated with UA/NSTEMI, PCI may be considered in patients with single-vessel or multivessel CAD who are undergoing medical therapy and who have 1 or more lesions to be dilated with reduced like- lihood of success. (Level of evidence: B) 2. PCI may be considered in patients with UA/NSTEMI who are undergoing medical therapy who have two- or three-vessel disease, significant proximal LAD CAD, and treated diabetes or abnormal LV function. (Level of evidence: B) Short-Term Risk of Death or Nonfatal MI in Patients with Unstable Angina: Low risk (No high- High risk Intermediate risk or intermediate-risk (At least 1 of the (No high-risk feature feature but may following features but must have 1 of have any of the Feature must be present) the following features) following features) History Accelerating tempo Prior MI, peripheral of ischemic or cerebrovascular symptoms in disease, or CABG; preceding 48 hrs prior aspirin use Character Prolonged ongoing Prolonged (\u000120 min) New-onset or pro- of pain (\u000120 min) rest rest angina, now gressive CCS pain resolved, with Class III or IV moderate or high angina in the past likelihood of CAD 2 wk without pro- Rest angina (\u000220 min longed (\u000120 min) or relieved with rest or rest pain but sublingual NTG) with moderate or high likelihood of CAD Clinical Pulmonary edema, Age \u000170 yr findings most likely related to ischemia New or worsening MR murmur S3 or new/worsening rales Hypotension, brady- cardia, tachycardia Age \u000175 yr ECG Angina at rest with T-wave inversions Normal or findings transient ST-segment \u00010.2 mV pathological unchanged ECG changes \u00010.05 mV Q waves during an episode of Bundle-branch chest discomfort block, new or presumed new Sustained VT Cardiac Elevated (eg, TnT Slightly elevated Normal markers or TnI \u0001 0.1 ng/mL) (eg, TnT \u0001 0.01 but \u00020.1 ng/mL)"
+  },
+  {
+    "question": "The percentage of patients presenting post-MI without any major modifiable conventional CV risk factor is:",
+    "options": [
+      "\u2b0d10%",
+      "20% to 40%",
+      "60% to 70%",
+      "\u2b0e90%"
+    ],
+    "correct": 0,
+    "explanation": "Over 90% of patients with AMI have a modifiable CV risk factor."
+  },
+  {
+    "question": "For patients with significant CAD, which of the following has not been shown to improve survival and decreased coronary events?",
+    "options": [
+      "Statin drugs",
+      "Beta blockers",
+      "ACE inhibitors",
+      "Aspirin",
+      "Vitamin E"
+    ],
+    "correct": 4,
+    "explanation": "Statins, beta blockers, ACE inhibitors and aspirin have all be shown to improve survival in patients with CAD while Vitamin E does not improve survival."
+  },
+  {
+    "question": "A 74-year-old man was admitted to the ED because of chest pain that started 1 hr ago. He is now pain free, following morphine that was administered in the ambu- lance. He had a right-sided cardioembolic stroke 3 yrs ago and has minimal resid- ual left arm weakness. ECG was performed. The next best step for management would be:",
+    "options": [
+      "Thrombolytic therapy",
+      "Emergency",
+      "Echocardiography",
+      "Indomethacin",
+      "Pericardiocentesis",
+      "Urgent cardiac catheterization only if pain returns"
+    ],
+    "correct": 1,
+    "explanation": "The ECG shows features typical of acute anterior MI. While he is pain free, there is continuing evidence of myocardial injury on the ECG. Cardiac catheterization can be performed promptly with consideration of acute reperfusion, using balloon angio- plasty and stenting. If a cardiac catheterization laboratory is not available, the bene- fits and risk of thrombolytic therapy must be carefully weighed while considering the past history of a cardioembolic stroke 3 yrs ago. In this case, since there was no catheterization laboratory available, the patient received thrombolytic therapy and the ST segments normalized. Note that a history of hemorrhagic stroke is an absolute contraindication to thrombolytics, while a history of embolic stroke is a relative con- traindication if greater than 1 year prior. These ECG changes should be distinguished from those of acute pericarditis. Thrombolytic therapy in acute pericarditis can result in hemorrhagic pericarditis."
+  },
+  {
+    "question": "In AMI survivors, mortality between hospital discharge and 1 yr is:",
+    "options": [
+      "18% to 20%",
+      "7% to 8%",
+      "3% to 4%",
+      "2% or less"
+    ],
+    "correct": 1,
+    "explanation": "In the current era overall mortality between hospital discharge and 1 yr is 7% to 8%. Before 1980 mortality was approximately 20%. In patients selected for randomized trials and treated with reperfusion therapy, 1-yr post discharge mortality is between 2% and 4%, highlighting the selected subset of patients enrolled in clinical trials."
+  },
+  {
+    "question": "Which variable is associated with increased 30-day mortality in a patient treated with thrombolytic therapy?",
+    "options": [
+      "Systolic: BP \u2b0e 160 mmHg",
+      "HR \u2b0d 65 bpm",
+      "ST segment elevation in anterior leads V1\u2013V4 on the ECG",
+      "Weight \u2b0e100 kg"
+    ],
+    "correct": 2,
+    "explanation": "Mortality risk is higher in anterior wall MI as in this case. Hypotension (\u0002 100 mmHg systolic) and high HR (\u0001 100 bpm) are also associated with higher mortality. Low body weight (in the TIMI STEMI risk score \u0002 67 kg) is associated with increased mortality."
+  },
+  {
+    "question": "Measurement of LV EF in the AMI setting:",
+    "options": [
+      "Is a class I indication in patients treated with thrombolytic therapy",
+      "Can be performed by either echocardiography or equilibrium radionuclide angiography (MUGA), but in patients with AF is preferably performed using radionuclide angiography",
+      "Should be delayed for 72 to 96 hrs to allow the effects of \u201cmyocardial stun- ning\u201d to resolve",
+      "Could accurately predict long-term mortality in the pre-thrombolytic era but not in patients treated with reperfusion therapy"
+    ],
+    "correct": 0,
+    "explanation": "Measurement of LV EF is considered a class I indication in AMI patients. LV EF has been one of the strongest prognostic variables in both the pre-thrombolytic and the current eras. LV EF measurements performed by equilibrium radionuclide angiography are not reliable in patients in AF due to the irregular HR. The effects of stunning may take weeks to resolve."
+  },
+  {
+    "question": "Which statement concerning exercise testing post-MI is true?",
+    "options": [
+      "A maximal test at 4 to 6 wks is preferable to a submaximal test at 4 to 5 days",
+      "ST segment depression is the strongest prognostic variable",
+      "Due to the effect of beta blockers on HR, all patients taking a beta blocker should undergo pharmacologic imaging rather than exercise testing",
+      "Patients not referred for cardiac stress testing have a higher mortality than patients referred for stress testing"
+    ],
+    "correct": 3,
+    "explanation": "The most consistent finding of studies on exercise testing post AMI in both the pre- thrombolytic and current eras is that patients not referred for exercise testing have considerably higher mortality than patients referred for testing. ST segment depres- sion has been considered the hallmark of an abnormal test but is a weaker prognostic variable than exercise duration. Beta blockers may lower the sensitivity of the exercise ECG, but most MI patients are commonly tested on beta blockers. 2002 ACC/AHA Exercise Testing Guidelines state that an early submaximal test or a later maximal test are both class I indications. Some studies have suggested that the early submaximal test has better prognostic value. Exercise Testing after MI Class I: 1. Before discharge for prognostic assessment, activity prescription, evaluation of medical therapy (submaximal at about 4 to 76 days). 2. Early after discharge for prognostic assessment, activity prescription, evaluation of medical therapy, and cardiac rehabilitation if the predischarge exercise test was not done (symptom limited; about 14 to 21 days). 3. Late after discharge for prognostic assessment, activity prescription, evaluation of medical therapy, and cardiac rehabilitation if the early exercise test was submaxi- mal (symptom limited; about 3 to 6 weeks). Class IIa: 1. After discharge for activity counseling and/or exercise training as part of cardiac rehabilitation in patients who have undergone coronary revascularization. Class IIb: 1. Patients with the following ECG abnormalities: \u25a0 Complete LBBB \u25a0 Pre-excitation syndrome \u25a0 LVH \u25a0 Digoxin therapy \u25a0 \u00011 mm of resting ST-segment \u25a0 Depression \u25a0 Electronically-paced ventricular rhythm 2. Periodic monitoring in patients who continue to participate in exercise training or cardiac rehabilitation. Class III: 1. Severe comorbidity likely to limit life expectancy and/or candidacy for revascu- larization. 2. At any time to evaluate patients with AMI who have uncompensated CHF, car- diac arrhythmia, or noncardiac conditions that severely limit their ability to exer- cise. (Level of evidence: C) 3. Before discharge to evaluate patients who have already been selected for, or have undergone, cardiac catheterization. Although a stress test may be useful before or after catheterization to evaluate or identify ischemia in the distribution of a coro- nary lesion of borderline severity, stress imaging tests are recommended. (Level of evidence: C)"
+  },
+  {
+    "question": "You are the back-up cardiologist on-call for the weekend at your local hospital. You receive a phone call at 11:30 pm Saturday night from the ED physician. He is calling you because he has been unable to reach the primary cardiologist on- call for the past 2 hrs. A 50-year-old man presented to the ED 2 hrs ago with 3 hrs of substernal chest pressure with radiation into his jaws. The patient has no prior history of heart disease. He takes no medications. CAD risk factors include MI in his father at age 56, cigarette smoking 2 packs/day for 33 yrs, borderline HTN, no diabetes, and unknown lipid status. Physical exam upon presentation revealed BMI 32.4; BP 145/92 mmHg; HR 112 bpm; lungs clear; heart apical impulse not palpable, normal S1 and S2, soft apical S4, no S3 or murmur or rub; extremities no edema; peripheral pulses normal. The ECG showed Q waves and 3 mm ST segment elevation in the inferior leads. The patient was treated with SL NTG, aspirin and tPA followed by a heparin drip. His chest pain resolved and he has been pain-free for the past hour. The ST elevation resolved but the Q waves in the inferior leads persist. The ini- tial Troponin T was 0.03 ng/ml (normal \u2b0d0.10 ng/ml). His ECG monitor shows 8 to 10 single ventricular premature contractions per min. You visit and examine the patient and confirm the findings of the ED physician. The next step in this patient\u2019s management should be:",
+    "options": [
+      "CT chest scan with contrast to rule out aortic dissection",
+      "Coronary angiography",
+      "Echocardiogram",
+      "Lidocaine 100 mg IV bolus followed by lidocaine 2 mg/min IV drip",
+      "Metoprolol 50 mg PO followed by metoprolol 50 mg PO BID."
+    ],
+    "correct": 4,
+    "explanation": "The patient underwent successful pharmacologic reperfusion with thrombolysis. While coronary angiography is useful to define the anatomy, it becomes an elective procedure in the setting of successful thrombolysis. Aggressive medical management should always accompany pharmacologic or percutaneous revascularization strategies."
+  },
+  {
+    "question": "Which of the following features is associated with increased 30-day mortality risk in the patient in Question 15 according to the TIMI STEMI risk score?",
+    "options": [
+      "Age 50 yrs",
+      "Cigarette smoking history",
+      "BP 146/92 mmHg",
+      "HR 112 bpm",
+      "3 mm ST elevation in the inferior leads"
+    ],
+    "correct": 3,
+    "explanation": "The TIMI STEMI Risk Score assigns points for the following: TIMI Risk Score for STEMI Historical Age 65\u201374 2 points \u000375 3 points DM/HTN or Angina 1 point Exam SBP \u0002 100 mmHg 3 points HR \u0001 100 bpm 2 points Killip II\u2013IV 2 points Weight \u000267 kg 1 point Presentation Anterior ST elevation or LBBB 1 point Time to rx \u00014 hrs 1 point Risk score \u0004 Total (0\u201314) The odds ratio of death by 30 days (referenced to average mortality) is 0.1 for a score of 0 points, 1.2 for score of 4 points and 8.8 for a score \u00018."
+  },
+  {
+    "question": "A 72-year-old male underwent coronary angiography for a history of chest pain with positive serum biomarkers. He was found to have a 75% middle RCA stenosis, a 40% mid-LAD stenosis, and three 30% lesions in the left CFX. The coronary flow reserve in the RCA was 0.82. Medical treatment was recom- mended. Statistically this patient\u2019s risk for future MI is:",
+    "options": [
+      "Highest in the left CFX",
+      "Highest in the LAD",
+      "Highest in the RCA",
+      "Improved by stenting of the 75% RCA stenosis"
+    ],
+    "correct": 0,
+    "explanation": "More MIs occur from the rupture of stenoses with \u000250% luminal diameter obstruc- tion than in those \u000150%. The best answer is the vessel with the greatest extent of coronary disease. This is reflective of the fact that there are generally far more \u201cmild- moderate\u201d stenoses in the coronary arterial tree in patients with CAD. It could reasonably be argued that all three coronary vessels likely have multiple non-flow lim- iting stenoses, not all of which will be evident on angiography. It is the stability of the plaque, rather than the size or luminal encroachment of the plaque, that is crucial. There are currently no methods available to absolutely determine the stability of a plaque, although virtual histology with IVUS may be an important future imaging modality."
+  },
+  {
+    "question": "A major reason for performing post-MI risk stratification is:",
+    "options": [
+      "To identify patients most likely to benefit from statins",
+      "To identify patients most likely to benefit from aspirin and beta blockers",
+      "To identify patients at highest risk for future events",
+      "To identify patients requiring referral to a cardiac rehabilitation program"
+    ],
+    "correct": 2,
+    "explanation": "In the absence of contraindications all MI patients should receive a statin, beta blocker, and aspirin and be referred for cardiac rehabilitation."
+  },
+  {
+    "question": "Which of the following statements concerning post-MI exercise stress ECG test- ing is true?",
+    "options": [
+      "If a patient has had coronary angiography, exercise stress testing adds little to future risk stratification",
+      "The most useful prognostic variable is ST-segment depression",
+      "In uncomplicated patients treated with thrombolytic therapy, stress testing an safely be performed at 24 to 48 hrs",
+      "Patients selected for angiography should first undergo stress imaging to aid in the functional assessment of any borderline coronary stenoses seen at angiography"
+    ],
+    "correct": 0,
+    "explanation": "Due to lack of sensitivity and specificity, current guidelines do not have a risk- stratification role for TMET in the setting of coronary angiography. Exercise Testing after AMI: 2002 ACC/AHA Guideline Update for Exercise Testing Class III: 1. Severe comorbidity likely to limit life expectancy and/or candidacy for revascu- larization. 2. At any time to evaluate patients with AMI who have uncompensated CHF, cardiac arrhythmia, or noncardiac conditions that severely limit their ability to exercise. (Level of evidence: C) 3. Before discharge to evaluate patients who have already been selected for, or have undergone, cardiac catheterization. Although a stress test may be useful before or after catheterization to evaluate or identify ischemia in the distribution of a coronary lesion of borderline severity, stress imaging tests are not routinely recommended. (Level of evidence: C)"
+  },
+  {
+    "question": "A class I indication for coronary angiography following a medically managed AMI includes:",
+    "options": [
+      "An elevated EBCT calcium score in the non-infarct zone vessels",
+      "A high-sensitivity CRP level three times normal",
+      "Delayed resolution of ST-segment elevation by filtered ECG monitoring",
+      "1.5 mm ST-segment depression at 4 METS during a submaximal exercise test"
+    ],
+    "correct": 3,
+    "explanation": "Marked ST-segment depression at 4 METS during a submaximal TMET is marker of significant myocardial ischemia."
+  },
+  {
+    "question": "A 61-year-old male with long standing essential HTN on drug treatment had two episodes of chest \u201cheaviness\u201d in the last 24 hours. Risk factors include an LDL-cholesterol of 148 mg/dL; his initial troponin 0.1 ng/mL. He develops transient recurrent chest pain. The ECG monitor now shows new 2-mm ST depression with T-wave inversions in V5\u2013V6. The patient is seen in the ED before admission. The best initial treatment now is:",
+    "options": [
+      "ASA, unfractionated heparin, beta blocker",
+      "ASA, unfractionated heparin, IIb/IIIa inhibitor, beta blocker",
+      "ASA, clopidogrel, nifedipine",
+      "ASA, clopidogrel, IIb/IIIa inhibitor, immediate angiography"
+    ],
+    "correct": 1,
+    "explanation": "This patient has high risk features of ACS and will likely need coronary angiography with PCI in an \u201cearly invasive strategy.\u201d In addition to traditional medical manage- ment with aspirin, heparin, and a beta blocker, an IV glycoprotein IIb/IIIa inhibitor has evidence of benefit in this setting. The CURE trial studied patients with NSTEMI or unstable angina with ECG changes and demonstrated clopidogrel loading with 300 mg \u00016 hrs prior to coronary angiography has benefit. An alternative strategy is to wait until the coronary anatomy has been defined before administering clopidro- gel, in case the patients has \u201csurgical-type\u201d CAD and needs urgent CABG. It would also be a reasonable choice to select clopidrogel for the initial management of this patient. However, answer d is not appropriate as heparin administration, an impor- tant component of unstable angina management, is omitted."
+  },
+  {
+    "question": "The patient described in Question 21 stabilizes on medical therapy. Elective catheterization shows: \u25a0 An EF 68%, no areas of ventricular hypokinesis \u25a0 70% stenosis of the second OM with TIMI III flow \u25a0 40% to 50% lesions in remaining vessels \u25a0 The OM lesion is suitable for PCI with stent You elect to:",
+    "options": [
+      "Perform PCI with stent, dismiss on ASA, clopidogrel, dietary modification",
+      "Perform PCI with stent, dismiss on ASA, clopidogrel, Lovenox 7 days",
+      "Perform PCI with stent, IIb/IIIa inhibitor, dismiss on ASA, clopidogrel, beta blocker and statin",
+      "Intensive medical therapy with ASA, beta blocker, diet, increased dose of statin, and follow-up exercise test in 7 to 10 days"
+    ],
+    "correct": 2,
+    "explanation": "PCI and coronary stenting are indicated in the presence of a flow-limiting stenosis associated with unstable coronary symptoms."
+  },
+  {
+    "question": "Which of the following is true about the patient in Question 21?",
+    "options": [
+      "ASA reduces mortality",
+      "Clopidogrel reduces mortality",
+      "IIb/IIIa agents reduce mortality",
+      "Dalteparin reduces morality",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "The only drug that has been conclusively proven to reduce mortality in unstable angina is aspirin."
+  },
+  {
+    "question": "Identify the true statement:",
+    "options": [
+      "Randomized trials demonstrated that an urgent (6\u201312 hr) invasive strategy is superior to initial medical management of unstable angina in respect to preservation of hibernating myocardium",
+      "An early invasive strategy is generally indicated in patients with recent PCI (within 6 mos) or prior bypass graft",
+      "PCI is contraindicated in diabetic patients with ACS",
+      "IIb/IIIa agents are equally beneficial in high and low risk ACS",
+      "Ticlopidine should be administered to all ACS patients in the ED before planned PCI"
+    ],
+    "correct": 1,
+    "explanation": "While initial studies such as VANQWISH did not demonstrate benefit from early aggressive angiography and PCI, further studies and ACC guidelines in 2002 deter- mined that, compared with conservative management, early invasive treatment of patients with unstable angina or NSTEMI using coronary angiography (\u000248 hrs) with or without revascularization reduces re-hospitalization and refractory angina within the first year and significantly reduces mortality and MI at 2 to 5 yrs. However, patients undergoing early invasive treatment are more likely to have short-term com- plications such as bleeding and procedure-related MI. Clopidogrel given as a loading dose (300 mg) \u00016 hrs prior to PCI has significant benefit (CREDO, CURE trials); however, this should be balanced by the potential delay or increased bleeding if a sur- gical revascularization is needed. Ticlopidine has been replaced by clopidrogel because of the occurence of blood dyscrasias with ticlopidine. Consideration should be given to the potential need for emergent CABG in patients with suspected severe three-vessel or left-main CAD."
+  },
+  {
+    "question": "All of the following are considered absolute contraindications to the administra- tion of a thrombolytic agent to a patient with an AMI except:",
+    "options": [
+      "Embolic CVA 6 mos earlier",
+      "Remote history of incidentally discovered unruptured cerebral aneurysm on CT brain scan",
+      "Gastrointestinal bleed secondary to duodenal ulcer 4 wks earlier",
+      "Severe dementia"
+    ],
+    "correct": 0,
+    "explanation": "From ACC/AHA STEMI Guidelines: Contraindications and Cautions for Fibrinolysis in STEMI MI: Absolute contraindications: \u25a0 Any prior ICH \u25a0 Known structural cerebral vascular lesion (eg, arteriovenous malformation) \u25a0 Known malignant intracranial neoplasm (primary or metastatic) \u25a0 Ischemic stroke within 3 mos EXCEPT acute ischemic stroke within 3 hrs \u25a0 Suspected aortic dissection \u25a0 Active bleeding or bleeding diathesis (excluding menses) \u25a0 Significant closed-head or facial trauma within 3 mos Relative contraindications: \u25a0 History of chronic, severe, poorly controlled HTN \u25a0 Severe uncontrolled HTN on presentation (SBP \u0001 180 mmHg or DBP \u0001 110 mmHg) \u25a0 History of prior ischemic stroke \u00013 mos, dementia, or known intracranial pathology not covered in contraindications \u25a0 Traumatic or prolonged (\u000110 mins) CPR or major surgery (\u00023 wks) \u25a0 Recent (within 2 to 4 wks) internal bleeding \u25a0 Noncompressible vascular punctures \u25a0 For streptokinase/anistreplase: prior exposure (more than 5 days ago) or prior allergic reaction to these agents \u25a0 Pregnancy \u25a0 Active peptic ulcer \u25a0 Current use of anticoagulants: the higher the INR, the higher the risk of bleeding"
+  },
+  {
+    "question": "A 55-year-old retired financial services company chief executive officer arrives in the ED where you are moonlighting as a cardiology fellow. He has a history of mild CAD and PAF. He is on a daily aspirin and beta blocker. His chief complaint is new onset of a dense left-sided hemiplegia that was spontaneous in onset ~1 hr prior to admission. With the stress of the new neurological deficit, he is markedly anxious and notes some chest heaviness and shortness of breath. Vital signs are: HR 90bpm, BP 160/80 mmHg, RR 20/min. His initial ECG does not show evidence of ischemia. Head CT suggests MCA stroke without hemorrhage. The local neu- rologist is available within ~30 mins. Your next clinical step is:",
+    "options": [
+      "Administer clopidrogel 300 mg immediately",
+      "4ASA, heparin 5000 units as a bolus and 1000 units per hour, metoprolol",
+      "4 \u2afb 81mg ASA, heparin, metoprolol, IIb/IIIa inhibitor",
+      "Metoprolol only and call for an emergency neurological opinion"
+    ],
+    "correct": 3,
+    "explanation": "This patient may be a candidate for IV thrombolysis. This question highlights the dif- ferences in current guidelines for thrombolytic administration for CVA versus STEMI. If thrombolytics are to be given, other anticoagulation (heparin) and antiplatelet agents (ASA, clopidogrel, IIb/IIIa inhibitor) are relatively contraindicated within 24 hrs. This is due to the increased risk of intracranial hemorrhage. However, this is in contrast to aspirin and heparin co-administration for thrombolysis in STEMI. If the patient had clear evidence of MI, clinical decision-making would dictate phar- macotherapy."
+  },
+  {
+    "question": "All of the following ECG signs are associated with high-risk inferior MIs and identify patients most likely to gain benefit from reperfusion therapy except:",
+    "options": [
+      "ST elevation in V3R and V4R",
+      "ST segment depression in V1 and V2",
+      "Complete AV block",
+      "Sum of the ST segment elevation \u2b0e0.8 mV",
+      "Onset of AF"
+    ],
+    "correct": 4,
+    "explanation": "AF is not directly an ischemic rhythm. In select cases, a large MI can increase LVEDP and left atrial pressures. This increased stretch and pressure on the atrium can trigger AF. However, in a patient predisposed to AF, the rhythm can be triggered merely by the increased catecholamines of the event and is not a high-risk feature."
+  },
+  {
+    "question": "According to the ACC/AHA guidelines which of the following is a class I indi- cation for coronary angiography?",
+    "options": [
+      "A patient with new onset chest pain, no ST segment deviation but an elevated troponin T",
+      "A patient with a new finding of an LV EF of 45% by echocardiography",
+      "A patient with apical ischemia on exercise perfusion study at 11 METS",
+      "A patient with CRP in the upper quintile not associated with cardiac symptoms"
+    ],
+    "correct": 0,
+    "explanation": "The updated (2002) ACC/AHA guideline for ACS considers coronary angiography a class I indication for a patient with unstable angina/NSTEMI and high risk features like elevated troponin T or I. Angiography is a class I indication in patients with more severely reduced LV EF (\u00020.40). In the first edition of the ACC/ AHA AMI guidelines, non-Q wave MI was considered a class I indication for coronary angiography but now is a class IIb indication. An elevated CRP has been shown to predict higher mortality but its role in patient management has yet to be determined. Class I: 1. An early invasive strategy in patients with unstable angina/NSTEMI without seri- ous comorbidity and who have any of the following high-risk indicators: (Level of evidence: A) a. Recurrent ischemia despite intensive anti-ischemic therapy. (Level of evidence: A) b. Elevated troponin level. (Level of evidence: A) c. New ST-segment depression. (Level of evidence: A) d. CHF symptoms or new or worsening MR. (Level of evidence: A) e. Depressed LV systolic function. (Level of evidence: A) f. Hemodynamic instability. (Level of evidence: A) g. Sustained VT. (Level of evidence: A) h. PCI within 6 mos. (Level of evidence: A) i. Prior CABG. (Level of evidence: A) 2. In the absence of any of these findings, either an early conservative or an early inva- sive strategy may be offered in hospitalized patients without contraindications for revascularization. (Level of evidence: B)"
+  },
+  {
+    "question": "According to the ACC 2005 update for PCI, which of the following is a con- traindication (class III indication) for PCI in the setting of unstable angina/ NSTEMI?",
+    "options": [
+      "Three-vessel disease and diabetes",
+      "Significant proximal LAD disease and no contraindication for CABG",
+      "Significant left main CAD and no contraindication for CABG",
+      "Cardiogenic shock secondary to proximal LAD occlusion"
+    ],
+    "correct": 2,
+    "explanation": "Unstable angina/NSTEMI with left main disease should be referred for CABG unless contraindications exist. PCI is indicated for the other options barring contraindications. Class IIa: 1. It is reasonable that PCI be performed in patients with unstable angina/NSTEMI and single-vessel or multivessel CAD who are undergoing medical therapy with focal saphenous vein graft lesions or multiple stenoses who are poor candidates for reoperative surgery. (Level of evidence: C) 2. In the absence of high-risk features associated with unstable angina/NSTEMI, it is reasonable to perform PCI in patients with amenable lesions and no contraindica- tion for PCI with either an early invasive or early conservative strategy. (Level of evi- dence: B) 3. Use of PCI is reasonable in patients with unstable angina/NSTEMI with signifi- cant left main CAD (\u0001 50% diameter stenosis) who are candidates for revascu- larization but are not eligible for CABG. (Level of evidence: B) Class IIb: 1. In the absence of high-risk features associated with unstable angina/NSTEMI, PCI may be considered in patients with single-vessel or multivessel CAD who are undergoing medical therapy and who have 1 or more lesions to be dilated with reduced likelihood of success. (Level of evidence: B) 2. PCI may be considered in patients with unstable angina/NSTEMI who are undergoing medical therapy who have two- or three-vessel disease, significant proximal LAD CAD, and treated diabetes or abnormal LV function. (Level of evidence: B) Class III: In the absence of high-risk features associated with unstable angina/NSTEMI, PCI is not recommended for patients with unstable angina/NSTEMI who have single-vessel or multivessel CAD and no trial of medical therapy, or who have 1 or more of the following: \u25a0 Only a small area of myocardium at risk. (Level of evidence: C) \u25a0 All lesions or the culprit lesion to be dilated with morphology that conveys a low likelihood of success. (Level of evidence: C) \u25a0 A high risk of procedure-related morbidity or mortality. (Level of evidence: C) \u25a0 Insignificant disease (\u000250% coronary stenosis). (Level of evidence: C) \u25a0 Significant left main CAD and candidacy for CABG. (Level of evidence: B)"
+  },
+  {
+    "question": "Which of the following statements is true concerning the comparison of primary PCI and thrombolysis in the treatment of AMI?",
+    "options": [
+      "Survival with PCI in an 74-year-old diabetic female who presented 2 hrs after the onset of MI with cardiogenic shock is likely to be better than with aggres- sive medical treatment including thrombolysis",
+      "Survival benefit with primary PCI compared to thrombolysis is confined to anterior MI",
+      "Successful PCI and survival benefit with primary PCI is not associated with operator volume",
+      "Survival is higher among elderly patients if treated with thrombolytic agents rather than primary PCI",
+      "Success rates of rescue PCI after failed thrombolysis are similar to those of primary PCI"
+    ],
+    "correct": 0,
+    "explanation": "The SHOCK Trial Registry showed that mechanical revascularization was superior to medical therapy in the setting of cardiogenic shock and AMI. The magnitude of ben- efit to early revascularization was 132 lives saved at 1 yr per 1000 patients. Largely based on this study, the 2004 ACC/AHA STEMI update recommends the following: Pre-hospital Destination Protocols Class I: 1. Patients with STEMI who have cardiogenic shock and are \u000275 yrs of age should be brought immediately or secondarily transferred to facilities capable of cardiac catheterization and rapid revascularization (PCI or CABG) if it can be performed within 18 hrs of onset of shock. (Level of evidence: A) 2. Patients with STEMI who have contraindications to fibrinolytic therapy should be brought immediately or secondarily transferred promptly (ie, primary-receiving hospital door-to-departure time \u000230 mins) to facilities capable of cardiac catheter- ization and rapid revascularization (PCI or CABG). (Level of evidence: B) 3. Every community should have a written protocol that guides EMS system per- sonnel in determining where to take patients with suspected or confirmed STEMI. (Level of evidence: C) Class IIa: 1. It is reasonable that patients with STEMI who have cardiogenic shock and are 75 yrs of age or older be considered for immediate or prompt secondary transfer to facili- ties capable of cardiac catheterization and rapid revascularization (PCI or CABG) if it can be performed within 18 hrs of onset of shock. (Level of evidence: B) 2. It is reasonable that patients with STEMI who are at especially high risk of dying, including those with severe CHF, be considered for immediate or prompt secondary transfer (ie, primary-receiving hospital door-to-departure time \u000230 mins) to facilities capable of cardiac catheterization and rapid revascularization (PCI or CABG). (Level of evidence: B)"
+  },
+  {
+    "question": "The administration of aspirin in AMI:",
+    "options": [
+      "Has been shown to reduce 30-day mortality only among patients with ST elevation on the initial ECG",
+      "Is less beneficial in patients treated with thrombolytic therapy than other patients",
+      "Is statistically as effective as streptokinase at reducing 30-day mortality but is added in benefit when used in conjunction with streptokinase or another thrombolytic agent.",
+      "Is optional in the setting of AMI if the patient is therapeutic on warfarin (INR 2\u20133)"
+    ],
+    "correct": 2,
+    "explanation": "In ISIS-2, streptokinase reduced mortality by 25%, aspirin by 23%, and the combi- nation of aspirin with streptokinase reduced mortality by 42%."
+  },
+  {
+    "question": "Among patients suffering an MI with true contraindications to aspirin, which of the following should be administered in its place?",
+    "options": [
+      "Coumadin",
+      "Dipyridamole",
+      "Ticlopidine",
+      "Clopidogrel"
+    ],
+    "correct": 3,
+    "explanation": "A IIb/IIIa inhibitor can also be added if clinically indicated. Ticlopidine has been associated with TTP and agranulocytosis, and has largely been supplanted by the use of clopidogrel."
+  },
+  {
+    "question": "All the following are true concerning the use of beta blockers in AMI except:",
+    "options": [
+      "More than 50% of patients have contraindications to their use when first seen in the ED",
+      "There are data indicating that their use reduces the frequency of myocardial rupture",
+      "Their beneficial effect is partly due to an increase in myocardial blood flow",
+      "They should generally be administered acutely even to patients known to have a chronically low EF of 35%"
+    ],
+    "correct": 0,
+    "explanation": "While contraindicated in cardiogenic shock and overt systolic heart failure, beta block- ers can be safely given to patients with compensated systolic heart failure and AMI. Clinical assessment should dictate administration and caution with IV administration in those settings."
+  },
+  {
+    "question": "IV NTG:",
+    "options": [
+      "Has been shown in randomized trials to reduce mortality in patients with anterior wall MI receiving thrombolytic therapy",
+      "May reduce infarct size even in patients with hypotension",
+      "Reduces preload and may dilate collaterals",
+      "Reduces the frequency of reinfarction when administered with thrombolytic therapy"
+    ],
+    "correct": 2,
+    "explanation": "There are no data supporting increased survival or decreased morbidity with nitro- glycerin use in AMI."
+  },
+  {
+    "question": "In the setting of thrombolytic therapy, which adjunctive therapy is least useful?",
+    "options": [
+      "Aspirin",
+      "Plavix",
+      "Gp IIb/IIIa inhibitor",
+      "Heparin"
+    ],
+    "correct": 2,
+    "explanation": "Thrombolytics create highly thrombogenic split products that require the use of heparin anticoagulation. Aspirin should always be co-administered. Full and half- dose glycoprotein IIb/IIIa inhibitors have been studied in combination with throm- bolytics; there is increased bleeding and no significant net benefit."
+  },
+  {
+    "question": "For a patient with NSTEMI and high risk features proceeding to PCI, which of the following therapies is least likely to improve outcomes?",
+    "options": [
+      "Aspirin \u2af9 heparin",
+      "Aspirin \u2af9 IIb/IIIa inhibitor",
+      "Plavix \u2af9 heparin",
+      "Half-strength tenecteplase",
+      "Aspirin \u2af9 bivalirudin"
+    ],
+    "correct": 3,
+    "explanation": "Thrombolytics do not improve outcome in unstable angina. The ACUITY trial studied 14,000 patients with moderate to high risk ACS (including both UA and NSTEMI), compared bivalirudin (IV direct thrombin inhibitor) to heparin \u0005 IIb/IIIa inhibitor, and found that bivalirudin alone was non-inferior to heparin \u0005 IIb/IIIa and had less major bleeding. When IIb/IIIa inhibitor was added to bivalirudin for \u201cbailout,\u201d bleeding rates were not significantly different than heparin \u0005 IIb/IIIa."
+  },
+  {
+    "question": "Which of the following glycoprotein IIb/IIIa inhibitors can be reversed by platelet transfusion?",
+    "options": [
+      "Abciximab",
+      "Tirofiban",
+      "Eptifibatide"
+    ],
+    "correct": 0,
+    "explanation": "Abciximab is a monoclonal antibody directed against the platelet glycoprotein IIb/IIIa molecule and prevents fibrinogen binding to activated platelets. It has a short plasma half-life and binds strongly to the platelet receptors. This can cause an abrupt and pro- found thrombocytopenia within 2 to 4 hrs. The platelets affected by abciximab admin- istration are permanently inhibited and recovery depends on either production or transfusion of new platelets. The small molecule IIb/IIIa inhibitors (tirofiban and eptifi- batide) reversibly bind platelet receptors. They are able to inactivate any new platelets transfused and metabolic clearance of the drug is needed for eventual reversal of action."
+  },
+  {
+    "question": "A 45-year-old male is hospitalized at the local outreach hospital with 3-mm ST- segment elevation in leads II, III, aVF. There is no ST-elevation in right-sided chest leads. He is given tPA and is transported by helicopter to your institution. He arrives in the CCU 40 mins after administration of aspirin, tPA, and heparin infusion. He is also receiving a low dose NTG drip. His vital signs are: HR 75 bpm, BP 110/50 mmHg, RR 16/min. He is still complaining of \u201c3/10\u201d chest heaviness and is mildly agitated. A repeat ECG showed residual inferior wall ST elevation of 1 to 1.5 mm. What is your next step?",
+    "options": [
+      "Add IIb/IIIa inhibitor to his medical regimen",
+      "Increase NTG dose and add oral metoprolol",
+      "Activate the cardiac catheterization laboratory for emergent mechanical revas- cularization and \u201crescue\u201d PCI",
+      "Consult cardiac surgery for emergency CABG",
+      "Inset an aortic balloon pump to improve diastolic perfusion pressure"
+    ],
+    "correct": 1,
+    "explanation": "This patient received thrombolysis 40 mins prior to arriving at your institution. In the absence of evidence of cardiogenic shock requiring emergent mechanical revascular- ization, it is too early to determine if pharmacologic reperfusion therapy has failed. However, depending on the time required to mobilize the catheterization laboratory, it may be prudent to forewarn them of impending pharmacologic failure. The REACT trial (NEJM 2005) was a randomized trial comparing medical therapy, rescue PCI, or repeat thrombolysis in the setting of acute STEMI initially treated with thrombolysis. They used non-resolution of ST-segments by 50% by 90 mins as criteria for failure. They found that \u201crescue\u201d PCI was associated with event-free survival of 85% at 6 mos compared to ~70% with conservative management or repeat thrombolysis. By ACC/AHA 2004 STEMI update: Assessment of Reperfusion Class IIa: It is reasonable to monitor the pattern of STE, cardiac rhythm, and clinical symptoms over the 60 to 180 mins after initiation of fibrinolytic therapy. Noninvasive findings suggestive of reperfusion include relief of symptoms, maintenance or restoration of hemodynamic and or electrical stability, and a reduction of at least 50% of the initial ST-segment elevation injury pattern on a follow-up ECG 60 to 90 mins after initia- tion of therapy. (Level of evidence: B)"
+  },
+  {
+    "question": "A 62-year-old diabetic smoker arrives at the local community hospital after 6 hrs of continuous crushing substernal chest pain. There is 2-mm ST elevation in leads V2\u2013V4. Vital signs are: HR 80 bpm, BP 126/78 mmHg, respiratory rate 18/min. Physical exam demonstrates mild JVD, but clear lungs and no S3. The nearest catheterization laboratory is 60 mins away by ambulance. A helicopter is unavailable because of adverse weather conditions. The most appropriate treatment option is:",
+    "options": [
+      "Aspirin, heparin, IIb/IIIa inhibitor, clopidogrel, metoprolol",
+      "Aspirin, heparin, IIb/IIIa inhibitor, metoprolol, tPA",
+      "Aspirin, heparin, metoprolol, tPA",
+      "Aspirin, heparin, IIb/IIIa inhibitor, metoprolol, transfer to awaiting catheter- ization laboratory",
+      "Half strength streptokinase, aspirin, heparin, metoprolol"
+    ],
+    "correct": 3,
+    "explanation": "The patient is presenting \u00016 hrs of symptoms, making thrombolysis markedly less effective. In addition, the patient is within 1 hr of transport time making a \u201cmedical contact-to-balloon time\u201d within ~90 mins. From 2004 ACC/AHA STEMI guidelines Primary PCI Class I: 1. General considerations: If immediately available, primary PCI should be per- formed in patients with STEMI (including true posterior MI) or MI with new or presumably new LBBB who can undergo PCI of the infarct artery within 12 hrs of symptom onset, if performed in a timely fashion (balloon inflation within 90 mins of presentation) by persons skilled in the procedure (individuals who per- form more than 75 PCI procedures per year). 2. The procedure should be supported by experienced personnel in an appropriate laboratory environment (a laboratory that performs more than 200 PCI proce- dures per year, of which at least 36 are primary PCI for STEMI, and has cardiac surgery capability). (Level of evidence: A) 3. Specific considerations: \u25a0 Primary PCI should be performed as quickly as possible with a goal of a medical contact-to-balloon or door-to-balloon interval of within 90 mins. (Level of evi- dence: B) \u25a0 If the symptom duration is within 3 hrs and the expected door-to-balloon time minus the expected door-to-needle time is: i. Within 1 hr, primary PCI is generally preferred. (Level of evidence: B) ii. Greater than 1 hr, fibrinolytic therapy (fibrinspecific agents) is generally preferred. (Level of evidence: B) \u25a0 If symptom duration is \u00013 hrs, primary PCI is generally preferred and should be performed with a medical contact-to-balloon or door-to-balloon interval as short as possible and a goal of within 90 mins. (Level of evidence: B) \u25a0 Primary PCI should be performed for patients \u000275 yrs old with ST elevation or LBBB who develop shock within 36 hrs of MI and are suitable for revascu- larization that can be performed within 18 hours of shock unless further sup- port is futile because of the patient\u2019s wishes or contraindications/unsuitability for further invasive care. (Level of evidence: A) \u25a0 Primary PCI should be performed in patients with severe CHF and/or pulmonary edema (Killip class 3) and onset of symptoms within 12 hrs. The medical contact-to-balloon or door-to-balloon time should be as short as pos- sible (ie, goal within 90 mins). (Level of evidence: B) Class IIa: 1. Primary PCI is reasonable for selected patients 75 yrs or older with ST elevation or LBBB or who develop shock within 36 hrs of MI and are suitable for revascu- larization that can be performed within 18 hrs of shock. Patients with good prior functional status who are suitable for revascularization and agree to invasive care may be selected for such an invasive strategy. (Level of evidence: B) 39. (continued ) 2. It is reasonable to perform primary PCI for patients with onset of symptoms within the prior 12 to 24 hrs and 1 or more of the following: \u25a0 Severe CHF (Level of evidence C) \u25a0 Hemodynamic or electrical instability (Level of evidence: C) \u25a0 Persistent ischemic symptoms. (Level of evidence: C) Class IIb: The benefit of primary PCI for STEMI patients eligible for fibrinolysis is not well established when performed by an operator who performs fewer than 75 PCI proce- dures per year. (Level of evidence: C) Class III: 1. PCI should not be performed in a non-infarct artery at the time of primary PCI in patients without hemodynamic compromise. (Level of evidence: C) 2. Primary PCI should not be performed in asymptomatic patients more than 12 hrs after onset of STEMI if they are hemodynamically and electrically stable. (Level of evidence: C)"
+  },
+  {
+    "question": "A 38-year-old who had an anterior STEMI followed by prompt revascularization of a proximal LAD lesion with a sirolimus-coated DES is recovering uneventfully in the coronary care unit. On hospital day 4, the nurse alerts you to a new rash that he has developed. It is on his knees, elbows, and scalp and is well-demarcated with red-raised skin and silvery scale. Which of his new medications is likely the cause?",
+    "options": [
+      "Sirolimus in the stent",
+      "Clopidogrel",
+      "Ramipril",
+      "Metoprolol"
+    ],
+    "correct": 3,
+    "explanation": "This patient has new onset psoriasis precipitated by addition of a beta blocker. This is a known association and often resolves completely with discontinuation of the medication. It is important to recognize drug reactions from allergies to prevent unnecessary discontinuation of necessary pharmacotherapy."
+  },
+  {
+    "question": "In patients with unstable angina who undergo coronary angiography, what per- centage have angiographically normal coronary arteries or minimal CAD?",
+    "options": [
+      "\u2b0d10%",
+      "10% to 20%",
+      "40% to 50%",
+      "60% to 70%",
+      "\u2b0e80%"
+    ],
+    "correct": 1,
+    "explanation": "Normal or minimally diseased epicardial coronary arteries are found in 10% to 20% of patients with unstable angina."
+  },
+  {
+    "question": "Which of the following is not a contraindication to intra-aortic balloon pump use in patients with unstable angina?",
+    "options": [
+      "Severe peripheral vascular disease",
+      "Severe AS",
+      "Severe aortic insufficiency",
+      "Severe aortoiliac disease",
+      "Helium allergy"
+    ],
+    "correct": 1,
+    "explanation": "AR\u2014but not AS\u2014is a contraindication to intra-aortic balloon pump implantation."
+  },
+  {
+    "question": "Which of the following is least likely to be a cause of unstable angina?",
+    "options": [
+      "Anemia",
+      "Fever",
+      "Hypothyroidism",
+      "Severe AS",
+      "Severe HTN"
+    ],
+    "correct": 2,
+    "explanation": "Hyperthyroidism\u2014but not hypothyroidism\u2014may precipitate unstable angina."
+  },
+  {
+    "question": "Which of the following drugs has been shown to decrease CV events in patients with unstable angina who are allergic to aspirin?",
+    "options": [
+      "Ticlopidine",
+      "Sulfinpyrazone",
+      "Dipyridamole",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 0,
+    "explanation": "Ticlopidine\u2014but not sulfinpyrazone or dipyridamole\u2014decreases cardiac events in patients with unstable angina."
+  },
+  {
+    "question": "Which patients with unstable angina who have the following ECG subsets have been shown to benefit from acute IV thrombolytic therapy?",
+    "options": [
+      "ST-segment depression \u2b0e1 mm in leads V5\u2013V6",
+      "T-wave inversion \u2b0e2 mm in leads V1\u2013V4",
+      "Peaked T waves \u2b0e2 mm in leads V1\u2013V4",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "Thrombolytic agents have no documented benefit in the absence of acute STEMI, with the exception of patients with LBBB in whom a new MI is masked or in patients with a posterior infarct and ST-segment depression in leads V1\u2013V3."
+  },
+  {
+    "question": "Which of the following diagnoses should be considered in the differential diag- nosis of unstable angina?",
+    "options": [
+      "Aortic dissection",
+      "Pericarditis",
+      "Pneumothorax",
+      "Pulmonary embolus",
+      "None of the above",
+      "All the above"
+    ],
+    "correct": 5,
+    "explanation": "The differential diagnosis of unstable angina includes all the above."
+  },
+  {
+    "question": "Which of the following historic features indicates the lowest risk of death or non- fatal MI in patients with unstable angina?",
+    "options": [
+      "Rest pain \u2b0e20 mins",
+      "Pulmonary edema associated with ischemia",
+      "Angina associated with ST-segment depression \u2c561 mm",
+      "Angina with new MR murmur",
+      "Angina provoked at a workload lower than normal"
+    ],
+    "correct": 4,
+    "explanation": "Unstable angina associated with any of the following is associated with a worse prog- nosis: rest pain, ST-segment depression \u00031 mm, a new MR murmur, or pulmonary edema."
+  },
+  {
+    "question": "Which of the following is an indication for the use of calcium channel blockers in patients with unstable angina?",
+    "options": [
+      "Vasospastic angina",
+      "Ischemic symptoms associated with subacute stent thrombosis",
+      "Unstable angina occurring in association with AS",
+      "Unstable angina in the setting of hyperparathyroidism",
+      "Unstable angina in the periopertive period"
+    ],
+    "correct": 0,
+    "explanation": "Aspirin, heparin, beta blockers, and nitrates have been shown to be beneficial in unsta- ble angina. Calcium channel blockers are indicated in subsets of patients with vasospas- tic angina or increased systolic BP or in those refractory to conventional treatment."
+  },
+  {
+    "question": "IV lidocaine:",
+    "options": [
+      "Reduces ventricular ectopy in AMI and should be administered to all patients prophylactically",
+      "Reduces mortality in AMI",
+      "Should be routinely administered before primary angioplasty for AMI",
+      "May increase mortality in AMI"
+    ],
+    "correct": 3,
+    "explanation": "Lidocaine reduced ventricular ectopy in AMI but may increase the incidence of con- duction disturbances and should not be administered to patients prophylactically. There is no substantial evidence that lidocaine reduces mortality in AMI."
+  },
+  {
+    "question": "Calcium channel blockers:",
+    "options": [
+      "Should be routinely used in patients with NSTEMI for secondary prevention of coronary vasospasm",
+      "Are indicated after MI for the treatment of angina or HTN, when the patient has a normal EF",
+      "May increase mortality after AMI, especially in patients with reduced ven- tricular function",
+      "Are recommended in patients with combined cerebrovascular disease and MI"
+    ],
+    "correct": 2,
+    "explanation": "Dihydropyridine calcium channel blockers can be useful in treating HTN and angina, especially if there is a vasospastic component. However, pharmacotherapy should uti- lize mortality-reducing medications (beta blockers and ACE inhibitors) preferentially in the setting of AMI. Calcium channel blockers may increase mortality after AMI, especially in patients with reduced ventricular function. Recent studies have suggested that there is no increased risk."
+  },
+  {
+    "question": "Lipid-lowering agents:",
+    "options": [
+      "Are effective for reducing long-term mortality, even in patients with advanced CAD",
+      "Should not be used early in the post-infarction period",
+      "May paradoxically increase mortality in patients with low levels of HDL cholesterol",
+      "Were frequently stopped because of congestive hepatitis in trials among patients with a history of heart failure"
+    ],
+    "correct": 0,
+    "explanation": "Statins should be started in the hospital on all patients with MI with a few exceptions such as patients with liver disease or a history of rhabdomyolysis."
+  },
+  {
+    "question": "Which of the following is true?",
+    "options": [
+      "Warfarin prevents reocclusion more effectively than aspirin after thrombolytic therapy",
+      "Clopidogrel is less effective than aspirin for reducing adverse CV events in patients with vascular disease",
+      "Aspirin is roughly as effective both early and late after MI for reducing adverse CV events",
+      "Beta blockers should not be administered after MI until after an exercise test has been performed; this avoids false negatives and higher sensitivity on the test"
+    ],
+    "correct": 2,
+    "explanation": "53. Answer c. Patients, especially with depressed LV EF benefit from titration of beta blockers. Mortality is decreased by ~30% with therapeutic doses of beta blockers, especially after MI."
+  },
+  {
+    "question": "Angiography after MI:",
+    "options": [
+      "Predicts patients who will have reinfarction",
+      "Predicts mortality",
+      "Often leads to revascularization",
+      "Is a cost-effective risk-stratification strategy",
+      "Is necessary in all patients after MI"
+    ],
+    "correct": 2,
+    "explanation": "Angiography after MI frequently leads to revascularization, including angioplasty, stent placement, or CABG. It is not a good predictor of mortality and does not pre- dict reinfarction with any degree of accuracy. Angiography is not necessary in low-risk patients and is not a cost-effective risk-stratification method if applied to all patients. Angiography is best applied to high-risk patients, including those with ongoing ischemia, CHF, significant ventricular arrhythmias beyond the immediate post-infarction period and evidence of ischemia on stress testing."
+  },
+  {
+    "question": "TMET after MI in patients who have had thrombolysis:",
+    "options": [
+      "Predicts reinfarction",
+      "Predicts mortality",
+      "Is vastly inferior to nuclear or exercise echocardiography",
+      "Is useful for exercise prescription and reassurance of the patient",
+      "Is mandatory in all patients after MI"
+    ],
+    "correct": 3,
+    "explanation": "TMET after MI in patients who have received thrombolysis differs significantly from that in patients treated in the pre-thrombolytic area or in those who have not received thrombolytic therapy. TMET does not accurately predict either mortality or reinfarc- tion. It is, however, useful for exercise prescription and reassurance of the patient. Although stress testing in combination with either nuclear or exercise imaging has improved diagnostic accuracy, in general, compared with TMET alone, the incre- mental prognostic value of stress imaging after thrombolysis is not large."
+  },
+  {
+    "question": "Clinical risk factors for a poor outcome after MI include all except:",
+    "options": [
+      "Shock",
+      "Pulmonary congestion",
+      "Age 70 years or older",
+      "Cigarette smoking on admission",
+      "Recurrent rest angina"
+    ],
+    "correct": 3,
+    "explanation": "Risk factors associated with poor outcome after MI include shock or advanced Killip class on presentation; the presence of CHF, including pulmonary congestion; advanced age, especially older than 70 yrs; or recurrent ischemia or rest angina. Patients who quit smoking during the hospitalization for AMI have similar rates of death compared to nonsmokers. Patients who continue to smoke have a hazard ratio of ~1.7 with regard to mortality."
+  },
+  {
+    "question": "The average 1-yr post-dismissal mortality rate for patients receiving thrombolytic therapy in a clinical trial is:",
+    "options": [
+      "1%",
+      "2% to 4%",
+      "8%",
+      "\u2b0e15%",
+      "\u2b0e40%"
+    ],
+    "correct": 1,
+    "explanation": "The average 1-yr post-dismissal mortality rate for a patient receiving thrombolytic therapy in a clinical trial is 2% to 4%. Clinical trials often exclude high-risk patients and must be critically interpreted to assess applicability to individual patients."
+  },
+  {
+    "question": "The average 1-yr post-dismissal mortality rate in a large observational registry of patients after reperfusion (primary percutaneous transluminal coronary angio- plasty or thrombolysis) was:",
+    "options": [
+      "1%",
+      "3%",
+      "5% to 6%",
+      "10% to 15%",
+      "\u2b0e20%"
+    ],
+    "correct": 2,
+    "explanation": "The average 1-yr post-dismissal mortality rate in a large observational registry after reperfusion with either thrombolysis or PTCA was 5% to 6%, which is significantly higher than that for patients in clinical trials referred to in Question 57, which was 2% to 4%. Selection bias for patients included in clinical trials is thought to explain the difference."
+  },
+  {
+    "question": "In GISSI II:",
+    "options": [
+      "There was a high (\u2b0e50%) rate of angiography after MI",
+      "There was considerable (\u2b0e40%) revascularization after MI",
+      "TMET gave incremental prognostic information over clinical assessment",
+      "A resting EF \u2b0d 40% was associated with a 6 mo mortality rate of more than 8%",
+      "Female patients had a higher mortality rate than male patients"
+    ],
+    "correct": 3,
+    "explanation": "In the GISSI II trial, an EF \u0002 40% was associated with a mortality rate of more than 8% 6 mos after MI. Female patients did not have a higher mortality rate than male patients. Exercise testing did not provide any incremental prognostic information over good clinical assessment. The GISSI II trial was notable in that there was a rela- tively low rate of angiography after MI in comparison to present-day practice in the United States."
+  },
+  {
+    "question": "All of the following are true about the GUSTO I trial except:",
+    "options": [
+      "20% of patients had an uncomplicated MI",
+      "The 30-day mortality rate was 1%, and the 1-yr additional mortality rate was 3.5%",
+      "Patients with uncomplicated infarction by day 4 had 1% 30-day and 2.6% additional 1-yr mortality rates",
+      "Age, hypotension, Killip class II or higher, increased HR, and location of infarct were the five most important clinical predictors of morality at 30 days"
+    ],
+    "correct": 0,
+    "explanation": "In the GUSTO I trial, the 30-day mortality was approximately 1% and the additional 1-yr mortality rate was 3.5%. Patients with uncomplicated infarction by day 4 had a 1% 30-day mortality rate and 2.6% additional 1-yr mortality rate. Older age, hypotension, Killip class II or higher, increased HR, and location of infarct were the strongest clinical predictors of mortality at 30 days. In comparison, the uncompli- cated infarction rate was 57% higher in the GISSI study."
+  },
+  {
+    "question": "For patients not receiving thrombolysis or primary percutaneous transluminal coronary angioplasty:",
+    "options": [
+      "Mortality is lower than in candidates for thrombolysis",
+      "Angiography and stress testing are useful to select patients for revasculariza- tion versus medical therapy",
+      "Ancillary therapy (aspirin, beta blockers, ACE inhibitors) is unimportant",
+      "Revascularization prolongs survival in asymptomatic patients with well- preserved EF and single-vessel (not left main) disease"
+    ],
+    "correct": 1,
+    "explanation": "For patients not receiving thrombolysis or primary PTCA, the mortality is generally higher than in those receiving thrombolysis or considered candidates for thrombolysis. Angiography and stress testing are useful to select patients for revascularization ther- apy or those who may be safely managed with medical therapy. In patients who do not receive thrombolysis, the importance of ancillary therapy (including aspirin, beta blockers, and ACE inhibitors) is comparable to that in patients receiving throm- bolysis. There is no evidence that revascularization prolongs survival in patients who are asymptomatic with good ventricular function and have single-vessel CAD, exclud- ing flow-limiting left main CAD or proximal LAD disease."
+  },
+  {
+    "question": "Which patient is at the highest risk after MI?",
+    "options": [
+      "Received thrombolysis as part of a clinical trial",
+      "Received primary percutaneous transluminal coronary angioplasty as part of a clinical trial",
+      "Received thrombolysis or angioplasty in a nontrial setting within 1 hr of presentation",
+      "Received thrombolysis, is in Killip class II with a LV EF of 36%",
+      "Received thrombolysis, uncomplicated hospital course, asymptomatic 1-mm ST depression on rehabilitation TMET at 6 METS"
+    ],
+    "correct": 3,
+    "explanation": "The highest risk of death after MI occurs in patients presenting in Killip class II or higher with significantly decreased LV function. Patients considered to be at relatively low risk are those who received thrombolysis or primary PTCA as part of a trial, because trials generally seem to select patients at lower risk than those excluded from participation. Patients who are not part of a clinical trial but who present early are also in a favorable prognostic category. Patients with uncomplicated MI after throm- bolysis also have a favorable prognosis, even with the presence of 1mm of asympto- matic depression on rehabilitation treadmill at 6 METS."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

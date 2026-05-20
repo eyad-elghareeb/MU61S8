@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pleural Disease</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwddixc",
+  "title": "Pleural Disease",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Pleural Disease",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which is a WRONG statement regarding \ufb01ssural effusion?",
+    "options": [
+      "CCF is the most common cause",
+      "Can occur in hyperproteinemia",
+      "Most common site is horizontal \ufb01ssure",
+      "Treated with therapeutic aspiration",
+      "Biconvex contour is diagnostic"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Treated with therapeutic aspiration."
+  },
+  {
+    "question": "Which of the following is the BEST investigation to evaluate pleural thickening?",
+    "options": [
+      "Contrast enhanced CT scan",
+      "Thoracic ultrasound",
+      "Fluoroscopy",
+      "Chest X-ray",
+      "Medical Thoracoscopy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Contrast enhanced CT scan."
+  },
+  {
+    "question": "Which is the MOST COMMON cause for encysted pleural effusion?",
+    "options": [
+      "Tuberculosis",
+      "Malignant pleural effusion",
+      "Mesothelioma",
+      "Acute pancreatitis",
+      "Chylothorax"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Tuberculosis."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to lead to pleural calci\ufb01cation?",
+    "options": [
+      "Tubercular pleural effusion",
+      "Empyema",
+      "Hemothorax",
+      "Asbestosis",
+      "Malignant pleural effusion"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Malignant pleural effusion."
+  },
+  {
+    "question": "Which of the following is the BEST investigation to determine the cause for raised dome?",
+    "options": [
+      "CT scan thorax",
+      "Lateral decubitus x-ray",
+      "Fluoroscopy",
+      "Ultrasound thorax and abdomen",
+      "MRI thorax"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Ultrasound thorax and abdomen."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to cause Broncho pleural \ufb01stula?",
+    "options": [
+      "Pneumonectomy",
+      "Endobronchial obstruction",
+      "Pulmonary tuberculosis",
+      "Obstructive airway disease",
+      "Trauma Answer \u2013 B 239 16. Which of the following is NOT a sign of broncho pleural \ufb01stula?",
+      "Persistent air leak through ICT",
+      "Amphoric breath sounds on auscultation",
+      "No swing of \ufb02uid column in ICT",
+      "Persistent pneumothorax after ICT drain",
+      "Air \ufb02uid level in chest x ray"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Pulmonary tuberculosis."
+  },
+  {
+    "question": "Which of the following is NOT useful in the treatment for Broncho pleural \ufb01stula?",
+    "options": [
+      "ICT drain",
+      "Treatment of the underlying cause",
+      "If BPF size is less than 5mm bronchoscopic methods are likely to be successful",
+      "Surgical resection",
+      "Positive pressure ventilation"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Positive pressure ventilation."
+  },
+  {
+    "question": "Which of the following ventilatory strategy should be AVOIDED in a patient with BPF?",
+    "options": [
+      "Increase respiratory rate",
+      "Increase PEEP",
+      "Low tidal volume",
+      "Reduce inspiratory time",
+      "High frequency ventilation"
+    ],
+    "correct": 1,
+    "explanation": "PEEP should be kept minimum to reduce air leak."
+  },
+  {
+    "question": "Which is NOT a complication of Broncho pleural \ufb01stula?",
+    "options": [
+      "Hemoptysis",
+      "Hypoxia",
+      "Pleural space infection",
+      "Aspiration pneumonia",
+      "Surgical emphysema"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Hemoptysis."
+  },
+  {
+    "question": "How should pleural thickening be biopsied?",
+    "options": [
+      "Should never be biopsied",
+      "Core biopsy by USG/CT guidance",
+      "Medical Thoracoscopy",
+      "Biopsy under general anesthesia",
+      "Abram's needle"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Should never be biopsied."
+  },
+  {
+    "question": "Which is a WRONG statement about urinothorax?",
+    "options": [
+      "Most often bilateral",
+      "Pleural \ufb02uid to serum creatinine ratio more than 1",
+      "Usually resolves after the cause of urinary obstruction is removed",
+      "Transudate",
+      "More common on the same side of obstructive uropathy"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Most often bilateral."
+  },
+  {
+    "question": "Which of the following usually DOES NOT predispose to encysted pleural effusion?",
+    "options": [
+      "Tuberculosis",
+      "Empyema",
+      "Cirrhosis liver",
+      "Hemothorax",
+      "Congestive cardiac failure"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Cirrhosis liver."
+  },
+  {
+    "question": "Most common cause for inter lobar effusion is ---",
+    "options": [
+      "Tuberculosis",
+      "Empyema",
+      "Klebsiella pneumonia",
+      "Hemothorax",
+      "Congestive cardiac failure"
+    ],
+    "correct": 4,
+    "explanation": "242 1.33. Empyema necessitates is usually due to A. Malignancy B. Pyogenic bacterial infections C. Actinomycosis D. Blastomycosis E. Tuberculosis Answer \u2013 E"
+  },
+  {
+    "question": "Which is a WRONG statement about Para malignant effusion?",
+    "options": [
+      "Can occur in SVC obstruction",
+      "May be due to lymphatic obstruction",
+      "Can be due to pleural space infection",
+      "Occurs only on the side of tumor",
+      "Can be due to indirect effects of malignancy"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Occurs only on the side of tumor."
+  },
+  {
+    "question": "Which is WRONG statement regarding thoracic USG in pleural effusion?",
+    "options": [
+      "Decreases the chances of complications due to aspiration",
+      "Can differentiate effusion from pleural thickening",
+      "Can exactly measure the volume of pleural \ufb02uid",
+      "Can differentiate pleural effusion from consolidation",
+      "Can differentiate transudate from empyema"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Can exactly measure the volume of pleural \ufb02uid."
+  },
+  {
+    "question": "Which is a WRONG statement about open pleural drainage?",
+    "options": [
+      "Done in patients with chronic empyema",
+      "Done in patients with recurrent pleural effusion",
+      "Done in patients un\ufb01t for de\ufb01nitive surgery",
+      "Contra indicated in patients with no proper adherence of surrounding lung tissue to the chest wall",
+      "Pneumothorax can be a complication of the procedure"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Done in patients with recurrent pleural effusion."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Asbestos related pleural disease?",
+    "options": [
+      "Parenchymal involvement is more common than pleural involvement",
+      "Pleural effusion usually occurs in the early stages of the disease",
+      "Parietal pleural plaques are usually bilateral",
+      "Pleural calci\ufb01cation occurs especially along the diaphragmatic pleura",
+      "Diffuse pleural thickening may mimic Mesothelioma"
+    ],
+    "correct": 0,
+    "explanation": "243 38. Which is a WRONG statement regarding encysted pleural effusion? A. Encystment is rare in malignant effusion B. Can mimic Mesothelioma C. Most common cause in India is CCF D. Multiple loculations more common in empyema E. Costoparietal encystment is most common Answer \u2013 C. In India most common cause is tuberculosis."
+  },
+  {
+    "question": "Which of the following usually DOES NOT predispose to encysted pleural effusion?",
+    "options": [
+      "Tuberculosis",
+      "Empyema",
+      "Nephrotic syndrome",
+      "Hemothorax",
+      "Congestive cardiac failure"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Nephrotic syndrome."
+  },
+  {
+    "question": "Which of the following is the MOST COMMON cause for inter lobar effusion?",
+    "options": [
+      "Tuberculosis",
+      "Empyema",
+      "Klebsiella pneumonia",
+      "Hemothorax",
+      "Congestive cardiac failure"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Congestive cardiac failure."
+  },
+  {
+    "question": "Which of the following physical sign is NOT SEEN in pneumothorax?",
+    "options": [
+      "Decrease in chest movements",
+      "Hyper resonant percussion note",
+      "Decrease in intensity of breath sounds",
+      "Increase in vocal resonance",
+      "Amphoric breath sounds"
+    ],
+    "correct": 3,
+    "explanation": "In pneumothorax vocal resonance will be decreased as air is bad conductor of sound. Amphoric breath sound may be heard in pneumothorax when there is Bronchopleural \ufb01stula. Bronchopleural \ufb01stula is common in pneumothorax which occurs due to rupture a cavity or emphysematous bulla."
+  },
+  {
+    "question": "Which of the following is NOTa radiological sign in pneumothorax?",
+    "options": [
+      "Hyper translucent lung \ufb01eld at the periphery",
+      "Absence of Bronchovascular markings in the area of hyper translucency 244",
+      "Shift of mediastinum to opposite side",
+      "Collapsed visceral pleural line",
+      "Air bronchogram"
+    ],
+    "correct": 4,
+    "explanation": "Air bronchogram occurs only in lung parenchymal disease, not in pleural disease. An area of hyper translucent lung \ufb01eld at the periphery which is devoid of Bronchovascular markings, bounded medially by collapsed visceral pleural margin with shift of mediastinum to opposite side is the characteristic radiological \ufb01nding in pneumothorax."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to cause severe dyspnea with a small pleural effusion?",
+    "options": [
+      "Pancreatic pleural effusion",
+      "Pneumonia with effusion",
+      "Congestive cardiac failure with effusion",
+      "Tubercular pleural effusion",
+      "Malignant pleural effusion"
+    ],
+    "correct": 3,
+    "explanation": "44.A 68-year-old male admitted with pleural effusion. He is a chronic alcoholic and has history of recurrent pain abdomen. He has no history of cough, hemoptysis. CT scan shows moderate pleural effusion with nodularity and thickening of pleura. Underlying lung appears normal. Which of the following investigation is LEAST useful in diagnosis? A. Bronchoscopy B. Pleural \ufb02uid cytology C. Pleural \ufb02uid amylase estimation D. Closed pleural biopsy E. Thoracoscopy Answer \u2013 A. 45.Which of the following is a physical \ufb01nding in helps to differentiate pneumothorax from massive pleural effusion? A. Tachypnea B. Percussion note C. Intensity of breath sounds D. Chest movements E. Tachycardia Answer: B. Percussion note in pneumothorax is hyper resonant where as in pleural effusion it is stony dull. Reduced chest movements on the affected side with decreased intensity or absent breath sounds, Tachypnea and tachycardia are common to both the conditions. 245 46. Which of the following is NOT useful to differentiate between encysted pneumothorax and bulla? A. Proper history B. Serial chest x rays and comparison of previous chest radiographs C. High resolution CT scan of thorax D. Decubitus lateral \ufb01lm E. Presence of Amphoric breath sounds Answer: D. In encysted pneumothorax where air is not free to move, decubitus lateral \ufb01lm will not lead to any radiographic change. Sudden onsets of symptoms indicate pneumothorax than bulla. Presence of localized hyper translucency in the serial x rays which is long longstanding is indicative of bulla. In pneumothorax with Bronchopleural \ufb01stulaAmphoric breath sounds may be heard."
+  },
+  {
+    "question": "Which is a WRONG statement about pleural effusion in lymphoma",
+    "options": [
+      "Obstruction of the lymphatic drainage by enlarged mediastinal lymph nodes",
+      "By direct tumor in\ufb01ltration of the parietal or visceral pleura",
+      "Non-Hodgkin's lymphoma is the most common cause of Chylothorax",
+      "Can be due to superior vena caval obstruction",
+      "Treated with pleurodesis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Treated with pleurodesis."
+  },
+  {
+    "question": "Esophageal rupture Answer-A. Bacterial pneumonia accounts for more than 70% of empyema 50.Which of the following is LEAST LIKELY to cause minimal symptoms with apparently large effusion in Chest x- ray?",
+    "options": [
+      "Encysted effusion",
+      "X-ray taken in a bedridden patient nderlying lung parenchymal or airway disease or 246other co morbid illness, symptoms are less likely.",
+      "Rapidly accumulating effusion",
+      "Otherwise healthy individual at rest",
+      "Longstanding effusion"
+    ],
+    "correct": 2,
+    "explanation": "When pleural effusion accumulates rapidly, symptoms are more likely. If effusion accumulates slowly and patient does not have any other u"
+  },
+  {
+    "question": "Which of the following investigations is NOT helpful in establishing diagnosis of chylothorax?",
+    "options": [
+      "PF/serum cholesterol",
+      "Pleural \ufb02uid triglyceride",
+      "Pleural \ufb02uid Chylomicrons",
+      "Pleural \ufb02uid centrifugation",
+      "Thoracic duct imaging"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Pleural \ufb02uid centrifugation."
+  },
+  {
+    "question": "Which of the following conditions is LEAST LIKELY to cause chylothorax?",
+    "options": [
+      "Chest trauma",
+      "Following thoracic surgery",
+      "Lymphoma",
+      "Superior vena cava syndrome",
+      "Thymoma"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Thymoma."
+  },
+  {
+    "question": "Which statement among the following is FALSE about chylothorax?",
+    "options": [
+      "Most common cause is surgery/trauma followed by malignancy",
+      "More common on right side",
+      "Associated with severe pleuritic chest pain",
+      "Usually not complicated by empyema",
+      "Chylothorax in lymphoma spontaneously regresses following chemotherapy and radiotherapy. 54.Absence of lung sliding in thoracic ultra sound is a sign of \u2013",
+      "Trapped lung",
+      "Pneumothorax",
+      "Consolidation",
+      "Pleural effusion",
+      "Cardiogenic pulmonary edema"
+    ],
+    "correct": 1,
+    "explanation": "247 55. Maximum penetration depth of an ultrasound wave depends on --- A. Frequency B. Tissue color C. Resolution D. Pulse duration E. Vascularity Answer \u2013 A."
+  },
+  {
+    "question": "Hepatisation in thoracic ultrasound is seen in ---",
+    "options": [
+      "Atelectasis",
+      "Pleural effusion",
+      "Peripheral lung mass",
+      "Consolidation",
+      "Pneumothorax"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Consolidation."
+  },
+  {
+    "question": "Which is a WRONG statement regarding ultrasound in pleural effusion?",
+    "options": [
+      "Useful to differentiate between lower lobe consolidation and effusion",
+      "Can measure approximate volume of pleural \ufb02uid",
+      "Can't differentiate cardiogenic pulmonary edema from ARDS",
+      "Decreases the complications associated with thoracocentesis",
+      "Can detect empyema"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Can't differentiate cardiogenic pulmonary edema from ARDS."
+  },
+  {
+    "question": "Seashore sign in thoracic ultrasound is seen in ---",
+    "options": [
+      "Pneumothorax",
+      "Pleural effusion",
+      "Hydropneumothorax",
+      "Pleural thickening",
+      "Normal lung"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Normal lung."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

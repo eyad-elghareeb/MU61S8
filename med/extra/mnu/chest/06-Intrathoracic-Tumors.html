@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Intrathoracic Tumors</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwkhml5",
+  "title": "Intrathoracic Tumors",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Intrathoracic Tumors",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which is a WRONG statement about Lambert-Eaton myasthenic syndrome?",
+    "options": [
+      "Proximal muscle weakness in legs and arms.",
+      "Tendon re\ufb02exes increased",
+      "May be associated with autonomic dysfunction",
+      "Muscle power may improve after \ufb01rst few contractions",
+      "Auto antibodies to voltage-sensitive calcium channels in presynaptic motor nerve terminal"
+    ],
+    "correct": 1,
+    "explanation": "Are\ufb02exia is common in this condition. Lambert-Eaton myasthenic syndrome(LEMS) is a paraneoplastic manifestation. Most common cause is small cell lung carcinoma. Reference - Gilhus NE. Lambert-eaton myasthenic syndrome; pathogenesis, diagnosis, and therapy. Autoimmune Dis. 2011; 2011:973808. doi:10.4061/2011/973808"
+  },
+  {
+    "question": "A 76 year old male, chronic smoker admitted with history of hoarseness of voice since 3 weeks and strider since 5 days. What is the next step in evaluation?",
+    "options": [
+      "Indirect laryngoscopic examination",
+      "Bronchoscopy",
+      "CT scan thorax",
+      "MRI of neck",
+      "Chest X-ray"
+    ],
+    "correct": 0,
+    "explanation": "These symptoms are suggestive of laryngeal carcinoma. Hence indirect laryngoscopic examination should be the next step in evaluation. 187 4. A 65 year old chronic smoker admitted with recurrent pneumonia in right lower lobe with hemoptysis and chronic cough. What is the next DIAGNOSTIC investigation? A. USG of right hemithorax B. Bronchoscopy C. CT scan thorax D. USG of right hemithorax and abdomen E. Sputum culture and sensitivity Answer \u2013 B. These symptoms are suggestive of endobronchial obstruction. Hence next diagnostic investigation is bronchoscopy. Most common cause for recurrent pneumonia in the same lobe of the lung in an elderly smoker is bronchogenic carcinoma causing bronchial obstruction. CT scan of the chest will be useful for evaluation and planning bronchoscopy."
+  },
+  {
+    "question": "Which is a WRONG statement regarding intra thoracic secondaries?",
+    "options": [
+      "Breast and ovaries are the common primary sites in females",
+      "Prostate is the most common site for primary in males",
+      "Endobronchial secondary may mimic bronchogenic carcinoma",
+      "Surgery can be considered in solitary secondary",
+      "More common in lower lobes"
+    ],
+    "correct": 1,
+    "explanation": "Secondaries from prostate is not so common compared to other primary sites in males. If the primary malignancy is treated, surgery can be considered in solitary secondary provided no other secondaries elsewhere."
+  },
+  {
+    "question": "Which is a WRONG statement about lung cancer?",
+    "options": [
+      "Hypercalcemia is a paraneoplastic manifestation in small cell lung cancer",
+      "Superior vena cava obstruction occurs in right sided tumors",
+      "Hoarseness of voice is more common in left sided tumors",
+      "Predominant symptom in Pancoast tumor is pain",
+      "Most common site is right upper lobe"
+    ],
+    "correct": 0,
+    "explanation": "Hypercalcemia is a paraneoplastic manifestation more common in squamous cell lung cancer. Superior vena cava is on the right side close to the costochondral junction of 1st to 3rd rib. Hence SVC obstruction can occur in right upper lobe tumors or mediastinal lymph nodes on right side. Left recurrent laryngeal nerve descends down into to the thorax and hooks around the arch of aorta. Right recurrent laryngeal nerve does not descend to thorax. Hence hoarseness of voice is more common in left sided tumors."
+  },
+  {
+    "question": "Which is the MOST FREQUENTLY reported complication of trans thoracic \ufb01ne needle aspiration",
+    "options": [
+      "Severe chest pain",
+      "Pneumothorax",
+      "Hemoptysis",
+      "Pneumo mediastinum",
+      "Surgical emphysema"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Pneumothorax."
+  },
+  {
+    "question": "Which is NOT a common primary site for secondaries in the lung?",
+    "options": [
+      "Colon",
+      "Brain",
+      "Soft tissue sarcoma",
+      "Kidney",
+      "Malignant melanoma"
+    ],
+    "correct": 1,
+    "explanation": "Extra neural metastasis is rare in brain tumors."
+  },
+  {
+    "question": "Airway stent is NOT preferred in which of the following condition?",
+    "options": [
+      "Central airway obstruction due to benign/malignant lesions not \ufb01t for resection",
+      "Viable lung beyond the level of obstruction",
+      "External compression by vessel",
+      "For sealing of airway \ufb01stula",
+      "Tracheobronchomalacia"
+    ],
+    "correct": 2,
+    "explanation": "Stent placement may lead to rupture of the vessel and uncontrolled bleeding."
+  },
+  {
+    "question": "Which of the following is MOST COMMON cause for vocal cord paralysis?",
+    "options": [
+      "Multiple sclerosis",
+      "Intra thoracic tumors",
+      "Infection",
+      "Idiopathic",
+      "Trauma"
+    ],
+    "correct": 1,
+    "explanation": "Two most common causes for vocal cord paralysis include surgical complication and intra thoracic tumors. 189 11. Which of the following is the MOST COMMON cause for acquired tracheo esophageal \ufb01stula? A. Bronchogenic carcinoma B. Trauma C. Prolonged intubation D. Infection E. Carcinoma of esophagus Answer\u2013 E. Second common cause is cuff related necrosis."
+  },
+  {
+    "question": "In which of the following condition bronchoscopy is LIKELY to be useful for diagnosis?",
+    "options": [
+      "Peripheral solitary pulmonary nodule less than 2 cm in diameter",
+      "Persistent asthma like symptoms and chronic cough",
+      "Isolated, unexplained pleural effusion",
+      "Hemoptysis with a non localizing chest radiograph",
+      "Un explained breathlessness"
+    ],
+    "correct": 1,
+    "explanation": "This symptom indicates probable endobronchial lesion which may be bronchoscopically visible."
+  },
+  {
+    "question": "Which of the following is a WRONG statement?",
+    "options": [
+      "SVC is formed by the union of right and left brachiocephalic veins",
+      "SVC originates in superior mediastinum",
+      "Length of SVC is 5 to 7 cm",
+      "SVC extends from costochondral junction of 1st to 3rd rib",
+      "Hemiazygos vein drains to SVC"
+    ],
+    "correct": 4,
+    "explanation": "Hemiazygos vein drains to azygos vein."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to cause hoarseness of voice with recurrent hemoptysis?",
+    "options": [
+      "Laryngeal cancer",
+      "Bronchogenic carcinoma",
+      "Vocal cord nodule",
+      "Tuberculosis of respiratory tract",
+      "Granulomatosis with Polyangiitis"
+    ],
+    "correct": 2,
+    "explanation": "Hemoptysis is not a symptom in vocal cord nodule. 190 15. Which is the MOST COMMON intra thoracic malignancy causing hoarseness of voice? A. Esophageal carcinoma B. Bronchogenic carcinoma C. Lymphoma D. Thyroid carcinoma E. Mediastinal teratoma Answer \u2013 B."
+  },
+  {
+    "question": "Which is a RARE SYMPTOM in thoracic aortic aneurysm?",
+    "options": [
+      "Chronic cough",
+      "Hemoptysis",
+      "Hoarseness of voice",
+      "Chest pain",
+      "Congestive cardiac failure"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Hemoptysis."
+  },
+  {
+    "question": "Which of the following is the MOST COMMON cause for descending thoracic aortic aneurysm?",
+    "options": [
+      "Cystic medial degeneration",
+      "Bicuspid Aortic Valve",
+      "Family history of thoracic aortic aneurysm",
+      "Atherosclerosis",
+      "Syphilis"
+    ],
+    "correct": 3,
+    "explanation": "All the other are risk factors for developing ascending aortic aneurysm."
+  },
+  {
+    "question": "Which is a WRONG statement regarding aortic aneurysm?",
+    "options": [
+      "Larger the size greater the chance for rupture",
+      "More common in elderly females",
+      "Smokers have higher risk to develop aneurysm",
+      "Thoracic trauma is a risk factor for aortic aneurysm",
+      "Majority of aortic aneurysms are asymptomatic"
+    ],
+    "correct": 1,
+    "explanation": "More common in elderly males. 191 19. Which is NOT a risk factor for developing aortic artery aneurysm? A. Marfan syndrome B. Hypertension C. Family history of aortic artery aneurysm D. History of coronary artery disease E. Primary syphilis Answer \u2013 E. Syphilitic aortitis and aortic aneurysm occurs in tertiary stage of syphilis."
+  },
+  {
+    "question": "Which of the following is a WRONG statement regarding aortic aneurysm?",
+    "options": [
+      "Cystic medial degeneration is an important risk factor",
+      "May be associated with abdominal artery aneurysm",
+      "Predisposes for aortic dissection",
+      "All aneurysms should be treated surgically",
+      "Can present with chest pain"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is All aneurysms should be treated surgically."
+  },
+  {
+    "question": "Which of the following investigation is NOT useful in evaluating aortic aneurysm?",
+    "options": [
+      "CT angiogram",
+      "Aortogram",
+      "MRI of thorax",
+      "Thoracic ultrasound",
+      "Contrast enhanced CT scan of thorax"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Thoracic ultrasound."
+  },
+  {
+    "question": "Which of the following MAY NOT require surgery in aortic artery aneurysm?",
+    "options": [
+      "Size less than 5.5 centimeters(cm)",
+      "Acute symptoms due to aneurysm",
+      "Aneurysm growth rate more than 0.5 cm over a period of six months to one year",
+      "Presence of genetic disorders or familial history of thoracic aneurysms",
+      "Ruptured aneurysm"
+    ],
+    "correct": 0,
+    "explanation": "Size more than 5.5 to 6cm is indication for surgery as chances of complication including rupture is high."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Papillary adenocarcinoma of lung?",
+    "options": [
+      "Needs to be distinguished from thyroid and ovarian cancer",
+      "Long term prognosis poor",
+      "Is a sub type of adenocarcinoma",
+      "Highly chemo sensitive",
+      "May be intermixed with broncho alveolar cancer"
+    ],
+    "correct": 3,
+    "explanation": "It is not chemo sensitive 192 24. Immuno histochemistry is NOT useful in --- A. Diagnosing cancer B. Differentiating between benign and malignant tumors C. To \ufb01nd probable primary site of a tumor D. Planning treatment of certain cancers E. To identify recurrence of cancer Answer \u2013 E"
+  },
+  {
+    "question": "Which of the following is the MOST COMMON cystic lesion in mediastinum",
+    "options": [
+      "Pericardial cyst",
+      "Cystic hygroma",
+      "Bronchogenic cyst",
+      "Esophageal duplication cyst",
+      "Neuro enteric cyst"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Bronchogenic cyst."
+  },
+  {
+    "question": "Which of the following symptom is LEAST LIKELY in left upper lobe mass?",
+    "options": [
+      "Hoarseness of voice",
+      "Hemoptysis",
+      "Chest pain",
+      "Features of superior vena caval obstruction",
+      "Cough"
+    ],
+    "correct": 3,
+    "explanation": "Superior vena cava is on the right side."
+  },
+  {
+    "question": "Which is a WRONG statement regarding secondary cancer in lungs",
+    "options": [
+      "Size of the secondaries are usually uniform.",
+      "Thyroid cancer and ovarian cancer are more commonly associated with a miliary pattern",
+      "Isolated endobronchial metastases are rare",
+      "Lymphangitic spread into the lungs more common with adenocarcinoma",
+      "Cannonball appearance is associated with colorectal cancer and sarcoma"
+    ],
+    "correct": 0,
+    "explanation": "Size varies."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Bronchogenic cyst?",
+    "options": [
+      "Derived from the primitive foregut",
+      "Recurrence is uncommon after complete excision",
+      "Most common site is middle mediastinum",
+      "Usually have a patent connection with the airway",
+      "Usually unilocular"
+    ],
+    "correct": 3,
+    "explanation": "Bronchogenic cyst usually has no connection with airway. 193 29. Which is the LEAST COMMON symptom in bronchogenic cyst? A. Hemoptysis B. Cough C. Chest pain D. Dyspnea E. Purulent sputum Answer \u2013 A"
+  },
+  {
+    "question": "Which is a WRONG statement about cardiac metastasis in bronchogenic carcinoma?",
+    "options": [
+      "Most common mode of spread is by direct contiguous extension",
+      "In majority of cases, cardiac metastases are clinically silent",
+      "Pericardium is most commonly involved",
+      "Cardiac involvement is more common with left sided tumors",
+      "Cardiac involvement can lead to arrhythmia"
+    ],
+    "correct": 2,
+    "explanation": "Myocardium is more commonly involved than pericardium."
+  },
+  {
+    "question": "Which is a WRONG statement about pericardial cyst?",
+    "options": [
+      "Majority seen in right costophrenic angle",
+      "Majority are diagnosed as incidental \ufb01nding of chest imaging",
+      "De\ufb01nitive treatment is by surgical excision",
+      "Can cause compression of adjacent structures",
+      "Never seen on left side"
+    ],
+    "correct": 4,
+    "explanation": "It is more common on right side but can be but can be found almost anywhere adjacent to the heart."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Lambert-Eaton myasthenic syndrome?",
+    "options": [
+      "Deep tendon re\ufb02exes are decreased or absent",
+      "Muscular weakness decreases after contractions",
+      "Ocular symptoms are rare",
+      "Most common cause is small cell carcinoma of lung",
+      "Muscular weakness affects arms more than the legs"
+    ],
+    "correct": 4,
+    "explanation": "Myasthenia gravis should be differentiated from Lambert-Eaton syndrome. Deep tendon re\ufb02exes are decreased or absent in Lambert-Eaton syndrome. Deep tendon re\ufb02exes are normal in myasthenia gravis. In Lambert-Eaton syndrome muscular weakness affects legs more than the arms. This 194 condition is due to antibodies against voltage-gated calcium channels. Lambert-Eaton syndromeis treated with 3, 4-diaminopyridine which blocks potassium channels in the distal motor terminal."
+  },
+  {
+    "question": "Which is a CORRECT statement?",
+    "options": [
+      "Adenocarcinoma is the most common cell type in lung cancer",
+      "Lungs are the most common site for secondaries in cancer",
+      "Diaphragmatic palsy is more common on right sided lung cancer",
+      "Lung to same lung secondary is stage 4",
+      "Pleural effusion in bronchogenic carcinoma is always stage 4"
+    ],
+    "correct": 0,
+    "explanation": "Most common site for secondaries in cancer is regional lymph nodes. Diaphragmatic palsy is more common on left sided lung cancer as left phrenic nerve is super\ufb01cial and easily involved than the right. Pleural effusion in bronchogenic carcinoma can be Para malignant effusion where pleura is not involved by the cancer cells."
+  },
+  {
+    "question": "What is the INVESTIGATION OF CHOICE to identify distant secondaries?",
+    "options": [
+      "Bone scan",
+      "PET CT",
+      "USG",
+      "Tumor marker estimation",
+      "Bone scan with PET CT"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is PET CT."
+  },
+  {
+    "question": "Lung parenchymal and mediastinal lymph node calci\ufb01cation is suggestive of ---",
+    "options": [
+      "Healed granulomatous disease",
+      "Malignancy",
+      "Chronic renal failure",
+      "Hemosiderosis",
+      "Active granulomatous disease"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Healed granulomatous disease."
+  },
+  {
+    "question": "Which is NOT a content of anterior mediastinum?",
+    "options": [
+      "Substernal parathyroid",
+      "Thymus gland",
+      "Lymph nodes",
+      "Descending aorta",
+      "Substernal thyroid"
+    ],
+    "correct": 3,
+    "explanation": "Descending aorta is in posterior mediastinum."
+  },
+  {
+    "question": "Which is a WRONG statement regarding mediastinal lesion?",
+    "options": [
+      "More than 50% of mediastinal lesions are incidentally discovered 195",
+      "Thymoma can lead to gynacomastia",
+      "Neuroblastoma can present with diarrhea",
+      "Majority of asymptomatic mediastinal masses are benign",
+      "Most common symptom in mediastinal mass is due to compression of adjacent structures"
+    ],
+    "correct": 1,
+    "explanation": "Germ cell tumor of the mediastinum can lead to gynacomastia as paraneoplastic syndrome."
+  },
+  {
+    "question": "Which is a WRONG statement?",
+    "options": [
+      "Larger the size greater the chance for rupture in aortic aneurysm",
+      "Thoracic aortic aneurysm is more commoner than abdominal aortic aneurysm",
+      "Ascending thoracic aorta is the most common location of a thoracic aneurysm",
+      "More common in elderly males",
+      "Smokers have higher risk to develop aneurysm"
+    ],
+    "correct": 1,
+    "explanation": "Abdominal aorta is the most common site for aortic aneurysm."
+  },
+  {
+    "question": "Which is the MOST COMMON site for bronchogenic carcinoma?",
+    "options": [
+      "Left upper lobe",
+      "Right upper lobe",
+      "Middle lobe",
+      "Right lower lobe",
+      "Left lower lobe"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Right upper lobe."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Golden S-sign?",
+    "options": [
+      "Most often seen in right side",
+      "Suggestive of lobar collapse",
+      "Reverse shaped S",
+      "Diagnostic of central bronchogenic carcinoma",
+      "S sign can also be seen with the collapse of other lobes Answer\u2013 D. Golden S sign can occur in other conditions also which can lead external compression of a lobe leading to collapse. Mediastinal adenopathy or mass also can lead to external compression of a lobe. 41.What is the investigation in suspected pulmonary lymphangitic carcinomatosis for PRESUMPTIVE diagnosis?",
+      "Sputum cytology for malignant cells",
+      "Bronchoscopy and transbronchial biopsy",
+      "HRCT Thorax",
+      "Spirometry",
+      "DLCO"
+    ],
+    "correct": 2,
+    "explanation": "196 42.Which of the following is the MOST COMMON symptom in pulmonary lymphangitic carcinomatosis? A. Cough B. Progressive breathlessness C. Hemoptysis D. Chest pain E. Wheezing Answer \u2013 B. 43.Which of the following is NOT a cause for persistent pneumothorax even after intercostal tube drain? A. Intercostal tube size less than 18 F B. Positive pressure ventilation C. Malposition of intercostal tube D. Large Bronchopleural \ufb01stula E. Bronchial rupture Answer: A. In pneumothorax size of the ICT tube does not in\ufb02uence the drainage as air can easily come out whatever is the size of the tube2. Bronchopleural \ufb01stula, malposition or blockade of the tube is the most common causes for persistent pneumothorax after ICT drain."
+  },
+  {
+    "question": "Which of the following is not a radiological differential diagnosis for pneumothorax?",
+    "options": [
+      "Large cyst",
+      "Overlapping soft tissue margin",
+      "Pneumopericardium",
+      "Large cavity",
+      "Bulla"
+    ],
+    "correct": 2,
+    "explanation": "Pneumopericardium can be easily differentiated from pneumothorax by chest radiograph. In pneumopericardium heart will be partially or completely surrounded by air, with the pericardium sharply outlined by air density on either side. 45.Which is the LEAST COMMONLY used technique used for obtaining tissue sampling in mediastinal tumors? A. Thoracoscopy B. Mediastinoscopy C. Tran bronchial needle aspiration D. Percutaneous needle aspiration E. Open biopsy Answer \u2013 E. 197 46. Most common primary site in metastatic brain tumor is ---? A. Lung cancer B. Malignant melanoma C. Breast cancer D. Colon cancer E. Renal cell carcinoma Answer \u2013 A"
+  },
+  {
+    "question": "SIADH in bronchogenic carcinoma is MOST COMMONLY seen in which cell type?",
+    "options": [
+      "Squamous cell carcinoma",
+      "Small cell carcinoma",
+      "Large cell carcinoma",
+      "Adenocarcinoma",
+      "Carcinoid tumor"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Small cell carcinoma."
+  },
+  {
+    "question": "Which following bone is the LEAST COMMON site for secondaries from lung cancer?",
+    "options": [
+      "Spine",
+      "Ribs",
+      "Femur",
+      "Sternum",
+      "Metatarsals"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Metatarsals."
+  },
+  {
+    "question": "Which is a WRONG statement?",
+    "options": [
+      "Bone scan useful to detect bony secondaries",
+      "Whole body scan should be done to detect bony secondaries",
+      "PET CT scan can detect bony secondaries",
+      "Bone scan can be done in pregnancy",
+      "Hot spots in the scan can be due to non cancerous conditions also"
+    ],
+    "correct": 3,
+    "explanation": "Pregnancy is a contra indication for bone scan. 198 50. Which is a WRONG statement about substernal goiter? A. Usually occurs in superior mediastinum B. Symptomatic substernal goiter needs surgery C. Can lead to sudden onset of breathlessness D. More common in elderly males E. Can cause SVC obstruction Answer \u2013 D. More common in females. Bleeding into the goiter can lead to sudden onset of breathlessness."
+  },
+  {
+    "question": "Which is a WRONG statement regarding substernal goiter?",
+    "options": [
+      "Can cause hoarseness of voice",
+      "CECT neck with thorax is useful in diagnosis",
+      "Negative iodine 131 scan excludes the diagnosis",
+      "Tracheal deviation by the tumor in chest x-ray is a useful sign in diagnosis",
+      "Can lead to wheezing and hoarseness of voice"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Negative iodine 131 scan excludes the diagnosis."
+  },
+  {
+    "question": "Which of the following is NOT a symptom in substernal goiter?",
+    "options": [
+      "Dyspnea",
+      "Strider",
+      "Hemoptysis",
+      "Cough",
+      "Dysphagia."
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Hemoptysis."
+  },
+  {
+    "question": "Which of the following can cause tracheal compression from posterior aspect?",
+    "options": [
+      "Thyroid swelling",
+      "Superior Mediastinal tumor",
+      "Bronchogenic carcinoma",
+      "Enlarged mediastinal lymph node",
+      "Aneurysm of blood vessels in neck"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Enlarged mediastinal lymph node."
+  },
+  {
+    "question": "Which is a WRONG statement?",
+    "options": [
+      "CT scan thorax is the usual investigation of choice in SVC obstruction.",
+      "Contrast venography is the most conclusive diagnostic tool in SVC obstruction.",
+      "Incomplete SVC obstruction is usually due to thrombosis in the vein",
+      "SVC obstruction can lead to upper airway obstruction",
+      "SVC originates in superior mediastinum"
+    ],
+    "correct": 2,
+    "explanation": "Thrombosis usually leads to complete199 obstruction of SVC. 55. Which of the following is the MOST COMMON cause for SVC obstruction in a young male? A. Bronchogenic carcinoma B. Malignant germ cell tumor in mediastinum C. Thymoma D. Hodgkin lymphoma E. Non Hodgkin's Lymphoma Answer \u2013 E"
+  },
+  {
+    "question": "Which is NOT a complication of endo bronchial brachytherapy?",
+    "options": [
+      "Bleeding",
+      "Perforation",
+      "Infection",
+      "Tumor embolization",
+      "Broncho stenosis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Tumor embolization."
+  },
+  {
+    "question": "Cavitating bronchogenic carcinoma more likely to be ----",
+    "options": [
+      "Squamous cell",
+      "Adenocarcinoma",
+      "Small cell carcinoma",
+      "Large cell carcinoma",
+      "Poorly differentiated carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Squamous cell."
+  },
+  {
+    "question": "Which is a WRONG statement regarding cavitating malignancy?",
+    "options": [
+      "Cavitation is associated with a worse prognosis.",
+      "Cavitation is rare in small cell carcinoma",
+      "Central necrosis is the main cause for cavitation",
+      "\u201cAir-crescent sign\u201d is diagnostic",
+      "Rapid growing tumors more likely to cavitate"
+    ],
+    "correct": 3,
+    "explanation": "Air crescent sign is classically described inAspergilloma."
+  },
+  {
+    "question": "Which is NOT seen in Thymoma?",
+    "options": [
+      "Myasthenia gravis",
+      "Red cell Aplasia",
+      "Myocarditis",
+      "Hypogammaglobuliemia",
+      "Alcohol induced pain"
+    ],
+    "correct": 4,
+    "explanation": "Alcohol induced pain occurs in lymphoma. 200 60. In which of the following mediastinal lesions biopsy should AVOIDED? A. Cystic lesion B. Posterior mediastinal lesion C. Middle mediastinal lesion D. Anterior mediastinal lesion E. Suspected malignant mediastinal lesion Answer \u2013 A"
+  },
+  {
+    "question": "Which is NOT a feature of benign lesion?",
+    "options": [
+      "Smooth well de\ufb01ned borders",
+      "Presence of calci\ufb01cation",
+      "Tumor doubling time less than 180 days",
+      "Small size (less than 3cm diameter)",
+      "Stable over a period of 2 years"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Tumor doubling time less than 180 days."
+  },
+  {
+    "question": "What is the MOST COMMON symptom in chronic aspiration?",
+    "options": [
+      "Chest pain",
+      "Vomiting",
+      "Asthma like symptom",
+      "Hemoptysis",
+      "Chronic cough"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Chronic cough."
+  },
+  {
+    "question": "Which of the following is NOT a radiological sign to differentiate bulla from pneumothorax?",
+    "options": [
+      "Area of hyper translucency",
+      "Presence of visceral pleural line in pneumothorax",
+      "Presence of double wall sign in case of bulla",
+      "Bulla are concave toward lateral chest wall",
+      "Bulla do not conform to the contour of costophrenic sulcus"
+    ],
+    "correct": 0,
+    "explanation": "Hyper-translucency occurs in both the conditions due to air trapping."
+  },
+  {
+    "question": "Which is the MOST COMMON posterior mediastinal tumor?",
+    "options": [
+      "Neurogenic Tumors",
+      "Foregut Cysts",
+      "Lymphoma",
+      "Aortic aneurysm",
+      "Esophageal neoplasm"
+    ],
+    "correct": 0,
+    "explanation": "201 65. Esophageal involvement in bronchogenic carcinoma is best detected by --- A. Upper GI scopy B. Barium swallow C. CT scan thorax D. MRI thorax E. Thoracoscopy Answer \u2013 D"
+  },
+  {
+    "question": "Which is a WRONG statement regarding esophageal involvement in bronchogenic carcinoma?",
+    "options": [
+      "Indicates advanced disease",
+      "May lead to esophageal perforation",
+      "Most common site is mid esophagus",
+      "Dysphagia is the most common presenting symptom",
+      "Radiotherapy is indicated when there is esophageal involvement"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Radiotherapy is indicated when there is esophageal involvement."
+  },
+  {
+    "question": "Which of the following is NOT a cause of bulla in lung?",
+    "options": [
+      "Smoking",
+      "IV drug abuse",
+      "Alpha-1 antitrypsin de\ufb01ciency",
+      "Marfan's syndrome",
+      "Lymphangioliomyomatosis"
+    ],
+    "correct": 4,
+    "explanation": "Causes cystic lung disease."
+  },
+  {
+    "question": "Which is a WRONG statement?",
+    "options": [
+      "Bronchogenic carcinoma can lead to dysphagia",
+      "Esophageal carcinoma is the most common cause for acquired tracheo esophageal \ufb01stula",
+      "Normal upper GI scopy excludes esophageal involvement in bronchogenic carcinoma",
+      "Upper GI scopy should be done when a patient with bronchogenic carcinoma develops dysphagia",
+      "Radiotherapy in a patient with posterior mediastinal lymph node in bronchogenic carcinoma can lead to perforation into esophagus"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Normal upper GI scopy excludes esophageal involvement in bronchogenic carcinoma."
+  },
+  {
+    "question": "Which is a WRONG statement regarding esophageal involvement in bronchogenic carcinoma?",
+    "options": [
+      "Indicates advanced disease",
+      "May lead to esophageal perforation",
+      "Most common site is mid esophagus",
+      "Dysphagia is the most common presenting symptom",
+      "Always due to compression by mediastinal nodes"
+    ],
+    "correct": 4,
+    "explanation": "202 70. In which condition biopsy is MANDATORY in a mediastinal lesion? A. Cystic lesion B. Probable benign solid tumor C. Radiological signs suggestive of malignancy D. \u03b1-FP is highly elevated E. \u03b2-HCG is highly elevated Answer - C"
+  },
+  {
+    "question": "Which is a WRONG statement about typical lung carcinoid?",
+    "options": [
+      "Slow growing",
+      "Majority are peripheral tumors",
+      "More common than atypical lung carcinoid",
+      "Does not metastasize",
+      "Majority present with cough and hemoptysis"
+    ],
+    "correct": 1,
+    "explanation": "Majority of typical lung carcinoid are central tumors"
+  },
+  {
+    "question": "Which of the following is NOT an indication for Bullectomy?",
+    "options": [
+      "Large single bulla with symptoms",
+      "Bulla occupying more than 1/3 hemithorax",
+      "Multiple bulla with chronic corpulmonale",
+      "Infected single large bulla",
+      "Bulla with rapid increase in size and chest pain"
+    ],
+    "correct": 2,
+    "explanation": "Multiple bulla with chronic corpulmonale is a contra indication for Bullectomy as post operative morbidity and mortality is high."
+  },
+  {
+    "question": "Which of the following is a RARE COMPLICATION of bulla in the lungs?",
+    "options": [
+      "Secondary infection in the bulla",
+      "Spontaneous pneumothorax",
+      "Chronic corpulmonale",
+      "Large bulla causing pressure effects",
+      "Hemoptysis"
+    ],
+    "correct": 4,
+    "explanation": "Hemoptysis is a rare complication of bulla."
+  },
+  {
+    "question": "Which is NOT seen in carcinoid syndrome?",
+    "options": [
+      "Facial \ufb02ushing",
+      "Left heart failure",
+      "Low blood pressure",
+      "Diarrhea",
+      "Wheezing"
+    ],
+    "correct": 1,
+    "explanation": "203 75. Which is a WRONG statement about carcinoid tumor? A. Most common site is ileum B. Carcinoid syndrome is rare C. Bronchial carcinoid commonly associated with MEN type 2 D. Carcinoid syndrome more common in malignant carcinoid E.Lung carcinoid can produce carcinoid syndrome without liver metastasis Answer \u2013 C. Bronchial carcinoid commonly associated with MEN type 1."
+  },
+  {
+    "question": "Which is a WRONG statement about carcinoid tumor?",
+    "options": [
+      "Can lead to pellagra",
+      "Can lead to high blood pressure",
+      "Carcinoid syndrome is treated with octreotide",
+      "All symptoms in carcinoid tumor are due to serotonin",
+      "Flushing is the most common symptom in carcinoid syndrome"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is All symptoms in carcinoid tumor are due to serotonin."
+  },
+  {
+    "question": "Which is NOT a feature of carcinoid crisis?",
+    "options": [
+      "Hypotension",
+      "Prolonged \ufb02ushing",
+      "Bradycardia",
+      "Hyperglycemia",
+      "Bronchospasm"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Bradycardia."
+  },
+  {
+    "question": "Which of the following tumor marker is NOT useful in intra thoracic tumors?",
+    "options": [
+      "Myo D1",
+      "Chromogranin",
+      "Calretinin",
+      "Neurone speci\ufb01c enolase",
+      "Human chorionic gonadotrophin"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Myo D1."
+  },
+  {
+    "question": "Which is WRONG statement regarding bronchogenic cyst?",
+    "options": [
+      "Usually has a patent communication with a bronchus",
+      "Most common primary cyst of the Mediastinum",
+      "Derived from the primitive foregut 204",
+      "Surgical excision is the treatment of choice",
+      "Majority are asymptomatic found incidentally on chest x ray"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Usually has a patent communication with a bronchus."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to cause mediastinal lymphadenopathy?",
+    "options": [
+      "Tuberculosis",
+      "Sarcoidosis",
+      "Bronchogenic carcinoma",
+      "Esophageal carcinoma",
+      "Rheumatoid arthritis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Rheumatoid arthritis."
+  },
+  {
+    "question": "Which of the following is NOT a characteristic of mediastinal tubercular lymphadenopathy?",
+    "options": [
+      "Right paratracheal lymph node enlargement",
+      "Usually bilateral and hilar nodes are commonly enlarged",
+      "Associated lung parenchymal lesions",
+      "Central areas of relative low density and peripheral rim enhancement seen in CT scan.",
+      "Usually multiple nodes are involved"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Usually bilateral and hilar nodes are commonly enlarged."
+  },
+  {
+    "question": "Which of the following is NOT a characteristic of mediastinal lymphadenopathy in Sarcoidosis?",
+    "options": [
+      "Hilar lymphadenopathy",
+      "Right paratracheal",
+      "Mediastinal lymphadenopathy without hilar involvement is rare",
+      "Unilateral mediastinal lymphadenopathy is rare",
+      "Calci\ufb01cation occurs early in the course of the disease"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Calci\ufb01cation occurs early in the course of the disease."
+  },
+  {
+    "question": "Which of the following is NOT a characteristic of mediastinal lymphadenopathy due to Lymphoma?",
+    "options": [
+      "Pressure effect on adjacent structures",
+      "Coalescence of lymph nodes",
+      "Central cavitation",
+      "Peripheral calci\ufb01cation of lymph node",
+      "Prevascular and retro tracheal lymph node enlargement"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Peripheral calci\ufb01cation of lymph node."
+  },
+  {
+    "question": "Most serious complication of Boerhave's syndrome is ---",
+    "options": [
+      "Mediastinitis",
+      "Lung abscess",
+      "Aspiration pneumonia",
+      "Lung abscess",
+      "Empyema"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Mediastinitis."
+  },
+  {
+    "question": "Tracheal deviation to OPPOSITE side is characteristic of which of the following tumor?",
+    "options": [
+      "Substernal goiter",
+      "Bronchogenic carcinoma",
+      "Teratoma",
+      "Neurogenic tumor",
+      "Germ cell tumor"
+    ],
+    "correct": 0,
+    "explanation": "88.A 54 year old lady admitted with complete heart block with bilateral ground glass opacities in chest x-ray. She has no evidence of ischemic heart disease. Her ECHO is normal. What is the MOST LIKELY diagnosis? A. Scleroderma B. Relapsing polychondritis C. Sarcoidosis D. Rheumatoid arthritis E. SLE Answer - C 89.In bronchogenic carcinoma MOST COMMON cell type associated with Para-neoplastic syndrome is --- A. Small cell carcinoma B. Large cell carcinoma C. Squamous cell carcinoma D. Adenocarcinoma E. Broncho alveolar cell carcinoma Answer - A 206 90. In bronchogenic carcinoma gynacomastia is a Para-neoplastic syndrome is seen in --- A. Small cell carcinoma B. Large cell carcinoma C. Squamous cell carcinoma D. Adenocarcinoma E. Broncho alveolar cell carcinoma Answer-D"
+  },
+  {
+    "question": "Superior vena cava obstruction is more common in ---carcinoma Lung",
+    "options": [
+      "Small cell carcinoma",
+      "Large cell carcinoma",
+      "Squamous cell carcinoma",
+      "Adenocarcinoma",
+      "Broncho alveolar cell carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Small cell carcinoma."
+  },
+  {
+    "question": "Which of the following is NOT a feature of crushing's syndrome",
+    "options": [
+      "Moon face",
+      "Buffalo hump",
+      "Centrifugal obesity",
+      "Skin pigmentation",
+      "Proximal muscle weakness"
+    ],
+    "correct": 2,
+    "explanation": "Centripetal obesity is characteristic feature of crushing's syndrome. In addition, they may have hirsutism, hypertension, and diabetes mellitus."
+  },
+  {
+    "question": "Which of the following is NOT a cystic lesion in the mediastinum?",
+    "options": [
+      "Cystic thymoma",
+      "Bronchogenic cyst",
+      "Esophageal duplication cyst",
+      "Neurenteric cyst",
+      "Pericardial cyst"
+    ],
+    "correct": 0,
+    "explanation": "Answer A. Cystic thymoma is cyst like lesion, not a true cystic lesion."
+  },
+  {
+    "question": "What is the de\ufb01nitive treatment for cystic lesion in the mediastinum?",
+    "options": [
+      "Intercostal tube drain",
+      "Thoracoscopy and drainage",
+      "Repeated pleural aspiration",
+      "Thoracotomy and cyst excision",
+      "Transbronchial aspiration from cyst"
+    ],
+    "correct": 3,
+    "explanation": "Cystic lesion in mediastinum is a benign lesion. Hence if the patient is \ufb01t for surgery, best option is surgical excision. 207 95. Which of the following is NOT a complication of aspiration of a cystic lesion? A. High chances of recurrence B. Leakage during aspiration C. Malignant transformation D. Infection of the cyst E. Rupture of the cyst Answer-C. Long standing cystic lesion may undergo malignant transformation due to changes in the cyst wall and epithelium. But aspiration does not predispose to malignant transformation"
+  },
+  {
+    "question": "Which is WRONG statement regarding bronchogenic cyst",
+    "options": [
+      "Congenital anomaly of forgut diverticulum",
+      "Intrapulmonary bronchogenic cyst is rare",
+      "Symptoms indicate malignant transformation",
+      "Majority are asymptomatic",
+      "Seen as a dense homogenous opacity in chest x-ray"
+    ],
+    "correct": 2,
+    "explanation": "Answer C. Malignant transformation is rare. Symptoms are due to pressure effect or rupture of the cyst"
+  },
+  {
+    "question": "Which is NOT a feature of mediastinal lesion in chest x - ray?",
+    "options": [
+      "Hilum overlay sign",
+      "No air bronchogram",
+      "Acute margin with the lung",
+      "Obliterated cardiophrenic angle",
+      "Obliterated retrosternal clear space"
+    ],
+    "correct": 2,
+    "explanation": "Answer C. Mediastinal lesion will lead to obtuse margin with the lung in chest x ray."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

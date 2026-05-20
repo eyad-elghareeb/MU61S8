@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiac Catheterization and Intervention</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwxywsc",
+  "title": "Cardiac Catheterization and Intervention",
+  "description": "Mayo Clinic Cardiology Board Review \u2014 Cardiac Catheterization and Intervention",
+  "icon": "\ud83e\udec0"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A patient is brought to the catheterization laboratory for evaluation of the sever- ity of MR. A left ventriculogram shows an end-diastolic volume of 150 mL and end-systolic volume of 50 mL. At a rate of 80 bpm, the CO by the Fick method is 6.4 L/min. The calculated regurgitant fraction is:",
+    "options": [
+      "20%",
+      "40%",
+      "60%",
+      "80%",
+      "100%"
+    ],
+    "correct": 0,
+    "explanation": "For MR, the RF is the percentage of the total amount of blood ejected by the LV which goes back into the LA. The RF is the regurgitant volume divided by the total amount of blood the ventricle ejects in one beat (TV). TV is derived from the left ventriculogram by subtracting the end systolic volume from the end diastolic volume. The FFV is the amount of blood the ventricle ejects out the aortic valve and is equal to the systemic flow. Thus, this FFV is obtained from the Fick equation. The regur- gitant volume is the TV minus the FFV. TV \u2afd End-diastolic volume \u2afa End-systolic volume (from left ventriculography) FFV \u2afd CO/HR Regurgitant Volume \u2afd TV \u2afa FFV RF \u2afd Regurgitant volume/Total ventricular volume TV \u2afd 150 mL \u2afa 50 mL \u2afd 100 mL FFV \u2afd 6400 mL/min / 80 bpm \u2afd 80 mL Regurgitant Volume \u2afd 100 mL \u2afa 80 mL \u2afd 20 mL RF \u2afd 20/100 \u2afd 0.2 \u2afd 20%"
+  },
+  {
+    "question": "A patient is brought to the catheterization laboratory for evaluation of the sever- ity of MS. Calculated using simultaneous measurements of PCWP and LV pres- sure, the mean diastolic transmitral gradient is 9 mmHg at a HR of 60 bpm and a diastolic filling period of 0.450 sec. The CO by the Fick method is 3.0 L/min. The calculated MVA is approximately:",
+    "options": [
+      "0.5 cm2",
+      "1.0 cm2",
+      "1.5 cm2",
+      "2.0 cm2",
+      "Insufficient data to calculate the MVA"
+    ],
+    "correct": 1,
+    "explanation": "Using the Gorlin equation: \u201cDischarge coefficient\u201d for mitral valves \u2afd 37.7 cm/(sec \u0001 \u5179mmHg) This is 0.85 \u2afb the discharge coefficient of aortic valves (44.3) \u2afd 37.7 Area \u2afd Flow/[37.7 \u2afb \u5179(\u232cP)] \u232cP \u2afd Mean diastolic pressure gradient between the LA and LV Mitral flow \u2afd 1000 \u2afb CO/(HR \u2afb diastolic filling period) Mitral flow \u2afd 1000 mL/L \u2afb 3 L/min/(60 bpm \u2afb 0.450 sec/beat) \u2afd 111 mL/sec \u2afd 111 cm3/sec Area \u2afd 111 cm3/sec / {[37.7cm/(sec \u2afb \u5179mmHg)] \u2afb \u5179(9 mmHg)} \u2afd 0.98 cm2"
+  },
+  {
+    "question": "At the time of cardiac catheterization, a patient has a mean aortic valve gradient of 64 mmHg and a CO by the Fick method of 4 L/min. Severe AR is also present. Which of the following is true?",
+    "options": [
+      "A TCO would give a more accurate AVA",
+      "The calculated AVA is lower than the actual AVA",
+      "Doppler AVA by continuity equation is less accurate than catheterization",
+      "The AR should not affect the calculated AVA",
+      "The calculated AVA is 2.0 cm2"
+    ],
+    "correct": 1,
+    "explanation": "In severe concomitant AR, both the Fick and thermodilution methods underestimate aortic flow, yielding an underestimate of the AVA."
+  },
+  {
+    "question": "For assessing the cause of arterial desaturation, which of the following is not useful?",
+    "options": [
+      "Double-sampling dye curves",
+      "Repeat determination of the saturation after administration of 100% O2",
+      "Pulmonary vein saturation",
+      "Single-sampling dye curve: RA to FA",
+      "Saline contrast injection under two-dimensional echocardiography"
+    ],
+    "correct": 0,
+    "explanation": "The double-sampling dye curve is used in assessing L-to-R shunts and involves inject- ing dye into the pulmonary trunk and simultaneously sampling in the ascending aorta and RV. If L-to-R shunt, RV dye will appear early. The other answer choices may be used to determine R-to-L shunts."
+  },
+  {
+    "question": "A patient has a dip-and-plateau pattern in the RV and LV pressure curves with elevation and end-diastolic equalization of the pressures in the LV and RV. Which of the following may be present?",
+    "options": [
+      "Constrictive pericarditis",
+      "Amyloid heart disease",
+      "RV infarction",
+      "Severe TR",
+      "All of the above"
+    ],
+    "correct": 0,
+    "explanation": "The dip-and-plateau pattern and equalization of end-diastolic pressures are not specific for constrictive pericarditis and should be interpreted in the appropriate clinical context. 5. (continued ) Specifically, discriminating between constrictive pericarditis and restrictive cardiomyopa- thy is subtle, but can be determined by discordance of the RV systolic pressure and LV systolic pressure with respiration, and variation in gradient between early LV diastolic pressure and PCWP during inspiration when compared with expiration \u2b0e5 mmHg."
+  },
+  {
+    "question": "These are baseline and exercise tracings of a patient with a valvulopathy. Which valve is involved and what is the mechanism?",
+    "options": [
+      "AS",
+      "AR",
+      "MS",
+      "MR",
+      "Pulmonic stenosis"
+    ],
+    "correct": 2,
+    "explanation": "The shaded area (see page 81) is the pressure gradient across the mitral valve. It is mild at rest, but increases significantly with exercise and is associated with increased right heart pressures."
+  },
+  {
+    "question": "LV pressure-volume curves are used to define LV passive diastolic properties. A shift of the pressure-volume curve to the left indicates:",
+    "options": [
+      "A decrease in LV operating chamber compliance",
+      "An increase in LV operating chamber compliance",
+      "No changes in operating chamber compliance",
+      "Curves do not shift in most cardiac disease states"
+    ],
+    "correct": 0,
+    "explanation": "With pressure plotted on the Y axis (vertical) and volume on the X axis (horizontal), the slope of this curve is the compliance. A shift of a curve to the left means that for any given volume on the initial curve, the shifted curve has a higher pressure (ie, less compliant)."
+  },
+  {
+    "question": "A 45-year-old woman presents with DOE and paroxysmal AF. She has a fixed split S2 on exam with a 2/6 SEM at the LSB. Echocardiogram shows: \u25a0 Dilated RV and RA, normal LV \u25a0 Secundum ASD \u25a0 PA systolic, 70 mmHg The following are found at catheterization: \u25a0 Saturations (%): IVC, 70; SVC, 67; RA, 82; RV, 87; PA, 88; LV, 98; aorta, 98; FA, 98 \u25a0 Pressures (mmHg): PA, 70/50; FA, 120/70; PCWP, 10 \u25a0 TCO, 6.0 L/min What is the Qp/Qs?",
+    "options": [
+      "1.5:1.0",
+      "2.0:1.0",
+      "2.5:1.0",
+      "3.0:1.0",
+      "Need more information"
+    ],
+    "correct": 3,
+    "explanation": "Qp/Qs\u2afd Total shunt flow / Total systemic flow Total shunt flow \u2afd O2 consumption / (PV O2 content \u2afa PA O2 content) Total systemic flow \u2afd O2 consumption / (FA O2 content \u2afa MV O2 content) Qp/Qs \u2afd 1/(PV O2 content \u2afa PA O2 content)/[1/(FA O2 content \u2afa MV O2 content)] Qp/Qs \u2afd (FA O2 content \u2afa MV O2 content)/(PV O2 content \u2afa PA O2 content) O2 content \u2afd 10 dL/L(1.34 mL/g \u2afb Hgb g/dL \u2afb O2 saturation) Cancelling out the Hgb and correction factor: Qp/Qs \u2afd (FA O2 sat \u2afa MV O2 sat)/ (PV O2 sat \u2afa PA O2 sat) Mixed venous sat \u2afd (3SVC \u2af9 IVC)/4 \u2afd (3 \u2afb 67% \u2af9 70%)/4 \u2afd 68% FA O2 sat \u2afa MV O2 sat \u2afd 98% \u2afa 68% \u2afd 30% There is no pulmonary vein saturation listed, however since the LV saturation is 98%, it is a left-to-right shunt through the ASD so the PV saturation is the same as the LA and LV. PV O2 sat \u2afa PA O2 sat \u2afd LV O2 sat \u2afa PA O2 sat \u2afd 98%\u2afa88% \u2afd 10% Qp/Qs \u2afd 30% / 10% \u2afd 3.0:1.0"
+  },
+  {
+    "question": "A 77-year-old man presents with increasing symptoms of dyspnea and chest dis- comfort on exertion over the past 6 mos. He had two episodes of near syncope while climbing stairs. No prior cardiac history. \u25a0 BP 130/50 mmHg and pulse 70 bpm \u25a0 JVP normal and 2\u2af9 carotid delay \u25a0 LV sustained and displaced; S4 present \u25a0 2/6 SEM at the base with mid peak \u25a0 2/6 diastolic decrescendo murmur Echocardiography \u25a0 Moderately dilated LV cavity size \u25a0 Mild LVH \u25a0 Mild LA enlargement \u25a0 Aortic valve calcified \u25a0 Mean aortic valve gradient 25 mmHg \u25a0 AR probably mild What would you do now?",
+    "options": [
+      "TEE",
+      "Coronaries then AVR",
+      "TMET",
+      "Cardiac catheterization with arterial-venous gradient, CO, root, and coronary angiography",
+      "Medical observation"
+    ],
+    "correct": 3,
+    "explanation": "This gentleman has increasing symptoms. Based on the physical examination he has at least moderate AS and moderate to severe AR. The echocardiogram is discrepant with the clinical information, showing only mild AS and mild AR. Therefore, further evaluation is warranted to determine the true severity of the aortic valve lesion."
+  },
+  {
+    "question": "The above patient goes to catheterization and the following values are obtained: \u25a0 LV 170/10\u201315 mmHg, aorta 120/50 mmHg, HR 70 bpm \u25a0 Mean aortic valve gradient 51 mmHg, SEP 250 msec \u25a0 TCO 3.5 L/min, PA saturation 65% \u25a0 Normal coronary arteries \u25a0 Aortic root\u2014LV fills to same density as root in 4 beats What is the calculated AVA?",
+    "options": [
+      "0.2 cm2",
+      "0.5 cm2",
+      "0.9 cm2",
+      "1.3 cm2"
+    ],
+    "correct": 1,
+    "explanation": "The Haake equation can be used. This is the CO/\u5179mean gradient (3.5/7 \u0002 the AVA). The calculated AVA is 0.5 cm2."
+  },
+  {
+    "question": "What can be said about the calculated AVA in the patient in Question 19?",
+    "options": [
+      "It accurately represents the true AVA",
+      "It is smaller than the true AVA",
+      "It is larger than the true AVA"
+    ],
+    "correct": 1,
+    "explanation": "In this instance, the AVA is calculated by the systemic flow. However, the true flow of the LVOT is higher due to the concomitant AR. Therefore, the calculated AVA is smaller than the true AVA. The patient has severe AS and moderate to severe AR. He is markedly symptomatic. He should have the valve replacement."
+  },
+  {
+    "question": "The LV fills to the same density of the root at 3 to 4 beats. What is the severity of AR in the patient in Question 19?",
+    "options": [
+      "1\u2af9",
+      "2\u2af9",
+      "3\u2af9",
+      "4\u2af9"
+    ],
+    "correct": 2,
+    "explanation": "22. Answer e. To calculate the pulmonary arteriolar resistance, one needs to have the oxygen con- sumption. Although a thermal dilution CO has been performed, this is erroneous due to the patient\u2019s AF. One would know that thermal dilution and CO are not giving proper numbers as the PA saturation is only 53%, indicating that the CO should be low, not high. It is important to correlate measured numbers with the patient\u2019s phys- iology for consistency. (For institutions that do not use Wood units: 1 Wood unit \u2afd 80 dynes/s/cm\u2afa5)"
+  },
+  {
+    "question": "In the patient in question 22, you obtain an O2 consumption of 260 mL/min. CO by simplified Fick equation: VO2/[1.34 \u2afb Hgb \u2afb (FA \u2013 PA)] \u2afd CO 260 mL/min / {10 dL/L [1.34 mL/g \u2afb 14 g/dL \u2afb (0.98\u20130.53)]} \u2afd 3.1 L/min What is the pulmonary arteriolar resistance?",
+    "options": [
+      "2.5 Wood units \u2afb m2",
+      "5.0 Wood units \u2afb m2",
+      "10 Wood units \u2afb m2",
+      "20 Wood units \u2afb m2"
+    ],
+    "correct": 2,
+    "explanation": "The pulmonary arteriolar resistance is the mean PAP \u2afa LAP/CO. Thus, it is (50 mmHg \u2afa 20 mmHg)/3L/min \u8250 10 Wood units \u2afb m2."
+  },
+  {
+    "question": "In patients with known stable CAD, which of the following statements is not true?",
+    "options": [
+      "Death and MI can be prevented by percutaneous revascularization",
+      "MI can be prevented and LV function preserved with CABG surgery",
+      "In nondiabetic patients, CABG surgery and percutaneous revascularization have similar rates of subsequent death, MI, and subsequent revascularization",
+      "Improved survival is observed after CABG (compared to medical therapy) for patients with three-vessel disease and either LV dysfunction or class III to IV symptoms"
+    ],
+    "correct": 3,
+    "explanation": "Percutaneous revascularization has been shown to relieve symptoms. In patients with stable CAD (as opposed to ACS), percutaneous revascularization has not been shown to improve mortality or prevent infarction. Diabetic patients appear to have improved survival with CABG as compared to PCI. The other groups that have shown improved survival with CABG (as compared to medical therapy) include those with left main disease and those with three-vessel disease plus LV dysfunction or severe symptoms."
+  },
+  {
+    "question": "The physiological significance of the coronary artery lesion can be assessed in the cardiac catheterization laboratory by:",
+    "options": [
+      "Quantitative coronary angiography",
+      "Intravascular US",
+      "Coronary flow reserve to intracoronary adenosine",
+      "Response to IV Methergine"
+    ],
+    "correct": 2,
+    "explanation": "26. Answer e. The 2002 update of the ACC/AHA guidelines upgraded the recommendation of angiography for patients after NSTEMI from a class IIB indication to class I in the setting of an early invasive strategy. Recommendations for Coronary Angiography during the Hospital-Management Phase (Patients with Q-Wave and Non-Q-Wave Infarction): Class I: 1. Spontaneous myocardial ischemia or myocardial ischemia provoked by minimal exertion, during recovery from MI. (Level of evidence: C ) 2. Before definitive therapy of a mechanical complication of MI such as acute MR, VSD, pseudoaneurysm, or LV aneurysm. (Level of evidence: C ) 3. Persistent hemodynamic instability. (Level of evidence: B) Class IIa: 1. When MI is suspected to have occurred by a mechanism other than thrombotic occlu- sion at an atherosclerotic plaque (eg, coronary embolism, arteritis, trauma, certain metabolic or hematologic diseases, or coronary spasm). (Level of evidence: C ) 2. Survivors of AMI with LV EF \u2b0d 0.40, CHF, prior revascularization, or malignant ventricular arrhythmias. (Level of evidence: C ) 3. Clinical heart failure during the acute episode, but subsequent demonstration of preserved LV function (LV EF \u2b0e 0.40). (Level of evidence: C ) Class IIb: 1. Coronary angiography to find a persistently occluded infarct-related artery in an attempt to revascularize that artery (open artery hypothesis). (Level of evidence: C ) 2. Coronary angiography performed without other risk stratification to identify the presence of left main or three-vessel disease. (Level of evidence: C ) 3. Recurrent VT and/or VF, despite antiarrhythmic therapy, without evidence of ongoing myocardial ischemia. (Level of evidence: C ) Class III: 1. Patients who are not candidates for or who refuse coronary revascularization. (Level of evidence: C)"
+  },
+  {
+    "question": "Among patients with class II angina and one- or two-vessel disease, PCI is indi- cated for which of the following?",
+    "options": [
+      "To prevent progression of CAD",
+      "Prevention of MI",
+      "To alleviate asymptomatic ischemia",
+      "To improve symptoms",
+      "Prevention of death"
+    ],
+    "correct": 3,
+    "explanation": "Of note, all patients should also have intensive medical regimen and an initial strat- egy of medical therapy alone in appropriately selected patients does not have adverse effects on morbidity or mortality (COURAGE trial)."
+  },
+  {
+    "question": "Rotational atherectomy is contraindicated in which settings:",
+    "options": [
+      "Bifurcation lesions",
+      "Saphenous vein grafts",
+      "Heavily calcified lesions",
+      "Insulin-dependent diabetes"
+    ],
+    "correct": 1,
+    "explanation": "Because of the higher likelihood of a saphenous vein graft to contain thrombus and subsequent microembolization with no reflow, this is considered to be a contraindi- cation to rotational atherectomy. The location of a vein graft can make perforation particularly catastrophic as well. Debulking heavily calcified lesions prior to stent deployment is a useful application of rotational atherectomy."
+  },
+  {
+    "question": "A 58-year-old man presents with atypical chest pain. Coronary angiography reveals a 60% diameter stenosis in the mid-LAD coronary artery. Which of the following intracoronary US or Doppler measurements is the most sensitive for determining if this intermediate stenosis is hemodynamically significant?",
+    "options": [
+      "Luminal area",
+      "Proximal-to-distal velocity ratio",
+      "Coronary flow reserve",
+      "Percent plaque area in the stenosis",
+      "Absolute coronary flow"
+    ],
+    "correct": 2,
+    "explanation": "Coronary flow reserve is the most sensitive measurement for determining the hemo- dynamic significance of an intermediate stenosis. The anatomical measurements made with intracoronary US are useful for assessing the quantitative and qualitative aspects of atherosclerosis but are less accurate for determining physiology. Proximal- to-distal velocity ratio is one measurement of lesion severity, but it has been shown to be less accurate than coronary flow reserve."
+  },
+  {
+    "question": "A 78-year-old diabetic male is referred to your clinic for preoperative evaluation prior to left knee replacement. He currently can only walk 1 to 2 blocks before stopping, but he is limited by knee pain and denies angina or shortness of breath. He has an adenosine sestamibi stress test that demonstrates a small area of ischemia at the apex. He did not note any discomfort during the test. He is cur- rently on 81 mg aspirin daily and has adequate beta blockade with metoprolol. His vitals are: HR: 62 bpm BP: 118/70 mmHg Lipids: LDL 68 mg/dL, HDL 45 mg/dL, TG 98 mg/dL Your next step is:",
+    "options": [
+      "Advise patient to postpone surgery for further diagnostic testing",
+      "Proceed to coronary angiogram to define the anatomy",
+      "Proceed to coronary angiogram to perform PCI on the LAD",
+      "Increase aspirin to 325 mg daily and continue beta blocker",
+      "Tell patient that nothing further is needed at this time and he should continue his current medical regimen"
+    ],
+    "correct": 4,
+    "explanation": "The patient is moderate risk for a moderate risk surgery. Medical management including aggressive beta blockade is indicated to reduce perioperative MI risk. There are no data proving that full-dose aspirin is more effective in preventing future MI. By the 2005 AHA/ACC guidelines on PCI: Class III: PCI is not recommended in patients with asymptomatic ischemia or CCS class I or II angina who do not meet the criteria as listed under the class II recommendations or who have one or more of the following: a. Only a small area of viable myocardium at risk (Level of evidence: C) b. No objective evidence of ischemia. (Level of evidence: C) c. Lesions that have a low likelihood of successful dilatation. (Level of evidence: C) d. Mild symptoms that are unlikely to be due to myocardial ischemia. (Level of evidence: C) e. Factors associated with increased risk of morbidity or mortality. (Level of evidence: C) f. Left main disease and eligibility for CABG. (Level of evidence: C) g. Insignificant disease (\u2b0d50% coronary stenosis). (Level of evidence: C)"
+  },
+  {
+    "question": "A 62-year-old executive presents for physical examination. He is completely asymptomatic and leads a relatively sedentary life style, playing golf twice per week. His past medical history is significant for chronic mild HTN and hyper- lipidemia, and he is overweight. He does have a positive family history for early CAD in his father. His current medications include hydroclorothiazide. On physical examination he is found to have a BP of 150/90 mmHg and a HR of 82 bpm. JVP is normal. Carotid upstrokes are normal without bruits. The lungs are clear to auscultation. The heart has a regular rate and rhythm. S1 and S2 are normal. An S4 is present. No murmurs are appreciated. The apical impulse is in normal location and of normal quality. The abdomen is soft with no masses or bruits. The extremities have no clubbing, cyanosis, or edema, and the periph- eral pulses are normal. Chest X-ray is unremarkable. The resting ECG is normal. His total cholesterol is 252 mg/dL, LDL cholesterol 142 mg/dL, HDL 38 mg/dL, TG 160 mg/dL. The next best step is:",
+    "options": [
+      "Coronary angiography",
+      "TMET to diagnose the presence of CAD",
+      "Begin therapy with antihypertensive, cholesterol-lowering medications, and aspirin therapy",
+      "Imaging stress test to define the presence of CAD",
+      "Resting echocardiography to define LV systolic function"
+    ],
+    "correct": 2,
+    "explanation": "This case is an asymptomatic 62-year-old male with multiple risk factors for CAD. The most important step to take in managing his subsequent CV risk is to treat his modifiable risk factors. These are principally his HTN and hyperlipidemia. Coronary angiography would not be indicated as an initial step for this asymptomatic individ- ual. Exercise testing to diagnose coronary disease is not particularly useful for someone in this age group who already has pretest probability of harboring CAD. The more appropriate use of functional testing for this type of individual would be for prognos- tic information."
+  },
+  {
+    "question": "Over the next 12 months the patient in Question 31 notes classic anginal symp- toms with exertion. These are noted when he climbs the 3 flights of stairs to his office daily. The symptoms are relieved with 1 min of rest at the top of the stairs. He is currently taking atenolol, 50 mg daily; aspirin, 325 mg daily; and pravas- tatin, 20 mg daily. His physical examination is unchanged. Which of the following does not lower risk for subsequent death or MI?",
+    "options": [
+      "Percutaneous revascularization",
+      "Lipid lowering to an LDL of \u2b0d100 mg/dL if the current value is \u2b0e130 mg/dL",
+      "Lowering LDL to \u2b0d100 mg/dL if the current value is between 100 and 129 mg/dL",
+      "Exercise training program"
+    ],
+    "correct": 0,
+    "explanation": "Once he had developed chronic stable angina, all of the modalities listed decrease sub- sequent death and nonfatal MI rates except for percutaneous revascularization. This modality has been proven to relieve symptoms but not to improve survival in patients with stable CAD."
+  },
+  {
+    "question": "A 67-year-old farmer presents with 3 days of intermittent chest pressure and dys- pnea with minimal exertion. He had one episode of nocturnal dyspnea 3 days prior. He is currently asymptomatic. His past medical history includes HTN and hyperlipidemia. He is currently medicated with metoprolol 25 mg twice daily and aspirin 325 mg daily. On physical examination his BP is 140/85 mmHg and his HR is 76 bpm and regular. His JVP is normal. His carotid upstrokes are normal and without bruits. His lungs are clear to auscultation. His heart has a regular rate and rhythm. The apical impulse is in the normal location and of normal quality. The first and sec- ond heart sounds are normal. There are no murmurs or gallops appreciated. The abdomen is soft with no masses or bruits. The extremities have no clubbing, cyanosis, or edema, and the peripheral pulses are normal. The ECG shows nonspecific ST-T wave changes without frank elevation or depression. The chest X-ray is interpreted as normal. CBC, electrolytes, and cardiac biomarkers are all negative. (continued ) The next best step is:",
+    "options": [
+      "Increase beta blockade and add nitrates, followed by noninvasive stress testing",
+      "Diagnostic coronary angiography with possible percutaneous revascularization",
+      "Pharmacologic stress testing",
+      "Start therapy with tirofiban 0.1 mcg/kg/min",
+      "Either a or b"
+    ],
+    "correct": 4,
+    "explanation": "By definition this patient has an unstable angina syndrome. Generally, noninvasive stress testing without intensification of anti-ischemic therapy is contraindicated in unstable syndromes. He does not have markers of increased risk (positive biomarkers, evidence of CHF, ongoing or prolonged chest pain, ECG changes, etc.); therefore, the administration of glycoprotein IIb/IIIa inhibitors is not strictly indicated. Multiple studies have suggested that both conservative strategies and early invasive strategies can be used with similar outcomes for patients like this one."
+  },
+  {
+    "question": "After appropriate diagnostic workup and medical therapy are commenced, the patient in Question 33 is found to have a 95% stenosis in the middle LAD coro- nary artery. This was successfully treated with an intracoronary bare metal stent. With regard to this patient:",
+    "options": [
+      "There is a 4% to 6% risk of in-stent restenosis over the next 6 mos",
+      "Aspirin 81 mg plus warfarin adjusted to an INR of 2.0 to 2.5 should be commenced",
+      "Aspirin 325 mg and clopidogrel 75 mg daily should be commenced",
+      "Noninvasive stress testing is required at 3 to 6 mos following the percutaneous procedure regardless of the patient\u2019s symptom status"
+    ],
+    "correct": 2,
+    "explanation": "Bare metal intracoronary stents have a 15% to 20% restenosis rate in the first 6 mos. Subsequent death, MI, and ischemic stroke are dramatically reduced using the com- bination of aspirin and clopidogrel (or aspirin and ticlopidine). Warfarin is not part of standard care following intracoronary stenting and should be used only if there is another indication. Follow-up testing is not mandated after percutaneous revascular- ization and generally is performed only when indicated based on clinical symptoms."
+  },
+  {
+    "question": "One year later the patient in Question 33 is in need of cholecystectomy. He remains asymptomatic. The surgeon arranged for a TMET before you visited with the patient. The patient exercised to an equivalent of 9.0 METS with a nor- mal HR and BP response. The ECG was interpreted as nondiagnostic (\u2b0d1 mm of upsloping ST depression) at peak exercise and resolved by 3 min into recovery. At this point, which of the following is true?",
+    "options": [
+      "Repeat coronary angiography and possible coronary revascularization will improve the patient\u2019s operative outcome",
+      "Repeat stress testing was not necessary at this point in time as the patient was active and asymptomatic",
+      "The operation should be postponed until an imaging stress test can be obtained",
+      "You should recommend IV beta blockers and IV NTG with PA catheter mon- itoring and to proceed with the cholecystectomy"
+    ],
+    "correct": 1,
+    "explanation": "Patients who have undergone coronary revascularization within the last 5 yrs and remain active and asymptomatic do not need preoperative cardiac testing. In this case, the patient did undergo TMET that demonstrated good exercise capacity (9 METS), confirming his relatively good prognosis. Preoperative PA catheterization is not sup- ported by trial data. He should continue on aspirin as long as possible before and restart as soon as possible after surgery, as well as maintain aggressive beta blockade and statin therapy throughout the surgery."
+  },
+  {
+    "question": "A 53-year-old man with limited CAD risk factors presents with a 6-month his- tory of DOE and exertional chest fullness. He has had orthopnea and an episode of paroxysmal nocturnal dyspnea. He has a very significant alcoholic history. \u25a0 ECG: Nonspecific ST abnormalities \u25a0 Echocardiography: Moderately dilated LV; EF 25%; global hypokinesis The next step in diagnostic evaluation should be:",
+    "options": [
+      "Exercise MUGA scanning",
+      "Stress test with measurement of maximal O2 consumption",
+      "Coronary angiography",
+      "Transplant consultation"
+    ],
+    "correct": 2,
+    "explanation": "Even though this could be alcoholic cardiomyopathy, coronary angiography is indi- cated to rule out an ischemic cause and assess potential for revascularization that may improve LV function."
+  },
+  {
+    "question": "A 58-year-old man with multiple CAD risk factors presents with a 1-year history of DOE and exertional chest pressure. He has had orthopnea and an episode of paroxysmal nocturnal dyspnea. \u25a0 Laboratory findings: serum potassium 4.5; creatinine 3.2 \u25a0 ECG shows nonspecific ST abnormalities \u25a0 Echocardiography shows a mildly dilated LV; EF 25% to 30%; global hypoki- nesis \u25a0 Coronary angiography shows an 80% stenosis of proximal LAD, 85% proxi- mal LFX, 90% mid-RCA; distal vessels are good caliber The appropriate next step includes:",
+    "options": [
+      "Surgical consultation for CABG",
+      "Rest thallium test with delayed imaging",
+      "Initiation of spironolactone therapy",
+      "All of the above"
+    ],
+    "correct": 1,
+    "explanation": "This similar patient has severe three-vessel coronary disease and cardiomyopathy with depressed LV systolic function. Revascularization (likely with CABG) is indicated if there is salvageable myocardium. The degree of renal failure limits initiation of aldosterone- blocking agent at this time."
+  },
+  {
+    "question": "Which of the following is incorrect regarding a patient who has had an anaphy- lactoid reaction to a contrast agent in the past?",
+    "options": [
+      "The patient is at increased risk for a second anaphylactoid reaction if exposed again to a contrast agent",
+      "The likelihood of a second anaphylactoid reaction can be reduced by the use of a low osmolar contrast agent",
+      "The likelihood of a second anaphylactoid reaction can be reduced by the administration of corticosteroids before the second procedure",
+      "May have been exposed to NPH insulin in the past, because NPH insulin increases the likelihood of an anaphylactoid contrast reaction"
+    ],
+    "correct": 3,
+    "explanation": "The risk of an anaphylactoid reaction to contrast media is increased if a previous reaction has occurred but is not related to use of NPH insulin. Previous NPH use increases the risk of anaphylaxis to protamine (used to reverse heparin effect)."
+  },
+  {
+    "question": "Most coronary artery anomalies:",
+    "options": [
+      "Are clinically significant",
+      "Are abnormal fistula connections between the coronary arteries and other car- diac structures",
+      "Are identified in children",
+      "Must be visualized by the angiographer"
+    ],
+    "correct": 3,
+    "explanation": "Coronary artery anomalies are frequently incidental findings but should always be visu- alized. The most common coronary anomaly is a \u201cpants leg\u201d or separate coronary ostia of the LAD and LCX. If not looking specifically for a separate ostia, an occlusion or entire territory can be missed angiographically, especially in an emergency setting."
+  },
+  {
+    "question": "Ventriculography:",
+    "options": [
+      "Must be performed in the LAO view in addition to the RAO view to visual- ize the posterior portion of the LV",
+      "Can be used to quantify MR and AR",
+      "Is associated with a significantly higher risk of complications than coronary angiography",
+      "Permits the accurate and reproducible assessment of both MR and LV wall motion"
+    ],
+    "correct": 0,
+    "explanation": "Biplane ventriculography is needed for complete visualization of the LV."
+  },
+  {
+    "question": "A 74-year-old man with diabetic nephropathy is seeing you in clinic on Friday in preparation for his scheduled coronary angiogram on Monday. He currently takes NPH insulin, metformin, lisinopril, furosimide, and aspirin. On physical exam he is euvolemic. Which of these medications should he stop prior to his angiogram?",
+    "options": [
+      "NPH insulin",
+      "Metformin",
+      "Lisinopril",
+      "Furosimide",
+      "Aspirin"
+    ],
+    "correct": 1,
+    "explanation": "Especially in light of his nephropathy and upcoming contrast administration, he should stop his metformin and remain off the medication 24 to 48 hr post procedure to limit the potential for developing lactic acidosis. Metformin-associated lactic acidosis is thought to be type B (overproduction rather than tissue hypoxia) because it inhibits the gluconeogenesis from alanine, pyruvate, and lactate. The other medications may be con- tinued with special attention: with the NPH, the patient should not have protamine reversal of heparin post procedure. In addition, it would be reasonable to either have the patient increase oral intake or hold lasix to support his volume status and decrease chance of contrast nephropathy. The patient should receive aggressive IV hydration 1 hr prior to angiogram and for 6 hr after with a sodium bicarbonate or saline solution to further limit contrast nephropathy. Other considerations to limit further nephropathy are limiting volume of contrast and avoiding high osmolar ionic contrast dye."
+  },
+  {
+    "question": "In comparison to balloon angioplasty the major benefit of elective coronary artery stenting is:",
+    "options": [
+      "Prevention of death",
+      "Prevention of death/MI",
+      "Reducing the need for further procedures",
+      "Reducing length of stay and hospital costs"
+    ],
+    "correct": 2,
+    "explanation": "Stent reduces need for target vessel revascularization. It also reduces significance of coronary artery dissection caused by angioplasty."
+  },
+  {
+    "question": "Reduction of restenosis by bare metal stents when compared to balloon angio- plasty results from all of the following mechanisms except:",
+    "options": [
+      "Reduced neointimal proliferation",
+      "Reduced residual stenosis",
+      "Reduced elastic recoil",
+      "\u201cTacking up\u201d of the dissection flaps and improved blood rheology"
+    ],
+    "correct": 0,
+    "explanation": "Reduced neointimal proliferation is the mechanism that DESs use to reduce restenosis. The reduction of restenosis of bare metal stents compared to angioplasty (22% vs. 32%) was documented in the BENESTENT trial (1994)."
+  },
+  {
+    "question": "Abrupt closure following coronary angioplasty:",
+    "options": [
+      "Is more common in men than women",
+      "Is reduced in high risk patients pretreated with abciximab (Reopro)",
+      "Occurs most frequently in LAD lesions",
+      "Occurs less frequently with directional atherectomy in comparison to balloon angioplasty"
+    ],
+    "correct": 1,
+    "explanation": "With balloon angioplasty, the rate of abrupt vessel closure is 3% to 8% and attributed to thrombus or dissection. Abciximab reduces platelet aggregation and can facilitate dissolution of thrombus. In the current stent era, abciximab (ADMIRAL), when given early in STEMI, decreases the need for urgent target vessel revascularization by 30 days. This benefit does not necessarily apply to neointimal hypertrophy and in- stent restenosis: the ERASER trial had 4-mos follow-up IVUS that did not show any significant difference with or without abciximab at the time of implant."
+  },
+  {
+    "question": "Which of the following is characteristic of a type C lesion?",
+    "options": [
+      "Angulated segments \u2b0e 60 degrees",
+      "Discrete",
+      "Proximal lesion with large amount of myocardium at risk",
+      "Vein grafts"
+    ],
+    "correct": 3,
+    "explanation": "By ACC definition: Descriptions of a High-Risk Lesion (Type C Lesion): \u25a0 Diffuse (length \u2b0e2 cm) \u25a0 Excessive tortuosity of proximal segment \u25a0 Extremely angulated segments (\u2b0e90\u2b1a) \u25a0 Total occlusions more than 3 mos old and/or bridging collaterals* \u25a0 Inability to protect major side branches \u25a0 Degenerated vein grafts with friable lesions* *The high risk with these criteria is for technical failure and increased restenosis, not for acute complications."
+  },
+  {
+    "question": "A 71-year-old male was admitted to the hospital with unstable angina. The ECG demonstrated anterolateral ST depression, and cardiac enzymes revealed a mild increase in total CK and the CK-MB fraction. Because of continued angina, the patient was taken to the catheterization lab and coronary angioplasty was performed. Which of the following agents would be least beneficial to the patient in terms of short-term clinical outcome?",
+    "options": [
+      "tPA",
+      "Aspirin",
+      "Abciximab (Reopro)",
+      "Heparin"
+    ],
+    "correct": 0,
+    "explanation": "Direct comparison of thrombolysis versus PCI shows better outcomes for PCI if door- to-balloon times and door-to-needle times are equivalent. In addition, this patient is not having an STEMI. Thrombolysis is not appropriate for NSTEMI."
+  },
+  {
+    "question": "In the (SIRIUS) Sirolimus-coated stent in treatment of de novo coronary artery lesions trial, what was the target vessel revascularization rate for the sirolimus- eluting stent at 9 months?",
+    "options": [
+      "0%",
+      "4%",
+      "8%",
+      "16%"
+    ],
+    "correct": 1,
+    "explanation": "In the SIRIUS trial, target vessel restenosis was reduced in DESs versus bare metal stent (4.1% vs. 16.6%) at 9 mos. Major adverse CV events were reduced as well (7.1% vs. 18.9%). The mechanism of reduced events was attributed to decreased neoin- timal hyperplasia. TAXUS-IV was the similar paclitaxel-eluting stent trial that had decreased angiographic restenosis at 9 mos (7.9% vs. 26.6%) when compared to bare metal stent."
+  },
+  {
+    "question": "Which of the following factors is the most important in terms of reducing the incidence of late stent thrombosis with DESs?",
+    "options": [
+      "Pretreatment with abciximab",
+      "Optimal stent deployment (complete apposition of stent with vessel wall)",
+      "The introduction of more potent antiplatelet agents (eg, ticlopidine, clopidogrel)",
+      "Aggressive anticoagulation with warfarin and aspirin"
+    ],
+    "correct": 1,
+    "explanation": "With the recent widespread implementation of DESs, late thrombosis data started appearing 1 yr after placement. In May, 2007, Cook et al. (Circulation 115:2426\u2afa2434) published an IVUS study on 13 patients with late stent thrombosis with a mean of 630 days \u2afe 166 after DES implantation. They found incomplete stent apposition in 77% of these patients versus 12% of controls (IVUS done at 8 mos and no stent throm- bosis \u2b0e 2 yrs post implant). Whether the incomplete apposition was due to technical limitation or the positive remodeling by local inflammation is unknown. They also found that patients with thrombosis had longer lesions, longer stents, more stents-per-lesion, and more stent overlap."
+  },
+  {
+    "question": "A 63-year-old male presents with symptoms of progressive angina pectoris. Coronary angiography is performed and reveals a high grade, heavily calcified, eccentric lesion in the mid LAD. Which of the following interventional approaches would be associated with the best initial outcome?",
+    "options": [
+      "Balloon angioplasty",
+      "Directional atherectomy",
+      "Excimer laser angioplasty",
+      "Rotational atherectomy"
+    ],
+    "correct": 3,
+    "explanation": "Rotational atherectomy utilizes a miniature burr that is able to debulk calcified lesions by grinding them into microscopic fragments that theoretically pass through the cap- illaries and microcirculation of the myocardium. Balloon angioplasty is unlikely to have much success dilating a heavily calcified lesion. Directional atherectomy was pre- viously used to debulk plaque, but when compared to balloon angioplasty had no clear benefit. With the advent of bare metal stents, directional atherectomy was reduced to a more limited role. The calcification would also make use of this technology difficult in this setting. Directional atherectomy has enjoyed renewed use in treatment of peripheral vascular disease. Excimer is short for \u201cexcited dimer\u201d and typically uses a combination of an inert gas and a reactive gas to create UV laser light that can be absorbed by biological tissue causing vaporization of the organic compound. This is the technology behind LASIK surgery. It is currently used for in-stent restenosis and is less effective in calcified lesions and also carries a higher risk of complication such as perforation. With the advent of DESs, the frequency of in-stent restenosis has dropped dramatically and, therefore, one of the primary roles of this technology has fallen out of favor. There is novel research investigating its role in vaporizing thrombus and plaque in the setting of AMI."
+  },
+  {
+    "question": "A 45-year-old male who received bare metal stent to LAD 1 yr ago is found to have exertional angina and a markedly positive exercise stress test. He undergoes angiography and has this LAO caudal view: Initial attempt at dilation with PTCA is only partially successful, with 40% resid- ual in-stent stenosis. What is the next step in management?",
+    "options": [
+      "Aggressive medical therapy with high dose statin and lifelong dual antiplatelet therapy",
+      "LIMA to LAD coronary bypass surgery",
+      "Brachytherapy to lesion",
+      "Directional atherectomy",
+      "DES placement The following questions pertain to chronic CAD only. Note: The following questions may have more than one correct answer."
+    ],
+    "correct": 4,
+    "explanation": "The TAXUS V ISR (in-stent restenosis) trial and SISR trials were both published in JAMA (2006) and compared paclitaxel and sirolimus-eluting stents (DES) versus vas- cular brachytherapy for bare metal stent restenosis. DES was superior to brachyther- apy with reduction in target vessel restenosis. In the TAXUS V study, the rates were 10.5% versus 17.5% target vessel restenosis at 9 mos. In the SISR study, there was also less target vessel restenosis in the sirolimus-eluting stent (12% vs. 22%) at 9 mos. Brachytherapy and DES implantation are the only remaining FDA-approved treat- ments for restenosis of bare metal stents at this time."
+  },
+  {
+    "question": "Of the three major CABG versus medical therapy trials, which of the following showed an overall survival benefit for CABG?",
+    "options": [
+      "CASS",
+      "ECSS",
+      "VA multicenter study"
+    ],
+    "correct": 1,
+    "explanation": "The ECSS trial was published in 1980 and studied 768 patients. The surgical arm, however, actually had better compliance with beta blocker therapy than the medical therapy arm. It could be considered a \u201csurgery versus no surgery\u201d trial. The 5-yr sur- vival was 93% for CABG and 84% without. The VA multicenter study was published in 1977 and did not show an overall survival benefit. There was improved survival (87% vs. 74%) in patients with left main disease."
+  },
+  {
+    "question": "Because numerous technological advances in CABG have occurred since these randomized trials, which of the following statements can be expected to be true?",
+    "options": [
+      "CABG would be even more efficacious if trials were repeated today",
+      "CABG in fact would be less efficacious because medical therapy has improved as well",
+      "Because medical therapy has improved markedly, a much larger number of patients would be necessary to show a survival benefit, if any, for CABG"
+    ],
+    "correct": 2,
+    "explanation": "The 10-yr results from the BARI trial were recently published. There was no signifi- cant long-term advantage of an initial strategy of PTCA compared with CABG. However, the trial was started prior to stent implantation and glycoprotein IIb/IIIa inhibition, rendering some question on modern applicability of the trial. However, the only survival advantage by 10 yrs was in the diabetic population. Ongoing trials such as BARI 2D and FREEDOM will help clarify the role of multivessel interven- tion in the modern PCI era."
+  },
+  {
+    "question": "You are counseling a 56-year-old euglycemic man with class III angina, two- vessel CAD, and normal LV function. Which of the following statements are true for PTCA versus CABG for multi- vessel disease?",
+    "options": [
+      "Angina relief is equivalent",
+      "Mortality rates were lower after CABG",
+      "Repeat procedures were necessary more often after PTCA",
+      "Because of the risk of perioperative infarction, PTCA was superior to CABG in preventing MI"
+    ],
+    "correct": 1,
+    "explanation": "The sicker the patient, the more likely it is that CABG will prolong life. Thus, patients are likely to live longer after CABG if they have left main disease; three-vessel disease with LV dysfunction (EF \u2b0d 50%), class III or IV angina, provocable ischemia, or disease in the proximal LAD; two-vessel disease with proximal LAD involvement; and two-vessel disease with class III or IV angina as well as either severe LV dysfunc- tion alone, or moderate LV dysfunction together with at least one proximal lesion."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

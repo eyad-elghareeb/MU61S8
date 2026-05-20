@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Valvular Heart Disease</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpww6i7p",
+  "title": "Valvular Heart Disease",
+  "description": "Mayo Clinic Cardiology Board Review \u2014 Valvular Heart Disease",
+  "icon": "\ud83e\udec0"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which of the following would be most likely in a patient with chronic severe MR?",
+    "options": [
+      "Normal LV cavity size",
+      "Dyspnea",
+      "EF \u2b0e 65%",
+      "RV lift",
+      "Third heart sound"
+    ],
+    "correct": 4,
+    "explanation": "Patients with severe chronic MR should have an enlarged LV. Many of these patients are asymptomatic subjectively and must be assessed by exercise test to determine their level of exercise capacity. The EF, even in asymptomatic patients, can be normal or abnormal. RV dysfunction or pressure overload is variable. Third heart sound indicates chronically elevated end-diastolic volume due to an enlarged ventricle. It coincides with the Y descent of the atrial pressure pulse as well as the end of the rapid filling phase. It is not specific to MR. S3 is an early diastolic event, not end diastolic. It is due to rapid filling of the LV due to enhanced suction in young healthy patients, rapid inflow in restrictive physiology, or rapid inflow due to large regurgitant volume. In the latter the patient may have a rumble as well."
+  },
+  {
+    "question": "Which of the following statements about the natural history of severe AR is true?",
+    "options": [
+      "Asymptomatic patients with normal LV systolic function develop symptoms of LV dysfunction at a rate of \u2b0d10% per yr",
+      "Symptomatic patients have a mortality rate of \u2b0d10% per yr",
+      "Asymptomatic patients with normal LV systolic function suffer sudden death at a rate of \u2b0e10% per yr",
+      "Asymptomatic patients with abnormal LV systolic function develop symp- toms at a rate of \u2b0d10% per yr"
+    ],
+    "correct": 0,
+    "explanation": "Patients with asymptomatic severe AR and normal ventricular function have a low annual risk of developing symptoms, ventricular dysfunction, and sudden death. However, patients will develop symptoms at a rate of \u000125% per yr after ventricular dysfunction occurs. Furthermore, patients have a \u000110% per yr risk of mortality after developing symptoms."
+  },
+  {
+    "question": "Which of the following patients with severe chronic MR is not a surgical candidate?",
+    "options": [
+      "NYHA functional class III, EF 40%",
+      "NYHA functional class I, EF 70%, LV end systolic diameter 35 mm",
+      "NYHA functional class II, EF 50%",
+      "NYHA functional class II, EF 70%, LV end systolic diameter 42 mm"
+    ],
+    "correct": 1,
+    "explanation": "According to the 2006 ACC/AHA guidelines, patients with symptomatic (NYHA classes II\u2013IV) chronic severe MR should be considered for surgery in absence of severe LV dysfunction (EF \u0002 30% or end-systolic dimension \u000155 mm). Asymptomatic patients should be considered for surgery if the EF is \u000260%, the end-systolic diam- eter is \u000145 mm, AF has recently started, or there is pulmonary HTN. In those who are asymptomatic surgery should be performed for severe chronic MR with an LV EF of 30% to 60% and/or end-systolic dimension \u000340 mm. Asymptomatic patients with severe chronic MR and preserved LV function who have new onset AF or pulmonary HTN defined as a PA systolic pressure \u000150 mmHg at rest or \u000160 mmHg with exercise should also be considered for surgical intervention. Lastly, if severe chronic MR is due to a primary abnormality in the mitral valve apparatus and the patient has NYHA classes III\u2013IV symptoms, with severe LV dys- function (LV EF \u000230% or end-systolic dimension \u000155 mm), then surgery could be considered if a mitral valve repair is highly likely."
+  },
+  {
+    "question": "A 45-year-old farmer presents with a history of flushing after eating and diarrhea up to 10 watery stools per day. There has been a 20-lb weight loss over the pre- ceding year. He has also noted a gradual decrease in his exertional tolerance due to dyspnea and wheezing while carrying out his normal daily chores. He denies fever, chills or sweats but has had a decrease in his appetite over the last year. His examination reveals a ruddy complexion. JVP is up to 14 cm with prominent V wave in the venous profile. There is also a loud holosystolic murmur with respi- ratory variation. The liver is enlarged and pulsatile. There is bilateral lower extremity edema to the knees. What would be the next best test to order?",
+    "options": [
+      "MRI of the chest",
+      "TTE",
+      "No further testing, reassure and start diuretic",
+      "No further testing, start hospice care"
+    ],
+    "correct": 1,
+    "explanation": "The history is consistent with carcinoid syndrome with cardiac involvement. A TTE can evaluate for valve disease. The tricuspid and pulmonary valves are most com- monly involved. However, left-sided valve involvement is possible if there is a PAF or lung metastases. MRI of the chest would not provide any further assistance with the diagnosis."
+  },
+  {
+    "question": "A 63-year-old man presents with a heart murmur. He is completely asymptomatic and active. Exam shows carotid delay, single S2, and a 3/6 mid-peaking SEM. TTE shows normal LV size and function, calcified aortic valve, and a mean aortic valve gradient of 52 mmHg with an AVA of 0.8 cm2. Which of the following is the next best step?",
+    "options": [
+      "TMET",
+      "Right and left heart catheterization with coronary angiography",
+      "PABV",
+      "AVR after coronary angiogram",
+      "Observation with IE prophylaxis"
+    ],
+    "correct": 0,
+    "explanation": "The consensus of the Guidelines Committee is that patients should not have an opera- tion for asymptomatic AS in the absence of critical stenosis, drop in BP during TMET, or LV systolic dysfunction. The committee also recommend performing a TMET to look for ventricular arrhythmias, a drop in BP, or to get an objective measurement of exercise tolerance. Close follow-up and an echocardiogram every year is recommended to identify symptoms and a change in LV function. A hemodynamic catheterization is necessary only to settle a discrepancy of symptoms, echocardiographic findings, or lack of physical findings supporting the diagnosis, or to provide a diagnosis when one needs to clarify different findings. In this case, the exam and findings on echocardiogram are consistent with AS. The current guidelines do not support AVR in those who have asymptomatic AS with preserved LF function. The patient needs appropriate follow-up for changes in clinical status and LV function; therefore, observation alone is not appro- priate. Percutaneous balloon valvotomy for AS has a class III indication as an alterna- tive to valve replacement. 6. I\u2014Answer b. The physical examination described in this athlete is indicative of a bicuspid aortic valve with AR. The clue on physical examination is that this bicuspid aortic valve is the early systolic click or \u201cejection click.\u201d A diastolic murmur is always pathologic and would require further investigation in any subject. In an athlete, a systolic mur- mur should be further investigated to rule out the possibility of AS, HCM, pul- monic stenosis, and ASD. Nuclear imaging really has no role in the evaluation of murmurs. Chest radiography certainly could offer some clues but would not be definitive. The sinus bradycardia is common in athletes due to hypervagotonia. The systolic murmur may or may not indicate significant aortic obstruction since many young athletes will have an increase in stroke volume in both the LVOT and RVOT, creat- ing turbulence. II\u2014Answer d. This patient has a diastolic murmur that is always abnormal and indicates valvular pathology. Once valvular pathology has been identified, the risk of bacterial endo- carditis increases and patients need to follow prophylaxis guidelines. However, the current ACC/AHA 2007 guidelines have changed and no longer include routine IE prophylaxis for patients with bicuspid aortic valves. The current recommendations include IE prophylaxis ONLY for patients with underlying cardiac conditions associated with the highest risk of adverse outcome from IE. According to the ACC/AHA guidelines class I indications for valve replacement in severe AR include all patients symptomatic for severe regurgitation regardless of LV systolic function. In those with severe AR who are asymptomatic, AVR is reserved for those with a reduced EF (\u000250%) or those undergoing CABG, other valve surgery, or aortic surgery. Class IIA indications include those who are asymptomatic with normal LV systolic func- tion (EF \u000150%) but with severe LV dilatation (end-diastolic dimension \u000175 mm or end-systolic dimension \u000155 mm). Class IIB indications include those with moderate AR while undergoing surgery on the ascending aorta or CABG. In addition, it includes those patients that are asymptomatic with severe AR and normal LV systolic function at rest (EF \u0001 50%) with evidence of progressive LV dilatation to an end- diastolic dimension of 70 mm or end-systolic dimension of 50 mm, declining exercise tolerance, or abnormal hemodynamic responses to exercise. 7. I\u2014Answer c. This gentleman has symptoms out of proportion to the echocardiographic findings. His physical examination is consistent with at least moderate AS and moderate to severe AR. The echocardiogram is discrepant with the clinical information, showing only mild AS and mild AR. Therefore, further evaluation is warranted to determine the true severity of the aortic valve lesion. His symptoms could be explained by concomitant CAD or by an underestimation of the valve disease by echocardiogram. Therefore, further assess- ment is necessary including evaluation of his coronary arteries. Proceeding directly to AVR or observation alone is not indicated in this patient without further clarification of the diagnosis. TMET in AS is used to elicit symptoms or look for hemodynamic changes (hypotension) with exercise. This patient is already symptomatic; therefore, a TMET will not provide any additional information in this case. II\u2014Answer b. The Haake equation can be used. This is the CO (3.5)/\u221agradient (\u221a49 \u0004 7). The cal- culated AVA is 0.5 cm2. III\u2014Answer c. Grade I Sellers criteria are minimal or no contrast regurgitation into the LV. Grade II Sellers criteria are when the LV fills with contrast after 5 beats with less intensity than that of the aortic root. Grade III Sellers criteria are when the LV fills to the same den- sity of the root but not before 5 beats, and Grade IV Sellers criteria are when the LV fills to the same density as the aortic root within 5 beats, often immediately."
+  },
+  {
+    "question": "A 23-year-old female with a family history of Marfan syndrome comes to you for prepregnancy counseling. An MRI of the chest is performed and shown below. There is no mitral valve prolapse by echocardiogram, and the patient is asymptomatic. (continued ) Based on the patient\u2019s known family history and investigations, what would you recommend?",
+    "options": [
+      "Avoid pregnancy at this time due to the size of the aorta",
+      "Proceed with pregnancy, preferably sooner rather than later, due to the size of the aorta",
+      "Recommend avoiding pregnancy due to the autosomal dominant nature of Marfan syndrome",
+      "Question the diagnosis of Marfan syndrome and request genetic evaluation"
+    ],
+    "correct": 0,
+    "explanation": "The patient has a family history of Marfan syndrome and the MRI shows isolated aortic sinus enlargement which is characteristic of Marfan syndrome. Pregnancy in patients with Marfan syndrome is contraindicated when the aorta is over 40 mm. Beta blocker therapy should be instituted and the patient should be counseled against hav- ing a pregnancy at this time. If surgical intervention is performed and the patient has had an excellent result, future pregnancy could be considered. Counseling regarding inheritance of Marfan syndrome would also be appropriate."
+  },
+  {
+    "question": "A 32-year-old woman has known MS. She is able to exercise daily for 45 min with- out symptoms. Six months ago she had a TTE that showed a mean gradient of 5 mmHg, MVA of 1.6 cm2, and a PAP of 30 mmHg. She wants to get pregnant. What would you recommend?",
+    "options": [
+      "Repeat TTE",
+      "TEE",
+      "PMBV",
+      "MVR",
+      "Proceed with pregnancy with beta blockade as necessary"
+    ],
+    "correct": 4,
+    "explanation": "This patient has only mild MS and is asymptomatic. Therefore, there is no indication for a balloon valvuloplasty or MVR. Most of these patients tolerate pregnancy well. She will need frequent rest during the day, lying in the left lateral decubitus position to avoid compression of the IVC. Beta blockade could be instituted to slow the HR and optimize diastolic filling time if symptomatic tachycardia occurs. Otherwise, she should do well throughout the pregnancy without pulmonary HTN or severe MS. A TEE would not provide any additional necessary information in this case."
+  },
+  {
+    "question": "A 67-year-old man develops prolonged chest pain while on a hunting trip. Upon his return home 3 days later he sees his doctor. On examination, there is a new 2/6 apical holosystolic murmur and the ECG shows a new inferior\u2013posterior infarction. Coronary angiography demonstrates proximal total occlusion of the CFX artery without any other significant CAD. Pharmacologic nuclear perfusion imaging demonstrates a fixed inferior defect that does not improve on 24-hr delayed images. A TTE reveals an inferior akinetic zone, EF 52%, intact mitral valve with moderate MR, RVSP 41 mmHg. He is started on aspirin, a statin, an ACE inhibitor, and a beta blocker. He undergoes a rehabilitation level stress test without symptoms, ischemic changes on ECG, or dysrhythmia. Which of the following next steps is most appropriate?",
+    "options": [
+      "Ask a surgeon to consider him for CABG and MV repair",
+      "Arrange a 6 wk office visit with prescheduled TTE to reassess his MR",
+      "Continue with medical therapy",
+      "Add an ARB to his medical regimen"
+    ],
+    "correct": 2,
+    "explanation": "Patients with ischemic regurgitation are less likely to have a successful mitral repair, and it should be considered only if the regurgitation is severe or if another surgical procedure is required. There are no data regarding the supplemental value of adding an ARB to an ACE inhibitor in the management of MR or post infarction. Digoxin could be added to patients with symptomatic LV systolic dysfunction or for rate con- trol in AF. A follow-up echocardiogram at 6 wks is indicated only if there is a change in his clinical status. The patient is asymptomatic and on appropriate medical therapy; and therefore, continued current therapy is the next best step."
+  },
+  {
+    "question": "Which one of the following patients needs endocarditis prophylaxis?",
+    "options": [
+      "Patient with isolated secundum ASD having dental extraction",
+      "Patient with ligated patent ductus arteriosus having cystoscopy",
+      "Patient with an AVR that is functionally normal, having dental cleaning and scaling",
+      "Patient with coarctation having",
+      "Patient with primum ASD having TEE"
+    ],
+    "correct": 2,
+    "explanation": "Even a patient with a functionally normal prosthetic valve is susceptible to endocarditis and so must be given antibiotic prophylaxis when having dental work. Patients with an isolated secundum ASD do not require routine antibiotic prophylaxis. Patients who have had a ligated patent ductus arteriosus are considered cured and do not require antibiotic prophylaxis. Coarctation of the aorta is a low-risk lesion for endocarditis, and, because cardiac catheterization is a sterile procedure, endocarditis prophylaxis is not required. TEE does not require routine antibiotic prophylaxis. The current ACC/AHA guidelines indicate that ONLY patients with underlying cardiac conditions associated with the highest risk of adverse outcome from IE need IE prophylaxis (ie, previous endocarditis, mechanical valve replacement, congenital heart disease with shunt and transplant valvulopathy)."
+  },
+  {
+    "question": "A 22-year-old woman presents with a heart murmur in the 12th wk of preg- nancy. She never had any prior history of heart disease and is an active person, walking 1\u20132 miles per day without any limitations. This is her first pregnancy, and there has been no problem with the pregnancy. Her obstetrician noted a heart murmur and has sent her to you for further evaluation. She has no other medical problems. Her BP is 110/70 mmHg and pulse is 70 bpm and regular. The JVP and carotid upstroke are normal. The lungs are clear. The LV impulse is tapping. The first heart sound is loud. The second heart sound is split with inspiration with a nor- mal pulmonic component intensity. There is a crisp opening snap approximately 80 msec from the second heart sound and a 2/6 diastolic rumble is present with a presystolic accentuation. A TTE is performed. This shows normal LV size and function with an EF of 60%. The LA is moderately enlarged. There is evidence of MS with diastolic doming of the mitral valve leaflets but they are pliable and noncalcified. The mean gradient across the mitral valve is 8 mmHg and the MVA calculated by diastolic half-time is 1.2 cm2. There was no MR. PA systolic pressure is calculated to be 40 mmHg. In this woman who is 12 wks pregnant, what would you do at this point in time?",
+    "options": [
+      "PMBV now",
+      "PMBV at 20 wks of pregnancy",
+      "MVR at 20 wks of pregnancy",
+      "Medical observation with frequent periods of rest daily",
+      "Right and left heart catheterization with exercise"
+    ],
+    "correct": 3,
+    "explanation": "This woman has moderately severe MS. However, she is completely asymptomatic and does not have significant elevation of her PA pressure. The majority of patients with asymptomatic or minimally symptomatic MS can have an uncomplicated pregnancy with careful monitoring. Pregnant patients with heart disease should have frequent rest periods during the day, consisting of 20 to 30 mins in the left lateral decubitus position (to avoid the compression of the interior vena cava by the fetus). Patients should be watched closely for the onset of AF and cardioversion should be performed with fetal monitoring should this occur. If the patient were symptomatic before pregnancy, inter- vention with PMBV would have been appropriate. If she does develop significant symp- toms unresponsive to beta blockade, then PMBV could be performed during pregnancy (preferably after 20 wks) with appropriate shielding of the fetus."
+  },
+  {
+    "question": "A 27-year-old woman presents 18 wks pregnant with a diagnosis of MS. She has a past history of rheumatic fever as a teenager and was told that she had an abnormality on her mitral valve 10 yrs ago. However, over the last few weeks she has developed mild symptoms of exertional dyspnea. This is her first preg- nancy, and she definitely wants to keep the baby. She has no other medical problems. On examination her BP is 110/70 mmHg and pulse is 90 bpm. The JVP is not elevated and carotid upstroke is without delay. The lungs are clear. The LV impulse is tapping. The first heart sound is loud and the second heart sound is split with inspiration with a mildly increased intensity of the pulmonic compo- nent. There is a crisp opening snap present approximately 60 msec from the sec- ond heart sound and a 2/6 diastolic rumble is heard at the apex with a presystolic accentuation. TTE reveals normal LV size and function with a moderate increase in LA size. There is a typical \u201chockey stick\u201d deformity of MS and the valve leaflets appear to be pliable and noncalcified with no significant subvalvular fusion. The mean gra- dient across the mitral valve is 10 mmHg and the valve area calculates to 1.1 cm2 by the half-time method. The PA systolic pressure is calculated to be approxi- mately 36 mmHg. What would you do at this point in time?",
+    "options": [
+      "Proceed with TEE and if no LA/appendage thrombus then PMBV",
+      "Advise termination of her pregnancy",
+      "Try to avoid any intervention for the next 4 weeks with the patient being as inactive as possible; then plan for elective mitral valve operation at 22 to 24 wks",
+      "Medical therapy to control her HR",
+      "Closed commissurotomy"
+    ],
+    "correct": 3,
+    "explanation": "This patient has a moderately severe MS with mild symptoms at 18 wks of pregnancy. Although her valve is suitable from the morphologic standpoint for either PMBV or closed commissurotomy, most patients with this severity of MS can be safely carried through pregnancy. Therefore, one would not want to subject either the patient or the fetus to a risk of operation if she can be safely carried to term with medical therapy only. Her HR is 90 bpm and the gradient could be significantly lowered with reduc- tion in HR. Therefore, beta blockade would be the treatment of choice in this patient, slowly increasing the beta blocker to try to achieve a resting HR \u0002 70 bpm. This may cause some fetal growth retardation but overall beta blockade even at high doses causes very little permanent effect on the child. If the patient goes into significant heart fail- ure on beta blockade then PMBV, shielding the fetus would be a reasonable option. Surgery with MVR should be performed only if the valve is significantly calcified pre- cluding a safe percutaneous approach, and the patient becomes hemodynamically unstable."
+  },
+  {
+    "question": "A 28-year-old woman with a new diagnosis of symptomatic MS is referred to you. After your evaluation you find that she has MS that is appropriate for PMBV. The procedure is planned for the following day. She asks what follow-up if any is necessary after the procedure. Which of the following do you tell the patient?",
+    "options": [
+      "Advise her that her symptoms will improve slowly over several months",
+      "Advise her that she needs annual echocardiograms to follow her for recurrence",
+      "Advise her that she will need frequent visits to see if her symptoms are improving",
+      "Advise her that after the procedure, a follow-up echocardiogram will be per- formed as an outpatient 1 wk later",
+      "You reassure her, after her procedure no follow-up is necessary"
+    ],
+    "correct": 3,
+    "explanation": "Symptomatic improvement occurs almost immediately after successful PMBV. According to the ACC/AHA guidelines a baseline echocardiogram is recommended after the procedure to obtain baseline measurements (post-procedure hemodynamics) and to exclude significant complications (MR, LV dysfunction, or ASD). The echocar- diogram should be performed no earlier than 72 hrs after the procedure to allow for the acute changes in atrial and ventricular compliance to stabilize. Otherwise, the half-time in calculation of valve area is unreliable. The management of patients after successful PMBV is similar to that of the asymptomatic patient with MS. With recur- rent symptoms, an echocardiogram should be performed to evaluate the mitral valve hemodynamics, PA pressure, and to rule out significant MR or a L-to-R shunt."
+  },
+  {
+    "question": "A 62-year-old woman presents to you with severe class III symptoms of shortness of breath. She has a known history of heart murmur and a past history of rheumatic fever and has had increasing symptoms of shortness of breath for the past 4 yrs. On examination, her venous pressure is elevated to 10 cm with a V wave and the carotid upstroke has no delay. The LV impulse is slightly enlarged. There is 2/6 holosystolic murmur at the apex with a 2/6 diastolic rumble. An opening snap is present 60 msec from the second heart sound. The TTE shows normal LV size and function with a moderately enlarged LA. The aortic valve is normal. The mitral valve is thickened and mildly calcified with diastolic doming. There is mild MR by color-flow Doppler. There is MS with a mean gradient of 15 mmHg. The MVA by half-time is 1.9 cm2. Based on this information, this patient has:",
+    "options": [
+      "Mild MS and mild MR",
+      "Severe MS and mild MR",
+      "Mild MS and severe MR",
+      "More information is required"
+    ],
+    "correct": 3,
+    "explanation": "This patient has symptoms of heart failure and has mixed mild valve disease. There is a discrepancy between the valve gradient and valve area in that the gradient is in the range of \u201csevere\u201d MS but the valve area is in the range of \u201cmild\u201d MS. This is most likely due to concomitant significant MR that is underestimated by the TTE due to acoustic shadowing. However, the half-time may also be erroneous because of the compliance abnormalities. Therefore, either a TEE or the continuity equation can be performed to determine the true severity of MS. 16. I\u2014Answer a. The patient described in Question 16 has severe mitral valve stenosis but the HR is not well controlled. The initial therapy would be to try to alleviate symptoms with HR control and diuretics. Anticoagulation is appropriate due to the hypercoagulable state of pregnancy. The risk of warfarin is highest during the first trimester. Given the options provided, answer a is the best initial step. Other options are not recom- mended initially in this case. II\u2014Answer d. If after appropriate HR control diuresis symptoms persist, PMBV would be carried out if there is no left atrial thrombus or significant mitral valve regurgitation noted by TEE and the valve is deemed amenable to balloon valvuloplasty (based on the degree of leaflet rigidity, severity of leaflet thickening, amount of leaflet calcification, and the extent of subvalvular thickening and calcification). Appropriate abdominal shielding to protect the fetus from radiation will be required."
+  },
+  {
+    "question": "A 67-year-old man presents to you with severe CHF. He had a bypass operation 10 yrs ago at which time mild AS was diagnosed. He had done well until the past month when he began to have progressive shortness of breath and now cannot walk across the room before having to stop. On examination, his HR is 130 bpm and irregular. His BP is 90/60 mmHg. The venous pressure is 20 cm of water. The carotid upstroke is mildly delayed. The LV impulse is displaced to the anterior axillary line and enlarged. The second heart sound is single. A 2/6 SEM is present at the LSB with a mild peak. The ECG shows AF with a rate of 120 bpm and LV hypertrophy. A chest X-ray shows pulmonary venous congestion and cardiomegaly. A TTE shows an EF of 20% with regional wall motion abnormalities. The aortic valve is calcified with a mean gradient of 17 mmHg and an aortic valve area of 0.6 cm2. Coronary angiography performed at home had shown severe three-vessel disease but patent grafts to the LAD, OM, and posterior descending artery. What would you do at this time?",
+    "options": [
+      "Optimize medical therapy with increasing dosages of ACE inhibitor and diuretics",
+      "Left and right heart catheterization with CO and coronary angiography",
+      "Dobutamine Doppler echocardiography",
+      "Thallium with 24-hr imaging",
+      "TEE-guided cardioversion"
+    ],
+    "correct": 4,
+    "explanation": "This patient has a \u201clow output, low gradient AS.\u201d However, from the history, he had done well until he suddenly went into significant heart failure. The etiology of his heart failure may well be the onset of acute AF that may have caused his CO to decrease. Therefore, before proceeding with any other diagnostic or therapeutic studies, one would try to get him back to normal sinus rhythm with a TEE-guided cardioversion under anticoagulation coverage. One would then reassess his hemodynamics. If his CO increases and his valve area increases without an increase in gradient, then no fur- ther intervention is warranted since he most likely does have a mild degree of AS. In this case, a 24-hr thallium would not be helpful at this point in the evaluation."
+  },
+  {
+    "question": "A 50-year-old man presents to you with a heart murmur. He has had a history of a heart murmur for the past 20 years but has never had any prior cardiac evalua- tion. He has gone in for an executive physical and is referred to you for evalua- tion of the heart murmur. The patient himself is active, plays racquetball twice a week, and jogs 4 days a week. He denies any significant symptoms of shortness of breath, chest pain, or lightheadedness. He does not smoke, does not drink, and has no HTN or diabetes. He is on no medications. On physical examination, his BP is 130/70 mmHg and pulse is 70 bpm and regular. His JVP is normal and carotid upstroke is 2\u2af9parvus and tardus. The lungs are clear. LV impulse is sustained and localized with a bifid quality. There is a fourth heart sound present. The second heart sound is single. There is a 2/6 harsh SEM at the right upper sternal border with a mid peak. Diastole is clear. TTE is performed. This reveals normal LV cavity size with a mild increase in LV wall thickness and EF at 60%. There is a calcified aortic valve with restricted opening. The Doppler gradient across the aortic valve is 48 mmHg with a calcu- lated valve area of 0.83 cm2. The mitral and tricuspid valves appear normal. (continued ) What would you do at this point in time?",
+    "options": [
+      "Perform right and left heart catheterization to obtain an accurate measure- ment of valve gradient and valve area",
+      "Perform coronary angiography and refer to surgery",
+      "Trial of ACE inhibitor",
+      "Medical observation with warning against strenuous physical activity",
+      "TMET"
+    ],
+    "correct": 4,
+    "explanation": "This patient has asymptomatic severe AS. The management of these patients contin- ues to be controversial. It is clear that when a patient with severe AS becomes symp- tomatic, AVR is indicated to prolong life and relieve symptoms. However, it is still unclear as to what to do with the patient with asymptomatic severe AS. The propo- nents of early AVR cite the occurrence of sudden death occurring in patients with severe AS. However, overall, the incidence is low, \u0002 1% per year. Since in most insti- tutions the mortality of AVR approaches 3% to 5%, the majority of experts from aca- demic centers feel that patients with severe AS should undergo close observation. The clear indication for operation would be either (i) the onset of symptoms or (ii) LV 18. (continued ) systolic dysfunction, indicating that the afterload on the LV is severe enough to cause deterioration in myocardial performance. According to the current ACC/AHA guidelines, a TMET should be performed under carefully monitored conditions. This should be performed only in asymptomatic patients. This is performed to look for an abnormal BP response or exercise- induced symptoms to assist with decision making for whether to pursue AVR. In centers that can perform an operation with \u00021% mortality, it might be reasonable to proceed with AVR since AS is a progressive disease and 30% to 40% of patients would require AVR in the next 3 to 5 years."
+  },
+  {
+    "question": "A 53-year-old man presents with a 1-yr history of exertional dyspnea and chest tightness. He has no prior history of cardiac disease, although he was told he had a heart murmur several years ago. He is not limited by these symptoms that occur with a moderate degree of exertion, such as walking up 2 flights of stairs. These symptoms are reproducible and have increased only slightly over the past few months. He has had no rest discomfort. He does not have any other significant medical problems aside from mild HTN. He is on no medications. On physical examination, his BP is 130/80 mmHg and pulse is 60 bpm and regular. His JVP is normal and carotid upstroke low volume and mildly delayed. The lungs are clear. The LV impulse is sustained and bifid. The first heart sound is normal. The second heart sound is clearly split with inspiration and an audible but decreased intensity aortic component of the second heart sound. There is a fourth heart sound audible. There is a 2/6 SEM at the base with a mid peak which ends at the second heart sound. Diastole is clear. His ECG shows normal sinus rhythm without any significant abnormalities and specifically no evidence of LV hypertrophy. His chest X-ray shows LV pre- dominance with clear lung fields. A TTE is performed that reveals normal LV cavity size with normal systolic function and no LV hypertrophy. The EF is 70%. The aortic valve is calcified with a restricted opening and the mitral valve is normal. The mean gradient is 35 mmHg with a valve area of 1.1 cm2. The aortic root is 52 mm. Limited coronary angiography is performed that reveals normal coronary arteries. What would you do with this patient?",
+    "options": [
+      "AVR",
+      "PABV",
+      "Dobutamine hemodynamic study",
+      "TMET",
+      "Ergonovine challenge"
+    ],
+    "correct": 0,
+    "explanation": "This patient has moderate AS as defined by both the gradient and the AVA. However, the patient also has symptoms that are highly compatible with more severe AS. Although the major indication for AVR is severe symptomatic AS, it has been well doc- umented that the natural history of \u201cmoderate\u201d AS is defined by a valve area between 0.7 and 1.2 cm2, and as severe AS if the patient is symptomatic. Therefore, one should not make a decision not to operate in a symptomatic patient with AS based upon a \u201csin- gle hemodynamic number.\u201d According to the ACC/AHA guidelines, symptomatic moderate AS has a class IIA indication for surgical intervention in those going for sur- gery on the aorta. PABV for AS has a class III indication as an alternative to valve replacement; this is not a correct answer. The guidelines indicate that it may be a reasonable bridge to surgery in poor surgical candidates who are hemodynamically unstable or as a palliative measure. These indications were given a class IIB indication. Ergonovine challenge has no role in this patient."
+  },
+  {
+    "question": "A 72-year-old man presents with severe symptoms of shortness of breath and a diagnosis of AS. He underwent CABG 10 yrs ago at which time he was found to have severe three-vessel disease and a moderate depression of LV systolic function. His EF was 35% with a mild degree of AS (mean gradient 10 mmHg). He had a LIMA and two saphenous vein grafts placed. He did well until 2 yrs ago when he began to develop increasing symptoms of shortness of breath. At the time of his presentation, he was in severe heart failure\u2014NYHA class IV. On examination, his BP was 90/70 mmHg and pulse was 100 bpm and regular. His JVP was elevated to 20 cm of water with a large V wave. The carotid upstroke had very low volume and moderately delayed. The lungs had rales at both bases. The LV impulse was displaced and enlarged. The first heart sound was soft. The second heart sound was single. There was a soft 2/6 SEM at the right upper sternal border with a mid peak that ended at the second heart sound. A loud third heart sound was audible. The abdomen was soft and nontender without masses. A chest X-ray showed cardiomegaly with pulmonary venous congestion. The ECG showed sinus tachycardia, HR of 100 bpm with high voltage, and loss of anterior forces. A TTE revealed a severe depression in systolic function with an EF of 20% and multiple regional wall motion abnormalities. The aortic valve was calcified with restricted opening. The mean gradient was 22 mmHg with a valve area of 0.5 cm2. Coronary angiography revealed patent grafts with diffuse distal disease. What would you do at this point in time?",
+    "options": [
+      "Right and left heart catheterization to measure gradient and CO",
+      "PABV",
+      "AVR",
+      "Aggressive therapy for heart failure with ACE inhibitor, diuretics, and beta blocker",
+      "Dobutamine challenge"
+    ],
+    "correct": 4,
+    "explanation": "This patient represents a \u201clow output, low gradient\u201d AS. The mean gradient is \u000230 mmHg yet the valve area is calculated to a \u201ccritical\u201d range. In these patients it is unclear whether or not this is truly severe AS with the LV dysfunction related to the high afterload on the heart. Alternatively, this may be only mild AS with concomitant severe LV dysfunction in which the ventricle is not able to generate enough force to fully open the valve. Therefore, the \u201ccalculated\u201d AVA is smaller than the true AVA. In the former, aortic valve operation should be performed. In the latter, medical ther- apy for LV dysfunction is indicated. In order to determine which of these is present, it has been recommended that a challenge with either dobutamine or nitroprusside be performed in order to increase the forward stroke volume. By \u201cnormalizing\u201d the CO, the gradient can then be reassessed. If the gradient rises to more than 40 mmHg then severe AS is present and the patient should undergo operation. However, if there is normalization of the CO and the gradient is still \u000230 mmHg, then this is only mild AS and operation is not warranted. In addition, dobutamine challenge allows one to assess for contractile reserve as evi- dence by an increase in stroke volume of 20% or more. The presence of contractile reserve in this patient population has been shown to have lower mortality when under- going AVR. Although both those with and without contractile reserve benefited from valve replacement, overall mortality was lower in those with contractile reserve."
+  },
+  {
+    "question": "A 70-year-old man presents to you with progressive symptoms of dyspnea over the past 2 mos. He has a history of implantation of a Carpentier-Edwards AVR 8 yrs ago for severe symptomatic AS. His coronary arteries were normal at the time of the operation. Following the operation, he was able to lead a very active lifestyle without limitations. The exertional shortness of breath has gradually increased but does not limit his lifestyle. He is still able to walk up a flight of stairs without shortness of breath which is about the most activity that he would want to do. He does not have any other past cardiac or medical history. On examination, his BP is 150/60 mmHg and pulse is 76 bpm and regular. His JVP is not elevated and the carotid upstroke has full volume. The LV impulse is sustained and localized. The first heart sound is normal. The second heart sound is single. There is a 2/6 SEM at the right upper sternal border with an early to mid peak and a 2 to 3/6 holodiastolic decrescendo murmur at the LSB. There is no diastolic rumble or third heart sound audible. He has pulsations in his uvula and a pistol shot pulse in his peripheral pulse examination. A TTE reveals a mildly dilated LV cavity (end diastolic dimension 58 mm) with a mild increase in LV wall thickness. Overall systolic function is normal with a EF of 60% and no regional wall motion abnormalities. The aortic valve pros- thesis is well seated but the cusps are not able to be visualized due to acoustic shadowing. The mean gradient across the aortic valve during systole is 18 mmHg and the LVOT velocity has a TVI of 29 cc. AR is detected by continuous wave Doppler echocardiography but is an eccentric jet so the half-time cannot be meas- ured. The jet occupies \u2b0d30% of the LVOT. There is flow reversal in the descending aorta with a peak of 0.5 m/sec and holodiastolic. The echocardiographic report describes the valve as normal with mild to moderate regurgitation. What would you do at this point in time?",
+    "options": [
+      "Right and left heart catheterization with aortic root angiography and coro- nary angiography",
+      "TEE",
+      "Look for other causes of dyspnea",
+      "Exercise radionuclide angiogram",
+      "Treat with afterload reducers"
+    ],
+    "correct": 0,
+    "explanation": "This patient presents with symptoms of shortness of breath and finding of a deteriorat- ing tissue AVR. There is a major discrepancy between the physical findings and the echocardiogram as there appears to be severe AR on examination due to the wide pulse pressure measured. The echocardiogram may not be able to accurately determine the severity of the AR due to the eccentric nature of the jet (making the color flow area determination inaccurate) as well as the acoustic shadowing that may be present. There are subtle clues that the AR is severe, including the significant elevation of the TVI in the LVOT as well as the reversal in the descending aorta. TEE will most likely not be of additional benefit due to the fact that there is acoustic shadowing cov- ering the LVOT. Aortic root angiography should be performed to confirm the suspi- cion of severe AR. Despite the fact that the ventricle is not dilated and systolic function is not decreased, this patient should undergo AVR if the AR is severe. Once a bioprosthesis begins to deteriorate there is progressive rapid further deterioration. The LV is most likely not able to dilate because of the pre-existing hypertrophy from the AS. An exercise nuclear study would not be helpful in this patient. Medical ther- apy will provide no benefit to this patient."
+  },
+  {
+    "question": "A 30-year-old man presents with a heart murmur but is completely asymptomatic. He was an athlete in high school and played football and ran track without any (continued ) limitations of activity. He was told that he had a very soft heart murmur when he was a teenager and, during an employment physical several years ago, he was told that he had a bicuspid aortic valve with AR. However, he did not follow-up and has had no medical care since then. He went to a family physician for an upper respiratory infection that subsequently resolved and he was found to have a loud heart murmur. Echocardiography revealed severe AR. He has no other significant medical problems and is otherwise active and healthy without symptoms. On physical examination, his BP is 125/45 mmHg and pulse is 60 bpm and reg- ular. His JVP is normal and carotid upstroke is bounding. The lungs are clear. The LV impulse is displaced and sustained. First and second heart sounds are normal. There is a soft 2/6 SEM at the right upper sternal border with an early peak and a loud 3/6 diastolic decrescendo murmur. A mid diastolic rumble is present at the apex. TTE is performed. The LV is dilated with a systolic dimension of 45 mm. The EF is 60%. There are no regional wall motion abnormalities. The aortic valve is bicuspid with no significant stenosis but severe AR is present. The descending aorta is interrogated and there is a high velocity flow reversal during diastole. An exercise radionuclide angiogram test is performed. On the test, he is able to go to 1200 kg/m/min, 95% of his predicted functional capacity. His EF, which was 60% at rest, dropped to 50% at peak exercise. What is the next step in this patient\u2019s management?",
+    "options": [
+      "Right and left heart catheterization with aortic root angiography and coro- nary angiography",
+      "Proceed to AVR with an aortic valve homograft",
+      "Proceed to AVR with a mechanical aortic valve prosthesis",
+      "Follow-up every 6 mos with echocardiography",
+      "Follow-up every 12 mos with echocardiography and start ACE inhibitor"
+    ],
+    "correct": 3,
+    "explanation": "This patient has severe AR with preserved systolic function. AR is secondary to a bicuspid aortic valve and has most likely been present for many years. The patient himself is completely asymptomatic, able to exercise to an excellent workload on the exercise test. The indication for operation in AR is either (i ) the onset of symptoms (class II to class IV), or (ii ) the asymptomatic patient with LV systolic dysfunction at rest. If LV systolic function is preserved, then close observation is indicated as this indicates that irreversible myocardial fibrosis has not yet occurred. There are some who advocate AVR in an asymptomatic patient with normal systolic function in a markedly enlarged LV, but these are end-systolic dimensions \u000125 mm/m2. This patient is well below that limit. The drop in EF during the exercise radionuclide angiogram test in itself is not an indication for operation. However, this does stratify the patient into a higher risk group in whom the probability of the onset of symp- toms or LV dysfunction is higher (\u000110%) than patients who would have no drop in EF with exercise. Therefore, in this patient, follow-up every 6 mos, mainly to look at a measurement of LV systolic function, is indicated. If the patient was able to increase the EF with exercise, yearly follow-up would be appropriate. Medical treatment of severe AR using vasodilators is not currently recommended according to the ACC/AHA guidelines unless needed for hypertension control."
+  },
+  {
+    "question": "You have attended a 56-year-old dairy farmer with rheumatic valvular heart disease for many years. Two years ago he had elective replacement of his mitral valve with a St. Jude prosthetic valve and a tricuspid annuloplasty. His dentist calls you for advice regarding endocarditis prophylaxis prior to dental extraction. The patient has never had IE. One year ago he developed a marked urticarial rash associated with bronchospasm following ampicillin administration prior to den- tal cleaning. How would you now advise the patient and his dentist?",
+    "options": [
+      "Clindamycin 600 mg orally 1 hr before the procedure",
+      "Erythromycin stearate 1 g orally before the procedure",
+      "Amoxicillin 2 g 1 hr before the procedure with steroid and antihistamine cov- erage",
+      "Nafcillin sodium 2 g IV 1 hr before the procedure",
+      "Gentamicin sulfate 0.1 mg/kg IV 1 hr before the procedure"
+    ],
+    "correct": 0,
+    "explanation": "This question tests your knowledge of the AHA/ACC guidelines on the administra- tion of antibiotics prior to dental and invasive procedures in patients at risk of IE. Clindamycin 600 mg orally 1 hr before the procedure is now the treatment of choice for penicillin allergic patients needing endocarditis prophylaxis, even those with pros- thetic valves. IV antibiotics are needed only for very high risk patients or those unable to take oral medications. Vancomycin 1.0 g IV or vancomycin combined with gentam- icin 1.5 mg/kg IM/IV is used in this situation."
+  },
+  {
+    "question": "A 28-year-old female is referred to you for evaluation of a heart murmur noted during the second trimester of her first pregnancy. The patient has no history of cardiac disease and the murmur has not been heard during medical evaluations in the past. The patient is asymptomatic. CV examination demonstrates a normal apical impulse. The first and second heart sounds are normal. A third heart sound is noted at the apex. A grade 2/6 early- to mid-peaking systolic murmur is audible at the LSB. There is a systolic click present that decreases with inspiration. Based on the history and physical findings, the murmur is most likely due to which of the following?",
+    "options": [
+      "Bicuspid aortic valve with mild to moderate stenosis",
+      "A congenitally abnormal pulmonary valve with moderate stenosis",
+      "A physiologic murmur related to pregnancy",
+      "Mitral valve regurgitation related to mitral valve prolapse",
+      "Bicuspid aortic valve with moderate regurgitation"
+    ],
+    "correct": 1,
+    "explanation": "A pulmonary valve stenosis murmur is usually best heard of the left upper sternal bor- der as opposed to the right upper sternal border. The murmur often radiates to the left shoulder as well. Pulmonary valve stenosis is commonly associated with a pul- monary ejection click. In addition, the RV may be palpable in a patient with severe pulmonary valve stenosis. There is a decrease in the pulmonary valve click with inspi- ration, which is the only audible sound on the right side of the heart that decreases with inspiration. This is due to increased volume to the right side of the heart with inspiration, which is thought to cause a bulge in the stenotic valve and partially open the valve. This would decrease the click. Aortic valve stenosis in a patient in this age group could be most likely related to a bicuspid aortic valve and an ejection click may be noted with this murmur as well. However, the remainder of the exam is more consistent with pulmonary valve disease then aortic valve disease. The aortic outflow murmur is usually best heard over the sternum or aortic area and is usually described as increasing with provocative maneu- vers. The murmur of mitral valve regurgitation is usually best heard at the apex and when associated with mitral valve prolapse it is often associated with one or more sys- tolic clicks. Aortic valve regurgitation is a diastolic murmur that does not correlate with the findings described in this patient."
+  },
+  {
+    "question": "Which of he following mechanical prostheses has the highest rate of structural deterioration?",
+    "options": [
+      "Bj\u00f6rk-Shiley C-C (convexo-concave) valve",
+      "Carbomedics valve",
+      "St. Jude medical valve",
+      "Medtronic-Hall valve",
+      "Bj\u00f6rk-Shiley standard valve"
+    ],
+    "correct": 0,
+    "explanation": "The convexoconcave Bj\u00f6rk-Shiley valve, especially in the larger annulus sizes, has been associated with an increased risk of in vivo strut fracture. The remaining valves are newer generation valves and have not been reported as having strut fracture related failure."
+  },
+  {
+    "question": "On echocardiographic evaluation of an aortic Medtronic-Hall prosthesis, the following measurements were obtained: LVOT diameter, 1.8 cm; LVOT TVI, 20 cm; and prosthesis TVI, 100 cm. The EOA is approximately:",
+    "options": [
+      "0.63 cm\u00b2",
+      "0.4 cm\u00b2",
+      "0.5 cm\u00b2",
+      "0.8 cm\u00b2",
+      "1.2 cm\u00b2"
+    ],
+    "correct": 2,
+    "explanation": "EOA \u0004 [LVOT area (cm2 )] \u0005 [LVOT TVI (cm)] Prosthesis TVI (cm) \u0006 r 2 (cm)2 \u0005 [LVOT TVI(cm)] \u0004 Prosthesis TV I (cm ) \u0006 (0.9)2 \u0005 20 \u0004 100 \u0004 0.5 cm2"
+  },
+  {
+    "question": "A 43-year-old woman had acute onset of shortness of breath and lightheadedness. She had a history of rheumatic fever and subsequent MVR. On physical examina- tion, she was pale and tachypneic. HR was 95 bpm and regular, with a low-volume pulse. BP was 95/44 mmHg. There were bilateral pulmonary rales with associated lower extremity edema and elevated JVP. A new murmur was present. The next step in your evaluation should be:",
+    "options": [
+      "Cardiac catheterization",
+      "Cardiac CT",
+      "TTE",
+      "TEE"
+    ],
+    "correct": 2,
+    "explanation": "TTE should be performed initially and, if adequate views of her prosthetic valve are not obtainable, TEE may be helpful."
+  },
+  {
+    "question": "Which of the following valves has a built-in leakage volume?",
+    "options": [
+      "Stented heterograft",
+      "Caged-ball",
+      "Homograft",
+      "Bileaflet",
+      "Stentless heterograft"
+    ],
+    "correct": 3,
+    "explanation": "Bileaflet mechanical valves have a built-in leakage volume that serves to \u201cclean\u201d the leaflet surface and reduce thrombus formation on the valve surface. The other valves listed do not have this feature."
+  },
+  {
+    "question": "The Ross procedure is:",
+    "options": [
+      "Replacement of a mechanical valve for a bioprosthetic valve in the tricuspid position",
+      "Transposition of the pulmonic valve into the aortic position",
+      "Indicated for elderly patients with AS who are poorly compliant with med- ication regimens",
+      "Indicated for patients with Ebstein\u2019s anomaly"
+    ],
+    "correct": 1,
+    "explanation": "An alternative to valve replacement with a mechanical valve or bioprosthesis is the Ross procedure. With this procedure, a pulmonary valve autograft replaces the aortic valve, while right-sided reconstruction is usually performed with an aortic or pul- monary homograft. Strict indications are not established for when to perform a Ross procedure. There are some potential advantages of a Ross procedure that should be considered: (i ) autologous tissue with documented long-term viability, (ii) possible resistance to infection, (iii ) lack of valve noise, (iv) lack of need for anticoagulation. The following are considered to be contraindications to a Ross procedure: (i ) advanced three-vessel coronary disease, (ii ) severely depressed LV function, (iii ) pulmonary valve pathology, (iv) Marfan syndrome or other connective tissue disorders, or (v) size mismatch between the pulmonic and aortic annulus."
+  },
+  {
+    "question": "Which of the following least influences mean gradient for a mechanical prosthesis?",
+    "options": [
+      "Prosthesis type",
+      "Prosthesis position",
+      "Prosthesis size",
+      "Prosthesis regurgitation",
+      "Length of time the prosthetic valve has been implanted"
+    ],
+    "correct": 4,
+    "explanation": "In the absence of prosthetic or ventricular dysfunction, the mean gradient across a prosthesis does not change significantly with time since implantation. The type, size, valve position and regurgitant volume have a significant role in the gradient across a prosthetic valve."
+  },
+  {
+    "question": "A 63-year-old man with a history of aortic valve regurgitation and St. Jude AVR comes to your office for anticoagulation recommendations prior to colonoscopy. He is chronically anticoagulated with warfarin with a goal INR of 2.5. His EF is 35% by echocardiogram. Which of the following do you recommend?",
+    "options": [
+      "Stop his warfarin 10 days prior to the colonoscopy and restart the day after the procedure",
+      "Stop his warfarin 3 days prior to the colonoscopy, admit him to the hospital prior to the procedure for heparinization. He should remain in the hospital until the INR is above 2.0",
+      "Stop his warfarin now, begin full dose aspirin (325 mg) and perform the colonoscopy in 7 days",
+      "Admit directly to the hospital for 10 mg of vitamin K. Once his INR is \u2b0d1.7, proceed with the colonoscopy. Keep him in hospital until his INR is higher than 2.0",
+      "Continue warfarin, but reduce the dose such that the goal INR is now 2.0 and proceed to colonoscopy"
+    ],
+    "correct": 1,
+    "explanation": "According to the ACC guidelines, those patients with a bileaflet mechanical AVR with no risk factors (ie, AF, previous thromboembolism, LV dysfunction, hypercoag- ulable conditions, older generation thrombogenic valves, mechanical tricuspid valves, or more than one mechanical valve) should stop their warfarin 48 to 72 hrs before the procedure (so the INR falls to \u00021.5) and restarted within 24 hrs after the procedure. Heparin is usually unnecessary. In those patients at high risk of thrombosis (defined as those with any mechanical MV replacement, or a mechanical AVR with any risk factor), therapeutic doses of IV UFH should be started when the INR falls below 2.0 (typically 48 hrs before surgery), stopped 4 to 6 hrs before the procedure, restarted as early after surgery as bleeding stability allows, and continued until the INR is again therapeutic with warfarin therapy. This patient has a mechanical AVR and reduced LV function; therefore, admitting the patient for heparin bridging before and after the procedure is necessary."
+  },
+  {
+    "question": "Which of the following is an indication for IE prophylaxis in a patient undergoing sclerotherapy for esophageal varices?",
+    "options": [
+      "Previous bacterial endocarditis",
+      "Isolated secundum ASD",
+      "Previous CABG",
+      "Prosthetic knee joint",
+      "Cardiac pacemaker"
+    ],
+    "correct": 0,
+    "explanation": "Certain underlying conditions such as previous bacterial endocarditis are associated with a relatively high risk of IE (ie, previous endocarditis, mechanical valve replace- ment, congenital heart disease with shunt and transplant valvulopathy). In contrast, other disorders such as isolated ASD, previous CABG, prosthetic joints, and cardiac pacemakers are associated with very low or negligible risk."
+  },
+  {
+    "question": "First line therapy for native mitral valve endocarditis caused by methicillin- susceptible Staphylococcus aureus is:",
+    "options": [
+      "Nafcillin or oxacillin with gentamicin",
+      "Vancomycin",
+      "Ceftriaxone",
+      "Cefotaxime",
+      "Gentamicin alone"
+    ],
+    "correct": 0,
+    "explanation": "In methicillin-susceptible staphylococcal endocarditis, a beta-lactam agent is more effective than vancomycin. The current ACC/AHA guidelines recommend treatment of native valve endo- carditis due to methicillin-susceptible Staphylococcus aureus with a semi-synthetic penicillin, such as nafcillin or oxacillin. Six weeks of therapy is recommended for all left-sided native valve endocarditis cases. In addition, the use of gentamicin for the first 3 to 5 days of therapy is recommended for synergy."
+  },
+  {
+    "question": "The most common cause of IE in IV drug users is:",
+    "options": [
+      "Viridans streptococci",
+      "Enterocuccus faecium",
+      "Staphylococcus aureus",
+      "Candida parapsilosis",
+      "Kingella kingae"
+    ],
+    "correct": 2,
+    "explanation": "Staphylococcus aureus is the most common cause of IE in injection drug users. Staphylococci and streptococci account for the majority of cases of endocarditis with nearly 75% of all cases having a pre-existing structural cardiac abnormality. S. aureus accounts for nearly one third and S. viridans accounts for 18% of all cases of endocarditis. Enterococcus accounts for approximately 10% of cases of IE. The 34. (continued ) Haemophilus aphrophilus, Actinobacillus actinomycetemcomitans, Cardiobacterium hominis, Eikenella corrodens, and Kingella kingae organisms have been thought to be common etiologies of culture-negative endocarditis. However, these organisms can be easily isolated with current blood culture systems when incubated for at least 5 days. Candida endocarditis is one of the most serious manifestations of candidiasis and is the most common cause of fungal endocarditis. Overall, this is an unusual cause of endocarditis."
+  },
+  {
+    "question": "A 56-year-old man with bicuspid aortic valve is admitted with fatigue, malaise, and 2 wks of fevers. Over the past few days he has become more lethargic and is seen by his local physician. On physical exam he is diaphoretic and tachycardiac. His WBC is elevated and his blood cultures are positive after 6 hrs. His chest X-ray shows CHF. Which of the following is the next best step?",
+    "options": [
+      "A head CT with and without contrast",
+      "Wait for identification and sensitivities of cultures",
+      "Surgical consultation for AVR",
+      "Obtain a TTE to evaluate for paravalvular invasion and abscess"
+    ],
+    "correct": 3,
+    "explanation": "An echocardiogram is the next step in evaluating this patient. Given his history of bicuspid aortic valve, he is at higher risk for IE. His lethargy may be due to a CNS process and a CT may be helpful. However, given his history, establishing a diagno- sis for endocarditis is paramount. There is no need to wait for specific identification. After cultures are obtained, broad spectrum antibiotics should be utilized until a spe- cific organism is identified. Indications for cardiac surgery in patients with endo- carditis include heart failure directly related to valvular dysfunction, persistent or uncontrollable infection despite appropriate medical therapy, or recurrent emboli due to the presence of large vegetations. Without a diagnosis, a surgical evaluation is inap- propriate. In addition to these indications, relative indications include evidence of perivalvular infection (intracardiac abscess or fistula), a ruptured sinus of Valsalva aneurysm, fungal endocarditis, highly resistant microorganisms, and a relapse after an adequate course of antimicrobial therapy or persistent fevers of more than 10 days after starting empiric therapy."
+  },
+  {
+    "question": "Which of the following is true about the treatment of IE?",
+    "options": [
+      "When enterococci resistant to both penicillin G and vancomycin cause endo- carditis, no medical therapy is reliably effective",
+      "Cefazolin may be used to treat enterococcal endocarditis",
+      "Oral agents such as fluconazole and itraconazole are the treatment of choice for fungal endocarditis",
+      "High-dose IV penicillin alone is effective in curing enterococcal endocarditis caused by penicillin-susceptible enterococci"
+    ],
+    "correct": 0,
+    "explanation": "Enterococci have a narrow spectrum of sensitivity and the majority of cases of entero- coccal endocarditis are caused by strains of Enterococcus faecalis. The AHA guidelines recommend therapy for E. faecalis with combination of IV aqueous penicillin G or ampicillin plus gentamicin or, alternatively, combination therapy with vancomycin plus gentamicin if a penicillin allergy is present. When enterococci that are resistant to both penicillin G and vancomycin cause endocarditis, no medical therapy is reliably effective."
+  },
+  {
+    "question": "Which of the following is true of Chagas disease?",
+    "options": [
+      "Most commonly, transmission occurs from the bite of a blood-sucking redu- viid bug",
+      "Nifurtimox and benznidazole are useful for treatment of chronic chagasic car- diac disease",
+      "Cardiac involvement is a rare complication of Chagas disease",
+      "The diagnosis of Chagas disease may be made easily by the isolation of the organisms from blood cultures"
+    ],
+    "correct": 0,
+    "explanation": "Trypanosoma cruzi, the etiologic agent of American Trypanosomiasis, or Chagas dis- ease, is transmitted by various species of blood-sucking reduviid bugs. The reduviid bug takes a blood meal and subsequently defecates around the bite site. This results in local irritation and subsequent scratching of the wound site leading to contamina- tion of the wound with the parasites in the feces. Humans are typically bitten on the face while sleeping. Nifurtimox and benznidazole may be useful in the treatment of acute Chagas disease but show minimal usefulness in the treatment of chronic Chagas disease. The diagnosis of chronic Chagas disease is usually made by detecting IgG antibodies that bind to parasite antigens in the serum of patients. Cardiac involve- ment is very common in Chagas disease and can be seen in all 3 phases of the disease (acute, indeterminate, and chronic). Chronic Chagas disease manifests as a biventric- ular heart failure, dysrhythmia, and thromboembolism."
+  },
+  {
+    "question": "You are asked for consultation on a 46-year-old farmer with a history of AR. He has had low grade fevers, fatigue, night sweats, and weight loss for 2 mos. He has been to several physicians for evaluation, and a complete workup has not deter- mined an etiology. His echocardiogram shows no vegetations, and previous blood cultures have been negative. His blood cultures again return negative. Which of the following is a possible cause of the negative cultures?",
+    "options": [
+      "Escherichia coli endocarditis",
+      "Coxiella burnetti",
+      "Cardiobacterium hominis",
+      "Strep bovis endocarditis"
+    ],
+    "correct": 1,
+    "explanation": "Culture-negative endocarditis may occur with fungal endocarditis and with slow- growing fastidious organisms such as nutritionally variant streptococci, Coxiella bur- netii (the causative agent of Q-fever), and Bartonella quintana. Escheria coli generally is not a cause of culture-negative endocarditis. The Haemophilus aphrophilus, Actinobacillus actinomycetemcomitans, Cardiobacterium hominis, Eikenella corrodens, and Kingella kingae organisms have been thought to be common etiologies of culture-nega- tive endocarditis. However, these organisms can be easily isolated with current blood cul- ture systems when incubated for at least 5 days. Streptococcus bovis bacteremia is associated with colon cancers, not with culture negative endocarditis."
+  },
+  {
+    "question": "A 28-year-old homeless man in Seattle, Washington, presents with a 2-mo history of fever and night sweats. Examination is significant for heart murmur compati- ble with aortic insufficiency. Three sets of blood cultures are negative after 48 hrs. The patient has not recently received antimicrobial therapy. The most likely diagnosis is endocarditis caused by:",
+    "options": [
+      "Bartonella quintana",
+      "Staphylococcus aureus",
+      "Enterococcus faecium",
+      "Staphylococcus epidermidi"
+    ],
+    "correct": 0,
+    "explanation": "Bartonella quintana recently has been associated with endocarditis in homeless persons with alcoholism and in patients in inner-city settings. Bartonella spp. are slow-growing gram-negative bacteria that may require a month or longer for culture isolation. Staphylococcus aureus is the most common cause of IE in injection drug users. Enterococcus accounts for approximately 10% of cases of IE and the majority of cases of enterococcal endocarditis are caused by strains of Enterococcus faecalis. The coagulase- negative staphylococci isolated initially after a surgery/procedure are almost always Staphylococcus epidermidis. This is often encountered in pacemaker pocket infections, and the majority are methicillin-resistant and resistant to all beta-lactam antibiotics. 40. I\u2014Answer c. AS, MR due to a prolapse of the posterior leaflet, and HCM may all produce murmurs that can be heard with equal intensity from the base to the apex. The VSD murmur is heard over the precordium. The murmur of MR due to an anterior leaflet prolapse is typically maximum at the apex and radiating to the axilla following the jet\u2019s tract. II\u2014Answer c. The murmur of MR decreases with amyl nitrite, which decreases both preload and afterload, but increases with methoxamine and in the left lateral decubitus position and does not change after extrasystole or expiration. III\u2014Answer b. The lesion most frequently leading to surgery for MR in the United States is mitral valve prolapse with or without flail leaflet in more than half of the cases. Rheumatic disease represents around 10% of the cases of pure MR and endocarditis, a little less. Ischemic MR is the second lesion leading to surgery for pure MR, representing 20% to 30% of the cases. Mitral annular calcification may be associated with mitral valve prolapse, but isolated, causes most often mild regurgitation. 41. I\u2014Answer b. In mitral valve prolapse the standing position (by decreasing LV filling) increases the time of systole during which the prolapse is present, bringing the click and beginning of regurgitation earlier in systole. This change is related to the fact that the prolapse and the regurgitation occur at a fixed ventricular volume irrespective of the maneu- vers performed. The jet area of MR may increase during exercise because of increased regurgitant volume or velocity. 41. (continued ) Non-ejection clicks (those not associated with the aortic valve) are usually high inten- sity and are due to sudden snapping of the chordae tendineae of the mitral leaflets as they bow back into the LA. One additional clue is that ejection clicks occur before the carotid upstroke, while non-ejection clicks occur after. II\u2014Answer a Endocarditis prophylaxis is unnecessary in patients without underlying cardiac condi- tions associated with the highest risk of adverse outcome from IE (previous endocarditis, mechanical valve replacement, congenital heart disease with shunt, and transplant valvu- lopathy). Neither ACE inhibitors nor nifedipine have been shown to have the ascribed effects. According to the ACC/AHA guidelines, surgical intervention for mitral valve regurgitation involves valves that have severe regurgitation only. There is no indication for surgical intervention to prevent progression to severe regurgitation. The risk for AF in patients with severe MR due to flail leaflets who are treated conservatively is \u000120%."
+  },
+  {
+    "question": "You are sending your patient for surgery for MR. The patient asks what to expect postoperatively? Which of the following statements is true?",
+    "options": [
+      "Postoperative heart failure is unusual",
+      "Postoperative heart failure can be predicted by preoperative LV EF",
+      "Postoperative heart failure occurs more often with mitral valve repair than replacement",
+      "Postoperative heart failure is mostly due to associated CAD"
+    ],
+    "correct": 1,
+    "explanation": "LV dysfunction is the most common cause of heart failure following surgery and can be predicted by LV and EF and end-systolic diameter and prevented in part by valve repair. It is more frequent in patients with incidental coronary disease associated with organic MR but most often occurs in patients without associated coronary disease."
+  },
+  {
+    "question": "Indications for surgery in patients with severe MR include which of the following?",
+    "options": [
+      "Asymptomatic patients without prior history of CHF",
+      "LV EF \u2b0d 60%",
+      "LV end-diastolic diameter \u2c5630 mm",
+      "LV end-systolic diameter \u2c5630 mm"
+    ],
+    "correct": 1,
+    "explanation": "Class III or IV symptoms, transient heart failure, or LV dysfunction should lead to prompt consideration of surgery. Severe LV enlargement appears associated with the occurrence of sudden death and does not preclude an excellent postoperative result and therefore is a widely accepted indication of surgery. According to the 2006 ACC/AHA guidelines, patients with symptomatic (NYHA classes II\u2013IV) chronic severe MR should be considered for surgery even in the absence of severe LV dysfunction (EF \u0002 30% or end-systolic dimension \u000155 mm). Asymptomatic patients should be considered for surgery if the EF is \u000260%, the end systolic diameter is \u000145 mm, or there is pulmonary HTN (defined as a PA systolic pressure \u000150 mmHg at rest or \u000160 mmHg with exercise), or new onset AF. In those patients who are asymptomatic with preserved LV systolic function (EF \u0001 60%) and an end systolic diameter \u000240 mm, surgery should not be routinely con- sidered unless a high likelihood of valve repair is present."
+  },
+  {
+    "question": "A 52-year-old woman is referred for shortness of breath. Her clinical examination shows a 2/6 diastolic murmur along the LSB and a wide pulse pressure. The patient has no signs of heart failure but has a third heart sound and a soft systolic murmur of MR. In patients with a barely audible diastolic murmur and heart failure, what sign is suggestive that severe AR is the cause of the heart failure?",
+    "options": [
+      "A third heart sound",
+      "A murmur of functional MR",
+      "An increased second heart sound",
+      "A BP of 130/45 mmHg",
+      "A decreased first heart sound"
+    ],
+    "correct": 3,
+    "explanation": "In patients with heart failure of any cause, an S3, a murmur of functional MR and a soft S1 are commonly observed. An increased S2 is unrelated to the degree of MR. Persistent peripheral signs of AR despite the heart failure, such as bounding arteries, increased BP, differential and decreased diastolic pressure, are particularly suggestive of severe AR."
+  },
+  {
+    "question": "An echocardiogram is performed and it shows the presence of AR. Which of the following is the most frequent cause of AR leading to surgery in the United States?",
+    "options": [
+      "Rheumatic disease",
+      "Bicuspid aortic valve",
+      "IE",
+      "Syphilis",
+      "Degenerative aortic valve disease with or without annuloaortic ectasia"
+    ],
+    "correct": 4,
+    "explanation": "Degenerative disease with dystrophic valves, enlarged annulus, and possibly aortic ecta- sia is the most frequent cause of surgical AR followed by congenitally abnormal valves."
+  },
+  {
+    "question": "The echocardiogram shows an ascending aortic aneurysm without dissection. What clinical sign should have lead to the suspicion of the aneurysm of the aorta?",
+    "options": [
+      "Increased first heart sound",
+      "Increased second heart sound",
+      "Systolic HTN",
+      "Decreased femoral pulses"
+    ],
+    "correct": 1,
+    "explanation": "The second heart sound (S2) consists of two components, aortic and pulmonary valve closure sounds. An increased second heart sound may be due to the amplifying effect of an enlarged aorta and is suggestive of an ascending aortic aneurysm in patients with AR. Increased intensity of the first heart sound occurs when the mitral valve remains widely open at end diastole and then closes rapidly. Clinically this occurs if there is an increased transvalvular gradient (such as MS), an increased transvalvular flow (such as a left-to-right shunt), tachycardia (shortened diastole), or a shortened PR interval. A decreased pulse could be due to variety of clinical problems including arteritis, decreased CO or peripheral atherosclerotic disease."
+  },
+  {
+    "question": "Which of the following is true regarding MR due to ischemic heart disease?",
+    "options": [
+      "An audible murmur is always present if moderate or severe MR is present",
+      "The mechanism of ischemic MR is mostly a valve prolapse",
+      "This is more likely to occur after an anterior MI than from an inferior MI",
+      "The degree of ischemic MR may be overestimated by color flow imaging"
+    ],
+    "correct": 3,
+    "explanation": "Ischemic MR may be silent, especially in the setting of an AMI. It is considered a neg- ative prognostic sign and is most frequently associated with an in inferior MI. The degree of regurgitation may be overestimated by color flow imaging because it is usu- ally a central regurgitation jet into an enlarged atrium which can lead to spuriously large jets. The etiology is most commonly due to regional remodeling due to apical displacement of papillary muscles and annular enlargement. This entity is difficult to manage both medically and surgically."
+  },
+  {
+    "question": "Which of the following are accepted indications for surgery in patients with severe chronic AR?",
+    "options": [
+      "LV EF \u2b0d 60%",
+      "LV end-diastolic diameter \u2c56 65 mm",
+      "LV end-systolic diameter \u2c56 45 mm",
+      "NYHA class III or greater",
+      "Bicuspid aortic valve with ascending aortic diameter of 40 mm"
+    ],
+    "correct": 3,
+    "explanation": "According to the ACC/AHA guidelines class I indications for valve replacement in severe chronic AR include all patients with symptomatic severe regurgitation regard- less of LV systolic function. In those with severe AR who are asymptomatic, AVR is reserved for those with a reduced EF (\u000250%) or in those undergoing CABG, other valve surgery or aortic surgery. Class IIA indications include those who are asympto- matic with normal LV systolic function (EF \u0001 50%) but with severe LV dilatation (end-diastolic dimension \u000175 mm or end-systolic dimension \u000155 mm). Class IIB indications include those with moderate AR while undergoing surgery on the ascend- ing aorta or CABG. In addition, it includes those patients that are asymptomatic with severe AR and normal LV systolic function at rest (EF \u0001 50%) with evidence of pro- gressive LV dilatation to an end-diastolic dimension of 70 mm or end-systolic dimen- sion of 50 mm, a declining exercise tolerance, or abnormal hemodynamic responses to exercise."
+  },
+  {
+    "question": "A 32-year-old woman presents with gradually increasing DOE for 2 yrs. Her daily activity is now limited. She has a history of rheumatic fever and was told of a heart murmur during an insurance examination at the age of 21 yrs. She has no other medical problems and does not take any medication. On examination the BP was 110/70 mmHg with a pulse of 70 bpm. The JVP and carotid pulse were normal. The LV impulse had a tapping quality. The first heart sound was loud with a normal S2. There was a high-pitched early diastolic opening snap 80 msec from aortic component of S2 and a 2/6 holodiastolic rumbling murmur. Her chest radiograph and ECG are below: What would you do at this time?",
+    "options": [
+      "Observation only",
+      "TTE",
+      "TEE",
+      "Catheterization of the right and left sides of the heart with exercise",
+      "Pulmonary angiography"
+    ],
+    "correct": 1,
+    "explanation": "The figure shows an ECG with left atrial enlargement and a chest X-ray with flattening of the left heart border which is consistent with left atrial enlargement. The physical exam is consistent with mitral valve stenosis but a valve that is pliable (presence of an opening snap). A TTE is the best first step to evaluate a gradient across the mitral valve and whether the valve is suitable for valvulopasty."
+  },
+  {
+    "question": "Another patient is sent to you for evaluation of dyspnea. A prescheduled exercise echocardiogram is performed. The patient performs only to 50% of her predicted functional aerobic capacity before having to stop because of dyspnea. At peak exercise, the following Doppler signals were obtained: \u25a0 Mean transmitral gradient 22 mmHg \u25a0 TR velocity 3.8 m/sec \u25a0 HR 140 bpm What would you do at this time?",
+    "options": [
+      "TEE, then PMBV",
+      "MVR",
+      "Pulmonary angiography",
+      "Catheterization of the right and left sides of the heart",
+      "Treatment with beta blockers"
+    ],
+    "correct": 0,
+    "explanation": "The exercise study shows exercise-induced severe MS. This question tests your knowl- edge of the ACC/AHA 2006 guidelines. For evaluation of MS using an exercise eval- uation, if the gradient across the mitral valve exceeds 15 mmHg or the pulmonary systolic pressure exceeds 60 mmHg, percutaneous valvuloplasty or mitral valve surgery is indicated. The TEE is indicated to evaluate pre-procedure for a left atrial thrombus and to ensure there is not significant MR. There is no role for a pulmonary angiogram in this patient. A hemodynamic catheterization is necessary only if the diagnosis is in question. At this point a catheterization would only be necessary for treatment of the MS if the valve was appropriate for valvulplasty (pliable valve leaflets, lack of com- missural calcification, absence of moderate or greater regurgitation and no left atrial appendage thrombus)."
+  },
+  {
+    "question": "A 60-year-old woman has class III symptoms of DOE. She has a long history of a heart murmur (since adolescence) but no symptoms until the last 5 yrs. On examination, she has a loud P2, a 2/6 holosystolic murmur at the LSB, and a 2/6 long diastolic rumble at the apex. Echocardiography reveals a mildly dilated LV and LA, with an EF of 60%. A heavily calcified mitral valve is present. Doppler transmitral gradient is 20 mmHg. What would you do next?",
+    "options": [
+      "Coronary angiography, then MVR",
+      "TEE to look for MR",
+      "TEE, then PMBV",
+      "Continuity equation for MVA",
+      "Catheterization of the right and left sides of the heart"
+    ],
+    "correct": 0,
+    "explanation": "The valve is severely stenotic and heavily calcified. Therefore, valvuloplasty would not be appropriate given the risk of mitral valve rupture and subsequent severe MR. Given the age of the patient, evaluation of the coronary arteries and referral for MVR is the best option. There is no other diagnostic evaluation necessary at this point."
+  },
+  {
+    "question": "A 57-year-old man is sent to you for evaluation of a new murmur. He is asymp- tomatic. His physical examination is unremarkable except for a 1/6 SEM with- out radiation. An echocardiogram is performed prior to your visit. It reveals a preserved LV EF, no LVH and a tricuspid aortic valve with a 20 mmHg gradient across the aortic valve. What is the next step?",
+    "options": [
+      "TMET evaluation to attempt to elicit symptoms",
+      "AVR",
+      "TTE in 3 yrs",
+      "Catheterization of the right and left sides of the heart",
+      "Annual echocardiogram"
+    ],
+    "correct": 2,
+    "explanation": "The patient has mild AS by physical examination and echocardiogram. The valve is not bicuspid and his LV and EF is preserved. Therefore, no further assessment and no intervention is necessary. However, according to the ACC/AHA guidelines a follow- up echocardiogram is indicated at 3 to 5 yrs for mild AS, 1 to 2 yrs for moderate AS, and annually for severe asymptomatic AS."
+  },
+  {
+    "question": "A 64-year-old woman has class III DOE. She has known MS from rheumatic heart disease and long-standing HTN. Echocardiography reveals mild LVH with an EF of 65%, a moderately enlarged LA, and a calcified mitral valve. Doppler echocardiography reveals a mean transmitral gradient of 4 mmHg, a MVA of 1.9 cm\u00b2, and a TR velocity of 4.2 m/sec. What is the next step in management?",
+    "options": [
+      "Catheterization of the right and left sides of the heart",
+      "MVR",
+      "PMBV after TEE",
+      "Dobutamine stress test",
+      "Observation with yearly TTE"
+    ],
+    "correct": 0,
+    "explanation": "There is a discrepancy between the echocardiogram and the patient\u2019s NYHA class III symptoms. The echocardiogram indicates only mild to moderate MS which is not enough to explain the symptoms and there is resting pulmonary HTN present. Therefore, more information is needed. Among the answer choices given, the best answer is right and left heart catheterization. The severity of the MS and PA pressures need further investigation. A right heart hemodynamic assessment will also allow for evaluation of the TR velocity. The pressures were out of proportion to the findings on the echocardiogram. There is no indication for surgery or valvuloplasty with the current gradient across the mitral valve. An exercise echocardiogram using supine bicycle may illustrate an exercise gradient of 10 mmHg or higher; this answer choice is not given."
+  },
+  {
+    "question": "A 27-year-old female is referred to you for evaluation of a heart murmur noted during the second trimester of her first pregnancy. The patient is symptomatic with mild exertion. CV examination demonstrates a normal apical impulse. The first and second heart sounds are normal. A grade 3/6 early- to mid-peaking sys- tolic murmur is audible at the LSB. An early systolic click is present and decreases with inspiration and there is a parasternal heave present. A TTE reveals pulmonary stenosis with a gradient of 46 mmHg. Which of the following would you recommend?",
+    "options": [
+      "Observe through the pregnancy and perform a Ross procedure when she is post partum",
+      "Proceed to pulmonary valve replacement now",
+      "Provide reassurance; this is increased flow across the valve related to pregnancy",
+      "Proceed to percutaneous valvuloplasty with appropriate shielding of the baby",
+      "Observe for now and recheck an echocardiogram in 4 wks"
+    ],
+    "correct": 3,
+    "explanation": "The 2006 ACC/AHA guidelines indicate that mild pulmonary stenosis is a benign disease and often does not progress in severity. However, balloon valvotomy is rec- ommended in symptomatic patients with a peak systolic gradient \u000130 mmHg and in asymptomatic patients with peak systolic gradient \u000140 mmHg. Observation and a Ross procedure are not appropriate in this patient given the success of percutaneous balloon valvotomy. A follow-up echocardiogram would provide no incremental ben- efit since her gradient is above the necessary gradient for intervention."
+  },
+  {
+    "question": "A 71-year-old man presents to you with a heart murmur. He has had a history of a heart murmur for the past 20 yrs but has never had any prior cardiac evalua- tion. He has NYHA class III symptoms. On physical examination, his BP is 134/86 mmHg and his pulse is 70 bpm. His JVP is normal and carotid upstroke is low volume and delayed. There is a 3/6 harsh SEM at the right upper sternal border with a mid peak. The first heart sound is normal and the second heart sound is single. A TTE is performed and the Doppler is on the next page: (continued ) Which of the following would you do next?",
+    "options": [
+      "AVR",
+      "Coronary angiogram then AVR",
+      "TET",
+      "Right and left heart catheterization to determine the aortic valve area"
+    ],
+    "correct": 1,
+    "explanation": "This patient has symptoms and physical examination findings consistent with severe AS. His echocardiogram Doppler measurements indicate a mean gradient over 50 mmHg. No further assessment of his valve is necessary. According to the ACC/AHA guidelines, this is a class I indication for surgical intervention. At his age and multiple risk factors, preoperative coronary angiogram is indicated. There is no further workup necessary since his history, physical exam, and echocardiogram have the same findings. Therefore, there is no indication for TMET evaluation or hemodynamic assessment."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

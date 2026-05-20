@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Lung Function Testing</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwmbfm6",
+  "title": "Lung Function Testing",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Lung Function Testing",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which of the following investigation is NOT useful to detect small airway disease?",
+    "options": [
+      "FEF 25-75%",
+      "HRCT Thorax",
+      "DLCO",
+      "Impulse oscillometry",
+      "RV/TLC via body plethysmography"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is DLCO."
+  },
+  {
+    "question": "A 40-year-old female was evaluated for breathlessness. She has normal spirometry, Low DLCO, Normal lung volume and Hypoxia in ABG. What is the MOST LIKELYdiagnosis?",
+    "options": [
+      "Chronic pulmonary thrombo embolism",
+      "Interstitial lung disease",
+      "Kyphoscoliosis",
+      "Polycythemia",
+      "Pulmonary alveolar hemorrhage"
+    ],
+    "correct": 0,
+    "explanation": "In Interstitial lung disease and kyphoscoliosis spirometry will show restrictive defect with reduced lung volume. In polycythemia and Pulmonary alveolar hemorrhage DLCO will be raised."
+  },
+  {
+    "question": "Which of the following DOES NOT occur with increasing age in the respiratory system",
+    "options": [
+      "DLCO increases",
+      "Residual volume increases",
+      "Vital capacity decreases",
+      "Elasticity decreases",
+      "Chest wall compliance decreases"
+    ],
+    "correct": 0,
+    "explanation": "DLCO decreases with age."
+  },
+  {
+    "question": "Which of the following accurately measures the lung volume in a patient with bulla?",
+    "options": [
+      "HRCT",
+      "Body plethysmography",
+      "Helium dilution technique",
+      "Spirometry",
+      "Impulse oscillometry"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Body plethysmography."
+  },
+  {
+    "question": "Which is a WRONG statement regarding neuromuscular weakness involving respiratory muscles?",
+    "options": [
+      "Total lung capacity decreases",
+      "Dyspnea may decrease on erect posture 180",
+      "Hypercapnia may occur during sleep",
+      "Vital capacity decreases",
+      "Residual volume decreases"
+    ],
+    "correct": 4,
+    "explanation": "Residual volume usually remains constant."
+  },
+  {
+    "question": "Which is NOT a feature in respiratory muscle weakness?",
+    "options": [
+      "Unexplained reduction in vital capacity",
+      "Hypercapnia without obvious cause",
+      "Unexplained recurrent respiratory tract infections",
+      "Decrease in functional residual capacity.",
+      "Generalized muscle weakness."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Decrease in functional residual capacity.."
+  },
+  {
+    "question": "Which is a WRONG statement?",
+    "options": [
+      "Inability to speak properly indicates expiratory muscle weakness",
+      "In diaphragmatic paralysis dyspnea gets relieved by lying down",
+      "Inspiratory muscle weakness may lead to hypercapnia",
+      "Respiratory muscle training is bene\ufb01cial in chronic respiratory muscle dysfunction",
+      "Inability to cough properly and clear airway secretions indicates expiratory muscle weakness"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is In diaphragmatic paralysis dyspnea gets relieved by lying down."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to cause respiratory alkalosis?",
+    "options": [
+      "Pneumonia",
+      "Acute exacerbation of Asthma",
+      "High grade fever",
+      "High altitude",
+      "Severe kyphoscoliosis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Severe kyphoscoliosis."
+  },
+  {
+    "question": "Normal Spo2 is ---",
+    "options": [
+      "88 \u2013 92%",
+      "90 \u2013 92 %",
+      "93 --94 %",
+      "95 -- 99 %",
+      "100 %"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is 95 -- 99 %."
+  },
+  {
+    "question": "Which of the following is the MOST COMMONLY used test to assess respiratory muscle strength?",
+    "options": [
+      "Mouth",
+      "Trans pressure diaphragmatic pressure 181",
+      "Sniff Tests",
+      "Cough Tests",
+      "Phrenic nerve stimulation"
+    ],
+    "correct": 0,
+    "explanation": "11.Which of the following condition is MOST LIKELY to be associated with respiratory muscle dysfunction? A. Bronchial asthma B. Bronchiectasis C. ARDS D. Severe COPD E. Bronchogenic carcinoma Answer \u2013 D"
+  },
+  {
+    "question": "Which of the following conditions DOES NOT lead to acute respiratory muscle weakness?",
+    "options": [
+      "Cobra bite",
+      "Guilin Barrie syndrome",
+      "Bulbar palsy",
+      "Parkinsonism",
+      "Botulism"
+    ],
+    "correct": 3,
+    "explanation": "13.Which of the following is NOT seen in chronic slowly progressive INSPIRATORYmuscle dysfunction? A. Tachypnea and tachycardia B. Inability clear airway secretions C. Paradoxical breathing D. Dyspnea decreases on standing E. Hypercapnic respiratory failure Answer \u2013 B. Clearing the airway secretions is by expiratory muscles. 14.A 60 year old patient admitted with high spinal cord injury. He has grade 4 power in upper limb and grade 3 in lower limbs. He has retention of secretions. He is not able to cough and clear his airway secretions. His ABG is normal. Which is a CORRECT statement? A. He has inspiratory muscle weakness B. He has diaphragmatic palsy C. He has expiratory muscle weakness D. CT scan thorax will be useful to assess diaphragm movement in this patient E. He Answer \u2013 Chas vocal cord dysfunction 182 15. Which is a WRONG statement? A. Inability to speak properly indicates expiratory muscle weakness B. In diaphragmatic paralysis dyspnea gets relieved by lying down C. Inspiratory muscle weakness leads to hypercapnia D. Respiratory muscle training is bene\ufb01cial in chronic respiratory muscle dysfunction E. Inability to cough properly and clear airway secretions indicates expiratory muscle weakness Answer \u2013 B."
+  },
+  {
+    "question": "Which is NOT seen in COPD?",
+    "options": [
+      "Decrease in expiratory reserve volume",
+      "Increase in Inspiratory capacity",
+      "Increase in Total Lung Capacity",
+      "Increase in Residual Volume",
+      "Increase in Functional Residual Capacity"
+    ],
+    "correct": 1,
+    "explanation": "Inspiratory capacity reduces in COPD."
+  },
+  {
+    "question": "Which is a WRONG statement regarding spirometry",
+    "options": [
+      "May lead to over diagnosis of COPD in elderly(age more than 75 yr)",
+      "May lead to under diagnosis of COPD in younger age group (age less than 45 yr)",
+      "Always abnormal in bronchial asthma",
+      "Helps to differentiate asthma from COPD",
+      "Should be done as a planned procedure"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Always abnormal in bronchial asthma."
+  },
+  {
+    "question": "In which of the following condition spirometry is NOT indicated",
+    "options": [
+      "Diagnosis of COPD",
+      "Evaluating the cause of unexplained hemoptysis",
+      "Evaluating a patient with dyspnea",
+      "Pre-operative evaluation for lung resection surgery",
+      "To differentiate between Asthma and COPD"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Evaluating the cause of unexplained hemoptysis."
+  },
+  {
+    "question": "Which of the following is NOT a sign of impending respiratory failure in neuromuscular disease?",
+    "options": [
+      "Tachypnea",
+      "Vigorous coughing",
+      "Inability to swallow properly 183",
+      "Reduced breath holding time",
+      "Profound weakness of neck \ufb02exion"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Vigorous coughing."
+  },
+  {
+    "question": "Which is a WRONG statement about phrenic nerve?",
+    "options": [
+      "Contains predominantly C3 nerve roots",
+      "Supplies sensory to diaphragm, pleura and pericardium",
+      "Involvement of left phrenic nerve is more common than right phrenic nerve in intrathoracic lesions",
+      "Left phrenic nerve is close to left ventricle",
+      "Right phrenic nerve passes through vena cava hiatus"
+    ],
+    "correct": 0,
+    "explanation": "Contains predominantly C4 nerve roots also receives contributions from the 5th and 3rd cervical nerves."
+  },
+  {
+    "question": "Which is NOT seen in Emphysema?",
+    "options": [
+      "Increase in expiratory reserve volume",
+      "Increase in RV/TLC",
+      "Increase in Total Lung Capacity",
+      "Increase in Residual Volume",
+      "Increase in Functional Residual Capacity"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Increase in expiratory reserve volume."
+  },
+  {
+    "question": "Which is NOT seen in COPD?",
+    "options": [
+      "Airway Resistance increases",
+      "Residual volume (RV) increases",
+      "RV / TLC decreases",
+      "Inspiratory capacity decreases",
+      "Total lung capacity (TLC) increases"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is RV / TLC decreases."
+  },
+  {
+    "question": "Which of the following consistently increases with age?",
+    "options": [
+      "Forced Vital Capacity",
+      "Total Lung Capacity",
+      "FEV1",
+      "Residual Volume",
+      "Compliance"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Residual Volume."
+  },
+  {
+    "question": "Which of the following is NOT a sign of respiratory muscle dysfunction?",
+    "options": [
+      "Inability to take a deep inspiration 184",
+      "Reduced breath holding time",
+      "Dyspnoea relieved by lying down",
+      "Inability to speak properly",
+      "Reduced maximal expiratory pressure"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Dyspnoea relieved by lying down."
+  },
+  {
+    "question": "Which is the MOST debilitating symptom in COPD?",
+    "options": [
+      "Cough",
+      "Excess sputum production",
+      "Anxiety and depression",
+      "Breathlessness",
+      "Chest pain"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Breathlessness."
+  },
+  {
+    "question": "Which is NOT measured by spirometry",
+    "options": [
+      "FVC",
+      "FEF 25 - 75",
+      "RV",
+      "FEV1",
+      "PEFR"
+    ],
+    "correct": 2,
+    "explanation": "Answer - RV 27.A 65 year old male admitted for evaluation of breathlessness. Which of the following investigation will be the best investigation to differentiate between Asthma, COPD and ILD? A. Chest x ray B. DLCO C. Spirometry with bronchodilator reversibility test D. HRCT thorax E. Cardio pulmonary exercise test Answer - C"
+  },
+  {
+    "question": "Spirometry is NOT useful in COPD to ---",
+    "options": [
+      "Assess disease severity",
+      "Predict the prognosis",
+      "Assess response to treatment",
+      "Diagnose of COPD F. Decide need for long term oxygen"
+    ],
+    "correct": 3,
+    "explanation": "185 29. Which parameter remains normal in obesity? A. FEV1/FVC B. VC C. FRC D. ERV E. FEF 25-75 Answer-A. 186"
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest Radiology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpw22z2i",
+  "title": "Chest Radiology",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Chest Radiology",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which is a WRONG statement regarding pulmonary calci\ufb01cation?",
+    "options": [
+      "Most common cause for calci\ufb01cation is granulomatous disease",
+      "Can cause hemoptysis",
+      "Usually asymptomatic",
+      "Dystrophic calci\ufb01cation more common than metastatic calci\ufb01cation",
+      "Pulmonary metastases never show calci\ufb01cation"
+    ],
+    "correct": 4,
+    "explanation": "Secondaries in the lung from sarcomas, mucinous adenocarcinoma of colon, ovary, breast, medullary carcinoma of thyroid, giant cell tumor of the bone and treated case of choriocarcinoma may show calci\ufb01cation. Calci\ufb01cation in metastases can arise through a variety of mechanisms: bone formation in tumors of osteoid origin, calci\ufb01cation and ossi\ufb01cation of tumor cartilage, dystrophic calci\ufb01cation and ossi\ufb01cation of tumor cartilage, dystrophic calci\ufb01cation and mucoid calci\ufb01cation. 111 5. Which is a WRONG statement regarding soft tissue shadow in chest x-ray? A. Can lead to change in density B. Can mimic a tumor C. Physical examination will be useful D. PA and Lateral view may be helpful E. Always unilateral Answer \u2013 E"
+  },
+  {
+    "question": "Which of the following is MOST LIKELY to cause soft tissue abnormality in chest x-ray?",
+    "options": [
+      "Lipoma",
+      "Mastectomy",
+      "Surgical emphysema",
+      "Nipple",
+      "Unilateral gynacomastia"
+    ],
+    "correct": 3,
+    "explanation": "Nipple shadows may be apparent on ~7.5% (range 3.5-11%) of frontal chest x-rays. Nipple shadow are usually bilateral and symmetric with \"fuzzy\" margins or radiolucent \"halo\". They have sharp lateral border and poorly de\ufb01ned medial border (may be present only on PA projections). In males these nodules are usually seen between the 5th and 6th ribs anteriorly. In females at the inferior aspect of the breast shadow. Prominent nipples may be visible on a lateral projection. Size is 5 to 15mm in diameter. Usually the size shape and position is consistent. Nipple shadow has to be differentiated from solitary pulmonary nodule. However, if there is doubt whether a nodular opacity represents a nipple shadow or not, a repeat chest x-ray with nipple markers should be performed."
+  },
+  {
+    "question": "Which of the following is an ABNORMAL density in chest x-ray?",
+    "options": [
+      "Bone",
+      "Metal",
+      "Soft tissue",
+      "Air",
+      "Fluid"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Metal."
+  },
+  {
+    "question": "Which of the following is the BEST investigation for evaluation of extent of soft tissue lesion?",
+    "options": [
+      "Chest x ray",
+      "Physical examination",
+      "CT scan",
+      "MRI",
+      "Ultra sound"
+    ],
+    "correct": 3,
+    "explanation": "112 9. Which of the following radiological sign is NOT pathological? A. Air bronchogram sign B. Thymic sail sign C. Cervico thoracic sign D. Deep sulcus sign E. Flat waist sign Answer \u2013 B. Thymic sail sign represents a triangular-shaped inferior margin of the normal thymus seen on a neonatal frontal chest radiograph. It is more commonly seen on the right side, but can also be bilateral. It is seen in 3-15% of all cases. This sign should not be confused with the spinnaker sail sign."
+  },
+  {
+    "question": "Which of the following sign is NOT seen in pulmonary embolism?",
+    "options": [
+      "Fleishner sign",
+      "Hampton hump",
+      "Westermark's sign",
+      "Knuckle sign",
+      "Spinnaker sail sign"
+    ],
+    "correct": 4,
+    "explanation": "The spinnaker sail sign (also known as the angel wing sign) is a sign of pneumomediastinum seen on neonatal chest radiographs. The thymus gets outlined by air with each lobe being displaced laterally. Named for its visual resemblance to the headsail of a boat, the spinnaker-sail sign occurs with a spontaneous anterior pneumomediastinum in neonates and usually resolves without speci\ufb01c treatment."
+  },
+  {
+    "question": "Which cardiac valve is highest in chest x ray?",
+    "options": [
+      "Aortic valve",
+      "Mitral valve",
+      "Tricuspid valve",
+      "Pulmonary valve",
+      "Aortic and pulmonary valve both at same level."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Pulmonary valve."
+  },
+  {
+    "question": "Which Valvular disease MOST COMMONLY leads to cardiomegaly in chest x ray?",
+    "options": [
+      "Aortic valve",
+      "Mitral valve",
+      "Tricuspid valve",
+      "Pulmonary valve",
+      "Aortic and mitral valve"
+    ],
+    "correct": 0,
+    "explanation": "Most common cause for cardiomegaly in chest x ray is left ventricular enlargement which in turn is due to aortic valve disease. 113 14.Which of the following is the MOST IMPORTANT differentiating feature in chest imaging between pulmonary lymphangitic carcinomatosis and cardiogenic pulmonary edema? A. Kerley B lines B. Thickening of \ufb01ssures C. Pleural effusion D. Unilateral lesion E. Hilar and or mediastinal adenopathy Answer \u2013E. Seen in PLC."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to mimic hydropneumothorax in chest x ray?",
+    "options": [
+      "Large lung abscess",
+      "Large infected bulla/cyst",
+      "Hydatid cyst",
+      "Eventration of diaphragm",
+      "Diaphragmatic hernia"
+    ],
+    "correct": 2,
+    "explanation": "Unruptured hydatid cyst will appear as homogenous rounded opacity without air \ufb02uid level."
+  },
+  {
+    "question": "Which is NOT a sign of traumatic rupture of diaphragm?",
+    "options": [
+      "Elevated hemi diaphragm",
+      "Distortion of diaphragmatic margin",
+      "Decreased movement of the diaphragm in mechanically ventilated patients",
+      "Abdominal contents in the thorax",
+      "Nasogastric tube seen in the thorax"
+    ],
+    "correct": 2,
+    "explanation": "Diaphragm movement in mechanically ventilated patients is not a reliable sign. Which of the following is NOT a radiological feature of cardiogenic pulmonary edema? A. Increase in cardio-thoracic ratio B. Peri-bronchial cuf\ufb01ng C. Kerley B lines D. Kerley Alines E. Massive pleural effusion Answer \u2013 E. Pleural effusion in cardiogenic pulmonary edema is usually bilateral small effusion, never massive. 18.Which of the following radiological feature is NOT useful to differentiate cardiogenic pulmonary edema from ARDS? A. Pleural effusion 114 B. Cardiomegaly C. Kerley B lines D. Air bronchogram E. Substantial radiological improvement in 24 hours Answer \u2013 D"
+  },
+  {
+    "question": "Which of the following is NOT a direct radiological sign of collapse?",
+    "options": [
+      "Displacement of interlobar \ufb01ssures",
+      "Loss of aeration",
+      "Elevation of diaphragm",
+      "Crowding of vessels",
+      "Crowding of bronchi"
+    ],
+    "correct": 2,
+    "explanation": "This is an indirect sign of collapse."
+  },
+  {
+    "question": "Which is the MOST COMMON cause for collapse in debilitated patients?",
+    "options": [
+      "Malignancy",
+      "Dentures",
+      "Mucous plug",
+      "Aspiration",
+      "Stenosis/stricture of a bronchus."
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Aspiration."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY radiographic pattern in hypersensitivity pneumonitis?",
+    "options": [
+      "Hilar lymphadenopathy",
+      "Small bilateral nodules",
+      "Focal consolidation",
+      "Reticular lesions",
+      "Bilateral ground-glass opacities"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Hilar lymphadenopathy."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to cause nodular opacities in HRCT?",
+    "options": [
+      "Sarcoidosis",
+      "Silicosis",
+      "Coal worker's pneumoconiosis",
+      "Pulmonary histiocytosis X",
+      "ABPA"
+    ],
+    "correct": 4,
+    "explanation": "115 . Which of the following is LEAST LIKELY to cause unilateral raised dome? A. Lower lobectomy B. Sub diaphragmatic effusion C. Liver abscess D. Ascitis E. Phrenic nerve paralysis Answer \u2013 D."
+  },
+  {
+    "question": "Which of the following is the investigation of choice to see the movement of diaphragm?",
+    "options": [
+      "Chest x ray",
+      "CT scan",
+      "USG hemithoax and abdomen",
+      "Fluoroscopy",
+      "MRI"
+    ],
+    "correct": 2,
+    "explanation": "Dynamic imaging is required to visualized the diaphragmatic movement which is best done by USG."
+  },
+  {
+    "question": "Which is NOT a radiological feature of mediastinal lesion?",
+    "options": [
+      "Hilum overlay sign",
+      "No air bronchogram",
+      "Acute margin with the lung",
+      "Obliterated cardiophrenic angle",
+      "Obliterated retrosternal clear space"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Acute margin with the lung."
+  },
+  {
+    "question": "Tree in bud appearance was initially described in which of the following condition?",
+    "options": [
+      "Cystic \ufb01brosis",
+      "Rheumatoid arthritis",
+      "Pulmonary tuberculosis",
+      "Viral pneumonia",
+      "Allergic bronchopulmonary aspergillosis (ABPA)"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Pulmonary tuberculosis."
+  },
+  {
+    "question": "Split pleura sign is seen in ---",
+    "options": [
+      "Mesothelioma",
+      "Malignant pleural effusion",
+      "Chylothorax",
+      "Empyema",
+      "Chest wall tumor invading the pleura"
+    ],
+    "correct": 3,
+    "explanation": "116 28. Which is NOT a radiological sign of pleural effusion? A. Blunting of CP angles B. Homogenous opacity C. Shift of mediastinum to opposite side D. Air bronchogram E. Peripheral opacity Answer \u2013 D. Air bronchogram is a sign of lung parenchymal consolidation."
+  },
+  {
+    "question": "Which is NOT a radiological feature of benign lesion?",
+    "options": [
+      "Smooth well de\ufb01ned borders",
+      "Presence of diffuse calci\ufb01cation",
+      "Large size",
+      "Stable over a period of 2 years",
+      "Polygonal shape"
+    ],
+    "correct": 2,
+    "explanation": "Larger the size greater the chances of malignancy. 30.Which of the following is a DEFINITE SIGN of malignancy in CT scan image in a pleural thickening? A. Circumferential pleural thickening B. Parietal pleural thickening more than 1 cm C. Nodularity D. Mediastinal pleural involvement E. Invasion of chest wall Answer \u2013 E. All the other signs suggest possibility of malignancy."
+  },
+  {
+    "question": "Which radiological change is NOT seen in emphysema?",
+    "options": [
+      "Hyper translucency",
+      "Hyperin\ufb02ation",
+      "Bulla",
+      "Pruning of main pulmonary arteries",
+      "Flattening of diaphragm"
+    ],
+    "correct": 3,
+    "explanation": "Main pulmonary arteries may be enlarged due to secondary PAH."
+  },
+  {
+    "question": "Right inferior accessory \ufb01ssure Answer \u2013 5. 117 33. Which is a WRONG statement regarding anatomical variations in bronchial division?",
+    "options": [
+      "Variations are more common in right upper lobe",
+      "Tracheal bronchus can lead to complications during intubation",
+      "Majority are asymptomatic",
+      "Accessory cardiac bronchus commonly occurs on left side",
+      "Anomalous bronchi are usually not pathologic"
+    ],
+    "correct": 3,
+    "explanation": "Accessory cardiac bronchus (ACB)) is a rare anatomic variant of the tracheobronchial tree, arising from the medial aspect of the bronchus intermedius on the right side."
+  },
+  {
+    "question": "Which is the MOST COMMON indication for bone scan?",
+    "options": [
+      "Paget's disease",
+      "Arthritis",
+      "Osteomyelitis",
+      "Bony metastasis",
+      "Avascular necrosis"
+    ],
+    "correct": 3,
+    "explanation": "35.In which of the following condition comparison of deep inspiratory and expiratory \ufb01lms MAYNOT BE useful? A. Airway obstruction due to foreign body B. Small pneumothorax C. Lobar consolidation D. Emphysematous bulla E. Air trapping Answer \u2013 C"
+  },
+  {
+    "question": "Which of the following is NOT a risk factor developing obstructive collapse?",
+    "options": [
+      "Age less than 3 years",
+      "Age more than 20 years",
+      "Smoking",
+      "Decreased level of consciousness",
+      "Dehydration"
+    ],
+    "correct": 1,
+    "explanation": "Dehydration will lead to thick secretion which in turn may lead to airway obstruction and collapse."
+  },
+  {
+    "question": "Which is NOT a radiological characteristic of tubercular cavity?",
+    "options": [
+      "More common in the anterior segment of upper lobe",
+      "Adjacent tree in bud appearance may be found in CT",
+      "Surrounding in\ufb01ltrates",
+      "No/minimal air-\ufb02uid level",
+      "Single or multiple with varying size"
+    ],
+    "correct": 0,
+    "explanation": "More common in the posterior segment of upper lobe. Bronchogenic carcinoma is more common in anterior segment of upper lobe."
+  },
+  {
+    "question": "Which of the following infection is LEAST LIKELY to mimic tubercular cavity radiologically?",
+    "options": [
+      "Klebsiella pneumonia",
+      "Pseudomonas",
+      "Streptococcus pneumoniae",
+      "Melioidosis",
+      "Staph aureus"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Streptococcus pneumoniae."
+  },
+  {
+    "question": "Which is a WRONG statement?",
+    "options": [
+      "Hilum overlay sign indicates mass is anterior or posterior to hilum",
+      "Hilum convergence sign indicates enlarged pulmonary artery",
+      "Hila consist of vessels, bronchi and lymph nodes",
+      "Pulmonary arterial hypertension may cause bilateral symmetrical hilar enlargement",
+      "Right main bronchus can be compressed by enlarged cardiac chambers/vessels"
+    ],
+    "correct": 4,
+    "explanation": "Anatomically there are no vessels or cardiac chamber close to right main bronchus. Besides right main bronchus length is 0.5cm and hence does not usually get compressed by external pressure. Left main bronchus can be compressed by enlarged cardiac chambers/vessels"
+  },
+  {
+    "question": "Which of the following condition is LEAST LIKELYto cause air \ufb02uid level in chest X-ray?",
+    "options": [
+      "Eventration",
+      "Hiatus hernia",
+      "Bokdalek hernia",
+      "Carcinoma of esophagus",
+      "Achalasia cardia"
+    ],
+    "correct": 3,
+    "explanation": "119 42. Which is NOT a sign of left lower lobe collapse? A. Silhouetting of diaphragm B. Shift of oblique \ufb01ssure C. Silhouetting of ascending aorta D. Shift of heart to left side E. Shift of hilum Answer \u2013 C. Ascending aorta is on the right side."
+  },
+  {
+    "question": "Which of the following DOES NOT lead to unilateral hyper translucency in CXR?",
+    "options": [
+      "Rotated \ufb01lm",
+      "Absence of soft tissue on one side",
+      "Giant bulla",
+      "Pneumothorax",
+      "Kyphoscoliosis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Kyphoscoliosis."
+  },
+  {
+    "question": "Which of the following is NOT a radiological sign of malignancy?",
+    "options": [
+      "Speculated margins",
+      "Involvement of surrounding structures",
+      "Contrast enhancement",
+      "Polygonal shape and a three-dimensional ratio > 1.78",
+      "Corona radiata sign"
+    ],
+    "correct": 3,
+    "explanation": "This feature is suggestive of benign lesion."
+  },
+  {
+    "question": "Which of the following is NOT a cause for opaque hemi thorax with loss of volume?",
+    "options": [
+      "Total lung collapse",
+      "Post pneumonectomy",
+      "Consolidation of one lung",
+      "Pulmonary genesis",
+      "Pulmonary aplasia"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Consolidation of one lung."
+  },
+  {
+    "question": "What is the ideal position of ET tube in Chest x ray?",
+    "options": [
+      "Neck \ufb02exed: 7 cm (\u00b1 2 cm) from carina",
+      "Neck neutral: 5 cm (\u00b1 2cm) from carina",
+      "Neck extended: 3 cm (\u00b1 2cm) from carina",
+      "Neck \ufb02exed: 9 cm (\u00b1 2 cm) from carina",
+      "Neck extended: 9 cm (\u00b1 2cm) from carina"
+    ],
+    "correct": 1,
+    "explanation": "120 47. Which of the following is LEAST LIKLY to cause cystic lung disease in CT scan? A. Pulmonary Langerhans cell histiocytosis B. Lymphocytic interstitial pneumonia C. Lymphangitic carcinomatosis D. Birt\u2013Hogg\u2013Dub\u00e9 syndrome E. Amyloidosis Answer: C"
+  },
+  {
+    "question": "Which is NOT a HRCT feature in pulmonary Langerhans cell histiocytosis (PLCH)?",
+    "options": [
+      "Temporal heterogeneity",
+      "Cystic and nodular lesions",
+      "Lesions more in mid and upper zones",
+      "Sparing of costophrenic angles",
+      "Decrease in lung volume"
+    ],
+    "correct": 4,
+    "explanation": "Lung volume may increase in PLCH. Characteristic HRCT features in PLCH are bilateral and symmetrical, predominantly upper and mid-lung zone, nodules up to 1 cm in size. Nodules are often irregular in appearance and with more advanced disease, may extend into the lower lung zones. The costophrenic angles are typically spared. With disease progression, reticular and cystic changes may be observed, and nodules may regress. Lung volumes are typically normal or increased. PLCH is one of the few lung diseases associated with increased interstitial markings and normal or large lung volumes. High resolution CT (HRCT) may be diagnostic in PLCH, particularly when a combination of cysts and nodules in a characteristic upper lung zone distribution is observed. If this pattern is seen in a patient with a typical history, lung biopsy is frequently not required to make the diagnosis. When only nodules or only cysts are present, the differential diagnosis is broader. Cysts alone may be due to pneumatocele (eg, from Pneumocystis jirovecii infection), Lymphangioliomyomatosis (LAM) or bronchiectasis. Differential diagnosis of the upper zone nodular changes of PLCH includes sarcoidosis, silicosis, tuberculosis or metastatic disease. These latter diagnoses are typically associated with perilymphatic or random distributions of the nodules rather than the more typically centrilobular distribution of PLCH nodules. PLCH cysts are usually irregular in shape and are believed to be formed from the coalescence of nodules. As with nodules, sparing of the lung bases is the general rule. Advanced PLCH may progress to honeycombing and \ufb01brotic changes."
+  },
+  {
+    "question": "Which of the following is LEASTLIKELYto cause air \ufb02uid level in chest x ray?",
+    "options": [
+      "Eventration of diaphragm",
+      "Achalasia cardia",
+      "Para esophageal type of hiatus hernia",
+      "Ruptured hydatid cyst",
+      "Infected bulla"
+    ],
+    "correct": 2,
+    "explanation": "121 50. Which of the following is LEAST LIKELY to cause cavity in the lungs? A. Pulmonary Tuberculosis B. Viral pneumonia C. Fungal infection D. Klebsiella pneumonia E. Melioidosis Answer \u2013 B 51.Which of the following is the MOST COMMON cause for lung parenchymal and mediastinal lymph node calci\ufb01cation? A. Healed granulomatous disease B. Chronic renal failure C. Hemosiderosis D. Silicosis E. Hyperparathyroidism Answer \u2013 A. 52.A 54 year old lady admitted with complete heart block with bilateral ground glass opacities in chest x-ray. She has no evidence of ischemic heart disease. Her ECHO is normal. What is the MOST LIKELY diagnosis? A. Scleroderma B. Relapsing polychondritis C. Sarcoidosis D. Rheumatoid arthritis E. SLE Answer \u2013 C. Cardiac involvement is characteristic of sarcoidosis."
+  },
+  {
+    "question": "Central bronchiectasis is NOT seen in",
+    "options": [
+      "Cystic \ufb01brosis",
+      "Allergic bronchopulmonary aspergillosis",
+      "Primary ciliary dyskinesia",
+      "Williams Campbell syndrome",
+      "Congenital tracheobronchomegaly"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Primary ciliary dyskinesia."
+  },
+  {
+    "question": "PET CT is NOT useful in ---",
+    "options": [
+      "Staging of lung cancer",
+      "Monitoring the ef\ufb01cacy of treatment in lung cancer",
+      "De\ufb01nitive diagnosis of lung cancer 122",
+      "Detecting secondaries in lung cancer",
+      "Planning thoracic radiation in lung cancer"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is De\ufb01nitive diagnosis of lung cancer 122."
+  },
+  {
+    "question": "Which is NOT a feature of congestive cardiac failure in chest x ray?",
+    "options": [
+      "Bilateral pleural effusion",
+      "Dilatation of right atrium",
+      "Increase in cardiothoracic ratio",
+      "Interstitial edema",
+      "Pulmonary venous congestion upper lobe"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Dilatation of right atrium."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY to mimic hydropneumothorax in chest x ray?",
+    "options": [
+      "Large lung abscess",
+      "Large infected bulla",
+      "Large cavity with \ufb02uid level",
+      "Large cavitating mass",
+      "Large infected cyst"
+    ],
+    "correct": 3,
+    "explanation": "In cavitating mass usually cavity is eccentric and large air \ufb02uid level is unusual 57.In which of the following condition CT scan thorax is NOT essential in chronic cough with normal chest x-ray with no obvious cause for cough? A. Occasional hemoptysis in an elderly smoker B. Progressive dyspnea C. Signi\ufb01cant weight loss D. Fever on and off E. Symptoms suggestive of allergic rhinitis Answer: E. If there is allergic rhinitis then most likely the cause for cough is allergic rhinitis. In such a case allergic rhinitis needs to be properly treated \ufb01rst which may relive cough. Further evaluation may be done if cough persists despite treating allergic rhinitis."
+  },
+  {
+    "question": "Which is the MOST COMMON cause for cavity in the lungs?",
+    "options": [
+      "Squamous cell carcinoma",
+      "Fungal infection",
+      "Tuberculosis",
+      "Klebsiella pneumonia",
+      "Melioidosis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Tuberculosis."
+  },
+  {
+    "question": "Which of the following radiological feature is almost a sure sign of malignancy?",
+    "options": [
+      "Surrounding in\ufb01ltrates 123",
+      "Erosion of adjacent bone",
+      "Ill de\ufb01ned borders",
+      "Associated mediastinal adenopathy",
+      "Associated pleural effusion"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Erosion of adjacent bone."
+  },
+  {
+    "question": "Reversed halo sign is described in ---",
+    "options": [
+      "Hypersensitivity pneumonitis",
+      "Sarcoidosis",
+      "Lymphoma",
+      "RB-ILD",
+      "Organizing pneumonia"
+    ],
+    "correct": 4,
+    "explanation": "Reversed halo sign, also known as the atoll sign, is de\ufb01ned as central ground-glass opacity surrounded by denser consolidation of crescentic shape (forming more than three-fourths of a circle) or complete ring of at least 2 mm in thickness."
+  },
+  {
+    "question": "Which is a WRONG statement regarding cervico thoracic sign",
+    "options": [
+      "Visualization of a lesion above the level of the clavicle",
+      "Indicates the abnormality is located posteriorly.",
+      "Excludes anterior mediastinal lesion",
+      "Excludes upper lobe lesion",
+      "Can be seen in multi nodular goiter"
+    ],
+    "correct": 3,
+    "explanation": "Upper lobe extends above the level of clavicle. Hence in upper lobe lesion Cervico thoracic sign may be seen."
+  },
+  {
+    "question": "Which is a WRONG statement about pulmonary lymphangitic carcinomatosis?",
+    "options": [
+      "More common in Adenocarcinoma",
+      "Lesions are usually bilateral",
+      "In localized PLC, most often primary is in lungs",
+      "Lesions are more in upper lobes",
+      "May mimic cardiogenic pulmonary edema"
+    ],
+    "correct": 3,
+    "explanation": "Lesions are usually more in lower lobes"
+  },
+  {
+    "question": "Anatomical variation in \ufb01ssures will NOT lead to ---",
+    "options": [
+      "Chest radiographic abnormalities",
+      "Changes in mediastinal shadow in chest x ray",
+      "Alteration in the pattern of lung collapse",
+      "Dif\ufb01cult intubation",
+      "Changes in the extent of pneumonic consolidation"
+    ],
+    "correct": 3,
+    "explanation": "124 64. Which is a WRONG statement regarding saber sheath trachea? A. Extra-thoracic portion of the trachea is not narrowed. B. Tracheal index > 0.5 C. Due to increased intrathoracic pressure D. More common in severe COPD E. It has high sensitivity to diagnose COPD Answer \u2013 E. 65.A 75 year old female with uncontrolled diabetes, admitted with 10 days history of fever and cough. Chest x ray showed right upper lobe cavity without any air \ufb02uid level. Which is the LEAST LIKELY diagnosis? A. Melioidosis B. Fungal pneumonia C. Pulmonary tuberculosis D. Staphylococcal pneumonia E. Klebsiella pneumonia Answer - B"
+  },
+  {
+    "question": "Which of the following disease may radiologically mimic pulmonary TB?",
+    "options": [
+      "Rheumatoid arthritis",
+      "Sarcoidosis",
+      "Wegener's granulomatosis",
+      "Ankylosing spondylitis",
+      "Systemic lupus erythematosus"
+    ],
+    "correct": 2,
+    "explanation": "67.A 70 year old man, chronic smoker admitted with chronic cough, chest pain and recurrent hemoptysis. Which of the following chest x ray feature is highly suggestive of intra thoracic malignancy? A. Total lung collapse on one side B. Homogenous opacity without air-bronchogram C. Parenchymal lesion with mediastinal adenopathy D. Parenchymal lesion with pleural effusion E. Parenchymal lesion with erosion of adjacent bone Answer - E 68.A 28 year old man admitted for evaluation of a mediastinal mass. Which of the following investigation is LEAST USEFUL in diagnosis? A. Thoracoscopy B. Bronchoscopy 125 C. Mediastinoscopy D. Percutaneous needle aspiration E. Estimation of \u03b1-Fetoprotein, \u03b2-HCG Answer \u2013 B."
+  },
+  {
+    "question": "Which is a WRONG statement regarding tree in bud appearance?",
+    "options": [
+      "Represents endobronchial spread of infection",
+      "First described in pulmonary tuberculosis",
+      "Multiple areas of Centrilobular nodules with a linear branching pattern is characteristic.",
+      "Occurs in proximal airway centered diseases",
+      "Best seen on HRCT chest"
+    ],
+    "correct": 3,
+    "explanation": "Occurs in distal airway centered and distal pulmonary vasculature centered diseases."
+  },
+  {
+    "question": "Which radiological signs NOT useful to localise a lesion in chest x-ray?",
+    "options": [
+      "Air bronchogram",
+      "Silhouette sign",
+      "Cervico thoracic sign",
+      "Melting ice cube sign",
+      "Extra pleural sign"
+    ],
+    "correct": 3,
+    "explanation": "The melting ice cube sign describes the resolution of pulmonary hemorrhage following pulmonary embolism"
+  },
+  {
+    "question": "Garland sign is seen in ---",
+    "options": [
+      "Sarcoidosis",
+      "Lymphoma",
+      "Interstitial lung disease",
+      "Hypersensitivity pneumonitis",
+      "Pulmonary Langerhans cell histiocytosis"
+    ],
+    "correct": 0,
+    "explanation": "126 73. Which is NOT a radiological feature in UIP A. Honeycombing B. Traction bronchiectasis C. Apicobasal gradient D. Sub pleural sparing E. Reduction in lung volume Answer-D"
+  },
+  {
+    "question": "Which is NOT a radiological feature in NSIP",
+    "options": [
+      "Sub pleural sparing",
+      "Lower lobe predominance",
+      "Ground glass opacities",
+      "Nodules",
+      "Consolidation"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Lower lobe predominance."
+  },
+  {
+    "question": "Head cheese sign is described in ---",
+    "options": [
+      "Hypersensitivity pneumonitis",
+      "Sarcoidosis",
+      "Lymphoma",
+      "RB-ILD",
+      "Pulmonary Langerhans cell histiocytosis"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Hypersensitivity pneumonitis."
+  },
+  {
+    "question": "Halo sign is seen in ---",
+    "options": [
+      "Hypersensitivity pneumonitis",
+      "Sarcoidosis",
+      "Lymphoma",
+      "Angio invasive aspergillosis",
+      "RB-ILD"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Angio invasive aspergillosis."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

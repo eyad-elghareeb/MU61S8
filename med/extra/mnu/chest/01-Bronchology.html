@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bronchology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwtb3pb",
+  "title": "Bronchology",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Bronchology",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which of the following is LEAST LIKELY complication of diagnostic Bronchoscopy?",
+    "options": [
+      "Hypoxia",
+      "Cardiac arrhythmia",
+      "Hypercapnia",
+      "Hemoptysis",
+      "Pneumothorax"
+    ],
+    "correct": 2,
+    "explanation": "Hypercapnia can occur during bronchoscopy if the patient is given liberal supplemental oxygen, patients on mechanical ventilation or noninvasive ventilation if appropriate ventilatory settings are not done during bronchoscopy. However, this is rare in routine bronchoscopy."
+  },
+  {
+    "question": "Which of the following symptom is LEAST LIKELY in eventration of diaphragm?",
+    "options": [
+      "Chest pain",
+      "Palpitation",
+      "Chronic Cough",
+      "Breathlessness",
+      "Hemoptysis"
+    ],
+    "correct": 4,
+    "explanation": "Eventration can lead to pressure on heart, mediastinal shift or displacement of heart which can sometimes lead to palpitation."
+  },
+  {
+    "question": "In which of the following condition bronchoscopy is LIKELY to be useful for diagnosis?",
+    "options": [
+      "Peripheral solitary pulmonary nodule less than 2 cm in diameter",
+      "Isolated, unexplained pleural effusion",
+      "Persistent asthma like symptoms with chronic cough",
+      "Hemoptysis with a non-localizing chest radiograph",
+      "Un explained breathlessness"
+    ],
+    "correct": 2,
+    "explanation": "Persistent asthma like symptoms with chronic cough is indicative of airway or endobronchial lesion."
+  },
+  {
+    "question": "Thoracic ultrasound is NOT useful in the detection of ---",
+    "options": [
+      "Mediastinal mass",
+      "Lower lobe consolidation",
+      "Pneumothorax",
+      "Cardiogenic pulmonary edema",
+      "Pleural thickening"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Mediastinal mass."
+  },
+  {
+    "question": "Which lobe is SPARED in bronchial thermoplasty",
+    "options": [
+      "Right upper lobe",
+      "Lingula",
+      "Middle lobe",
+      "Left lower lobe",
+      "Right lower lobe"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Middle lobe."
+  },
+  {
+    "question": "Which of the following is NOT a complication of bronchial thermoplasty",
+    "options": [
+      "Exacerbation of Asthma",
+      "Bronchomalacia",
+      "Hemoptysis",
+      "Hypoxemia",
+      "Infection"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Bronchomalacia."
+  },
+  {
+    "question": "In which of the following condition airway stent is better avoided?",
+    "options": [
+      "Central airway obstruction due to a benign/malignant lesion not \ufb01t for resection",
+      "Extrinsic compression",
+      "Destroyed lung beyond the level of bronchial obstruction.",
+      "Sealing of airway \ufb01stula 104",
+      "Tracheobroncomalacia"
+    ],
+    "correct": 2,
+    "explanation": "Answer C. If the lung is destroyed beyond the level of bronchial obstruction patient will continue to have symptoms even after stenting. In this case surgical resection is a better option."
+  },
+  {
+    "question": "Which is NOT a common complications of airway stent ?",
+    "options": [
+      "Stent Migration, Infection, Granuloma formation",
+      "Breakage of metal \ufb01bers",
+      "Hemoptysis",
+      "Airway rupture",
+      "Airway obstruction-due to secretion impaction/granuloma formation"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Airway rupture."
+  },
+  {
+    "question": "Which is NOT a complication of FNAC from lung?",
+    "options": [
+      "Pneumothorax",
+      "Bleeding",
+      "Injury to adjacent structures",
+      "Needle track metastasis",
+      "Broncho stenosis"
+    ],
+    "correct": 4,
+    "explanation": "15.Which of the following bronchoscopic intervention leads to IMMEDIATE improvement in bronchial obstruction? A. Brachytherapy B. Cryotherapy C. Argon plasma coagulation D. Photodynamic therapy E. Bronchial thermoplasty Answer \u2013 C"
+  },
+  {
+    "question": "Which of the following intervention is NOT used to reduce dyspnea in COPD?",
+    "options": [
+      "Bronchoscopic valve placement",
+      "Bronchial fenestration",
+      "Biological lung volume reduction",
+      "Bronchial thermoplasty",
+      "Bullectomy"
+    ],
+    "correct": 3,
+    "explanation": "Bronchial thermoplasty is done in bronchial asthma."
+  },
+  {
+    "question": "Which is NOT a complication of balloon bronchoplasty?",
+    "options": [
+      "Bleeding",
+      "Mucosal tear",
+      "Air embolism",
+      "Airway rupture",
+      "Pain"
+    ],
+    "correct": 2,
+    "explanation": "18.Which interventional bronchoscopy procedure is contraindicated in a patient critical central airway obstruction? A. Electrocautery B. Cryotherapy C. Laser D. APC (argon plasma coagulation) E. Stenting 105 Answer \u2013 B. Cryotherapy alone does not relieve obstruction immediately. Besides following cryotherapy sometimes tissue swelling, bleeding, in\ufb02ammation and edema can occur which can worsen the airway obstruction. Hence cryotherapy alone is contraindicated critical central airway obstruction."
+  },
+  {
+    "question": "Which bronchoscopic intervention is NOT useful for reliving airway stenosis?",
+    "options": [
+      "Dilatation, Laser",
+      "Electro surgery",
+      "Argon plasma coagulation",
+      "Stenting",
+      "Brachytherapy"
+    ],
+    "correct": 4,
+    "explanation": "Brachytherapy is for treatment of malignancy. 20.Which of the following usually DOES NOT lead to dif\ufb01cult or painful insertion of the \ufb02exible bronchoscope through the upper airway? A. Deviation of nasal septum B. Nasal polyps C. Hypertrophy of the nasal turbinates D. Enlarged adenoids E. Nasal spur Answer \u2013 D."
+  },
+  {
+    "question": "Which of the following is NOT a Bronchoscopic sign of inoperability in Lung cancer?",
+    "options": [
+      "Vocal cord paralysis",
+      "Tumor in left main bronchus",
+      "Tracheal involvement",
+      "Carinal involvement",
+      "Tumor in within half centimeter of carina"
+    ],
+    "correct": 1,
+    "explanation": "Left main bronchus is about 5 cm in length. Hence if the tumor is beyond one cm of carina it may be operable."
+  },
+  {
+    "question": "Which of the following is NOT essential prior to \ufb02exible bronchoscopy?",
+    "options": [
+      "Medication history",
+      "CT scan thorax",
+      "Chest radiography",
+      "History of allergy to drugs",
+      "ECG"
+    ],
+    "correct": 1,
+    "explanation": "CT scan is preferable but not essential."
+  },
+  {
+    "question": "Which of the following cancers is LEAST LIKELY to extend to trachea?",
+    "options": [
+      "Nasopharyngeal carcinoma",
+      "Bronchogenic carcinoma",
+      "Esophageal cancer",
+      "Thyroid cancer",
+      "Laryngeal cancer"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Nasopharyngeal carcinoma."
+  },
+  {
+    "question": "Which is a WRONG statement about adenoid cystic carcinoma of trachea?",
+    "options": [
+      "Commonly arises at the distal portion of the trachea",
+      "Arises from sub mucosal glands of the tracheobronchial tree",
+      "Most common tumor arising from salivary glands",
+      "MDCT is useful to detect the extent of the tumor",
+      "Metastasize early"
+    ],
+    "correct": 4,
+    "explanation": "It is a slow growing tumor and metastasis is not common."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Adenoid cystic carcinoma of trachea?",
+    "options": [
+      "Strongly associated with smoking",
+      "Surgery is the treatment",
+      "Slow growing",
+      "Can metastasize to lungs",
+      "Diagnosis often delayed"
+    ],
+    "correct": 0,
+    "explanation": "27.Which of the following is NOT considered as a \u201cpoor technique\u201d when handling a \ufb02exible bronchoscope? A. Exerting excessive pressure with one's \ufb01ngers on the patient's nostril or cheek. B. Twisting the inserting end of the tube while advancing the scope C. Rotating the entire instrument along its entire transverse axis. D. Attempting to pass biopsy forceps through a fully \ufb02exed distal extremity of the bronchoscope E. Keeping the bronchoscope \u201cin the midline\u201d of the airway lumen throughout as much of the procedure as possible. Answer \u2013 E"
+  },
+  {
+    "question": "In which of the following condition auto \ufb02orescent bronchoscopy is NOT useful?",
+    "options": [
+      "Early detection of Lung cancer",
+      "Follow up after surgery for lung cancer",
+      "Screening for high risk lung cancer cases",
+      "Early detection of peripheral lung lesions",
+      "Detection of severe bronchial dysplasia"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Early detection of peripheral lung lesions."
+  },
+  {
+    "question": "Which is the MOST COMMON malignancy causing hoarseness of voice?",
+    "options": [
+      "Esophageal carcinoma",
+      "Bronchogenic carcinoma",
+      "Lymphoma",
+      "Thyroid carcinoma",
+      "Thymic carcinoma"
+    ],
+    "correct": 1,
+    "explanation": "107 31. Which of the following is MOST COMMON complication of diagnostic Bronchoscopy? A. Hypoxia B. Cardiac arrhythmia C. Fever and chills D. Hemoptysis E. Pneumothorax Answer \u2013 A."
+  },
+  {
+    "question": "Which of the following is NOT essential prior to \ufb02exible Bronchoscopy in an elderly COPD patient?",
+    "options": [
+      "Platelet count",
+      "Chest radiography",
+      "Measuring oxygen saturation",
+      "History of allergy to drugs",
+      "ECG"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Platelet count."
+  },
+  {
+    "question": "Which is NOT a contraindication to Photodynamic therapy in lung cancer?",
+    "options": [
+      "Porphyria",
+      "Central airway obstruction",
+      "Tumor invading vessels/Esophagus",
+      "Carcinoma in situ",
+      "Small cell lung cancer"
+    ],
+    "correct": 4,
+    "explanation": "34.Which is a WRONG statement regarding the effects of \ufb02exible Bronchoscopy on cardiovascular hemodynamics? A. During bronchoscopy oxygen consumption increases. B. During bronchoscopy cardiac index increases C. During bronchoscopy correlations have been noted between presence of arrhythmias and depth of oxygen desaturation. D. Impact of \ufb02exible bronchoscopy on cardiovascular function and oxygen saturation ends immediately when the bronchoscope is removed from the airways. E. Heart rate usually increases during Bronchoscopy Answer \u2013 D"
+  },
+  {
+    "question": "Which is a WRONG statement?",
+    "options": [
+      "Fever and chills may occur as late as 6-8 hours after bronchoscopy.",
+      "Continuous suction during bronchoscopy can reduce tidal volume",
+      "Continuous suction during bronchoscopy can exacerbate pre existing hypoxemia.",
+      "Most bronchoscopy-related pneumothorax occurs several hours after the procedure.",
+      "Conscious sedation can increase the likelihood of post-procedure hypoxemia"
+    ],
+    "correct": 3,
+    "explanation": "Most of bronchoscopy related signi\ufb01cant pneumothorax occurs within half to 2 hours after the procedure."
+  },
+  {
+    "question": "Bleeding-related morbidity and mortality after \ufb02exible Bronchoscopy is most frequently caused by --",
+    "options": [
+      "Massive pulmonary hemorrhage",
+      "Hypoxemia and respiratory insuf\ufb01ciency resulting from \ufb01lling of ventilatory dead space",
+      "Dysrhythmias due to hypovolemia",
+      "Hypotension",
+      "Hypoxia due to blood loss"
+    ],
+    "correct": 1,
+    "explanation": "108 37.Which of the following is the MOST COMMON indication for bronchoscopy in suspected tuberculosis? A. To rule out other diseases which mimic TB B. Symptoms and chest x ray not typical C. Sputum AFB smear negative D. Gene X-pert negative E. Cavitating lesion in chest x ray Answer: A. Many other diseases can mimic TB clinically and radiologically. When diagnosis is not certain bronchoscopy is indicated in such cases."
+  },
+  {
+    "question": "Which is a WRONG statement regarding tracheal tumors?",
+    "options": [
+      "Smoking is a known risk factor for squamous cell carcinoma of trachea.",
+      "Primary tumors of the trachea are more common than secondary tracheal tumors.",
+      "Diagnosis of tracheal tumors is usually delayed due to non-speci\ufb01c symptoms.",
+      "Symptoms tracheal tumor often mimic that of obstructive airway diseases",
+      "Squamous cell carcinoma of trachea can present with hemoptysis."
+    ],
+    "correct": 1,
+    "explanation": "39.A 56-year-old man admitted with stridor. Which of the following is LEAST LIKELY tocause stridor? A. Tracheal stenosis B. Upper airway edema C. Foreign body obstruction in major airway D. Bronchogenic carcinoma E. Laryngeal tumor Answer-D. Stridor is a rare symptom in bronchogenic carcinoma. Can occur when the tumour extends to carina or trachea blocking the major airways."
+  },
+  {
+    "question": "A 64-year-old male patient is diagnosed to have cavitating bronchogenic carcinoma. What is the MOST LIKELY cell type?",
+    "options": [
+      "Squamous cell carcinoma",
+      "Adenocarcinoma",
+      "Small cell carcinoma",
+      "Large cell carcinoma",
+      "Poorly differentiated carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Squamous cell carcinoma."
+  },
+  {
+    "question": "In which of the following symptom evaluation bronchoscopy is LEAST LIKELY to be useful",
+    "options": [
+      "Hemoptysis",
+      "Chronic cough",
+      "Breathlessness",
+      "Hoarseness of voice",
+      "Bronchorrea"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Breathlessness."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

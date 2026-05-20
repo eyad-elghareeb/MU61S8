@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pneumonia</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwxuzsb",
+  "title": "Pneumonia",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Pneumonia",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which is the MOST COMMON pathogen responsible for post in\ufb02uenza bacterial pneumonia?",
+    "options": [
+      "Pseudomonas aeruginosa",
+      "Klebsiella pneumoniae",
+      "Moraxella",
+      "Staphylococcus aureus",
+      "E.Coli"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Staphylococcus aureus."
+  },
+  {
+    "question": "Inhaled antibiotics are useful mainly against ---",
+    "options": [
+      "Gram negative organisms",
+      "Gram Positive organisms",
+      "Anaerobes",
+      "Atypical pathogens",
+      "Mixed infection"
+    ],
+    "correct": 0,
+    "explanation": "3.A 60-year-old man on ventilator for AECOPD develops VAP (Ventilator associated pneumonia) on 10th day after intubation. Which of the following is LEAST LIKELY to be the cause? A. Staphylococcus aureus B. Klebsiella pneumoniae C. Pseudomonas aeruginosa D. Streptococcus pneumoniae E. Acinetobacter Answer \u2013 D 4.An otherwise healthy 28-year-old female school teacher presented with 2 days' history of fever, cough and breathlessness. Chest X-ray showed right upper lobe consolidation. What is the MOST LIKELY diagnosis? A. Tuberculosis B. Klebsiella pneumonia C. Staphylococcal pneumonia D. Streptococcal pneumonia E. Melioidosis Answer - D"
+  },
+  {
+    "question": "Which is a WRONG statement about Melioidosis?",
+    "options": [
+      "Melioidosis is more common in diabetics",
+      "Burkholderia pseudomallei grows easily on blood agar 249",
+      "Melioidosis is more common in people working in paddy \ufb01elds and mines",
+      "Melioidosis requires treatment with more than one antibiotic for more than 2 weeks",
+      "Acute melioidosis usually presents as cavitory lesions in chest x ray"
+    ],
+    "correct": 4,
+    "explanation": "Usually Acute melioidosis usually presents as consolidation or bronchopneumonia in chest x ray. Cavity is commoner in subacute disease."
+  },
+  {
+    "question": "Which is a WRONG statement regarding nosocomial pneumonia?",
+    "options": [
+      "Organism may be multi drug resistant",
+      "Morbidity and mortality is higher",
+      "More in patients admitted to ICU",
+      "Incidence does not increase with increase in the duration of hospital stay",
+      "Patients with systemic diseases are more vulnerable"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Incidence does not increase with increase in the duration of hospital stay."
+  },
+  {
+    "question": "Which of the following is WRONG about CURB-65?",
+    "options": [
+      "Blood pressure systolic <100 mmHg or diastolic \u226470 mmHg)",
+      "Confusion (based upon a speci\ufb01c mental test or disorientation to person, place, or time)",
+      "Urea >7 mmol/L (20 mg/dL)",
+      "Respiratory rate \u226530 breaths/minute",
+      "Age \u226565 years"
+    ],
+    "correct": 0,
+    "explanation": "Systolic <90 mmHg or diastolic \u226460 mmHg"
+  },
+  {
+    "question": "Choice of antibiotic for pneumonia is LEAST dependent on which of the following?",
+    "options": [
+      "Severity of the disease",
+      "Underlying/predisposing causes",
+      "Age of the patient",
+      "Co morbidities",
+      "Previous antibiotic use"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Age of the patient."
+  },
+  {
+    "question": "Which of the following is NOT an indication for bronchoscopy in a patient with pneumonia?",
+    "options": [
+      "To determine the severity of pneumonia",
+      "Hemoptysis in a patient with pneumonia",
+      "Unresolving pneumonia",
+      "To isolate the organism",
+      "Suspected malignancy"
+    ],
+    "correct": 0,
+    "explanation": "10.A 60 year old man on ventilator for AECOPD develops VAP (Ventilator associated pneumonia) on 10th day after intubation. Which of the following is LIKELY 250 to be the cause? A. Staphylococcus aureus B. Klebsiella pneumoniae C. Pseudomonas aeruginosa D. H.In\ufb02uenza E. Acinetobacter Answer \u2013 D."
+  },
+  {
+    "question": "Which is not anaerobe?",
+    "options": [
+      "Bacteroides species",
+      "Fusobacterium species",
+      "Streptococcus pyogenes",
+      "Peptostreptococcus",
+      "Actinomyces"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Streptococcus pyogenes."
+  },
+  {
+    "question": "Which is not gram negative?",
+    "options": [
+      "Klebsiella pneumoniae",
+      "Escherichia coli",
+      "Pseudomonas aeruginosa",
+      "Staphylococcus aureus",
+      "Acinetobacter"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Staphylococcus aureus."
+  },
+  {
+    "question": "Which antibiotic acts by inhibiting cell wall synthesis?",
+    "options": [
+      "Ceftriaxone",
+      "Levo\ufb02oxacin",
+      "Erythromycin",
+      "Tetracycline",
+      "Amikacin"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Ceftriaxone."
+  },
+  {
+    "question": "Quinolone which is NOT useful for respiratory tract infections?",
+    "options": [
+      "Cipro\ufb02oxacin",
+      "Levo\ufb02oxacin",
+      "Gati\ufb02oxacin",
+      "O\ufb02oxacin",
+      "Nor\ufb02oxacin"
+    ],
+    "correct": 4,
+    "explanation": "251 14. Which antibiotic DOES NOT inhibit cell wall synthesis? A. Penicillins B. Cephalosporins C. Quinolones D. Carbapenems E. Vancomycin Answer \u2013 C."
+  },
+  {
+    "question": "Which is a WRONG statement regarding lung abscess?",
+    "options": [
+      "Most frequently lung abscess arises as a complication of aspiration pneumonia",
+      "More common in elderly",
+      "Gram negative organisms are the most common cause",
+      "Chronic alcoholism predisposes for lung abscess",
+      "More common in dependent areas of lung"
+    ],
+    "correct": 2,
+    "explanation": "Usually, lung abscesses contain multiple anaerobe species. Monomicrobial abscesses are only occasionally identi\ufb01ed."
+  },
+  {
+    "question": "Which pathogen is MOST COMMONLY responsible for post in\ufb02uenza bacterial pneumonia?",
+    "options": [
+      "Pseudomonas",
+      "E Coli",
+      "Moraxella",
+      "Staphylococcus aureus",
+      "Klebsiella"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Staphylococcus aureus."
+  },
+  {
+    "question": "Which of the following is LEAST LIKELY complication of bacterial pneumonia?",
+    "options": [
+      "Pleural effusion",
+      "Lung abscess",
+      "ARDS",
+      "Hypercapnic respiratory failure",
+      "Sepsis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Hypercapnic respiratory failure."
+  },
+  {
+    "question": "In which of the following condition dyspnea will be usually proportionate to physical \ufb01ndings?",
+    "options": [
+      "Atypical pneumonia",
+      "Sepsis",
+      "Lobar pneumonia",
+      "Pulmonary embolism",
+      "COPD"
+    ],
+    "correct": 2,
+    "explanation": "In lobar pneumonia signs of consolidation will be evident. In all other conditions physical \ufb01ndings may be minimal."
+  },
+  {
+    "question": "Which of the following condition chest X- ray will be always abnormal in a patient with dyspnea?",
+    "options": [
+      "Airway disease",
+      "Atypical pneumonia",
+      "Lobar pneumonia",
+      "Early interstitial lung disease",
+      "Pulmonary embolism"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Lobar pneumonia."
+  },
+  {
+    "question": "Which of the following is least likely to cause respiratory alkalosis?",
+    "options": [
+      "Pneumonia",
+      "Acute exacerbation of Asthma",
+      "High grade fever",
+      "Neurogenic pulmonary edema",
+      "Severe kyphoscoliosis"
+    ],
+    "correct": 4,
+    "explanation": "Severe kyphoscoliosis will lead to respiratory acidosis 253 23. Pulse oximetry measures --- A. Hemoglobin level in blood B. Amount of oxygen contained in blood C. Pulse rate D. Percentage of Hemoglobin saturated with oxygen(SPO2) E. Spo2 and Heart rate Answer \u2013 E"
+  },
+  {
+    "question": "Which of the following DOES NOT interfere with pulse oximetry readings?",
+    "options": [
+      "Dark skin",
+      "Nail polish",
+      "Hyper bilirubinemia",
+      "Dyshemoglobinemias",
+      "Hypotension"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Hyper bilirubinemia."
+  },
+  {
+    "question": "Saturation gap is not seen in which of the following poisoning/condition?",
+    "options": [
+      "Carbon monoxide",
+      "Methemoglobinemia",
+      "Cyan hemoglobin",
+      "Trinitrotoluene",
+      "Hydrogen sul\ufb01de"
+    ],
+    "correct": 2,
+    "explanation": "Answer C: Saturation gap means disproportion in SPO2 & PAO2"
+  },
+  {
+    "question": "Which of the following drug is least likely to cause Methemoglobinemia?",
+    "options": [
+      "Benzocaine",
+      "Rifampicin",
+      "Sulfonamides",
+      "Compounds containing nitrates",
+      "Metoclopramide"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Methemoglobinemia?",
+    "options": [
+      "Central cyanosis",
+      "Cyanosis is a late feature",
+      "Cyanosis may not improve with supplemental oxygen",
+      "Lead to shift of oxygen dissociation curve to left",
+      "Po2 may be normal in ABG"
+    ],
+    "correct": 2,
+    "explanation": "Answer B 254 28. Which is not useful in Meth hemoglobinemia? A. Exchange transfusion B. Hyper baric oxygen therapy C. Systemic steroids D. IV Methylene blue E. Hydration Answer: C"
+  },
+  {
+    "question": "Which antibiotic is NOT useful in Melioidosis?",
+    "options": [
+      "Amoxycillin",
+      "Meropenem",
+      "Tetracyclin",
+      "Ceftazidime",
+      "Sulfamethoxazole and trimethoprim"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Amoxycillin."
+  },
+  {
+    "question": "Which is a WRONG statement regarding viral pneumonia?",
+    "options": [
+      "Dyspnea disproportionate to physical \ufb01ndings",
+      "Constitutional symptoms more predominant",
+      "Usually occur during speci\ufb01c times of the year",
+      "In\ufb02uenza viruses are the most common cause in adults.",
+      "Show early in\ufb01ltrates in chest x ray"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Show early in\ufb01ltrates in chest x ray."
+  },
+  {
+    "question": "Which organism is LEAST LIKELY to cause Cavitating pneumonia?",
+    "options": [
+      "Klebsiella",
+      "Pseudomonas",
+      "H in\ufb02uenza",
+      "Staphylococcus aureus",
+      "Streptococcus pneumoniae"
+    ],
+    "correct": 2,
+    "explanation": "255 33. Which is NOT COMMON to hospital acquired and healthcare associated pneumonia? A. MDR pathogens are more likely B. Disease may be more severe C. Occurs in hospitalized patients D. More common in people with underlying lung/systemic disease E. Higher morbidity and mortality Answer \u2013 C"
+  },
+  {
+    "question": "Which is a RARE symptom in pneumococcal pneumonia?",
+    "options": [
+      "Fever",
+      "Cough",
+      "Breathlessness",
+      "Chest pain",
+      "Hemoptysis"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Hemoptysis."
+  },
+  {
+    "question": "Which is a WRONG statement regarding lung abscess?",
+    "options": [
+      "Most frequently lung abscess arises as a complication of aspiration pneumonia",
+      "More common in elderly",
+      "Gram positive organisms are the most common cause",
+      "Chronic alcoholism predisposes for lung abscess",
+      "More common in dependent areas of lung"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Gram positive organisms are the most common cause."
+  },
+  {
+    "question": "Pyopneumothorax is seen MOST COMMONLY in pneumonia caused by ---",
+    "options": [
+      "Staph.Aureus",
+      "S.Pneumoniae",
+      "Klebsiella",
+      "Pseudomonas",
+      "E.Coli"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Staph.Aureus."
+  },
+  {
+    "question": "Most common cause for community acquired pneumonia is ---",
+    "options": [
+      "Streptococcus",
+      "Staphylococcus",
+      "Pneumococcus",
+      "Klebsiella",
+      "Pseudomonas"
+    ],
+    "correct": 2,
+    "explanation": "256 38. Which is the MOST COMMON site for lung abscess A. Right lower lobe posterior basal segment B. Right lower lobe anterior segment C. Right lower lobe medial basal segment D. Left lower lobe posterior basal segment E. Right upper lobe posterior segment Answer - A"
+  },
+  {
+    "question": "Community acquired Klebsiella pneumonia commonly occurs in ---",
+    "options": [
+      "Lower lobe",
+      "Middle lobe",
+      "Upper lobes",
+      "Bilateral",
+      "Lingula"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Upper lobes."
+  },
+  {
+    "question": "Which is a CORRECT statement regarding atypical pneumonia",
+    "options": [
+      "Blood culture most often isolates organism",
+      "Sputum analysis most often isolates the organism",
+      "CXR shows consolidation",
+      "Sputum most often scanty",
+      "Present with high grade fever"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Sputum most often scanty."
+  },
+  {
+    "question": "S1Q3T3 pattern in ECG may be seen in ---",
+    "options": [
+      "Pericardial effusion",
+      "Anterior wall myocardial infarction",
+      "Pulmonary embolism",
+      "Viral Myocarditis",
+      "Chronic Corpulmonale"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Pulmonary embolism."
+  },
+  {
+    "question": "PCP was \ufb01rst described in",
+    "options": [
+      "HIV infected persons",
+      "Malnourished, Premature infants",
+      "Organ transplantrecipients",
+      "Patients on anti-cancer chemotherapy",
+      "Elderly debilitated patients"
+    ],
+    "correct": 1,
+    "explanation": "257 43. Most common cause for nosocomial pneumonia is --- A. Gram negative bacilli B. Gram positive bacilli C. Gram negative cocci D. Gram positive bacilli E. Anaerobes Answer-A 258"
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

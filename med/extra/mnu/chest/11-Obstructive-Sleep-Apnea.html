@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Obstructive Sleep Apnea</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwgz3kw",
+  "title": "Obstructive Sleep Apnea",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Obstructive Sleep Apnea",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which of the following is a WRONG statement sleep?",
+    "options": [
+      "Delta waves occur predominantly in N3",
+      "Duration of NREM-REM cycles progressively increases during each sleep cycle",
+      "REM sleep predominates in the last one third part of the night.",
+      "REM sleep follows NREM sleep",
+      "Sleep walking typically occur in the last one third of the night"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Sleep walking typically occur in the last one third of the night."
+  },
+  {
+    "question": "Which of the following is a WRONG statement with regard to sleep in elderly?",
+    "options": [
+      "N2 sleep increases",
+      "N3 sleep decreases",
+      "Number of overnight arousal increases",
+      "Latency to fall asleep decreases",
+      "Overnight arousal duration increases"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Latency to fall asleep decreases."
+  },
+  {
+    "question": "Which of the following is a WRONG statement?",
+    "options": [
+      "Melatonin secretion is maximum during day time",
+      "Sleep spindles occur in stage N2",
+      "Dreaming occurs during REM sleep",
+      "Circadian body rhythm is modulated by hypothalamus",
+      "Melatonin secreted by the pineal gland"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Melatonin secretion is maximum during day time."
+  },
+  {
+    "question": "Which of the following is a WRONG statement regarding the effects of sleep deprivation?",
+    "options": [
+      "Decreases release of growth hormone",
+      "Increases metabolic activity of the brain",
+      "Decreases immune system function",
+      "Increases body weight",
+      "Increases heart rate variability"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Increases metabolic activity of the brain."
+  },
+  {
+    "question": "Which of the following is a WRONG statement?",
+    "options": [
+      "Melatonin promotes sleep",
+      "Persons with insomnia have higher rates of depression and anxiety",
+      "Persons with insomnia have shorter daytime sleep latency",
+      "Sleep is regulated by exposure to light and darkness.",
+      "Persons with insomnia have hyper arousability"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Persons with insomnia have shorter daytime sleep latency."
+  },
+  {
+    "question": "Which waves occur during daytime wakefulness?",
+    "options": [
+      "Beta waves",
+      "Alpha waves",
+      "Delta waves",
+      "K complexes",
+      "Theta waves"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Beta waves."
+  },
+  {
+    "question": "Which is NOT a feature of obstructive sleep apnea?",
+    "options": [
+      "Snoring during sleep",
+      "Excessive daytime sleepiness 267",
+      "Un explained weight loss",
+      "Chocking sensation during sleep",
+      "Loss of libido"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Un explained weight loss."
+  },
+  {
+    "question": "Which of the following is NOT an indication for BiPAP in treating OSA?",
+    "options": [
+      "Pressure required is very high(more than 15)",
+      "Patient not able to tolerate CPAP",
+      "Age more than 65 years",
+      "Associated congestive heart failure.",
+      "Associated neuromuscular disorders"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Age more than 65 years."
+  },
+  {
+    "question": "Which is the MOST COMMON arrhythmia in patients with OSA?",
+    "options": [
+      "Atrial \ufb01brillation",
+      "Sinus bradycardia",
+      "Ventricular premature complexes",
+      "Ventricular tachycardia",
+      "First degree atrio-ventricular block"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Atrial \ufb01brillation."
+  },
+  {
+    "question": "Which is a WRONG statement regarding home sleep study?",
+    "options": [
+      "Eliminates waiting period",
+      "May improve the accuracy of test results due to normal night's sleep.",
+      "Better accepted by patients",
+      "Ideal in patients with co morbidities",
+      "Less expensive"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Ideal in patients with co morbidities."
+  },
+  {
+    "question": "Which test is done for diagnosis of Narcolepsy?",
+    "options": [
+      "Overnight Oxymetry",
+      "Multiple sleep latency test",
+      "Polysomnography",
+      "Split night sleep study",
+      "Actigraphy"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Multiple sleep latency test."
+  },
+  {
+    "question": "Which is a WRONG statement regarding jet lag?",
+    "options": [
+      "Going east is easier than going west",
+      "Occurs due to dyssynchrony between the internal clock and the external light-dark cycle",
+      "Excessive alcohol or caffeine intake during travel can worsen the symptoms",
+      "Alternating insomnia and hypersomnia may be the symptom",
+      "Strategic avoidance or exposure to light may be useful in treatment"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Going east is easier than going west."
+  },
+  {
+    "question": "Which of the following is NOT useful for assessment of a sleepy patient?",
+    "options": [
+      "Sleep diary for two to three weeks",
+      "STOP BANG screening questionnaire",
+      "Epworth sleepiness scale",
+      "Insomnia severity index",
+      "Sleep hygiene"
+    ],
+    "correct": 4,
+    "explanation": "268 14. Which is a WRONG statement regarding Epworth Sleepiness Scale (ESS)? A. Used to assess daytime sleepiness B. Score can range from 0 to 24. C. If one or more item-scores are missing, that ESS is invalid D. Can be used for granting or withholding a driver's license E. Score of 16-24 indicates severe excessive daytime sleepiness Answer \u2013 D"
+  },
+  {
+    "question": "Which of the following is NOT a part of STOP BANG questionnaire?",
+    "options": [
+      "Body mass index",
+      "Age",
+      "Neck circumference",
+      "Gender",
+      "Blood sugar level"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Blood sugar level."
+  },
+  {
+    "question": "Which is the MOST COMMON surgery done for treatment of OSA?",
+    "options": [
+      "Uvulopalatopharyngoplasty",
+      "Maxillomandibular advancement",
+      "Tracheostomy",
+      "Septoplasty",
+      "Hyoid advancement"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Uvulopalatopharyngoplasty."
+  },
+  {
+    "question": "Which of the following is NOT a risk factor for OSA?",
+    "options": [
+      "BMI >35 kg/m2",
+      "Neck circumference more than 35 cm",
+      "Male gender",
+      "Age >50 years",
+      "Family history of OSA"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Neck circumference more than 35 cm."
+  },
+  {
+    "question": "Which of the following is a WRONG statement regarding OSA?",
+    "options": [
+      "Incidence is highest in patients undergoing bariatric surgery",
+      "Is a risk factor for post operative respiratory failure",
+      "Increases cardiovascular complications",
+      "All obese patients undergoing elective surgery need polysomnography",
+      "STOP BANG questionnaire can be used for screening"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is All obese patients undergoing elective surgery need polysomnography."
+  },
+  {
+    "question": "Which of the following is NOT a feature of OSA?",
+    "options": [
+      "Unexplained pulmonary hypertension",
+      "Uncontrolled diabetes mellitus",
+      "Cognitive impairment",
+      "Unexplained polycythemia",
+      "Daytime hypercapnia"
+    ],
+    "correct": 4,
+    "explanation": "269 20. Which is a WRONG statement? A. Sedative as premedication is better avoided in OSApatients B. Ambulatory surgical procedures should be avoided in all patients with OSA C. Opioids and muscle relaxants increase post op complications in patients with OSA D. CPAP therapy reduces post op complications in patients with OSA E. CPAP therapy up to 3 months prior to surgery reduces the surgical risk in patients with OSA Answer \u2013 B."
+  },
+  {
+    "question": "Which is a WRONG statement regarding restless legs syndrome?",
+    "options": [
+      "Person has an urge to move the legs associated with uncomfortable in the legs.",
+      "More common before age 45 years",
+      "Worsens during periods of rest or inactivity.",
+      "Symptoms partially or totally relieved by movement",
+      "Symptoms more at night"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is More common before age 45 years."
+  },
+  {
+    "question": "Which of the following is NOT associated with increased incidence of restless legs syndrome?",
+    "options": [
+      "Pregnancy",
+      "Iron de\ufb01ciency anemia",
+      "Diabetes mellitus",
+      "Peripheral neuropathy",
+      "Benzodiazepines"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Benzodiazepines."
+  },
+  {
+    "question": "Which is a WRONG statement?",
+    "options": [
+      "Sedatives as premedication is better avoided in OSA patients",
+      "Ambulatory surgical procedures(day care) should be avoided in all patients with OSA",
+      "Opioid and muscle relaxants increase post op complications in patients with OSA",
+      "CPAP therapy after surgery reduces post op complications in patients with OSA",
+      "CPAP therapy up to 3 months prior to surgery reduces the surgical risk in patients with OSA"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Ambulatory surgical procedures(day care) should be avoided in all patients with OSA."
+  },
+  {
+    "question": "Which of the following is NOT NREM parasomnia?",
+    "options": [
+      "Periodic limb movement disorder",
+      "Somnambulism",
+      "Night terrors",
+      "Confusional arousals",
+      "Sleep-related eating disorder"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Periodic limb movement disorder."
+  },
+  {
+    "question": "Which of the following is known as \u201cDracula of hormones\u201d?",
+    "options": [
+      "Testosterone",
+      "Insulin.",
+      "Melatonin",
+      "Growth hormone",
+      "Aldosterone"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Melatonin."
+  },
+  {
+    "question": "Which co morbidity is NOT usually associated with Restless legs syndrome?",
+    "options": [
+      "Hypertension",
+      "COPD 270",
+      "Parkinsonism",
+      "Depression",
+      "Chronic renal disease"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is COPD 270."
+  },
+  {
+    "question": "Which of the following is NOT an indication for BiPAP in treating OSA?",
+    "options": [
+      "Pressure required is very high(more than 15)",
+      "Patient not able to tolerate CPAP",
+      "Age more than 65 years",
+      "Associated congestive heart failure.",
+      "Associated neuromuscular disorders"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Age more than 65 years."
+  },
+  {
+    "question": "Which is the MOST COMMON arrhythmia in patients with OSA?",
+    "options": [
+      "Atrial \ufb01brillation",
+      "Sinus bradycardia",
+      "Ventricular premature complexes",
+      "Ventricular tachycardia",
+      "First degree atrio-ventricular block"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Atrial \ufb01brillation."
+  },
+  {
+    "question": "Which is a WRONG statement regarding COPD-OSA overlap syndrome?",
+    "options": [
+      "May lead to early development of Corpulmonale",
+      "OSA is more prevalent in patients with emphysema phenotype",
+      "Mortality rates is higher compared to those with either COPD or OSAalone",
+      "Higher incidence of mortality at night",
+      "Increases cardiac co morbidity"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is OSA is more prevalent in patients with emphysema phenotype."
+  },
+  {
+    "question": "Which is a WRONG statement regarding sleep apnea in children?",
+    "options": [
+      "Central sleep apnea is more common than OSA",
+      "Enlarged adenoids and tonsils can be the cause",
+      "May present with behavioural problems",
+      "May have poor weight gain",
+      "May be hyperactive"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Central sleep apnea is more common than OSA."
+  },
+  {
+    "question": "Which is a WRONG statement regarding stroke in patients with OSA?",
+    "options": [
+      "OSA is a risk factor for stroke",
+      "OSA may develop following stroke",
+      "Cardiovascular effects of OSA increase the risk of stroke",
+      "Polycythemia due to OSA can be a risk factor for stroke",
+      "Stroke is more common in patients with mild OSA"
+    ],
+    "correct": 4,
+    "explanation": "32.Which of the following is a WRONG statement regarding OSA in patients with psychiatric disorders? A. OSA may present with behavioral abnormalities B. Symptoms may overlap C. Psychosis is the most common disorder in patients with OSA 271 D. Medications used to treat psychiatric disorders may worsen OSA E. Treatment of OSA in psychiatric patients may improve the psychiatric symptoms Answer \u2013 C."
+  },
+  {
+    "question": "Which of the following is NOT associated with OSA?",
+    "options": [
+      "Hyperthyroidism",
+      "Type 2 diabetes",
+      "Metabolic syndrome",
+      "Non-alcoholic fatty liver disease",
+      "Acromegaly"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Hyperthyroidism."
+  },
+  {
+    "question": "Which of the following is NOT a symptom in Narcolepsy?",
+    "options": [
+      "Excessive daytime sleepiness",
+      "Cataplexy",
+      "Hallucinations",
+      "Sleep paralysis F. Snoring"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Sleep paralysis F. Snoring."
+  },
+  {
+    "question": "Which test is done for diagnosis of Narcolepsy?",
+    "options": [
+      "Overnight Oxymetry",
+      "Multiple sleep latency test",
+      "Polysomnography",
+      "Split night sleep study",
+      "Actigraphy"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Multiple sleep latency test."
+  },
+  {
+    "question": "Which is a WRONG statement regarding jet lag?",
+    "options": [
+      "Going east is easier than going west",
+      "Occurs due to dyssynchrony between the internal clock and the external light-dark cycle",
+      "Excessive alcohol or caffeine intake during travel can worsen the symptoms",
+      "Alternating insomnia and hypersomnia may be the symptom",
+      "Strategic avoidance or exposure to light may be useful in treatment"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Going east is easier than going west."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Delayed Sleep Phase Syndrome?",
+    "options": [
+      "Sleep is delayed by 2 or more hours beyond the socially acceptable or conventional bedtime",
+      "Inability to fall asleep at the desired time",
+      "Inability to wake up at the desired time",
+      "Excessive daytime sleepiness",
+      "Often associated with other sleep disorders"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Often associated with other sleep disorders."
+  },
+  {
+    "question": "Which is a WRONG statement regarding OSA",
+    "options": [
+      "More common in men",
+      "More common in obese",
+      "Can lead to uncontrolled DM and HT",
+      "All snorers have OSA",
+      "Associated with metabolic syndrome"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is All snorers have OSA."
+  },
+  {
+    "question": "Which cell type bronchogenic carcinoma is more common in non smokers?",
+    "options": [
+      "Adenocarcinoma",
+      "Squamous cell carcinoma",
+      "Small cell carcinoma",
+      "Large cell carcinoma",
+      "Broncho alveolar cell carcinoma"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Adenocarcinoma."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

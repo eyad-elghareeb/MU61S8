@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;min-height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Internal Medicine Cardiology</title>
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../../index-engine.css">
+<link rel="manifest" href="../../../../manifest.webmanifest">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
+    <div class="topbar-title">MU61 Quiz - Internal Medicine Cardiology</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Internal Medicine Cardiology</span></h1>
+      <p>Mayo clinic's cardiology Q bank</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">Made By: <a href="https://github.com/eyad-elghareeb/QuizTool">QuizTool</a></div>
+  </div>
+
+<div class="dash-overlay" id="tracker-dashboard">
+  <div class="dash-modal">
+    <div class="dash-header">
+      <h2 id="dash-title-text">Question Tracker</h2>
+      <button class="dash-close-btn" onclick="closeTrackerDashboard()">x</button>
+    </div>
+    <div class="dash-scope-bar" id="dash-scope-bar"></div>
+    <div class="dash-summary">
+      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
+      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
+      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
+    </div>
+    <div class="dash-body" id="dash-body"></div>
+    <div class="dash-footer">
+      <button class="btn-dash-action" onclick="exportTrackerToPDF()">Export PDF</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">Clear All</button>
+      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../../../index-engine.js"></script>
+<script>
+const QUIZZES = [
+  {
+    uid: "tfbvpwxxqw7",
+    title: "Mayo Clinic Cardiology Board Review",
+    description: "All questions combined — Mayo Clinic Cardiology Board Review (532 questions)",
+    icon: "📘",
+    tags: ["Quiz", "532 Questions"],
+    url: "00-Mayo-Clinic-Cardiology-Board-Review.html"
+  },
+  {
+    uid: "tfbvpwrx0er",
+    title: "Cardiac Electrophysiology",
+    description: "Mayo Clinic Cardiology Board Review — Cardiac Electrophysiology",
+    icon: "📘",
+    tags: ["Quiz", "109 Questions"],
+    url: "01-Cardiac-Electrophysiology.html"
+  },
+  {
+    uid: "tfbvpwbc6n4",
+    title: "Coronary Artery Disease Risk Factors",
+    description: "Mayo Clinic Cardiology Board Review — Coronary Artery Disease Risk Factors",
+    icon: "📘",
+    tags: ["Quiz", "44 Questions"],
+    url: "02-Coronary-Artery-Disease-Risk-Factors.html"
+  },
+  {
+    uid: "tfbvpwxywsc",
+    title: "Cardiac Catheterization And Intervention",
+    description: "Mayo Clinic Cardiology Board Review — Cardiac Catheterization and Intervention",
+    icon: "📘",
+    tags: ["Quiz", "42 Questions"],
+    url: "03-Cardiac-Catheterization-and-Intervention.html"
+  },
+  {
+    uid: "tfbvpwi3jd7",
+    title: "Myocardial Infarction",
+    description: "Mayo Clinic Cardiology Board Review — Myocardial Infarction",
+    icon: "📘",
+    tags: ["Quiz", "61 Questions"],
+    url: "04-Myocardial-Infarction.html"
+  },
+  {
+    uid: "tfbvpw2qdzp",
+    title: "Congestive Heart Failure And Cardiac Transplantation",
+    description: "Mayo Clinic Cardiology Board Review — Congestive Heart Failure and Cardiac Transplantation",
+    icon: "📘",
+    tags: ["Quiz", "58 Questions"],
+    url: "05-Congestive-Heart-Failure-and-Cardiac-Transplantation.html"
+  },
+  {
+    uid: "tfbvpww6i7p",
+    title: "Valvular Heart Disease",
+    description: "Mayo Clinic Cardiology Board Review — Valvular Heart Disease",
+    icon: "📘",
+    tags: ["Quiz", "50 Questions"],
+    url: "06-Valvular-Heart-Disease.html"
+  },
+  {
+    uid: "tfbvpwen433",
+    title: "Noninvasive Cardiac Imaging",
+    description: "Mayo Clinic Cardiology Board Review — Noninvasive Cardiac Imaging",
+    icon: "📘",
+    tags: ["Quiz", "85 Questions"],
+    url: "07-Noninvasive-Cardiac-Imaging.html"
+  },
+  {
+    uid: "tfbvpw0yzcv",
+    title: "Cardiac Pharmacology",
+    description: "Mayo Clinic Cardiology Board Review — Cardiac Pharmacology",
+    icon: "📘",
+    tags: ["Quiz", "83 Questions"],
+    url: "08-Cardiac-Pharmacology.html"
+  }
+];
+(function(){
+  var s=localStorage.getItem('quiz-theme');
+  if(s) document.documentElement.setAttribute('data-theme', s);
+  if(window.__updateThemeIcon) window.__updateThemeIcon();
+  if(window.renderQuizzes) window.renderQuizzes();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

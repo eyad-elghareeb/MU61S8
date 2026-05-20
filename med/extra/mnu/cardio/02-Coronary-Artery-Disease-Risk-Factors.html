@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Coronary Artery Disease Risk Factors</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwbc6n4",
+  "title": "Coronary Artery Disease Risk Factors",
+  "description": "Mayo Clinic Cardiology Board Review \u2014 Coronary Artery Disease Risk Factors",
+  "icon": "\ud83e\udec0"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "In vivo, the subendothelium contains many types of collagen. All the following are types of subendothelial collagen except:",
+    "options": [
+      "Collagen II",
+      "Collagen III",
+      "Collagen IV",
+      "Collagen V",
+      "Collagen VIII"
+    ],
+    "correct": 0,
+    "explanation": "Collagen II is found largely in hyaline cartilage."
+  },
+  {
+    "question": "Endothelium secretes all the following substances in large amounts except:",
+    "options": [
+      "Collagen",
+      "Elastin",
+      "Glycosaminoglycans",
+      "Fibronectin",
+      "Mucopolysaccharides"
+    ],
+    "correct": 4,
+    "explanation": "Mucopolysaccharide is secreted from glandular tissue. Endothelium is a layer of thin, specialized epithelium comprised of a single layer of squamous cells in healthy tissue."
+  },
+  {
+    "question": "What is the current accepted practice regarding Lp(a) risk stratification for CAD?",
+    "options": [
+      "It should be followed serially every 2\u20134 years to assess for increased risk",
+      "It can be targeted by pharmacotherapy to yield reduction in morbidity above and beyond conventional risk factors",
+      "An elevated level may prompt moving a patient into a higher risk category and treating to more aggressive LDL and BP goals",
+      "The size of Lp(a) isoforms is directly related to its atherogenic potential"
+    ],
+    "correct": 2,
+    "explanation": "The third of the population with the highest Lp(a) levels have increased risk of future CV events. However, there are no specific therapies and it varies little over time. It may be useful to identify higher risk individuals who may benefit from more aggres- sive conventional risk factor modification. Risk ratios comparing top and bottom thirds of baseline Lp(a) measurements in perspective studies. Diamond symbols indicate the combined risk ratio and its 95% CI for each grouping."
+  },
+  {
+    "question": "Response to which agent can be used to measure endothelial function?",
+    "options": [
+      "Methergine",
+      "Ergonovine",
+      "Acetylcholine",
+      "Endothelin"
+    ],
+    "correct": 2,
+    "explanation": "Acetycholine-mediated vasodilation depends on an intact and functional endothe- lium to produce NO for relaxation. Methergine is used as a provocative test for coro- nary spasm and is not used to measure the endothelial function."
+  },
+  {
+    "question": "Functional assessment of an intermediate coronary lesion can be performed by all of the following except:",
+    "options": [
+      "Measurement of coronary flow reserve",
+      "Measurement of fractional flow reserve",
+      "Quantitative coronary angiography"
+    ],
+    "correct": 2,
+    "explanation": "Angiography only gives a visual estimate of stenosis and does not yield direct func- tional significance of an intermediate lesion."
+  },
+  {
+    "question": "How do ACE inhibitors affect the bradykinin system?",
+    "options": [
+      "Increase degradation of bradykinin",
+      "Decrease degradation of bradykinin",
+      "Increase production of bradykinin",
+      "Increase kallikrein production"
+    ],
+    "correct": 1,
+    "explanation": "Degradation of bradykinin relies on ACE. Inhibition with ACE inhibitor allows build-up of bradykinin, which likely mediates the \u201ccough\u201d found in some patients intolerant of ACE inhibitor."
+  },
+  {
+    "question": "NO regulates which of the following processes?",
+    "options": [
+      "Vasodilation",
+      "Platelet aggregation",
+      "Matrix synthesis",
+      "Smooth muscle cell migration",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All of the above"
+  },
+  {
+    "question": "The most potent vasoconstrictor is:",
+    "options": [
+      "Bradykinin",
+      "Endothelin",
+      "Acetylcholine",
+      "PAI-1"
+    ],
+    "correct": 1,
+    "explanation": "Endothelin is correct. Bradykinin is not a potent vasoconstrictor; acetylcholine medi- ates constriction if endothelium is denuded or dysfunctional (but not as potently as endothelin); PAI-1 is the main inhibitor of the serine proteases tPA and urokinase and prevents fibrinolysis."
+  },
+  {
+    "question": "The endothelium plays a role in which of the following?",
+    "options": [
+      "Regulation of blood flow",
+      "Release of growth factors",
+      "Regulation of thrombosis",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "21. Answer c."
+  },
+  {
+    "question": "Atherosclerosis is associated with:",
+    "options": [
+      "Increase in circulating endothelin concentrations",
+      "Increase in oxidative stress",
+      "Decrease in NO activity",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "23. Answer a. Schachinger et al. (Circ 2000; 101:1899) found a significant relationship between endothelial dysfunction as tested by vasoconstriction upon acetylcholine administra- tion and CV events. Acetylcholine-induced vasoreactivity 100 % free of CV event 90 Vasodilation 80 Vasoconstriction 70 60 0 20 40 60 80 100 120 Months"
+  },
+  {
+    "question": "Which of the following substances is not an endothelium-dependent dilator?",
+    "options": [
+      "Acetylcholine",
+      "Substance P",
+      "Bradykinin",
+      "NTG"
+    ],
+    "correct": 3,
+    "explanation": "NO is released by administration of NTG and works directly on smooth muscle as it diffuses via the bloodstream."
+  },
+  {
+    "question": "Nitroprusside is an endothelial independent vasodilator. True or false?",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 0,
+    "explanation": "True. Nitroprusside is a NO donor and works similar to NTG as an endothelial inde- pendent vasodilator."
+  },
+  {
+    "question": "All the following are obligate coronary vasodilators except:",
+    "options": [
+      "NTG",
+      "NO",
+      "Acetylcholine",
+      "Hypoxia",
+      "Hypercapnia"
+    ],
+    "correct": 2,
+    "explanation": "All are known to cause vasodilatation. Only acetylcholine can be a vasoconstrictor if the endothelium is dysfunctional or absent and NO cannot be produced. In this case, it is not an obligate vasodilator."
+  },
+  {
+    "question": "The risk of plaque disruption depends primarily on all of the following factors except:",
+    "options": [
+      "Severity of angiographic stenosis",
+      "Plaque morphology",
+      "Lipid content of the plaque",
+      "Endothelial function"
+    ],
+    "correct": 0,
+    "explanation": "28. Answer d."
+  },
+  {
+    "question": "NO (endothelium-derived relaxant factor) mediates its vasorelaxation effect through:",
+    "options": [
+      "Specific receptor on the endothelium",
+      "Specific receptors on smooth muscle cells",
+      "Direct effect on smooth muscle cells",
+      "Decrease in intracellular calcium"
+    ],
+    "correct": 2,
+    "explanation": "30. Answer d. The endothelin receptors are G-protein coupled receptors located on smooth muscle cells. Their role in proliferation and contraction of PA smooth muscle cells is the rationale behind their targeted antagonism with bosentan in pulmonary HTN."
+  },
+  {
+    "question": "Endothelial dysfunction is characterized by:",
+    "options": [
+      "Vasoconstriction to endothelial-dependent vasodilator substances",
+      "Possible occurrence without significant CAD",
+      "Possible causal link to smoking",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "32. Answer a."
+  },
+  {
+    "question": "The LDL NCEP goal for treatment of lipids in patients with known CAD or CAD risk equivalent is:",
+    "options": [
+      "\u2b0d 190 mg/dL",
+      "\u2b0d 160 mg/dL",
+      "\u2b0d 130 mg/dL",
+      "\u2b0d 100 mg/dL",
+      "\u2b0d 80 mg/dL"
+    ],
+    "correct": 3,
+    "explanation": "NCEP/ATP III goal \u2b0d70 mg/dL for \u201cvery high risk\u201d individuals (ACS, early/aggressive CAD)."
+  },
+  {
+    "question": "Which of the following is not considered a CAD risk equivalent?",
+    "options": [
+      "Peripheral arterial disease",
+      "Carotid arterial disease",
+      "Diabetes",
+      "AAA"
+    ],
+    "correct": 1,
+    "explanation": "Carotid arterial disease must be symptomatic to be considered a CAD equivalent by ATP III guidelines. The other items are considered CAD equivalents."
+  },
+  {
+    "question": "The NCEP ATP-III goal for LDL in the treatment of hyperlipidemia in an asymptomatic patient with no or one risk factor is:",
+    "options": [
+      "\u2b0d190 mg/dL",
+      "\u2b0d160 mg/dL",
+      "\u2b0d130 mg/dL",
+      "\u2b0d100 mg/dL",
+      "\u2b0d80 mg/dL"
+    ],
+    "correct": 1,
+    "explanation": "The LDL goal is \u2b0d160 mg/dL and the non-HDL goal is \u2b0d190 mg/dL."
+  },
+  {
+    "question": "If two risk factors are present without CAD or equivalent, a patient can still be treated as a risk equivalent if their 10-year risk is greater than:",
+    "options": [
+      "\u2b0e60%",
+      "\u2b0e40%",
+      "\u2b0e20%",
+      "\u2b0e10%",
+      "\u2b0d10%"
+    ],
+    "correct": 2,
+    "explanation": "The 10-year risk is calculated using Framingham data. However, this is not a com- prehensive model of risk. If, for example, the patient has significant risk of rapid pro- gression due to XRT, it would be reasonable to treat to more aggressive therapeutic goals."
+  },
+  {
+    "question": "Which of the following drugs would be first-line therapy for a patient without documented heart disease who has the following lipid profile: LDL: 138 mg/dL HDL: 20 mg/dL Triglycerides: 964 mg/dL",
+    "options": [
+      "Atorvastatin (Lipitor)",
+      "Simvastatin (Zocor)",
+      "Lovastatin (Mevacor)",
+      "Gemfibrozil (Lopid)",
+      "Fluvastatin (Lescol)"
+    ],
+    "correct": 3,
+    "explanation": "Gemfibrozil (Lopid) is the most potent triglyceride-lowering agent among the possi- ble answers. Gemfibrozil reduces plasma triglycerides by 40% to 55%, usually within 1mo of onset of therapy. Lovastatin and fluvastatin do not appreciably alter the plasma triglyceride values. Atorvastatin will lower plasma triglyceride levels by 25% to 35%, and simvastatin will usually lower plasma triglyceride values by 19% to 25% when used at dosages of 40 mg and 80 mg, respectively."
+  },
+  {
+    "question": "A 55-year-old man presents for risk evaluation. He has a history of HTN (well controlled on medication) and an AAA. He does not smoke, his HDL is 41 mg/dL, and there is no family history of premature CAD. His target LDL is:",
+    "options": [
+      "\u2b0d160 mg/dL",
+      "\u2b0d130 mg/dL",
+      "\u2b0d100 mg/dL",
+      "Unknown, need more information"
+    ],
+    "correct": 2,
+    "explanation": "ATP-III guidelines categorize patients with AAA as \u201cCAD risk equivalent\u201d so target LDL is \u2b0d100 mg/dL. If the patient did not have an abdominal aneurysm, he would have two risk factors: age \u2b0e45 yr and treated HTN. His goal lipid in that case would depend on his 10-yr CV event risk."
+  },
+  {
+    "question": "A 50-year-old male lawyer is evaluated because of chest pain for the past 3 mos. His cholesterol level was \u201chigh\u201d 1 yr ago. He is trying to follow a low-fat diet and to lose weight but has not had his cholesterol level rechecked. He has no history of DM, HTN, or tobacco use. His family history is unremarkable. He does not report any previous history of chest discomfort or MI. He describes his symptoms as a \u201ccentral chest burning\u201d that comes on when he is under stress in a courtroom or when he plays doubles tennis. The discomfort has never forced him to stop a courtroom argument or to interrupt his tennis game. In fact, he notes that it fre- quently resolved while he continued his activity. The discomfort sometimes lasts for an hour or more after he stops playing tennis. He has never taken NTG for this discomfort. \u25a0 Physical examination findings are normal \u25a0 BP is 130/70 mmHg \u25a0 HR is 68 bpm and regular \u25a0 ECG is normal On the basis of this information, what is the probability that the patient has sig- nificant CAD?",
+    "options": [
+      "10%",
+      "25%",
+      "50%",
+      "75%",
+      "90%"
+    ],
+    "correct": 2,
+    "explanation": "The physician should estimate the probability of significant CAD in all patients pre- senting with chest pain. This patient\u2019s chest pain is substernal and provoked by exer- cise, but it is not consistently relieved by rest. Therefore, it meets the definition of atypical angina. A 50-year-old man with atypical angina has approximately a 50/50 chance of marked CAD. The presence of multiple risk factors may increase the like- lihood. In this case, with a single risk factor, the best estimate of CAD is approxi- mately 50%."
+  },
+  {
+    "question": "All of the following statements regarding plasma homocysteine are true except:",
+    "options": [
+      "Elevated levels increase the risk of atherosclerotic vascular disease",
+      "Interventions to lower homocysteine levels reduce mortality from CAD",
+      "Vitamin B12 deficiency tends to raise levels",
+      "Vitamin B6 and folic acid treatment lowers levels"
+    ],
+    "correct": 1,
+    "explanation": "No trial has demonstrated a definite mortality benefit to lowering homocysteine levels."
+  },
+  {
+    "question": "In a 67-year-old man with CCS class II angina, a positive exercise test, normal LV function, and a smooth 70% left main lesion, CABG is indicated for:",
+    "options": [
+      "Prevention of AMI",
+      "Prevention of CHF",
+      "Prolongation of life",
+      "Preservation of hibernating myocardium"
+    ],
+    "correct": 2,
+    "explanation": "42. Answer a. Blockade of angiotensin II mediates afferent arteriolar tone; in the presence of hemo- dynamically significant bilateral renal artery stenosis it results in a decrease in glomeru- lar filtration because the efferent arterial blood supply cannot increase."
+  },
+  {
+    "question": "You are asked to see a 53-year-old female dietitian in consultation for HTN. She was found to have an elevated BP on an FAA flight physical 4 yrs ago. She followed her physician\u2019s recommendations and uses only sodium substitutes, limits alcohol con- sumption, and exercises. She adopted a vegetarian lifestyle. Despite these measures, her BP remained above normal and her health care provider prescribed several med- ication regimens. However, her BP could not be maintained at \u2b0d160/90 mmHg. Her medications include: Metoprolol: 25 mg twice daily Lisinopril: 20 mg twice daily Amlodipine: 10 mg daily Your examination detects the following: \u25a0 BP: 188/100 mmHg (seated), 190/100 mmHg (standing); HR: 70 bpm sitting, 80 bpm standing \u25a0 Normal funduscopic examination \u25a0 Normal peripheral pulses and no abdominal bruits \u25a0 Normal cardiopulmonary examination Of the following statements regarding the clinical presentation, which is correct?",
+    "options": [
+      "The HTN is not \u201cresistant\u201d because the patient is not taking appropriate medications at their maximum doses",
+      "The absence of an abdominal bruit excludes renovascular HTN as the under- lying diagnosis",
+      "The BP response to postural change suggests a state of low volume\u2013high resistance HTN",
+      "The next step should be US assessment of renal arterial flow"
+    ],
+    "correct": 0,
+    "explanation": "JNC (VII) classifies HTN as resistant when it is inadequately controlled despite full doses of three appropriate drugs, including a diuretic. The absence of a bruit does not exclude renal artery stenosis. This patient does not have a decrease in upright BP or reflex tachycardia to suggest volume depletion, although the beta blockade may be blunting this effect."
+  },
+  {
+    "question": "The patient in Question 43 has continued medical therapy and improves some- what with addition of triamterene/HCTZ (37.5/25 mg) daily. Her BP is now 160 mmHg systolic. Laboratory results include: CBC: Normal Creatinine: 1.9 mg/dL Sodium: 145 mEq/L Potassium: 3.5 mEq/L Uric acid: 3.0 mg/dL ECG: LVH by voltage criteria Chest X-ray: Normal The most likely secondary form of HTN in this setting is:",
+    "options": [
+      "Primary aldosteronism",
+      "Renovascular stenosis",
+      "Phenochromocytoma",
+      "Chronic renal failure"
+    ],
+    "correct": 0,
+    "explanation": "The serum potassium concentration of 3.5 mEq/L in the setting of ACE inhibition, triamterene therapy, and a diet with potassium supplementation (salt substitute) is inappropriately low and suggests a primary mineralocorticoid state like primary aldosteronism."
+  },
+  {
+    "question": "In the patient in Question 43, the diagnosis of primary aldosteronism requires each of the following except:",
+    "options": [
+      "HTN",
+      "Hypokalemia (salt replete)",
+      "Increased 24-hr urinary aldosterone rate",
+      "Normal renal arteries",
+      "Suppressed plasma renin activity"
+    ],
+    "correct": 3,
+    "explanation": "The presence or absence of normal renal arteries is irrelevant if the other four criteria are met."
+  },
+  {
+    "question": "In the patient in Question 43 the serum aldosterone concentration was 2 ng/dL (Normal: 1\u201321 ng/dL); which of the following substances might be playing a role in this patient\u2019s HTN?",
+    "options": [
+      "Alcohol",
+      "Natural licorice",
+      "Diuretic",
+      "Premarin"
+    ],
+    "correct": 1,
+    "explanation": "Glycyrrhizic acid present in licorice inhibits the 11-beta-hydroxydehydrogenase enzyme that converts cortisol to its inactive metabolite, cortisone, creating a local \u201cCushing syndrome\u201d at the level of the renal tubule."
+  },
+  {
+    "question": "Which of the following antihypertensive agents is contraindicated in women who are pregnant?",
+    "options": [
+      "Triamterene-containing diuretics",
+      "Beta blockers",
+      "Central alpha agonists",
+      "ACE inhibitors"
+    ],
+    "correct": 3,
+    "explanation": "ACE inhibitors have been associated with birth defects when used in treating preg- nant women."
+  },
+  {
+    "question": "All of the following are associated with the syndrome of familial hypercholes- terolemia except:",
+    "options": [
+      "Xanthomas",
+      "Premature vascular disease",
+      "X-linked inheritance",
+      "Mutations of the LDL receptor"
+    ],
+    "correct": 2,
+    "explanation": "Familial hypercholesterolemia is inherited in an autosomal dominant fashion."
+  },
+  {
+    "question": "A 55-year-old previously athletic man presents with history of anterior wall MI, poorly controlled HTN, and daytime somnolence. He also has a history of PAF and was found to have elevated CRP. A modifiable risk factor for ischemic heart disease that should be further evaluated in this patient is:",
+    "options": [
+      "Obstructive sleep apnea",
+      "Elevated homocysteine",
+      "Elevated Lp(a)",
+      "High sensitivity CRP level"
+    ],
+    "correct": 0,
+    "explanation": "A patient need not be obese to have sleep-disordered breathing. It significantly impacts HTN control and mortality especially if patient has systolic dysfunction. The other risk factors are not easily modifiable for clinical effect."
+  },
+  {
+    "question": "The diet that has shown to decrease the risk for future CV events or death in patients after MI is:",
+    "options": [
+      "AHA Step 2 diet",
+      "A very low fat diet (\u2b0d10% of the total caloric intake)",
+      "Mediterranean diet",
+      "Atkins diet",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The Lyon Diet Heart Study randomized 302 experimental- and 303 control-group subjects into the study. All were patients who had survived a first MI. Follow-up was approximately 46 months. The treatment group consumed a \u201cMediterranean diet\u201d with the following characteristics: \u25a0 High in fruits, vegetables, bread and other cereals, potatoes, beans, nuts and seeds \u25a0 Includes olive oil as an important source of monounsaturated fat \u25a0 Dairy products, fish, and poultry consumed in low to moderate amounts, little red meat \u25a0 Eggs consumed 0 to 4 times weekly \u25a0 Wine consumed in low to moderate amounts \u25a0 Patients following the Mediterranean-style diet had a 50\u201370% lower risk of recur- rent CAD. The risk was measured by three combinations of outcome measures: i. Cardiac death and non-fatal MI ii. The above two plus major events (unstable angina, stroke, heart failure, and pulmonary or peripheral embolism) iii. All of these measures plus minor events that required hospitalization"
+  },
+  {
+    "question": "A 35-year-old female presents for evaluation of chest pain. She describes \u201ccentral chest pressure\u201d that comes on when she is angry at her students or when she swims. The discomfort is accompanied by shortness of breath and is relieved within a few minutes by leaving the classroom or by rest. She denies any chest pain at rest or at night. She has never used NTG. She has no history of DM or HTN. She smokes one pack per day of cigarettes. She feels that she is overweight and is trying to follow a low-fat diet and to lose weight. Her cholesterol has never been checked. Her father died of an AMI at age 63. On physical exam, her BP is 120/70 mmHg and HR is 72 bpm and regular. Her cardiac exam is normal. Her resting ECG is normal. (continued ) On the basis of this information, what is the probability that the patient has significant CAD?",
+    "options": [
+      "10%",
+      "25%",
+      "50%",
+      "75%",
+      "90%"
+    ],
+    "correct": 1,
+    "explanation": "52. Answer a."
+  },
+  {
+    "question": "A 58-year-old male presents with a 15-min episode of central chest tightness with diaphoresis while watching TV, now resolved in the ED. His past medical history includes \u201cborderline blood sugar,\u201d and femoral-popliteal peripheral arterial bypass. His family history is significant for a brother with MI at age 59. He is sedentary and is a former smoker (discontinued tobacco 6 months ago). He gained 15 pounds after quitting. Medications: Occasional Viagra, Atorvastatin, HCTZ Exam: BP 140/88 mmHg, pulse 86 regular; CV exam otherwise normal ECG: Nonspecific T abnormality; no comparison available CXR: Poor inspiration Troponin T: \u2b0d0.01 The likelihood that his symptoms are due to CAD is:",
+    "options": [
+      "Low",
+      "Intermediate",
+      "High"
+    ],
+    "correct": 2,
+    "explanation": "Patient has CAD equivalent with his peripheral artery disease."
+  },
+  {
+    "question": "The risk of short-term death/MI for the patient described above is:",
+    "options": [
+      "Low",
+      "Intermediate",
+      "High"
+    ],
+    "correct": 1,
+    "explanation": "There are no TIMI high risk features like myocardial necrosis, dynamic T-wave abnormalities, or prior aspirin use."
+  },
+  {
+    "question": "A 49-year-old man who received a living-related donor kidney transplant 2 yrs ago is referred to you after an inferior MI that was successfully treated with thrombolysis. He currently has no limitation of his daily activities. His lipid profile is as follows: Total cholesterol: 300 mg/dL HDL: 45 mg/dL LDL: 216 mg/dL Triglycerides: 195 mg/dL Glucose: 120 mg/dL Lp(a): 8 mg/dL Homocysteine: 8 \u242emol/L Fibrinogen: 245 mg/dL His renal allograft function is normal and he is maintained on prednisone, cyclosporine, and study drug B, a novel antilymphocyte agent. Which of the following drugs is the best choice for this patient?",
+    "options": [
+      "Simvastatin",
+      "Atorvastatin",
+      "Niacin",
+      "Pravastatin",
+      "Fluvastatin"
+    ],
+    "correct": 3,
+    "explanation": "Simvastatin, atorvastatin, and lovastatin are metabolized by the CYP3A4 enzyme. When given with cyclosporine the statin concentration can rise 20-fold and lead to rhab- domyolysis. Pravastatin is not significantly affected by CYP interactions. Fluvastatin is metabolized partly by CYP2C9 and can interact with warfarin and fluconazole."
+  },
+  {
+    "question": "In the patient in Question 55, what would the target LDL cholesterol level be?",
+    "options": [
+      "130 mg/dL",
+      "70 mg/dL",
+      "110 mg/dL",
+      "125 mg/dL",
+      "150 mg/dL"
+    ],
+    "correct": 1,
+    "explanation": "The patient is young and already suffered an AMI. He should at least be treated to LDL goal \u2b0d100 mg/dL with treatment to \u2b0d70 mg/dL as a reasonable goal. Due to relative weak potency of pravastatin and his initially very elevated LDL, he may need additional pharmacotherapy such as ezetimibe for further reduction. While limited evidence exists, early reports suggest an approximately 15% increase in cyclosporine levels with co-administration of ezetimibe, so cyclosporine levels should be monitored during addition of these medications."
+  },
+  {
+    "question": "The patient in Question 55 undergoes exercise stress testing with contrast MPI. He completes stage 2 of a Bruce protocol limited by typical angina and fatigue. The baseline HR is 64 bpm with sinus rhythm and BP of 110/60 mmHg. The peak HR is 134 bpm with BP of 146/84 mmHg. ECG monitoring demonstrates nonspecific ST-T changes. Perfusion imaging demonstrates a large area of ante- rior and anterolateral ischemia and an inferior infarct. The next step would be to:",
+    "options": [
+      "Add a beta blocker",
+      "Add nitrate therapy",
+      "Initiate intensive glycemic control",
+      "Order coronary arteriography"
+    ],
+    "correct": 3,
+    "explanation": "The recent COURAGE trial randomized patients to an initial strategy of intensive medical therapy alone vs. therapy utilizing PCI up front for angiographically defined lesions. It is important to note that all patients in that study had their anatomy defined by angiography first and up to 1/3 of patients eventually crossed over into the PCI arm. Analysis was performed with intention-to-treat. Also, this patient should have his LV EF assessed, as patients with EF \u2b0d 30% were excluded from that study. Beta blocker therapy is indicated; however, the next most important step in man- agement should be coronary arteriography to define the coronary anatomy and eval- uate the potential for revascularization, especially in a patient with diabetes who may have decreased LV function."
+  },
+  {
+    "question": "Increases of the serum fibrinogen value have been associated with an increased risk for development of CAD in some studies. Which of the commonly available lipid-lowering drugs has been consistently shown to lower the serum fibrinogen level?",
+    "options": [
+      "Atorvastatin (Lipitor)",
+      "Simvastatin (Zocor)",
+      "Lovastatin (Mevacor)",
+      "Fenofibrate (TriCor)",
+      "Gemfibrozil (Lopid)"
+    ],
+    "correct": 3,
+    "explanation": "Fenofibrate is a lipid-lowering agent that lowers the serum fibrinogen level approxi- mately 15\u201325%. Some early reports suggested that atorvastatin may increase the serum fibrinogen level, but these reports were contradicted by later studies. Simvastatin, pravastatin, and fluvastatin have not been reported to increase the serum fibrinogen value. Gemfibrozil does not have potent fibrinogen lowering effects."
+  },
+  {
+    "question": "Which of the following lipid-lowering agents may worsen glycemic control in patients with borderline fasting hyperglycemia?",
+    "options": [
+      "Simvastatin",
+      "Atorvastatin",
+      "Niacin",
+      "Gemfibrozil",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "Niacin worsens fasting hyperglycemia in some patients. Gemfibrozil and simvastatin reduced coronary event rates (including death) in patients with non-insulin-dependent DM in the Helsinki Heart Study and Simvastatin Scandinavian Survival Study, respectively."
+  },
+  {
+    "question": "A 49-year-old chief executive officer of a Fortune 500 company presents to your CV health clinic as part of an executive physical examination program. He runs 15 miles 3 times per week, and was an Olympic athlete during his college years. He recently invested $50,000 in Heart Check America, and as part of the invest- ment he received a complimentary coronary CT scan. He was told he had mod- erate calcifications in the proximal RCA, but that nothing further was needed at this time. He has a normal ECG, a normal thyroid profile, and no evidence of fasting hyperglycemia. His father died of heart disease at age 88, and his mother is alive at age 92. His lipid profile is as follows: Total cholesterol: 260 mg/dL HDL: 85 mg/dL Triglycerides: 100 mg/dL LDL: 155 mg/dL Which of the following approaches to \u201cpreventive cardiology\u201d is recommended by the AHA guidelines for this patient?",
+    "options": [
+      "Reassure him that he is free of any CAD",
+      "Send him for an exercise thallium stress test",
+      "Start therapy with simvastatin, 40 mg nightly",
+      "Start therapy with niacin, 1 g daily"
+    ],
+    "correct": 2,
+    "explanation": "This patient has a high probability of having at least nonobstructive CAD, as docu- mented by coronary calcification on his coronary CT scan. He is asymptomatic, and the degree of stenosis in the RCA is not quantified. He should be treated for secondary pre- vention of atherosclerotic heart disease and primary prevention of ischemic heart disease."
+  },
+  {
+    "question": "A 55-year-old father of 6 children is concerned about his lipid profile. His father and mother both died of MIs at age 51 and 58, respectively. He is healthy, does not smoke, and exercises daily by swimming for 45 min. He comes to you for counseling regarding primary prevention. He follows a low-fat diet but does not take any medications. His blood chemistry profile and BP are as follows: Total cholesterol: 220 mg/dL HDL: 65 mg/dL Triglycerides: 125 mg/dL LDL: 95 mg/dL Glucose: 95 mg/dL BP: 110/75 mmHg Which of the following is appropriate for this patient and is supported by out- comes data?",
+    "options": [
+      "Send him for exercise echocardiography",
+      "Send him for exercise thallium scanning",
+      "Prescribe Metoprolol, 25 mg twice daily; aspirin, 162 mg daily",
+      "Prescribe vitamin E, 400 IU daily; vitamin C, 500 mg daily; aspirin, 81 mg daily",
+      "Prescribe aspirin, 81 mg daily"
+    ],
+    "correct": 4,
+    "explanation": "This patient does not have any evidence of ischemic heart disease or atherosclerotic heart disease. His LDL cholesterol value meets the guidelines of the AHA. Aspirin is the only other agent with proven outcomes data for this patient."
+  },
+  {
+    "question": "A 44-year-old police officer was brought to the hospital with an out-of-hospital cardiac arrest due to an acute anterolateral MI. He had quit smoking the day before the acute infarction. He received tPA and \u201crescue\u201d PTCA and stenting to the proximal LAD. His EF was 45% on the 5th day of hospitalization. One of your associates started therapy with atorvastatin, 10 mg nightly. He comes today for a 6-week examination after completion of cardiac rehabilitation. He has lost 25 pounds and feels \u201cgreat.\u201d His blood chemistry values and BP are as follows: Total cholesterol: 165 mg/dL Triglycerides: 85 mg/dL HDL: 35 mg/dL LDL: 113 mg/dL Fibrinogen: 370 mg/dL Glucose: 120 mg/dL BP: 128/82 mmHg Aspartate aminotransferase: 21 U/L Which of the following recommendations do you implement in this patient\u2019s management?",
+    "options": [
+      "Increase atorvastatin to 40 mg nightly",
+      "Switch to fluvastatin, 40 mg nightly",
+      "Add niacin, 500 mg twice a day",
+      "Arrange to recheck lipid and aspartate aminotransferase values in 3 months",
+      "Add fenofibrate, 145 mg daily"
+    ],
+    "correct": 0,
+    "explanation": "This patient has CAD, and the LDL cholesterol value does not meet target guidelines. This should be the primary treatment goal, with secondary goals taking reduced roles until the primary goal is achieved. Increasing the atorvastatin would most likely reduce the LDL cholesterol further and may have mild benefit to the HDL profile. Switching to fluvastatin would most likely provide less effective control of the LDL cholesterol than the current dose of atorvastatin. Adding niacin might worsen the glucose intoler- ance that is present in this patient. Rechecking the lipid and aspartate aminotransferase values in 3 mos is a good idea after the atorvastatin dosage is doubled. A recent (2006) update to secondary prevention recommends LDL \u2b0d 100 mg/dL and for \u201cvery high risk\u201d patients an optional goal of \u2b0d70 mg/dL is \u201creasonable.\u201d With this patient\u2019s early presentation of ischemic heart disease, aggressive risk factor modification is warranted. Fenofibrate may reduce the fibrinogen level, but once again, it is not a well-defined treatment goal and should be secondary to LDL lowering at this time."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

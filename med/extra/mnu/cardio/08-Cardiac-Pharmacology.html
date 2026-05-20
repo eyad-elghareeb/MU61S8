@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiac Pharmacology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpw0yzcv",
+  "title": "Cardiac Pharmacology",
+  "description": "Mayo Clinic Cardiology Board Review \u2014 Cardiac Pharmacology",
+  "icon": "\ud83e\udec0"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Drug side effects may be controlled most effectively by minimizing risk factors and:",
+    "options": [
+      "Measuring drug levels",
+      "Adding therapy to control side effects",
+      "Increasing the number of medications",
+      "Increasing the dose",
+      "Increasing the frequency of administration"
+    ],
+    "correct": 4,
+    "explanation": "By accounting for organ function, minimizing or adjusting for drug-drug interac- tions, and selecting the right dose, the chance for positive outcomes and reduced risk for side effects is optimized. Increasing the frequency of administration rather than increasing the dose reduces the likelihood of excessive peaks in drug concentration and, therefore, dose-dependent side effects."
+  },
+  {
+    "question": "Which of the following medications increases insulin sensitivity?",
+    "options": [
+      "ACE inhibitors",
+      "Thiazide diuretics",
+      "Calcium channel blockers",
+      "Beta blockers",
+      "Nitrates"
+    ],
+    "correct": 0,
+    "explanation": "Thiazide diuretics (in high doses) and beta blockers both reduce insulin sensitivity. Calcium channel blockers and nitrates have no significant effects. ACE inhibitors, though, do increase insulin sensitivity."
+  },
+  {
+    "question": "Which of the following is not a common cause for adverse drug events in the elderly?",
+    "options": [
+      "Increased number of concomitant medications",
+      "Noncompliance",
+      "Prescription error",
+      "Increased volume of distribution",
+      "Cognitive decline"
+    ],
+    "correct": 3,
+    "explanation": "The relative decrease in skeletal muscle mass tends to produce a smaller volume of dis- tribution of a drug, which, if unrecognized, adversely affects the frequency of adverse drug events."
+  },
+  {
+    "question": "A 55-year-old man with a mechanical mitral valve presents with an acute STEMI. His INR is 3. Coronary angiography reveals an occluded LAD artery. Prior to proceeding with emergency PCI, which of the following should be done?",
+    "options": [
+      "Intravenous heparin",
+      "Abciximab",
+      "No additional anticoagulant",
+      "Subcutaneous enoxaparin",
+      "Bivalirudin"
+    ],
+    "correct": 0,
+    "explanation": "Despite the elevated INR, this patient should receive heparin, aiming for an activated clotting time of 250 to 300 sec. The onset of action of SQ enoxaparin administered in the catheterization laboratory would be too slow to facilitate emergency PCI."
+  },
+  {
+    "question": "The following drugs are associated with the following teratogenic effects, except:",
+    "options": [
+      "Lithium and Ebstein\u2019s anomaly",
+      "Warfarin with facial and CNS abnormalities",
+      "ACE inhibitors and oligohydramnios",
+      "Heparin and osteoporosis",
+      "Beta blockers and growth retardation"
+    ],
+    "correct": 3,
+    "explanation": "Chronic heparin use is associated with maternal osteoporosis; however, heparin does not cross the placenta and hence is not associated with fetal osteoporosis. The remain- der is all true and is the reason for the absolute or relative contraindications of these medications in pregnancy."
+  },
+  {
+    "question": "High-first-pass metabolism is important for many reasons, except:",
+    "options": [
+      "SL NTG administration avoids first-pass metabolism",
+      "Impaired liver perfusion decreases dosing requirements",
+      "Some medications do not achieve therapeutic effectiveness when given orally",
+      "Lidocaine dosing is dependent on first-pass",
+      "Oral medications require significantly lower doses compared with intravenous doses"
+    ],
+    "correct": 4,
+    "explanation": "Oral doses require much higher doses than IV doses with high first-pass drugs."
+  },
+  {
+    "question": "Most complications of cardiac drugs can be classed generally as:",
+    "options": [
+      "Dose-dependent",
+      "Allergic",
+      "Drug-drug interactions",
+      "Dose-independent only",
+      "Idiosyncratic"
+    ],
+    "correct": 0,
+    "explanation": "Drug side effects may be dose-dependent or immunogenically-mediated. Most com- monly, they are concentration- or dose-dependent."
+  },
+  {
+    "question": "Renal insufficiency impacts the use of the following beta blockers, except:",
+    "options": [
+      "Nadolol",
+      "Metoprolol",
+      "Sotalol",
+      "Acebutolol",
+      "Atenolol"
+    ],
+    "correct": 1,
+    "explanation": "Metoprolol is predominantly eliminated through the hepatic system and hence is unaffected by renal function. The remainder should all be used with caution in patients with renal insufficiency."
+  },
+  {
+    "question": "Complications of procainamide typically exclude:",
+    "options": [
+      "Excessive (\u2b0e50% over baseline) prolongation of QRS interval",
+      "Heart block",
+      "HTN",
+      "VT",
+      "Rash"
+    ],
+    "correct": 2,
+    "explanation": "HTN is not seen with procainamide. Hypotension, however, can occur, although it is rarely dose-limiting."
+  },
+  {
+    "question": "The risk of myositis, myopathy, or rhabdomyolysis is greatest with which drug combinations?",
+    "options": [
+      "Gemfibrozil plus pravastatin while taking digoxin",
+      "Gemfibrozil plus pravastatin while taking itraconazole",
+      "Gemfibrozil plus ketoconazole",
+      "Pravastatin plus beta carotene while taking itraconazole",
+      "Gemfibrozil plus pravastatin while taking aspirin and clopidogrel"
+    ],
+    "correct": 1,
+    "explanation": "The risk of myopathy is present with gemfibrozil and pravastatin individually; the risk is enhanced when they are used together, and even greater when the metabolism of pravastatin is inhibited inhibited by a CYP3A4 inhibitor, such as itraconazole."
+  },
+  {
+    "question": "The clinical significance of drug-drug interactions may be most dependent on the:",
+    "options": [
+      "Method of administration",
+      "Magnitude of the therapeutic window",
+      "Volume of distribution",
+      "Half-life of the metabolite",
+      "Drug dose"
+    ],
+    "correct": 1,
+    "explanation": "The therapeutic index or window is the most important predictor for the significance of interactions. It is the ratio of a drug\u2019s toxic dosage to its maximally effective dosage. The lower the index, the greater the chance is for toxicity."
+  },
+  {
+    "question": "All of the following are effects of loop diuretics, eg, furosemide, except which of the following?",
+    "options": [
+      "Hypomagnesemia",
+      "Ototoxicity",
+      "Hypercalcemia",
+      "Venodilation",
+      "Loop diuretics are the most effective diuretic agents"
+    ],
+    "correct": 2,
+    "explanation": "Loop diuretics may cause hypocalcemia but not hypercalcemia. Early venodilatory effects of loop diuretics are likely prostaglandin-dependent."
+  },
+  {
+    "question": "Which of the following agents increase cardiac contractility through a mechanism other than an increase in intracellular cAMP?",
+    "options": [
+      "Milrinone",
+      "Epinephrine",
+      "Dobutamine",
+      "Levosimendan",
+      "Dopamine"
+    ],
+    "correct": 3,
+    "explanation": "Unlike other inotropes, levosimendan acts as a calcium sensitizer and does not increase calcium through an increase in intracellular cAMP."
+  },
+  {
+    "question": "Which of the following statements regarding the action of inotropes is true?",
+    "options": [
+      "Beta-1 receptor activation is responsible for dobutamine-induced vasodilata- tion",
+      "Milrinone acts on beta-1 receptors to increase inotropy",
+      "Isoproterenol activation of alpha receptors may increase systemic BP",
+      "The chronotropic effects of dopamine are mediated through action on beta-1 receptors",
+      "Epinephrine primarily stimulates alpha receptors"
+    ],
+    "correct": 3,
+    "explanation": "Dopamine-mediated tachycardia occurs through action on beta-1 receptors. Beta-1 agonists have little effect on peripheral vessels, as peripheral vasodilatation is mediated through activation of beta-2 receptors. Isoproterenol is a specific beta agonist, having no action on alpha receptors."
+  },
+  {
+    "question": "Grapefruit juice increases the bioavailability of which of the following drug(s)?",
+    "options": [
+      "Simvastatin",
+      "Nifedipine",
+      "Sildenafil",
+      "Cyclosporin A",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Grapefruit juice inhibits intestinal CYP3A4 metabolic activity, thereby increasing the oral bioavailability of these medications."
+  },
+  {
+    "question": "A 65-year-old man with a history of HTN, hyperlipidemia, and alcoholic cir- rhosis is admitted to the coronary care unit with chest pain and an acute ST ele- vation anterior MI. You are called to assess for frequent premature ventricular complexes followed by sustained monomorphic VT, which is not associated with symptoms or hypotension. He weighs 75 kg. Which of the following will you recommend at this time?",
+    "options": [
+      "Oral amiodarone 800 mg BID",
+      "Intravenous lidocaine 100 mg bolus, followed by 1 mg/min infusion",
+      "Intravenous lidocaine 100 mg, followed by 75 mg bolus in 5 minutes, and then 3 mg/min infusion",
+      "Intravenous bretylium 750 mg bolus, followed by 2 mg/min infusion",
+      "ICD implantation"
+    ],
+    "correct": 1,
+    "explanation": "In a patient with underlying liver dysfunction, lidocaine is preferred over amiodarone. Given his liver disease, a lower dose of lidocaine will be sufficient."
+  },
+  {
+    "question": "Regarding adverse effects with ACE inhibitors, all the following occur, except:",
+    "options": [
+      "Cough and angioedema with enalapril",
+      "Proteinuria with captopril",
+      "Hyperkalemia with perindopril",
+      "Neutropenia or rash with enalapril",
+      "Teratogenicity with lisinopril"
+    ],
+    "correct": 3,
+    "explanation": "Neutropenia (\u2b0d0.05%) and a maculopapular pruritic dermatitis (1%) have both been linked with captopril use, likely related to the sulfhydryl group, and are not fea- tures associated with other ACE inhibitors. While captopril has been shown to decrease proteinuria in both diabetic and non-diabetic nephropathy, it does cause proteinuria in up to 1% of patients."
+  },
+  {
+    "question": "An 82-year-old woman with HTN and chronic renal failure (serum creatinine 3.5 mg/dL) is referred to you for the management of PAF. She has no other risk factors for coronary atherosclerosis and has well-preserved ventricular function. Her ECG is essentially normal, with a QTc interval of 400 msec. Which of the following drugs will be suitable for her rhythm management?",
+    "options": [
+      "Sotalol 120 mg BID",
+      "Dofetilide 500 mcg BID",
+      "Amiodarone 200 mg QD",
+      "Procainamide 1 gm TID",
+      "Propafenone 150 mg TID"
+    ],
+    "correct": 2,
+    "explanation": "Amiodarone is favored, given the patient\u2019s age and renal dysfunction."
+  },
+  {
+    "question": "A 60-year-old man with long standing HTN and PAF is referred to you for ini- tiation of amiodarone. Which of the following medication(s) that the patient is currently taking will not require dosage adjustment?",
+    "options": [
+      "Digoxin",
+      "Warfarin",
+      "Labetalol",
+      "Enalapril",
+      "Both c and d"
+    ],
+    "correct": 3,
+    "explanation": "Concomitant use of amiodarone has no effect on enalapril."
+  },
+  {
+    "question": "Quinidine, a stereoisomer of quinine initially derived from the bark of the cin- chona tree, has been used for decades for AF. It was originally discovered by a Danish merchant seaman with AF who took quinine for malaria prophylaxis dur- ing trips to India. He noted his pulse was regular while in India but irregular at home. Cinchonism describes tinnitus and hearing loss with quinidine excess. Which of the following is not a side effect associated with quinidine use?",
+    "options": [
+      "Constipation",
+      "Thrombocytopenia",
+      "Granulomatous hepatitis",
+      "Myasthenia gravis",
+      "Torsades de pointes VT"
+    ],
+    "correct": 0,
+    "explanation": "Quinidine is associated with many potential adverse effects, including diarrhea. Constipation is not a feature seen with quinidine."
+  },
+  {
+    "question": "Which of the following drugs used at therapeutic levels is most likely to increase the pacing threshold?",
+    "options": [
+      "Amiodarone",
+      "Flecainide",
+      "Sotalol",
+      "Procainamide",
+      "Digoxin"
+    ],
+    "correct": 1,
+    "explanation": "Drugs that block sodium channels increase the pacing threshold, whereas potassium channel blockers decrease them."
+  },
+  {
+    "question": "Dofetilide blocks which of the following ion channels/receptors?",
+    "options": [
+      "IKR potassium channel",
+      "Calcium channel",
+      "KATP potassium channel",
+      "Sodium channel",
+      "Beta receptor"
+    ],
+    "correct": 0,
+    "explanation": "Dofetilide is a pure potassium channel blocker, inhibiting the IKR."
+  },
+  {
+    "question": "Flumazenil (select true answer):",
+    "options": [
+      "Will antagonize the respiratory depression of morphine",
+      "Will antagonize the sedative effects of midazolam",
+      "Is so long acting that resedation is not possible",
+      "Is safe in patients taking daily benzodiazepines",
+      "Has a peak effect 90 minutes after administration"
+    ],
+    "correct": 1,
+    "explanation": "Flumazenil is a potent short-acting antagonist of benzodiazepines; however, it should be used with caution in patients on chronic benzodiazepines."
+  },
+  {
+    "question": "Which of the following needs close observation during loading with dofetilide?",
+    "options": [
+      "Pulse rate interval",
+      "QRS interval",
+      "QT interval",
+      "HR",
+      "BP"
+    ],
+    "correct": 2,
+    "explanation": "The most serious concern of dofetilide use is QT prolongation and the risk of tor- sades de pointes."
+  },
+  {
+    "question": "Drug A is more potent than drug B. The potency of a drug helps predict:",
+    "options": [
+      "Maximal effect obtainable",
+      "Likelihood of side effects",
+      "Elimination half-life",
+      "Dependency of effect on concentration",
+      "Selectivity"
+    ],
+    "correct": 3,
+    "explanation": "Potency is a measure of the activity of a drug in a biological system."
+  },
+  {
+    "question": "Digoxin used in combination with amiodarone, propranolol, or verapamil can cause:",
+    "options": [
+      "Torsades de pointes",
+      "Pericarditis",
+      "AV block",
+      "Eosinophilia",
+      "None of the above"
+    ],
+    "correct": 2,
+    "explanation": "The combination of digoxin with amiodarone, propranolol, or verapamil can lead to AV block."
+  },
+  {
+    "question": "Concerning beta blockers, which of the following is incorrect?",
+    "options": [
+      "Beta blockers are less effective in reducing coronary events in hypertensive men who smoke",
+      "Propranolol is contraindicated in patients with severe depression",
+      "Selective beta blockers should be avoided in patients with peripheral vascular disease",
+      "Beta blockers should be avoided in patients with significant asthma",
+      "Propranolol and bisoprolol doses should be reduced in patients with low plasma proteins"
+    ],
+    "correct": 2,
+    "explanation": "Selective beta blockers are preferred over non-selective agents in patients with periph- eral vascular disease."
+  },
+  {
+    "question": "A 56-year-old man with longstanding CHF faints at home and is brought to the ED. The patient appears to be in no distress, and his vital signs are normal. There are no physical signs of an exacerbation of heart failure. The patient has been treated with digoxin 0.125 mg per day, furosemide 40 mg BID, and quinidine 300 mg BID for many months. He has also been prescribed terfenadine 60 mg BID for chronic rhinitis. One week before collapsing, he was prescribed erythromycin 500 mg TID for bronchitis. An ECG shows nonspecific ST and T wave changes and anterior Q waves consistent with MI that was unchanged from previous trac- ings. The QT interval corrected for HR is 0.44 ssec. The most likely cause of the patient having fainted is:",
+    "options": [
+      "Digoxin toxicity due to potassium depletion",
+      "Digoxin toxicity due to a digoxin-quinidine interaction",
+      "Torsades de pointes caused by an interaction between quinidine and erythro- mycin",
+      "Torsades de pointes caused by an interaction between terfenadine and eryth- romycin",
+      "Torsades de pointes caused by an interaction between terfenadine and quini- dine"
+    ],
+    "correct": 3,
+    "explanation": "Terfenadine (though not now available in the U.S.) was considered an innocuous anti- histamine. However, large doses of terfenadine, or settings in which terfenadine metab- olism is impaired (such as concomitant erythromycin), can result in terfenadine-induced torsades de pointes. There is nothing in the case to suggest digoxin toxicity."
+  },
+  {
+    "question": "A 72-year-old patient presents with an ACS and receives aspirin, unfractionated heparin, and clopidogrel. He undergoes successful PCI. His creatinine is 2.8 mg/dL. Two days later he has a painful swollen left leg and a US confirms a deep venous thrombosis. His platelet count has fallen from 300,000 to 100,000. The best next step is to:",
+    "options": [
+      "Stop heparin and start enoxaparin and warfarin",
+      "Stop heparin and start warfarin",
+      "Stop heparin and start lepirudin",
+      "Stop heparin and start Argatroban",
+      "Start warfarin and repeat platelet count the next day"
+    ],
+    "correct": 3,
+    "explanation": "In the presence of suspected HIT and renal insufficiency, the appropriate step is to stop heparin and start Argatroban. Lepirudin, although indicated in patients with HIT, is excreted renally and hence should be avoided in the presence of significant renal insufficiency. While enoxaparin has a decreased incidence of HIT over unfrac- tionated heparin, it is still contraindicated once HIT has occurred. Warfarin should ultimately be started, although it will be a number of days before warfarin provides adequate anticoagulation. Warfarin should not be started until the thrombocytopenia resolves, as the initial hypercoagulable state induced by a decline in protein C levels would only compound the hypercoagulability of HIT."
+  },
+  {
+    "question": "The dose of digoxin should be adjusted downward with all of the following drugs, except:",
+    "options": [
+      "Verapamil",
+      "Amiodarone",
+      "Quinidine",
+      "Propafenone",
+      "Captopril"
+    ],
+    "correct": 4,
+    "explanation": "Digoxin is excreted from the liver and kidney by protein transporters (one of them being P-glycoprotein). Captopril has no effect on the protein transporters."
+  },
+  {
+    "question": "Each of the following statements about the antiarrhythmic agent disopyramide is true, except:",
+    "options": [
+      "It can accelerate or slow the sinus node rate depending on serum concentra- tion and underlying sinus node disease",
+      "The mean elimination half-life of disopyramide is 8 to 9 hours, and is pro- longed in the presence of renal, hepatic, or heart failure",
+      "It is effective in reducing the frequency of spontaneous ventricular ectopy and in preventing the recurrence of ventricular and pre-excited supraventricular arrhythmias",
+      "It should not be combined with mexiletine because of an opposing effect on repolarization",
+      "It is useful in the treatment of neurally-mediated syncope"
+    ],
+    "correct": 3,
+    "explanation": "In combination with a Class Ib agent, such as mexiletine, the effect of disopyramide can be enhanced while avoiding further prolongation of the QT interval. Disopyramide has been effective in treating neurally mediated syncope in patients refractory to beta blockers."
+  },
+  {
+    "question": "Which of the following drugs is not associated with a dose-dependent risk of tor- sades de pointes?",
+    "options": [
+      "Sotalol",
+      "Ibutilide",
+      "Terfenadine",
+      "Quinidine",
+      "Thioridazine"
+    ],
+    "correct": 3,
+    "explanation": "Torsades de pointes is usually associated with high drug dosages or plasma concentrations of CV drugs (such as sotalol and ibutilide) and \u201cnon-CV drugs\u201d (terfenadine, cisapride, haloperidol, and thioridazine). An exception to this rule is quinidine, where the reaction can occur with the first dose and at \u201csubtherapeutic\u201d plasma concentrations."
+  },
+  {
+    "question": "All of the following statements about lidocaine are true, except:",
+    "options": [
+      "Lidocaine has little effect on the electrophysiological properties of atrial myocardial cells or on conduction in accessory pathways",
+      "In the absence of severe LV dysfunction, clinically significant adverse hemo- dynamic effects from lidocaine are rarely noted",
+      "Patients treated with an initial bolus of lidocaine followed by a maintenance infusion may experience transient excessive plasma concentrations of the drug 30 to 120 min after therapy is begun",
+      "The elimination half-life of lidocaine in patients with uncomplicated MI is 2 to 4 times that in normal subjects",
+      "Lidocaine toxicity is increased in patients with MI and heart failure"
+    ],
+    "correct": 2,
+    "explanation": "Patients treated with an initial bolus of lidocaine followed by a maintenance infusion may experience transient subtherapeutic plasma concentrations at 30 to 120 minutes after therapy is begun and may require a subsequent bolus."
+  },
+  {
+    "question": "ACE inhibitors have which of the following actions?",
+    "options": [
+      "Increase degradation of bradykinin",
+      "Decrease degradation of bradykinin",
+      "Increase production of bradykinin",
+      "Increase kallikrein production",
+      "Impair the conversion of prekallikrein to kallikrein"
+    ],
+    "correct": 1,
+    "explanation": "ACE increases the degradation of bradykinin, hence ACE inhibitors decreased this degradation. ARBs have no effect on bradykinin metabolism."
+  },
+  {
+    "question": "A 70-year-old woman with AF is admitted with nausea, yellow vision, and a reg- ular ventricular rhythm at 70 bpm. She has been on 0.25 mg/day of digoxin and the plasma level is 3.2 ng/ml. The half-life for digoxin for her is 1.6 days. She has normal renal function. How long should she hold her digoxin to reach a therapeutic level of 0.8 ng/ml?",
+    "options": [
+      "8 days",
+      "2 days",
+      "4.8 days",
+      "2.4 days",
+      "3.2 days"
+    ],
+    "correct": 4,
+    "explanation": "Two-half lives of the drug will reduce the plasma level by a quarter."
+  },
+  {
+    "question": "Which of the following factors about dobutamine is false?",
+    "options": [
+      "Dobutamine does not stimulate dopaminergic receptors and therefore has no selective effects on renal blood flow",
+      "Paradoxical bradycardia with dobutamine has been linked to significant RCA stenosis",
+      "Unlike milrinone, chronic infusion of dobutamine is associated with an improvement in survival in heart failure patients, although at the expense of pro-arrhythmia",
+      "Dobutamine has little effect on alpha-adrenergic receptors",
+      "The typical hemodynamic response to dobutamine is mild hypotension mediated through acting on beta-2 receptors in the periphery"
+    ],
+    "correct": 2,
+    "explanation": "Chronic infusion of dobutamine has not been shown to have a survival benefit in heart failure."
+  },
+  {
+    "question": "The most potent vasoconstrictor is:",
+    "options": [
+      "Bradykinin",
+      "Endothelin",
+      "Acetylcholine",
+      "PAI-1",
+      "Adenosine"
+    ],
+    "correct": 1,
+    "explanation": "Endothelin is the most potent vasoconstrictor. Adenosine is a potent vasodilator."
+  },
+  {
+    "question": "Which of the following statements is false?",
+    "options": [
+      "Nitroprusside is an endothelial-independent vasodilator",
+      "NTG dilates the microcirculation",
+      "NO regulates matrix synthesis and smooth muscle migration",
+      "Nitrates have an antiplatelet activity",
+      "Nitrate-induced orthostatic hypotension is more commonly in the elderly"
+    ],
+    "correct": 1,
+    "explanation": "NTG is active on arteries \u2b0e100 \u242em and the venous system."
+  },
+  {
+    "question": "Response to which agent can be used to measure endothelial function?",
+    "options": [
+      "Methergine",
+      "Ergonovine",
+      "Acetylcholine",
+      "Adenosine",
+      "Endothelin"
+    ],
+    "correct": 2,
+    "explanation": "Acetylcholine causes endothelial-dependent vasodilation. In the absence of endothelial function, acetylcholine causes paradoxical vasodilation. Adenosine causes endothelial- independent vasodilation."
+  },
+  {
+    "question": "A drug administered by the intravenous route has which of the following bioavailabilities?",
+    "options": [
+      "0",
+      "1",
+      "\u2b0e1",
+      "\u2b0d1",
+      "Variable, depending on specific drug"
+    ],
+    "correct": 1,
+    "explanation": "IV administration of a drug bypasses all first-pass metabolism and gives complete bioavailability."
+  },
+  {
+    "question": "Methemoglobinemia, associated clinically with dyspnea, cyanosis, and low oxy- gen saturations, has not been associated with which of the following agents?",
+    "options": [
+      "Sodium nitroprusside",
+      "Well water",
+      "Sildenafil",
+      "Benzocaine",
+      "Iphosphamide chemotherapy"
+    ],
+    "correct": 2,
+    "explanation": "Methemoglobinemia is a rare complication of nitrites including those seen from envi- ronmental exposure. It has not been associated with sildenafil use."
+  },
+  {
+    "question": "Which of the following is true concerning digoxin?",
+    "options": [
+      "Digoxin is indicated for patients with stage B heart failure in sinus rhythm",
+      "Digoxin toxicity is associated with profound mesenteric dilatation",
+      "Digoxin effects are increased with low muscle mass",
+      "Hemodialysis is warranted in digoxin toxicity refractory to Digibind",
+      "Digoxin increases the pacing threshold"
+    ],
+    "correct": 2,
+    "explanation": "Digoxin effects are increased with low muscle mass due to less skeletal binding. Hemodialysis is not helpful in digoxin toxicity due to the large volume of distribu- tion. Digoxin decreases the pacing threshold."
+  },
+  {
+    "question": "Therapeutic uses of calcium channel blockers include all of the following except:",
+    "options": [
+      "Angina pectoris",
+      "Pulmonary HTN",
+      "Migraine headaches",
+      "Right-sided heart failure",
+      "HCM"
+    ],
+    "correct": 3,
+    "explanation": "Due to potential negative inotropic actions, calcium channel blockers have no thera- peutic role in right-sided heart failure and should be avoided or used with extreme caution in patients with right-sided heart failure."
+  },
+  {
+    "question": "Concerning metoprolol, in which of the following conditions will the difference in plasma concentration following oral versus parenteral administration be the smallest?",
+    "options": [
+      "CHF",
+      "Chronic renal failure",
+      "Cirrhosis of the liver",
+      "Malabsorption syndromes",
+      "COPD"
+    ],
+    "correct": 2,
+    "explanation": "This question focuses on disease states that alter first-pass metabolism and, hence, bioavailability of a drug. The question asks in which condition will the oral bioavail- ability be highest, ie, in which state will first-pass metabolism be lowest. Liver cirrho- sis impairs hepatic metabolism, here leading to an increased oral bioavailability of metoprolol."
+  },
+  {
+    "question": "Which of the following is true?",
+    "options": [
+      "Hyperthyroid patients typically require more warfarin due to effects on vita- min K",
+      "Lepirudin is indicated for patients with HIT in the setting of renal failure",
+      "Alteplase has a fast onset of action with a prolonged duration of action",
+      "Higher doses of heparin are typically required in pregnancy",
+      "Thrombolytics are contraindicated in patients with right-sided intracardiac thrombi"
+    ],
+    "correct": 3,
+    "explanation": "Due to the presence of more heparin-binding proteins, a greater plasma volume, increased renal clearance, coagulation factors, and heparin degradation in the placenta, heparin dosing is unpredictable in pregnancy, with patients invariably requiring higher doses. Hyperthyroidism is associated with an increased catabolism of vitamin K. Lepirudin is renally excreted and patients with HIT in the setting of renal failure should receive argatroban. While contraindicated with thrombi in left-sided chambers, slow infusions of thrombolytics are frequently used in the presence of right-sided thrombi."
+  },
+  {
+    "question": "The efficacy of a drug is best described by the:",
+    "options": [
+      "Maximal effect of the drug",
+      "Median effective dose",
+      "Dissociation constant of the drug receptor-complex",
+      "Clearance of the drug",
+      "Volume of distribution"
+    ],
+    "correct": 0,
+    "explanation": "The efficacy of a drug is best described by the maximal effect of the drug, regardless of dose."
+  },
+  {
+    "question": "The treatment of procainamide overdose should include:",
+    "options": [
+      "Potassium chloride",
+      "Isoproterenol",
+      "Magnesium",
+      "Sodium lactate",
+      "Dopamine"
+    ],
+    "correct": 3,
+    "explanation": "Sodium lactate is an effective agent for procainamide toxicity by increasing the sodium current and reducing drug-receptor binding by alkalizing the tissue. Hyperkalemia predisposes to procainamide toxicity."
+  },
+  {
+    "question": "Which of the following agents is least likely to cause hyperkalemia?",
+    "options": [
+      "Spironolactone",
+      "Amiloride",
+      "Captopril",
+      "Ethacrynic acid",
+      "Losartan"
+    ],
+    "correct": 3,
+    "explanation": "Loop diuretics such as ethacrynic acid decrease serum potassium."
+  },
+  {
+    "question": "Which of the following combinations of drug with adverse effect is correct?",
+    "options": [
+      "Minoxidil and alopecia",
+      "Methyldopa and hemolytic anemia",
+      "Bisoprolol and tachycardia",
+      "Hydralazine and cyanide toxicity",
+      "Prazosin and urinary retention"
+    ],
+    "correct": 1,
+    "explanation": "Methyldopa is rarely associated with Coombs positive hemolytic anemia. Minoxidil is used topically to promote hair growth due to its side effect of hirsutism. Cyanide toxicity is a potential side effect of nitrites."
+  },
+  {
+    "question": "Side effects of NTG include:",
+    "options": [
+      "Raynaud syndrome due to reflex peripheral vasodilatation",
+      "Methemoglobinemia",
+      "cGMP-mediated excessive vasodilatation with concomitant sildenafil",
+      "Edema",
+      "Bradycardia"
+    ],
+    "correct": 2,
+    "explanation": "The combination of increased cGMP from nitrates and impaired cGMP degradation from sildenafil potentially may lead to exaggerated hypotension and organ malperfu- sion due to hypotension. Hence the combination should be avoided."
+  },
+  {
+    "question": "Which of the following agents may exacerbate angina pectoris?",
+    "options": [
+      "SL NTG",
+      "Labetalol",
+      "Verapamil",
+      "Hydralazine",
+      "Lisinopril"
+    ],
+    "correct": 3,
+    "explanation": "Despite vasodilatory actions, the reflex tachycardia with hydralazine can exacerbate angina in the absence of HR control."
+  },
+  {
+    "question": "Which antiarrhythmic agent is best employed to treat digoxin-induced rhythm disturbances?",
+    "options": [
+      "Magnesium",
+      "Potassium",
+      "Lidocaine",
+      "Amiodarone",
+      "Quinidine"
+    ],
+    "correct": 2,
+    "explanation": "While antiarrhythmics, amiodarone and quinidine may both potentially exacerbate arrhythmias caused by digitalis toxicity."
+  },
+  {
+    "question": "Which of the following therapies does not have proven survival benefit in patients with low EF heart failure?",
+    "options": [
+      "Carvedilol",
+      "Enalapril",
+      "Spironolactone",
+      "Candesartan",
+      "Digoxin"
+    ],
+    "correct": 4,
+    "explanation": "Digoxin is the only listed therapy without proven effect on survival in patients with low EF heart failure."
+  },
+  {
+    "question": "Hepatic clearance is important for all of the following, except:",
+    "options": [
+      "Sotalol",
+      "Propranolol",
+      "Metoprolol",
+      "Labetalol",
+      "Amiodarone"
+    ],
+    "correct": 0,
+    "explanation": "Sotalol is cleared renally and hence should be used with extreme caution when there is the potential for renal insufficiency."
+  },
+  {
+    "question": "A 60-year-old man with AF and rapid ventricular response is treated with a drug that slows AV node conduction. Drug A in a dose of 10 mg produces a similar reduction in ventricular rate as 100 mg of Drug B. This indicates that Drug A is:",
+    "options": [
+      "More efficacious than Drug B",
+      "Less toxic than Drug B",
+      "More potent than Drug B",
+      "Has a shorter duration of action than Drug B",
+      "More selective than Drug B"
+    ],
+    "correct": 2,
+    "explanation": "Potency of a drug denotes the effect per unit mass. It does not describe the magni- tude of its maximal effect (efficacy)."
+  },
+  {
+    "question": "All of the following are correct about beta blockers, except:",
+    "options": [
+      "Metoprolol is a selective beta-2 adrenergic receptor antagonist",
+      "Nadolol is water soluble and renally excreted",
+      "Pindolol has intrinsic sympathomimetic activity",
+      "Propranolol is also a sodium channel blocker",
+      "Sotalol is also a potassium channel blocker"
+    ],
+    "correct": 0,
+    "explanation": "Metoprolol is not beta-2 selective."
+  },
+  {
+    "question": "You have recently started 150 mg TID of propafenone to suppress recurrences of PAF in a 40-year-old Caucasian man. He has a structurally normal heart and there is no history of any medical problems. He returns after 3 days of initi- ation of propafenone with new onset wheezing and shortness of breath. On examination he has prolonged expiration with rhonchi over both lung fields. Heart sounds are normal with a regular rhythm. ECG shows sinus bradycardia with a first degree AV conduction delay. What is the most likely reason for his symptoms?",
+    "options": [
+      "He has acute renal failure with elevated plasma level of propafenone",
+      "He is a rapid metabolizer of propafenone, with an elevated plasma level of 5-hydroxypropafaone",
+      "He is a slow metabolizer of propafenone, resulting in an elevated plasma level of propafenone",
+      "5-hydroxypropafenone is causing bronchoconstriction",
+      "He is a rapid acetylator with an elevated level of NAPA causing bronchocon- striction"
+    ],
+    "correct": 2,
+    "explanation": "A proportion of patients lack significant cytochrome CYP2D6 activity and, hence, are poor metabolizers of propafenone. This leads to relative increases in propafenone plasma levels that are associated with greater beta blocker effects than the metabolite 5-hydroxypropafaone."
+  },
+  {
+    "question": "All of the following are correct about diuretics, except:",
+    "options": [
+      "Thiazide diuretics may exacerbate hyperuricemia and impotence",
+      "Ethacrynic acid may be used safely in a patient with a sulfonamide allergy",
+      "Thiazide diuretics are a rare cause of pancreatitis",
+      "The coadministration of digoxin and spironolactone increases the occurrence of gynecomastia",
+      "Thiazide diuretics may cause hypokalemia and hypocalcemia"
+    ],
+    "correct": 4,
+    "explanation": "Hypercalcemia is a potential complication of thiazide diuretics."
+  },
+  {
+    "question": "Which of the following agents is most efficacious in the conversion of acute AF into sinus rhythm?",
+    "options": [
+      "Metoprolol",
+      "Digoxin",
+      "Amiodarone",
+      "Diltiazem",
+      "Esmolol"
+    ],
+    "correct": 2,
+    "explanation": "Amiodarone is the only agent that will convert the rhythm from AF to sinus. The other agents are useful agents for rate control."
+  },
+  {
+    "question": "Concerning bosentan, used in the treatment of pulmonary arterial HTN, which of the following is correct?",
+    "options": [
+      "Unlike treprostinol, bosentan is relatively safe in pregnancy",
+      "Bosentan is rarely associated with hepatic dysfunction",
+      "Bosentan is contraindicated in patients with renal insufficiency",
+      "Bosentan is a specific antagonist of the ET-B receptor",
+      "Bosentan affects the efficacy of estrogen-based contraceptives"
+    ],
+    "correct": 4,
+    "explanation": "The nonspecific ET-A and ET-B receptor antagonist bosentan is highly teratogenic, decreases the efficacy of estrogen contraceptive, and causes significant liver dysfunc- tion in up to 10% of patients."
+  },
+  {
+    "question": "Which of the following factors increases hepatic drug metabolism and, hence, reduces drug bioavailability?",
+    "options": [
+      "Ciprofloxacin",
+      "Verapamil",
+      "Erythromycin",
+      "Heart failure",
+      "Tobacco use"
+    ],
+    "correct": 4,
+    "explanation": "Heart failure by reducing hepatic blood flow may decrease the clearance of drugs metabolized in the liver. Cigarette smoke induces the CYP1A2 enzyme and may increase drug metabolism."
+  },
+  {
+    "question": "Which of the following agents may exacerbate gout?",
+    "options": [
+      "Lisinopril",
+      "Simvastatin",
+      "Niacin",
+      "Bumetanide",
+      "Gemfibrozil"
+    ],
+    "correct": 2,
+    "explanation": "Niacin should be avoided in patients with gout due to the potential for exacerbating it. Bumetanide is a loop diuretic and, unlike thiazide diuretics, does not affect gout."
+  },
+  {
+    "question": "Which of the following agents is not the correct antidote for the listed overdose/ toxicity?",
+    "options": [
+      "Glucagon for a beta blocker overdose",
+      "Calcium for a calcium channel overdose",
+      "Methylene blue for cyanide toxicity",
+      "Esmolol for a caffeine overdose",
+      "Digoxin antibodies for digoxin overdose"
+    ],
+    "correct": 2,
+    "explanation": "Methylene blue is the treatment of methemoglobinemia seen rarely as a complication of benzocaine administration for TEE or with sodium nitroprusside treatment. Cyanide toxicity, however, is treated with amyl nitrate, sodium nitrite, and then sodium thiosulfate."
+  },
+  {
+    "question": "Which of the following agents/therapies is not associated with the development of LV systolic dysfunction?",
+    "options": [
+      "Thyroid hormone",
+      "Ethanol",
+      "Bleomycin",
+      "Radiation",
+      "Adriamycin"
+    ],
+    "correct": 2,
+    "explanation": "Bleomycin, while potentially toxic to the lungs (interstitial fibrosis), is not directly cardiac toxic."
+  },
+  {
+    "question": "Which of the following agents decrease action potential duration?",
+    "options": [
+      "Adenosine",
+      "Mexiletine",
+      "Dofetilide",
+      "Amiodarone",
+      "Digoxin"
+    ],
+    "correct": 1,
+    "explanation": "Class 1B agents, such as mexiletine, inhibit sodium channels and shorten action poten- tial duration."
+  },
+  {
+    "question": "The mechanism of action of niacin is:",
+    "options": [
+      "Lipid hydrolysis by lipoprotein lipase",
+      "HMG-CoA reductase inhibition",
+      "Reduction of VLDL secretion by the liver",
+      "Enhanced clearance of triglyceride-rich lipoproteins",
+      "Bile-acid binding resin"
+    ],
+    "correct": 2,
+    "explanation": "Niacin acts by reducing VLDL secretion by the liver. Fibrates act by inhibiting lipid hydrolysis by lipoprotein lipase."
+  },
+  {
+    "question": "The following have the potential for drug-drug interactions except:",
+    "options": [
+      "Erythromycin and quinidine",
+      "Phenobarbital and calcium channel blockers",
+      "Ibuprofen and lisinopril",
+      "Sildenafil and dobutamine",
+      "Lovastatin and warfarin"
+    ],
+    "correct": 3,
+    "explanation": "All the answer choices have potential drug-drug interactions except sildenafil and dobutamine. (The combination of sildenafil and nitrates should be avoided.)"
+  },
+  {
+    "question": "Distribution of drugs to skeletal muscle:",
+    "options": [
+      "Depends on the unbound drug concentration gradient between the blood and the muscle",
+      "Has no effect on half-life",
+      "Is not associated with the solubility of the drug in muscle",
+      "Is decreased for drugs that are weakly bound to plasma proteins",
+      "Is independent of blood flow to skeletal muscle"
+    ],
+    "correct": 0,
+    "explanation": "Distribution of a drug to a specific tissue is directly dependent on the concentration gradient between that drug and the tissue and the blood flow to that tissue."
+  },
+  {
+    "question": "What best describes a drug that inhibits the action of a drug at its receptor by occupying those receptors without activating them?",
+    "options": [
+      "Partial agonist",
+      "Pharmacologic antagonist",
+      "Noncompetitive antagonist",
+      "Physiologic antagonist",
+      "Agonist"
+    ],
+    "correct": 1,
+    "explanation": "A pharmacologic antagonist is a drug that competitively blocks a drug\u2019s receptor with- out activating it."
+  },
+  {
+    "question": "The following are true for aspirin, except:",
+    "options": [
+      "Aspirin is indicated in combination with warfarin in patients at high risk for mechanical valve thrombosis",
+      "Clopidogrel should be administered to aspirin-intolerant patients acutely with an STEMI",
+      "Aspirin is FDA approved for primary prevention of coronary disease in high risk patients",
+      "Aspirin is indicated in acute thrombotic stroke",
+      "Late coronary stent thrombosis in both bare-metal and DESs is strongly linked to cessation of aspirin therapy"
+    ],
+    "correct": 2,
+    "explanation": "While recommended in patients with a \u2b0e10% 10-year risk of coronary disease, aspirin is not FDA approved for primary prevention."
+  },
+  {
+    "question": "Which of the following is not a recognized adverse effect of the listed drug?",
+    "options": [
+      "HMG-CoA reductase inhibitors (statins) and pancreatitis",
+      "Beta blockers and bronchospasm",
+      "Clonidine and sexual dysfunction",
+      "Hydralazine and visual disturbances including photophobia",
+      "ACE inhibitors and taste disturbances"
+    ],
+    "correct": 3,
+    "explanation": "Adverse effects of hydralazine therapy include hepatitis, neuropathy, flushing, and, rarely, a lupus-like syndrome. Photophobia, a potential sign of digoxin toxicity, is not a feature seen with hydralazine therapy."
+  },
+  {
+    "question": "A 64-year-old diabetic man, 2 to 3 days after PCI for an ACS, develops hemop- tysis and lung infiltrates. On bronchoscopic lavage there is sequentially blood aliquots with the presence of significant hemosiderin-laden macrophages. Which of the following agents is most likely responsible for this complication?",
+    "options": [
+      "Clopidogrel",
+      "Metoprolol",
+      "Enoxaparin",
+      "Abciximab",
+      "NTG"
+    ],
+    "correct": 3,
+    "explanation": "Alveolar hemorrhage is a recognized, albeit rare, complication of abciximab therapy."
+  },
+  {
+    "question": "Which of the following statements concerning adverse effects of drugs are true?",
+    "options": [
+      "Mild decreases in platelet counts are uncommon with heparin therapy",
+      "Mexiletine is associated with the development of a lupus-like syndrome",
+      "Adenosine may provoke VF in a patient with an accessory pathway",
+      "HMG-CoA reductase inhibitors (statins) are relatively safe in pregnancy",
+      "Amiodarone is not associated with toxic effects on the fetal thyroid"
+    ],
+    "correct": 2,
+    "explanation": "Mild reductions in platelet counts (HIT type 1) occur commonly with heparin ther- apy. Mexiletine, unlike procainamide, is not associated with a lupus-like syndrome. Statins are contraindicated in pregnancy due to a high rate of teratogenic effects."
+  },
+  {
+    "question": "Which of the following combinations do not have the potential for drug-drug interactions?",
+    "options": [
+      "NTG and tadalafil",
+      "Gemfibrozil and atenolol",
+      "Naproxen and loop diuretics",
+      "Aspirin and warfarin",
+      "Verapamil and atenolol"
+    ],
+    "correct": 1,
+    "explanation": "Gemfibrozil and atenolol do not interact. NTG and phosphodiesterase inhibitors, such as tadalafil or sildenafil, should be avoided."
+  },
+  {
+    "question": "The following agents/treatments are of value in metoprolol overdose except:",
+    "options": [
+      "Isoproterenol",
+      "Dobutamine",
+      "Pacing",
+      "Dialysis",
+      "Glucagon"
+    ],
+    "correct": 3,
+    "explanation": "Metoprolol is not dialyzable. Isoproterenol, dobutamine or glucagon are all reason- able agents in patients with an overdose of beta blockers. Temporary pacing maybe required for certain cases."
+  },
+  {
+    "question": "A 73-year-old man undergoes coronary angiography and multivessel coronary intervention with a total of 550 cc of iodinated contrast. Six hours later you are called because the patient is unable to see. Examination is otherwise unremark- able. You should recommend:",
+    "options": [
+      "Reassurance",
+      "Mannitol and furosemide",
+      "N-acetyl cysteine",
+      "Benadryl and corticosteroids",
+      "Heparin for presumed thromboembolic stroke"
+    ],
+    "correct": 0,
+    "explanation": "Acute cortical blindness following a large contrast exposure is due to osmolar disrup- tion of the blood-brain barrier. If clinical examination including funduscopy is nor- mal, the treatment involves fluids and reassurance. Symptoms typically resolve within 12 to 24 hours."
+  },
+  {
+    "question": "Which is not a function mediated by adenosine?",
+    "options": [
+      "Endothelial-independent vasodilation of the microvasculature",
+      "Prolongation of the atrial tissue refractory period",
+      "Decreased adhesion of activated platelets to one another",
+      "Endothelial-independent vasodilation of the macrovasculature",
+      "Decreased leukocyte adhesion to damaged endothelium"
+    ],
+    "correct": 1,
+    "explanation": "Adenosine is an endothelial-independent vasodilator of both the micro- and macrovasculature. It does not prolong the refractory period in atrial tissue. However, it does shorten the atrial action potential and hyperpolarizes the membrane. This results in depression of the sinus node rate and gives transient AV block."
+  },
+  {
+    "question": "Four hours after PCI in a patient with stable angina the patient\u2019s platelet count is 10,000. The most likely cause is:",
+    "options": [
+      "Heparin-associated thrombocytopenia",
+      "Idiopathic thrombocytopenic purpura",
+      "Aspirin",
+      "Abciximab",
+      "Clopidogrel-induced TTP"
+    ],
+    "correct": 3,
+    "explanation": "The fall in platelet count is too quick and too low for HIT and is most consistent with an acute fall secondary to abciximab use."
+  },
+  {
+    "question": "In a patient on warfarin, amiodarone is initiated for AF. You will need to:",
+    "options": [
+      "Increase the amiodarone dose by 50%",
+      "Increase the warfarin dose by 50%",
+      "Follow prothrombin time and adjust warfarin dosage",
+      "Switch warfarin to aspirin",
+      "Decrease amiodarone dose by 50%"
+    ],
+    "correct": 2,
+    "explanation": "Typically, warfarin doses need to be decreased between 25% and 50% after starting amiodarone, although the response is variable."
+  },
+  {
+    "question": "Torsades de pointes can result from all except:",
+    "options": [
+      "Erythromycin when taken with cisapride",
+      "Dofetilide, a Class III antiarrhythmic, in renal insufficiency",
+      "Haloperidol in a patient on quinidine",
+      "Propafenone, a Class IC antiarrhythmic",
+      "Mutation in sodium and potassium channels"
+    ],
+    "correct": 3,
+    "explanation": "Class 1C agents have no significant effect on prolongation of the action potential and, hence, do not predispose to torsades de pointes."
+  },
+  {
+    "question": "Which of the following is true regarding the use of digoxin in patients with heart failure?",
+    "options": [
+      "Digoxin improves survival in patients with low EF (EF \u2b0d 35%) heart failure",
+      "Digoxin improves survival in patients with normal EF heart failure",
+      "Digoxin decreases likelihood of hospitalization in patients with low EF heart failure",
+      "Digoxin has no effect on exercise capacity in patients with low EF heart failure",
+      "Verapamil is favored over digoxin for AF in the setting of decompensated low EF heart failure"
+    ],
+    "correct": 2,
+    "explanation": "Digoxin is safe and well tolerated in CHF, improving exercise capacity and reducing hospitalization rates without affecting mortality. In decompensated CHF calcium channel blockers, particularly those which are negatively inotropic, eg, verapamil, should be used with caution. Digoxin and beta blockers tend to be preferred for AF in patients with (particularly decompensated) CHF."
+  },
+  {
+    "question": "Concerning calcium channel blockers, which of the following is incorrect?",
+    "options": [
+      "Nifedipine can cause hypokalemia secondary to a weak diuretic-like action",
+      "Diltiazem may slow the development of posttransplant coronary disease irre- spective of effects on BP",
+      "Digoxin levels are essentially unaltered when coadministered with diltiazem",
+      "Unlike metoprolol, diltiazem has no effect on survival in postinfarct patients with preexisting LV dysfunction",
+      "Verapamil improves walking distance in patients with intermittent claudication"
+    ],
+    "correct": 3,
+    "explanation": "Diltiazem increases mortality in patients post-MI with preexisting LV systolic dys- function and should be avoided. The other statements are all true."
+  },
+  {
+    "question": "Which of the following is true regarding milrinone?",
+    "options": [
+      "Milrinone is useful in patients with heart failure secondary to HCM",
+      "Milrinone is hepatically cleared and hence the dose should be reduced in patients with severe hepatic congestion",
+      "Milrinone increases cardiac contractility through inhibition of the breakdown of cAMP",
+      "Unlike dobutamine, milrinone does not increase the incidence of ventricular dysrhythmia",
+      "Milrinone is indicated in patients with AMI"
+    ],
+    "correct": 2,
+    "explanation": "Milrinone leads to the inhibition of cAMP breakdown, through inhibition of phos- phodiesterase-III."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

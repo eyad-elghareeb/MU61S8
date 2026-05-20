@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;min-height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Internal Medicine Chest Medicine</title>
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../../index-engine.css">
+<link rel="manifest" href="../../../../manifest.webmanifest">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
+    <div class="topbar-title">MU61 Quiz - Internal Medicine Chest Medicine</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Internal Medicine Chest Medicine</span></h1>
+      <p>Q bank from National College of Chest Physicians (India)</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">Made By: <a href="https://github.com/eyad-elghareeb/QuizTool">QuizTool</a></div>
+  </div>
+
+<div class="dash-overlay" id="tracker-dashboard">
+  <div class="dash-modal">
+    <div class="dash-header">
+      <h2 id="dash-title-text">Question Tracker</h2>
+      <button class="dash-close-btn" onclick="closeTrackerDashboard()">x</button>
+    </div>
+    <div class="dash-scope-bar" id="dash-scope-bar"></div>
+    <div class="dash-summary">
+      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
+      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
+      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
+    </div>
+    <div class="dash-body" id="dash-body"></div>
+    <div class="dash-footer">
+      <button class="btn-dash-action" onclick="exportTrackerToPDF()">Export PDF</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">Clear All</button>
+      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../../../index-engine.js"></script>
+<script>
+const QUIZZES = [
+  {
+    uid: "tfbvpwjpn7b",
+    title: "Clinical Pearls In Respiratory Medicine — MCQs",
+    description: "All questions combined — Clinical Pearls in Respiratory Medicine — MCQs (627 questions)",
+    icon: "📘",
+    tags: ["Quiz", "627 Questions"],
+    url: "00-Clinical-Pearls-in-Respiratory-Medicine-MCQs.html"
+  },
+  {
+    uid: "tfbvpwtb3pb",
+    title: "Bronchology",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Bronchology",
+    icon: "📘",
+    tags: ["Quiz", "26 Questions"],
+    url: "01-Bronchology.html"
+  },
+  {
+    uid: "tfbvpw22z2i",
+    title: "Chest Radiology",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Chest Radiology",
+    icon: "📘",
+    tags: ["Quiz", "49 Questions"],
+    url: "02-Chest-Radiology.html"
+  },
+  {
+    uid: "tfbvpwjtw6o",
+    title: "Critical Care In Respiratory Medicine",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Critical Care in Respiratory Medicine",
+    icon: "📘",
+    tags: ["Quiz", "30 Questions"],
+    url: "03-Critical-Care-in-Respiratory-Medicine.html"
+  },
+  {
+    uid: "tfbvpwtawqm",
+    title: "General Respiratory Medicine",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — General Respiratory Medicine",
+    icon: "📘",
+    tags: ["Quiz", "143 Questions"],
+    url: "04-General-Respiratory-Medicine.html"
+  },
+  {
+    uid: "tfbvpwmbfm6",
+    title: "Lung Function Testing",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Lung Function Testing",
+    icon: "📘",
+    tags: ["Quiz", "23 Questions"],
+    url: "05-Lung-Function-Testing.html"
+  },
+  {
+    uid: "tfbvpwkhml5",
+    title: "Intrathoracic Tumors",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Intrathoracic Tumors",
+    icon: "📘",
+    tags: ["Quiz", "73 Questions"],
+    url: "06-Intrathoracic-Tumors.html"
+  },
+  {
+    uid: "tfbvpwg250f",
+    title: "Obstructive Airway Diseases",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Obstructive Airway Diseases",
+    icon: "📘",
+    tags: ["Quiz", "95 Questions"],
+    url: "07-Obstructive-Airway-Diseases.html"
+  },
+  {
+    uid: "tfbvpwddixc",
+    title: "Pleural Disease",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Pleural Disease",
+    icon: "📘",
+    tags: ["Quiz", "30 Questions"],
+    url: "08-Pleural-Disease.html"
+  },
+  {
+    uid: "tfbvpwxuzsb",
+    title: "Pneumonia",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Pneumonia",
+    icon: "📘",
+    tags: ["Quiz", "32 Questions"],
+    url: "09-Pneumonia.html"
+  },
+  {
+    uid: "tfbvpw1j1wd",
+    title: "Respiratory Physiology",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Respiratory Physiology",
+    icon: "📘",
+    tags: ["Quiz", "38 Questions"],
+    url: "10-Respiratory-Physiology.html"
+  },
+  {
+    uid: "tfbvpwgz3kw",
+    title: "Obstructive Sleep Apnea",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Obstructive Sleep Apnea",
+    icon: "📘",
+    tags: ["Quiz", "36 Questions"],
+    url: "11-Obstructive-Sleep-Apnea.html"
+  },
+  {
+    uid: "tfbvpw1obwn",
+    title: "Tuberculosis",
+    description: "Clinical Pearls in Respiratory Medicine — MCQs — Tuberculosis",
+    icon: "📘",
+    tags: ["Quiz", "52 Questions"],
+    url: "12-Tuberculosis.html"
+  }
+];
+(function(){
+  var s=localStorage.getItem('quiz-theme');
+  if(s) document.documentElement.setAttribute('data-theme', s);
+  if(window.__updateThemeIcon) window.__updateThemeIcon();
+  if(window.renderQuizzes) window.renderQuizzes();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

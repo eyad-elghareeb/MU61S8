@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Tuberculosis</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpw1obwn",
+  "title": "Tuberculosis",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Tuberculosis",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Which of the following is MOST POTENT Anti TB drug?",
+    "options": [
+      "Ethionamide",
+      "Cycloserine",
+      "PAS",
+      "Moxi\ufb02oxacin",
+      "Co-amoxyclav"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Moxi\ufb02oxacin."
+  },
+  {
+    "question": "Which of the following drug is MOST POTENT in preventing relapse in TB?",
+    "options": [
+      "INH",
+      "Rifampicin",
+      "Pyrazinamide",
+      "Ethambutol",
+      "Streptomycin"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Main outcome indicator of effective TB control program is ---",
+    "options": [
+      "Defaulter rate",
+      "Death rate",
+      "Failure rate",
+      "Number of newly detected cases",
+      "Cure rate"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Cure rate."
+  },
+  {
+    "question": "Best way to control TB is ---",
+    "options": [
+      "BCG vaccination",
+      "Screening and early detection of cases",
+      "Early detection and treatment of cases",
+      "Isolation of cases",
+      "Chemoprophylaxis"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Early detection and treatment of cases."
+  },
+  {
+    "question": "Which is the essential drug for short course chemotherapy in TB?",
+    "options": [
+      "INH",
+      "Rifampicin",
+      "Ethambutol",
+      "Streptomycin",
+      "Levo\ufb02oxacin"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Gene X-pert?",
+    "options": [
+      "Nucleic acid ampli\ufb01cation assay for detection of TB",
+      "Can be used in children",
+      "Can be used in smear negative cases",
+      "Useful for rapid diagnosis of TB",
+      "Useful for follow up of TB cases"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Useful for follow up of TB cases."
+  },
+  {
+    "question": "A 48-year-old male was diagnosed with smear positive pulmonary tuberculosis and has been treated for 2 months ATT with good response. But the patient develops numbness and paresthesia in the extremities. What will you do next?",
+    "options": [
+      "Add pyridoxine",
+      "Replace isoniazid with PAS 275",
+      "Stop isoniazid",
+      "Replace rifampin with ethambutol",
+      "Replace isoniazid with levo\ufb02oxacin"
+    ],
+    "correct": 0,
+    "explanation": "Numbness and paresthesia in the extremities in a patient on ATT is due to INH induced peripheral neuritis which should be treated with pyridoxine 100mg daily at night. Routine supplementation of pyridoxine with ATT should be avoided as it decreases the ef\ufb01cacy of INH. Only patients with preexisting peripheral neuritis and those who are at higher risk of developing peripheral neuritis should be given a prophylactic dose of pyridoxine 40mg at night. Diabetes, malnutrition, hypoxia, extensive lung disease, alcoholism are some of the conditions which predispose for development of INH induced peripheral neuritis"
+  },
+  {
+    "question": "Which is a WRONG statement regarding Edinburgh method of treatment for TB?",
+    "options": [
+      "Was pioneered by John Crofton",
+      "Was the \ufb01rst successful combination chemotherapy for TB",
+      "All three drugs were used till the end of treatment",
+      "INH, Streptomycin and PAS were used",
+      "Prevented development of drug resistance"
+    ],
+    "correct": 2,
+    "explanation": "In Edinburgh method of treatment for TB streptomycin was given in the initial intensive phase and then only INH and PAS were continued for in continuation phase for 1 year."
+  },
+  {
+    "question": "Which anti TB drug which may precipitate an addisonian crisis?",
+    "options": [
+      "INH",
+      "Ethambutol",
+      "Streptomycin",
+      "PAS",
+      "Rifampicin"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Which is a WRONG statement regarding Miliary TB?",
+    "options": [
+      "Due to hematogenous spread",
+      "Diffuse, randomly distributed",
+      "HRCT is more sensitive",
+      "Calci\ufb01cation is common after treatment",
+      "Chest X-ray may be normal"
+    ],
+    "correct": 3,
+    "explanation": "276 19. Which is a WRONG statement? A. Majority of cavitory Pulmonary TB are smear positive B. Cavitation is more common in Squamous cell carcinoma C. Cavitating bronchogenic carcinoma has poorer prognosis D. Aspergilloma always requires treatment by surgery E. Ischemia is the main cause for Cavitation in bronchogenic carcinoma Answer \u2013 D"
+  },
+  {
+    "question": "Which is the MOST COMMON cavity leading toAspergilloma?",
+    "options": [
+      "Lung abscess cavity",
+      "Post TB cavity",
+      "Active TB cavity",
+      "Septic emboli cavity",
+      "Congenital cyst"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Post TB cavity."
+  },
+  {
+    "question": "Which is MOST COMMON site for pulmonary TB?",
+    "options": [
+      "Right upper lobe posterior segment",
+      "Right upper lobe anterior segment",
+      "Left upper lobe",
+      "Right lower lobe",
+      "Left lower lobe"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Right upper lobe posterior segment."
+  },
+  {
+    "question": "Which is NOT a radiological feature in pulmonary TB?",
+    "options": [
+      "Pleural effusion with parenchymal lesion",
+      "Parenchymal lesion with mediastinal lymphadenopathy",
+      "Cavity surrounded by in\ufb01ltrates",
+      "Collapse of upper lobe",
+      "In\ufb01ltrative lesion in upper lobe"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Collapse of upper lobe."
+  },
+  {
+    "question": "Which is NOT a feature of tubercular cavity?",
+    "options": [
+      "Predominantly seen in upper lobe",
+      "May be single or multiple",
+      "Thin walled",
+      "Prominent air \ufb02uid level",
+      "May be bilateral"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Prominent air \ufb02uid level."
+  },
+  {
+    "question": "Which is a WRONG statement regarding tubercular cold abscess?",
+    "options": [
+      "Most common site is neck",
+      "Usually painless",
+      "Usually cystic in consistency",
+      "Constitutional symptoms are rare",
+      "Acute in\ufb02ammatory signs are usually absent"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Constitutional symptoms are rare."
+  },
+  {
+    "question": "Which is a WRONG statement regarding cavity in tuberculosis?",
+    "options": [
+      "Cavity is less common in patients with acquired immunode\ufb01ciency syndrome",
+      "Cavitation is highly prevalent among diabetic patients with tuberculosis 277",
+      "The number and maximum size of cavities can correlate with the numbers of acid-fast bacilli (AFB) in sputum",
+      "Tubercular cavities are always thin walled",
+      "Cavities can vary widely in size"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Tubercular cavities are always thin walled."
+  },
+  {
+    "question": "Serial sputum examination in pulmonary TB is NOT USEFUL to decide/detect which of the following?",
+    "options": [
+      "Drug resistance",
+      "Response to treatment",
+      "Extent of lung lesion",
+      "Noncompliance with treatment",
+      "Outcome of treatment"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Extent of lung lesion."
+  },
+  {
+    "question": "Which is a WRONG statement regarding endobronchial TB?",
+    "options": [
+      "Cough is a predominant symptom",
+      "May mimic malignancy on bronchoscopic examination",
+      "CT scan may be helpful in diagnosis",
+      "Involves small airways",
+      "Stridor is not a common presenting symptom"
+    ],
+    "correct": 3,
+    "explanation": "Involves major airways"
+  },
+  {
+    "question": "Which of the following is a WRONG statement about endobronchial TB?",
+    "options": [
+      "Chest x ray may be normal",
+      "Cough is a common symptom",
+      "Can present with prolonged fever with wheezing",
+      "HRCT scan thorax will demonstrate endobronchial lesions",
+      "Sputum AFB smear may be positive"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is HRCT scan thorax will demonstrate endobronchial lesions."
+  },
+  {
+    "question": "World TB day is ---",
+    "options": [
+      "Birthday of Robert Koch",
+      "Date when TB bacilli was discovery was announced",
+      "Date when DOTS was started \ufb01rst",
+      "Date when BCG was discovered",
+      "March 22nd"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Date when TB bacilli was discovery was announced."
+  },
+  {
+    "question": "Which of the following drug is MOST POTENT in preventing relapse in tuberculosis?",
+    "options": [
+      "INH",
+      "Rifampicin",
+      "Pyrazinamide",
+      "Ethambutol",
+      "Streptomycin"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Most common site for TB lymphadenitis is ---",
+    "options": [
+      "Retro peritoneal",
+      "Cervical",
+      "Axillary",
+      "Inguinal",
+      "Submandibular"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Cervical."
+  },
+  {
+    "question": "Which is NOT bactericidal?",
+    "options": [
+      "INH",
+      "Rifampicin",
+      "Streptomycin",
+      "Ethambutol",
+      "Streptomycin"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Ethambutol."
+  },
+  {
+    "question": "Venous sample while doing ABG is most common when the puncture site is --- artery",
+    "options": [
+      "Brachial",
+      "Radial",
+      "Dorsalis Pedis",
+      "Popliteal",
+      "Femoral"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Femoral."
+  },
+  {
+    "question": "Which anti TB drug is contraindicated in Pregnancy?",
+    "options": [
+      "Rifampicin",
+      "Ethambutol",
+      "Streptomycin",
+      "Pyrazinamide",
+      "INH"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Streptomycin."
+  },
+  {
+    "question": "Which is a WRONG statement regarding tuberculosis?",
+    "options": [
+      "There is no genetic predisposition to develop tuberculosis",
+      "Smoking increases the risk for developing pulmonary TB.",
+      "Females of child bearing age on ATT should be advised contraception till completion of treatment.",
+      "Drug resistant TB is more common in diabetics",
+      "Rifampicin is the most potent primary Anti TB drug"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is There is no genetic predisposition to develop tuberculosis."
+  },
+  {
+    "question": "Which is a CORRECT statement regarding Ethambutol?",
+    "options": [
+      "Can cause peripheral neuritis",
+      "Better avoided in children less than 5 years of age",
+      "Can cause hepatotoxicity",
+      "Not used in continuation phase",
+      "Bactericidal"
+    ],
+    "correct": 1,
+    "explanation": "279 37. Which Anti TB drug which was invented last? A. INH B. Ethambutol C. Streptomycin D. Rifampicin E. Pyrazinamide Answer-D"
+  },
+  {
+    "question": "Which Anti-TB drug has drug interaction with Anti-retroviral drugs?",
+    "options": [
+      "INH",
+      "Ethambutol",
+      "Streptomycin",
+      "Pyrazinamide",
+      "Rifampicin"
+    ],
+    "correct": 4,
+    "explanation": "39.A patient on ATT complains of joint pain and swelling. Which drug the is to MOST LIKELY cause this? A. INH B. Ethambutol C. Streptomycin D. Pyrazinamide E. Rifampicin Answer -D"
+  },
+  {
+    "question": "A patient on ATT develops hearing impairment. Which drug is the most likely cause?",
+    "options": [
+      "INH",
+      "Ethambutol",
+      "Streptomycin",
+      "Pyrazinamide",
+      "Rifampicin"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Streptomycin."
+  },
+  {
+    "question": "A patient on ATT develops jaundice. Which drug least likely to be the cause?",
+    "options": [
+      "INH",
+      "Ethambutol",
+      "Cycloserine",
+      "Pyrazinamide",
+      "Rifampicin"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Ethambutol."
+  },
+  {
+    "question": "ATT which should be given on empty stomach?",
+    "options": [
+      "INH",
+      "Ethambutol",
+      "Cycloserine",
+      "Pyrazinamide",
+      "Rifampicin"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Which drug leads to discoloration of urine?",
+    "options": [
+      "Rifampicin 280",
+      "INH",
+      "Ethambutol",
+      "Cycloserine",
+      "Pyrazinamide"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Rifampicin 280."
+  },
+  {
+    "question": "Which is the least potent Anti TB drug?",
+    "options": [
+      "Streptomycin",
+      "Rifampicin",
+      "INH",
+      "Ethambutol",
+      "Pyrazinamide"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Ethambutol."
+  },
+  {
+    "question": "Why treatment of TB is always with multidrug regimen?",
+    "options": [
+      "To decrease duration of treatment",
+      "To enhance patient compliance",
+      "To prevent emergence of drug resistance",
+      "To decrease drug toxicity",
+      "To improve the treatment outcome"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is To prevent emergence of drug resistance."
+  },
+  {
+    "question": "What is the best way to control TB?",
+    "options": [
+      "Early detection and treatment",
+      "BCG vaccination",
+      "Isolation of cases",
+      "Chemoprophylaxis",
+      "Treatment of latent TB"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Early detection and treatment."
+  },
+  {
+    "question": "Which is the most common organ involved in extra pulmonary TB",
+    "options": [
+      "Meninges",
+      "Lymph node",
+      "Bone",
+      "GIT",
+      "Skin"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Lymph node."
+  },
+  {
+    "question": "Which is the most reliable indicator of Drug resistance while patient is on treatment?",
+    "options": [
+      "Clinical deterioration",
+      "Appearance of new lesions in CXR",
+      "Persistent sputum smear positivity",
+      "Persistent fever beyond one month",
+      "Progressive weight loss"
+    ],
+    "correct": 2,
+    "explanation": "281 50. XDR TB is--- A. MDR TB with resistance to any two second line ATT B. MDR with resistance to Quinolones and one second lineAminoglycoside C. MDR TB with resistance any other two ATT D. MDR TB with resistance to streptomycin and Levo\ufb02oxacin E. MDR TB with resistance to Cycloserine and Levo\ufb02oxacin Answer-A"
+  },
+  {
+    "question": "Which is NOT a disadvantage of \ufb02uorescence microscopy",
+    "options": [
+      "Cost",
+      "Requires technical skill to handle",
+      "Requires power supply",
+      "Sensitivity compared to conventional method"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Sensitivity compared to conventional method."
+  },
+  {
+    "question": "Chest X-Ray is helpful in PTB in all of the following conditions except ---",
+    "options": [
+      "For presumptive diagnosis of smear negative PTB",
+      "To diagnose coexistent lung disease",
+      "To diagnose pleural complications",
+      "To know the extent of lung lesion",
+      "Decide treatment category smear negative cases"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is To know the extent of lung lesion."
+  },
+  {
+    "question": "MDR TB is ---",
+    "options": [
+      "Resistance to all \ufb01rst line ATT",
+      "Resistance to streptomycin and Rifampicin",
+      "Resistance to INH and Rifampicin",
+      "Resistance to Pyrazinamide and Rifampicin",
+      "Resistance to Ethambutol and Rifampicin"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Resistance to INH and Rifampicin."
+  },
+  {
+    "question": "Which drug CAN'T cross biological membranes?",
+    "options": [
+      "INH",
+      "Ethambutol",
+      "Streptomycin",
+      "Pyrazinamide",
+      "Rifampicin"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Streptomycin."
+  },
+  {
+    "question": "What is primary drug resistance in Tuberculosis?",
+    "options": [
+      "Resistance to INH and Pyrazinamide",
+      "Drug resistance with no past history of ATT",
+      "Resistance to primary Anti-TB drugs",
+      "Resistance detected for the \ufb01rst time",
+      "Resistance to INH and Rifampicin"
+    ],
+    "correct": 1,
+    "explanation": "282 56. Which is the MOST POTENT Quinolone as second line ATT? A. Cipro\ufb02oxacin B. Nor\ufb02oxacin C. Levo\ufb02oxacin D. O\ufb02oxacin E. Moxi\ufb02oxacin Answer-C"
+  },
+  {
+    "question": "Which is NOT a risk factor for ATT induced hepatotoxicity?",
+    "options": [
+      "Female",
+      "Age less than 20years",
+      "Extensive Lung disease",
+      "Inappropriate use of drugs",
+      "Multidrug regimen"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Age less than 20years."
+  },
+  {
+    "question": "Which of the following is now NOT being used in treatment of MDR TB?",
+    "options": [
+      "Ethionamide",
+      "Cycloserine",
+      "Levo\ufb02oxacin",
+      "Thiazetazone",
+      "Bedaquiline"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Thiazetazone."
+  },
+  {
+    "question": "Which of the following drug is MOST POTENT in preventing relapse in TB?",
+    "options": [
+      "INH",
+      "Pyrazinamide",
+      "Ethambutol",
+      "Bedaquiline",
+      "Rifampicin"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Which is the MOST POTENT Anti-TB drug with early bactericidal activity?",
+    "options": [
+      "INH",
+      "Pyrazinamide",
+      "Ethambutol",
+      "Rifampicin",
+      "Levo\ufb02oxacin"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Which is the MOST POTENT Anti-TB drug with sterilizing activity?",
+    "options": [
+      "INH",
+      "Rifampicin",
+      "Pyrazinamide",
+      "Ethambutol",
+      "Levo\ufb02oxacin"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Rifampicin."
+  },
+  {
+    "question": "Which drug is effective in acidic pH?",
+    "options": [
+      "Rifampicin",
+      "Ethambutol",
+      "INH",
+      "Pyrazinamide",
+      "Streptomycin"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Pyrazinamide."
+  },
+  {
+    "question": "Which Anti-TB drug that can cause psychiatric manifestations?",
+    "options": [
+      "Rifampicin",
+      "Ethambutol",
+      "INH",
+      "Pyrazinamide",
+      "Cycloserine"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Cycloserine."
+  },
+  {
+    "question": "Principal adverse effect of Ethionamide is ---",
+    "options": [
+      "Upper GIT Symptoms",
+      "Hypothyroidism",
+      "Seizures",
+      "Drug induced Hepatitis",
+      "Pruritus"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Upper GIT Symptoms."
+  },
+  {
+    "question": "What is the best way to monitor the response to treatment in smear + TB?",
+    "options": [
+      "Bacteriological assessment",
+      "Weight gain",
+      "Clinical assessment",
+      "Radiological assessment",
+      "Assessing treatment compliance"
+    ],
+    "correct": 0,
+    "explanation": "284 69. Which of the following is the MOST COMMON cause of Granulomatous lymphadenitis? A. Sarcoidosis B. Tuberculosis C. Lymphomas D. Syphilis E. Fungal infections Answer-B. 69 A. Generalized lymphadenopathy B. Supraclavicular lymphadenopathy C. Hard consistency D. Size > 2.25 cms E. Pain/tenderness Answer \u2013 E."
+  },
+  {
+    "question": "Which is a FALSE statement?",
+    "options": [
+      "Multiple, \ufb01rm, matted, lymph nodes are seen in TB",
+      "Rubbery, discrete, lymph nodes are seen in lymphomas",
+      "Both may have nonspeci\ufb01c systemic symptoms",
+      "FNAC will show granulomatous in\ufb02ammation picture only in TB not in Lymphomas",
+      "Sinus tract formation seen in TB lymphadenitis"
+    ],
+    "correct": 3,
+    "explanation": "285 286 PUBLICATION OF NATIONAL COLLEGE OF CHEST PHYSICIANS (INDIA)"
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

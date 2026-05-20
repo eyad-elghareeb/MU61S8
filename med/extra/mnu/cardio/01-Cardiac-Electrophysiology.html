@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiac Electrophysiology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpwrx0er",
+  "title": "Cardiac Electrophysiology",
+  "description": "Mayo Clinic Cardiology Board Review \u2014 Cardiac Electrophysiology",
+  "icon": "\ud83e\udec0"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "A 16-year-old female was admitted to the coronary care unit after an aborted sudden cardiac death. The patient was awakened to answer a telephone call and suddenly collapsed. The fall was witnessed and a rapid 911 call allowed the para- medics to arrive within 5 minutes. The patient was in VF and was successfully defibrillated with one shock. She remained comatose and was intubated and transported to the hospital. On physical exam she was intubated and withdrew to painful stimuli. Her pupils were dilated, but reactive to light symmetrically. Her past medical history is remarkable for 3 brief fainting episodes. She was not using any prescription medication. The mother denied knowledge of substance abuse. Her family his- tory is notable for a sister who died suddenly at the age of 20. What is the most likely diagnosis at this time?",
+    "options": [
+      "HCM",
+      "Brugada syndrome",
+      "Idiopathic VF",
+      "RVOT tachycardia",
+      "Long QT syndrome"
+    ],
+    "correct": 4,
+    "explanation": "The most likely diagnosis is long QT syndrome. The prolonged QT \u2b0e 480 msec, his- tory of syncope, and family history of sudden death in a relative \u2b0d 30 years of age yield a Moss and Schwartz score of 4.5 (see Table for scoring criteria), which places her at high risk of long QT syndrome. Although both Brugada syndrome and idio- pathic VF present with sudden death, the clinical circumstance surrounding the arrest, gender of the patient, and ECG make these diseases less likely. RVOT tachy- cardia is typically not associated with sudden death. HCM often presents with exer- tional symptoms. Table Point system for the diagnosis of congential long QT syndrome (Circulation 1993; 88:782\u20134) Variable Points ECG QTc \u2b0e480 msec 3 460\u2013470 msec 2 450 msec (males) 1 Torsades de pointes 2 T-wave alternans 1 Notched T wave in 3 leads 1 Low HR for age 0.5 Clinical History Syncope with stress 2 without stress 1 Congenital deafness 0.5 Family History Family member with long QT syndrome 1 Sudden death in a family member \u2b0d30 years of age 0.5 with no other identifiable cause Cumulative point score for risk of having congential long QT syndrome: \u2c551 low risk 2\u20133 intermediate risk \u2c56 4 high risk"
+  },
+  {
+    "question": "Based upon the above patient presentation what subtype of long QT syndrome is expected?",
+    "options": [
+      "Long QT syndrome 1",
+      "Long QT syndrome 2",
+      "Long QT syndrome 3",
+      "Jervell and Lange-Nielsen syndrome",
+      "Timothy syndrome"
+    ],
+    "correct": 1,
+    "explanation": "The most likely genotype for the presented phenotype is long QT2 syndrome. This is supported by the family gender and the auditory stimuli. Exertion related triggers are more common with long QT1 syndrome. Sleep-related events are more common in long QT3 syndrome. Jervell and Lange-Nielsen long QT syndrome is rare, autosomal recessive, and associated with congenital deafness. Timothy syndrome (long QT8 syndrome) is associated with other phenotypic manifestations, such as syndactyly, and significant learning disabilities."
+  },
+  {
+    "question": "Within the first 24 hours of hospitalization the patient recovers quickly until there are no apparent neurologic deficits. She provides no additional history and reports no symptoms prior to the cardiac arrest. What is the next step in her management?",
+    "options": [
+      "Left cardiac sympathetic denervation",
+      "Dual-chamber permanent pacemaker",
+      "Amiodarone",
+      "Single-chamber ICD",
+      "Atenolol"
+    ],
+    "correct": 3,
+    "explanation": "The patient suffered an aborted sudden death and thereby has a class I indication for an ICD. There is little role for a permanent pacemaker. If pacing is required, the implan- tation of a dual-chamber ICD should be considered. Amiodarone often further prolongs the QT interval. Left cardiac sympathetic denervation can be considered in patients with recurrent appropriate ICD shocks. Beta blockers (preferably nadolol or propra- nolol) should be considered as standard therapy in all patients with long QT1 or 2 syndromes."
+  },
+  {
+    "question": "What is the most common mechanism involved in clinically important cardiac arrhythmias?",
+    "options": [
+      "Triggered activity",
+      "Abnormal automaticity",
+      "Reentry",
+      "Early afterdepolarizations",
+      "Parasystole"
+    ],
+    "correct": 2,
+    "explanation": "Reentry is the most common mechanism underlying cardiac tachyarrhythmias, including AVNRT, atrial flutter, AVRT with an accessory pathway, and VT in a diseased heart."
+  },
+  {
+    "question": "Torsades de pointes is characterized by all of the following except:",
+    "options": [
+      "Results from triggered activity (early afterdepolarizations) that occurs during phase 2 or 3 of the cardiac action potential",
+      "Prolonged QT interval",
+      "Exacerbation by bradycardia with short-long coupling intervals",
+      "Polymorphic VT",
+      "Often provoked during amiodarone administration"
+    ],
+    "correct": 4,
+    "explanation": "Torsades de pointes is characterized by prolonged QT intervals, exacerbation by bradycardia, short-long couple intervals, \u201csalvos\u201d of nonsustained polymorphic VT before degeneration into a sustained ventricular arrhythmia, and polymorphic VT with characteristic \u201ctwisting around the axis\u201d morphology. Although amiodarone often prolongs the QT interval, it rarely causes torsades de pointes."
+  },
+  {
+    "question": "Which one of the following currents is responsible for maintaining stable resting membrane potential in the atrial and ventricular cells?",
+    "options": [
+      "If",
+      "INa",
+      "IKl",
+      "IK",
+      "ICa"
+    ],
+    "correct": 2,
+    "explanation": "IK1 (inward rectifier) is crucial for maintaining the resting potential near \u2afa90 mV. It is also responsible for the rapid terminal repolarization in phase 3."
+  },
+  {
+    "question": "The IKATP is a potassium channel that is inhibited by physiologic intracellular concentrations of ATP. How is this channel activated?",
+    "options": [
+      "A consequence of If activation that enhances pacemaker activity",
+      "Physical opening of the channel pore by the N-terminal portion of the channel",
+      "Chemical ligand binding in response to depletion of ATP from ischemia",
+      "Conformational changes in channel structure",
+      "The channel is only inhibitory and is not activated"
+    ],
+    "correct": 2,
+    "explanation": "The IKATP potassium channel is inactivated by chemical ligand binding in response to ischemia and depletion of ATP. Ventricular myocytes have high densities of these chan- nels and their activation accounts for the ST elevation on the ECG seen during a MI."
+  },
+  {
+    "question": "The sinus node is predominantly characterized by depolarization in which phase of the action potential?",
+    "options": [
+      "Phase 0",
+      "Phase 1",
+      "Phase 2",
+      "Phase 3",
+      "Phase 4"
+    ],
+    "correct": 4,
+    "explanation": "The sinus node is predominantly characterized by its phase 4 depolarization, which accounts for the pacemaker activities. There are few sodium channels and the upstroke is primarily mediated by ICa,L. There is no discernible phase 1. The lack of IK1, which is active in phase 3, accounts for the relative depolarized state of the tissue."
+  },
+  {
+    "question": "A 26-year-old man is referred to the arrhythmia clinic for evaluation of exercise- induced palpitations. He denies presyncope or syncope during these episodes. He had no other significant medical history. He has no family history of cardiomy- opathy, arrhythmia, or sudden death. An ECG, echocardiogram, and 24 hour ambulatory Holter monitor were all within normal limits. During TMET, the wide complex tachycardia was induced. The 12 lead ECG is shown. The patient reports palpitations without lightheadedness. ECG provided by Dr. John D. Day What is the most likely clinical diagnosis?",
+    "options": [
+      "RVOT tachycardia",
+      "Wolff-Parkinson-White syndrome",
+      "Atrial flutter with rapid ventricular response",
+      "Sinus tachycardia with aberrancy",
+      "Scar-mediated VT"
+    ],
+    "correct": 0,
+    "explanation": "The ECG showed a wide complex tachycardia, with a left bundle branch morphology, inferior axis, and negative deflections in AVL and AVR. The clinical scenario, provoca- tion with exercise, and ECG are consistent with exercise-mediated VT originating from RVOT. The arrhythmia is catecholamine-sensitive with calcium-mediated triggered activity from delayed depolarizations."
+  },
+  {
+    "question": "What treatment should be considered for this patient?",
+    "options": [
+      "ICD",
+      "Beta blocker",
+      "Digoxin",
+      "Referral for catheter ablation of a ventricular arrhythmogenic focus",
+      "Referral for catheter ablation of the caval-tricuspid isthmus"
+    ],
+    "correct": 1,
+    "explanation": "The treatment decision for this type of VT depends on the symptoms. If the symptoms are infrequent and mild, then no treatment is necessary. However, if the symptoms are severe, such as presyncope or syncope or extrasystoles that impact the patient\u2019s quality of life, then catheter ablation of the focus is the treatment of choice. Pharmacologic therapy improves symptoms in up to 50% of patients. The initial choice for therapy is usually a beta blocker. Although first line referral for catheter ablation is an option, since the patient is only mildly symptomatic, a trial of medications is warranted. Digoxin increases intracellular calcium and can potentially promote triggered activity."
+  },
+  {
+    "question": "Which one of the following antiarrhythmic agents does not prolong the QT interval?",
+    "options": [
+      "Quinidine",
+      "Lidocaine",
+      "Sotalol",
+      "Procainamide",
+      "Ibutilide"
+    ],
+    "correct": 1,
+    "explanation": "Lidocaine is a weak sodium channel blocker and does not have significant potassium channel blockade. It does not prolong the QT and it is the one antiarrhythmic that may actually shorten it."
+  },
+  {
+    "question": "Which one of the following antiarrhythmic agents has the least effect on slowing conduction through the AV node?",
+    "options": [
+      "Calcium channel blockers",
+      "Beta blockers",
+      "Amiodarone",
+      "Lidocaine",
+      "Sotalol"
+    ],
+    "correct": 3,
+    "explanation": "Lidocaine is a rather specific sodium channel blocker. The AV node conduction is mediated by ICa,L. The AV node is similar to the sinoatrial node in its lack of INa. Lidocaine does not have a significant effect on AV nodal conduction."
+  },
+  {
+    "question": "Which of the following antiarrhythmic agents may promote AF?",
+    "options": [
+      "Adenosine",
+      "Quinidine",
+      "Propafenone",
+      "Amiodarone",
+      "Atenolol"
+    ],
+    "correct": 0,
+    "explanation": "Adenosine activates the IK,Achchannel in atrial tissue. Activation of the IK,Achchannel shortens the action potential duration, thereby shortening the refractoriness of the atrial tissue and promoting the induction of AF."
+  },
+  {
+    "question": "Which one of the following antiarrhythmic agents is least likely to cause torsades de pointes?",
+    "options": [
+      "Quinidine",
+      "Procainamide",
+      "Flecainide",
+      "Ibutilide",
+      "Sotalol"
+    ],
+    "correct": 2,
+    "explanation": "Of the answer choices given, class 1A agents (quinidine and procainamide) and class 3 agents (ibutilide and sotalol) have a significant potassium channel blocking effect, there- fore prolonging the QT interval and potentially causing torsades de pointes. Flecainide (a class 1C agent) is a fairly specific sodium channel blocker without a significant potas- sium channel blocking effect. Prolongation of the QT interval is not associated with flecainide."
+  },
+  {
+    "question": "All of the following statements regarding the AV node are true except:",
+    "options": [
+      "Conduction through the node displays decremental behavior",
+      "It is positioned in the subendocardium at the base of the triangle of Koch",
+      "It is composed of nodal cells and transitional cells",
+      "It is a right atrial structure"
+    ],
+    "correct": 1,
+    "explanation": "The AV node is positioned in the low RA at the apex, rather than the base, of the tri- angle of Koch. The triangle of Koch is comprised of the ostium of the CS, tendon of Todaro, and septal attachment of the tricuspid valve leaflet. The region within the tri- angle is comprised of nodal and transitional cells."
+  },
+  {
+    "question": "In which of the following tissues is the upstroke of the action potential generated by ingoing calcium currents?",
+    "options": [
+      "Atrial",
+      "AV node",
+      "His-Purkinje",
+      "Ventricular"
+    ],
+    "correct": 1,
+    "explanation": "Both the AV and sinoatrial nodal cells lack INa. Conduction is mediated in these tissues by ICa,L."
+  },
+  {
+    "question": "Conduction velocity is most rapid in which tissue?",
+    "options": [
+      "Atrial",
+      "AV node",
+      "His-Purkinje",
+      "Ventricular"
+    ],
+    "correct": 2,
+    "explanation": "The conduction velocity is the most rapid in the His-Purkinje tissue."
+  },
+  {
+    "question": "Repolarization of the myocardial cells is determined mostly by which current?",
+    "options": [
+      "Outgoing sodium",
+      "Ingoing calcium",
+      "Outgoing potassium",
+      "Ingoing chloride",
+      "Ingoing sodium"
+    ],
+    "correct": 2,
+    "explanation": "The outgoing potassium current is the principal determinant of repolarization of myocardial cells."
+  },
+  {
+    "question": "All of the following statements regarding AV nodal cells are true except:",
+    "options": [
+      "The resting membrane potential is typically \u2afa80 to \u2afa90 mV",
+      "The activation threshold ranges between \u2afa30 and \u2afa40 mV",
+      "The upstroke of the action potential is carried by inward calcium current",
+      "Conduction in the AV node proceeds at a velocity of 0.01 to 0.1 m/sec"
+    ],
+    "correct": 0,
+    "explanation": "The resting membrane potential of AV nodal cells is \u2afa40 to \u2afa70 mV."
+  },
+  {
+    "question": "Vagal stimulation in each of the following tissue types changes the action poten- tial duration except in which cardiac structure?",
+    "options": [
+      "AV node",
+      "His-Purkinje system",
+      "Ventricular myocardium",
+      "Atrial myocardium"
+    ],
+    "correct": 2,
+    "explanation": "Vagal stimulation has little effect on the ventricular myocardial action potential, whereas it increases the action potential in the AV node and reduces it in the atrial myocardium."
+  },
+  {
+    "question": "Early afterdepolarizations are favored by:",
+    "options": [
+      "High potassium concentrations",
+      "Type III antiarrhythmic drugs",
+      "Fast underlying HR",
+      "Increased magnesium concentrations"
+    ],
+    "correct": 1,
+    "explanation": "Early afterdepolarizations are depolarizations that occur in phases 2 and 3 of the action potential. Conditions that prolong the action potential duration promote the development of early afterdepolarizations. They are facilitated by a low potassium level, low magnesium level, and class I or III antiarrhythmic drugs, and are typically pause-dependent."
+  },
+  {
+    "question": "The underlying arrhythmia mechanism most likely present in digitalis toxicity is:",
+    "options": [
+      "Reentry",
+      "Delayed afterdepolarizations",
+      "Enhanced automaticity",
+      "Early afterdepolarizations"
+    ],
+    "correct": 1,
+    "explanation": "The mechanism that underlies the development of delayed afterdepolarizations is intracellular calcium overload. Digoxin increases intracellular calcium that can pro- mote delayed afterdepolarization-triggered activity. Delayed afterdepolarizations have also been implicated in ischemic reperfusion arrhythmias and ryanodine receptor dys- function."
+  },
+  {
+    "question": "Which of the following contain the normal A\u2013H and H\u2013V intervals?",
+    "options": [
+      "40\u201380 msec, 35\u201360 msec",
+      "60\u2013120 msec, 35\u201360 msec",
+      "60\u2013120 msec, 25\u201350 msec",
+      "60\u2013100 msec, 60\u201380 msec"
+    ],
+    "correct": 1,
+    "explanation": "24. Answer d. The H\u2013V interval in Wolff-Parkinson-White syndrome can be negative or very short with antidromic tachycardia because the ventricle is activated prematurely by the accessory pathway or normal in orthodromic tachycardia since conduction proceeds down the AV node to the ventricle and returns retrograde through an accessory path- way. The more typical form of Wolff-Parkinson-White syndrome is orthodromic and the QRS is narrow, even in tachycardia, unless functional bundle branch block occurs since the antegrade conduction proceeds through the AV node and His-Purkinje system."
+  },
+  {
+    "question": "Prerequisite conditions of the reentrant arrhythmia include all of the following except:",
+    "options": [
+      "Two functionally distinct conducting pathways",
+      "An anatomical obstacle around which the impulse reenters",
+      "Unidirectional block in one pathway",
+      "Slow conduction via one pathway with return via the second"
+    ],
+    "correct": 1,
+    "explanation": "An anatomical obstacle is not necessary for reentrant arrhythmia. Recent studies have shown that reentry can occur in the absence of an obstacle as a consequence of con- duction and refractoriness in the atrial or ventricular tissue."
+  },
+  {
+    "question": "Antidromic reciprocating tachycardia in a patient with Wolff-Parkinson-White refers to:",
+    "options": [
+      "AV conduction proceeding via the normal AV conduction system with return via the accessory pathway",
+      "AV conduction via the accessory pathway with return via the normal ven- triculoatrial conduction system",
+      "AVNRT with additional conduction via the accessory pathway",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "In antidromic reciprocating tachycardia, conduction is \u201canti\u201d the normal path through the AV node. Thus there is AV conduction via the accessory pathway with the return ventriculoatrial conduction via His-Purkinje system followed by the AV node."
+  },
+  {
+    "question": "Patients with the tachycardia in Question 27 usually have:",
+    "options": [
+      "Dual AV nodal physiology",
+      "A concealed accessory pathway",
+      "Retrograde atrial activation spreading from the free wall of the AV groove to the septum",
+      "A wide QRS complex during tachycardia that narrows at lower HR",
+      "Structural heart disease"
+    ],
+    "correct": 0,
+    "explanation": "Patients with AVNRT usually have dual nodal physiology. In the most common form of this arrhythmia, conduction proceeds antegrade through the slow pathway and then ret- rograde over the fast pathway (slow\u2013fast AVNRT). Variations such as slow\u2013slow and fast\u2013slow conduction are also variants of this reentrant tachycardia."
+  },
+  {
+    "question": "The most common mechanism of arrhythmia in sustained VT is:",
+    "options": [
+      "Sympathetically facilitated enhanced automaticity",
+      "Reentry involving ventricular myocardium",
+      "Triggered automaticity arising from early afterdepolarizations",
+      "Reflection of propagated impulses"
+    ],
+    "correct": 1,
+    "explanation": "The most common mechanism of arrhythmias in sustained VT is reentry involving ventricular myocardium, most often from scars due to underlying CAD."
+  },
+  {
+    "question": "A 54-year-old man is referred to you due to an enlarged cardiac silhouette dis- covered on routine chest X-ray as part of his employment physical exam. He reports no known past medical history. Although he denies symptoms of overt heart failure, he states that he tends to become short of breath with strenuous activity\u2014a symptom that he felt was due to lack of exercise. On physical examination he has a displaced apical impulse and a third heart sound. An ECG shows sinus rhythm with a LBBB. An echocardiogram discloses global LV dysfunction with an EF of 25% and mild functional mitral valve regurgi- tation. Coronary angiography is normal. A 24-hour Holter monitor shows 35,000 PVCs and 85 runs of nonsustained VT, 3 to 9 beats in duration. What is the next appropriate test?",
+    "options": [
+      "EP study",
+      "RV biopsy",
+      "Serum ferritin",
+      "Signal average ECG",
+      "No further testing is required; schedule the patient to receive an ICD"
+    ],
+    "correct": 2,
+    "explanation": "The patient has nonischemic cardiomyopathy and a search for potential secondary causes is warranted. Noninvasive testing, such as obtaining a serum ferritin to assess for hemochromatosis, should be performed prior to invasive studies, such as RV biopsy. In a minimally symptomatic patient, an EP study is not a first line test. Nonetheless, if the PVCs are monomorphic and other causes of cardiomyopathy are excluded, the patient may be considered for an EP study and attempted ablation of the focus. Prior to considering an ICD in this patient who has no other significant symptoms, medical therapy needs to be started and titrated to therapeutic doses."
+  },
+  {
+    "question": "All of the following clinical characteristics are associated with cardiogenic syn- cope and should prompt referral for an invasive EP study except:",
+    "options": [
+      "Age \u2b0e65 years",
+      "History of CHF",
+      "Bundle branch block",
+      "History of ventricular arrhythmias",
+      "Recurrent unexplained falls in a 70-year-old patient"
+    ],
+    "correct": 4,
+    "explanation": "Answers a to d are all considered high risk characteristics for cardiogenic syncope. If any of these are present, the rate of spontaneous ventricular tachyarrhythmia or death is between 4% and 7% in 1 year. If 3 or more are present, this rate increases to 58% to 80%. Recurrent unexplained falls in an elderly patient should first be assessed with tilt table testing unless other high risk features are present."
+  },
+  {
+    "question": "A 38-year-old man underwent radiofrequency ablation in the RA for medically refractive symptomatic atrial tachycardia. He was dismissed on aspirin 325 mg/day. Six days following the procedure he developed left-sided persistent chest pain and mild dyspnea. His exam is notable only for tachycardia with a HR of 110 bpm. An ECG discloses sinus tachycardia. What is the next most appropriate test to request?",
+    "options": [
+      "Echocardiogram",
+      "CT scan",
+      "Coronary angiography",
+      "Arterial blood gas, D-Dimer",
+      "Ventilation perfusion scan"
+    ],
+    "correct": 3,
+    "explanation": "The temporal presentation and symptoms of the patients are consistent with pulmonary embolism, complicating the EP study he had 6 days before. The next step is to assess for this complication with screening tests, such as an arterial blood gas and D-Dimer, fol- lowed by an imaging modality, such as a ventilation perfusion scan or CT scan. If the evaluation for a pulmonary embolus is negative, a next step is to consider pericarditis."
+  },
+  {
+    "question": "All the following are true about head-up tilt testing except:",
+    "options": [
+      "The test should be performed at 60 to 80 degrees",
+      "Sensitivity and specificity of the test are approximately 80%",
+      "A vasodepressor response occurs most often in patients younger than 60",
+      "In patients without structural heart disease, it can provide a diagnosis in approximately 60% of them",
+      "A cardioinhibitory response tends to be infrequent in older patients"
+    ],
+    "correct": 2,
+    "explanation": "Vasodepressor response characterized by a profound drop in BP with minimal change in HR is more common in patients more than 60 years old. In contrast, cardioinhibitory response characterized by asystole and profound bradycardia that coincides with a decrease in BP, or a mixed-type event that is a combination of HR and BP reduction, is the initial event occurring more often in younger patients."
+  },
+  {
+    "question": "The arrhythmic substrate least likely to be definitely ruled out with a negative EP study is:",
+    "options": [
+      "Sinus node dysfunction",
+      "Severe His-Purkinje disease",
+      "Accessory bypass tract",
+      "VT in a patient with ischemic cardiomyopathy",
+      "AVNRT"
+    ],
+    "correct": 0,
+    "explanation": "The sensitivity of EP testing for sinus node disease is \u2b0d50%. For all other diagnoses listed, detection rates of EP tests are typically \u2b0e90%."
+  },
+  {
+    "question": "An active 78-year-old woman with recurrent syncope has an EP study. With atrial pacing at 150 bpm for 30 sec, a 7-sec atrial pause occurs when the pacing ceases. Her baseline examination and echocardiogram are all within normal limits. ECG shows sinus rhythm with first degree AV block. What is the next appropriate management step?",
+    "options": [
+      "Implant a VVI single-chamber permanent pacemaker",
+      "Implant a dual-chamber ICD",
+      "Implant a DDDR dual-chamber rate responsive pacemaker",
+      "Implant an AAI single-chamber permanent pacemaker",
+      "Medical management with atropine"
+    ],
+    "correct": 2,
+    "explanation": "The patient has recurrent syncope with evidence of significant sinus node dysfunction. In this patient a pacemaker is indicated. The choices of therapy include an AAI versus a DDDR permanent pacemaker. AAI is indicated in a patient when AV conduction is completely normal. If there is evidence of dysfunction, such as this patient with first degree AV block, DDDR is the generally agreed upon treatment."
+  },
+  {
+    "question": "Programmed ventricular stimulation is an important tool in risk assessment in patients with CAD for which of the following patient subsets?",
+    "options": [
+      "An EF of 30% to 35% and the presence of nonsustained VT",
+      "An EF of 35% to 40% and the presence of nonsustained VT",
+      "An EF of 30% to 35% and an abnormal signal averaged ECG",
+      "An EF of 35% to 40% and a history of cardiac arrest"
+    ],
+    "correct": 1,
+    "explanation": "MUSTT showed that patients with an EF \u2b0d 40%, CAD, and the presence of non- sustained VT who underwent an EP study and had inducible VT benefited from implantation of an ICD. Patients with an EF \u2b0d 35% and CAD benefit from implan- tation of an ICD independent of an EP study or other provocative tests, such as a sig- nal averaged ECG. Patients that suffer a VF cardiac arrest that is not from reversible causes (perimyocardial infarction, abnormal electrolytes, etc.) should receive an ICD."
+  },
+  {
+    "question": "All of the following examples are considered positive responses to a drug in a patient with an expected cardiac channelopathy except:",
+    "options": [
+      "A decreased QT interval with lidocaine in a patient suspected to have long QT3",
+      "An increased QT interval with epinephrine in a patient suspected to have long QT1",
+      "Abnormal ST-T changes in leads V1\u2013V2 with procainamide in a patient suspected to have Brugada syndrome",
+      "An increased QT interval with notched T waves with epinephrine in a patient suspected to have long QT2",
+      "An increased QT interval with ajmaline in a patient suspected to have long QT4"
+    ],
+    "correct": 4,
+    "explanation": "Answers a to d are all considered a positive response to pharmacologic stress in patients suspected to have a cardiac channelopathy. Ajmaline is a sodium channel blocking agent used in patients suspected to have Brugada syndrome."
+  },
+  {
+    "question": "Acute success rates for ablation of accessory pathways could be stated as:",
+    "options": [
+      "50% to 70%",
+      "75%",
+      "85%",
+      "90% to 95%",
+      "Virtually 100%"
+    ],
+    "correct": 3,
+    "explanation": "Acute success rates for accessory pathway ablation in Wolff-Parkinson-White syndrome are approximately 90% to 95%. Right-sided pathways tend to have lower acute success rates in comparison to left-sided pathways."
+  },
+  {
+    "question": "A 69-year-old woman presents to the ED with palpitations, lightheadedness, and no other symptoms. She denies syncope. She had no additional past medical history. The following rhythm strip is obtained. Her BP is 110/70 mmHg, she is mildly uncomfortable with her palpitations, but otherwise her exam is within normal limits. Telemetry strip provided by Dr. Paul A. Friedman What is the next step in her acute and then chronic management?",
+    "options": [
+      "Adenosine and then radiofrequency ablation",
+      "Lidocaine and then coronary angiogram and EP testing",
+      "DC cardioversion and then ICD implantation without further testing",
+      "Procainamide and then radiofrequency ablation",
+      "Procainamide and then amiodarone"
+    ],
+    "correct": 3,
+    "explanation": "The patient has pre-excited AF due to Wolff-Parkinson-White and a shortest R\u2013R interval during AF near 240 msec; thus, she is at risk of sudden death in the future and should receive radiofrequency ablation of the accessory pathway to cure the Wolff-Parkinson-White. Acutely, procainamide is the drug of choice for termination (or DC cardioversion if she is hemodynamically unstable). AV nodal blocking agents such as adenosine are contraindicated in this situation."
+  },
+  {
+    "question": "The following findings are considered positive results during EP testing except:",
+    "options": [
+      "A \u2b0e3 sec pause, a fall in BP \u2b0e50 mmHg with symptoms, or syncope with carotid sinus massage",
+      "A \u2b0e3 sec asystole, hypotension \u2b0d60 mmHg, syncope with head up tilt",
+      "Sinus node recovery time \u2b0e2 sec",
+      "A corrected sinus node recovery time \u2b0e525 sec",
+      "An H\u2013V interval 55 to 75 msec"
+    ],
+    "correct": 4,
+    "explanation": "An H\u2013V interval from 55 to 99 msec is considered an intermediate result and requires either the presence of additional symptoms or other findings to direct therapy. An H\u2013V interval \u2b0e100 msec is considered a positive result, as well as infra-His block."
+  },
+  {
+    "question": "A patient has a loss of function mutation in KCNQ1. This patient is most likely to have events triggered by:",
+    "options": [
+      "Swimming",
+      "Doorbells",
+      "The postpartum period",
+      "Sleeping"
+    ],
+    "correct": 0,
+    "explanation": "The vast majority of long QT cases are due to mutations in the KCNQ1 gene that encodes the slow component of the delayed rectifier potassium current (long QT1). During exercise these patients fail to shorten their QT. The gene-specific triggers of patients with long QT1 are exertion-related activities, in particular swimming. In long QT2 auditory stimuli and the postpartum period are important triggers. In long QT3 the most common trigger is sleep."
+  },
+  {
+    "question": "Efforts to identify patients with concealed long QT syndrome (genotype positive and resting ECG negative) are improved by which testing and response?",
+    "options": [
+      "Exercise testing with failure to lengthen the QT interval appropriately",
+      "Paradoxical lengthening of the QT interval with low-dose epinephrine infusion",
+      "EP testing with induction of polymorphic VT with ventricular extra stimuli",
+      "No further testing is required in these patients unless they experience syncope"
+    ],
+    "correct": 1,
+    "explanation": "Paradoxical lengthening of the QT with low-dose epinephrine (\u2c55 0.1 \u242eg/kg/min) and the presence of paradoxical lengthening (\u2b0e30 msec) with exercise of the absolute QT interval is suggestive of concealed long QT1 (75% positive predictive value). Identifying those with concealed long QT is important for counseling regarding activities and therapy."
+  },
+  {
+    "question": "Which of the following sports can be played in patients with long QT syndrome?",
+    "options": [
+      "Golf",
+      "Cricket",
+      "Bowling",
+      "Billiards",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "According to the 2005 Bethesda Conference guidelines, competitive sports are restricted with the exception of class IA activities. These activities include: golf, cricket, bowling, billiards, and riflery."
+  },
+  {
+    "question": "Each of the following statements about Romano-Ward syndrome is true, except:",
+    "options": [
+      "It is a heterogeneous disorder involving mutations in different ion channels",
+      "It is inherited as an autosomal recessive disorder",
+      "It is associated with sudden cardiac death in young patients",
+      "It is not associated with congenital deafness",
+      "It is more frequent than the Jervell and Lange-Nielsen syndrome"
+    ],
+    "correct": 1,
+    "explanation": "All of the above statements are true except b. Romano-Ward syndrome is a heteroge- neous disorder associated with prolonged QT interval and recurrent syncope, cardiac arrest, or sudden death. It is inherited in an autosomal dominant pattern and several mutations involving sodium and potassium channels have been recognized. Jervell and Lange-Nielsen syndrome is inherited in an autosomal recessive pattern. It is associated with prolonged QT interval, history of recurrent syncope or sudden death, and con- genital neural deafness. The Romano-Ward syndrome is more frequent than the Jervell and Lange-Nielsen syndrome."
+  },
+  {
+    "question": "Treatments of drug-induced prolongation of QT interval and torsades de pointes include all of the following except:",
+    "options": [
+      "Withdrawal of the offending agent",
+      "Correction of electrolyte and acid-base disturbance",
+      "IV magnesium",
+      "IV isoproterenol infusion or temporary pacing",
+      "IV beta blocker"
+    ],
+    "correct": 4,
+    "explanation": "All of the given statements, except e, are true in the management of drug-induced QT prolongation. Both isoproterenol infusion and temporary pacing can be used to increase the baseline HR. Beta blockers, which have a role in reducing arrhythmias in long QT1 and 2, are not effective in drug-induced tachyarrhythmia, and could worsen the condi- tion by promoting bradyarrhythmia and pauses."
+  },
+  {
+    "question": "The patient in Question 46 makes a complete neurologic recovery. An echocar- diogram is within normal limits. What is the next appropriate step in manage- ment?",
+    "options": [
+      "Start a beta blocker and restrict him from participation in competitive sports",
+      "EP testing with administration of a class 1 antiarrhythmic (flecainide and pro- cainamide) to determine risk of sudden death",
+      "Exercise testing to assess if his QT shortens appropriately",
+      "Implant an ICD",
+      "Implant a dual-chamber pacemaker"
+    ],
+    "correct": 3,
+    "explanation": "The patient sustained a VF cardiac arrest from an underlying channelopathy (Brugada syndrome). He should receive an ICD without further testing for risk assessment. Provocative testing with class 1 agents is used strictly for diagnosis and has little prognostic value, in particular is this patient that has already experienced a sud- den cardiac arrest."
+  },
+  {
+    "question": "The channelopathy underlying the clinical presentation in the patient in Question 46 is:",
+    "options": [
+      "Gain of function in the sodium channel",
+      "Loss of function in the sodium channel",
+      "Gain of function in the potassium channel",
+      "Loss of function in the potassium channel",
+      "Gain of function in the calcium channel"
+    ],
+    "correct": 1,
+    "explanation": "Brugada syndrome is due to a loss of function mutation involving the SCN5A- encoded cardiac sodium channel. This is in contrast to long QT3, which is due to a gain of function mutation involving the SCN5A-encoded cardiac sodium channel."
+  },
+  {
+    "question": "All of the following medications are known to prolong the QT interval and potentially cause torsades de pointes except:",
+    "options": [
+      "Amiodarone",
+      "Erythromycin",
+      "Haloperidol",
+      "Sotalol",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "All the medications listed in answers a to d have been shown to increase the QT inter- val. Although Amiodarone is on the list of agents that prolong the QT interval, it rarely causes torsades de pointes. Nonetheless, this potential complication must be considered. For a complete list of drugs that are known to cause this complication see www.torsades.org or www.qtdrugs.org"
+  },
+  {
+    "question": "Which of the following disorders results from alterations of intracellular calcium release from the sacroplasmic reticulum?",
+    "options": [
+      "Catecholaminergic polymorphic VT",
+      "Short QT syndrome",
+      "Long QT syndrome",
+      "Andersen-Tawil syndrome",
+      "Romano-Ward syndrome"
+    ],
+    "correct": 0,
+    "explanation": "Mutations in the RyR2-encoded cardiac ryanodine receptor or the calcium release channel account for the majority of catecholaminergic polymorphic VT cases. These mutations result in increased calcium leak during sympathetic stimulation, particu- larly during diastole."
+  },
+  {
+    "question": "Symptomatic patients diagnosed with mutations in the RyR2-encoded cardiac ryanodine receptor should receive what first line therapy?",
+    "options": [
+      "Calcium channel blocker",
+      "Beta blocker",
+      "ICD",
+      "Amiodarone",
+      "Surgical myectomy"
+    ],
+    "correct": 2,
+    "explanation": "Patients with symptomatic catecholaminergic polymorphic VT should receive an ICD as first line therapy since other therapies, such as calcium channel and beta blockers, have not been shown to be sufficiently protective."
+  },
+  {
+    "question": "A 16-year-old male presents to you after a screening ECG was performed for a sports physical that demonstrated pre-excitation. What is the next step in his evaluation?",
+    "options": [
+      "EP testing and ablation of the accessory pathway",
+      "Echocardiogram",
+      "No further evaluation is required",
+      "Empiric treatment with a beta blocker",
+      "None of the above"
+    ],
+    "correct": 1,
+    "explanation": "In patients with manifest pre-excitation, an echocardiogram should be performed since the incidence of associated congenital heart disease can be a high as 30% in some series. The most common associated congenital heart disease is Ebstein anomaly. Furthermore, an echocardiogram allows assessment of LV function, which is often depressed after conversion from a SVT. Finally, exercise testing can be considered as a further means to assess risk. Exercise provides information regarding the accessory pathway and its con- duction at higher HRs. Disappearance of the delta wave with exercise has been reported to coincide with a low risk of sudden death."
+  },
+  {
+    "question": "A common form of SVT in teenagers is:",
+    "options": [
+      "Atrial ectopic tachycardia",
+      "Atrial flutter",
+      "Junctional ectopic tachycardia",
+      "AVNRT",
+      "Familial AF"
+    ],
+    "correct": 3,
+    "explanation": "AVNRT is a rare form of SVT in infants, but gradually increases with time. In teenagers, this rhythm and accessory-pathway mediated tachycardia account for nearly 95% of the SVT cases. AVNRT is more common in females. All the other arrhythmias listed are uncommon in this age group."
+  },
+  {
+    "question": "In the pediatric population, which of the following cardiac diseases is associated with second degree AV block?",
+    "options": [
+      "Tumor (rhabdomyoma)",
+      "Myopathy (Duchenne muscular dystrophy)",
+      "Immunologic (maternal systemic lupus erythematosus)",
+      "Long QT syndrome",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "All of the answer choices a to d are associated with second degree AV block. Regarding long QT syndrome, a subgroup of infants with this channelopathy present with 2:1 AV block due to His-Purkinje system or ventricular myocardial refractoriness. Other causes of second degree AV block include mechanical trauma during catheterization, meta- bolic, and drug induced etiologies."
+  },
+  {
+    "question": "An echocardiogram was normal in the patient outlined in Question 55. What is the most common cause of her rhythm abnormality?",
+    "options": [
+      "Medications",
+      "Duchenne muscular dystrophy",
+      "Maternal systemic lupus erythematosus",
+      "L-TGA",
+      "Kearns-Sayre syndrome"
+    ],
+    "correct": 2,
+    "explanation": "Although all the answers are associated with AV block, maternal systemic lupus erythe- matosus is the most likely diagnosis in this patient. Her history suggests longstanding rhythm disease. Her echocardiogram is normal, which rules out L-TGA. Her clinical history is not consistent with answers b and e. In mothers with systemic lupus erythe- matosus, antibodies (anti-Ro) can pass the placenta and affect the fetal AV conduction system."
+  },
+  {
+    "question": "What is the next step in the evaluation of the patient in Question 55?",
+    "options": [
+      "Holter monitor",
+      "Reassurance and repeat ECG in 6 months",
+      "Exercise testing to assess for myocardial ischemia",
+      "Genetic testing of the patient and her first degree relatives",
+      "Muscle biopsy"
+    ],
+    "correct": 0,
+    "explanation": "The patient is asymptomatic but in complete heart block. The next step in her care is to determine if she requires implantation of a dual-chamber permanent pacemaker. A Holter monitor will show if the patient has pauses \u2b0e3 sec, which would be a rea- son to implant a pacemaker. Exercise testing is also important to assess exercise per- formance, but in this patient ischemia is not the cause of her rhythm disturbance."
+  },
+  {
+    "question": "The following rhythm strip was recorded during Holter monitoring. She reported no symptoms in her diary. What is the next step in her care?",
+    "options": [
+      "ICD",
+      "Implantable loop recorder",
+      "Reassurance and return in 6 months for repeat Holter monitoring and clini- cal evaluation",
+      "Dual-chamber permanent pacemaker implantation",
+      "Single-chamber permanent pacemaker implantation"
+    ],
+    "correct": 3,
+    "explanation": "The patient has third degree AV block and has pauses in excess of 3 sec. These find- ings suggest the need for a pacemaker implantation. Since the patient is in sinus rhythm, a dual-chamber device is required to prevent pacemaker syndrome."
+  },
+  {
+    "question": "All of the following are reasons to consider implanting a permanent pacemaker in a patient with congenital third degree AV block except:",
+    "options": [
+      "Declining exercise performance",
+      "Junctional instability or wide QRS escape rhythm",
+      "Progressive cardiomyopathy with declining ventricular performance",
+      "QT prolongation",
+      "Persistent third degree AV block after isoproterenol infusion"
+    ],
+    "correct": 4,
+    "explanation": "Answers a to d are all reasons to implant a permanent pacemaker in a patient with congenital AV block. An additional reason is \u2b0e3 sec pauses during Holter monitor- ing. Isoproterenol infusion has no role in risk assessment in these patients."
+  },
+  {
+    "question": "Typical mechanisms associated with the initiation and maintenance of AF include all of the following except:",
+    "options": [
+      "Substrate abnormalities that permit and promote wavelet reentry",
+      "Autonomic nervous system",
+      "Focal rapidly discharging triggers",
+      "Dual AV node physiology"
+    ],
+    "correct": 3,
+    "explanation": "Dual AV node physiology provides the substrate for typical AVNRT. Answers a to c are proposed mechanisms underlying the initiation and maintenance of AF."
+  },
+  {
+    "question": "Risk factors associated with AF include all of the following except:",
+    "options": [
+      "HTN",
+      "Sick sinus syndrome",
+      "Obstructive sleep apnea",
+      "Wolff-Parkinson-White syndrome",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "Each of answers a to d has been shown to be a risk factor for AF. Other established causes include advancing age, valvular heart disease, excessive alcohol intake, thyro- toxicosis, pericarditis, cardiac surgery, acute pulmonary disease, and MI."
+  },
+  {
+    "question": "The major finding of the AFFIRM trial was which of the following?",
+    "options": [
+      "Rhythm control patients were more likely to live longer and experience an improved quality of life",
+      "Rate control patients were less likely to develop heart failure",
+      "Patients \u2b0e65 years of age assigned to rhythm control were likely to be in sinus rhythm",
+      "Patients \u2b0d65 years of age assigned to rate control were more likely to be in sinus rhythm",
+      "Rhythm control patients were less likely to develop heart failure"
+    ],
+    "correct": 2,
+    "explanation": "The AFFIRM trial studied 4,060 patients older than 65 years with a history of AF and additional risk factors for stroke or death. They were randomized to either rate control or rhythm control. Patients in the rhythm control group were more likely to be in sinus rhythm. However, there was no statistically significant difference in mor- tality, stroke, quality of life, or development of heart failure between the rate and rhythm control groups."
+  },
+  {
+    "question": "AFFIRM trial type patients that are placed on an antiarrhythmic agent and are maintained in sinus rhythm can stop their anticoagulation. True or false?",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False. One of the most important findings in the AFFIRM trial was that anticoagulation should be strongly considered in these patients even in the presence of sinus rhythm. One reason is that these patients often have silent or subclinical AF. The second reason is that AF is often associated with many other medical comorbidities that increase stroke risk, such as HTN, diabetes, CAD, heart failure, etc."
+  },
+  {
+    "question": "Risk factors for stroke in patients with AF include all of the following except:",
+    "options": [
+      "Age \u2b0e75 years",
+      "Dyslipidemia",
+      "HTN",
+      "Heart failure",
+      "Stroke or transient ischemic attack"
+    ],
+    "correct": 1,
+    "explanation": "Risk factors with AF can be remembered with the CHADS2 mnemonic, which stands for: C, cardiac failure; H, hypertension; A, age \u2b0e75 years; D, diabetes mellitus; and S2, stroke or transient ischemic attack. From data based upon a long-term study of the NRAF participants, the risk of stroke increases incrementally as patients accumu- late more of these risk factors."
+  },
+  {
+    "question": "Adequate rate control in a patient with AF is defined as:",
+    "options": [
+      "Resting HR \u2b0d 80, maximal HR \u2b0d 110 during a 6-minute walk",
+      "Resting HR \u2b0d 60, maximal HR \u2b0d 110 during a 6-minute walk",
+      "Resting HR \u2b0d 80, maximal HR \u2b0d 140 during a 6-minute walk",
+      "Resting HR \u2b0d 60, maximal HR \u2b0d 140 during a 6-minute walk",
+      "Resting HR \u2b0d 100, maximal HR \u2b0d 140 during a 6-minute walk"
+    ],
+    "correct": 0,
+    "explanation": "Adequate rate control in patients with AF is defined as a resting HR \u2b0d 80 bpm and maximal HR \u2b0d 110 bpm during a 6-minute walk. Rate control can be achieved with a variety of medications. Digoxin alone is often insufficient to control HR during exercise."
+  },
+  {
+    "question": "In patients with heart failure, the following antiarrhythmic drug options are acceptable:",
+    "options": [
+      "Amiodarone",
+      "Flecainide",
+      "Dofetilide",
+      "Both a and c",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "Dofetilide and amiodarone are acceptable drug choices in patients with AF and heart failure."
+  },
+  {
+    "question": "A 42-year-old man walks into the ED complaining of dizziness and the sensation of a racing heart. He takes no medications and has a systolic BP of 100 mmHg. An ECG is obtained and shown below. Which of the following medications would be an appropriate initial therapy? ECG provided by Dr. Paul A. Friedman",
+    "options": [
+      "Lidocaine",
+      "Adenosine",
+      "Metoprolol",
+      "Procainamide",
+      "Diltiazem"
+    ],
+    "correct": 3,
+    "explanation": "The ECG shows AF in a patient with Wolff-Parkinson-White syndrome. The widest complexes represent activation down the accessory pathway, whereas narrower ones rep- resent fusion beats in which the ventricles are activated in part by conduction down the AV node and in part by the accessory pathway. Adenosine shortens atrial refractory peri- ods, causes AV block, and could accelerate the ventricular rate, resulting in degeneration to VF. Lidocaine has no effect on atrial tissue and is not effective in this setting. Both metoprolol and diltiazem also slow the AV node, possibly limiting concealed conduction from the node to the accessory pathway and accelerating conduction down the pathway. Procainamide is the agent of choice in this setting. If this fails to control the rhythm, or the patient becomes hemodynamically unstable, cardioversion is appropriate."
+  },
+  {
+    "question": "A 56-year-old male with HTN presented with palpitations and dyspnea with exertion. He is unsure when the symptoms started, but feels he has had a gradual decline over a one week period. He takes HCTZ for his HTN. He has no other known medical history. His systolic BP is 170 mmHg and the diastolic pressure is 80 mmHg. An ECG reveals AF with a rapid ventricular rate at 120 bpm. All of the following are acceptable options in his subsequent care except:",
+    "options": [
+      "Initiate anticoagulation, add a rate control medication, and return for car- dioversion in 3 weeks",
+      "Initiate anticoagulation, perform a TEE, and, if negative for an intracardiac thrombus, proceed with DC cardioversion",
+      "Initiate anticoagulation, start amiodarone",
+      "Initiate anticoagulation, add a rate control medication, and aggressively improve his BP treatment"
+    ],
+    "correct": 2,
+    "explanation": "Direct interventions to restore sinus rhythm, such as DC cardioversion or starting an antiarrhythmic, should be avoided in this patient with AF \u2b0e24 hours unless a TEE reveals no evidence of intracardiac thrombus or anticoagulation has been used for a minimum of 3 weeks at documented therapeutic levels (INR 2.0\u20133.0). Regardless of the treatment choice, his BP requires aggressive control."
+  },
+  {
+    "question": "PAF is associated with a decreased risk of stroke compared with chronic AF. True or false?",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False. Randomized studies of nonrheumatic AF in patients with paroxysmal and chronic AF have shown no difference in the rate of stroke between the subgroups. First, patients with AF often have other comorbidities that are associated with a higher risk of stroke. Also, recent studies of different therapies have documented that patients typi- cally experience multiple subclinical or asymptomatic episodes of AF. These patient characteristics may account in part for why there is little difference in stroke risk between these arrhythmia subtypes."
+  },
+  {
+    "question": "A 56-year-old man presents with an 8-day history of palpitations. He has known PAF and takes warfarin. His INR levels have been consistently therapeutic. His systolic BP is 128 mmHg. His exam is normal. An ECG shows AF with rapid ventricular rate of 115 bpm. It is appropriate to initiate therapy with all the fol- lowing medications except:",
+    "options": [
+      "Digoxin",
+      "Diltiazem",
+      "Procainamide",
+      "Metoprolol"
+    ],
+    "correct": 2,
+    "explanation": "Digoxin, diltiazem, and metoprolol will slow the AV node conduction and control the ventricular rate. Although procainamide can be used to restore normal sinus rhythm, it enhances AV node conduction and may result in an increase in ventricular rate. Therefore, rate control should be achieved before initiating procainamide."
+  },
+  {
+    "question": "A relatively healthy 60-year-old patient presents with persistent PAF despite, first, a trial of propafenone, and now amiodarone. All of the following approaches are appropriate except:",
+    "options": [
+      "Left atrial ablation to isolate the pulmonary veins",
+      "AV node ablation with implantation of a permanent pacemaker",
+      "Rate control only if relatively asymptomatic during the episodes of AF",
+      "Investigate for obstructive sleep apnea and treat if present",
+      "None of the above"
+    ],
+    "correct": 4,
+    "explanation": "Answers a to d are all appropriate for a patient who presents with persistent AF despite the use of an antiarrhythmic agent. The patient requires anticoagulation and needs treat- ment of HTN and obstructive sleep apnea if present. AV node ablation remains a highly successful means of long-term rate control, but the patient requires long-term pacemaker dependency with RV pacing. Left atrial ablation has emerged as a highly successful alter- native to drug therapy for rhythm control."
+  },
+  {
+    "question": "Radiofrequency catheter ablation of AF is characterized by all of the following except:",
+    "options": [
+      "The approach is more successful in patients with PAF in comparison to chronic AF",
+      "Risks include pulmonary vein stenosis, cardiac perforation, atrial esophageal fistula formation, and stroke",
+      "In the majority of patients, the procedure is successful in restoring sinus rhythm and improving quality of life",
+      "Anticoagulation can be stopped in these patients after 3 months if they remain in sinus rhythm"
+    ],
+    "correct": 3,
+    "explanation": "In patients who have failed a trial of antiarrhythmic drugs, left atrial ablation has emerged as a highly successful alternative nonpharmacologic therapy. The technique is more successful in patients with PAF. Despite AF subtype, the approach is successful in the majority of patients. It is unclear when and if anticoagulation can be stopped, and a standardized approach is difficult to adapt to variable patient comorbidities and per- sistent asymptomatic episodes of AF. One study has shown that, in patients \u2b0d65 years of age and without HTN, if sinus rhythm is restored, the long-term stroke risk is low. Recent guidelines suggest for those patients in sinus rhythm, the decision to continue anticoagulation should be based on the presence of known risk factors for stoke."
+  },
+  {
+    "question": "Atrial flutter is characterized by which of the following:",
+    "options": [
+      "It accounts for 10% of patients presenting with SVT",
+      "It is 2.5 times more common in men than women",
+      "Overall mortality is similar in comparison to patients with AF",
+      "Intra-atrial macroreentrant tachycardia involving a critical slow conduction zone",
+      "All of the above"
+    ],
+    "correct": 4,
+    "explanation": "Answers a to d are all associated with atrial flutter."
+  },
+  {
+    "question": "All of the following are contraindications for use of Ibutilide to chemically ter- minate atrial flutter with rapid ventricular rates except:",
+    "options": [
+      "A prolonged QT interval",
+      "A history of polymorphic VT with class 1 or 3 antiarrhythmic drugs",
+      "Severe hypokalemia",
+      "Hemodynamic instability",
+      "Structural heart disease"
+    ],
+    "correct": 4,
+    "explanation": "Patients with prolonged QT and a history of polymorphic VT with class I or III antiarrhythmic agents should not received ibutilide due to an increased risk of tor- sades de pointes. Likewise, significant hypokalemia can increase the risk of torsades de pointes. In patients with hemodynamic instability, emergency DC cardioversion is necessary. Patients with a structurally normal heart have a very low risk of torsades de pointes (1%) although lack of a normal heart in itself is not a contraindication (risk of torsades de pointes up to 4%)."
+  },
+  {
+    "question": "All of the following are factors that are associated with atrial flutter except:",
+    "options": [
+      "HTN",
+      "Valvular heart disease",
+      "Prior cardiac surgery",
+      "Pericardial disease",
+      "Sarcoidosis"
+    ],
+    "correct": 4,
+    "explanation": "Sarcoidosis is not a commonly recognized cause of atrial flutter. Answers a to d are all factors that predispose to atrial flutter. Other factors include dilated or HCM, CHF, sick sinus syndrome, thyrotoxicosis, chronic lung disease, and alcohol."
+  },
+  {
+    "question": "Which of the following summarizes the best approach for anticoagulation in a patient with persistent cavo-tricuspid isthmus dependent atrial flutter?",
+    "options": [
+      "Aspirin 325 mg daily",
+      "Plavix 75 mg daily",
+      "Warfarin therapy with a goal INR of 2.0 to 3.0 when risk factors for throm- boembolic events are present",
+      "Aspirin 81 mg daily and warfarin therapy with a goal INR of 2.0 to 3.0 when risk factors for thromboembolic events are present",
+      "Anticoagulation is not necessary in patients with flutters that originate from the RA since they are not associated the a high risk of arterial thromboembolism"
+    ],
+    "correct": 2,
+    "explanation": "The risk of thromboembolism in patients with atrial flutter ranges from 1.7% to 7%. The guidelines for anticoagulation for patients with AF are extended to those with atrial flutter. For example, chronic warfarin therapy with a goal INR from 2.0 to 3.0 is recommended in those individuals with recurrent or persistent atrial flutter when risk factors for a thromboembolic event are present."
+  },
+  {
+    "question": "A clinical history of a gradual onset of palpitations that become more rapid over time favors which diagnosis?",
+    "options": [
+      "AVNRT",
+      "AVRT",
+      "Atrial tachycardia",
+      "AF"
+    ],
+    "correct": 2,
+    "explanation": "Patients with automatic atrial tachycardia often report a gradual onset of symptoms that become more rapid (warm-up). In contrast, patients with AVNRT and AVRT tend to paroxysms of palpitations with an abrupt onset and offset."
+  },
+  {
+    "question": "A useful general approach for the assessment of a supraventricular arrhythmias includes all of the following except:",
+    "options": [
+      "AVNRT: short RP tachycardia with P waves seen within or just after the QRS complex",
+      "AVRT: short RP tachycardia with P waves 110 msec or more after the QRS complex",
+      "Atrial tachycardia: long RP tachycardia",
+      "AVNRT: termination with a P wave",
+      "Atrial tachycardia: P-wave variation with subsequent beats during the tachy- cardia acceleration (warm up)"
+    ],
+    "correct": 4,
+    "explanation": "All of the answers are correct with the exception of e. In atrial tachycardia, the P wave morphologic features of the initial and subsequent beats are typically identical."
+  },
+  {
+    "question": "Which of the following situations can result in SVT with a wide QRS in the absence of a preexisting or rate-related bundle branch block?",
+    "options": [
+      "Orthodromic AVRT",
+      "Antidromic AVRT",
+      "Atypical AVNRT",
+      "Typical AVNRT"
+    ],
+    "correct": 1,
+    "explanation": "In antidromic AVRT, antegrade conduction is through an accessory pathway, with retrograde conduction through the AV node (anti-against the normal AV node con- duction). An important exception to other forms of SVT is that a bystander accessory pathway, not involved in the tachycardia, may conduct to the ventricle and cause a pre-excited wide QRS."
+  },
+  {
+    "question": "An 18-year-old male presents to his primary care provider with a complaint of episodic palpitations that tend to start abruptly. There is not a consistent triggering event. After these episodes, he often senses the urge to micturate. The following ECG was obtained. The most likely diagnosis based upon the clinical symptoms and ECG is:",
+    "options": [
+      "AVNRT",
+      "AVRT",
+      "Atrial tachycardia",
+      "PAF",
+      "Paroxysmal atrial flutter"
+    ],
+    "correct": 1,
+    "explanation": "It is important to remember that, although an accessory pathway is present, it is not necessarily a part of the tachycardia. Nonetheless, the history of abrupt onset, no clear triggering event, and urge to micturate with tachycardia termination are most consis- tent with AVNRT and AVRT. The ECG is consistent with pre-excitation and with his history suggest a preliminary diagnosis of AVRT."
+  },
+  {
+    "question": "All of the following are characteristics of atrial tachycardia except:",
+    "options": [
+      "Long RP tachycardia associated with exertion",
+      "Incessant atrial tachycardia associated with tachycardia-related cardiomyopathy",
+      "May appear to be inappropriate sinus tachycardia",
+      "Valsalva-like maneuvers terminate the tachycardia"
+    ],
+    "correct": 3,
+    "explanation": "Valsalva-like maneuvers that terminate the tachycardia is a characteristic of AVNRT rather than atrial tachycardia."
+  },
+  {
+    "question": "Which of the following characteristics are associated with the permanent form of junction reciprocating tachycardia?",
+    "options": [
+      "Mild tachycardia with rates from 100 to 130 bpm",
+      "Inverted P waves in II, III, AVF",
+      "Dilated cardiomyopathy",
+      "All of the above",
+      "None of the above"
+    ],
+    "correct": 3,
+    "explanation": "Answers a to c are all features that should prompt suspicion of the permanent form of junctional reciprocating tachycardia. The tachycardia is an AVRT utilizing a retro- grade posterior septal accessory pathway and is often incessant resulting in a tachy- cardia-mediated cardiomyopathy."
+  },
+  {
+    "question": "It is an acceptable approach to treat a tachycardia associated with QRS morpho- logic variation with an AV nodal blocking agent if there is proper hemodynamic monitoring. True or false?",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": 1,
+    "explanation": "False. QRS morphologic variation is an important clue to the presence of a pre-excited arrhythmia. With any pre-excited tachycardia, if AV node conduction is slowed, the degree of pre-excitation increases. With AV node slowing with blocking agents the ventricular response can paradoxically increase and predispose the patient to VF."
+  },
+  {
+    "question": "Where is the most likely site of the accessory pathway based upon the follow- ing ECG?",
+    "options": [
+      "Left lateral",
+      "Left posterior/septal",
+      "Right posterior/septal",
+      "Right lateral/anterior"
+    ],
+    "correct": 0,
+    "explanation": "The initial deflection in V1 is positive. This becomes more apparent when looking at where the delta wave begins as seen in V3. AVL is negative. AVF is positive. These electrocardiographic characteristics suggest a left lateral pathway."
+  },
+  {
+    "question": "A 21-year-old female was referred for an EP study due to recurrent palpitations that gradually increased in frequency and duration. The following intracardiac electrograms were obtained during the study when the patient spontaneously developed a tachyarrhythmia. The arrhythmia present is best characterized as:",
+    "options": [
+      "VT",
+      "AF",
+      "Long RP atrial tachycardia",
+      "Short RP atrial tachycardia",
+      "Atrial flutter"
+    ],
+    "correct": 3,
+    "explanation": "There is an equal number of ventricular (V) and atrial (A) electrograms (labeled) pres- ent. The A measured in the HRA falls nearly simultaneously with the V measure at the RV apex. These electrograms correspond with a P wave that falls within the QRS, thereby, in general, characterizing this arrhythmia as a short RP atrial tachycardia."
+  },
+  {
+    "question": "What is the most likely arrhythmia present in this patient?",
+    "options": [
+      "Antidromic reciprocating tachycardia",
+      "Atrial flutter with rapid ventricular response",
+      "VT",
+      "AVNRT",
+      "AF with rapid ventricular response"
+    ],
+    "correct": 3,
+    "explanation": "The patient is a young female presenting with a very short RP tachycardia. The most common atrial arrhythmia in this clinical scenario is AVNRT. The V\u2013A interval on the intracardiac electrograms is \u2b0d70 msec, which makes an accessory pathway medi- ated tachycardia unlikely. In atrial flutter the A should come before the V as it is driving the arrhythmia. There is no chaotic activity in the atrium to suggest AF."
+  },
+  {
+    "question": "A 62-year-old female presents to the ED with a 2-hour history of severe chest pain, dyspnea, and diaphoresis. An initial ECG shows ST elevation in leads V2\u2013V6. She proceeds immediately to coronary angiography where a 100% prox- imal LAD artery stenosis is discovered. The lesion is successfully opened with angioplasty followed by stent implantation, with resultant normal TIMI flow. An echocardiogram shows a LV EF of 30% with regional wall motion abnor- malities along the anterior and lateral walls. In hospital telemetry reveals frequent PVCs and infrequent episodes on nonsustained VT (3\u20135 beats). What is the next step in her care?",
+    "options": [
+      "Medical therapy and implantation of an ICD",
+      "Medical therapy and implantation of an ICD if VT is induced",
+      "Medical therapy and implantation of an ICD if a signal averaged ECG is abnormal",
+      "Medical therapy and defer implantation of an ICD",
+      "Medical therapy and refer for radiofrequency ablation of the VT"
+    ],
+    "correct": 3,
+    "explanation": "The patient described had a large MI that was treated with percutaneous revascular- ization. PVCs and nonsustained VT are common. This type of patient was studied in DINAMIT. Although these patients are at relatively high risk of both sudden and total mortality, implantation of an ICD did not improve outcomes. If the patient has periods of sustained VT, an antiarrhythmic should be considered. Otherwise, medical therapy alone is appropriate, with follow-up assessment of her EF to determine if any functional recovery results from the revascularization."
+  },
+  {
+    "question": "A 32-year-old male is referred to you by his primary care provider after an episode of syncope. The patient was briskly walking with friends when he suddenly passed out with recovery after falling to the ground. The patient takes no med- ication and does not use illicit drugs. A family history is notable for a father who died suddenly while shoveling snow at the age of 45. The physical examination is consistent with a healthy male with no distinct abnormalities. His ECG is displayed on the next page. An echocardiogram shows mild-to-moderate RV enlargement with a mild reduction in systolic function. (continued ) The history, examination, and tests are most suggestive of what disease process?",
+    "options": [
+      "Arrhythmogenic RV dysplasia",
+      "RVOT tachycardia",
+      "HCM",
+      "Long QT syndrome",
+      "Vasovagal syncope"
+    ],
+    "correct": 0,
+    "explanation": "The patient\u2019s early presentation, family history of sudden death, ECG suggestive of RV disease (T wave inversion in leads V2\u2013V4), and echocardiogram consistent with RV abnormalities are consistent with arrhythmogenic RV dysplasia. The echocardio- gram is not consistent with HCM. The RV structural disease is more consistent with arrhythmogenic RV dysplasia in comparison to RVOT tachycardia."
+  },
+  {
+    "question": "What is the next step in the evaluation and care of the patient in Question 91?",
+    "options": [
+      "Signal-average ECG",
+      "Exercise testing",
+      "Radiofrequency ablation",
+      "ICD",
+      "Event monitor to look for occult ventricular arrhythmias"
+    ],
+    "correct": 3,
+    "explanation": "The patient most likely has arrhythmogenic RV dysplasia. Although late potentials on a signal-average ECG may suggest a higher risk patient, the absence of findings is not sen- sitive enough to not proceed with other assessment or treatment. Exercise testing likewise is helpful if exercise-induced arrhythmias develop. In this patient, the episode of syncope 92. (continued ) with activity is concerning for a cardiac source. Furthermore, there is a family history of sudden death and there are notable changes on both the ECG and echocardiogram. ICD placement is the best current therapy to decrease sudden death. Additional imaging that may further characterize the tissue, such as a MRI, should be considered prior to implan- tation of the device. Radiofrequency ablation has been reported to successfully treat VT in 40% of these patients, although recurrence is common as the cardiomyopathy process progresses."
+  },
+  {
+    "question": "A 14-year-old male presents for what is described as seizure-like activity with partic- ipation in athletics. The patient\u2019s parents describe an episode that occurred while playing soccer in which he suddenly collapsed with what appeared to be tonic-clonic seizure activity and loss of urine. Outside of these discrete episodes the patient is oth- erwise healthy, takes no medications, and denies illicit drug use. There is no family history of arrhythmia, CV disease, or sudden death. What is the next step in his care?",
+    "options": [
+      "Referral to a neurologist for an EEG",
+      "Empiric treatment with an antiepileptic medication",
+      "ECG and additional testing if necessary for long QT syndrome",
+      "Beta blockade and exercise restrictions",
+      "EP test"
+    ],
+    "correct": 2,
+    "explanation": "Exercise-induced seizures in this young patient require careful investigation for a car- diac tachyarrhythmia. Although such a patient may have a primary neurologic disor- der, the temporal correlation with activity is concerning for a primary cardiac disorder with a second neurologic manifestation. Long QT1 patients often present with exertion- related symptoms. The presence of long QT can be sought on the baseline ECG and, if needed, with exercise testing and an epinephrine challenge. Beta blockade and exercise restrictions are premature in this patient without a clear diagnosis, as HCM and other channelopathies may also cause a similar presentation. For this latter rea- son, although not offered as a choice in the question, an echocardiogram is appropri- ate to screen for structural heart disease."
+  },
+  {
+    "question": "A 62-year-old male presents with gradual onset fatigue, DOE, and lower extrem- ity edema. He also reports intermittent palpitations with presyncope that occur 1 to 2 times a month and last 2 to 4 minutes. He has a history of CAD and underwent three-vessel coronary artery bypass surgery 10 years ago. His examination is remarkable for a JVP of approximately 10 mmHg, an S3 gallop and displaced apical impulse, crackles in the base of the lungs bilaterally, and 1\u2af9 pedal edema bilaterally. An ECG shows sinus rhythm with evidence of a previous anterior MI. An echocardiogram reveals a LV EF of 40% with anterior akinesis from the base of the heart to the apex. A myocardial perfusion study showed no reversible ischemia. A 24-hour ambulatory Holter shows frequent PVCs and 20 episodes of nonsustained VT ranging from 3 to 5 beats. He reported no symptoms in his diary. What is the next step in his care?",
+    "options": [
+      "Maximize his medical therapy for heart failure",
+      "Maximize his medical therapy for heart failure and refer for ICD based upon the Holter results",
+      "Maximize his medical therapy for heart failure and refer for an EP study",
+      "Maximize his medical therapy for heart failure and start amiodarone to sup- press the ventricular ectopy",
+      "Refer for coronary angiography followed by optimization of his medical therapy"
+    ],
+    "correct": 2,
+    "explanation": "The patient may benefit from treatment with an ICD due to his ischemic heart disease and reduced LV EF. He is not a candidate based upon the MADIT I or II nor the ScD- HeFT due to his EF. The MUSTT examined patient with ischemic heart disease and a reduction LV EF (\u2c55 0.40). In this patient cohort, those with inducible VT benefited from an ICD. Also, in the MUSTT trial the ICD was superior to antiarrhythmic ther- apy, primarily with amiodarone. The patient had no evidence of ischemia to suggest need for coronary angiography."
+  },
+  {
+    "question": "The following statements in regard to inclusion criteria for the ICD trials are cor- rect except:",
+    "options": [
+      "MADIT II: prior MI (\u2b0e1 month), EF \u2c55 0.30, decreased HR variability",
+      "ScD-HeFT: history of CHF (NYHA class II, III), EF \u2c55 0.35, ischemic and nonischemic disease",
+      "MUSTT: ischemic heart disease, nonsustained VT, EF \u2c55 0.40, and inducible VT",
+      "DINAMIT: recent MI (6\u201340 days) prior to trial entry, EF \u2c55 0.35, and decreased HR variability",
+      "MADIT I: nonsustained VT, CHF (NYHA class I, II, or III), Q-wave or enzyme-positive MI \u2b0e 3 weeks prior to enrollment"
+    ],
+    "correct": 0,
+    "explanation": "The MADIT II did not require evidence of decreased HR variability for study enrollment."
+  },
+  {
+    "question": "A 34-year-old man presents to the ED with sustained palpitations and mild dys- pnea. He has no history of syncope, cardiac arrhythmia, or structural heart dis- ease. He takes no medications and denies illicit drug use. Other than tachycardia his examination is normal. The following ECG was obtained. (continued ) What is the likely appropriate treatment?",
+    "options": [
+      "Verapamil",
+      "Adenosine",
+      "Amiodarone",
+      "Sotalol",
+      "Vagal maneuvers"
+    ],
+    "correct": 0,
+    "explanation": "The patient is a young male who presents with probable idiopathic VT with a narrow R\u2013S interval. At EP testing this patient was found to have a left posterior fascicular VT. Careful inspection of lead II shows occasional QRS complexes not followed by a P wave. This type of arrhythmia is sensitive to verapamil, but generally unresponsive to vagal maneuvers or adenosine. The morphology is not consistent with an outflow tract tachy- cardia in which adenosine characteristically terminates the arrhythmia."
+  },
+  {
+    "question": "All of the following favor VT over paroxysmal SVT except:",
+    "options": [
+      "AV dissociation",
+      "Fusion beats",
+      "Precordial nonconcordance",
+      "Lead V1 RBBB with larger left peak (Rsr\u2019)",
+      "Lead V6 QRS with rS or S morphology"
+    ],
+    "correct": 2,
+    "explanation": "Precordial concordance is suggestive of VT. All the other answer choices are more consistent with SVT. In addition, clinical findings, such as a history of CAD, cannon a waves, and variable first heart sound on auscultation, favor VT."
+  },
+  {
+    "question": "Patients with repaired tetralogy of Fallot have frequent ventricular arrhythmias. All of the following are risk factors for VT except:",
+    "options": [
+      "Number of years post operatively",
+      "RV failure",
+      "Pulmonary HTN",
+      "ASD resulting in RV overload"
+    ],
+    "correct": 3,
+    "explanation": "Answers a to c are all associated with the development of VT late after repair for tetralogy of Fallot. An ASD is not associated with risk of VT, although the presence of a significant residual shunt is associated with an increased risk of sudden death."
+  },
+  {
+    "question": "A 46-year-old female presents with episodic palpitations that once were con- trolled with rate control medications and now have increased in frequency and duration. Her palpitations are associated with mild lightheadedness. She had no known medical history of cardiac disease or arrhythmias. She takes no medica- tion. Her baseline ECG is normal. The following intracardiac electrograms were obtained during an EP study. What is the most likely diagnosis?",
+    "options": [
+      "RVOT tachycardia",
+      "AVNRT",
+      "Antidromic reciprocating reentrant tachycardia",
+      "Orthodromic reciprocating reentrant tachycardia",
+      "LVOT tachycardia"
+    ],
+    "correct": 3,
+    "explanation": "The patient has an orthodromic reciprocating tachycardia. In this tachycardia, conduc- tion from the atrium proceeds through the AV node to the ventricle and then back up to the atrium through an accessory pathway. In the tracing there are equal numbers of ventricular (V) and atrial (A) electrograms (below). The antegrade Vs preceed the retrograde As activated through the accessory pathway. A close inspection of the CS elec- trograms shows the V\u2013A interval to be very small along (CS 1,2), which is in the distal CS, suggestive that the accessory pathway is along the left lateral ventricle."
+  },
+  {
+    "question": "All of the following are congenital heart defects associated with an increased risk of an accessory pathway except:",
+    "options": [
+      "Shone\u2019s syndrome",
+      "Ebstein\u2019s anomaly",
+      "Congenitally corrected transposition of the great vessels",
+      "Atrio-VSD",
+      "HCM"
+    ],
+    "correct": 0,
+    "explanation": "Shone\u2019s syndrome, which is manifest by multiple LV outflow obstructions, is not asso- ciated with an increased risk of an accessory pathway. All of the other conditions con- vey an increased risk, in particular Ebstein\u2019s anomaly."
+  },
+  {
+    "question": "A 16-year-old male with no known cardiac or other medical history presents with infrequent palpitations. He has no family history of cardiac disease, arrhythmia, or sudden death. He uses no medication or illicit drugs. His exam- ination is normal with the exception of a split S2. The following ECG is obtained. (continued ) What is the most likely diagnosis?",
+    "options": [
+      "Arrhythmogenic RV dysplasia",
+      "Secundum ASD",
+      "Pulmonary stenosis",
+      "Ebstein\u2019s anomaly",
+      "Bicuspid aortic valve"
+    ],
+    "correct": 1,
+    "explanation": "The ECG shows sinus rhythm with right axis deviation. The ECG and physical examination with a fixed split S2 are suggestive of a secundum ASD. The ECG is not consistent with significant RV disease that would suggest arrhythmogenic RV dyspla- sia, pulmonary stenosis, or Ebstein\u2019s anomaly."
+  },
+  {
+    "question": "Which of the following arrhythmias are associated with the likely congenital abnormality of the patient in Question 102?",
+    "options": [
+      "VT",
+      "Atrial flutter",
+      "Sinus node dysfunction",
+      "b and c",
+      "All of the above"
+    ],
+    "correct": 3,
+    "explanation": "In patients with an ostium secundum ASD, both atrial arrhythmias and late sinus node dysfunction are complications. In the absence of surgical repair, isthmus dependent atrial flutter is the most common atrial arrhythmia."
+  },
+  {
+    "question": "Which of the following is true in regard to patients with Ebstein\u2019s anomaly of the tricuspid valve?",
+    "options": [
+      "Loss of a typical LBBB is suggestive of a right-sided pathway",
+      "Accessory pathway mediated tachycardia is the most common atrial arrhythmia",
+      "Atrial flutter and fibrillation are common after the age of 35 years",
+      "Patients without a history of Wolff-Parkinson-White do not require a preoperative EP study to assess for an accessory pathway"
+    ],
+    "correct": 2,
+    "explanation": "Atrial flutter and fibrillation are more common in patients more than 35 years of age. These two atrial arrhythmias combined exceed in prevalence accessory pathway mediated tachycardia in this age group. Loss of a typical right bundle branch block is suggestive of 104. (continued ) a right-sided pathway. Finally, patients with a history of palpitations or a documented tachycardia should undergo preoperative EP study, regardless of the presence or absence of pre-excitation on ECG."
+  },
+  {
+    "question": "The patient in Question 105 is at high risk for which complication?",
+    "options": [
+      "Complete AV block",
+      "LV failure",
+      "High risk of congenital birth defects in her children",
+      "Mitral valve regurgitation"
+    ],
+    "correct": 0,
+    "explanation": "The patient has congenitally corrected TGA. In these patients, both the AV node and His bundle have an atypical course and position and are vulnerable to fibrosis with age, with a risk of complete block of approximately 2% per year. These patients are at risk for systemic ventricular failure (morphologic RV) and TR. In one series of 50 pregnancies, 40 (83%) resulted in live births and none had congenital heart disease."
+  },
+  {
+    "question": "A 65-year-old male with a history of symptomatic sinus node dysfunction recently underwent dual-chamber permanent pacemaker implantation. Two weeks following implantation he presented to the ED with sustained palpita- tions, dyspnea, and lightheadedness. The following telemetry strip was obtained in the ED. What is the most likely diagnosis?",
+    "options": [
+      "VT",
+      "AF with a rapid ventricular rate",
+      "Ventricular lead oversensing",
+      "Pacemaker-mediated tachycardia",
+      "Sinus tachycardia with appropriate ventricular pacing"
+    ],
+    "correct": 3,
+    "explanation": "The tracing initially shows dual-chamber pacing. At onset of the tachycardia, a retro- grade P wave can be seen in the T wave. This P wave is sensed and the ventricle is subsequently paced. The tachycardia persists as this paced beat results in a retrograde P wave that is sensed triggering a subsequent ventricular-paced beat. The P wave mor- phology argues against sinus tachycardia and AF. Ventricular lead oversensing results in failure to pace the ventricle."
+  },
+  {
+    "question": "A 45-year-old obese male is referred for a formal sleep study due to a history of severe snoring with daytime somnolence and fatigue. He reports no history of palpitations, lightheadedness, or syncope. He is taking no medications. The fol- lowing tracing is obtained during the sleep study. Courtesy of Dr. Apoor S. Gami and Dr. Sean M. Caples What is the next step in his care?",
+    "options": [
+      "Continuous positive airway pressure",
+      "Dual-chamber permanent pacemaker implantation",
+      "Single-chamber permanent pacemaker implantation",
+      "EP study to further assess the sinus and AV node function"
+    ],
+    "correct": 0,
+    "explanation": "In patients with obstructive sleep apnea, multiple cardiac rhythm disturbances have been reported, such as AF, bradyarrhythmias, heart block, and ventricular ectopy. The most common are severe sinus bradycardia and AV block that are reflex responses to the apnea and hypoxia. Treatment of these rhythm disturbances is directed at the sleep apnea rather than the secondary rhythm disturbance."
+  },
+  {
+    "question": "All of the following are neurally mediated reflex syncopal syndromes except:",
+    "options": [
+      "Vasovagal",
+      "Postmicturition",
+      "Gastrointestinal stimulation (swallow, defecation, visceral pain)",
+      "Carotid sinus",
+      "Parkinson disease with autonomic failure"
+    ],
+    "correct": 4,
+    "explanation": "Parkinson disease with autonomic failure typically results in orthostatic syncope. Answers a to d are all neurally mediated reflex syncopal syndromes. Others causes of neurally mediated reflex syncope include: acute hemorrhage, cough, sneeze, postexer- cise glossopharyngeal and trigeminal neuralgia, and a situational faint."
+  },
+  {
+    "question": "The following factors are associated with noncardiogenic syncope except:",
+    "options": [
+      "Young age",
+      "Isolated syncope without underlying CV disease",
+      "Normal examination and ECG",
+      "Abrupt onset",
+      "Symptoms consistent with a vasovagal cause"
+    ],
+    "correct": 3,
+    "explanation": "An abrupt onset of syncope, particularly with exertion or while supine, is more consis- tent with a cardiogenic mechanism. All the other factors other than the correct answer d are more suggestive of a noncardiac mechanism. Factors suggestive of a cardiac mech- anism include: CAD, CHF, older age, abrupt onset, serious injuries, abnormal cardiac examination, structural heart disease, and an abnormal ECG (presence of a Q wave, bundle branch block, sinus bradycardia)."
+  },
+  {
+    "question": "All of the following are class I indications for pacing except:",
+    "options": [
+      "Symptomatic acquired complete (third degree) and advanced second degree AV block",
+      "Asymptomatic acquired complete (third degree) and advanced second degree AV block with asystole (\u2b0e3 sec) or a HR \u2b0d 40 bpm",
+      "Complete (third degree) AV block in a patient with an acute inferior MI",
+      "Symptomatic sinus bradycardia (\u2b0d40bpm)",
+      "Symptomatic sinus bradycardia secondary to drug treatment only for which there is no acceptable alternative"
+    ],
+    "correct": 2,
+    "explanation": "Patients with an acute inferior infarction can develop multiple types of electrical abnor- malities, including sinoatrial node dysfunction, first-degree AV block, second-degree block, and third-degree block at the level of the AV node. It is uncommon for any of these conduction disturbances to persist after resolution of the acute phase of the infarc- tion. These patients may require temporary pacing if hemodynamically unstable, but they rarely require permanent pacing. All the other answers are class I indications for pac- ing. Additional class I indications for pacing include: sinus node dysfunction with life- threatening, bradycardiac-dependent arrhythmias, recurrent syncope by carotid sinus stimulation with ventricular asystole of \u2b0e3 sec, second-degree AV block at any level with symptomatic bradycardia, neuromuscular disease with AV block, and congential com- plete AV block with a wide QRS, complex ventricular ectopy, or LV dysfunction."
+  },
+  {
+    "question": "A 72-year-old male received a dual chamber permanent pacemaker for complete heart block. He had a previous system explanted on the left side due to a lead ero- sion with a externalized \u201ctemporary\u201d PM via the right internal jugular vein. Shortly after the new system was placed on the right he noted chest pain, palpitations, and dyspnea. The following chest X-ray was obtained. Chest X-ray courtesy of Dr. Apoor S. Gami What is the most likely diagnosis for his symptoms?",
+    "options": [
+      "Pacemaker lead dislodgement",
+      "Recurrent infection in the new right-sided system",
+      "Pneumothorax",
+      "Pulmonary embolus",
+      "CHF"
+    ],
+    "correct": 2,
+    "explanation": "The chest X-ray shows a moderate pneumothorax on the right (arrows). A chest tube was inserted and the pneumothorax resolved."
+  },
+  {
+    "question": "Pacemaker syndrome is a hemodynamic abnormality that results from which of the following abnormalities?",
+    "options": [
+      "The delay between the right and LV pacing leads is too long to allow a syn- chronous contraction",
+      "Ventricular pacing is uncoupled from the atrial contraction",
+      "Cross talk that results in inappropriate inhibition of the pacing stimulus",
+      "Endless-loop tachycardia that results from retrograde P waves that trigger another ventricular stimulation"
+    ],
+    "correct": 1,
+    "explanation": "Pacemaker syndrome results from inappropriate ventricular pacing or when the ven- tricular pacing is uncoupled from the atrial contraction. Patients may experience a variety of symptoms that include general malaise, a sensation of fullness in the head and neck, syncope, cough, dyspnea, heart failure, or weakness. They may have can- non A waves on exam and a lower BP when paced. The syndrome is most common when the VVI mode is used and the underlying rhythm is sinus."
+  },
+  {
+    "question": "A 72-year-old female with a history of ischemic dilated cardiomyopathy pres- ents after receiving a shock from her ICD. This was her first shock and she had no symptoms prior to the therapy. The ICD was implanted 3 years ago due to her reduced LV function with underlying ischemic heart disease. The device was interrogated and the following information obtained. (continued ) Device interrogation electrogram courtesy of Medtronic What is the most likely diagnosis?",
+    "options": [
+      "Inappropriate therapy for AF",
+      "Ventricular lead undersensing",
+      "Appropriate therapy for VF",
+      "Appropriate therapy for VT",
+      "Lead fracture"
+    ],
+    "correct": 4,
+    "explanation": "The episode interrogation showed a fast, sensed rhythm from the ventricular lead. Atrial sense is normal and reveals a regular rhythm, which excludes an inappropriate therapy due to an atrial tachyarrhythmia. The electrogram from the ventricular lead (Vtip to Vring) shows considerable artifact with a normal rhythm, as evidenced by a reg- ular R\u2013R interval that marches out, despite the morphologic abnormalities of the tracing. In this case there was a lead fracture. A lead fracture can lead to erratic sens- ing, a high lead impedance, intermittent or complete loss of capture, and, in this case, an inappropriate shock."
+  },
+  {
+    "question": "The following stored electrogram was obtained from a permanent pacemaker in a patient that presented with general malaise. Device interrogation electrogram courtesy of Medtronic What is the potential cause of the patient\u2019s symptom?",
+    "options": [
+      "Atrial lead oversensing",
+      "Atrial lead undersensing",
+      "Ventricular lead oversensing",
+      "Ventricular lead undersensing",
+      "Pacemaker syndrome"
+    ],
+    "correct": 1,
+    "explanation": "The atrial lead has failed to sense the intrinsic P wave and has delivered a regular atrial stimulus at the preset minimal interval. This is an example of atrial lead undersensing. Undersensing may result from lead dislodgement, insulation failure, circuit failure, mag- net application, battery depletion, electromagnetic failure, poor or incompatible connec- tion at the connector block, and, for a unipolar device or configuration, air in the pocket."
+  },
+  {
+    "question": "Which of the following statements is incorrect regarding the intraoperative assessment of a pacing system?",
+    "options": [
+      "Wire fracture: high voltage threshold, high-normal-low current threshold, high impedance",
+      "Insulation break: low voltage threshold, high current threshold, low lead impedance",
+      "Lead dislodgement: high voltage threshold, high current threshold, high lead impedance",
+      "Exit block: high voltage threshold, high current threshold, normal lead impedance"
+    ],
+    "correct": 2,
+    "explanation": "Lead dislodgement is typically characterized by a high voltage and current threshold, but normal lead impedance."
+  },
+  {
+    "question": "A 34-year-old female underwent dual-chamber ICD implantation. She had a history of a VSD closure at birth with a persistent nonischemic dilated car- diomyopathy with a reduced LV EF. After the device was implanted the follow- ing chest X-ray was obtained. What is the complication with this device implantation?",
+    "options": [
+      "Lead dislodgement",
+      "Pneumothorax",
+      "Cardiac perforation",
+      "Lead fracture",
+      "Poor connection at the connector block"
+    ],
+    "correct": 0,
+    "explanation": "The chest X-ray shows migration of the atrial lead that was positioned in the right atrial appendage to a position at the tricuspid valve orifice. There was also failure to capture with the lead. The lead was subsequently repositioned successfully as shown on the follow-up chest X-ray."
+  },
+  {
+    "question": "The following statements regarding CRT are true except:",
+    "options": [
+      "It is a class IIa indication in patients with symptomatic medically refractory NYHA class III or IV failure with idiopathic or ischemic cardiomyopathy, prolonged QRS interval (\u2c56130 msec), EF \u2b0d 0.35, and a LV end-diastolic diameter \u2c56 55 mm",
+      "It improves distance in 6-minute walk tests",
+      "In general, it improves NYHA functional class and quality of life",
+      "It reduces death and hospitalization for any cause",
+      "It is technically not feasible in patients with AF with rapid ventricular rates"
+    ],
+    "correct": 4,
+    "explanation": "AF with rapid ventricular rates does not inhibit the use of CRT. The rapid ventricu- lar rates require careful management to allow the device to consistently pace both ven- tricles. If this is not medically feasible, then patients can undergo AV node ablation. The COMPANION trial showed a reduction in the primary endpoint of death and hospitalization for any causes with both CRT alone and when combined with an ICD. Multiple trials have demonstrated a benefit in 6-minute walk tests, NYHA functional class, quality of life, oxygen consumption, and functional MR."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

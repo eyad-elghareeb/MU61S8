@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Respiratory Physiology</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   BANK DATA  — only edit below this line
+──────────────────────────────────────────────────────────────────*/
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "uid": "tfbvpw1j1wd",
+  "title": "Respiratory Physiology",
+  "description": "Clinical Pearls in Respiratory Medicine \u2014 MCQs \u2014 Respiratory Physiology",
+  "icon": "\ud83e\udec1"
+};
+/* [BANK_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   QUESTION_BANK ARRAY
+   Format for each question:
+   {
+     question:    "Your question text",
+     options: ["Option A", "Option B", "Option C", "Option D"],
+     correct:     0,
+     explanation: "Why this answer is correct.",
+   }
+──────────────────────────────────────────────────────────────────*/
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "question": "Abdomino-thoracic type of respiration is seen in ---",
+    "options": [
+      "Infants",
+      "Adult males",
+      "Females",
+      "Pregnant women",
+      "Age above 20 years"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Adult males."
+  },
+  {
+    "question": "Paradoxical respiration is seen in ---",
+    "options": [
+      "Obesity",
+      "Pleural effusion",
+      "Diaphragm paralysis",
+      "Collapse of lung",
+      "Pneumothorax"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Diaphragm paralysis."
+  },
+  {
+    "question": "Voluntary control of respiration is in ---",
+    "options": [
+      "Medulla",
+      "Pons",
+      "Cerebellum",
+      "Spinal cord",
+      "Cerebral Cortex"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Cerebral Cortex."
+  },
+  {
+    "question": "Pneumotaxic center is in ---",
+    "options": [
+      "Medulla",
+      "Cerebral cortex",
+      "Spinal cord",
+      "Pons",
+      "Cerebellum"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Pons."
+  },
+  {
+    "question": "Hering-Breuer re\ufb02ex protects lungs against ---",
+    "options": [
+      "De\ufb02ation",
+      "Hyperin\ufb02ation",
+      "Pleural effusion",
+      "Collapse",
+      "Pulmonary"
+    ],
+    "correct": 1,
+    "explanation": "edema 259 6. Increased drive for respiration at the beginning of exercise is mainly due to --- A. J receptors B. Chemoreceptors C. Hering Breuer re\ufb02ex D. Proprioceptors E. Stretch receptors Answer \u2013 D."
+  },
+  {
+    "question": "Rhythm of Cheyne-Stokes breathing depends on the blood level of \u2013",
+    "options": [
+      "Oxygen",
+      "pH",
+      "Carbon dioxide",
+      "HCO3",
+      "Chloride"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is Carbon dioxide."
+  },
+  {
+    "question": "Normal duration of Inspiration :Expiration is ---",
+    "options": [
+      "2:3",
+      "3:2",
+      "4:5",
+      "5:4",
+      "2.2"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is 2:3."
+  },
+  {
+    "question": "Normal respiratory rate per minute in adults is ---",
+    "options": [
+      "12-14",
+      "14-16",
+      "16-18 260",
+      "18-20",
+      "20- 22"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is 14-16."
+  },
+  {
+    "question": "Which is the chief inspiratory muscle",
+    "options": [
+      "Internal intercostal",
+      "External intercostal",
+      "Pectoralis major",
+      "Diaphragm",
+      "Rectus abdominis"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Diaphragm."
+  },
+  {
+    "question": "Pump handle movement mainly occurs in ---",
+    "options": [
+      "1-2 ribs",
+      "2-6 ribs",
+      "7-10 ribs",
+      "11 and 12 ribs",
+      "6 \u2013 10 ribs"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is 2-6 ribs."
+  },
+  {
+    "question": "Bucket handle movement occurs in ---",
+    "options": [
+      "1-2 ribs",
+      "2-6 ribs",
+      "7-10 ribs",
+      "11 and 12 ribs",
+      "6 \u2013 10 ribs"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is 7-10 ribs."
+  },
+  {
+    "question": "Intrapleural pressure is sub-atmospheric due to ---",
+    "options": [
+      "Tendency of lung and chest wall to move in opposite direction",
+      "Diaphragmatic movement",
+      "Intra-abdominal pressure 261",
+      "Inspiratory effort",
+      "Surfactant"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Tendency of lung and chest wall to move in opposite direction."
+  },
+  {
+    "question": "Compliance of lung does NOT decrease in ---",
+    "options": [
+      "ARDS",
+      "Pulmonary edema",
+      "Collapse",
+      "Pneumonia",
+      "Emphysema"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is Emphysema."
+  },
+  {
+    "question": "Compliance of lung is mainly due to ---",
+    "options": [
+      "Surfactant",
+      "Elasticity of lung",
+      "Negative intrapleural pressure",
+      "Positive intrathoracic pressure",
+      "Elastic recoil of chest wall"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Surfactant."
+  },
+  {
+    "question": "Lung function values of an individual DOES NOT depend on ---",
+    "options": [
+      "Sex",
+      "Age",
+      "Height",
+      "Weight",
+      "Ethnicity"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Weight."
+  },
+  {
+    "question": "Which of the following data is NOT useful to diagnose airway obstruction?",
+    "options": [
+      "FEV1",
+      "FEF 25 \u2013 75",
+      "FVC",
+      "FEV1/FVC",
+      "RV"
+    ],
+    "correct": 4,
+    "explanation": "The correct answer is RV."
+  },
+  {
+    "question": "With advancing age FEV1/FVC will ---",
+    "options": [
+      "Increase",
+      "Decrease 262",
+      "No change",
+      "May increase or decrease",
+      "Remains constant"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Decrease 262."
+  },
+  {
+    "question": "Which is a WRONG statement about obstruction?",
+    "options": [
+      "FEV1 decreases",
+      "TLC decreases",
+      "FVC decreases",
+      "FEV1/FVC decreases",
+      "RV increases"
+    ],
+    "correct": 1,
+    "explanation": "TLC may increase."
+  },
+  {
+    "question": "Diagnosis of air\ufb02ow obstruction in Spirometry is identi\ufb01ed by ---",
+    "options": [
+      "Decreased FEV1/FVC",
+      "Decreased FEV1",
+      "Decreased FVC",
+      "Decreased FEF 25 \u2013 75",
+      "Increased RV"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Decreased FEV1/FVC."
+  },
+  {
+    "question": "Severity of airway obstruction in Spirometry is classi\ufb01ed based on --",
+    "options": [
+      "RV/TLC ratio",
+      "FEV1 %",
+      "FVC %",
+      "FEF 25-75",
+      "PEFR"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is FEV1 %."
+  },
+  {
+    "question": "Severity of restrictive lung disease in Spirometry is classi\ufb01ed based on ---",
+    "options": [
+      "FEV1 %",
+      "TLC",
+      "FVC %",
+      "FEF 25-75",
+      "PEFR"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is FVC %."
+  },
+  {
+    "question": "Which is NOT measured by Spirometry?",
+    "options": [
+      "FVC 263",
+      "RV",
+      "FEV1",
+      "PEFR",
+      "FEF 20 \u2013 75"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is RV."
+  },
+  {
+    "question": "Which is a WRONG statement about obstruction?",
+    "options": [
+      "FEV1 < 80 %",
+      "FVC normal or low",
+      "FEV1/FVC > 0.7",
+      "Residual volume may be increased",
+      "TLC may be increased"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is FEV1/FVC > 0.7."
+  },
+  {
+    "question": "Which is a WRONG statement about restriction?",
+    "options": [
+      "FEV1 normal or mildly reduced",
+      "FVC < 80% predicted",
+      "FEV1/FVC normal",
+      "Residual volume increased",
+      "TLC reduced"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Residual volume increased."
+  },
+  {
+    "question": "Scooped / inverted hockey stick appearance in \ufb02ow volume loop is seen in ---",
+    "options": [
+      "Obstruction",
+      "Restriction",
+      "Variable upper air way obstruction",
+      "Fixed upper airway obstruction",
+      "Small airway disease"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Obstruction."
+  },
+  {
+    "question": "Box shaped \ufb02ow volume loop is seen in ---",
+    "options": [
+      "Obstruction",
+      "Restriction",
+      "Variable upper air way obstruction",
+      "Fixed upper airway obstruction",
+      "Small airway disease"
+    ],
+    "correct": 3,
+    "explanation": "264 28. Which is a WRONG statement about bronchodilator reversibility testing? A. Short acting bronchodilators should be stopped 2 hr before the test B. Long acting bronchodilators should be stopped 12 hr before the test C. Sustained release Theophyllin should be stopped 24 hr before the test D. Some COPD patients may have bronchodilator reversibility E. Some asthmatics may not show bronchodilator reversibility Answer - A"
+  },
+  {
+    "question": "Positive bronchodilator reversibility test is ---",
+    "options": [
+      "FEV1 Increases > 12%",
+      "FEV1 Increases >100 ml",
+      "PEF Increases > 30 li/mt",
+      "PEF Increases >50%",
+      "FEV/FVC increases > 20%"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is FEV1 Increases > 12%."
+  },
+  {
+    "question": "Supplemental oxygen MAY NOT reduce hypoxia in ---",
+    "options": [
+      "Pneumonia",
+      "Severe Anemia",
+      "Pulmonary hemorrhage",
+      "Pulmonary embolism",
+      "Pulmonary edema"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is Severe Anemia."
+  },
+  {
+    "question": "Which one consistently increases with age?",
+    "options": [
+      "Forced Vital Capacity",
+      "Total Lung Capacity",
+      "FEV1",
+      "Residual Volume",
+      "Compliance"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Residual Volume."
+  },
+  {
+    "question": "Which of the following DOES NOT interfere with pulse oxymetry reading?",
+    "options": [
+      "Hyperbilirubinaemia",
+      "Hypotension",
+      "Shivering",
+      "Tattooing",
+      "Dark skin"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Hyperbilirubinaemia."
+  },
+  {
+    "question": "Oxygen transported in blood mainly by ---",
+    "options": [
+      "Dissolved in plasma",
+      "Bound to Hemoglobin",
+      "Bound to amino group of Hb",
+      "Bound to Haem Part of Hb",
+      "Bound to albumin"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is Bound to Haem Part of Hb."
+  },
+  {
+    "question": "Double Bohr Effect occurs in ---",
+    "options": [
+      "Placenta",
+      "Brain",
+      "Lungs 265",
+      "Heart",
+      "Liver"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Placenta."
+  },
+  {
+    "question": "Which artery is usually chosen for arterial puncture for ABG?",
+    "options": [
+      "Radial artery",
+      "Dorsalis pedis",
+      "Femoral Artery",
+      "Ulnar Artery",
+      "Subclavian Artery"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Radial artery."
+  },
+  {
+    "question": "What is the primary change in Respiratory Acidosis?",
+    "options": [
+      "PO2 is increased",
+      "PCO2 is decreased",
+      "PCO2 is increased",
+      "HCO3 is decreased",
+      "pH is reduced"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is PCO2 is increased."
+  },
+  {
+    "question": "What is the primary change in Metabolic Alkalosis?",
+    "options": [
+      "PCO2 is increased",
+      "HCO3 is increased",
+      "HCO3 is decreased",
+      "PCO2 is decreased",
+      "pH is reduced"
+    ],
+    "correct": 1,
+    "explanation": "The correct answer is HCO3 is increased."
+  },
+  {
+    "question": "All factors cause oxygen dissociation curve to shift to right except \u2014",
+    "options": [
+      "Carbon monoxide increased",
+      "Increased PCO2",
+      "Increased H+",
+      "Increased temperature",
+      "Increase in 2-3 DPG"
+    ],
+    "correct": 0,
+    "explanation": "The correct answer is Carbon monoxide increased."
+  },
+  {
+    "question": "What is the primary change in Respiratory Alkalosis?",
+    "options": [
+      "PCO2 is increased",
+      "HCO3 is increased",
+      "HCO3 is decreased",
+      "PCO2 is decreased",
+      "pH is reduced"
+    ],
+    "correct": 3,
+    "explanation": "The correct answer is PCO2 is decreased."
+  },
+  {
+    "question": "Primary change in metabolic acidosis is \u2013",
+    "options": [
+      "PCO2 is increased",
+      "HCO3 is increased",
+      "HCO3 is decreased",
+      "PCO2 is decreased",
+      "pH is reduced"
+    ],
+    "correct": 2,
+    "explanation": "The correct answer is HCO3 is decreased."
+  }
+];
+/* [QUESTION_BANK_END] */
+</script>
+<script>
+/* Engine loader */
+(function () {
+  window.__QUIZ_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  document.write('<scr' + 'ipt src="' + window.__QUIZ_ENGINE_BASE + 'bank-engine.js"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
