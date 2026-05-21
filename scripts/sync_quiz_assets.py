@@ -108,11 +108,18 @@ def discover_index_files() -> list[Path]:
     return sorted(paths, key=lambda item: natural_key(item.relative_to(REPO_ROOT).as_posix()))
 
 
+SKIP_HTML_FILES = {
+    "med/ecg/ecg-simulator.html",
+}
+
+
 def discover_html_files() -> list[Path]:
     paths: list[Path] = []
     for path in REPO_ROOT.rglob("*.html"):
-        rel = path.relative_to(REPO_ROOT)
-        if any(part in SKIP_DIRS or part.startswith(".") for part in rel.parts[:-1]):
+        rel = path.relative_to(REPO_ROOT).as_posix()
+        if any(part in SKIP_DIRS or part.startswith(".") for part in Path(rel).parts[:-1]):
+            continue
+        if rel in SKIP_HTML_FILES:
             continue
         paths.append(path)
     return sorted(paths, key=lambda item: (item.relative_to(REPO_ROOT).as_posix() != "index.html", natural_key(item.relative_to(REPO_ROOT).as_posix())))

@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-20e2dc81428d';
+const CACHE_VERSION = 'mu61-quiz-b0f4e46a68de';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -128,6 +128,7 @@ var PRECACHE_REL_PATHS = [
   'med/dr.-maf/chest/s1-lung-cancer.html',
   'med/dr.-maf/chest/s2-interstitial-lung-disease.html',
   'med/dr.-maf/index.html',
+  'med/ecg/index.html',
   'med/extra/cardio/davidsons-cardiology.html',
   'med/extra/cardio/index.html',
   'med/extra/cardio/kasr-al-ainy-cardiology.html',
