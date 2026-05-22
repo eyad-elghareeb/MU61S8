@@ -765,9 +765,8 @@ input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.2); }
   <div class="control-panel" id="control-panel">
     <div class="tab-nav">
       <button class="tab-btn active" data-tab="rhythms" onclick="switchTab('rhythms', this)">Rhythms</button>
-      <button class="tab-btn" data-tab="customwave" onclick="switchTab('customwave', this)">Wave Builder</button>
       <button class="tab-btn" data-tab="leads" onclick="switchTab('leads', this)">Leads</button>
-      <button class="tab-btn" data-tab="settings" onclick="switchTab('settings', this)">Params</button>
+      <button class="tab-btn" data-tab="customwave" onclick="switchTab('customwave', this)">Wave Builder</button>
       <button class="tab-btn" data-tab="actions" onclick="switchTab('actions', this)">Actions</button>
     </div>
 
@@ -792,20 +791,16 @@ input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.2); }
             <span>Normal</span><span>Mild</span><span>Moderate</span><span>Severe</span><span>Critical</span>
           </div>
           <div class="intensity-stage-dots" id="intensity-stage-dots"></div>
-          <div class="manual-params-panel" id="manual-params-panel">
-            <div class="mpp-title"><i class="fa-solid fa-chart-bar"></i> Active Waveform Parameters</div>
-            <div id="mpp-rows"></div>
-          </div>
         </div>
       </div>
 
-      <!-- WAVE CUSTOMIZER TAB (MANUAL CONTROL) -->
+      <!-- WAVE BUILDER TAB (Includes Params) -->
       <div class="tab-content" id="tab-customwave">
         <div class="wave-customizer">
           <div class="manual-banner">
             <div>
-              <div class="manual-banner-text">Active Custom Wave Design</div>
-              <div class="manual-banner-desc">Constructs physiological waveforms manually using parameters below.</div>
+              <div class="manual-banner-text">Activate Custom Wave Design</div>
+              <div class="manual-banner-desc">Unlock advanced parameters and manual waveform construction.</div>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="toggle-manual-mode" onchange="toggleManualMode(this.checked)">
@@ -813,85 +808,130 @@ input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.2); }
             </label>
           </div>
 
-          <div class="param-grid">
-            <!-- P WAVE -->
-            <div class="param-card">
-              <div class="param-card-title">P Wave (Atrial)</div>
-              <div class="slider-group">
-                <div class="slider-label"><span>P Amplitude</span><span class="slider-val" id="val-pAmp">0.12 mV</span></div>
-                <input type="range" id="slide-pAmp" min="-50" max="100" value="12" oninput="updateManualWaveParam('pAmp', this.value)">
-              </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>P Duration</span><span class="slider-val" id="val-pDur">0.10 s</span></div>
-                <input type="range" id="slide-pDur" min="30" max="250" value="96" oninput="updateManualWaveParam('pDur', this.value)">
-              </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>PR Interval</span><span class="slider-val" id="val-prInt">0.19 s</span></div>
-                <input type="range" id="slide-prInt" min="80" max="400" value="192" oninput="updateManualWaveParam('prInt', this.value)">
-              </div>
+          <div id="wave-builder-content" style="display:none">
+            <!-- Params Section -->
+            <div class="param-grid" style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+               <div class="slider-group">
+                  <div class="slider-label"><span>Heart Rate</span><span class="slider-val" id="hr-slider-val">72 bpm</span></div>
+                  <input type="range" id="hr-slider" min="20" max="220" value="72" oninput="updateHR(this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>Waveform Scale (Gain)</span><span class="slider-val" id="amp-slider-val">1.0x</span></div>
+                  <input type="range" id="amp-slider" min="20" max="200" value="100" oninput="updateAmp(this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>Sweep Speed</span><span class="slider-val" id="speed-slider-val">25 mm/s</span></div>
+                  <input type="range" id="speed-slider" min="10" max="50" value="25" step="5" oninput="updateSpeed(this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>Somatic Noise</span><span class="slider-val" id="noise-slider-val">0%</span></div>
+                  <input type="range" id="noise-slider" min="0" max="50" value="0" oninput="updateNoise(this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>Interface Zoom</span><span class="slider-val" id="zoom-slider-val">1.0x</span></div>
+                  <input type="range" id="zoom-slider" min="20" max="500" value="100" step="10" oninput="updateZoom(this.value)">
+                </div>
+                <div class="toggle-row">
+                  <div><div class="tr-label">Realistic Simulation</div><div class="tr-desc">Adds baseline wander & timing jitter</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="toggle-realistic" onchange="updateRealisticMode(this.checked)"><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div><div class="tr-label">Grid Overlay</div><div class="tr-desc">Show ECG millimeter reference grid</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="toggle-grid" checked onchange="toggleGrid(this.checked)"><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div><div class="tr-label">QRS Beep Sound</div><div class="tr-desc">Chirp on heart R-peak detection</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="toggle-sound" onchange="toggleSound(this.checked)"><span class="toggle-slider"></span></label>
+                </div>
             </div>
 
-            <!-- QRS COMPLEX -->
-            <div class="param-card">
-              <div class="param-card-title">QRS Complex (Ventricular)</div>
-              <div class="slider-group">
-                <div class="slider-label"><span>QRS Amplitude</span><span class="slider-val" id="val-qrsAmp">1.00 mV</span></div>
-                <input type="range" id="slide-qrsAmp" min="10" max="250" value="100" oninput="updateManualWaveParam('qrsAmp', this.value)">
-              </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>QRS Width</span><span class="slider-val" id="val-qrsDur">0.06 s</span></div>
-                <input type="range" id="slide-qrsDur" min="30" max="250" value="60" oninput="updateManualWaveParam('qrsDur', this.value)">
-              </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>Osborn J-Wave Notch</span><span class="slider-val" id="val-jNotch">0.00 mV</span></div>
-                <input type="range" id="slide-jNotch" min="0" max="100" value="0" oninput="updateManualWaveParam('jNotch', this.value)">
-              </div>
+            <div class="manual-params-panel" id="manual-params-panel" style="margin-bottom:1.5rem;">
+              <div class="mpp-title"><i class="fa-solid fa-chart-bar"></i> Active Waveform Parameters</div>
+              <div id="mpp-rows"></div>
             </div>
 
-            <!-- ST SEGMENT & T WAVE -->
-            <div class="param-card">
-              <div class="param-card-title">ST Segment &amp; T Wave</div>
-              <div class="slider-group">
-                <div class="slider-label"><span>ST Elevation / Depr.</span><span class="slider-val" id="val-stElev">0.00 mV</span></div>
-                <input type="range" id="slide-stElev" min="-100" max="100" value="0" oninput="updateManualWaveParam('stElev', this.value)">
+            <div class="manual-controls" id="manual-controls">
+            <div class="param-grid">
+              <!-- P WAVE -->
+              <div class="param-card">
+                <div class="param-card-title">P Wave (Atrial)</div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>P Amplitude</span><span class="slider-val" id="val-pAmp">0.12 mV</span></div>
+                  <input type="range" id="slide-pAmp" min="-50" max="100" value="12" oninput="updateManualWaveParam('pAmp', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>P Duration</span><span class="slider-val" id="val-pDur">0.10 s</span></div>
+                  <input type="range" id="slide-pDur" min="30" max="250" value="96" oninput="updateManualWaveParam('pDur', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>PR Interval</span><span class="slider-val" id="val-prInt">0.19 s</span></div>
+                  <input type="range" id="slide-prInt" min="80" max="400" value="192" oninput="updateManualWaveParam('prInt', this.value)">
+                </div>
               </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>ST Duration</span><span class="slider-val" id="val-stDur">0.12 s</span></div>
-                <input type="range" id="slide-stDur" min="40" max="300" value="120" oninput="updateManualWaveParam('stDur', this.value)">
-              </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>ST Slope Shape</span><span class="slider-val" id="val-stSlope">Horizontal</span></div>
-                <input type="range" id="slide-stSlope" min="-1" max="2" value="0" oninput="updateManualWaveParam('stSlope', this.value)">
-              </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>T Amplitude</span><span class="slider-val" id="val-tAmp">0.22 mV</span></div>
-                <input type="range" id="slide-tAmp" min="-100" max="150" value="22" oninput="updateManualWaveParam('tAmp', this.value)">
-              </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>T Duration</span><span class="slider-val" id="val-tDur">0.19 s</span></div>
-                <input type="range" id="slide-tDur" min="80" max="400" value="192" oninput="updateManualWaveParam('tDur', this.value)">
-              </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>T Wave Shape</span><span class="slider-val" id="val-tShape">Symmetric</span></div>
-                <input type="range" id="slide-tShape" min="1" max="2" value="1" oninput="updateManualWaveParam('tShape', this.value)">
-              </div>
-            </div>
 
-            <!-- U WAVE -->
-            <div class="param-card">
-              <div class="param-card-title">U Wave (Afterpotential)</div>
-              <div class="slider-group">
-                <div class="slider-label"><span>U Amplitude</span><span class="slider-val" id="val-uAmp">0.00 mV</span></div>
-                <input type="range" id="slide-uAmp" min="0" max="50" value="0" oninput="updateManualWaveParam('uAmp', this.value)">
+              <!-- QRS COMPLEX -->
+              <div class="param-card">
+                <div class="param-card-title">QRS Complex (Ventricular)</div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>QRS Amplitude</span><span class="slider-val" id="val-qrsAmp">1.00 mV</span></div>
+                  <input type="range" id="slide-qrsAmp" min="10" max="250" value="100" oninput="updateManualWaveParam('qrsAmp', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>QRS Width</span><span class="slider-val" id="val-qrsDur">0.06 s</span></div>
+                  <input type="range" id="slide-qrsDur" min="30" max="250" value="60" oninput="updateManualWaveParam('qrsDur', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>Osborn J-Wave Notch</span><span class="slider-val" id="val-jNotch">0.00 mV</span></div>
+                  <input type="range" id="slide-jNotch" min="0" max="100" value="0" oninput="updateManualWaveParam('jNotch', this.value)">
+                </div>
               </div>
-              <div class="slider-group">
-                <div class="slider-label"><span>U Duration</span><span class="slider-val" id="val-uDur">0.10 s</span></div>
-                <input type="range" id="slide-uDur" min="40" max="250" value="100" oninput="updateManualWaveParam('uDur', this.value)">
+
+              <!-- ST SEGMENT & T WAVE -->
+              <div class="param-card">
+                <div class="param-card-title">ST Segment &amp; T Wave</div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>ST Elevation / Depr.</span><span class="slider-val" id="val-stElev">0.00 mV</span></div>
+                  <input type="range" id="slide-stElev" min="-100" max="100" value="0" oninput="updateManualWaveParam('stElev', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>ST Duration</span><span class="slider-val" id="val-stDur">0.12 s</span></div>
+                  <input type="range" id="slide-stDur" min="40" max="300" value="120" oninput="updateManualWaveParam('stDur', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>ST Slope Shape</span><span class="slider-val" id="val-stSlope">Horizontal</span></div>
+                  <input type="range" id="slide-stSlope" min="-1" max="2" value="0" oninput="updateManualWaveParam('stSlope', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>T Amplitude</span><span class="slider-val" id="val-tAmp">0.22 mV</span></div>
+                  <input type="range" id="slide-tAmp" min="-100" max="150" value="22" oninput="updateManualWaveParam('tAmp', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>T Duration</span><span class="slider-val" id="val-tDur">0.19 s</span></div>
+                  <input type="range" id="slide-tDur" min="80" max="400" value="192" oninput="updateManualWaveParam('tDur', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>T Wave Shape</span><span class="slider-val" id="val-tShape">Symmetric</span></div>
+                  <input type="range" id="slide-tShape" min="1" max="2" value="1" oninput="updateManualWaveParam('tShape', this.value)">
+                </div>
+              </div>
+
+              <!-- U WAVE -->
+              <div class="param-card">
+                <div class="param-card-title">U Wave (Afterpotential)</div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>U Amplitude</span><span class="slider-val" id="val-uAmp">0.00 mV</span></div>
+                  <input type="range" id="slide-uAmp" min="0" max="50" value="0" oninput="updateManualWaveParam('uAmp', this.value)">
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label"><span>U Duration</span><span class="slider-val" id="val-uDur">0.10 s</span></div>
+                  <input type="range" id="slide-uDur" min="40" max="250" value="100" oninput="updateManualWaveParam('uDur', this.value)">
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
       <!-- LEADS TAB -->
       <div class="tab-content" id="tab-leads">
@@ -899,41 +939,6 @@ input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.2); }
         <div class="lead-tabs" id="lead-tabs"></div>
       </div>
 
-      <!-- PARAMS TAB -->
-      <div class="tab-content" id="tab-settings">
-        <div class="slider-group">
-          <div class="slider-label"><span>Heart Rate</span><span class="slider-val" id="hr-slider-val">72 bpm</span></div>
-          <input type="range" id="hr-slider" min="20" max="220" value="72" oninput="updateHR(this.value)">
-        </div>
-        <div class="slider-group">
-          <div class="slider-label"><span>Waveform Scale (Gain)</span><span class="slider-val" id="amp-slider-val">1.0x</span></div>
-          <input type="range" id="amp-slider" min="20" max="200" value="100" oninput="updateAmp(this.value)">
-        </div>
-        <div class="slider-group">
-          <div class="slider-label"><span>Sweep Speed</span><span class="slider-val" id="speed-slider-val">25 mm/s</span></div>
-          <input type="range" id="speed-slider" min="10" max="50" value="25" step="5" oninput="updateSpeed(this.value)">
-        </div>
-        <div class="slider-group">
-          <div class="slider-label"><span>Somatic Noise</span><span class="slider-val" id="noise-slider-val">0%</span></div>
-          <input type="range" id="noise-slider" min="0" max="50" value="0" oninput="updateNoise(this.value)">
-        </div>
-        <div class="slider-group">
-          <div class="slider-label"><span>Interface Zoom</span><span class="slider-val" id="zoom-slider-val">1.0x</span></div>
-          <input type="range" id="zoom-slider" min="20" max="500" value="100" step="10" oninput="updateZoom(this.value)">
-        </div>
-        <div class="slider-group">
-          <div class="slider-label"><span>Color Scheme</span><span class="slider-val" id="color-scheme-val">Monitor Green</span></div>
-          <input type="range" id="color-scheme-slider" min="0" max="4" value="0" step="1" oninput="updateColorScheme(this.value)">
-        </div>
-        <div class="toggle-row">
-          <div><div class="tr-label">Grid Overlay</div><div class="tr-desc">Show ECG millimeter reference grid</div></div>
-          <label class="toggle-switch"><input type="checkbox" id="toggle-grid" checked onchange="toggleGrid(this.checked)"><span class="toggle-slider"></span></label>
-        </div>
-        <div class="toggle-row">
-          <div><div class="tr-label">QRS Beep Sound</div><div class="tr-desc">Chirp on heart R-peak detection</div></div>
-          <label class="toggle-switch"><input type="checkbox" id="toggle-sound" onchange="toggleSound(this.checked)"><span class="toggle-slider"></span></label>
-        </div>
-      </div>
 
       <!-- ACTIONS TAB -->
       <div class="tab-content" id="tab-actions">
@@ -946,14 +951,17 @@ input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.2); }
         </div>
         <div class="action-row">
           <button class="btn-action" onclick="startCalibration()"><i class="fa-solid fa-caret-up"></i> Calibrate (1mV)</button>
+          <button class="btn-action" id="btn-compare" onclick="toggleComparisonMode()"><i class="fa-solid fa-columns"></i> Compare with NSR</button>
+        </div>
+        <div class="action-row">
           <button class="btn-action danger" onclick="simulateArrest()"><i class="fa-solid fa-skull-crossbones"></i> Arrest Sequence</button>
         </div>
         <div style="margin-top:0.8rem; padding:0.75rem; background:var(--surface2); border-radius:var(--radius-sm); border:1px solid var(--border);">
           <div style="font-size:0.75rem; font-weight:700; margin-bottom:0.4rem; color:var(--accent);">Physiological Guide</div>
           <div style="font-size:0.68rem; color:var(--text-muted); line-height:1.55;">
-            <div><i class="fa-solid fa-circle" style="font-size:0.35rem;vertical-align:middle;margin-right:0.3rem"></i> <b>Millimeter scale:</b> 1 large block ($5\text{ mm}$) = $0.2\text{ s}$ time / $0.5\text{ mV}$ voltage. $1\text{ mm}$ grid lines represent $0.04\text{ s}$ and $0.1\text{ mV}$.</div>
-            <div><i class="fa-solid fa-circle" style="font-size:0.35rem;vertical-align:middle;margin-right:0.3rem"></i> <b>Diagnostic Layout:</b> Standard 4 columns &times; 3 rows plus matching Lead II trace beneath.</div>
-            <div><i class="fa-solid fa-circle" style="font-size:0.35rem;vertical-align:middle;margin-right:0.3rem"></i> <b>Gesture interaction:</b> Touch click to Pause/Resume, scroll/pinch to adjust dynamic zoom, swipe horizontally to swap leads.</div>
+            <div><i class="fa-solid fa-circle" style="font-size:0.35rem;vertical-align:middle;margin-right:0.3rem"></i> <b>Millimeter scale:</b> 1 large block (5 mm) = 0.2 s time / 0.5 mV voltage. 1 mm grid lines represent 0.04 s and 0.1 mV.</div>
+            <div><i class="fa-solid fa-circle" style="font-size:0.35rem;vertical-align:middle;margin-right:0.3rem"></i> <b>Diagnostic Layout:</b> Standard 12-lead ECG format showing all leads simultaneously with calibration pulses.</div>
+            <div><i class="fa-solid fa-circle" style="font-size:0.35rem;vertical-align:middle;margin-right:0.3rem"></i> <b>Gesture interaction:</b> Tap to Pause/Resume, scroll or pinch to adjust zoom, and swipe horizontally to switch leads in single-lead mode.</div>
           </div>
         </div>
       </div>
@@ -1003,6 +1011,8 @@ const state = {
   viewMode: 'single',
   currentRhythm: 'nsr',
   currentLead: 'II',
+  realistic: false,
+  comparisonMode: false,
   phase: 0,
   scanX: 0,
   lastTime: 0,
@@ -1015,10 +1025,11 @@ const state = {
   lastPhase: 0,
   rPeakDetected: false,
   sweepBuf: null,
+  sweepBufCompare: null,
   sweepWritten: null,
 
   // Manual Control Waves State
-  colorScheme: 'monitor',
+  colorScheme: 'ge',
   manualMode: false,
   waveParams: {
     pAmp: 0.12,
@@ -1070,11 +1081,13 @@ function cacheDOMRefs() {
   DOM.manualParamsPanel = document.getElementById('manual-params-panel');
   DOM.mppRows = document.getElementById('mpp-rows');
   DOM.toggleManualMode = document.getElementById('toggle-manual-mode');
+  DOM.waveBuilderContent = document.getElementById('wave-builder-content');
   DOM.btnPause = document.getElementById('btn-pause');
   DOM.btnSingle = document.getElementById('btn-single');
   DOM.btn12lead = document.getElementById('btn-12lead');
   DOM.btnStrip = document.getElementById('btn-strip');
   DOM.btnTheme = document.getElementById('btn-theme');
+  DOM.btnCompare = document.getElementById('btn-compare');
   DOM.toast = document.getElementById('toast');
   DOM.pdfOverlay = document.getElementById('pdf-overlay');
   DOM.pdfCanvas = document.getElementById('pdf-canvas');
@@ -1206,6 +1219,17 @@ const RHYTHM_CLASSIFICATIONS = [
     ]
   },
   {
+    category: "Hypertrophy & Enlargement",
+    id: "cat_hypertrophy",
+    rhythms: [
+      { id: 'lvh',      name: 'Left Ventricular Hypertrophy', tag: 'LVH',      tagClass: 'abnormal' },
+      { id: 'rvh',      name: 'Right Ventricular Hypertrophy',tag: 'RVH',      tagClass: 'abnormal' },
+      { id: 'bve',      name: 'Biventricular Enlargement',    tag: 'BVE',      tagClass: 'abnormal' },
+      { id: 'lah',      name: 'Left Atrial Enlargement',      tag: 'LAH',      tagClass: 'abnormal' },
+      { id: 'rah',      name: 'Right Atrial Enlargement',     tag: 'RAH',      tagClass: 'abnormal' },
+    ]
+  },
+  {
     category: "Cardiac Emergency / Arrest",
     id: "cat_emergency",
     rhythms: [
@@ -1240,6 +1264,11 @@ const ICONS = {
   stemi_rv: `<i class="fa-solid fa-triangle-exclamation"></i>`,
   pwmi: `<i class="fa-solid fa-arrows-left-right"></i>`,
   hyperk: `<i class="fa-solid fa-diamond"></i>`,
+  lvh: `<i class="fa-solid fa-weight-hanging"></i>`,
+  rvh: `<i class="fa-solid fa-weight-hanging"></i>`,
+  bve: `<i class="fa-solid fa-maximize"></i>`,
+  lah: `<i class="fa-solid fa-p"></i>`,
+  rah: `<i class="fa-solid fa-p"></i>`,
   wpw: `<i class="fa-solid fa-bolt"></i>`,
   longqt: `<i class="fa-solid fa-arrows-left-right"></i>`,
   pericarditis: `<i class="fa-solid fa-heart-crack"></i>`,
@@ -2236,18 +2265,21 @@ function ecgHyperkalemia(t, int=0.3) {
   const prInt = 0.192 + 0.12 * Math.min(1, int * 2.5); // PR prolongs in early stages
   
   // QRS: widening (0.06→0.26s), amplitude changes
-  const qrsWidth = 0.060 + 0.200 * Math.min(1, int * 1.8);
+  const qrsWidth = 0.060 + 0.250 * Math.min(1, int * 1.8);
   const qrsAmp = 1.0 - 0.3 * Math.min(1, int * 2); // slight amplitude decrease
   
   // T wave: peaked early, then gets absorbed into sine wave
   const tAmp = 0.22 + 0.55 * Math.min(1, int * 3); // peaks tall early
   const tNarrow = Math.max(0.06, 0.19 - 0.13 * Math.min(1, int * 2.5)); // narrows
   
-  // Sine wave dominance at high int
-  const sineAmp = Math.max(0, (int - 0.65) / 0.35) * 0.8;
-  if (int > 0.65) {
-    // Full sine wave pattern → life-threatening
-    return sineAmp * Math.sin(Math.PI * t * 1.6 + 0.1) + 0.05*Math.sin(t*80);
+  // Sine wave dominance at high int (Stage 4)
+  if (int > 0.75) {
+    const cycleDur = 0.8; // Normalized cycle for sine wave
+    const phase = (t % cycleDur) / cycleDur;
+    // Classic sinusoidal morphology: QRS and T waves merge into a single undulating wave
+    const baseSine = Math.sin(2 * Math.PI * phase - Math.PI / 4);
+    const sineAmp = 0.6 + 0.4 * ((int - 0.75) / 0.25);
+    return baseSine * sineAmp + 0.02 * Math.sin(t * 120); // Add fine oscillation
   }
   
   // P wave
@@ -2884,6 +2916,98 @@ function ecgEarlyRepo(t, int=0.5) {
 }
 
 // ── Analytical Pure Wave Generator (Manual Mode) ──────────────
+function ecgLVH(t, int=0.5, lead='II') {
+  // LVH: Increased QRS amplitude + strain pattern (ST-T changes)
+  // Sokolow-Lyon: S in V1 + R in V5/V6 > 35mm
+  const lateral = ['I','aVL','V5','V6'].includes(lead);
+  const rightPrecordial = ['V1','V2'].includes(lead);
+  
+  // Base NSR with increased amplitude
+  let ampMult = 1.0 + 0.8 * int;
+  if (lateral || rightPrecordial) ampMult = 1.0 + 1.5 * int;
+  
+  let val = ecgLeadNSR(t, lead) * ampMult;
+  
+  // ST-T Strain Pattern in lateral leads
+  if (lateral && int > 0.4) {
+    const strainSev = (int - 0.4) / 0.6;
+    if (t >= 0.29 && t < 0.65) {
+      const stProg = (t - 0.29) / 0.36;
+      // Asymmetric ST depression + T wave inversion
+      const strainWave = -0.25 * strainSev * Math.sin(Math.PI * stProg);
+      val += strainWave;
+    }
+  }
+  return val;
+}
+
+function ecgRVH(t, int=0.5, lead='II') {
+  // RVH: Tall R in V1, Right Axis Deviation, Strain in V1-V3
+  const rightPrecordial = ['V1','V2','V3'].includes(lead);
+  
+  let val = ecgLeadNSR(t, lead);
+  
+  if (lead === 'V1') {
+    // Override V1 with tall R instead of rS
+    if (t >= 0.192 && t < 0.292) {
+      const qrsProg = (t - 0.192) / 0.1;
+      val = (0.8 + 1.2 * int) * Math.sin(Math.PI * qrsProg);
+    }
+  } else if (lead === 'I') {
+    val *= (1 - 0.5 * int); // S wave in I (Right Axis)
+  }
+  
+  // Strain Pattern in right precordial leads
+  if (rightPrecordial && int > 0.5) {
+    const strainSev = (int - 0.5) / 0.5;
+    if (t >= 0.29 && t < 0.65) {
+      val -= 0.2 * strainSev * Math.sin(Math.PI * (t-0.29)/0.36);
+    }
+  }
+  return val;
+}
+
+function ecgBVE(t, int=0.5, lead='II') {
+  // Biventricular Enlargement: Large biphasic QRS in mid-precordials (Katz-Wachtel)
+  if (['V2','V3','V4'].includes(lead)) {
+    if (t >= 0.192 && t < 0.35) {
+      const qrsProg = (t - 0.192) / 0.158;
+      const kwAmp = 1.5 + 2.0 * int;
+      return kwAmp * Math.sin(2 * Math.PI * qrsProg); // Large biphasic
+    }
+    return ecgLeadNSR(t, lead);
+  }
+  // Otherwise mix of LVH/RVH logic or just high voltage NSR
+  return ecgLVH(t, int * 0.7, lead);
+}
+
+function ecgLAH(t, int=0.5, lead='II') {
+  // LAH: P mitrale (notched P) in II, biphasic P in V1 with deep terminal neg
+  if (lead === 'V1') {
+    if (t >= 0.0 && t < 0.12) {
+      if (t < 0.04) return 0.06 * Math.sin(Math.PI * t / 0.04);
+      return -(0.05 + 0.15 * int) * Math.sin(Math.PI * (t - 0.04) / 0.08);
+    }
+  } else if (['II', 'I', 'aVL'].includes(lead)) {
+    if (t >= 0.0 && t < 0.14) {
+      const pProg = t / 0.14;
+      return 0.12 * Math.sin(Math.PI * pProg) * (1 + int * 0.5 * Math.sin(Math.PI * pProg * 2));
+    }
+  }
+  return ecgLeadNSR(t, lead);
+}
+
+function ecgRAH(t, int=0.5, lead='II') {
+  // RAH: P pulmonale (peaked P > 2.5mm in II)
+  if (['II', 'III', 'aVF', 'V1'].includes(lead)) {
+    if (t >= 0.0 && t < 0.096) {
+      const pAmp = 0.12 + 0.25 * int;
+      return pAmp * Math.sin(Math.PI * t / 0.096);
+    }
+  }
+  return ecgLeadNSR(t, lead);
+}
+
 function ecgManualWaveform(t) {
   const p = state.waveParams;
   
@@ -2985,6 +3109,7 @@ const rhythmWaveforms = {
   nsr:ecgNSR, st:ecgST, sb:ecgSB, afib:ecgAFib, aflutter:ecgAFlutter,
   svt:ecgSVT, vtach:ecgVTach, vfib:ecgVFib, pea:ecgPEA, asystole:ecgAsystole,
   pvc:ecgNSR, lbbb:ecgLBBB, rbbb:ecgRBBB, stemi_ant:ecgStemiAnterior, stemi_inf:ecgStemiInferior, stemi_lat:ecgStemiLateral, stemi_antlat:ecgStemiAnterolateral, stemi_inflat:ecgStemiInferolateral, stemi_rv:ecgStemiRV, pwmi:ecgPWMI, hyperk:ecgHyperkalemia,
+  lvh:ecgLVH, rvh:ecgRVH, bve:ecgBVE, lah:ecgLAH, rah:ecgRAH,
   wpw:ecgWPW, longqt:ecgLongQT, pericarditis:ecgPericarditis, hypokalemia:ecgHypokalemia,
   digoxin:ecgDigoxin, earlyrepo:ecgEarlyRepo, avb1:ecgAVB1, avb2mob1:ecgAVB2Mobitz1, avb2mob2:ecgAVB2Mobitz2, avb3:ecgAVB3,
   brugada:ecgBrugada, hypothermia:ecgHypothermia,
@@ -2994,6 +3119,7 @@ const rhythmRates = {
   nsr:72, st:130, sb:45, afib:95, aflutter:85, svt:180,
   vtach:160, vfib:0, pea:40, asystole:0, pvc:75,
   lbbb:78, rbbb:76, stemi_ant:88, stemi_inf:85, stemi_lat:90, stemi_antlat:92, stemi_inflat:82, stemi_rv:78, pwmi:82, hyperk:68,
+  lvh:72, rvh:72, bve:72, lah:72, rah:72,
   wpw:80, longqt:72, pericarditis:90, hypokalemia:85,
   digoxin:70, earlyrepo:65, avb1:65, avb2mob1:68, avb2mob2:60, avb3:40,
   brugada:70, hypothermia:45,
@@ -3202,6 +3328,7 @@ function initSweepBuffers() {
   if (W <= 0) return;
   const bufLen = Math.max(1, Math.ceil(W));
   state.sweepBuf = new Float32Array(bufLen).fill(H / 2);
+  state.sweepBufCompare = new Float32Array(bufLen).fill(H / 2);
   state.sweepWritten = new Uint8Array(bufLen);
 }
 
@@ -3259,8 +3386,8 @@ function getThemeColors() {
   if (strip) {
     const result = {
       bg: '#FFE4B5', trace: '#111111',
-      gridMinor: 'rgba(255,140,0,0.18)', gridMajor: 'rgba(255,100,0,0.45)',
-      glow: 'transparent', label: '#000', lineWidth: 1.8,
+      gridMinor: 'rgba(255,140,0,0.25)', gridMajor: 'rgba(255,100,0,0.50)',
+      glow: 'transparent', label: '#111111', lineWidth: 1.8,
     };
     _themeColorsCache = result;
     _themeColorsKey = key;
@@ -3271,43 +3398,43 @@ function getThemeColors() {
     monitor: {
       dark: {
         bg: '#04060a', trace: '#00ff88',
-        gridMinor: 'rgba(0,255,136,0.06)', gridMajor: 'rgba(0,255,136,0.14)',
+        gridMinor: 'rgba(0,255,136,0.12)', gridMajor: 'rgba(0,255,136,0.24)',
         glow: 'rgba(0,255,136,0.15)', label: '#00ff88', lineWidth: 2,
       },
       light: {
         bg: '#fbf9f5', trace: '#111111',
-        gridMinor: 'rgba(0,0,0,0.06)', gridMajor: 'rgba(0,0,0,0.15)',
+        gridMinor: 'rgba(0,0,0,0.10)', gridMajor: 'rgba(0,0,0,0.20)',
         glow: 'transparent', label: '#111111', lineWidth: 2,
       }
     },
     philips: {
       dark: {
         bg: '#0a1628', trace: '#00e676',
-        gridMinor: 'rgba(0,230,118,0.05)', gridMajor: 'rgba(0,230,118,0.12)',
+        gridMinor: 'rgba(0,230,118,0.10)', gridMajor: 'rgba(0,230,118,0.20)',
         glow: 'rgba(0,230,118,0.12)', label: '#00e676', lineWidth: 1.8,
       },
       light: {
         bg: '#f0f4f8', trace: '#1a3a5c',
-        gridMinor: 'rgba(26,58,92,0.06)', gridMajor: 'rgba(26,58,92,0.14)',
+        gridMinor: 'rgba(26,58,92,0.10)', gridMajor: 'rgba(26,58,92,0.20)',
         glow: 'transparent', label: '#1a3a5c', lineWidth: 1.8,
       }
     },
     ge: {
       dark: {
         bg: '#0d1117', trace: '#ffd600',
-        gridMinor: 'rgba(255,214,0,0.04)', gridMajor: 'rgba(255,214,0,0.10)',
+        gridMinor: 'rgba(255,214,0,0.10)', gridMajor: 'rgba(255,214,0,0.20)',
         glow: 'rgba(255,214,0,0.10)', label: '#ffd600', lineWidth: 2,
       },
       light: {
         bg: '#fffdf5', trace: '#1a1a00',
-        gridMinor: 'rgba(26,26,0,0.06)', gridMajor: 'rgba(26,26,0,0.14)',
+        gridMinor: 'rgba(26,26,0,0.10)', gridMajor: 'rgba(26,26,0,0.20)',
         glow: 'transparent', label: '#1a1a00', lineWidth: 2,
       }
     },
     paper: {
       dark: {
         bg: '#1a1a2e', trace: '#e63946',
-        gridMinor: 'rgba(230,57,70,0.04)', gridMajor: 'rgba(230,57,70,0.10)',
+        gridMinor: 'rgba(230,57,70,0.10)', gridMajor: 'rgba(230,57,70,0.20)',
         glow: 'rgba(230,57,70,0.08)', label: '#e63946', lineWidth: 1.5,
       },
       light: {
@@ -3319,12 +3446,12 @@ function getThemeColors() {
     midnight: {
       dark: {
         bg: '#050510', trace: '#7c4dff',
-        gridMinor: 'rgba(124,77,255,0.05)', gridMajor: 'rgba(124,77,255,0.12)',
+        gridMinor: 'rgba(124,77,255,0.10)', gridMajor: 'rgba(124,77,255,0.20)',
         glow: 'rgba(124,77,255,0.15)', label: '#7c4dff', lineWidth: 2,
       },
       light: {
         bg: '#f5f0ff', trace: '#311b92',
-        gridMinor: 'rgba(49,27,146,0.06)', gridMajor: 'rgba(49,27,146,0.14)',
+        gridMinor: 'rgba(49,27,146,0.10)', gridMajor: 'rgba(49,27,146,0.20)',
         glow: 'transparent', label: '#311b92', lineWidth: 2,
       }
     }
@@ -3399,7 +3526,7 @@ function drawGridCached(w, h, colors, durationSeconds) {
 
 // Rhythms that require beat-index awareness for correct waveform rendering
 const BEAT_AWARE_RHYTHMS = new Set(['afib', 'pvc', 'avb2mob1', 'avb2mob2', 'avb3']);
-const LEAD_AWARE_RHYTHMS = new Set(['lbbb', 'rbbb', 'brugada', 'pwmi', 'pericarditis']);
+const LEAD_AWARE_RHYTHMS = new Set(['lbbb', 'rbbb', 'brugada', 'pwmi', 'pericarditis', 'lvh', 'rvh', 'bve', 'lah', 'rah']);
 
 function isLeadAwareRhythm(rhythm) {
   return rhythm.startsWith('stemi_') || LEAD_AWARE_RHYTHMS.has(rhythm);
@@ -3463,10 +3590,25 @@ function getWaveformValueRaw(phase, lead, includeNoise = true) {
 }
 
 function addTraceNoise(val, phase, timeSeed = 0) {
-  if (state.noise <= 0) return val;
-  const n = state.noise / 100;
-  const deterministicNoise = Math.sin((phase + timeSeed) * 371.3) + 0.45 * Math.sin((phase + timeSeed) * 821.7 + 1.7);
-  return val + n * 0.10 * deterministicNoise;
+  let noise = 0;
+  if (state.noise > 0) {
+    const n = state.noise / 100;
+    const deterministicNoise = Math.sin((phase + timeSeed) * 371.3) + 0.45 * Math.sin((phase + timeSeed) * 821.7 + 1.7);
+    noise += n * 0.10 * deterministicNoise;
+  }
+  
+  if (state.realistic) {
+    // Baseline wander (low frequency)
+    const t = (timeSeed + phase) * (60 / state.heartRate);
+    const wander = 0.15 * Math.sin(t * 0.8) + 0.05 * Math.sin(t * 2.1);
+    noise += wander;
+    
+    // Additional high-frequency realistic "muscle" noise
+    const muscle = 0.03 * (Math.random() * 2 - 1);
+    noise += muscle;
+  }
+  
+  return val + noise;
 }
 
 // Beat-aware waveform generator for 12-lead and PDF rendering.
@@ -3579,7 +3721,7 @@ function renderSingle(timestamp) {
   const displayDuration = 10 / zoom;
   const pixelsPerMM = W / (state.speed * displayDuration);
   const pixelsPerSec = state.speed * pixelsPerMM;
-  const pixelsPerMv = state.gain * pixelsPerMM * zoom;
+  const pixelsPerMv = state.gain * pixelsPerMM;
   const centerY = H / 2;
 
   if (!state.paused) {
@@ -3591,7 +3733,13 @@ function renderSingle(timestamp) {
     const oldBeatIndex = pvcBeatCounter;
 
     if (bpm > 0) {
-      const totalCycles = state.phase + dt / cycleDur;
+      let actualDt = dt;
+      if (state.realistic) {
+        // Subtle heart rate jitter
+        const jitter = 1.0 + 0.03 * Math.sin(Date.now() * 0.001);
+        actualDt *= jitter;
+      }
+      const totalCycles = state.phase + actualDt / cycleDur;
       const completedCycles = Math.floor(totalCycles);
       state.phase = totalCycles - completedCycles;
       pvcBeatCounter += completedCycles;
@@ -3623,11 +3771,31 @@ function renderSingle(timestamp) {
         const cyclesAtSample = oldPhase + sampleSeconds / cycleDur;
         const beatIndex = oldBeatIndex + Math.floor(cyclesAtSample);
         const samplePhase = ((cyclesAtSample % 1) + 1) % 1;
-        const val = getWaveformForBeatIndex(samplePhase, state.currentLead, beatIndex);
-        const yi = centerY - val * pixelsPerMv;
-        if (state.sweepBuf) {
-          state.sweepBuf[xi] = yi;
-          state.sweepWritten[xi] = 1;
+        if (state.comparisonMode) {
+          const centerY_top = H / 4;
+          const centerY_bottom = (3 * H) / 4;
+          const savedRhythm = state.currentRhythm;
+          
+          // Calculate NSR (Top)
+          state.currentRhythm = 'nsr';
+          const valNSR = getWaveformForBeatIndex(samplePhase, state.currentLead, beatIndex);
+          
+          // Calculate Current (Bottom)
+          state.currentRhythm = savedRhythm;
+          const valCurrent = getWaveformForBeatIndex(samplePhase, state.currentLead, beatIndex);
+
+          if (state.sweepBuf) {
+            state.sweepBufCompare[xi] = centerY_top - valNSR * pixelsPerMv;
+            state.sweepBuf[xi] = centerY_bottom - valCurrent * pixelsPerMv;
+            state.sweepWritten[xi] = 1;
+          }
+        } else {
+          const val = getWaveformForBeatIndex(samplePhase, state.currentLead, beatIndex);
+          const yi = centerY - val * pixelsPerMv;
+          if (state.sweepBuf) {
+            state.sweepBuf[xi] = yi;
+            state.sweepWritten[xi] = 1;
+          }
         }
       }
     }
@@ -3641,14 +3809,56 @@ function renderSingle(timestamp) {
 
   drawGridCached(W, H, colors, displayDuration);
 
+  if (state.comparisonMode) {
+    // Draw horizontal divider
+    ctx.strokeStyle = colors.gridMajor;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(0, H / 2);
+    ctx.lineTo(W, H / 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Draw labels
+    ctx.font = 'bold 12px var(--font-mono)';
+    ctx.fillStyle = colors.label || colors.trace;
+    ctx.textAlign = 'left';
+    ctx.fillText('NORMAL SINUS', 10, 20);
+    const rh = RHYTHMS.find(r => r.id === state.currentRhythm);
+    const currentName = rh ? rh.name.toUpperCase() : 'CURRENT';
+    ctx.fillText(currentName, 10, H / 2 + 20);
+  }
+
   // Stroke Neon Trace Path with High Performance Dual-Stroke Glow
-  ctx.beginPath();
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
 
-  // Build path segments — skip unwritten pixels efficiently
-  let prevX = -1;
   const traceLen = state.sweepBuf ? Math.min(Math.ceil(W), state.sweepBuf.length) : Math.ceil(W);
+
+  if (state.comparisonMode) {
+    // Render NSR Trace (Top)
+    ctx.beginPath();
+    let prevX_c = -1;
+    for (let x = 0; x < traceLen; x++) {
+      if (!state.sweepWritten || !state.sweepWritten[x]) { prevX_c = -1; continue; }
+      const y = state.sweepBufCompare[x];
+      if (prevX_c < 0 || x - prevX_c > 2) { ctx.moveTo(x, y); }
+      else { ctx.lineTo(x, y); }
+      prevX_c = x;
+    }
+    if (colors.glow !== 'transparent') {
+      ctx.strokeStyle = colors.glow;
+      ctx.lineWidth = colors.lineWidth * 2.5;
+      ctx.stroke();
+    }
+    ctx.strokeStyle = colors.trace;
+    ctx.lineWidth = colors.lineWidth;
+    ctx.stroke();
+  }
+
+  // Render Current/Bottom Trace
+  ctx.beginPath();
+  let prevX = -1;
   for (let x = 0; x < traceLen; x++) {
     if (!state.sweepWritten || !state.sweepWritten[x]) { prevX = -1; continue; }
     const y = state.sweepBuf[x];
@@ -3723,9 +3933,9 @@ function render12Lead(timestamp) {
   const cellDuration = 2.5 / zoom;           // seconds per cell column
   const totalDuration = numCols * cellDuration; // 10/zoom seconds total
   const pixelsPerMM  = cellW / (state.speed * cellDuration);
-  const pixelsPerMv  = state.gain * pixelsPerMM * zoom;  // identical formula to single-lead
+  const pixelsPerMv  = state.gain * pixelsPerMM;  // identical formula to single-lead
   const rpPixelsPerMM = W / (state.speed * totalDuration);
-  const rpPixelsPerMv = state.gain * rpPixelsPerMM * zoom;
+  const rpPixelsPerMv = state.gain * rpPixelsPerMM;
   const displayPixelsPerSec = W / totalDuration;
 
   // ── Advance animation phase ──────────────────────────────────
@@ -4180,6 +4390,7 @@ function clearCanvas() {
   state._lastX = 0;
   state._lastY = H / 2;
   if (state.sweepBuf) state.sweepBuf.fill(H / 2);
+  if (state.sweepBufCompare) state.sweepBufCompare.fill(H / 2);
   if (state.sweepWritten) state.sweepWritten.fill(0);
   LEADS.forEach(l => { if (state.leadBuf[l]) state.leadBuf[l].fill(0); });
   state.leadBufIdx = 0;
@@ -4189,6 +4400,9 @@ function clearCanvas() {
 function toggleManualMode(on) {
   state.manualMode = on;
   DOM.toggleManualMode.checked = on;
+  if (DOM.waveBuilderContent) {
+    DOM.waveBuilderContent.style.display = on ? 'block' : 'none';
+  }
   updateRhythmBadge();
   clearCanvas();
   showToast(on ? 'Manual Wave Customizer Engaged' : 'Preserving Medical Rhythm Presets');
@@ -4535,8 +4749,25 @@ function toggleGrid(on) {
   clearCanvas();
 }
 function toggleSound(on) { state.soundOn = on; if (on) initAudio(); }
+function updateRealisticMode(on) {
+  state.realistic = !!on;
+  clearCanvas();
+  showToast(on ? 'Realistic Simulation Active' : 'Idealized Waveforms Restored');
+}
+function toggleComparisonMode() {
+  if (state.viewMode !== 'single') {
+    setViewMode('single');
+  }
+  state.comparisonMode = !state.comparisonMode;
+  if (DOM.btnCompare) DOM.btnCompare.classList.toggle('active-toggle', state.comparisonMode);
+  initSweepBuffers();
+  state.scanX = 0;
+  clearCanvas();
+  showToast(state.comparisonMode ? 'Split-Screen Comparison Enabled' : 'Standard View Restored');
+}
 function toggleStripMode() {
   state.stripMode = !state.stripMode;
+  updateColorScheme(2); // Trigger CSS var updates (index 2 is GE Amber)
   const btn = DOM.btnStrip;
   const chk = document.getElementById('toggle-strip');
   if (chk) chk.checked = state.stripMode;
@@ -4571,6 +4802,12 @@ function toggleTheme() {
   html.setAttribute('data-theme', next);
   DOM.btnTheme.innerHTML = next === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
   localStorage.setItem('ecg-theme', next);
+  
+  // Make orange strip default in light mode
+  if (next === 'light' && !state.stripMode) {
+    toggleStripMode();
+  }
+  
   gridCacheValid = false;
   clearCanvas();
   showToast(next === 'dark' ? 'Dark System Selected' : 'Light Mode Activated');
@@ -5346,12 +5583,16 @@ ecgDisplay.addEventListener('wheel', (e) => {
   initManualSliders();
   updateRhythmBadge();
   updateIntensitySlider(0);
+
+  // Set default theme state
+  if (!savedTheme) {
+    // New users start in dark GE Amber
+  } else if (savedTheme === 'light' && !state.stripMode) {
+    if (typeof toggleStripMode === 'function') toggleStripMode();
+  }
+  updateColorScheme(2); // Index 2 is GE Amber
+
   clearCanvas();
-  
-  // Initialize color scheme
-  const csSlider = DOM.colorSchemeSlider;
-  if (csSlider) csSlider.value = 0;
-  
   requestAnimationFrame(render);
 })();
 </script>
