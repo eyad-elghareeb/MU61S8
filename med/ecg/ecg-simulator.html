@@ -1755,12 +1755,19 @@ function ecgSVT(t, int=0.5) {
 }
 
 function ecgVTach(t, int=0.5) {
-  // VTach: int controls amplitude, axis deviation, and monomorphic vs polymorphic
-  const widening = 0.08 + 0.12 * int; // QRS widens 0.08→0.20s
+  // VTach: monomorphic or polymorphic wide-complex tachycardia.
+  // qrsWidth drives the positive half-period so higher int → visibly wider QRS complex.
+  const qrsWidth  = 0.12 + 0.08 * int;            // QRS 120→200ms (infranodal origin)
   const polymorph = 0.15 * int * Math.sin(t * 0.8); // slight polymorphism at high int
-  const amp = 0.5 + 0.7 * int;
-  if (t < 0.5) return amp * (Math.sin(Math.PI * t / 0.5) + 0.25*Math.sin(Math.PI*t/0.25) + polymorph*0.3);
-  return -amp * (Math.sin(Math.PI*(t-0.5)/0.5) * 0.6 + polymorph*0.2);
+  const amp       = 0.5 + 0.7 * int;
+  // Scale the positive half-period by qrsWidth: wider QRS = broader positive deflection.
+  const posHalf = 0.30 + qrsWidth * 1.25;          // 0.45 at int=0 → 0.55 at int=1
+  if (t < posHalf) {
+    return amp * (Math.sin(Math.PI * t / posHalf)
+                + 0.25 * Math.sin(Math.PI * t / (posHalf * 0.5))
+                + polymorph * 0.3);
+  }
+  return -amp * (Math.sin(Math.PI * (t - posHalf) / posHalf) * 0.6 + polymorph * 0.2);
 }
 
 // Ventricular Fibrillation
@@ -1830,7 +1837,14 @@ function ecgLBBB(t, int=0.5, lead='II') {
   const rightPrecordial = ['V1','V2'].includes(lead);
   const leadScale = getLeadScale(lead);
 
-  if (t >= 0.0 && t < 0.096) return applyLeadPolarity(0.08 * Math.sin(Math.PI*t/0.096), lead);
+  // P wave: V1 biphasic (pos RA, neg LA terminal); all other leads generic scaled
+  if (t >= 0.0 && t < 0.096) {
+    if (lead === 'V1') {
+      if (t < 0.048) return  0.06 * Math.sin(Math.PI * t / 0.048);
+      return              -0.035 * Math.sin(Math.PI * (t - 0.048) / 0.048);
+    }
+    return applyLeadPolarity(0.08 * Math.sin(Math.PI * t / 0.096), lead);
+  }
 
   if (rightPrecordial) {
     if (t >= 0.144 && t < 0.144 + qrsW) {
@@ -1859,9 +1873,16 @@ function ecgLBBB(t, int=0.5, lead='II') {
     return applyLeadPolarity(ecgLBBB(t, int, 'V6') * 0.7, lead);
   }
 
+  // Intermediate leads (II, III, aVF, V3, V4): LBBB typically produces a broad qRS or RS
+  // complex. Previously had a 68ms gap with zero output mid-QRS — fixed by adding
+  // a continuous S-wave segment bridging the two blocks.
   if (t >= 0.144 && t < 0.144 + qrsW*0.45) {
     const prog = (t-0.144)/(qrsW*0.45);
-    return leadScale * 0.35 * Math.sin(Math.PI*prog);
+    return leadScale * 0.35 * Math.sin(Math.PI*prog);         // initial R component
+  }
+  if (t >= 0.144+qrsW*0.45 && t < 0.144+qrsW) {
+    const prog = (t - 0.144 - qrsW*0.45) / (qrsW*0.55);
+    return -leadScale * 0.28 * Math.sin(Math.PI * prog);       // broad S wave (no gap)
   }
   if (t >= 0.144+qrsW && t < 0.144+qrsW+0.24) return -leadScale * 0.12 * Math.sin(Math.PI*(t-0.144-qrsW)/0.24);
   return 0;
@@ -1875,7 +1896,14 @@ function ecgRBBB(t, int=0.5, lead='II') {
   const lateral = ['I','aVL','V5','V6'].includes(lead);
   const leadScale = getLeadScale(lead);
 
-  if (t >= 0.0 && t < 0.096) return applyLeadPolarity(0.08 * Math.sin(Math.PI*t/0.096), lead);
+  // P wave: V1 biphasic (pos RA, neg LA terminal); other leads generic
+  if (t >= 0.0 && t < 0.096) {
+    if (lead === 'V1') {
+      if (t < 0.048) return  0.06 * Math.sin(Math.PI * t / 0.048);
+      return              -0.035 * Math.sin(Math.PI * (t - 0.048) / 0.048);
+    }
+    return applyLeadPolarity(0.08 * Math.sin(Math.PI * t / 0.096), lead);
+  }
 
   if (rightPrecordial) {
     if (t >= 0.144 && t < 0.180) return 0.18 * Math.sin(Math.PI*(t-0.144)/0.036);
@@ -2157,21 +2185,37 @@ function ecgStemiRV(t, int=0.5, lead='II') {
 }
 
 function ecgPWMI(t, int=0.5, lead='V2') {
-  // Posterior MI: reciprocal changes are most visible in V1-V3.
-  // int increases ST depression, R wave prominence (reciprocal)
-  const anterior = ['V1','V2','V3'].includes(lead);
+  // Posterior MI: reciprocal changes most visible in V1–V3.
+  // Tall R (mirror of posterior Q), ST depression, tall upright T (mirror of posterior T inversion).
+  // PR interval fixed at 0.192 (same as NSR baseline — PWMI doesn't alter conduction).
+  const anterior  = ['V1','V2','V3'].includes(lead);
   const transition = lead === 'V4';
   if (!anterior && !transition) return ecgLeadNSR(t, lead);
 
-  const leadWeight = lead === 'V2' || lead === 'V3' ? 1.0 : (lead === 'V1' ? 0.85 : 0.45);
-  const stDep = -0.15 - 0.25 * int; // progressive ST depression
-  const rAmp = 0.55 + 0.45 * int; // tall R (posterior Q shows as anterior R)
-  const tTall = 0.18 + 0.22 * int; // tall upright T (reciprocal of inverted T posteriorly)
-  if (t >= 0.0 && t < 0.096) return 0.1 * Math.sin(Math.PI*t/0.096);
-  if (t >= 0.144 && t < 0.216) return (rAmp * leadWeight) * Math.sin(Math.PI*(t-0.144)/0.072);
-  if (t >= 0.216 && t < 0.264) return -0.08 * Math.sin(Math.PI*(t-0.216)/0.048);
-  if (t >= 0.264 && t < 0.456) return (stDep * leadWeight) * (1 - Math.cos(Math.PI*(t-0.264)/0.192)) / 2;
-  if (t >= 0.456 && t < 0.660) return (tTall * leadWeight) * Math.sin(Math.PI*(t-0.456)/0.204);
+  const lw     = lead === 'V2' || lead === 'V3' ? 1.0 : (lead === 'V1' ? 0.85 : 0.45);
+  const stDep  = -0.15 - 0.25 * int;          // progressive ST depression
+  const rAmp   =  0.55 + 0.45 * int;          // tall R (reciprocal of posterior Q)
+  const tTall  =  0.18 + 0.22 * int;          // tall upright T
+
+  // P wave: V1 biphasic, V2/V3/V4 upright
+  if (t >= 0.0 && t < 0.096) {
+    if (lead === 'V1') {
+      if (t < 0.048) return  0.07 * Math.sin(Math.PI * t / 0.048);
+      return              -0.04 * Math.sin(Math.PI * (t - 0.048) / 0.048);
+    }
+    return 0.10 * Math.sin(Math.PI * t / 0.096);
+  }
+  if (t >= 0.096 && t < 0.192) return 0; // normal PR segment
+
+  // QRS: tall R wave (reciprocal of posterior Q), small trailing s
+  if (t >= 0.192 && t < 0.264) return (rAmp * lw) * Math.sin(Math.PI * (t - 0.192) / 0.072);
+  if (t >= 0.264 && t < 0.312) return -0.08 * Math.sin(Math.PI * (t - 0.264) / 0.048);
+
+  // ST: horizontal depression (not the upsloping of NSR)
+  if (t >= 0.312 && t < 0.504) return (stDep * lw) * (1 - Math.cos(Math.PI * (t - 0.312) / 0.192)) / 2;
+
+  // T wave: tall upright (reciprocal of posterior T inversion)
+  if (t >= 0.504 && t < 0.708) return (tTall * lw) * Math.sin(Math.PI * (t - 0.504) / 0.204);
   return 0;
 }
 
@@ -2349,29 +2393,32 @@ function ecgHypothermia(t, int=0.3) {
 // int 0-1: PR shortens, delta grows, QRS widens, ST/T discordant
 // ═══════════════════════════════════════════════════════════════
 function ecgWPW(t, int=0.5) {
-  // int controls pre-excitation degree: PR shorter, delta wave larger, QRS wider
-  const prShort = 0.12 - 0.04 * int; // PR 0.12→0.08s
-  const deltaDur = 0.02 + 0.06 * int; // delta 0.02→0.08s
-  const deltaSlope = 0.25 + 0.55 * int; // slurred upstroke amplitude
-  const qrsDur = 0.06 + 0.08 * int; // total QRS widens to 0.14s
-  
-  if (t >= 0.0 && t < 0.090) return 0.12 * Math.sin(Math.PI*t/0.090); // P wave
-  if (t >= 0.090 && t < prShort) return 0; // short PR
+  // WPW: short PR via accessory pathway, delta wave (slurred upstroke), wide QRS, discordant ST-T.
+  // PR minimum = 0.092s — QRS must never start before the P wave ends at 0.090s.
+  const prShort    = Math.max(0.092, 0.120 - 0.030 * int); // PR 0.120→0.092s
+  const deltaDur   = 0.020 + 0.060 * int; // delta 0.02→0.08s (wider with more pre-excitation)
+  const deltaSlope = 0.25  + 0.55  * int; // slurred upstroke height
+  const qrsDur     = 0.060 + 0.080 * int; // total QRS 0.06→0.14s
+
+  if (t >= 0.0 && t < 0.090) return 0.12 * Math.sin(Math.PI * t / 0.090); // P wave (normal)
+  if (t >= 0.090 && t < prShort) return 0; // short but valid PR segment
   if (t >= prShort && t < prShort + deltaDur) {
     const prog = (t - prShort) / deltaDur;
-    return deltaSlope * prog; // slurred delta wave upstroke
+    return deltaSlope * prog; // slurred delta upstroke
   }
   const qrsStart = prShort + deltaDur;
   if (t >= qrsStart && t < qrsStart + qrsDur) {
-    return (deltaSlope + (1.0 - deltaSlope) * Math.sin(Math.PI*(t-qrsStart)/qrsDur));
+    return (deltaSlope + (1.0 - deltaSlope) * Math.sin(Math.PI * (t - qrsStart) / qrsDur));
   }
+  // Pseudo-S wave / secondary deflection (discordant with delta direction)
   if (t >= qrsStart+qrsDur && t < qrsStart+qrsDur+0.10) {
-    // Secondary R' or S wave discordant
     return -(0.15 + 0.10*int) * Math.sin(Math.PI*(t-qrsStart-qrsDur)/0.10);
   }
-  if (t >= qrsStart+qrsDur+0.10 && t < qrsStart+qrsDur+0.10+0.18) {
-    // T wave discordant (opposite to delta direction)
-    return -(0.20 * int) * Math.sin(Math.PI*(t-qrsStart-qrsDur-0.10)/0.18);
+  // T wave: discordant (opposite to delta/QRS direction) when pre-excitation is significant.
+  // At int=0 (no pre-excitation) T is concordant (positive); at int=1 fully discordant.
+  if (t >= qrsStart+qrsDur+0.10 && t < qrsStart+qrsDur+0.28) {
+    const tAmp = (0.15 - 0.35 * int); // +0.15 at int=0 (concordant) → -0.20 at int=1 (discordant)
+    return tAmp * Math.sin(Math.PI*(t-qrsStart-qrsDur-0.10)/0.18);
   }
   return 0;
 }
@@ -2424,31 +2471,50 @@ function ecgLongQT(t, int=0.5) {
 // int 0: Type 3 (saddle-back, <2mm), 0.5: Type 2, 1.0: Type 1 (coved ≥2mm)
 // ═══════════════════════════════════════════════════════════════
 function ecgBrugada(t, int=0.5, lead='V1') {
-  // Brugada pattern is a right-precordial finding (V1-V2, sometimes V3).
+  // Brugada pattern: right-precordial finding (V1-V3).
+  // Type 1 (coved, int→1): J-point ≥2mm, descending ("coved") ST, negative T.
+  // Type 2/3 (saddle-back, int→0): J-point ≥2mm, ST stays ≥1mm, positive T.
+  // QRS: rSR' morphology, total width ~90ms (RBBB-like terminal delay, not LBBB).
+  // PR interval: normal (Brugada does NOT shorten the PR).
   if (!['V1','V2','V3'].includes(lead)) return ecgLeadNSR(t, lead);
 
-  // int controls the transition from nondiagnostic saddle-back → diagnostic type 1 coved pattern
-  const leadWeight = lead === 'V3' ? 0.55 : 1.0;
-  const stElev = 0.15 + 0.55 * int; // ST elevation 0.15→0.70 mV
-  const covedShape = int; // 0=saddle, 1=coved (descending slope)
-  
-  if (t >= 0.0 && t < 0.096) return 0.08 * Math.sin(Math.PI*t/0.096);
-  if (t >= 0.12 && t < 0.18) return 0.15 * Math.sin(Math.PI*(t-0.12)/0.06);
-  if (t >= 0.18 && t < 0.30) return 0.9 * Math.sin(Math.PI*(t-0.18)/0.12);
-  if (t >= 0.30 && t < 0.65) {
-    const progress = (t - 0.30) / 0.35;
+  const lw       = lead === 'V3' ? 0.55 : lead === 'V2' ? 0.80 : 1.0;
+  const stElev   = 0.15 + 0.55 * int;  // J/ST peak height (Type 1 ≥2mm)
+  const covedShape = int;               // 0 = saddle-back, 1 = coved
+
+  // ── P wave: V1 biphasic (pos RA, neg LA terminal), V2/V3 upright ──────
+  if (lead === 'V1') {
+    if (t >= 0.000 && t < 0.048) return  0.07 * Math.sin(Math.PI * t / 0.048);
+    if (t >= 0.048 && t < 0.096) return -0.04 * Math.sin(Math.PI * (t - 0.048) / 0.048);
+  } else {
+    if (t >= 0.000 && t < 0.096) return  0.10 * Math.sin(Math.PI * t / 0.096);
+  }
+
+  // ── PR segment: normal (0.096–0.192) ─────────────────────────────────
+  if (t >= 0.096 && t < 0.192) return 0;
+
+  // ── QRS: rSR' — small r, S dip, then R' that blends into J-point ─────
+  // Total QRS ~88ms, normal width; the R' peak is the Brugada J-point.
+  if (t >= 0.192 && t < 0.212) return  0.10 * Math.sin(Math.PI * (t - 0.192) / 0.020); // small r
+  if (t >= 0.212 && t < 0.230) return -0.18 * Math.sin(Math.PI * (t - 0.212) / 0.018); // S
+  if (t >= 0.230 && t < 0.280) return  0.88 * Math.sin(Math.PI * (t - 0.230) / 0.050); // R' (Brugada peak)
+
+  // ── ST-T: Type 1 coved descends monotonically; Type 2/3 saddle-back ──
+  if (t >= 0.280 && t < 0.66) {
+    const prog = (t - 0.280) / (0.66 - 0.280);
     if (covedShape > 0.5) {
-      // Coved: monotonically descending from peak ST elevation → below baseline
-      return leadWeight * (stElev * (1 - progress) + (-0.12 * int) * progress);
+      // Type 1: R' peak → descending slope → crosses baseline → negative T
+      return lw * (stElev * Math.pow(1 - prog, 1.4) - 0.10 * int * prog);
     } else {
-      // Saddle-back: rises again before T
-      const saddleBottom = 0.3 * (1 - covedShape*2);
-      return leadWeight * (stElev * (1 - progress) + saddleBottom * Math.sin(Math.PI * progress));
+      // Type 2/3: drops from R' peak but plateaus / re-elevates (saddle shape)
+      const saddle = (0.18 + 0.08 * (1 - covedShape * 2)) * Math.sin(Math.PI * prog * 0.55);
+      return lw * (stElev * (1 - prog * 0.85) + saddle - stElev * prog * 0.15);
     }
   }
-  if (t >= 0.65 && t < 0.82) {
-    const tAmp = covedShape > 0.5 ? -0.15 * int : 0.15 * (1-int);
-    return leadWeight * tAmp * Math.sin(Math.PI*(t-0.65)/0.17);
+  if (t >= 0.66 && t < 0.84) {
+    // T wave: negative (Type 1) or positive (Type 2/3)
+    const tAmp = covedShape > 0.5 ? -0.16 * int : 0.14 * (1 - int);
+    return lw * tAmp * Math.sin(Math.PI * (t - 0.66) / 0.18);
   }
   return 0;
 }
@@ -2584,9 +2650,9 @@ function ecgAVB2Mobitz2(t, int=0.5) {
     return -(0.20 + 0.10 * int) * Math.sin(Math.PI * (t - prEnd - qDur - rDur) / sDur);
   }
 
-  // ST segment — may show discordant deviation due to BBB
+  // ST segment — discordant deviation due to BBB (always present with wide QRS)
   const stStart = prEnd + qDur + rDur + sDur;
-  const stDiscord = -0.05 * int; // mild discordant ST shift with wide QRS
+  const stDiscord = -(0.03 + 0.07 * int); // present at all intensities (wide QRS always discordant)
   if (t >= stStart && t < stStart + 0.10) return stDiscord;
 
   // T wave — discordant (opposite to QRS) due to aberrant conduction
@@ -2669,10 +2735,14 @@ function ecgAVB3(t, int=0.5) {
     }
 
     // T wave
+    // T wave direction depends on escape type:
+    // Junctional (int~0): narrow QRS, normal conduction → concordant POSITIVE T.
+    // Idioventricular (int~1): wide QRS, aberrant conduction → DISCORDANT (negative) T.
     const tWaveStart = qNorm + rNorm + sNorm;
     const tWaveDur = (0.18 + 0.04 * int) / ventCycle;
+    const tSign = 1 - 2 * int; // +1 at int=0 (junctional), -1 at int=1 (idioventricular)
+    const tAmp = tSign * (0.12 + 0.10 * int);
     if (t >= tWaveStart && t < tWaveStart + tWaveDur) {
-      const tAmp = -(0.10 + 0.15 * int);
       ventWave = tAmp * Math.sin(Math.PI * (t - tWaveStart) / tWaveDur);
     }
   } else {
@@ -2695,9 +2765,10 @@ function ecgAVB3(t, int=0.5) {
 
     const tWaveStart = q + r + s;
     const tWaveDur = 0.18 + 0.04 * int;
+    const tSign2 = 1 - 2 * int;
+    const tAmp2 = tSign2 * (0.12 + 0.10 * int);
     if (ventPhase >= tWaveStart && ventPhase < tWaveStart + tWaveDur) {
-      const tAmp = -(0.10 + 0.15 * int);
-      ventWave = tAmp * Math.sin(Math.PI * (ventPhase - tWaveStart) / tWaveDur);
+      ventWave = tAmp2 * Math.sin(Math.PI * (ventPhase - tWaveStart) / tWaveDur);
     }
   }
 
@@ -3034,10 +3105,12 @@ function buildPrecordialV1V2V3(t, baseFn, int, lead) {
       if (t >= 0.048 && t < 0.096) return hasPwave ? -0.04 * Math.sin(Math.PI * (t - 0.048) / 0.048) : 0;
       // PR isoelectric
       if (t >= 0.096 && t < 0.192) return 0;
-      // QRS: invert base → q becomes small r, R becomes deep S, s becomes tiny positive
-      if (t >= 0.192 && t < 0.336) return -base * 0.58;
-      // ST isoelectric
-      if (t >= 0.336 && t < 0.420) return 0;
+      // QRS: invert ecgNSR Q zone → small r wave; invert R zone → deep S wave.
+      // STOP at 0.288 — do NOT invert the NSR S zone (0.288-0.336) which would create
+      // a spurious small positive deflection after the deep S. V1 rS returns straight to iso.
+      if (t >= 0.192 && t < 0.288) return -base * 0.58;
+      // isoelectric from S-wave nadir back to ST baseline
+      if (t >= 0.288 && t < 0.420) return 0;
       // T: small upright
       if (t >= 0.420 && t < 0.612) return 0.09 * Math.sin(Math.PI * (t - 0.420) / 0.192);
       return 0;
@@ -3048,9 +3121,10 @@ function buildPrecordialV1V2V3(t, baseFn, int, lead) {
       if (t >= 0.000 && t < 0.056) return hasPwave ?  0.11 * Math.sin(Math.PI * t / 0.056) : 0;
       if (t >= 0.056 && t < 0.096) return hasPwave ? -0.025 * Math.sin(Math.PI * (t - 0.056) / 0.040) : 0;
       if (t >= 0.096 && t < 0.192) return 0;
-      // QRS: slightly smaller S than V1 (approaching transition zone)
-      if (t >= 0.192 && t < 0.336) return -base * 0.65;
-      if (t >= 0.336 && t < 0.420) return 0;
+      // Same fix as V1: stop inversion at 0.288 to eliminate spurious positive S.
+      // V2 S wave is slightly smaller than V1 (approaching transition zone).
+      if (t >= 0.192 && t < 0.288) return -base * 0.65;
+      if (t >= 0.288 && t < 0.420) return 0;
       // T: upright (V2 T is positive in normal adults)
       if (t >= 0.420 && t < 0.636) return 0.20 * Math.sin(Math.PI * (t - 0.420) / 0.216);
       return 0;
