@@ -1603,9 +1603,9 @@ const INTENSITY_STAGES = {
   },
   pericarditis: {
     stages: [
-      { name: 'Stage I Early', range: [0, 30], desc: 'Diffuse concave ST elevation with PR depression is characteristic of acute pericarditis, with reciprocal changes often in aVR/V1.' },
-      { name: 'Stage II Evolving', range: [30, 60], desc: 'ST elevation resolving, PR depression persisting, T wave flattening begins.' },
-      { name: 'Stage III Late', range: [60, 100], desc: 'T wave inversion develops, ST normalization, PR may normalize. Must differentiate from MI.' }
+      { name: 'Stage I Early', range: [0, 30], desc: 'Diffuse concave (saddle-shaped) ST elevation with PR depression in most leads. aVR shows the hallmark RECIPROCAL changes: PR elevation and ST depression.' },
+      { name: 'Stage II Evolving', range: [30, 60], desc: 'ST elevation resolving, PR depression persisting in most leads (PR elevation in aVR), T wave flattening begins.' },
+      { name: 'Stage III Late', range: [60, 100], desc: 'T wave inversion develops, ST normalisation, PR depression may normalise. Differentiate from STEMI by concave ST shape and diffuse distribution.' }
     ],
     defaultIntensity: 0.4,
     hrMod: (i) => 90 + 10 * i,
@@ -2024,12 +2024,21 @@ function ecgStemiCore(t, int, isCulprit, isReciprocal, weight) {
   return null; // neutral lead — use NSR
 }
 
-// Anterior STEMI (LAD): ST elevation V1-V4, reciprocal in II, III, aVF, aVR
+// Anterior STEMI (LAD): ST elevation V1-V4, reciprocal in II, III, aVF
+// aVR: For proximal LAD / large anterior territory, aVR shows ST elevation
+// (reciprocal of the global LV ST elevation pattern; hallmark of left main or
+// proximal LAD occlusion). This is clinically significant and must be rendered.
 function ecgStemiAnterior(t, int=0.5, lead='II') {
-  // aVR shows ST depression (opposite to left ventricular elevation)
   if (lead === 'aVR') {
-    const stDep = -(0.06 + 0.20 * int);
-    return ecgLeadNSR(t, lead) + stDep * Math.sin(Math.PI * t);
+    // ST elevation in aVR rises with extent of anterior territory (int)
+    // At low int (distal LAD) elevation may be minimal; at high int (proximal/LM) it is prominent.
+    const stElev = 0.04 + 0.18 * int;
+    const baseAVR = ecgLeadNSR(t, 'aVR'); // correct negative-dominant aVR baseline
+    if (t >= 0.288 && t < 0.480) {
+      const progress = (t - 0.288) / 0.192;
+      return baseAVR + stElev * Math.sin(Math.PI * progress);
+    }
+    return baseAVR;
   }
   const { isCulprit, isReciprocal, culpritWeight, recipWeight } = getStemiLeadEffect(lead, ['V1','V2','V3','V4'], ['II','III','aVF'], int);
   const result = ecgStemiCore(t, int, isCulprit, isReciprocal, isCulprit ? culpritWeight : recipWeight);
@@ -2037,14 +2046,20 @@ function ecgStemiAnterior(t, int=0.5, lead='II') {
   return ecgLeadNSR(t, lead); // neutral lead -> normal lead morphology
 }
 
-// Inferior STEMI (RCA): ST elevation II, III, aVF, reciprocal in I, aVL, aVR
-// Note: aVR may occasionally show ST elevation in proximal RCA occlusion with large RV involvement
+// Inferior STEMI (RCA): ST elevation II, III, aVF, reciprocal in I, aVL
+// aVR: ST depression (reciprocal of inferior elevation).
+// Note: In proximal RCA with large RV involvement, aVR may show mild elevation
+// via the RV pathway, but the dominant pattern in inferior STEMI is depression.
 function ecgStemiInferior(t, int=0.5, lead='II') {
-  // aVR: ST depression in inferior STEMI (opposite to inferior elevation)
-  // Note: In proximal RCA with large RV involvement, aVR may occasionally show slight elevation
   if (lead === 'aVR') {
+    // ST depression in aVR (reciprocal of inferior ST elevation)
     const stDep = -(0.05 + 0.18 * int);
-    return ecgLeadNSR(t, lead) + stDep * Math.sin(Math.PI * t);
+    const baseAVR = ecgLeadNSR(t, 'aVR');
+    if (t >= 0.288 && t < 0.480) {
+      const progress = (t - 0.288) / 0.192;
+      return baseAVR + stDep * Math.sin(Math.PI * progress);
+    }
+    return baseAVR;
   }
   const { isCulprit, isReciprocal, culpritWeight, recipWeight } = getStemiLeadEffect(lead, ['II','III','aVF'], ['I','aVL'], int);
   const result = ecgStemiCore(t, int, isCulprit, isReciprocal, isCulprit ? culpritWeight : recipWeight);
@@ -2052,12 +2067,17 @@ function ecgStemiInferior(t, int=0.5, lead='II') {
   return ecgLeadNSR(t, lead);
 }
 
-// Lateral STEMI (LCx): ST elevation I, aVL, V5, V6, reciprocal in V1-V3, aVR
+// Lateral STEMI (LCx): ST elevation I, aVL, V5, V6, reciprocal in V1-V3
+// aVR: ST depression (reciprocal of lateral elevation)
 function ecgStemiLateral(t, int=0.5, lead='II') {
-  // aVR shows ST depression
   if (lead === 'aVR') {
     const stDep = -(0.05 + 0.16 * int);
-    return ecgLeadNSR(t, lead) + stDep * Math.sin(Math.PI * t);
+    const baseAVR = ecgLeadNSR(t, 'aVR');
+    if (t >= 0.288 && t < 0.480) {
+      const progress = (t - 0.288) / 0.192;
+      return baseAVR + stDep * Math.sin(Math.PI * progress);
+    }
+    return baseAVR;
   }
   const { isCulprit, isReciprocal, culpritWeight, recipWeight } = getStemiLeadEffect(lead, ['I','aVL','V5','V6'], ['V1','V2','V3'], int);
   const result = ecgStemiCore(t, int, isCulprit, isReciprocal, isCulprit ? culpritWeight : recipWeight);
@@ -2065,12 +2085,19 @@ function ecgStemiLateral(t, int=0.5, lead='II') {
   return ecgLeadNSR(t, lead);
 }
 
-// Anterolateral STEMI: ST elevation V1-V6, I, aVL, reciprocal in II, III, aVF, aVR
+// Anterolateral STEMI: ST elevation V1-V6, I, aVL, reciprocal in II, III, aVF
+// aVR: ST ELEVATION — massive LV territory (proximal LAD / left main equivalent),
+// aVR elevation > 0.5 mm is a high-risk sign of left main or proximal LAD occlusion.
 function ecgStemiAnterolateral(t, int=0.5, lead='II') {
-  // aVR shows marked ST depression (massive LV injury)
   if (lead === 'aVR') {
-    const stDep = -(0.08 + 0.25 * int);
-    return ecgLeadNSR(t, lead) + stDep * Math.sin(Math.PI * t);
+    // Prominent ST elevation in aVR with massive anterolateral MI
+    const stElev = 0.06 + 0.22 * int;
+    const baseAVR = ecgLeadNSR(t, 'aVR');
+    if (t >= 0.288 && t < 0.480) {
+      const progress = (t - 0.288) / 0.192;
+      return baseAVR + stElev * Math.sin(Math.PI * progress);
+    }
+    return baseAVR;
   }
   const { isCulprit, isReciprocal, culpritWeight, recipWeight } = getStemiLeadEffect(lead, ['V1','V2','V3','V4','V5','V6','I','aVL'], ['II','III','aVF'], int);
   const result = ecgStemiCore(t, int, isCulprit, isReciprocal, isCulprit ? culpritWeight : recipWeight);
@@ -2078,12 +2105,17 @@ function ecgStemiAnterolateral(t, int=0.5, lead='II') {
   return ecgLeadNSR(t, lead);
 }
 
-// Inferolateral STEMI: ST elevation II, III, aVF, V5, V6, reciprocal in I, aVL, V1-V2, aVR
+// Inferolateral STEMI: ST elevation II, III, aVF, V5, V6, reciprocal in I, aVL, V1-V2
+// aVR: ST depression (reciprocal of inferolateral elevation)
 function ecgStemiInferolateral(t, int=0.5, lead='II') {
-  // aVR shows ST depression
   if (lead === 'aVR') {
     const stDep = -(0.06 + 0.20 * int);
-    return ecgLeadNSR(t, lead) + stDep * Math.sin(Math.PI * t);
+    const baseAVR = ecgLeadNSR(t, 'aVR');
+    if (t >= 0.288 && t < 0.480) {
+      const progress = (t - 0.288) / 0.192;
+      return baseAVR + stDep * Math.sin(Math.PI * progress);
+    }
+    return baseAVR;
   }
   const { isCulprit, isReciprocal, culpritWeight, recipWeight } = getStemiLeadEffect(lead, ['II','III','aVF','V5','V6'], ['I','aVL','V1','V2'], int);
   const result = ecgStemiCore(t, int, isCulprit, isReciprocal, isCulprit ? culpritWeight : recipWeight);
@@ -2091,13 +2123,17 @@ function ecgStemiInferolateral(t, int=0.5, lead='II') {
   return ecgLeadNSR(t, lead);
 }
 
-// Right Ventricular STEMI: ST elevation V1, reciprocal in I, aVL, V5-V6
-// Clinically: V4R is the most useful right-sided lead; V1 elevation is supportive but less sensitive.
+// Right Ventricular STEMI: ST elevation V1 (surrogate for V4R), reciprocal in I, aVL, V5-V6
+// aVR: mild ST depression (inferior component of RV MI dominates)
 function ecgStemiRV(t, int=0.5, lead='II') {
-  // S6: aVR shows ST depression in RV MI (inferior component dominates; aVR elevation only in isolated RV MI which is rare)
   if (lead === 'aVR') {
     const stDep = -(0.03 + 0.10 * int);
-    return ecgLeadNSR(t, lead) + stDep * Math.sin(Math.PI * t);
+    const baseAVR = ecgLeadNSR(t, 'aVR');
+    if (t >= 0.288 && t < 0.480) {
+      const progress = (t - 0.288) / 0.192;
+      return baseAVR + stDep * Math.sin(Math.PI * progress);
+    }
+    return baseAVR;
   }
   const { isCulprit, isReciprocal, culpritWeight, recipWeight } = getStemiLeadEffect(lead, ['V1'], ['I','aVL','V5','V6'], int);
   const result = ecgStemiCore(t, int, isCulprit, isReciprocal, isCulprit ? culpritWeight : recipWeight);
@@ -2670,31 +2706,67 @@ function ecgAVB3(t, int=0.5) {
 }
 
 function ecgPericarditis(t, int=0.5, lead='II') {
-  // int controls diffuse ST elevation, PR depression, and saddle-shaped morphology.
-  // aVR (and often V1) show reciprocal PR elevation/ST depression instead.
-  const stElev = 0.10 + 0.20 * int; // diffuse saddle-shaped ST elevation
-  const prDep = -0.04 * int; // PR depression is characteristic when present
-  const tInvert = Math.max(0, int - 0.65) / 0.35; // late T inversion (Stage III)
-  const reciprocal = lead === 'aVR' || lead === 'V1';
-  const leadWeight = lead === 'V1' ? 0.6 : 1.0;
-  
-  if (t >= 0.0 && t < 0.096) {
-    const p = 0.12 * Math.sin(Math.PI*t/0.096);
-    return p + (reciprocal ? -prDep : prDep) * leadWeight * Math.sin(Math.PI*t/0.096);
+  // ── Acute Pericarditis ECG Features ────────────────────────────────────
+  // Stage I  (int 0–0.30): Diffuse CONCAVE (saddle-shaped) ST elevation.
+  //                        PR depression in all leads EXCEPT aVR and V1.
+  //                        aVR + V1: reciprocal ST depression + PR elevation.
+  // Stage II (int 0.30–0.65): ST normalising, PR depression persisting, T flattening.
+  // Stage III(int 0.65–1.0): T wave inversion, ST near-normal.
+  //
+  // KEY: ST shape is CONCAVE (saddle) — distinguishes from convex STEMI.
+  //      aVR shows ST DEPRESSION and PR ELEVATION (opposite of other leads).
+  //      QRS is unaffected by pericarditis; use lead-specific normal morphology.
+
+  const stElev    = 0.10 + 0.20 * int;           // diffuse saddle ST elevation
+  const prDepAbs  = 0.04 * int;                   // PR depression magnitude
+  const tInvert   = Math.max(0, int - 0.65) / 0.35; // Stage III T inversion
+  const ls        = getLeadScale(lead);            // per-lead amplitude scale
+
+  // ── aVR: reciprocal lead ────────────────────────────────────────────────
+  // Normal aVR baseline: negative P, predominantly negative QRS, negative T.
+  // Pericarditis adds: PR elevation (reciprocal of PR depression), ST depression.
+  if (lead === 'aVR') {
+    const base = ecgLeadNSR(t, 'aVR'); // correct aVR baseline (neg-dominant QRS)
+    // PR segment: ELEVATION in aVR (hallmark reciprocal sign)
+    if (t >= 0.096 && t < 0.192) return prDepAbs * 0.85;
+    // ST: depression (reciprocal of diffuse ST elevation)
+    if (t >= 0.336 && t < 0.60) {
+      const prog = (t - 0.336) / 0.264;
+      return base - stElev * 0.40 * Math.sin(Math.PI * prog);
+    }
+    return base; // P, QRS, T: normal aVR morphology
   }
-  if (t >= 0.096 && t < 0.192) return (reciprocal ? -prDep : prDep) * leadWeight;
-  if (t >= 0.192 && t < 0.228) return -0.10 * Math.sin(Math.PI*(t-0.192)/0.036);
-  if (t >= 0.228 && t < 0.288) return 1.0 * Math.sin(Math.PI*(t-0.228)/0.060);
-  if (t >= 0.288 && t < 0.336) return -0.20 * Math.sin(Math.PI*(t-0.288)/0.048);
+
+  // ── V1: mild reciprocal (partial, less pronounced than aVR) ─────────────
+  if (lead === 'V1') {
+    const base = ecgLeadNSR(t, 'V1'); // rS morphology
+    if (t >= 0.096 && t < 0.192) return prDepAbs * 0.40; // mild PR elevation
+    if (t >= 0.336 && t < 0.60) {
+      const prog = (t - 0.336) / 0.264;
+      return base - stElev * 0.15 * Math.sin(Math.PI * prog); // mild ST depression
+    }
+    return base;
+  }
+
+  // ── All other leads: diffuse pericarditis changes ───────────────────────
+  // P wave: present, TP baseline subtly lowered by PR depression onset
+  if (t >= 0.00 && t < 0.096) {
+    const nsr = ecgLeadNSR(t, lead);
+    return nsr - prDepAbs * ls * 0.35 * Math.sin(Math.PI * t / 0.096);
+  }
+  // PR segment: depressed below baseline (key diagnostic feature)
+  if (t >= 0.096 && t < 0.192) return -prDepAbs * ls;
+  // QRS: lead-specific normal morphology (pericarditis does not alter QRS)
+  if (t >= 0.192 && t < 0.336) return ecgLeadNSR(t, lead);
+  // ST segment: concave (saddle-shaped) elevation — NOT convex like STEMI
   if (t >= 0.336 && t < 0.60) {
-    const progress = (t - 0.336) / 0.264;
-    // Saddle-shaped: concave upward (vs STEMI which is convex)
-    return (reciprocal ? -stElev * 0.45 : stElev) * leadWeight * Math.sin(Math.PI * progress);
+    const prog = (t - 0.336) / 0.264;
+    return stElev * ls * Math.sin(Math.PI * prog); // smooth arch, concave up
   }
+  // T wave: upright Stage I–II, inverts Stage III
   if (t >= 0.60 && t < 0.80) {
-    // T wave: upright early, inverts late (Stage III-IV)
-    const tAmp = (0.18 - 0.36 * tInvert);
-    return (reciprocal ? -tAmp * 0.5 : tAmp) * leadWeight * Math.sin(Math.PI*(t-0.60)/0.20);
+    const tAmp = (0.18 - 0.36 * tInvert) * ls;
+    return tAmp * Math.sin(Math.PI * (t - 0.60) / 0.20);
   }
   return 0;
 }
@@ -2857,18 +2929,22 @@ const rhythmRates = {
 };
 
 const leadModifiers = {
-  'I':   { amp: 0.9,  inv: false },
-  'II':  { amp: 1.0,  inv: false },
-  'III': { amp: 0.8,  inv: false },
-  'aVR': { amp: 0.7,  inv: true  },
-  'aVL': { amp: 0.6,  inv: false },
-  'aVF': { amp: 0.9,  inv: false },
-  'V1':  { amp: 0.55, inv: true  },
-  'V2':  { amp: 0.75, inv: true  },
-  'V3':  { amp: 0.9,  inv: false },
-  'V4':  { amp: 1.1,  inv: false },
-  'V5':  { amp: 1.0,  inv: false },
-  'V6':  { amp: 0.85, inv: false },
+  'I':   { amp: 0.90, inv: false },
+  'II':  { amp: 1.00, inv: false },
+  'III': { amp: 0.75, inv: false },
+  'aVR': { amp: 0.65, inv: true  },  // predominantly negative
+  'aVL': { amp: 0.55, inv: false },
+  'aVF': { amp: 0.88, inv: false },
+  // V1/V2: inv:true retained for non-standard rhythms (e.g. AFib) that bypass
+  // the precordialV1V2V3 override; the inversion trick gives adequate rS there.
+  // Standard-timing rhythms use buildPrecordialV1V2V3 which ignores inv.
+  'V1':  { amp: 0.55, inv: true  },  // rS — override handles NSR-family
+  'V2':  { amp: 0.68, inv: true  },  // rS deeper — override handles NSR-family
+  // V3 override handles NSR-family (RS transitional); others use this entry.
+  'V3':  { amp: 0.85, inv: false },  // transitional — override provides RS shape
+  'V4':  { amp: 1.10, inv: false },  // tallest R (max normal precordial R)
+  'V5':  { amp: 0.98, inv: false },  // tall R, beginning to decrease
+  'V6':  { amp: 0.82, inv: false },  // qRs — R still tall, small lateral S
 };
 
 function getLeadScale(lead) {
@@ -2882,7 +2958,120 @@ function applyLeadPolarity(val, lead) {
 }
 
 function ecgLeadNSR(t, lead) {
-  return applyLeadPolarity(ecgNSR(t, 0), lead);
+  // ── Medically accurate per-lead NSR morphology ──────────────────────────
+  // V1-V3 require custom shapes; remaining leads use polarity/amplitude table.
+  switch (lead) {
+
+    // V1 ── rS pattern ────────────────────────────────────────────────────
+    // Septal depolarisation moves L→R (toward V1): small initial r.
+    // LV mass depolarises away from V1: deep S wave.
+    // P wave: biphasic (pos RA component, neg LA terminal component).
+    // T wave: small upright (normal variant; can be inverted in adults).
+    case 'V1':
+      if (t >= 0.000 && t < 0.048) return  0.07 * Math.sin(Math.PI * t / 0.048);           // P+ (RA)
+      if (t >= 0.048 && t < 0.096) return -0.04 * Math.sin(Math.PI * (t - 0.048) / 0.048); // P− (LA terminal)
+      if (t >= 0.096 && t < 0.192) return 0;                                                 // PR isoelectric
+      if (t >= 0.192 && t < 0.218) return  0.11 * Math.sin(Math.PI * (t - 0.192) / 0.026); // small r (septal)
+      if (t >= 0.218 && t < 0.292) return -0.78 * Math.sin(Math.PI * (t - 0.218) / 0.074); // deep S (LV away)
+      if (t >= 0.292 && t < 0.420) return 0;                                                 // ST isoelectric
+      if (t >= 0.420 && t < 0.612) return  0.09 * Math.sin(Math.PI * (t - 0.420) / 0.192); // small upright T
+      return 0;
+
+    // V2 ── rS pattern (r slightly > V1, S still dominant) ───────────────
+    // P wave: predominantly upright, very small terminal negativity.
+    // T wave: upright (V2 T should be positive in normal adults).
+    case 'V2':
+      if (t >= 0.000 && t < 0.056) return  0.11 * Math.sin(Math.PI * t / 0.056);           // P+ (dominant)
+      if (t >= 0.056 && t < 0.096) return -0.025 * Math.sin(Math.PI * (t - 0.056) / 0.040);// P tiny neg terminal
+      if (t >= 0.096 && t < 0.192) return 0;
+      if (t >= 0.192 && t < 0.224) return  0.20 * Math.sin(Math.PI * (t - 0.192) / 0.032); // r (larger than V1)
+      if (t >= 0.224 && t < 0.296) return -0.64 * Math.sin(Math.PI * (t - 0.224) / 0.072); // S (deep, still dominant)
+      if (t >= 0.296 && t < 0.420) return 0;
+      if (t >= 0.420 && t < 0.636) return  0.20 * Math.sin(Math.PI * (t - 0.420) / 0.216); // upright T
+      return 0;
+
+    // V3 ── RS transitional (R ≈ S) ───────────────────────────────────────
+    // Transition zone between right and left precordial patterns.
+    // R approximately equals S; neither clearly dominates.
+    case 'V3':
+      if (t >= 0.000 && t < 0.096) return  0.12 * Math.sin(Math.PI * t / 0.096);           // P+ upright
+      if (t >= 0.096 && t < 0.192) return 0;
+      if (t >= 0.192 && t < 0.228) return -0.05 * Math.sin(Math.PI * (t - 0.192) / 0.036); // small q
+      if (t >= 0.228 && t < 0.274) return  0.54 * Math.sin(Math.PI * (t - 0.228) / 0.046); // R (moderate)
+      if (t >= 0.274 && t < 0.336) return -0.46 * Math.sin(Math.PI * (t - 0.274) / 0.062); // S ≈ R (transitional)
+      if (t >= 0.336 && t < 0.420) return 0;
+      if (t >= 0.420 && t < 0.648) return  0.25 * Math.sin(Math.PI * (t - 0.420) / 0.228); // upright T
+      return 0;
+
+    // All other leads: use amplitude/polarity table (correct for limb leads + V4-V6)
+    default:
+      return applyLeadPolarity(ecgNSR(t, 0), lead);
+  }
+}
+
+// ── Standard-timing rhythms eligible for precordial morphology override ──
+// These rhythms have QRS onset ≈ 0.192 s from cycle start, matching the
+// hardcoded zone boundaries in buildPrecordialV1V2V3.
+const PRECORDIAL_STANDARD_RHYTHMS = new Set([
+  'nsr', 'st', 'sb', 'longqt', 'hypokalemia', 'digoxin', 'earlyrepo'
+]);
+
+// ── Medically accurate V1/V2/V3 morphology for non-lead-aware rhythms ───
+// Produces correct P-wave direction (biphasic V1, upright V2/V3),
+// rS QRS in V1/V2 (inversion trick on base waveform), RS transitional in V3,
+// and correct T-wave polarity.
+// Returns null if the lead/rhythm combination should not be overridden.
+function buildPrecordialV1V2V3(t, baseFn, int, lead) {
+  const base     = baseFn(t, int);
+  // Detect P-wave presence by sampling mid-P zone (t ≈ 0.048 s)
+  const hasPwave = Math.abs(baseFn(0.048, int)) > 0.04;
+
+  switch (lead) {
+
+    case 'V1': {
+      // P wave: biphasic if present (RA+ then LA terminal−)
+      if (t >= 0.000 && t < 0.048) return hasPwave ?  0.07 * Math.sin(Math.PI * t / 0.048) : 0;
+      if (t >= 0.048 && t < 0.096) return hasPwave ? -0.04 * Math.sin(Math.PI * (t - 0.048) / 0.048) : 0;
+      // PR isoelectric
+      if (t >= 0.096 && t < 0.192) return 0;
+      // QRS: invert base → q becomes small r, R becomes deep S, s becomes tiny positive
+      if (t >= 0.192 && t < 0.336) return -base * 0.58;
+      // ST isoelectric
+      if (t >= 0.336 && t < 0.420) return 0;
+      // T: small upright
+      if (t >= 0.420 && t < 0.612) return 0.09 * Math.sin(Math.PI * (t - 0.420) / 0.192);
+      return 0;
+    }
+
+    case 'V2': {
+      // P wave: predominantly upright, tiny terminal negativity
+      if (t >= 0.000 && t < 0.056) return hasPwave ?  0.11 * Math.sin(Math.PI * t / 0.056) : 0;
+      if (t >= 0.056 && t < 0.096) return hasPwave ? -0.025 * Math.sin(Math.PI * (t - 0.056) / 0.040) : 0;
+      if (t >= 0.096 && t < 0.192) return 0;
+      // QRS: slightly smaller S than V1 (approaching transition zone)
+      if (t >= 0.192 && t < 0.336) return -base * 0.65;
+      if (t >= 0.336 && t < 0.420) return 0;
+      // T: upright (V2 T is positive in normal adults)
+      if (t >= 0.420 && t < 0.636) return 0.20 * Math.sin(Math.PI * (t - 0.420) / 0.216);
+      return 0;
+    }
+
+    case 'V3': {
+      // P wave: upright
+      if (t >= 0.000 && t < 0.096) return hasPwave ? 0.12 * Math.sin(Math.PI * t / 0.096) : 0;
+      if (t >= 0.096 && t < 0.192) return 0;
+      // QRS: transitional (small q, moderate R, deep S where R ≈ S)
+      if (t >= 0.192 && t < 0.228) return -0.05 * Math.sin(Math.PI * (t - 0.192) / 0.036); // q
+      if (t >= 0.228 && t < 0.274) return  0.54 * Math.sin(Math.PI * (t - 0.228) / 0.046); // R
+      if (t >= 0.274 && t < 0.336) return -0.46 * Math.sin(Math.PI * (t - 0.274) / 0.062); // S ≈ R
+      if (t >= 0.336 && t < 0.420) return 0;
+      // T: upright
+      if (t >= 0.420 && t < 0.648) return 0.25 * Math.sin(Math.PI * (t - 0.420) / 0.228);
+      return 0;
+    }
+
+    default: return null;
+  }
 }
 
 // ── PVC Beat Counter ─────────────────────────────────────────
@@ -3156,6 +3345,22 @@ function getWaveformValueRaw(phase, lead, includeNoise = true) {
       val = fn(phase, state.effectIntensity, lead);
     } else {
       val = fn(phase, state.effectIntensity);
+      // ── Precordial morphology correction (V1 / V2 / V3) ─────────────────
+      // Replaces the generic amplitude-inversion approach with physiologically
+      // accurate rS (V1/V2) and RS-transitional (V3) morphology including
+      // correct P-wave polarity and T-wave direction.
+      if (PRECORDIAL_STANDARD_RHYTHMS.has(rhythm) &&
+          (lead === 'V1' || lead === 'V2' || lead === 'V3')) {
+        const ov = buildPrecordialV1V2V3(phase, fn, state.effectIntensity, lead);
+        if (ov !== null) {
+          val = ov * state.amplitude;
+          if (includeNoise && state.noise > 0) {
+            val += (state.noise / 100) * 0.25 * (Math.random() * 2 - 1);
+            val += (state.noise / 100) * 0.05 * Math.sin(phase * 280 + Date.now() * 0.01);
+          }
+          return val;
+        }
+      }
     }
 
     // PVC: override with PVC waveform on every 3rd beat (trigeminy pattern)
@@ -3230,6 +3435,14 @@ function getWaveformForBeatIndex(phase, lead, beatIndex) {
     val = ecgAVB3(t, int);
   } else {
     val = fn(phase, int);
+    // ── Precordial morphology correction (V1 / V2 / V3) ───────────────────
+    if (PRECORDIAL_STANDARD_RHYTHMS.has(rhythm) &&
+        (lead === 'V1' || lead === 'V2' || lead === 'V3')) {
+      const ov = buildPrecordialV1V2V3(phase, fn, int, lead);
+      if (ov !== null) {
+        return addTraceNoise(ov * state.amplitude, phase, beatIndex);
+      }
+    }
   }
 
   // Apply lead modifiers
