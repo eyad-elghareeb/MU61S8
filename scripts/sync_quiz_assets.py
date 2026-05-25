@@ -110,6 +110,7 @@ def discover_index_files() -> list[Path]:
 
 SKIP_HTML_FILES = {
     "med/ecg/ecg-simulator.html",
+    "med/ecg/ecg-question-bank.html",
 }
 
 
