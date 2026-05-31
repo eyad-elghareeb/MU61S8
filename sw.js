@@ -3,7 +3,11 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const CACHE_VERSION = 'mu61-quiz-eee56af1214d';
+=======
+const CACHE_VERSION = 'mu61-quiz-f44f012f4d51';
+>>>>>>> Stashed changes
 =======
 const CACHE_VERSION = 'mu61-quiz-c9829ed279d7';
 >>>>>>> Stashed changes
@@ -292,7 +296,19 @@ var PRECACHE_REL_PATHS = [
   'surg/extra/dr-matary/index.html',
   'surg/extra/index.html',
   'surg/index.html',
+  'surg/past-years/57th-1st-end-round.html',
+  'surg/past-years/57th-2nd-end-round.html',
+  'surg/past-years/57th-3rd-end-round.html',
+  'surg/past-years/57th-final.html',
+  'surg/past-years/58th-1st-end-round.html',
+  'surg/past-years/58th-2nd-end-round.html',
+  'surg/past-years/58th-final.html',
+  'surg/past-years/58th-formative.html',
+  'surg/past-years/59th-final.html',
+  'surg/past-years/59th-mid.html',
+  'surg/past-years/60th-final.html',
   'surg/past-years/60th-mid.html',
+  'surg/past-years/61st-mid.html',
   'surg/past-years/index.html',
   'surg/past-years/past-years-breast-qs.html',
   'favicon.svg',
