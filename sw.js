@@ -1,7 +1,11 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const CACHE_VERSION = 'mu61-quiz-63f59c11a51e';
+=======
+const CACHE_VERSION = 'mu61-quiz-453d94f6f013';
+>>>>>>> Stashed changes
 =======
 const CACHE_VERSION = 'mu61-quiz-cc28b3d6c401';
 >>>>>>> Stashed changes
@@ -254,7 +258,13 @@ var PRECACHE_REL_PATHS = [
   'surg/by-chapter/breast/aio-breast.html',
   'surg/by-chapter/breast/dr-magdy-questions-breast.html',
   'surg/by-chapter/breast/index.html',
+  'surg/by-chapter/hernia/ah-question-bank-hernia.html',
+  'surg/by-chapter/hernia/ak-question-bank-hernia.html',
+  'surg/by-chapter/hernia/index.html',
   'surg/by-chapter/index.html',
+  'surg/by-chapter/male/ah-question-bank-male.html',
+  'surg/by-chapter/male/ak-question-bank-male.html',
+  'surg/by-chapter/male/index.html',
   'surg/by-chapter/mansoura/breast.html',
   'surg/by-chapter/mansoura/cardiothoracic.html',
   'surg/by-chapter/mansoura/hernia.html',
