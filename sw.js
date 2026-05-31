@@ -2,7 +2,7 @@
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-const CACHE_VERSION = 'mu61-quiz-63f59c11a51e';
+const CACHE_VERSION = 'mu61-quiz-188f84ba23c3';
 =======
 const CACHE_VERSION = 'mu61-quiz-453d94f6f013';
 >>>>>>> Stashed changes
