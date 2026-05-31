@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>AIO Hernia</title>
+</head>
+<body>
+<script>
+
+/* [BANK_CONFIG_START] */
+const BANK_CONFIG = {
+  "description": "",
+  "icon": "🗃️",
+  "title": "AIO Hernia",
+  "uid": "surg_by_chapter_hernia_aio_hernia"
+};
+/* [BANK_CONFIG_END] */
+
+/* [QUESTION_BANK_START] */
+const QUESTION_BANK = [
+  {
+    "correct": 2,
+    "explanation": "A sliding hernia occurs when a viscus (commonly caecum on the right or sigmoid colon on the left) forms part of the wall of the hernia sac. The viscus is not free within the sac but is actually part of the sac wall, making it a sliding hernia.",
+    "options": [
+      "Incarcerated",
+      "Irreducible",
+      "Sliding",
+      "Richter's",
+      "Interstitial"
+    ],
+    "question": "At surgery for a right inguinal hernia, a hernia sac that is not independent of the bowel wall is found. The caecum forms part of the wall of the sac. Such a hernia is properly referred to as which of the following?"
+  },
+  {
+    "correct": 0,
+    "explanation": "The ilioinguinal nerve runs through the inguinal canal and is the nerve most vulnerable to injury during inguinal hernia repair. It lies anterior to the spermatic cord in the inguinal canal.",
+    "options": [
+      "The ilioinguinal nerve",
+      "The femoral nerve",
+      "The popliteal nerve",
+      "The nerve to the psoas major muscle",
+      "The pudendal nerve"
+    ],
+    "question": "Which of the following nerves is injured during inguinal hernia?"
+  },
+  {
+    "correct": 4,
+    "explanation": "Femoral hernia has the highest rate of strangulation among all hernias due to the narrow, rigid femoral canal with sharp margins (inguinal ligament anteriorly, lacunar ligament medially, and pectineal ligament posteriorly). About 40% of femoral hernias present as emergencies with strangulation.",
+    "options": [
+      "Exomphalos",
+      "Umbilical hernia",
+      "Incisional hernia",
+      "Inguinal hernia",
+      "Femoral hernia"
+    ],
+    "question": "Hernia which is more liable for viscus strangulation:"
+  },
+  {
+    "correct": 0,
+    "explanation": "An abnormal obturator artery, when present, runs medially along the margin of the femoral canal (replacing the normal obturator artery that runs through the obturator foramen). This is a critical anatomical hazard during femoral hernia repair as it can be injured when dividing the lacunar ligament to enlarge the femoral ring.",
+    "options": [
+      "Medially",
+      "Laterally",
+      "Anteriorly",
+      "Posteriorly",
+      "Superficially"
+    ],
+    "question": "In repair of a femoral hernia, where does the abnormal obturator artery lie?"
+  },
+  {
+    "correct": 2,
+    "explanation": "Hesselbach's (inguinal) triangle is bounded by the inferior epigastric artery laterally, the lateral border of the rectus abdominis muscle medially, and the inguinal ligament inferiorly. The ilio-inguinal nerve is NOT a boundary; it runs through the inguinal canal but does not form a boundary of the triangle.",
+    "options": [
+      "Inferior epigastric artery",
+      "Lateral border of rectus muscle",
+      "Ilio-inguinal nerve",
+      "Inguinal ligament"
+    ],
+    "question": "Boundaries of the Hasselbach's triangle include the following Except:"
+  },
+  {
+    "correct": 2,
+    "explanation": "Adhesions (post-surgical or congenital) are the most common cause of small bowel obstruction, accounting for approximately 60-70% of cases. Hernia-related obstruction is the second most common cause.",
+    "options": [
+      "Small-bowel carcinoma",
+      "Large-bowel carcinoma",
+      "Adhesions",
+      "Strangulated inguinal hernia",
+      "Strangulated femoral hernia"
+    ],
+    "question": "The most common cause of intestinal obstruction is:"
+  },
+  {
+    "correct": 2,
+    "explanation": "In strangulated hernia, the hernia becomes tense and tender due to vascular compromise and ischemia. The cough impulse is lost (not retained), and the bowel does not retain peristalsis. Irreducibility alone can occur without strangulation (incarceration).",
+    "options": [
+      "Reddish in colour",
+      "Irreducible",
+      "Tense and tender",
+      "Gives impulse on cough",
+      "Retain its peristalsis"
+    ],
+    "question": "The most pathognomonic feature of hernial sac in strangulated hernia is?"
+  },
+  {
+    "correct": 3,
+    "explanation": "The femoral ring has the inguinal ligament as its anterior border, the lacunar ligament as its medial border, the femoral vein as its lateral border, and the pectineal (Cooper's) ligament as its posterior border. It is wider in females, contributing to the higher incidence of femoral hernias in women.",
+    "options": [
+      "Lies lateral to the femoral vein",
+      "Has the inguinal ligament as its posterior border",
+      "Has the lacunar ligament as its lateral border",
+      "Has the pectineal ligament as its posterior border",
+      "Is wider in males"
+    ],
+    "question": "Regarding the femoral ring, which one is true?"
+  },
+  {
+    "correct": 4,
+    "explanation": "Hernioplasty refers to augmentation repair of the abdominal wall using prosthetic mesh material. This differs from herniorrhaphy (repair with sutures alone) and herniotomy (excision of the hernia sac alone, typically in children).",
+    "options": [
+      "Exploration of the hernial sac",
+      "Biopsy of the hernial sac",
+      "Excision of the hernial sac",
+      "Augmentation repair of the abdominal wall with sutures",
+      "Augmentation repair of the abdominal wall with mesh"
+    ],
+    "question": "What is the meaning of hernioplasty?"
+  },
+  {
+    "correct": 3,
+    "explanation": "The pancreas is a retroperitoneal organ and is extremely rarely found in a hernia sac. Colon (especially sigmoid and caecum), ovary (in females with indirect inguinal hernia), urinary bladder (in sliding hernia), and ileum (most common content) can all be found within hernia sacs.",
+    "options": [
+      "Colon",
+      "Ovary",
+      "Urinary bladder",
+      "Pancreas",
+      "Ileum"
+    ],
+    "question": "Which of the following organs cannot be found within the hernia sac?"
+  },
+  {
+    "correct": 1,
+    "explanation": "The deep inguinal ring is an opening in the fascia transversalis located 1/2 inch above the midpoint of the inguinal ligament. It is NOT at the mid-inguinal point (which is halfway between the pubic symphysis and ASIS). The midpoint of the inguinal ligament is halfway between the pubic tubercle and the ASIS.",
+    "options": [
+      "Fascia transversalis 1/2 inch above mid-inguinal point",
+      "Fascia transversalis 1/2 inch above midpoint of inguinal ligament",
+      "Fascia transversalis 1 1/2 inch above midpoint of inguinal ligament",
+      "Fascia transversalis 1 1/2 inch above mid-inguinal point",
+      "External oblique aponeurosis 1/2 inch above midpoint of inguinal ligament"
+    ],
+    "question": "Deep inguinal ring is an opening in:"
+  },
+  {
+    "correct": 1,
+    "explanation": "Richter's hernia involves only a portion of the circumference of the bowel wall (anti-mesenteric side) within the hernia sac. This is important because strangulation can occur without causing intestinal obstruction, as the bowel lumen is not completely occluded.",
+    "options": [
+      "Two loops of the bowel",
+      "Portion of the circumference of the intestine",
+      "Portion of the urinary bladder",
+      "Meckel's diverticulum",
+      "Appendix"
+    ],
+    "question": "Richter's hernia is a type of hernia which contains:"
+  },
+  {
+    "correct": 2,
+    "explanation": "A paraumbilical hernia occurs alongside the umbilicus (not through the umbilical cicatrix itself) and is characteristically associated with crescent-shaped distortion of the umbilicus. It typically occurs in multiparous females.",
+    "options": [
+      "Spigelian hernia",
+      "Umbilical hernia",
+      "Paraumbilical hernia",
+      "Epigastric hernia",
+      "Exomphalos minor"
+    ],
+    "question": "Ventral hernia associated with crescent-shaped distortion of the umbilicus is called:"
+  },
+  {
+    "correct": 1,
+    "explanation": "Hiatal hernia is a classic example of an internal hernia, where the stomach herniates through the esophageal hiatus of the diaphragm into the thorax. Internal hernias occur through openings within the body cavities, not through the abdominal wall.",
+    "options": [
+      "Obturator hernia",
+      "Hiatal hernia",
+      "Femoral hernia",
+      "Lumbar hernia",
+      "Richter's hernia"
+    ],
+    "question": "Which of the following is an internal hernia?"
+  },
+  {
+    "correct": 3,
+    "explanation": "The Lichtenstein tension-free hernioplasty is the gold standard tension-free repair for inguinal hernia. It uses a prosthetic mesh to reinforce the posterior wall of the inguinal canal without approximating tissues under tension, resulting in lower recurrence rates and less postoperative pain.",
+    "options": [
+      "Bassini repair",
+      "Shouldice repair",
+      "Stoppa repair",
+      "Lichtenstein repair",
+      "McVay (Cooper's ligament) repair"
+    ],
+    "question": "Name the best tension-free method for inguinal hernia repair:"
+  },
+  {
+    "correct": 2,
+    "explanation": "Indirect inguinal hernia follows the path of the spermatic cord through the deep inguinal ring, along the inguinal canal, and out through the superficial ring. It is covered by the cremasteric muscle as it follows the cord structures. Direct hernias do not follow the spermatic cord path.",
+    "options": [
+      "Femoral hernia",
+      "Direct inguinal hernia",
+      "Indirect inguinal hernia",
+      "Spigelian hernia",
+      "Interparietal hernia"
+    ],
+    "question": "Which of the following hernias follows the path of the spermatic cord within the cremasteric muscle?"
+  },
+  {
+    "correct": 0,
+    "explanation": "Congenital inguinal hernia in infants should be repaired once diagnosed, as there is a significant risk of incarceration in the first year of life. Unlike umbilical hernias, congenital inguinal hernias do not close spontaneously and require surgical intervention.",
+    "options": [
+      "Once diagnosed",
+      "3 months",
+      "6 months",
+      "9 months",
+      "1 year"
+    ],
+    "question": "The best time for repair of congenital inguinal hernia is:"
+  },
+  {
+    "correct": 3,
+    "explanation": "Femoral hernia passes through the femoral canal and presents below and lateral to the pubic tubercle. Inguinal hernias present above and medial to the pubic tubercle. This anatomical landmark helps differentiate femoral from inguinal hernias clinically.",
+    "options": [
+      "Above and medial to the pubic tubercle",
+      "Above and lateral to the pubic tubercle",
+      "Below and medial to the pubic tubercle",
+      "Below and lateral to the pubic tubercle",
+      "Below and medial to the iliac crest"
+    ],
+    "question": "Femoral hernia is located:"
+  },
+  {
+    "correct": 1,
+    "explanation": "The ilio-inguinal nerve provides sensory innervation to the skin of the scrotum (or labia majora in females) and the medial aspect of the upper thigh. Injury during hernia repair causes numbness or paresthesia in this distribution. It does not cause erectile dysfunction or muscle paralysis.",
+    "options": [
+      "Loss of erectile function",
+      "Numbness of the scrotum and medial aspect of the upper thigh",
+      "Testicular dragging pain",
+      "Direct inguinal hernia due to paralysis of the conjoint tendon",
+      "Incisional hernia"
+    ],
+    "question": "Injury of the ilio-inguinal nerve during hernia repair can cause:"
+  },
+  {
+    "correct": 2,
+    "explanation": "A hernia that increases in size when the bladder is full (before micturition) suggests involvement of the urinary bladder in the hernia sac. This is characteristic of a sliding hernia where the bladder forms part of the wall of the hernia sac. The partial irreducibility is also typical of sliding hernias.",
+    "options": [
+      "Direct inguinal hernia",
+      "Femoral hernia",
+      "Sliding hernia",
+      "Spigelian hernia",
+      "Epigastric hernia"
+    ],
+    "question": "A 60-year-old male presents with a lump over his left groin which increases in size when the patient does not micturate. Examination reveals impulse on cough and the swelling is partially irreducible:"
+  },
+  {
+    "correct": 0,
+    "explanation": "Polypropylene (Prolene) is the best suture material for hernia repair because it is non-absorbable, monofilament, and has high tensile strength. Monofilament sutures have lower infection rates compared to multifilament sutures. Catgut is absorbable, silk is multifilament (braided), and polyglactin (Vicryl) is absorbable, not non-absorbable.",
+    "options": [
+      "Polypropylene as it is non-absorbable",
+      "Plain catgut as it is resistant to infection",
+      "Silk as it is monofilament",
+      "Chromic catgut because it is easily absorbable",
+      "Polyglactin as it is non-absorbable"
+    ],
+    "question": "For hernia repair the best suture material to be used is:"
+  },
+  {
+    "correct": 1,
+    "explanation": "The external (superficial) inguinal ring is a triangular opening in the external oblique aponeurosis. The internal ring is in the fascia transversalis (not internal oblique). The external ring is above and medial to the pubic tubercle (not at the midpoint of the ligament). The cremasteric muscle is derived from the internal oblique (not transversus). The ilioinguinal nerve lies outside the spermatic cord within the inguinal canal.",
+    "options": [
+      "The internal inguinal ring is an opening in the internal oblique muscle",
+      "The external inguinal ring is an opening in the external oblique aponeurosis",
+      "The external ring is situated at the midpoint of the inguinal ligament",
+      "Cremasteric muscle is derived from the transversus abdominis muscle",
+      "The ilioinguinal nerve lies within the spermatic cord"
+    ],
+    "question": "About the surgical anatomy of inguinal hernia, one statement only is true:"
+  },
+  {
+    "correct": 4,
+    "explanation": "Umbilical hernias in infants under 2 years of age usually close spontaneously. For a 3-month-old with a 1 cm defect, periodic observation is the appropriate management. Surgical repair is only indicated if the hernia persists beyond age 2-4 years, becomes symptomatic, or if the defect is very large (>2 cm).",
+    "options": [
+      "Surgical repair with mesh at the age of one year",
+      "Immediate surgical repair without mesh",
+      "Laparoscopic repair with mesh at the age of one year",
+      "Laparoscopic repair without mesh",
+      "Periodic observation and evaluation"
+    ],
+    "question": "A 3-month-old boy presents with a reducible umbilical hernia, which has a 1 cm defect. This is best managed by:"
+  },
+  {
+    "correct": 0,
+    "explanation": "A swelling in the midline between the xiphoid and umbilicus that is not reducible is characteristic of a fatty hernia of the linea alba (also called epigastric hernia). The fat protrudes through a defect in the linea alba and may become incarcerated, making it irreducible. Unlike a paraumbilical hernia, this is located in the epigastric region.",
+    "options": [
+      "Fatty hernia of linea alba",
+      "Irreducible paraumbilical hernia",
+      "Subcutaneous lipoma",
+      "Subcutaneous neurofibroma",
+      "Spigelian hernia"
+    ],
+    "question": "A 43-year-old woman presents with a mildly painful swelling situated halfway between the xiphoid process and the umbilicus. The subcutaneous midline swelling is soft and is not reducible. What is the most probable diagnosis?"
+  },
+  {
+    "correct": 1,
+    "explanation": "Paraumbilical hernia typically occurs in multiparous females due to weakening of the umbilical region from repeated pregnancies and increased intra-abdominal pressure. Adult umbilical hernias are usually acquired (not congenital). Ascites is a relative indication for repair (to prevent strangulation), and incarceration is actually common with adult umbilical hernias.",
+    "options": [
+      "Most umbilical hernias in adults are the result of a congenital defect carried into adulthood",
+      "A paraumbilical hernia typically occurs in multiparous females",
+      "The presence of ascites is a contraindication to elective umbilical hernia repair",
+      "Incarceration is uncommon with umbilical hernias"
+    ],
+    "question": "The following statement is true concerning hernia in the umbilical region in adults:"
+  },
+  {
+    "correct": 1,
+    "explanation": "The femoral vein lies laterally to the femoral canal and is the structure most vulnerable to major injury during femoral hernia repair. Injury to the femoral vein can cause life-threatening hemorrhage.",
+    "options": [
+      "Medially",
+      "Laterally",
+      "Anteriorly",
+      "Posteriorly",
+      "Superficially"
+    ],
+    "question": "In repair of a femoral hernia, where the structure most vulnerable to major injury lies?"
+  },
+  {
+    "correct": 2,
+    "explanation": "The McVay (Cooper's ligament) repair is used for femoral hernias when prosthetic mesh is contraindicated (e.g., in contaminated fields). It involves suturing the transversus abdominis aponeurosis and conjoint tendon to Cooper's (pectineal) ligament, which also closes the femoral canal.",
+    "options": [
+      "The Bassini repair",
+      "The Shouldice repair",
+      "The McVay repair",
+      "Lichtenstein tension-free repair"
+    ],
+    "question": "The technique indicated for femoral hernias in cases where prosthetic material is contraindicated is:"
+  },
+  {
+    "correct": 3,
+    "explanation": "Femoral hernia strangulates in about 40% of cases, and strangulation may be the initial presentation. Femoral hernias are more common in women (not men). The femoral canal is the most MEDIAL component of the femoral sheath. Truss is not effective for femoral hernias. Surgery is always required for femoral hernias due to the high risk of strangulation.",
+    "options": [
+      "More common in men",
+      "The femoral canal occupies the most lateral component of the femoral sheath",
+      "Easily controlled by truss",
+      "Strangulation is the initial presentation in 40 per cent of patients",
+      "An operation is only occasionally required"
+    ],
+    "question": "Femoral hernia is:"
+  },
+  {
+    "correct": 0,
+    "explanation": "The combination of irreducibility, increasing pain, extreme tenderness, and signs of peritonitis indicates strangulation. Strangulation implies vascular compromise of the herniated content, which can lead to ischemic necrosis and peritonitis. Incarceration is irreducibility without vascular compromise.",
+    "options": [
+      "Strangulation hernia",
+      "Obstruction hernia",
+      "Incarceration hernia",
+      "Perforation hernia",
+      "Irreducibility hernia"
+    ],
+    "question": "A 40-year-old male is referred with irreducibility and increasing pain over his right inguinal hernia over the past 8 hours. On examination, the hernia is extremely tender with signs of peritonitis:"
+  },
+  {
+    "correct": 3,
+    "explanation": "A Spigelian hernia occurs at the lateral edge of the linea semilunaris (the line formed by the aponeurosis of the internal oblique at the lateral border of the rectus sheath). It occurs in both sexes, does not specifically involve the bowel wall circumference, and is not repaired by the Bassini technique. It does not always contain the appendix.",
+    "options": [
+      "It occurs exclusively in males",
+      "It involves part of the circumference of the bowel wall",
+      "It is best repaired by the classical Bassini technique",
+      "It occurs at the lateral edge of the linea semilunaris",
+      "It always contains the vermiform appendix"
+    ],
+    "question": "What is true of Spigelian hernia?"
+  },
+  {
+    "correct": 3,
+    "explanation": "The history of a previous midline incision with a reducible mass at the same site is diagnostic of an incisional hernia. Incisional hernias occur at the site of a previous surgical incision due to poor wound healing or increased intra-abdominal pressure.",
+    "options": [
+      "Direct inguinal hernia",
+      "Epigastric hernia",
+      "Hiatus hernia",
+      "Incisional hernia",
+      "Paraumbilical hernia"
+    ],
+    "question": "A 42-year-old woman presents with an upper midline mass that has been present for over a year. She has a history of an open partial gastrectomy for a perforated ulcer through a midline incision. On examination, the mass is 5 cm in size, soft, non-tender and reducible. Which of the following is the most likely diagnosis?"
+  },
+  {
+    "correct": 2,
+    "explanation": "An inguinal hernia extending to the scrotum with a positive internal ring occlusion test is diagnostic of an indirect inguinal hernia. The positive internal ring occlusion test means that the hernia is controlled when pressure is applied over the deep inguinal ring, indicating the hernia comes through the deep ring (indirect).",
+    "options": [
+      "Direct inguinal hernia",
+      "Femoral hernia",
+      "Indirect inguinal hernia",
+      "Spigelian hernia",
+      "Lumbar hernia"
+    ],
+    "question": "A 26-year-old builder presents with a lump over his left groin which has been there for the last 3 years. Examination reveals cough impulse and a reducible hernia over the left groin extending to the scrotum. Internal ring occlusion test is positive. What is the most likely diagnosis?"
+  },
+  {
+    "correct": 2,
+    "explanation": "Gastroschisis is characterized by abdominal wall defect with protrusion of intestine WITHOUT a covering sac, typically to the right of the umbilicus. Exomphalos (omphalocele) has a covering sac (peritoneal membrane). The absence of a covering sac is the key distinguishing feature.",
+    "options": [
+      "Epigastric hernia",
+      "Exomphalos",
+      "Gastroschisis",
+      "Paraumbilical hernia",
+      "Umbilical hernia"
+    ],
+    "question": "A newborn baby boy is found to have visible intestine emerging from his abdomen. There is no covering to the contents. Which of the following is the most likely diagnosis?"
+  },
+  {
+    "correct": 1,
+    "explanation": "A lumbar hernia arises through the inferior lumbar triangle (of Petit), which is bounded by the external oblique muscle anteriorly, the latissimus dorsi muscle posteriorly, and the iliac crest inferiorly. It is a rare type of hernia.",
+    "options": [
+      "Littre hernia",
+      "Lumbar hernia",
+      "Obturator hernia",
+      "Sciatic hernia",
+      "Spigelian hernia"
+    ],
+    "question": "What is the hernia that arises from a triangle bounded by the external oblique muscle, the latissimus dorsi muscle and the iliac crest below?"
+  },
+  {
+    "correct": 0,
+    "explanation": "Maydl's hernia (W-shaped hernia) contains two loops of bowel within the hernia sac with the intervening loop of bowel remaining within the abdomen. This is dangerous because the intra-abdominal loop may strangulate while the herniated loops appear viable, known as 'retrograde strangulation.'",
+    "options": [
+      "Two loops of the bowel",
+      "Portion of the circumference of the intestine",
+      "Portion of the urinary bladder",
+      "Meckel's diverticulum",
+      "Appendix"
+    ],
+    "question": "What is the content of Maydl's hernia?"
+  },
+  {
+    "correct": 0,
+    "explanation": "Gastroschisis is a congenital abdominal wall defect believed to result from a genetic/developmental abnormality. Unlike exomphalos, there is NO peritoneal sac covering the herniated contents. It occurs to the right of the umbilicus and is not typically associated with inguinal hernia.",
+    "options": [
+      "A genetic defect resulting in an abdominal wall defect",
+      "The result of an intrauterine umbilical cord rupture",
+      "Peritoneal sac is always present",
+      "Associated with inguinal hernia"
+    ],
+    "question": "Gastroschisis is:"
+  },
+  {
+    "correct": 2,
+    "explanation": "In infants with indirect inguinal hernia without obstruction, elective herniotomy should be scheduled at the earliest opportunity due to the high risk of incarceration in the first year of life. Herniotomy (not herniorrhaphy) is the procedure of choice in children, and mesh is generally avoided in pediatric hernia repair.",
+    "options": [
+      "Observation and hernia repair at the age of 2 years",
+      "Elective hernia repair with use of non-absorbable mesh",
+      "Herniotomy scheduled electively as the earliest",
+      "Herniotomy on emergency basis, the patient shouldn't be sent back home with unrepaired hernia",
+      "Elective surgery with use of absorbable mesh"
+    ],
+    "question": "A 6-month-old child has been diagnosed as having indirect inguinal hernia. There are no features of obstruction. The management is:"
+  },
+  {
+    "correct": 1,
+    "explanation": "A direct inguinal hernia rarely extends into the scrotum because it pushes directly through the posterior wall of the inguinal canal (Hesselbach's triangle) rather than following the spermatic cord through the deep ring. Its neck is MEDIAL to the inferior epigastric artery (not lateral). A sliding hernia (not direct) contains bladder as part of the sac wall.",
+    "options": [
+      "Is a hernia through the transversalis fascia",
+      "Never extends into the scrotum",
+      "Can contain bladder as part of the wall of the sac",
+      "Has a neck which is always lateral to inferior epigastric artery",
+      "Is otherwise called a ventral hernia"
+    ],
+    "question": "A direct inguinal hernia:"
+  },
+  {
+    "correct": 4,
+    "explanation": "The most common congenital diaphragmatic hernia is the Bochdalek hernia, caused by a defect through the pleuroperitoneal fold (posterolateral defect). It occurs on the left side more commonly and presents with respiratory distress in the newborn. The space of Larrey defect causes Morgagni hernia (anterior), which is much rarer.",
+    "options": [
+      "A defect in the central tendon",
+      "Eventration of the diaphragm in the fetus",
+      "A defect through the space of Larrey",
+      "An abnormally wide esophageal hiatus",
+      "A defect through the pleuroperitoneal fold"
+    ],
+    "question": "The most common type of congenital diaphragmatic hernia is caused by:"
+  },
+  {
+    "correct": 3,
+    "explanation": "The main complications of inguinal hernia are irreducibility (incarceration), strangulation (vascular compromise), and obstruction (bowel lumen blockage). Bleeding is not a recognized complication of inguinal hernia.",
+    "options": [
+      "Irreducibility",
+      "Strangulation",
+      "Obstruction",
+      "Bleeding"
+    ],
+    "question": "Which of the following is not a complication of an inguinal hernia?"
+  },
+  {
+    "correct": 2,
+    "explanation": "Inguinal hernia is the most common type of hernia, accounting for approximately 75-80% of all abdominal wall hernias. Indirect inguinal hernias are the most common subtype, being about twice as common as direct inguinal hernias.",
+    "options": [
+      "Femoral",
+      "Umbilical",
+      "Inguinal",
+      "Incisional"
+    ],
+    "question": "The following is the most common of hernias:"
+  },
+  {
+    "correct": 1,
+    "explanation": "Richter's hernia involves only a portion of the circumference of the bowel wall (anti-mesenteric border) in the hernia sac. This is a dangerous condition because strangulation can occur without causing intestinal obstruction, potentially delaying diagnosis.",
+    "options": [
+      "Two loops of the bowel in the sac",
+      "Portion of the circumference of the intestine in the sac",
+      "Portion of the urinary bladder in the sac",
+      "Omentum in the sac"
+    ],
+    "question": "Richter's hernia is a type of hernia with:"
+  },
+  {
+    "correct": 0,
+    "explanation": "Strangulated hernia presents with loss of the expansile cough impulse (the hernia no longer expands on coughing due to fixation), tenderness, tense swelling, and irreducibility. An intact cough impulse would suggest the hernia is not strangulated. The swelling is typically tense, not soft.",
+    "options": [
+      "Lost expansile impulse on cough, tenderness, tension and irreducibility",
+      "Tenderness with intact impulse on cough",
+      "No tension",
+      "Hydrocele of hernia sac"
+    ],
+    "question": "Strangulation hernia can be presented by:"
+  },
+  {
+    "correct": 2,
+    "explanation": "Femoral hernia has the highest rate of strangulation among all hernias (approximately 30-40%) due to the narrow, rigid femoral canal with unyielding borders. Although inguinal hernias are more common overall, femoral hernias are the most prone to strangulation.",
+    "options": [
+      "Incisional",
+      "Para-umbilical",
+      "Femoral",
+      "Direct"
+    ],
+    "question": "The most common type of hernia liable for strangulation is:"
+  },
+  {
+    "correct": 0,
+    "explanation": "Umbilical hernia in infants passes through the umbilical cicatrix, while in adults the hernia is usually paraumbilical (alongside the umbilicus, not through the cicatrix itself). Women are affected more frequently than men. Mayo's operation is a traditional overlapping repair without mesh. Infantile umbilical hernias usually close spontaneously.",
+    "options": [
+      "The umbilical hernia in an infant is through the umbilical cicatrix but is usually paraumbilical in adults",
+      "Men are affected more frequently than women",
+      "Mayo's operation involves mesh repair of the hernia",
+      "Infantile umbilical hernias need immediate surgery"
+    ],
+    "question": "Which of the following statements is true regarding umbilical hernia?"
+  },
+  {
+    "correct": 0,
+    "explanation": "Prolene (polypropylene) mesh is the most commonly used synthetic material in hernioplasty. It is non-absorbable, inert, and provides permanent reinforcement of the abdominal wall. Skin grafts, deep fascia, and muscle are not used as synthetic materials in hernia repair.",
+    "options": [
+      "Prolene mesh",
+      "Skin graft",
+      "Deep fascia",
+      "Rectus muscle"
+    ],
+    "question": "The synthetic material used in hernioplasty is:"
+  },
+  {
+    "correct": 2,
+    "explanation": "Umbilical (paraumbilical) hernias are more common in multiparous women due to repeated stretching and weakening of the umbilical region during pregnancy, combined with increased intra-abdominal pressure. Each pregnancy further weakens the tissues around the umbilicus.",
+    "options": [
+      "Indirect inguinal hernia",
+      "Lumbar hernia",
+      "Umbilical hernia",
+      "Direct inguinal hernia"
+    ],
+    "question": "Which of the following are more common in multiparous women?"
+  },
+  {
+    "correct": 1,
+    "explanation": "Exomphalos (omphalocele) is a congenital defect of the anterior abdominal wall at the umbilicus, with herniation of abdominal contents covered by a peritoneal sac. It is distinct from gastroschisis (which has no covering sac). Not all cases need urgent surgery; management depends on the size and associated anomalies.",
+    "options": [
+      "Is a congenital defect of the urethra",
+      "Is a congenital defect of the anterior abdominal wall",
+      "Is otherwise known as gastroschisis",
+      "Needs urgent surgical treatment"
+    ],
+    "question": "An exomphalos:"
+  },
+  {
+    "correct": 0,
+    "explanation": "In strangulated hernia, the cough impulse is LOST (not present). The hernia becomes tender, tense, and irreducible. The presence of an impulse on coughing suggests the hernia is not strangulated. This is a key clinical sign used to differentiate strangulated from non-strangulated hernias.",
+    "options": [
+      "Impulse on cough",
+      "Tender",
+      "Tense",
+      "Irreducible"
+    ],
+    "question": "All of the following may be signs of strangulated hernia Except:"
+  },
+  {
+    "correct": 2,
+    "explanation": "A long-standing hernia that is not completely reducible WITHOUT signs of acute worsening (no pain, no tenderness, no signs of strangulation or obstruction) represents incarceration. Incarceration means the hernia content cannot be reduced but there is no vascular compromise. Strangulation would present with pain, tenderness, and signs of ischemia.",
+    "options": [
+      "Strangulation",
+      "Obstruction",
+      "Incarceration",
+      "Perforation"
+    ],
+    "question": "A 70-year-old male with a long-standing left inguinoscrotal hernia. He has not noticed any recent changes in his hernia. On examination, you see a giant hernia which is not completely reducible:"
+  },
+  {
+    "correct": 1,
+    "explanation": "The midpoint of the inguinal ligament lies halfway between the pubic tubercle and the anterior superior iliac spine (ASIS). The mid-inguinal point is halfway between the pubic symphysis and the ASIS. This distinction is clinically important as the deep inguinal ring is located above the midpoint of the inguinal ligament.",
+    "options": [
+      "Mid-inguinal point",
+      "Midpoint of inguinal ligament",
+      "McBurney's point",
+      "Critical point"
+    ],
+    "question": "The point which lies midway between the pubic tubercle and anterior superior iliac spine is called:"
+  },
+  {
+    "correct": 3,
+    "explanation": "Littre's hernia is defined as a hernia containing a Meckel's diverticulum. It is named after Alexis Littré. This is distinct from other hernia types: hernia containing the appendix is Amyand's hernia, hernia with bladder in the wall is a sliding hernia, and hernia through the linea semilunaris is a Spigelian hernia.",
+    "options": [
+      "Hernia containing appendix",
+      "Hernia containing urinary bladder in its wall",
+      "Hiatus hernia",
+      "Hernia containing Meckel's diverticulum",
+      "Hernia passing through linea semilunaris line"
+    ],
+    "question": "Littre's hernia is:"
+  },
+  {
+    "correct": 1,
+    "explanation": "An unobliterated processus vaginalis is a congenital cause of indirect inguinal hernia, not an acquired cause. Acquired hernias result from factors that increase intra-abdominal pressure or weaken the abdominal wall, such as chronic cough, pregnancy, ascites, heavy lifting, and obesity.",
+    "options": [
+      "Cough",
+      "Unobliterated processus vaginalis",
+      "Pregnancy",
+      "Ascites"
+    ],
+    "question": "The following are causes of acquired hernia Except:"
+  },
+  {
+    "correct": 2,
+    "explanation": "Option C is incorrect because the boundaries are reversed. The external oblique forms the ANTERIOR wall (not posterior) and the fascia transversalis forms the POSTERIOR wall (not anterior) of the inguinal canal. This is a key anatomical fact about the inguinal canal.",
+    "options": [
+      "It is a 4 cm tunnel in the lower abdominal muscles",
+      "It contains spermatic cord in males and round ligament in females",
+      "Boundaries include external oblique muscle posteriorly and fascia transversalis anteriorly",
+      "The floor is formed by the inguinal ligament and the roof is formed by conjoint tendon"
+    ],
+    "question": "The following are true about the inguinal canal Except:"
+  },
+  {
+    "correct": 1,
+    "explanation": "Absent arterial pulsation in the bowel mesentery is the most reliable intraoperative criterion for non-viability of a strangulated bowel loop. Venous engorgement alone may be reversible. Increased peristalsis suggests viable bowel. CT scan and serum amylase are not used intraoperatively for this assessment.",
+    "options": [
+      "Increased peristalsis",
+      "Absent arterial pulsation",
+      "Venous engorgement",
+      "Intraoperative CT scan",
+      "Serum amylase"
+    ],
+    "question": "A 64-year-old woman presents with a strangulated femoral hernia. At operation, what is the criterion used to diagnose non-viability of a loop of bowel?"
+  },
+  {
+    "correct": 1,
+    "explanation": "The prostate is a solid organ that is not mobile and cannot herniate into a hernia sac. Colon, urinary bladder (in sliding hernia), and pancreas (rarely) can all be found within hernia sacs. The prostate's fixed retroperitoneal position makes herniation impossible.",
+    "options": [
+      "Colon",
+      "Prostate",
+      "Urinary bladder",
+      "Pancreas",
+      "B and C only"
+    ],
+    "question": "The following organs can be a content of hernia Except:"
+  },
+  {
+    "correct": 1,
+    "explanation": "Burst abdomen (wound dehiscence) typically occurs 7-10 days postoperatively, NOT on the first postoperative day. Early pink serous discharge soaking the dressing is a classic warning sign. Urgent surgical repair under general anesthesia is required. The abdomen is closed with mass closure, and sutures should be retained for at least 3 weeks.",
+    "options": [
+      "Soaking of the wound dressing is an early sign",
+      "It usually occurs on the first postoperative day",
+      "Urgent surgery under general anesthesia is indicated",
+      "The abdominal wall is closed as one layer",
+      "Sutures are retained for at least three weeks"
+    ],
+    "question": "About burst abdomen, all the following statements are true Except:"
+  },
+  {
+    "correct": 4,
+    "explanation": "In Richter's hernia, only part of the bowel circumference is trapped, so strangulation can occur without causing complete intestinal obstruction (the bowel lumen remains partially patent). Option B describes a sliding hernia. Option A describes Littre's hernia. Option D describes a lumbar hernia.",
+    "options": [
+      "It means a hernia that contains Meckel's diverticulum",
+      "It means that a viscus makes part of the wall of the sac",
+      "It means an irreducible femoral hernia",
+      "This is a hernia through the lumbar triangle",
+      "Strangulation does not cause intestinal obstruction"
+    ],
+    "question": "About Richter's hernia, one statement only is true:"
+  },
+  {
+    "correct": 0,
+    "explanation": "Intestinal obstruction is NOT a constant feature of strangulated hernia. In Richter's hernia, strangulation can occur without obstruction since only part of the bowel wall is involved. Painful swelling, tense and tender swelling, irreducibility, and absence of cough impulse are constant features of strangulated hernia.",
+    "options": [
+      "Intestinal obstruction",
+      "Painful swelling",
+      "Tense and tender swelling",
+      "Irreducible swelling",
+      "No impulse on cough"
+    ],
+    "question": "All the following are constant manifestations of a strangulated hernia Except:"
+  },
+  {
+    "correct": 1,
+    "explanation": "Femoral hernia is more prone to strangulation than inguinal hernia due to the narrow, rigid femoral canal. Umbilical hernias are more common than femoral hernias in females. Femoral hernia presents BELOW the pubic tubercle. The femoral vein lies LATERAL to the neck. The femoral ring is enlarged by dividing the lacunar ligament MEDIALLY (not laterally), which carries the risk of injuring an aberrant obturator artery.",
+    "options": [
+      "It is more frequent than umbilical hernias in females",
+      "It is more prone to strangulation than an inguinal hernia",
+      "It presents as a swelling above the pubic tubercle",
+      "The femoral vein lies posterior to its neck",
+      "At surgery for strangulation, the femoral ring is enlarged by dividing its lateral edge"
+    ],
+    "question": "About femoral hernia, one statement only is true:"
+  },
+  {
+    "correct": 0,
+    "explanation": "The liver is the most characteristic organ found in exomphalos major, being present in the majority of cases. Unlike gastroschisis, exomphalos has a peritoneal covering sac, and the liver is frequently a major component of the herniated content due to its proximity to the umbilical ring during development.",
+    "options": [
+      "Liver",
+      "Pancreas",
+      "Colon",
+      "Small intestine",
+      "Omentum"
+    ],
+    "question": "Any of the following organs may be a content of an exomphalos major:"
+  },
+  {
+    "correct": 2,
+    "explanation": "Bochdalek hernia is a congenital diaphragmatic hernia through the pleuroperitoneal canal (posterolateral defect). It is the most common type of congenital diaphragmatic hernia, usually occurring on the left side. Morgagni hernia is through the anterior diaphragm (space of Larrey). Hiatal hernia is through the esophageal hiatus.",
+    "options": [
+      "Hernia through the opening into the lesser sac",
+      "Congenital umbilical hernia",
+      "Congenital diaphragmatic hernia through the pleuroperitoneal canal",
+      "Hernia passing through the obturator foramen",
+      "Hernia through the esophageal hiatus of the diaphragm"
+    ],
+    "question": "Hernia of Bochdalek is defined as:"
+  },
+  {
+    "correct": 2,
+    "explanation": "The cremasteric muscle is derived from the internal abdominal oblique muscle. It forms the middle covering of the spermatic cord and is responsible for the cremasteric reflex (elevation of the testis in response to stroking the inner thigh). The dartos muscle is a smooth muscle in the scrotal wall derived from subcutaneous tissue.",
+    "options": [
+      "External abdominal oblique muscle",
+      "Transverse abdominal muscle",
+      "Internal abdominal oblique muscle",
+      "Pyramidalis muscle",
+      "Dartos muscle"
+    ],
+    "question": "The cremasteric muscle is an extension of the:"
+  }
+];
+/* [QUESTION_BANK_END] */
+
+</script>
+<script>
+(function(){
+  window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'bank-engine.js"><\/scr'+'ipt>');
+})();
+</script>
+</body>
+</html>

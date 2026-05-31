@@ -2,7 +2,11 @@
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const CACHE_VERSION = 'mu61-quiz-188f84ba23c3';
+=======
+const CACHE_VERSION = 'mu61-quiz-c9829ed279d7';
+>>>>>>> Stashed changes
 =======
 const CACHE_VERSION = 'mu61-quiz-453d94f6f013';
 >>>>>>> Stashed changes
@@ -259,10 +263,12 @@ var PRECACHE_REL_PATHS = [
   'surg/by-chapter/breast/dr-magdy-questions-breast.html',
   'surg/by-chapter/breast/index.html',
   'surg/by-chapter/hernia/ah-question-bank-hernia.html',
+  'surg/by-chapter/hernia/aio-hernia.html',
   'surg/by-chapter/hernia/ak-question-bank-hernia.html',
   'surg/by-chapter/hernia/index.html',
   'surg/by-chapter/index.html',
   'surg/by-chapter/male/ah-question-bank-male.html',
+  'surg/by-chapter/male/aio-male.html',
   'surg/by-chapter/male/ak-question-bank-male.html',
   'surg/by-chapter/male/index.html',
   'surg/by-chapter/mansoura/breast.html',
