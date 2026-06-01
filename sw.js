@@ -1,26 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-const CACHE_VERSION = 'mu61-quiz-d33ff65d9a45';
-=======
-const CACHE_VERSION = 'mu61-quiz-7b84fb5322dd';
->>>>>>> Stashed changes
-=======
-const CACHE_VERSION = 'mu61-quiz-f44f012f4d51';
->>>>>>> Stashed changes
-=======
-const CACHE_VERSION = 'mu61-quiz-c9829ed279d7';
->>>>>>> Stashed changes
-=======
-const CACHE_VERSION = 'mu61-quiz-453d94f6f013';
->>>>>>> Stashed changes
-=======
-const CACHE_VERSION = 'mu61-quiz-cc28b3d6c401';
->>>>>>> Stashed changes
+const CACHE_VERSION = 'mu61-quiz-702c45793eb4';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -316,6 +296,7 @@ var PRECACHE_REL_PATHS = [
   'surg/past-years/index.html',
   'surg/past-years/past-years-breast-qs.html',
   'favicon.svg',
+  'flashcard-engine.js',
   'icon-48.png',
   'icon-72.png',
   'icon-96.png',
