@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-5794e8d7f3fe';
+const CACHE_VERSION = 'mu61-quiz-2db8640e675c';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -20,6 +20,7 @@ var PRECACHE_REL_PATHS = [
   'quiz-engine.js',
   'bank-engine.js',
   'index-engine.js',
+  'flashcard-engine.js',
   'tracker-map.json',
   'index.html',
   'gyn/ai/index.html',
@@ -303,7 +304,6 @@ var PRECACHE_REL_PATHS = [
   'surg/past-years/index.html',
   'surg/past-years/past-years-breast-qs.html',
   'favicon.svg',
-  'flashcard-engine.js',
   'icon-48.png',
   'icon-72.png',
   'icon-96.png',
@@ -511,6 +511,7 @@ function handleAsset(event, request) {
           'quiz-engine.js',
           'bank-engine.js',
           'index-engine.js',
+          'flashcard-engine.js',
           'index-engine.css',
           'manifest.webmanifest',
           'favicon.svg',
