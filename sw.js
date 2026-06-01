@@ -5,7 +5,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-const CACHE_VERSION = 'mu61-quiz-d33ff65d9a45';
+const CACHE_VERSION = 'mu61-quiz-350fd39302ad';
 =======
 const CACHE_VERSION = 'mu61-quiz-7b84fb5322dd';
 >>>>>>> Stashed changes
