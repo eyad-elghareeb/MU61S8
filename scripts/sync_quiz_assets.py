@@ -326,7 +326,7 @@ def discover_asset_files() -> list[Path]:
     extensions = {".png", ".svg", ".jpg", ".jpeg", ".css", ".webmanifest", ".js", ".json"}
     paths: list[Path] = []
     # Known engines are handled separately to ensure they are at the top of the list
-    engines = {"quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js"}
+    engines = {"quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "written-engine.js"}
     # Source files that should not be precached (build artifacts, source maps, etc.)
     skip_files = {"sw.js", "sync-engine.js", "sync-engine.src.js"}
     
@@ -354,7 +354,7 @@ def update_service_worker() -> bool:
     # Engine files must always be first in the precache list for prioritized installation
     # Engines are specifically placed first to ensure cache robustness logic in sw.js works.
     engine_paths = []
-    for eng in ["quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "tracker-map.json"]:
+    for eng in ["quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "written-engine.js", "tracker-map.json"]:
         if (REPO_ROOT / eng).exists():
             engine_paths.append(eng)
             
@@ -377,7 +377,7 @@ def update_service_worker() -> bool:
 
     # Update SHARED assets in sw.js (ensure icon fallbacks are present)
     shared_assets = [
-        'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'flashcard-engine.js', 'index-engine.css',
+        'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'flashcard-engine.js', 'written-engine.js', 'index-engine.css',
         'manifest.webmanifest', 'favicon.svg',
         'icon-48.png', 'icon-72.png', 'icon-96.png', 'icon-144.png', 'icon-192.png', 'icon-512.png',
         'tracker-map.json'
