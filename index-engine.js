@@ -1207,15 +1207,15 @@
       '  const BANK_CONFIG = { uid: "review_session", title: "Review Mode", description: "Reviewing mistakes across sections" };\n' +
       '  const QUESTIONS = ' + JSON.stringify(qs) + ';\n' +
       '  const QUESTION_BANK = QUESTIONS;\n' +
-      '  window.navigateToIndex = function(e){\n' +
-      '    if(e) e.preventDefault();\n' +
-      '    try { window.parent.postMessage("close-review", "*"); } catch(err){}\n' +
-      '  };\n' +
       '</script>\n' +
       '</head>\n<body>\n' +
       '<script src="' + (ENGINE_BASE || '') + engineScript + '"></script>\n' +
       '<script>\n' +
       '  (function(){\n' +
+      '    window.navigateToIndex = function(e){\n' +
+      '      if(e) e.preventDefault();\n' +
+      '      try { window.parent.postMessage("close-review", "*"); } catch(err){}\n' +
+      '    };\n' +
       '    const originalSave = window.saveTrackerData;\n' +
       '    window.saveTrackerData = function() {\n' +
       '      const correct = [];\n' +
