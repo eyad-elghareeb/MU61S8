@@ -55,7 +55,27 @@ def standardize_file(file_path):
 /* [QUESTIONS_END] */"""
             content = content.replace(questions_code, wrapped_questions)
     
-    # 7. Clean up whitespace (trim trailing spaces, normalize line endings)
+    # 7. Add [FLASHCARD_CONFIG_START/END] markers if flashcard BANK_CONFIG found
+    if 'FLASHCARD_BANK' in content and '[FLASHCARD_CONFIG_START]' not in content:
+        config_match = re.search(r'(var\s+BANK_CONFIG\s*=\s*\{[^}]+\};)', content, re.DOTALL)
+        if config_match:
+            config_code = config_match.group(1)
+            wrapped_config = f"""/* [FLASHCARD_CONFIG_START] */
+{config_code}
+/* [FLASHCARD_CONFIG_END] */"""
+            content = content.replace(config_code, wrapped_config)
+    
+    # 8. Add [FLASHCARD_BANK_START/END] markers
+    if 'FLASHCARD_BANK' in content and '[FLASHCARD_BANK_START]' not in content:
+        bank_match = re.search(r'(var\s+FLASHCARD_BANK\s*=\s*\[.*?\];)', content, re.DOTALL)
+        if bank_match:
+            bank_code = bank_match.group(1)
+            wrapped_bank = f"""/* [FLASHCARD_BANK_START] */
+{bank_code}
+/* [FLASHCARD_BANK_END] */"""
+            content = content.replace(bank_code, wrapped_bank)
+    
+    # 9. Clean up whitespace (trim trailing spaces, normalize line endings)
     lines = content.splitlines()
     cleaned_lines = [line.rstrip() for line in lines]
     content = '\n'.join(cleaned_lines)

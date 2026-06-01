@@ -1125,12 +1125,14 @@ DASHBOARD_HTML = r"""
       { key: 'past-paper', label: 'Past Paper', description: 'Exam-style set for previous years.', type: 'quiz', starterCount: 10, defaultDescription: 'Past paper MCQs', bankIcon: '🗃️' },
       { key: 'quick-review', label: 'Quick Review', description: 'Short revision-focused quiz.', type: 'quiz', starterCount: 3, defaultDescription: 'Quick review questions', bankIcon: '🗃️' },
       { key: 'all-bank', label: 'All Bank', description: 'Large question bank with bank defaults.', type: 'bank', starterCount: 8, defaultDescription: 'All questions in one bank file', bankIcon: '🗃️' },
+      { key: 'flashcard-deck', label: 'Flashcard Deck', description: 'Basic and cloze card deck.', type: 'flashcard', starterCount: 5, defaultDescription: 'Flashcard deck', bankIcon: '🃏' },
     ];
 
     const FILTERS = [
       { key: 'all', label: 'All' },
       { key: 'quiz', label: 'Quiz' },
       { key: 'bank', label: 'Bank' },
+      { key: 'flashcard', label: 'Flashcard' },
       { key: 'index', label: 'Index' },
       { key: 'html', label: 'Other HTML' },
     ];
@@ -1617,7 +1619,7 @@ DASHBOARD_HTML = r"""
         { divider: true },
         { label: 'Duplicate', onclick: `closeContextMenu(); openDuplicateModal('', '${escapeHtml(filePath)}')` },
         { label: 'Move/Rename', onclick: `closeContextMenu(); requestLoadFile('${escapeHtml(filePath)}', { afterLoadAction: 'openMoveModal' })` },
-        (file?.type === 'quiz' || file?.type === 'bank') ? { label: 'Convert Quiz/Bank', onclick: `closeContextMenu(); requestLoadFile('${escapeHtml(filePath)}', { afterLoadAction: 'convertFile' })` } : null,
+        (file?.type === 'quiz' || file?.type === 'bank' || file?.type === 'flashcard') ? { label: 'Convert Quiz/Bank', onclick: `closeContextMenu(); requestLoadFile('${escapeHtml(filePath)}', { afterLoadAction: 'convertFile' })` } : null,
         { divider: true },
         { label: 'Copy Path', onclick: `closeContextMenu(); copyTextValue('${escapeHtml(filePath)}', 'Path')` },
         { label: 'Delete', danger: true, onclick: `closeContextMenu(); requestLoadFile('${escapeHtml(filePath)}', { afterLoadAction: 'openDeleteModal' })` },
@@ -1958,6 +1960,9 @@ DASHBOARD_HTML = r"""
       if (meta.type === 'quiz' || meta.type === 'bank') {
         return renderQuizBankEditor(meta);
       }
+      if (meta.type === 'flashcard') {
+        return renderFlashcardEditor(meta);
+      }
       if (meta.type === 'index') {
         return renderIndexEditor(meta);
       }
@@ -2069,6 +2074,181 @@ DASHBOARD_HTML = r"""
           </div>
         </div>
       `;
+    }
+
+    function renderFlashcardEditor(meta) {
+      const cards = meta.questions || [];
+      const topFields = `
+        <div class="editor-grid">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; align-items:start;">
+            <div class="field" style="margin:0;">
+              <label>UID</label>
+              <input class="text-input" id="cfg-uid" value="${escapeHtml(meta.config?.uid || '')}" oninput="syncFlashcardEditor()">
+              <small>Keep this stable for deployed files.</small>
+            </div>
+            <div class="field" style="margin:0;">
+              <label>Title</label>
+              <input class="text-input" id="cfg-title" value="${escapeHtml(meta.config?.title || '')}" oninput="syncFlashcardEditor()">
+            </div>
+          </div>
+          <div class="field full">
+            <label>Description</label>
+            <textarea class="text-area" id="cfg-description" oninput="syncFlashcardEditor()">${escapeHtml(meta.config?.description || '')}</textarea>
+          </div>
+          <div class="field" style="max-width:300px;">
+            <label>Icon</label>
+            <input class="text-input" id="cfg-icon" value="${escapeHtml(meta.config?.icon || '🃏')}" oninput="syncFlashcardEditor()">
+          </div>
+      `;
+      return `
+        ${topFields}
+          <div class="panel-grid">
+            ${renderMetaCard('Cards', cards.length)}
+            ${renderMetaCard('Mode', 'Flashcard Deck')}
+            ${renderMetaCard('Engine', 'flashcard-engine.js')}
+          </div>
+          <div class="editor-list">
+            ${cards.map((card, index) => renderFlashcardCard(card, index)).join('')}
+          </div>
+          <button class="btn" onclick="addFlashcard()">Add Card</button>
+        </div>
+      `;
+    }
+
+    function renderFlashcardCard(card, index) {
+      const type = card.type || 'basic';
+      const isBasic = type === 'basic';
+      const tags = Array.isArray(card.tags) ? card.tags.join(', ') : '';
+      return `
+        <div class="editor-card">
+          <div class="editor-card-header">
+            <div>
+              <div class="editor-card-title">Card ${index + 1} (${isBasic ? 'Basic' : 'Cloze'})</div>
+            </div>
+            <div class="mini-actions">
+              <button class="mini-btn" onclick="moveFlashcard(${index}, -1)" ${index === 0 ? 'disabled' : ''}>Up</button>
+              <button class="mini-btn" onclick="moveFlashcard(${index}, 1)" ${index === (state.currentData.meta.questions || []).length - 1 ? 'disabled' : ''}>Down</button>
+              <button class="mini-btn" onclick="duplicateFlashcard(${index})">Duplicate</button>
+              <button class="mini-btn delete" onclick="removeFlashcard(${index})">Remove</button>
+            </div>
+          </div>
+          <div class="editor-card-body">
+            <div class="field">
+              <label>Card Type</label>
+              <select class="select-input fc-type" data-index="${index}" onchange="syncFlashcardEditor()">
+                <option value="basic" ${isBasic ? 'selected' : ''}>Basic (Front/Back)</option>
+                <option value="cloze" ${isBasic ? '' : 'selected'}>Cloze (Text with {{c1::blank}})</option>
+              </select>
+            </div>
+            ${isBasic ? `
+              <div class="field">
+                <label>Front</label>
+                <textarea class="text-area fc-front" data-index="${index}" oninput="syncFlashcardEditor()">${escapeHtml(card.front || '')}</textarea>
+              </div>
+              <div class="field">
+                <label>Back</label>
+                <textarea class="text-area fc-back" data-index="${index}" oninput="syncFlashcardEditor()">${escapeHtml(card.back || '')}</textarea>
+              </div>
+            ` : `
+              <div class="field">
+                <label>Cloze Text</label>
+                <textarea class="text-area fc-text" data-index="${index}" oninput="syncFlashcardEditor()" placeholder="Use {{c1::answer}} syntax for cloze deletions.">${escapeHtml(card.text || '')}</textarea>
+              </div>
+            `}
+            <div class="field">
+              <label>Tags (comma separated)</label>
+              <input class="text-input fc-tags" data-index="${index}" value="${escapeHtml(tags)}" oninput="syncFlashcardEditor()" placeholder="biology, anatomy">
+            </div>
+            <div class="field">
+              <label>Card ID</label>
+              <input class="text-input fc-id" data-index="${index}" value="${escapeHtml(card.id || '')}" oninput="syncFlashcardEditor()" placeholder="optional-id-001">
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function syncFlashcardEditor() {
+      if (!state.currentData) return;
+      const meta = state.currentData.meta;
+      const uid = document.getElementById('cfg-uid')?.value || '';
+      const title = document.getElementById('cfg-title')?.value || '';
+      const description = document.getElementById('cfg-description')?.value || '';
+      const icon = document.getElementById('cfg-icon')?.value || '🃏';
+      const cards = Array.from(document.querySelectorAll('.editor-card')).map((card, index) => {
+        const type = card.querySelector('.fc-type')?.value || 'basic';
+        const tags = (card.querySelector('.fc-tags')?.value || '').split(',').map(t => t.trim()).filter(Boolean);
+        const id = card.querySelector('.fc-id')?.value || '';
+        if (type === 'basic') {
+          const front = card.querySelector('.fc-front')?.value || '';
+          const back = card.querySelector('.fc-back')?.value || '';
+          return { type: 'basic', front, back, tags, id };
+        }
+        const text = card.querySelector('.fc-text')?.value || '';
+        return { type: 'cloze', text, tags, id };
+      });
+      meta.config = meta.config || {};
+      meta.config.uid = uid;
+      meta.config.title = title;
+      meta.config.description = description;
+      meta.config.icon = icon;
+      meta.uid = uid;
+      meta.title = title;
+      meta.description = description;
+      meta.icon = icon;
+      meta.questions = cards;
+      meta.question_count = cards.length;
+      let updated = state.currentData.content;
+      const configBlock = JSON.parse(JSON.stringify(meta.config));
+      updated = replaceAssignedBlock(updated, 'BANK_CONFIG', '{', '}', configBlock);
+      const startIdx = updated.indexOf('/* [FLASHCARD_BANK_START] */');
+      const endIdx = updated.indexOf('/* [FLASHCARD_BANK_END] */');
+      if (startIdx !== -1 && endIdx !== -1) {
+        const prefix = updated.slice(0, startIdx);
+        const suffix = updated.slice(endIdx + '/* [FLASHCARD_BANK_END] */'.length);
+        const serialized = JSON.stringify(cards, null, 2);
+        updated = prefix + '/* [FLASHCARD_BANK_START] */\nvar FLASHCARD_BANK = ' + serialized + ';\n/* [FLASHCARD_BANK_END] */' + suffix;
+      }
+      state.currentData.content = updated;
+      updateRawAndMeta();
+    }
+
+    function moveFlashcard(index, delta) {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      const next = index + delta;
+      if (next < 0 || next >= list.length) return;
+      [list[index], list[next]] = [list[next], list[index]];
+      renderFilePanel();
+      setTab('editor');
+      syncFlashcardEditor();
+    }
+
+    function duplicateFlashcard(index) {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      list.splice(index + 1, 0, clone(list[index]));
+      renderFilePanel();
+      setTab('editor');
+      syncFlashcardEditor();
+    }
+
+    function removeFlashcard(index) {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      list.splice(index, 1);
+      renderFilePanel();
+      setTab('editor');
+      syncFlashcardEditor();
+    }
+
+    function addFlashcard() {
+      const list = state.currentData?.meta?.questions;
+      if (!list) return;
+      list.push({ type: 'basic', front: '', back: '', tags: [], id: '' });
+      renderFilePanel();
+      setTab('editor');
+      syncFlashcardEditor();
     }
 
     function renderIndexEditor(meta) {
@@ -2657,7 +2837,7 @@ DASHBOARD_HTML = r"""
       const isBank = wizard.type === 'bank';
       const preset = getPresetByKey(wizard.presetKey);
       const cloneOptions = state.files
-        .filter(file => file.type === 'quiz' || file.type === 'bank')
+        .filter(file => file.type === 'quiz' || file.type === 'bank' || file.type === 'flashcard')
         .map(file => `<option value="${escapeHtml(file.path)}" ${file.path === wizard.clonePath ? 'selected' : ''}>${escapeHtml(file.title)} (${escapeHtml(file.path)})</option>`)
         .join('');
       const body = `
@@ -2680,6 +2860,7 @@ DASHBOARD_HTML = r"""
                   <select class="select-input" id="file-type" onchange="onFileTypeChange(); syncWizardSummary()">
                     <option value="quiz" ${wizard.type === 'quiz' ? 'selected' : ''}>Quiz</option>
                     <option value="bank" ${wizard.type === 'bank' ? 'selected' : ''}>Question Bank</option>
+                    <option value="flashcard" ${wizard.type === 'flashcard' ? 'selected' : ''}>Flashcard Deck</option>
                   </select>
                 </div>
                 <div class="field">
@@ -2775,7 +2956,7 @@ DASHBOARD_HTML = r"""
     function onFileTypeChange() {
       const type = document.getElementById('file-type').value;
       const wrap = document.getElementById('bank-icon-wrap');
-      if (wrap) wrap.style.display = type === 'bank' ? 'grid' : 'none';
+      if (wrap) wrap.style.display = (type === 'bank' || type === 'flashcard') ? 'grid' : 'none';
     }
 
     function setWizardPreset(key) {
@@ -3598,7 +3779,7 @@ def scan_folders() -> list[str]:
 
 
 def extract_assigned_literal(content: str, const_name: str, open_char: str, close_char: str) -> str | None:
-    match = re.search(rf"const\s+{re.escape(const_name)}\s*=\s*{re.escape(open_char)}", content)
+    match = re.search(rf"\b(?:const|let|var)\s+{re.escape(const_name)}\s*=\s*{re.escape(open_char)}", content)
     if not match:
         return None
     start = content.find(open_char, match.start())
@@ -3646,6 +3827,12 @@ def parse_literal(content: str, const_name: str, open_char: str, close_char: str
             return None
 
 
+def is_flashcard_file(content: str) -> bool:
+    return bool(re.search(r"FLASHCARD_BANK\s*=", content)) or bool(
+        re.search(r"flashcard-engine\.js", content)
+    )
+
+
 def parse_file_metadata(content: str) -> dict[str, Any]:
     quiz_config = parse_literal(content, "QUIZ_CONFIG", "{", "}")
     if isinstance(quiz_config, dict):
@@ -3662,6 +3849,19 @@ def parse_file_metadata(content: str) -> dict[str, Any]:
 
     bank_config = parse_literal(content, "BANK_CONFIG", "{", "}")
     if isinstance(bank_config, dict):
+        # Detect flashcard files first
+        if is_flashcard_file(content):
+            flashcard_bank = parse_literal(content, "FLASHCARD_BANK", "[", "]") or []
+            return {
+                "type": "flashcard",
+                "uid": bank_config.get("uid"),
+                "title": bank_config.get("title"),
+                "description": bank_config.get("description"),
+                "icon": bank_config.get("icon"),
+                "question_count": len(flashcard_bank),
+                "config": bank_config,
+                "questions": flashcard_bank,
+            }
         bank_questions = parse_literal(content, "QUESTION_BANK", "[", "]") or []
         return {
             "type": "bank",
@@ -3821,6 +4021,33 @@ def validate_dashboard_content(path: str, content: str, *, original_uid: str = "
         elif detect_uid_change(original_uid, uid):
             issues.append(build_issue("warning", "UID changed from the saved file. This can orphan learner progress.", field="uid", code="uid_changed"))
         issues.extend(validate_question_list(meta.get("questions"), field_prefix="questions"))
+    elif meta_type == "flashcard":
+        if "/* [FLASHCARD_CONFIG_START] */" not in content or "/* [FLASHCARD_CONFIG_END] */" not in content:
+            issues.append(build_issue("warning", "Flashcard config markers are recommended.", field="config", code="flashcard_config_markers"))
+        if "/* [FLASHCARD_BANK_START] */" not in content or "/* [FLASHCARD_BANK_END] */" not in content:
+            issues.append(build_issue("warning", "Flashcard bank markers are recommended.", field="cards", code="flashcard_bank_markers"))
+        if "flashcard-engine.js" not in content:
+            issues.append(build_issue("error", "Flashcard engine loader not found.", field="engine", code="flashcard_engine_missing"))
+        uid = str(meta.get("uid") or "").strip()
+        if not uid:
+            issues.append(build_issue("error", "Flashcard UID is required.", field="uid", code="uid_missing"))
+        elif detect_uid_change(original_uid, uid):
+            issues.append(build_issue("warning", "UID changed from the saved file. This can orphan learner progress.", field="uid", code="uid_changed"))
+        cards = meta.get("questions")
+        if isinstance(cards, list):
+            if not cards:
+                issues.append(build_issue("warning", "This deck has no cards yet.", field="cards", code="cards_empty"))
+            for idx, card in enumerate(cards):
+                if not isinstance(card, dict):
+                    issues.append(build_issue("error", f"Card {idx + 1} is invalid.", field=f"cards.{idx}", code="card_invalid", index=idx))
+                else:
+                    card_type = str(card.get("type", "") or "")
+                    if card_type not in ("basic", "cloze"):
+                        issues.append(build_issue("warning", f"Card {idx + 1} has an unknown type.", field=f"cards.{idx}.type", code="card_unknown_type", index=idx))
+                    if card_type == "basic" and not str(card.get("front", "") or "").strip():
+                        issues.append(build_issue("error", f"Card {idx + 1} is missing front text.", field=f"cards.{idx}.front", code="card_missing_front", index=idx))
+                    if card_type == "cloze" and not str(card.get("text", "") or "").strip():
+                        issues.append(build_issue("error", f"Card {idx + 1} is missing cloze text.", field=f"cards.{idx}.text", code="card_missing_text", index=idx))
     elif meta_type == "bank":
         if "/* [BANK_CONFIG_START] */" not in content or "/* [BANK_CONFIG_END] */" not in content:
             issues.append(build_issue("error", "Bank config markers are missing.", field="config", code="bank_config_markers"))
@@ -3872,6 +4099,8 @@ def infer_icon(meta_type: str, name: str) -> str:
         return "📝"
     if meta_type == "bank":
         return "🗃️"
+    if meta_type == "flashcard":
+        return "🃏"
     return "📄"
 
 
@@ -3917,6 +4146,13 @@ def duplicate_file_content(source_content: str, destination_folder: str, destina
         config["title"] = config.get("title") or title_from_segment(destination_stem)
         config["icon"] = config.get("icon") or "🗃️"
         content = create_bank_html(config, copy.deepcopy(meta.get("questions") or []))
+        return content, new_uid
+    if meta.get("type") == "flashcard":
+        config = copy.deepcopy(meta.get("config") or {})
+        config["uid"] = new_uid
+        config["title"] = config.get("title") or title_from_segment(destination_stem)
+        config["icon"] = config.get("icon") or "🃏"
+        content = create_flashcard_html(config, copy.deepcopy(meta.get("questions") or []))
         return content, new_uid
     return source_content, None
 
@@ -4336,6 +4572,57 @@ const QUESTION_BANK = {json.dumps(questions, indent=2)};
 (function(){{
   window.__QUIZ_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
   document.write('<scr'+'ipt src="'+window.__QUIZ_ENGINE_BASE+'bank-engine.js"><\\/scr'+'ipt>');
+}})();
+</script>
+</body>
+</html>
+"""
+
+
+def create_flashcard_html(config: dict[str, Any], cards: list[dict[str, Any]] | None = None) -> str:
+    cards = cards or [
+        {
+            "type": "basic",
+            "front": "Sample question?",
+            "back": "Sample answer.",
+            "tags": ["sample"],
+            "id": "sample-001",
+        }
+    ]
+    safe_uid = json.dumps(config.get("uid", ""))
+    safe_title = json.dumps(config.get("title", ""))
+    safe_desc = json.dumps(config.get("description", ""))
+    safe_icon = json.dumps(config.get("icon", "🃏"))
+    cards_json = json.dumps(cards, indent=2)
+    return f"""<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){{var t=localStorage.getItem('flashcard-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}}';document.head.appendChild(s)}})();
+</script>
+<title>{config['title']}</title>
+</head>
+<body>
+<script>
+/* [FLASHCARD_CONFIG_START] */
+var BANK_CONFIG = {{
+  uid: {safe_uid},
+  title: {safe_title},
+  description: {safe_desc},
+  icon: {safe_icon},
+}};
+/* [FLASHCARD_CONFIG_END] */
+
+/* [FLASHCARD_BANK_START] */
+var FLASHCARD_BANK = {cards_json};
+/* [FLASHCARD_BANK_END] */
+</script>
+<script>
+(function () {{
+  window.__FLASHCARD_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr' + 'ipt src="' + window.__FLASHCARD_ENGINE_BASE + 'flashcard-engine.js"><\\/scr' + 'ipt>');
 }})();
 </script>
 </body>
@@ -4866,8 +5153,9 @@ def build_summary() -> dict[str, Any]:
     files = collect_file_records()
     quiz_count = sum(1 for file in files if file["type"] == "quiz")
     bank_count = sum(1 for file in files if file["type"] == "bank")
+    flashcard_count = sum(1 for file in files if file["type"] == "flashcard")
     index_count = sum(1 for file in files if file["type"] == "index")
-    total_questions = sum(int(file["question_count"] or 0) for file in files if file["type"] in {"quiz", "bank"})
+    total_questions = sum(int(file["question_count"] or 0) for file in files if file["type"] in {"quiz", "bank", "flashcard"})
     return {
         "totalHtmlFiles": len(files),
         "quizCount": quiz_count,
@@ -5020,11 +5308,14 @@ def preview_file(filename: str) -> Any:
     depth = len(Path(normalized).parent.parts) if normalized != "." else 0
     prefix = '../' * depth
     content = re.sub(
-        r"window\.__QUIZ_ENGINE_BASE\s*=\s*['\"].*?['\"]\s*\.repeat\(Math\.max\(0,\s*location\.pathname\.split\(\s*['\"/].*?['\"]\s*\)\.filter\(Boolean\)\.length\s*-\s*\d+\)\);?",
-        f"window.__QUIZ_ENGINE_BASE='{prefix}';",
+        r"window\.__(?:QUIZ|FLASHCARD)_ENGINE_BASE\s*=\s*['\"].*?['\"]\s*\.repeat\(Math\.max\(0,\s*location\.pathname\.split\(\s*['\"/].*?['\"]\s*\)\.filter\(Boolean\)\.length\s*-\s*\d+\)\);?",
+        f"window.__ENGINE_BASE_TEMP_BASE='{prefix}';",
         content,
         flags=re.MULTILINE
     )
+    # Restore the correct variable name after replacement
+    content = content.replace("__ENGINE_BASE_TEMP_BASE", "__FLASHCARD_ENGINE_BASE")
+    content = content.replace("__FLASHCARD_ENGINE_BASE", "__QUIZ_ENGINE_BASE")
     return content, 200, {"Content-Type": "text/html; charset=utf-8"}
 
 
@@ -5124,8 +5415,8 @@ def create_file() -> Any:
     filename_hint = str(payload.get("filename", "")).strip()
     icon = str(payload.get("icon", "🗃️")).strip() or "🗃️"
 
-    if file_type not in {"quiz", "bank"}:
-        return jsonify({"message": "Type must be quiz or bank."}), 400
+    if file_type not in {"quiz", "bank", "flashcard"}:
+        return jsonify({"message": "Type must be quiz, bank, or flashcard."}), 400
     if not title:
         return jsonify({"message": "Title is required."}), 400
 
@@ -5148,6 +5439,8 @@ def create_file() -> Any:
     questions = payload.get("questions")
     if file_type == "quiz":
         content = create_quiz_html({"uid": uid, "title": title, "description": description}, questions)
+    elif file_type == "flashcard":
+        content = create_flashcard_html({"uid": uid, "title": title, "description": description, "icon": icon}, questions)
     else:
         content = create_bank_html({"uid": uid, "title": title, "description": description, "icon": icon}, questions)
 
@@ -5295,6 +5588,8 @@ def convert_file() -> Any:
         }
         write_text(file_path, create_quiz_html(config, questions))
         return jsonify({"message": "Converted question bank to quiz while preserving UID."})
+    if meta["type"] == "flashcard":
+        return jsonify({"message": "Flashcard files cannot be converted to quiz or bank."}), 400
     return jsonify({"message": "Only quiz and bank files can be converted."}), 400
 
 
