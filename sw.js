@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-e80eaccaa4b5';
+const CACHE_VERSION = 'mu61-quiz-d5531154a8a1';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -246,6 +246,13 @@ var PRECACHE_REL_PATHS = [
   'ped/past-years/60th-midterm.html',
   'ped/past-years/61st-midterm.html',
   'ped/past-years/index.html',
+  'ped/written/cardiology-flashcards.html',
+  'ped/written/chest-flashcards.html',
+  'ped/written/emergency-flashcards.html',
+  'ped/written/git-flashcards.html',
+  'ped/written/hematology-flashcards.html',
+  'ped/written/index.html',
+  'ped/written/infections-flashcards.html',
   'surg/by-chapter/breast/ahassan-question-bank-breast.html',
   'surg/by-chapter/breast/aio-breast.html',
   'surg/by-chapter/breast/dr-magdy-questions-breast.html',
