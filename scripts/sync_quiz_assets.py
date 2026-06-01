@@ -20,6 +20,7 @@ ROOT_CACHE_ASSETS = (
     "icon-512.png",
     "index-engine.css",
     "flashcard-engine.js",
+    "written-engine.js",
     "sync-engine.js",
 )
 SKIP_DIRS = {".git", ".github", "__pycache__", "_site", "scripts", "node_modules"}

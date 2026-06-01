@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Emergency - Written Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "12836492vs",
+  title: "Emergency - Written Assessment",
+  description: "Pediatrics Emergency Written Assessment",
+  icon: "⚡"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    id: "wq-1",
+    question: "What are the anatomical factors that predispose pediatric airway for obstruction? (Mention 4 factors)",
+    modelAnswer: "In a young child the airway is vulnerable to obstruction because of:\n1. Head is large and neck is short, tending to cause neck flexion and airway narrowing\n2. The face and mandible are small\n3. Teeth may be loose\n4. The tongue is relatively large and tends to obstruct the airway in an unconscious child, and also obstructs the view at laryngoscopy\n5. The floor of the mouth is easily compressible\n6. Infants less than 6 months of age are obligate nasal breathers\n7. The trachea is short and soft",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["airway", "anatomical factors", "pediatric"]
+  },
+  {
+    id: "wq-2",
+    question: "Enumerate 3 circumstances in which there is absent or decreased effort of breathing in the setting of potential respiratory failure.",
+    modelAnswer: "1. Exhaustion: It is a pre-terminal sign\n2. Children with CNS depression\n3. Children who have neuromuscular disease (such as spinal muscular atrophy or muscular dystrophy) may present in respiratory failure without increased effort of breathing",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["respiratory failure", "breathing effort"]
+  },
+  {
+    id: "wq-3",
+    question: "Recognition of potential circulatory failure in a critically ill child.",
+    modelAnswer: "Cardiovascular status:\nA. Heart rate: Initially increases in shock due to catecholamine release and compensation for decreased stroke volume (COP = SV x HR). Bradycardia (< 60 bpm) is a pre-terminal sign.\nB. Pulse volume: Compare peripheral & central pulses. Absent peripheral pulses and weak central pulses are serious signs of advanced shock.\nC. Capillary refill time (CRT): Apply cutaneous pressure on sternum or digit for 5 seconds. Slow refill (> 2-3 sec) indicates poor skin perfusion.\nD. Blood pressure: Hypotension is a late & pre-terminal sign. Once BP falls, cardiac arrest is imminent.\n\nEffects on other organs:\n- Respiratory: Tachypnea without recession (metabolic acidosis)\n- Mental status: Agitation then drowsiness leading to unconsciousness (poor cerebral perfusion)\n- Skin: Mottled, cold, pale peripherally (poor perfusion)\n- Urinary output: < 1 ml/kg/hour indicates inadequate renal perfusion",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["circulatory failure", "shock", "recognition"]
+  },
+  {
+    id: "wq-4",
+    question: "Mention the signs that are more in favor of circulatory failure (vs respiratory failure).",
+    modelAnswer: "1. Cyanosis despite supplemented O2\n2. Marked tachycardia out of proportion to respiratory distress\n3. Quiet tachypnea (tachypnea without recessions)\n4. Raised jugular venous pressure\n5. Gallop rhythm/murmur\n6. Enlarged liver (be aware of ptosed liver)\n7. Absent/weak femoral pulses",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["circulatory failure", "respiratory failure", "differentiation"]
+  },
+  {
+    id: "wq-5",
+    question: "List the 3 components of Glasgow Coma Scale.",
+    modelAnswer: "Assesses the child on 3 aspects; the sum is GCS:\n1. Eye opening (1-4)\n2. Best verbal response (1-5)\n3. Best motor response (1-6)\n\nThe least score is 3/15; the best is 15/15. If GCS is 8 or less, airway management should be considered.",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["GCS", "Glasgow Coma Scale"]
+  },
+  {
+    id: "wq-6",
+    question: "A foreign body is impacted in the right main bronchus causing complete obstruction. List three possible physical findings.",
+    modelAnswer: "1. Mediastinal shift to right side\n2. Diminished intensity of breath sound on right side (right lung collapse)\n3. Decreased chest movement on right side\n4. Respiratory distress (tachypnea)",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["foreign body", "bronchus", "physical findings"]
+  },
+  {
+    id: "wq-7",
+    question: "What is grunting?",
+    modelAnswer: "Forced expiration against a partially closed glottis to increase the end expiratory pressure to assist gas exchange and prevent alveolar collapse.",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["grunting", "respiratory signs"]
+  },
+  {
+    id: "wq-8",
+    question: "What does presence of grunting signify?",
+    modelAnswer: "It indicates alveolar disease.",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["grunting", "clinical significance"]
+  },
+  {
+    id: "wq-9",
+    question: "Explain grunting's physiological role in the presence of hypoxemia.",
+    modelAnswer: "To increase end expiratory pressure to assist gas exchange and prevent alveolar collapse.",
+    rubric: "Must provide a clear and detailed explanation of the underlying mechanism or concept.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["grunting", "physiology", "hypoxemia"]
+  },
+  {
+    id: "wq-10",
+    question: "List 4 possible lines of treatment in viral croup.",
+    modelAnswer: "3 No:\n1. No specific treatment = Self-limiting\n2. No moisture (as it is distressing)\n3. No correction of mild hypoxia\n\n3 Yes:\n1. Oxygen therapy & ICU admission (in hypoxia, cyanosis, marked tachycardia)\n2. Corticosteroids\n3. Adrenaline",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["croup", "treatment", "viral"]
+  },
+  {
+    id: "wq-11",
+    question: "What is stridor? What does it indicate?",
+    modelAnswer: "Stridor: A high-pitched sound that is usually inspiratory, indicating upper airway obstruction (may be present on expiration as well).",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["stridor", "upper airway obstruction"]
+  },
+  {
+    id: "wq-12",
+    question: "Define shock.",
+    modelAnswer: "Shock is an acute syndrome characterized by a significant systemic reduction in tissue perfusion to meet the metabolic demands, thereby resulting in decreased tissue oxygen delivery.",
+    rubric: "Must provide a precise and complete definition including key distinguishing features.",
+    explanation: "A precise definition is essential for distinguishing this condition from similar clinical entities.",
+    tags: ["shock", "definition"]
+  },
+  {
+    id: "wq-13",
+    question: "Explain why children in early shock have tachypnea and tachycardia.",
+    modelAnswer: "Tachypnea: To improve oxygenation. Because tidal volume is constant in children, the only way to increase minute ventilation is to increase respiratory rate. Minute ventilation = tidal volume x respiratory rate.\n\nTachycardia: Due to catecholamine release and as compensation for decreased stroke volume. COP = SV x HR.",
+    rubric: "Must provide a clear and detailed explanation of the underlying mechanism or concept.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["shock", "tachypnea", "tachycardia", "pathophysiology"]
+  },
+  {
+    id: "wq-14",
+    question: "Compare between early and late shock (Pulse, Skin, Blood pressure, Capillary refill time, Level of consciousness).",
+    modelAnswer: "Early Shock:\n- Pulse: Tachycardia\n- Skin: White, cool, moist\n- Blood pressure: Normal range\n- Capillary refill time: < 5 sec\n- Level of consciousness: Unaltered to irritable\n\nLate Shock:\n- Pulse: Marked tachycardia, bradycardia late\n- Skin: White, cold, marked diaphoresis\n- Blood pressure: Lowered\n- Capillary refill time: > 5 sec\n- Level of consciousness: Altered, ranging from disoriented to coma",
+    rubric: "Must clearly highlight contrasting features between the compared entities.",
+    explanation: "Distinguishing between these entities is essential for accurate diagnosis and appropriate management.",
+    tags: ["shock", "early vs late", "comparison"]
+  },
+  {
+    id: "wq-15",
+    question: "Describe pathophysiology and compensatory mechanisms in shock.",
+    modelAnswer: "Pathophysiology:\nDecreased perfusion -> DO2 < VO2 -> Myocardial depression -> Metabolic acidosis (anaerobic metabolism) -> Cell swelling, mitochondrial damage -> Eventual cell death\n\nCompensatory mechanisms:\n1. Baroreceptors activation (increase blood pressure)\n2. Increase respiratory rate\n3. Renal salt & water retention (maintain vascular volume)\n4. Increase renal excretion of H+ and retention of HCO3\n5. Adrenergic response and redistribution of blood flow",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["shock", "pathophysiology", "compensatory mechanisms"]
+  },
+  {
+    id: "wq-16",
+    question: "Enumerate 3 causes of obstructive shock.",
+    modelAnswer: "1. Congenital heart disease (hypoplastic left heart syndrome)\n2. Tension pneumothorax\n3. Cardiac tamponade\n4. Aortic coarctation",
+    rubric: "Must list at least 3 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["shock", "obstructive", "causes"]
+  },
+  {
+    id: "wq-17",
+    question: "List THREE signs that suggest cardiogenic shock.",
+    modelAnswer: "1. Low cardiac output and high systemic vascular resistance\n2. Hepatomegaly\n3. Cardiomegaly\n4. Gallop rhythm and murmur\n5. Increased central venous pressure\n6. Periorbital edema\n7. Crackles\n8. Diaphoresis\n9. Oliguria\n10. Reduced capillary refill\n11. Reduced peripheral pulses",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["shock", "cardiogenic", "signs"]
+  },
+  {
+    id: "wq-18",
+    question: "Enumerate FOUR signs and symptoms of raised intracranial pressure in an infant with coma.",
+    modelAnswer: "1. Papilledema\n2. Bulging anterior fontanel\n3. 6th CN palsy\n4. Bradycardia, bradypnea & hypertension",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["raised ICP", "coma", "infant"]
+  },
+  {
+    id: "wq-19",
+    question: "Definition of anion gap and its clinical significance.",
+    modelAnswer: "Definition: The difference between unmeasured cations and unmeasured anions.\n\nClinical significance: Classifies metabolic acidosis into 2 groups (normal and high anion gap).",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["anion gap", "acid-base", "definition"]
+  },
+  {
+    id: "wq-20",
+    question: "How to calculate anion gap?",
+    modelAnswer: "Anion gap = Na+ - (Cl- + HCO3-)",
+    rubric: "Must provide a clear methodology or process with relevant details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["anion gap", "calculation"]
+  },
+  {
+    id: "wq-21",
+    question: "What three abnormalities do you expect to find in the arterial blood gases in children with acute respiratory alkalosis?",
+    modelAnswer: "1. High pH\n2. Low PCO2\n3. High HCO3\n4. Low potassium",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["respiratory alkalosis", "ABG"]
+  },
+  {
+    id: "wq-22",
+    question: "Definition and treatment of metabolic acidosis.",
+    modelAnswer: "Definition:\n1. pH < 7.35\n2. Low serum HCO3\n\nTreatment:\n1. Specific treatment of the cause\n2. Sodium bicarbonate: If pH < 7.1 or serum HCO3 < 8; Dose: 1 mEq/kg by slow IV infusion; Used only with adequate ventilation\n3. THAM (Tris-hydroxymethyl-amino-methane): Does not cause CO2 accumulation\n4. Peritoneal dialysis",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["metabolic acidosis", "treatment"]
+  },
+  {
+    id: "wq-23",
+    question: "Mention 3 causes of high anion gap metabolic acidosis.",
+    modelAnswer: "1. Lactic acidosis (hypoxemia, liver failure)\n2. Ketoacidosis (diabetes, starvation)\n3. Renal failure\n4. Poisoning (salicylate, methanol)",
+    rubric: "Must list at least 3 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["metabolic acidosis", "high anion gap", "causes"]
+  },
+  {
+    id: "wq-24",
+    question: "Mention 2 causes of normal anion gap metabolic acidosis.",
+    modelAnswer: "1. Diarrhea\n2. Renal tubular acidosis\n3. Urinary tract diversion",
+    rubric: "Must list at least 2 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["metabolic acidosis", "normal anion gap", "causes"]
+  },
+  {
+    id: "wq-25",
+    question: "List THREE causes of hyponatremia associated with increased total body sodium.",
+    modelAnswer: "Water excess:\n1. Syndrome of inappropriate secretion of anti-diuretic hormone (SIADH)\n2. Psychogenic polydipsia\n3. Tap water enemas\n\nExcess sodium and water:\n1. Nephrotic syndrome\n2. Cirrhosis\n3. Heart failure\n4. Renal failure",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["hyponatremia", "causes"]
+  },
+  {
+    id: "wq-26",
+    question: "Mention 3 causes of hypernatremia secondary to pure water deficit.",
+    modelAnswer: "1. Diabetes insipidus (central or nephrogenic)\n2. Increased insensible losses (radiant warmers, phototherapy)\n3. Inadequate water intake (inadequate breast feeding, child abuse)",
+    rubric: "Must list at least 3 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["hypernatremia", "water deficit"]
+  },
+  {
+    id: "wq-27",
+    question: "Explain why long-standing hypernatremia should be corrected slowly.",
+    modelAnswer: "To prevent rapid fluid movement into the brain causing cerebral edema, due to delayed clearance of osmolytes which adapt during hypernatremia.",
+    rubric: "Must provide a clear and detailed explanation of the underlying mechanism or concept.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["hypernatremia", "correction", "cerebral edema"]
+  },
+  {
+    id: "wq-28",
+    question: "Mention 3 complications of hypernatremia.",
+    modelAnswer: "1. Intracranial hemorrhage due to shrinking of the brain\n2. Central pontine myelinosis\n3. Thrombotic complications",
+    rubric: "Must list at least 3 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["hypernatremia", "complications"]
+  },
+  {
+    id: "wq-29",
+    question: "Explain why there is hyperkalemia in presence of metabolic acidosis.",
+    modelAnswer: "Because acidosis causes potassium to move from cells to extracellular fluid (plasma) in exchange for hydrogen ions.",
+    rubric: "Must provide a clear and detailed explanation of the underlying mechanism or concept.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["hyperkalemia", "metabolic acidosis", "pathophysiology"]
+  },
+  {
+    id: "wq-30",
+    question: "Describe the clinical picture and treatment of hyperkalemia.",
+    modelAnswer: "Clinical picture:\n1. Generalized fatigue\n2. Weakness or paralysis\n3. Paresthesias\n4. Palpitations\n5. Extrasystoles and arrhythmias\n6. ECG: Peaked T wave, widened QRS complexes\n\nTreatment:\n1. Ca gluconate 10% IV: Physiological antidote of K+ on heart; 1 ml/kg/dose IV over 3-5 min; max 10 ml; stop if bradycardia\n2. Glucose-insulin: Causes intracellular shift of K+; 0.5 g/kg (2 ml/kg) 25% dextrose with 1 U regular insulin/5 g glucose IV over 30 min\n3. Sodium bicarbonate: Increases pH, K+ shift into cells; 0.5-1 mEq/kg IV over 5-10 min\n4. Beta-2 agonists: Promote cellular uptake of K+ via cAMP; Nebulized salbutamol 0.15 mg/kg\n5. Furosemide: Causes K+ loss through kidney; 0.5-2 mg/kg IV\n6. Sodium polystyrene sulfonate (Kayexalate): Exchanges Na+ for K+ in large intestine; oral or rectal; onset 2-12h; 1 g/kg/dose",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["hyperkalemia", "clinical picture", "treatment"]
+  },
+  {
+    id: "wq-31",
+    question: "Give 3 causes of hyperkalemia without increase in total body potassium.",
+    modelAnswer: "1. Cell breakdown (crush syndrome)\n2. Leukocytosis and tumor lysis syndrome\n3. Metabolic acidosis\n4. Rhabdomyolysis\n5. Hemolysis",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["hyperkalemia", "causes", "no excess body K"]
+  },
+  {
+    id: "wq-32",
+    question: "Enumerate 4 causes of hyperkalemia with EXCESS body potassium.",
+    modelAnswer: "1. Renal failure\n2. Hyperaldosteronism\n3. Potassium-sparing diuretics\n4. Adrenal insufficiency (Addison's disease)\n5. Excess parenteral K+",
+    rubric: "Must list at least 4 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["hyperkalemia", "causes", "excess body K"]
+  },
+  {
+    id: "wq-33",
+    question: "What are the 4 lines of treatment that do not alter total body potassium?",
+    modelAnswer: "1. Ca gluconate 10% IV solution\n2. Glucose-insulin (causes intracellular shift of K+)\n3. Sodium bicarbonate (increases pH, K+ shifts into cells)\n4. Beta-2 agonists (promote cellular uptake of K+ via cAMP)",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["hyperkalemia", "treatment", "no total body K change"]
+  },
+  {
+    id: "wq-34",
+    question: "Mention 2 lines of management of hyperkalemia that would reduce total body potassium.",
+    modelAnswer: "1. Furosemide: Causes K+ loss through kidney; dose 0.5-2 mg/kg IV\n2. Sodium polystyrene sulfonate (Kayexalate): Exchanges Na+ for K+ and binds it in large intestine; K+ level drops by approximately 0.5-1 mEq/L; dose 1 g/kg/dose",
+    rubric: "Must list at least 2 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["hyperkalemia", "treatment", "reduce total body K"]
+  },
+  {
+    id: "wq-35",
+    question: "Explain why glucose/insulin is used for treatment of hyperkalemia. And how is it administered?",
+    modelAnswer: "Insulin causes intracellular shift of K+ along with glucose.\n\nAdministration: 0.5 g/kg (2 ml/kg) 25% dextrose solution with 1 U regular insulin/5 g glucose IV over 30 min.",
+    rubric: "Must provide a clear and detailed explanation of the underlying mechanism or concept.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["hyperkalemia", "glucose-insulin", "treatment"]
+  },
+  {
+    id: "wq-36",
+    question: "What is the maneuver and position for airway opening during CPR in the following situations?",
+    modelAnswer: "Infant, no trauma: Chin lift, Neutral position\n\nOlder child, no trauma: Head tilt, chin lift, Sniffing position\n\nAny age, possible trauma: Jaw thrust",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["CPR", "airway", "maneuver"]
+  },
+  {
+    id: "wq-37",
+    question: "When would you describe mouth-to-mouth breathing as effective?",
+    modelAnswer: "By seeing that the child's chest has risen and fallen in a similar fashion to the movement produced by a normal breath.",
+    rubric: "Must specify the conditions or criteria with appropriate clinical context.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["CPR", "mouth-to-mouth", "effectiveness"]
+  },
+  {
+    id: "wq-38",
+    question: "What is the value of giving mouth-to-mouth breathing during cardiac arrest?",
+    modelAnswer: "1. Ventilation (oxygenation) of lungs improves hypoxemia\n2. Giving an amount of CO2 stimulates the respiratory center to work",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["CPR", "mouth-to-mouth", "cardiac arrest"]
+  },
+  {
+    id: "wq-39",
+    question: "List two causes for failure of chest rise during cardio-pulmonary resuscitation.",
+    modelAnswer: "1. Presence of foreign body obstructing airway\n2. Improper positioning of airway\n3. Faulty technique of rescue breathing",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["CPR", "chest rise", "failure"]
+  },
+  {
+    id: "wq-40",
+    question: "What are the two indications for DC shock during cardiac arrest?",
+    modelAnswer: "1. Ventricular fibrillation\n2. Pulseless ventricular tachycardia",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["CPR", "DC shock", "indications"]
+  },
+  {
+    id: "wq-41",
+    question: "What is the definition of pulseless electric activity (PEA)?",
+    modelAnswer: "It is a clinical condition characterized by unresponsiveness and lack of palpable pulse in the presence of organized cardiac electrical activity.",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["PEA", "definition", "cardiac arrest"]
+  },
+  {
+    id: "wq-42",
+    question: "Where to check for the pulse during CPR? (Infants and older children)",
+    modelAnswer: "1. In infants: Brachial artery (on the inner aspect of upper arm)\n2. In older children: Carotid artery (in the neck)",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["CPR", "pulse check"]
+  },
+  {
+    id: "wq-43",
+    question: "Mention late and serious or pre-terminal signs in children in the emergency room.",
+    modelAnswer: "1. Gasping\n2. Silent chest\n3. Bradycardia\n4. Cyanosis\n5. Hypotension\n6. Bradypnea\n7. Exhaustion (absent effort of breathing)",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["emergency", "pre-terminal signs"]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

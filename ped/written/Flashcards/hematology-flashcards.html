@@ -202,9 +202,10 @@ var FLASHCARD_BANK = [
 <script>
 /* Engine loader — computes correct relative path for any folder depth */
 (function () {
-  window.__FLASHCARD_ENGINE_BASE = '../'.repeat(
-    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
-  );
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__FLASHCARD_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
   document.write('<scr' + 'ipt src="' + window.__FLASHCARD_ENGINE_BASE + 'flashcard-engine.js"><\/scr' + 'ipt>');
 })();
 </script>

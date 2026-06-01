@@ -7,12 +7,12 @@
 (function(){var t=localStorage.getItem('flashcard-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
 </script>
 <title>Cardiology Flashcards - Dr. Noaman</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('sw.js').catch(function () {});
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
   });
 }
 </script>
@@ -316,9 +316,10 @@ var FLASHCARD_BANK = [
 <script>
 /* Engine loader — computes correct relative path for any folder depth */
 (function () {
-  window.__FLASHCARD_ENGINE_BASE = '../'.repeat(
-    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
-  );
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__FLASHCARD_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
   document.write('<scr' + 'ipt src="' + window.__FLASHCARD_ENGINE_BASE + 'flashcard-engine.js"><\/scr' + 'ipt>');
 })();
 </script>

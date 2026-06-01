@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest - Written Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "2398746hu",
+  title: "Chest - Written Assessment",
+  description: "Pediatrics Chest Written Assessment",
+  icon: "🫁"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    id: "wq-1",
+    question: "Enumerate aggravating factors for bronchial asthma.",
+    modelAnswer: "1. Viral infections\n2. Environmental allergens\n3. Irritants (e.g., smoke exposure, chemicals, vapors, dust)\n4. Exercise\n5. Emotions\n6. Home environment (e.g., carpets, pets, mold)\n7. Stress\n8. Drugs (e.g., aspirin, beta blockers)\n9. Foods\n10. Changes in weather\n11. Other conditions (e.g., gastroesophageal reflux disease (GERD), sinusitis, rhinitis)",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["bronchial asthma", "aggravating factors"]
+  },
+  {
+    id: "wq-2",
+    question: "Describe chest examination in bronchial asthma.",
+    modelAnswer: "Physical findings vary with the absence or presence of an acute episode and its severity.\n\nInspection: The anteroposterior diameter of the chest may be increased because of hyperinflation.\n\nPalpation: Palpable wheezes.\n\nPercussion: Hyper-resonance.\n\nAuscultation:\n1. Wheezing is only end expiratory.\n2. As severity increases, the wheeze lasts throughout expiration.\n3. In a more severe asthmatic episode, wheezing is also present during inspiration.\n4. Long examination may reveal prolongation of the expiratory phase, expiratory wheezing, coarse crackles, or unequal breath sounds.",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["bronchial asthma", "chest examination"]
+  },
+  {
+    id: "wq-3",
+    question: "Mention 5 differential diagnosis of bronchial asthma in children.",
+    modelAnswer: "1. Airway foreign body\n2. Allergic rhinitis\n3. Aspergillosis\n4. Aspiration syndromes\n5. Bronchiectasis\n6. Bronchiolitis\n7. Bronchopulmonary dysplasia\n8. Cystic fibrosis\n9. Gastroesophageal reflux\n10. Laryngomalacia\n11. Primary ciliary dyskinesia\n12. Subglottic stenosis\n13. Vascular ring, right aortic arch",
+    rubric: "Must list at least 5 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["bronchial asthma", "differential diagnosis"]
+  },
+  {
+    id: "wq-4",
+    question: "Enumerate 6 investigations indicated in the assessment of bronchial asthma.",
+    modelAnswer: "1. Pulmonary function tests (PFTs):\n   a) Spirometry (not reliable in patients younger than 5 years) - decreased FEV1 & FEV1/FVC\n   b) Impulse oscillometry (in young children)\n   c) Tidal breathing analysis (in young children)\n   d) Peak expiratory flow rate (PEFR)\n2. Blood testing\n3. Fraction of exhaled nitric oxide (FeNO) testing\n4. Imaging studies:\n   - Chest radiography\n   - Paranasal sinus radiography or CT scanning (to rule out sinusitis)\n5. Allergy skin testing (to identify allergic factors that contribute to asthma)",
+    rubric: "Must list at least 6 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["bronchial asthma", "investigations"]
+  },
+  {
+    id: "wq-5",
+    question: "Describe pathophysiology and clinical picture of foreign body aspiration.",
+    modelAnswer: "Pathophysiology:\n1. After FB aspiration, it can settle into 3 anatomic sites: larynx, trachea, or bronchi.\n2. 80-90% of aspirated FBs become lodged in the bronchi.\n3. In adults, bronchial FBs tend to lodge in the right main bronchus; in children, equal frequency of right and left bronchial FBs.\n4. Larger objects tend to lodge in the larynx or trachea.\n5. Three phases:\n   - Initial phase: Choking, gasping, coughing, or airway obstruction (at time of aspiration)\n   - Asymptomatic phase: Subsequent lodging with relaxation of reflexes, reduction/cessation of symptoms (hours to weeks)\n   - Complication phase: Erosion or obstruction leading to pneumonia, atelectasis, or abscess\n\nClinical picture:\n1. History: Positive, positive on interrogation, or negative\n2. Signs & symptoms depend on location of FB",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["foreign body aspiration", "pathophysiology"]
+  },
+  {
+    id: "wq-6",
+    question: "Mention 3 causes that make children aged 1-3 years more susceptible to foreign body aspiration.",
+    modelAnswer: "1. They lack molars for proper grinding of food\n2. They tend to be running or playing at the time of aspiration\n3. They tend to put objects in their mouth more frequently\n4. They lack coordination of swallowing and glottis closure",
+    rubric: "Must list at least 3 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["foreign body aspiration", "susceptibility"]
+  },
+  {
+    id: "wq-7",
+    question: "Describe clinical presentation of foreign body inhalation in children depending on the location of the FB.",
+    modelAnswer: "1. A large FB lodged in the larynx or trachea can produce complete airway obstruction from either the dimensions of the object or the resulting edema.\n2. Laryngeal foreign bodies present with airway obstruction & hoarseness or aphonia.\n3. Tracheal FBs present similarly to laryngeal FBs but without hoarseness or aphonia.\n4. Tracheal FBs can demonstrate wheezing similar to asthma.\n5. Bronchial FBs typically present with: Cough, Unilateral wheezing, Decreased breath sounds\n\nOnly 65% of patients present with this classic triad. Patients may have normal examination findings despite having a foreign body within the airway.",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["foreign body aspiration", "clinical presentation"]
+  },
+  {
+    id: "wq-8",
+    question: "Mention the 3 clinical phases of foreign body aspiration.",
+    modelAnswer: "1. Initial phase: Choking and gasping, coughing, or airway obstruction (at the time of aspiration)\n2. Asymptomatic phase: Subsequent lodging of the object with relaxation of reflexes that often results in a reduction or cessation of symptoms (lasting hours to weeks)\n3. Complication phase: FB producing erosion or obstruction leading to pneumonia, atelectasis, or abscess",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["foreign body aspiration", "clinical phases"]
+  },
+  {
+    id: "wq-9",
+    question: "Mention X-ray findings in intrathoracic foreign body.",
+    modelAnswer: "Suspected intrathoracic FB: PA and lateral chest radiographs.\n\nPrinciples of X-ray interpretation:\nReveals:\na) Obstructive emphysema\nb) Atelectasisc) Consolidation\n\nFilms (post anterior, lateral):\na) Inspiratory: inflation of lung\nb) Expiratory: hyper-inflation with FB obstructing bronchus\nc) Radio-opaque object: visible\nd) Radio-lucent object: non-visible\ne) Normal X-ray doesn't exclude FB aspiration",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["foreign body aspiration", "X-ray findings"]
+  },
+  {
+    id: "wq-10",
+    question: "Describe the three phases of the clinical course of acute bronchiolitis.",
+    modelAnswer: "1. Prodrome: Bronchiolitis often is preceded by a one- to three-day history of upper respiratory tract symptoms, such as nasal congestion and/or discharge and mild cough, fever (usually less than 38.3 degrees C).\n\n2. Severe respiratory distress phase (average, 10 days):\n   - Symptoms of respiratory distress (tachypnea, nasal flaring, retractions, grunting)\n   - Cyanosis, indicating profound hypoxemia\n   - Episodes of restlessness or lethargy (may indicate hypoxemia and/or impending respiratory failure)\n   - Apnea may occur in infants, particularly in those born prematurely and those younger than 2 months of age\n\n3. Progressive recovery phase (may last 3 weeks)",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["bronchiolitis", "clinical phases"]
+  },
+  {
+    id: "wq-11",
+    question: "List risk factors associated with severe bronchiolitis and/or complications.",
+    modelAnswer: "1. Prematurity (gestational age < 37 weeks)\n2. Low birth weight\n3. Age less than 6 to 12 weeks\n4. Chronic pulmonary disease (bronchopulmonary dysplasia, cystic fibrosis, congenital anomaly)\n5. Hemodynamically significant congenital heart disease (e.g., moderate to severe pulmonary hypertension, cyanotic heart disease, or congenital heart disease that requires medication to control heart failure)\n6. Immunodeficiency\n7. Neurologic disease\n8. Congenital or anatomical defects of the airways",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["bronchiolitis", "risk factors"]
+  },
+  {
+    id: "wq-12",
+    question: "Mention criteria for immediate hospitalization of an infant with acute bronchiolitis.",
+    modelAnswer: "1. Toxic appearance, poor feeding, lethargy, and dehydration\n2. Moderate to severe respiratory distress, manifested by one or more of: nasal flaring, intercostal retraction, respiratory rate > 70 breaths per minute, dyspnea and/or cyanosis\n3. Apnea\n4. Hypoxemia (oxygen saturation < 95% on room air) with or without hypercapnia (arterial PCO2 > 45 mmHg)\n5. The parent is unable to care for the child at home",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["bronchiolitis", "hospitalization"]
+  },
+  {
+    id: "wq-13",
+    question: "Mention 6 clinical manifestations indicative of severe pneumonia in infants and children.",
+    modelAnswer: "1. Temperature > 38.5 C\n2. Respiratory rate > 70 breaths per minute in infants (< 12 months) and > 50 breaths/min in older children\n3. Moderate to severe retractions in infants and severe difficulty breathing in older children\n4. Nasal flaring\n5. Cyanosis or hypoxemia (oxygen saturation < 92 percent)\n6. Intermittent apnea in infants\n7. Grunting respiration\n8. Not feeding in infants and signs of dehydration in older children",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pneumonia", "severe infection"]
+  },
+  {
+    id: "wq-14",
+    question: "Mention clinical and radiological manifestations indicative of bacterial etiology of pneumonia.",
+    modelAnswer: "Clinical criteria:\n- Onset: Abrupt with short prodromal\n- Course: Parallel correlation between severity of symptoms & radiological finding\n- General appearance: Febrile patient appearing ill & sometimes toxic\n- Respiratory distress: Moderate to severe\n- Auscultation: May be few and focal, limited to the involved anatomic segment\n- Signs and symptoms of sepsis and localized chest pain (signifying pleural irritation) are more suggestive of bacterial etiology\n\nRadiological criteria:\n1. Segmental or lobar consolidation is reasonably specific for bacterial pneumonia but lacks sensitivity\n2. Pneumatoceles, cavitation, large pleural effusions, and necrotizing processes are supportive of bacterial etiology",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pneumonia", "bacterial etiology"]
+  },
+  {
+    id: "wq-15",
+    question: "Mention clinical and radiological manifestations indicative of VIRAL etiology of pneumonia.",
+    modelAnswer: "Clinical criteria:\n- Onset: Gradual, preceded by upper airway symptoms\n- Course: Poor correlation between severity of symptoms & physical and radiological finding\n- General appearance: Child does not appear toxic\n- Auscultation: Usually diffuse and bilateral; wheezing is more frequent\n- Characteristic: Some viral causes are associated with characteristic dermatologic findings e.g. Measles, varicella\n\nRadiological criteria:\n1. Bronchopneumonia with parahilar peribronchial infiltration (i.e. interstitial)\n2. Hyperinflation",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pneumonia", "viral etiology"]
+  },
+  {
+    id: "wq-16",
+    question: "Enumerate complications of bacterial pneumonias.",
+    modelAnswer: "1. Parapneumonic pleural effusion and empyema\n2. Necrotizing pneumonia: necrosis and liquefaction of lung parenchyma\n3. Lung abscess: accumulation of inflammatory cells, accompanied by tissue destruction or necrosis producing one or more cavities in the lung\n4. Pneumatocele\n5. Pneumothorax\n6. Empyema\n7. Hyponatremia: for unknown cause, pneumonia may be associated with SIADH",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pneumonia", "bacterial", "complications"]
+  },
+  {
+    id: "wq-17",
+    question: "Enumerate the most common 3 causes of pleural effusion in children.",
+    modelAnswer: "1. Infection is the most common cause of pleural effusion\n2. Congestive heart failure constitutes the second most common etiology\n3. Malignancy",
+    rubric: "Must list at least 3 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pleural effusion", "causes"]
+  },
+  {
+    id: "wq-18",
+    question: "List treatment options for pediatric parapneumonic effusion and empyema.",
+    modelAnswer: "a) Thoracentesis; chest tube drainage with or without instillation of fibrinolytic agents + antibiotics\nb) Surgery + antibiotics:\n   - Video-assisted thoracoscopic surgery\n   - Open thoracotomy with decortication\nc) Intravenous antibiotics",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pleural effusion", "empyema", "treatment"]
+  },
+  {
+    id: "wq-19",
+    question: "Mention laboratory criteria distinguishing exudates from transudates.",
+    modelAnswer: "Transudate vs Exudate:\n- Pleural fluid/serum LDH: < 0.6 (Transudate) vs > 0.6 (Exudate)\n- Pleural fluid/serum protein: < 0.5 (Transudate) vs > 0.5 (Exudate)\n- Pleural fluid LDH: < 2/3 (Transudate) vs > 2/3 (Exudate)\n- Pleural fluid cholesterol: < 55 mg/dl (Transudate) vs > 55 mg/dl (Exudate)",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pleural effusion", "exudate", "transudate"]
+  },
+  {
+    id: "wq-20",
+    question: "Mention clinical manifestations and lines of treatment of pneumothorax.",
+    modelAnswer: "Symptoms:\n1. Sudden chest pain (cardinal manifestation) - intense chest pain and difficulty breathing cause anxiety which worsens symptoms; characteristics range from localized acute retrosternal pain to overwhelming pleuritic pain; ipsilateral shoulder pain is common\n2. Tachypnea\n3. Dyspnea\n4. Tachycardia and cyanosis\n\nSigns:\n1. Breath sounds, transmission of voice, and thoracic excursion are decreased\n2. Hyper-resonance with percussion on the affected side\n3. If tension pneumothorax, mediastinum shifts to contralateral side with displacement of trachea and point of maximal cardiac impulse\n4. May appear as incidental radiographic finding in asymptomatic patient\n5. If due to trauma, look for contusions or abrasions on the chest or a small puncture wound\n\nTreatment:\n1. Evacuation of air from the pleural cavity & sealing of the area of leakage\n   - If very small and minimally symptomatic: wait for spontaneous absorption\n   - If large or in distress: insertion of thoracotomy tube and application of negative pressure by suction (-20 cm H2O)\n\nNote: The only drugs allowed in pneumothorax are oxygen and analgesics for pain.",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pneumothorax", "clinical manifestations", "treatment"]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

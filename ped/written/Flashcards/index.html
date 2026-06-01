@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;min-height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Pediatrics Written Flashcards</title>
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../index-engine.css">
+<link rel="manifest" href="../../../manifest.webmanifest">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Written">←</a>
+    <div class="topbar-title">MU61 Quiz - Pediatrics Written Flashcards</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Flashcard Deck</span></h1>
+      <p>Written exam flashcards for Ped.</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">Made By: <a href="https://github.com/eyad-elghareeb/QuizTool">QuizTool</a></div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "86745asv",
+    title: "Cardiology - Written Exam",
+    description: "Pediatrics Cardiology Written Exam Flashcards",
+    icon: "❤️",
+    tags: ["Flashcard", "39 Questions"],
+    url: "cardiology-flashcards.html"
+  },
+  {
+    uid: "2398746hu",
+    title: "Chest - Written Exam",
+    description: "Pediatrics Chest Written Exam Flashcards",
+    icon: "💬",
+    tags: ["Flashcard", "20 Questions"],
+    url: "chest-flashcards.html"
+  },
+  {
+    uid: "12836492vs",
+    title: "Emergency - Written Exam",
+    description: "Pediatrics Emergency Written Exam Flashcards",
+    icon: "⚡",
+    tags: ["Flashcard", "43 Questions"],
+    url: "emergency-flashcards.html"
+  },
+  {
+    uid: "5692378hasd",
+    title: "GIT - Written Exam",
+    description: "Pediatrics GIT Written Exam Flashcards",
+    icon: "📋",
+    tags: ["Flashcard", "15 Questions"],
+    url: "git-flashcards.html"
+  },
+  {
+    uid: "0977283746ab",
+    title: "Hematology - Written Exam",
+    description: "Pediatrics Hematology Written Exam Flashcards",
+    icon: "🩸",
+    tags: ["Flashcard", "24 Questions"],
+    url: "hematology-flashcards.html"
+  },
+  {
+    uid: "5679780890cd",
+    title: "Infections - Written Exam",
+    description: "Pediatrics Infections Written Exam Flashcards",
+    icon: "🦠",
+    tags: ["Flashcard", "33 Questions"],
+    url: "infections-flashcards.html"
+  }
+];
+</script>
+  <script src="../../../index-engine.js"></script>
+
+  <script>(function () { var s = localStorage.getItem('quiz-theme'); if (s) document.documentElement.setAttribute('data-theme', s); if (window.__updateThemeIcon) window.__updateThemeIcon(); if (window.renderQuizzes) window.renderQuizzes(); })();</script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+      });
+    }
+  </script>
+
+</body>
+</html>

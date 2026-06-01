@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Hematology - Written Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "0977283746ab",
+  title: "Hematology - Written Assessment",
+  description: "Pediatrics Hematology Written Assessment",
+  icon: "🩸"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    id: "wq-1",
+    question: "Enumerate FOUR causes of anemia with mean corpuscular volume (MCV) of 65 fl.",
+    modelAnswer: "1. Iron deficiency anemia\n2. Thalassemia\n3. Anemia of chronic infection\n4. Anemia of lead poisoning",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["anemia", "microcytic", "MCV"]
+  },
+  {
+    id: "wq-2",
+    question: "Mention 4 essential investigations in a case of normocytic normochromic anemia with reticulocytosis.",
+    modelAnswer: "1. Blood film\n2. Hemoglobin electrophoresis\n3. Osmotic fragility test\n4. Coomb's test",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["anemia", "normocytic", "investigations"]
+  },
+  {
+    id: "wq-3",
+    question: "Mention 4 types of normocytic normochromic anemia with reticulocytosis.",
+    modelAnswer: "1. Aplastic anemia\n2. Leukemia\n3. Hemorrhagic anemia\n4. Hemolytic anemia",
+    rubric: "Must list at least 4 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["anemia", "normocytic", "reticulocytosis"]
+  },
+  {
+    id: "wq-4",
+    question: "How to evaluate a child with normocytic normochromic anemia?",
+    modelAnswer: "1. History: Diet, drug intake, history of jaundice or dark urine, family history\n\n2. Clinical picture:\n   - Pallor\n   - Easy fatigability\n   - Anorexia\n   - Tachycardia & palpitation\n\n3. Laboratory investigations:\n   - Blood film\n   - CBC\n   - Coomb's test",
+    rubric: "Must provide a clear methodology or process with relevant details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["anemia", "normocytic", "evaluation"]
+  },
+  {
+    id: "wq-5",
+    question: "List FOUR lines of treatment of B-thalassemia major.",
+    modelAnswer: "1. Blood transfusion: packed RBCs 10 ml/kg. It guards against: mongoloid facies, heart failure, splenomegaly, fatigue, poor growth\n2. Avoid diet rich in iron\n3. Iron-chelating agents: Desferoxamine 20-40 mg/kg/day IM or SC by special infusion pump over 8-12 hours/day for 5 days weekly\n4. Folic acid: 5-10 mg/day oral\n5. Splenectomy\n6. Bone marrow transplantation: the most efficient method of therapy\n7. Gene therapy\n8. Genetic counseling",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["thalassemia", "treatment"]
+  },
+  {
+    id: "wq-6",
+    question: "Enumerate the 4 types of crises that may occur in children with sickle cell disease.",
+    modelAnswer: "a) Thrombotic crisis: The most common type\nb) Sequestrating crisis\nc) Aplastic crisis\nd) Hyper-hemolytic crisis",
+    rubric: "Must list at least 4 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["sickle cell disease", "crises"]
+  },
+  {
+    id: "wq-7",
+    question: "Describe the clinical presentation of each sickle cell disease crisis.",
+    modelAnswer: "a) Thrombotic Crisis (most common):\n   - Occlusion of small blood vessels\n   - Heart: myocardial infarction\n   - CNS: hemiplegia\n   - Mesentery: severe abdominal pain\n   - Renal: hematuria\n   - Priapism\n\nb) Sequestrating Crisis:\n   - Sudden destruction of RBCs in liver & spleen leading to shock and enlargement of liver and spleen\n\nc) Aplastic Crisis:\n   - Sudden attack of bone marrow aplasia which recovers after 2 weeks\n\nd) Hyper-Hemolytic Crisis:\n   - Increase in rate of hemolysis of RBCs (picture of acute hemolytic anemia)",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["sickle cell disease", "crises", "clinical presentation"]
+  },
+  {
+    id: "wq-8",
+    question: "Mention TWO additional laboratory tests needed to confirm the diagnosis of sickle cell anemia.",
+    modelAnswer: "1. Hb electrophoresis: Hb-S and Hb-A2. It is the most important diagnostic test.\n2. Sickling test: Examine the RBCs under low O2 tension leading to sickling.",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["sickle cell anemia", "diagnosis", "laboratory"]
+  },
+  {
+    id: "wq-9",
+    question: "Mention TWO differential diagnoses for sickle cell anemia.",
+    modelAnswer: "1. Spherocytosis\n2. G6PD deficiency",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["sickle cell anemia", "differential diagnosis"]
+  },
+  {
+    id: "wq-10",
+    question: "What are the 2 additional laboratory tests needed to confirm the diagnosis of hereditary spherocytosis?",
+    modelAnswer: "1. Peripheral blood film for spherocytes or increased reticulocytic count\n2. Osmotic fragility test: increased",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["hereditary spherocytosis", "diagnosis", "laboratory"]
+  },
+  {
+    id: "wq-11",
+    question: "Mention FOUR supportive measures for acute lymphoblastic leukemia.",
+    modelAnswer: "1. Blood transfusion\n2. Fluid therapy\n3. Good nutrition\n4. Liver supports\n5. Allopurinol for uric acid",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["ALL", "leukemia", "supportive measures"]
+  },
+  {
+    id: "wq-12",
+    question: "Mention 8 bad prognostic criteria of acute lymphoblastic leukemia in children.",
+    modelAnswer: "1. Leukocytes > 50,000/cmm\n2. Mediastinal LN enlargement\n3. Age < 2 y or > 10 y\n4. Sex: male\n5. Severe thrombocytopenia\n6. Huge hepatosplenomegaly\n7. Black race\n8. CNS leukemia",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["ALL", "leukemia", "prognosis"]
+  },
+  {
+    id: "wq-13",
+    question: "Mention two drugs that should be prescribed in the initial phase of therapy of acute lymphoblastic leukemia.",
+    modelAnswer: "1. Adrinamycin (IV)\n2. Vincristine (IV)\n3. Prednisone (oral)\n4. L-Asparaginase",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["ALL", "leukemia", "treatment"]
+  },
+  {
+    id: "wq-14",
+    question: "What is the most informative investigatory tool to arrive at the final diagnosis of acute lymphoblastic leukemia?",
+    modelAnswer: "Bone marrow aspiration",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["ALL", "leukemia", "diagnosis"]
+  },
+  {
+    id: "wq-15",
+    question: "Mention the differential diagnosis of leukemia.",
+    modelAnswer: "1. Arthritis\n2. Pallor\n3. Pancytopenia\n4. Purpura\n5. Lymphadenopathy\n6. Hepatosplenomegaly",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["leukemia", "differential diagnosis"]
+  },
+  {
+    id: "wq-16",
+    question: "Mention the diagnosis of leukemia.",
+    modelAnswer: "1. Bone marrow aspiration: The most important diagnostic test for leukemia. Results show increased blast cells % in bone marrow\n\n2. Complete blood count and blood film:\n   - Anemia\n   - Thrombocytopenia\n   - WBCs: Leukocytosis (most common), Leukopenia, or Normal (4000-11,000/ml)",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["leukemia", "diagnosis"]
+  },
+  {
+    id: "wq-17",
+    question: "Describe clinical presentations and clinical staging of Hodgkin's lymphoma.",
+    modelAnswer: "Clinical presentations:\n1. Most common: peripheral LN enlargement (90% of cases). Most common: cervical 60-80%, axillary 20%, inguinal 5%. Characters: rubbery, painless, not tender\n2. Mediastinal syndrome: mediastinal LN enlargement (60%)\n3. Splenomegaly: help in staging, at least Stage III\n4. Hepatomegaly & enlarged LN at portahepatis leading to obstructive jaundice\n5. Bone marrow involvement: pallor (anemia), bleeding (thrombocytopenia)\n6. Systemic symptoms (30%): intermittent fever (Pel-Ebstein), anorexia, fatigue, weakness, night sweats, weight loss > 10% in 6 months\n\nClinical staging (Ann Arbor classification):\n- Stage I: Single LN region or single extra-lymphatic organ/site\n- Stage II: Two or more LN regions on same side of diaphragm\n- Stage III: LN regions on both sides of diaphragm; may include spleen\n- Stage IV: Diffuse/disseminated involvement of one or more extra-lymphatic organs",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["Hodgkin's lymphoma", "clinical presentation", "staging"]
+  },
+  {
+    id: "wq-18",
+    question: "Mention good prognostic signs of Hodgkin's lymphoma.",
+    modelAnswer: "1. Young age\n2. Stages I or II\n3. Females\n4. Lymphocytic predominance type\n5. Absence of systemic symptoms\n6. Non-bulky",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["Hodgkin's lymphoma", "prognosis"]
+  },
+  {
+    id: "wq-19",
+    question: "Enumerate causes of purpura with normal platelet counts. How to approach the diagnosis?",
+    modelAnswer: "Etiology:\n1. May be secondary to infection with group A beta-hemolytic streptococci\n2. Other infection\n3. Insect bites\n4. Food or drug allergy\n\nInvestigations:\nDiagnosis depends on clinical manifestations. All investigations of bleeding tendency are normal except Hess test may be positive.\n1. Investigations for streptococcal infection: ESR, ASO titre\n2. Urine analysis: to detect renal affection (worst prognosis, 50% of cases lead to chronic renal failure)\n3. Stool analysis: for occult blood\n4. Serum IgA: may be elevated",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["purpura", "diagnosis", "normal platelets"]
+  },
+  {
+    id: "wq-20",
+    question: "List lines of treatment of immune thrombocytopenic purpura (ITP).",
+    modelAnswer: "1. Conservation treatment: the disease is self-limiting, patient under observation for fear of intracranial hemorrhage\n2. Corticosteroid: Prednisone 60 mg/m2/day oral for 2-3 weeks, then withdraw even if no response\n3. Immunosuppressive drugs: Azathioprine, Vincristine, Vinblastine, Cyclophosphamide\n4. High dose IV immunoglobulins: block receptor site on platelet surface (competitive inhibition of antiplatelet antibodies)\n5. Anti-Rh D: 75 mg/kg IV infusion over 3-5 min; patient must be Rh D positive\n6. Blood & platelet transfusion: blood to compensate loss; platelet in life-threatening conditions (e.g., intracranial hemorrhage)\n7. Danazol: androgen that increases platelet count, 300-400 mg/m2/day orally for 2-3 months\n8. Eltrombopag (mainly for chronic patients)\n9. Rituximab\n10. Splenectomy",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["ITP", "treatment"]
+  },
+  {
+    id: "wq-21",
+    question: "What is the laboratory tool to arrive at the final diagnosis of ITP?",
+    modelAnswer: "Bone marrow aspiration: increased immature megakaryocytes",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["ITP", "diagnosis"]
+  },
+  {
+    id: "wq-22",
+    question: "Mention FOUR features discriminating infantile ITP (immune thrombocytopenic purpura).",
+    modelAnswer: "Infants less than 2 years old (infantile ITP) have the following features:\n1. More abrupt onset\n2. More severe clinical course\n3. Platelet count < 20,000/mm3\n4. Poor response to treatment\n5. Higher incidence of chronicity",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["ITP", "infantile", "features"]
+  },
+  {
+    id: "wq-23",
+    question: "Enumerate indications and precautions of splenectomy in ITP.",
+    modelAnswer: "Indications:\n- Severe acute cases non-responsive to medical treatment\n- Chronic cases with bleeding (e.g., menorrhagia)\n\nPrecautions:\n- Pneumococcal vaccine or long-acting penicillin must be given to prevent septicemia\n- Exclusion of collagen diseases as SLE must be done before splenectomy",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["ITP", "splenectomy"]
+  },
+  {
+    id: "wq-24",
+    question: "Mention one short-term and another long-term complication of ITP.",
+    modelAnswer: "- Short-term complication: Intracranial hemorrhage in about 1%\n- Long-term complication: Chronicity in about 1/3 of cases",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["ITP", "complications"]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

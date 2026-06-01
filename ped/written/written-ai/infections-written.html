@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Infections - Written Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "5679780890cd",
+  title: "Infections - Written Assessment",
+  description: "Pediatrics Infections Written Assessment",
+  icon: "🦠"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    id: "wq-1",
+    question: "Mention the diagnostic (pathognomonic) criteria of Measles.",
+    modelAnswer: "1. Koplik's spots\n2. Cough",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["measles", "diagnostic criteria"]
+  },
+  {
+    id: "wq-2",
+    question: "Mention the diagnostic (pathognomonic) criteria of German measles (Rubella).",
+    modelAnswer: "Suboccipital & posterior auricular lymphadenopathy",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["German measles", "rubella", "diagnostic criteria"]
+  },
+  {
+    id: "wq-3",
+    question: "Mention THREE complications of German measles infection (Rubella).",
+    modelAnswer: "1. CNS complications: Encephalitis (1/5000, usually occurs 7 days after onset of rash); Progressive rubella panencephalitis (PRP) due to slow infection\n2. Post-infectious thrombocytopenia\n3. Arthritis especially in adult female involving small joints of the hands\n4. Congenital rubella syndrome (CRS): nerve deafness, retinitis, cataract, glaucoma, cardiac abnormalities (PDA), pulmonary artery valvular disease\n5. Interstitial pneumonia and meningoencephalitis\n6. Late onset manifestations: PRP, diabetes mellitus, thyroid dysfunction",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["German measles", "rubella", "complications"]
+  },
+  {
+    id: "wq-4",
+    question: "List the differences between measles and German measles as regards prodromal, eruptive and convalescence stages.",
+    modelAnswer: "Measles:\n- Prodrome: 3 days; fever, severe cough, coryza, conjunctivitis & photophobia\n- Enanthem: Koplik's spots\n- Exanthem: 5th day of fever (fever increases with rash); red, maculopapular, confluent +/- itching; face to feet in 3 days, lasts 7-10 days then desquamates\n\nGerman measles:\n- Prodrome: Hours to 1-2 days; mild fever, coryza, no cough\n- Enanthem: None or faint red spots on palate\n- Exanthem: Fever accompanies rash & disappears on 2nd day; 1st day morbilliform, 2nd day scarlatiniform; spreads rapidly face to legs in 1-2 days; fades from face when reaching lower extremities",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["measles", "German measles", "comparison"]
+  },
+  {
+    id: "wq-5",
+    question: "Enumerate SIX causes of pseudo-paralysis which may mimic paralytic polio.",
+    modelAnswer: "1. Arthritis, toxic synovitis, osteomyelitis\n2. Unrecognized trauma, dislocation, fracture\n3. Scurvy, congenital syphilis",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pseudo-paralysis", "polio", "differential diagnosis"]
+  },
+  {
+    id: "wq-6",
+    question: "Write down the infectivity period for the following exanthematous diseases: Measles, German measles, Chicken pox, Scarlet fever.",
+    modelAnswer: "Measles: 4 days before & 5 days after the appearance of rash\n\nGerman measles: 7 days before & 5 days after the appearance of rash\n\nChicken pox: 1 day before & 6 days after the appearance of rash\n\nScarlet fever: 1-2 days after start of penicillin therapy",
+    rubric: "Must provide the specific information requested in a clear and organized format.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["infectivity period", "exanthematous diseases"]
+  },
+  {
+    id: "wq-7",
+    question: "Mention the pathognomonic signs for 5 infectious diseases with rash.",
+    modelAnswer: "1. Measles: Koplik's spots and Cough\n2. German measles: Suboccipital & posterior auricular lymphadenopathy\n3. Eryema infectiosum: Rash recurs with warmth, exercise & emotional upset\n4. Chicken pox: Pruritis\n5. Scarlet fever: Enanthema & exanthema; Circumoral pallor; Tonsillitis; Pastia's sign (transverse line in antecubital fossa)",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["exanthematous diseases", "pathognomonic signs"]
+  },
+  {
+    id: "wq-8",
+    question: "Differential diagnosis of infectious causes of fever with maculopapular rash & mention the causative organism of each.",
+    modelAnswer: "1. Measles: Rubeola virus\n2. German measles: Rubella virus\n3. Roseola infantum: Human herpes virus type 6 & 7 (HHV-6 & 7)\n4. Erythema infectiosum: Parvovirus B19\n5. Scarlet fever: Group A beta-hemolytic streptococci",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["maculopapular rash", "differential diagnosis", "causative organisms"]
+  },
+  {
+    id: "wq-9",
+    question: "Mention the diagnostic (pathognomonic) criteria of Scarlet fever.",
+    modelAnswer: "1. Enanthema & Exanthema\n2. Circumoral pallor\n3. Tonsillitis\n4. Pastia's sign (transverse line in antecubital fossa)",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["scarlet fever", "diagnostic criteria"]
+  },
+  {
+    id: "wq-10",
+    question: "Describe the enanthem and exanthem of scarlet fever.",
+    modelAnswer: "Enanthem: Red pharynx, tonsillitis, palatal petechiae, white strawberry -> red strawberry tongue.\n\nExanthem:\n1. Relation to fever: Rash appears 24-48 hours after fever, increases as rash appears\n2. Character: Red pinpoint confluent, feeling like sandpaper; face: no rash, flushed cheeks + circumoral pallor\n3. Spreading: Neck, axillae, groins -> spreads in 1-2 days. Desquamation after 7 days, starts on trunk & spreads to limbs",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["scarlet fever", "enanthem", "exanthem"]
+  },
+  {
+    id: "wq-11",
+    question: "Differential diagnosis of scarlet fever. Enumerate 5.",
+    modelAnswer: "1. Viral acute pharyngitis (e.g., Epstein-Barr virus)\n2. Bacterial pharyngitis (e.g., diphtheria)\n3. Kawasaki disease\n4. Drug rash",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["scarlet fever", "differential diagnosis"]
+  },
+  {
+    id: "wq-12",
+    question: "Mention the diagnostic (pathognomonic) criteria of Roseola infantum.",
+    modelAnswer: "Rainbow after the storm (rash appears after fever subsides)",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["roseola infantum", "diagnostic criteria"]
+  },
+  {
+    id: "wq-13",
+    question: "Regarding Erythema infectiosum (Fifth disease): Mention the causative agent and 4 complications.",
+    modelAnswer: "Causative agent: Parvovirus B19\n\nComplications:\n1. Arthralgia or arthritis in adolescents and adults\n2. Thrombocytopenic purpura\n3. Hemophagocytic syndrome in immunocompromised patients\n4. B19-induced red cell aplasia or transient aplastic crisis in children with chronic hemolysis\n5. Nonimmune fetal hydrops, stillbirth",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["erythema infectiosum", "fifth disease", "parvovirus B19"]
+  },
+  {
+    id: "wq-14",
+    question: "Describe the characteristic features of the exanthem of Erythema infectiosum (Fifth disease).",
+    modelAnswer: "1. Relation to fever: Usually no fever\n2. Character: At first like slapped cheek, then lace-like rash on extremities\n3. Spreading: Face (4 days) -> lace-like on extremities (3-7 days). Tendency to recur",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["erythema infectiosum", "exanthem"]
+  },
+  {
+    id: "wq-15",
+    question: "Mention the diagnostic (pathognomonic) criteria of Erythema infectiosum.",
+    modelAnswer: "Rash recurs with warmth, exercise & emotional upset",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["erythema infectiosum", "diagnostic criteria"]
+  },
+  {
+    id: "wq-16",
+    question: "Varicella infection: mention the complications and preventive measures.",
+    modelAnswer: "Complications:\n1. Secondary bacterial infection\n2. Thrombocytopenia (hemorrhagic vesicles)\n3. Encephalitis\n4. Cerebellar ataxia\n\nPreventive measures:\n1. Active immunization\n2. Passive immunization using zoster immunoglobulin (ZIG) or varicella-zoster immunoglobulin (VZIG) in susceptible immunocompromised persons",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["varicella", "chicken pox", "complications", "prevention"]
+  },
+  {
+    id: "wq-17",
+    question: "Discuss modes of transmission, incubation period and clinical picture of neonatal tetanus.",
+    modelAnswer: "Modes of infection:\n1. Contamination of neonatal umbilical stump\n2. Traumatic injuries with dirty objects\n3. Illicit drug injection\n4. Animal bites\n5. Abscesses (e.g., dental)\n6. Ear piercing\n7. Chronic skin ulceration or burns\n8. Compound fractures\n9. Frost bites or gangrene\n10. Intestinal surgery\n\nIncubation period: 2-14 days, but may be as long as months\n\nClinical picture: Typically presents within 3-12 days of birth with:\n1. Progressive feeding difficulty, hunger and crying\n2. Paralysis and diminished movements\n3. Stiffness to touch, spasm and opisthotonus\n4. The umbilical stump may hold remnants of dirt or clotted blood or may appear normal",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["neonatal tetanus", "transmission", "clinical picture"]
+  },
+  {
+    id: "wq-18",
+    question: "Describe the modes of clinical presentation of Tetanus Neonatorum.",
+    modelAnswer: "The disease typically presents within 3-12 days of birth with:\n1. Progressive feeding difficulty, hunger and crying\n2. Paralysis and diminished movements\n3. Stiffness to touch, spasm and diminished movements\n4. The umbilical stump may hold remnants of dirt or clotted blood or it may appear normal",
+    rubric: "Must provide a structured and comprehensive description covering the key aspects.",
+    explanation: "A thorough understanding of this topic integrates pathophysiology with clinical presentation for comprehensive patient care.",
+    tags: ["neonatal tetanus", "clinical presentation"]
+  },
+  {
+    id: "wq-19",
+    question: "What are the post-traumatic measures to prevent tetanus infections?",
+    modelAnswer: "1. Immediate surgical wound care\n2. TIG (Tetanus immunoglobulin) is given to all major wounds in non-immunized persons\n3. Tetanus toxoid is given to:\n   a. Any traumatized patient with unknown or incomplete immunization\n   b. Clean minor wound but > 10 years since last booster\n   c. Serious wound with more than 5 years since last booster",
+    rubric: "Must provide a clear and accurate answer with relevant supporting details.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["tetanus", "post-traumatic", "prevention"]
+  },
+  {
+    id: "wq-20",
+    question: "Regarding post-traumatic measures to prevent tetanus, mention the indications of giving Tetanus immunoglobulin and Tetanus toxoid.",
+    modelAnswer: "Tetanus toxoid is given to:\na) Any traumatized patient with unknown or incomplete immunization\nb) Clean minor wound but > 10 years have passed since the last booster\nc) Serious wound with more than 5 years since the last booster\n\nTIG is given to all major wounds in non-immunized persons.",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["tetanus", "TIG", "toxoid", "indications"]
+  },
+  {
+    id: "wq-21",
+    question: "Regarding Pertussis: a) Clinically when do you suspect? b) What are the investigations to confirm clinical suspicion?",
+    modelAnswer: "a) Clinical suspicion: Cough for > 14 days with paroxysms, whoop or post-tussive vomiting in absence of fever, exanthema, sore throat, rales and tachypnea is highly suggestive of pertussis.\n\nb) Investigations to confirm:\n1. Leukocytosis with lymphocytosis\n2. Chest radiography: mildly abnormal with perihilar infiltrate and occasional air leak\n3. Direct fluorescence antibody test for nasopharyngeal secretions\n4. Isolation of B. pertussis in culture (gold standard for diagnosis)",
+    rubric: "Must address the question comprehensively with accurate medical information.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["pertussis", "clinical suspicion", "investigations"]
+  },
+  {
+    id: "wq-22",
+    question: "Mention 4 complications of Pertussis.",
+    modelAnswer: "1. Apnea\n2. Secondary bacterial infections (e.g., pneumonia and otitis media)\n3. Physical sequelae of forceful cough: conjunctival hemorrhage, epistaxis, intracranial hemorrhage, pneumothorax, hernia, laceration of tongue frenulum\n4. Encephalopathy from apnea, intracranial hemorrhage or hypoxemia that may associate cough",
+    rubric: "Must list at least 4 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["pertussis", "complications"]
+  },
+  {
+    id: "wq-23",
+    question: "Enumerate 6 diseases caused by Hemophilus influenzae type b.",
+    modelAnswer: "1. Meningitis\n2. Cellulitis especially in head and neck (e.g., orbital or preseptal cellulitis)\n3. Epiglottitis\n4. Pneumonia\n5. Suppurative arthritis (usually affecting one of the large joints)\n6. Bacteremia without focus (usually manifests by high fever > 39 and leukocytosis; risk of meningitis 25% if untreated)\n7. Invasive disease of newborn in cases of premature rupture of membranes\n8. Miscellaneous: UTI, epididymorchitis, endophthalmitis, pericarditis, cervical adenitis, osteomyelitis",
+    rubric: "Must list at least 6 correct items with brief descriptions where applicable.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["Hib", "Hemophilus influenzae", "diseases"]
+  },
+  {
+    id: "wq-24",
+    question: "Compare CSF criteria of bacterial and viral meningitis.",
+    modelAnswer: "Parameter | Acute Bacterial Meningitis | Viral Meningoencephalitis\n- Protein: Usually 100-500 mg/dl | 50-200 mg/dl\n- Glucose: Decreased < 40 mg/dl | Generally normal\n- Leukocytes: 100-10,000/cmm, mainly polymorphs | Rarely 1000/cmm, mainly lymphocytes\n- Gram stain: Usually positive | Negative",
+    rubric: "Must clearly highlight contrasting features between the compared entities.",
+    explanation: "Distinguishing between these entities is essential for accurate diagnosis and appropriate management.",
+    tags: ["meningitis", "CSF", "bacterial vs viral"]
+  },
+  {
+    id: "wq-25",
+    question: "Mention the 3 major system complications of acute bacterial meningitis and give examples for each.",
+    modelAnswer: "1. Neurologic: Subdural effusion, cranial nerve palsies, stroke, cerebral or cerebellar herniation, thrombosis of venous sinuses, hydrocephalus\n\n2. Prolonged fever > 10 days: May be due to intercurrent viral infection, secondary bacterial infection, thrombophlebitis, drug fever\n\n3. Hematologic: Anemia, thrombocytosis, DIC, eosinophilia\n\n4. Syndrome of inappropriate anti-diuretic hormone secretion (SIADH), diabetes insipidus, pituitary dysfunction",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["meningitis", "bacterial", "complications"]
+  },
+  {
+    id: "wq-26",
+    question: "Mention 3 organisms commonly causing acute bacterial meningitis (2 months - 12 years) and the duration of antibiotic therapy for each.",
+    modelAnswer: "1. S. pneumoniae: 10-14 days\n2. N. meningitidis: 5-7 days\n3. H. influenzae b: 7-10 days",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["meningitis", "bacterial", "organisms", "antibiotic duration"]
+  },
+  {
+    id: "wq-27",
+    question: "Design a management program for a 2-year-old child with bacterial meningitis.",
+    modelAnswer: "I. Antibiotic therapy:\n   a) Empiric antibiotic: Cefotaxime 200 mg/kg/d or Ceftriaxone 100 mg/kg\n   b) Duration: S. pneumoniae 10-14 days; Meningitidis 5-7 days\n\nII. Corticosteroids:\n   a) Evidence supports the use of dexamethasone for 2 days\n\nIII. Supportive care:\n   a) Frequent medical and neurologic assessment especially in the first 72 hrs\n   b) Check BUN, HCO3, electrolytes, CBC\n   c) Fluid restriction to 1/2-2/3 maintenance except in cases of hypotension",
+    rubric: "Must provide a comprehensive and structured management plan.",
+    explanation: "A structured management approach ensures comprehensive care and optimal patient outcomes.",
+    tags: ["meningitis", "bacterial", "management"]
+  },
+  {
+    id: "wq-28",
+    question: "Mention definition and chemoprophylaxis of close contact in meningococcal meningitis.",
+    modelAnswer: "Definition of close contact:\n1. In contact with patient for more than 8 hours\n2. Distance between them less than 1 meter\n3. During the infectivity period: 1 week before appearance of symptoms up to 24 hours after the 1st dose of antibiotic\n\nChemoprophylaxis:\nRifampicin 20 mg/kg/day for 2 to 4 days",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["meningococcal meningitis", "close contact", "chemoprophylaxis"]
+  },
+  {
+    id: "wq-29",
+    question: "Mention 2 treatment regimens for pulmonary tuberculosis.",
+    modelAnswer: "1. Mostly INH + Rifampicin supplemented in first 2 months by PZA for 9 months; on daily basis, in late courses twice weekly\n\n2. Ultra-short: 6 months with INH + Rifampicin with addition of parenteral STM during first 2 months. Not suitable for serious infections (e.g., miliary TB, TB meningitis). Course must be extended for 9-12 months.",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["tuberculosis", "treatment regimens"]
+  },
+  {
+    id: "wq-30",
+    question: "Enumerate the most common causes of false negative tuberculin test.",
+    modelAnswer: "1. Impaired cell-mediated immunity\n2. Dissemination\n3. Improper technique",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["tuberculin test", "false negative"]
+  },
+  {
+    id: "wq-31",
+    question: "Enumerate TWO causes of false positive tuberculin test.",
+    modelAnswer: "1. Non-TB mycobacteria\n2. Previous BCG vaccination (usually wanes < 10 mm within 2-3 years)",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["tuberculin test", "false positive"]
+  },
+  {
+    id: "wq-32",
+    question: "When to consider tuberculin skin test positive?",
+    modelAnswer: "Result after 48-72 hours:\n1. Immunocompromised: induration > 5 mm\n2. High risk population: induration > 10 mm\n3. Low risk population: induration > 15 mm",
+    rubric: "Must specify the conditions or criteria with appropriate clinical context.",
+    explanation: "This knowledge is fundamental for clinical practice and patient management.",
+    tags: ["tuberculin test", "positive criteria"]
+  },
+  {
+    id: "wq-33",
+    question: "Mention the significance of CBC and blood smear as a diagnostic tool for fever of unknown origin.",
+    modelAnswer: "1. TLC > 11,000/ul -> bacterial infection\n2. Pancytopenia: ALL, aplastic anemia, kala azar\n3. Eosinophilia: Parasitism\n4. Blood smear: Malaria, trypanosome",
+    rubric: "Must list all requested items correctly and completely.",
+    explanation: "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    tags: ["FUO", "CBC", "blood smear", "diagnosis"]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
