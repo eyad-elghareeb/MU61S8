@@ -1,10 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-<<<<<<< Updated upstream
-const CACHE_VERSION = 'mu61-quiz-faee2a1879d4';
-=======
-const CACHE_VERSION = 'mu61-quiz-fd6150c3b738';
->>>>>>> Stashed changes
+const CACHE_VERSION = 'mu61-quiz-72de9c9c40b3';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
