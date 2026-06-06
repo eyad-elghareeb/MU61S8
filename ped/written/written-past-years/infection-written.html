@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Infection - Written Assessment</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "ped-infection-w",
+  title: "Infection - Written Assessment",
+  description: "Pediatrics Infection Written Assessment",
+  icon: "🦠"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "What is the diagnostic criteria of each of the following: Scarlet fever, Erythema Infectiosum, Roseola infantum, Measles?",
+    "modelAnswer": "Scarlet fever:\n- Enanthem and Exanthem\n- Tonsillitis\n- Circumoral pallor\n- Pastia sign (transverse line in the antecubital fossa)\n- Erythema: rash recurs with warmth, exercise and emotional upset\n\nErythema Infectiosum: Slapped cheek appearance\n\nRoseola infantum: High fever in a well child; Rainbow after the storm\n\nMeasles: Koplik's spots, cough, conjunctivitis, maculopapular rash",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "exanthem",
+      "diagnostic criteria",
+      "scarlet fever",
+      "measles"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "What are the clinical stages of pertussis and their features?",
+    "modelAnswer": "Catarrhal stage:\n- Rhinorrhea, lacrimation and conjunctival injection\n\nParoxysmal stage:\n- Precipitated by: Sneezing, Yawning, Eating\n- Associated with: Purple face, bulged eye, protruded tongue\n- Followed by: Loud whoop\n- Post-tussive exhaustion\n- Post-tussive emesis\n\nConvalescent stage:\n- Gradual decrease in the number, severity and duration of episodes",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "pertussis",
+      "clinical stages"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "What are the causes of bacterial meningitis in a child (2-12) months and the period of antibiotic therapy of each one?",
+    "modelAnswer": "1. Streptococcus pneumoniae: 10-14 days\n2. H. influenzae: 7-10 days\n3. N. meningitidis: 5-7 days",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "meningitis",
+      "bacterial",
+      "antibiotic therapy"
+    ]
+  },
+  {
+    "id": "wq-4",
+    "question": "Mention incubation period of measles, mumps, polio, and scarlet fever.",
+    "modelAnswer": "1. Measles: 1-2 weeks\n2. Mumps: 2-3 weeks\n3. Polio: 1-2 weeks\n4. Scarlet fever: 2-4 days",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "incubation period",
+      "infectious diseases"
+    ]
+  },
+  {
+    "id": "wq-5",
+    "question": "Mention clinical picture of acute bacterial meningitis.",
+    "modelAnswer": "Fulminant course: Sudden onset of shock, DIC, coma and death\n\nAcute onset:\n- Prodrome: Tachycardia, hypotension\n- Rash: Macules, Petechiae\n- Headache\n- Vomiting\n- 6th nerve palsy\n- Hypertension and bradycardia\n- Diastasis of sutures\n- Decerebrate or decorticate rigidity\n- Papilledema especially in complicated meningitis\n- Subdural effusion, abscess or dural sinus occlusion\n- Altered consciousness: Due to increased ICP, Cerebritis, Hypotension\n- Focal neurological signs: Cerebral damage usually from vascular occlusion\n- Seizures: Its persistence after the 4th day or resistance to therapy indicates poor prognosis\n- Meningeal irritation signs:\n  - Nuchal rigidity\n  - Kernig's sign: Flexion of the hip 90 degrees with subsequent pain on extension of leg\n  - Brudzinski's sign: Passive flexion of neck leads to involuntary flexion of hips and knees",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "meningitis",
+      "clinical picture",
+      "bacterial"
+    ]
+  },
+  {
+    "id": "wq-6",
+    "question": "Mention how to prevent Hemophilus meningitis.",
+    "modelAnswer": "Active immunization:\n- Conjugate vaccine: Polysaccharide conjugated with protein carrier as DT toxoids or outer membrane protein of N. meningitidis\n\nPassive immunization:\n- Indications: Unvaccinated close contacts\n- Drug and Dosage: Rifampin 10-20 mg/kg/day for 4 days",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "meningitis",
+      "prevention",
+      "H. influenzae"
+    ]
+  },
+  {
+    "id": "wq-7",
+    "question": "Mention the incubation period of Erythema Infectiosum, Scarlet fever, Roseola infantum, and Chickenpox.",
+    "modelAnswer": "1. Erythema Infectiosum: 1-2 weeks\n2. Scarlet fever: 2-4 days\n3. Roseola infantum: 1-2 weeks\n4. Chickenpox: 2-3 weeks",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "incubation period",
+      "exanthem"
+    ]
+  },
+  {
+    "id": "wq-8",
+    "question": "Enumerate causes of false positive and false negative tuberculin test.",
+    "modelAnswer": "False positive:\n1. Non-tuberculous mycobacteria\n2. BCG vaccination (usually wanes < 10 mm within 2-3 years)\n\nFalse negative:\n1. Disseminated TB\n2. Recent TB infection\n3. Impaired cell-mediated immunity\n4. Very young age (< 6 months)\n5. Improper technique\n6. Live-virus vaccination",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "tuberculin test",
+      "false positive",
+      "false negative"
+    ]
+  },
+  {
+    "id": "wq-9",
+    "question": "Mention 6 complications of German measles.",
+    "modelAnswer": "Congenital Rubella Syndrome (CRS):\n- Early: Nerve deafness, retinitis, cataract, glaucoma, PDA, interstitial pneumonia, meningoencephalitis\n- Late: Progressive Rubella Panencephalitis (PRP), DM, Thyroid dysfunction\n\nEncephalitis:\n- Early: 7 days after onset of rash\n- Late: Progressive Rubella Panencephalitis (PRP)\n\nThrombocytopenic purpura\n\nArthritis: Adult female, small joints",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "german measles",
+      "rubella",
+      "complications"
+    ]
+  },
+  {
+    "id": "wq-10",
+    "question": "Enumerate four organisms causing papulovesicular rash.",
+    "modelAnswer": "1. Chickenpox (Varicella)\n2. Herpes simplex\n3. Herpes zoster\n4. Scabies\n5. Impetigo\n6. Vesiculopapular urticaria",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "papulovesicular rash",
+      "differential diagnosis"
+    ]
+  },
+  {
+    "id": "wq-11",
+    "question": "What is the interpretation of true positive tuberculin test?",
+    "modelAnswer": ">= 5 mm:\n- Contacts of TB cases\n- HIV and immune suppression\n- Clinical/XR suspicion of TB disease\n\n>= 10 mm:\n- Persons in high prevalence countries\n- Medical conditions: Mycobacteriology laboratory workers\n- Children < 4 years exposed to high-risk adults",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "tuberculin test",
+      "interpretation"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

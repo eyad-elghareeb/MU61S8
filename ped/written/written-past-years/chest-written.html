@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest - Written Assessment</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "ped-chest-w",
+  title: "Chest - Written Assessment",
+  description: "Pediatrics Chest Written Assessment",
+  icon: "🫁"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "Enumerate bronchodilators used in the treatment of asthma and give an example to each.",
+    "modelAnswer": "1. Short acting beta2 agonists: e.g. Salbutamol, Terbutaline, Orciprenaline, Ephedrine\n2. Long acting beta2 agonists: e.g. Salmeterol, Formoterol, Bambuterol\n3. Anticholinergics: e.g. Ipratropium bromide (short acting), Tiotropium bromide (long acting)\n4. Theophylline",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "asthma",
+      "bronchodilators"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "Differential diagnosis of viral croup?",
+    "modelAnswer": "1. Spasmodic croup\n2. Congenital stridor\n3. Angioneurotic edema\n4. Retropharyngeal abscess\n5. Laryngeal foreign body\n6. Laryngeal diphtheria",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "croup",
+      "differential diagnosis"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "What are the causes of acute bronchiolitis?",
+    "modelAnswer": "Bronchiolitis is typically caused by a viral infection:\n- Most common: Respiratory syncytial virus (RSV)\n- Common: Adenovirus, Rhinovirus, Coronavirus, and Human bocavirus",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "bronchiolitis",
+      "causes"
+    ]
+  },
+  {
+    "id": "wq-4",
+    "question": "Mention two radiological differential diagnoses of pneumothorax.",
+    "modelAnswer": "1. Bronchogenic cyst\n2. Diaphragmatic hernia\n3. Cystic adenomatoid malformation",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "pneumothorax",
+      "differential diagnosis",
+      "radiology"
+    ]
+  },
+  {
+    "id": "wq-5",
+    "question": "Enumerate controller medications used for treatment of bronchial asthma.",
+    "modelAnswer": "1. Inhaled glucocorticoids: Budesonide, Fluticasone, Ciclesonide, Mometasone\n2. Long acting B2 agonists (LABA): Salmeterol, Formoterol, Bambuterol\n3. Ultra LABA: Indacaterol\n4. Theophylline (sustained release)\n5. Leukotriene modifiers: Montelukast, Zafirlukast\n6. Chromones\n7. Monoclonal anti-IgE Ab (Omalizumab)",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "asthma",
+      "controller medications"
+    ]
+  },
+  {
+    "id": "wq-6",
+    "question": "Mention six lines of treatment of viral croup.",
+    "modelAnswer": "1. No specific treatment - Self-limiting, only supportive: antipyretics\n2. No moisture (as it is distressing)\n3. No correction of mild hypoxia\n4. Oxygen therapy and ICU admission (in hypoxia, cyanosis, marked tachycardia)\n5. Nebulized adrenaline\n6. Corticosteroids (Dexamethasone)",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "croup",
+      "management"
+    ]
+  },
+  {
+    "id": "wq-7",
+    "question": "Outline lines of management of acute asthma exacerbation.",
+    "modelAnswer": "1. Assessment of exacerbation severity\n2. Short acting B-2 agonist (1st used)\n3. Adrenaline\n4. Systemic steroids\n5. Theophylline (aminophylline) IV\n6. Heliox therapy\n7. IV Magnesium sulphate",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "asthma",
+      "exacerbation",
+      "management"
+    ]
+  },
+  {
+    "id": "wq-8",
+    "question": "Enumerate clinical characteristics of atypical bacterial pneumonia (Mycoplasma pneumoniae).",
+    "modelAnswer": "1. Gradual onset\n2. Low-grade fever\n3. Dry cough\n4. Headache\n5. Sore throat\n6. Myalgia\n7. Fatigue\n8. Minimal chest findings\n9. Wheezing or crackles\n10. Extra-pulmonary manifestations",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "atypical pneumonia",
+      "mycoplasma"
+    ]
+  },
+  {
+    "id": "wq-9",
+    "question": "Explain why children aged 1-3 years are the most susceptible for foreign body aspiration.",
+    "modelAnswer": "1. Lack molars (for proper grinding of food)\n2. Lack coordination of swallowing and glottis closure\n3. Tend to put objects in their mouth more frequently\n4. Tend to be running or playing at the time of aspiration",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "foreign body",
+      "aspiration",
+      "give reason"
+    ]
+  },
+  {
+    "id": "wq-10",
+    "question": "Mention three causes of acute wheezy chest in children.",
+    "modelAnswer": "1. Asthma\n2. Acute bronchitis\n3. Acute bronchiolitis\n4. Viral pneumonia\n5. Foreign body aspiration\n6. Pertussis",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "wheeze",
+      "causes"
+    ]
+  },
+  {
+    "id": "wq-11",
+    "question": "Enumerate three features that differentiate exudate from transudate in the pleural fluid.",
+    "modelAnswer": "Feature | Exudate | Transudate\nPleural fluid/serum LDH | >0.6 | <0.6\nPleural fluid/serum protein | >0.5 | <0.5\nPleural fluid cholesterol | >55 mg/dl | <55 mg/dl\nPleural fluid glucose | <40 mg/dl | >40 mg/dl",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "pleural effusion",
+      "exudate",
+      "transudate"
+    ]
+  },
+  {
+    "id": "wq-12",
+    "question": "Enumerate lung examination findings consistent with typical bacterial pneumonia.",
+    "modelAnswer": "Inspection: Respiratory distress - tachypnea, nasal flaring, chest retraction, grunting, cyanosis\nPalpation: Increased tactile vocal fremitus (TVF)\nPercussion: Dullness\nAuscultation: Bronchial breathing with consonating crepitations and bronchophony",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "pneumonia",
+      "examination",
+      "bacterial"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

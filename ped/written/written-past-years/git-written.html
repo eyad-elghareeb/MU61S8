@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>GIT - Written Assessment</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "ped-git-w",
+  title: "GIT - Written Assessment",
+  description: "Pediatrics GIT Written Assessment",
+  icon: "🏥"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "What are the criteria of fulminant hepatitis?",
+    "modelAnswer": "1. Rapid progressive symptoms\n2. Decreased liver size\n3. Deepening of jaundice\n4. Subtle mental or personality change",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "fulminant hepatitis",
+      "criteria"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "Enumerate SIX criteria of hypernatremic dehydration.",
+    "modelAnswer": "1. Serum sodium: > 145 mEq/L\n2. Serum osmolarity: > 295 mOsm/L\n3. Deficit: Water > Na\n4. Loss of skin turgor versus dryness of mucous membrane\n5. Skin: Doughy subcutaneous tissue\n6. Shock: Late\n7. CNS manifestations: Marked irritability, Frequent seizures (if Na > 165 mEq/L), Cerebral hemorrhage",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "hypernatremic dehydration",
+      "criteria"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "What are the causes of hyponatremia with increased total body sodium?",
+    "modelAnswer": "1. Nephrotic syndrome\n2. Cirrhosis\n3. Heart failure\n4. Renal failure",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "hyponatremia",
+      "electrolytes"
+    ]
+  },
+  {
+    "id": "wq-4",
+    "question": "Enumerate six causes of vomiting in neonates and infants.",
+    "modelAnswer": "1. GERD\n2. Gastroenteritis\n3. Infections: Respiratory tract, Otitis media\n4. Feeding problems\n5. Diet protein intolerance\n6. Intestinal obstruction\n7. Congenital adrenal hyperplasia",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "vomiting",
+      "neonates",
+      "infants"
+    ]
+  },
+  {
+    "id": "wq-5",
+    "question": "Enumerate four investigations required for an infant with suspected cholestasis.",
+    "modelAnswer": "1. Basic evaluation:\n   a. CBC with reticulocyte count\n   b. Liver function tests, Kidney function tests\n2. Tests for infectious causes:\n   a. TORCH screen\n   b. HBV and HCV serology\n3. Metabolic workup:\n   a. Alpha-1-antitrypsin level and phenotype\n   b. Sweat chloride\n4. Diagnostic imaging:\n   a. Ultrasound\n   b. Hepatobiliary scintigraphy\n   c. Intrahepatic cholangiogram",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "cholestasis",
+      "investigations",
+      "neonatal"
+    ]
+  },
+  {
+    "id": "wq-6",
+    "question": "Mention classification of autoimmune hepatitis.",
+    "modelAnswer": "Type 1:\n- Antibodies: ANA, ASMA\n- More common\n- Age: Older\n- Relapse: More\n\nType 2:\n- Antibodies: Anti-LKM1\n- Less common\n- Age: Younger\n- More severe",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "autoimmune hepatitis",
+      "classification"
+    ]
+  },
+  {
+    "id": "wq-7",
+    "question": "Mention 4 diagnostic features for hyponatremic dehydration.",
+    "modelAnswer": "1. Low serum sodium (< 135 mEq/L)\n2. Signs of dehydration (e.g. dry mucosa, sunken eyes)\n3. Hypotension or tachycardia\n4. Neurological symptoms (e.g. irritability, lethargy, seizures)",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "hyponatremic dehydration",
+      "diagnosis"
+    ]
+  },
+  {
+    "id": "wq-8",
+    "question": "Mention clinical features suggesting chronic hepatitis.",
+    "modelAnswer": "1. Asymptomatic\n2. History suggestive of chronic liver disease\n3. Acute hepatitis on top of chronic\n4. Symptoms of liver decompensation (Vascular, Parenchymatous)",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "chronic hepatitis",
+      "clinical features"
+    ]
+  },
+  {
+    "id": "wq-9",
+    "question": "Enumerate lines of treatment of constipation.",
+    "modelAnswer": "Goals:\n- Pass 1-2 soft painless stools\n- Painless stools help to overcome fear and withholding\n- Allow the rectal vault to approach a normal size (this may take > 6-12 months)\n- Establish an adequate diet and fluid intake\n\nTreatment:\n1. Regular toilet routine and eliminate fear of defecation\n2. Maintenance therapy for 6-24 months to prevent recurrence\n3. Toilet training\n4. Dietary measures\n5. Behavioral therapy\n6. Counselling and education\n7. Biofeedback training\n8. Surgery (rarely)",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "constipation",
+      "treatment"
+    ]
+  },
+  {
+    "id": "wq-10",
+    "question": "Mention types of dehydration that may complicate gastroenteritis in infants and young children.",
+    "modelAnswer": "Isotonic (Isonatremic):\n- Serum Na: 135-145 mEq/L\n- Osmolarity: 275-295 mOsm/L\n- Deficit: Na deficit = water deficit\n- Loss of skin turgor = dryness of mucous membrane\n- CNS: Lethargy, Infrequent seizures\n\nHypotonic (Hyponatremic):\n- Serum Na: < 135 mEq/L\n- Osmolarity: < 275 mOsm/L\n- Deficit: Na deficit > water deficit\n- Loss of skin turgor > dryness of mucous membrane\n- CNS: Lethargy, Infrequent seizures\n\nHypertonic (Hypernatremic):\n- Serum Na: > 145 mEq/L\n- Osmolarity: > 295 mOsm/L\n- Deficit: Water deficit > Na deficit\n- Skin: Doughy SC tissue, dryness of mucous membrane\n- CNS: Marked irritability, Frequent seizures (if Na > 165), Cerebral hemorrhage",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "dehydration",
+      "gastroenteritis",
+      "classification"
+    ]
+  },
+  {
+    "id": "wq-11",
+    "question": "Enumerate FOUR clinical features of neonatal cholestasis.",
+    "modelAnswer": "1. Jaundice\n2. Scleral icterus\n3. Hepatomegaly\n4. Acholic stools (pale stool)\n5. Dark urine\n6. Other signs and symptoms depend on specific disease process",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "neonatal cholestasis",
+      "clinical features"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Emergency - Written Assessment</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "ped-emergency-w",
+  title: "Emergency - Written Assessment",
+  description: "Pediatrics Emergency Written Assessment",
+  icon: "🚑"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "What are the causes of hyponatremia with increased total body sodium?",
+    "modelAnswer": "1. Nephrotic syndrome\n2. Cirrhosis\n3. Heart failure\n4. Renal failure",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "hyponatremia",
+      "electrolytes"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "What are the clinical classifications of shock?",
+    "modelAnswer": "1. Septic shock\n2. Hypovolemic shock\n3. Obstructive shock\n4. Cardiogenic shock\n5. Distributive shock",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "shock",
+      "classification"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "Mention stages of shock and characteristics of each stage.",
+    "modelAnswer": "Compensated stage:\n- Blood pressure: Normal\n- Blood volume: Normal\n- Peripheral perfusion: Normal\n\nUncompensated stage:\n- Blood pressure: Hypotension\n- Blood volume: Decreased\n- Peripheral perfusion: Deteriorate\n\nIrreversible stage:\n- Blood pressure: Hypotension\n- Blood volume: Failure of vital organs\n- Peripheral perfusion: Irreversible damage",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "shock",
+      "stages"
+    ]
+  },
+  {
+    "id": "wq-4",
+    "question": "Mention four causes of high anion gap metabolic acidosis.",
+    "modelAnswer": "1. Increased endogenous organic acids:\n   a. Ketoacidosis: DKA, Starvation\n   b. Lactic acidosis: Hypoxemia, Liver failure\n   c. Renal failure\n2. Increased exogenous organic acids:\n   a. Poisoning: Salicylate, Methanol",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "metabolic acidosis",
+      "anion gap",
+      "causes"
+    ]
+  },
+  {
+    "id": "wq-5",
+    "question": "List two indications of mechanical ventilation.",
+    "modelAnswer": "1. Persistent hypoxemia despite O2 supply\n2. Decreased level of consciousness\n3. Hypercapnia with severe acidosis (pH < 7.2)",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "mechanical ventilation",
+      "indications"
+    ]
+  },
+  {
+    "id": "wq-6",
+    "question": "Mention four causes of normal anion gap metabolic acidosis.",
+    "modelAnswer": "A. Loss of HCO3:\n   1. GIT loss: Diarrhea\n   2. Renal loss: Renal tubular acidosis (RTA) type 2, Urinary tract diversion, Post-hypocapnia\n\nB. Decreased renal acid excretion:\n   1. Renal failure\n   2. RTA types 1 and 4",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "metabolic acidosis",
+      "normal anion gap",
+      "causes"
+    ]
+  },
+  {
+    "id": "wq-7",
+    "question": "Mention FOUR causes of distributive shock.",
+    "modelAnswer": "1. Anaphylaxis\n2. Early sepsis (warm shock)\n3. Drugs\n4. Neurogenic injury",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "shock",
+      "distributive",
+      "causes"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiology - Written Assessment</title>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "ped-cardio-w",
+  title: "Cardiology - Written Assessment",
+  description: "Pediatrics Cardiology Written Assessment",
+  icon: "❤️"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "What are the drugs used in the hypercyanotic spells?",
+    "modelAnswer": "1. Sodium bicarbonate\n2. IV beta-blocker (Propranolol)\n3. Oxygen\n4. Morphine sulphate\n5. Ketamine\n6. Positioning (knee-chest compression)\n7. Phenylephrine to increase SVR",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "hypercyanotic spell",
+      "TOF",
+      "management"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "What is the clinical criteria to diagnose Kawasaki disease?",
+    "modelAnswer": "1. Fever persisting more than 5 days\n2. Presence of at least 4 of 5 features:\n   - Bilateral conjunctival injection without exudates\n   - Cracking of lips, erythema of oral mucosa, strawberry tongue\n   - Maculopapular, diffuse erythroderma, erythema multiformes-like rash\n   - Erythema and edema of hands and feet in acute phase; periungual desquamation in subacute phase\n   - Cervical lymphadenopathy (mostly unilateral)\n3. Exclusion of other diseases with similar findings e.g. measles",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "Kawasaki disease",
+      "diagnosis"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "List four procedures recommended for bacterial endocarditis prophylaxis.",
+    "modelAnswer": "1. Dental procedures e.g. tooth extraction\n2. Respiratory tract procedures e.g. tonsillectomy\n3. Gastrointestinal and genitourinary procedures\n4. Skin or musculoskeletal surgery",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "infective endocarditis",
+      "prophylaxis"
+    ]
+  },
+  {
+    "id": "wq-4",
+    "question": "Mention four consequences of central cyanosis.",
+    "modelAnswer": "1. Polycythemia\n2. Clubbing (in central cyanosis > 6 months - starts in thumb finger)\n3. Hypoxic spells\n4. Squatting\n5. CNS complications: brain abscess, dural sinus thrombosis, cerebral hemorrhage\n6. Bleeding disorders: thrombocytopenia, decreased fibrinogen and factors V and VIII\n7. Decreased intelligent quotient\n8. Scoliosis",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "cyanosis",
+      "consequences"
+    ]
+  },
+  {
+    "id": "wq-5",
+    "question": "A 3-month-old infant, his weight is 4 kg presents with acute dyspnea and poor feeding. On examination, the pulse rate is 180 beat per minute, he has a grade 3/6 pansystolic murmur at the left sternal border, basal crepitations and a liver measuring 4 cm below the right costal margin. What is the possible diagnosis and treatment?",
+    "modelAnswer": "Possible diagnosis: VSD with heart failure\n\nLines of treatment:\na) Control of heart failure: ACE inhibitors, Diuretics, Digitalis\nb) Prevention of development of PVOD\nc) Prevention of infective endocarditis\nd) Surgical closure",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "VSD",
+      "heart failure",
+      "case"
+    ]
+  },
+  {
+    "id": "wq-6",
+    "question": "Mention 2 the most common complications of TOF in a 6-month-old infant. Mention why he must be maintained on oral beta blocker and iron therapy.",
+    "modelAnswer": "Most common complications: Hypoxic spells, Cerebral venous thrombosis\n\nIron therapy: For prophylaxis against iron deficiency anemia (iron-deficient erythrocytosis increases the risk of cerebrovascular accidents)\n\nBeta blockers: To prevent cyanotic spells by:\n- Decreasing HR\n- Preventing RVOT obstruction\n- Pulmonary artery dilation improving pulmonary blood flow\n- Maintaining normal SVR",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "TOF",
+      "complications",
+      "management"
+    ]
+  },
+  {
+    "id": "wq-7",
+    "question": "A 6-months-old infant diagnosed as Tetralogy of Fallot:\na) Mention two of the commonest complications at this age?\nb) Mention why he must be maintained on oral beta blocker",
+    "modelAnswer": "a) Commonest complications at this age:\n   - Hypoxic spells\n   - Cerebral venous thrombosis\n\nb) Oral beta blocker (Propranolol):\n   - Decreases HR\n   - Prevents RVOT obstruction = PA dilatation improves circulation\n   - Maintains normal SVR",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "TOF",
+      "complications",
+      "beta blocker"
+    ]
+  },
+  {
+    "id": "wq-8",
+    "question": "A 7-years-old girl presented to the cardiology outpatient clinic because of fever 39 degrees C, pain in both ankle joints, and swelling in the left knee of 5 days duration. Cardiac auscultation revealed an apical pansystolic murmur grade III/VI. The mother gives a history of frequent attacks of sore throat in the preceding 3 months.\na) Mention the criteria for diagnosis (from the case).\nb) Investigations needed to confirm the diagnosis?",
+    "modelAnswer": "a) Criteria for diagnosis from the case:\n   - Major criteria: Murmur (Carditis) and Arthritis\n   - Minor criteria: Fever (>= 38.5 degrees C)\n   - History of preceding streptococcal infection\n\nb) Investigations needed to confirm the diagnosis:\n   - Documentation of recent streptococcal infection: ASO titer, Throat culture\n   - Documentation of inflammatory process: ESR, CRP, leukocytosis\n   - Documentation of associated carditis: ECG and Echocardiography and Doppler",
+    "rubric": "Must list all requested items correctly and completely.",
+    "explanation": "Systematic recall of these items ensures thorough clinical evaluation and reduces the risk of missing important findings.",
+    "tags": [
+      "rheumatic fever",
+      "diagnosis",
+      "case"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  var pathParts = location.pathname.split('/').filter(Boolean);
+  var knownDirs = ['gyn','Cardio','surg','ped','scripts'];
+  var repoDepth = (pathParts.length > 1 && knownDirs.indexOf(pathParts[0]) === -1) ? 1 : 0;
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(Math.max(0, pathParts.length - 1 - repoDepth));
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
