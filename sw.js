@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-faee2a1879d4';
+const CACHE_VERSION = 'mu61-quiz-919b9b2dfa49';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -263,6 +263,13 @@ var PRECACHE_REL_PATHS = [
   'ped/written/written-ai/hematology-written.html',
   'ped/written/written-ai/index.html',
   'ped/written/written-ai/infections-written.html',
+  'ped/written/written-past-years/cardiology-written.html',
+  'ped/written/written-past-years/chest-written.html',
+  'ped/written/written-past-years/emergency-written.html',
+  'ped/written/written-past-years/git-written.html',
+  'ped/written/written-past-years/hematology-written.html',
+  'ped/written/written-past-years/index.html',
+  'ped/written/written-past-years/infection-written.html',
   'surg/by-chapter/breast/ahassan-question-bank-breast.html',
   'surg/by-chapter/breast/aio-breast.html',
   'surg/by-chapter/breast/dr-magdy-questions-breast.html',
