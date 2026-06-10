@@ -377,7 +377,7 @@ def update_service_worker() -> bool:
 
     # Update SHARED assets in sw.js (ensure icon fallbacks are present)
     shared_assets = [
-        'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'flashcard-engine.js', 'written-engine.js', 'index-engine.css',
+        'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'search-engine.js', 'flashcard-engine.js', 'written-engine.js', 'index-engine.css',
         'manifest.webmanifest', 'favicon.svg',
         'icon-48.png', 'icon-72.png', 'icon-96.png', 'icon-144.png', 'icon-192.png', 'icon-512.png',
         'tracker-map.json'
