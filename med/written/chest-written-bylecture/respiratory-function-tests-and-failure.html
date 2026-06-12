@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Respiratory Function Tests & Failure - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "rft-failure-written",
+  title: "Respiratory Function Tests & Failure - Written Assessment",
+  description: "Answer the respiratory function tests and failure questions in your own words.",
+  icon: "📊"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "rft-q1",
+    "question": "Enumerate causes of hypoventilation?",
+    "modelAnswer": "A. Obstructive hypoventilation (↓ diameter of airways):\n- Upper respiratory tract obstruction: Inhaled FB, laryngeal spasm, laryngeal oedema\n- Lower respiratory tract obstruction: Bronchial asthma, COPD\n\nB. Restrictive hypoventilation:\nA. Decreased compliance of:\n- Lung: ILD\n- Pleura: Massive effusion, Tension pneumothorax\n- Chest wall: Chest deformities, scleroderma, marked obesity (Pick syndrome)\nB. Disorders of neuromuscular apparatus:\n- CNS: Head injury, CVS, Drugs (opiates & barbiturates)\n- AHCs: MND, Poliomyelitis\n- PN: Polyneuropathy (e.g. GBS)\n- NMJ: Myasthenia gravis\n- Muscle: Myopathies",
+    "tags": [
+      "RFT",
+      "hypoventilation",
+      "causes"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q2",
+    "question": "What is ABG finding in hypoventilation?",
+    "modelAnswer": "Hypoxia + Hypercapnia",
+    "tags": [
+      "RFT",
+      "ABG",
+      "hypoventilation"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q3",
+    "question": "Pattern of restrictive hypoventilation in RFTs?",
+    "modelAnswer": "Respiratory volumes & capacities: Decreased FVC, Normal RV, Decreased TLC\nExpiratory flow rates: Normal FEV1/FVC\nDecreased lung compliance",
+    "tags": [
+      "RFT",
+      "restrictive",
+      "pattern"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q4",
+    "question": "Pattern of obstructive hypoventilation in RFTs?",
+    "modelAnswer": "Respiratory volumes & capacities: Decreased FVC, Increased RV, Increased TLC\nExpiratory flow rates: Decreased FEV1/FVC\nIncreased lung compliance",
+    "tags": [
+      "RFT",
+      "obstructive",
+      "pattern"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q5",
+    "question": "Causes of Impaired Diffusion?",
+    "modelAnswer": "ILD, Emphysema, Pulmonary oedema, Pulmonary embolism, Pneumonia",
+    "tags": [
+      "RFT",
+      "diffusion",
+      "causes"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q6",
+    "question": "What is ABG finding in Impaired Diffusion lung disease?",
+    "modelAnswer": "Hypoxia + Normocapnia or Hypocapnia",
+    "tags": [
+      "RFT",
+      "ABG",
+      "diffusion"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q7",
+    "question": "Define respiratory volumes and capacities?",
+    "modelAnswer": "Tidal Volume (TV): Volume of air inspired & expired during normal quiet breathing. Normal: 500 ml.\nResidual Volume (RV): Volume of air remaining in the lung after maximum expiration. Normal: 1200 ml. Increased in COPD.\nExpiratory Reserve Volume (ERV): Additional volume of air that can be exhaled after a normal tidal breath out. Normal: 1200 ml.\nInspiratory Reserve Volume (IRV): Additional volume of air that can be inhaled after a normal tidal breath in. Normal: 3100 ml.\nFunctional Residual Capacity (FRC): Volume of air left in lungs after normal tidal breath out. Normal: 2400 ml (RV+ERV). Increased in all hypoventilation, especially restrictive.\nInspiratory Capacity (IC): Maximum volume of air that can be inhaled after normal tidal breath out. Normal: 3600 ml (TV+IRV).\nForced Vital Capacity (FVC): Volume of air maximally expired after maximum inspiration. Normal: 4800 ml. Decreased in restrictive hypoventilation.\nTotal Lung Capacity (TLC): Volume of air in fully expanded lungs. Normal: 6000 ml (RV+FVC).\nResting Minute Volume (RMV): TV x RR = 8000 ml/min\nMaximum Breathing Capacity (MBC): 120 L/min",
+    "tags": [
+      "RFT",
+      "volumes",
+      "capacities"
+    ],
+    "rubric": "Must provide a clear definition including key components. Accept reasonable variations in wording. Partial credit for incomplete definitions.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q8",
+    "question": "Indications of Pulmonary Function Tests?",
+    "modelAnswer": "1- Detecting and Diagnosing Pulmonary Diseases: History of symptoms (dyspnea, chest pain, cough, wheezing), Physical findings (cyanosis, chest wall abnormalities, decreased breath sounds, clubbing), Abnormal lab findings (blood gases, chest radiograph)\n2- Assessing severity/progression and follow-up: Pulmonary diseases (COPD, cystic fibrosis, ILD, sarcoidosis), Cardiac diseases (CHF, congenital HD, pulmonary HTN), Neuromuscular diseases (ALS, GBS, MG)\n3- Risk stratification for surgery: Thoracic (lobectomy, pneumonectomy), Cardiac (CABG, congenital, valvular), Organ transplantation, General surgical (cholecystectomy, gastric bypass)\n4- Medico-legal: Evaluating disability/impairment, Social Security/compensation, Legal/insurance evaluations",
+    "tags": [
+      "RFT",
+      "indications"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q9",
+    "question": "Contraindications of Pulmonary Function Tests?",
+    "modelAnswer": "Uncooperative patient, Severe dyspnea, Infectious disease (TB, COVID-19), Acute disorders (vomiting, nausea, vertigo), Hemoptysis of unknown origin, Pneumothorax, Recent abdominal or thoracic surgery, Recent eye surgery (increased intraocular pressure), Recent MI or unstable angina, Thoracic aneurysms (risk of rupture)",
+    "tags": [
+      "RFT",
+      "contraindications"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q12",
+    "question": "Difference between Asthma & Emphysema regarding Flow Volume loops?",
+    "modelAnswer": "Asthma: Peak expiratory flow reduced (reduced max height), Airflow reduces rapidly with reduction in lung volumes (airways narrow, loop becomes concave), Concavity may indicate airflow obstruction before change in FEV1 or FEV1/FVC, Reversibility: FEV1 or FVC increases >12% and 200 ml\n\nEmphysema: Airways may collapse during forced expiration (destroyed supporting tissue), Very reduced flow at low lung volume with characteristic 'dog-leg' appearance, Reversibility: FEV1 or FVC increases <12% and 200 ml",
+    "tags": [
+      "RFT",
+      "flow volume loops",
+      "comparison"
+    ],
+    "rubric": "Must compare at least the main distinguishing features. Full credit for structured comparison. Accept any reasonable points of differentiation. Partial credit for fewer points.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rft-q13",
+    "question": "Difference between Obstructive & Restrictive lung Diseases regarding RFTs?",
+    "modelAnswer": "Obstructive vs Restrictive:\n- FEV1: Reduced vs Reduced\n- FVC: Normal or Reduced vs Reduced\n- FEV1/FVC: Reduced vs Normal\n- Flow-volume loop shape: Concave vs Normal but small",
+    "tags": [
+      "RFT",
+      "obstructive",
+      "restrictive",
+      "comparison"
+    ],
+    "rubric": "Must compare at least the main distinguishing features. Full credit for structured comparison. Accept any reasonable points of differentiation. Partial credit for fewer points.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rf-q1",
+    "question": "Define respiratory failure?",
+    "modelAnswer": "Laboratory diagnosis characterized by:\n- Hypoxia (<60 mmHg) with or without\n- Hypercapnia (>50 mmHg)\ndue to a disease affecting respiration",
+    "tags": [
+      "respiratory failure",
+      "definition"
+    ],
+    "rubric": "Must provide a clear definition including key components. Accept reasonable variations in wording. Partial credit for incomplete definitions.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rf-q2",
+    "question": "Causes of respiratory failure?",
+    "modelAnswer": "1- Impaired diffusion\n2- Hypoventilation\n3- Impaired perfusion",
+    "tags": [
+      "respiratory failure",
+      "causes"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rf-q5",
+    "question": "Classify respiratory failure according to gas defect?",
+    "modelAnswer": "Hypoxemic type (Type I): Mainly due to ↓ diffusion. Hypoxia with normocapnia or hypocapnia.\nHypercapnic type (Type II): Mainly due to ↓ ventilation. Hypoxia with hypercapnia.",
+    "tags": [
+      "respiratory failure",
+      "classification"
+    ],
+    "rubric": "Must mention at least the main types/classifications with brief description. Accept any reasonable classification. Partial credit for incomplete classification.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rf-q6",
+    "question": "Manifestations of hypoxia?",
+    "modelAnswer": "Acute: Hypotension, Tachycardia/arrhythmias, Tachypnea/dyspnea, Central cyanosis, Drowsiness/convulsions/coma, Death\n\nChronic: Headache, Polycythemia (secondary), Cor pulmonale (secondary to pulmonary HTN), Central cyanosis, Clubbing, Apathy/fatigue/drowsiness",
+    "tags": [
+      "respiratory failure",
+      "hypoxia"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rf-q7",
+    "question": "Manifestations of hypercapnia?",
+    "modelAnswer": "Acute: Asterixis (flapping tremors), Acidosis (respiratory), Tachycardia/arrhythmias, Tachypnea/dyspnea, Drowsiness/convulsions/coma, Death\n\nChronic: Asterixis (flapping tremors), CO2 narcosis (Hypercapnic encephalopathy): Hypersomnia, Increased ICT, Papilloedema",
+    "tags": [
+      "respiratory failure",
+      "hypercapnia"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  },
+  {
+    "id": "rf-q8",
+    "question": "Indications of mechanical ventilation in respiratory failure?",
+    "modelAnswer": "1- Apnea/respiratory arrest\n2- Acute respiratory acidosis with pH <7.25 that affects conscious level\n3- PaO2 cannot be maintained above 50 mmHg despite high levels of delivered oxygen\n4- Ventilation becomes inefficient and/or exhausted (severe bronchospasm, flail chest, impending respiratory failure)",
+    "tags": [
+      "respiratory failure",
+      "mechanical ventilation"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Understanding respiratory function tests and failure classification is fundamental to respiratory medicine."
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

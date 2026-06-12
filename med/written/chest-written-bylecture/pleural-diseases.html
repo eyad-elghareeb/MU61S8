@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pleural Diseases - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "pleural-diseases-written",
+  title: "Pleural Diseases - Written Assessment",
+  description: "Answer the pleural diseases questions in your own words.",
+  icon: "🫁"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "pleural-q1",
+    "question": "Enumerate causes of Dry Pleurisy?",
+    "modelAnswer": "Primary pleurisy:\n- Idiopathic (probably viral, most common) - Bornholm Disease/Pleurodynia in children & young adults\n- Infections: viral, bacterial, TB\n- Inflammation: FMF\n- Immunological: SLE, RA\n- Iatrogenic: INH, Hydralazine, Procainamide\n- Irradiation, Renal failure, Post-traumatic, Myocardial infarction, Rheumatic, Post-cardiotomy syndrome, Malignant infiltration\n\nSecondary Pleurisy (due to extension from surrounding structures):\n- Lung disease: Bronchiectasis (most common cause of recurrent pleurisy), TB, Pneumonia, Lung abscess, Bornholm disease, Bronchogenic carcinoma\n- Mediastinal disease: Inflammation (pericarditis), Malignancy (lymphoma)\n- Subdiaphragmatic: Amoebic liver abscess, Subphrenic abscess\n- Chest wall disease: Osteomyelitis (Sternum, Ribs, Vertebrae)",
+    "tags": [
+      "pleural",
+      "dry pleurisy"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q2",
+    "question": "Define Pleural effusion?",
+    "modelAnswer": "Abnormal accumulation of fluid in the pleural space:\n- Detected radiologically: if more than 300 ml\n- Detected clinically: if more than 500 ml",
+    "tags": [
+      "pleural",
+      "effusion",
+      "definition"
+    ],
+    "rubric": "Must provide a clear definition including key components. Accept reasonable variations in wording. Partial credit for incomplete definitions.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q3",
+    "question": "Enumerate causes of Pleural effusion?",
+    "modelAnswer": "Serous effusion (Exudate): Pneumonia, Malignancy, Pulmonary embolism, Primary & Secondary pleural disease\nPyothorax (Empyema): Severe inflammation by pyogenic organisms (Staph & Strept)\nHydrothorax (Transudate): Heart failure, Hypoalbuminemia (Nephrotic, LCF, MAS), Hypothyroidism, MEIG'S SYNDROME, SVC OBSTRUCTION, Pulmonary embolism\nHemothorax: Trauma, TB, Malignancy (massive, bloody, rapidly re-accumulates, malignant cells), Blood diseases, Pulmonary embolism\nChylothorax: Obstruction or rupture of thoracic duct",
+    "tags": [
+      "pleural",
+      "effusion",
+      "causes"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q4",
+    "question": "Clinical picture of Pleural effusion?",
+    "modelAnswer": "Depends on: Rate of accumulation, Amount of fluid, Underlying cause\n\nSymptoms: Symptoms of the cause. Due to effusion: Small = asymptomatic, Large = Dull aching chest pain, Dyspnea, Dry cough.\n\nSigns (if >500 ml):\nInspection: Shape - Unilateral bulge in large effusion, Movement - Decreased on affected side\nPalpation: Trachea & mediastinum - Small: no shift, Moderate: apex to opposite side, Large: apex & trachea to opposite side. Malignant: underlying collapse. Chronic: pleural fibrosis. TVF decreased. Chest expansion decreased.\nPercussion: Basal stony dullness with upper level rising laterally to axilla. Grocco's triangle, Garland's triangle, Skodiac resonance.\nAuscultation: Breath sounds diminished. Bronchial breath sound with aegophony over upper border. Pleural rub may be heard.",
+    "tags": [
+      "pleural",
+      "effusion",
+      "clinical picture"
+    ],
+    "rubric": "Must describe symptoms and signs. Accept any reasonable clinical feature. Full credit for covering both symptoms and signs. Partial credit for covering only one category.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q5",
+    "question": "Radiological findings in Pleural effusion?",
+    "modelAnswer": "A. CXR:\nFree effusion: Homogenous opacity obliterating CP angle & rising laterally\n- Small: small opacity no shift\n- Moderate: moderate opacity with apex shift to opposite side\n- Large: large opacity with apex & trachea shift to opposite side\nLoculated effusion: Fluid may be loculated due to adhesions\n- Peripheral (encysted): D-shaped capacity\n- Interlobar: Rounded or oval opacity (Phantom Tumor/Pseudo Tumor, may disappear with diuretics)\n\nB. US: Quick bedside assessment, Thoracentesis planning. Very sensitive (as low as 20 ml). Hemothorax and empyema may appear heterogeneous. Pleural fluid septations may be present.\n\nC. CT chest: Sensitive for small amounts. May detect underlying lung disease e.g. Malignancy",
+    "tags": [
+      "pleural",
+      "effusion",
+      "radiology"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q6",
+    "question": "Indications of Thoracocentesis?",
+    "modelAnswer": "A. Diagnostic: Analysis of pleural fluid for:\n- Exudate vs Transudate (Proteins, Specific gravity, LDH, Cells)\n- Pyothorax: purulent, many pus cells\n- Hemothorax: bloody, many RBCs\n- Chylothorax: milky white, clears with ether, stains orange with Sudan III\n- TB effusion: Exudate rich in Lymphocytes & RBCs, TB bacilli by ZN/Culture/PCR, Adenosine deaminase (ADA) increased\n\nB. Therapeutic:\na. Massive effusion causing respiratory distress/reaching up to 2nd rib\nb. Resistant effusion not responding to treatment for 6 weeks\nc. Effusion which becomes secondary infected",
+    "tags": [
+      "pleural",
+      "thoracocentesis"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q7",
+    "question": "Difference between transudate & exudate Pleural effusion?",
+    "modelAnswer": "Transudate vs Exudate:\n- Proteins: <3 gm% vs >3 gm%\n- Fluid protein/Serum protein: <0.5 vs >0.5\n- Specific gravity: <1016 vs >1016\n- LDH: <200 IU/L vs >200 IU/L\n- Fluid LDH/Serum LDH: <0.6 vs >0.6\n- Cells (WBCs): <1000/cmm vs >1000/cmm",
+    "tags": [
+      "pleural",
+      "effusion",
+      "transudate",
+      "exudate"
+    ],
+    "rubric": "Must compare at least the main distinguishing features. Full credit for structured comparison. Accept any reasonable points of differentiation. Partial credit for fewer points.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q8",
+    "question": "Treatment of Pleural effusion?",
+    "modelAnswer": "A. Treatment of the cause:\n- TB effusion: Anti-TB drugs + Corticosteroids (to ↓ inflammation & prevent fibrosis)\n- Malignant effusion: Cytotoxic chemotherapy + Pleural sclerosis (intrapleural tetracycline)\n\nB. Thoracocentesis:\nIndications: Massive effusion causing distress, Resistant effusion (6 weeks), Secondary infected\nContraindications: Bleeding tendency, Uncooperative patient\nPrecautions: Slow aspiration, Not exceed 1000 cc at a time\nBenefits: Relieves dyspnea, Reduces pleural fibrosis & lung collapse, Reduces intrapleural pressure\nComplications: Neurogenic shock (pain), Acute pulmonary oedema (sudden lung expansion), Introduction of Air/Blood/Infection, Liver or spleen injury",
+    "tags": [
+      "pleural",
+      "effusion",
+      "treatment"
+    ],
+    "rubric": "Must mention at least the requested number of treatment lines. Accept any reasonable treatment approach. Full credit for comprehensive management. Partial credit for fewer lines.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q9",
+    "question": "Differential diagnosis of low pleural fluid glucose (<60 mg/dL)?",
+    "modelAnswer": "RA, SLE, TB, Malignancy, Complicated parapneumonic effusion or empyema",
+    "tags": [
+      "pleural",
+      "glucose"
+    ],
+    "rubric": "Must identify the correct diagnosis with reasonable justification. Accept any reasonable diagnosis with supporting evidence. Partial credit for diagnosis without adequate reasoning.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q11",
+    "question": "Importance of measuring adenosine deaminase in pleural effusion?",
+    "modelAnswer": "Increased activity of this enzyme in TB patients. It is a useful biochemical marker of TB pleural effusion.",
+    "tags": [
+      "pleural",
+      "ADA",
+      "TB"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q12",
+    "question": "Causes of Pneumothorax?",
+    "modelAnswer": "A. Spontaneous (non-traumatic):\nPrimary (benign): Family history, Male, Young, Asthenic (slim, tall), Smoking (90%, 20-fold risk), Homocystinuria. Cause: UNKNOWN, may be ruptured subpleural apical blebs.\nSecondary: Known underlying disease - COPD (rupture of bullae), Infections (TB, Pneumocystis), Cystic fibrosis, Marfan syndrome, Malignancy, Catamenial pneumothorax\n\nB. Traumatic:\nAccidental: Penetrating chest injury, Invasive measures (surgery, thoracocentesis, biopsy), Endoscopy, Mechanical ventilation\nArtificial: Collapse therapy previously used for TB treatment",
+    "tags": [
+      "pleural",
+      "pneumothorax",
+      "causes"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q13",
+    "question": "Enumerate clinical types of Pneumothorax?",
+    "modelAnswer": "Closed: The tear in pleura is closed after occurrence → manifestations subside spontaneously\nOpen: The tear remains open forming a fistula communicating with atmosphere → manifestations remain stationary\nTension: The tear is valve-like allowing air to enter during inspiration but preventing escape during expiration → Progressive & may be life threatening",
+    "tags": [
+      "pleural",
+      "pneumothorax",
+      "types"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q14",
+    "question": "Clinical picture of Pneumothorax?",
+    "modelAnswer": "A. Symptoms:\nClosed & Open: Sudden severe tearing chest pain increasing with inspiration, Acute dyspnea, Dry cough\nTension: Acute chest pain, Severe dyspnea & cyanosis, Acute RVF, Shock\n\nB. Signs:\nInspection: Unilateral bulge (tension), Movement decreased on affected side\nPalpation: Trachea & mediastinum shifted to opposite side (tension), TVF decreased\nPercussion: Hyper-resonance or tympanic resonance\nAuscultation: Breath sounds diminished, Amphoric breathing (open & tension)",
+    "tags": [
+      "pleural",
+      "pneumothorax",
+      "clinical picture"
+    ],
+    "rubric": "Must describe symptoms and signs. Accept any reasonable clinical feature. Full credit for covering both symptoms and signs. Partial credit for covering only one category.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q16",
+    "question": "Differentiation between closed, open & tension pneumothorax?",
+    "modelAnswer": "Closed: Mild dyspnea, No cyanosis/shock/acute HF, No mediastinal shift, No amphoric breathing\nOpen: Mild dyspnea, No cyanosis/shock/acute HF, No mediastinal shift, Amphoric breathing present\nTension: Severe dyspnea, Cyanosis & shock present, Acute HF present, Mediastinal shift present, Amphoric breathing present",
+    "tags": [
+      "pleural",
+      "pneumothorax",
+      "comparison"
+    ],
+    "rubric": "Must compare at least the main distinguishing features. Full credit for structured comparison. Accept any reasonable points of differentiation. Partial credit for fewer points.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q17",
+    "question": "Causes of acute chest pain, dyspnea, acute RVF & Shock?",
+    "modelAnswer": "1- Massive myocardial infarction\n2- Massive pulmonary embolism\n3- Massive lung collapse\n4- Tension pneumothorax",
+    "tags": [
+      "pleural",
+      "acute chest pain",
+      "shock"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  },
+  {
+    "id": "pleural-q18",
+    "question": "Treatment of pneumothorax?",
+    "modelAnswer": "A. PRIMARY SPONTANEOUS PNEUMOTHORAX:\n1. Conservative: Small PSP (<3 cm), clinically stable\n2. Needle aspiration: Large PSP (>3 cm), clinically stable\n3. Chest tube insertion: Failed needle aspiration, Large PSP, Tension pneumothorax (plus immediate treatment of 4 manifestations: pain/pethidine, dyspnea/O2, HF & shock)\n4. VATS pleurodesis: Failed lung reexpansion, Recurrent pneumothorax\n5. Chemical pleurodesis: Patients unfit/unwilling for VATS\n\nB. SECONDARY SPONTANEOUS PNEUMOTHORAX:\nSame as PSP, plus: Treatment of underlying disease, Hospitalization (risk of adverse outcome), Different size thresholds: Very small <1cm (conservative), Small 1-2cm (needle aspiration), Large >2cm (chest tube)",
+    "tags": [
+      "pleural",
+      "pneumothorax",
+      "treatment"
+    ],
+    "rubric": "Must mention at least the requested number of treatment lines. Accept any reasonable treatment approach. Full credit for comprehensive management. Partial credit for fewer lines.",
+    "explanation": "Pleural diseases encompass a wide range of conditions from dry pleurisy to complex effusions and pneumothorax."
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

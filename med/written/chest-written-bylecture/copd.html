@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>COPD - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "copd-written",
+  title: "COPD - Written Assessment",
+  description: "Answer the COPD questions in your own words.",
+  icon: "🚬"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "copd-q1",
+    "question": "Enumerate predisposing factors of chronic bronchitis?",
+    "modelAnswer": "Sex: Males more than females\nSusceptibility: Family history common\nSmoking: The most common cause\nSmog: Atmospheric pollution\nSinusitis: Chronic sinusitis predisposes to bronchitis\nSuper infection: St. Pneumoniae & H. Influenzae\nSocial class: Lower socio-economic groups\nOthers: Chronic lung congestion (LVF), Chronic lung plethora (congenital heart disease with Lt to Rt shunt), Bronchiectasis, Allergic factors",
+    "tags": [
+      "COPD",
+      "predisposing factors"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q2",
+    "question": "Define emphysema?",
+    "modelAnswer": "Enlargement of air spaces distal to terminal bronchioles due to dilatation and/or destruction of the alveolar walls.\nTrue Emphysema: When destruction of the alveolar walls is the main pathology\nFalse Emphysema: When the expansion of the air spaces is due to dilatation only, does not cause respiratory dysfunction",
+    "tags": [
+      "COPD",
+      "emphysema",
+      "definition"
+    ],
+    "rubric": "Must provide a clear definition including key components. Accept reasonable variations in wording. Partial credit for incomplete definitions.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q3",
+    "question": "Etiology of emphysema?",
+    "modelAnswer": "A. False emphysema:\n- Senile emphysema (atrophic): Occurs in old age due to weakness of alveolar walls\n- Compensatory emphysema: Occurs in lobules adjacent to areas of consolidation, collapse, fibrosis or resection\n\nB. True emphysema:\n- Primary emphysema: Due to deficiency of serum alpha-1-antitrypsin\n- Secondary emphysema (most important type): As a complication of Chronic obstructive bronchitis (most common cause), Bronchial asthma",
+    "tags": [
+      "COPD",
+      "emphysema",
+      "causes"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q4",
+    "question": "Difference between chronic bronchitis (Blue bloaters) & emphysema (Pink puffers)?",
+    "modelAnswer": "Pink puffers vs Blue bloaters:\n- Dyspnea: Severe vs Very mild\n- Sputum: Small volume vs Large volume\n- Central cyanosis: Absent vs Present\n- Pulmonary hypertension: Absent vs Present\n- Cor pulmonale & RVF: Absent vs Present\n- Chest examination: Hyperinflation vs Wheezes\n- CXR: Hypertranslucency vs No hypertranslucency\n- ABG PO2: Mild decrease vs Severe decrease\n- ABG PCO2: Normal vs High",
+    "tags": [
+      "COPD",
+      "comparison",
+      "blue bloater",
+      "pink puffer"
+    ],
+    "rubric": "Must compare at least the main distinguishing features. Full credit for structured comparison. Accept any reasonable points of differentiation. Partial credit for fewer points.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q5",
+    "question": "Clinical picture of COPD?",
+    "modelAnswer": "Type of patient: Usually male, chronic heavy smoker, above 50 years\n3 cardinal symptoms: Dyspnea, Chronic cough, Sputum production. Most common early symptom: EXERTIONAL DYSPNEA.\n\nSymptoms: Chronic cough with mucoid/mucopurulent sputum, Progressive dyspnea & wheezing, Chest pain (intercostals, pneumothorax, pleurisy), Edema of LLs (RVE, salt & water retention), Weight gain (activity limitations) or weight loss (dyspnea while eating), Cough syncope, Depression/anxiety\n\nSigns:\nGeneral: Big pulse volume (early) → Small pulse volume (late, PH & RVF) → Pulsus paradoxus (severe). Arrhythmias (MAT, AF). Tachypnea with accessory muscles. Expiratory pursed lip breathing. Puffy eyelids, Central cyanosis. Congested pulsating neck veins. Mild/no clubbing (marked if bronchiectasis). LL oedema (RVF). Liver (ptosed or enlarged), Ascites (RVF). Signs of respiratory failure (cyanosis, asterixis, CO2 narcosis).\n\nChest: Barrel shaped, Decreased bilateral movements. Trachea central, TVF decreased. Hyper-resonance all over, Encroachment on hepatic & cardiac dullness. Vesicular with prolonged expiration, Generalized rhonchi (expiratory), may be crepitations.",
+    "tags": [
+      "COPD",
+      "clinical picture"
+    ],
+    "rubric": "Must describe symptoms and signs. Accept any reasonable clinical feature. Full credit for covering both symptoms and signs. Partial credit for covering only one category.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q6",
+    "question": "Enumerate complications of COPD?",
+    "modelAnswer": "1- Respiratory failure\n2- Right sided heart failure following cor pulmonale\n3- Left sided heart failure\n4- Pulmonary infections\n5- Pneumothorax\n6- Bronchiectasis\n7- Polycythemia\n8- Salt & water retention\n9- Complications of chronic cough\n10- Acute exacerbations (mostly due to infection: H. influenzae, S. pneumoniae, Moraxella; Viral: influenza A/B, rhinovirus; Pollutants)",
+    "tags": [
+      "COPD",
+      "complications"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q7",
+    "question": "Investigations of COPD?",
+    "modelAnswer": "CXR: Hyperinflation signs (Hypertranslucency, Wide intercostal spaces, Low flat diaphragm, Ribbon-shaped heart, Emphysematous bullae), Increased bronchovascular markings\nECG: Arrhythmias (MAT, AF), Chamber enlargement (RV++, RA++), CAD, Low voltage\nRespiratory function tests: Obstructive pattern (decreased FEV1/FVC, increased RV, TLC), Decreased CO transfer factor, Disturbed perfusion\nABG: Hypoxia, Hypercapnia, Increased bicarbonate\nBlood picture: Secondary polycythemia\nSerum alpha-1-antitrypsin: Decreased in primary emphysema",
+    "tags": [
+      "COPD",
+      "investigations"
+    ],
+    "rubric": "Must mention at least the requested number of investigations with expected findings where applicable. Partial credit for investigations without findings or fewer items.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q8",
+    "question": "Classify severity of COPD based on air flow limitation?",
+    "modelAnswer": "Post bronchodilator FEV1 (in patient with FEV1/FVC <70%):\nGOLD 1 (Mild): FEV1 ≥ 80% predicted\nGOLD 2 (Moderate): FEV1 between 80-50% predicted\nGOLD 3 (Severe): FEV1 between 50-30% predicted\nGOLD 4 (Very Severe): FEV1 < 30%",
+    "tags": [
+      "COPD",
+      "GOLD",
+      "severity"
+    ],
+    "rubric": "Must mention at least the main types/classifications with brief description. Accept any reasonable classification. Partial credit for incomplete classification.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q11",
+    "question": "Compare COPD & Bronchial asthma?",
+    "modelAnswer": "Smoking history: +ve vs Usually -ve\nCourse: Progressive vs Intermittent\nCough: Early morning vs Night/early morning\nSputum: Purulent vs Not purulent\nDyspnea: All the time vs Only in attacks\nCentral cyanosis: May be present vs Absent (except acute severe asthma)\nGeneralized wheezing: Common vs In attacks\nPeripheral edema: May be present vs Not a feature\nSpirometry ↑FEV1: Always vs In attacks\nBronchodilators: FEV1 improve <15% vs FEV1 improve >15%\nResponse to cortisone: Poor vs Good",
+    "tags": [
+      "COPD",
+      "asthma",
+      "comparison"
+    ],
+    "rubric": "Must compare at least the main distinguishing features. Full credit for structured comparison. Accept any reasonable points of differentiation. Partial credit for fewer points.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q12",
+    "question": "Enumerate Initial pharmacological treatment of stable COPD?",
+    "modelAnswer": "GOLD Group A: Long-acting bronchodilator (LABA or LAMA) preferred; OR rescue medication alone\nGOLD Group B: LABA/LAMA combination therapy\nGOLD Group E: LABA/LAMA combination therapy; OR if eosinophil count ≥300 cells/mcL, consider LAMA/LABA/ICS triple therapy\n\nRescue medication: Short-acting bronchodilator (SABA or SAMA) for immediate relief",
+    "tags": [
+      "COPD",
+      "treatment",
+      "pharmacological"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q14",
+    "question": "Management of COPD exacerbation?",
+    "modelAnswer": "a) Antibiotic treatment: Mild (Broad spectrum - amoxicillin, tetracycline, macrolides), Moderate (Co-amoxiclav, Fluoroquinolones, 2nd/3rd gen Cephalosporins), Severe (anti-pseudomonal: B-lactam or fluoroquinolones in high dose)\nb) Bronchodilators\nc) Steroids\nd) Oxygen therapy\ne) Mechanical ventilation",
+    "tags": [
+      "COPD",
+      "exacerbation",
+      "management"
+    ],
+    "rubric": "Must mention at least the requested number of treatment lines. Accept any reasonable treatment approach. Full credit for comprehensive management. Partial credit for fewer lines.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  },
+  {
+    "id": "copd-q15",
+    "question": "Indication for ICU admission and mechanical ventilation of COPD patients?",
+    "modelAnswer": "1- Severe dyspnea that responds inadequately to initial emergency therapy\n2- Changes in mental status (confusion, lethargy, coma)\n3- Persistent or worsening hypoxemia (PaO2 <5.3 kPa, 40 mmHg)\n4- And/or severe/worsening hypercapnea (PaCO2 >8.0 kPa, 60 mmHg)\n5- And/or severe/worsening respiratory acidosis (pH <7.25) despite supplemental oxygen and NIV\n6- Need for invasive mechanical ventilation\n7- Hemodynamic instability - need for vasopressors",
+    "tags": [
+      "COPD",
+      "ICU",
+      "mechanical ventilation"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "This topic is fundamental to clinical medicine and requires thorough understanding for medical practice."
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

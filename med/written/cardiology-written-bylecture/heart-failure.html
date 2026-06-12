@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Heart Failure - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "heart-failure",
+  title: "Heart Failure - Written Assessment",
+  description: "Answer the questions in your own words.",
+  icon: "📝"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    id: "hf-1",
+    question: "Enumerate causes of heart failure (according to the underlying mechanism).",
+    modelAnswer: "Causes of heart failure according to the underlying mechanism:\n\n1. PRESSURE OVERLOAD:\n   - Systemic: Systemic HTN, Valvular disease (AS), Congenital disease (COA)\n   - Pulmonary: Pulmonary HTN (e.g. COPD), Valvular disease (PS), Congenital disease (PS)\n\n2. VOLUME OVERLOAD:\n   - Systemic: Valvular disease (AR, MR), Congenital disease (VSD), Renal failure, Iatrogenic fluid overload\n   - Pulmonary: Hyperdynamic circulation, Valvular disease (PR, TR), Congenital disease (ASD)\n\n3. CONTRACTILITY:\n   - IHD (AMI) — Segmental affection\n   - Cardiomyopathy & Myocarditis (DCM) — Global affection\n   - Toxic damage: Heavy metals (Copper, Iron Load), Alcohol, Cocaine\n\n4. RELAXATION (FILLING):\n   - Pericardial disease: Pericardial effusion, Constrictive pericarditis\n   - Myocardial diseases: HCM, RCM\n\n5. ARRHYTHMIAS: Tachy or Brady\n\nMost common cause: IHD (Ischemic Heart Disease).",
+    rubric: "Mention at least 4 categories (pressure overload, volume overload, contractility, relaxation/filling). Give examples for each. Mention IHD as most common cause for full marks.",
+    explanation: "Heart failure mechanisms are classified by whether the primary problem is increased afterload (pressure), increased preload (volume), impaired pump function (contractility), or impaired filling (relaxation). IHD is the most common cause overall.",
+    tags: ["heart-failure", "aetiology"]
+  },
+  {
+    id: "hf-2",
+    question: "What are the precipitating causes of heart failure?",
+    modelAnswer: "These factors may change a state of Stable (Compensated) HF into Acute Decompensated HF. If not removed during treatment, HF will become Refractory.\n\n1. INFECTIONS: especially infective endocarditis, rheumatic activity & chest infection.\n\n2. IATROGENIC:\n   - Corticosteroids & CCBs (Non-DHP) & DHP (except Amlodipine & Felodipine)\n   - Discontinuation of anti-failure treatment\n   - Excessive salt intake & IV fluids\n\n3. ANEMIA, thyrotoxicosis & other causes of hyperdynamic circulation.\n\n4. ACUTE Coronary Syndrome (e.g. AMI).\n\n5. ACUTE Mechanical cause (e.g. Acute MR 2ry to endocarditis).\n\n6. ACUTE Pulmonary embolism.\n\n7. ABRUPT severe increase in systemic BP (Hypertensive emergency).\n\n8. ARRHYTHMIAS (e.g. AF or Bradyarrhythmias).\n\n9. PREGNANCY & late labor, Physical & emotional stress.\n\nFAMOUS TRIGGERS (CHAMP):\n- C = Acute Coronary syndrome\n- H = Hypertensive emergency\n- A = Arrhythmias\n- M = Acute Mechanical cause\n- P = Acute Pulmonary embolism",
+    rubric: "Must mention at least 5 precipitating factors. Mentioning the CHAMP mnemonic earns bonus. Note that these factors convert compensated HF to decompensated HF and cause refractory HF if not removed.",
+    explanation: "Precipitating factors are acute triggers that destabilize previously compensated heart failure. The CHAMP mnemonic helps remember the five most critical acute triggers.",
+    tags: ["heart-failure", "precipitating-factors"]
+  },
+  {
+    id: "hf-3",
+    question: "What are the manifestations of left-sided heart failure?",
+    modelAnswer: "Manifestations of Left-Sided Heart Failure:\n\n1) Symptoms:\n   - Symptoms of low cardiac output (forward failure)\n   - Symptoms of pulmonary congestion (backward failure, especially PND)\n   - When RVF occurs: Symptoms of pulmonary congestion improve\n\n2) GENERAL SIGNS:\n   - Pulse: Tachycardia (except in patients on Digitalis or BB); Small volume (except in High CO); Pulsus alternans\n   - Skin: Coldness & peripheral cyanosis\n   - Chest: Pleural effusion & Bilateral basal crepitations\n\n3) CARDIAC SIGNS:\n   - Precordial examination: Signs of LV enlargement\n   - Auscultation:\n     * Mitral area: S3 gallop (Flabby myocardium), Pansystolic murmur (Functional MR)\n     * Pulmonary area: Signs of Pulmonary Hypertension\n   - Manifestation of the cause: e.g. Typical chest pain in AMI",
+    rubric: "Must describe forward failure (low CO symptoms) and backward failure (pulmonary congestion). Must mention S3 gallop, pulsus alternans, bilateral basal crepitations. Note that pulmonary congestion improves when RVF develops.",
+    explanation: "Left-sided HF presents with pulmonary congestion (backward) and low output (forward). The S3 gallop is characteristic of volume overload from a flabby myocardium. Pulsus alternans reflects alternating strong and weak ventricular contractions.",
+    tags: ["heart-failure", "left-sided", "clinical"]
+  },
+  {
+    id: "hf-4",
+    question: "What are the manifestations of right-sided heart failure?",
+    modelAnswer: "Manifestations of Right-Sided Heart Failure:\n\n1) Symptoms:\n   - Symptoms of low cardiac output (forward failure)\n   - Symptoms of systemic congestion (backward failure)\n\n2) GENERAL SIGNS:\n   - Pulse: Tachycardia (except in patients on Digitalis or BB); Small volume (except in High CO)\n   - Skin: Coldness & peripheral cyanosis\n   - Neck veins: Congested pulsating neck veins\n   - Liver: Enlarged tender + pulsating + Hepato-jugular reflux\n   - Lower Limbs: Edema & later on ascites\n   - Cardiac Cachexia: Low caloric intake (Anorexia, Nausea, Vomiting & low absorption) due to GIT congestion\n\n3) CARDIAC SIGNS:\n   - Prominent signs of systemic congestion\n   - Signs of the cause\n\nNote: In right-sided heart failure, systemic venous congestion predominates with engorged neck veins, hepatomegaly, and dependent edema.",
+    rubric: "Must mention systemic congestion features (neck vein engorgement, hepatomegaly, edema, ascites). Must mention low CO symptoms. Hepato-jugular reflux and pulsating liver are key differentiators.",
+    explanation: "Right-sided HF causes systemic venous congestion. The hepato-jugular reflux is a classic sign. Cardiac cachexia results from poor absorption due to GI congestion.",
+    tags: ["heart-failure", "right-sided", "clinical"]
+  },
+  {
+    id: "hf-5",
+    question: "What are the complications of heart failure?",
+    modelAnswer: "Complications of Heart Failure:\n\n1. Renal failure\n2. Liver cell failure: due to associated hepatitis C & cardiac cirrhosis\n3. DVT & Pulmonary embolism\n4. Valvular heart disease, e.g. MR\n5. Cardiac cachexia (especially RSHF)\n6. Acute pulmonary edema\n7. Stroke, Syncope\n8. Arrhythmias: atrial & ventricular",
+    rubric: "Must mention at least 5 complications. Renal failure, PE/DVT, arrhythmias, and cardiac cachexia are the most important.",
+    explanation: "HF complications arise from both forward failure (low output causing renal/CNS issues) and backward failure (venous congestion causing liver failure, DVT). Functional MR is a common valvular complication.",
+    tags: ["heart-failure", "complications"]
+  },
+  {
+    id: "hf-6",
+    question: "Compare acute heart failure versus chronic heart failure.",
+    modelAnswer: "Comparison of Acute vs Chronic Heart Failure:\n\n| Feature | Acute HF | Chronic HF |\n|---------|----------|------------|\n| Causes | AMI, Acute Pulmonary Embolism, Acute myocarditis | HTN, Valvular diseases, COPD, DCM |\n| LL edema | Absent | Present |\n| Ventricular dilatation | Absent | Present |\n| Onset | Sudden | Gradual |",
+    rubric: "Must contrast causes, presence/absence of edema, and ventricular dilatation. At least 3 differentiating features required.",
+    explanation: "Acute HF lacks time for compensatory dilatation and edema formation. Chronic HF allows compensatory mechanisms including ventricular remodeling.",
+    tags: ["heart-failure", "acute-vs-chronic"]
+  },
+  {
+    id: "hf-7",
+    question: "Classify acute heart failure.",
+    modelAnswer: "Classification of Acute Heart Failure:\n\nA. ACCORDING TO TIMING:\n1. Acutely decompensated chronic HF\n2. De novo Acute HF\n\nB. ACCORDING TO BLOOD PRESSURE:\n1. Hypertensive AHF\n2. Normotensive AHF\n3. Hypotensive AHF\n\nC. ACCORDING TO HEMODYNAMIC PROFILE:\n\n| | No evidence of congestion | Evidence of congestion |\n|---|---|---|\n| Adequate perfusion | Warm and dry | Warm and wet |\n| Hypoperfusion | Cold and dry | Cold and wet |",
+    rubric: "Must mention the hemodynamic profile classification (warm/dry, warm/wet, cold/dry, cold/wet). Mentioning timing and BP-based classifications earns additional marks.",
+    explanation: "The hemodynamic profile guides acute management: 'warm and wet' needs diuresis, 'cold and wet' needs inotropes + diuresis, 'cold and dry' needs fluid challenge or inotropes.",
+    tags: ["heart-failure", "classification", "acute"]
+  },
+  {
+    id: "hf-8",
+    question: "Enumerate causes of high cardiac output failure.",
+    modelAnswer: "Causes of High Cardiac Output Failure:\n\nA = Anemia, AV fistula, Anxiety, AR\nP = Pyrexia, Pregnancy, Paget's disease, PDA\nE = Exercise, Erythroderma\n\nOthers = Liver cirrhosis, Hyperthyroidism, Beri Beri, Obesity, Iatrogenic (VD drugs)",
+    rubric: "Must mention at least 5 causes. The APE mnemonic earns bonus marks. Anemia and hyperthyroidism are the most commonly tested.",
+    explanation: "High output failure occurs when the heart cannot meet excessive metabolic demands despite normal or increased cardiac output. Initially CO is high but the heart eventually fails from overwork.",
+    tags: ["heart-failure", "high-output"]
+  },
+  {
+    id: "hf-9",
+    question: "Classify chronic heart failure according to Ejection Fraction (EF).",
+    modelAnswer: "Classification of Chronic HF according to EF:\n\n1. HF with reduced EF (HFrEF):\n   - LVEF < 40%\n   - Main causes: AMI, DCM, HTN can be a cause\n\n2. HF with preserved EF (HFpEF):\n   - LVEF > 50%\n   - Main causes: HTN, HCM, RCM, CP\n\n3. HF with improved EF (HFimpEF):\n   - Baseline LVEF < 40%, with a 10-point increase from baseline LVEF, and a second measurement of LVEF > 40%",
+    rubric: "Must define all three categories with their EF cut-offs. Must mention main causes for HFrEF and HFpEF. HFimpEF definition must include the 10-point improvement criterion.",
+    explanation: "This classification is important because treatment differs: HFrEF has proven mortality-reducing therapies (ACE-I, BB, MRA, ARNI), while HFpEF treatment focuses on symptom control and comorbidity management.",
+    tags: ["heart-failure", "classification", "ejection-fraction"]
+  },
+  {
+    id: "hf-10",
+    question: "Describe the NYHA classification of heart failure.",
+    modelAnswer: "NYHA Classification of Heart Failure:\n\nClass I: No limitations of physical activity. No symptoms of CHF.\n\nClass II: Slight limitations of moderate or prolonged physical activity (symptoms after climbing 2 flights of stairs or heavy lifting). Comfortable at rest.\n\nClass III: Marked limitations of physical activity (symptoms during daily activity like dressing, walking across rooms). Comfortable only at rest.\n\nClass IV: Confined to bed, discomfort during any form of physical activity. Symptoms at rest.",
+    rubric: "Must describe all 4 classes. Must mention that Class I = no symptoms, Class IV = symptoms at rest. Activity limitation progression is key.",
+    explanation: "NYHA classification is a functional classification based on symptoms and activity tolerance. It can change over time with treatment or disease progression.",
+    tags: ["heart-failure", "NYHA", "classification"]
+  },
+  {
+    id: "hf-11",
+    question: "Enumerate the stages of heart failure according to its progression.",
+    modelAnswer: "Stages of HF according to progression:\n\nStage A: High risk of developing heart failure (pre-existing arterial hypertension, coronary artery disease, DM). No structural cardiac changes or symptoms.\n\nStage B: Structural damage of the heart (infarct scars, dilatations, hypertrophy). No signs or symptoms of heart failure. NYHA I.\n\nStage C: Structural damage of the heart. Signs or symptoms of heart failure. NYHA I, II, III, IV.\n\nStage D: Terminal stage heart failure. NYHA IV.",
+    rubric: "Must describe all 4 stages. Stage A = at risk only, Stage B = structural disease but asymptomatic, Stage C = symptomatic, Stage D = end-stage. Must correlate with NYHA classes.",
+    explanation: "This ACC/AHA staging system emphasizes disease progression and is meant to complement (not replace) the NYHA functional classification. Stages A and B represent pre-HF phases.",
+    tags: ["heart-failure", "staging", "progression"]
+  },
+  {
+    id: "hf-12",
+    question: "Enumerate the bad prognostic criteria of heart failure.",
+    modelAnswer: "Bad Prognostic Criteria of HF:\n\nClinical:\n- NYHA 3 or 4\n- Resting Tachycardia\n- SBP < 100 mmHg\n\nBiochemical:\n- Increased BNP\n- Decreased Kidney functions\n\nEchocardiographic:\n- Decreased EF\n\nOther:\n- Anemia\n- Arrhythmias\n- Associated DM",
+    rubric: "Must mention at least one criterion from clinical, biochemical, and echocardiographic categories. NYHA class, low SBP, and low EF are the strongest prognosticators.",
+    explanation: "Low SBP in HF is paradoxically a poor prognostic sign (unlike the general population). Advanced NYHA class and reduced EF are consistent markers of poor outcome.",
+    tags: ["heart-failure", "prognosis"]
+  },
+  {
+    id: "hf-13",
+    question: "What is the importance of Natriuretic Peptides (BNP & NT-proBNP) in diagnosis of heart failure?",
+    modelAnswer: "Natriuretic Peptides in HF Diagnosis:\n\nNT-proBNP is the precursor of BNP. Their levels help to differentiate HF from other causes of dyspnea.\n\nIn ACUTE setting (patients with acute dyspnea):\n- BNP < 100 ng/L: HF unlikely\n- BNP 100-500 ng/L: Grey zone — HF confirmation by imaging (echocardiography)\n- BNP > 500 ng/L: HF likely — confirmation by imaging\n\nNT-proBNP in acute setting:\n- < 300 ng/L: HF unlikely\n- Age < 50y: > 450 ng/L = HF likely\n- Age 50-75y: > 900 ng/L = HF likely\n- Age > 75y: > 1800 ng/L = HF likely\n\nIn NON-ACUTE setting (patients with mild symptoms):\n- BNP 35-150 ng/L: Grey zone\n- BNP > 150 ng/L: HF likely — confirmation by imaging",
+    rubric: "Must mention the role of BNP/NT-proBNP in differentiating HF from other causes of dyspnea. Must give the key cut-off values for acute setting (100 and 500 for BNP; 300 for NT-proBNP). Mention age-stratified NT-proBNP values for bonus.",
+    explanation: "BNP and NT-proBNP are released in response to ventricular wall stretch. They are most useful in the acute setting to rapidly distinguish cardiac from non-cardiac dyspnea.",
+    tags: ["heart-failure", "diagnosis", "BNP"]
+  },
+  {
+    id: "hf-14",
+    question: "Enumerate cardiac and non-cardiac causes of elevated natriuretic peptides.",
+    modelAnswer: "Causes of Elevated Natriuretic Peptides:\n\nCARDIAC CAUSES:\n- HF, LVH, ACS\n- Cardiomyopathy (HCM, RCM)\n- Myocarditis\n- Pulmonary embolism, Pulmonary HTN\n- Valvular or congenital heart disease\n- Tachyarrhythmias (Atrial or Ventricular)\n- DC cardioversion, ICD shock\n- Heart contusion\n- Surgery involving the heart\n\nNON-CARDIAC CAUSES:\n- Advanced age\n- Stroke (Ischemic, SAH)\n- Renal dysfunction\n- Liver cirrhosis with ascites\n- COPD\n- Paraneoplastic syndrome\n- Severe infections & burns\n- Anemia\n- Metabolic crises (e.g. DKA)",
+    rubric: "Must list at least 4 cardiac and 4 non-cardiac causes. The distinction between cardiac and non-cardiac causes is essential for accurate interpretation.",
+    explanation: "Elevated BNP is not specific to HF — many cardiac and non-cardiac conditions can raise levels. Age and renal dysfunction are the most common non-cardiac causes.",
+    tags: ["heart-failure", "BNP", "differential"]
+  },
+  {
+    id: "hf-15",
+    question: "Describe the treatment strategy for heart failure with reduced ejection fraction (HFrEF).",
+    modelAnswer: "Treatment Strategy for HFrEF:\n\nStep 1: Patient with symptomatic HFrEF (NYHA class II-IV) → Start therapy with ACE-I and Beta-blocker (up-titrate to maximum tolerated evidence-based doses).\n\nStep 2: Add Mineralocorticoid Receptor Antagonist (MRA) (up-titrate to maximum tolerated evidence-based dose).\n\nStep 3: If still symptomatic:\n- If able to tolerate ACE-I: Consider ARNI to replace ACE-I\n- If sinus rhythm with QRS duration > 130 msec: Evaluate for Cardiac Resynchronization Therapy (CRT)\n- If sinus rhythm, LVEF ≤ 35% despite optimal medical therapy, or history of symptomatic VT/VF, HR ≤ 70 bpm: Consider Ivabradine\n\nStep 4: Resistant symptoms:\n- Consider Digoxin or H-ISDN\n- Consider LVAD or Heart transplantation\n\nThroughout all steps: Diuretics to relieve symptoms and signs of congestion.\n\nIf LVEF ≤ 35% with ACE-I (or ARB): Consider ICD for primary prevention.",
+    rubric: "Must describe the stepwise approach: ACE-I + BB first, then add MRA, then ARNI/CRT/Ivabradine, then advanced therapies. Must mention diuretics for congestion. Stepwise escalation is key.",
+    explanation: "This evidence-based stepwise approach ensures that proven mortality-reducing therapies are optimized before adding adjunctive treatments. ARNI (sacubitril/valsartan) replaces ACE-I in persistently symptomatic patients.",
+    tags: ["heart-failure", "HFrEF", "treatment"]
+  },
+  {
+    id: "hf-16",
+    question: "Describe the treatment of diastolic heart failure (HFpEF).",
+    modelAnswer: "Treatment of Diastolic HF (HFpEF):\n\nLIFESTYLE MANAGEMENT:\n- Exercise training: improves exercise capacity & quality of life\n- Diet control: salt restriction\n- Weight loss\n\nTREATMENT OF THE CAUSE & ASSOCIATED COMORBIDITIES:\n- Hypertension\n- Myocardial ischemia\n- Arrhythmias (e.g. AF)\n- Diabetes, Dyslipidemia\n- Obesity, COPD\n\nCOMMON PRECIPITATING CONDITIONS TO AVOID:\n- Abrupt severe elevations in systemic BP\n- Arrhythmias\n\nPHARMACOLOGIC THERAPY:\n- MRA: For patients with clear evidence of HFpEF (including elevated BNP) who can be carefully monitored for changes in serum K & renal functions.\n- Diuretics: Especially Loop diuretics for volume overload (care must be taken to avoid volume depletion & excessive preload reduction). Torasemide (long-acting loop diuretic with anti-aldosterone effect) is a good option.\n- ACE-I / ARB: No evidence from randomized clinical studies that they directly improve overall morbidity or mortality in HFpEF.\n- Beta blockers: Not used in HFpEF in the absence of an alternative indication (e.g. angina).\n- Digoxin: Not used in HFpEF except for AF with poorly controlled ventricular rate.\n\nAVOID: Excessive preload reduction — Diuretics or venodilators (e.g. Nitrates) must be used with caution.",
+    rubric: "Must emphasize that there is no proven mortality-reducing therapy for HFpEF. Must mention diuretics cautiously, MRA for selected patients, and treatment of comorbidities. Must mention avoiding excessive preload reduction.",
+    explanation: "Unlike HFrEF, HFpEF lacks proven mortality-reducing drugs. Treatment focuses on symptom relief, managing comorbidities, and avoiding excessive diuresis that can compromise stroke volume in a stiff ventricle.",
+    tags: ["heart-failure", "HFpEF", "treatment"]
+  },
+  {
+    id: "hf-17",
+    question: "Define refractory heart failure and describe its causes and treatment.",
+    modelAnswer: "Refractory Heart Failure (Stage D = Advanced HF):\n\nDefinition: Persistence of symptoms of HF (NYHA class III or IV) or repeated exacerbations of HF despite optimal treatment with drugs of proven efficacy (GDMT).\nRequires: Advanced therapies (consideration for mechanical circulatory support or transplant).\n\nCAUSES OF REFRACTORY HF:\n1. Presence of a Mechanical factor hindering cardiac function: e.g. Severe valvular disease, Pericardial effusion, Constrictive pericarditis\n2. Persistence of the CAUSE: e.g. Uncontrolled Hypertension\n3. Presence of a precipitating factor: e.g. Chest infection\n4. Improper management: e.g. Inadequate rest, Inadequate salt restriction & digitalis\n5. End-stage HF: e.g. Advanced DCM\n\nTREATMENT OF REFRACTORY HF:\n1. Removal of the Mechanical factor: e.g. surgical treatment of valvular disease\n2. Treatment of the CAUSE: e.g. proper control of Hypertension\n3. Removal of the precipitating factor: e.g. proper antibiotics for chest infection\n4. Proper management: Adequate rest, Adequate salt restriction, Adequate digitalis\n5. End-stage HR treatment:\n   A) DIURETICS: combination e.g. Loop diuretic & K-sparing diuretic\n   B) VASODILATORS & INOTROPES: Combination of IV vasodilators (e.g. Na nitroprusside) and potent IV inotrope (e.g. dopamine or dobutamine)\n   C) INTERVENTIONAL HF THERAPY:\n      - Fluid removal: Ultrafiltration\n      - Electrical therapy: ICD, CRT\n      - Mechanical Circulatory Support (MCS): IABP, CAFA, LVAD, BIVAD, Venoarterial ECMO\n   D) CARDIAC TRANSPLANTATION: End-stage HF with severe symptoms, No remaining alternative treatment options",
+    rubric: "Must define refractory HF (symptoms despite GDMT). Must list at least 3 causes and describe the treatment approach including interventional and transplant options. Mechanical circulatory support options (LVAD, IABP, ECMO) must be mentioned.",
+    explanation: "Refractory HF requires systematic evaluation for reversible causes before declaring end-stage. Mechanical circulatory support bridges patients to transplant or serves as destination therapy.",
+    tags: ["heart-failure", "refractory", "advanced"]
+  },
+  {
+    id: "hf-18",
+    question: "Describe the treatment of Acute Heart Failure (AHF).",
+    modelAnswer: "Treatment of Acute Heart Failure (AHF):\n\nBased on hemodynamic profile assessment:\n\n1. 'WET AND WARM' patient (typically elevated or normal systolic BP — 95% of all AHF patients):\n   - Adjust oral therapy\n   - Vasodilator + Diuretic\n   - Consider Ultrafiltration if diuretic resistance\n\n2. 'DRY AND WARM' patient (Compensated):\n   - No specific treatment needed\n   - Consider reducing diuretic dose\n\n3. 'DRY AND COLD' patient (Hypovolemic — 8% of all AHF patients):\n   - Consider fluid challenge\n   - Consider inotropic agent if still hypoperfused\n\n4. 'WET AND COLD' patient (Systolic BP < 90 mmHg):\n   Two subtypes:\n   A) Vascular type (fluid redistribution — Hypertension predominates):\n      - Inotropic agent\n      - Consider vasopressor in refractory cases\n      - Diuretic (when perfusion corrected)\n      - Consider mechanical circulatory support if no response to drugs\n   B) Cardiac type (fluid accumulation — Congestion predominates):\n      - Vasodilators\n      - Diuretics\n      - Consider inotropic agent in refractory cases\n      - Consider mechanical circulatory support if no response to drugs",
+    rubric: "Must classify treatment by hemodynamic profile. Must differentiate 'wet and warm' (most common, needs vasodilators + diuretics) from 'wet and cold' (needs inotropes). Must mention the two subtypes of cold-wet patients.",
+    explanation: "AHF treatment is guided by the hemodynamic profile. The majority are 'wet and warm' and respond to vasodilators and diuretics. Cold patients need inotropes. Mechanical support is reserved for drug-refractory cases.",
+    tags: ["heart-failure", "acute", "treatment"]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

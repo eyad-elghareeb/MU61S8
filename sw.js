@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-0fed32fe113b';
+const CACHE_VERSION = 'mu61-quiz-585326438e8d';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -190,6 +190,27 @@ var PRECACHE_REL_PATHS = [
   'med/past-years/61st-mid.html',
   'med/past-years/index.html',
   'med/past-years/Misc.html',
+  'med/written/cardio-past-years.html',
+  'med/written/cardiology-written-bylecture/arrhythmia.html',
+  'med/written/cardiology-written-bylecture/cardiology-cases.html',
+  'med/written/cardiology-written-bylecture/heart-failure.html',
+  'med/written/cardiology-written-bylecture/index.html',
+  'med/written/cardiology-written-bylecture/infective-endocarditis.html',
+  'med/written/cardiology-written-bylecture/ischemic-heart-diseases.html',
+  'med/written/cardiology-written-bylecture/pericardial-diseases.html',
+  'med/written/cardiology-written-bylecture/systemic-hypertension.html',
+  'med/written/cardiology-written-bylecture/valvular-heart-diseases.html',
+  'med/written/chest-past-years.html',
+  'med/written/chest-written-bylecture/bronchial-asthma.html',
+  'med/written/chest-written-bylecture/chest-cases.html',
+  'med/written/chest-written-bylecture/copd.html',
+  'med/written/chest-written-bylecture/index.html',
+  'med/written/chest-written-bylecture/pleural-diseases.html',
+  'med/written/chest-written-bylecture/pneumonia.html',
+  'med/written/chest-written-bylecture/respiratory-function-tests-and-failure.html',
+  'med/written/chest-written-bylecture/suppurative-lung-syndrome.html',
+  'med/written/chest-written-bylecture/tb.html',
+  'med/written/index.html',
   'ped/by-chapter/chapter-1-cardiology.html',
   'ped/by-chapter/chapter-2-chest.html',
   'ped/by-chapter/chapter-3-emergency.html',

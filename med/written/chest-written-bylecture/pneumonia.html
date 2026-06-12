@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pneumonia - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "pneumonia-written",
+  title: "Pneumonia - Written Assessment",
+  description: "Answer the pneumonia questions in your own words.",
+  icon: "🫁"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "pneum-q1",
+    "question": "Anatomical Classification of pneumonia?",
+    "modelAnswer": "Lobar pneumonia: Localized inflammation of a single entire lobe\nBronchopneumonia: Diffuse bilateral patchy inflammation of multiple lobules\nInterstitial pneumonia: Inflammation of the interstitial tissue in between the alveoli",
+    "tags": [
+      "pneumonia",
+      "classification"
+    ],
+    "rubric": "Must mention at least the main types/classifications with brief description. Accept any reasonable classification. Partial credit for incomplete classification.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q2",
+    "question": "Causes of pneumonia?",
+    "modelAnswer": "1) Infective (Most Common):\nBACTERIA: Gm+ve cocci (St. pneumoniae, Staph. aureus, St. pyogenes), Gm-ve bacilli (H. influenzae, Klebsiella, Pseudomonas, Legionella), Anaerobes, Mycobacterium TB\nViruses: Influenza virus, Adenovirus, Varicella, RSV, CMV\nMycoplasma, Chlamydia, Rickettsia\nFungi: e.g. Histoplasma, Candida\nParasites: e.g. Filaria, Toxoplasma, Ascaris\n\nMode of infection:\n- Community-acquired: Strept. pneumoniae most common\n- Hospital-acquired (Nosocomial): Staph. aureus most common, Klebsiella, Pseudomonas, Anaerobes\n- Aspiration pneumonia: Anaerobes most common\n- Pneumonia in immunocompromised: Pneumocystis carinii most common\n\n2) Non-infective (Least common):\nPhysical: Radiation pneumonitis\nChemical: Chemical toxins\nImmunological: SLE\nAllergic: Loffler's syndrome",
+    "tags": [
+      "pneumonia",
+      "causes"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q3",
+    "question": "Hospital-acquired (Nosocomial) pneumonia?",
+    "modelAnswer": "Definition: Pneumonia occurring after 48-72h of hospital admission.\nCausative organisms:\n- Early onset HAP (first 5 days): Strept. pneumoniae, Hemophilus influenzae, Moraxella catarrhalis\n- Late onset HAP (>5 days): Gram-Ve organisms (Pseudomonas aerogenosa, Klebsiella pneumonia)\n- Aspiration pneumonia in HAP: mixed organisms and anaerobes\n- HAP in ICU: Gram-ve bacilli (Pseudomonas), Staph aureus, Atypical organisms (legionella)\n\nClinical criteria: New or progressive lung infiltrate + Usually 2 of: Fever, Purulent sputum, Leukocytosis",
+    "tags": [
+      "pneumonia",
+      "HAP",
+      "nosocomial"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q4",
+    "question": "Clinical picture of Lobar Pneumonia?",
+    "modelAnswer": "A. Symptoms:\nGeneral: Acute onset high fever with headache, malaise & rigors. Somnolence & confusion in elderly. Headache & convulsions in children.\nChest: Dyspnea, Pleuritic stitching pain, Upper abdominal pain & rigidity (outer pleura inflammation simulating acute abdomen), Cough (dry early → productive → rusty sputum during hepatization → watery during resolution)\n\nB. Signs:\nGeneral: Fever with or without rigor, Tachypnea & tachycardia (RR:HR may be 1:2, normal 1:4), Herpes labialis (especially pneumococcal). Plus 3 colors: White (Pale toxic facies/flushing), Blue (Cyanosis in severe cases), Yellow (Jaundice from hemolysis)\nChest (Signs of consolidation & pleurisy):\n- Inspection: Shape normal, Movements limited on affected side\n- Palpation: Trachea & mediastinum central, TVF Increased\n- Percussion: Dullness on affected area (consolidation), Tenderness (pleurisy)\n- Auscultation: Bronchial breathing, Crepitations (Fine early, Medium during hepatization, Coarse during resolution), Pleural rub usually present",
+    "tags": [
+      "pneumonia",
+      "clinical picture"
+    ],
+    "rubric": "Must describe symptoms and signs. Accept any reasonable clinical feature. Full credit for covering both symptoms and signs. Partial credit for covering only one category.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q5",
+    "question": "Enumerate Complications of Pneumonia?",
+    "modelAnswer": "General: Toxic myocarditis (may lead to HF), Bacteremia (meningitis, peritonitis, suppurative arthritis), Septicemia (DIC, ARDS)\nChest: Unresolving pneumonia (>2 weeks), Lung abscess, Pleural: Pleural effusion, Empyema",
+    "tags": [
+      "pneumonia",
+      "complications"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q6",
+    "question": "Definition & causes of Unresolving Pneumonia?",
+    "modelAnswer": "Definition: Pneumonia that persists more than 2 weeks.\nCauses:\n1- Inadequate treatment\n2- Underlying lung disease (bronchiectasis, bronchial carcinoma)\n3- TB pneumonia\n4- Decreased immunity (DM, Corticosteroids, AIDS, Malignancies especially lymphomas, Malnutrition)",
+    "tags": [
+      "pneumonia",
+      "unresolving"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q7",
+    "question": "Investigations of Pneumonia?",
+    "modelAnswer": "1- Laboratory: Sputum C&S (Pneumococci = Gm+ve diplococci), Blood picture (Leukocytosis with shift to left), Blood culture (Pneumococci may be detected), ABG (Hypoxia & Hypocapnia), Investigations for complications (Culture of aspirated pleural fluid)\n2- Imaging: CXR (Homogenous opacity unilateral, usually involving one whole lobe; Complications e.g. pleural effusion, lung abscess), CT",
+    "tags": [
+      "pneumonia",
+      "investigations"
+    ],
+    "rubric": "Must mention at least the requested number of investigations with expected findings where applicable. Partial credit for investigations without findings or fewer items.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q8",
+    "question": "Markers of severe pneumonia?",
+    "modelAnswer": "IDSA/ATS criteria for severe CAP:\nMajor criteria: Septic shock/need for vasopressors, Mechanical ventilation\nMinor criteria: Confusion, Body temperature < 36°C, Hypotension requiring fluid resuscitation, Respiratory rate ≥ 30/min, PaO2/FIO2 ≤ 250, Leukopenia (WBC < 4,000/mm3), Thrombocytopenia (platelets < 100,000/mm3), BUN ≥ 20 mg/dL, Multilobar infiltrates\nInterpretation: Severe CAP = one major criterion or >3 minor criteria",
+    "tags": [
+      "pneumonia",
+      "severity",
+      "CAP"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q12",
+    "question": "Criteria of Friedlander's pneumonia?",
+    "modelAnswer": "Affect: Apical Zones (DD of apical lesions)\nTendency to: Abscess formation → empyema\nCharacteristically: Viscid, purulent, blood-stained sputum\nTreatment: Aminoglycosides or Cephalosporins",
+    "tags": [
+      "pneumonia",
+      "Klebsiella",
+      "Friedlander"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q13",
+    "question": "Criteria of Legionnaire's disease?",
+    "modelAnswer": "Occurs in: Outbreaks or sporadically\nSpreads in: Places with contaminated cooling systems\nClinical picture: General (gradual onset with fever & rigors), Chest (cough dry then productive, dyspnea), GIT (Nausea, vomiting, watery diarrhea), Heart (myocarditis), Neurological (mental confusion), Renal (ARF)\nInvestigations: CXR (Lobar consolidation or bilateral patchy opacities), Sputum (Gimenez stain), Serology (Immunofluorescent antibody), Hyponatremia (SIADH)\nTreatment: Clarithromycin or Ciprofloxacin, Rifampicin",
+    "tags": [
+      "pneumonia",
+      "Legionella"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q14",
+    "question": "Discuss atypical pneumonia?",
+    "modelAnswer": "Causative organisms: MYCOPLASMA, Chlamydia, Rickettsiae\nClinical picture: Onset more gradual with mild fever. Chest: Cough (dry, may be productive) & Dyspnea, Minimal physical signs despite severe radiological signs. Extrapulmonary: Fatigue, headache, myalgias; Skin: erythema multiforme; Blood: hemolytic anemia; Neurological: meningitis & encephalitis\nInvestigations: CXR - Severe abnormalities despite minimal physical chest signs, Bilateral patchy opacities or GGA\nTreatment: Clarithromycin or Tetracycline",
+    "tags": [
+      "pneumonia",
+      "atypical"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q15",
+    "question": "Define ventilator acquired pneumonia (VAP)?",
+    "modelAnswer": "Pneumonia that occurs ≥ 48-72 hrs after tracheal intubation.",
+    "tags": [
+      "pneumonia",
+      "VAP"
+    ],
+    "rubric": "Must provide a clear definition including key components. Accept reasonable variations in wording. Partial credit for incomplete definitions.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q16",
+    "question": "Enumerate risk factors of VAP?",
+    "modelAnswer": "Reintubation, Supine position, Impaired cough, Oropharyngeal colonization, Presence of NG/OG tubes and enteral feeding, Cross contamination by staff",
+    "tags": [
+      "pneumonia",
+      "VAP",
+      "risk factors"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  },
+  {
+    "id": "pneum-q19",
+    "question": "Define Recurrent Pneumonia and its causes?",
+    "modelAnswer": "Definition: Two or more separate attacks of pneumonia with complete resolution for at least 1 month between attacks during one year.\nCauses:\n1- Recurrent at the same site: Endobronchial tumour, Endobronchial foreign body, Bronchiectasis\n2- Recurrent at different site: Bilateral bronchiectasis, Cystic fibrosis, Immunosuppression",
+    "tags": [
+      "pneumonia",
+      "recurrent"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Pneumonia is a common respiratory infection requiring systematic approach to classification, diagnosis, and management."
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

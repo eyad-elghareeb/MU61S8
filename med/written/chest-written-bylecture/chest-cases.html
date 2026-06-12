@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest Cases - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "chest-cases",
+  title: "Chest Cases - Written Assessment",
+  description: "Answer the chest cases questions in your own words.",
+  icon: "🩺"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "chest-cases-q1",
+    "question": "Patient with FAHM, chest pain, cough, expectorant with large foetid big amount of sputum increased on lying on RT side.\nA) What is your diagnosis?\nB) C/P & investigation?\nC) TTT you suggest?",
+    "modelAnswer": "A) Diagnosis: Lung abscess of LT side\n\nB) Clinical Picture & Investigation:\nSee Lung Abscess clinical picture and investigations under Suppurative Lung Syndrome topic.\n\nC) Treatment:\nSee Lung Abscess treatment under Suppurative Lung Syndrome topic.",
+    "rubric": "Part A: Must identify lung abscess. Accept left-sided lung abscess. Part B: Must describe key clinical features and relevant investigations. Accept any reasonable clinical and investigative approach. Part C: Must outline treatment including drainage, antibiotics, and surgical options. Partial credit for incomplete treatment plan.",
+    "explanation": "Foetid sputum increasing on lying on the healthy side is characteristic of lung abscess. The postural relationship helps differentiate from bronchiectasis.",
+    "tags": [
+      "chest cases",
+      "lung abscess",
+      "suppurative"
+    ]
+  },
+  {
+    "id": "chest-cases-q2",
+    "question": "Patient with FAHM, dyspnea, chest pain, cough, expectorant of rusty blood-stained sputum.\nA) What is your diagnosis?\nB) C/P & investigation?\nC) TTT you suggest?",
+    "modelAnswer": "A) Diagnosis: Pneumonia\n\nB) Clinical Picture & Investigation:\nSee Lobar Pneumonia clinical picture and investigations under Pneumonia topic.\n\nC) Treatment:\nSee Pneumonia treatment under Pneumonia topic.",
+    "rubric": "Part A: Must identify pneumonia. Accept lobar pneumonia. Part B: Must describe key clinical features and relevant investigations. Part C: Must outline antibiotic and supportive treatment. Partial credit for incomplete approach.",
+    "explanation": "Rusty blood-stained sputum is the classic finding in lobar pneumonia during the stage of hepatization.",
+    "tags": [
+      "chest cases",
+      "pneumonia"
+    ]
+  },
+  {
+    "id": "chest-cases-q3",
+    "question": "A 32 years old patient with history of community acquired pneumonia without improvement. On examination: diminish breath sound and dullness of LT lung.\nA) What is your diagnosis?\nB) C/P & investigation?\nC) TTT you suggest?",
+    "modelAnswer": "A) Diagnosis: Post-pneumonic effusion\n\nB) Clinical Picture & Investigation:\nSee Pleural Effusion clinical picture and investigations under Pleural Diseases topic.\n\nC) Treatment:\nSee Pleural Effusion treatment under Pleural Diseases topic.",
+    "rubric": "Part A: Must identify post-pneumonic pleural effusion. Accept pleural effusion as complication of pneumonia. Part B: Must describe clinical features and investigations including thoracocentesis. Part C: Must outline treatment including aspiration and treatment of underlying cause.",
+    "explanation": "Unresolved pneumonia with dullness and diminished breath sounds suggests complicated parapneumonic effusion or empyema.",
+    "tags": [
+      "chest cases",
+      "pleural effusion",
+      "pneumonia"
+    ]
+  },
+  {
+    "id": "chest-cases-q4",
+    "question": "A 25 y. old man presented with generalized edema, pallor and a blood pressure of 170/110. He also had chronic cough of 12 years duration with expectoration of more than glassful of mucopurulent sputum during exacerbations of the illness.\nA) How to investigate this case?\nB) How to investigate the possible relationship between the presenting features and its original disease condition?\nC) Discuss the lines of management?",
+    "modelAnswer": "A) Diagnosis: A case of suppurative lung disease complicated by amyloidosis kidney\n\nA) Investigations:\n- For the suppurative lung disease: CXR, CT chest, sputum C&S\n- For the renal complication: Urine analysis, renal function tests, renal biopsy\n\nB) Relationship investigation:\n- The generalized edema, pallor, and hypertension are due to renal amyloidosis secondary to chronic suppurative lung disease\n- Renal biopsy would show amyloid deposition\n\nC) Lines of management:\n- Treatment of the underlying suppurative lung disease\n- Management of renal amyloidosis\n- Management of hypertension and edema",
+    "rubric": "Part A: Must outline investigations for both the lung disease and renal complications. Part B: Must explain the link between chronic suppuration and secondary amyloidosis. Part C: Must address treatment of both the underlying cause and complications. Partial credit for addressing only one aspect.",
+    "explanation": "Chronic suppurative lung disease can lead to secondary amyloidosis, causing nephrotic syndrome with edema, hypoalbuminemia, and hypertension.",
+    "tags": [
+      "chest cases",
+      "suppurative",
+      "amyloidosis"
+    ]
+  },
+  {
+    "id": "chest-cases-q5",
+    "question": "A 24 y. old male complained of cough with blood streaked sputum, fever & chills of 2 days duration. There was stitching pain in the right infrascapular area. Physical findings revealed dullness and crepitations in the right infrascapular area.\nA) What is the probable diagnosis?\nB) How would you investigate such case?\nC) What is your suggested treatment?",
+    "modelAnswer": "A) Probable diagnosis: Most probably a case of lobar pneumonia\n\nB) Investigations:\nSee Pneumonia investigations\n\nC) Treatment:\nSee Pneumonia treatment",
+    "rubric": "Part A: Must identify lobar pneumonia. Accept pneumonia of right lower lobe. Part B: Must outline relevant investigations. Part C: Must outline appropriate antibiotic and supportive treatment.",
+    "explanation": "Fever, chills, stitching pleuritic pain, dullness and crepitations in a localized area are classic for lobar pneumonia.",
+    "tags": [
+      "chest cases",
+      "pneumonia"
+    ]
+  },
+  {
+    "id": "chest-cases-q6",
+    "question": "A 65 y. old engineer used to smoke 40 cigarettes/day for last 40 years. He presented with gradually increasing shortness of breath & coughing of blood streaked sputum. On examination, he had central cyanosis & 2nd degree clubbing. His blood pressure was 130/90, pulse rate was 90/min, regular & he has afebrile. Chest examination revealed respiratory rate of 20/min, harsh vesicular breathing with expiratory bronchi on both lungs except on the Lt. infraclavicular area where bronchial breathing was audible.\nA) What are the possible causes of his complaint?\nB) What investigations would you order for this patient?\nC) How would you treat this patient?",
+    "modelAnswer": "A) Possible causes: Pneumonia with underlying bronchogenic carcinoma\n\nB) Investigations:\n- CXR, CT chest, sputum cytology, bronchoscopy with biopsy\n\nC) Treatment:\n- Treatment of pneumonia\n- Staging and management of bronchogenic carcinoma",
+    "rubric": "Part A: Must identify both pneumonia and underlying bronchogenic carcinoma. The localized bronchial breathing in a heavy smoker suggests underlying malignancy. Part B: Must include investigations for both pneumonia and malignancy. Part C: Must address treatment of both conditions.",
+    "explanation": "A heavy smoker with hemoptysis, clubbing, and localized bronchial breathing likely has bronchogenic carcinoma with post-obstructive pneumonia.",
+    "tags": [
+      "chest cases",
+      "bronchogenic carcinoma",
+      "pneumonia"
+    ]
+  },
+  {
+    "id": "chest-cases-q7",
+    "question": "A 55 y. old male, smoker with a long history of productive cough and exertional dyspnea, presented to the emergency room with sudden onset of pain at the right side of the chest that increases with breathing. He also complained of increasing dyspnea. O/E he was in respiratory distress with mediastinal shift to the left.\nA) What's your diagnosis?\nB) What are the expected physical signs on local chest ex.?\nC) What's the single immediate inv. to confirm the diagnosis?\nD) What's your management?",
+    "modelAnswer": "A) Diagnosis: Pneumothorax with pleurisy → pleural effusion\n\nB) Expected physical signs:\nSee Pneumothorax signs under Pleural Diseases topic\n\nC) Single immediate investigation: Chest X-ray\n\nD) Management:\nSee Pneumothorax treatment under Pleural Diseases topic",
+    "rubric": "Part A: Must identify pneumothorax. Accept spontaneous pneumothorax in COPD patient. Part B: Must describe expected chest signs. Part C: Must identify CXR as the immediate investigation. Part D: Must outline appropriate management.",
+    "explanation": "Sudden chest pain with dyspnea and mediastinal shift in a COPD patient is classic for spontaneous pneumothorax from ruptured bullae.",
+    "tags": [
+      "chest cases",
+      "pneumothorax",
+      "COPD"
+    ]
+  },
+  {
+    "id": "chest-cases-q8",
+    "question": "A 25 y. old male felt acute stitching pain in the left side of the chest while driving a bicycle, followed shortly by marked dyspnea. He presented himself to the doctor, who discovered that the left side of the chest is larger than the right and shows decreased air entry.\nA) What is the probable diagnosis?\nB) How would you investigate such case?\nC) What is your suggested treatment?",
+    "modelAnswer": "A) Probable diagnosis: Most probably a case of open pneumothorax mostly due to ruptured bleb\n\nB) Investigations:\nSee Pneumothorax investigations under Pleural Diseases topic\n\nC) Treatment:\nSee Pneumothorax treatment under Pleural Diseases topic",
+    "rubric": "Part A: Must identify pneumothorax. Accept spontaneous pneumothorax or open pneumothorax. Part B: Must outline investigations. Part C: Must outline appropriate management.",
+    "explanation": "Acute stitching chest pain during exertion with decreased air entry and larger hemithorax in a young male is classic for primary spontaneous pneumothorax.",
+    "tags": [
+      "chest cases",
+      "pneumothorax"
+    ]
+  },
+  {
+    "id": "chest-cases-q9",
+    "question": "A 60 y. old male on oral treatment for diabetes got a sudden sense of coldness and chilling, followed shortly by the development of pyrexia. Next day cough started to appear, increased rapidly in severity, and became painful. By the fourth day, he became markedly ill, dyspneic & the cough became very distressing, rusty sputum started to appear and increased progressively. Examination on the 6th day revealed 38°C, 110/70, 110/min. pulse, marked dullness on the right lung base with decreased air entry and medium sized consonating crepitation. The WBC was 1400/min.\nA) What is the probable diagnosis?\nB) How would you investigate such case?\nC) What is your suggested treatment?",
+    "modelAnswer": "A) Probable diagnosis: Most probably, it's a case of lobar pneumonia complicated by pleurisy (immunocompromised pt)\n\nB) Investigations:\nSee Pneumonia investigations\n\nC) Treatment:\nSee Pneumonia treatment with attention to immunocompromised status",
+    "rubric": "Part A: Must identify lobar pneumonia. Note the immunocompromised status (diabetic). Part B: Must outline investigations including sputum culture and CXR. Part C: Must outline treatment with consideration for diabetic patient.",
+    "explanation": "The classic progression from rigor to fever to productive cough with rusty sputum, consolidation signs, and leukocytosis is pathognomonic for lobar pneumonia. Diabetes is a predisposing factor.",
+    "tags": [
+      "chest cases",
+      "pneumonia",
+      "diabetes"
+    ]
+  },
+  {
+    "id": "chest-cases-q10",
+    "question": "A 60 years old male with COPD with peripheral edema and tender liver.\nA) What is the diagnosis?\nB) C/P and investigation?\nC) TTT of case?",
+    "modelAnswer": "A) Diagnosis: (COPD with RVF) Cor pulmonale\n\nB) Clinical Picture & Investigation:\nSee COPD and Cor pulmonale sections\n\nC) Treatment:\n- Treatment of COPD\n- Treatment of right ventricular failure\n- Treatment of cor pulmonale",
+    "rubric": "Part A: Must identify cor pulmonale (COPD with RVF). Part B: Must describe clinical features and investigations for both COPD and RVF. Part C: Must address treatment of both conditions.",
+    "explanation": "Peripheral edema and tender hepatomegaly in a COPD patient indicate right ventricular failure due to cor pulmonale.",
+    "tags": [
+      "chest cases",
+      "COPD",
+      "cor pulmonale"
+    ]
+  },
+  {
+    "id": "chest-cases-q11",
+    "question": "Patient 65 years old heavy smoker suffer from cough & dyspnea and expectoration, by examination show hyperinflated chest with palpable wheeze all over the chest and percussion note on Bare area was resonant.\nA) What is the diagnosis?\nB) C/P and investigation?\nC) TTT of case?",
+    "modelAnswer": "A) Diagnosis: COPD\n\nB) Clinical Picture & Investigation:\nSee COPD section\n\nC) Treatment:\nSee COPD treatment",
+    "rubric": "Part A: Must identify COPD. Accept chronic bronchitis with emphysema. Part B: Must describe clinical features and investigations. Part C: Must outline treatment including bronchodilators, steroids, oxygen, and supportive care.",
+    "explanation": "Hyperinflated chest with generalized wheeze and resonant percussion in a heavy smoker is characteristic of COPD.",
+    "tags": [
+      "chest cases",
+      "COPD"
+    ]
+  },
+  {
+    "id": "chest-cases-q12",
+    "question": "A 30 y. old male gives history of continuous wheezing & breathlessness for four days. He had frequent attacks of asthma since childhood and maintained on bronchodilators by his physician.\nA) What three physical signs will help in assessing the severity of this patient asthma?\nB) If the diagnosis was established mention three immediate lines of management.",
+    "modelAnswer": "A) Three physical signs to assess severity:\n1- Pulsus paradoxus\n2- Use of accessory muscles\n3- Respiratory rate > 30/min\n4- Heart rate > 120/min\n5- Inability to speak in full sentences\n\nB) Three immediate lines of management for acute severe asthma:\n1- Oxygen therapy\n2- Nebulized short-acting B2 agonists (salbutamol)\n3- Systemic corticosteroids (hydrocortisone IV)",
+    "rubric": "Part A: Must mention at least 3 signs of severe asthma. Accept any standard severity marker. Part B: Must mention at least 3 immediate management steps. Accept any standard acute asthma treatment.",
+    "explanation": "This is a case of acute severe asthma (status asthmaticus) requiring immediate assessment and treatment.",
+    "tags": [
+      "chest cases",
+      "asthma",
+      "acute severe asthma"
+    ]
+  },
+  {
+    "id": "chest-cases-q13",
+    "question": "Diabetic patient had past history of cough and night sweating and fever and recently has suffered from dyspnea. On examination there is limitation on movement on RT side.\nA) What is your diagnosis?\nB) C/P & investigation?\nC) TTT you suggest?",
+    "modelAnswer": "A) Diagnosis: Bronchogenic carcinoma\n\nB) Clinical Picture & Investigation:\nSee Bronchogenic Carcinoma section\n\nC) Treatment:\nSee Bronchogenic Carcinoma treatment",
+    "rubric": "Part A: Must identify bronchogenic carcinoma. The history of smoking-related symptoms with progressive dyspnea and limited chest movement is concerning for malignancy. Part B: Must outline investigations including imaging and biopsy. Part C: Must outline management approach.",
+    "explanation": "Progressive symptoms with limited chest movement in a diabetic patient with chronic respiratory symptoms should raise concern for malignancy.",
+    "tags": [
+      "chest cases",
+      "bronchogenic carcinoma"
+    ]
+  },
+  {
+    "id": "chest-cases-q14",
+    "question": "Farmer 52 y. old presented to outpatient clinic by an exertional dyspnea, cough and lower limb edema. On examination pulse is 73 beat/min, temp 36.9, BP 130/80 mmHg, RR 29 cycle/min with blue tongue and clubbing, chest examination reveal bilateral crepitation in all over the lung.\nA) What is your diagnosis?\nB) What is the cause?\nC) C/P & investigation?\nD) TTT you suggest?",
+    "modelAnswer": "A) Diagnosis: Interstitial lung fibrosis\n\nB) Cause: Occupational exposure (farmer - organic dust inhalation/hypersensitivity pneumonitis)\n\nC) Clinical Picture & Investigation:\nSee Interstitial Lung Disease section\n\nD) Treatment:\n- Corticosteroids\n- Immunosuppressants\n- Oxygen therapy\n- Treatment of complications (cor pulmonale)",
+    "rubric": "Part A: Must identify interstitial lung fibrosis. Accept pulmonary fibrosis or hypersensitivity pneumonitis. Part B: Must link the occupational exposure (farming) to the lung disease. Part C: Must describe clinical features and investigations. Part D: Must outline treatment including steroids and supportive care.",
+    "explanation": "A farmer with exertional dyspnea, bilateral crepitations, clubbing, and cyanosis likely has interstitial lung disease from organic dust exposure (farmer's lung).",
+    "tags": [
+      "chest cases",
+      "interstitial lung disease",
+      "occupational"
+    ]
+  },
+  {
+    "id": "chest-cases-q15",
+    "question": "Old male 70 years old heavy smoker with sudden change in cough pattern and presented by hemoptysis and clubbing.\nA) What is your diagnosis?\nB) C/P & investigation?\nC) TTT you suggest?",
+    "modelAnswer": "A) Diagnosis: Post TB Fibrosis (or Bronchogenic Carcinoma must be excluded)\n\nB) Clinical Picture & Investigation:\nSee relevant sections\n\nC) Treatment:\n- Exclude malignancy first\n- Treatment of underlying condition",
+    "rubric": "Part A: Must consider bronchogenic carcinoma as the primary concern in a heavy smoker with change in cough pattern and hemoptysis. Accept post-TB fibrosis with mandatory malignancy exclusion. Part B: Must outline investigations including CXR, CT, bronchoscopy. Part C: Must address treatment based on diagnosis.",
+    "explanation": "Change in cough pattern with hemoptysis and clubbing in an elderly heavy smoker is highly suspicious for bronchogenic carcinoma and must be excluded urgently.",
+    "tags": [
+      "chest cases",
+      "bronchogenic carcinoma"
+    ]
+  },
+  {
+    "id": "chest-cases-q16",
+    "question": "Five days after an operation for fracture neck of femur, a 73 y. old man developed fever and shivering. A week later he started to cough and brought up hemorrhagic sputum. He had sharp pain in the lower right side of the chest and right upper abdomen.\nA) What are points in the clinical examination would you specifically look for & Why?\nB) How would you manage the patient?\nC) What is special advice would you give him in order to avoid recurrence if he is to have further operations?",
+    "modelAnswer": "A) Clinical examination points:\n- DVT: Leg swelling, calf tenderness, Homan's sign\n- PE: Tachypnea, tachycardia, hypotension, elevated JVP, loud P2\n- Pleural effusion: Dullness, diminished breath sounds\n\nB) Management:\n- Diagnosis: DVT leading to pulmonary embolism\n- Anticoagulation: Heparin then warfarin\n- Supportive: Oxygen, analgesics\n\nC) Prevention advice:\n- Prophylactic anticoagulation for future surgeries\n- Early mobilization post-operatively\n- Graduated compression stockings\n- Avoid prolonged immobility",
+    "rubric": "Part A: Must mention examination for DVT and PE signs. Part B: Must outline management of PE with anticoagulation. Part C: Must give prophylactic measures for VTE prevention. Partial credit for incomplete advice.",
+    "explanation": "Post-operative PE from DVT is a classic scenario. Prevention with prophylactic anticoagulation and early mobilization is essential.",
+    "tags": [
+      "chest cases",
+      "pulmonary embolism",
+      "DVT"
+    ]
+  },
+  {
+    "id": "chest-cases-q17",
+    "question": "A 55 y. old man, smoking for 30 years and having 'smokers cough' developed acute chest infection last September and another one last December. After the second episode cough changed in character and the sputum started to become blood tinged. He presented to you on account of progressive weakness and numbness in hand and feet which were progressive over the previous 8 weeks.\nA) What particular points in the general examination and examination for the various systems should you look for? Why?\nB) Select 3 important investigations that would help you to reach a definitive diagnosis and might help your choice of the line of management. Explain how?\nC) What particular consultant might be needed for further management?\nD) What additional investigations would you prepare before calling this patient?",
+    "modelAnswer": "A) Examination points:\n- Chest: Signs of bronchogenic carcinoma (clubbing, chest signs)\n- Neurological: Peripheral neuropathy (paraneoplastic syndrome)\n- Lymph nodes: Metastatic involvement\n- Liver: Metastatic involvement\n\nB) 3 important investigations:\n1- CXR: To detect the primary lung lesion\n2- CT chest + abdomen: Staging of cancer\n3- Bronchoscopy with biopsy: Tissue diagnosis\n\nC) Consultants needed:\n- Chest physician/oncologist\n- Neurologist (for paraneoplastic neuropathy)\n- Thoracic surgeon (if operable)\n\nD) Additional investigations:\n- PFTs for surgical fitness\n- CT brain for metastases\n- Bone scan for metastases",
+    "rubric": "Part A: Must look for signs of malignancy and paraneoplastic manifestations. Part B: Must select 3 key investigations with explanation. Part C: Must identify appropriate specialists. Part D: Must suggest staging and pre-operative investigations.",
+    "explanation": "Change in cough character with hemoptysis and peripheral neuropathy in a chronic smoker suggests bronchogenic carcinoma with paraneoplastic syndrome.",
+    "tags": [
+      "chest cases",
+      "bronchogenic carcinoma",
+      "paraneoplastic"
+    ]
+  },
+  {
+    "id": "chest-cases-q18",
+    "question": "A 60 y. old man with chronic cough that he attributes to heavy smoking for many years started to get frank haemoptysis.\nA) How can sputum analysis and chest radiology suggest the most important causes of his recent haemoptysis?\nB) Mention another additional investigation necessary to reach the proper diagnosis.",
+    "modelAnswer": "A) Sputum analysis and chest radiology:\n- Sputum cytology: Malignant cells suggest bronchogenic carcinoma\n- Sputum C&S: Organisms suggest infection (TB, pneumonia)\n- AFB staining: For tuberculosis\n- CXR: Mass lesion suggests carcinoma; cavitation suggests TB or abscess; collapse suggests obstruction\n\nB) Additional investigation:\n- Bronchoscopy with biopsy: For tissue diagnosis and visualization of the lesion",
+    "rubric": "Part A: Must describe how sputum analysis and CXR can differentiate causes of hemoptysis. Part B: Must mention bronchoscopy as the key additional investigation. Accept CT chest or other reasonable investigations.",
+    "explanation": "Frank hemoptysis in a chronic smoker requires urgent investigation to exclude bronchogenic carcinoma.",
+    "tags": [
+      "chest cases",
+      "hemoptysis",
+      "bronchogenic carcinoma"
+    ]
+  },
+  {
+    "id": "chest-cases-q19",
+    "question": "A 58 y. old man who smokes 40 cigarettes per day gives a history of chronic cough for many years. In winter, he brings up purulent sputum with episodes of fever & ill health. Prior to the present admission he had lost 8 kg of body weight and his breathing had become more difficult & he started to bring bloody sputum. O/E he had pyrexia 38°C, finger clubbing & he was breathless at rest & chest expansion was poor with signs of pleural effusion on the Rt. Side.\nA) What is your interpretation of this pt. history?\nB) Give 3 possible causes for this pt. haemoptysis\nC) Suggest 3 important investigations to diagnose this case.",
+    "modelAnswer": "A) Interpretation: Most probably a case of bronchogenic carcinoma\n\nB) 3 possible causes of haemoptysis:\n1- Bronchogenic carcinoma\n2- Chronic bronchitis with infection\n3- Pulmonary TB\n\nC) 3 important investigations:\n1- CXR: To detect mass lesion or effusion\n2- CT chest: For staging and characterization\n3- Bronchoscopy with biopsy: For tissue diagnosis",
+    "rubric": "Part A: Must interpret the history as likely bronchogenic carcinoma given weight loss, hemoptysis, clubbing, and pleural effusion in a heavy smoker. Part B: Must mention at least 3 causes. Part C: Must suggest at least 3 key investigations.",
+    "explanation": "Weight loss, hemoptysis, clubbing, and pleural effusion in a heavy smoker are highly suggestive of bronchogenic carcinoma.",
+    "tags": [
+      "chest cases",
+      "bronchogenic carcinoma",
+      "hemoptysis"
+    ]
+  },
+  {
+    "id": "chest-cases-q20",
+    "question": "A 25 y. old female presented with sudden severe dyspnea & haemoptysis of frank blood following effort. She mentioned history of rheumatic fever during childhood.\nA) What is your possible diagnosis?\nB) What are the clinical findings you expect to find on examination of the precordium?\nC) Mention one investigation that probably assesses her illness.",
+    "modelAnswer": "A) Possible diagnosis: Most probably it's a case of pulmonary infarction (due to mitral stenosis with atrial fibrillation leading to PE)\n\nB) Precordial findings of mitral stenosis:\n- Accentuated S1\n- Mid-diastolic murmur at the apex\n- Opening snap\n\nC) Investigation: Echocardiography",
+    "rubric": "Part A: Must identify pulmonary infarction or embolism secondary to mitral stenosis. Accept pulmonary apoplexy from MS. Part B: Must describe precordial findings of MS. Part C: Must mention echocardiography. Accept other reasonable investigations.",
+    "explanation": "History of rheumatic fever with effort-related hemoptysis and dyspnea suggests mitral stenosis complicated by pulmonary congestion or PE from atrial fibrillation.",
+    "tags": [
+      "chest cases",
+      "pulmonary embolism",
+      "mitral stenosis"
+    ]
+  },
+  {
+    "id": "chest-cases-q21",
+    "question": "A 40 y. old obese lady had performed cholecystectomy for calcular gall bladder disease. She complained of acute dyspnea and haemoptysis on the 8th day after operation.\nA) What is the important possible diagnosis?\nB) Mention the diagnostic investigations?\nC) What is the line of treatment?",
+    "modelAnswer": "A) Important possible diagnosis: DVT leading to pulmonary embolism or pneumonia\n\nB) Diagnostic investigations:\n- D-dimer, ABG\n- Spiral CT angiography\n- Duplex ultrasound for DVT\n- Pulmonary angiography (gold standard)\n\nC) Treatment:\n- Anticoagulation: Heparin then warfarin\n- Thrombolytic therapy for massive PE\n- Supportive: Oxygen, analgesics",
+    "rubric": "Part A: Must identify PE as the most likely diagnosis. Accept DVT leading to PE. Part B: Must outline investigations. Part C: Must outline treatment including anticoagulation.",
+    "explanation": "Post-operative dyspnea and hemoptysis in an obese patient is classic for PE from DVT.",
+    "tags": [
+      "chest cases",
+      "pulmonary embolism",
+      "postoperative"
+    ]
+  },
+  {
+    "id": "chest-cases-q22",
+    "question": "Male patient 55 years old, known to be smoker since 20 years. He is complaining of recurrent attacks of hemoptysis since 6 months. Examination revealed: BP: 130/80, HR: 87/min with unequal pulse, unequal pupils, wasting of the small muscles of the hand. Lab: K: 3 mg%, Na: 147 mg%, Ca: 13 mg%.\nA) What is your provisional diagnosis?\nB) What is the explanation of the clinical and laboratory findings in this patient?\nC) What are the other possible neurological manifestations in such a case?\nD) What are the other investigations required to confirm your diagnosis?",
+    "modelAnswer": "A) Provisional diagnosis: Pancoast tumour\n\nB) Explanation of findings:\n- Unequal pulse: Vascular involvement\n- Unequal pupils: Horner's syndrome (sympathetic chain involvement)\n- Wasting of small hand muscles: T1 nerve root involvement\n- Hypercalcemia (Ca: 13): Paraneoplastic syndrome (PTHrP secretion)\n- Hyponatremia/hyperkalemia: Possible SIADH or adrenal involvement\n\nC) Other neurological manifestations:\n- Brachial plexopathy\n- Horner's syndrome\n- Spinal cord compression\n- Vocal cord palsy (recurrent laryngeal nerve)\n\nD) Investigations:\n- CXR (apical mass)\n- CT chest\n- MRI brachial plexus\n- Biopsy for tissue diagnosis",
+    "rubric": "Part A: Must identify Pancoast tumour. Accept superior sulcus tumour. Part B: Must explain Horner's syndrome, T1 involvement, and paraneoplastic hypercalcemia. Part C: Must mention neurological complications. Part D: Must outline appropriate investigations.",
+    "explanation": "Apical lung tumour (Pancoast) causes Horner's syndrome, brachial plexopathy, and can secrete PTHrP causing hypercalcemia.",
+    "tags": [
+      "chest cases",
+      "pancoast tumour",
+      "bronchogenic carcinoma"
+    ]
+  },
+  {
+    "id": "chest-cases-q23",
+    "question": "Male patient 38 years old presenting by hemoptysis associated with loss of body weight. He is also complaining of repeated expectoration of purulent sputum especially early in the morning. Examination revealed bilateral apical crepitations with bronchial breathing. Investigations: CXR: honey combing in the apical fields with fine reticulations in the rest of the lung fields. Laboratory: HB: 10 mg%, TLC: 12,000/mm with lymphocytosis, Ca: 12 mg%.\nA) What is your provisional diagnosis of such a case?\nB) What are the other investigations required to confirm the diagnosis?\nC) What are the extrapulmonary manifestations of such a disease?\nD) What is the explanations for the laboratory findings in such a case?",
+    "modelAnswer": "A) Provisional diagnosis: Tuberculosis\n\nB) Investigations:\n- Sputum ZN stain for AFB\n- Sputum culture (Lowenstein-Jensen)\n- PCR for TB DNA\n- Tuberculin test\n\nC) Extrapulmonary manifestations:\n- TB lymphadenitis\n- TB meningitis\n- TB enteritis\n- Genitourinary TB\n- Skeletal TB (Pott's disease)\n- Adrenal: Addison's disease\n\nD) Explanation of lab findings:\n- HB 10: Anemia of chronic disease\n- TLC 12,000 with lymphocytosis: Chronic infection (TB)\n- Ca 12: Hypercalcemia (granulomatous disease → increased 1,25-dihydroxyvitamin D)",
+    "rubric": "Part A: Must identify TB. Part B: Must mention investigations for TB confirmation. Part C: Must mention extrapulmonary TB sites. Part D: Must explain anemia, lymphocytosis, and hypercalcemia in the context of TB.",
+    "explanation": "Weight loss, hemoptysis, apical crepitations, honey-combing, and lymphocytosis are characteristic of pulmonary TB. Hypercalcemia occurs in granulomatous diseases including TB.",
+    "tags": [
+      "chest cases",
+      "tuberculosis"
+    ]
+  },
+  {
+    "id": "chest-cases-q24",
+    "question": "Male 16 years old, presenting to ER by severe dyspnea, and tachypnea. Examination revealed: RR 33/min, HR: 120/min, Central cyanosis, Bilateral widespread wheezes along with Harsh vesicular breathing, Abdominal paradox.\nA) What is the provisional diagnosis?\nB) What is the treatment of such a case?\nC) What are the causes of abdominal paradox?\nD) What are the pulse abnormalities in such a case?",
+    "modelAnswer": "A) Provisional diagnosis: Acute severe Asthma\n\nB) Treatment:\nSee Status Asthmaticus treatment under Bronchial Asthma topic\n\nC) Causes of abdominal paradox:\n- Diaphragmatic fatigue/paralysis\n- Severe asthma with diaphragmatic exhaustion\n\nD) Pulse abnormalities:\n- Tachycardia (>120/min)\n- Pulsus paradoxus",
+    "rubric": "Part A: Must identify acute severe asthma. Part B: Must outline treatment for status asthmaticus. Part C: Must explain abdominal paradox as sign of diaphragmatic fatigue. Part D: Must mention tachycardia and pulsus paradoxus.",
+    "explanation": "Severe dyspnea, tachypnea, cyanosis, widespread wheezes, and abdominal paradox in a young patient indicate acute severe asthma with respiratory muscle fatigue.",
+    "tags": [
+      "chest cases",
+      "acute severe asthma"
+    ]
+  },
+  {
+    "id": "chest-cases-q25",
+    "question": "Male patient presenting by cough and hemoptysis. He gives history of loss of body weight in the past 2 years with night sweats. Examination revealed right apical crepitations. Unequal pulse in both ULs. CXR: Right apical coin shadow.\nA) What is your provisional diagnosis?\nB) What are the investigations required to confirm the diagnosis?\nC) What is the treatment of such a case?\nD) What are the causes of coin shadow?",
+    "modelAnswer": "A) Provisional diagnosis: Pancoast tumour\n\nB) Investigations:\n- CT chest\n- Bronchoscopy with biopsy\n- Sputum cytology\n\nC) Treatment:\n- Staging and management of bronchogenic carcinoma\n\nD) Causes of coin shadow:\n1- Bronchogenic carcinoma\n2- Tuberculoma\n3- Hamartoma\n4- Metastatic nodule\n5- Lung abscess (early)",
+    "rubric": "Part A: Must consider Pancoast tumour given unequal pulse and apical coin shadow. Accept TB with mandatory malignancy exclusion. Part B: Must outline investigations. Part C: Must outline management. Part D: Must mention causes of coin shadow.",
+    "explanation": "Apical coin shadow with hemoptysis, weight loss, night sweats, and unequal pulses suggests Pancoast tumour with vascular involvement.",
+    "tags": [
+      "chest cases",
+      "pancoast tumour",
+      "coin shadow"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bronchial Asthma - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "bronchial-asthma-written",
+  title: "Bronchial Asthma - Written Assessment",
+  description: "Answer the bronchial asthma questions in your own words.",
+  icon: "💨"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "asthma-q1",
+    "question": "Difference between Extrinsic & Intrinsic Asthma?",
+    "modelAnswer": "Extrinsic vs Intrinsic:\n- Age of onset: Childhood vs Middle age\n- Precipitating factor: Obvious vs Not obvious\n- Family history: Allergy vs Bronchial asthma\n- Atopic tendency: Usually apparent vs Absent\n- IgE level: Raised vs Not raised\n- Skin test: Positive vs Negative\n- Asthma: Intermittent vs Less liable & often severe",
+    "tags": [
+      "asthma",
+      "classification",
+      "extrinsic",
+      "intrinsic"
+    ],
+    "rubric": "Must compare at least the main distinguishing features. Full credit for structured comparison. Accept any reasonable points of differentiation. Partial credit for fewer points.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q2",
+    "question": "Enumerate Mediators involved in asthma?",
+    "modelAnswer": "Histamine, Adenosine, Serotonin, Prostaglandins, Kinins, Leukotrienes (Most important), Cytokines, PAF (Platelet activating factor)",
+    "tags": [
+      "asthma",
+      "mediators"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q3",
+    "question": "Clinical picture of asthma?",
+    "modelAnswer": "Symptoms (Attacks): Timing - Late night & early morning (high vagal tone). Triad of Dyspnea, cough, wheezing. Cough-variant asthma: nocturnal cough only. Expectoration: viscid sputum (mucous pellets). Association: anxiety, sweating. Duration: Variable (minutes to hours to days), resolves spontaneously or by treatment.\n\nSigns:\n1- During the attack (Signs of Hyperinflation & Airway obstruction):\n- Inspection: Barrel shaped chest, Decreased bilateral movements\n- Palpation: Trachea central, TVF decreased bilaterally\n- Percussion: Hyperresonance\n- Auscultation: Vesicular with prolonged expiration, Generalized rhonchi mainly expiratory\n\n2- In between attacks: Chest is usually free, unless accompanied with chronic bronchitis or submucosal fibrosis in chronic cases → persistent obstruction",
+    "tags": [
+      "asthma",
+      "clinical picture"
+    ],
+    "rubric": "Must describe symptoms and signs. Accept any reasonable clinical feature. Full credit for covering both symptoms and signs. Partial credit for covering only one category.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q4",
+    "question": "Classification of asthma severity?",
+    "modelAnswer": "Intermittent: Symptoms ≤2/week, Waking ≤2/month, No interference with activities, SABA ≤2 days/week, FEV1 >80%, Exacerbations ≤1/year\n\nMild persistent: Symptoms >2/week (not same day), Waking 3-4/month, SABA >2 days/week, Minor limitation, FEV1 ≥80%, Exacerbations ≥2/year\n\nModerate persistent: Daily symptoms, Waking >1/week, Some limitation, Daily SABA, FEV1 60-80%, ↓FEV1/FVC <5%\n\nSevere persistent: Daily symptoms throughout day, Waking every night, Extreme limitation, SABA several times/day, FEV1 <60%, ↓FEV1/FVC by 25%",
+    "tags": [
+      "asthma",
+      "severity",
+      "classification"
+    ],
+    "rubric": "Must mention at least the main types/classifications with brief description. Accept any reasonable classification. Partial credit for incomplete classification.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q5",
+    "question": "Enumerate Complications of asthma?",
+    "modelAnswer": "1- Acute asthma exacerbations\n2- Emphysema\n3- Respiratory failure\n4- Right sided heart failure & Cor pulmonale\n5- Complications of severe cough\n6- Complications of therapy (e.g. corticosteroids)\n7- Pneumothorax & pneumomediastinum\n8- Allergic bronchopulmonary aspergillosis (ABPA)",
+    "tags": [
+      "asthma",
+      "complications"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q6",
+    "question": "Criteria of Severe asthma exacerbation?",
+    "modelAnswer": "Symptoms: Dyspnea at rest, Ability to talk in words, Agitation, Tripod position\nSigns (adults): Severe tachypnea (>30/min), Inspiratory and expiratory wheezing, Use of accessory muscles, Tachycardia (>120/min), Pulsus paradoxus\nFunctional assessment: PEFR <40% predicted, SpO2 <90%, Hypercapnia (PCO2 ≥42 mmHg)",
+    "tags": [
+      "asthma",
+      "severe exacerbation"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q7",
+    "question": "Criteria of Life-threatening asthma exacerbation?",
+    "modelAnswer": "Symptoms: Inability to speak due to dyspnea, Drowsiness, confusion, sweating\nSigns (adults): Silent chest, Paradoxical breathing, Bradycardia, Altered mental status\nFunctional assessment: PEFR <25% predicted, Signs of type I and/or type 2 respiratory failure",
+    "tags": [
+      "asthma",
+      "life-threatening"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q8",
+    "question": "What are the Characteristic findings in PFTs in Bronchial asthma?",
+    "modelAnswer": "An obstructive pattern of airflow limitation:\n- Respiratory volumes & capacities: Decreased FVC, Increased RV, Increased TLC\n- Expiratory flow rates: Decreased FEV1/FVC\n- Increased lung compliance\n- Reversibility of airflow obstruction on bronchodilator administration\n- Excessive variability of lung function parameters (FEV1, PEFR) on repeat testing",
+    "tags": [
+      "asthma",
+      "PFT",
+      "spirometry"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q9",
+    "question": "Importance of Bronchial reversibility tests?",
+    "modelAnswer": "Added to Spirometry or peak flow meter as first-line investigations to assess reversibility of airflow limitation to treatment.\nObstruction reversible with bronchodilator: increase in FEV1 >12% → Asthma\nObstruction not reversible: increase in FEV1 <12% → COPD",
+    "tags": [
+      "asthma",
+      "reversibility test"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q12",
+    "question": "Importance of Sputum examination in asthma?",
+    "modelAnswer": "Eosinophils: Detected in the sputum\nCurshman's spirals: Yellow-white long threads composed of epithelium, eosinophils & mucous (casts of distal airways)\nCharcot-Leyden crystals: Breakdown products of eosinophils\nCreola bodies: Clusters of columnar bronchial epithelium",
+    "tags": [
+      "asthma",
+      "sputum"
+    ],
+    "rubric": "Accept any reasonable answer with appropriate detail. Partial credit for partially correct or incomplete answers.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q13",
+    "question": "Enumerate quick-relievers and controllers drugs in asthma?",
+    "modelAnswer": "Quick-relievers (used to relieve attacks):\n- Short acting inhaled B2 agonists (SABA)\n- Inhaled anticholinergics\n- Short acting xanthenes\n\nControllers (used for maintenance):\n- Long acting inhaled B2 agonists (LABA)\n- Inhaled corticosteroids & oral corticosteroids\n- Antileukotrienes\n- Disodium cromoglycate\n- Long acting xanthenes",
+    "tags": [
+      "asthma",
+      "treatment",
+      "drugs"
+    ],
+    "rubric": "Must mention at least the requested number of items. Accept any reasonable answer. Partial credit for fewer correct items.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  },
+  {
+    "id": "asthma-q15",
+    "question": "Treatment of Status Asthmaticus?",
+    "modelAnswer": "Salbutamol via continuous nebulisation (2 x 5 mg nebules, O2 to drive nebuliser, titrate O2 to target SaO2 ≥92%)\n\nReassess severity after starting salbutamol:\n- Marked improvement: Continue salbutamol and monitoring\n- Some improvement: Continue salbutamol, Add Ipratropium bromide (500 μg) to nebuliser. If no improvement: Add MgSO4 (2g IV over 20 min) + Hydrocortisone (100-200 mg IV/6h)\n- No improvement/worsening: VENTILATE\n\nIf symptoms not resolved:\n- Continue salbutamol by continuous nebulisation\n- Transfer to ICU\n- Consider NPPV or intubation and ventilation\n- Salbutamol IV\n- Monitor electrolytes and pH",
+    "tags": [
+      "asthma",
+      "status asthmaticus",
+      "treatment"
+    ],
+    "rubric": "Must mention at least the requested number of treatment lines. Accept any reasonable treatment approach. Full credit for comprehensive management. Partial credit for fewer lines.",
+    "explanation": "Bronchial asthma is a common chronic respiratory condition. Proper classification and stepwise management are essential."
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

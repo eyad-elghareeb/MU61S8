@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Arrhythmia - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "arrhythmia",
+  title: "Arrhythmia - Written Assessment",
+  description: "Answer the questions in your own words.",
+  icon: "📝"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    id: "arr-1",
+    question: "Enumerate the causes of sinus tachycardia.",
+    modelAnswer: "Causes of Sinus Tachycardia:\n\nPHYSIOLOGICAL:\n- Exercise, Emotions\n- Pregnancy, Infancy\n\nPATHOLOGICAL:\n- Fever, Shock\n- Hyperthyroidism (hyperdynamic circulation)\n- Hypovolemia (hypotension)\n- Heart failure\n- Pulmonary embolism\n- Anemia, Myocarditis\n\nPHARMACOLOGICAL:\n- Sympathomimetic drugs: e.g. Adrenaline\n- Parasympatholytic drugs: e.g. Atropine\n- CCBs: e.g. Nifedipine\n- Thyroid hormones\n- Nicotine, Caffeine, Alcohol",
+    rubric: "Must categorize into physiological, pathological, and pharmacological causes. Must mention at least 3 from each category. Hyperthyroidism and HF are the most clinically important pathological causes.",
+    explanation: "Sinus tachycardia is a normal physiological response or a compensatory mechanism. Treatment is directed at the underlying cause, not the tachycardia itself.",
+    tags: ["arrhythmia", "sinus-tachycardia", "aetiology"]
+  },
+  {
+    id: "arr-2",
+    question: "Enumerate the causes of sinus bradycardia.",
+    modelAnswer: "Causes of Sinus Bradycardia:\n\nPHYSIOLOGICAL:\n- Athletes, Sleep\n- Hypothermia\n\nPATHOLOGICAL:\n- Hypothyroidism\n- Increased vagal stimulation (e.g. Vasovagal syncope)\n- Increased intracranial tension (e.g. Brain tumours)\n- CHOLESTASIS: Obstructive jaundice\n\nPHARMACOLOGICAL:\n- Parasympathomimetic drugs: e.g. Neostigmine\n- Sympatholytic drugs: e.g. Beta-blockers\n- CCBs: e.g. Verapamil & Diltiazem\n- Digitalis",
+    rubric: "Must categorize into physiological, pathological, and pharmacological causes. Must mention at least 2 from each category. Athletes and obstructive jaundice are classically tested.",
+    explanation: "Sinus bradycardia in athletes is a sign of cardiovascular fitness (high vagal tone). Pathological bradycardia requires investigation for underlying causes.",
+    tags: ["arrhythmia", "sinus-bradycardia", "aetiology"]
+  },
+  {
+    id: "arr-3",
+    question: "Enumerate the causes of supraventricular tachycardia.",
+    modelAnswer: "Causes of Supraventricular Tachycardia:\n\nPHYSIOLOGICAL:\n- Occurs in a normal heart (no organic heart disease)\n\nPATHOLOGICAL:\n- CAD (especially AMI)\n- Cardiomyopathy (and myocarditis)\n- Congenital heart disease\n- RHD\n- Hypertension\n- Hyperthyroidism\n- Pre-excitation syndromes: e.g. WPW syndrome\n\nPHARMACOLOGICAL:\n- Digitalis\n- Sympathomimetic drugs\n- Some anti-arrhythmic drugs: e.g. Class IC",
+    rubric: "Must categorize into physiological, pathological, and pharmacological. Must mention at least 3 pathological causes. WPW syndrome is an important cause. Note that SVT can occur in a normal heart.",
+    explanation: "SVT can occur in structurally normal hearts (AVNRT, AVRT). WPW syndrome causes orthodromic and antidromic SVT through accessory pathways.",
+    tags: ["arrhythmia", "SVT", "aetiology"]
+  },
+  {
+    id: "arr-4",
+    question: "Describe the diagnosis of SVT.",
+    modelAnswer: "Diagnosis of SVT:\n\nA) SYMPTOMS:\n1. Palpitation: Rapid, Regular, Sudden onset, Sudden offset\n2. Symptoms of low cardiac output\n3. Precipitation of angina & HF in susceptible patients\n\nB) SIGNS:\n- Rhythm: Regular\n- Rate: 120-250/minute\n- Response to carotid massage: Sudden disappearance of the arrhythmia may occur\n- Neck veins:\n  * In atrial tachycardia: Normal rapid waves with the same rate of pulse\n  * In nodal tachycardia: Regular cannon waves with the same rate of pulse\n- Auscultation:\n  * In atrial tachycardia: Accentuated S1\n  * In nodal tachycardia: Regular cannon sounds\n\nECG:\n- Rhythm: Regular\n- Rate: 120-250/min\n- P waves:\n  * In atrial tachycardia: Deformed\n  * In nodal tachycardia: Absent or inverted\n- QRS duration: Normal",
+    rubric: "Must describe symptoms (sudden onset/offset, regular, rapid), signs, and ECG findings. Must differentiate atrial from nodal tachycardia. Carotid massage response is an important diagnostic maneuver.",
+    explanation: "SVT is characterized by its regularity and sudden onset/offset (unlike AF which is irregular). Carotid massage may terminate AVNRT/AVRT by increasing vagal tone at the AV node.",
+    tags: ["arrhythmia", "SVT", "diagnosis"]
+  },
+  {
+    id: "arr-5",
+    question: "Enumerate the causes of ventricular tachycardia.",
+    modelAnswer: "Causes of Ventricular Tachycardia:\n\nVT rarely occurs in a normal heart, and therefore its presence almost always denotes an organic heart disease.\n\nPATHOLOGICAL:\n- CAD (especially AMI)\n- Cardiomyopathy (and myocarditis)\n- Congenital heart disease\n- RHD\n- Hypertension\n- Hyperthyroidism\n- Pre-excitation syndromes: e.g. WPW syndrome\n\nPHARMACOLOGICAL:\n- Digitalis\n- Sympathomimetic drugs\n- Some anti-arrhythmic drugs: e.g. Class IC",
+    rubric: "Must emphasize that VT almost always indicates organic heart disease. Must list at least 4 pathological causes. AMI and cardiomyopathy are the most common causes.",
+    explanation: "Unlike SVT, VT in a normal heart is rare. The presence of VT should prompt investigation for structural heart disease.",
+    tags: ["arrhythmia", "VT", "aetiology"]
+  },
+  {
+    id: "arr-6",
+    question: "Describe the special types of ventricular tachycardia.",
+    modelAnswer: "Special Types of Ventricular Tachycardia:\n\n1. TORSADE DE POINTES:\n   - QRS complexes change continuously & rapidly & irregularly from an upright to an inverted position (twisting of points)\n   - Causes: AMI, Hypokalemia, Hypocalcemia\n   - It is serious & may cause VF & sudden death\n\n2. ACCELERATED IDIOVENTRICULAR RHYTHM (AIVR):\n   - An ectopic ventricular pacemaker discharges at a rate of 60-120/min, controlling the ventricles only, resulting in a slow VT\n   - Causes: AMI, Post-coronary thrombolysis (reperfusion arrhythmias)\n   - It is transient & rarely causes hemodynamic disturbances",
+    rubric: "Must describe both Torsade de Pointes and AIVR. Must mention the 'twisting of points' appearance for Torsade and its potential to cause VF. AIVR as a reperfusion arrhythmia is important.",
+    explanation: "Torsade de Pointes is a polymorphic VT associated with prolonged QT interval. It requires immediate treatment with IV magnesium and overdrive pacing. AIVR is benign and usually self-limiting.",
+    tags: ["arrhythmia", "VT", "special-types"]
+  },
+  {
+    id: "arr-7",
+    question: "Describe the treatment of ventricular tachycardia.",
+    modelAnswer: "Treatment of Ventricular Tachycardia:\n\nA) DURING THE ATTACK:\n\nIf the patient is hemodynamically STABLE:\n1. Lidocaine: Initial bolus of 2 mg/kg IV, followed by maintenance infusion of 1-4 mg/min (FIRST drug of choice)\n2. Procainamide or Amiodarone: IV (SECOND drug of choice)\n3. Bretylium: IV (in resistant cases)\n\nIf the patient is hemodynamically UNSTABLE:\n- DC cardioversion immediately, followed by IV lidocaine\n\nB) PREVENTION OF A FUTURE ATTACK:\n1. DRUGS: Oral Class I or Class III anti-arrhythmic drugs\n2. ABLATION of focus: Catheter (Radiofrequency energy) or surgery\n3. IMPLANTABLE CARDIOVERTER DEFIBRILLATOR (ICD): Anti-tachycardia pacing",
+    rubric: "Must differentiate stable (pharmacologic) from unstable (DC cardioversion) VT. Lidocaine as first-line drug must be mentioned. Prevention strategies (drugs, ablation, ICD) are important.",
+    explanation: "Hemodynamic stability determines the urgency of treatment. Unstable VT requires immediate cardioversion. ICD is the most effective long-term prevention strategy in high-risk patients.",
+    tags: ["arrhythmia", "VT", "treatment"]
+  },
+  {
+    id: "arr-8",
+    question: "Describe the aetiology of atrial fibrillation.",
+    modelAnswer: "Aetiology of Atrial Fibrillation:\n\nThe exact causes are unknown, but several risk factors have been identified.\n\nINTRINSIC CARDIAC DISORDERS:\n- Advanced age\n- CVS risk factors: Hypertension, Obesity, Smoking, Diabetes mellitus, Sleep apnea\n- Coronary artery disease\n- Valvular heart disease (especially mitral valve disease)\n- Congestive heart failure (CHF)\n- Pre-excitation tachycardia: e.g. WPW syndrome\n- Sick sinus syndrome (tachycardia-bradycardia syndrome)\n- Cardiomyopathies\n- Pericarditis\n- Congenital channelopathies\n\nNON-CARDIAC DISORDERS:\n- Pulmonary disease: COPD, Pulmonary embolism, Pneumonia\n- Hyperthyroidism\n- Catecholamine release and/or increased sympathetic activity\n- Stress: Sepsis, Hypovolemia, Post-surgical state (especially following cardiac surgery), Hypothermia\n- Pheochromocytoma\n- Cocaine, Amphetamines\n- Electrolyte imbalances (Hypomagnesemia, Hypokalemia)\n- Drugs: e.g. Adenosine, Digoxin\n- Holiday heart syndrome: Irregular heartbeat triggered by excessive alcohol consumption but also sometimes by stress, dehydration or lack of sleep\n- Chronic kidney disease",
+    rubric: "Must categorize into cardiac and non-cardiac causes. Must mention mitral valve disease, HTN, and HF as the most common cardiac causes. Holiday heart syndrome is a distinctive cause. Must mention that the exact cause is often unknown.",
+    explanation: "AF is the most common sustained arrhythmia. Valvular AF (mitral stenosis) has the highest stroke risk. Non-valvular AF is increasingly common with aging populations.",
+    tags: ["arrhythmia", "AF", "aetiology"]
+  },
+  {
+    id: "arr-9",
+    question: "Enumerate the reversible causes of atrial fibrillation.",
+    modelAnswer: "Reversible Causes of Atrial Fibrillation:\n\n- Hyperthyroidism / Thyrotoxicosis\n- Alcohol use\n- Electrolyte imbalances\n- Excess caffeine\n- Cardiothoracic surgery\n- Fever of any cause\n- Myocarditis\n- Recreational or pharmacological drug use\n- Pericarditis\n- Myocardial infarction\n- Pulmonary embolism",
+    rubric: "Must list at least 6 reversible causes. Hyperthyroidism, alcohol, and electrolyte imbalances are the most important to identify because treating them may resolve AF.",
+    explanation: "Identifying and treating reversible causes may eliminate AF without the need for long-term anti-arrhythmic therapy.",
+    tags: ["arrhythmia", "AF", "reversible-causes"]
+  },
+  {
+    id: "arr-10",
+    question: "Describe the clinical picture of atrial fibrillation.",
+    modelAnswer: "Clinical Picture of Atrial Fibrillation:\n\nA) SYMPTOMS:\n1. Palpitation: Rapid, IRRegular, Sudden onset, Sudden offset\n2. Symptoms of low cardiac output\n3. Precipitation of angina & HF in susceptible patients\n4. COMPLICATIONS: Atrial thrombosis & embolization\n\nB) SIGNS:\n- PULSE:\n  * Rhythm: Marked irregularity (in rhythm & volume)\n  * Pulse deficit: > 10 beats/minute\n  * Rate: 100-160/min\n  * Response to carotid massage: Gradual slowing (due to decreased AV conduction)\n  * Response to exercise: Increased irregularity (due to increased AV conduction)\n\n- NECK VEINS:\n  * 'a' waves: Absent\n  * Systolic expansion\n\n- AUSCULTATION:\n  * Variable intensity of S1\n\nECG:\n- Rhythm: Irregular\n- Rate: 100-160/min\n- QRS duration: Normal\n- P waves: Absent — Replaced by fibrillation waves (irregular vibrations)",
+    rubric: "Must emphasize irregular irregularity as the hallmark. Must describe pulse deficit (> 10), absent 'a' waves, variable S1, and fibrillation waves on ECG. Must mention thrombo-embolic complications.",
+    explanation: "AF is characterized by irregular irregularity of the pulse. Pulse deficit occurs because some ventricular beats are too weak to reach the periphery. Loss of atrial contraction (absent 'a' wave) reduces cardiac output by ~25%.",
+    tags: ["arrhythmia", "AF", "clinical"]
+  },
+  {
+    id: "arr-11",
+    question: "Enumerate the causes of slow atrial fibrillation.",
+    modelAnswer: "Causes of Slow Atrial Fibrillation:\n\n1. Drugs: Digitalis or Beta-blockers\n2. Lone AF\n3. Associated heart block",
+    rubric: "Must list all 3 causes. Drug-induced slow AF is the most common cause in clinical practice.",
+    explanation: "Slow AF (ventricular rate < 60/min) usually results from AV node suppression by medications or intrinsic AV node disease.",
+    tags: ["arrhythmia", "AF", "slow-AF"]
+  },
+  {
+    id: "arr-12",
+    question: "Describe the classification of atrial fibrillation.",
+    modelAnswer: "Classification of Atrial Fibrillation:\n\nBY HEMODYNAMIC STABILITY:\n- Unstable AF: AF with signs of hemodynamic instability (chest pain, altered mental status, acute pulmonary edema, hypotension, or cardiogenic shock)\n- Stable AF: AF without signs of hemodynamic instability\n\nBY VENTRICULAR RATE:\n- Tachycardic AF: Ventricular rate > 100-110/minute\n- Slow AF: Ventricular rate < 60/minute (bradycardic AF)\n\nBY ONSET AND DURATION:\n- New-onset AF: New presentation or diagnosis\n- Paroxysmal AF: Resolves within 7 days (spontaneously or with treatment)\n- Persistent AF: Continuous AF for > 7 days\n- Long-standing persistent AF: Continuous AF for > 1 year\n- Permanent AF: No further attempts to restore sinus rhythm\n\nBY METHOD OF DETECTION:\n- Clinical AF: Episode > 30 seconds on surface ECG (symptomatic or asymptomatic)\n- Subclinical AF: Detected on implanted cardiac devices and confirmed on intracardiac electrograms\n\nBY VALVULAR INVOLVEMENT:\n- Valvular AF: AF with moderate to severe mitral stenosis or mechanical heart valve\n- Non-valvular AF: AF without moderate to severe MS or mechanical valve",
+    rubric: "Must describe the key classification axes: hemodynamic stability, ventricular rate, duration (paroxysmal vs persistent vs permanent), and valvular vs non-valvular. The duration classification is the most important clinically.",
+    explanation: "Classification guides management: paroxysmal AF may benefit from rhythm control, permanent AF requires rate control and anticoagulation. Valvular AF has higher stroke risk and mandates anticoagulation.",
+    tags: ["arrhythmia", "AF", "classification"]
+  },
+  {
+    id: "arr-13",
+    question: "Describe the treatment of atrial fibrillation.",
+    modelAnswer: "Treatment of Atrial Fibrillation:\n\nA) IF HEMODYNAMICALLY STABLE:\n\n1. RHYTHM CONTROL (Restore sinus rhythm):\n   - Methods:\n     * Pharmacologic cardioversion: Class 1A, IC or III drugs\n     * Electrical cardioversion (DC): If pharmacologic CV fails\n     * Ablation (Pulmonary Vein Isolation - PVI): If pharmacologic CV fails\n   - Precautions:\n     * Oral Anti-Coagulation (OAC) should be given 4 weeks before & after cardioversion\n     * Digitalis should be stopped before electrical cardioversion\n\n2. RATE CONTROL (Slow the ventricular rate):\n   - Beta-blocker (propranolol), CCB (Non-DHP), Digitalis\n\nRATE vs RHYTHM CONTROL:\n- Favours Rate Control: Previous failure of AAD, Patient's choice\n- Favours Rhythm Control: No previous failure of AAD, AF precipitated by temporary event (e.g. hyperthyroidism), Patient's choice, Rate control difficult to achieve\n\nB) IF HEMODYNAMICALLY UNSTABLE:\n- DC cardioversion immediately\n\nC) OVERDRIVE PACING:\n- The atria are paced at a faster rate than the tachycardia rate\n- Sudden cessation of pacing is usually followed by restoration of sinus rhythm\n\nD) PREVENTION OF FUTURE ATTACKS:\n1. Maintenance therapy: Oral Class IA, IC or Class III anti-arrhythmic drugs\n2. Ablation of focus: Catheter (Radiofrequency energy) or surgery\n3. Treatment of the cause",
+    rubric: "Must describe both rhythm control and rate control strategies with their indications. Must mention precautions before cardioversion (4 weeks OAC, stop digitalis). Must differentiate hemodynamically stable vs unstable management.",
+    explanation: "The choice between rate and rhythm control depends on patient factors, AF type, and comorbidities. Anticoagulation is mandatory regardless of strategy to prevent stroke.",
+    tags: ["arrhythmia", "AF", "treatment"]
+  },
+  {
+    id: "arr-14",
+    question: "Describe the CHA2DS2-VASc score.",
+    modelAnswer: "CHA2DS2-VASc Score: Estimates risk of stroke & thromboembolism in patients with AF.\n\n| Initials | Risk Factor | Points |\n|----------|-------------|--------|\n| C | Congestive HF | 1 |\n| H | Hypertension | 1 |\n| A2 | Age > 75 years | 2 |\n| D | Diabetes | 1 |\n| S2 | Stroke (previous stroke, TIA, or Thromboembolism) | 2 |\n| V | Vascular Disease (previous MI, PAD, or Aortic Plaque) | 1 |\n| A | Age 65-74 years | 1 |\n| Sc | Sex Category (Female) | 1 |\n\nMAXIMUM SCORE: 9 (for women) / 8 (for men)\n\nRECOMMENDATIONS BY SCORE:\n- Score 0 (men) or 1 (women): No Oral AntiCoagulation\n- Score 1 (men) or 2 (women): OAC should be considered\n- Score 2-9 (men) or 3-9 (women): OAC is recommended (especially NOACs as 1st line OAC)",
+    rubric: "Must describe the score components with their point values. Must state the treatment recommendations by score. Stroke/TIA (2 points) and age > 75 (2 points) are the highest-weighted factors. NOACs as first-line OAC is important.",
+    explanation: "CHA2DS2-VASc guides anticoagulation decisions. Higher scores indicate greater stroke risk warranting anticoagulation. NOACs (apixaban, rivaroxaban, dabigatran, edoxaban) are preferred over warfarin for non-valvular AF.",
+    tags: ["arrhythmia", "AF", "CHA2DS2-VASc"]
+  },
+  {
+    id: "arr-15",
+    question: "Compare atrial fibrillation and atrial extrasystole.",
+    modelAnswer: "Comparison of AF vs Atrial Extrasystole:\n\n| Feature | Atrial Fibrillation | Atrial Extrasystole |\n|---------|-------------------|-------------------|\n| Rate | Rapid 120-150/min | Normal |\n| Rhythm | Irregular (no regular beats) | Occasional irregular beats |\n| Carotid massage | Increase irregularity | Decrease irregularity |\n| Neck veins | Absent 'a' wave, irregular QRS | Present 'a' wave followed by early QRS pause |\n| P waves | Absent (fibrillation waves) | Present (premature P wave) |\n| Pulse deficit | > 10 beats | Absent |",
+    rubric: "Must compare at least 4 features. The key differentiator is persistent irregularity (AF) vs occasional irregularity (extrasystole). Absent 'a' waves and fibrillation waves are specific to AF.",
+    explanation: "AF has continuous irregular irregularity while extrasystoles have intermittent irregular beats with compensatory pauses.",
+    tags: ["arrhythmia", "AF", "comparison"]
+  },
+  {
+    id: "arr-16",
+    question: "Describe the clinical picture of complete heart block.",
+    modelAnswer: "Clinical Picture of Complete Heart Block:\n\nA) SYMPTOMS:\n1. Symptoms of the cause\n2. Palpitation: Regular\n3. Symptoms of low cardiac output\n4. Precipitation of angina & HF in susceptible patients\n5. ADAMS-STOKES ATTACKS:\n   - Occur during transmission from one idioventricular focus to another\n   - Syncope, cyanosis, with absent pulse, BP & heart sounds\n   - If prolonged: Convulsions, coma & death may occur\n\nB) SIGNS:\n- PULSE:\n  * Rhythm: Regular\n  * Rate: Slow, 30-40/min\n- NECK VEINS:\n  * 'a' waves at normal rate (60-100/min) & more than the pulse rate\n  * Occasional cannon waves\n- AUSCULTATION:\n  * Occasional cannon sounds\n  * Variable intensity of S1",
+    rubric: "Must describe Adams-Stokes attacks (syncope from transition between idioventricular foci). Must mention slow regular pulse (30-40/min), cannon waves, and variable S1. The dissociation between atrial and ventricular rates is key.",
+    explanation: "Complete heart block causes AV dissociation. The ventricles beat at their intrinsic rate (30-40/min) while the atria beat independently. Cannon waves occur when atria and ventricles contract simultaneously.",
+    tags: ["arrhythmia", "heart-block", "clinical"]
+  },
+  {
+    id: "arr-17",
+    question: "Describe the ECG findings in pre-excitation syndrome (WPW).",
+    modelAnswer: "ECG Findings in Pre-Excitation Syndrome (WPW):\n\nWolff-Parkinson-White Syndrome (WPW) Triad:\n1. Wide QRS complex\n2. Short PR interval\n3. Delta wave (slurred upstroke of the QRS)",
+    rubric: "Must describe all 3 ECG features of WPW syndrome. The delta wave is the most specific finding.",
+    explanation: "The delta wave represents pre-excitation of the ventricles through the accessory pathway (bundle of Kent), bypassing the AV node. This causes early ventricular activation (short PR) and fusion beats (wide QRS with delta wave).",
+    tags: ["arrhythmia", "WPW", "ECG"]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

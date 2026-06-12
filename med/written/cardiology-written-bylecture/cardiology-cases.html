@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiology Cases - Written Assessment</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "cardiology-cases",
+  title: "Cardiology Cases - Written Assessment",
+  description: "Answer the clinical scenario questions in your own words.",
+  icon: "📝"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    id: "case-1",
+    question: "Case 1: Male patient presenting to ER with chest pain of 5 hours duration. The pain is compressing and retrosternal, radiating to his jaw. Investigations revealed ST elevation in leads II, III, aVF. After admission by 2 hours he started to develop progressive dyspnea and hypotension with pansystolic murmur over the apex radiating to left sternal edge.\n\na) What is your provisional diagnosis?\nb) What are the initial investigations required to confirm your diagnosis?\nc) What are the causes of acute chest pain?\nd) Enumerate causes of ST segment elevation.\ne) What are the causes of hypotension in such a patient?\nf) What is your provisional diagnosis for the complication?\ng) What is the treatment of such a case?",
+    modelAnswer: "a) Inferior wall MI (ST elevation in II, III, aVF indicates inferior wall involvement)\n\nb) Initial investigations:\n- ECG (serial)\n- Cardiac biomarkers (Troponins, CK-MB)\n- Complete blood count\n- Electrolytes, renal function\n- Chest X-ray\n- Echocardiography\n\nc) Causes of acute chest pain: MI, Aortic dissection, Acute pericarditis, Pulmonary embolism, Pneumothorax, Esophageal rupture (Boerhaave syndrome)\n\nd) Causes of ST elevation: Acute MI, Acute pericarditis (diffuse), Prinzmetal angina, Ventricular aneurysm, Early repolarization, Brugada syndrome\n\ne) Causes of hypotension in this patient:\n- Cardiogenic shock (pump failure)\n- Papillary muscle rupture → acute MR\n- Ventricular septal rupture → VSD\n- RV infarction\n\nf) The complication is acute mitral regurgitation due to papillary muscle rupture (pansystolic murmur at apex radiating to left sternal edge, with dyspnea and hypotension)\n\ng) Treatment: IV vasodilators (e.g. nitroprusside) + Inotropic support + Urgent surgical repair (mitral valve replacement)",
+    rubric: "For full marks: Must diagnose inferior MI from ECG localization. Must recognize papillary muscle rupture as the complication. Must list appropriate investigations. Must describe treatment including urgent surgery.",
+    explanation: "Inferior MI (RCA territory) can cause papillary muscle rupture because the posteromedial papillary muscle has a single blood supply from the PDA (RCA branch). The pansystolic murmur radiating to the left sternal edge is characteristic of acute MR.",
+    tags: ["cases", "MI", "complications"]
+  },
+  {
+    id: "case-2",
+    question: "Case 2: Male 44 years old presenting to the ER by right-sided hemiplegia, with aphasia and apraxia. Examination revealed: BP 110/70, HR 140/min irregular, Apical mid-diastolic murmur over the apex with loud 1st heart sound.\n\na) What is your provisional diagnosis?\nb) Describe the neck vein waves in this patient?\nc) What are the investigations required in such a case?\nd) What is the occluded cerebral vessel?\ne) Mention the treatment of such a case?",
+    modelAnswer: "a) Mitral stenosis complicated by atrial fibrillation with systemic embolization (cerebral embolism). The mid-diastolic murmur with loud S1 suggests MS. Irregular pulse at 140/min suggests AF. Hemiplegia with aphasia indicates left middle cerebral artery embolism.\n\nb) Neck vein waves in AF: Absent 'a' waves (no organized atrial contraction), systolic expansion, irregular fibrillation waves\n\nc) Investigations:\n- ECG: Confirm AF (irregular, absent P waves, fibrillation waves)\n- Echocardiography: Assess mitral valve area, LA size, thrombus\n- CT brain: Confirm cerebral infarction\n- INR/Coagulation profile\n- Blood cultures (if endocarditis suspected)\n\nd) Left middle cerebral artery (aphasia and right hemiplegia indicate dominant hemisphere involvement)\n\ne) Treatment:\n- Anticoagulation (heparin then warfarin/NOAC)\n- Rate control for AF (beta-blockers, digoxin)\n- Manage MS: Consider valve surgery\n- Stroke management: Thrombolysis if within window, supportive care",
+    rubric: "Must diagnose MS + AF + cerebral embolism. Must recognize that right hemiplegia with aphasia = left MCA territory. Must describe absent 'a' waves in AF. Treatment must include anticoagulation and consideration of valve surgery.",
+    explanation: "MS causes LA stasis → thrombus formation → systemic embolization when AF develops. Left MCA occlusion causes contralateral hemiplegia and aphasia (dominant hemisphere).",
+    tags: ["cases", "MS", "AF", "embolism"]
+  },
+  {
+    id: "case-3",
+    question: "Case 3: Female 40 years old, with hip fracture. After 3 days from fixation of the fracture, she started to complain of shortness of breath along with hemoptysis. Examination revealed diminished air entry on the right side with wheezes.\n\na) What is your provisional diagnosis?\nb) What are the investigations required to confirm the diagnosis?\nc) What is the treatment of such a case?",
+    modelAnswer: "a) Pulmonary embolism (post-surgical immobilization → DVT → PE. Hemoptysis and dyspnea after orthopedic surgery are classic for PE)\n\nb) Investigations:\n- D-dimer\n- CT pulmonary angiography (gold standard)\n- Ventilation-perfusion (V/Q) scan\n- Doppler ultrasound of lower limbs (for DVT)\n- ECG (may show S1Q3T3 pattern, right axis deviation)\n- Chest X-ray\n- Echocardiography (may show RV strain)\n\nc) Treatment:\n- Anticoagulation: IV heparin → oral anticoagulation (warfarin/NOAC) for 3-6 months\n- Thrombolysis if massive PE with hemodynamic instability\n- Supportive: Oxygen, analgesia\n- IVC filter if anticoagulation contraindicated",
+    rubric: "Must diagnose PE from the clinical context (post-surgical, immobilization, hemoptysis, dyspnea). Must mention CT pulmonary angiography as the confirmatory test. Treatment must include anticoagulation and thrombolysis for massive PE.",
+    explanation: "Orthopedic surgery and immobilization are major risk factors for DVT/PE. The classic presentation is sudden dyspnea, pleuritic chest pain, and hemoptysis.",
+    tags: ["cases", "PE", "DVT"]
+  },
+  {
+    id: "case-4",
+    question: "Case 4: Male patient with long standing chronic renal failure, on regular dialysis. During a regular session of dialysis he started to show progressive hypotension. Examination revealed: BP 90/60 mmHg with marked reduction of BP during inspiration, HR 120/min, Muffled heart sounds.\n\na) What is the most probable cause for hypotension in this patient?\nb) Describe the investigations required to confirm the diagnosis?\nc) What is proper management of such a case?",
+    modelAnswer: "a) Pericardial effusion / Cardiac tamponade (CRF predisposes to uremic pericarditis with effusion. Marked inspiratory BP drop = pulsus paradoxus. Muffled heart sounds + hypotension + elevated JVP = Beck's triad)\n\nb) Investigations:\n- Echocardiography: Gold standard — shows pericardial effusion, right atrial/ventricular diastolic collapse\n- ECG: Low voltage QRS, electrical alternans\n- Chest X-ray: Enlarged cardiac silhouette with clear lung fields\n- Pericardiocentesis with fluid analysis\n\nc) Management:\n- Emergency pericardiocentesis to relieve tamponade\n- Intensive dialysis (for uremic pericarditis)\n- Treat the underlying cause (optimize renal replacement therapy)\n- Pericardial window if recurrent",
+    rubric: "Must diagnose pericardial effusion/tamponade in the context of CRF. Must recognize pulsus paradoxus and Beck's triad. Must mention echocardiography as the key investigation. Emergency pericardiocentesis is life-saving.",
+    explanation: "Uremic pericarditis is a complication of CRF that can progress to tamponade. The key clinical clue is pulsus paradoxus with muffled heart sounds in a dialysis patient.",
+    tags: ["cases", "pericardial-effusion", "tamponade", "CRF"]
+  },
+  {
+    id: "case-5",
+    question: "Case 5: Female patient 47 years old, mother of 8 children presenting to outpatient clinic by dyspnea and rapid fatigability. She gives history of syncope in last week during performing daily house activity. Examination revealed: BP 100/60 mmHg, HR 100/min regular, Loud S2 over pulmonary area with ejection click, S4 over tricuspid area.\n\na) What is the diagnosis of such a case?\nb) What are the investigations required to confirm the diagnosis?\nc) What are the other possible causes of such a case?\nd) What is the treatment of such a case?",
+    modelAnswer: "a) Pulmonary hypertension (Loud P2 + ejection click over pulmonary area = pulmonary HTN. S4 over tricuspid area = RV hypertrophy. Multiparous female + dyspnea + syncope are consistent with pulmonary HTN. Primary pulmonary HTN is more common in young females.)\n\nb) Investigations:\n- Echocardiography (estimate pulmonary artery pressure, assess RV function)\n- Right heart catheterization (gold standard for confirming PH)\n- Chest X-ray (enlarged pulmonary arteries)\n- ECG (RV hypertrophy, right axis deviation)\n- Pulmonary function tests\n- CT chest (exclude lung disease)\n- V/Q scan (exclude CTEPH)\n- Autoimmune screen (exclude connective tissue disease)\n\nc) Other causes of pulmonary HTN:\n- Left heart disease (most common cause)\n- Lung diseases (COPD, interstitial lung disease)\n- Chronic thromboembolic PH (CTEPH)\n- Connective tissue diseases (SLE, systemic sclerosis)\n- Congenital heart disease with left-to-right shunt\n- Drugs/toxins\n\nb) Treatment:\n- Pulmonary vasodilators (endothelin receptor antagonists, PDE5 inhibitors, prostacyclin analogs)\n- Diuretics for RV failure\n- Oxygen therapy\n- Anticoagulation\n- Treat underlying cause",
+    rubric: "Must diagnose pulmonary hypertension from loud P2 and ejection click. Must distinguish primary from secondary causes. Must mention right heart catheterization as the gold standard. Must list treatment including pulmonary vasodilators.",
+    explanation: "Loud P2 and pulmonary ejection click are the hallmark auscultatory findings of pulmonary hypertension. Multiparous women are at risk for primary pulmonary hypertension.",
+    tags: ["cases", "pulmonary-hypertension"]
+  },
+  {
+    id: "case-6",
+    question: "Case 6: A 70-year-old female with hypertension treated with a thiazide diuretic. She presents with sudden severe tearing chest pain, which radiates to the back and is associated with dyspnea and severe diaphoresis. Examination revealed bilateral basal rales along with faint diastolic murmur over the aortic area. BP 210/90. Chest X-ray revealed wide mediastinum.\n\na) What is your provisional diagnosis?\nb) What are the best two investigations required to confirm your diagnosis?\nc) What are the lines of treatment in such a case?",
+    modelAnswer: "a) Aortic dissection (Tearing chest pain radiating to back + wide mediastinum + hypertension + diastolic murmur of AR. Classic triad of aortic dissection.)\n\nb) Best two investigations:\n1. CT angiography (shows the dissection flap, true and false lumen)\n2. Transesophageal echocardiography (TEE) (highly sensitive for proximal dissection and detects AR)\n\nc) Treatment:\n- IMMEDIATE MEDICAL:\n  * Reduce BP rapidly: IV sodium nitroprusside + IV beta-blocker (esmolol/labetalol)\n  * Target: SBP < 120 mmHg, HR < 60/min\n  * Pain control: Morphine\n- SURGICAL:\n  * Type A (ascending aorta): Emergency surgical repair\n  * Type B (descending aorta): Medical management initially; Surgery if complications (rupture, organ ischemia)",
+    rubric: "Must diagnose aortic dissection from tearing chest pain + back radiation + wide mediastinum. Must mention CT angiography and TEE as best investigations. Must differentiate Type A (surgical) from Type B (medical) management. Beta-blockers before vasodilators to prevent reflex tachycardia.",
+    explanation: "Aortic dissection is a surgical emergency. Type A requires immediate surgery. The key principle is reducing shear stress on the aorta: beta-blockers first (reduce HR and dP/dt), then vasodilators (reduce BP).",
+    tags: ["cases", "aortic-dissection"]
+  },
+  {
+    id: "case-7",
+    question: "Case 7: 68-year-old male admitted to ER by acute pulmonary edema. After intubation and mechanical ventilation, echocardiography was done and revealed acute mitral regurgitation.\n\na) What are the causes of acute MR?\nb) What is the line of treatment for acute MR cases?",
+    modelAnswer: "a) Causes of Acute Mitral Regurgitation:\n1. Papillary muscle rupture (post-MI, usually 2-7 days)\n2. Chordae tendineae rupture (spontaneous, infective endocarditis, trauma)\n3. Infective endocarditis (valve destruction)\n4. Acute rheumatic fever\n5. Trauma\n6. Post-mitral valve surgery\n\nb) Treatment of Acute MR:\n1. MEDICAL (stabilization):\n   - IV vasodilators (nitroprusside) to reduce afterload and regurgitation\n   - Inotropic support if hypotensive\n   - Diuretics for pulmonary edema\n   - IABP (Intra-aortic balloon pump) for hemodynamic support\n2. SURGICAL (definitive):\n   - Emergency mitral valve repair or replacement\n   - Indicated in most cases of acute severe MR",
+    rubric: "Must list at least 3 causes of acute MR. Must differentiate from chronic MR causes. Must describe both medical stabilization and definitive surgical treatment. IABP as a bridge to surgery is important.",
+    explanation: "Acute MR is a surgical emergency. Unlike chronic MR, the LV has not had time to adapt, leading to acute pulmonary edema and cardiogenic shock. IABP reduces afterload and improves forward flow.",
+    tags: ["cases", "acute-MR", "emergency"]
+  },
+  {
+    id: "case-8",
+    question: "Case 8: A 72-year-old male was admitted to ER by recurrent syncope. Examination revealed ejection systolic murmur over the right sternal edge. His neck veins showed occasional cannon waves. His heart rate was 38 and regular.\n\na) What is your provisional diagnosis?\nb) What are the ECG findings in such a case?\nc) What is the treatment of such a case?",
+    modelAnswer: "a) Complete heart block (Slow regular pulse 38/min + cannon waves + syncope = Adams-Stokes attacks. Ejection systolic murmur may be incidental aortic stenosis.)\n\nb) ECG findings in Complete Heart Block:\n- P waves and QRS complexes are independent (AV dissociation)\n- P wave rate: 60-100/min (normal atrial rate)\n- QRS rate: 30-40/min (idioventricular escape rhythm)\n- QRS may be wide (ventricular focus) or narrow (junctional focus)\n- No relationship between P waves and QRS complexes\n\nc) Treatment:\n- Emergency: Temporary transvenous pacing\n- Definitive: Permanent pacemaker implantation\n- Discontinue any AV-blocking drugs",
+    rubric: "Must diagnose complete heart block from the triad of bradycardia + cannon waves + syncope. Must describe AV dissociation on ECG. Must mention both temporary and permanent pacemaker.",
+    explanation: "Complete heart block causes Adams-Stokes attacks (syncope from cerebral hypoperfusion). Cannon waves occur when atria and ventricles contract simultaneously. Permanent pacing is the definitive treatment.",
+    tags: ["cases", "heart-block", "syncope"]
+  },
+  {
+    id: "case-9",
+    question: "Case 9: 50-year-old male was admitted to ER by chest pain, retrosternal and radiating to the left shoulder. His admission ECG showed ST elevation in inferior leads, with normal troponin and cardiac enzymes. Emergency coronary angiography revealed LAD stenosis 25%.\n\na) What is your provisional diagnosis?\nb) What are the causes of ST segment elevation?\nc) What are the causes of ischemic heart disease with normal coronary angiography?",
+    modelAnswer: "a) Variant (Prinzmetal) angina (Chest pain + ST elevation in inferior leads with normal troponin and minimal coronary stenosis suggests coronary vasospasm)\n\nb) Causes of ST segment elevation:\n- Acute MI\n- Acute pericarditis (diffuse)\n- Prinzmetal/variant angina\n- Ventricular aneurysm\n- Early repolarization pattern\n- Brugada syndrome\n- Hyperkalemia\n\nc) Causes of IHD with normal coronary angiography:\n- Coronary vasospasm (Prinzmetal angina)\n- Microvascular angina (Syndrome X)\n- Coronary embolism (spontaneous lysis)\n- Coronary dissection (healed)\n- Myocardial bridging\n- Demand ischemia (severe anemia, thyrotoxicosis)",
+    rubric: "Must diagnose variant angina from the combination of ST elevation, normal troponin, and minimal coronary stenosis. Must list causes of ST elevation and causes of normal coronaries with ischemia. Coronary spasm is the key mechanism.",
+    explanation: "Variant angina is caused by epicardial coronary vasospasm. The ST elevation is transient and troponin is normal because there is no infarction. CCBs (not beta-blockers) are the treatment of choice.",
+    tags: ["cases", "variant-angina", "coronary-spasm"]
+  },
+  {
+    id: "case-10",
+    question: "Case 10: Female patient 50 years old presenting to ER by dyspnea and palpitation. She gives history of type II DM maintained on glipiride and metformin. Initial ECG revealed ST segment elevation in leads II, III, aVF. RBS 300 mg%, pH 7.25, HCO3 18 mg%.\n\na) What is the diagnosis of such a case?\nb) How would your diagnosis affect the treatment of DM in this patient?\nc) What are further investigations required in such a case?",
+    modelAnswer: "a) Inferior wall MI with Diabetic Ketoacidosis (ST elevation in II, III, aVF = inferior MI. RBS 300, pH 7.25, low HCO3 = DKA)\n\nb) Effect on DM treatment:\n- Metformin must be STOPPED (risk of lactic acidosis in acute MI/hypoperfusion)\n- Glipizide should be stopped (risk of hypoglycemia with erratic oral intake)\n- Switch to insulin infusion (sliding scale) for tight glucose control\n- Target glucose 140-180 mg/dL (avoid hypoglycemia which worsens myocardial ischemia)\n\nb) Further investigations:\n- Serial cardiac troponins\n- Serial ECGs\n- Echocardiography (assess wall motion, EF)\n- HbA1c (long-term glycemic control)\n- Serum ketones\n- ABG (monitor acidosis)\n- Electrolytes (especially potassium)\n- Renal function\n- Coagulation profile",
+    rubric: "Must diagnose both inferior MI and DKA. Must explain why metformin is contraindicated (lactic acidosis risk). Must describe insulin-based glucose management. Must mention that hypoglycemia worsens ischemia.",
+    explanation: "MI can trigger DKA, and DKA complicates MI management. Metformin is contraindicated in acute MI due to lactic acidosis risk. Insulin is the preferred agent for glucose control in this setting.",
+    tags: ["cases", "MI", "DKA", "diabetes"]
+  },
+  {
+    id: "case-11",
+    question: "Case 11: Male patient 66 years old presenting to OPC for follow up after 3 months of MI. His ECG showed persistent ST segment elevation.\n\na) What is the diagnosis of such a case?\nb) What is the line of treatment of such a case?",
+    modelAnswer: "a) Myocardial (Left Ventricular) Aneurysm (Persistent ST elevation > 6 weeks after MI is diagnostic of LV aneurysm)\n\nb) Treatment:\n- Medical: Anticoagulation (to prevent mural thrombus/embolism), Anti-arrhythmics (for associated arrhythmias), Heart failure management (ACE-I, BB, diuretics)\n- Surgical: Aneurysmectomy (if refractory HF, recurrent embolism, or recurrent arrhythmias despite medical therapy)\n- Interventional: ICD for ventricular arrhythmias",
+    rubric: "Must diagnose LV aneurysm from persistent ST elevation post-MI. Must describe both medical and surgical treatment. Anticoagulation for thromboembolic prevention is important.",
+    explanation: "LV aneurysm is a late complication of MI. Persistent ST elevation after 6 weeks is the ECG hallmark. Complications include thromboembolism, arrhythmias, and heart failure.",
+    tags: ["cases", "LV-aneurysm", "post-MI"]
+  },
+  {
+    id: "case-12",
+    question: "Case 12: Male patient 74 years old with long standing hypertension admitted to ER by disturbed conscious level. Examination revealed BP 200/135 mmHg. There was no evidence of lateralization.\n\na) What is the diagnosis of such a condition?\nb) Describe fundus examination of such a patient?\nc) What are the other complications of hypertension?\nd) What is your treatment of such a case?",
+    modelAnswer: "a) Hypertensive encephalopathy (Severely elevated BP + disturbed consciousness WITHOUT lateralization. Absence of lateralization excludes stroke.)\n\nb) Fundus examination:\n- Grade IV hypertensive retinopathy: Papilledema, optic atrophy\n- May also show: Cotton wool exudates, hard exudates, retinal hemorrhage, macular star\n\nc) Other complications of hypertension:\n- Cardiac: LVH, HF (HFrEF & HFpEF), AF, Aortic dissection\n- Renal: CKD, ESKD\n- Cerebrovascular: TIA, Stroke (ischemic and hemorrhagic), Lacunar infarctions\n- Vascular: Atherosclerosis (CAD, PAD)\n- Bleeding: Epistaxis, Cerebral hemorrhage\n\nd) Treatment:\n- ICU admission\n- IV antihypertensive therapy (e.g. sodium nitroprusside, labetalol)\n- Goal: 10-20% reduction in MAP in the 1st hour, 25% reduction over 24 hours\n- Dehydrating measures for cerebral edema (mannitol)\n- Anticonvulsants if seizures occur\n- Long-term BP control after stabilization",
+    rubric: "Must diagnose hypertensive encephalopathy (high BP + altered consciousness without lateralization). Must describe Grade IV retinopathy (papilledema). Must list other HTN complications. Must describe controlled BP reduction (NOT rapid normalization).",
+    explanation: "Hypertensive encephalopathy results from cerebral edema from failed autoregulation. Gradual BP reduction prevents cerebral hypoperfusion. Papilledema confirms severe hypertensive emergency.",
+    tags: ["cases", "hypertensive-encephalopathy"]
+  },
+  {
+    id: "case-13",
+    question: "Case 13: Male patient 67 years old with history of heart failure maintained on digitalis, lasix and aspirin. He is complaining now from nausea and yellow vision. Investigations: Urea 65 mg%, Creatinine 1.8 mg%, K 3 mg%.\n\na) What is the provisional diagnosis of such a case?\nb) What are the cardiac manifestations of such a case?\nc) Explain how does renal impairment affect the treatment of heart failure?",
+    modelAnswer: "a) Digitalis toxicity (Nausea + yellow vision (xanthopsia) in a patient on digitalis with hypokalemia (K 3 mg%) and renal impairment. Classic digitalis toxicity.)\n\nb) Cardiac manifestations of digitalis toxicity:\n- Arrhythmias: All types, especially:\n  * Ventricular extrasystoles (most common)\n  * AV block (of any degree)\n  * Atrial tachycardia with block\n  * Ventricular tachycardia\n  * Sinus bradycardia\n- ECG changes: Classic 'dig' effect (scooped ST depression) — but this is toxicity effect, not therapeutic\n\nc) Renal impairment and HF treatment:\n- Reduced renal clearance of medications (digitalis, ACE-I, diuretics) → increased risk of toxicity\n- Loop diuretics cause hypokalemia → potentiates digitalis toxicity\n- Need dose adjustment of all renally-cleared drugs\n- More frequent monitoring of drug levels, electrolytes, and renal function\n- Avoid nephrotoxic drugs\n- May need ultrafiltration instead of diuretics for fluid removal",
+    rubric: "Must diagnose digitalis toxicity from symptoms (nausea, yellow vision) + hypokalemia + renal impairment. Must list cardiac manifestations (arrhythmias, AV block). Must explain the interaction between renal impairment, diuretics, hypokalemia, and digitalis toxicity.",
+    explanation: "Hypokalemia potentiates digitalis toxicity by increasing digitalis binding to the Na-K ATPase. Renal impairment reduces digitalis clearance. Yellow vision (xanthopsia) is a classic visual disturbance of digitalis toxicity.",
+    tags: ["cases", "digitalis-toxicity", "HF"]
+  },
+  {
+    id: "case-14",
+    question: "Case 14: Male patient 19 years old presenting by recurrent attacks of syncope with exercise. Examination revealed ejection systolic murmur on the left sternal edge.\n\na) What is your provisional diagnosis?\nb) What are the investigations needed to confirm your diagnosis?\nc) What are the causes of syncope?",
+    modelAnswer: "a) Hypertrophic cardiomyopathy (HCM / IHSS) (Young age + exercise-induced syncope + ejection systolic murmur at left sternal edge = HCM. The murmur is from LVOT obstruction that worsens with exercise.)\n\nb) Investigations:\n- Echocardiography: Diagnostic — shows asymmetric septal hypertrophy, systolic anterior motion (SAM) of mitral valve, LVOT gradient\n- ECG: LVH, deep septal Q waves, ST-T changes\n- Cardiac MRI: For detailed assessment\n- Holter monitor: For associated arrhythmias\n- Genetic testing: For HCM mutations\n- Exercise stress test: Assess LVOT gradient changes\n\nc) Causes of syncope:\n1. CARDIAC: Arrhythmias (VT, complete heart block), Obstructive (AS, HCM, PE), Myocardial (MI)\n2. VASOVAGAL (Neurocardiogenic): Most common cause\n3. ORTHOSTATIC HYPOTENSION\n4. NEUROLOGICAL: Stroke, TIA\n5. OTHERS: Hypoglycemia, Anemia, Hyperventilation",
+    rubric: "Must diagnose HCM in a young patient with exertional syncope and LVOT murmur. Must mention echocardiography as diagnostic. Must list cardiac and non-cardiac causes of syncope.",
+    explanation: "HCM causes dynamic LVOT obstruction that worsens with exercise (reduced preload/afterload increases obstruction). Valsalva maneuver increases the murmur. This is the most common cause of sudden cardiac death in young athletes.",
+    tags: ["cases", "HCM", "syncope"]
+  },
+  {
+    id: "case-15",
+    question: "Case 15: A 70-year-old man presented with acute pulmonary edema. BP was 170/100 and ECG showed elevated ST segment in V1 to V6.\n\na) What is the diagnosis of this case?\nb) What are the immediate lines of management?\nc) What is the diagnostic work up needed to investigate this condition?",
+    modelAnswer: "a) Acute extensive anterior wall STEMI complicated by acute pulmonary edema (ST elevation V1-V6 = extensive anterior MI. Acute pulmonary edema is a complication of extensive LV dysfunction.)\n\nb) Immediate management:\n1. Oxygen and ventilatory support (may need CPAP/intubation)\n2. Nitrates (sublingual then IV) — vasodilation and preload reduction\n3. IV Furosemide\n4. Morphine (reduces preload and anxiety)\n5. Antiplatelet therapy (Aspirin + Clopidogrel)\n6. Anticoagulation (Heparin)\n7. Urgent reperfusion: Primary PCI (preferred) or fibrinolysis if PCI not available within 120 min\n8. Avoid beta-blockers in acute pulmonary edema\n\nc) Diagnostic workup:\n- Serial ECGs\n- Cardiac troponins\n- Echocardiography (assess EF, wall motion, MR)\n- Chest X-ray (pulmonary edema)\n- Electrolytes, renal function\n- Complete blood count\n- Coagulation profile",
+    rubric: "Must diagnose extensive anterior STEMI with pulmonary edema. Must describe immediate management including reperfusion therapy. Must note that beta-blockers are contraindicated in acute pulmonary edema.",
+    explanation: "Extensive anterior MI involves a large territory and commonly causes acute LVF/pulmonary edema. Reperfusion therapy is the priority. Beta-blockers are withheld until the pulmonary edema resolves.",
+    tags: ["cases", "anterior-MI", "pulmonary-edema"]
+  },
+  {
+    id: "case-16",
+    question: "Case 16: A 56-year-old male was admitted to the CCU because of severe agonising chest pain that lasted for 30 minutes. BP was 180/100, and pulse was 100/min with infrequent ectopics.\n\na) Mention 3 diagnostic possibilities.\nb) How can you differentiate between them?\nc) What treatment would each condition need?",
+    modelAnswer: "a) Three diagnostic possibilities:\n1. Acute MI (STEMI or NSTEMI)\n2. Aortic dissection\n3. Acute pericarditis\n\nb) Differentiation:\n\n1. Acute STEMI: Localized ST elevation + elevated troponins + pathological Q waves\n   NSTEMI: ST depression + elevated troponins\n   Unstable angina: ST changes + NORMAL troponins\n\n2. Aortic dissection: Tearing pain radiating to back + unequal pulses/BP in arms + wide mediastinum on CXR + confirmed by CT angiography\n\n3. Acute pericarditis: Diffuse ST elevation + PR depression + normal troponins + pericardial rub + pleuritic positional pain (improves sitting forward)\n\nc) Treatment:\n1. STEMI: Primary PCI or fibrinolysis + DAPT + anticoagulation + statins + ACE-I + BB\n   NSTEMI: No fibrinolysis + DAPT + anticoagulation + statins; invasive strategy\n\n2. Aortic dissection: Type A → emergency surgery; Type B → IV beta-blockers + nitroprusside (medical); surgery if complicated\n\n3. Acute pericarditis: NSAIDs + colchicine; treat underlying cause",
+    rubric: "Must list 3 differential diagnoses. Must describe key differentiating features (ECG pattern, troponin, clinical presentation). Must describe appropriate treatment for each condition. Fibrinolysis is contraindicated in aortic dissection and pericarditis.",
+    explanation: "These three conditions can present similarly but have radically different treatments. Giving fibrinolysis to a patient with aortic dissection can be fatal.",
+    tags: ["cases", "chest-pain", "differential"]
+  },
+  {
+    id: "case-17",
+    question: "Case 17: 56-year-old, business man, heavy smoker, presented by chest pain of 5 min. duration, which is retrosternal and also have a pressure sensation. Height 173 cm, weight 120 kg.\n\na) What is the diagnosis?\nb) What are the investigations to confirm diagnosis?\nc) What is the treatment of this case?\nd) What are the other predisposing factors?",
+    modelAnswer: "a) Angina pectoris (Retrosternal compressing chest pain of short duration (5 min) in a heavy smoker with morbid obesity (BMI > 40). Classic angina presentation.)\n\nb) Investigations:\n- ECG: May show ST depression during pain, normal between attacks\n- Exercise stress test (if no contraindications)\n- Stress echocardiography\n- Coronary CT angiography\n- Coronary angiography (gold standard)\n- Lipid profile, fasting glucose, HbA1c\n\nc) Treatment:\n1. ACUTE: Sublingual nitrates\n2. CHRONIC:\n   - Anti-anginal: BB, CCBs, long-acting nitrates\n   - Antiplatelet: Aspirin\n   - Statins\n   - ACE-I (especially with risk factors)\n3. RISK FACTOR MODIFICATION:\n   - Smoking cessation (most important)\n   - Weight reduction\n   - Diet modification\n   - Exercise program\n4. If refractory: Consider coronary angiography → PTCA/CABG\n\nd) Other predisposing factors:\n- Obesity (BMI > 40 — morbid obesity)\n- Smoking (heavy)\n- Likely sedentary lifestyle\n- Possible dyslipidemia\n- Possible diabetes\n- Male sex\n- Age > 40 years\n- Type A personality (businessman)\n- Hypertension (possible)",
+    rubric: "Must diagnose angina pectoris. Must describe both acute and chronic treatment. Must emphasize risk factor modification (smoking cessation, weight loss). Must list modifiable and non-modifiable risk factors.",
+    explanation: "This patient has multiple modifiable risk factors. Smoking cessation is the single most important intervention. Weight reduction reduces cardiovascular risk and improves exercise tolerance.",
+    tags: ["cases", "angina", "risk-factors"]
+  },
+  {
+    id: "case-22",
+    question: "Case 22: A 42-year-old man with thoracic malignancy & history of radiotherapy. Now presented with dyspnea, jugular venous distension, distant cardiac sounds, pulsus paradoxus & cardiac enlargement.\n\na) What is the diagnosis?\nb) What is the next therapeutic step?\nc) Complications?",
+    modelAnswer: "a) Pericardial effusion / Cardiac tamponade (JVD + distant heart sounds + pulsus paradoxus = Beck's triad. History of thoracic malignancy and radiation are major risk factors for pericardial effusion.)\n\nb) Next therapeutic step:\n- Emergency pericardiocentesis (to relieve tamponade)\n- Then: Pericardial window or pericardiodesis (to prevent re-accumulation in malignant effusion)\n\nb) Complications:\n- Cardiac tamponade → Obstructive shock → Death\n- Constrictive pericarditis (late, from radiation)\n- Recurrence of effusion\n- Infection (if pericardiocentesis)",
+    rubric: "Must diagnose pericardial effusion/tamponade in the context of malignancy and radiation. Must identify Beck's triad. Emergency pericardiocentesis is the immediate life-saving step. Must mention pericardial window for malignant effusion.",
+    explanation: "Malignancy and radiation are major causes of pericardial effusion. Tamponade is a medical emergency requiring immediate drainage. Malignant effusions tend to recur, requiring pericardial window.",
+    tags: ["cases", "pericardial-effusion", "malignancy"]
+  },
+  {
+    id: "case-24",
+    question: "Case 24: 27-year-old woman presented with sharp chest pain which worsened by inspiration & improved by bending forward. Pain is precipitated by breathing deeply or coughing & is relieved by holding the breath. Heart examination reveals coarse, scratchy sound heard in both systole & diastole. ECG reveals elevated ST segment diffusely & PR segment depression.\n\na) What is the diagnosis?\nb) What are the causes of such diagnosis?\nc) What are investigations?\nd) Mention treatment?",
+    modelAnswer: "a) Acute (Dry) Pericarditis (Sharp positional chest pain worsening with inspiration, relieved by sitting forward + pericardial rub + diffuse ST elevation with PR depression = classic acute pericarditis)\n\nb) Causes:\n- Idiopathic (probably viral: Coxsackie B or Echo) — most common\n- Infections: Viral, Bacterial, TB\n- Immunological: SLE, RA\n- Post-MI\n- Renal failure\n- Iatrogenic: Drugs (INH, Hydralazine, Procainamide)\n- Radiation\n- Post-cardiotomy\n\nc) Investigations:\n- ECG: Diffuse ST elevation, PR depression\n- Echocardiography: Rule out effusion\n- Blood tests: CBC, ESR/CRP, troponins, renal function, autoimmune screen\n- Chest X-ray\n- Viral serology\n\nd) Treatment:\n- NSAIDs (ASA, Ibuprofen) — first line\n- Colchicine — for prevention of recurrence\n- Steroids — if no response to NSAIDs after 48h\n- Treat the underlying cause",
+    rubric: "Must diagnose acute pericarditis from the clinical triad (pleuritic pain + pericardial rub + diffuse ST elevation). Must list causes and treatment. Must mention diffuse ST elevation (different from localized in MI).",
+    explanation: "The pericardial rub is pathognomonic. Positional pain (worse supine, better sitting forward) and diffuse ST elevation with PR depression are characteristic of pericarditis.",
+    tags: ["cases", "acute-pericarditis"]
+  },
+  {
+    id: "case-25",
+    question: "Case 25: A 15-year-old developed fever with cough and chest discomfort. He suddenly became severely dyspneic. Examination showed engorged neck veins with inspiratory filling, pulse 120/min with a paradoxical character, BP 80/50 mmHg and distant heart sounds.\n\na) What is the most likely diagnosis?\nb) Give 2 investigations to prove the diagnosis?\nc) Give 2 possible etiological conditions?\nd) What emergency management do you suggest?",
+    modelAnswer: "a) Pericardial effusion with Cardiac Tamponade (Engorged neck veins + pulsus paradoxus + hypotension + distant heart sounds = Beck's triad = cardiac tamponade)\n\nb) Two investigations:\n1. Echocardiography (shows effusion, RA/RV diastolic collapse)\n2. ECG (low voltage, electrical alternans) or Chest X-ray (enlarged cardiac silhouette)\n\nc) Two possible etiological conditions:\n1. Viral/bacterial infection (post-infectious pericarditis with effusion)\n2. Purulent pericarditis (pyogenic infection causing pyopericardium)\n\nd) Emergency management:\n- Immediate pericardiocentesis (life-saving — relieves tamponade)\n- IV fluids (to maintain preload while preparing for drainage)\n- Treat the underlying cause (antibiotics for bacterial, anti-TB for TB)",
+    rubric: "Must diagnose cardiac tamponade from Beck's triad. Must mention echocardiography as the key investigation. Must describe emergency pericardiocentesis as life-saving.",
+    explanation: "Tamponade is a clinical emergency. Kussmaul's sign (inspiratory neck vein filling) and pulsus paradoxus indicate impaired cardiac filling. Pericardiocentesis is both diagnostic and therapeutic.",
+    tags: ["cases", "tamponade", "emergency"]
+  },
+  {
+    id: "case-26",
+    question: "Case 26: A 50-year-old male presented with severe pain in the chest and upper abdomen for 1 hour. On examination, his pulse was absent in one arm and BP was 200/120 in the other arm. He developed hemiplegia and ECG showed non-specific changes. CPK was only mildly increased.\n\na) What is the diagnosis?\nb) What is differential diagnosis?\nc) What other investigations would you like to do that you expect to find?",
+    modelAnswer: "a) Aortic dissection (Severe chest/upper abdominal pain + absent pulse in one arm + unequal BP between arms + hemiplegia (carotid involvement) + non-specific ECG + mildly elevated CPK)\n\nb) Differential diagnosis:\n- Acute MI (but ECG would show ST changes and CPK would be significantly elevated)\n- Acute pericarditis\n- Pulmonary embolism\n- Ruptured aortic aneurysm\n\nc) Investigations expected to find:\n1. CT angiography: Shows dissection flap, true and false lumen, branch vessel involvement\n2. Transesophageal echocardiography (TEE): Highly sensitive for ascending aortic dissection\n3. Chest X-ray: Wide mediastinum\n4. D-dimer: Elevated in dissection (but not specific)",
+    rubric: "Must diagnose aortic dissection from unequal pulses + severe chest pain. Must differentiate from MI (non-specific ECG, mild CPK). Must mention CT angiography and TEE as key investigations. Hemiplegia from carotid involvement is important.",
+    explanation: "Absent pulse in one arm indicates branch vessel involvement by the dissection. Hemiplegia occurs when the dissection extends to the carotid arteries. MI is excluded by non-specific ECG and minimal CPK elevation.",
+    tags: ["cases", "aortic-dissection"]
+  },
+  {
+    id: "case-27",
+    question: "Case 27: A 55-year-old man with rheumatic mitral stenosis presented with awareness of heart beats which were irregular. Examination showed congested pulsating neck veins with absence of A wave.\n\na) What is your diagnosis?\nb) How to manage?",
+    modelAnswer: "a) Mitral stenosis complicated by atrial fibrillation (Irregular heart beats + absent 'a' wave in neck veins + congested pulsating neck veins = AF in a patient with known MS)\n\nb) Management:\n1. RATE CONTROL:\n   - Beta-blockers, Non-DHP CCBs, or Digitalis\n2. RHYTHM CONTROL (if appropriate):\n   - Pharmacologic or electrical cardioversion\n   - Must ensure 4 weeks anticoagulation before and after cardioversion\n3. ANTICOAGULATION:\n   - Essential due to high thromboembolic risk (MS + AF)\n   - Warfarin (target INR 2-3) or NOAC (for non-valvular AF; valvular AF requires warfarin)\n4. TREAT THE UNDERLYING MS:\n   - Consider mitral valve surgery (commissurotomy or replacement)\n5. TREAT COMPLICATIONS:\n   - HF management if present\n   - Monitor for thromboembolism",
+    rubric: "Must diagnose AF in the context of MS. Must describe rate control, rhythm control, and anticoagulation. Must note that MS + AF has very high stroke risk requiring mandatory anticoagulation. Must consider definitive MS treatment.",
+    explanation: "MS is the most common cause of AF in developing countries. The loss of atrial contraction in AF further reduces cardiac output in MS patients. Anticoagulation is mandatory because MS + AF carries the highest stroke risk.",
+    tags: ["cases", "MS", "AF"]
+  },
+  {
+    id: "case-30",
+    question: "Case 30: A 45-year-old male came complaining of chest pain with exertion, several weeks of worsening exertional dyspnea, history of lightheadedness as if he was about to faint. He has orthopnea with occasional paroxysmal nocturnal dyspnea. On examination: pulse 104 bpm, BP 115/90 mmHg. Neck veins: congested. Chest: bilateral basal inspiratory crackles. Cardiac: apex in 5th space, regular rhythm, normal S1, splitting S2 during expiration, S3 at apex. Ejection systolic murmur at upper right sternal border radiating to carotids.\n\na) What is the most likely diagnosis?\nb) What is the most appropriate investigation to reach the diagnosis? Explain why.\nc) What are the indications of surgery?",
+    modelAnswer: "a) Aortic stenosis complicated by congestive heart failure (Ejection systolic murmur at upper right sternal border radiating to carotids = AS. Symptoms of angina, syncope, and HF are the classic triad of severe AS. S3 + bilateral crackles = LVF. Narrow pulse pressure 115/90 = severe AS.)\n\nb) Most appropriate investigation:\n- Echocardiography (is the gold standard for AS):\n  * Assesses aortic valve area, gradient, and severity\n  * Evaluates LV function (EF)\n  * Detects associated valve disease\n  * Guides timing of surgical intervention\n- Why echocardiography: It provides all the information needed for clinical decision-making — severity, gradient, valve area, and LV function — non-invasively.\n\nc) Indications of surgery (Aortic valve replacement):\n1. Presence of severe symptoms (angina, syncope, HF)\n2. Pressure gradient > 50 mmHg\n3. Valve area < 0.8 cm²\n4. Asymptomatic severe AS with reduced LVEF",
+    rubric: "Must diagnose AS with the classic triad (angina, syncope, HF). Must identify the murmur as AS (right sternal edge, radiating to carotids). Must justify echocardiography as the gold standard. Must list surgical indications.",
+    explanation: "This patient has all 3 classic symptoms of severe AS: angina (chest pain with exertion), syncope (lightheadedness), and heart failure (dyspnea, orthopnea, PND). Once symptoms develop, survival without surgery is limited (2-3 years).",
+    tags: ["cases", "aortic-stenosis", "HF"]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
