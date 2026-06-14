@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-860f1250b07c';
+const CACHE_VERSION = 'mu61-quiz-363e31f12aea';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -190,6 +190,11 @@ var PRECACHE_REL_PATHS = [
   'med/past-years/61st-mid.html',
   'med/past-years/index.html',
   'med/past-years/Misc.html',
+  'med/past-years/Written/57th_written.html',
+  'med/past-years/Written/58th_written.html',
+  'med/past-years/Written/59th_written.html',
+  'med/past-years/Written/60th_written.html',
+  'med/past-years/Written/index.html',
   'med/written/cardio-past-years.html',
   'med/written/cardiology-written-bylecture/arrhythmia.html',
   'med/written/cardiology-written-bylecture/cardiology-cases.html',
