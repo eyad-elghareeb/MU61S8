@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>58th Exam Written Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "58th_written",
+  title: "58th Exam Written Assessment",
+  description: "Medicine Written Questions — Final 58th Exam",
+  icon: "🩺"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"],
+     children: [           // Optional sub-questions (for multi-part questions)
+       {
+         id: "A",
+         label: "A)",
+         question: "Sub-question text?",
+         modelAnswer: "Answer for this sub-question"
+       }
+     ]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "Mr. Hany, a 25-year-old man and smoker, presented in the outpatient clinic with shortness of breath, unintentional weight loss, easy fatigue, and persistent low-grade fever for a month. Examination revealed the following: temperature 38°C, pulse 100 bpm, blood pressure 100/70, respiratory rate 20, cardiac examination: pansystolic murmur over the apex radiating to the axilla, grade IV. The patient was transferred to the cardiovascular department for further evaluation and treatment.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What is your provisional diagnosis?",
+        "modelAnswer": "Mitral Regurgitation (MR) due to Subacute Infective Bacterial Endocarditis (IE). The pansystolic murmur at the apex radiating to the axilla = MR. Constitutional features (fever, weight loss, fatigue) + young smoker = IE until proven otherwise."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention the criteria needed to confirm your diagnosis.",
+        "modelAnswer": "Modified Duke Criteria:\n\nMAJOR CRITERIA:\n1. Blood culture: ≥2 cultures positive for typical IE organisms (S. viridans, S. bovis, HACEK, enterococci) >12 hours apart; OR 3+ cultures ≥1 hour apart; OR Coxiella burnetii IgG titer >1:800.\n2. Echocardiographic criteria: Oscillating intracardiac mass on valve or supporting structures; myocardial abscess; new-onset valvular regurgitation.\n\nMINOR CRITERIA:\n1. Predisposing heart condition or IV drug use.\n2. Fever >38°C.\n3. Vascular phenomena: major arterial emboli, septic pulmonary infarcts, mycotic aneurysm, intracranial/conjunctival haemorrhage, Janeway lesions.\n4. Immunological phenomena: glomerulonephritis, Osler nodes, Roth spots, rheumatoid factor.\n5. Positive blood culture not meeting major criteria.\n6. Echocardiogram consistent with IE but not meeting major criteria.\n\nDIAGNOSIS: 2 major; or 1 major + 3 minor; or 5 minor criteria."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: MR due to subacute IE. Part B: Full modified Duke criteria — must include 2 major and 6 minor criteria, plus diagnostic threshold.",
+    "explanation": "Subacute IE (viridans streptococci) presents insidiously with weeks of constitutional symptoms. Pansystolic murmur at apex radiating to axilla is the classic description of MR. Echo + blood cultures are cornerstones.",
+    "tags": [
+      "cardiology",
+      "endocarditis",
+      "valvular"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "Mrs. Laila, a 70-year-old diabetic and hypertensive retired lady, was referred to our hospital at 3:30 AM due to palpitation. Medical first aid recorded an ECG immediately upon arrival, which showed an irregular rhythm, heart rate of 150 bpm, and no P wave. Blood pressure was 150/90 mmHg. The patient was immediately transferred to our ICU for further evaluation and treatment.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "Mention the possible type of arrhythmia.",
+        "modelAnswer": "Atrial Fibrillation (AF) — characterised by irregular rhythm with absent P waves and a rapid ventricular rate of 150 bpm."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention the main lines of treatment.",
+        "modelAnswer": "1. Reversion to Normal Sinus Rhythm (Rhythm control): Electrical cardioversion (DC cardioversion); or pharmacological cardioversion with Amiodarone, Propafenone, or Flecainide.\n2. Control of Ventricular Rate (Rate control): Beta-blockers, Calcium channel blockers (Verapamil/Diltiazem), or Digitalis.\n3. Prevention of Thromboembolism by Anticoagulants: Warfarin (Target INR 2-3) or Novel Oral Anticoagulants (NOACs — Rivaroxaban, Apixaban, Dabigatran)."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Atrial Fibrillation. Part B: Must address all 3 pillars — rhythm control, rate control, and anticoagulation.",
+    "explanation": "Absent P-waves + irregularly irregular rhythm = AF. In a 70-year-old diabetic hypertensive, CHA₂DS₂-VASc ≥2 mandates anticoagulation. Rate vs rhythm strategy depends on haemodynamic stability and AF duration.",
+    "tags": [
+      "cardiology",
+      "arrhythmia",
+      "atrial-fibrillation"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "Mr. Youssef, 67 years old, a retired teacher, smoker, obese, hypertensive for 10 years. During the regular follow-up in the outpatient clinic, his blood pressure was 130/80. He also mentioned that he had annoying central chest pain on exertion and was relieved by rest since the last visit.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "Mention two causes of secondary hypertension.",
+        "modelAnswer": "1. Renal causes: Glomerulonephritis, Pyelonephritis, Polycystic kidney disease, Renal artery stenosis (renovascular HTN).\n2. Endocrine causes: Hypothyroidism, DM, Cushing's disease, Primary hyperaldosteronism, Phaeochromocytoma, Acromegaly.\n3. CNS: Increased intracranial pressure.\n4. CVS: Polyarteritis nodosa, Polycythaemia.\n5. Iatrogenic: Oral contraceptive pills, Corticosteroids, NSAIDs, Calcium channel agonists."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention the possible causes of his chest pain.",
+        "modelAnswer": "The exertional chest pain relieved by rest suggests Stable Angina (chronic coronary syndrome) as the most likely cause. Other possible cardiac/non-cardiac causes:\n1. Stable angina (most likely — exertional, relieved by rest).\n2. Unstable angina.\n3. Aortic dissection.\n4. Acute dry pericarditis.\n5. Cardiac neurosis.\n6. Pulmonary embolism."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Any 2 of the 5 categories (renal, endocrine, CNS, CVS, iatrogenic) with at least one example each. Part B: Must include stable angina as most likely; accept any 2+ other causes.",
+    "explanation": "Classic stable angina = exertional chest pain relieved by rest, in a patient with multiple CV risk factors (smoking, obesity, HTN, age >65). Secondary HTN must be excluded especially in younger patients or resistant cases.",
+    "tags": [
+      "cardiology",
+      "hypertension",
+      "angina"
+    ]
+  },
+  {
+    "id": "wq-4",
+    "question": "Mr. Adel, 85 years old, retired farmer, was presented in the outpatient clinic suffering from recurrent attacks of syncope during the last month. Cardiac examination revealed ejection systolic murmur over the base of the heart.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "Define syncope.",
+        "modelAnswer": "Syncope is a transient attack of loss of consciousness due to a sudden decrease in cerebral blood flow, with spontaneous recovery. It is typically brief (seconds to minutes) and characterised by rapid onset and complete recovery."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention the possible cause of this condition.",
+        "modelAnswer": "Aortic Stenosis (AS) — most probably due to calcification (the most common cause of AS in elderly patients ≥65 years). The classic triad of severe AS is: Syncope, Angina, and Dyspnea. The ejection systolic murmur at the base (aortic area) radiating to carotids is pathognomonic."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Must include transient LOC, due to reduced cerebral blood flow, with spontaneous recovery. Part B: Aortic stenosis due to calcification — must mention calcification as likely aetiology given age 85.",
+    "explanation": "Calcific AS is the most common valvular disease in the elderly. The average survival after onset of syncope in severe AS is ~3 years without intervention. AVR/TAVI is the definitive treatment.",
+    "tags": [
+      "cardiology",
+      "syncope",
+      "aortic-stenosis"
+    ]
+  },
+  {
+    "id": "wq-5",
+    "question": "Mrs. Magda, a 65-year-old housewife, obese, presented with swelling of her legs, shortness of breath, and enlargement of her abdomen. She had open-heart surgery (CABG) five years prior, after which the following was revealed: congested pulsating neck vein, blood pressure 100/70 mmHg, pulse 100 bpm, regular, ascites, enlarged tender pulsating liver, apex in the 6th intercostal space within the anterior axillary line, echocardiogram: EF 30%, dilated LV.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What is the provisional diagnosis?",
+        "modelAnswer": "Heart Failure with Reduced Ejection Fraction (HFrEF) — Systolic Heart Failure. EF 30% (normal ≥55%), dilated LV, bilateral oedema, ascites, elevated JVP, and pulsating liver = congestive cardiac failure with biventricular involvement."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention two essential drugs that decrease mortality in this case.",
+        "modelAnswer": "Mortality-reducing drugs in HFrEF:\n1. Beta-Blockers: Metoprolol succinate, Bisoprolol, or Carvedilol — reduce cardiac remodelling and arrhythmic death.\n2. Mineralocorticoid Receptor Antagonists (MRA): Spironolactone or Eplerenone — reduce aldosterone-mediated fibrosis.\n3. ACE Inhibitors (ACEI): e.g., Enalapril, Ramipril — reduce afterload and cardiac remodelling.\n4. (Bonus) SGLT2 inhibitors (Empagliflozin, Dapagliflozin) — newer evidence-based mortality reduction."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: HFrEF (systolic heart failure); must note EF <40% as defining criterion. Part B: Any 2 of — Beta-blocker, MRA (Spironolactone), ACEI. Must name drug class at minimum.",
+    "explanation": "HFrEF evidence-based therapy: foundational quadruple therapy = ACEI/ARB + Beta-blocker + MRA + SGLT2i. Diuretics (furosemide) improve symptoms but do not reduce mortality.",
+    "tags": [
+      "cardiology",
+      "heart-failure",
+      "hfref"
+    ]
+  },
+  {
+    "id": "wq-6",
+    "question": "List two complications of Chronic Obstructive Pulmonary Disease (COPD) with their corresponding radiological features.",
+    "modelAnswer": "1. Pneumothorax: Radiological features — distinct visceral pleural line with absence of lung markings peripheral to this line.\n2. Cor pulmonale: Radiological features — features of underlying cause (hyperinflated lungs); features of pulmonary hypertension (enlarged pulmonary arteries); RV enlargement (cardiomegaly with upturned apex); RA enlargement.\n3. Pneumonia: Radiological features — radio-opaque (white) shadow with air bronchogram sign.",
+    "rubric": "Must list at least 2 COPD complications each paired with correct radiological features. All 3 listed complications with findings are acceptable.",
+    "explanation": "COPD bullae predispose to pneumothorax (5% lifetime risk). Sustained hypoxaemia leads to pulmonary vasoconstriction → pulmonary HTN → cor pulmonale (right heart failure). CXR shows RV enlargement.",
+    "tags": [
+      "respiratory",
+      "copd",
+      "radiology"
+    ]
+  },
+  {
+    "id": "wq-7",
+    "question": "Discuss levels of asthma according to GINA 2023 guidelines.",
+    "modelAnswer": "GINA 2023 assesses asthma control over the past 4 weeks using 4 parameters:\n1. Daytime asthma symptoms >2/week\n2. Any night waking due to asthma\n3. Reliever needed >2/week\n4. Any activity limitation due to asthma\n\nControl Categories:\n- Well Controlled: None of the 4 parameters present.\n- Partially Controlled: 1-2 of the 4 parameters present.\n- Uncontrolled: 3-4 of the 4 parameters present.\n\nNote: GINA 2023 also recommends that reliever use (SABA) >2 days/week is a signal to step up therapy.",
+    "rubric": "Must list the 4 assessment parameters. Must define at least Well Controlled (none of 4) and Partially Controlled (1-2 of 4).",
+    "explanation": "GINA 2023 replaced symptom-frequency-based severity classification with a control-based approach. Control is assessed prospectively and guides step-up/step-down of therapy.",
+    "tags": [
+      "respiratory",
+      "asthma",
+      "gina"
+    ]
+  },
+  {
+    "id": "wq-8",
+    "question": "List four criteria for atypical pneumonia.",
+    "modelAnswer": "1. Non-respiratory symptoms are dominant: headache, confusion, loss of mental clarity; abdominal pain and diarrhoea.\n2. Absence of organism by culture or Gram stain in sputum samples (atypical organisms are intracellular and non-cultivable on standard media).\n3. The usual auscultatory findings of consolidation may be absent or difficult to detect, making a chest X-ray essential for diagnosis.\n4. Mismatch between clinical presentation and radiological findings (patient may appear mildly unwell while CXR shows extensive bilateral infiltrates).",
+    "rubric": "Must list at least 4 of the criteria. Must include non-respiratory symptoms, culture negativity, auscultatory findings absent, and clinical-radiological mismatch.",
+    "explanation": "Atypical pneumonia caused by Mycoplasma, Legionella, Chlamydia, and Coxiella are intracellular; standard Gram stain and culture are negative. Diagnosis requires serology, PCR, or urine antigen testing.",
+    "tags": [
+      "respiratory",
+      "pneumonia",
+      "atypical"
+    ]
+  },
+  {
+    "id": "wq-9",
+    "question": "When pulmonary tuberculosis is suspected, list the methods for examination of sputum or obtained broncho-alveolar lavage.",
+    "modelAnswer": "1. Ziehl-Neelsen (ZN) staining — direct smear microscopy for acid-fast bacilli (AFB). Rapid, cheap but low sensitivity (requires 10,000 bacilli/ml).\n2. Culture of processed samples:\n   a. Lowenstein-Jensen (LJ) media — solid culture; results in 4-8 weeks.\n   b. BACTEC system (MGIT) — liquid automated culture; results in 1-3 weeks (faster).\n   c. Culture and susceptibility testing — determines drug resistance pattern.\n3. PCR (GeneXpert MTB/RIF) — molecular detection of M. tuberculosis DNA and rifampicin resistance gene (rpoB); results in <2 hours.",
+    "rubric": "Must include ZN staining, at least 2 culture methods (LJ + BACTEC), and PCR. Full marks for all 3 categories.",
+    "explanation": "ZN staining is the quickest initial test. Culture is the gold standard for diagnosis AND drug sensitivity. GeneXpert MTB/RIF is the WHO-recommended rapid test and simultaneously detects rifampicin resistance (a proxy for MDR-TB).",
+    "tags": [
+      "respiratory",
+      "tuberculosis",
+      "microbiology"
+    ]
+  },
+  {
+    "id": "wq-10",
+    "question": "In a lung neoplasm, mention four mediastinal structures that can be compressed or invaded with the related clinical signs.",
+    "modelAnswer": "1. Superior Vena Cava (SVC) → SVC Syndrome: puffiness of the face, congested non-pulsatile neck veins, oedema of upper limbs.\n2. Subclavian artery → Diminished or absent radial pulse in the affected upper limb (inequality of radial pulse).\n3. Oesophagus → Dysphagia (difficulty swallowing).\n4. Recurrent laryngeal nerve → Hoarseness of voice.\n5. Phrenic nerve → Elevated hemidiaphragm and diaphragmatic paralysis.\n6. Sympathetic chain → Horner syndrome (ptosis, miosis, anhidrosis, enophthalmos).\n7. Trachea → Stridor, dyspnoea, cough.",
+    "rubric": "Must pair each structure with its clinical sign. Must correctly match at least 4 structure-sign pairs.",
+    "explanation": "Pancoast tumour (superior sulcus tumour) classically invades the sympathetic chain (Horner's), brachial plexus (arm pain), and subclavian vessels. SVC syndrome is caused by central/mediastinal tumours or lymphadenopathy.",
+    "tags": [
+      "respiratory",
+      "lung-cancer",
+      "mediastinum"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

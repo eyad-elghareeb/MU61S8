@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>57th Exam Written Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "57th_written",
+  title: "57th Exam Written Assessment",
+  description: "Medicine Written Questions — Final 57th Exam",
+  icon: "💊"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"],
+     children: [           // Optional sub-questions (for multi-part questions)
+       {
+         id: "A",
+         label: "A)",
+         question: "Sub-question text?",
+         modelAnswer: "Answer for this sub-question"
+       }
+     ]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "A male patient complaining of night sweats, fever, anorexia, weight loss. X-ray shows apical lesion. Sputum exam shows acid-fast bacilli.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What is the regimen of treatment for this patient?",
+        "modelAnswer": "A 6-9 months continuous anti-TB regimen:\n- Initial (Intensive) phase (2 months): 3 or 4 drugs — Rifampicin (R) + Isoniazid (INH/H) + Pyrazinamide (Z) + Ethambutol (E) = RHZE or RHZ.\n- Continuation phase (4 months): INH + Rifampicin (RH); OR 6 months of INH + Ethambutol (HE) if there is concern for rifampicin resistance."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Compare between extrinsic and intrinsic asthma.",
+        "modelAnswer": "Extrinsic vs Intrinsic Asthma:\n- Precipitating factors: Extrinsic = Obvious (allergen); Intrinsic = Absent (no identifiable trigger).\n- Age: Extrinsic = Childhood; Intrinsic = Middle age.\n- Family history: Extrinsic = Positive; Intrinsic = Negative.\n- Atopy: Extrinsic = Positive; Intrinsic = Negative.\n- Serum IgE: Extrinsic = Raised; Intrinsic = Not raised.\n- Skin test: Extrinsic = Positive; Intrinsic = Negative.\n- Asthma pattern: Extrinsic = Intermittent; Intrinsic = Less labile and more severe."
+      },
+      {
+        "id": "C",
+        "label": "C)",
+        "question": "Mention 4 CXR radiological findings of a COPD patient.",
+        "modelAnswer": "1. Hypertranslucency of lungs (increased blackness = air trapping).\n2. Transverse ribs with wide intercostal spaces (barrel chest appearance).\n3. Low, flattened diaphragm (loss of the normal dome).\n4. Ribbon-shaped heart (narrow cardiac silhouette due to hyperinflated lungs).\n5. Peripheral vascular attenuation (pruning of pulmonary vessels)."
+      },
+      {
+        "id": "D",
+        "label": "D)",
+        "question": "Enumerate 4 organisms causing atypical pneumonia.",
+        "modelAnswer": "1. Chlamydophila pneumoniae (and Chlamydophila psittaci)\n2. Legionella pneumophila\n3. Coxiella burnetii (Q fever)\n4. Mycoplasma pneumoniae"
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: RHZE for 2 months + RH for 4 months. Part B: Must compare all 7 parameters with correct Extrinsic vs Intrinsic distinctions. Part C: Any 4 CXR findings. Part D: All 4 organisms named correctly.",
+    "explanation": "TB treatment follows WHO DOTS protocol. Extrinsic (allergic) asthma has an IgE-mediated Th2 mechanism; intrinsic asthma is non-atopic. COPD CXR features reflect air-trapping and hyperinflation.",
+    "tags": [
+      "respiratory",
+      "tuberculosis",
+      "asthma",
+      "copd"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "A 65-year-old male patient with stage 2 HTN forgot to take his medication and presented with fatigue, dyspnea, sense of impending drowning. On exam, BP=190/120, RR=30, diaphoresis, pallor, but no cyanosis, bilateral basal crepitation, accentuated first heart sound, apical impulse, no murmur, no thrill. Chest examination: Extensive bilateral crepitation.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What is your provisional diagnosis?",
+        "modelAnswer": "Hypertensive pulmonary oedema (Hypertensive emergency with acute LV failure). BP 190/120 + bilateral crepitations + dyspnoea + RR 30 in the setting of missed antihypertensive medication confirms this."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention 4 other causes of dyspnea.",
+        "modelAnswer": "1. Ischaemic heart disease / Myocardial infarction.\n2. Cardiomyopathy (dilated, hypertrophic, restrictive).\n3. Myocarditis.\n4. Valvular heart disease (e.g., aortic regurgitation, mitral stenosis).\n5. Cardiac tamponade."
+      },
+      {
+        "id": "C",
+        "label": "C)",
+        "question": "What are the main investigations to confirm the diagnosis?",
+        "modelAnswer": "1. Chest X-ray (CXR) — expected findings: bilateral hilar haziness, Kerley B lines, cardiomegaly, upper lobe diversion.\n2. Echocardiography — assesses LV function, EF, wall motion abnormalities, and valvular pathology."
+      },
+      {
+        "id": "D",
+        "label": "D)",
+        "question": "What is the main line of treatment?",
+        "modelAnswer": "Treatment of Hypertensive Emergency with Pulmonary Oedema:\n\nPrecautions:\n1. Start quickly to prevent further target organ damage.\n2. Avoid vigorous lowering — risk of organ hypoperfusion.\n3. Do not reduce BP >25% in the first hour.\n4. Use rapidly acting IV medications.\n\nManagement:\n- Site: ICU admission.\n- Goal: Reduce MAP by 10-20% in 1st hour, then gradually to reduce by 25% total over 24 hours; target SBP ≤140 mmHg.\n- Medications:\n  1. Sodium nitroprusside: 0.5-10 mcg/kg/min IV (potent vasodilator — drug of choice).\n  2. IV Nitroglycerine: 5-100 mcg/kg/min IV infusion (especially useful with pulmonary oedema).\n  3. IV Furosemide (loop diuretic) — for oedema relief.\n  4. IV Labetalol or IV Nicardipine — alternative agents."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Hypertensive pulmonary oedema. Part B: Any 4 cardiac causes of dyspnea. Part C: CXR + Echocardiography. Part D: ICU, BP reduction targets, and 2 IV medication examples.",
+    "explanation": "Hypertensive emergency requires IV antihypertensives with controlled BP reduction. The 25% rule prevents cerebral hypoperfusion in patients whose autoregulation is reset at high BP. Nitroprusside is the most titratable agent.",
+    "tags": [
+      "cardiology",
+      "hypertension",
+      "pulmonary-oedema"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "An old-age male patient suffered from severe retrosternal chest pain awaking him from sleep at 12:30 and came to hospital at 1:30 with continuing chest pain, dyspnea, and angor animi. On ECG we found ST elevation in leads II, III, aVF with reciprocal ST depression in leads I and aVL. Blood pressure was 100/70 mmHg. He was immediately transferred to the ICU for further investigation and treatment.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What is your provisional diagnosis?",
+        "modelAnswer": "Acute Inferior Wall Myocardial Infarction (STEMI) — mainly due to occlusion of the Right Coronary Artery (RCA). ST elevation in II, III, aVF with reciprocal changes in I and aVL are the diagnostic hallmark of inferior STEMI."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention other cardiac causes of chest pain.",
+        "modelAnswer": "1. Stable angina.\n2. Aortic dissection.\n3. Acute dry pericarditis.\n4. Cardiac neurosis.\n5. Pulmonary oedema.\n6. Pneumothorax."
+      },
+      {
+        "id": "C",
+        "label": "C)",
+        "question": "Mention other essential 2 investigations.",
+        "modelAnswer": "1. Serum cardiac markers: Troponin I/T and CK-MB — elevated in myocardial necrosis (Troponin rises in 3-4h, peaks at 12-24h, lasts 7-14 days).\n2. Coronary angiography — defines the anatomy of coronary occlusion and guides PCI (percutaneous coronary intervention)."
+      },
+      {
+        "id": "D",
+        "label": "D)",
+        "question": "Mention main lines of treatment.",
+        "modelAnswer": "General Measures:\n1. Coronary care unit (CCU) admission.\n2. Bed rest.\n3. Analgesics for pain (Morphine IV).\n4. O2 therapy (if SpO2 <90%).\n5. Nitrates sublingual or IV.\n\nAntiplatelets:\n1. Aspirin (300 mg loading then 75-100 mg daily).\n2. Clopidogrel (600 mg loading then 75 mg daily).\n\nReperfusion Therapy:\n1. Thrombolytic therapy: Streptokinase or t-PA (Alteplase) — if PCI not available within 120 minutes.\n2. Primary PCI and stenting — most effective if performed within 90 minutes of first medical contact.\n3. Surgical CABG — for multivessel disease not amenable to PCI.\n\nFollow-up Treatment (ABCDE):\nA — Aspirin + ACEI\nB — Beta-blockers + BP control\nC — Cholesterol control (statins)\nD — Diabetes control + diet\nE — Education + rehabilitation"
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Inferior wall STEMI due to RCA occlusion. Part B: At least 4 other cardiac causes. Part C: Troponin/CK-MB + Coronary angiography. Part D: All 4 categories (general, antiplatelets, reperfusion, follow-up) with examples.",
+    "explanation": "Inferior STEMI = II, III, aVF elevation + reciprocal I, aVL depression = RCA occlusion. Angor animi (sense of impending doom) is a classic symptom. Time-to-reperfusion is the most critical determinant of outcome.",
+    "tags": [
+      "cardiology",
+      "myocardial-infarction",
+      "stemi"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

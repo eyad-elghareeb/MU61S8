@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>60th Exam Written Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "60th_written",
+  title: "60th Exam Written Assessment",
+  description: "Medicine Written Questions — Final 60th Exam",
+  icon: "🫁"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"],
+     children: [           // Optional sub-questions (for multi-part questions)
+       {
+         id: "A",
+         label: "A)",
+         question: "Sub-question text?",
+         modelAnswer: "Answer for this sub-question"
+       }
+     ]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "A 59-year-old man with advanced COPD is evaluated because of daily symptoms. He had one exacerbation last year needing hospital admission. The patient has cough productive of white or yellow sputum, and dyspnea. His CAT score 15. Current smoker 30 years ago. Arterial oxygen saturation at room air is 87%. Chest radiograph suggests hyperinflation of the lungs. Pulmonary function Studies show a forced expiratory volume in 1 sec (FEV1) 39% of predicted. CBC shows eosinophil 500 cell/ul.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "Classify patient according to GOLD ABE assessment.",
+        "modelAnswer": "Group E — the patient has ≥2 exacerbations per year or ≥1 exacerbation requiring hospitalisation, placing them in the high-risk Group E category of the GOLD 2023 ABE tool."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "What is the appropriate inhaler therapy in this patient?",
+        "modelAnswer": "LABA + LAMA + ICS (triple inhaler therapy). ICS is added because eosinophil count ≥300 cells/µl predicts steroid responsiveness and reduces exacerbation risk."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Must identify Group E (≥1 hospitalisation or ≥2 exacerbations). Part B: Must include all three classes — LABA + LAMA + ICS; must justify ICS addition (eosinophilia).",
+    "explanation": "GOLD 2023 ABE tool replaces the old ABCD grouping. Group E = exacerbation history risk. Triple therapy is indicated in Group E when eosinophils ≥300 cells/µl.",
+    "tags": [
+      "respiratory",
+      "copd",
+      "gold-guidelines"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "Mention four criteria of Para-neoplastic syndrome.",
+    "modelAnswer": "1. Wasting of the host.\n2. Clubbing ± hypertrophic pulmonary osteoarthropathy (HPOA).\n3. Endocrine abnormalities: Cushing's syndrome, Hypercalcaemia, Water intoxication (SIADH), Gynecomastia, Acromegaly, Carcinoid syndrome.\n4. Neurological manifestations: Neuropathy, Myopathy.\n5. Thromboembolic manifestations.\n6. Cutaneous manifestations.",
+    "rubric": "Must list at least 4 distinct criteria. Accept any 4 of: host wasting, clubbing/HPOA, endocrine abnormalities (with examples), neurological manifestations, thromboembolic, cutaneous.",
+    "explanation": "Paraneoplastic syndromes are remote effects of tumour-secreted substances (hormones, antibodies) unrelated to direct invasion or metastasis. Lung cancer is the most common cause.",
+    "tags": [
+      "respiratory",
+      "lung-cancer",
+      "paraneoplastic"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "A 70-year-old conscious male had history of fever for 4 days followed by productive cough. He had a respiratory rate of 35 breath/min and BP 70/40, pulse of 110/min. Urea level was 10 mg/dl. Liver function tests show ALT= 150 U/L. ENT examination show bullous myringitis. Chest examination and chest X-ray revealed right lower lobe pneumonia.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "Mention one score for assessment of severity and calculate it.",
+        "modelAnswer": "CURB-65 score = 3 points.\n- C (Confusion): 0 — patient is conscious.\n- U (Urea >7 mmol/L or >20 mg/dl): 0 — urea is 10 mg/dl (<20 mg/dl).\n- R (RR ≥ 30): 1 point — RR is 35.\n- B (SBP ≤90 mmHg or DBP ≤60 mmHg): 1 point — BP is 70/40.\n- 65 (Age >65): 1 point — patient is 70.\nTotal = 3 points → ICU admission required."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention site of management of this patient.",
+        "modelAnswer": "ICU — CURB-65 score ≥3 mandates ICU-level care."
+      },
+      {
+        "id": "C",
+        "label": "C)",
+        "question": "Mention two antibiotics suitable for this patient.",
+        "modelAnswer": "Ceftriaxone (3rd-generation cephalosporin to cover typical organisms) + Azithromycin (macrolide to cover atypical organisms such as Mycoplasma — suggested by bullous myringitis)."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Must use CURB-65, correctly calculate 3 points (RR + BP + Age). Part B: ICU. Part C: Any beta-lactam + macrolide/fluoroquinolone combination acceptable.",
+    "explanation": "Bullous myringitis is a classical sign of Mycoplasma pneumoniae. CURB-65 ≥3 = severe CAP requiring ICU. Dual antibiotic coverage addresses both typical and atypical pathogens.",
+    "tags": [
+      "respiratory",
+      "pneumonia",
+      "curb65"
+    ]
+  },
+  {
+    "id": "wq-4",
+    "question": "List two interventional investigations for a patient presented with CT chest showing peripheral lung mass and pleural effusion.",
+    "modelAnswer": "1. CT-guided transthoracic biopsy — to sample the peripheral lung mass for histology.\n2. Thoracocentesis with pleural fluid cytology — to analyse the effusion and detect malignant cells.\nAdditional options: Pleural biopsy, Bronchoalveolar lavage (BAL).",
+    "rubric": "Must list at least 2 interventional investigations. Accept: CT-guided biopsy, thoracocentesis, pleural biopsy, or BAL.",
+    "explanation": "Peripheral masses are best sampled by CT-guided biopsy (bronchoscopy less useful for peripheral lesions). Pleural effusion in the context of a lung mass is likely malignant — cytology confirms this.",
+    "tags": [
+      "respiratory",
+      "lung-cancer",
+      "investigations"
+    ]
+  },
+  {
+    "id": "wq-5",
+    "question": "A 50-year-old male patient, presented with night fever, night sweating, cough, and expectoration of blood-tinged sputum. The physician ordered chest X-ray which revealed right upper zone cavitary lesion with air fluid level. Sputum Ziehl-Nelson stain revealed positive results and sputum cytology revealed no malignant cells.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What is the diagnosis of this case?",
+        "modelAnswer": "Pulmonary Tuberculosis — specifically cavitary (post-primary/reactivation) TB. The positive Ziehl-Neelsen stain (acid-fast bacilli), upper zone cavitary lesion, constitutional B-symptoms, and haemoptysis are classical."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention three microbiological investigations that confirm your diagnosis (other than mentioned in scenario).",
+        "modelAnswer": "1. Lowenstein-Jensen (L-J) Media culture — gold standard culture for M. tuberculosis.\n2. BACTEC system culture — rapid automated liquid culture system (results in 1–3 weeks).\n3. PCR (GeneXpert MTB/RIF) — rapid molecular detection of TB DNA and rifampicin resistance.\n4. Tuberculin Skin Test (TST/Mantoux) — also acceptable."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Must state Pulmonary TB (cavitary). Part B: Any 3 of — LJ culture, BACTEC culture, PCR/GeneXpert, TST/Mantoux. Ziehl-Neelsen and cytology already mentioned in stem — exclude.",
+    "explanation": "The triad of upper lobe cavitation, constitutional symptoms, and AFB positivity = TB until proven otherwise. Culture remains the gold standard; PCR gives rapid results with drug-sensitivity data.",
+    "tags": [
+      "respiratory",
+      "tuberculosis",
+      "microbiology"
+    ]
+  },
+  {
+    "id": "wq-6",
+    "question": "Define hypertensive emergency, and mention 4 examples of target organ damage.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "Define hypertensive emergency.",
+        "modelAnswer": "Hypertensive emergency is a severe elevation of blood pressure (usually >180/120 mmHg) accompanied by acute target organ damage requiring immediate BP reduction (over minutes to hours) with parenteral medications."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention 4 examples of target organ damage.",
+        "modelAnswer": "1. Acute Kidney Injury (AKI) — hypertensive nephropathy.\n2. Acute Coronary Syndrome (ACS) — unstable angina or NSTEMI.\n3. Aortic dissection.\n4. Stroke (haemorrhagic or ischaemic).\n5. Pulmonary oedema (hypertensive LV failure)."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Must include BP threshold >180/120 AND acute target organ damage. Part B: Any 4 of — AKI, ACS, aortic dissection, stroke, pulmonary oedema, hypertensive encephalopathy.",
+    "explanation": "Distinguishes from hypertensive urgency (BP >180/120 without organ damage). Emergency demands IV therapy. Common end-organs: brain, heart, kidneys, aorta, eyes.",
+    "tags": [
+      "cardiology",
+      "hypertension",
+      "emergency"
+    ]
+  },
+  {
+    "id": "wq-7",
+    "question": "Mention 4 cardiac lesions susceptible for infective endocarditis.",
+    "modelAnswer": "1. Aortic Stenosis (AS) and Pulmonary Stenosis (PS).\n2. Aortic Regurgitation (AR) and Pulmonary Regurgitation (PR).\n3. Ventricular Septal Defect (VSD).\n4. Patent Ductus Arteriosus (PDA).\n5. Tetralogy of Fallot (TPF).\n6. Prosthetic heart valves.",
+    "rubric": "Must list at least 4. Accept any valvular lesion or congenital defect that creates turbulent flow. Prosthetic valves are highest-risk and should ideally be mentioned.",
+    "explanation": "IE occurs where turbulent flow damages endothelium, creating platelet-fibrin thrombus. Regurgitant lesions (low-pressure jets) pose higher risk than stenotic lesions. Prosthetic valves are the single highest-risk substrate.",
+    "tags": [
+      "cardiology",
+      "endocarditis",
+      "valvular"
+    ]
+  },
+  {
+    "id": "wq-8",
+    "question": "Mention lines of treatment of chronic coronary syndrome.",
+    "modelAnswer": "1. Lifestyle modification: healthy diet, quit smoking, regular exercise.\n2. Antianginal drugs: Beta-blockers (BB), Calcium Channel Blockers (CCB), Nitrates.\n3. Antiplatelet therapy: Aspirin + Clopidogrel (dual antiplatelet).\n4. Statins (lipid-lowering and plaque-stabilising).\n5. ACE Inhibitors (ACEI) or Angiotensin Receptor Blockers (ARBs) — especially if HF or DM.\n6. Revascularisation: PCI (percutaneous coronary intervention) or CABG (coronary artery bypass grafting) if indicated.",
+    "rubric": "Must include lifestyle changes, at least one antianginal, antiplatelet therapy, statins, and mention of revascularisation options.",
+    "explanation": "Chronic coronary syndrome (stable IHD) management follows an ABCDE approach: Antiplatelet/Antianginal, Betablocker, Cholesterol/ACEI, Diet, Education. Revascularisation reserved for refractory or high-risk anatomy.",
+    "tags": [
+      "cardiology",
+      "coronary",
+      "treatment"
+    ]
+  },
+  {
+    "id": "wq-9",
+    "question": "Mention causes and complications of mitral stenosis.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What are the causes of mitral stenosis?",
+        "modelAnswer": "Most common: Rheumatic heart disease (accounts for ~99% of cases).\nLess common causes: Congenital mitral stenosis; Left atrial myxoma (obstructing the valve); Collagen vascular diseases (SLE, Rheumatoid Arthritis); Carcinoid carcinoma (right-sided involvement usually, rarely left-sided)."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "What are the complications of mitral stenosis?",
+        "modelAnswer": "1. Atrial Fibrillation (AF) → systemic emboli (most feared: stroke).\n2. Pulmonary hypertension (P++) → right heart failure (cor pulmonale).\n3. Recurrent haemoptysis (rupture of bronchial veins under elevated pulmonary venous pressure).\n4. Infective Endocarditis (IE)."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Must mention rheumatic disease as primary cause plus at least 2 others. Part B: Must include AF/emboli, pulmonary HTN/RHF, haemoptysis, and IE.",
+    "explanation": "Rheumatic MS results from leaflet fusion and subvalvular thickening over decades post-streptococcal infection. Rising LA pressure causes AF, pulmonary HTN, and haemoptysis via bronchial vein rupture.",
+    "tags": [
+      "cardiology",
+      "valvular",
+      "mitral-stenosis"
+    ]
+  },
+  {
+    "id": "wq-10",
+    "question": "A 60-year-old male patient presenting to ER with acute onset dyspnea for 3 hours, BP was 200/120, orthopnoeic, irregular pulse about 160 BPM, giving history of recurrent hospital admission with the same presentation.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "Mention 2 first line investigations you will ask and possible finding.",
+        "modelAnswer": "1. ECG — expected finding: Atrial Fibrillation (AF) with tachycardia (absent P waves, irregularly irregular rhythm, ventricular rate ~160 bpm).\n2. Chest X-ray (CXR) — expected finding: pulmonary oedema (bilateral hilar haziness, Kerley B lines, cardiomegaly).\n3. Echocardiography — expected finding: LV dysfunction, reduced ejection fraction."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "Mention 4 drugs that should be given to the patient in ER.",
+        "modelAnswer": "1. O2 therapy (high-flow oxygen for hypoxaemia).\n2. IV Loop diuretic (Furosemide) — to reduce pulmonary oedema.\n3. IV Vasodilator (GTN/Nitroglycerine) — to reduce preload and afterload.\n4. IV Beta-Blocker — for rate control in AF.\n5. Anticoagulant (e.g., Heparin) — if stroke is suspected or AF >48 hours.\n6. Digoxin — may be used for rate control (especially if BP is low and beta-blockers contraindicated)."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: ECG (AF with tachycardia) + CXR (pulmonary oedema) mandatory; echo is a bonus. Part B: Must include O2, loop diuretic, vasodilator, and rate control agent.",
+    "explanation": "Presentation is decompensated HF with AF and hypertensive urgency. Recurrent admissions suggest chronic HF with AF. Immediate priorities: oxygenation, decongestion, rate control.",
+    "tags": [
+      "cardiology",
+      "heart-failure",
+      "atrial-fibrillation"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>

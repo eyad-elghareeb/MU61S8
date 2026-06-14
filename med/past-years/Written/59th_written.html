@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>59th Exam Written Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* ────────────────────────────────────────────────────────────────
+   WRITTEN ASSESSMENT DATA  — only edit below this line
+   ──────────────────────────────────────────────────────────────────*/
+
+/* [WRITTEN_CONFIG_START] */
+const WRITTEN_CONFIG = {
+  uid: "59th_written",
+  title: "59th Exam Written Assessment",
+  description: "Medicine Written Questions — Final 59th Exam",
+  icon: "❤️"
+};
+/* [WRITTEN_CONFIG_END] */
+
+/* ─────────────────────────────────────────────────────────────────
+   WRITTEN_QUESTIONS ARRAY
+   Format for each question:
+   {
+     id: "unique-question-id",
+     question: "Your question text",
+     modelAnswer: "Expected/Model Answer text",
+     rubric: "Optional grading rubric points for AI context",
+     explanation: "Why this answer is structured this way / extra background",
+     tags: ["tag1", "tag2"],
+     children: [           // Optional sub-questions (for multi-part questions)
+       {
+         id: "A",
+         label: "A)",
+         question: "Sub-question text?",
+         modelAnswer: "Answer for this sub-question"
+       }
+     ]
+   }
+   ──────────────────────────────────────────────────────────────────*/
+/* [WRITTEN_QUESTIONS_START] */
+const WRITTEN_QUESTIONS = [
+  {
+    "id": "wq-1",
+    "question": "List four causes of atypical pneumonia and mention the antibiotic of choice for atypical pneumonia.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "List four causes of atypical pneumonia.",
+        "modelAnswer": "1. Legionella pneumophilia\n2. Mycoplasma pneumoniae\n3. Chlamydia (Chlamydophila pneumoniae / psittaci)\n4. Coxiella burnetii (Q fever)"
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "What is the antibiotic of choice for atypical pneumonia?",
+        "modelAnswer": "Macrolides (e.g., Azithromycin, Clarithromycin) or Fluoroquinolones (e.g., Levofloxacin, Moxifloxacin). Doxycycline is also an alternative."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Must name 4 organisms — Legionella, Mycoplasma, Chlamydia, Coxiella. Part B: Macrolide or fluoroquinolone — must name at least the class.",
+    "explanation": "Atypical organisms do not grow on standard culture media and lack a cell wall (resistant to beta-lactams). Macrolides and fluoroquinolones penetrate intracellularly.",
+    "tags": [
+      "respiratory",
+      "pneumonia",
+      "atypical"
+    ]
+  },
+  {
+    "id": "wq-2",
+    "question": "Mention four radiological manifestations of lung cancer at chest X-ray.",
+    "modelAnswer": "A. Mass — in any lung zone (upper, middle, or lower).\nB. Cavitary lesion — characteristically thick cavity wall, eccentric and shaggy inner border (distinguishes from TB which is thin-walled).\nC. Lobar or lung collapse (due to endobronchial obstruction).\nD. Mediastinal mass or widening (lymph node metastases).\nE. Pleural effusion (malignant effusion).\nF. Rib erosion (chest wall invasion).",
+    "rubric": "Must mention at least 4 of: mass, cavitary lesion, lobar collapse, mediastinal widening, pleural effusion, rib erosion.",
+    "explanation": "Lung cancer is the most common cause of an unexplained chest X-ray opacity in a smoker >40. A thick-walled shaggy cavity distinguishes malignancy from TB (thin-walled) or abscess.",
+    "tags": [
+      "respiratory",
+      "lung-cancer",
+      "radiology"
+    ]
+  },
+  {
+    "id": "wq-3",
+    "question": "Mention TWO differentiation points between transudate and exudate pleural effusion.",
+    "modelAnswer": "Light's criteria (any 2 of the following):\n1. Pleural fluid protein / serum protein ratio: Exudate >0.5 | Transudate <0.5\n2. Pleural fluid protein: Exudate >3 g/dl | Transudate <3 g/dl\n3. Pleural fluid LDH / serum LDH ratio: Exudate >0.6 | Transudate <0.6\n4. Absolute pleural fluid LDH: Exudate >200 IU/L | Transudate <200 IU/L\n5. Specific gravity: Exudate >1016 | Transudate <1016",
+    "rubric": "Must provide at least 2 valid differentiating parameters with values for both exudate and transudate. Light's criteria parameters are preferred.",
+    "explanation": "Light's criteria (1972) remain the gold standard — exudate if any one criterion is met. Transudates result from pressure imbalance (CCF, nephrotic); exudates from inflammation/malignancy.",
+    "tags": [
+      "respiratory",
+      "pleural-effusion",
+      "investigations"
+    ]
+  },
+  {
+    "id": "wq-4",
+    "question": "A 55-year-old male patient works at a glass factory, presents with dry cough and progressive breathlessness. He has bilateral intrascapular velcro crackles. Pulmonary function tests reveal decrease in total lung capacity, DLCO and vital capacity with FEV1/FVC ratio 98%.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What is the most probable diagnosis of this patient?",
+        "modelAnswer": "Diffuse Parenchymal Lung Disease (DPLD) — most likely Silicosis (occupational exposure to silica dust at glass factory). The restrictive pattern (reduced TLC, VC, DLCO with preserved/elevated FEV1/FVC ratio) + bilateral velcro crackles + occupational history are characteristic."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "What is the gold standard investigation to confirm diagnosis of this case?",
+        "modelAnswer": "Lung biopsy (surgical/video-assisted thoracoscopic lung biopsy) — provides histopathological confirmation of DPLD pattern. High-resolution CT (HRCT) of the chest is the first-line non-invasive investigation."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: DPLD (accept silicosis, IPF, or occupational ILD given the factory history). Must justify with restrictive PFTs + velcro crackles. Part B: Lung biopsy (gold standard); HRCT is also acceptable as an answer.",
+    "explanation": "Silica dust exposure causes silicosis (a pneumoconiosis). FEV1/FVC >70% with reduced TLC/VC/DLCO = restrictive pattern = ILD/DPLD. Velcro crackles at lung bases are a hallmark of fibrotic ILD.",
+    "tags": [
+      "respiratory",
+      "dpld",
+      "occupational"
+    ]
+  },
+  {
+    "id": "wq-5",
+    "question": "Mention two indications of immunotherapy for bronchial asthma.",
+    "modelAnswer": "1. Clear evidence of a relationship between symptoms and exposure to a specific allergen.\n2. Symptoms occur during a major portion of the year (perennial allergen exposure).\n3. Difficulty in controlling symptoms with pharmacological management despite optimal therapy.",
+    "rubric": "Must name at least 2 of the 3 indications. All three are accepted.",
+    "explanation": "Allergen-specific immunotherapy (AIT) modifies the immune response by shifting from Th2 to Th1 profile and inducing regulatory T-cells. Reserved for allergic asthma not controlled by standard pharmacotherapy.",
+    "tags": [
+      "respiratory",
+      "asthma",
+      "immunotherapy"
+    ]
+  },
+  {
+    "id": "wq-6",
+    "question": "Mr. Adel came to the emergency department in Mansoura University Hospitals complaining of severe retrosternal compressing pain that started since 4 hours ago and radiating to the back and told the doctor that he vomited twice. Mr. Adel is 65 years old, he told the doctor that he is a smoker since the age of 24 and is taking oral antidiabetic and antihypertensive drugs since 15 years. On examination his blood pressure was 90/60 mmHg, radial pulse was 90 BPM and very weak. ECG revealed sinus rhythm with ST elevation in leads II, III and aVF. Immediate management was performed in ER and patient rapidly transferred to ICU.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "What is your provisional diagnosis?",
+        "modelAnswer": "Inferior Wall Myocardial Infarction (STEMI) — due to occlusion of the Right Coronary Artery (RCA). ST elevation in leads II, III, and aVF with haemodynamic compromise (BP 90/60, weak pulse) confirms this."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "What are the medications that were given to the patient in the ER?",
+        "modelAnswer": "1. Morphine — to relieve pain and reduce sympathetic activation.\n2. Aspirin + Clopidogrel (dual antiplatelet therapy).\n3. Thrombolytic therapy (Streptokinase or Alteplase/t-PA) — if PCI not available within 120 minutes.\n4. Nitrates (sublingual or IV) — for pain relief (use cautiously with low BP).\n5. Oxygen therapy if SpO2 <90%."
+      },
+      {
+        "id": "C",
+        "label": "C)",
+        "question": "Mention 3 post-discharge medications and 2 lifestyle advices that you will give to your patient on discharge.",
+        "modelAnswer": "Post-discharge medications (ABCDE mnemonic):\nA — Aspirin + ACEI\nB — Beta-blockers + BP control\nC — Cholesterol control (Statins)\nD — Diabetes control (optimize antidiabetics)\nE — Education and rehabilitation\n\nLifestyle advice:\n1. Quit smoking immediately and permanently.\n2. Adopt a heart-healthy diet (low saturated fat, low salt, Mediterranean diet).\n3. Regular graded physical activity / cardiac rehabilitation programme."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: Inferior wall MI (STEMI); RCA occlusion. Part B: Morphine + thrombolytics are key; antiplatelets and nitrates also accepted. Part C: Any 3 drugs from ABCDE + at least 2 lifestyle changes.",
+    "explanation": "Inferior STEMI = ST elevation II, III, aVF — RCA territory. Hypotension may indicate RV infarction (avoid nitrates/diuretics). Reperfusion is the priority; thrombolysis if PCI unavailable.",
+    "tags": [
+      "cardiology",
+      "myocardial-infarction",
+      "stemi"
+    ]
+  },
+  {
+    "id": "wq-7",
+    "question": "Mr. Hamdy is 78 years old, came to outpatient cardiac clinic for follow-up. He told the doctor that he became unable to perform his daily activity without distress despite taking medication regularly. He was on furosemide 40 mg/d, bisoprolol 5 mg/d. On examination his pulse was irregularly irregular at about 75, BP was 135/85 mmHg. Local examination revealed ejection systolic murmur on the base of the heart. ECG revealed AF. Echo revealed severe AS, reduced left ventricular function and dilated chamber dimensions.",
+    "children": [
+      {
+        "id": "A",
+        "label": "A)",
+        "question": "Mention 3 other medications that you will add to your patient.",
+        "modelAnswer": "1. ACE Inhibitor (ACEI) — e.g., Ramipril — for LV dysfunction and heart failure.\n2. Anticoagulant (Warfarin) — to prevent thromboembolism due to AF.\n3. Antiarrhythmic (Amiodarone) — for rate/rhythm control in AF."
+      },
+      {
+        "id": "B",
+        "label": "B)",
+        "question": "What is the definitive line of management of this patient?",
+        "modelAnswer": "Aortic Valve Replacement (AVR) — surgical or transcatheter (TAVI/TAVR for high surgical risk patients like Mr. Hamdy given his age). This is the only definitive treatment for severe symptomatic AS."
+      },
+      {
+        "id": "C",
+        "label": "C)",
+        "question": "What is the NYHA class of this patient?",
+        "modelAnswer": "NYHA Class III — the patient is unable to perform daily activities without symptoms (dyspnea/fatigue) but is comfortable at rest."
+      }
+    ],
+    "modelAnswer": "",
+    "rubric": "Part A: ACEI + Anticoagulant (Warfarin) + Amiodarone. Part B: Aortic valve replacement (AVR/TAVI). Part C: NYHA Class III.",
+    "explanation": "Severe AS with LV dysfunction + AF is a dangerous combination. Warfarin is mandatory for AF thromboembolic prevention. NYHA III = symptoms on less-than-ordinary exertion but comfortable at rest.",
+    "tags": [
+      "cardiology",
+      "aortic-stenosis",
+      "heart-failure"
+    ]
+  },
+  {
+    "id": "wq-8",
+    "question": "Mention 4 lines for management of supraventricular tachycardia (SVT).",
+    "modelAnswer": "1. Vagal stimulation: Carotid sinus massage or pressure on the eyeball (Valsalva manoeuvre) — first-line, non-pharmacological.\n2. Drugs (ABCD mnemonic): Adenosine (first-line IV drug, 6mg bolus), Beta-blockers, Calcium channel blockers (Verapamil IV), Digitalis (IV).\n3. DC cardioversion (synchronised) — if haemodynamically unstable or no response to drugs.\n4. Radiofrequency ablation — for recurrent/refractory SVT (definitive treatment).",
+    "rubric": "Must include vagal stimulation, pharmacological agents (especially Adenosine), and DC cardioversion for unstable patients. 4 distinct lines required.",
+    "explanation": "SVT (AVNRT most commonly) is terminated by slowing AV conduction. Vagal manoeuvres work ~25% of the time. Adenosine (half-life 10 sec) terminates >90% of episodes.",
+    "tags": [
+      "cardiology",
+      "arrhythmia",
+      "svt"
+    ]
+  },
+  {
+    "id": "wq-9",
+    "question": "What are the modified Duke criteria for diagnosis of infective endocarditis?",
+    "modelAnswer": "MAJOR CRITERIA:\n1. Blood culture: Typical IE organisms in ≥2 separate cultures (S. viridans, S. bovis, HACEK group, enterococci without primary focus) >12 hours apart; OR 3+ cultures ≥1 hour apart; OR single positive for Coxiella burnetii or IgG titer >1:800.\n2. Echocardiographic criteria: Oscillating intracardiac mass on a valve or supporting structures; myocardial abscess; new-onset valvular regurgitation.\n\nMINOR CRITERIA:\n1. Predisposing heart condition or IV drug use.\n2. Fever >38°C.\n3. Vascular phenomena: major arterial emboli, septic pulmonary infarcts, mycotic aneurysm, intracranial/conjunctival haemorrhage, Janeway lesions.\n4. Immunological phenomena: glomerulonephritis, Osler nodes, Roth spots, rheumatoid factor.\n5. Positive blood cultures not meeting major criteria.\n6. Echocardiogram consistent with IE but not meeting major criteria.\n\nDIAGNOSIS REQUIRES: 2 major criteria; OR 1 major + 3 minor; OR 5 minor criteria.",
+    "rubric": "Must name both major criteria (blood culture + echo). Must name at least 4 minor criteria. Must state the clinical diagnosis threshold (2 major / 1 major + 3 minor / 5 minor).",
+    "explanation": "The modified Duke criteria (2000) added Coxiella to major blood culture criteria. Sensitivity ~80%. TTE/TOE are key — oscillating vegetations are pathognomonic when seen.",
+    "tags": [
+      "cardiology",
+      "endocarditis",
+      "duke-criteria"
+    ]
+  },
+  {
+    "id": "wq-10",
+    "question": "Mention the causes of resistant hypertension.",
+    "modelAnswer": "Resistant hypertension = BP >140/90 mmHg despite ≥3 antihypertensive drugs at optimal doses (including a diuretic).\n\nCauses:\n1. Underlying medical (secondary) disorders: Renal parenchymal disease, Renal artery stenosis, Primary hyperaldosteronism (Conn's syndrome).\n2. Structural heart disorder (e.g., coarctation of aorta).\n3. Hormonal disorders: Phaeochromocytoma, Cushing's syndrome, Thyroid disease, Hyperparathyroidism.\n4. Iatrogenic: NSAIDs, oral contraceptives, corticosteroids, sympathomimetics, liquorice.\n5. Lifestyle factors: High salt intake, obesity, excess alcohol, non-adherence to medication.",
+    "rubric": "Must mention at least 3 categories. Accept: secondary causes (renal, endocrine), structural, medication-related (iatrogenic), and lifestyle factors.",
+    "explanation": "Pseudo-resistance (poor adherence, white coat HTN, incorrect BP measurement) must be excluded first. True resistant HTN warrants secondary cause workup — aldosterone:renin ratio, renal artery imaging, 24h urine catecholamines.",
+    "tags": [
+      "cardiology",
+      "hypertension",
+      "secondary-htn"
+    ]
+  }
+];
+/* [WRITTEN_QUESTIONS_END] */
+</script>
+<script>
+/* Engine loader — computes correct relative path for any folder depth */
+(function () {
+  window.__WRITTEN_ENGINE_BASE = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  window.__WRITTEN_ENGINE_VERSION = '2026-06-01-ai-fallback-ui';
+  document.write('<scr' + 'ipt src="' + window.__WRITTEN_ENGINE_BASE + 'written-engine.js?v=' + window.__WRITTEN_ENGINE_VERSION + '"><\/scr' + 'ipt>');
+})();
+</script>
+</body>
+</html>
