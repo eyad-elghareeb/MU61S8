@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-4492c1659d1d';
+const CACHE_VERSION = 'mu61-quiz-52a21beef8af';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -22,6 +22,7 @@ var PRECACHE_REL_PATHS = [
   'index-engine.js',
   'flashcard-engine.js',
   'written-engine.js',
+  'osce-engine.js',
   'tracker-map.json',
   'index.html',
   'gyn/ai/index.html',
@@ -431,7 +432,8 @@ self.addEventListener('install', function (event) {
         'index-engine.css',
         'index.html',
         'manifest.webmanifest',
-        'favicon.svg'
+        'favicon.svg',
+        'osce-engine.js'
       ];
 
       /* 1. Critical assets — DO NOT CATCH (fails install on error) */
@@ -560,6 +562,7 @@ function handleAsset(event, request) {
           'search-engine.js',
           'flashcard-engine.js',
           'written-engine.js',
+          'osce-engine.js',
           'index-engine.css',
           'manifest.webmanifest',
           'favicon.svg',

@@ -1126,6 +1126,7 @@ DASHBOARD_HTML = r"""
       { key: 'quick-review', label: 'Quick Review', description: 'Short revision-focused quiz.', type: 'quiz', starterCount: 3, defaultDescription: 'Quick review questions', bankIcon: '🗃️' },
       { key: 'all-bank', label: 'All Bank', description: 'Large question bank with bank defaults.', type: 'bank', starterCount: 8, defaultDescription: 'All questions in one bank file', bankIcon: '🗃️' },
       { key: 'flashcard-deck', label: 'Flashcard Deck', description: 'Basic and cloze card deck.', type: 'flashcard', starterCount: 5, defaultDescription: 'Flashcard deck', bankIcon: '🃏' },
+      { key: 'osce-cases', label: 'OSCE Cases', description: 'Virtual patient cases for clinical practice.', type: 'osce', starterCount: 3, defaultDescription: 'OSCE virtual patient cases', bankIcon: '🩺' },
     ];
 
     const FILTERS = [
@@ -1133,6 +1134,7 @@ DASHBOARD_HTML = r"""
       { key: 'quiz', label: 'Quiz' },
       { key: 'bank', label: 'Bank' },
       { key: 'flashcard', label: 'Flashcard' },
+      { key: 'osce', label: 'OSCE' },
       { key: 'index', label: 'Index' },
       { key: 'html', label: 'Other HTML' },
     ];
@@ -1326,10 +1328,18 @@ DASHBOARD_HTML = r"""
       return { questions: questions.filter(item => item.question || item.options.some(Boolean)), issues };
     }
 
-    function validateQuestionListClient(questions) {
+    function validateQuestionListClient(questions, type) {
       const issues = [];
       if (!Array.isArray(questions) || !questions.length) {
         issues.push({ level: 'warning', message: 'No questions yet.', field: 'questions' });
+        return issues;
+      }
+      if (type === 'osce') {
+        questions.forEach((q, index) => {
+          if (!String(q.title || '').trim()) issues.push({ level: 'error', message: `Case ${index + 1} is missing a title.`, field: `questions.${index}.title` });
+          const patient = q.patient;
+          if (!patient || typeof patient !== 'object') issues.push({ level: 'warning', message: `Case ${index + 1} is missing patient info.`, field: `questions.${index}.patient` });
+        });
         return issues;
       }
       questions.forEach((question, index) => {
@@ -2785,7 +2795,7 @@ DASHBOARD_HTML = r"""
       const uid = buildDerivedUid(wizard.folder, stem);
       const issues = [];
       if (!wizard.title.trim()) issues.push({ level: 'error', message: 'Title is required before create.' });
-      issues.push(...validateQuestionListClient(state.modalQuestions));
+      issues.push(...validateQuestionListClient(state.modalQuestions, wizard.type));
       return `
         <div class="wizard-summary">
           <div class="wizard-step-title">Live Summary</div>
@@ -2861,6 +2871,7 @@ DASHBOARD_HTML = r"""
                     <option value="quiz" ${wizard.type === 'quiz' ? 'selected' : ''}>Quiz</option>
                     <option value="bank" ${wizard.type === 'bank' ? 'selected' : ''}>Question Bank</option>
                     <option value="flashcard" ${wizard.type === 'flashcard' ? 'selected' : ''}>Flashcard Deck</option>
+                    <option value="osce" ${wizard.type === 'osce' ? 'selected' : ''}>OSCE Virtual Patients</option>
                   </select>
                 </div>
                 <div class="field">
@@ -2879,7 +2890,7 @@ DASHBOARD_HTML = r"""
                   <label>Filename Override</label>
                   <input class="text-input" id="file-name" value="${escapeHtml(wizard.filename)}" placeholder="Optional: l1-anatomy" oninput="syncWizardSummary()">
                 </div>
-                <div class="field" id="bank-icon-wrap" style="display:${isBank ? 'grid' : 'none'};">
+                <div class="field" id="bank-icon-wrap" style="display:${(isBank || wizard.type === 'osce') ? 'grid' : 'none'};">
                   <label>Bank Icon</label>
                   <input class="text-input" id="file-icon" value="${escapeHtml(wizard.icon || preset.bankIcon || '🗃️')}" oninput="syncWizardSummary()">
                 </div>
@@ -2956,7 +2967,14 @@ DASHBOARD_HTML = r"""
     function onFileTypeChange() {
       const type = document.getElementById('file-type').value;
       const wrap = document.getElementById('bank-icon-wrap');
-      if (wrap) wrap.style.display = (type === 'bank' || type === 'flashcard') ? 'grid' : 'none';
+      if (wrap) wrap.style.display = (type === 'bank' || type === 'flashcard' || type === 'osce') ? 'grid' : 'none';
+      const iconInput = document.getElementById('file-icon');
+      if (iconInput) {
+        const cur = iconInput.value;
+        if (type === 'osce' && (!cur || cur === '🗃️' || cur === '🃏')) iconInput.value = '🩺';
+        else if (type === 'flashcard' && (!cur || cur === '🗃️' || cur === '🩺')) iconInput.value = '🃏';
+        else if (type === 'bank' && (!cur || cur === '🃏' || cur === '🩺')) iconInput.value = '🗃️';
+      }
     }
 
     function setWizardPreset(key) {
@@ -3083,12 +3101,18 @@ DASHBOARD_HTML = r"""
         return;
       }
       const payload = await fetchJson(`/admin/load-file?path=${encodeURIComponent(sourcePath)}`);
-      state.modalQuestions = clone(payload.meta?.questions || []).map(question => ({
-        question: question.question || '',
-        options: question.options || ['', '', '', ''],
-        correct: Number(question.correct || 0),
-        explanation: question.explanation || '',
-      }));
+      const srcType = payload.meta?.type;
+      if (srcType === 'osce') {
+        // Preserve OSCE case structure as-is
+        state.modalQuestions = clone(payload.meta?.questions || []);
+      } else {
+        state.modalQuestions = clone(payload.meta?.questions || []).map(question => ({
+          question: question.question || '',
+          options: question.options || ['', '', '', ''],
+          correct: Number(question.correct || 0),
+          explanation: question.explanation || '',
+        }));
+      }
       state.modalTab = 'questions';
       renderNewFileModal();
       showToast(`Loaded ${state.modalQuestions.length} questions from ${sourcePath}.`, 'success');
@@ -3389,7 +3413,7 @@ DASHBOARD_HTML = r"""
         return;
       }
 
-      if (validateQuestionListClient(questions).some(issue => issue.level === 'error')) {
+      if (validateQuestionListClient(questions, type).some(issue => issue.level === 'error')) {
         showToast('Fix the wizard validation issues before creating the file.', 'warn');
         setModalTab('questions');
         return;
@@ -3874,6 +3898,20 @@ def parse_file_metadata(content: str) -> dict[str, Any]:
             "questions": bank_questions,
         }
 
+    osce_config = parse_literal(content, "OSCE_CONFIG", "{", "}")
+    if isinstance(osce_config, dict):
+        osce_cases = parse_literal(content, "OSCE_CASES", "[", "]") or []
+        return {
+            "type": "osce",
+            "uid": osce_config.get("uid"),
+            "title": osce_config.get("title"),
+            "description": osce_config.get("description"),
+            "icon": osce_config.get("icon"),
+            "question_count": len(osce_cases),
+            "config": osce_config,
+            "questions": osce_cases,
+        }
+
     quizzes = parse_literal(content, "QUIZZES", "[", "]")
     if isinstance(quizzes, list):
         title_match = re.search(r"<title>(.*?)</title>", content, re.IGNORECASE | re.DOTALL)
@@ -4059,6 +4097,33 @@ def validate_dashboard_content(path: str, content: str, *, original_uid: str = "
         elif detect_uid_change(original_uid, uid):
             issues.append(build_issue("warning", "UID changed from the saved file. This can orphan learner progress.", field="uid", code="uid_changed"))
         issues.extend(validate_question_list(meta.get("questions"), field_prefix="questions"))
+    elif meta_type == "osce":
+        if "/* [OSCE_CONFIG_START] */" not in content or "/* [OSCE_CONFIG_END] */" not in content:
+            issues.append(build_issue("error", "OSCE config markers are missing.", field="config", code="osce_config_markers"))
+        if "/* [OSCE_CASES_START] */" not in content or "/* [OSCE_CASES_END] */" not in content:
+            issues.append(build_issue("error", "OSCE cases markers are missing.", field="cases", code="osce_cases_markers"))
+        if "osce-engine.js" not in content:
+            issues.append(build_issue("error", "OSCE engine loader not found.", field="engine", code="osce_engine_missing"))
+        uid = str(meta.get("uid") or "").strip()
+        if not uid:
+            issues.append(build_issue("error", "OSCE UID is required.", field="uid", code="uid_missing"))
+        elif detect_uid_change(original_uid, uid):
+            issues.append(build_issue("warning", "UID changed from the saved file. This can orphan learner progress.", field="uid", code="uid_changed"))
+        cases = meta.get("questions")
+        if isinstance(cases, list):
+            if not cases:
+                issues.append(build_issue("warning", "This file has no cases yet.", field="cases", code="cases_empty"))
+            for idx, case in enumerate(cases):
+                if not isinstance(case, dict):
+                    issues.append(build_issue("error", f"Case {idx + 1} is invalid.", field=f"cases.{idx}", code="case_invalid", index=idx))
+                else:
+                    if not str(case.get("title", "") or "").strip():
+                        issues.append(build_issue("error", f"Case {idx + 1} is missing a title.", field=f"cases.{idx}.title", code="case_missing_title", index=idx))
+                    patient = case.get("patient")
+                    if not isinstance(patient, dict):
+                        issues.append(build_issue("error", f"Case {idx + 1} is missing patient info.", field=f"cases.{idx}.patient", code="case_missing_patient", index=idx))
+                    elif not str(patient.get("name", "") or "").strip():
+                        issues.append(build_issue("warning", f"Case {idx + 1} patient is missing a name.", field=f"cases.{idx}.patient.name", code="case_missing_patient_name", index=idx))
     elif meta_type == "index":
         quizzes = meta.get("quizzes")
         if not isinstance(quizzes, list):
@@ -4101,6 +4166,10 @@ def infer_icon(meta_type: str, name: str) -> str:
         return "🗃️"
     if meta_type == "flashcard":
         return "🃏"
+    if meta_type == "written":
+        return "✍️"
+    if meta_type == "osce":
+        return "🩺"
     return "📄"
 
 
@@ -4153,6 +4222,13 @@ def duplicate_file_content(source_content: str, destination_folder: str, destina
         config["title"] = config.get("title") or title_from_segment(destination_stem)
         config["icon"] = config.get("icon") or "🃏"
         content = create_flashcard_html(config, copy.deepcopy(meta.get("questions") or []))
+        return content, new_uid
+    if meta.get("type") == "osce":
+        config = copy.deepcopy(meta.get("config") or {})
+        config["uid"] = new_uid
+        config["title"] = config.get("title") or title_from_segment(destination_stem)
+        config["icon"] = config.get("icon") or "🩺"
+        content = create_osce_html(config, copy.deepcopy(meta.get("questions") or []))
         return content, new_uid
     return source_content, None
 
@@ -4623,6 +4699,56 @@ var FLASHCARD_BANK = {cards_json};
 (function () {{
   window.__FLASHCARD_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
   document.write('<scr' + 'ipt src="' + window.__FLASHCARD_ENGINE_BASE + 'flashcard-engine.js"><\\/scr' + 'ipt>');
+}})();
+</script>
+</body>
+</html>
+"""
+
+
+def create_osce_html(config: dict[str, Any], cases: list[dict[str, Any]] | None = None) -> str:
+    cases = cases or [
+        {
+            "id": "case-001",
+            "title": "Sample OSCE Case",
+            "specialty": "General",
+            "difficulty": "Intermediate",
+            "patient": {"name": "Patient Name", "age": 45, "gender": "male", "avatarSeed": "", "opening": ""},
+            "hiddenProfile": {"diagnosis": "", "keySymptoms": [], "redFlags": [], "pastHistory": [], "vitalSigns": ""},
+            "rubric": {"mustAsk": [], "bonus": []},
+        }
+    ]
+    safe_uid = json.dumps(config.get("uid", ""))
+    safe_title = json.dumps(config.get("title", ""))
+    safe_desc = json.dumps(config.get("description", ""))
+    safe_icon = json.dumps(config.get("icon", "🩺"))
+    cases_json = json.dumps(cases, indent=2)
+    return f"""<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){{var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}}';
+document.head.appendChild(s)}})();
+</script>
+<title>{config['title']}</title>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {json.dumps(config, indent=2)};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASES_START] */
+const OSCE_CASES = {cases_json};
+/* [OSCE_CASES_END] */
+</script>
+<script>
+(function(){{
+  window.__OSCE_ENGINE_BASE='../'.repeat(Math.max(0,location.pathname.split('/').filter(Boolean).length-2));
+  document.write('<scr'+'ipt src="'+window.__OSCE_ENGINE_BASE+'osce-engine.js"><\\/scr'+'ipt>');
 }})();
 </script>
 </body>
@@ -5154,12 +5280,17 @@ def build_summary() -> dict[str, Any]:
     quiz_count = sum(1 for file in files if file["type"] == "quiz")
     bank_count = sum(1 for file in files if file["type"] == "bank")
     flashcard_count = sum(1 for file in files if file["type"] == "flashcard")
+    written_count = sum(1 for file in files if file["type"] == "written")
+    osce_count = sum(1 for file in files if file["type"] == "osce")
     index_count = sum(1 for file in files if file["type"] == "index")
-    total_questions = sum(int(file["question_count"] or 0) for file in files if file["type"] in {"quiz", "bank", "flashcard"})
+    total_questions = sum(int(file["question_count"] or 0) for file in files if file["type"] in {"quiz", "bank", "flashcard", "written", "osce"})
     return {
         "totalHtmlFiles": len(files),
         "quizCount": quiz_count,
         "bankCount": bank_count,
+        "flashcardCount": flashcard_count,
+        "writtenCount": written_count,
+        "osceCount": osce_count,
         "indexCount": index_count,
         "folderCount": len(scan_folders()),
         "totalQuestions": total_questions,
@@ -5415,8 +5546,8 @@ def create_file() -> Any:
     filename_hint = str(payload.get("filename", "")).strip()
     icon = str(payload.get("icon", "🗃️")).strip() or "🗃️"
 
-    if file_type not in {"quiz", "bank", "flashcard"}:
-        return jsonify({"message": "Type must be quiz, bank, or flashcard."}), 400
+    if file_type not in {"quiz", "bank", "flashcard", "osce"}:
+        return jsonify({"message": "Type must be quiz, bank, flashcard, or osce."}), 400
     if not title:
         return jsonify({"message": "Title is required."}), 400
 
@@ -5441,6 +5572,27 @@ def create_file() -> Any:
         content = create_quiz_html({"uid": uid, "title": title, "description": description}, questions)
     elif file_type == "flashcard":
         content = create_flashcard_html({"uid": uid, "title": title, "description": description, "icon": icon}, questions)
+    elif file_type == "osce":
+        # Convert quiz-format questions to OSCE case format
+        osce_cases = []
+        if isinstance(questions, list):
+            case_idx = 0
+            for q in questions:
+                case_idx += 1
+                if isinstance(q, dict) and ("title" in q or "patient" in q):
+                    # Already in OSCE format
+                    osce_cases.append(q)
+                else:
+                    osce_cases.append({
+                        "id": q.get("id", f"case-{case_idx:03d}"),
+                        "title": q.get("title") or q.get("question", f"Case {case_idx}"),
+                        "specialty": q.get("specialty", ""),
+                        "difficulty": q.get("difficulty", "Intermediate"),
+                        "patient": q.get("patient", {"name": "", "age": 0, "gender": "male", "avatarSeed": "", "opening": ""}),
+                        "hiddenProfile": q.get("hiddenProfile", {"diagnosis": "", "keySymptoms": [], "redFlags": [], "pastHistory": [], "vitalSigns": ""}),
+                        "rubric": q.get("rubric", {"mustAsk": [], "bonus": []}),
+                    })
+        content = create_osce_html({"uid": uid, "title": title, "description": description, "icon": icon}, osce_cases)
     else:
         content = create_bank_html({"uid": uid, "title": title, "description": description, "icon": icon}, questions)
 
@@ -5590,7 +5742,24 @@ def convert_file() -> Any:
         return jsonify({"message": "Converted question bank to quiz while preserving UID."})
     if meta["type"] == "flashcard":
         return jsonify({"message": "Flashcard files cannot be converted to quiz or bank."}), 400
-    return jsonify({"message": "Only quiz and bank files can be converted."}), 400
+    if meta["type"] == "osce":
+        questions = copy.deepcopy(meta.get("questions") or [])
+        converted = []
+        for q in questions:
+            converted.append({
+                "question": q.get("title") or q.get("question", ""),
+                "options": ["", "", "", ""],
+                "correct": 0,
+                "explanation": f"OSCE case: {q.get('specialty', '')} — {q.get('difficulty', '')}".strip(),
+            })
+        config = {
+            "uid": meta.get("uid") or derive_uid(normalize_rel_path(relative_path(file_path.parent)), file_path.stem),
+            "title": meta.get("title") or file_path.stem,
+            "description": meta.get("description") or "",
+        }
+        write_text(file_path, create_quiz_html(config, converted))
+        return jsonify({"message": "Converted OSCE virtual patients to quiz while preserving UID."})
+    return jsonify({"message": "Only quiz, bank, and osce files can be converted."}), 400
 
 
 @app.post("/admin/run-sync")

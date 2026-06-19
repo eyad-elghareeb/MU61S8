@@ -21,6 +21,7 @@ ROOT_CACHE_ASSETS = (
     "index-engine.css",
     "flashcard-engine.js",
     "written-engine.js",
+    "osce-engine.js",
     "sync-engine.js",
 )
 SKIP_DIRS = {".git", ".github", "__pycache__", "_site", "scripts", "node_modules"}
@@ -295,6 +296,12 @@ def is_flashcard_file(quiz_text: str) -> bool:
     )
 
 
+def is_osce_file(quiz_text: str) -> bool:
+    return bool(re.search(r"OSCE_CASES\s*=", quiz_text)) or bool(
+        re.search(r"osce-engine\.js", quiz_text)
+    )
+
+
 def build_quiz_entry(quiz_path: Path, dir_rel: Path, icon: str) -> dict[str, object]:
     quiz_text = quiz_path.read_text(encoding="utf-8")
 
@@ -310,6 +317,8 @@ def build_quiz_entry(quiz_path: Path, dir_rel: Path, icon: str) -> dict[str, obj
 
     if is_flashcard_file(quiz_text):
         primary_tag = "Flashcard"
+    elif is_osce_file(quiz_text):
+        primary_tag = "Virtual Patient"
 
     return {
         "uid": config.get("uid", ""),
@@ -326,7 +335,7 @@ def discover_asset_files() -> list[Path]:
     extensions = {".png", ".svg", ".jpg", ".jpeg", ".css", ".webmanifest", ".js", ".json"}
     paths: list[Path] = []
     # Known engines are handled separately to ensure they are at the top of the list
-    engines = {"quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "written-engine.js"}
+    engines = {"quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "written-engine.js", "osce-engine.js"}
     # Source files that should not be precached (build artifacts, source maps, etc.)
     skip_files = {"sw.js", "sync-engine.js", "sync-engine.src.js"}
     
@@ -354,7 +363,7 @@ def update_service_worker() -> bool:
     # Engine files must always be first in the precache list for prioritized installation
     # Engines are specifically placed first to ensure cache robustness logic in sw.js works.
     engine_paths = []
-    for eng in ["quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "written-engine.js", "tracker-map.json"]:
+    for eng in ["quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "written-engine.js", "osce-engine.js", "tracker-map.json"]:
         if (REPO_ROOT / eng).exists():
             engine_paths.append(eng)
             
@@ -377,7 +386,7 @@ def update_service_worker() -> bool:
 
     # Update SHARED assets in sw.js (ensure icon fallbacks are present)
     shared_assets = [
-        'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'search-engine.js', 'flashcard-engine.js', 'written-engine.js', 'index-engine.css',
+        'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'search-engine.js', 'flashcard-engine.js', 'written-engine.js', 'osce-engine.js', 'index-engine.css',
         'manifest.webmanifest', 'favicon.svg',
         'icon-48.png', 'icon-72.png', 'icon-96.png', 'icon-144.png', 'icon-192.png', 'icon-512.png',
         'tracker-map.json'
@@ -421,7 +430,7 @@ def extract_quiz_description(quiz_text: str) -> str:
 
 
 def extract_quiz_config(quiz_text: str) -> dict[str, object]:
-    for var_name in ("QUIZ_CONFIG", "BANK_CONFIG"):
+    for var_name in ("QUIZ_CONFIG", "BANK_CONFIG", "WRITTEN_CONFIG", "OSCE_CONFIG", "FLASHCARD_CONFIG"):
         try:
             config_literal, _, _ = extract_assigned_literal(quiz_text, var_name, "{", "}")
             config = parse_js_literal(config_literal)
@@ -433,12 +442,14 @@ def extract_quiz_config(quiz_text: str) -> dict[str, object]:
 
 
 def extract_question_count(quiz_text: str) -> int:
-    for var_name in ("QUESTIONS", "QUESTION_BANK", "FLASHCARD_BANK"):
+    for var_name in ("QUESTIONS", "QUESTION_BANK", "WRITTEN_QUESTIONS", "FLASHCARD_BANK", "OSCE_CASES"):
         try:
             questions_literal, _, _ = extract_assigned_literal(quiz_text, var_name, "[", "]")
             matches = re.findall(r'["\']?question["\']?\s*:', questions_literal)
             if var_name == "FLASHCARD_BANK":
                 matches = re.findall(r'["\']?(?:front|text)["\']?\s*:', questions_literal)
+            elif var_name == "OSCE_CASES":
+                matches = re.findall(r'["\']?title["\']?\s*:', questions_literal)
             if matches:
                 return len(matches)
         except ValueError:
