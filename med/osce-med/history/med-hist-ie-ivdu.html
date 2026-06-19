@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Infective Endocarditis in IV Drug User</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-ie-ivdu",
+  title: "Infective Endocarditis in IV Drug User",
+  description: "28-year-old IV drug user with intermittent fever, dyspnea, and hemoptysis for 2 months.",
+  category: "History Taking",
+  tags: ["cardiology", "IE", "IV drug use", "tricuspid", "fever"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Cardiology",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from a 28-year-old IV drug user with intermittent fever, dyspnea, and hemoptysis of 2 months duration.",
+  "patient": {
+    "name": "Mr. Karim",
+    "age": 28,
+    "gender": "male",
+    "avatarSeed": "karim-28",
+    "opening": "Doctor, for two months I've had a fever that comes and goes. I also feel short of breath and I coughed up blood a few times. I've been using drugs IV for years. I have chest pain when I take a deep breath."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Right-sided infective endocarditis (tricuspid valve) due to IV drug use",
+    "keySymptoms": [
+      "Intermittent fever with chills, sweats (IE)",
+      "Dyspnea, especially on exertion",
+      "Hemoptysis — from septic pulmonary emboli (classic for right-sided IE)",
+      "Pleuritic chest pain — from septic pulmonary infarcts",
+      "Cough, sputum",
+      "Fatigue, weight loss",
+      "NOTE: Peripheral stigmata (Osler, Janeway, Roth) are LESS common in right-sided IE because the emboli go to lungs, not systemic circulation"
+    ],
+    "redFlags": [
+      "Septic pulmonary emboli → lung abscess, empyema",
+      "Tricuspid valve destruction → acute TR → right heart failure",
+      "Septic shock",
+      "Mycotic aneurysm",
+      "Acute renal failure"
+    ],
+    "pastHistory": [
+      "IV drug use for 8 years (heroin)",
+      "Multiple admissions for abscesses and cellulitis at injection sites",
+      "Hepatitis C positive",
+      "No previous IE",
+      "No known valvular disease"
+    ],
+    "vitalSigns": "T 38.2°C, HR 110, RR 24, BP 100/65, SpO2 92%, pansystolic murmur lower left sternal border (TR) increased with inspiration (Carvallo's sign), inspiratory crackles bilateral, needle tracks on arms",
+    "differentials": [
+      "Right-sided IE (tricuspid) — most likely in IVDU",
+      "Pulmonary embolism with infarction",
+      "Pneumonia with septic emboli",
+      "Lung abscess",
+      "Tuberculosis",
+      "Pulmonary arteriovenous malformation"
+    ],
+    "management": "Blood cultures ×3; IV antibiotics targeting S. aureus (nafcillin/oxacillin + gentamicin, vancomycin if MRSA suspected) for 4-6 weeks; surgery for severe TR, uncontrolled infection, large vegetations >10mm with emboli; addiction counseling and rehabilitation."
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of fever, dyspnea, hemoptysis (2 months duration)",
+      "IV drug use history (duration, type, sharing needles, injection site infections)",
+      "Pleuritic chest pain (septic pulmonary emboli)",
+      "Symptoms of right-sided heart failure (peripheral edema, JVD, hepatic congestion)",
+      "Symptoms of IE: fever, new murmur, embolic phenomena (BUT right-sided IE = pulmonary emboli not systemic)",
+      "Symptoms of complications (HF, emboli, mycotic aneurysm, renal)",
+      "Hepatitis B/C, HIV status",
+      "Previous episodes of IE, endocarditis prophylaxis",
+      "Recent skin infections, abscesses",
+      "Differential: PE (DVT), pneumonia, TB, lung abscess",
+      "Past history (rheumatic fever excluded — right-sided is IVDU)"
+    ],
+    "bonus": [
+      "Carvallo's sign (TR murmur increases with inspiration)",
+      "Modified Duke criteria application",
+      "Needle exchange programs and rehabilitation"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>ECG Basics — Heart Rate Calculation & Topography</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-ecg-basics-hr-calculation",
+  title: "ECG Basics — Heart Rate Calculation & Topography",
+  description: "How to calculate heart rate from ECG and which leads correspond to which coronary artery.",
+  category: "ECG",
+  tags: ["ECG", "basics", "heart rate", "topography", "leads"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Cardiology",
+  "difficulty": "Foundational",
+  "task": "Explain how to calculate heart rate from ECG and identify lead topography.",
+  "examiner": {
+    "name": "Dr. Noaman",
+    "title": "Cardiology Consultant"
+  },
+  "dataPresented": {
+    "scenario": "You are asked to calculate heart rate from an ECG and identify lead topography.",
+    "tables": [
+      {
+        "title": "ECG Basics — Heart Rate Calculation & Topography",
+        "headers": [
+          "Parameter",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Heart rate (regular)",
+            "300 ÷ number of large squares between R-R intervals"
+          ],
+          [
+            "Heart rate (irregular)",
+            "Count R waves in 10 seconds × 6"
+          ],
+          [
+            "Septal",
+            "V1-V2 → LAD (Left Anterior Descending)"
+          ],
+          [
+            "Anterior",
+            "V3-V4 → LAD"
+          ],
+          [
+            "Anteroseptal",
+            "V1-V4 → LAD"
+          ],
+          [
+            "Lateral",
+            "aVL, I, V6, V5 → LCx (Left Circumflex)"
+          ],
+          [
+            "Inferior",
+            "II, III, aVF → RCA (Right Coronary Artery)"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "How to calculate heart rate from ECG?",
+      "answer": "Regular rhythm: HR = 300 ÷ number of large squares between R-R intervals. Irregular rhythm: count the number of R waves in 10 seconds (50 large squares) and multiply by 6.",
+      "rubric": "Regular (300/N) and irregular methods"
+    },
+    {
+      "id": "q2",
+      "question": "Which leads correspond to which coronary artery territory?",
+      "answer": "Septal (V1-V2) and Anterior (V3-V4) and Anteroseptal (V1-V4) → LAD (Left Anterior Descending). Lateral (aVL, I, V6, V5) → LCx (Left Circumflex). Inferior (II, III, aVF) → RCA (Right Coronary Artery).",
+      "rubric": "All territories with arteries"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Heart rate calculation (regular and irregular)",
+      "Lead topography"
+    ],
+    "bonus": [
+      "Speed 25 mm/s — 1 small square = 0.04 sec, 1 large square = 0.20 sec"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

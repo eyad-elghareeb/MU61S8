@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest Examination — TVF, Breath Sounds, and Added Sounds</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-exam-tvf-breath-sounds",
+  title: "Chest Examination — TVF, Breath Sounds, and Added Sounds",
+  description: "Tactile vocal fremitus, breath sound types, and added sounds.",
+  category: "Examination",
+  tags: ["chest exam", "TVF", "breath sounds", "wheezes", "crepitations"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Chest / Respiratory",
+  "difficulty": "Intermediate",
+  "task": "Answer oral questions on chest examination findings.",
+  "examiner": {
+    "name": "Dr. Noaman",
+    "title": "Chest Consultant"
+  },
+  "dataPresented": {
+    "scenario": "Interpret chest examination findings.",
+    "tables": [
+      {
+        "title": "Causes of ↑↑ and ↓↓ TVF (and related findings)",
+        "headers": [
+          "↑↑ TVF = ↑↑ Vocal Resonance = Bronchial Breathing",
+          "↓↓ TVF = ↓↓ Vocal Resonance = ↓↓ Intensity of Breath Sounds"
+        ],
+        "rows": [
+          [
+            "Consolidation (pneumonia)",
+            "Pleural effusion"
+          ],
+          [
+            "Collapse or fibrosis with patent bronchus",
+            "Pneumothorax"
+          ],
+          [
+            "Cavity if superficial & surrounded by consolidation",
+            "COPD"
+          ],
+          [
+            "—",
+            "Obesity"
+          ],
+          [
+            "—",
+            "Atelectasis"
+          ],
+          [
+            "—",
+            "Pleural fibrosis"
+          ]
+        ]
+      },
+      {
+        "title": "Types of Breath Sounds",
+        "headers": [
+          "Feature",
+          "Vesicular (Alveolar)",
+          "Bronchial"
+        ],
+        "rows": [
+          [
+            "Character",
+            "Soft, no gap, Inspiration > Expiration (3:1)",
+            "Hollow, gap, Inspiration ≤ Expiration"
+          ],
+          [
+            "Normal location",
+            "Over the lung fields",
+            "Over trachea and large airways"
+          ],
+          [
+            "Abnormal (vesicular)",
+            "Harsh with prolonged expiration in COPD, asthma",
+            "—"
+          ],
+          [
+            "Abnormal (bronchial)",
+            "—",
+            "3 Cs: Consolidation, Collapse with patent bronchus, Cavity if superficial & surrounded by consolidation. Confirmed by ↑↑ vocal resonance (whispering pectoriloquy)"
+          ]
+        ]
+      },
+      {
+        "title": "Notes of Percussion",
+        "headers": [
+          "Type",
+          "Cause"
+        ],
+        "rows": [
+          [
+            "Resonance (normal)",
+            "Normal lung"
+          ],
+          [
+            "Hyper-resonance",
+            "Emphysema, pneumothorax"
+          ],
+          [
+            "Tympanic",
+            "Normal Traub's area, empty stomach, emphysematous bullae"
+          ],
+          [
+            "Slight dullness (impaired note)",
+            "Scapulae, minor consolidation/collapse/fibrosis"
+          ],
+          [
+            "Dullness (massive)",
+            "Consolidation, collapse, fibrosis, heart, liver"
+          ],
+          [
+            "Stony dullness",
+            "Pleural effusion"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Causes of increased and decreased TVF?",
+      "answer": "↑↑ TVF: consolidation, collapse or fibrosis with patent bronchus, cavity if superficial & surrounded by consolidation. ↓↓ TVF: pleural effusion, pneumothorax, COPD, obesity, atelectasis, pleural fibrosis.",
+      "rubric": "Both directions with causes"
+    },
+    {
+      "id": "q2",
+      "question": "Causes of limited unilateral vs bilateral chest expansion?",
+      "answer": "Bilateral limitation: bilateral chest disease (COPD, interstitial lung disease, bronchiectasis, neuromuscular disorders). Unilateral limitation: on affected side (fibrosis, collapse, pleural effusion, pneumonia).",
+      "rubric": "Bilateral vs unilateral causes"
+    },
+    {
+      "id": "q3",
+      "question": "Causes of unilateral bulge of chest?",
+      "answer": "1. Pleural effusion. 2. Pneumothorax. 3. Emphysema. 4. Tumor. 5. Precordial bulge.",
+      "rubric": "5 causes"
+    },
+    {
+      "id": "q4",
+      "question": "Types of breath sounds and their causes?",
+      "answer": "Vesicular: soft, no gap, I>E (3:1), heard over lung fields normally; abnormal = harsh with prolonged expiration in COPD/asthma. Bronchial: hollow, gap, I≤E, heard over trachea normally; abnormal = 3 Cs (Consolidation, Collapse with patent bronchus, Cavity if superficial surrounded by consolidation), confirmed by ↑↑ vocal resonance (whispering pectoriloquy).",
+      "rubric": "Both types with character and causes"
+    },
+    {
+      "id": "q5",
+      "question": "Additional sounds of chest?",
+      "answer": "1. Pleural rub. 2. Crepitations. 3. Wheezes.",
+      "rubric": "3 added sounds"
+    },
+    {
+      "id": "q6",
+      "question": "Causes of unilateral wheezes?",
+      "answer": "1. Foreign body aspiration. 2. Endobronchial tumors. 3. Mucus plug. 4. Bronchial stenosis or stricture.",
+      "rubric": "4 causes"
+    },
+    {
+      "id": "q7",
+      "question": "Causes of hyper-resonance?",
+      "answer": "Emphysema, pneumothorax.",
+      "rubric": "2 causes"
+    },
+    {
+      "id": "q8",
+      "question": "Causes of unilateral dullness?",
+      "answer": "Consolidation, collapse, fibrosis.",
+      "rubric": "3 causes"
+    },
+    {
+      "id": "q9",
+      "question": "Differentiate pneumothorax and pleural effusion by percussion and auscultation.",
+      "answer": "Pneumothorax: percussion = hyper-resonance; auscultation = ↓↓ breath sounds. Pleural effusion: percussion = stony dullness; auscultation = ↓↓ breath sounds + basal crepitations (above the effusion).",
+      "rubric": "Percussion (hyper-resonant vs stony dull) + auscultation"
+    },
+    {
+      "id": "q10",
+      "question": "What is the normal percussion note of the bare area of heart?",
+      "answer": "Impaired note / dullness (blood-filled heart).",
+      "rubric": "Impaired / dullness"
+    },
+    {
+      "id": "q11",
+      "question": "Percussion note of pleural effusion?",
+      "answer": "Stony dullness.",
+      "rubric": "Stony dullness"
+    },
+    {
+      "id": "q12",
+      "question": "Enumerate notes of percussion.",
+      "answer": "Resonance (normal), hyper-resonance (emphysema, pneumothorax), tympanic (Traub's, empty stomach, bullae), impaired note / slight dullness (scapulae, minor consolidation), dullness (massive consolidation, collapse, fibrosis, heart, liver), stony dullness (pleural effusion).",
+      "rubric": "5 types with examples"
+    },
+    {
+      "id": "q13",
+      "question": "Causes of dullness and ↑↑ resonance in Traub's area?",
+      "answer": "Dullness: 1) Above → pleural effusion & pericardial effusion; 2) Down → ascites, pregnancy, tumors; 3) Right → hepatomegaly; 4) Left → splenomegaly; 5) Full stomach or gastric tumor. ↑↑ resonance: 1) Lobectomy; 2) Shrunken liver; 3) Splenectomy; 4) Dilated stomach.",
+      "rubric": "Both directions with causes"
+    },
+    {
+      "id": "q14",
+      "question": "How to differentiate pleural from pericardial rub?",
+      "answer": "Ask patient to hold their breath. If continues → pericardial rub. If disappears → pleural rub.",
+      "rubric": "Hold breath test"
+    },
+    {
+      "id": "q15",
+      "question": "What is Hoover's sign?",
+      "answer": "Inspiratory indrawing of costal margin in COPD, due to low flat diaphragm (reverse of normal).",
+      "rubric": "COPD + costal margin indrawing + low diaphragm"
+    },
+    {
+      "id": "q16",
+      "question": "What is Litten's sign?",
+      "answer": "Normally there is inspiratory indrawing of lower intercostal spaces on chest sides due to diaphragmatic descent. Exaggerated in obstructive lung diseases. Absent in obesity, pleural effusion, diaphragmatic paralysis.",
+      "rubric": "Normal finding + exaggerated/absent"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "TVF causes (3 Cs for ↑↑)",
+      "Breath sound types",
+      "Added sounds",
+      "Percussion notes"
+    ],
+    "bonus": [
+      "Hoover's sign",
+      "Litten's sign",
+      "Hold breath test"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

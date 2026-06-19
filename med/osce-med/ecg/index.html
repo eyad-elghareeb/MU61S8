@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Internal Medicine ECG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../index-engine.css">
+<meta name="description" content="ECG interpretation cases">
+<meta name="theme-color" content="#0d1117">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
+    <div class="topbar-title">MU61 Quiz - Internal Medicine ECG</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Internal Medicine ECG</span></h1>
+      <p>OSCE-style ECG interpretation scenarios for Internal Medicine.</p>
+    </header>
+
+    <div class="quiz-grid" id="quiz-grid"></div>
+
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "med-ecg-1st-degree-hb",
+    title: "ECG Interpretation — 1st Degree Heart Block",
+    description: "ECG showing prolonged PR interval.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-1st-degree-hb.html"
+  },
+  {
+    uid: "med-ecg-2nd-degree-hb-type1",
+    title: "ECG Interpretation — 2nd Degree HB Type I (Wenckebach / Mobitz I)",
+    description: "ECG showing progressive PR prolongation then dropped QRS.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-2nd-degree-hb-type1.html"
+  },
+  {
+    uid: "med-ecg-2nd-degree-hb-type2",
+    title: "ECG Interpretation — 2nd Degree HB Type II (Mobitz II)",
+    description: "ECG showing dropped QRS without PR prolongation.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-2nd-degree-hb-type2.html"
+  },
+  {
+    uid: "med-ecg-3rd-degree-hb",
+    title: "ECG Interpretation — 3rd Degree (Complete) Heart Block",
+    description: "ECG showing AV dissociation.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-3rd-degree-hb.html"
+  },
+  {
+    uid: "med-ecg-anterior-stemi",
+    title: "ECG Interpretation — Anterior Stemi",
+    description: "ECG showing ST elevation in anterior leads (V1-V4).",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-anterior-stemi.html"
+  },
+  {
+    uid: "med-ecg-atrial-fibrillation",
+    title: "ECG Interpretation — Atrial Fibrillation",
+    description: "ECG showing absent P waves and irregular QRS.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-atrial-fibrillation.html"
+  },
+  {
+    uid: "med-ecg-atrial-flutter",
+    title: "ECG Interpretation — Atrial Flutter",
+    description: "ECG showing saw-tooth flutter waves.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-atrial-flutter.html"
+  },
+  {
+    uid: "med-ecg-basics-hr-calculation",
+    title: "ECG Basics — Heart Rate Calculation & Topography",
+    description: "How to calculate heart rate from ECG and which leads correspond to which coronary artery.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-basics-hr-calculation.html"
+  },
+  {
+    uid: "med-ecg-inferior-stemi",
+    title: "ECG Interpretation — Inferior Stemi",
+    description: "ECG showing ST elevation in inferior leads.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-inferior-stemi.html"
+  },
+  {
+    uid: "med-ecg-lateral-stemi",
+    title: "ECG Interpretation — Lateral Stemi",
+    description: "ECG showing ST elevation in lateral leads.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-lateral-stemi.html"
+  },
+  {
+    uid: "med-ecg-nstemi",
+    title: "ECG Interpretation — Nstemi",
+    description: "ECG showing ST depression in inferior and lateral leads.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-nstemi.html"
+  },
+  {
+    uid: "med-ecg-svt",
+    title: "ECG Interpretation — Supraventricular Tachycardia (SVT)",
+    description: "ECG showing rapid regular narrow-complex tachycardia.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-svt.html"
+  },
+  {
+    uid: "med-ecg-vt",
+    title: "ECG Interpretation — Ventricular Tachycardia (VT)",
+    description: "ECG showing wide bizarre QRS complexes.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-ecg-vt.html"
+  }
+];
+</script>
+<script src="../../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s) document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon) window.__updateThemeIcon();if(window.renderQuizzes) window.renderQuizzes();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

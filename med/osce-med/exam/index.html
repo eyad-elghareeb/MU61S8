@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Internal Medicine Examination</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../index-engine.css">
+<meta name="description" content="OSCE Examination technique guides">
+<meta name="theme-color" content="#0d1117">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
+    <div class="topbar-title">MU61 Quiz - Internal Medicine Examination</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Internal Medicine Examination</span></h1>
+      <p>OSCE-style physical examination guides for Internal Medicine.</p>
+    </header>
+
+    <div class="quiz-grid" id="quiz-grid"></div>
+
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "med-exam-cardiac-apex",
+    title: "Cardiac Examination — Apex Beat",
+    description: "How to examine the apex beat and interpret findings.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-cardiac-apex.html"
+  },
+  {
+    uid: "med-exam-clubbing",
+    title: "Examination Of Clubbing",
+    description: "How to examine and grade clubbing.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-clubbing.html"
+  },
+  {
+    uid: "med-exam-complexion",
+    title: "Examination Of Complexion (Pallor, Jaundice, Cyanosis)",
+    description: "Sites to examine for pallor, jaundice, and cyanosis.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-complexion.html"
+  },
+  {
+    uid: "med-exam-ll-edema",
+    title: "Examination Of Lower Limb Edema",
+    description: "How to assess lower limb edema.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-ll-edema.html"
+  },
+  {
+    uid: "med-exam-murmurs-types",
+    title: "Types Of Murmurs And Pansystolic DD",
+    description: "Classification of murmurs and differential diagnosis.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-murmurs-types.html"
+  },
+  {
+    uid: "med-exam-neck-veins",
+    title: "Examination Of Neck Veins (JVP)",
+    description: "How to examine the jugular venous pressure.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-neck-veins.html"
+  },
+  {
+    uid: "med-exam-pulse",
+    title: "Examination Of The Pulse",
+    description: "How to examine the radial pulse and other peripheral pulses.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-pulse.html"
+  },
+  {
+    uid: "med-exam-trachea",
+    title: "Chest Examination — Trachea",
+    description: "How to examine the trachea.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-trachea.html"
+  },
+  {
+    uid: "med-exam-tvf-breath-sounds",
+    title: "Chest Examination — TVF, Breath Sounds, And Added Sounds",
+    description: "Tactile vocal fremitus, breath sound types, and added sounds.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-exam-tvf-breath-sounds.html"
+  }
+];
+</script>
+<script src="../../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s) document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon) window.__updateThemeIcon();if(window.renderQuizzes) window.renderQuizzes();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

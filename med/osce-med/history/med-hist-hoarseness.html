@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Hoarseness of Voice</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-hoarseness",
+  title: "Hoarseness of Voice",
+  description: "55-year-old smoker with hoarseness of voice for 4 weeks.",
+  category: "History Taking",
+  tags: ["chest", "ENT", "hoarseness", "laryngeal cancer", "Ortner"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Chest / ENT",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from a 55-year-old patient with hoarseness of voice.",
+  "patient": {
+    "name": "Mr. Farouk",
+    "age": 55,
+    "gender": "male",
+    "avatarSeed": "farouk-55",
+    "opening": "Doctor, my voice has been hoarse for a month now. It started gradually. I smoke a pack a day for 30 years. Lately I've noticed I cough sometimes with blood-tinged sputum and I have difficulty swallowing solid food. I've also lost about 5 kg in the last 2 months."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Laryngeal cancer (smoker, hoarseness >3 weeks, hemoptysis, dysphagia, weight loss)",
+    "keySymptoms": [
+      "Hoarseness of voice — gradual onset, persistent (key feature)",
+      "Duration >3 weeks in a smoker → MUST exclude laryngeal cancer",
+      "Hemoptysis (cancer)",
+      "Dysphagia / odynophagia (cancer invasion)",
+      "Constitutional: fever, malaise, night sweats (laryngitis or TB)",
+      "Weight loss, cachexia (cancer)"
+    ],
+    "redFlags": [
+      "Airway obstruction (advanced laryngeal cancer)",
+      "Metastatic disease (cervical lymph nodes, lungs, liver)",
+      "Aspiration pneumonia",
+      "Laryngeal nerve paralysis"
+    ],
+    "pastHistory": [
+      "30 pack-year smoking history",
+      "Heavy alcohol consumption",
+      "Chronic laryngitis for years",
+      "No previous cancer",
+      "No cardiac history (to exclude Ortner's syndrome)"
+    ],
+    "vitalSigns": "T 37°C, HR 80, RR 18, BP 130/80, SpO2 97%, hoarse voice, no stridor, cervical lymph nodes palpable on left (2 cm, firm)",
+    "differentials": [
+      "Acute laryngitis (viral/bacterial — short duration, fever, sore throat)",
+      "Chronic laryngitis (smoking, alcohol, reflux)",
+      "Laryngeal cancer (smoker, >3 weeks, weight loss, dysphagia, hemoptysis)",
+      "Recurrent laryngeal nerve palsy (thyroid surgery, lung cancer invading nerve, aortic aneurysm)",
+      "Ortner's syndrome (left atrial enlargement in MS compressing recurrent laryngeal nerve — ask about cardiac symptoms)",
+      "Thyroid cancer/mass compressing larynx",
+      "Esophageal cancer invading larynx",
+      "TB (laryngeal TB — chronic cough, night sweats, weight loss)",
+      "Psychogenic hoarseness",
+      "Vocal cord polyps/nodules (voice overuse)"
+    ],
+    "management": "Direct laryngoscopy + biopsy (definitive); CT/MRI for staging; neck ultrasound + FNAC for nodes; treatment based on stage: early (T1-T2) → radiotherapy or laser excision; advanced (T3-T4) → total laryngectomy + neck dissection + post-op radiotherapy; chemotherapy (cisplatin, 5-FU) concurrent with RT; speech rehabilitation."
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of hoarseness",
+      "Duration — KEY: >3 weeks in a smoker → exclude laryngeal cancer",
+      "Constitutional manifestations: fever, malaise, night sweats (laryngitis, TB)",
+      "Cancer signs: dysphagia, odynophagia, hemoptysis (laryngeal cancer)",
+      "Cardiac symptoms (Ortner's syndrome — LA enlargement in MS): dyspnea, orthopnea, edema, palpitation",
+      "Thyroid symptoms (thyroid mass compressing larynx): neck swelling, dysphagia",
+      "Chest symptoms: cough, hemoptysis, dyspnea (lung cancer invading RLN — especially left)",
+      "Past history: smoking (pack-years), alcohol, vocal abuse, TB, thyroid surgery",
+      "Drug history (some drugs cause hoarseness)",
+      "Family history: cancer, TB",
+      "Differential: just laryngitis? SLS? Drug? systemic? TB? MALIGNANCY?"
+    ],
+    "bonus": [
+      "Differentiate hoarseness causes by duration (acute <3 wk vs chronic >3 wk)",
+      "Recurrent laryngeal nerve anatomy (left wraps around aortic arch — vulnerable to lung cancer, aortic aneurysm; right wraps around subclavian)",
+      "Ortner's syndrome = cardiovocal syndrome (LA enlargement → RLN palsy)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

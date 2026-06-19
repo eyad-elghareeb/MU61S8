@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Internal Medicine ABG Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../index-engine.css">
+<meta name="description" content="ABG interpretation cases">
+<meta name="theme-color" content="#0d1117">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
+    <div class="topbar-title">MU61 Quiz - Internal Medicine ABG Analysis</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Internal Medicine ABG Analysis</span></h1>
+      <p>OSCE-style ABG interpretation scenarios for Internal Medicine.</p>
+    </header>
+
+    <div class="quiz-grid" id="quiz-grid"></div>
+
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "med-abg-compensated-chronic-resp-acidosis",
+    title: "ABG — Compensated (Chronic) Respiratory Acidosis",
+    description: "ABG showing fully compensated chronic respiratory acidosis.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-abg-compensated-chronic-resp-acidosis.html"
+  },
+  {
+    uid: "med-abg-metabolic-alkalosis",
+    title: "ABG — Metabolic Alkalosis Not Compensated",
+    description: "ABG showing metabolic alkalosis not compensated.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-abg-metabolic-alkalosis.html"
+  },
+  {
+    uid: "med-abg-mixed-acidosis",
+    title: "ABG — Mixed Respiratory And Metabolic Acidosis",
+    description: "ABG showing mixed respiratory and metabolic acidosis.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-abg-mixed-acidosis.html"
+  },
+  {
+    uid: "med-abg-resp-acidosis-partial-compensation",
+    title: "ABG — Respiratory Acidosis With Partial Metabolic Compensation",
+    description: "ABG showing chronic respiratory acidosis with metabolic compensation.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-abg-resp-acidosis-partial-compensation.html"
+  },
+  {
+    uid: "med-abg-resp-acidosis-type2-rf",
+    title: "ABG — Respiratory Acidosis With Type II Respiratory Failure",
+    description: "ABG showing respiratory acidosis not compensated with type II respiratory failure.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-abg-resp-acidosis-type2-rf.html"
+  },
+  {
+    uid: "med-abg-resp-alkalosis-type1-rf",
+    title: "ABG — Respiratory Alkalosis With Type I Respiratory Failure",
+    description: "ABG showing respiratory alkalosis not compensated with type I respiratory failure.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-abg-resp-alkalosis-type1-rf.html"
+  }
+];
+</script>
+<script src="../../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s) document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon) window.__updateThemeIcon();if(window.renderQuizzes) window.renderQuizzes();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

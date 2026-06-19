@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cough, Expectoration, Chest Tightness (COPD)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-copd",
+  title: "Cough, Expectoration, Chest Tightness (COPD)",
+  description: "60-year-old heavy smoker with chronic productive cough.",
+  category: "History Taking",
+  tags: ["chest", "COPD", "smoker", "chronic", "cough"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Chest / Respiratory",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from a 60-year-old heavy smoker with chronic cough and expectoration.",
+  "patient": {
+    "name": "Mr. Mostafa",
+    "age": 60,
+    "gender": "male",
+    "avatarSeed": "mostafa-60",
+    "opening": "Doctor, I've had a cough with phlegm for the past five years. It's worse in the morning and the phlegm is usually white or yellow. For the last few months I've been getting breathless when I walk, and my chest feels tight. I've smoked two packs a day for 40 years."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Chronic Obstructive Pulmonary Disease (COPD) — chronic bronchitis predominant",
+    "keySymptoms": [
+      "Chronic productive cough — for at least 3 months in 2 consecutive years (definition of chronic bronchitis)",
+      "Expectoration — mucoid (white), mucopurulent (yellow) during exacerbations",
+      "Cough worse in the morning",
+      "Dyspnea — progressive, exertional",
+      "Chest tightness, wheezing",
+      "Continuous and chronic (distinguishes from asthma which is intermittent/recurrent)",
+      "Acute exacerbations: increased cough, purulent sputum, worsening dyspnea"
+    ],
+    "redFlags": [
+      "Acute respiratory failure (type II — hypercapnia)",
+      "Cor pulmonale (right heart failure from pulmonary HTN)",
+      "Pneumothorax (ruptured bullae)",
+      "Secondary polycythemia (chronic hypoxia)",
+      "Lung cancer (additional risk in smoker)"
+    ],
+    "pastHistory": [
+      "40 pack-year smoking history (active)",
+      "Multiple exacerbations per year (3-4) requiring steroids/antibiotics",
+      "No TB, no asthma in childhood",
+      "Occupational: worked in a cement factory for 20 years (dust exposure)",
+      "Father had 'chronic bronchitis'"
+    ],
+    "vitalSigns": "T 37°C, HR 90, RR 24, BP 130/85, SpO2 91% on room air, barrel-shaped chest, prolonged expiration, polyphonic wheezes bilateral, rhonchi, decreased breath sounds, Hoover's sign (costal margin indrawing on inspiration), cyanosis, clubbing absent (COPD doesn't cause clubbing unless cancer)",
+    "differentials": [
+      "Bronchial asthma (intermittent, recurrent, reversible, family history of atopy)",
+      "Bronchiectasis (copious foul-smelling sputum, clubbing, recurrent infections)",
+      "Chronic bronchitis without airflow limitation",
+      "Tuberculosis (chronic cough, hemoptysis, night sweats, weight loss)",
+      "Lung cancer (new/worsening cough, hemoptysis, weight loss)",
+      "Heart failure (orthopnea, PND, bilateral crackles, no wheeze)"
+    ],
+    "management": "Smoking cessation (most important); bronchodilators (SABA, SAMA, LABA, LAMA); inhaled corticosteroids for frequent exacerbators; pulmonary rehabilitation; oxygen therapy for chronic hypoxemia (PaO2 <55 or <60 with polycythemia/cor pulmonale); vaccines (influenza, pneumococcal); acute exacerbation: increase bronchodilators, oral corticosteroids 5-7 days, antibiotics if increased sputum purulence/volume; NIV for type II respiratory failure."
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of cough and expectoration (continuous, chronic — distinguishes from asthma)",
+      "Analyze cough: timing (morning), precipitating factors, dry or productive",
+      "Analyze expectoration (excreta): amount, content/color/consistency, odor (3 for excreta)",
+      "Variants: postural, diurnal, seasonal (3 variants)",
+      "Dyspnea — grade (mMRC)",
+      "Wheezes",
+      "Chest tightness",
+      "Constitutional: fever (exacerbation), weight loss (cancer, TB)",
+      "Cyanosis",
+      "Systemic congestion (cor pulmonale: ankle edema)",
+      "Hemoptysis (TB, cancer)",
+      "Past history: SMOKING (pack-years, current or ex-), occupational exposure (dust, fumes), TB, asthma, alpha-1 antitrypsin deficiency (young patient)",
+      "Family history: similar conditions, TB, allergy (asthma)",
+      "Investigations (spirometry: FEV1/FVC <0.7 post-bronchodilator) and treatment",
+      "DM & HTN"
+    ],
+    "bonus": [
+      "Reversibility test (distinguishes from asthma: ≥12% AND ≥200 mL increase in FEV1)",
+      "ABG in late COPD: hypoxemia + hypercapnia",
+      "mMRC dyspnea scale",
+      "GOLD classification"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

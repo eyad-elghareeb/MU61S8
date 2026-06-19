@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Dyspnea and LL Edema (Biventricular HF)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-dyspnea-edema-bivhf",
+  title: "Dyspnea and LL Edema (Biventricular HF)",
+  description: "45-year-old with dyspnea and bilateral leg swelling.",
+  category: "History Taking",
+  tags: ["cardiology", "heart failure", "edema", "VHD"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from a 45-year-old patient with dyspnea and lower limb edema.",
+  "patient": {
+    "name": "Mr. Hassan",
+    "age": 45,
+    "gender": "male",
+    "avatarSeed": "hassan-45",
+    "opening": "Doctor, I've been short of breath for months, but now my legs and ankles are also swollen. The swelling started in my feet and now goes up to my knees. I also have pain in my right side under the ribs and I can't lie flat at night."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Biventricular heart failure due to rheumatic valvular disease (likely MS + TR)",
+    "keySymptoms": [
+      "Dyspnea (left heart failure) — orthopnea, PND",
+      "Bilateral pitting leg edema, progressing proximally (right heart failure)",
+      "Right upper quadrant pain (hepatic congestion)",
+      "Abdominal distension (ascites)",
+      "Anorexia, nausea (GI congestion)",
+      "Jugular venous distension",
+      "If ascites appeared before dyspnea → 'ascites precox' (pericardial constriction or tricuspid disease)"
+    ],
+    "redFlags": [
+      "Cardiogenic shock",
+      "Hepatic failure (cardiac cirrhosis)",
+      "Renal failure (cardiorenal syndrome)",
+      "Arrhythmia",
+      "Pulmonary embolism (from DVT in edematous legs)"
+    ],
+    "pastHistory": [
+      "Rheumatic fever at age 12",
+      "Stopped penicillin prophylaxis",
+      "No PCI, no prosthetic valve",
+      "Hypertension 5 years",
+      "Non-diabetic, non-smoker"
+    ],
+    "vitalSigns": "BP 100/70, HR 95 irregular, RR 24, JVP raised 10 cm at 45°, bilateral basal crackles, pansystolic murmur lower left sternal border (TR), apex shifted outward, ankle edema 4+, ascites+, tender hepatomegaly 4 cm",
+    "differentials": [
+      "Cardiac: biventricular HF from any cause (VHD, IHD, cardiomyopathy, pericardial disease)",
+      "Renal: nephrotic syndrome, CRF",
+      "Hepatic: cirrhosis with ascites",
+      "Hypoalbuminemia (any cause)",
+      "Constrictive pericarditis",
+      "Cor pulmonale"
+    ],
+    "management": "Treat underlying cause (valve repair/replacement if VHD); diuretics (furosemide + spironolactone), ACE-I/ARB (caution if hypotensive), beta-blocker once stable, digoxin for AF; salt restriction; monitor renal function and electrolytes."
+  },
+  "rubric": {
+    "mustAsk": [
+      "For dyspnea — as above (OCD, orthopnea, PND)",
+      "For LL edema: bilaterality (cardiac vs unilateral DVT), tenderness (cellulitis/DVT), pitting (cardiac/renal) vs non-pitting (lymphatic/myxedema)",
+      "Which came first — dyspnea or edema? (If ascites/edema first → ascites precox → suspect TS, constrictive pericarditis)",
+      "Symptoms of related system (4C + 4P)",
+      "Past history: rheumatic fever, VHD, prosthetic valve, PCI, DM, HTN",
+      "Family history",
+      "Investigations and treatment",
+      "DM & HTN"
+    ],
+    "bonus": [
+      "Recent weight gain (fluid)",
+      "Urinary output (oliguria from low cardiac output)",
+      "Sleep pattern (orthopnea)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

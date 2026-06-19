@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Dyspnea due to Valvular Heart Disease (Mitral Stenosis)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-dyspnea-vhd-ms",
+  title: "Dyspnea due to Valvular Heart Disease (Mitral Stenosis)",
+  description: "35-year-old woman with dyspnea and history of rheumatic fever.",
+  category: "History Taking",
+  tags: ["cardiology", "VHD", "mitral stenosis", "rheumatic", "dyspnea"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from a 35-year-old woman presenting with dyspnea due to valvular heart disease.",
+  "patient": {
+    "name": "Mrs. Aisha",
+    "age": 35,
+    "gender": "female",
+    "avatarSeed": "aisha-35",
+    "opening": "Doctor, I've had shortness of breath for six months. I had rheumatic fever when I was a child and I used to take penicillin injections every month but I stopped them five years ago. Recently I also noticed my heart beats irregularly and I coughed up some blood once."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Mitral stenosis (rheumatic) with atrial fibrillation",
+    "keySymptoms": [
+      "Progressive dyspnea on exertion (NYHA II-III)",
+      "Orthopnea and PND in advanced disease",
+      "Palpitation (atrial fibrillation — most common arrhythmia in MS)",
+      "Hemoptysis (most dangerous complication — bronchial vein rupture from pulmonary venous hypertension)",
+      "Dry cough (left atrial enlargement compressing bronchus)",
+      "Hoarseness of voice (Ortner's syndrome — LA compressing recurrent laryngeal nerve)",
+      "Fatigue, weight loss (cardiac cachexia)",
+      "Ankle edema (when pulmonary hypertension → right heart failure)"
+    ],
+    "redFlags": [
+      "Massive hemoptysis (can be life-threatening)",
+      "Systemic embolization (AF → stroke)",
+      "Acute pulmonary edema",
+      "Pulmonary hypertension → cor pulmonale",
+      "Infective endocarditis"
+    ],
+    "pastHistory": [
+      "Rheumatic fever in childhood (~age 10)",
+      "Was on monthly benzathine penicillin G — stopped 5 years ago",
+      "Recurrent tonsillitis as a child",
+      "Two uneventful pregnancies; now pregnant (third) — symptoms worsened",
+      "No previous cardiac surgery"
+    ],
+    "vitalSigns": "BP 110/70, HR 110 irregularly irregular (AF), RR 22, SpO2 94%, mitral facies (pink-purple patches on cheeks), loud S1, opening snap, mid-diastolic rumble at apex, low-volume pulse",
+    "differentials": [
+      "Mitral regurgitation",
+      "Aortic stenosis / regurgitation",
+      "Left ventricular failure (ischemic, hypertensive)",
+      "Atrial myxoma",
+      "COPD / asthma",
+      "Pulmonary embolism"
+    ],
+    "management": "Medical: rate control (beta-blocker, digoxin for AF), anticoagulation (warfarin INR 2-3 if AF or prior embolism), diuretics for congestion, IE prophylaxis. Definitive: percutaneous mitral balloon commissurotomy (PMBC) for pliable valve, mitral valve repair/replacement if unsuitable."
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of dyspnea",
+      "Orthopnea and PND",
+      "Palpitation — characterize (AF is most common arrhythmia in MS)",
+      "Hemoptysis — most dangerous complication",
+      "Hoarseness of voice — Ortner's syndrome (LA compression of recurrent laryngeal nerve)",
+      "Symptoms of pulmonary hypertension and right heart failure (ankle swelling, RUQ pain)",
+      "Symptoms of systemic embolization (AF)",
+      "Past history: rheumatic fever, tonsillectomy, recurrent tonsillitis, penicillin prophylaxis (and adherence)",
+      "Drug history (oral contraceptives, anticoagulants)",
+      "Family history (RF, VHD)",
+      "Pregnancy status (worsens MS)"
+    ],
+    "bonus": [
+      "Mitral facies",
+      "NYHA classification",
+      "Wilkins score for suitability of PMBC",
+      "Compliance with secondary penicillin prophylaxis"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

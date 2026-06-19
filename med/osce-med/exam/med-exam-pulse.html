@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Examination of the Pulse</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-exam-pulse",
+  title: "Examination of the Pulse",
+  description: "How to examine the radial pulse and other peripheral pulses.",
+  category: "Examination",
+  tags: ["general exam", "pulse", "technique", "AR"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Cardiology",
+  "difficulty": "Foundational",
+  "task": "Demonstrate pulse examination and answer oral questions.",
+  "examiner": {
+    "name": "Dr. Noaman",
+    "title": "Internal Medicine Consultant"
+  },
+  "dataPresented": {
+    "scenario": "You are asked to examine the radial pulse of a 50-year-old patient and comment on your findings.",
+    "tables": [
+      {
+        "title": "Pulse Examination — Technique",
+        "headers": [
+          "Step",
+          "Action"
+        ],
+        "rows": [
+          [
+            "Position",
+            "Stand on the patient's right side, with a watch (seconds counter)"
+          ],
+          [
+            "Counting",
+            "Count pulses for 15 seconds × 4 if regular; full minute if irregular"
+          ],
+          [
+            "Hand",
+            "By contralateral hand (your right hand examines patient's left radial pulse)"
+          ],
+          [
+            "3 fingers method",
+            "Distal finger occludes collaterals; proximal finger checks artery wall condition; middle finger feels pulsation"
+          ]
+        ]
+      },
+      {
+        "title": "Items to Comment On (9 items)",
+        "headers": [
+          "#",
+          "Item"
+        ],
+        "rows": [
+          [
+            "1",
+            "Rate (per minute)"
+          ],
+          [
+            "2",
+            "Rhythm (regular, irregular, regularly irregular, irregularly irregular)"
+          ],
+          [
+            "3",
+            "Force (strength of the beat)"
+          ],
+          [
+            "4",
+            "Tension (BP — systolic vs diastolic)"
+          ],
+          [
+            "5",
+            "Volume (pulse pressure = force − tension)"
+          ],
+          [
+            "6",
+            "Equality on both sides (volume, not rate)"
+          ],
+          [
+            "7",
+            "State of vessel wall (thickened, calcified in elderly/atherosclerosis)"
+          ],
+          [
+            "8",
+            "Peripheral pulsations (all major pulses)"
+          ],
+          [
+            "9",
+            "Special character (water hammer, pulsus paradoxus, alternans, bisferiens)"
+          ]
+        ]
+      },
+      {
+        "title": "Model Comment",
+        "headers": [
+          "Finding"
+        ],
+        "rows": [
+          [
+            "Pulse is regular, 80 BPM, with average force, tension & volume, equal on both sides, normal vascular wall, intact peripheral pulsations, with no special character."
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Examine the radial pulse.",
+      "answer": "Stand on the patient's right with a watch. Use 3 fingers (distal occludes, middle feels, proximal checks wall). Count 15 sec × 4 if regular; full minute if irregular.",
+      "rubric": "Technique with 3 fingers and counting method"
+    },
+    {
+      "id": "q2",
+      "question": "What are the items to comment on in pulse assessment?",
+      "answer": "9 items: Rate, Rhythm, Force, Tension, Volume, Equality, State of vessel wall, Peripheral pulsations, Special character.",
+      "rubric": "Mention all 9 items"
+    },
+    {
+      "id": "q3",
+      "question": "Examine the dorsalis pedis pulse.",
+      "answer": "Use index and middle fingers. Palpate on the dorsum of the foot, lateral to the extensor hallucis longus tendon, between 1st and 2nd metatarsals. Palpate both feet simultaneously to compare sides.",
+      "rubric": "Location and simultaneous comparison"
+    },
+    {
+      "id": "q4",
+      "question": "Examine the brachial pulse.",
+      "answer": "Use index and middle fingers. Palpate in the antecubital fossa, just medial to the biceps tendon.",
+      "rubric": "Location: medial to biceps tendon"
+    },
+    {
+      "id": "q5",
+      "question": "What is the pulse character in aortic regurgitation? How to examine?",
+      "answer": "Water hammer pulse (collapsing pulse). Technique: raise the patient's arm vertically above their head, support the arm with your hand so muscles are relaxed, use your fingers to palpate the radial or brachial artery. The sudden upstroke and downstroke is felt.",
+      "rubric": "Water hammer + arm raised technique"
+    },
+    {
+      "id": "q6",
+      "question": "What are the causes of unequal pulse?",
+      "answer": "Wall causes: coarctation of aorta, subclavian artery spasm, aortic dissection. Lumen causes: thrombosis, embolism. Outside causes: cervical rib, enlarged axillary LN, Pancoast tumor.",
+      "rubric": "Wall, lumen, outside causes"
+    },
+    {
+      "id": "q7",
+      "question": "What is the most life-threatening cause of unequal pulse?",
+      "answer": "Aortic dissection — tearing chest pain radiating to the back, unequal BP in arms.",
+      "rubric": "Aortic dissection"
+    },
+    {
+      "id": "q8",
+      "question": "Causes of hyperdynamic circulation?",
+      "answer": "AR, atherosclerosis, PDA. Hyperkinetic states — 4H: Hypoxia, Hyperthyroidism, Hyperthermia, Hepatic failure; 3B: pregnancy, Beri Beri, Paget's; 3A: Anemia, Anxiety, AV fistula.",
+      "rubric": "AR/PDA + 4H3B3A"
+    },
+    {
+      "id": "q9",
+      "question": "Causes of small pulse volume?",
+      "answer": "Heart failure, hypovolemic shock, aortic stenosis (AS), mitral stenosis (MS), mitral incompetence (MI), pericardial effusion.",
+      "rubric": "HF, hypovolemia, AS/MS/MI, effusion"
+    },
+    {
+      "id": "q10",
+      "question": "Causes of variable pulse volume?",
+      "answer": "Atrial fibrillation, extrasystoles, pulsus alternans, 3rd degree heart block, ventricular tachycardia.",
+      "rubric": "5 causes"
+    },
+    {
+      "id": "q11",
+      "question": "Where is equality of pulse on both sides NOT assessed?",
+      "answer": "Carotid arteries → may cause syncope; popliteal artery → needs both hands.",
+      "rubric": "Carotid and popliteal"
+    },
+    {
+      "id": "q12",
+      "question": "Causes of radio-femoral delay?",
+      "answer": "Coarctation of aorta (commonest). Other causes in lumen, wall, or outside (same as unequal pulse causes).",
+      "rubric": "CoA commonest"
+    },
+    {
+      "id": "q13",
+      "question": "Causes of absent dorsalis pedis pulse?",
+      "answer": "Normal variation (congenital absence, 5% of people); saddle-shaped embolus at bifurcation of aorta (Leriche syndrome).",
+      "rubric": "Congenital (5%) and embolus"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "9 pulse items",
+      "Water hammer technique",
+      "Unequal pulse causes"
+    ],
+    "bonus": [
+      "4H3B3A mnemonic for hyperdynamic states"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

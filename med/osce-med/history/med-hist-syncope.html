@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Syncope (Black Out)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-syncope",
+  title: "Syncope (Black Out)",
+  description: "65-year-old with recurrent fainting episodes.",
+  category: "History Taking",
+  tags: ["cardiology", "syncope", "arrhythmia", "heart block"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from a 65-year-old patient with recurrent syncope.",
+  "patient": {
+    "name": "Mr. Tarek",
+    "age": 65,
+    "gender": "male",
+    "avatarSeed": "tarek-65",
+    "opening": "Doctor, I've been having these spells where I suddenly black out without warning. Last week I fainted while walking in the garden. I also feel dizzy sometimes and my vision goes blurry. I had a pacemaker put in 5 years ago but I'm not sure if it's still working."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Syncope — likely cardiac (arrhythmia, heart block, or pacemaker malfunction)",
+    "keySymptoms": [
+      "Sudden transient complete loss of consciousness (definition of syncope)",
+      "NO warning (cardiac syncope — sudden onset, no prodrome)",
+      "Rapid recovery (seconds to minutes)",
+      "Low cardiac output symptoms: dizziness, headache, blurred vision, oliguria, easy fatigability, pallor/cold",
+      "Palpitation may precede (arrhythmia)",
+      "Chest pain or dyspnea may accompany (ACS, PE, severe AS)",
+      "Symptoms occur with exertion — suggests AS, HOCM, pulmonary HTN"
+    ],
+    "redFlags": [
+      "Sudden cardiac death",
+      "Severe injury from fall (head injury, fracture)",
+      "Underlying life-threatening arrhythmia (VT, complete heart block)",
+      "Severe structural heart disease (AS, HOCM)"
+    ],
+    "pastHistory": [
+      "Pacemaker implanted 5 years ago for complete heart block",
+      "Hypertension 20 years",
+      "No previous MI",
+      "No diabetes",
+      "Recent battery check overdue (pacemaker malfunction)"
+    ],
+    "vitalSigns": "BP 130/80, HR 35 (very slow — pacemaker malfunction or new heart block), RR 16, SpO2 97%, no murmur",
+    "differentials": [
+      "Cardiac: arrhythmia (VT, complete heart block, sick sinus syndrome, severe bradycardia)",
+      "Structural: severe AS, HOCM, pulmonary HTN, atrial myxoma",
+      "Pacemaker malfunction (battery depletion, lead dislodgement)",
+      "Vasomotor: vasovagal (most common — has prodrome), carotid sinus syndrome",
+      "Orthostatic: autonomic neuropathy (DM), Addison's, dehydration, drugs",
+      "Situational: cough, micturition (especially elderly men at night)",
+      "Cerebral: vertebrobasilar TIA, subclavian steal",
+      "Seizure (NOT syncope — has aura, post-ictal confusion, tongue biting)"
+    ],
+    "management": "Immediate: ABC, ECG, pacemaker interrogation; Atropine, isoprenaline, adrenaline for acute symptomatic bradycardia; permanent pacemaker (or replacement) is treatment of choice for heart block; treat underlying cause (AS → AVR, HOCM → myectomy, arrhythmia → ICD)."
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of syncope episodes",
+      "Sudden loss of consciousness without warning (cardiac syncope) vs with prodrome (vasovagal)",
+      "Trigger: exertion (AS, HOCM, pulmonary HTN), sudden noise/emotion (long QT), positional (orthostatic), cough/micturition (situational)",
+      "Recovery: rapid (syncope) vs slow with confusion/post-ictal (seizure)",
+      "Injury from fall (severity)",
+      "Symptoms of low cardiac output (dizziness, headache, blurred vision, oliguria, pallor)",
+      "Chest pain, dyspnea, palpitation (associated cardiac symptoms)",
+      "Past history: pacemaker (when, type, last check), previous arrhythmia, MI, structural heart disease",
+      "Drug history (beta-blockers, antiarrhythmics, antihypertensives — can cause bradycardia/hypotension)",
+      "Family history: sudden cardiac death, long QT, HOCM",
+      "Differential: cardiac vs vasomotor vs orthostatic vs situational vs cerebral vs seizure"
+    ],
+    "bonus": [
+      "Definition of syncope (sudden transient complete LOC due to ↓ cerebral blood flow)",
+      "Differentiate cardiac vs vasovagal (no prodrome = cardiac)",
+      "Differentiate syncope vs seizure"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

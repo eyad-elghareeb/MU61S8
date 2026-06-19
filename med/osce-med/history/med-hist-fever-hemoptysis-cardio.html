@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Fever and Hemoptysis (Cardiology)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-fever-hemoptysis-cardio",
+  title: "Fever and Hemoptysis (Cardiology)",
+  description: "50-year-old with fever and hemoptysis.",
+  category: "History Taking",
+  tags: ["cardiology", "fever", "hemoptysis", "IE", "LVF"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from a 50-year-old patient with fever and hemoptysis, with cardiac focus.",
+  "patient": {
+    "name": "Mr. Mahmoud",
+    "age": 50,
+    "gender": "male",
+    "avatarSeed": "mahmoud-50",
+    "opening": "Doctor, I've had a fever for two weeks, with chills and sweats at night. Three days ago I started coughing up some blood — it was bright red and frothy. I also feel breathless when I lie down."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Infective endocarditis with pulmonary congestion from LVF (or pneumonia due to IE)",
+    "keySymptoms": [
+      "Fever — persistent, low-to-moderate grade, with chills and night sweats (IE)",
+      "Hemoptysis — from pulmonary congestion (LVF due to acute MR from IE destroying valve)",
+      "Dyspnea, orthopnea, PND (LVF)",
+      "New murmur (or changing murmur)",
+      "Embolic phenomena — splinter hemorrhages, Osler nodes (painful finger pads), Janeway lesions (painless palms/soles), Roth spots (retina)",
+      "Constitutional symptoms: fatigue, anorexia, weight loss",
+      "Back pain (lumbar — embolic)",
+      "Stroke symptoms, focal weakness (cerebral embolism)"
+    ],
+    "redFlags": [
+      "Acute severe MR → flash pulmonary edema",
+      "Embolic stroke",
+      "Mycotic aneurysm rupture (intracranial hemorrhage)",
+      "Septic shock",
+      "Acute renal failure",
+      "Heart block (aortic valve IE → periannular abscess)"
+    ],
+    "pastHistory": [
+      "Rheumatic heart disease (mitral valve)",
+      "No prosthetic valve, no IV drug use",
+      "Recent dental procedure 1 month ago (no antibiotic prophylaxis)",
+      "No IV drug use"
+    ],
+    "vitalSigns": "T 38.5°C, BP 110/70, HR 100, RR 24, SpO2 92%, splinter hemorrhages on nails, pansystolic murmur apex (MR), basal crackles",
+    "differentials": [
+      "Infective endocarditis (most common cause of fever in cardiology)",
+      "Pulmonary congestion from any HF cause",
+      "Recurrent chest infection from HF (pulmonary congestion predisposes to infection)",
+      "Rheumatic fever (migratory polyarthritis, strep throat)",
+      "Tuberculosis (chronic cough, night sweats, weight loss)",
+      "Lung cancer (smoker, weight loss, hemoptysis)",
+      "Anticoagulant therapy (warfarin — check INR)",
+      "Pulmonary embolism (DVT, sudden dyspnea, pleuritic pain)"
+    ],
+    "management": "Blood cultures ×3 BEFORE antibiotics; IV antibiotics (empiric: vancomycin + gentamicin, tailored to culture) for 4-6 weeks; treat HF (diuretics, afterload reduction); surgery for HF, uncontrolled infection, abscess, large vegetations, embolism; anticoagulation only if indicated (mechanical valve, AF) — not for native valve IE."
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of fever — pattern, grade, chills, night sweats",
+      "OCD of hemoptysis — amount, color (bright red/frothy = pulmonary; coffee-ground = GI), frequency",
+      "Pulmonary congestion symptoms (orthopnea, PND, basal crackles)",
+      "Embolic manifestations: tongue, limbs, stroke symptoms (systemic embolization is common in IE)",
+      "IE-specific signs: Osler nodes (painful finger bumps), Janeway lesions (painless palm spots), Roth spots",
+      "Recent dental, surgical, or invasive procedure",
+      "IV drug use (right-sided IE — tricuspid valve, CoNS)",
+      "Underlying valvular disease or prosthetic valve",
+      "Past history: rheumatic fever, VHD, prosthetic valve, PCI",
+      "Drug history (anticoagulants — check INR)",
+      "Symptoms of differential: TB (chronic cough, weight loss), cancer (smoker, cachexia), PE (DVT, pleuritic)"
+    ],
+    "bonus": [
+      "Modified Duke criteria (major: blood culture, ECHO; minor: predisposition, fever ≥38, vascular, immunologic, microbiologic)",
+      "Recent dental cleaning without prophylaxis",
+      "Homan's sign for DVT (PE workup)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

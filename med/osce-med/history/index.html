@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Internal Medicine History Taking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../index-engine.css">
+<meta name="description" content="OSCE History Taking cases">
+<meta name="theme-color" content="#0d1117">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
+    <div class="topbar-title">MU61 Quiz - Internal Medicine History Taking</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Internal Medicine History Taking</span></h1>
+      <p>OSCE-style history taking scenarios for Internal Medicine.</p>
+    </header>
+
+    <div class="quiz-grid" id="quiz-grid"></div>
+
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "med-hist-asthma",
+    title: "Recurrent Attacks Of Dyspnea And Cough (Bronchial Asthma)",
+    description: "22-year-old with recurrent attacks of dyspnea and cough.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-asthma.html"
+  },
+  {
+    uid: "med-hist-chest-pain-acs",
+    title: "Chest Pain — Acute Coronary Syndrome",
+    description: "55-year-old heavy smoker with central chest pain.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-chest-pain-acs.html"
+  },
+  {
+    uid: "med-hist-copd",
+    title: "Cough, Expectoration, Chest Tightness (COPD)",
+    description: "60-year-old heavy smoker with chronic productive cough.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-copd.html"
+  },
+  {
+    uid: "med-hist-dyspnea-edema-bivhf",
+    title: "Dyspnea And LL Edema (Biventricular HF)",
+    description: "45-year-old with dyspnea and bilateral leg swelling.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-dyspnea-edema-bivhf.html"
+  },
+  {
+    uid: "med-hist-dyspnea-general",
+    title: "Dyspnea — Cardiology History Taking",
+    description: "60-year-old with progressive shortness of breath.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-dyspnea-general.html"
+  },
+  {
+    uid: "med-hist-dyspnea-vhd-ms",
+    title: "Dyspnea Due To Valvular Heart Disease (Mitral Stenosis)",
+    description: "35-year-old woman with dyspnea and history of rheumatic fever.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-dyspnea-vhd-ms.html"
+  },
+  {
+    uid: "med-hist-fever-hemoptysis-cardio",
+    title: "Fever And Hemoptysis (Cardiology)",
+    description: "50-year-old with fever and hemoptysis.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-fever-hemoptysis-cardio.html"
+  },
+  {
+    uid: "med-hist-hemoptysis",
+    title: "Coughing Up Blood (Hemoptysis)",
+    description: "45-year-old with hemoptysis.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-hemoptysis.html"
+  },
+  {
+    uid: "med-hist-hoarseness",
+    title: "Hoarseness Of Voice",
+    description: "55-year-old smoker with hoarseness of voice for 4 weeks.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-hoarseness.html"
+  },
+  {
+    uid: "med-hist-ie-ivdu",
+    title: "Infective Endocarditis In IV Drug User",
+    description: "28-year-old IV drug user with intermittent fever, dyspnea, and hemoptysis for 2 months.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-ie-ivdu.html"
+  },
+  {
+    uid: "med-hist-lung-cancer",
+    title: "Cough And Hemoptysis In Smoker (Lung Cancer)",
+    description: "60-year-old heavy smoker with cough and red sputum.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-lung-cancer.html"
+  },
+  {
+    uid: "med-hist-pleurisy-effusion",
+    title: "Chest Pain And Dry Cough (Pleurisy → Pleural Effusion)",
+    description: "40-year-old with pleuritic chest pain, dry cough, and dyspnea.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-pleurisy-effusion.html"
+  },
+  {
+    uid: "med-hist-syncope",
+    title: "Syncope (Black Out)",
+    description: "65-year-old with recurrent fainting episodes.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-hist-syncope.html"
+  }
+];
+</script>
+<script src="../../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s) document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon) window.__updateThemeIcon();if(window.renderQuizzes) window.renderQuizzes();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

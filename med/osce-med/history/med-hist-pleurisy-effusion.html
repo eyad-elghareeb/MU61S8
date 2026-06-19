@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest Pain and Dry Cough (Pleurisy → Pleural Effusion)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-pleurisy-effusion",
+  title: "Chest Pain and Dry Cough (Pleurisy → Pleural Effusion)",
+  description: "40-year-old with pleuritic chest pain, dry cough, and dyspnea.",
+  category: "History Taking",
+  tags: ["chest", "pleurisy", "pleural effusion", "chest pain"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Chest / Respiratory",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from a 40-year-old patient with chest pain, dry cough, and dyspnea.",
+  "patient": {
+    "name": "Mr. Ahmed",
+    "age": 40,
+    "gender": "male",
+    "avatarSeed": "ahmed-40",
+    "opening": "Doctor, I've had a sharp stitching pain in the right side of my chest for a week. It hurts more when I breathe in or cough. I have a dry cough and I'm short of breath, especially when I move around. I had a chest infection two weeks ago that I didn't treat."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Pleurisy progressing to pleural effusion (likely parapneumonic, post-pneumonia)",
+    "keySymptoms": [
+      "Pleuritic chest pain — sharp, stitching, ↑↑ with inspiration and coughing, ↓↓ by lying on the affected side",
+      "Dry cough (early pleurisy)",
+      "Dyspnea (worsens as effusion develops — lung compressed)",
+      "Fever (preceding infection)",
+      "When effusion develops: pain DECREASES (separation of pleural layers), dyspnea INCREASES",
+      "Constitutional: malaise, anorexia"
+    ],
+    "redFlags": [
+      "Empyema (infected pleural fluid)",
+      "Tension hydro-pneumothorax (rare)",
+      "Sepsis",
+      "Respiratory failure"
+    ],
+    "pastHistory": [
+      "Chest infection 2 weeks ago (untreated)",
+      "No TB, no asthma, no chest trauma",
+      "No history of anesthesia or coma (aspiration risk)",
+      "Non-smoker",
+      "No TB contact"
+    ],
+    "vitalSigns": "T 38°C, HR 100, RR 26, BP 120/75, SpO2 92%, decreased chest movement on right, stony dullness right base, decreased breath sounds and vocal resonance right base",
+    "differentials": [
+      "Pneumonia (fever, productive cough, consolidation signs)",
+      "Pulmonary embolism (sudden dyspnea, pleuritic pain, DVT)",
+      "Pneumothorax (sudden, hyperresonance)",
+      "TB (chronic cough, night sweats, weight loss)",
+      "Lung cancer (smoker, weight loss, hemoptysis)",
+      "Pericarditis (positional pain, friction rub)",
+      "Herpes zoster (rash, dermatomal)",
+      "Musculoskeletal (no respiratory features)"
+    ],
+    "management": "CXR + lateral decubitus; thoracentesis (diagnostic + therapeutic if large); pleural fluid analysis (protein, LDH, glucose, pH, cell count, Gram stain, AFB, cytology); antibiotics if parapneumonic; chest tube if empyema; treat underlying cause (TB, malignancy). Pleurisy TTT: NSAIDs, antibiotics, steroids, antivirals. Effusion TTT: chest tube, thoracentesis, diuretics, analgesics, antibiotics, pleurodesis."
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of chest pain (8 + 3 for pain)",
+      "Site, character (stitching = pleuritic), radiation",
+      "What ↑↑: inspiration and coughing (classic pleuritic)",
+      "What ↓↓: lying on the affected side (classic pleuritic)",
+      "Cough (dry in early pleurisy, productive if pneumonia)",
+      "Hemoptysis (TB, cancer, PE)",
+      "Expectoration (analyze: amount, color, content, odor)",
+      "Wheezes",
+      "Dyspnea",
+      "Constitutional: fever, malaise, night sweats (TB)",
+      "Cyanosis",
+      "Systemic congestion (cor pulmonale)",
+      "Pressure manifestations (hoarseness, dysphagia — cancer)",
+      "Past history: TB, similar attack, asthma, chest trauma, anesthesia/coma (aspiration), DM (TB follows DM as its shadow)",
+      "Family history: TB, similar conditions, allergy (asthma)",
+      "Investigations and treatment, DM & HTN",
+      "Systemic review: fever (rule out pneumonia), weight loss (screen for malignancy)"
+    ],
+    "bonus": [
+      "Variants: postural, diurnal, seasonal (3 variants for chest complaints)",
+      "Excreta analysis: amount, content/color/consistency, odor (3 for any excreta)",
+      "If exudate → common organism is anaerobes"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

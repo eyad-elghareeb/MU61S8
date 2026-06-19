@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Examination of Complexion (Pallor, Jaundice, Cyanosis)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-exam-complexion",
+  title: "Examination of Complexion (Pallor, Jaundice, Cyanosis)",
+  description: "Sites to examine for pallor, jaundice, and cyanosis.",
+  category: "Examination",
+  tags: ["general exam", "pallor", "jaundice", "cyanosis"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Internal Medicine",
+  "difficulty": "Foundational",
+  "task": "Demonstrate examination of complexion and answer oral questions.",
+  "examiner": {
+    "name": "Dr. Noaman",
+    "title": "Internal Medicine Consultant"
+  },
+  "dataPresented": {
+    "scenario": "Demonstrate how to examine for pallor, jaundice, and cyanosis.",
+    "tables": [
+      {
+        "title": "Sites for Each Complexion Type",
+        "headers": [
+          "Pallor",
+          "Jaundice",
+          "Cyanosis"
+        ],
+        "rows": [
+          [
+            "1. Palm of hand (palmar creases)",
+            "1. Frenulum of tongue & soft palate",
+            "1. Lips"
+          ],
+          [
+            "2. Nail bed",
+            "2. Lower part of sclera",
+            "2. Tongue (central cyanosis)"
+          ],
+          [
+            "3. Inner surface of lips",
+            "3. Skin",
+            "3. Tip of nose"
+          ],
+          [
+            "4. Conjunctiva",
+            "—",
+            "4. Lobule of ear"
+          ],
+          [
+            "—",
+            "—",
+            "5. Nail bed"
+          ]
+        ]
+      },
+      {
+        "title": "Differential Cyanosis",
+        "headers": [
+          "Type",
+          "Site",
+          "Cause"
+        ],
+        "rows": [
+          [
+            "Differential cyanosis (lower half)",
+            "Cyanosis in lower half of body",
+            "PDA with reversed shunt (Eisenmenger)"
+          ],
+          [
+            "Reversed differential cyanosis (upper half)",
+            "Cyanosis in upper half of body",
+            "TGA (transposition of great vessels) + PDA; COA (coarctation of aorta)"
+          ]
+        ]
+      },
+      {
+        "title": "Central vs Peripheral Cyanosis",
+        "headers": [
+          "Feature",
+          "Central",
+          "Peripheral"
+        ],
+        "rows": [
+          [
+            "Etiology",
+            "Blood leaving LV with ↑ reduced Hb",
+            "Stagnation of blood in peripheral capillaries"
+          ],
+          [
+            "Cardiac causes",
+            "Congenital cyanotic HD, advanced HF",
+            "Low cardiac output in LSHF"
+          ],
+          [
+            "Chest causes",
+            "Respiratory failure",
+            "—"
+          ],
+          [
+            "Other",
+            "Hepato-pulmonary syndrome",
+            "Peripheral vascular disease (Raynaud's), local thrombus/embolism, cold exposure"
+          ],
+          [
+            "Site",
+            "Peripheral + tongue (under surface)",
+            "Lips, tip of nose, lobule of ear, nail bed"
+          ],
+          [
+            "Hand",
+            "Warm",
+            "Cold"
+          ],
+          [
+            "O2 sat",
+            "Decreased",
+            "Normal"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Examine the complexion.",
+      "answer": "Pallor: palm (palmar creases), nail bed, inner lip, conjunctiva. Jaundice: frenulum of tongue, soft palate, lower sclera, skin. Cyanosis: lips, tongue (under surface for central), tip of nose, lobule of ear, nail bed.",
+      "rubric": "Sites for all 3 types"
+    },
+    {
+      "id": "q2",
+      "question": "What are the causes of differential cyanosis?",
+      "answer": "Differential cyanosis (lower half): PDA with reversed shunt (Eisenmenger). Reversed differential cyanosis (upper half): TGA + PDA; COA.",
+      "rubric": "PDA reversed + TGA + COA"
+    },
+    {
+      "id": "q3",
+      "question": "Differentiate central and peripheral cyanosis.",
+      "answer": "Central: blood leaving LV with ↑ reduced Hb; causes — cyanotic CHD, advanced HF, respiratory failure, hepato-pulmonary syndrome; warm hands; ↓ O2 sat; seen on tongue + peripheral sites. Peripheral: stagnation of blood; causes — low COP in LSHF, PVD, Raynaud's, thrombus/embolism, cold; cold hands; normal O2 sat; only on lips/nose/ear/nail bed (NOT mucous membranes).",
+      "rubric": "Etiology, site, hand temperature, O2 sat"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Sites for all 3 types",
+      "Differential cyanosis causes",
+      "Central vs peripheral"
+    ],
+    "bonus": [
+      "Congenital cyanotic HD list (TOF, TGA, tricuspid atresia, truncus, TAPVR, Ebstein, pulmonary atresia)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

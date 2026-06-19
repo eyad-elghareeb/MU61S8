@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest Pain — Acute Coronary Syndrome</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-chest-pain-acs",
+  title: "Chest Pain — Acute Coronary Syndrome",
+  description: "55-year-old heavy smoker with central chest pain.",
+  category: "History Taking",
+  tags: ["cardiology", "chest pain", "ACS", "MI", "IHD"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from a 55-year-old patient presenting with chest pain.",
+  "patient": {
+    "name": "Mr. Saleh",
+    "age": 55,
+    "gender": "male",
+    "avatarSeed": "saleh-55",
+    "opening": "Doctor, I have a severe pain in the center of my chest since this morning. It feels like something heavy is pressing on me, and the pain goes to my left arm and jaw. I've had similar pain before but it always went away with rest. This time it's been three hours and not getting better."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Acute coronary syndrome (likely STEMI — pain >15 min, not relieved by nitroglycerin)",
+    "keySymptoms": [
+      "Central chest pain — pressure/tightness/squeezing",
+      "Radiation to left arm, jaw, shoulder, epigastrium",
+      "Duration >15-20 minutes (distinguishes MI from angina)",
+      "Not relieved by rest or nitroglycerin (3 tablets) → ACS",
+      "Associated: sweating, nausea, vomiting, dyspnea, palpitation",
+      "LESS common: atypical symptoms in diabetics, elderly, women (epigastric pain, fatigue)"
+    ],
+    "redFlags": [
+      "Cardiogenic shock",
+      "Life-threatening arrhythmias (VF, VT)",
+      "Acute mitral regurgitation (papillary muscle rupture)",
+      "Ventricular septal rupture",
+      "Cardiac free wall rupture → tamponade",
+      "Cardiogenic pulmonary edema",
+      "Sudden cardiac death"
+    ],
+    "pastHistory": [
+      "Stable angina for 2 years (relieved by rest and nitroglycerin)",
+      "Hypertension 10 years",
+      "Type 2 diabetes 8 years (poorly controlled)",
+      "Heavy smoker (50 pack-years)",
+      "Hyperlipidemia (untreated)",
+      "Father died of MI at age 60",
+      "Previous PCI? — ask"
+    ],
+    "vitalSigns": "BP 140/90, HR 100, RR 22, SpO2 96%, anxious, diaphoretic, S4 gallop, no murmur",
+    "differentials": [
+      "Acute MI (STEMI / NSTEMI)",
+      "Unstable angina (no troponin rise)",
+      "Stable angina (relieved by rest/nitroglycerin, <15 min)",
+      "Acute pericarditis (sharp, positional, relieved by leaning forward)",
+      "Aortic dissection (tearing, radiating to back, unequal pulses)",
+      "Pulmonary embolism (pleuritic, sudden dyspnea)",
+      "Pneumothorax (sudden sharp, dyspnea)",
+      "Esophageal rupture (Boerhaave)",
+      "Musculoskeletal pain",
+      "GI causes (GERD, esophageal spasm)"
+    ],
+    "management": "Immediate: aspirin 300 mg chewed, clopidogrel 300-600 mg, nitroglycerin (sublingual or IV — caution in inferior MI), morphine for pain, oxygen if hypoxic, beta-blocker, statin, ACE-I; reperfusion: primary PCI (treatment of choice) within 90 min, or thrombolysis (streptokinase, alteplase) if PCI not available within 12 hours; anticoagulation (heparin/enoxaparin)."
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of chest pain (8 + 3 for pain: site, character, radiation)",
+      "Site (central/retrosternal)",
+      "Character (pressure, tightness, squeezing, heavy)",
+      "Radiation (left arm, jaw, shoulder, epigastrium)",
+      "Duration (key: <15 min = angina; >15-20 min not relieved by 3 nitro tablets = ACS)",
+      "What ↑↑: exertion, emotion, cold, food",
+      "What ↓↓: rest, nitroglycerin",
+      "Date of last attack",
+      "Effect of treatment (nitroglycerin response)",
+      "Associated symptoms: sweating, nausea, vomiting, dyspnea, palpitation",
+      "IHD risk factors: DM, HTN, smoking, hyperlipidemia, family history, age, male sex, type A personality",
+      "Past history: stable angina, previous MI, PCI, CABG",
+      "Aspirin use",
+      "Differential: pericarditis, dissection, PE, pneumothorax"
+    ],
+    "bonus": [
+      "Atypical presentation in diabetics/elderly/women",
+      "Killip classification on exam",
+      "TIMI / GRACE risk score"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Internal Medicine Radiology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../index-engine.css">
+<meta name="description" content="Radiology interpretation cases">
+<meta name="theme-color" content="#0d1117">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Internal Medicine">←</a>
+    <div class="topbar-title">MU61 Quiz - Internal Medicine Radiology</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Internal Medicine Radiology</span></h1>
+      <p>OSCE-style chest X-ray interpretation scenarios for Internal Medicine.</p>
+    </header>
+
+    <div class="quiz-grid" id="quiz-grid"></div>
+
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "med-rad-copd",
+    title: "Radiology — COPD (Emphysema)",
+    description: "CXR showing hyperinflated lungs and flattened diaphragm.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-rad-copd.html"
+  },
+  {
+    uid: "med-rad-hydropneumothorax",
+    title: "Radiology — Hydropneumothorax",
+    description: "CXR showing air-fluid level in pleural space.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-rad-hydropneumothorax.html"
+  },
+  {
+    uid: "med-rad-lung-abscess",
+    title: "Radiology — Pyogenic Lung Abscess",
+    description: "CXR showing cavitary lesion with air-fluid level.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-rad-lung-abscess.html"
+  },
+  {
+    uid: "med-rad-pleural-effusion",
+    title: "Radiology — Pleural Effusion",
+    description: "CXR showing homogeneous opacity with obliterated costophrenic angle.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-rad-pleural-effusion.html"
+  },
+  {
+    uid: "med-rad-pneumonia",
+    title: "Radiology — Bacterial Pneumonia (Consolidation)",
+    description: "CXR showing opacity with air bronchogram.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-rad-pneumonia.html"
+  },
+  {
+    uid: "med-rad-pneumothorax",
+    title: "Radiology — Pneumothorax (Tension)",
+    description: "CXR showing visceral pleural line and absent lung markings.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-rad-pneumothorax.html"
+  },
+  {
+    uid: "med-rad-solitary-mass",
+    title: "Radiology — Solitary Pulmonary Nodule/Mass",
+    description: "CXR showing rounded opacity in lung field.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-rad-solitary-mass.html"
+  },
+  {
+    uid: "med-rad-tb",
+    title: "Radiology — Pulmonary Tuberculosis",
+    description: "CXR showing opacity at lung apex.",
+    icon: "📘",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "med-rad-tb.html"
+  }
+];
+</script>
+<script src="../../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s) document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon) window.__updateThemeIcon();if(window.renderQuizzes) window.renderQuizzes();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

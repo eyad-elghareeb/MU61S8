@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Dyspnea — Cardiology History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "med-hist-dyspnea-general",
+  title: "Dyspnea — Cardiology History Taking",
+  description: "60-year-old with progressive shortness of breath.",
+  category: "History Taking",
+  tags: ["cardiology", "dyspnea", "orthopnea", "PND", "heart failure"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Cardiology",
+  "difficulty": "Foundational",
+  "task": "Take a focused history from a 60-year-old patient presenting with shortness of breath.",
+  "patient": {
+    "name": "Mr. Abdel Rahman",
+    "age": 60,
+    "gender": "male",
+    "avatarSeed": "abdulrahman-60",
+    "opening": "Hello doctor. I've been feeling short of breath for the last three months. At first it was only when I climbed stairs, but now I get breathless even when walking on flat ground. The last few nights I've been waking up gasping for air."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Left-sided heart failure (likely ischemic or hypertensive)",
+    "keySymptoms": [
+      "Dyspnea on exertion, progressively worsening (NYHA III-IV)",
+      "Orthopnea — sleeps on 3 pillows",
+      "Paroxysmal nocturnal dyspnea (PND) — wakes 1-2 hours after falling asleep, gasping",
+      "Dry cough, especially when supine",
+      "Fatigue, easy fatigability",
+      "Bilateral ankle swelling (later in disease)"
+    ],
+    "redFlags": [
+      "Acute pulmonary edema (pink frothy sputum, severe distress)",
+      "Cardiogenic shock",
+      "Arrhythmia (atrial fibrillation)",
+      "Sudden cardiac death"
+    ],
+    "pastHistory": [
+      "Hypertension for 15 years (poorly controlled)",
+      "Type 2 diabetes for 10 years on metformin",
+      "Heavy smoker (40 pack-years)",
+      "No previous cardiac catheterization or surgery",
+      "Father had MI at age 55"
+    ],
+    "vitalSigns": "BP 160/95, HR 96 irregular, RR 24, SpO2 92% on room air, JVP raised 6 cm, basal crackles bilateral, S3 gallop, ankle edema 2+",
+    "differentials": [
+      "COPD (also in smoker)",
+      "Bronchial asthma",
+      "Pulmonary embolism",
+      "Pneumonia",
+      "Anemia",
+      "Metabolic acidosis (DKA, uremic)"
+    ],
+    "management": "Treat underlying cause; diuretics (furosemide), ACE-I/ARB, beta-blocker, MRA; treat anemia, AF; consider device therapy (ICD/CRT) if EF low; PCI/CABG if ischemic"
+  },
+  "rubric": {
+    "mustAsk": [
+      "Onset, course, duration of dyspnea",
+      "Orthopnea — number of pillows used",
+      "PND — wake at night gasping, time after sleep, how it relieves (sitting up)",
+      "Platypnea — dyspnea when upright (suggests hepatopulmonary syndrome, intracardiac shunt)",
+      "Trepopnea — dyspnea on one side (suggests unilateral lung disease or HF)",
+      "Grade of dyspnea (NYHA I-IV) — at rest = grade 4",
+      "Symptoms of related system (4C + 4P): pulmonary congestion, systemic venous congestion, low cardiac output, cyanosis, palpitation, pain, pressure manifestations, BP changes",
+      "Past history: rheumatic fever (tonsillectomy, penicillin), prosthetic valve, PCI (IHD), DM, HTN",
+      "Family history: similar conditions, CHD, RF, TB",
+      "Investigations and treatment so far",
+      "DM & HTN control"
+    ],
+    "bonus": [
+      "Smoking history (pack-years)",
+      "Drug compliance",
+      "Salt intake",
+      "Recent weight gain (fluid retention)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>
