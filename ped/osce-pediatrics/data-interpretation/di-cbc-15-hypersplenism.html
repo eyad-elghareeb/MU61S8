@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Hypersplenism</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-15-hypersplenism",
+  title: "CBC Interpretation — Hypersplenism",
+  description: "3-year-old with splenomegaly; pancytopenia with high reticulocytes.",
+  category: "Data Interpretation",
+  tags: ["CBC", "hypersplenism", "pancytopenia"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC and differentiate from aplastic anemia.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A 3-year-old boy with hepatosplenomegaly and pallor. CBC:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "2,900 cells/mm³",
+            "Low"
+          ],
+          [
+            "Platelets",
+            "100,000 cells/mm³",
+            "Low"
+          ],
+          [
+            "MCV",
+            "90 fl",
+            "Normal"
+          ],
+          [
+            "MCH",
+            "31 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "33 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "3%",
+            "Appropriate"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "a) Hypersplenism. Pancytopenia but with NORMAL/RAISED reticulocyte count (3%) — marrow is functioning but cells are being sequestered by the enlarged spleen. Distinguishes from aplastic anemia.",
+      "rubric": "Pancytopenia + normal retic + splenomegaly = hypersplenism"
+    },
+    {
+      "id": "q2",
+      "question": "What are the causes of hypersplenism in children?",
+      "answer": "1. Congestion: portal hypertension (cirrhosis, portal vein thrombosis), cardiac (CHF, constrictive pericarditis). 2. Infection: viral hepatitis, CMV, EBV, brucellosis, bilharziasis, malaria, kala-azar. 3. Hematologic: hemolytic anemia (thalassemia, SCA), leukemia, lymphoma. 4. Infiltrative: Gaucher, Niemann-Pick, amyloidosis. 5. Idiopathic.",
+      "rubric": "Multiple categories"
+    },
+    {
+      "id": "q3",
+      "question": "What is the treatment?",
+      "answer": "1. Treat underlying cause. 2. Splenectomy if symptomatic (severe cytopenias, transfusion dependence) — but cautiously due to sepsis risk. 3. Vaccination (pneumococcus, meningococcus, Hib) at least 2 weeks before splenectomy. 4. Lifelong penicillin prophylaxis after splenectomy.",
+      "rubric": "Treat cause + splenectomy if needed + vaccination + prophylaxis"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify hypersplenism",
+      "Differentiate from aplastic (RC is key)",
+      "Vaccination before splenectomy"
+    ],
+    "bonus": [
+      "Penicillin prophylaxis after splenectomy"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

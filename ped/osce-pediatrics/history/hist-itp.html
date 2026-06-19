@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Immune Thrombocytopenia (ITP) — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-itp",
+  title: "Immune Thrombocytopenia (ITP) — History Taking",
+  description: "4-year-old with sudden onset red spots all over the body 2 weeks after a viral illness.",
+  category: "History Taking",
+  tags: ["hematology", "purpura", "child", "post-viral"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 4-year-old presenting with sudden onset red spots over the body.",
+  "patient": {
+    "name": "Mrs. Amira (mother of Nour)",
+    "age": 30,
+    "gender": "female",
+    "avatarSeed": "mother-amira",
+    "opening": "Doctor, two days ago I noticed red spots all over Nour's body — they don't blanch when I press them. She had a cold about two weeks ago but otherwise she's fine. She's not feverish and is playing normally."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Acute Immune Thrombocytopenia (ITP)",
+    "keySymptoms": [
+      "Sudden onset purpura / petechiae",
+      "Bruising without significant trauma",
+      "Mucosal bleeding (epistaxis, gums, menorrhagia in older girls)",
+      "Otherwise well — no pallor, no fever, no organomegaly",
+      "Recent viral illness 1–4 weeks prior"
+    ],
+    "redFlags": [
+      "Intracranial hemorrhage (severe thrombocytopenia < 10,000)",
+      "Massive mucosal bleeding",
+      "Chronic ITP (> 12 months)"
+    ],
+    "pastHistory": [
+      "Viral URTI 2 weeks prior",
+      "No previous bleeding episodes",
+      "No medications",
+      "Immunizations up to date"
+    ],
+    "vitalSigns": "T 37°C, HR 100, RR 24, BP 95/60, scattered petechiae and purpura over extremities and trunk, no organomegaly, no LN",
+    "differentials": [
+      "Anaphylactoid purpura (HSP)",
+      "Aplastic anemia",
+      "Leukemia",
+      "Meningococcal sepsis",
+      "Drug-induced thrombocytopenia",
+      "SLE"
+    ],
+    "management": "Conservative in mild; corticosteroids if extensive/mucosal/orifical/ICH; IVIG; anti-D; immunosuppressants; splenectomy in chronic refractory"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of purpura",
+      "Site, size, itching, raised or flat, associated bleeding",
+      "Symptoms of related system: abdominal enlargement, bleeding tendency, blood transfusion, bone ache, pallor, drug intake, ecchymosis, fever, jaundice, LN, itching, weight loss",
+      "Complications: intracranial hemorrhage",
+      "Differential: anaphylactoid purpura, aplastic anemia, leukemia, drug-induced",
+      "Past history: preceding viral infection",
+      "Other systems review"
+    ],
+    "bonus": [
+      "Recent MMR vaccine",
+      "Menstrual history in adolescents"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

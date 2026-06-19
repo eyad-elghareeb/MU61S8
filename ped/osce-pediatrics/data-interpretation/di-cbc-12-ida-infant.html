@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Iron Deficiency in Infant</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-12-ida-infant",
+  title: "CBC Interpretation — Iron Deficiency in Infant",
+  description: "8-month-old infant; microcytic anemia.",
+  category: "Data Interpretation",
+  tags: ["CBC", "IDA", "infant", "cow's milk"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Foundational",
+  "task": "Interpret the CBC of an 8-month-old with pallor.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "An 8-month-old boy fed exclusively cow's milk since 4 months presents with pallor. CBC:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "8 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "7,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "300,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "65 fl",
+            "LOW"
+          ],
+          [
+            "MCH",
+            "25 pg",
+            "Low"
+          ],
+          [
+            "MCHC",
+            "24 gram%",
+            "Low"
+          ],
+          [
+            "RC",
+            "1%",
+            "Low for degree of anemia"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "b) Iron deficiency anemia. Microcytic hypochromic anemia with low reticulocytes, classic for IDA in an 8-month-old on cow's milk.",
+      "rubric": "Microcytic + low retic + cow's milk → IDA"
+    },
+    {
+      "id": "q2",
+      "question": "Why is cow's milk a risk factor for IDA in infants?",
+      "answer": "1. Low iron content. 2. Poor absorption. 3. Causes microscopic GI blood loss in young infants (cow's milk protein-induced enteropathy). 4. Displaces iron-rich foods. 5. Interferes with iron absorption (calcium).",
+      "rubric": "Low iron + GI blood loss + displacement"
+    },
+    {
+      "id": "q3",
+      "question": "When should iron supplementation start in infants?",
+      "answer": "1. Term infants: 4 months of age (1 mg/kg/day) until iron-rich foods introduced. 2. Preterm infants: 2 months of age (2 mg/kg/day). 3. Exclusive breastfeeding for 6 months; iron-rich complementary foods after 6 months.",
+      "rubric": "Term at 4 mo, preterm at 2 mo"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify IDA in infant",
+      "Cow's milk mechanism",
+      "Iron supplementation timing"
+    ],
+    "bonus": [
+      "Limit cow's milk to < 24 oz/day after 12 months"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

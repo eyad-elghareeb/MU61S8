@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Paediatrics Data Interpretation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index-engine.css">
+<meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:title" content="Pediatrics OSCE - Data Interpretation">
+<meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pediatrics OSCE - Data Interpretation">
+<meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Paediatrics">←</a>
+    <div class="topbar-title">MU61 Quiz - Paediatrics Data Interpretation</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Paediatrics Data Interpretation</span></h1>
+      <p>Interpret lab data including CBC, bleeding profile, ABG, and pleural fluid analysis.</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "di-cbc-1-normal",
+    title: "CBC Interpretation — Normal Profile",
+    description: "6-year-old boy; CBC for routine check.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-1-normal.html"
+  },
+  {
+    uid: "di-cbc-2-aplastic",
+    title: "CBC Interpretation — Aplastic Anemia",
+    description: "3-year-old boy; pancytopenia with low reticulocytes.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-2-aplastic.html"
+  },
+  {
+    uid: "di-cbc-3-megaloblastic",
+    title: "CBC Interpretation — Megaloblastic Anemia",
+    description: "2-year-old boy; macrocytic anemia.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-3-megaloblastic.html"
+  },
+  {
+    uid: "di-cbc-4-thalassemia",
+    title: "CBC Interpretation — Beta Thalassemia Major",
+    description: "8-year-old boy; microcytic hypochromic anemia with high reticulocytes.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-4-thalassemia.html"
+  },
+  {
+    uid: "di-cbc-5-g6pd",
+    title: "CBC Interpretation — G6PD Deficiency Hemolysis",
+    description: "8-year-old boy; normocytic anemia with high reticulocytes after drug exposure.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-5-g6pd.html"
+  },
+  {
+    uid: "di-cbc-6-ida",
+    title: "CBC Interpretation — Iron Deficiency Anemia",
+    description: "6-year-old boy; microcytic anemia with low reticulocytes.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-6-ida.html"
+  },
+  {
+    uid: "di-cbc-7-megaloblastic-2",
+    title: "CBC Interpretation — Macrocytic Anemia (B12 Deficiency)",
+    description: "2-year-old exclusively breastfed by vegan mother; macrocytic anemia.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-7-megaloblastic-2.html"
+  },
+  {
+    uid: "di-cbc-8-sca",
+    title: "CBC Interpretation — Sickle Cell Anemia",
+    description: "8-year-old boy; normocytic anemia with very high reticulocytes.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-8-sca.html"
+  },
+  {
+    uid: "di-cbc-9-sca-2",
+    title: "CBC Interpretation — Sickle Cell With Severe Hemolysis",
+    description: "8-year-old with severe anemia and very high reticulocytes.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-9-sca-2.html"
+  },
+  {
+    uid: "di-cbc-10-severe-aplastic",
+    title: "CBC Interpretation — Severe Aplastic Anemia",
+    description: "3-year-old boy; severe pancytopenia with very low reticulocytes.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-10-severe-aplastic.html"
+  },
+  {
+    uid: "di-cbc-11-thal-trait-or-major",
+    title: "CBC Interpretation — Microcytic Anemia (Thalassemia Vs IDA)",
+    description: "8-year-old with microcytic anemia and high reticulocytes.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-11-thal-trait-or-major.html"
+  },
+  {
+    uid: "di-cbc-12-ida-infant",
+    title: "CBC Interpretation — Iron Deficiency In Infant",
+    description: "8-month-old infant; microcytic anemia.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-12-ida-infant.html"
+  },
+  {
+    uid: "di-cbc-13-megaloblastic-3",
+    title: "CBC Interpretation — Megaloblastic Anemia With Pancytopenia",
+    description: "2-year-old boy; macrocytic anemia.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-13-megaloblastic-3.html"
+  },
+  {
+    uid: "di-cbc-14-spherocytosis",
+    title: "CBC Interpretation — Hereditary Spherocytosis",
+    description: "6-year-old boy; normocytic hemolytic anemia.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-14-spherocytosis.html"
+  },
+  {
+    uid: "di-cbc-15-hypersplenism",
+    title: "CBC Interpretation — Hypersplenism",
+    description: "3-year-old with splenomegaly; pancytopenia with high reticulocytes.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-15-hypersplenism.html"
+  },
+  {
+    uid: "di-cbc-16-indices-calculation",
+    title: "CBC Interpretation — RBC Indices Calculation",
+    description: "Calculate MCV, MCH, MCHC from raw values.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-16-indices-calculation.html"
+  },
+  {
+    uid: "di-cbc-17-hypersplenism-calc",
+    title: "CBC Interpretation — Corrected Reticulocyte Count",
+    description: "Calculate corrected reticulocyte count and interpret.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-17-hypersplenism-calc.html"
+  },
+  {
+    uid: "di-cbc-18-leukemia",
+    title: "CBC Interpretation — Acute Leukemia",
+    description: "8-year-old with pallor, purpura, and fatigue; pancytopenia with blasts on smear.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-cbc-18-leukemia.html"
+  },
+  {
+    uid: "di-bp-1-itp",
+    title: "Bleeding Profile — Immune Thrombocytopenia (ITP)",
+    description: "2-year-old boy with mucosal and skin bleeding; isolated prolonged BT with low platelets.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-1-itp.html"
+  },
+  {
+    uid: "di-bp-2-normal",
+    title: "Bleeding Profile — Normal Profile",
+    description: "1-year-old boy; bleeding profile all normal.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-2-normal.html"
+  },
+  {
+    uid: "di-bp-3-hsp",
+    title: "Bleeding Profile — Henoch SchöNlein Purpura (HSP)",
+    description: "2-year-old boy with purpuric rash over extremities; all bleeding parameters normal.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-3-hsp.html"
+  },
+  {
+    uid: "di-bp-4-hemophilia-a",
+    title: "Bleeding Profile — Hemophilia A",
+    description: "2-year-old boy with post-circumcision bleeding; isolated prolonged CT and APTT.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-4-hemophilia-a.html"
+  },
+  {
+    uid: "di-bp-5-liver-failure",
+    title: "Bleeding Profile — Liver Cell Failure",
+    description: "2-year-old with GI bleeding; isolated prolonged PT.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-5-liver-failure.html"
+  },
+  {
+    uid: "di-bp-6-severe-itp",
+    title: "Bleeding Profile — Severe ITP",
+    description: "3-year-old with mucosal bleeding; very low platelets with prolonged BT.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-6-severe-itp.html"
+  },
+  {
+    uid: "di-bp-7-leukemia",
+    title: "Bleeding Profile — Acute Leukemia",
+    description: "3-year-old with mucosal bleeding, pallor; pancytopenia with blasts.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-7-leukemia.html"
+  },
+  {
+    uid: "di-bp-8-hdn",
+    title: "Bleeding Profile — Hemorrhagic Disease Of Newborn",
+    description: "5-day-old neonate with umbilical bleeding; prolonged PT.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-8-hdn.html"
+  },
+  {
+    uid: "di-bp-9-hemophilia-b",
+    title: "Bleeding Profile — Hemophilia B",
+    description: "2-year-old with gluteal hematoma after IM injection; isolated prolonged CT and APTT.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-9-hemophilia-b.html"
+  },
+  {
+    uid: "di-bp-10-glanzmann",
+    title: "Bleeding Profile — Glanzmann Thrombasthenia",
+    description: "5-year-old with generalized purpuric rash; prolonged BT but normal platelet count and normal CT/PT/APTT.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-bp-10-glanzmann.html"
+  },
+  {
+    uid: "di-abg-1-dka",
+    title: "ABG Interpretation — Diabetic Ketoacidosis",
+    description: "Adult or older child with polyuria and polydipsia; ABG showing severe metabolic acidosis.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-abg-1-dka.html"
+  },
+  {
+    uid: "di-abg-2-pneumonia-resp-acidosis",
+    title: "ABG Interpretation — Severe Pneumonia With Respiratory Acidosis",
+    description: "7-month-old with dyspnea, fever, bilateral crepitations; respiratory acidosis.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-abg-2-pneumonia-resp-acidosis.html"
+  },
+  {
+    uid: "di-abg-3-dehydration-met-alk",
+    title: "ABG Interpretation — Metabolic Alkalosis (Dehydration / Vomiting)",
+    description: "3-year-old with failure to thrive; metabolic alkalosis.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-abg-3-dehydration-met-alk.html"
+  },
+  {
+    uid: "di-abg-4-mixed-dka-asthma",
+    title: "ABG Interpretation — Mixed Disorder (DKA + Asthma)",
+    description: "3-year-old 9-kg child with polyuria and wheeze; mixed acidosis.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-abg-4-mixed-dka-asthma.html"
+  },
+  {
+    uid: "di-abg-5-severe-dka",
+    title: "ABG Interpretation — Severe DKA With Coma",
+    description: "6-year-old with 3-week polyuria, weight loss, GCS 8; severe metabolic acidosis.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-abg-5-severe-dka.html"
+  },
+  {
+    uid: "di-abg-6-status-asthmaticus",
+    title: "ABG Interpretation — Status Asthmaticus",
+    description: "8-year-old known asthmatic with severe attack; respiratory acidosis.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-abg-6-status-asthmaticus.html"
+  },
+  {
+    uid: "di-abg-7-dehydration-shock",
+    title: "ABG Interpretation — Severe Dehydration With Shock",
+    description: "5-month-old with vomiting, diarrhea, shock; metabolic acidosis with high anion gap.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-abg-7-dehydration-shock.html"
+  },
+  {
+    uid: "di-pleural-1-transudate",
+    title: "Pleural Fluid Interpretation — Transudate",
+    description: "3-year-old with cough and respiratory distress; pleural fluid analysis.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-pleural-1-transudate.html"
+  },
+  {
+    uid: "di-pleural-2-empyema",
+    title: "Pleural Fluid Interpretation — Empyema",
+    description: "2-year-old with high fever, cough, lethargy; grossly purulent pleural fluid.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-pleural-2-empyema.html"
+  },
+  {
+    uid: "di-pleural-3-exudate",
+    title: "Pleural Fluid Interpretation — Exudate",
+    description: "3-year-old with fever, cough, respiratory distress; exudative pleural fluid.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-pleural-3-exudate.html"
+  },
+  {
+    uid: "di-pleural-4-chylothorax",
+    title: "Pleural Fluid Interpretation — Chylothorax",
+    description: "5-year-old with cough and respiratory distress; milky pleural fluid.",
+    icon: "📊",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "di-pleural-4-chylothorax.html"
+  }
+];
+</script>
+
+<div class="dash-overlay" id="tracker-dashboard">
+  <div class="dash-modal">
+    <div class="dash-header">
+      <h2 id="dash-title-text">📊 Question Tracker</h2>
+      <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
+    </div>
+    <div class="dash-scope-bar" id="dash-scope-bar"></div>
+    <div class="dash-summary">
+      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
+      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
+      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
+    </div>
+    <div class="dash-body" id="dash-body"></div>
+    <div class="dash-footer">
+      <button class="btn-dash-action" onclick="exportTrackerToPDF()">📄 Export PDF</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>
+      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();
+</script>
+<script>
+if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js').catch(function(){})});}
+</script>
+</body>
+</html>

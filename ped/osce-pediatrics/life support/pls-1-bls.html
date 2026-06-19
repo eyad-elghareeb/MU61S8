@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pediatric Basic Life Support (BLS) Scenario</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "pls-1-bls",
+  title: "Pediatric Basic Life Support (BLS) Scenario",
+  description: "2-year-old child collapses in the street; perform BLS.",
+  category: "Life Support",
+  tags: ["BLS", "CPR", "emergency", "child"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Emergency / Critical Care",
+  "difficulty": "Advanced",
+  "task": "Manage a 2-year-old child who suddenly collapses in front of you. Answer the examiner's questions on BLS.",
+  "examiner": {
+    "name": "Dr. Manar",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "Case: You are walking down the street when a 2-year-old child suddenly collapses in front of you. There is no suspected trauma. The child is unresponsive.",
+    "tables": [
+      {
+        "title": "BLS Algorithm",
+        "headers": [
+          "Step",
+          "Action"
+        ],
+        "rows": [
+          [
+            "1. Safety",
+            "Check scene safety for yourself and the victim"
+          ],
+          [
+            "2. Response",
+            "Tap shoulders gently + shout 'Are you okay?'"
+          ],
+          [
+            "3. Shout for help",
+            "If no response, shout for help"
+          ],
+          [
+            "4. Airway",
+            "Head tilt–chin lift (no trauma) OR jaw thrust (trauma). Infant: neutral position. Small child: sniffing. Older: extension."
+          ],
+          [
+            "5. Breathing (10 sec)",
+            "Look (chest rise), Listen (nose/mouth), Feel (breath on cheek)"
+          ],
+          [
+            "6. If no breathing",
+            "Give 5 rescue breaths (effective — chest must rise)"
+          ],
+          [
+            "7. Pulse check (10 sec)",
+            "Brachial (infant), femoral/carotid (child). If absent → start CPR"
+          ],
+          [
+            "8. Chest compressions",
+            "Infant: 2-thumb encircling. Child: 1 or 2 hands. Lower half sternum. Depth: 1/3 chest (4–5 cm). Rate: 100–120/min."
+          ],
+          [
+            "9. Ratio",
+            "1 rescuer: 30:2. 2 rescuers: 15:2. Change operator every 2 min."
+          ],
+          [
+            "10. Stop CPR when",
+            "Signs of life return, help arrives, you become exhausted"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the first thing you should do?",
+      "answer": "Check the safety for me and for the child — ensure the environment is safe before approaching.",
+      "rubric": "Safety first"
+    },
+    {
+      "id": "q2",
+      "question": "How do you check the child's response?",
+      "answer": "Gently tap the shoulders and ask loudly, 'Are you okay?' If the child responds: leave in same position, find out what is wrong, reassess regularly. If no response: shout for help.",
+      "rubric": "Tap and shout"
+    },
+    {
+      "id": "q3",
+      "question": "How do you open the airway?",
+      "answer": "1. Head tilt–chin lift if NO trauma. 2. Jaw thrust if trauma suspected (c-spine). Position: Infant = neutral; small child = sniffing; older child/adult = extension.",
+      "rubric": "Different positions by age"
+    },
+    {
+      "id": "q4",
+      "question": "How do you check for breathing?",
+      "answer": "Look (chest rise), Listen (air from nose/mouth), Feel (breath on cheek) for 10 seconds. If breathing: place in recovery position. If no breathing: give 5 effective rescue breaths.",
+      "rubric": "Look-listen-feel 10 sec"
+    },
+    {
+      "id": "q5",
+      "question": "The child is not breathing, what do you do?",
+      "answer": "Give 5 effective rescue breaths. If breathing resumes → recovery position. If no breathing and no pulse (or < 60 bpm in infant) → start chest compressions.",
+      "rubric": "5 rescue breaths → check pulse → CPR"
+    },
+    {
+      "id": "q6",
+      "question": "How do you perform chest compressions in a 2-year-old?",
+      "answer": "Use ONE hand on the lower half of the sternum. Depth: 1/3 of chest depth (~5 cm). Rate: 100–120 compressions/min. Ratio: 30:2 (1 rescuer) or 15:2 (2 rescuers). Change operator every 2 min.",
+      "rubric": "1 hand, 1/3 depth, 100-120/min, 30:2 or 15:2"
+    },
+    {
+      "id": "q7",
+      "question": "What are possible complications of CPR?",
+      "answer": "1. Rib fractures (especially in older children). 2. Pneumothorax. 3. Pneumoperitoneum. 4. Hemorrhage (liver, spleen). 5. Retinal hemorrhage. 6. Gastric insufflation.",
+      "rubric": "Multiple complications"
+    },
+    {
+      "id": "q8",
+      "question": "When to stop CPR?",
+      "answer": "1. Signs of life return (movement, breathing, pulse). 2. Help (EMS) arrives and takes over. 3. You become exhausted. 4. Authorized person declares death (in hospital).",
+      "rubric": "3 conditions to stop"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "BLS algorithm in order",
+      "Compression technique by age",
+      "Ratio single vs two rescuers",
+      "When to stop"
+    ],
+    "bonus": [
+      "CPR complications"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

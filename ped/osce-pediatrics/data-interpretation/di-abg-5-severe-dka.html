@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>ABG Interpretation — Severe DKA with Coma</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-abg-5-severe-dka",
+  title: "ABG Interpretation — Severe DKA with Coma",
+  description: "6-year-old with 3-week polyuria, weight loss, GCS 8; severe metabolic acidosis.",
+  category: "Data Interpretation",
+  tags: ["ABG", "DKA", "severe", "coma"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Critical Care / Endocrinology",
+  "difficulty": "Advanced",
+  "task": "Interpret the ABG of a 6-year-old child presenting with altered consciousness.",
+  "examiner": {
+    "name": "Dr. Khaled",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "A 6-year-old child presented with 3-week history of polyuria, polydipsia, weight loss. He presents to the ED with GCS 8. ABG shows:",
+    "tables": [
+      {
+        "title": "Arterial Blood Gas + Electrolytes",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Normal Range"
+        ],
+        "rows": [
+          [
+            "pH",
+            "7.05",
+            "7.35–7.45  →  SEVERE ACIDEMIA"
+          ],
+          [
+            "PaCO2",
+            "15 mmHg",
+            "35–45  →  LOW (Kussmaul)"
+          ],
+          [
+            "HCO3",
+            "4 mEq/L",
+            "20–28  →  VERY LOW"
+          ],
+          [
+            "Na+",
+            "137 mEq/L",
+            "135–145"
+          ],
+          [
+            "K+",
+            "2.3 mEq/L",
+            "3.5–5.5  →  LOW"
+          ],
+          [
+            "Cl-",
+            "90 mEq/L",
+            "95–110  →  LOW"
+          ],
+          [
+            "PaO2",
+            "70 mmHg",
+            "80–110"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The primary disorder here is:",
+      "answer": "a) Metabolic acidosis. pH 7.05 + HCO3 4 → severe metabolic acidosis (DKA).",
+      "rubric": "Severe metabolic acidosis"
+    },
+    {
+      "id": "q2",
+      "question": "The compensatory mechanism here is:",
+      "answer": "c) Low CO2. The low PaCO2 (15) reflects Kussmaul breathing — maximal respiratory compensation. Note: respiratory compensation is INSUFFICIENT (pH still 7.05) → decompensated metabolic acidosis.",
+      "rubric": "Kussmaul breathing = max respiratory compensation"
+    },
+    {
+      "id": "q3",
+      "question": "The anion gap here is:",
+      "answer": "a) High. AG = 137 - (90 + 4) = 43. Severe high AG metabolic acidosis from ketoacids.",
+      "rubric": "Calculate AG = 43 (very high)"
+    },
+    {
+      "id": "q4",
+      "question": "What is the cause of the low HCO3?",
+      "answer": "b) Consumption of HCO3 by added acids (ketoacids β-hydroxybutyrate and acetoacetate).",
+      "rubric": "Ketoacids consume bicarbonate"
+    },
+    {
+      "id": "q5",
+      "question": "First emergency line of treatment?",
+      "answer": "d) Intravenous fluids. DKA management: 1. IV fluids FIRST (10–20 ml/kg NS over 1 hour) to restore intravascular volume. 2. Insulin IV (0.1 U/kg/hr) AFTER 1–2 hours of fluids (prevents cerebral edema). 3. K+ replacement once urinating. 4. Avoid bicarbonate unless pH < 6.9 or severe hyperkalemia. 5. Monitor for cerebral edema (the most feared complication in children).",
+      "rubric": "Fluids first, insulin after 1-2 hr"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify severe DKA",
+      "Fluids before insulin",
+      "Cerebral edema risk"
+    ],
+    "bonus": [
+      "Bicarbonate only if pH < 6.9"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

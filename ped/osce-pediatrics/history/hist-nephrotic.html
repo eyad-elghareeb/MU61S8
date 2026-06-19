@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Nephrotic Syndrome — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-nephrotic",
+  title: "Nephrotic Syndrome — History Taking",
+  description: "4-year-old with generalized swelling, frothy urine, and weight gain.",
+  category: "History Taking",
+  tags: ["nephrology", "edema", "proteinuria", "child"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Nephrology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 4-year-old with progressive swelling.",
+  "patient": {
+    "name": "Mrs. Asmaa (mother of Habiba)",
+    "age": 29,
+    "gender": "female",
+    "avatarSeed": "mother-asmaa",
+    "opening": "Doctor, Habiba's face has been puffy especially in the mornings, her belly and legs are swollen, and her urine has been frothy. She's gained weight quickly over the past two weeks despite a poor appetite."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Nephrotic syndrome (minimal change disease)",
+    "keySymptoms": [
+      "Periorbital edema (worse in morning)",
+      "Generalized edema (ascites, scrotal/labial, lower limb)",
+      "Frothy urine (proteinuria)",
+      "Weight gain from fluid retention",
+      "Anorexia, fatigue",
+      "Increased infection susceptibility (peritonitis, cellulitis)"
+    ],
+    "redFlags": [
+      "Peritonitis (primary peritonitis with pneumococcus)",
+      "Cellulitis",
+      "Thromboembolism (renal vein, sagittal sinus)",
+      "Hypovolemic shock (especially in MCNS)",
+      "AKI",
+      "Steroid toxicity"
+    ],
+    "pastHistory": [
+      "Recent URTI 2 weeks prior",
+      "No previous similar episodes",
+      "No atopy, no chronic illness",
+      "Family history negative for renal disease"
+    ],
+    "vitalSigns": "T 37°C, HR 110, RR 24, BP 100/65, marked periorbital and pedal edema, ascites, weight 18 kg (increased from 16 kg)",
+    "differentials": [
+      "Glomerulonephritis (nephritic)",
+      "Heart failure",
+      "Liver disease",
+      "Protein-losing enteropathy",
+      "Kwashiorkor",
+      "Allergic edema"
+    ],
+    "management": "Oral corticosteroids (prednisone 60 mg/m²/day) for 6+ weeks; salt restriction; fluid restriction if severe; ACE-I for proteinuria; albumin + furosemide for severe edema; prophylactic penicillin; pneumococcal vaccine; anticoagulation if thrombosis"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of edema",
+      "Site (periorbital, dependent, genital), pitting, level",
+      "Frothy urine (proteinuria)",
+      "Weight changes",
+      "Hematuria (distinguishes from nephritic)",
+      "Hypertension (typically absent in MCNS)",
+      "Recent infection (trigger)",
+      "Symptoms of complications: infection (peritonitis, cellulitis), thrombosis, hypovolemia",
+      "Differential: nephritic syndrome, heart failure, liver disease, malnutrition",
+      "Past: allergic conditions (atopy common in MCNS), family history",
+      "Other systems"
+    ],
+    "bonus": [
+      "Hepatitis B / HIV screening (secondary causes)",
+      "Renal biopsy indications (steroid-resistant, atypical features)",
+      "Pneumococcal vaccination"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

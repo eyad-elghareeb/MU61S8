@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Sickle Cell Anemia</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-8-sca",
+  title: "CBC Interpretation — Sickle Cell Anemia",
+  description: "8-year-old boy; normocytic anemia with very high reticulocytes.",
+  category: "Data Interpretation",
+  tags: ["CBC", "sickle cell", "hemolysis", "AR inheritance"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC of an 8-year-old boy with bone pain and pallor.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "An 8-year-old boy of African descent presents with pallor and episodes of bone pain. CBC performed:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "8 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "7,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "300,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "92 fl",
+            "Normal"
+          ],
+          [
+            "MCH",
+            "28 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "32 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "10%",
+            "VERY HIGH (hemolysis)"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "e) Sickle cell anemia (or other normocytic hemolytic). Normocytic normochromic anemia with high reticulocyte count → hemolytic. SCA: chronic hemolysis.",
+      "rubric": "Normocytic + high retic → hemolytic, with bone pain → SCA"
+    },
+    {
+      "id": "q2",
+      "question": "What peripheral smear findings support SCA?",
+      "answer": "Sickle-shaped RBCs, target cells, Howell-Jolly bodies (post-splenectomy or autosplenectomy), nucleated RBCs, anisocytosis, poikilocytosis.",
+      "rubric": "Sickled cells are pathognomonic"
+    },
+    {
+      "id": "q3",
+      "question": "What is the diagnostic test?",
+      "answer": "Hb electrophoresis: shows HbS (instead of HbA), variable HbA2 and HbF, no HbA. Sickling test (sodium metabisulfite) is a screening test.",
+      "rubric": "Hb electrophoresis is diagnostic"
+    },
+    {
+      "id": "q4",
+      "question": "What are the complications of SCA?",
+      "answer": "1. Vaso-occlusive crises: painful (bone, dactylitis in infants), acute chest syndrome, stroke, priapism, splenic sequestration. 2. Hemolytic anemia: jaundice, gallstones. 3. Splenic dysfunction → autosplenectomy → encapsulated organism sepsis (pneumococcus). 4. Aplastic crisis (parvovirus B19). 5. Renal: hematuria, concentrating defect. 6. Leg ulcers. 7. Growth retardation, delayed puberty.",
+      "rubric": "Vaso-occlusive + hemolytic + sequestration + infection"
+    },
+    {
+      "id": "q5",
+      "question": "Outline the management of SCA.",
+      "answer": "1. Between attacks: folic acid, hydroxyurea (HbF inducer, reduces crises), penicillin prophylaxis (until age 5), pneumococcal + meningococcal + Hib vaccination, hydration. 2. During attack: hydration, analgesia, oxygen, antibiotics for infection, transfusion. 3. Splenectomy for sequestration/hypersplenism. 4. Bone marrow transplant (curative).",
+      "rubric": "Hydroxyurea + penicillin prophylaxis + vaccination + transfusion"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify hemolytic anemia",
+      "Sickled cells on smear",
+      "Hb electrophoresis",
+      "Vaso-occlusive complications"
+    ],
+    "bonus": [
+      "Hydroxyurea mechanism",
+      "Penicillin prophylaxis rationale"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Acute Epiglottitis — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-epiglottitis",
+  title: "Acute Epiglottitis — History Taking",
+  description: "Sudden onset high fever, drooling, and stridor in a 4-year-old.",
+  category: "History Taking",
+  tags: ["respiratory", "emergency", "stridor", "Hib"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Respiratory / ENT Emergency",
+  "difficulty": "Advanced",
+  "task": "Take a rapid focused history from the parent of a 4-year-old presenting with sudden fever, drooling, and noisy breathing.",
+  "patient": {
+    "name": "Mr. Tarek (father of Laila)",
+    "age": 35,
+    "gender": "male",
+    "avatarSeed": "father-tarek",
+    "opening": "Doctor, Laila was fine this morning but since 4 hours she has high fever, can't swallow her saliva so she's drooling, and she's breathing with a noise. She's sitting forward and won't lie down."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Acute epiglottitis (Haemophilus influenzae type b)",
+    "keySymptoms": [
+      "Sudden onset high fever",
+      "Drooling of saliva (cannot swallow)",
+      "Stridor — soft, inspiratory",
+      "Muffled voice ('hot potato' voice)",
+      "Tripod position (sitting forward, neck extended)",
+      "Dysphagia / odynophagia",
+      "Toxic appearance"
+    ],
+    "redFlags": [
+      "Complete airway obstruction — imminent",
+      "Respiratory arrest",
+      "Aspiration pneumonia"
+    ],
+    "pastHistory": [
+      "Incomplete or no Hib vaccination",
+      "Previously well",
+      "No similar episodes before"
+    ],
+    "vitalSigns": "T 39.5°C, HR 150, RR 40, SpO2 92%, toxic, tripod",
+    "differentials": [
+      "Viral croup (laryngotracheobronchitis)",
+      "Bacterial tracheitis",
+      "Foreign body aspiration",
+      "Retropharyngeal abscess",
+      "Peritonsillar abscess"
+    ],
+    "management": "Do NOT examine throat, do NOT lie child flat, keep calm; urgent ICU transfer for airway secured by skilled clinician (nasotracheal intubation); IV ceftriaxone / cefotaxime; supportive (IV fluids, O2, sedation, ventilation)"
+  },
+  "rubric": {
+    "mustAsk": [
+      "Onset: sudden (key)",
+      "Fever: high and early",
+      "Drooling of saliva (cannot swallow)",
+      "Stridor: inspiratory, soft",
+      "Muffled voice",
+      "Tripod / sniffing position",
+      "Dysphagia",
+      "Toxic appearance",
+      "Hib immunization status (often absent)",
+      "Differential: croup (gradual, barking, low fever), bacterial tracheitis, retropharyngeal abscess",
+      "Foreign body aspiration (sudden, no fever)",
+      "Avoid examining throat (precipitates obstruction)"
+    ],
+    "bonus": [
+      "Rapid progression (hours)",
+      "Refusal to lie down",
+      "Time of last meal (for anesthesia)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

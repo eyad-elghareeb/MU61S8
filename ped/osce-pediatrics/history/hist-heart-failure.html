@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Congestive Heart Failure — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-heart-failure",
+  title: "Congestive Heart Failure — History Taking",
+  description: "2-month-old with poor feeding, sweating with feeds, and rapid breathing.",
+  category: "History Taking",
+  tags: ["cardiology", "heart failure", "infant"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 2-month-old with poor feeding and rapid breathing.",
+  "patient": {
+    "name": "Mrs. Mariam (mother of Yahia)",
+    "age": 26,
+    "gender": "female",
+    "avatarSeed": "mother-mariam",
+    "opening": "Doctor, Yahia can't finish his feeds — he gets tired, sweaty, and breathes fast after a few minutes. He's not gaining weight. He's also had two chest infections in the past month."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Congestive heart failure secondary to large VSD",
+    "keySymptoms": [
+      "Poor feeding with sweating (key sign of infant HF)",
+      "Tachypnea, especially with feeds",
+      "Failure to thrive",
+      "Recurrent respiratory infections",
+      "Irritability, poor sleeping",
+      "Hepatomegaly, edema (rare in infants)"
+    ],
+    "redFlags": [
+      "Respiratory failure",
+      "Shock",
+      "Failure to thrive (severe)",
+      "Pulmonary hypertension → Eisenmenger"
+    ],
+    "pastHistory": [
+      "Term delivery, birth weight 3.5 kg",
+      "Murmur at 1-month check",
+      "Hospitalized once for 'pneumonia'",
+      "Current weight 4.0 kg (below 3rd centile)"
+    ],
+    "vitalSigns": "RR 70, HR 165, T 37°C, weight 4.0 kg, pansystolic murmur LLSE, hyperdynamic apex, hepatomegaly (4 cm), no cyanosis",
+    "differentials": [
+      "Large VSD",
+      "PDA",
+      "AVSD (Down syndrome)",
+      "Cardiomyopathy",
+      "Myocarditis",
+      "Severe anemia"
+    ],
+    "management": "Medical: diuretics (furosemide, spironolactone), ACE-I (captopril), digoxin, nutritional support; treat infections; Surgical: defect closure"
+  },
+  "rubric": {
+    "mustAsk": [
+      "Feeding pattern — volume per feed, time taken, sweating",
+      "Breathing — tachypnea, recession, grunting",
+      "Growth — weight gain pattern (FTT)",
+      "Activity — easy fatigability, irritability",
+      "Recurrent infections",
+      "Symptoms of pulmonary congestion (cough, dyspnea, hemoptysis, recurrent chest infection)",
+      "Symptoms of systemic congestion (hepatic pain, jaundice, vomiting, dyspepsia, lower limb edema)",
+      "Symptoms of low cardiac output (syncope, dizziness, blurring, oliguria, pallor, cold extremities)",
+      "Differential: cardiomyopathy, myocarditis, anemia, AVSD",
+      "Past: perinatal, family history of CHD",
+      "Other systems"
+    ],
+    "bonus": [
+      "Daily weight monitoring",
+      "Calorie-dense feeds",
+      "Aspirin / IE prophylaxis"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

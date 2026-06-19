@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Severe Aplastic Anemia</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-10-severe-aplastic",
+  title: "CBC Interpretation — Severe Aplastic Anemia",
+  description: "3-year-old boy; severe pancytopenia with very low reticulocytes.",
+  category: "Data Interpretation",
+  tags: ["CBC", "aplastic", "severe", "low retic"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A 3-year-old boy presents with pallor, purpura, and recurrent infections. CBC:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "2,900 cells/mm³",
+            "Low"
+          ],
+          [
+            "Platelets",
+            "70,000 cells/mm³",
+            "Low"
+          ],
+          [
+            "MCV",
+            "90 fl",
+            "Normal"
+          ],
+          [
+            "MCH",
+            "31 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "33 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "0.1%",
+            "VERY LOW"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "c) Aplastic anemia. Pancytopenia with VERY LOW reticulocyte count (0.1%) = marrow failure. Distinguishes from hypersplenism (RC normal/high).",
+      "rubric": "Pancytopenia + very low retic → aplastic"
+    },
+    {
+      "id": "q2",
+      "question": "What are the criteria for severe aplastic anemia?",
+      "answer": "Bone marrow cellularity < 25% (or 25–50% with < 30% hematopoietic cells) AND at least 2 of: neutrophils < 500/µL, platelets < 20,000/µL, reticulocytes < 20,000/µL (corrected).",
+      "rubric": "Camitta criteria"
+    },
+    {
+      "id": "q3",
+      "question": "What is the treatment of choice for severe aplastic anemia in children?",
+      "answer": "1. HLA-matched sibling allogeneic bone marrow transplantation (curative, treatment of choice). 2. If no matched sibling: immunosuppressive therapy (ATG + cyclosporine). 3. Supportive: transfusions (leukocyte-depleted, irradiated), antibiotics for neutropenic fever.",
+      "rubric": "HLA-matched sibling BMT"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify aplastic anemia",
+      "Severe AA criteria",
+      "BMT treatment of choice"
+    ],
+    "bonus": [
+      "Avoid transfusions from family members (alloimmunization)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

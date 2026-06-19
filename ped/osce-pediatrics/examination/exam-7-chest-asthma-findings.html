@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest Examination — Asthma Findings</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "exam-7-chest-asthma-findings",
+  title: "Chest Examination — Asthma Findings",
+  description: "Respiratory examination findings of a child with asthma exacerbation.",
+  category: "Examination",
+  tags: ["chest exam", "asthma", "wheeze"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Foundational",
+  "task": "Interpret the chest examination findings.",
+  "examiner": {
+    "name": "Dr. Ahmed",
+    "title": "Consultant Pulmonologist"
+  },
+  "dataPresented": {
+    "scenario": "An 8-year-old known asthmatic with acute exacerbation. Chest examination:",
+    "tables": [
+      {
+        "title": "Chest Examination Findings",
+        "headers": [
+          "Item",
+          "Finding"
+        ],
+        "rows": [
+          [
+            "Inspection",
+            "Respiratory distress: tachypnea, retractions, use of accessory muscles, prolonged expiration, nasal flaring"
+          ],
+          [
+            "Palpation",
+            "Palpable wheezes (rhonchi) bilaterally; trachea central"
+          ],
+          [
+            "Percussion",
+            "HYPER-RESONANCE (air trapping)"
+          ],
+          [
+            "Auscultation — breath sounds",
+            "Vesicular breathing with PROLONGED EXPIRATION"
+          ],
+          [
+            "Added sounds",
+            "Expiratory WHEEZES (sibilant rhonchi) bilaterally"
+          ],
+          [
+            "Vocal resonance",
+            "Normal"
+          ],
+          [
+            "Investigations",
+            "CBC (eosinophilia), sputum exam, CXR (normal or hyperinflation during attack), skin hypersensitivity test, PFT"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the diagnosis?",
+      "answer": "Acute asthma exacerbation. Hyper-resonance + wheezes + prolonged expiration.",
+      "rubric": "Hyper-resonance + wheeze"
+    },
+    {
+      "id": "q2",
+      "question": "What is the differential diagnosis of wheeze?",
+      "answer": "1. Asthma. 2. Bronchiolitis (infants, first episode). 3. Foreign body aspiration (unilateral, asymmetric). 4. GERD with micro-aspiration. 5. Cystic fibrosis. 6. Primary ciliary dyskinesia. 7. Immunodeficiency. 8. Vascular ring. 9. Bronchopulmonary dysplasia (preterm). 10. Cardiac failure (cardiac asthma).",
+      "rubric": "Multiple differentials"
+    },
+    {
+      "id": "q3",
+      "question": "How would you investigate?",
+      "answer": "1. CBC: eosinophilia (allergic). 2. Sputum: eosinophils, Charcot-Leyden crystals, Curschmann spirals. 3. CXR: usually normal between attacks; hyperinflation during attack; rule out FB, pneumonia. 4. Spirometry/PFT (> 5 years): obstructive pattern (↓FEV1, ↓FEV1/FVC, reversible with bronchodilator). 5. Peak flow monitoring. 6. Skin prick test / specific IgE for allergens. 7. Sweat chloride test (if CF suspected). 8. IgE levels.",
+      "rubric": "Spirometry key in older child"
+    },
+    {
+      "id": "q4",
+      "question": "What is the treatment?",
+      "answer": "1. RELIEVER: short-acting β2 agonists (salbutamol), anticholinergics (ipratropium), short-acting oral β2, systemic glucocorticoids, IV theophylline (severe). 2. CONTROLLER: inhaled corticosteroids, long-acting β2, leukotriene modifiers, omalizumab. 3. Stepwise approach based on severity. 4. Education, action plan, avoid triggers. 5. Annual flu vaccine.",
+      "rubric": "Reliever + controller + stepwise"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify asthma",
+      "Differential of wheeze",
+      "Spirometry findings",
+      "Stepwise treatment"
+    ],
+    "bonus": [
+      "Charcot-Leyden crystals"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

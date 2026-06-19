@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Liver Cell Failure</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-5-liver-failure",
+  title: "Bleeding Profile — Liver Cell Failure",
+  description: "2-year-old with GI bleeding; isolated prolonged PT.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "liver", "PT"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology / Hepatology",
+  "difficulty": "Advanced",
+  "task": "Interpret the bleeding profile of a 2-year-old boy with gastrointestinal bleeding.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "This is the bleeding profile of a 2-year-old boy with gastrointestinal bleeding and known liver disease.Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "12 g/dl",
+            "11.5–13.5"
+          ],
+          [
+            "WBCs",
+            "5,900 cells/mm³",
+            "4,000–11,000"
+          ],
+          [
+            "Platelets",
+            "170,000 cells/mm³",
+            "150,000–400,000"
+          ],
+          [
+            "BT",
+            "4 min",
+            "2–4 min  →  NORMAL"
+          ],
+          [
+            "CT",
+            "8 min",
+            "4–8 min  →  NORMAL"
+          ],
+          [
+            "PT",
+            "36 sec",
+            "12–20 sec  →  PROLONGED"
+          ],
+          [
+            "APTT",
+            "26 sec",
+            "25–40 sec  →  NORMAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "d) Liver cell failure. Isolated PT prolongation → extrinsic pathway (factor VII) deficiency. Factor VII has the shortest half-life of all clotting factors, so it's the first to drop in liver disease.",
+      "rubric": "Isolated PT prolongation → early liver disease"
+    },
+    {
+      "id": "q2",
+      "question": "Why does PT prolong in liver disease while APTT may be normal initially?",
+      "answer": "Factor VII (extrinsic pathway) has the shortest half-life (~6 hours) of all clotting factors synthesized in the liver. It declines first; PT prolongs before APTT. As liver failure worsens, both PT and APTT prolong.",
+      "rubric": "Factor VII short half-life"
+    },
+    {
+      "id": "q3",
+      "question": "How is the bleeding of liver disease managed?",
+      "answer": "1. Vitamin K (10 mg IV) — corrects vitamin K-dependent factors (II, VII, IX, X) if deficiency is contributory. 2. Fresh frozen plasma (FFP) — replaces all clotting factors. 3. Cryoprecipitate — fibrinogen and factor VIII. 4. Prothrombin complex concentrate (PCC) — for severe bleeding. 5. Treat underlying liver disease. 6. Avoid hepatotoxic drugs.",
+      "rubric": "Vitamin K + FFP"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify liver disease pattern",
+      "Factor VII short half-life",
+      "Vitamin K + FFP"
+    ],
+    "bonus": [
+      "PT is also a prognostic marker in liver disease"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

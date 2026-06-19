@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Beta Thalassemia Major</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-4-thalassemia",
+  title: "CBC Interpretation — Beta Thalassemia Major",
+  description: "8-year-old boy; microcytic hypochromic anemia with high reticulocytes.",
+  category: "Data Interpretation",
+  tags: ["CBC", "thalassemia", "microcytic", "hemolysis"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC and RBC indices of an 8-year-old boy with chronic pallor and jaundice.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "An 8-year-old boy presents with chronic pallor, jaundice, and hepatosplenomegaly. CBC performed:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "8 g/dl",
+            "Low (anemia)"
+          ],
+          [
+            "WBCs",
+            "7,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "300,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "65 fl",
+            "LOW (< 75 = microcytic)"
+          ],
+          [
+            "MCH",
+            "22 pg",
+            "Low"
+          ],
+          [
+            "MCHC",
+            "24 gram%",
+            "Low (hypochromic)"
+          ],
+          [
+            "RC",
+            "1%",
+            "Low for degree of anemia"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "d) Beta thalassemia major (or chronic hemolytic anemia). Microcytic hypochromic anemia with low reticulocyte response — typical of ineffective erythropoiesis in thalassemia major. Note: in PDF this is listed as 'd' (beta thalassemia major) for case 4.",
+      "rubric": "Identify microcytic hypochromic with low/normal retic → thalassemia"
+    },
+    {
+      "id": "q2",
+      "question": "What peripheral smear findings support thalassemia?",
+      "answer": "Microcytosis, target cells, anisocytosis, poikilocytosis, basophilic stippling, nucleated RBCs, Howell-Jolly bodies.",
+      "rubric": "Mention target cells and microcytosis"
+    },
+    {
+      "id": "q3",
+      "question": "How do you differentiate thalassemia from iron deficiency anemia (both microcytic)?",
+      "answer": "Thalassemia: HIGH RC, high iron/ferritin, jaundice, HSM, frequent transfusions, Mongoloid facies, positive family history, target cells. IDA: LOW RC, low iron/ferritin, poor diet, no jaundice, no organomegaly, anisocytosis (RDW high).",
+      "rubric": "Mention RC, iron studies, morphology, clinical features"
+    },
+    {
+      "id": "q4",
+      "question": "What is the diagnostic test for beta thalassemia major?",
+      "answer": "Hemoglobin electrophoresis: ↑↑ Hb F (fetal), ↑↑ Hb A2, absent or markedly reduced Hb A. Molecular genetic testing for β-globin mutations.",
+      "rubric": "Hb electrophoresis is diagnostic"
+    },
+    {
+      "id": "q5",
+      "question": "Outline the management of thalassemia major.",
+      "answer": "1. Lifelong regular blood transfusions to keep Hb > 9–10 g/dl. 2. Iron chelation (deferoxamine, deferiprone, deferasirox) starting after 10–20 transfusions. 3. Folic acid supplementation. 4. Splenectomy if hypersplenism. 5. Bone marrow transplant (curative, HLA-matched sibling). 6. Gene therapy (emerging). 7. Endocrine monitoring.",
+      "rubric": "Transfusion + chelation + BMT"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify microcytic anemia",
+      "Distinguish IDA vs thalassemia",
+      "Hb electrophoresis"
+    ],
+    "bonus": [
+      "Iron chelation monitoring",
+      "Bone marrow transplant as cure"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

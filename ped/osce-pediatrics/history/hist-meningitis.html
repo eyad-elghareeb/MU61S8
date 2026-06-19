@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bacterial Meningitis — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-meningitis",
+  title: "Bacterial Meningitis — History Taking",
+  description: "2-year-old with fever, vomiting, stiff neck, and altered consciousness.",
+  category: "History Taking",
+  tags: ["infectious", "CNS", "emergency", "child"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Infectious Disease / Neurology",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from the mother of a 2-year-old with fever, vomiting, and stiff neck.",
+  "patient": {
+    "name": "Mrs. Marwa (mother of Omar)",
+    "age": 27,
+    "gender": "female",
+    "avatarSeed": "mother-marwa",
+    "opening": "Doctor, Omar has had a high fever for two days, he's been vomiting repeatedly, and today he won't move his neck and cries when I try to bend it. He's drowsy and not responding like his normal self. The soft spot on his head is bulging."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Acute bacterial meningitis",
+    "keySymptoms": [
+      "Fever (high)",
+      "Vomiting (projectile, repeated)",
+      "Headache (older child), bulging fontanelle (infant)",
+      "Neck stiffness",
+      "Photophobia",
+      "Altered mental status: drowsy, irritable, confused",
+      "Seizures (focal or generalized)"
+    ],
+    "redFlags": [
+      "Septic shock, DIC",
+      "Cerebral herniation from raised ICP",
+      "Subdural effusion / empyema",
+      "Cranial nerve palsies, stroke",
+      "Hydrocephalus",
+      "Diabetes insipidus / SIADH",
+      "Hearing loss, developmental delay"
+    ],
+    "pastHistory": [
+      "Immunizations: Hib and pneumococcal complete, meningococcal pending",
+      "Recent otitis media 1 week ago",
+      "No previous meningitis",
+      "No head trauma"
+    ],
+    "vitalSigns": "T 39.5°C, HR 160, RR 40, BP 80/50, GCS 12, neck stiffness +, bulging anterior fontanelle, petechial rash on trunk",
+    "differentials": [
+      "Viral meningitis / meningoencephalitis",
+      "Subarachnoid hemorrhage",
+      "Brain tumor",
+      "Brain abscess",
+      "Septicemia",
+      "Cerebral malaria (endemic)"
+    ],
+    "management": "Empiric IV antibiotics (cefotaxime / ceftriaxone ± vancomycin) ASAP, ideally after LP but don't delay; corticosteroids (dexamethasone); supportive: manage raised ICP, seizures, fluid restriction; contact prophylaxis (rifampicin)"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD",
+      "Symptoms of related system (CNS): headache, neck stiffness, photophobia, dizziness, blurred vision",
+      "Complications: neurological (stroke, thrombosis, CN palsy, herniation, hydrocephalus), prolonged fever, endocrinal (DI, SIADH), hematological (anemia, DIC, thrombocytosis)",
+      "Differential: subarachnoid hemorrhage (trauma), brain tumor (chronic, weight loss), brain abscess (focal weakness)",
+      "Past: similar condition (recurrent), immunization (Hib, pneumococcal, meningococcal)",
+      "Other systems (skip respiratory)"
+    ],
+    "bonus": [
+      "Recent antibiotic use (partially treated meningitis)",
+      "CSF shunt / cochlear implant",
+      "Complement deficiency"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

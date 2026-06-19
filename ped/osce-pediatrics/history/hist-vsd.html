@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Ventricular Septal Defect (VSD) — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-vsd",
+  title: "Ventricular Septal Defect (VSD) — History Taking",
+  description: "3-month-old with recurrent chest infections, poor feeding, and sweating with feeds.",
+  category: "History Taking",
+  tags: ["cardiology", "congenital", "acyanotic", "left-to-right shunt"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 3-month-old with poor feeding and recurrent chest infections.",
+  "patient": {
+    "name": "Mrs. Rania (mother of Farida)",
+    "age": 27,
+    "gender": "female",
+    "avatarSeed": "mother-rania",
+    "opening": "Doctor, Farida doesn't feed well — she gets tired and sweaty after a few minutes of breastfeeding. She's also had three chest infections in the last two months. The doctor said she has a heart murmur."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Ventricular septal defect (VSD) with heart failure",
+    "keySymptoms": [
+      "Shortness of breath (especially with feeds)",
+      "Feeding difficulties (sweating, fatigue)",
+      "Recurrent chest infections",
+      "Failure to thrive / poor weight gain",
+      "Tachypnea, tachycardia"
+    ],
+    "redFlags": [
+      "Heart failure (untreated large VSD)",
+      "Pulmonary vascular obstructive disease (Eisenmenger)",
+      "Infective endocarditis",
+      "Aortic regurgitation (supracristal VSD)"
+    ],
+    "pastHistory": [
+      "Term, normal delivery",
+      "Murmur heard at 6-week check",
+      "Three hospitalizations for 'chest infection'",
+      "Medications: furosemide, captopril started"
+    ],
+    "vitalSigns": "RR 65, HR 160, T 37°C, weight 4.2 kg (below 3rd centile), pansystolic murmur LLSE, hyperdynamic apex",
+    "differentials": [
+      "PDA",
+      "ASD (less symptomatic in infancy)",
+      "AVSD",
+      "Heart failure from other causes"
+    ],
+    "management": "Medical: HF control (diuretics, ACE-I, digoxin); prevent IE; nutritional support; Surgical: closure if large or uncontrolled HF; palliative pulmonary band"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of dyspnea",
+      "Feeding difficulties — duration, sweating, fatigue",
+      "Recurrent chest infections (number, hospitalizations)",
+      "Failure to thrive — weight gain pattern",
+      "Complications: heart failure, pulmonary hypertension, IE, aortic regurgitation",
+      "Symptoms of heart failure (pulmonary congestion, systemic congestion, low cardiac output)",
+      "Differential: ASD (less early symptoms), PDA",
+      "Perinatal history, family history of CHD",
+      "Other systems review"
+    ],
+    "bonus": [
+      "Medication adherence",
+      "Dental prophylaxis understanding",
+      "Surgical timing discussion"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

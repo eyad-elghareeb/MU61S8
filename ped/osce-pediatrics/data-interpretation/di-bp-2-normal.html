@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Normal Profile</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-2-normal",
+  title: "Bleeding Profile — Normal Profile",
+  description: "1-year-old boy; bleeding profile all normal.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "normal"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Foundational",
+  "task": "Interpret the bleeding profile of a 1-year-old boy.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "This is the bleeding profile of a 1-year-old boy being investigated for a single brief epistaxis.Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "11 g/dl",
+            "11.5–13.5"
+          ],
+          [
+            "WBCs",
+            "5,800 cells/mm³",
+            "4,000–11,000"
+          ],
+          [
+            "Platelets",
+            "160,000 cells/mm³",
+            "150,000–400,000"
+          ],
+          [
+            "BT",
+            "4 min",
+            "2–4 min  →  NORMAL"
+          ],
+          [
+            "CT",
+            "7 min",
+            "4–8 min  →  NORMAL"
+          ],
+          [
+            "PT",
+            "12 sec",
+            "12–20 sec  →  NORMAL"
+          ],
+          [
+            "APTT",
+            "32 sec",
+            "25–40 sec  →  NORMAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "e) Normal profile. All bleeding parameters within normal limits.",
+      "rubric": "All normal"
+    },
+    {
+      "id": "q2",
+      "question": "What are the common causes of isolated mild epistaxis in children with normal bleeding profile?",
+      "answer": "1. Digital trauma (nose-picking). 2. Dry air / low humidity. 3. Allergic rhinitis. 4. URI. 5. Anatomical (deviated septum, telangiectasia).",
+      "rubric": "Trauma most common"
+    },
+    {
+      "id": "q3",
+      "question": "What is the meaning of bleeding time and how is it tested?",
+      "answer": "Bleeding time (BT) measures PRIMARY hemostasis — platelet plug formation (platelet function + vascular integrity). Methods: Ivy method (standardized incision on forearm with BP cuff 40 mmHg) and Template method. Normal 2–4 min.",
+      "rubric": "BT = primary hemostasis = platelet function"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify normal",
+      "Know what BT measures"
+    ],
+    "bonus": [
+      "Ivy method vs template method"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

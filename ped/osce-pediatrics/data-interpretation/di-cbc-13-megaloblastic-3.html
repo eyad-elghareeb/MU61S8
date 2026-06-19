@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Megaloblastic Anemia with Pancytopenia</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-13-megaloblastic-3",
+  title: "CBC Interpretation — Megaloblastic Anemia with Pancytopenia",
+  description: "2-year-old boy; macrocytic anemia.",
+  category: "Data Interpretation",
+  tags: ["CBC", "megaloblastic", "macrocytic"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Intermediate",
+  "task": "Interpret the CBC.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A 2-year-old boy with pallor, weakness, and irritability. CBC:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "7,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "400,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "110 fl",
+            "HIGH"
+          ],
+          [
+            "MCH",
+            "27 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "30 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "1%",
+            "Low for anemia"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "e) Megaloblastic anemia. Macrocytosis + low reticulocyte response → megaloblastic.",
+      "rubric": "Macrocytic + low retic → megaloblastic"
+    },
+    {
+      "id": "q2",
+      "question": "What is the most common cause of megaloblastic anemia in toddlers in developing countries?",
+      "answer": "Folic acid deficiency from poor intake (goat's milk is folate-deficient), malnutrition, malabsorption (celiac disease), or drugs (phenytoin, methotrexate). B12 deficiency is less common but occurs in exclusively breastfed infants of vegan/B12-deficient mothers.",
+      "rubric": "Folate deficiency most common in toddlers"
+    },
+    {
+      "id": "q3",
+      "question": "What is the treatment?",
+      "answer": "1. Identify and treat cause (B12 vs folate). 2. Folic acid 1–5 mg/day orally for 1–4 months. 3. B12 (if deficient): IM cyanocobalamin. 4. Hypokalemia may occur with treatment — monitor. 5. Iron supplementation (rebound iron deficiency).",
+      "rubric": "Replace deficient vitamin, monitor K+"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify macrocytic",
+      "Folate vs B12",
+      "Treatment"
+    ],
+    "bonus": [
+      "Hypokalemia during treatment"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

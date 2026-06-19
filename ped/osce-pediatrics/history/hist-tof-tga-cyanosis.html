@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cyanotic Heart Disease (TOF) — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-tof-tga-cyanosis",
+  title: "Cyanotic Heart Disease (TOF) — History Taking",
+  description: "4-month-old with cyanotic spells precipitated by crying.",
+  category: "History Taking",
+  tags: ["cardiology", "congenital", "cyanosis", "infant"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Cardiology",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from the mother of a 4-month-old presenting with bluish spells.",
+  "patient": {
+    "name": "Mrs. Yasmin (mother of Ziad)",
+    "age": 29,
+    "gender": "female",
+    "avatarSeed": "mother-yasmin",
+    "opening": "Doctor, my baby Ziad has been turning blue around the lips and face when he cries or feeds. It started about a month ago and is getting worse. Sometimes he gets breathless and goes floppy."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Tetralogy of Fallot (TOF) with hypercyanotic spells",
+    "keySymptoms": [
+      "Cyanosis — onset after birth (TGA = immediate; TOF = weeks later)",
+      "Hypercyanotic (Tet) spells: sudden cyanosis, dyspnea, agitation → limpness",
+      "Squatting in older children",
+      "Failure to thrive",
+      "Fatigue with feeds"
+    ],
+    "redFlags": [
+      "Severe Tet spell → loss of consciousness, seizures, death",
+      "Polycythemia → thrombosis, stroke",
+      "Brain abscess (right-to-left shunt)"
+    ],
+    "pastHistory": [
+      "Term delivery, normal birth weight",
+      "Cyanosis noticed at ~2 weeks of life",
+      "No previous surgeries",
+      "Frequent respiratory infections"
+    ],
+    "vitalSigns": "T 36.8°C, HR 140, RR 50, SpO2 78% on RA, single S2, ejection systolic murmur left 2nd ICS",
+    "differentials": [
+      "D-TGA",
+      "Tricuspid atresia",
+      "Truncus arteriosus",
+      "Ebstein anomaly",
+      "Pulmonary atresia",
+      "Hypoplastic left heart"
+    ],
+    "management": "Medical: oral propranolol, iron; treat Tet spells (knee-chest, O2, morphine, beta-blocker, fluids); Surgical: palliative BT shunt or definitive repair (VSD closure + RVOT relief)"
+  },
+  "rubric": {
+    "mustAsk": [
+      "Onset of cyanosis (TGA = immediate; TOF = weeks)",
+      "Frequency and duration of spells",
+      "Precipitating factors: crying, feeding, exertion, bowel movement",
+      "Syncope / convulsions during spells",
+      "Squatting (older children — pathognomonic)",
+      "Measurements and drugs used during spells",
+      "Complications: CNS problems, bleeding, IE, scoliosis",
+      "Symptoms of heart failure",
+      "Symptoms of related systems",
+      "Differential: D-TGA, truncus, tricuspid atresia",
+      "Past: perinatal history, family history of CHD"
+    ],
+    "bonus": [
+      "Dental prophylaxis",
+      "Dehydration as trigger for spells"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

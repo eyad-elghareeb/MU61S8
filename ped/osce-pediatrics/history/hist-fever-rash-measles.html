@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Fever with Rash — Measles Scenario</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-fever-rash-measles",
+  title: "Fever with Rash — Measles Scenario",
+  description: "3-year-old unvaccinated child with high fever for 4 days followed by a rash.",
+  category: "History Taking",
+  tags: ["infectious", "exanthem", "child", "vaccine-preventable"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Infectious Disease",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 3-year-old with fever and rash.",
+  "patient": {
+    "name": "Mrs. Reem (mother of Yousef)",
+    "age": 28,
+    "gender": "female",
+    "avatarSeed": "mother-reem",
+    "opening": "Doctor, Yousef has had a high fever for four days with cough, runny nose, and red eyes. Today a rash appeared behind his ears and on his face and is spreading down. He hasn't been vaccinated — I was scared of side effects."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Measles",
+    "keySymptoms": [
+      "Fever for 3–4 days BEFORE rash (key: fever precedes rash)",
+      "3 C's: cough, coryza, conjunctivitis",
+      "Koplik's spots on buccal mucosa (pathognomonic, before rash)",
+      "Rash: maculopapular, starts behind ears / hairline, spreads cephalocaudally",
+      "Rash appears on day 4 of fever"
+    ],
+    "redFlags": [
+      "Pneumonia (giant cell, secondary bacterial)",
+      "Encephalitis, SSPE (subacute sclerosing panencephalitis)",
+      "Otitis media",
+      "Vitamin A deficiency → keratomalacia, blindness",
+      "Immunosuppression → secondary infections"
+    ],
+    "pastHistory": [
+      "Not vaccinated (MMR refused by parents)",
+      "No prior similar illness",
+      "Contact with similar case at mosque 3 weeks ago",
+      "Otherwise healthy"
+    ],
+    "vitalSigns": "T 39.2°C, HR 130, RR 35, maculopapular rash face + trunk, conjunctivitis, coryza, Koplik spots on buccal mucosa",
+    "differentials": [
+      "Rubella (rash WITH fever, LN)",
+      "Scarlet fever (rash day 2-3 of fever, sore throat)",
+      "Roseola (rash AFTER fever defervescence)",
+      "Erythema infectiosum (slapped cheek)",
+      "Chickenpox (vesicular, itchy)",
+      "Drug eruption",
+      "Kawasaki"
+    ],
+    "management": "Supportive: hydration, antipyretics, vitamin A; isolation; treat complications (antibiotics for secondary infection); contact tracing; MMR vaccine for susceptible contacts"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of fever and rash",
+      "Grade of fever",
+      "TIMING of rash relative to fever (key to diagnosis): with fever = rubella; day 4–5 of fever = measles; after fever defervescence = roseola; day 2–3 of fever = scarlet fever; slapped cheek = erythema infectiosum; itchy = chickenpox",
+      "Pattern and distribution of rash",
+      "Other features to identify cause: rubella (LN swelling), measles (Koplik spots), scarlet fever (sore throat)",
+      "Complications of measles: pneumonia, otitis media, encephalitis, SSPE",
+      "Differential: rest of infections",
+      "Past: immunization (MMR), contact with similar case",
+      "Other systems (skip respiratory — covered)",
+      "Treatment and management"
+    ],
+    "bonus": [
+      "Vitamin A supplementation",
+      "SSPE as late complication",
+      "School exclusion period"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

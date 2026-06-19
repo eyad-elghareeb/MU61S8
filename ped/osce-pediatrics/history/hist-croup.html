@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Viral Croup — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-croup",
+  title: "Viral Croup — History Taking",
+  description: "18-month-old with barking cough and stridor worse at night.",
+  category: "History Taking",
+  tags: ["respiratory", "stridor", "infant", "viral"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Foundational",
+  "task": "Take a focused history from the mother of an 18-month-old with barking cough and noisy breathing.",
+  "patient": {
+    "name": "Mrs. Lobna (mother of Adam)",
+    "age": 28,
+    "gender": "female",
+    "avatarSeed": "mother-lobna",
+    "opening": "Doctor, Adam had a cold for two days and last night he woke up with a barking cough like a seal. He's noisy when he breathes in, especially when he's upset. He's better during the day but it came back tonight."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Viral croup (laryngotracheobronchitis)",
+    "keySymptoms": [
+      "Barking cough (seal-like)",
+      "Inspiratory stridor",
+      "Hoarse voice",
+      "Worse at night",
+      "Preceded by coryza (2–3 days)",
+      "Low-grade fever"
+    ],
+    "redFlags": [
+      "Severe respiratory distress, silent chest",
+      "Cyanosis, drooling (think epiglottitis)",
+      "Bacterial tracheitis (high fever, toxic)"
+    ],
+    "pastHistory": [
+      "Two previous episodes of croup",
+      "Otherwise healthy, term birth",
+      "Immunizations up to date"
+    ],
+    "vitalSigns": "T 38°C, HR 130, RR 40, mild stridor at rest, barking cough, mild recession",
+    "differentials": [
+      "Epiglottitis (high fever, drooling, toxic)",
+      "Bacterial tracheitis",
+      "Foreign body",
+      "Retropharyngeal abscess",
+      "Angioedema / allergic",
+      "Vascular ring"
+    ],
+    "management": "Mild: cool mist, oral dexamethasone; Moderate: nebulized budesonide + oral/IV dexamethasone, oxygen; Severe: nebulized adrenaline (racemic), oxygen, ICU"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD — gradual onset, coryza prodrome",
+      "Barking cough (key feature)",
+      "Stridor: inspiratory, at rest or only when agitated",
+      "Hoarse voice",
+      "Worse at night",
+      "Preceding viral illness",
+      "Fever: low grade (vs high in epiglottitis)",
+      "Drooling (should be absent — distinguishes from epiglottitis)",
+      "Toxic appearance (should be absent)",
+      "Differential: epiglottitis, bacterial tracheitis, foreign body, retropharyngeal abscess",
+      "Past: recurrent croup (consider anatomical anomaly)",
+      "Immunization (Hib)"
+    ],
+    "bonus": [
+      "Westley croup score",
+      "Spacer vs nebulizer for budesonide"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

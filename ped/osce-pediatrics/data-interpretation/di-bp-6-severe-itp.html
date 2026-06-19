@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Severe ITP</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-6-severe-itp",
+  title: "Bleeding Profile — Severe ITP",
+  description: "3-year-old with mucosal bleeding; very low platelets with prolonged BT.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "ITP", "severe", "thrombocytopenia"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the bleeding profile of a 3-year-old boy with mucosal and skin bleeding.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "This is the bleeding profile of a 3-year-old boy with mucosal and skin bleeding.Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "12 g/dl",
+            "11.5–13.5"
+          ],
+          [
+            "WBCs",
+            "4,800 cells/mm³",
+            "4,000–11,000"
+          ],
+          [
+            "Platelets",
+            "30,000 cells/mm³",
+            "150,000–400,000  →  VERY LOW"
+          ],
+          [
+            "BT",
+            "10 min",
+            "2–4 min  →  PROLONGED"
+          ],
+          [
+            "CT",
+            "8 min",
+            "4–8 min  →  NORMAL"
+          ],
+          [
+            "PT",
+            "12 sec",
+            "12–20 sec  →  NORMAL"
+          ],
+          [
+            "APTT",
+            "30 sec",
+            "25–40 sec  →  NORMAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "a) Immune thrombocytopenia. Severe thrombocytopenia (30K) with prolonged BT and normal CT/PT/APTT → platelet destruction.",
+      "rubric": "Low platelets + prolonged BT + others normal → ITP"
+    },
+    {
+      "id": "q2",
+      "question": "At what platelet count does the risk of intracranial hemorrhage increase significantly?",
+      "answer": "< 10,000/µL (or < 20,000 with active bleeding). Signs of ICH: severe headache, vomiting, altered consciousness, focal neurological deficits. Requires emergency treatment.",
+      "rubric": "< 10K is critical threshold"
+    },
+    {
+      "id": "q3",
+      "question": "What is the emergency treatment for severe ITP with life-threatening bleeding?",
+      "answer": "1. IVIG 0.8–1 g/kg/day for 1–2 days (rapid response in 24–48 hr). 2. High-dose IV methylprednisolone 30 mg/kg/day for 3 days. 3. Platelet transfusion (only if life-threatening bleeding; they will be rapidly destroyed). 4. Emergency splenectomy in refractory cases.",
+      "rubric": "IVIG + steroids ± platelet transfusion"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify ITP",
+      "ICH risk threshold",
+      "Emergency management"
+    ],
+    "bonus": [
+      "Platelet transfusion reserve for life-threatening bleeding"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>General Examination — Cyanosis Assessment</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "exam-11-general-cyanosis-assessment",
+  title: "General Examination — Cyanosis Assessment",
+  description: "How to assess cyanosis clinically.",
+  category: "Examination",
+  tags: ["general exam", "cyanosis", "central", "peripheral"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric General / Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Describe the assessment of cyanosis.",
+  "examiner": {
+    "name": "Dr. Ali",
+    "title": "Consultant Pediatrician"
+  },
+  "dataPresented": {
+    "scenario": "A 6-month-old infant presents with bluish discoloration. Describe how to assess cyanosis.",
+    "tables": [
+      {
+        "title": "Cyanosis Assessment",
+        "headers": [
+          "Type",
+          "Site",
+          "Skin Temp",
+          "PaO2",
+          "Clubbing",
+          "Causes"
+        ],
+        "rows": [
+          [
+            "Central",
+            "Skin + mucous membranes (best seen on tongue)",
+            "Warm",
+            "Decreased",
+            "+ (chronic)",
+            "Cyanotic CHD, severe lung disease"
+          ],
+          [
+            "Peripheral",
+            "Tip of nose, lobule of ear, fingers, toes (NOT mucous membranes)",
+            "Cold",
+            "Normal",
+            "- (no)",
+            "Cold exposure, low cardiac output, venous obstruction"
+          ],
+          [
+            "Differential",
+            "Lower half (PDA with reversed shunt) OR upper half (TGA + PDA)",
+            "Variable",
+            "Variable",
+            "Variable",
+            "PDA with Eisenmenger; TGA + PDA"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Define cyanosis and what level of reduced Hb causes it?",
+      "answer": "Cyanosis = bluish discoloration of skin, mucous membranes, and nails. Visible when reduced (deoxygenated) Hb > 5 g/dL in capillary blood. Note: In severe anemia, cyanosis may not be visible (not enough Hb to reach the threshold).",
+      "rubric": "5 g/dL reduced Hb"
+    },
+    {
+      "id": "q2",
+      "question": "Where should you look for central cyanosis?",
+      "answer": "Best sites: tongue (sublingual), lips, buccal mucosa. Peripheral cyanosis affects fingertips, toes, ear lobule, tip of nose. Central cyanosis is best assessed on warm mucous membranes (tongue).",
+      "rubric": "Tongue for central"
+    },
+    {
+      "id": "q3",
+      "question": "Differentiate central from peripheral cyanosis.",
+      "answer": "Central: warm skin + cyanosis of mucous membranes (tongue) + low PaO2 + (chronic) clubbing + polycythemia + improves with O2. Peripheral: cold skin + cyanosis of extremities only + normal PaO2 + no clubbing + improves with warming. Differential: affects only part of body (e.g., lower half in PDA with reversed shunt).",
+      "rubric": "Site + temperature + PaO2 + clubbing"
+    },
+    {
+      "id": "q4",
+      "question": "What are the causes of central cyanosis?",
+      "answer": "1. Pulmonary: severe pneumonia, bronchiolitis, asthma, ARDS, pulmonary edema, pneumothorax, pulmonary hypoplasia, congenital diaphragmatic hernia. 2. Cardiac: cyanotic CHD (TOF, TGA, tricuspid atresia, truncus, TAPVR, Ebstein, pulmonary atresia). 3. Hematological: methemoglobinemia, sulfhemoglobinemia (abnormal Hb, low O2 affinity). 4. Neurological: hypoventilation from neuromuscular disease or CNS depression.",
+      "rubric": "Pulmonary + cardiac + hematological + neurological"
+    },
+    {
+      "id": "q5",
+      "question": "What is the differential diagnosis of central cyanosis in a neonate?",
+      "answer": "1. Cardiac (most common): cyanotic CHD (TGA, TOF, tricuspid atresia, TAPVR, pulmonary atresia, Ebstein, hypoplastic left heart). 2. Pulmonary: RDS, meconium aspiration, transient tachypnea of newborn, pneumonia, diaphragmatic hernia, pulmonary hypoplasia. 3. Persistent pulmonary HTN of newborn. 4. Neurological: birth asphyxia, neuromuscular disorder. 5. Hematological: methemoglobinemia. 6. Sepsis.",
+      "rubric": "Multi-system in neonate"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Definition + threshold",
+      "Central vs peripheral",
+      "Causes",
+      "Neonatal causes"
+    ],
+    "bonus": [
+      "Anemia masking cyanosis"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Henoch–Schönlein Purpura (HSP) — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-hsp",
+  title: "Henoch–Schönlein Purpura (HSP) — History Taking",
+  description: "5-year-old with palpable purpura over buttocks and legs, abdominal pain, and joint pain.",
+  category: "History Taking",
+  tags: ["rheumatology", "vasculitis", "IgA", "child"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Rheumatology / Nephrology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 5-year-old with red spots on the legs and abdominal pain.",
+  "patient": {
+    "name": "Mrs. Heba (mother of Adam)",
+    "age": 33,
+    "gender": "female",
+    "avatarSeed": "mother-heba",
+    "opening": "Doctor, Adam developed red spots on his legs and buttocks that you can feel with your fingers. He's also complaining of tummy pain and pain in his knees and ankles. Last week he had a sore throat."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Henoch-Schönlein Purpura (IgA vasculitis)",
+    "keySymptoms": [
+      "Palpable purpura over buttocks and lower limbs (100%)",
+      "Migratory polyarthritis (75%)",
+      "Acute abdominal pain, diarrhea ± bloody stool (50%)",
+      "Renal: hematuria, proteinuria, nephritic/nephrotic syndrome (25%)",
+      "Angioneurotic edema",
+      "Recent streptococcal / viral infection"
+    ],
+    "redFlags": [
+      "Intussusception (ileoileal)",
+      "Chronic renal failure (50% of those with renal involvement)",
+      "Testicular torsion",
+      "Subarachnoid / cerebral hemorrhage"
+    ],
+    "pastHistory": [
+      "Sore throat 1 week prior",
+      "Otherwise healthy",
+      "No previous similar episodes"
+    ],
+    "vitalSigns": "T 37.5°C, HR 100, RR 22, BP 100/65, palpable purpura over buttocks and LL, swollen tender knees",
+    "differentials": [
+      "ITP",
+      "Meningococcal sepsis",
+      "SLE",
+      "Aplastic anemia",
+      "Leukemia",
+      "Drug-induced purpura"
+    ],
+    "management": "Self-limited; penicillin if strep-related; aspirin for arthritis; corticosteroids for GI/renal; immunosuppressants (cyclophosphamide, azathioprine) for severe renal"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of purpura",
+      "Site (lower limbs, buttocks), size, itching, raised, associated bleeding",
+      "Other HSP symptoms: skin (ecchymosis, angioneurotic edema), joint (migratory polyarthritis), GIT (abdominal pain, diarrhea, bloody stool), renal (oliguria, hematuria, frothy urine)",
+      "Symptoms of related system: abdominal enlargement, bleeding tendency, blood transfusion, bone ache, pallor, drug intake, ecchymosis, fever, jaundice, LN, itching, weight loss",
+      "Complications: intussusception, CRF, subarachnoid hemorrhage, testicular torsion",
+      "Differential: ITP, aplastic anemia, leukemia, drug-induced, intussusception, CRF",
+      "Past: viral infection (streptococcal)",
+      "Other systems"
+    ],
+    "bonus": [
+      "Serial urinalysis for renal follow-up",
+      "Serum IgA level",
+      "Skin biopsy (IgA deposition)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Paediatrics Radiology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index-engine.css">
+<meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:title" content="Pediatrics OSCE - Radiology">
+<meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pediatrics OSCE - Radiology">
+<meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Paediatrics">←</a>
+    <div class="topbar-title">MU61 Quiz - Paediatrics Radiology</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Paediatrics Radiology</span></h1>
+      <p>Interpret chest X-rays and skeletal radiographs using the systematic scheme.</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "rad-cardiac-1-l-to-r-shunt",
+    title: "Radiology — Left To Right Cardiac Shunt (VSD)",
+    description: "Chest X-ray showing cardiomegaly and increased pulmonary vascular markings.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-cardiac-1-l-to-r-shunt.html"
+  },
+  {
+    uid: "rad-cardiac-2-asd-vs-vsd",
+    title: "Radiology — ASD Vs VSD On CXR",
+    description: "Differentiate ASD from VSD on chest X-ray.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-cardiac-2-asd-vs-vsd.html"
+  },
+  {
+    uid: "rad-cardiac-3-tga",
+    title: "Radiology — D Transposition Of Great Arteries (TGA)",
+    description: "Chest X-ray showing egg-shaped cardiac silhouette with increased pulmonary markings.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-cardiac-3-tga.html"
+  },
+  {
+    uid: "rad-cardiac-4-tof",
+    title: "Radiology — Tetralogy Of Fallot (Boot Shaped Heart)",
+    description: "Chest X-ray showing boot-shaped heart with decreased pulmonary markings.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-cardiac-4-tof.html"
+  },
+  {
+    uid: "rad-cardiac-5-pericardial-effusion",
+    title: "Radiology — Pericardial Effusion (Flask Shaped Heart)",
+    description: "Chest X-ray showing massive cardiomegaly with flask-shaped heart.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-cardiac-5-pericardial-effusion.html"
+  },
+  {
+    uid: "rad-cardiac-6-coarctation",
+    title: "Radiology — Coarctation Of The Aorta (Figure Of 3 Sign)",
+    description: "Chest X-ray showing figure-of-3 sign and rib notching.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-cardiac-6-coarctation.html"
+  },
+  {
+    uid: "rad-cardiac-7-mr",
+    title: "Radiology — Mitral Regurgitation",
+    description: "Chest X-ray showing LA and LV enlargement.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-cardiac-7-mr.html"
+  },
+  {
+    uid: "rad-chest-1-viral-pneumonia",
+    title: "Radiology — Viral Pneumonia",
+    description: "Chest X-ray showing perihilar infiltrates with hyperinflation.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-1-viral-pneumonia.html"
+  },
+  {
+    uid: "rad-chest-2-bacterial-pneumonia",
+    title: "Radiology — Bacterial Pneumonia (Lobar Consolidation)",
+    description: "Chest X-ray showing right middle lobe consolidation.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-2-bacterial-pneumonia.html"
+  },
+  {
+    uid: "rad-chest-3-bronchiolitis-asthma",
+    title: "Radiology — Acute Bronchiolitis / Asthma",
+    description: "Chest X-ray showing hyperinflation and flattened diaphragms.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-3-bronchiolitis-asthma.html"
+  },
+  {
+    uid: "rad-chest-4-staph-pneumonia",
+    title: "Radiology — Staphylococcal Pneumonia (Pneumatocele)",
+    description: "Chest X-ray showing pneumatocele and parapneumonic effusion.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-4-staph-pneumonia.html"
+  },
+  {
+    uid: "rad-chest-5-tb",
+    title: "Radiology — Pulmonary Tuberculosis (Miliary)",
+    description: "Chest X-ray showing miliary shadowing.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-5-tb.html"
+  },
+  {
+    uid: "rad-chest-6-pneumothorax",
+    title: "Radiology — Tension Pneumothorax",
+    description: "Chest X-ray showing tension pneumothorax with mediastinal shift.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-6-pneumothorax.html"
+  },
+  {
+    uid: "rad-chest-7-effusion",
+    title: "Radiology — Parapneumonic Pleural Effusion",
+    description: "Chest X-ray showing pleural effusion with mediastinal shift.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-7-effusion.html"
+  },
+  {
+    uid: "rad-chest-8-fb-aspiration",
+    title: "Radiology — Foreign Body Aspiration",
+    description: "Chest X-ray showing unilateral hyperlucency with mediastinal shift.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-8-fb-aspiration.html"
+  },
+  {
+    uid: "rad-chest-9-epiglottitis-vs-croup",
+    title: "Radiology — Epiglottitis (Thumb Sign) Vs Croup (Steeple Sign)",
+    description: "Lateral neck X-ray showing thumb sign and AP showing steeple sign.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-chest-9-epiglottitis-vs-croup.html"
+  },
+  {
+    uid: "rad-hem-1-thalassemia-skull",
+    title: "Radiology — Thalassemia Skull (Hair On End)",
+    description: "Skull X-ray showing widening of diploic space and hair-on-end appearance.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-hem-1-thalassemia-skull.html"
+  },
+  {
+    uid: "rad-hem-2-thalassemia-hand",
+    title: "Radiology — Thalassemia Hand (Sausage Metacarpals)",
+    description: "Hand X-ray showing marrow expansion and sausage-shaped metacarpals.",
+    icon: "🩻",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "rad-hem-2-thalassemia-hand.html"
+  }
+];
+</script>
+
+<div class="dash-overlay" id="tracker-dashboard">
+  <div class="dash-modal">
+    <div class="dash-header">
+      <h2 id="dash-title-text">📊 Question Tracker</h2>
+      <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
+    </div>
+    <div class="dash-scope-bar" id="dash-scope-bar"></div>
+    <div class="dash-summary">
+      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
+      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
+      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
+    </div>
+    <div class="dash-body" id="dash-body"></div>
+    <div class="dash-footer">
+      <button class="btn-dash-action" onclick="exportTrackerToPDF()">📄 Export PDF</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>
+      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();
+</script>
+<script>
+if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js').catch(function(){})});}
+</script>
+</body>
+</html>

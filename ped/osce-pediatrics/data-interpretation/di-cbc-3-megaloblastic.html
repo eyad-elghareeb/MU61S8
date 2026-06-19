@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Megaloblastic Anemia</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-3-megaloblastic",
+  title: "CBC Interpretation — Megaloblastic Anemia",
+  description: "2-year-old boy; macrocytic anemia.",
+  category: "Data Interpretation",
+  tags: ["CBC", "macrocytic", "megaloblastic", "B12/folate"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Intermediate",
+  "task": "Interpret the CBC and RBC indices of a 2-year-old boy.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A 2-year-old boy presents with pallor. CBC performed:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl",
+            "Low (anemia)"
+          ],
+          [
+            "WBCs",
+            "4,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "400,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "112 fl",
+            "HIGH (> 100 = macrocytic)"
+          ],
+          [
+            "MCH",
+            "29 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "32 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "2%",
+            "Normal"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "c) Folic acid deficiency anemia (megaloblastic). Macrocytic anemia (MCV > 100), normal WBC and platelets (or could be low in severe B12).",
+      "rubric": "Identify macrocytic anemia; megaloblastic"
+    },
+    {
+      "id": "q2",
+      "question": "What are causes of megaloblastic anemia in children?",
+      "answer": "1. Folic acid deficiency: poor intake (goat's milk diet), malabsorption, increased demand (hemolysis), drugs (methotrexate, phenytoin, TMP-SMX). 2. Vitamin B12 deficiency: maternal B12 deficiency (exclusively breastfed), pernicious anemia, ileal disease, fish tapeworm. 3. Rare: orotic aciduria, Lesch-Nyhan.",
+      "rubric": "Distinguish B12 vs folate causes"
+    },
+    {
+      "id": "q3",
+      "question": "What peripheral smear findings support megaloblastic anemia?",
+      "answer": "Macrocytosis (oval macrocytes), hypersegmented neutrophils (≥ 5% with ≥ 5 lobes), anisocytosis, poikilocytosis, Howell-Jolly bodies, basophilic stippling.",
+      "rubric": "Mention macro-ovalocytes and hypersegmented neutrophils"
+    },
+    {
+      "id": "q4",
+      "question": "How do you differentiate B12 from folate deficiency?",
+      "answer": "B12 deficiency has NEUROLOGICAL features (subacute combined degeneration of cord, paresthesia, ataxia, dementia) and elevated methylmalonic acid + homocysteine. Folate deficiency: no neurological features, normal MMA, elevated homocysteine only.",
+      "rubric": "Neurological signs + MMA distinguishes B12"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify macrocytosis",
+      "Distinguish B12 vs folate",
+      "Smear findings"
+    ],
+    "bonus": [
+      "MMA and homocysteine levels"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Macrocytic Anemia (B12 Deficiency)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-7-megaloblastic-2",
+  title: "CBC Interpretation — Macrocytic Anemia (B12 Deficiency)",
+  description: "2-year-old exclusively breastfed by vegan mother; macrocytic anemia.",
+  category: "Data Interpretation",
+  tags: ["CBC", "macrocytic", "B12", "exclusively breastfed"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Intermediate",
+  "task": "Interpret the CBC of a 2-year-old boy with pallor.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A 2-year-old boy exclusively breastfed by a strict vegan mother presents with pallor, irritability, and developmental regression. CBC:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "10,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "250,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "110 fl",
+            "HIGH (macrocytic)"
+          ],
+          [
+            "MCH",
+            "27 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "30 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "1%",
+            "Low"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "a) Megaloblastic anemia due to B12 deficiency (or folate). Macrocytic anemia with low reticulocyte response.",
+      "rubric": "Macrocytic + low retic → megaloblastic"
+    },
+    {
+      "id": "q2",
+      "question": "What is the cause in this child?",
+      "answer": "Vitamin B12 deficiency from maternal B12 deficiency (vegan mother) transmitted through exclusive breastfeeding. Maternal B12 stores in breastmilk are low if mother is deficient.",
+      "rubric": "Maternal veganism → low B12 in breastmilk"
+    },
+    {
+      "id": "q3",
+      "question": "What neurological features may accompany B12 deficiency in infants?",
+      "answer": "Developmental regression, apathy, hypotonia, lethargy, involuntary movements (tremor, choreoathetosis), seizures, subacute combined degeneration (older children: paresthesia, ataxia, weakness).",
+      "rubric": "Neurological signs distinguish B12 from folate"
+    },
+    {
+      "id": "q4",
+      "question": "What is the treatment?",
+      "answer": "1. Intramuscular vitamin B12 (cyanocobalamin or hydroxocobalamin) — daily for a week, then weekly for a month, then monthly. 2. Folic acid if also deficient. 3. Treat mother. 4. Diet diversification. Neurological recovery may be incomplete.",
+      "rubric": "Parenteral B12"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify macrocytic",
+      "Maternal diet history",
+      "Neurological features"
+    ],
+    "bonus": [
+      "MMA levels"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

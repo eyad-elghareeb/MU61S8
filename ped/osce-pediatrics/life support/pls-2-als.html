@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pediatric Advanced Life Support (ALS) Scenario</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "pls-2-als",
+  title: "Pediatric Advanced Life Support (ALS) Scenario",
+  description: "2-year-old presents to ED in cardiac arrest; perform ALS.",
+  category: "Life Support",
+  tags: ["ALS", "cardiac arrest", "VF", "ETT"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Critical Care",
+  "difficulty": "Advanced",
+  "task": "Manage a 2-year-old presenting to ED in cardiac arrest. Answer the examiner's questions on ALS.",
+  "examiner": {
+    "name": "Dr. Manar",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "Case: A 2-year-old boy presented to the ED with cardiac arrest. He is unresponsive, no pulse, no breathing. Monitor shows ventricular fibrillation (VF).",
+    "tables": [
+      {
+        "title": "ALS Algorithm",
+        "headers": [
+          "Step",
+          "Action"
+        ],
+        "rows": [
+          [
+            "Airway",
+            "Open with head tilt-chin lift; maintain with oropharyngeal, nasopharyngeal tube, or ETT"
+          ],
+          [
+            "Breathing",
+            "O2 under pressure via ETT + ambu bag (with reservoir = 100% O2). Alternative: laryngeal mask."
+          ],
+          [
+            "Circulation",
+            "Chest compressions. Attach monitor. Identify rhythm: shockable (VF, pulseless VT) or non-shockable (asystole, PEA)"
+          ]
+        ]
+      },
+      {
+        "title": "ETT Specifications",
+        "headers": [
+          "Parameter",
+          "Formula / Value"
+        ],
+        "rows": [
+          [
+            "Diameter (ID, mm)",
+            "(Age ÷ 4) + 4"
+          ],
+          [
+            "Oral length (cm)",
+            "(Age ÷ 2) + 12"
+          ],
+          [
+            "Nasal length (cm)",
+            "(Age ÷ 2) + 15"
+          ],
+          [
+            "Term infant",
+            "3.0–3.5 mm"
+          ],
+          [
+            "Infant < 1 yr",
+            "4.0–4.5 mm"
+          ],
+          [
+            "Type",
+            "Uncuffed (in pediatrics — though cuffed now acceptable if monitored)"
+          ]
+        ]
+      },
+      {
+        "title": "Drugs via ETT (LEAN)",
+        "headers": [
+          "Drug",
+          "Dose"
+        ],
+        "rows": [
+          [
+            "Lidocaine",
+            "2–3 mg/kg (2–3× IV dose)"
+          ],
+          [
+            "Epinephrine",
+            "0.1 mg/kg (10× IV dose)"
+          ],
+          [
+            "Atropine",
+            "0.02 mg/kg (min 0.1 mg)"
+          ],
+          [
+            "Naloxone",
+            "0.1 mg/kg"
+          ]
+        ]
+      },
+      {
+        "title": "Shockable Rhythm (VF / Pulseless VT) Algorithm",
+        "headers": [
+          "Step",
+          "Action"
+        ],
+        "rows": [
+          [
+            "1",
+            "Start CPR immediately"
+          ],
+          [
+            "2",
+            "DC shock 4 J/kg"
+          ],
+          [
+            "3",
+            "Continue CPR 2 minutes"
+          ],
+          [
+            "4",
+            "Epinephrine 0.01 mg/kg IV/IO q3–5 min"
+          ],
+          [
+            "5",
+            "Assess rhythm q2 min"
+          ],
+          [
+            "6",
+            "Amiodarone 5 mg/kg IV after 2nd or 3rd shock (or lidocaine)"
+          ],
+          [
+            "7",
+            "Treat reversible causes (4H + 4T)"
+          ]
+        ]
+      },
+      {
+        "title": "Non-Shockable Rhythm (Asystole / PEA) Algorithm",
+        "headers": [
+          "Step",
+          "Action"
+        ],
+        "rows": [
+          [
+            "1",
+            "Start CPR immediately"
+          ],
+          [
+            "2",
+            "Epinephrine 0.01 mg/kg IV/IO q3–5 min"
+          ],
+          [
+            "3",
+            "Continue CPR, assess rhythm q2 min"
+          ],
+          [
+            "4",
+            "Treat reversible causes (4H + 4T)"
+          ]
+        ]
+      },
+      {
+        "title": "Reversible Causes (4H + 4T)",
+        "headers": [
+          "4 H's",
+          "4 T's"
+        ],
+        "rows": [
+          [
+            "Hypoxia",
+            "Tension pneumothorax"
+          ],
+          [
+            "Hypovolemia",
+            "Tamponade (cardiac)"
+          ],
+          [
+            "Hypo/hyperkalemia",
+            "Toxins"
+          ],
+          [
+            "Hypothermia",
+            "Thrombosis (pulmonary, coronary)"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "How do you open the airway?",
+      "answer": "1. Head tilt–chin lift (no trauma). 2. Jaw thrust (trauma). 3. Maintain airway with oropharyngeal tube (unconscious), nasopharyngeal tube (conscious), ETT, or laryngeal mask.",
+      "rubric": "Same as BLS + airway adjuncts"
+    },
+    {
+      "id": "q2",
+      "question": "The child is apneic, what would you do?",
+      "answer": "Provide ventilation using an Ambu bag (self-inflating bag) with 100% oxygen (use reservoir for 100%). Connect to ETT or use face mask. Sizes: 250 ml (infants), 500 ml (children), 1500 ml (older children/adults).",
+      "rubric": "Ambu bag with reservoir = 100% O2"
+    },
+    {
+      "id": "q3",
+      "question": "What is the length and the diameter of the ETT in a 2-year-old?",
+      "answer": "Diameter = (Age ÷ 4) + 4 = 0.5 + 4 = 4.5 mm. Oral length = (Age ÷ 2) + 12 = 1 + 12 = 13 cm. Nasal length = (Age ÷ 2) + 15 = 1 + 15 = 16 cm.",
+      "rubric": "Apply formulas correctly"
+    },
+    {
+      "id": "q4",
+      "question": "What are the drugs given through the ETT?",
+      "answer": "LEAN — Lidocaine, Epinephrine, Atropine, Naloxone. Doses are 2–10× IV doses. Epinephrine dose via ETT = 0.1 mg/kg (10× IV dose). Always follow with flush.",
+      "rubric": "LEAN mnemonic + doses"
+    },
+    {
+      "id": "q5",
+      "question": "The child is pulseless, what will you do?",
+      "answer": "1. Start CPR (15:2 with advanced airway, continuous compressions once intubated). 2. Give epinephrine 0.01 mg/kg IV/IO (0.1 ml/kg of 1:10,000), repeated every 3–5 minutes. 3. Assess rhythm every 2 minutes.",
+      "rubric": "CPR + epinephrine + rhythm check"
+    },
+    {
+      "id": "q6",
+      "question": "How do you check the pulse in this child?",
+      "answer": "Carotid (older child), femoral, or brachial (infant). Take no more than 10 seconds.",
+      "rubric": "Carotid/femoral/brachial"
+    },
+    {
+      "id": "q7",
+      "question": "The child developed VF, what will you do and what drugs will you give?",
+      "answer": "1. Start DC shock 4 J/kg (biphasic) — continue CPR during charging. 2. Resume CPR immediately for 2 minutes. 3. Give epinephrine 0.01 mg/kg IV/IO q3–5 min. 4. Give amiodarone 5 mg/kg IV after 2nd or 3rd shock (may repeat; alternative: lidocaine 1 mg/kg). 5. Assess rhythm q2 min. 6. If shockable → shock again; if not → continue CPR + epi. 7. Identify and treat reversible causes (4H + 4T).",
+      "rubric": "Shock + CPR + epi + amiodarone + treat causes"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "ETT formula by age",
+      "Lean drugs",
+      "Shockable vs non-shockable algorithms",
+      "4H + 4T"
+    ],
+    "bonus": [
+      "Defibrillation dose",
+      "CPR ratio with advanced airway"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

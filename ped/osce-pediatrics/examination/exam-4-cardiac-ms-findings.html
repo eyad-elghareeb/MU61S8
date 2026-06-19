@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiac Examination — Mitral Stenosis Findings</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "exam-4-cardiac-ms-findings",
+  title: "Cardiac Examination — Mitral Stenosis Findings",
+  description: "Cardiac findings of a child with mitral stenosis.",
+  category: "Examination",
+  tags: ["cardiac exam", "MS", "rheumatic", "diastolic"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Cardiology",
+  "difficulty": "Advanced",
+  "task": "Interpret the cardiac examination findings.",
+  "examiner": {
+    "name": "Dr. Magdy",
+    "title": "Consultant Cardiologist"
+  },
+  "dataPresented": {
+    "scenario": "A 12-year-old girl with a history of recurrent rheumatic fever, now presents with dyspnea on exertion. Cardiac examination:",
+    "tables": [
+      {
+        "title": "Cardiac Examination Findings",
+        "headers": [
+          "Item",
+          "Finding"
+        ],
+        "rows": [
+          [
+            "Precordial bulge",
+            "Maybe present"
+          ],
+          [
+            "Precordial activity",
+            "Maybe"
+          ],
+          [
+            "Apex site",
+            "Shifted OUT (RVH pushing apex)"
+          ],
+          [
+            "Apex character",
+            "Slapping (not forcible, not sustained)"
+          ],
+          [
+            "Pulsations",
+            "Parasternal + epigastric (RV)"
+          ],
+          [
+            "Thrill",
+            "+ve over the apex (diastolic)"
+          ],
+          [
+            "S1",
+            "Accentuated (loud S1)"
+          ],
+          [
+            "S2",
+            "Accentuated (P2 — pulmonary hypertension)"
+          ],
+          [
+            "Murmur site",
+            "Apex (mitral area)"
+          ],
+          [
+            "Murmur character",
+            "Rumbling"
+          ],
+          [
+            "Relation to respiration",
+            "Increases with expiration (left-sided)"
+          ],
+          [
+            "Relation to position",
+            "Louder in left lateral position"
+          ],
+          [
+            "Propagation",
+            "Localized (no radiation)"
+          ],
+          [
+            "Time",
+            "Mid-diastolic"
+          ],
+          [
+            "Other",
+            "Opening snap after S2 (mid-diastolic); malar flush"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the diagnosis?",
+      "answer": "Mitral stenosis — almost always rheumatic in children. Triad: rumbling mid-diastolic murmur at apex (left lateral position), loud S1, opening snap.",
+      "rubric": "MS triad"
+    },
+    {
+      "id": "q2",
+      "question": "What is the cause of MS in children?",
+      "answer": "Rheumatic heart disease is the dominant cause (post-rheumatic fever scarring of mitral valve). Congenital MS is rare. Other: Lutembacher syndrome (ASD + MS), iatrogenic (post-mitral repair, post-radiation).",
+      "rubric": "Rheumatic most common in children"
+    },
+    {
+      "id": "q3",
+      "question": "What are the complications of MS?",
+      "answer": "1. Recurrence of rheumatic fever → worsening stenosis. 2. Atrial fibrillation (from LA enlargement). 3. Thromboembolism (LA thrombus → systemic emboli). 4. Infective endocarditis (less common than in MR). 5. Hemoptysis (pulmonary venous hypertension, rupture of bronchial veins). 6. Pulmonary hypertension → right-sided HF.",
+      "rubric": "AF + embolism + hemoptysis + pulmonary HTN"
+    },
+    {
+      "id": "q4",
+      "question": "What is the management?",
+      "answer": "MEDICAL: 1. Good dental hygiene. 2. IE prophylaxis. 3. Secondary prophylaxis against rheumatic fever recurrence (benzathine penicillin G every 3–4 weeks until age 21+). 4. Digoxin for AF (rate control). 5. Anticoagulation for AF/thromboembolism. 6. Diuretics for pulmonary congestion. 7. Balloon mitral valvuloplasty (alternative or bridge to surgery) — for pliable, non-calcified valves. SURGICAL: 1. Closed mitral commissurotomy (for pliable valves). 2. Valve replacement (mechanical or bioprosthetic) for calcified, scarred, or severely deformed valves.",
+      "rubric": "Medical + balloon + surgery"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify MS",
+      "Rheumatic cause",
+      "Complications",
+      "Balloon valvuloplasty"
+    ],
+    "bonus": [
+      "Secondary penicillin prophylaxis duration"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

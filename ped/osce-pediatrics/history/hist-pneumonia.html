@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pneumonia — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-pneumonia",
+  title: "Pneumonia — History Taking",
+  description: "4-year-old with high fever, productive cough, and rapid breathing.",
+  category: "History Taking",
+  tags: ["respiratory", "infection", "fever", "cough"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Foundational",
+  "task": "Take a focused history from the mother of a 4-year-old with fever, cough, and rapid breathing.",
+  "patient": {
+    "name": "Mrs. Passant (mother of Ahmed)",
+    "age": 30,
+    "gender": "female",
+    "avatarSeed": "mother-passant",
+    "opening": "Doctor, Ahmed has had a high fever for three days with a productive cough — yellowish sputum. Since yesterday he's been breathing fast and grunting. He's not eating and is drowsy."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Bacterial pneumonia (likely pneumococcal)",
+    "keySymptoms": [
+      "High fever (often > 39°C)",
+      "Productive cough (yellowish/green sputum in older child)",
+      "Tachypnea, grunting, retractions",
+      "Chest pain (pleuritic)",
+      "Decreased appetite, lethargy",
+      "Hemoptysis (rare)"
+    ],
+    "redFlags": [
+      "Respiratory failure (cyanosis, severe recession)",
+      "Hypoxemia",
+      "Parapneumonic effusion / empyema",
+      "Lung abscess, pneumatocele (staph)",
+      "Hyponatremia (SIADH)",
+      "Sepsis"
+    ],
+    "pastHistory": [
+      "Incompletely immunized (PCV missed)",
+      "Two previous episodes of 'chest infection'",
+      "No chronic illnesses"
+    ],
+    "vitalSigns": "T 39.5°C, HR 140, RR 50, SpO2 90% on RA, decreased air entry right lower zone with bronchial breathing and coarse crepitations",
+    "differentials": [
+      "Viral pneumonia / bronchiolitis",
+      "Tuberculosis",
+      "Foreign body aspiration with secondary infection",
+      "Asthma exacerbation",
+      "Pneumocystis (immunocompromised)",
+      "Mycoplasma (atypical, school-age)"
+    ],
+    "management": "Oxygen, antipyretics, hydration; oral amoxicillin for mild; IV cefotaxime / ceftriaxone for hospitalized; macrolide if atypical suspected; vancomycin / clindamycin if staph or resistant; chest tube if empyema"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of cough and fever",
+      "Cough analysis: dry or productive (color, amount, smell), preceded by viral infection",
+      "Fever: grade, pattern",
+      "Breath: dyspnea, hemoptysis, chest pain",
+      "Symptoms of related system: apnea, respiratory failure, recurrent infections",
+      "Complications: necrotizing pneumonia, pneumatocele, lung abscess, respiratory failure, parapneumonic effusion, empyema, hyponatremia",
+      "Differential: viral, TB, FB, asthma, bronchiolitis",
+      "Past: immunization (PCV, Hib), previous episodes, contact with TB",
+      "Other systems"
+    ],
+    "bonus": [
+      "Exposure to pigeons / birds (psittacosis)",
+      "Recent travel",
+      "Zinc supplementation for recovery"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

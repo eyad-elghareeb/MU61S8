@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Hemophilia B</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-9-hemophilia-b",
+  title: "Bleeding Profile — Hemophilia B",
+  description: "2-year-old with gluteal hematoma after IM injection; isolated prolonged CT and APTT.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "hemophilia B", "factor IX"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the bleeding profile of a 2-year-old boy with big gluteal hematoma following IM injection.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "You would interpret this bleeding profile of a 2-year-old boy with big gluteal hematoma following IM injection.Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "14 g/dl",
+            "11.5–13.5"
+          ],
+          [
+            "WBCs",
+            "7,000 cells/mm³",
+            "4,000–11,000"
+          ],
+          [
+            "Platelets",
+            "180,000 cells/mm³",
+            "150,000–400,000"
+          ],
+          [
+            "BT",
+            "3 min",
+            "2–4 min  →  NORMAL"
+          ],
+          [
+            "CT",
+            "18 min",
+            "4–8 min  →  PROLONGED"
+          ],
+          [
+            "PT",
+            "15 sec",
+            "12–20 sec  →  NORMAL"
+          ],
+          [
+            "APTT",
+            "78 sec",
+            "25–40 sec  →  PROLONGED"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "d) Hemophilia B (Christmas disease). Pattern identical to hemophilia A (prolonged CT and APTT, normal BT, PT, platelets) — differentiation requires factor assay: factor IX deficiency.",
+      "rubric": "Same pattern as hemophilia A; differentiate by factor IX assay"
+    },
+    {
+      "id": "q2",
+      "question": "How do you differentiate hemophilia A from hemophilia B?",
+      "answer": "Specific factor assay: Hemophilia A = factor VIII deficiency (normal IX); Hemophilia B = factor IX deficiency (normal VIII). Both are X-linked recessive, clinically indistinguishable. Family history may suggest one over the other.",
+      "rubric": "Factor IX vs VIII assay"
+    },
+    {
+      "id": "q3",
+      "question": "What is the treatment of hemophilia B?",
+      "answer": "1. Factor IX concentrate (recombinant or plasma-derived). 2. Prophylaxis with regular infusions. 3. FFP if factor concentrate not available. 4. Avoid IM injections, trauma, aspirin. 5. DDAVP NOT effective (different from hemophilia A). 6. Treat inhibitors with activated factor VII (NovoSeven) or PCC.",
+      "rubric": "Factor IX concentrate; DDAVP doesn't work"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify hemophilia pattern",
+      "Factor assay to differentiate A vs B",
+      "Factor IX concentrate"
+    ],
+    "bonus": [
+      "DDAVP doesn't work in B"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

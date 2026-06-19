@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pleural Fluid Interpretation — Transudate</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-pleural-1-transudate",
+  title: "Pleural Fluid Interpretation — Transudate",
+  description: "3-year-old with cough and respiratory distress; pleural fluid analysis.",
+  category: "Data Interpretation",
+  tags: ["pleural fluid", "transudate", "respiratory"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Intermediate",
+  "task": "Interpret the pleural fluid analysis and answer the examiner's questions.",
+  "examiner": {
+    "name": "Dr. Ahmed",
+    "title": "Consultant Pulmonologist"
+  },
+  "dataPresented": {
+    "scenario": "A 3-year-old male child presented to the emergency room with cough and respiratory distress. Chest percussion revealed stony dullness & chest auscultation revealed diminished breath sounds on the right side. Pleural fluid analysis showed the following:",
+    "tables": [
+      {
+        "title": "Pleural Fluid Analysis",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Nature",
+            "Clear, pale, yellow",
+            ""
+          ],
+          [
+            "pH",
+            "> 7.3",
+            "Normal/high"
+          ],
+          [
+            "Pleural F./Serum LDH ratio",
+            "< 0.6",
+            "Low"
+          ],
+          [
+            "Pleural F./Serum Protein ratio",
+            "< 0.5",
+            "Low"
+          ],
+          [
+            "Pleural cholesterol",
+            "< 55 mg/dl",
+            "Low"
+          ],
+          [
+            "Blood glucose",
+            "> 60 mg/dl",
+            "Normal"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "These findings indicate:",
+      "answer": "b) Transudate",
+      "rubric": "Identify low LDH ratio, low protein ratio, low cholesterol → transudate"
+    },
+    {
+      "id": "q2",
+      "question": "What are common causes of transudative pleural effusion in children?",
+      "answer": "Heart failure, nephrotic syndrome, liver cirrhosis, hypoalbuminemia, peritoneal dialysis, constrictive pericarditis, atelectasis.",
+      "rubric": "Mention at least 3 systemic causes"
+    },
+    {
+      "id": "q3",
+      "question": "How do you differentiate exudate from transudate using Light's criteria?",
+      "answer": "Exudate if ANY of: (1) Pleural protein / serum protein > 0.5; (2) Pleural LDH / serum LDH > 0.6; (3) Pleural LDH > 2/3 upper limit of serum LDH. Transudate fails all three.",
+      "rubric": "Must state Light's criteria correctly"
+    },
+    {
+      "id": "q4",
+      "question": "What is the next step in management of this child?",
+      "answer": "Treat the underlying systemic cause (e.g., heart failure, nephrotic syndrome); thoracocentesis only if symptomatic or diagnostic uncertainty.",
+      "rubric": "Identify that treating the underlying cause is primary"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify transudate",
+      "State Light's criteria",
+      "Identify underlying systemic causes"
+    ],
+    "bonus": [
+      "Differentiate complicated vs uncomplicated exudate"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

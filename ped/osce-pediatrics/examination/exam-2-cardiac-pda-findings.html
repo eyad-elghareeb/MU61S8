@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiac Examination — PDA Findings</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "exam-2-cardiac-pda-findings",
+  title: "Cardiac Examination — PDA Findings",
+  description: "Auscultatory findings of a child with PDA.",
+  category: "Examination",
+  tags: ["cardiac exam", "PDA", "continuous murmur"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Interpret the cardiac examination findings.",
+  "examiner": {
+    "name": "Dr. Magdy",
+    "title": "Consultant Cardiologist"
+  },
+  "dataPresented": {
+    "scenario": "A 2-year-old girl, ex-preterm, with frequent chest infections. Cardiac examination:",
+    "tables": [
+      {
+        "title": "Cardiac Examination Findings",
+        "headers": [
+          "Item",
+          "Finding"
+        ],
+        "rows": [
+          [
+            "Precordial bulge",
+            "+ve"
+          ],
+          [
+            "Precordial activity",
+            "+ve (hyperdynamic)"
+          ],
+          [
+            "Apex site",
+            "Normal"
+          ],
+          [
+            "Apex character",
+            "Hyperdynamic"
+          ],
+          [
+            "Pulsations",
+            "Apical + suprasternal"
+          ],
+          [
+            "Thrill",
+            "+ve"
+          ],
+          [
+            "S1",
+            "Normal"
+          ],
+          [
+            "S2",
+            "Normal"
+          ],
+          [
+            "Murmur site",
+            "Left 2nd ICS (pulmonary area)"
+          ],
+          [
+            "Murmur character",
+            "MACHINERY (continuous)"
+          ],
+          [
+            "Relation to respiration",
+            "No change"
+          ],
+          [
+            "Relation to position",
+            "Louder on squatting"
+          ],
+          [
+            "Intensity",
+            "≥ grade 4"
+          ],
+          [
+            "Propagation",
+            "Left infraclavicular area"
+          ],
+          [
+            "Time",
+            "CONTINUOUS (systolic + diastolic)"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the diagnosis?",
+      "answer": "Patent Ductus Arteriosus (PDA). Continuous machinery murmur at left 2nd ICS, propagating to left infraclavicular area, with bounding pulses (apical + suprasternal).",
+      "rubric": "Machinery murmur = PDA"
+    },
+    {
+      "id": "q2",
+      "question": "What is the differential diagnosis of a continuous murmur?",
+      "answer": "1. PDA. 2. AV fistula (coronary, pulmonary, cerebral). 3. Venous hum (innocent, disappears when supine or with jugular compression). 4. Aorto-pulmonary window. 5. Surgically-created shunts (BT shunt). 6. Ruptured sinus of Valsalva aneurysm.",
+      "rubric": "3+ causes of continuous murmur"
+    },
+    {
+      "id": "q3",
+      "question": "What are the complications of PDA?",
+      "answer": "1. Heart failure. 2. Recurrent chest infections. 3. Infective endarteritis. 4. Dilatation of PA / PDA. 5. Calcification of the ductus. 6. Thromboembolism. 7. Eisenmenger's syndrome (in large untreated PDA → pulmonary hypertension → right-to-left shunt → differential cyanosis).",
+      "rubric": "HF, IE, Eisenmenger"
+    },
+    {
+      "id": "q4",
+      "question": "What is the management?",
+      "answer": "1. Preterm with transient PDA: wait for spontaneous closure. 2. Indomethacin (or ibuprofen) — closes PDA in premature infants (inhibits prostaglandin synthesis). 3. Trans-catheter closure (device, e.g., Amplatzer duct occluder) — most common method. 4. Surgical ligation at proper age if device unsuitable. 5. Supportive: control HF, IE prophylaxis.",
+      "rubric": "Indomethacin for preterm; device closure for older"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify PDA",
+      "Differential continuous murmur",
+      "Eisenmenger risk",
+      "Management"
+    ],
+    "bonus": [
+      "Indomethacin mechanism"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

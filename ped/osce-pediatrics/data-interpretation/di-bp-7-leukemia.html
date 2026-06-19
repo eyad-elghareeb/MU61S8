@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Acute Leukemia</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-7-leukemia",
+  title: "Bleeding Profile — Acute Leukemia",
+  description: "3-year-old with mucosal bleeding, pallor; pancytopenia with blasts.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "leukemia", "pancytopenia"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology / Oncology",
+  "difficulty": "Advanced",
+  "task": "Interpret the bleeding profile.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "This is the bleeding profile of a 3-year-old boy with mucosal and skin bleeding and pallor.Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "7 g/dl",
+            "11.5–13.5  →  LOW"
+          ],
+          [
+            "WBCs",
+            "1,800 cells/mm³",
+            "4,000–11,000  →  LOW"
+          ],
+          [
+            "Platelets",
+            "30,000 cells/mm³",
+            "150,000–400,000  →  VERY LOW"
+          ],
+          [
+            "BT",
+            "10 min",
+            "2–4 min  →  PROLONGED"
+          ],
+          [
+            "CT",
+            "8 min",
+            "4–8 min  →  NORMAL"
+          ],
+          [
+            "PT",
+            "12 sec",
+            "12–20 sec  →  NORMAL"
+          ],
+          [
+            "APTT",
+            "30 sec",
+            "25–40 sec  →  NORMAL"
+          ],
+          [
+            "Peripheral smear",
+            "Blast cells",
+            "LEUKEMIC"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "b) Acute leukemia. Pancytopenia (low Hb, low WBC, very low platelets) + blasts on smear + bleeding. Prolonged BT is from thrombocytopenia; PT/APTT normal (no coagulopathy yet).",
+      "rubric": "Pancytopenia + blasts = leukemia"
+    },
+    {
+      "id": "q2",
+      "question": "What is the most common type of leukemia in children?",
+      "answer": "Acute lymphoblastic leukemia (ALL) — 75–80% of childhood leukemia. Peak age 2–5 years. B-cell precursor ALL most common subtype.",
+      "rubric": "ALL most common"
+    },
+    {
+      "id": "q3",
+      "question": "What is the diagnostic workup for leukemia?",
+      "answer": "1. CBC + peripheral smear (blasts). 2. Bone marrow aspiration: morphology, immunophenotyping (flow cytometry), cytogenetics, molecular studies (minimum 20% blasts). 3. Lumbar puncture (CNS involvement). 4. Imaging (testicular ultrasound in boys, chest X-ray for mediastinal mass). 5. Biochemistry (LDH, uric acid, electrolytes).",
+      "rubric": "BM aspirate is essential"
+    },
+    {
+      "id": "q4",
+      "question": "Outline the general management of ALL.",
+      "answer": "1. Induction (4–6 weeks): vincristine, dexamethasone/prednisone, L-asparaginase, daunorubicin. 2. Consolidation. 3. Interim maintenance. 4. Delayed intensification. 5. Maintenance (2–3 years): daily 6-MP, weekly methotrexate. 6. CNS prophylaxis (intrathecal chemo). 7. Supportive: transfusions, antibiotics, tumor lysis prophylaxis (hydration, allopurinol/rasburicase). 8. BMT for high-risk/relapse.",
+      "rubric": "Multi-phase chemo + IT prophylaxis"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify leukemia",
+      "BM aspiration",
+      "Phases of treatment"
+    ],
+    "bonus": [
+      "Tumor lysis prophylaxis"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

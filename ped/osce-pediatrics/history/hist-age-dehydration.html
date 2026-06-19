@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Acute Gastroenteritis with Dehydration — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-age-dehydration",
+  title: "Acute Gastroenteritis with Dehydration — History Taking",
+  description: "10-month-old with vomiting, diarrhea, and signs of dehydration.",
+  category: "History Taking",
+  tags: ["GI", "dehydration", "infant", "diarrhea"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Gastroenterology",
+  "difficulty": "Foundational",
+  "task": "Take a focused history from the mother of a 10-month-old with diarrhea, vomiting, and reduced urine output.",
+  "patient": {
+    "name": "Mrs. Sherine (mother of baby Laila)",
+    "age": 25,
+    "gender": "female",
+    "avatarSeed": "mother-sherine",
+    "opening": "Doctor, Laila has been having loose stools and vomiting for three days. She's not feeding well, her eyes look sunken, and she hasn't had a wet diaper in over 8 hours. She's also had a low-grade fever."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Acute gastroenteritis with severe dehydration",
+    "keySymptoms": [
+      "Acute diarrhea (> 3 loose stools/day, watery)",
+      "Vomiting",
+      "Fever (low-grade)",
+      "Reduced urine output (oliguria, no wet diaper > 6 hours)",
+      "Sunken eyes and fontanelle",
+      "Dry mucous membranes, decreased skin turgor",
+      "Lethargy, irritability"
+    ],
+    "redFlags": [
+      "Severe dehydration with shock (cold peripheries, weak pulse, delayed capillary refill)",
+      "Hypernatremic dehydration (seizures)",
+      "Hypokalemia (ileus, arrhythmia)",
+      "Acidosis",
+      "Hemolytic uremic syndrome (bloody diarrhea, oliguria)"
+    ],
+    "pastHistory": [
+      "Rotavirus vaccination complete",
+      "Recent daycare peer with similar illness",
+      "No previous hospitalizations",
+      "Normal birth and development"
+    ],
+    "vitalSigns": "T 38°C, HR 160, RR 40, BP 70/45 (low), sunken eyes and fontanelle, dry mucous membranes, reduced skin turgor, cap refill 4 sec",
+    "differentials": [
+      "Viral gastroenteritis (rotavirus, norovirus)",
+      "Bacterial (Salmonella, Shigella, Campylobacter, E. coli)",
+      "Parasitic (Giardia)",
+      "Extra-intestinal infection (UTI, pneumonia, meningitis)",
+      "Surgical (intussusception, appendicitis)",
+      "Food intolerance / allergy"
+    ],
+    "management": "Rehydration: Plan B (ORS) for moderate, Plan C (IV boluses of NS) for severe; zinc supplementation; continue feeding/breastfeeding; correct electrolyte disturbances; antibiotics only for specific pathogens; antiemetic (ondansetron) if vomiting prevents ORS"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of diarrhea and vomiting",
+      "Stool: frequency, consistency, blood, mucus, odor",
+      "Vomiting: frequency, content (food, bilious, feculent), projectile",
+      "Fever: degree, pattern",
+      "Urine output: number of wet diapers, time since last void (KEY)",
+      "Other dehydration signs: thirst, sunken eyes/fontanelle, decreased tears",
+      "Feeding pattern and ability to retain fluids",
+      "Recent food intake, exposure to contaminated water/food",
+      "Contacts with similar illness (daycare)",
+      "Immunization (rotavirus)",
+      "Differential: extra-intestinal causes (UTI, pneumonia, meningitis), surgical (intussusception)",
+      "Other systems",
+      "Complications: shock, electrolyte imbalance, acidosis, HUS"
+    ],
+    "bonus": [
+      "Zinc supplementation",
+      "Probiotics",
+      "Continued feeding (don't stop breastfeeding)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

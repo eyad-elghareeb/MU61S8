@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Acute Viral Hepatitis (HAV) — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-hepatitis-a",
+  title: "Acute Viral Hepatitis (HAV) — History Taking",
+  description: "8-year-old with yellowish eyes, abdominal pain, and fever for 1 week.",
+  category: "History Taking",
+  tags: ["GI", "hepatology", "infection", "jaundice"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Gastroenterology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of an 8-year-old boy with yellowish discoloration of eyes and abdominal pain.",
+  "patient": {
+    "name": "Mrs. Doaa (mother of Ziad)",
+    "age": 35,
+    "gender": "female",
+    "avatarSeed": "mother-doaa",
+    "opening": "Doctor, Ziad has been yellow for a week. He complains of pain in the right upper side of his belly. He had a fever, nausea, and vomiting before the yellow appeared. His urine is dark and his stool became lighter."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Acute viral hepatitis, mostly HAV",
+    "keySymptoms": [
+      "Jaundice (sclera then skin)",
+      "Right upper quadrant pain",
+      "Dark urine, pale (clay) stool",
+      "Pre-icteric phase: fever, malaise, anorexia, nausea, vomiting",
+      "Itching (cholestatic variant)",
+      "No pallor (distinguishes from hemolytic)"
+    ],
+    "redFlags": [
+      "Fulminant hepatic failure (encephalopathy, coagulopathy)",
+      "Relapsing hepatitis",
+      "Autoimmune hepatitis triggered",
+      "Cholestatic variant with prolonged jaundice > 12 weeks"
+    ],
+    "pastHistory": [
+      "Recent travel to endemic area / contaminated food",
+      "Classmate with similar illness",
+      "No previous liver disease",
+      "Hepatitis A not vaccinated"
+    ],
+    "vitalSigns": "T 37.8°C, HR 95, RR 20, BP 100/65, icteric sclerae and skin, RUQ tenderness, liver 3 cm below RCM, smooth edge, no splenomegaly",
+    "differentials": [
+      "G6PD hemolytic crisis (with pallor)",
+      "Autoimmune hemolytic anemia",
+      "Chronic hemolytic anemia crisis",
+      "Leptospirosis",
+      "Biliary obstruction"
+    ],
+    "management": "Supportive: bed rest, hydration, nutrition, antiemetics; avoid hepatotoxic drugs; isolation precautions; hepatitis A vaccine for contacts; monitor for fulminant failure"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD — onset usually subacute",
+      "Jaundice analysis: site (sclera then skin), color of urine (dark) and stool (pale), itching, abdominal pain (RUQ), fever, nausea/vomiting/weight loss",
+      "Pallor (VIP — its absence distinguishes from hemolytic anemia)",
+      "Analysis of pain: site, radiation, character, severity, on rest or exertion",
+      "Symptoms of related system: abdominal distension, vomiting, diarrhea, constipation, weight loss",
+      "Differential: G6PD (pallor + jaundice), chronic hemolytic, autoimmune",
+      "Past: contaminated food, travel, contact with hepatitis",
+      "Other systems"
+    ],
+    "bonus": [
+      "Hepatitis A vaccine status",
+      "Atypical presentations: relapsing, immune complex, cholestatic"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

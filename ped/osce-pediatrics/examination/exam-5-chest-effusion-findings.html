@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest Examination — Pleural Effusion Findings</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "exam-5-chest-effusion-findings",
+  title: "Chest Examination — Pleural Effusion Findings",
+  description: "Respiratory examination findings of a child with pleural effusion.",
+  category: "Examination",
+  tags: ["chest exam", "pleural effusion", "stony dull"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Intermediate",
+  "task": "Interpret the chest examination findings.",
+  "examiner": {
+    "name": "Dr. Ahmed",
+    "title": "Consultant Pulmonologist"
+  },
+  "dataPresented": {
+    "scenario": "A 5-year-old child with fever and dyspnea. Chest examination reveals:",
+    "tables": [
+      {
+        "title": "Chest Examination Findings",
+        "headers": [
+          "Item",
+          "Finding"
+        ],
+        "rows": [
+          [
+            "Inspection",
+            "Unilateral bulge of affected side; ↓↓ movement; respiratory distress (tachypnea, retraction, grunting, cyanosis)"
+          ],
+          [
+            "Palpation",
+            "↓↓ Tactile Vocal Fremitus (TVF) on affected side; trachea shifted to OPPOSITE side"
+          ],
+          [
+            "Percussion",
+            "STONY DULLNESS on affected side"
+          ],
+          [
+            "Auscultation — breath sounds",
+            "↓↓ Intensity / absent"
+          ],
+          [
+            "Added sounds",
+            "None (or faint pleural rub)"
+          ],
+          [
+            "Vocal resonance",
+            "Egophony at upper border of effusion; ↓↓ below"
+          ],
+          [
+            "Investigations",
+            "Chest X-ray, pleural fluid aspiration"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the diagnosis?",
+      "answer": "Pleural effusion (likely parapneumonic in this febrile child). Triad: stony dullness + ↓↓ breath sounds + ↓↓ TVF.",
+      "rubric": "Stony dullness = effusion"
+    },
+    {
+      "id": "q2",
+      "question": "What are the causes of pleural effusion in children?",
+      "answer": "TRANSUDATE: heart failure, nephrotic syndrome, liver cirrhosis, hypoalbuminemia. EXUDATE: parapneumonic (most common), TB, empyema, malignancy (leukemia/lymphoma), pulmonary embolism, autoimmune (SLE).",
+      "rubric": "Transudate vs exudate causes"
+    },
+    {
+      "id": "q3",
+      "question": "What are the causes of stony dullness on chest percussion?",
+      "answer": "1. Pleural effusion (most common). 2. Empyema. 3. Hemothorax. 4. Chylothorax. 5. Massive consolidation (rarely — usually impaired dullness).",
+      "rubric": "Fluid in pleural space"
+    },
+    {
+      "id": "q4",
+      "question": "What investigations would you order?",
+      "answer": "1. Chest X-ray (PA + lateral decubitus for small effusions). 2. Chest ultrasound (loculations, guide thoracentesis). 3. CT chest (complex cases, before surgery). 4. Pleural fluid analysis: protein, LDH, glucose, pH, cell count, Gram stain, culture, AFB, cytology. 5. Blood tests: CBC, CRP, blood culture, electrolytes. 6. Tuberculin test / IGRA.",
+      "rubric": "Imaging + pleural fluid analysis"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify effusion from signs",
+      "Causes transudate vs exudate",
+      "Investigations"
+    ],
+    "bonus": [
+      "Egophony at upper border"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

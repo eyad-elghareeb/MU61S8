@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Visual Diagnosis — Measles (Koplik's Spots)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "vis-7-measles-koplik",
+  title: "Visual Diagnosis — Measles (Koplik's Spots)",
+  description: "Photo showing white spots on buccal mucosa and maculopapular rash.",
+  category: "Visual Diagnosis",
+  tags: ["measles", "Koplik", "exanthem"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Infectious Disease",
+  "difficulty": "Intermediate",
+  "task": "Identify the findings and the diagnosis.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Pediatrician"
+  },
+  "dataPresented": {
+    "scenario": "Image of buccal mucosa showing small white lesions on erythematous base, described as 'grains of salt on red background'. Child also has fever, cough, coryza, conjunctivitis, and a maculopapular rash starting behind the ears.",
+    "tables": [
+      {
+        "title": "Visual Findings",
+        "headers": [
+          "Finding",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Buccal mucosa",
+            "KOPLIK SPOTS — small white lesions on erythematous base, opposite lower molars"
+          ],
+          [
+            "Skin rash",
+            "Maculopapular, starts behind ears / hairline, spreads cephalocaudally"
+          ],
+          [
+            "Other features",
+            "3 C's: Cough, Coryza, Conjunctivitis"
+          ],
+          [
+            "Fever",
+            "High, precedes rash by 3–4 days"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What are Koplik spots and what do they indicate?",
+      "answer": "Koplik spots are pathognomonic for measles — small white lesions on erythematous base on the buccal mucosa (opposite lower molars), appearing in the prodromal phase 1–2 days BEFORE the skin rash. Described as 'grains of salt on red background'.",
+      "rubric": "Pathognomonic for measles"
+    },
+    {
+      "id": "q2",
+      "question": "What is the clinical course of measles?",
+      "answer": "1. Incubation: 8–12 days. 2. Prodrome (3–5 days): fever, 3 C's (cough, coryza, conjunctivitis), Koplik spots. 3. Exanthem (3–7 days): maculopapular rash starting behind ears/hairline, spreads face → trunk → limbs, becomes confluent. 4. Resolution: rash fades with fine desquamation, fever settles. Infectious from 4 days before to 4 days after rash.",
+      "rubric": "Stages of measles"
+    },
+    {
+      "id": "q3",
+      "question": "What are the complications of measles?",
+      "answer": "1. Otitis media. 2. Pneumonia (giant cell pneumonia — especially immunocompromised; secondary bacterial). 3. Encephalitis (1:1000). 4. Subacute sclerosing panencephalitis (SSPE) — 5–10 years later, fatal. 5. Vitamin A deficiency → keratomalacia, blindness. 6. Immunization amnesia (loss of immune memory). 7. Death (especially in malnourished/immunocompromised).",
+      "rubric": "Pneumonia + encephalitis + SSPE"
+    },
+    {
+      "id": "q4",
+      "question": "What is the treatment and prevention?",
+      "answer": "TREATMENT: supportive (hydration, antipyretics, vitamin A — reduces mortality, antibiotics for secondary infection). PREVENTION: MMR vaccine at 12–15 months and 4–6 years. Post-exposure prophylaxis: vaccine within 72 hours OR immunoglobulin within 6 days for susceptible contacts.",
+      "rubric": "Vitamin A + MMR vaccine"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify Koplik spots",
+      "Pathognomonic for measles",
+      "Complications (SSPE)",
+      "Vitamin A"
+    ],
+    "bonus": [
+      "SSPE latency"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

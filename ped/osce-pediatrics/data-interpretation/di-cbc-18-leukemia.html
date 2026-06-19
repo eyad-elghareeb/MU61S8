@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Acute Leukemia</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-18-leukemia",
+  title: "CBC Interpretation — Acute Leukemia",
+  description: "8-year-old with pallor, purpura, and fatigue; pancytopenia with blasts on smear.",
+  category: "Data Interpretation",
+  tags: ["CBC", "leukemia", "pancytopenia", "blasts"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology / Oncology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC and identify the diagnosis.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "An 8-year-old presents with pallor, purpura, and fatigue. CBC performed — note peripheral smear shows blast cells.",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "7 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "11,000 cells/mm³",
+            "Normal (or high)"
+          ],
+          [
+            "RBCs",
+            "2,300,000 cells/mm³",
+            "Low"
+          ],
+          [
+            "Platelets",
+            "50,000 cells/mm³",
+            "Low"
+          ],
+          [
+            "Hct",
+            "21%",
+            "Low"
+          ],
+          [
+            "RC",
+            "0%",
+            "Absent/very low"
+          ],
+          [
+            "MCV",
+            "91 fl",
+            "Normal"
+          ],
+          [
+            "MCH",
+            "30 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "33 gram%",
+            "Normal"
+          ],
+          [
+            "Peripheral smear",
+            "Blast cells present",
+            "Leukemic"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The previous blood picture should be interpreted as:",
+      "answer": "d) Pancytopenia. Hb, platelets low; WBC numerically normal but blasts present on smear. Pancytopenia with blast cells is leukemia until proven otherwise.",
+      "rubric": "Pancytopenia + blasts"
+    },
+    {
+      "id": "q2",
+      "question": "The anemia is most probably:",
+      "answer": "a) Normocytic normochromic (MCV 91, MCH 30, MCHC 33 all normal).",
+      "rubric": "Identify normocytic normochromic"
+    },
+    {
+      "id": "q3",
+      "question": "The history & clinical picture may include all EXCEPT:",
+      "answer": "e) Frequent blood transfusions. Pallor (anemia), purpura (thrombocytopenia), hemarthrosis (thrombocytopenia or coagulopathy), splenomegaly (leukemic infiltration) are typical. Frequent blood transfusions suggest chronic hemolytic anemia, NOT leukemia.",
+      "rubric": "Recognize that transfusions point away from acute leukemia"
+    },
+    {
+      "id": "q4",
+      "question": "The single most important diagnostic tool to confirm the diagnosis is:",
+      "answer": "d) BM aspiration. Bone marrow aspirate with morphological, immunophenotypic (flow cytometry), cytogenetic, and molecular studies is diagnostic.",
+      "rubric": "BM aspiration is the gold standard"
+    },
+    {
+      "id": "q5",
+      "question": "The most probable underlying etiology is:",
+      "answer": "c) Acute leukemia. Pancytopenia + blasts + symptoms of marrow failure.",
+      "rubric": "Identify acute leukemia"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify pancytopenia with blasts",
+      "BM aspiration as diagnostic",
+      "Distinguish from aplastic anemia (no blasts)"
+    ],
+    "bonus": [
+      "Immunophenotyping for ALL vs AML",
+      "Cytogenetics for risk stratification"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

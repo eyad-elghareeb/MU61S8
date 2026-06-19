@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Cardiac Examination — VSD Findings</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "exam-1-cardiac-vsd-findings",
+  title: "Cardiac Examination — VSD Findings",
+  description: "Auscultatory and palpation findings of a child with VSD.",
+  category: "Examination",
+  tags: ["cardiac exam", "VSD", "murmur"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Interpret the cardiac examination findings of a 3-month-old with a heart murmur.",
+  "examiner": {
+    "name": "Dr. Magdy",
+    "title": "Consultant Cardiologist"
+  },
+  "dataPresented": {
+    "scenario": "A 3-month-old infant with poor feeding and recurrent chest infections. Cardiac examination findings:",
+    "tables": [
+      {
+        "title": "Cardiac Examination Findings",
+        "headers": [
+          "Item",
+          "Finding"
+        ],
+        "rows": [
+          [
+            "Precordial bulge",
+            "+ve (present)"
+          ],
+          [
+            "Precordial activity",
+            "+ve (active, hyperdynamic)"
+          ],
+          [
+            "Apex site",
+            "Shifted OUT and DOWN"
+          ],
+          [
+            "Apex character",
+            "HYPERDYNAMIC"
+          ],
+          [
+            "Pulsations",
+            "Apical + parasternal"
+          ],
+          [
+            "Thrill",
+            "+ve at lower left sternal border (LLSB)"
+          ],
+          [
+            "S1",
+            "Normal"
+          ],
+          [
+            "S2",
+            "Accentuated P2, narrow splitting"
+          ],
+          [
+            "Murmur site",
+            "Lower left sternal border (LLSB)"
+          ],
+          [
+            "Murmur character",
+            "HARSH"
+          ],
+          [
+            "Relation to respiration",
+            "No significant change"
+          ],
+          [
+            "Relation to position",
+            "No significant change"
+          ],
+          [
+            "Intensity",
+            "Variable (≥ grade 4 with thrill)"
+          ],
+          [
+            "Propagation",
+            "All over the precordium"
+          ],
+          [
+            "Time",
+            "PANSYSTOLIC"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the diagnosis based on these findings?",
+      "answer": "Ventricular Septal Defect (VSD). Pansystolic harsh murmur at LLSB radiating all over precordium with thrill + hyperdynamic apex.",
+      "rubric": "VSD pattern"
+    },
+    {
+      "id": "q2",
+      "question": "What is the differential diagnosis of a pansystolic murmur?",
+      "answer": "1. VSD (LLSB, harsh, all over). 2. Mitral regurgitation (apex, blowing, radiates to axilla). 3. Tricuspid regurgitation (lower left sternal border, increases with inspiration).",
+      "rubric": "3 causes of pansystolic murmur"
+    },
+    {
+      "id": "q3",
+      "question": "What are the complications of VSD?",
+      "answer": "1. Pulmonary vascular obstructive disease (PVOD) / Eisenmenger. 2. Pulmonary stenosis (acquired, infundibular). 3. Aortic regurgitation (especially supracristal VSD). 4. Infective endocarditis. 5. Heart failure (large VSD in infancy). 6. Premature death (untreated).",
+      "rubric": "PVOD, IE, AR, HF"
+    },
+    {
+      "id": "q4",
+      "question": "What is the management?",
+      "answer": "Small / moderate: no surgery, periodic follow-up, IE prophylaxis, reassure parents. Large: A) Medical — control HF (ACE-I, diuretics, digoxin), prevent PVOD and IE. B) Surgical — VSD closure (if uncontrolled HF, large shunt, or PVOD developing); palliative pulmonary band ligation.",
+      "rubric": "Medical first; surgery for large/complicated"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify VSD",
+      "Differential pansystolic",
+      "Complications",
+      "Management by size"
+    ],
+    "bonus": [
+      "Spontaneous closure rate for small VSDs"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bronchial Asthma — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-asthma",
+  title: "Bronchial Asthma — History Taking",
+  description: "Recurrent wheezy episodes in a 5-year-old, relieved by inhaler.",
+  category: "History Taking",
+  tags: ["respiratory", "child", "wheeze", "recurrent"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 5-year-old boy with recurrent episodes of wheeze and cough.",
+  "patient": {
+    "name": "Mrs. Hala (mother of Adam)",
+    "age": 32,
+    "gender": "female",
+    "avatarSeed": "mother-hala",
+    "opening": "Doctor, Adam keeps getting these attacks where his chest gets tight and he wheezes. The inhaler helps but the attacks keep coming back."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Bronchial asthma",
+    "keySymptoms": [
+      "Recurrent wheeze — expiratory, relieved by bronchodilator",
+      "Cough — nocturnal and on exertion",
+      "Chest tightness",
+      "Episodes in attacks (paroxysmal)",
+      "Triggered by URTI, exercise, allergens"
+    ],
+    "redFlags": [
+      "Status asthmaticus (silent chest, cyanosis, altered consciousness)",
+      "Repeated ED visits / hospitalizations",
+      "Failure to thrive"
+    ],
+    "pastHistory": [
+      "Recurrent wheezy episodes since age 2",
+      "Atopic dermatitis in infancy",
+      "Family history of asthma / allergy (mother)",
+      "Multiple triggers identified"
+    ],
+    "vitalSigns": "Between attacks: normal. During attack: RR 40, HR 120, prolonged expiration, SpO2 92%",
+    "differentials": [
+      "Foreign body aspiration",
+      "Bronchiolitis",
+      "Cystic fibrosis",
+      "Primary ciliary dyskinesia",
+      "Vascular ring",
+      "GERD",
+      "Immunodeficiency"
+    ],
+    "management": "Stepwise: SABA reliever + inhaled corticosteroid controller; leukotriene modifiers; education, action plan, avoid triggers"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of current episode",
+      "Recurrence and frequency of attacks",
+      "Response to bronchodilator (key distinguishing feature)",
+      "Pattern of attacks (paroxysmal, nocturnal, seasonal)",
+      "Triggers: URTI, exercise, allergens, cold air, smoke",
+      "Severity markers: ED visits, hospitalizations, ICU, oral steroid courses",
+      "Current controller medications and adherence",
+      "Symptoms of complications: respiratory failure, recurrent infections",
+      "Atopic history: eczema, allergic rhinitis, food allergy",
+      "Family history of atopy",
+      "Differential diagnosis: foreign body, CF, immunodeficiency",
+      "Effect on growth, school attendance"
+    ],
+    "bonus": [
+      "Smoke exposure",
+      "Pet ownership",
+      "Compliance with preventer therapy",
+      "Use of spacer technique",
+      "Asthma action plan in place"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

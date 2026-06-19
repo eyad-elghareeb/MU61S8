@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>ABG Interpretation — Severe Dehydration with Shock</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-abg-7-dehydration-shock",
+  title: "ABG Interpretation — Severe Dehydration with Shock",
+  description: "5-month-old with vomiting, diarrhea, shock; metabolic acidosis with high anion gap.",
+  category: "Data Interpretation",
+  tags: ["ABG", "dehydration", "shock", "hypernatremia"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Critical Care",
+  "difficulty": "Advanced",
+  "task": "Interpret the ABG of a 5-month-old infant in shock.",
+  "examiner": {
+    "name": "Dr. Khaled",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "A 5-month-old girl presents with 1-day history of irritability and fever. Mother reports 3 days of bad vomiting and diarrhea. BP 70/40, HR 200, RR 60, Temp 38.3°C. Irritable, sunken eyes and fontanel, skin feels like dough (hypernatremic dehydration). ABG:",
+    "tables": [
+      {
+        "title": "Arterial Blood Gas + Electrolytes",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Normal Range"
+        ],
+        "rows": [
+          [
+            "pH",
+            "7.07",
+            "7.35–7.45  →  SEVERE ACIDEMIA"
+          ],
+          [
+            "PaCO2",
+            "11 mmHg",
+            "35–45  →  VERY LOW (Kussmaul)"
+          ],
+          [
+            "HCO3",
+            "8 mEq/L",
+            "20–28  →  VERY LOW"
+          ],
+          [
+            "Na+",
+            "164 mEq/L",
+            "135–145  →  VERY HIGH (hypernatremia)"
+          ],
+          [
+            "K+",
+            "5.5 mEq/L",
+            "3.5–5.5  →  Upper normal"
+          ],
+          [
+            "Cl-",
+            "139 mEq/L",
+            "95–110  →  HIGH"
+          ],
+          [
+            "PaO2",
+            "121 mmHg",
+            "80–110  →  HIGH (on O2)"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The primary disorder here is:",
+      "answer": "a) Metabolic acidosis. pH 7.07 + HCO3 8 → severe metabolic acidosis from lactic acidosis (shock).",
+      "rubric": "Metabolic acidosis from shock"
+    },
+    {
+      "id": "q2",
+      "question": "The compensatory mechanism here is:",
+      "answer": "b) Respiratory alkalosis. PaCO2 11 (very low) — maximal Kussmaul breathing to compensate.",
+      "rubric": "Kussmaul compensation"
+    },
+    {
+      "id": "q3",
+      "question": "The anion gap here is:",
+      "answer": "a) High. AG = Na - (Cl + HCO3) = 164 - (139 + 8) = 17. Slightly above normal (8–16) → high anion gap metabolic acidosis from lactic acidosis (shock). Note: in hypernatremic dehydration, AG may be falsely elevated.",
+      "rubric": "Calculate AG, recognize high"
+    },
+    {
+      "id": "q4",
+      "question": "What is the diagnosis and immediate management?",
+      "answer": "Diagnosis: Severe dehydration with hypovolemic shock + lactic acidosis + hypernatremic dehydration. Management: 1. IV boluses of isotonic saline (20 ml/kg) until perfusion restored (may need 60 ml/kg). 2. Once perfusion restored, gradual correction of hypernatremia over 48 hours (no more than 0.5 mEq/L/hr or 12 mEq/L/day) to avoid cerebral edema. 3. Treat underlying cause (gastroenteritis). 4. Monitor electrolytes, glucose, urine output. 5. Consider inotropes if shock persists. 6. Antibiotics if sepsis suspected.",
+      "rubric": "Bolus isotonic, then slow correction of hypernatremia"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify metabolic acidosis + shock",
+      "Anion gap calculation",
+      "Hypernatremia correction rate"
+    ],
+    "bonus": [
+      "Slow correction of hypernatremia to avoid cerebral edema"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

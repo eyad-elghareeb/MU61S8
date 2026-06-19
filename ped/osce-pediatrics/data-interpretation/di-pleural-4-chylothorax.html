@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pleural Fluid Interpretation — Chylothorax</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-pleural-4-chylothorax",
+  title: "Pleural Fluid Interpretation — Chylothorax",
+  description: "5-year-old with cough and respiratory distress; milky pleural fluid.",
+  category: "Data Interpretation",
+  tags: ["pleural fluid", "chylothorax", "milky"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Advanced",
+  "task": "Interpret the pleural fluid analysis and answer the examiner's questions.",
+  "examiner": {
+    "name": "Dr. Ahmed",
+    "title": "Consultant Pulmonologist"
+  },
+  "dataPresented": {
+    "scenario": "A 5-year-old male child presented with cough and respiratory distress. Chest percussion revealed stony dullness & chest auscultation revealed diminished breath sounds on the right side. Pleural fluid analysis:",
+    "tables": [
+      {
+        "title": "Pleural Fluid Analysis",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Nature",
+            "Milky",
+            "Chylous"
+          ],
+          [
+            "pH",
+            "> 7.3",
+            "Normal"
+          ],
+          [
+            "Pleural F./Serum LDH ratio",
+            "< 0.6",
+            "Low"
+          ],
+          [
+            "Blood glucose",
+            "> 60 mg/dl",
+            "Normal"
+          ],
+          [
+            "Pleural F./Serum Protein ratio",
+            "< 0.5",
+            "Low"
+          ],
+          [
+            "Triglycerides",
+            "Elevated (> 110 mg/dl)",
+            "Diagnostic"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "These findings indicate:",
+      "answer": "d) Chylothorax",
+      "rubric": "Milky fluid + elevated triglycerides → chylothorax"
+    },
+    {
+      "id": "q2",
+      "question": "What are the causes of chylothorax in children?",
+      "answer": "1. Congenital (Down syndrome, Noonan, lymphangiectasia). 2. Post-surgical (cardiac surgery, esophageal surgery, thoracic surgery — most common cause). 3. Trauma (birth trauma, blunt chest trauma). 4. Malignancy (lymphoma). 5. SVC syndrome. 6. Idiopathic.",
+      "rubric": "Mention postsurgical as most common cause"
+    },
+    {
+      "id": "q3",
+      "question": "Outline the management of chylothorax.",
+      "answer": "1. Conservative: chest tube drainage, MCT-based low-fat diet or NPO with TPN, octreotide. 2. Surgical: thoracic duct ligation or embolization if conservative fails after 2–4 weeks. 3. Treat underlying cause.",
+      "rubric": "Conservative first (MCT diet, chest tube) → surgical if fails"
+    },
+    {
+      "id": "q4",
+      "question": "Why use MCT (medium-chain triglycerides) in chylothorax?",
+      "answer": "MCTs are absorbed directly into the portal vein rather than transported via intestinal lymphatics and thoracic duct, reducing lymph flow and allowing the duct to heal.",
+      "rubric": "Mechanism: bypass thoracic duct"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify chylothorax",
+      "Recognize milky fluid",
+      "MCT diet rationale"
+    ],
+    "bonus": [
+      "Octreotide as adjunct"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

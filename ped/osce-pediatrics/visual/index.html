@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Paediatrics Visual Diagnosis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index-engine.css">
+<meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:title" content="Pediatrics OSCE - Visual Diagnosis">
+<meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pediatrics OSCE - Visual Diagnosis">
+<meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Paediatrics">←</a>
+    <div class="topbar-title">MU61 Quiz - Paediatrics Visual Diagnosis</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Paediatrics Visual Diagnosis</span></h1>
+      <p>Identify clinical signs from images and give differential diagnoses.</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "vis-1-cyanosis-clubbing-chd",
+    title: "Visual Diagnosis — Cyanosis And Clubbing (Cyanotic Heart Disease)",
+    description: "Photo showing cyanosis and digital clubbing in a child.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-1-cyanosis-clubbing-chd.html"
+  },
+  {
+    uid: "vis-2-hsp-purpura",
+    title: "Visual Diagnosis — Henoch SchöNlein Purpura",
+    description: "Photo showing palpable purpura on lower limbs and buttocks.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-2-hsp-purpura.html"
+  },
+  {
+    uid: "vis-3-cyanosis-types",
+    title: "Visual Diagnosis — Central Vs Peripheral Vs Differential Cyanosis",
+    description: "Identify the type of cyanosis from clinical photos.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-3-cyanosis-types.html"
+  },
+  {
+    uid: "vis-4-petechiae-purpura-ecchymosis",
+    title: "Visual Diagnosis — Petechiae Vs Purpura Vs Ecchymosis",
+    description: "Differentiate petechiae, purpura, and ecchymosis.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-4-petechiae-purpura-ecchymosis.html"
+  },
+  {
+    uid: "vis-5-hemarthrosis-hemophilia",
+    title: "Visual Diagnosis — Hemarthrosis (Hemophilia)",
+    description: "Photo showing swollen knee joint in a child with hemophilia.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-5-hemarthrosis-hemophilia.html"
+  },
+  {
+    uid: "vis-6-rf-erythema-marginatum",
+    title: "Visual Diagnosis — Erythema Marginatum (Rheumatic Fever)",
+    description: "Photo showing pink ring-like rash on trunk.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-6-rf-erythema-marginatum.html"
+  },
+  {
+    uid: "vis-7-measles-koplik",
+    title: "Visual Diagnosis — Measles (Koplik'S Spots)",
+    description: "Photo showing white spots on buccal mucosa and maculopapular rash.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-7-measles-koplik.html"
+  },
+  {
+    uid: "vis-8-chickenpox",
+    title: "Visual Diagnosis — Chickenpox (Varicella)",
+    description: "Photo showing vesicular rash in different stages.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-8-chickenpox.html"
+  },
+  {
+    uid: "vis-9-down-syndrome",
+    title: "Visual Diagnosis — Down Syndrome Facies",
+    description: "Photo showing typical facial features of Down syndrome.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-9-down-syndrome.html"
+  },
+  {
+    uid: "vis-10-thalassemia-facies",
+    title: "Visual Diagnosis — Thalassemia Facies (Mongoloid/Chipmunk)",
+    description: "Photo showing characteristic facial features of thalassemia major.",
+    icon: "👁️",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "vis-10-thalassemia-facies.html"
+  }
+];
+</script>
+
+<div class="dash-overlay" id="tracker-dashboard">
+  <div class="dash-modal">
+    <div class="dash-header">
+      <h2 id="dash-title-text">📊 Question Tracker</h2>
+      <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
+    </div>
+    <div class="dash-scope-bar" id="dash-scope-bar"></div>
+    <div class="dash-summary">
+      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
+      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
+      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
+    </div>
+    <div class="dash-body" id="dash-body"></div>
+    <div class="dash-footer">
+      <button class="btn-dash-action" onclick="exportTrackerToPDF()">📄 Export PDF</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>
+      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();
+</script>
+<script>
+if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js').catch(function(){})});}
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Chest Examination — Pneumonia Findings</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "exam-6-chest-pneumonia-findings",
+  title: "Chest Examination — Pneumonia Findings",
+  description: "Respiratory examination findings of a child with bacterial pneumonia.",
+  category: "Examination",
+  tags: ["chest exam", "pneumonia", "consolidation"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Intermediate",
+  "task": "Interpret the chest examination findings.",
+  "examiner": {
+    "name": "Dr. Ahmed",
+    "title": "Consultant Pulmonologist"
+  },
+  "dataPresented": {
+    "scenario": "A 4-year-old child with high fever and productive cough. Chest examination:",
+    "tables": [
+      {
+        "title": "Chest Examination Findings",
+        "headers": [
+          "Item",
+          "Finding"
+        ],
+        "rows": [
+          [
+            "Inspection",
+            "Respiratory distress: tachypnea, retraction, grunting, cyanosis (variable); possibly reduced movement on affected side"
+          ],
+          [
+            "Palpation",
+            "↑↑ Tactile Vocal Fremitus (TVF) on affected side; trachea CENTRAL"
+          ],
+          [
+            "Percussion",
+            "IMPAIRED NOTE (dullness) on affected side"
+          ],
+          [
+            "Auscultation — breath sounds",
+            "BRONCHIAL breathing (tubular) on affected side"
+          ],
+          [
+            "Added sounds",
+            "Coarse crepitations (late inspiratory)"
+          ],
+          [
+            "Vocal resonance",
+            "Bronchophony (↑↑ vocal resonance, whispered pectoriloquy)"
+          ],
+          [
+            "Investigations",
+            "Chest X-ray, CBC, CRP, cultures (blood, sputum), rapid diagnostic tests"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the diagnosis?",
+      "answer": "Lobar pneumonia (bacterial). Triad: impaired dullness + bronchial breathing + ↑↑ TVF/bronchophony + coarse crepitations.",
+      "rubric": "Impaired dullness + bronchial breathing + ↑TVF"
+    },
+    {
+      "id": "q2",
+      "question": "What are the causes of impaired dullness / dullness?",
+      "answer": "1. Consolidation (pneumonia). 2. Atelectasis (with patent bronchus). 3. Pleural effusion (stony dullness). 4. Pleural thickening. 5. Mass / tumor. 6. Diaphragmatic hernia.",
+      "rubric": "Multiple causes"
+    },
+    {
+      "id": "q3",
+      "question": "What are the complications of pneumonia?",
+      "answer": "1. Lung: necrotizing pneumonia (S. pneumo), pneumatocele (S. aureus), lung abscess, respiratory failure. 2. Pleura: parapneumonic effusion, pneumothorax, empyema. 3. General: respiratory failure, sepsis, DIC, hyponatremia (SIADH).",
+      "rubric": "Lung + pleura + systemic"
+    },
+    {
+      "id": "q4",
+      "question": "What is the management?",
+      "answer": "1. General supportive: O2, antipyretics, IV fluids (careful — SIADH). 2. Antibiotics: Oral amoxicillin for mild outpatient; IV cefotaxime/ceftriaxone for hospitalized; macrolide if atypical (mycoplasma); vancomycin/clindamycin if staph or resistant. 3. Oral zinc (20 mg) accelerates recovery. 4. Treat complications: chest tube for empyema, ICU for respiratory failure.",
+      "rubric": "Supportive + antibiotics + complications"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify pneumonia pattern",
+      "Causes of dullness",
+      "Complications",
+      "Antibiotics"
+    ],
+    "bonus": [
+      "Zinc supplementation"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

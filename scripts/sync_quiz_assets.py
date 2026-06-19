@@ -52,6 +52,13 @@ FOLDER_TITLES = {
     "med": "Internal Medicine",
     "chest": "Chest Medicine",
     "past-years": "Past Years",
+    "osce-pediatrics": "OSCE",
+    "history": "History Taking",
+    "data-interpretation": "Data Interpretation",
+    "radiology": "Radiology",
+    "visual": "Visual Diagnosis",
+    "life support": "Life Support",
+    "examination": "Examination",
 }
 
 

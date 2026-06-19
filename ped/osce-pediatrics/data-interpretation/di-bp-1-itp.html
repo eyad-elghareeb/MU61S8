@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Immune Thrombocytopenia (ITP)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-1-itp",
+  title: "Bleeding Profile — Immune Thrombocytopenia (ITP)",
+  description: "2-year-old boy with mucosal and skin bleeding; isolated prolonged BT with low platelets.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "ITP", "thrombocytopenia"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Intermediate",
+  "task": "Interpret the bleeding profile of a 2-year-old boy with mucosal and skin bleeding.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "This is the bleeding profile of a 2-year-old boy with mucosal and skin bleeding. Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "12 g/dl",
+            "11.5–13.5"
+          ],
+          [
+            "WBCs",
+            "4,900 cells/mm³",
+            "4,000–11,000"
+          ],
+          [
+            "Platelets",
+            "200,000 cells/mm³",
+            "150,000–400,000"
+          ],
+          [
+            "BT (Bleeding Time)",
+            "10 min",
+            "2–4 min  →  PROLONGED"
+          ],
+          [
+            "CT (Clotting Time)",
+            "8 min",
+            "4–8 min  →  NORMAL (upper limit)"
+          ],
+          [
+            "PT",
+            "12 sec",
+            "12–20 sec  →  NORMAL"
+          ],
+          [
+            "APTT",
+            "30 sec",
+            "25–40 sec  →  NORMAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "a) Immune thrombocytopenia. ISOLATED prolonged BT with normal CT/PT/APTT. Note: platelet count is borderline normal here (200K) but BT prolonged — this pattern is classic for platelet dysfunction / ITP. In typical ITP, platelet count is also very low.",
+      "rubric": "Isolated prolonged BT + low/normal platelets → platelet disorder → ITP"
+    },
+    {
+      "id": "q2",
+      "question": "What is the pathophysiology of ITP?",
+      "answer": "Autoantibodies (IgG) against platelet surface glycoproteins (IIb/IIIa, Ib/IX) → platelet opsonization → splenic macrophage destruction → thrombocytopenia. Often follows viral infection (1–4 weeks prior).",
+      "rubric": "Autoimmune + post-viral"
+    },
+    {
+      "id": "q3",
+      "question": "Outline the treatment of ITP.",
+      "answer": "1. Conservative (observation) in mild cases without bleeding. 2. Corticosteroids (prednisone 1–2 mg/kg/day) if: purpura > 50% body, rapidly progressive, on face/mucous membranes, orifical/ICH bleeding, chronic/recurrent. 3. IVIG (2 g/kg over 1–2 days) for severe acute. 4. Anti-D (Rh+ patients). 5. Immunosuppressants (cyclosporine, cyclophosphamide, azathioprine) for chronic. 6. Splenectomy for severe acute (non-responsive) or chronic with menorrhagia.",
+      "rubric": "Conservative → steroids → IVIG → splenectomy"
+    },
+    {
+      "id": "q4",
+      "question": "When is splenectomy indicated in ITP?",
+      "answer": "1. Severe acute cases non-responsive to medical treatment. 2. Chronic cases with bleeding (e.g., menorrhagia). Vaccinate (pneumococcus, meningococcus, Hib) at least 2 weeks before; lifelong penicillin prophylaxis after.",
+      "rubric": "Indications + vaccination"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify ITP",
+      "Pathophysiology",
+      "Treatment ladder"
+    ],
+    "bonus": [
+      "Vaccination before splenectomy"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

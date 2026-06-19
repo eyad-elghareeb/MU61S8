@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Beta-Thalassemia Major — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-thalassemia",
+  title: "Beta-Thalassemia Major — History Taking",
+  description: "4-year-old with chronic pallor, jaundice, abdominal distension, and facial changes.",
+  category: "History Taking",
+  tags: ["hematology", "chronic", "hemolysis", "transfusion"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from the mother of a 4-year-old boy with chronic pallor and jaundice.",
+  "patient": {
+    "name": "Mrs. Fatma (mother of Ali)",
+    "age": 31,
+    "gender": "female",
+    "avatarSeed": "mother-fatma",
+    "opening": "Doctor, Ali has been pale and yellowish since he was a baby. His belly has gotten bigger over the last year, his face looks different from his siblings, and he needs blood transfusions every month. His growth is also behind."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Beta-thalassemia major",
+    "keySymptoms": [
+      "Chronic pallor and jaundice (since infancy)",
+      "Failure to thrive, growth retardation",
+      "Abdominal enlargement (hepatosplenomegaly)",
+      "Mongoloid / chipmunk facies (frontal bossing, maxillary protrusion, depressed nasal bridge)",
+      "Recurrent transfusion requirement",
+      "Bone changes (osteoporosis, fractures)",
+      "Hemosiderosis features (bronze skin, DM, cardiac, endocrine)"
+    ],
+    "redFlags": [
+      "Heart failure from anemia or iron overload cardiomyopathy",
+      "Arrhythmia",
+      "Endocrinopathies (DM, hypogonadism, hypothyroid)",
+      "Sepsis post-splenectomy",
+      "Transfusion-transmitted infections"
+    ],
+    "pastHistory": [
+      "Diagnosed at 6 months with severe anemia",
+      "Monthly transfusions since age 1",
+      "On iron chelation (deferoxamine / deferasirox)",
+      "Consanguineous parents (1st cousins)"
+    ],
+    "vitalSigns": "T 37°C, HR 120, RR 28, BP 90/55, severe pallor, mild icterus, Mongoloid facies, hepatosplenomegaly (liver 5 cm, spleen 8 cm), short stature",
+    "differentials": [
+      "Sickle cell anemia",
+      "Hereditary spherocytosis",
+      "G6PD deficiency",
+      "Chronic infection anemia"
+    ],
+    "management": "Lifelong transfusion program; iron chelation (deferoxamine, deferiprone, deferasirox); folic acid; splenectomy if hypersplenism; bone marrow transplant (curative); gene therapy"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD — onset is CHRONIC (key feature distinguishing from acute hemolysis)",
+      "Pallor and jaundice — duration",
+      "Symptoms of anemia: anorexia, easy fatigability, tachycardia",
+      "Symptoms of each type: thalassemia (Mongoloid face, hemosiderosis, growth retardation, osteoporosis), SCA (acute abdomen, dactylitis, chest syndrome, renal pain, AR inheritance), spherocytosis (gallstones, splenomegaly, AD inheritance)",
+      "Symptoms of related system: abdominal enlargement, bleeding tendency, blood transfusion (number, frequency, reasons), bone ache, ecchymosis, LN, itching",
+      "Past history of similar condition, family history (consanguinity, AR inheritance)",
+      "Other systems",
+      "Differential: SCA, spherocytosis, G6PD"
+    ],
+    "bonus": [
+      "Compliance with iron chelation",
+      "Endocrine function monitoring",
+      "Vaccination status pre-splenectomy",
+      "Genetic counseling"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

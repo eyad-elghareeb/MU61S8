@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>ABG Interpretation — Mixed Disorder (DKA + Asthma)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-abg-4-mixed-dka-asthma",
+  title: "ABG Interpretation — Mixed Disorder (DKA + Asthma)",
+  description: "3-year-old 9-kg child with polyuria and wheeze; mixed acidosis.",
+  category: "Data Interpretation",
+  tags: ["ABG", "mixed", "DKA", "asthma", "anion gap"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Critical Care / Endocrinology",
+  "difficulty": "Advanced",
+  "task": "Interpret the ABG and identify the mixed disorder.",
+  "examiner": {
+    "name": "Dr. Khaled",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "A 3-year-old child weighing 9 kg has prolonged polyuria and polydipsia. He develops respiratory illness with tachypnea, audible wheeze, and difficulty breathing. ABG shows:",
+    "tables": [
+      {
+        "title": "Arterial Blood Gas + Electrolytes",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Normal Range"
+        ],
+        "rows": [
+          [
+            "pH",
+            "7.10",
+            "7.35–7.45  →  ACIDEMIA"
+          ],
+          [
+            "PaCO2",
+            "70 mmHg",
+            "35–45  →  HIGH"
+          ],
+          [
+            "HCO3",
+            "14 mEq/L",
+            "20–28  →  LOW"
+          ],
+          [
+            "Na+",
+            "120 mEq/L",
+            "135–145  →  LOW"
+          ],
+          [
+            "K+",
+            "2.5 mEq/L",
+            "3.5–5.5  →  LOW"
+          ],
+          [
+            "Cl-",
+            "95 mEq/L",
+            "95–110"
+          ],
+          [
+            "SaO2",
+            "85%",
+            "95–97%"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The primary disorder here is:",
+      "answer": "d) Mixed disorder. pH very low (acidemia) with BOTH low HCO3 (metabolic acidosis from DKA) and high PaCO2 (respiratory acidosis from asthma fatigue). This is MIXED metabolic and respiratory acidosis.",
+      "rubric": "Low HCO3 AND high CO2 = mixed acidosis"
+    },
+    {
+      "id": "q2",
+      "question": "The compensatory mechanism here is:",
+      "answer": "d) No compensation. The two processes are pushing pH in the same direction (both acidoses) — no effective compensation possible.",
+      "rubric": "Both processes same direction = no compensation"
+    },
+    {
+      "id": "q3",
+      "question": "The anion gap here is:",
+      "answer": "a) High. AG = Na - (Cl + HCO3) = 120 - (95 + 14) = 11. Hmm, but if Na is low (120), correction factor: for every 4 mEq/L Na below 138, add 4 to AG. Correction = 18/4 × 4 = +18. So corrected AG = 11 + 18 = 29 → high. This is DKA (high AG metabolic acidosis) PLUS respiratory acidosis from asthma.",
+      "rubric": "Calculate AG, correct for hypoalbuminemia/hyponatremia"
+    },
+    {
+      "id": "q4",
+      "question": "What does the low HCO3 indicate?",
+      "answer": "b) Buffering extra acids. The low HCO3 is from buffering ketoacids in DKA, not from renal loss or compensation for respiratory alkalosis.",
+      "rubric": "Ketoacids consumed bicarbonate"
+    },
+    {
+      "id": "q5",
+      "question": "First emergency management?",
+      "answer": "a) Endotracheal intubation. Severe respiratory acidosis (PaCO2 70 in asthma = fatigue, impending arrest) + metabolic acidosis + hypoxia → secure airway first. THEN start DKA protocol (fluids, insulin, K+).",
+      "rubric": "Airway first when respiratory failure is present"
+    },
+    {
+      "id": "q6",
+      "question": "With correction of acid-base and not interfering with potassium, what will K+ do?",
+      "answer": "b) Decrease. Insulin drives K+ into cells; correcting acidosis also shifts K+ intracellularly. Even with normal K+ initially, it will drop further → MUST replace K+.",
+      "rubric": "Predict K+ drop with insulin + correction"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify mixed disorder",
+      "Anion gap calculation",
+      "Airway first",
+      "K+ management"
+    ],
+    "bonus": [
+      "Hyperchloremic vs high AG component after treatment"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

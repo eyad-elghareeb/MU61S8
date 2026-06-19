@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Diabetic Ketoacidosis — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-dka",
+  title: "Diabetic Ketoacidosis — History Taking",
+  description: "6-year-old with 3 weeks of polyuria, polydipsia, weight loss, now drowsy with Kussmaul breathing.",
+  category: "History Taking",
+  tags: ["endocrine", "DKA", "type-1-DM", "emergency"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Endocrinology",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from the mother of a 6-year-old with polyuria, polydipsia, weight loss, and altered consciousness.",
+  "patient": {
+    "name": "Mrs. Heba (mother of Yara)",
+    "age": 32,
+    "gender": "female",
+    "avatarSeed": "mother-heba-yara",
+    "opening": "Doctor, Yara has been drinking and urinating constantly for three weeks, has lost weight, and today she's become drowsy and is breathing fast and deep with a fruity smell on her breath. She's also been vomiting."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Type 1 diabetes mellitus presenting with diabetic ketoacidosis (DKA)",
+    "keySymptoms": [
+      "Polyuria, polydipsia (3 weeks)",
+      "Weight loss despite polyphagia",
+      "Kussmaul breathing (deep, rapid, sighing)",
+      "Fruity breath odor (acetone)",
+      "Vomiting, abdominal pain",
+      "Altered consciousness → coma"
+    ],
+    "redFlags": [
+      "Cerebral edema (complication of treatment, especially < 5 years)",
+      "Hypokalemia during insulin therapy",
+      "Hypoglycemia",
+      "Shock from severe dehydration",
+      "Arrhythmia"
+    ],
+    "pastHistory": [
+      "Recent viral illness 1 week prior",
+      "No previous DKA episodes",
+      "Family history: aunt with type 1 DM",
+      "Otherwise previously healthy"
+    ],
+    "vitalSigns": "T 37°C, HR 130, RR 36 (deep, Kussmaul), BP 85/55, GCS 12, severe dehydration, fruity breath",
+    "differentials": [
+      "Sepsis",
+      "Gastroenteritis with dehydration",
+      "Asthma (without Kussmaul)",
+      "Meningitis / encephalitis",
+      "Salicylate toxicity",
+      "UREA cycle disorder",
+      "Inborn errors of metabolism"
+    ],
+    "management": "Initial fluid bolus NS; insulin IV (0.1 U/kg/hr) AFTER initial fluid expansion; K+ replacement once urinating; monitor glucose, electrolytes, pH; avoid bicarbonate unless severe; watch for cerebral edema; transition to SC insulin"
+  },
+  "rubric": {
+    "mustAsk": [
+      "Polyuria, polydipsia (cardinal symptoms)",
+      "Weight loss (despite polyphagia)",
+      "Kussmaul breathing, fruity breath",
+      "Vomiting, abdominal pain (DKA mimic)",
+      "Altered consciousness, coma",
+      "Recent infection (precipitating)",
+      "Symptoms of related system (other causes of metabolic acidosis / coma)",
+      "Past: family history of DM, autoimmune disease",
+      "Differential: sepsis, gastroenteritis, asthma, meningitis, salicylate, IEM",
+      "Other systems"
+    ],
+    "bonus": [
+      "Celiac / thyroid screening (autoimmune associations)",
+      "Honeymoon phase after diagnosis",
+      "Sick day rules"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

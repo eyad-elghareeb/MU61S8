@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Microcytic Anemia (Thalassemia vs IDA)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-11-thal-trait-or-major",
+  title: "CBC Interpretation — Microcytic Anemia (Thalassemia vs IDA)",
+  description: "8-year-old with microcytic anemia and high reticulocytes.",
+  category: "Data Interpretation",
+  tags: ["CBC", "thalassemia", "differential"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC and identify the underlying cause.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "An 8-year-old boy with jaundice and hepatosplenomegaly. CBC:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "7,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "400,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "74 fl",
+            "Borderline low"
+          ],
+          [
+            "MCH",
+            "25 pg",
+            "Low"
+          ],
+          [
+            "MCHC",
+            "30 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "5%",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "a) Hemorrhagic anemia OR thalassemia. Microcytic anemia with HIGH reticulocyte count → bone marrow is responding; either thalassemia or active/recent blood loss. Clinical context (jaundice, HSM) favors thalassemia.",
+      "rubric": "Microcytic + high retic → thalassemia or hemorrhage"
+    },
+    {
+      "id": "q2",
+      "question": "What is the corrected reticulocyte count and why is it used?",
+      "answer": "Corrected RC = RC × (patient Hct / normal Hct). It accounts for the fact that reticulocyte % is relative to total RBC count. Corrected RC > 2% indicates adequate marrow response.",
+      "rubric": "Formula and rationale"
+    },
+    {
+      "id": "q3",
+      "question": "What further tests would you order?",
+      "answer": "1. Peripheral smear (target cells, anisocytosis in thalassemia). 2. Iron studies (low iron/ferritin in IDA, high in thalassemia). 3. Hb electrophoresis (definitive for thalassemia). 4. Bilirubin (high indirect in hemolysis). 5. LDH (high in hemolysis). 6. Coombs test (if immune hemolysis suspected).",
+      "rubric": "Smear + iron studies + electrophoresis"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Use reticulocyte count correctly",
+      "Iron studies",
+      "Hb electrophoresis"
+    ],
+    "bonus": [
+      "Corrected retic formula"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

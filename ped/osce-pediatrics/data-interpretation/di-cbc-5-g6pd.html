@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — G6PD Deficiency Hemolysis</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-5-g6pd",
+  title: "CBC Interpretation — G6PD Deficiency Hemolysis",
+  description: "8-year-old boy; normocytic anemia with high reticulocytes after drug exposure.",
+  category: "Data Interpretation",
+  tags: ["CBC", "G6PD", "hemolysis", "normocytic"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC of an 8-year-old boy with sudden pallor and dark urine.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "An 8-year-old boy developed sudden pallor and dark urine after taking an antibiotic for a UTI. CBC performed:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl",
+            "Low (acute anemia)"
+          ],
+          [
+            "WBCs",
+            "7,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "400,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "90 fl",
+            "Normal"
+          ],
+          [
+            "MCH",
+            "26 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "32 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "5%",
+            "HIGH (hemolysis)"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "e) G6PD deficiency hemolytic anemia. Normocytic normochromic anemia with high reticulocyte count (regenerative) → acute hemolysis.",
+      "rubric": "Normocytic + high retic → hemolytic; with drug trigger → G6PD"
+    },
+    {
+      "id": "q2",
+      "question": "What peripheral smear findings support G6PD deficiency during an attack?",
+      "answer": "Heinz bodies (denatured Hb), bite cells, blister cells, schistocytes. After the attack, smear may be normal.",
+      "rubric": "Heinz bodies are characteristic"
+    },
+    {
+      "id": "q3",
+      "question": "What is the diagnostic test for G6PD deficiency?",
+      "answer": "G6PD enzyme assay. During an acute attack, the result may be falsely normal because the most deficient RBCs have already been hemolyzed; repeat after recovery.",
+      "rubric": "Enzyme assay, with caveat"
+    },
+    {
+      "id": "q4",
+      "question": "What drugs trigger hemolysis in G6PD deficiency?",
+      "answer": "1. Antimalarials (primaquine, chloroquine). 2. Sulfonamides. 3. Aspirin (high dose). 4. Nitrofurantoin. 5. Chloramphenicol. 6. Naphthalene (mothballs). 7. Vitamin K analogues. 8. Anticonvulsants (phenytoin). 9. Fava beans (favism).",
+      "rubric": "Mention at least 4 drug classes"
+    },
+    {
+      "id": "q5",
+      "question": "Outline the management of G6PD hemolytic crisis.",
+      "answer": "1. Stop offending agent. 2. Supportive: hydration, monitor urine output. 3. Blood transfusion if Hb < 7 g/dl or Hb < 9 with persistent hemoglobinuria. 4. Treat infection. 5. Folic acid. 6. Avoid future triggers (give patient an avoidance card).",
+      "rubric": "Stop trigger + transfusion threshold"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify hemolytic anemia",
+      "Heinz bodies",
+      "Enzyme assay",
+      "Avoidance of triggers"
+    ],
+    "bonus": [
+      "Fava beans and mothballs as non-drug triggers"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

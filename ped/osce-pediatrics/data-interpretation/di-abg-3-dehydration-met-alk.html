@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>ABG Interpretation — Metabolic Alkalosis (Dehydration / Vomiting)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-abg-3-dehydration-met-alk",
+  title: "ABG Interpretation — Metabolic Alkalosis (Dehydration / Vomiting)",
+  description: "3-year-old with failure to thrive; metabolic alkalosis.",
+  category: "Data Interpretation",
+  tags: ["ABG", "metabolic alkalosis", "dehydration"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Nephrology / Critical Care",
+  "difficulty": "Advanced",
+  "task": "Interpret the arterial blood gas of a 3-year-old boy with failure to thrive.",
+  "examiner": {
+    "name": "Dr. Khaled",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "A 3-year-old boy with failure to thrive (chronic vomiting, suspected pyloric stenosis). ABG done.",
+    "tables": [
+      {
+        "title": "Arterial Blood Gas + Electrolytes",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Normal Range"
+        ],
+        "rows": [
+          [
+            "pH",
+            "7.60",
+            "7.35–7.45  →  ALKALEMIA"
+          ],
+          [
+            "PaCO2",
+            "55 mmHg",
+            "35–45  →  HIGH (compensation)"
+          ],
+          [
+            "HCO3",
+            "34 mEq/L",
+            "20–28  →  HIGH"
+          ],
+          [
+            "Na+",
+            "167 mEq/L",
+            "135–145  →  HIGH (severe dehydration)"
+          ],
+          [
+            "K+",
+            "4.3 mEq/L",
+            "3.5–5.5"
+          ],
+          [
+            "Cl-",
+            "110 mEq/L",
+            "95–110"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The primary disorder here is:",
+      "answer": "d) Metabolic alkalosis. pH high (alkalemia) + HCO3 high → primary metabolic alkalosis (from vomiting — loss of gastric HCl).",
+      "rubric": "Alkalemia + high HCO3 = metabolic alkalosis"
+    },
+    {
+      "id": "q2",
+      "question": "The compensatory mechanism here is:",
+      "answer": "c) Respiratory acidosis. PaCO2 is HIGH (55) — hypoventilation compensating for metabolic alkalosis.",
+      "rubric": "High CO2 = respiratory compensation"
+    },
+    {
+      "id": "q3",
+      "question": "The anion gap here is:",
+      "answer": "a) High. AG = Na - (Cl + HCO3) = 167 - (110 + 34) = 23. Mildly elevated — likely from lactic acidosis (severe dehydration) or hypoalbuminemia correction needed.",
+      "rubric": "Calculate and identify slightly elevated"
+    },
+    {
+      "id": "q4",
+      "question": "The cause of increased PaCO2 is:",
+      "answer": "d) Respiratory compensation. The high CO2 is compensation for metabolic alkalosis (hypoventilation), NOT primary respiratory pathology.",
+      "rubric": "Compensation, not primary"
+    },
+    {
+      "id": "q5",
+      "question": "What is the underlying diagnosis?",
+      "answer": "Hypertrophic pyloric stenosis (HPS): chronic vomiting → loss of HCl → metabolic alkalosis with hypochloremia, hypokalemia; severe dehydration → hypernatremia (Na 167). Classic 'hypochloremic, hypokalemic metabolic alkalosis' of HPS.",
+      "rubric": "Pyloric stenosis classic picture"
+    },
+    {
+      "id": "q6",
+      "question": "What is the management?",
+      "answer": "1. Fluid resuscitation: normal saline boluses, then D5 1/2 NS with KCl once urine output established. 2. Correct electrolytes (K, Cl). 3. NG tube decompression. 4. Pyloromyotomy (Ramstedt) after stabilization. 5. Treat as surgical urgency, not emergency — fluid correction first.",
+      "rubric": "Fluids + electrolytes first, then surgery"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify metabolic alkalosis",
+      "Recognize respiratory compensation",
+      "Diagnose pyloric stenosis",
+      "Fluid resuscitation first"
+    ],
+    "bonus": [
+      "Hypochloremic hypokalemic metabolic alkalosis as classic triad"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>G6PD Deficiency — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-g6pd",
+  title: "G6PD Deficiency — History Taking",
+  description: "3-year-old with sudden pallor and yellowish eyes 1 day after eating fava beans.",
+  category: "History Taking",
+  tags: ["hematology", "hemolysis", "acute", "favism"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 3-year-old boy presenting with sudden pallor and yellowish discoloration of eyes.",
+  "patient": {
+    "name": "Mrs. Sara (mother of Kareem)",
+    "age": 27,
+    "gender": "female",
+    "avatarSeed": "mother-sara",
+    "opening": "Doctor, since yesterday Kareem has become very pale and his eyes turned yellow. His urine is dark like Coca-Cola. The only thing I can think of is that he ate fava beans two days ago at his grandmother's house."
+  },
+  "hiddenProfile": {
+    "diagnosis": "G6PD deficiency — acute hemolytic crisis (favism)",
+    "keySymptoms": [
+      "Sudden pallor (acute onset, ~1 day)",
+      "Jaundice — sclera and skin",
+      "Dark urine (hemoglobinuria)",
+      "Anorexia, easy fatigability, tachycardia",
+      "Trigger: fava beans, oxidant drugs, severe infection"
+    ],
+    "redFlags": [
+      "Severe anemia with circulatory collapse",
+      "Acute kidney injury from hemoglobinuria",
+      "Hyperkalemia"
+    ],
+    "pastHistory": [
+      "Neonatal jaundice requiring phototherapy",
+      "No previous similar episodes",
+      "Family history: maternal uncle with similar episodes (X-linked)",
+      "Otherwise healthy, normal development"
+    ],
+    "vitalSigns": "T 37°C, HR 130, RR 30, BP 95/55, marked pallor, icteric sclerae, dark urine, no organomegaly",
+    "differentials": [
+      "Autoimmune hemolytic anemia",
+      "Chronic hemolytic anemia (thalassemia, SCA, spherocytosis)",
+      "Hepatitis (no pallor)",
+      "Sepsis"
+    ],
+    "management": "Stop offending agent; blood transfusion if Hb < 7 or < 9 with persistent hemoglobinuria; hydration; treat infection; avoid precipitants in future; vitamin E"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD — onset SUDDEN (key feature distinguishing from chronic hemolysis)",
+      "Pallor: site, severity",
+      "Jaundice: site, color of urine and stool, itching, abdominal pain (RUQ), fever, nausea/vomiting, weight loss",
+      "Pallor (VIP) — distinguishes from hepatitis",
+      "Symptoms of anemia: anorexia, easy fatigability, tachycardia, jaundice",
+      "Symptoms of G6PD specifically: exposure to oxidants — favism (beans, pollen), drugs (sulfonamides, antimalarials, ASA, chloramphenicol, naphthalene, vitamin K, anticonvulsants), severe infection",
+      "Symptoms of related system: abdominal enlargement, bleeding tendency, blood transfusion, bone ache, ecchymosis, LN, itching, weight loss",
+      "Differential: hepatitis (no pallor), autoimmune hemolytic, chronic hemolytic",
+      "Past: neonatal jaundice",
+      "Family history (X-linked)",
+      "Other systems"
+    ],
+    "bonus": [
+      "Newborn screening result",
+      "Counseling about drug avoidance card"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

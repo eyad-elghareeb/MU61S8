@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Coarctation of the Aorta — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-coarctation",
+  title: "Coarctation of the Aorta — History Taking",
+  description: "12-year-old girl with easy fatigability, intermittent headache, and recurrent leg pain.",
+  category: "History Taking",
+  tags: ["cardiology", "congenital", "hypertension", "adolescent"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Cardiology",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from a 12-year-old girl presenting with recurrent leg pain and intermittent headache.",
+  "patient": {
+    "name": "Mariam",
+    "age": 12,
+    "gender": "female",
+    "avatarSeed": "patient-mariam",
+    "opening": "Doctor, I get tired quickly when I run, I have headaches sometimes, and my legs hurt when I walk a lot. The school nurse said my blood pressure was high."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Coarctation of the aorta (CoA)",
+    "keySymptoms": [
+      "Easy fatigability",
+      "Intermittent headache (upper body HTN)",
+      "Recurrent leg pain / claudication (lower body hypoperfusion)",
+      "Cold feet, weak or absent femoral pulses",
+      "Epistaxis"
+    ],
+    "redFlags": [
+      "Severe hypertension → intracranial hemorrhage, heart failure",
+      "Neonatal critical CoA: circulatory collapse when duct closes",
+      "Endocarditis",
+      "Aortic rupture / dissection"
+    ],
+    "pastHistory": [
+      "Murmur noted at school check",
+      "No previous hospitalizations",
+      "Family history: father hypertensive"
+    ],
+    "vitalSigns": "UE BP 145/90 mmHg, LE BP 95/60 mmHg, radio-femoral delay, weak femorals, systolic murmur left 2nd ICS / interscapular",
+    "differentials": [
+      "Renal artery stenosis",
+      "Essential HTN",
+      "Takayasu arteritis",
+      "Pheochromocytoma"
+    ],
+    "management": "Medical: PGE1 in neonates; anti-congestive measures; balloon angioplasty; Surgical: resection + end-to-end anastomosis, aortoplasty, conduit"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of easy fatigability",
+      "Headache: site, character, severity, timing",
+      "Leg pain: relation to exertion (claudication)",
+      "Site and radiation of pain",
+      "Symptoms of heart failure",
+      "Symptoms of related systems (CNS — syncope, dizziness, blurring)",
+      "Complications: heart failure, IE",
+      "Differential: renal causes, endocrine causes",
+      "Family history of HTN / CHD",
+      "Perinatal history"
+    ],
+    "bonus": [
+      "Blood pressure in arms vs legs",
+      "Turner syndrome association (in girls)",
+      "Bicuspid aortic valve association"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

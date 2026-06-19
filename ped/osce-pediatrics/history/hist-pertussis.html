@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pertussis (Whooping Cough) — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-pertussis",
+  title: "Pertussis (Whooping Cough) — History Taking",
+  description: "3-week paroxysmal cough with whoop and post-tussive vomiting in an unimmunized child.",
+  category: "History Taking",
+  tags: ["respiratory", "infection", "cough", "vaccine-preventable"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Respiratory / Infectious Disease",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of an 18-month-old child with paroxysmal cough for 3 weeks.",
+  "patient": {
+    "name": "Mrs. Mona (mother of Youssef)",
+    "age": 26,
+    "gender": "female",
+    "avatarSeed": "mother-mona",
+    "opening": "Doctor, Youssef has been coughing for 3 weeks now. The cough comes in bouts and he goes blue, then he vomits afterwards. It's terrible to watch."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Pertussis (whooping cough)",
+    "keySymptoms": [
+      "Cough > 14 days, paroxysmal",
+      "Whoop (inspiratory) following paroxysm",
+      "Post-tussive vomiting",
+      "Cyanosis during paroxysms",
+      "Catarrhal stage preceded (1–2 weeks)"
+    ],
+    "redFlags": [
+      "Apnea in infants < 6 months",
+      "Pneumonia (secondary bacterial)",
+      "Encephalopathy",
+      "Intracranial / conjunctival hemorrhage from forceful cough",
+      "Pneumothorax, hernia"
+    ],
+    "pastHistory": [
+      "Incomplete immunization (DTaP missed)",
+      "No previous similar episodes",
+      "Contact with chronic cough case",
+      "Otherwise healthy, term delivery"
+    ],
+    "vitalSigns": "Between paroxysms: RR 35, HR 110, T 37.2°C. During paroxysm: cyanosis, RR 60",
+    "differentials": [
+      "Adenovirus",
+      "RSV",
+      "Influenza / Parainfluenza",
+      "Mycoplasma",
+      "Chlamydia",
+      "Allergy",
+      "Foreign body"
+    ],
+    "management": "Erythromycin (or azithromycin) for 5 days; salbutamol may help; hospitalize if infant < 3 mo or severe disease; supportive: O2, hydration, nutrition"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of cough",
+      "Cough pattern: paroxysmal, > 14 days",
+      "Whoop presence (key feature)",
+      "Post-tussive vomiting (key feature)",
+      "Cyanosis / apnea during paroxysms",
+      "Preceding coryza (catarrhal stage)",
+      "Fever and rash (should be ABSENT)",
+      "Sore throat (should be ABSENT)",
+      "Tachypnea and rales (suggests complication)",
+      "Immunization history — DTaP doses and timing",
+      "Contact with chronic cough case",
+      "Complications: apnea, pneumonia, encephalopathy, hemorrhages, pneumothorax, hernia",
+      "Differential: viral, mycoplasma, allergy, foreign body"
+    ],
+    "bonus": [
+      "School / daycare exclusion",
+      "Prophylaxis of household contacts",
+      "School-aged siblings vaccination status"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

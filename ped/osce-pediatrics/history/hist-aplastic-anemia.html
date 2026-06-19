@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Aplastic Anemia — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-aplastic-anemia",
+  title: "Aplastic Anemia — History Taking",
+  description: "6-year-old with pallor, recurrent infections, and purpuric rash.",
+  category: "History Taking",
+  tags: ["hematology", "pancytopenia", "child"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from the mother of a 6-year-old with pallor and recurrent infections.",
+  "patient": {
+    "name": "Mrs. Maha (mother of Hassan)",
+    "age": 30,
+    "gender": "female",
+    "avatarSeed": "mother-maha",
+    "opening": "Doctor, Hassan has been pale for two months, gets fevers every couple of weeks with chest and throat infections, and now red spots appeared on his skin. Blood tests showed all his cell counts are low."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Aplastic anemia",
+    "keySymptoms": [
+      "Pallor (anemia)",
+      "Recurrent infections (neutropenia)",
+      "Purpura, mucosal bleeding (thrombocytopenia)",
+      "No jaundice (distinguishes from hemolytic)",
+      "Insidious onset"
+    ],
+    "redFlags": [
+      "Sepsis with neutropenia",
+      "Severe bleeding (ICH, GI)",
+      "Progression to MDS / AML (Fanconi)"
+    ],
+    "pastHistory": [
+      "No previous transfusions",
+      "No hepatotoxic drugs",
+      "Possible pesticide / chemical exposure (father is a farmer)",
+      "No family history initially"
+    ],
+    "vitalSigns": "T 38°C, HR 120, RR 26, marked pallor, petechiae and purpura, no organomegaly, no LN",
+    "differentials": [
+      "Hypersplenism",
+      "Acute leukemia",
+      "Fanconi anemia",
+      "Megaloblastic anemia",
+      "Drug-induced pancytopenia"
+    ],
+    "management": "Treat cause; supportive (RBC, platelet, antibiotic); immunosuppression (ATG, cyclosporine, methylpred); allogeneic BMT (definitive); androgens in Fanconi"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD — gradual onset",
+      "Pallor",
+      "Recurrent infections (frequency, sites, hospitalizations)",
+      "Purpura, mucosal bleeding, menorrhagia",
+      "No jaundice (key — distinguishes from hemolytic)",
+      "Symptoms of anemia: anorexia, easy fatigability, tachycardia",
+      "Symptoms of aplastic anemia (triad: pallor, infections, purpura)",
+      "To detect cause: Fanconi (AR, absent radius/thumb, microcephaly, cardiac/renal anomalies), acquired (irradiation, immunologic, drugs)",
+      "Symptoms of related system: abdominal enlargement, bleeding tendency, blood transfusion, bone ache, ecchymosis, LN, itching, weight loss",
+      "Past: drug/radiation exposure, family history (Fanconi)",
+      "Other systems"
+    ],
+    "bonus": [
+      "Café-au-lait patches (Fanconi)",
+      "Bone marrow biopsy for diagnosis",
+      "HLA matching for BMT"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

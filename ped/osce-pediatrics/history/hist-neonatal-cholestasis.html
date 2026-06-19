@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Neonatal Cholestasis — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-neonatal-cholestasis",
+  title: "Neonatal Cholestasis — History Taking",
+  description: "3-week-old with prolonged jaundice, pale stools, and dark urine.",
+  category: "History Taking",
+  tags: ["neonatology", "hepatology", "jaundice", "biliary atresia"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Neonatology / Pediatric Gastroenterology",
+  "difficulty": "Advanced",
+  "task": "Take a focused history from the mother of a 3-week-old infant presenting with prolonged jaundice.",
+  "patient": {
+    "name": "Mrs. Nada (mother of baby Malak)",
+    "age": 26,
+    "gender": "female",
+    "avatarSeed": "mother-nada",
+    "opening": "Doctor, Malak is 3 weeks old and still yellow. The jaundice started at day 5 and is getting worse. Her stools are pale, almost white, and her urine is dark yellow and stains the diaper."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Neonatal cholestasis — biliary atresia",
+    "keySymptoms": [
+      "Prolonged jaundice (> 2 weeks in term, > 3 weeks in preterm)",
+      "Pale (acholic) stool",
+      "Dark urine (conjugated bilirubinuria)",
+      "Hepatomegaly ± splenomegaly",
+      "Failure to thrive",
+      "Itching, irritability"
+    ],
+    "redFlags": [
+      "Persistent jaundice > 2 weeks",
+      "Pale stool / dark urine (conjugated hyperbilirubinemia)",
+      "Hepatosplenomegaly",
+      "Toxic / ill infant",
+      "Cirrhosis and portal hypertension if untreated"
+    ],
+    "pastHistory": [
+      "Term, normal delivery, birth weight 3.2 kg",
+      "No phototherapy in neonatal period",
+      "Maternal infections screen negative",
+      "No family history of liver disease"
+    ],
+    "vitalSigns": "T 37°C, HR 140, RR 40, icteric, liver 4 cm below RCM (firm), spleen 2 cm, pale stool on diaper",
+    "differentials": [
+      "Biliary atresia",
+      "Alpha-1 antitrypsin deficiency",
+      "Galactosemia",
+      "Cystic fibrosis",
+      "TORCH infection",
+      "Alagille syndrome",
+      "Choledochal cyst",
+      "Hypothyroidism"
+    ],
+    "management": "Urgent workup (LFTs, infectious, metabolic, US, HIDA, liver biopsy); Kasai portoenterostomy before 60 days of life; supportive (MCT formula, fat-soluble vitamins, choleretics); liver transplant if Kasai fails"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of jaundice",
+      "Jaundice analysis: site, color of urine and stool (pale stool — KEY), itching, abdominal pain, fever, nausea/vomiting/weight loss",
+      "Pallor (VIP)",
+      "Symptoms of related system: abdominal distension, vomiting, diarrhea, constipation, weight loss",
+      "To detect cause: A1AT deficiency (wheeze, cough), galactosemia (hypoglycemia, breastfeeding vs formula), CF (FTT, chronic diarrhea), familial, Alagille (back/eye/heart issues)",
+      "Complications: portal hypertension, liver cirrhosis, bleeding",
+      "Differential: see above",
+      "Past: perinatal, family (TORCH, metabolic)",
+      "Other systems"
+    ],
+    "bonus": [
+      "Red flags of neonatal cholestasis (jaundice > 2 wk, pale stool, dark urine, HSM, toxic, abnormal LFTs, abnormal US)",
+      "Timing of Kasai operation (< 60 days)"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

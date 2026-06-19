@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Acute Rheumatic Fever — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-rheumatic-fever",
+  title: "Acute Rheumatic Fever — History Taking",
+  description: "9-year-old with migratory polyarthritis and shortness of breath 3 weeks after sore throat.",
+  category: "History Taking",
+  tags: ["cardiology", "post-streptococcal", "arthritis", "adolescent"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Cardiology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from a 9-year-old boy and his mother presenting with joint pains and shortness of breath.",
+  "patient": {
+    "name": "Karim (with his mother)",
+    "age": 9,
+    "gender": "male",
+    "avatarSeed": "patient-karim",
+    "opening": "Doctor, my knees and ankles have been hurting and moving from one to the other for a week. Now I'm also short of breath when I play. Three weeks ago I had a sore throat."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Acute rheumatic fever (ARF) with carditis",
+    "keySymptoms": [
+      "Migratory polyarthritis (major Jones criterion)",
+      "Carditis: shortness of breath, palpitations",
+      "Preceded by pharyngitis 2–4 weeks prior",
+      "Fever (~38.5°C)",
+      "Possible subcutaneous nodules, erythema marginatum, chorea"
+    ],
+    "redFlags": [
+      "Severe carditis with heart failure",
+      "Pericarditis",
+      "Recurrence → worsening valvular damage"
+    ],
+    "pastHistory": [
+      "Pharyngitis 3 weeks prior (Group A Strep)",
+      "No previous ARF",
+      "Family history may be positive",
+      "Immunizations up to date"
+    ],
+    "vitalSigns": "T 38.4°C, HR 110 (sinus tachycardia), RR 28, BP 100/65, apical murmur (mitral regurgitation)",
+    "differentials": [
+      "Juvenile idiopathic arthritis",
+      "SLE",
+      "Septic arthritis",
+      "Sickle cell crisis",
+      "Growing pain",
+      "Leukemia"
+    ],
+    "management": "Eradicate strep: benzathine penicillin G; anti-inflammatory (aspirin, steroids if carditis); bed rest; treat CHF; secondary prophylaxis with benzathine penicillin every 3–4 weeks"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of dyspnea and arthritis",
+      "Migratory pattern of arthritis (major Jones)",
+      "Polyarthritis (large joints)",
+      "Inflammation signs: redness, hotness, swelling, stiffness",
+      "Effect of movement on pain",
+      "Other major Jones: subcutaneous nodules, erythema marginatum, chorea",
+      "Minor Jones: arthralgia, fever, prolonged PR, raised acute phase reactants",
+      "Past pharyngitis (Group A Strep) 2–4 weeks before",
+      "Symptoms of carditis: dyspnea, orthopnea, PND, palpitations, chest pain",
+      "Symptoms of heart failure: pulmonary congestion, systemic congestion, low output",
+      "Differential: JIA, SLE, growing pain, hematologic (SCA, leukemia)",
+      "Family history of RF / RHD"
+    ],
+    "bonus": [
+      "Compliance with secondary prophylaxis after discharge",
+      "Health education about recurrence and dental prophylaxis",
+      "Bed rest duration"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

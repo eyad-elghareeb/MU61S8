@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Glanzmann Thrombasthenia</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-10-glanzmann",
+  title: "Bleeding Profile — Glanzmann Thrombasthenia",
+  description: "5-year-old with generalized purpuric rash; prolonged BT but normal platelet count and normal CT/PT/APTT.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "Glanzmann", "platelet dysfunction", "AR"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the bleeding profile of a 5-year-old boy with generalized purpuric skin rashes.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "You would interpret this bleeding profile of a 5-year-old boy with generalized purpuric skin rashes and lifelong mucocutaneous bleeding.Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "13 g/dl",
+            "11.5–13.5"
+          ],
+          [
+            "WBCs",
+            "6,900 cells/mm³",
+            "4,000–11,000"
+          ],
+          [
+            "Platelets",
+            "170,000 cells/mm³",
+            "150,000–400,000  →  NORMAL"
+          ],
+          [
+            "BT",
+            "7 min",
+            "2–4 min  →  PROLONGED"
+          ],
+          [
+            "CT",
+            "8 min",
+            "4–8 min  →  NORMAL"
+          ],
+          [
+            "PT",
+            "12 sec",
+            "12–20 sec  →  NORMAL"
+          ],
+          [
+            "APTT",
+            "30 sec",
+            "25–40 sec  →  NORMAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "b) Glanzmann thrombasthenia. Prolonged BT with NORMAL platelet count and normal CT/PT/APTT → platelet dysfunction (not thrombocytopenia). Glanzmann = GPIIb/IIIa deficiency.",
+      "rubric": "Prolonged BT + normal platelets + normal coag = platelet dysfunction"
+    },
+    {
+      "id": "q2",
+      "question": "What is Glanzmann thrombasthenia?",
+      "answer": "AR inherited deficiency of platelet glycoprotein IIb/IIIa (fibrinogen receptor) → platelets can't aggregate. Normal platelet count, normal morphology, but abnormal platelet aggregation studies (no aggregation with ADP, epinephrine, collagen; normal with ristocetin).",
+      "rubric": "AR + GPIIb/IIIa + aggregation studies"
+    },
+    {
+      "id": "q3",
+      "question": "What is the differential diagnosis of mucocutaneous bleeding with normal platelet count and prolonged BT?",
+      "answer": "1. Glanzmann thrombasthenia (GPIIb/IIIa). 2. Bernard-Soulier syndrome (GPIb/IX deficiency — giant platelets, abnormal ristocetin). 3. von Willebrand disease (low/abnormal vWF). 4. Storage pool disease (platelet granule deficiency). 5. Drug-induced platelet dysfunction (NSAIDs, aspirin).",
+      "rubric": "vWD, Bernard-Soulier, drugs"
+    },
+    {
+      "id": "q4",
+      "question": "How is Glanzmann treated?",
+      "answer": "1. Local measures (pressure, topical agents). 2. Antifibrinolytics (tranexamic acid, aminocaproic acid). 3. Platelet transfusion for severe bleeding (only HLA-matched to avoid alloimmunization). 4. Recombinant factor VIIa for refractory bleeding. 5. Avoid antiplatelet drugs. 6. Iron supplementation for menorrhagia.",
+      "rubric": "Antifibrinolytics + platelet transfusion + rFVIIa"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify platelet dysfunction",
+      "GPIIb/IIIa",
+      "Differentiate from vWD and Bernard-Soulier"
+    ],
+    "bonus": [
+      "Platelet aggregation studies interpretation"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

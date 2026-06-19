@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Henoch-Schönlein Purpura (HSP)</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-3-hsp",
+  title: "Bleeding Profile — Henoch-Schönlein Purpura (HSP)",
+  description: "2-year-old boy with purpuric rash over extremities; all bleeding parameters normal.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "HSP", "vasculitis"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology / Rheumatology",
+  "difficulty": "Intermediate",
+  "task": "Interpret the bleeding profile of a 2-year-old boy with purpuric rashes.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "This is the bleeding profile of a 2-year-old boy with purpuric rashes over the extremities (palpable).Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "12 g/dl",
+            "11.5–13.5"
+          ],
+          [
+            "WBCs",
+            "4,900 cells/mm³",
+            "4,000–11,000"
+          ],
+          [
+            "Platelets",
+            "180,000 cells/mm³",
+            "150,000–400,000"
+          ],
+          [
+            "BT",
+            "4 min",
+            "2–4 min  →  NORMAL"
+          ],
+          [
+            "CT",
+            "8 min",
+            "4–8 min  →  NORMAL"
+          ],
+          [
+            "PT",
+            "12 sec",
+            "12–20 sec  →  NORMAL"
+          ],
+          [
+            "APTT",
+            "30 sec",
+            "25–40 sec  →  NORMAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "e) Anaphylactoid purpura (HSP). All bleeding parameters NORMAL — distinguishes from ITP (low platelets), hemophilia (prolonged APTT). HSP is a vasculitis with capillary fragility, not a coagulation disorder.",
+      "rubric": "Purpura + normal bleeding profile → HSP"
+    },
+    {
+      "id": "q2",
+      "question": "What other investigations would be abnormal in HSP?",
+      "answer": "1. Hiss test (capillary fragility) — POSITIVE. 2. ASO titre — elevated (post-streptococcal). 3. Serum IgA — elevated. 4. Stool analysis — occult blood (GI involvement). 5. Urinalysis — hematuria, proteinuria (renal involvement). 6. Skin biopsy — leukocytoclastic vasculitis with IgA deposition (definite).",
+      "rubric": "Hiss test positive + IgA + biopsy"
+    },
+    {
+      "id": "q3",
+      "question": "What are the complications of HSP?",
+      "answer": "1. Intussusception (ileoileal) — most common acute surgical complication. 2. Chronic renal failure (50% of cases with renal involvement) — most dangerous long-term. 3. Subarachnoid or cerebral hemorrhage. 4. Testicular torsion (infrequent).",
+      "rubric": "Intussusception + CRF + CNS + testicular"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify HSP from normal bleeding profile",
+      "Hiss test positive",
+      "Complications"
+    ],
+    "bonus": [
+      "Skin biopsy IgA deposition"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Acute Bronchiolitis — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-bronchiolitis",
+  title: "Acute Bronchiolitis — History Taking",
+  description: "6-month-old with cough and wheeze following a viral URTI.",
+  category: "History Taking",
+  tags: ["respiratory", "infant", "wheeze", "RSV"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Foundational",
+  "task": "Take a focused history from the mother of a 6-month-old infant presenting with cough, wheeze, and rapid breathing for 2 days.",
+  "patient": {
+    "name": "Mrs. Salma (mother of baby Omar)",
+    "age": 28,
+    "gender": "female",
+    "avatarSeed": "mother-salma",
+    "opening": "Hello doctor, my baby Omar has been coughing and his chest is whistling for two days now. He's also breathing fast and I'm worried."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Acute bronchiolitis (RSV)",
+    "keySymptoms": [
+      "Cough — paroxysmal, dry then productive",
+      "Wheeze — expiratory, bilateral",
+      "Tachypnea, mild respiratory distress",
+      "Preceded by coryza ~3 days before",
+      "Low-grade fever"
+    ],
+    "redFlags": [
+      "Apnea (especially in premature infants)",
+      "Respiratory failure (cyanosis, grunting, severe recession)",
+      "Dehydration from poor feeding"
+    ],
+    "pastHistory": [
+      "First episode of wheeze",
+      "Born at term, normal delivery",
+      "Fully breast-fed, immunizations up to date",
+      "No family history of atopy"
+    ],
+    "vitalSigns": "RR 60/min, HR 140/min, T 37.8°C, SpO2 93% on room air",
+    "differentials": [
+      "Bronchial asthma",
+      "Pertussis",
+      "Foreign body aspiration",
+      "Pneumonia",
+      "Cystic fibrosis",
+      "GERD with micro-aspiration"
+    ],
+    "management": "Supportive: O2, nasal suction, hydration; bronchodilator trial; consider hypertonic saline nebs; ICU if severe"
+  },
+  "rubric": {
+    "mustAsk": [
+      "Onset, course, duration of cough and wheeze (OCD)",
+      "First episode vs recurrent (key to distinguish from asthma)",
+      "Preceding viral URTI (coryza 2–3 days before)",
+      "Wheeze: inspiratory vs expiratory, timing",
+      "Apnea episodes (red flag)",
+      "Feeding adequacy and dehydration signs",
+      "Cyanosis / severe distress (respiratory failure)",
+      "Immunization history (palivizumab for high-risk)",
+      "Pertussis contact / immunization",
+      "Family history of atopy/asthma",
+      "Developmental milestones (CF screen)"
+    ],
+    "bonus": [
+      "Aspirin/NSAID exposure",
+      "Smoking exposure at home",
+      " daycare / sibling with URTI",
+      "Previous hospitalization for respiratory illness"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Normal Profile</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-1-normal",
+  title: "CBC Interpretation — Normal Profile",
+  description: "6-year-old boy; CBC for routine check.",
+  category: "Data Interpretation",
+  tags: ["CBC", "normal", "6-year-old"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Foundational",
+  "task": "Interpret the complete blood count and RBC indices of a 6-year-old boy.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A 6-year-old boy had a CBC performed as part of a routine check.",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "14 g/dl",
+            "11.5–13.5 (peds)"
+          ],
+          [
+            "WBCs",
+            "4,000 cells/mm³",
+            "4,000–11,000"
+          ],
+          [
+            "Platelets",
+            "150,000 cells/mm³",
+            "150,000–400,000"
+          ],
+          [
+            "MCV",
+            "88 fl",
+            "75–100"
+          ],
+          [
+            "MCH",
+            "32 pg",
+            "27–32"
+          ],
+          [
+            "MCHC",
+            "30 gram%",
+            "33–37"
+          ],
+          [
+            "RC (Reticulocyte count)",
+            "2%",
+            "1–2%"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "b) Normal profile. Hb, WBC, platelets all normal. MCV normal (75–100), reticulocyte count normal.",
+      "rubric": "Identify all parameters within normal limits"
+    },
+    {
+      "id": "q2",
+      "question": "What is the normal MCV range for children?",
+      "answer": "75–100 fl (children). < 75 = microcytic; > 100 = macrocytic.",
+      "rubric": "Know normal MCV range"
+    },
+    {
+      "id": "q3",
+      "question": "What does the reticulocyte count tell you?",
+      "answer": "Bone marrow response. Normal 1–2%. High (> 2%) = hemolysis or recovery from blood loss/treatment. Low (< 1%) = hypoproliferative (aplastic, iron deficiency, chronic disease).",
+      "rubric": "Mention marrow response and interpretation"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify normal CBC",
+      "Know normal ranges"
+    ],
+    "bonus": [
+      "Age-specific reference ranges"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Hemophilia — History Taking</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "hist-hemophilia",
+  title: "Hemophilia — History Taking",
+  description: "2-year-old boy with prolonged bleeding after circumcision and a swollen tender knee.",
+  category: "History Taking",
+  tags: ["hematology", "bleeding", "X-linked", "child"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "history",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Intermediate",
+  "task": "Take a focused history from the mother of a 2-year-old boy with bleeding tendency.",
+  "patient": {
+    "name": "Mrs. Dalia (mother of Seif)",
+    "age": 28,
+    "gender": "female",
+    "avatarSeed": "mother-dalia",
+    "opening": "Doctor, Seif bled a lot after his circumcision and the bleeding took days to stop. Last week he fell on his knee — it swelled up, became hot and red, and he's been refusing to walk. He also gets bruise patches after his vaccines."
+  },
+  "hiddenProfile": {
+    "diagnosis": "Hemophilia A (Factor VIII deficiency)",
+    "keySymptoms": [
+      "Excessive bleeding after circumcision (oropharyngeal cord bleeding)",
+      "Intramuscular bleeding after IM injection or tooth extraction",
+      "Orificial bleeding (epistaxis, GI, GU)",
+      "Hemorrhagic patches / ecchymoses",
+      "Hemarthrosis — tender, swollen, hot joint"
+    ],
+    "redFlags": [
+      "Intracranial hemorrhage (head trauma)",
+      "Airway compromise (neck bleed)",
+      "Compartment syndrome",
+      "Chronic arthropathy from recurrent hemarthrosis"
+    ],
+    "pastHistory": [
+      "Prolonged bleeding after circumcision",
+      "Multiple hematomas after IM injections",
+      "Maternal uncles with bleeding history (X-linked recessive)",
+      "Otherwise healthy, normal development"
+    ],
+    "vitalSigns": "T 37°C, HR 110, RR 28, swollen tender right knee with overlying warmth",
+    "differentials": [
+      "Hemophilia B (Christmas disease)",
+      "von Willebrand disease",
+      "ITP",
+      "Aplastic anemia",
+      "Leukemia",
+      "Liver disease",
+      "Vitamin K deficiency"
+    ],
+    "management": "Avoid trauma, IM injections, aspirin; local measures (pressure, cold); factor VIII replacement; cryoprecipitate / FFP; desmopressin (mild); physiotherapy for joint"
+  },
+  "rubric": {
+    "mustAsk": [
+      "OCD of bleeding episodes",
+      "Spontaneous vs traumatic bleeding",
+      "Site, amount, duration of bleeding",
+      "Hemarthrosis — joint swelling, pain, warmth",
+      "Orificial bleeding: nose, ear, hematemesis, hematuria, melena",
+      "Symptoms of related system: abdominal enlargement, blood transfusion, bone ache, pallor, purpura, drug intake, ecchymosis, fever, jaundice, LN swelling, itching, weight loss",
+      "Family history (X-linked recessive — maternal uncles)",
+      "Differential: ITP, aplastic anemia, leukemia, vWD",
+      "Past history of bleeding with procedures"
+    ],
+    "bonus": [
+      "Hepatitis / HIV from previous factor transfusions",
+      "Inhibitor development",
+      "Prophylactic factor regimen"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

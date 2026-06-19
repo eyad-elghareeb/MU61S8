@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Bleeding Profile — Hemorrhagic Disease of Newborn</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-bp-8-hdn",
+  title: "Bleeding Profile — Hemorrhagic Disease of Newborn",
+  description: "5-day-old neonate with umbilical bleeding; prolonged PT.",
+  category: "Data Interpretation",
+  tags: ["bleeding profile", "neonate", "vitamin K"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Neonatology / Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the bleeding profile of a 5-day-old neonate with umbilical bleeding.",
+  "examiner": {
+    "name": "Dr. Mona",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "You would interpret this bleeding profile of a 5-day-old boy with umbilical bleeding. (No vitamin K given at birth.)Normal parameters:\n- Bleeding time (BT): 2–4 min\n- Clotting time (CT): 4–8 min\n- PT (Prothrombin Time): 12–20 sec\n- APTT (Activated Partial Thromboplastin Time): 25–40 sec\n- Thrombin time (TT): 15–20 sec\n- Platelet count: 150,000–400,000/mm³",
+    "tables": [
+      {
+        "title": "Bleeding Profile",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Reference"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "15 g/dl",
+            "13.5–19.5"
+          ],
+          [
+            "WBCs",
+            "8,900 cells/mm³",
+            "5,000–21,000"
+          ],
+          [
+            "Platelets",
+            "180,000 cells/mm³",
+            "150,000–400,000"
+          ],
+          [
+            "BT",
+            "5 min",
+            "2–4 min  →  Slightly prolonged"
+          ],
+          [
+            "CT",
+            "20 min",
+            "4–8 min  →  PROLONGED"
+          ],
+          [
+            "PT",
+            "34 sec",
+            "12–20 sec  →  PROLONGED"
+          ],
+          [
+            "APTT",
+            "30 sec",
+            "25–40 sec  →  NORMAL"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The diagnosis is:",
+      "answer": "e) Hemorrhagic disease of newborn (vitamin K deficiency bleeding, VKDB). 5-day-old + umbilical bleeding + prolonged PT (and possibly CT) → vitamin K deficiency. Classical VKDB occurs at day 2–7.",
+      "rubric": "PT prolonged + early neonatal bleeding = VKDB"
+    },
+    {
+      "id": "q2",
+      "question": "Why are neonates at risk of vitamin K deficiency?",
+      "answer": "1. Low vitamin K transfer across placenta. 2. Sterile gut at birth (no bacterial synthesis). 3. Low vitamin K content in breast milk (especially colostrum). 4. Immature liver. Formula-fed babies have higher vitamin K intake.",
+      "rubric": "Placenta, gut, breastmilk all low"
+    },
+    {
+      "id": "q3",
+      "question": "What are the three forms of VKDB?",
+      "answer": "1. EARLY (first 24 hours): maternal drugs (anticonvulsants, warfarin, rifampicin, isoniazid). 2. CLASSICAL (days 2–7): breastfed infants not given vitamin K prophylaxis; GI bleeding, umbilical, circumcision. 3. LATE (2–12 weeks): exclusively breastfed infants not given vitamin K prophylaxis; intracranial hemorrhage is classic, may be idiopathic or secondary (cholestasis, malabsorption).",
+      "rubric": "Early / classical / late forms"
+    },
+    {
+      "id": "q4",
+      "question": "What is the prevention and treatment?",
+      "answer": "PREVENTION: All newborns receive 1 mg IM vitamin K at birth (or 2 mg oral if preferred, but IM is more reliable). TREATMENT: 1 mg IV/IM vitamin K; FFP or PCC for active bleeding; transfusion if significant blood loss. Investigate for underlying liver disease (late VKDB).",
+      "rubric": "1 mg IM vitamin K at birth + treat with vitamin K + FFP"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify VKDB",
+      "Three forms",
+      "IM vitamin K prophylaxis"
+    ],
+    "bonus": [
+      "Late VKDB often from cholestasis"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

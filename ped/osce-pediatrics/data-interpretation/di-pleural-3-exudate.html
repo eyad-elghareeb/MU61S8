@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pleural Fluid Interpretation — Exudate</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-pleural-3-exudate",
+  title: "Pleural Fluid Interpretation — Exudate",
+  description: "3-year-old with fever, cough, respiratory distress; exudative pleural fluid.",
+  category: "Data Interpretation",
+  tags: ["pleural fluid", "exudate", "infection"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Respiratory",
+  "difficulty": "Intermediate",
+  "task": "Interpret the pleural fluid analysis and answer the examiner's questions.",
+  "examiner": {
+    "name": "Dr. Ahmed",
+    "title": "Consultant Pulmonologist"
+  },
+  "dataPresented": {
+    "scenario": "A 3-year-old male child presented with high-grade fever, cough, and respiratory distress. Chest percussion revealed stony dullness & chest auscultation revealed diminished breath sounds on the right side. Pleural fluid analysis:",
+    "tables": [
+      {
+        "title": "Pleural Fluid Analysis",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Pleural cholesterol",
+            "> 55 mg/dl",
+            "High"
+          ],
+          [
+            "pH",
+            "< 7.3",
+            "Low"
+          ],
+          [
+            "Pleural F./Serum LDH ratio",
+            "> 0.6",
+            "High"
+          ],
+          [
+            "Blood glucose",
+            "< 60 mg/dl",
+            "Low"
+          ],
+          [
+            "Pleural F./Serum Protein ratio",
+            "> 0.5",
+            "High"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "These findings indicate:",
+      "answer": "a) Exudative pleural effusion (uncomplicated parapneumonic)",
+      "rubric": "High LDH ratio, high protein ratio, high cholesterol → exudate. pH borderline but glucose > 40 and no pus → uncomplicated"
+    },
+    {
+      "id": "q2",
+      "question": "What are common causes of exudative pleural effusion in children?",
+      "answer": "Bacterial pneumonia (parapneumonic), TB pleuritis, malignancy (leukemia, lymphoma), pulmonary embolism, pancreatitis, autoimmune (SLE, RA).",
+      "rubric": "Mention parapneumonic as most common pediatric cause"
+    },
+    {
+      "id": "q3",
+      "question": "What is the difference between exudate and empyema?",
+      "answer": "Empyema is a COMPLICATED exudate: frank pus, pH < 7.1, glucose < 40, LDH > 1000, gram stain +ve. Uncomplicated exudate is thinner, less deranged parameters.",
+      "rubric": "Empyema = complicated exudate with pus"
+    },
+    {
+      "id": "q4",
+      "question": "What is the management of uncomplicated parapneumonic effusion?",
+      "answer": "IV antibiotics alone covering the causative organism (ceftriaxone ± vancomycin); chest tube if size large or progressing; follow-up imaging.",
+      "rubric": "Antibiotics alone may suffice"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify exudate",
+      "Differentiate from empyema",
+      "Antibiotic therapy"
+    ],
+    "bonus": [
+      "Follow-up imaging"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

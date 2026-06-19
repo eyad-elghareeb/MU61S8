@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>ABG Interpretation — Severe Pneumonia with Respiratory Acidosis</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-abg-2-pneumonia-resp-acidosis",
+  title: "ABG Interpretation — Severe Pneumonia with Respiratory Acidosis",
+  description: "7-month-old with dyspnea, fever, bilateral crepitations; respiratory acidosis.",
+  category: "Data Interpretation",
+  tags: ["ABG", "pneumonia", "respiratory acidosis", "infant"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Critical Care",
+  "difficulty": "Advanced",
+  "task": "Interpret the arterial blood gas of a 7-month-old patient with dyspnea and bilateral pneumonia.",
+  "examiner": {
+    "name": "Dr. Khaled",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "A 7-month-old male presented to the ED with dyspnea, interrupted feeding for one day preceded by coryza, low-grade fever for 2 days. On examination: fever, respiratory distress grade III with grunting, bilateral fine crepitations. CXR shows bilateral heterogeneous infiltrations. ABG done showing:",
+    "tables": [
+      {
+        "title": "Arterial Blood Gas + Electrolytes",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Normal Range"
+        ],
+        "rows": [
+          [
+            "pH",
+            "7.20",
+            "7.35–7.45  →  ACIDEMIA"
+          ],
+          [
+            "PaCO2",
+            "67 mmHg",
+            "35–45  →  HIGH"
+          ],
+          [
+            "HCO3",
+            "28 mEq/L",
+            "20–28  →  Upper normal (compensation)"
+          ],
+          [
+            "Na+",
+            "130 mEq/L",
+            "135–145"
+          ],
+          [
+            "K+",
+            "3 mEq/L",
+            "3.5–5.5  →  LOW"
+          ],
+          [
+            "Cl-",
+            "97 mEq/L",
+            "95–110"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The primary disorder here is:",
+      "answer": "c) Respiratory acidosis. pH low + PaCO2 very high → respiratory acidosis from hypoventilation (severe pneumonia).",
+      "rubric": "Acidemia + high CO2 = respiratory acidosis"
+    },
+    {
+      "id": "q2",
+      "question": "The compensatory mechanism here is:",
+      "answer": "d) Metabolic alkalosis. HCO3 is at upper normal limit (28) — kidneys retaining bicarbonate to compensate. However, since this is acute (1 day), full renal compensation hasn't occurred yet — takes days.",
+      "rubric": "HCO3 retention = metabolic compensation"
+    },
+    {
+      "id": "q3",
+      "question": "The proper interpretation is:",
+      "answer": "d) A & C (acidemia AND decompensated respiratory acidosis). Even with renal compensation (HCO3 28), the pH is still very low (7.20), so compensation is partial → decompensated.",
+      "rubric": "Partial compensation = decompensated"
+    },
+    {
+      "id": "q4",
+      "question": "The anion gap here is:",
+      "answer": "b) Normal. AG = Na - (Cl + HCO3) = 130 - (97 + 28) = 5. Actually slightly low because Na is low. Normal anion gap respiratory acidosis.",
+      "rubric": "Calculate AG; recognize normal"
+    },
+    {
+      "id": "q5",
+      "question": "The cause of increased PaCO2 is:",
+      "answer": "d) A & C (respiratory failure AND impaired ventilation). Severe pneumonia → alveolar hypoventilation → CO2 retention. This is type 2 respiratory failure.",
+      "rubric": "Type 2 respiratory failure"
+    },
+    {
+      "id": "q6",
+      "question": "Proper management?",
+      "answer": "c) Endotracheal intubation and ICU calling. Severe respiratory acidosis with PaCO2 67 and pH 7.20 in an infant with grunting and severe distress → impending respiratory failure. Needs intubation and mechanical ventilation.",
+      "rubric": "Intubate and ventilate"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify respiratory acidosis",
+      "Recognize respiratory failure",
+      "Plan intubation"
+    ],
+    "bonus": [
+      "Distinguish type 1 (low O2 only) vs type 2 (high CO2) respiratory failure"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

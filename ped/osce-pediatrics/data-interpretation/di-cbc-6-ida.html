@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Iron Deficiency Anemia</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-6-ida",
+  title: "CBC Interpretation — Iron Deficiency Anemia",
+  description: "6-year-old boy; microcytic anemia with low reticulocytes.",
+  category: "Data Interpretation",
+  tags: ["CBC", "IDA", "microcytic", "dietary"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Foundational",
+  "task": "Interpret the CBC of a 6-year-old boy with pallor and poor diet.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A 6-year-old boy with poor diet (mostly cow's milk) presents with pallor. CBC performed:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "7 g/dl",
+            "Low (anemia)"
+          ],
+          [
+            "WBCs",
+            "7,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "350,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "68 fl",
+            "LOW (< 75 = microcytic)"
+          ],
+          [
+            "MCH",
+            "24 pg",
+            "Low"
+          ],
+          [
+            "MCHC",
+            "26 gram%",
+            "Low (hypochromic)"
+          ],
+          [
+            "RC",
+            "2%",
+            "Normal/low for anemia"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "b) Iron deficiency anemia (or anemia of chronic infection, but history of poor diet favors IDA). Microcytic hypochromic anemia with normal/low reticulocytes.",
+      "rubric": "Identify microcytic hypochromic + low retic → IDA or chronic infection"
+    },
+    {
+      "id": "q2",
+      "question": "What is the most common cause of IDA in children?",
+      "answer": "Dietary deficiency — excessive cow's milk intake (> 24 oz/day) in toddlers, poor weaning, exclusive breastfeeding beyond 6 months without iron supplementation, picky eating. Also: blood loss (Meckel diverticulum, hookworm, GI bleeding).",
+      "rubric": "Dietary insufficiency in toddlers most common"
+    },
+    {
+      "id": "q3",
+      "question": "What iron studies confirm IDA?",
+      "answer": "Low serum iron, low ferritin (< 12 ng/ml), HIGH TIBC (transferrin iron binding capacity), low transferrin saturation (< 15%. Ferritin is an acute phase reactant so may be falsely normal in inflammation.",
+      "rubric": "Low ferritin + high TIBC + low iron"
+    },
+    {
+      "id": "q4",
+      "question": "Outline the management of IDA.",
+      "answer": "1. Dietary counseling: iron-rich foods, vitamin C, limit cow's milk to < 24 oz/day. 2. Oral iron (3–6 mg/kg/day of elemental iron) for 3 months AFTER Hb normalizes to replenish stores. 3. Investigate for blood loss if no dietary cause. 4. Parenteral iron if non-adherent or malabsorption. 5. Transfusion only if severe symptomatic anemia.",
+      "rubric": "Dietary + oral iron + continue 3 months after Hb normal"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify microcytic hypochromic",
+      "Iron studies",
+      "Dietary history"
+    ],
+    "bonus": [
+      "Ferritin as acute phase reactant",
+      "Meckel scan if GI blood loss suspected"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

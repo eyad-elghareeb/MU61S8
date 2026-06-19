@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>ABG Interpretation — Status Asthmaticus</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-abg-6-status-asthmaticus",
+  title: "ABG Interpretation — Status Asthmaticus",
+  description: "8-year-old known asthmatic with severe attack; respiratory acidosis.",
+  category: "Data Interpretation",
+  tags: ["ABG", "asthma", "status", "respiratory acidosis"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Critical Care / Respiratory",
+  "difficulty": "Advanced",
+  "task": "Interpret the ABG and plan management.",
+  "examiner": {
+    "name": "Dr. Khaled",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "An 8-year-old boy, known asthmatic, presented to ED with tachypnea, subcostal recession, and audible wheezes. ABG was done.",
+    "tables": [
+      {
+        "title": "Arterial Blood Gas + Electrolytes",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Normal Range"
+        ],
+        "rows": [
+          [
+            "pH",
+            "7.20",
+            "7.35–7.45  →  ACIDEMIA"
+          ],
+          [
+            "PaCO2",
+            "65 mmHg",
+            "35–45  →  HIGH"
+          ],
+          [
+            "HCO3",
+            "32 mEq/L",
+            "20–28  →  HIGH (chronic compensation)"
+          ],
+          [
+            "Na+",
+            "140 mEq/L",
+            "135–145"
+          ],
+          [
+            "K+",
+            "4.5 mEq/L",
+            "3.5–5.5"
+          ],
+          [
+            "Cl-",
+            "102 mEq/L",
+            "95–110"
+          ],
+          [
+            "SaO2",
+            "85%",
+            "95–97%"
+          ],
+          [
+            "PaO2",
+            "55 mmHg",
+            "80–110  →  LOW (hypoxemia)"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The primary disorder here is:",
+      "answer": "c) Respiratory acidosis. pH low + PaCO2 very high → respiratory acidosis from asthma fatigue (can't ventilate).",
+      "rubric": "Acidemia + high CO2 = respiratory acidosis"
+    },
+    {
+      "id": "q2",
+      "question": "The compensatory mechanism here is:",
+      "answer": "d) Metabolic alkalosis. HCO3 is HIGH (32) — renal retention of bicarbonate. This suggests the patient has chronic CO2 retention (severe asthma or some chronicity).",
+      "rubric": "High HCO3 = metabolic compensation"
+    },
+    {
+      "id": "q3",
+      "question": "The anion gap here is:",
+      "answer": "b) Normal. AG = 140 - (102 + 32) = 6. Normal anion gap respiratory acidosis.",
+      "rubric": "Calculate AG, recognize normal"
+    },
+    {
+      "id": "q4",
+      "question": "First emergency management?",
+      "answer": "d) Nebulized β2 agonist (salbutamol) + oxygen. Status asthmaticus management: 1. High-flow O2 (target SpO2 > 94%). 2. Nebulized salbutamol every 20 min × 3 (or continuous). 3. Nebulized ipratropium bromide. 4. Systemic corticosteroids (IV methylpred/PO prednisone). 5. IV magnesium sulfate (severe). 6. Consider IV salbutamol, aminophylline, helium-oxygen, or intubation if deteriorating. Note: rising PaCO2 in asthma = fatigue = impending arrest → consider intubation EARLY.",
+      "rubric": "Nebulized salbutamol + O2 + steroids; CO2 rising = intubate"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify respiratory acidosis",
+      "Recognize asthma fatigue",
+      "Plan status asthmaticus management"
+    ],
+    "bonus": [
+      "Rising CO2 in asthma = fatigue, consider intubation EARLY"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

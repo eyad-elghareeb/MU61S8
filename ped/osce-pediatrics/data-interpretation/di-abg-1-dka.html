@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>ABG Interpretation — Diabetic Ketoacidosis</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-abg-1-dka",
+  title: "ABG Interpretation — Diabetic Ketoacidosis",
+  description: "Adult or older child with polyuria and polydipsia; ABG showing severe metabolic acidosis.",
+  category: "Data Interpretation",
+  tags: ["ABG", "DKA", "metabolic acidosis", "high anion gap"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Endocrinology / Critical Care",
+  "difficulty": "Advanced",
+  "task": "Interpret the arterial blood gas of a patient with polyuria, polydipsia for 2 weeks.",
+  "examiner": {
+    "name": "Dr. Khaled",
+    "title": "PICU Consultant"
+  },
+  "dataPresented": {
+    "scenario": "A male patient with polyuria, polydipsia for 2 weeks. ABG was done and showed the following. Normal: pH 7.35–7.45; PaCO2 35–45 mmHg; HCO3 20–28 mEq/L; Na+ 135–145; K+ 3.5–5.5; Cl- 95–110; anion gap 8–16.",
+    "tables": [
+      {
+        "title": "Arterial Blood Gas + Electrolytes",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Normal Range"
+        ],
+        "rows": [
+          [
+            "pH",
+            "7.15",
+            "7.35–7.45  →  ACIDEMIA"
+          ],
+          [
+            "PaCO2",
+            "15 mmHg",
+            "35–45  →  LOW (compensation)"
+          ],
+          [
+            "HCO3",
+            "6 mEq/L",
+            "20–28  →  VERY LOW"
+          ],
+          [
+            "Na+",
+            "138 mEq/L",
+            "135–145"
+          ],
+          [
+            "K+",
+            "2.2 mEq/L",
+            "3.5–5.5  →  LOW"
+          ],
+          [
+            "Cl-",
+            "85 mEq/L",
+            "95–110  →  LOW"
+          ],
+          [
+            "Random blood glucose",
+            "500 mg/dl",
+            "→  HIGH"
+          ],
+          [
+            "Urine acetone",
+            "+++",
+            "→  KETONURIA"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The primary disorder here is:",
+      "answer": "a) Metabolic acidosis. pH low (acidemia) + HCO3 very low → primary metabolic acidosis.",
+      "rubric": "Acidemia + low HCO3 = metabolic acidosis"
+    },
+    {
+      "id": "q2",
+      "question": "The compensatory mechanism here is:",
+      "answer": "b) Respiratory alkalosis. PaCO2 is LOW (15) — this is hyperventilation (Kussmaul breathing) compensating for metabolic acidosis.",
+      "rubric": "Low CO2 = respiratory compensation"
+    },
+    {
+      "id": "q3",
+      "question": "The proper interpretation is:",
+      "answer": "c) Acidemia with DECOMPENSATED metabolic acidosis. Even with respiratory compensation (low CO2), the pH is still low → decompensated (partial compensation).",
+      "rubric": "pH still abnormal despite compensation = decompensated"
+    },
+    {
+      "id": "q4",
+      "question": "The cause of low HCO3 here is:",
+      "answer": "a) Consumption of HCO3 by excess endogenous acids (ketoacids in DKA). Bicarbonate is consumed buffering the ketoacids (β-hydroxybutyrate, acetoacetate).",
+      "rubric": "Buffering by ketoacids"
+    },
+    {
+      "id": "q5",
+      "question": "The anion gap here is:",
+      "answer": "a) HIGH. AG = Na - (Cl + HCO3) = 138 - (85 + 6) = 47 (normal 8–16). High anion gap metabolic acidosis (HAGMA). Causes: ketoacidosis (DKA, starvation, alcoholic), lactic acidosis, toxins (methanol, ethylene glycol, salicylates), uremia.",
+      "rubric": "Calculate AG; identify high"
+    },
+    {
+      "id": "q6",
+      "question": "How would you correct the hypokalemia?",
+      "answer": "d) KCl 40 mEq/L in peripheral line. Wait until urine output documented. K+ will DROP further once insulin is started (drives K+ into cells), so even with normal/low K+ at start, replacement is essential. Use peripheral line if K+ < 5.5 and urinating.",
+      "rubric": "K+ replacement after urine output, peripheral line"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify metabolic acidosis",
+      "Identify respiratory compensation",
+      "Calculate anion gap",
+      "Recognize DKA"
+    ],
+    "bonus": [
+      "K+ replacement rationale"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

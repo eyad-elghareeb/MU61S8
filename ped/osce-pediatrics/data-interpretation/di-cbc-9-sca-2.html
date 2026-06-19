@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Sickle Cell with Severe Hemolysis</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-9-sca-2",
+  title: "CBC Interpretation — Sickle Cell with Severe Hemolysis",
+  description: "8-year-old with severe anemia and very high reticulocytes.",
+  category: "Data Interpretation",
+  tags: ["CBC", "sickle cell", "severe hemolysis"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "An 8-year-old boy with known SCA presents with worsening pallor. CBC:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "4,800 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "400,000 cells/mm³",
+            "Normal/high"
+          ],
+          [
+            "MCV",
+            "87 fl",
+            "Normal"
+          ],
+          [
+            "MCH",
+            "25 pg",
+            "Low (slightly)"
+          ],
+          [
+            "MCHC",
+            "30 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "15%",
+            "VERY HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "e) Sickle cell anemia — normocytic normochromic hemolytic anemia with very high reticulocyte count (15%).",
+      "rubric": "Identify hemolysis in known SCA"
+    },
+    {
+      "id": "q2",
+      "question": "What does a reticulocyte count of 15% indicate in SCA?",
+      "answer": "Active hemolytic compensation — bone marrow is responding robustly. In SCA baseline retic is usually 5–15%. A sudden DROP in retic suggests aplastic crisis (e.g., parvovirus B19).",
+      "rubric": "Aplastic crisis = sudden retic drop"
+    },
+    {
+      "id": "q3",
+      "question": "What is the role of HbF in SCA?",
+      "answer": "HbF inhibits HbS polymerization. Higher HbF levels → milder disease. Hydroxyurea works by inducing HbF. Newborns have high HbF → protected in first months. Persistence of HbF (HPFH) ameliorates SCA.",
+      "rubric": "HbF inhibits sickling"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify hemolytic",
+      "Aplastic crisis vs active hemolysis",
+      "HbF role"
+    ],
+    "bonus": [
+      "Hydroxyurea mechanism"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — RBC Indices Calculation</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-16-indices-calculation",
+  title: "CBC Interpretation — RBC Indices Calculation",
+  description: "Calculate MCV, MCH, MCHC from raw values.",
+  category: "Data Interpretation",
+  tags: ["CBC", "MCV", "MCH", "MCHC", "calculation"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Intermediate",
+  "task": "Calculate the RBC indices and interpret the blood picture.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A patient's CBC shows the following raw values. Calculate the MCV, MCH, and MCHC.",
+    "tables": [
+      {
+        "title": "Complete Blood Count — Raw Values",
+        "headers": [
+          "Parameter",
+          "Result"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "6 g/dl"
+          ],
+          [
+            "WBCs",
+            "2,200 cells/mm³"
+          ],
+          [
+            "RBCs",
+            "2,000,000 cells/mm³"
+          ],
+          [
+            "Platelets",
+            "45,000 cells/mm³"
+          ],
+          [
+            "Hct (Hematocrit)",
+            "18%"
+          ]
+        ]
+      },
+      {
+        "title": "Formulas",
+        "headers": [
+          "Index",
+          "Formula"
+        ],
+        "rows": [
+          [
+            "MCV",
+            "Hct (%) × 10 / RBC count (millions/µL)  →  fl"
+          ],
+          [
+            "MCH",
+            "Hb (g/dL) × 10 / RBC count (millions/µL)  →  pg"
+          ],
+          [
+            "MCHC",
+            "Hb (g/dL) × 100 / Hct (%)  →  g/dL (gram%)"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Mean corpuscular volume (MCV) is:",
+      "answer": "d) 90 cubic microns (fl). MCV = Hct × 10 / RBC count = 18 × 10 / 2 = 90 fl. Normocytic.",
+      "rubric": "Apply formula correctly: 18 × 10 / 2 = 90"
+    },
+    {
+      "id": "q2",
+      "question": "Mean corpuscular hemoglobin (MCH) is:",
+      "answer": "b) 30 pg. MCH = Hb × 10 / RBC count = 6 × 10 / 2 = 30 pg. Normochromic.",
+      "rubric": "Apply formula correctly: 6 × 10 / 2 = 30"
+    },
+    {
+      "id": "q3",
+      "question": "Mean corpuscular hemoglobin concentration (MCHC) is:",
+      "answer": "b) 33 gram%. MCHC = Hb × 100 / Hct = 6 × 100 / 18 = 33.3 g/dl. Normochromic.",
+      "rubric": "Apply formula correctly: 6 × 100 / 18 = 33"
+    },
+    {
+      "id": "q4",
+      "question": "This blood picture shows:",
+      "answer": "a) Pancytopenia (all three cell lines reduced: Hb low, WBC low, platelets low).",
+      "rubric": "Identify pancytopenia"
+    },
+    {
+      "id": "q5",
+      "question": "The etiology of this condition may be:",
+      "answer": "c) Aplastic anemia. Pancytopenia with normocytic normochromic anemia and (likely) low reticulocytes → marrow failure.",
+      "rubric": "Aplastic anemia is the most likely cause"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Calculate indices correctly",
+      "Identify pancytopenia",
+      "Aplastic anemia as cause"
+    ],
+    "bonus": [
+      "Identify that aplastic anemia is normocytic normochromic"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

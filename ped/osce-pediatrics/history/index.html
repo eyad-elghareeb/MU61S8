@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Paediatrics History Taking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index-engine.css">
+<meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:title" content="Pediatrics OSCE - History Taking">
+<meta property="og:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pediatrics OSCE - History Taking">
+<meta name="twitter:description" content="MU61 Interactive Quiz. Test your medical knowledge.">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Paediatrics">←</a>
+    <div class="topbar-title">MU61 Quiz - Paediatrics History Taking</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+      <span class="tracker-badge" id="tracker-badge-count"></span>
+    </button>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Paediatrics History Taking</span></h1>
+      <p>Practice history-taking with AI virtual patients using the general scheme.</p>
+    </header>
+    <div class="quiz-grid" id="quiz-grid"></div>
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "hist-bronchiolitis",
+    title: "Acute Bronchiolitis — History Taking",
+    description: "6-month-old with cough and wheeze following a viral URTI.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-bronchiolitis.html"
+  },
+  {
+    uid: "hist-asthma",
+    title: "Bronchial Asthma — History Taking",
+    description: "Recurrent wheezy episodes in a 5-year-old, relieved by inhaler.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-asthma.html"
+  },
+  {
+    uid: "hist-pertussis",
+    title: "Pertussis (Whooping Cough) — History Taking",
+    description: "3-week paroxysmal cough with whoop and post-tussive vomiting in an unimmunized child.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-pertussis.html"
+  },
+  {
+    uid: "hist-epiglottitis",
+    title: "Acute Epiglottitis — History Taking",
+    description: "Sudden onset high fever, drooling, and stridor in a 4-year-old.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-epiglottitis.html"
+  },
+  {
+    uid: "hist-croup",
+    title: "Viral Croup — History Taking",
+    description: "18-month-old with barking cough and stridor worse at night.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-croup.html"
+  },
+  {
+    uid: "hist-pneumonia",
+    title: "Pneumonia — History Taking",
+    description: "4-year-old with high fever, productive cough, and rapid breathing.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-pneumonia.html"
+  },
+  {
+    uid: "hist-rheumatic-fever",
+    title: "Acute Rheumatic Fever — History Taking",
+    description: "9-year-old with migratory polyarthritis and shortness of breath 3 weeks after sore throat.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-rheumatic-fever.html"
+  },
+  {
+    uid: "hist-tof-tga-cyanosis",
+    title: "Cyanotic Heart Disease (TOF) — History Taking",
+    description: "4-month-old with cyanotic spells precipitated by crying.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-tof-tga-cyanosis.html"
+  },
+  {
+    uid: "hist-vsd",
+    title: "Ventricular Septal Defect (VSD) — History Taking",
+    description: "3-month-old with recurrent chest infections, poor feeding, and sweating with feeds.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-vsd.html"
+  },
+  {
+    uid: "hist-coarctation",
+    title: "Coarctation Of The Aorta — History Taking",
+    description: "12-year-old girl with easy fatigability, intermittent headache, and recurrent leg pain.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-coarctation.html"
+  },
+  {
+    uid: "hist-heart-failure",
+    title: "Congestive Heart Failure — History Taking",
+    description: "2-month-old with poor feeding, sweating with feeds, and rapid breathing.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-heart-failure.html"
+  },
+  {
+    uid: "hist-hemophilia",
+    title: "Hemophilia — History Taking",
+    description: "2-year-old boy with prolonged bleeding after circumcision and a swollen tender knee.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-hemophilia.html"
+  },
+  {
+    uid: "hist-itp",
+    title: "Immune Thrombocytopenia (ITP) — History Taking",
+    description: "4-year-old with sudden onset red spots all over the body 2 weeks after a viral illness.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-itp.html"
+  },
+  {
+    uid: "hist-hsp",
+    title: "Henoch–SchöNlein Purpura (HSP) — History Taking",
+    description: "5-year-old with palpable purpura over buttocks and legs, abdominal pain, and joint pain.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-hsp.html"
+  },
+  {
+    uid: "hist-g6pd",
+    title: "G6PD Deficiency — History Taking",
+    description: "3-year-old with sudden pallor and yellowish eyes 1 day after eating fava beans.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-g6pd.html"
+  },
+  {
+    uid: "hist-thalassemia",
+    title: "Beta Thalassemia Major — History Taking",
+    description: "4-year-old with chronic pallor, jaundice, abdominal distension, and facial changes.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-thalassemia.html"
+  },
+  {
+    uid: "hist-aplastic-anemia",
+    title: "Aplastic Anemia — History Taking",
+    description: "6-year-old with pallor, recurrent infections, and purpuric rash.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-aplastic-anemia.html"
+  },
+  {
+    uid: "hist-hepatitis-a",
+    title: "Acute Viral Hepatitis (HAV) — History Taking",
+    description: "8-year-old with yellowish eyes, abdominal pain, and fever for 1 week.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-hepatitis-a.html"
+  },
+  {
+    uid: "hist-neonatal-cholestasis",
+    title: "Neonatal Cholestasis — History Taking",
+    description: "3-week-old with prolonged jaundice, pale stools, and dark urine.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-neonatal-cholestasis.html"
+  },
+  {
+    uid: "hist-fever-rash-measles",
+    title: "Fever With Rash — Measles Scenario",
+    description: "3-year-old unvaccinated child with high fever for 4 days followed by a rash.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-fever-rash-measles.html"
+  },
+  {
+    uid: "hist-meningitis",
+    title: "Bacterial Meningitis — History Taking",
+    description: "2-year-old with fever, vomiting, stiff neck, and altered consciousness.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-meningitis.html"
+  },
+  {
+    uid: "hist-age-dehydration",
+    title: "Acute Gastroenteritis With Dehydration — History Taking",
+    description: "10-month-old with vomiting, diarrhea, and signs of dehydration.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-age-dehydration.html"
+  },
+  {
+    uid: "hist-dka",
+    title: "Diabetic Ketoacidosis — History Taking",
+    description: "6-year-old with 3 weeks of polyuria, polydipsia, weight loss, now drowsy with Kussmaul breathing.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-dka.html"
+  },
+  {
+    uid: "hist-nephrotic",
+    title: "Nephrotic Syndrome — History Taking",
+    description: "4-year-old with generalized swelling, frothy urine, and weight gain.",
+    icon: "🩺",
+    tags: ["Virtual Patient", "0 Questions"],
+    url: "hist-nephrotic.html"
+  }
+];
+</script>
+
+<div class="dash-overlay" id="tracker-dashboard">
+  <div class="dash-modal">
+    <div class="dash-header">
+      <h2 id="dash-title-text">📊 Question Tracker</h2>
+      <button class="dash-close-btn" onclick="closeTrackerDashboard()">✕</button>
+    </div>
+    <div class="dash-scope-bar" id="dash-scope-bar"></div>
+    <div class="dash-summary">
+      <div class="dash-stat"><div class="ds-val red" id="dash-total-wrong">0</div><div class="ds-lbl">Wrong</div></div>
+      <div class="dash-stat"><div class="ds-val blue" id="dash-total-flagged">0</div><div class="ds-lbl">Flagged</div></div>
+      <div class="dash-stat"><div class="ds-val green" id="dash-total-quizzes">0</div><div class="ds-lbl">Quizzes</div></div>
+    </div>
+    <div class="dash-body" id="dash-body"></div>
+    <div class="dash-footer">
+      <button class="btn-dash-action" onclick="exportTrackerToPDF()">📄 Export PDF</button>
+      <button class="btn-dash-action btn-dash-danger" onclick="confirmClearTrackerData()">🗑 Clear All</button>
+      <button class="btn-dash-close" onclick="closeTrackerDashboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();
+</script>
+<script>
+if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js').catch(function(){})});}
+</script>
+</body>
+</html>

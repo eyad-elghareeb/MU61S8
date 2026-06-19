@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>CBC Interpretation — Hereditary Spherocytosis</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-cbc-14-spherocytosis",
+  title: "CBC Interpretation — Hereditary Spherocytosis",
+  description: "6-year-old boy; normocytic hemolytic anemia.",
+  category: "Data Interpretation",
+  tags: ["CBC", "spherocytosis", "AD", "hemolysis"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Hematology",
+  "difficulty": "Advanced",
+  "task": "Interpret the CBC.",
+  "examiner": {
+    "name": "Dr. Soha",
+    "title": "Consultant Hematologist"
+  },
+  "dataPresented": {
+    "scenario": "A 6-year-old boy with jaundice and family history of gallstones. CBC:",
+    "tables": [
+      {
+        "title": "Complete Blood Count",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Hb",
+            "7 g/dl",
+            "Low"
+          ],
+          [
+            "WBCs",
+            "7,900 cells/mm³",
+            "Normal"
+          ],
+          [
+            "Platelets",
+            "350,000 cells/mm³",
+            "Normal"
+          ],
+          [
+            "MCV",
+            "88 fl",
+            "Normal"
+          ],
+          [
+            "MCH",
+            "32 pg",
+            "Normal"
+          ],
+          [
+            "MCHC",
+            "30 gram%",
+            "Normal"
+          ],
+          [
+            "RC",
+            "7%",
+            "HIGH"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "You would interpret this CBC as:",
+      "answer": "a) Hereditary spherocytosis. Normocytic (or slightly low MCV) normochromic hemolytic anemia with high reticulocytes. Family history of gallstones (chronic hemolysis) is a clue.",
+      "rubric": "Normocytic + high retic + family Hx gallstones → spherocytosis"
+    },
+    {
+      "id": "q2",
+      "question": "What peripheral smear findings support spherocytosis?",
+      "answer": "Spherocytes (small, dense, no central pallor), polychromasia (reticulocytes), anisocytosis. No sickle cells, no target cells.",
+      "rubric": "Spherocytes characteristic"
+    },
+    {
+      "id": "q3",
+      "question": "What is the most specific diagnostic test?",
+      "answer": "Osmotic fragility test (spherocytes lyse in hypotonic saline). Eosin-5-maleimide (EMA) flow cytometry is more modern and specific. Acidified glycerol lysis test is an alternative.",
+      "rubric": "Osmotic fragility or EMA test"
+    },
+    {
+      "id": "q4",
+      "question": "What is the inheritance pattern and what is the treatment?",
+      "answer": "AD inheritance (most cases). Treatment: 1. Folic acid supplementation. 2. Blood transfusion if severe anemia or aplastic crisis. 3. Splenectomy (definitive, eliminates hemolysis) — usually deferred until after age 5 to reduce sepsis risk. 4. Cholecystectomy if gallstones. 5. Vaccination before splenectomy.",
+      "rubric": "AD + splenectomy as definitive"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify hemolysis",
+      "Spherocytes on smear",
+      "Osmotic fragility test",
+      "Splenectomy"
+    ],
+    "bonus": [
+      "Vaccination before splenectomy",
+      "Aplastic crisis trigger"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>

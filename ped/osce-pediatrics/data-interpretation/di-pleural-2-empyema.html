@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';document.head.appendChild(s)})();
+</script>
+<title>Pleural Fluid Interpretation — Empyema</title>
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../favicon.svg">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../../sw.js').catch(function () {});
+  });
+}
+</script>
+</head>
+<body>
+<script>
+/* [OSCE_CONFIG_START] */
+const OSCE_CONFIG = {
+  uid: "di-pleural-2-empyema",
+  title: "Pleural Fluid Interpretation — Empyema",
+  description: "2-year-old with high fever, cough, lethargy; grossly purulent pleural fluid.",
+  category: "Data Interpretation",
+  tags: ["pleural fluid", "empyema", "infection", "pus"]
+};
+/* [OSCE_CONFIG_END] */
+
+/* [OSCE_CASE_START] */
+const OSCE_CASE = {
+  "type": "data-interp",
+  "specialty": "Pediatric Respiratory / Infectious Disease",
+  "difficulty": "Advanced",
+  "task": "Interpret the pleural fluid analysis and answer the examiner's questions.",
+  "examiner": {
+    "name": "Dr. Ahmed",
+    "title": "Consultant Pulmonologist"
+  },
+  "dataPresented": {
+    "scenario": "A 2-year-old male child presented with high-grade fever, cough, lethargy, and respiratory distress. Chest percussion revealed stony dullness & chest auscultation revealed diminished breath sounds on the right side. Pleural fluid analysis showed:",
+    "tables": [
+      {
+        "title": "Pleural Fluid Analysis",
+        "headers": [
+          "Parameter",
+          "Result",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Nature",
+            "Grossly purulent",
+            "Pus"
+          ],
+          [
+            "pH",
+            "< 7.1",
+            "Low"
+          ],
+          [
+            "LDH",
+            "> 1000 IU/L",
+            "Very high"
+          ],
+          [
+            "Pleural glucose",
+            "40 mg/dl",
+            "Low"
+          ],
+          [
+            "Gram stain",
+            "+ve (bacteria present)",
+            "Positive"
+          ]
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "These findings indicate:",
+      "answer": "c) Empyema (complicated parapneumonic effusion)",
+      "rubric": "Pus + low pH + low glucose + gram stain positive → empyema"
+    },
+    {
+      "id": "q2",
+      "question": "What is the most common organism causing pediatric empyema?",
+      "answer": "Streptococcus pneumoniae (most common). Others: Staphylococcus aureus (including MRSA), Group A Streptococcus, Haemophilus influenzae.",
+      "rubric": "Identify pneumococcus as most common"
+    },
+    {
+      "id": "q3",
+      "question": "Outline the management of pediatric empyema.",
+      "answer": "1. IV antibiotics (covers S. pneumoniae, S. aureus — e.g., ceftriaxone + vancomycin/clindamycin). 2. Chest tube drainage (tube thoracostomy). 3. Intrapleural fibrinolytics (e.g., urokinase, tPA) if loculated. 4. Surgery: VATS (video-assisted thoracoscopic surgery) or open decortication if failure of medical management.",
+      "rubric": "Antibiotics + drainage ± fibrinolytics ± surgery"
+    },
+    {
+      "id": "q4",
+      "question": "Differentiate complicated from uncomplicated parapneumonic effusion.",
+      "answer": "Complicated: large, loculated, gram stain +ve, gross pus, pH < 7.1, glucose < 40, LDH > 1000. Uncomplicated: small, free flowing, gram stain −ve, thin fluid, pH > 7.3, glucose > 60, LDH < 1000.",
+      "rubric": "Mention size, gram stain, pH, glucose, LDH"
+    }
+  ],
+  "rubric": {
+    "mustAsk": [
+      "Identify empyema",
+      "Antibiotic choice",
+      "Chest tube + fibrinolytics"
+    ],
+    "bonus": [
+      "VATS as preferred surgical approach in children"
+    ]
+  }
+};
+/* [OSCE_CASE_END] */
+</script>
+<script>
+(function () {
+  var computedBase = '../'.repeat(
+    Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
+  );
+  var candidates = location.protocol === 'file:'
+    ? ['', computedBase, '../', '../../', '../../../']
+    : [computedBase, '', '../', '../../', '../../../'];
+  var tried = {};
+  function loadNext() {
+    var base = candidates.shift();
+    if (base === undefined) return;
+    if (tried[base]) return loadNext();
+    tried[base] = true;
+    window.__OSCE_ENGINE_BASE = base;
+    var script = document.createElement('script');
+    script.src = base + 'osce-engine.js';
+    script.onerror = loadNext;
+    document.body.appendChild(script);
+  }
+  loadNext();
+})();
+</script>
+</body>
+</html>
