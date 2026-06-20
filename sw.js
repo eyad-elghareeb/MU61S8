@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-8966063801f1';
+const CACHE_VERSION = 'mu61-quiz-31ee95c044db';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -523,11 +523,6 @@ var PRECACHE_REL_PATHS = [
   'surg/past-years/61st-mid.html',
   'surg/past-years/index.html',
   'surg/past-years/past-years-breast-qs.html',
-  'ai-assistant-engine.js',
-  'bank-engine.js',
-  'engine-shared.css',
-  'engine-shared.js',
-  'engine-tracker.js',
   'engines/ai-assistant-engine.js',
   'engines/bank-engine.js',
   'engines/engine-shared.css',
@@ -543,23 +538,14 @@ var PRECACHE_REL_PATHS = [
   'engines/uworld-engine.js',
   'engines/written-engine.js',
   'favicon.svg',
-  'flashcard-engine.js',
   'icon-48.png',
   'icon-72.png',
   'icon-96.png',
   'icon-144.png',
   'icon-192.png',
   'icon-512.png',
-  'index-engine.css',
-  'index-engine.js',
   'manifest.webmanifest',
-  'osce-engine.js',
-  'quiz-engine.js',
-  'search-engine.js',
-  'sync-engine.js',
-  'tracker-map.json',
-  'uworld-engine.js',
-  'written-engine.js'
+  'tracker-map.json'
 ];
 
 /* ── Build a full URL from scope + relative path ── */
