@@ -18,7 +18,7 @@ document.head.appendChild(s)}})();
 <title>MU61 Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{engine_prefix}index-engine.css">
+<link rel="stylesheet" href="{engine_prefix}engines/index-engine.css">
 <!-- Meta tags for preview and favicon -->
 <meta name="description" content="MU61 Interactive Quiz. Test your medical knowledge.">
 <meta property="og:title" content="MU61 Quiz">
@@ -59,7 +59,8 @@ document.head.appendChild(s)}})();
 const QUIZZES = [];
 </script>
 
-<script src="{engine_prefix}index-engine.js"></script>
+<script src="{engine_prefix}engines/engine-shared.js"></script>
+<script src="{engine_prefix}engines/index-engine.js"></script>
 <script>
 (function(){{
   var s=localStorage.getItem('quiz-theme');

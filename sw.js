@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-d290b1dd02cc';
+const CACHE_VERSION = 'mu61-quiz-8966063801f1';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -17,12 +17,15 @@ const HTML5QRCODE_CDN =
   'https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js';
 
 var PRECACHE_REL_PATHS = [
-  'quiz-engine.js',
-  'bank-engine.js',
-  'index-engine.js',
-  'flashcard-engine.js',
-  'written-engine.js',
-  'osce-engine.js',
+  'engines/engine-shared.js',
+  'engines/engine-shared.css',
+  'engines/engine-tracker.js',
+  'engines/quiz-engine.js',
+  'engines/bank-engine.js',
+  'engines/index-engine.js',
+  'engines/flashcard-engine.js',
+  'engines/written-engine.js',
+  'engines/osce-engine.js',
   'tracker-map.json',
   'index.html',
   'gyn/ai/index.html',
@@ -521,7 +524,26 @@ var PRECACHE_REL_PATHS = [
   'surg/past-years/index.html',
   'surg/past-years/past-years-breast-qs.html',
   'ai-assistant-engine.js',
+  'bank-engine.js',
+  'engine-shared.css',
+  'engine-shared.js',
+  'engine-tracker.js',
+  'engines/ai-assistant-engine.js',
+  'engines/bank-engine.js',
+  'engines/engine-shared.css',
+  'engines/engine-shared.js',
+  'engines/engine-tracker.js',
+  'engines/flashcard-engine.js',
+  'engines/index-engine.css',
+  'engines/index-engine.js',
+  'engines/osce-engine.js',
+  'engines/quiz-engine.js',
+  'engines/search-engine.js',
+  'engines/sync-engine.js',
+  'engines/uworld-engine.js',
+  'engines/written-engine.js',
   'favicon.svg',
+  'flashcard-engine.js',
   'icon-48.png',
   'icon-72.png',
   'icon-96.png',
@@ -529,9 +551,15 @@ var PRECACHE_REL_PATHS = [
   'icon-192.png',
   'icon-512.png',
   'index-engine.css',
+  'index-engine.js',
   'manifest.webmanifest',
+  'osce-engine.js',
+  'quiz-engine.js',
   'search-engine.js',
-  'tracker-map.json'
+  'sync-engine.js',
+  'tracker-map.json',
+  'uworld-engine.js',
+  'written-engine.js'
 ];
 
 /* ── Build a full URL from scope + relative path ── */
@@ -598,15 +626,15 @@ self.addEventListener('install', function (event) {
       var cache = await caches.open(CACHE_NAME);
 
       var REQUIRED = [
-        'quiz-engine.js',
-        'bank-engine.js',
-        'index-engine.js',
-        'search-engine.js',
+        'engines/quiz-engine.js',
+        'engines/bank-engine.js',
+        'engines/index-engine.js',
+        'engines/search-engine.js',
         'index-engine.css',
         'index.html',
         'manifest.webmanifest',
         'favicon.svg',
-        'osce-engine.js'
+        'engines/osce-engine.js'
       ];
 
       /* 1. Critical assets — DO NOT CATCH (fails install on error) */
@@ -729,13 +757,16 @@ function handleAsset(event, request) {
       if (url.origin === self.location.origin && url.href.indexOf(scope) === 0) {
         var filename = url.pathname.split('/').pop();
         var SHARED = [
-          'quiz-engine.js',
-          'bank-engine.js',
-          'index-engine.js',
-          'search-engine.js',
-          'flashcard-engine.js',
-          'written-engine.js',
-          'osce-engine.js',
+          'engines/engine-shared.js',
+          'engines/engine-shared.css',
+          'engines/engine-tracker.js',
+          'engines/quiz-engine.js',
+          'engines/bank-engine.js',
+          'engines/index-engine.js',
+          'engines/search-engine.js',
+          'engines/flashcard-engine.js',
+          'engines/written-engine.js',
+          'engines/osce-engine.js',
           'index-engine.css',
           'manifest.webmanifest',
           'favicon.svg',

@@ -10,6 +10,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SW_PATH = REPO_ROOT / "sw.js"
 ROOT_CACHE_ASSETS = (
+    "engines/engine-shared.js",
+    "engines/engine-shared.css",
+    "engines/engine-tracker.js",
     "manifest.webmanifest",
     "favicon.svg",
     "icon-48.png",
@@ -19,10 +22,10 @@ ROOT_CACHE_ASSETS = (
     "icon-192.png",
     "icon-512.png",
     "index-engine.css",
-    "flashcard-engine.js",
-    "written-engine.js",
-    "osce-engine.js",
-    "sync-engine.js",
+    "engines/flashcard-engine.js",
+    "engines/written-engine.js",
+    "engines/osce-engine.js",
+    "engines/sync-engine.js",
 )
 SKIP_DIRS = {".git", ".github", "__pycache__", "_site", "scripts", "node_modules"}
 GENERIC_DESCRIPTIONS = {"past years exams", "department book mcqs", "quiz loading..."}
@@ -348,9 +351,9 @@ def discover_asset_files() -> list[Path]:
     extensions = {".png", ".svg", ".jpg", ".jpeg", ".css", ".webmanifest", ".js", ".json"}
     paths: list[Path] = []
     # Known engines are handled separately to ensure they are at the top of the list
-    engines = {"quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "written-engine.js", "osce-engine.js"}
+    engines = {"engines/engine-shared.js", "engines/engine-shared.css", "engines/engine-tracker.js", "engines/quiz-engine.js", "engines/bank-engine.js", "engines/index-engine.js", "engines/flashcard-engine.js", "engines/written-engine.js", "engines/osce-engine.js"}
     # Source files that should not be precached (build artifacts, source maps, etc.)
-    skip_files = {"sw.js", "sync-engine.js", "sync-engine.src.js"}
+    skip_files = {"sw.js", "engines/sync-engine.js", "sync-engine.src.js"}
     
     for path in REPO_ROOT.rglob("*"):
         if not path.is_file():
@@ -376,7 +379,7 @@ def update_service_worker() -> bool:
     # Engine files must always be first in the precache list for prioritized installation
     # Engines are specifically placed first to ensure cache robustness logic in sw.js works.
     engine_paths = []
-    for eng in ["quiz-engine.js", "bank-engine.js", "index-engine.js", "flashcard-engine.js", "written-engine.js", "osce-engine.js", "tracker-map.json"]:
+    for eng in ["engines/engine-shared.js", "engines/engine-shared.css", "engines/engine-tracker.js", "engines/quiz-engine.js", "engines/bank-engine.js", "engines/index-engine.js", "engines/flashcard-engine.js", "engines/written-engine.js", "engines/osce-engine.js", "tracker-map.json"]:
         if (REPO_ROOT / eng).exists():
             engine_paths.append(eng)
             
@@ -399,7 +402,8 @@ def update_service_worker() -> bool:
 
     # Update SHARED assets in sw.js (ensure icon fallbacks are present)
     shared_assets = [
-        'quiz-engine.js', 'bank-engine.js', 'index-engine.js', 'search-engine.js', 'flashcard-engine.js', 'written-engine.js', 'osce-engine.js', 'index-engine.css',
+        'engines/engine-shared.js', 'engines/engine-shared.css', 'engines/engine-tracker.js',
+        'engines/quiz-engine.js', 'engines/bank-engine.js', 'engines/index-engine.js', 'engines/search-engine.js', 'engines/flashcard-engine.js', 'engines/written-engine.js', 'engines/osce-engine.js', 'index-engine.css',
         'manifest.webmanifest', 'favicon.svg',
         'icon-48.png', 'icon-72.png', 'icon-96.png', 'icon-144.png', 'icon-192.png', 'icon-512.png',
         'tracker-map.json'

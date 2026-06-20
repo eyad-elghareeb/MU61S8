@@ -125,6 +125,8 @@ const OSCE_CASE = {
 <script>
 (function () {
   var computedBase = '../'.repeat(
+
+  document.write('<scr'+'ipt src="'+computedBase+'engine-shared.js"></scr'+'ipt>');
     Math.max(0, location.pathname.split('/').filter(Boolean).length - 2)
   );
   var candidates = location.protocol === 'file:'
@@ -138,7 +140,7 @@ const OSCE_CASE = {
     tried[base] = true;
     window.__OSCE_ENGINE_BASE = base;
     var script = document.createElement('script');
-    script.src = base + 'osce-engine.js';
+    script.src = base + 'engines/osce-engine.js';
     script.onerror = loadNext;
     document.body.appendChild(script);
   }
