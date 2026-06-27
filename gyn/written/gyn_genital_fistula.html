@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_genital_fistula",
+          title: "Genital Fistula",
+          description:
+            "Written exam questions on urogenital fistula (6 questions).",
+          icon: "💧",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question:
+              "Mention 3 investigations to diagnose Vesicovaginal fistula.",
+            modelAnswer: "Urine analysis and culture. Cystoscopy. IVP.",
+            rubric: "Three investigations.",
+            explanation:
+              "Cystoscopy directly visualizes the fistula tract, while IVP excludes an associated ureteric component.",
+            tags: ["fistula", "vvf", "investigations"],
+          },
+          {
+            id: "wq-2",
+            question: "Mention three possible causes of vesicovaginal fistula:",
+            modelAnswer:
+              "Traumatic fistula (rupture uterus - during CS). Necrotic fistula (obstructed labor). Operative fistula (operations for genital prolapse). Neoplasia (cancer bladder - vagina). Inflammatory (bilharziasis).",
+            rubric: "At least three causes.",
+            explanation:
+              "In developing countries, obstructed labor remains the leading cause of vesicovaginal fistula, whereas in developed settings, surgical/operative trauma predominates.",
+            tags: ["fistula", "vvf"],
+          },
+          {
+            id: "wq-3",
+            question: "Definition of Urogenital fistula:",
+            modelAnswer:
+              "Are abnormal communications urine passes from the urinary system to the genital system. The name of the fistula follows the direction of urine.",
+            rubric:
+              "Definition mentioning abnormal communication and naming convention following urine direction.",
+            explanation:
+              "The naming convention (e.g., vesicovaginal) follows the direction of urine flow from the urinary organ to the genital organ.",
+            tags: ["fistula", "definition"],
+          },
+          {
+            id: "wq-4",
+            question: "Types of urogenital fistula:",
+            modelAnswer:
+              "Vesico-Vaginal (Bladder → Vagina). Uretro-Vaginal (Ureter → Vagina). Urethro-Vaginal (Urethra → Vagina). Vesico-Uterine (Bladder → Uterus). Vesico-Cervical (Bladder → Cervix). Uretro-Cervical (Ureter → Cervix). Uretro-Uterine (Ureter → Uterus).",
+            rubric:
+              "At least 5 of the seven named types with correct direction.",
+            explanation:
+              "Vesicovaginal fistula is by far the most common type encountered clinically.",
+            tags: ["fistula", "classification"],
+          },
+          {
+            id: "wq-5",
+            question: "Symptoms of Vesico-Vaginal fistula:",
+            modelAnswer: "",
+            rubric:
+              "Incontinence pattern (complete vs partial); vulvitis symptoms; cystitis mechanism.",
+            explanation:
+              "The degree of incontinence (partial vs complete) helps localize and size the fistula clinically.",
+            tags: ["fistula", "vvf", "symptoms"],
+            children: [
+              {
+                id: "A",
+                label: "A) Urinary incontinence:",
+                question: "Urinary incontinence:",
+                modelAnswer:
+                  "Complete (or total) incontinence in large fistula. Partial (or incomplete) in small fistula; should be differentiated from ureterovaginal fistula.",
+              },
+              {
+                id: "B",
+                label: "B) Symptoms of vulvitis:",
+                question: "Symptoms of vulvitis:",
+                modelAnswer:
+                  "Pruritus, burning pain, encrustations of vulvar skin; due to continuous dripping of urine.",
+              },
+              {
+                id: "C",
+                label: "C) Cystitis:",
+                question: "Cystitis:",
+                modelAnswer: "Due to ascending infection from the vagina.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question: "Types of Vesico-Vaginal fistula:",
+            modelAnswer: "",
+            rubric:
+              "Classification by simplicity (simple vs complicated) and by anatomical site (juxtacervical, midvaginal, juxtaurethral).",
+            explanation:
+              "Complicated fistulae with tissue loss and scarring have a lower surgical success rate than simple fistulae.",
+            tags: ["fistula", "vvf", "classification"],
+            children: [
+              {
+                id: "A",
+                label: "A) According to simplicity:",
+                question: "According to simplicity:",
+                modelAnswer:
+                  "Simple: Healthy tissues with good access. Complicated: Tissue loss, scarring, difficult access, associated with RVF.",
+              },
+              {
+                id: "B",
+                label: "B) Depending upon site of the Fistula:",
+                question: "Depending upon site of the Fistula:",
+                modelAnswer:
+                  "Juxtacervical (close to cx): communication between superrational region of bladder and vagina. Midvaginal: communication between base (Trigone) of bladder and vagina. Juxtraurethral: communication between neck of bladder and vagina.",
+              },
+            ],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

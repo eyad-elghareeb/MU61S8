@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_anatomy_reproductive_system",
+          title: "Anatomy of the Reproductive System",
+          description:
+            "Written exam questions on female reproductive anatomy (18 questions).",
+          icon: "🧬",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Vestibule of external genetialia:",
+            modelAnswer:
+              "It is the closed space between the 2 labia minora and in which the following open: external urethral meatus, external vaginal orifice, and Bartholin's gland. The vestibular bulbs are two oblong erectile tissues, lying on each side of the vaginal orifice, seen on straining.",
+            rubric:
+              "Must mention: definition as space between labia minora; structures opening into it (urethral meatus, vaginal orifice, Bartholin's gland duct); vestibular bulbs and their position.",
+            explanation:
+              "The vestibule is a key landmark in vulval anatomy relevant to episiotomy and vulval surgery.",
+            tags: ["anatomy", "vulva"],
+          },
+          {
+            id: "wq-2",
+            question: "Regarding the cervix uteri:",
+            modelAnswer: "",
+            rubric:
+              "A: three relations of supravaginal portion (anterior, posterior, lateral) plus vaginal portion. B: three lymphatic drainage routes (anterior, lateral, posterior) with corresponding nodes.",
+            explanation:
+              "The cervical relations and lymphatic drainage are essential for understanding the spread of cervical cancer and the surgical anatomy of radical hysterectomy.",
+            tags: ["anatomy", "cervix"],
+            children: [
+              {
+                id: "A",
+                label: "A)",
+                question: "Describe the anatomical relations:",
+                modelAnswer:
+                  "Supravaginal portion - Anteriorly: not covered by peritoneum & related to bladder base; Posteriorly: covered by peritoneum of Douglas pouch & related to coils of ileum & rectum; Laterally: related to Mackenrodt's ligament, uterine artery & ureter. Vaginal portion: projects in the vagina & is surrounded by the vaginal fornices.",
+              },
+              {
+                id: "B",
+                label: "B)",
+                question: "Enumerate lymphatic draining:",
+                modelAnswer:
+                  "Anteriorly: to obturator & external iliac LNs. Laterally: to parametrial & internal iliac LNs. Posteriorly: to lateral sacral LNs.",
+              },
+            ],
+          },
+          {
+            id: "wq-3",
+            question: "Regarding the Hymen:",
+            modelAnswer:
+              "Shapes of hymenal opening: single, bi-partite, cribriform, annular, or crescentic. Applied anatomy: if imperforate, it causes cryptomenorrhea; it is torn by first coitus unless the opening is patulous or the hymen is elastic.",
+            rubric:
+              "Shapes of hymenal opening (at least 3); clinical significance of imperforate hymen (cryptomenorrhea); effect of first coitus.",
+            explanation:
+              "The hymen's anatomy explains clinical presentations such as cryptomenorrhea and forensic considerations of virginity.",
+            tags: ["anatomy", "hymen"],
+          },
+          {
+            id: "wq-4",
+            question: "Mention relations of the uterine body:",
+            modelAnswer:
+              "Anterior: covered by peritoneum of the vesicouterine pouch, related to the bladder. Posterior: covered by peritoneum of the Douglas pouch, related to coils of ileum & the pelvic colon. Lateral: 3 structures attached to the cornu, the broad ligament & the uterine artery.",
+            rubric:
+              "Anterior relation (vesicouterine pouch/bladder); posterior relation (Douglas pouch/ileum/pelvic colon); lateral relation (cornu structures, broad ligament, uterine artery).",
+            explanation:
+              "Knowledge of uterine relations is essential during hysterectomy to avoid injury to adjacent structures.",
+            tags: ["anatomy", "uterus"],
+          },
+          {
+            id: "wq-5",
+            question: "Regarding labia minora outline:",
+            modelAnswer:
+              "Anatomical description: two folds of smooth non-hairy skin lying medial to the labia majora and smaller than it. Homologous to the penile urethra in the male. Histology: stratified squamous epithelium (keratinized on the lateral surface only) with sebaceous & sweat glands but no hair follicles.",
+            rubric:
+              "Description of labia minora; male homologue; histological features (epithelium type, glands, absence of hair follicles).",
+            explanation:
+              "Labial histology explains the absence of hair on the labia minora compared with the labia majora.",
+            tags: ["anatomy", "vulva"],
+          },
+          {
+            id: "wq-6",
+            question: "Regarding Bartholin gland, mention:",
+            modelAnswer:
+              "Type of gland: compound glands. Clinical & surgical importance: secretes a thin mucoid alkaline fluid during sexual excitement which acts as a coital lubricant & has antimicrobial activity; swelling at the posterior 1/3 of the labium majus is considered Bartholin's gland swelling; a visible duct opening means obstruction or inflammation; surgical removal may cause severe haemorrhage as the gland is in contact with the posterior part of the vestibular bulb; Bartholin's gland carcinoma drains directly to the deep inguinal lymph nodes. Anatomical position: situated deep in the posterior 1/3 of the labia majora in contact with the posterior part of the vestibular bulbs. Site of opening of ducts: each gland has a 2 cm duct which opens between the hymen & labium minus at the 5 & 7 o'clock positions (normally not visible except if diseased). Marsupialization of Bartholin's duct cyst: a vertical incision is made over the centre of the cyst to dissect it from the mucosa; the cyst wall is everted and approximated to the edge of the vestibular mucosa with interrupted sutures.",
+            rubric:
+              "Gland type; lubricant/antimicrobial function; swelling location; significance of visible duct opening; haemorrhage risk on removal; lymphatic drainage of carcinoma; duct opening position; marsupialization technique.",
+            explanation:
+              "Bartholin's gland pathology (cysts, abscesses, carcinoma) is a common clinical topic linked to its anatomical relations.",
+            tags: ["anatomy", "bartholin gland"],
+          },
+          {
+            id: "wq-7",
+            question:
+              "Enumerate the relations of the posterior wall of the vagina:",
+            modelAnswer:
+              "Upper ⅓: peritoneum of the Douglas pouch. Middle ⅓: ampulla of the rectum (separated from it by the rectovaginal septum). Lower ⅓: anal canal (separated from it by the perineal body).",
+            rubric:
+              "Three zones (upper, middle, lower) each with correct related structure and separating septum/body where applicable.",
+            explanation:
+              "These relations explain the route of spread of vaginal infection/malignancy and the basis of rectocele formation.",
+            tags: ["anatomy", "vagina"],
+          },
+          {
+            id: "wq-8",
+            question: "Describe the following regarding uterine artery:",
+            modelAnswer:
+              "Origin: anterior division of the internal iliac artery. Course: passes anteromedially on the pelvic floor along the root of the broad ligament; crosses above the ureter 1.5 cm lateral to the supravaginal cervix; on reaching the lateral aspect of the cervix it turns upward along the lateral border of the uterus supplying the uterine body. Termination: by anastomosis with the ovarian artery below the fallopian tube. Branches: descending cervical artery, circular artery of the cervix, vaginal artery, branches to the tube, uterine ligaments, ureter and bladder.",
+            rubric:
+              "Origin; course (relation to ureter, 'water under the bridge'); termination by anastomosis with ovarian artery; at least 3 named branches.",
+            explanation:
+              "The relationship of the uterine artery to the ureter ('water under the bridge') is critical to avoid ureteric injury during hysterectomy.",
+            tags: ["anatomy", "uterine artery"],
+          },
+          {
+            id: "wq-9",
+            question:
+              "Mention three possible sites for ureteric injury during gynae surgery",
+            modelAnswer:
+              "At the pelvic brim. At the ovarian fossa (during oophorectomy/division of the infundibulopelvic ligament). Lateral to the cervix during division of the uterine artery.",
+            rubric:
+              "Three correctly identified anatomical sites of ureteric vulnerability.",
+            explanation:
+              "Awareness of these sites guides careful dissection and ureteric identification during pelvic and gynaecological surgery.",
+            tags: ["anatomy", "ureter", "surgery"],
+          },
+          {
+            id: "wq-10",
+            question: "List the ligaments which attached to the cervix:",
+            modelAnswer:
+              "Pubocervical ligament. Mackenrodt ligament (cardinal ligament). Uterosacral ligament.",
+            rubric: "Three named ligaments attached to the cervix.",
+            explanation:
+              "These ligaments form the main support of the cervix and upper vagina, and their weakening leads to uterine prolapse.",
+            tags: ["anatomy", "ligaments"],
+          },
+          {
+            id: "wq-11",
+            question:
+              "Describe the anatomy of the vagina according to: Length, Main arterial blood supply, Relations, Lymphatic drainage:",
+            modelAnswer:
+              "Length: anterior wall 7-9 cm; posterior wall 9-11 cm, longer than the anterior wall. Main arterial blood supply: the vaginal artery, originating from the internal iliac artery or from the uterine artery. Relations - anterior wall: upper part related to the bladder base, lower part related to the urethra; posterior wall: upper ⅓ peritoneum of Douglas pouch, middle ⅓ ampulla of rectum (separated by rectovaginal septum), lower ⅓ anal canal (separated by perineal body). Lymphatic drainage: upper ⅔ as the cervix; lower ⅓ as the vulva.",
+            rubric:
+              "Length of anterior/posterior walls; named arterial supply and origin; anterior and posterior wall relations by thirds; lymphatic drainage split (upper 2/3 vs lower 1/3).",
+            explanation:
+              "Vaginal anatomy underlies surgical approaches such as colporrhaphy and explains patterns of lymphatic spread of vaginal cancer.",
+            tags: ["anatomy", "vagina"],
+          },
+          {
+            id: "wq-12",
+            question: "Mention 2 causes of hematosalpinx:",
+            modelAnswer:
+              "Imperforate hymen (cryptomenorrhea). Tubal ectopic pregnancy.",
+            rubric:
+              "Two correct causes: imperforate hymen/cryptomenorrhea and tubal ectopic pregnancy.",
+            explanation:
+              "Hematosalpinx results from blocked outflow of blood, either from outflow tract obstruction or from a tubal ectopic pregnancy.",
+            tags: ["anatomy", "fallopian tube"],
+          },
+          {
+            id: "wq-13",
+            question: "Identify the main blood supply of the uterus:",
+            modelAnswer: "Uterine artery - Ovarian artery. Uterine vein.",
+            rubric:
+              "Naming uterine artery and ovarian artery as arterial supply; uterine vein as venous drainage.",
+            explanation:
+              "The dual arterial supply (uterine and ovarian) provides collateral circulation to the uterus.",
+            tags: ["anatomy", "uterus"],
+          },
+          {
+            id: "wq-14",
+            question: "Enumerate the lymphatic drainage of the vulva:",
+            modelAnswer:
+              "To the superficial and deep femoral and inguinal lymph nodes.",
+            rubric:
+              "Correct identification of superficial/deep femoral and inguinal nodes.",
+            explanation:
+              "This drainage pattern is the basis for groin node dissection in vulval cancer surgery.",
+            tags: ["anatomy", "vulva", "lymphatics"],
+          },
+          {
+            id: "wq-15",
+            question: "Describe the anatomy of the ovaries:",
+            modelAnswer:
+              "Measurement in adult female: 3 x 2 x 1 cm. Normal position: a retroperitoneal structure lying in the ovarian fossa on the lateral pelvic wall. Main arterial blood supply: ovarian artery directly from the aorta and some branches of the uterine artery. Venous drainage: right ovarian vein drains to the IVC; left ovarian vein drains to the left renal vein; some venous drainage passes with the uterine vein to the pampiniform plexus then internal iliac vein. Lymphatic drainage: para-aortic lymph nodes. Ligaments attached to the ovary: ovarian ligament, infundibulopelvic ligament (suspensory ligament of ovary), and mesovarium.",
+            rubric:
+              "Size; retroperitoneal position in ovarian fossa; arterial supply; venous drainage difference between right and left sides; lymphatic drainage to para-aortic nodes; named ligaments.",
+            explanation:
+              "The asymmetric venous drainage (right to IVC, left to renal vein) explains the clinical relevance of left-sided varicocele/ovarian vein thrombosis.",
+            tags: ["anatomy", "ovary"],
+          },
+          {
+            id: "wq-16",
+            question:
+              "Describe the anatomy of the vagina according to: Vaginal pH & main vaginal flora, hematocolpos definition & cause:",
+            modelAnswer:
+              "Vaginal pH & main vaginal flora in adult woman: pH 3.8-4.2; Lactobacilli (called Doderlein bacilli). Hematocolpos - Definition: accumulation of blood in the vagina. Cause: imperforate hymen.",
+            rubric:
+              "Correct pH range; naming Lactobacilli/Doderlein bacilli; definition of hematocolpos; its commonest cause.",
+            explanation:
+              "The acidic vaginal pH maintained by Lactobacilli protects against ascending infection.",
+            tags: ["anatomy", "vagina", "physiology"],
+          },
+          {
+            id: "wq-17",
+            question:
+              "List the uterine support according to the following: Ligaments supports, main muscular support, uterine position:",
+            modelAnswer:
+              "Ligament supports: pubocervical ligament, utero-sacral ligament, lateral cervical ligament. Main muscular support: levator ani. Uterine position: anteverted flexed (AVF) uterus; angle of version 90° between cervix and vagina; angle of flexion 160° between cervix and body.",
+            rubric:
+              "Three supporting ligaments; levator ani as muscular support; normal uterine position with version and flexion angles.",
+            explanation:
+              "Loss of these supports leads to uterine prolapse and retroversion.",
+            tags: ["anatomy", "uterus", "prolapse"],
+          },
+          {
+            id: "wq-18",
+            question:
+              "Describe the anatomy of fallopian tube according to: Length, Segments, Tubal reproductive functions, causes of hematosalpinx:",
+            modelAnswer:
+              "Length: 10-12 cm. Segments: interstitial part, isthmus, ampullary part, fimbrial end. Tubal reproductive functions: site of fertilization; site of ART (ZIFT, GIFT); tubal ligation as a method of contraception. Two causes of hematosalpinx: ectopic pregnancy (tubal abortion); imperforate hymen.",
+            rubric:
+              "Correct length; four named segments in order; at least two reproductive functions; two causes of hematosalpinx.",
+            explanation:
+              "The ampulla is the most common site of fertilization and also the commonest site of tubal ectopic pregnancy.",
+            tags: ["anatomy", "fallopian tube"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

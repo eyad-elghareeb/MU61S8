@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_infertility",
+          title: "Infertility",
+          description: "Written exam questions on infertility (20 questions).",
+          icon: "👶",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Regarding infertility problem.",
+            modelAnswer: "",
+            rubric:
+              "A: 6 categories of tubal causes. B: radiological and laparoscopic tools. C: prophylactic, medical, surgical and ART treatment lines.",
+            explanation:
+              "Tubal factor infertility is most commonly due to PID, and ART has become the most effective treatment line, surpassing tubal surgery in most cases.",
+            tags: ["infertility", "tubal factor"],
+            children: [
+              {
+                id: "A",
+                label:
+                  "A) What are the causes of fallopian tube related infertility?",
+                question:
+                  "What are the causes of fallopian tube related infertility?",
+                modelAnswer:
+                  "Congenital: tubal aplasia, hypoplasia, diverticulum, accessory ostium. Traumatic: trauma during operation followed by adhesions. Inflammatory: following P.I.D, the commonest cause in the tube. Neoplastic: e.g., small cornual fibroid closing the tubal ostia. Endometriosis: causing pelvic adhesions and abnormal tubal motility. Disturbed physiology: e.g., spasm of the tubes, poor ciliary movement, changed tubal secretions, failure of the picking up mechanism.",
+              },
+              {
+                id: "B",
+                label:
+                  "B) Best investigatory tools for fallopian tube related infertility?",
+                question:
+                  "Best investigatory tools for fallopian tube related infertility?",
+                modelAnswer:
+                  "Radiological: hysterosalpingography; saline sono-hysterography (SSHG). Laparoscopy.",
+              },
+              {
+                id: "C",
+                label:
+                  "C) Lines of treatment of fallopian tube related infertility?",
+                question:
+                  "Lines of treatment of fallopian tube related infertility?",
+                modelAnswer:
+                  "Prophylactic: by avoidance of the causes especially infection. Medical: by fibrinolytic drugs as colchicine, hydro-tubation OR short-wave therapy. Surgical: usually it is the main line of treatment, and mostly microsurgical procedures via laparoscope. ART: assisted reproductive technology 'best and commonly used now'.",
+              },
+            ],
+          },
+          {
+            id: "wq-2",
+            question:
+              "Regarding clomiphene citrate as a method of induction of ovulation: Chemical nature, Side effects, Pregnancy rate:",
+            modelAnswer:
+              "Chemical nature: synthetic non-steroidal antiestrogenic agent. Side effects: antiestrogenic effects on cervical mucus & endometrium; ovarian hyper stimulation syndrome (infrequent); multifetal pregnancy (in 5-10% of cases). Pregnancy rate: 40%.",
+            rubric:
+              "Chemical nature; at least 2 side effects; pregnancy rate figure.",
+            explanation:
+              "Clomiphene's antiestrogenic action on cervical mucus and endometrium can paradoxically reduce conception rates despite successful ovulation induction.",
+            tags: ["infertility", "clomiphene"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "State 4 important strategies for the prevention of iatrogenic infertility:",
+            modelAnswer:
+              "Prevention of infection during clinical examination. Avoidance of excessive cervical cauterization. Avoidance of over curettage. Avoidance of unnecessary procedures or operation. Proper use of contraception.",
+            rubric: "Four preventive strategies.",
+            explanation:
+              "Iatrogenic infertility often results from avoidable damage during gynaecological procedures, emphasizing careful technique and judicious use of interventions.",
+            tags: ["infertility", "prevention"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "Mention 3 lines for the treatment of male factor infertility:",
+            modelAnswer:
+              "Medical: treatment of any general cause if present, general tonics good diet and vitamins; hormones when needed e.g., GnRH, FSH, LH, testosterone. Surgical: vein ligation in varicocele; treatment of hypospadias. ART: IUI-H (intrauterine insemination-husband); IVF-ET/ICSI (in-vitro fertilization-embryo transfer/intracytoplasmic sperm injection); others (not commonly used now) such as GIFT (gamete intrafallopian transfer), ZIFT (zygote intrafallopian transfer).",
+            rubric:
+              "Medical, surgical and ART lines of treatment for male factor infertility.",
+            explanation:
+              "ART techniques, especially ICSI, have revolutionized management of severe male factor infertility.",
+            tags: ["infertility", "male factor"],
+          },
+          {
+            id: "wq-5",
+            question: "Regarding tubal factor infertility mention:",
+            modelAnswer: "",
+            rubric:
+              "Four causes and four investigations for tubal factor infertility.",
+            explanation:
+              "Inflammatory (PID-related) damage remains the leading tubal cause, while HSG and laparoscopy remain the principal diagnostic modalities.",
+            tags: ["infertility", "tubal factor"],
+            children: [
+              {
+                id: "A",
+                label: "4 Possible causes:",
+                question: "4 Possible causes:",
+                modelAnswer:
+                  "Congenital: aplasia, hypoplasia, diverticulum. Traumatic: abdominal or pelvic surgery. Inflammatory: commonest cause. Neoplastic: tumors.",
+              },
+              {
+                id: "B",
+                label: "4 Investigations:",
+                question: "4 Investigations:",
+                modelAnswer:
+                  "HSG. Sonohysterosalpingography. Laparoscopy. Falloposcopy.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question: "Regarding Assisted Reproductive Technology (ART):",
+            modelAnswer: "",
+            rubric: "Three indications and three complications of ART.",
+            explanation:
+              "OHSS is the most significant medical complication of controlled ovarian stimulation used in ART cycles.",
+            tags: ["infertility", "art"],
+            children: [
+              {
+                id: "A",
+                label: "3 indications:",
+                question: "3 indications:",
+                modelAnswer:
+                  "Male factor (after failure of other lines of treatment). Ovulatory dysfunction not responding to ovulatory drugs. Tubal factor (after failure of other lines of treatment).",
+              },
+              {
+                id: "B",
+                label: "3 complications:",
+                question: "3 complications:",
+                modelAnswer:
+                  "Ovarian hyperstimulation syndrome (OHSS). Complications of transvaginal oocytes retrieval: Hge, infection. Financial & Psychological impact of repeated failed trials.",
+              },
+            ],
+          },
+          {
+            id: "wq-7",
+            question:
+              "Regarding clomiphene citrate as an ovulatory drug, comment on the following: Mechanism of action, Dose, Success rate, Four side effects:",
+            modelAnswer:
+              "Mechanism of action: competitive inhibition e endogenous estrogen for estrogen receptors in hypothalamus & pituitary → false impression of ↓↓ estrogen → release of FSH → stimulates follicular growth. Dose: 50-150 mg/d for 5 days starting from 2nd-5th day of cycle for 6 months. Success rate: Ovulation rate = 70% Pregnancy rate = 40%. Four side effects: Antiestrogenic effects on cervical mucous. Nausea & Vomiting - Hot flushes - Headache. Ovarian hyperstimulation syndrome. Multifetal pregnancy.",
+            rubric:
+              "Mechanism (competitive ER antagonism causing reflex FSH rise); dose and regimen; ovulation/pregnancy rates; four side effects.",
+            explanation:
+              "Clomiphene works by blocking negative feedback of estrogen at the hypothalamus/pituitary, leading to increased gonadotropin release.",
+            tags: ["infertility", "clomiphene"],
+          },
+          {
+            id: "wq-8",
+            question: "Based on WHO criteria 2021 for normal semen analysis:",
+            modelAnswer:
+              "Volume: ≥ 1.5 ml. Color: grayish white. Odor: characteristic. PH: ≥ 7.2 (alkaline). Viscosity: <2 cm thread forming. Liquefaction: within 20 minutes. Total sperm count: ≥ 39 million/ejaculate. Sperm concentration: ≥ 15 million/ml. Sperm motility: ≥ 40% totally motile (progressively & non progressively motile) within 1 hour of ejaculation; ≥ 32% progressively motile within 1 hour of ejaculation. Sperm morphology: ≥ 4% are normal forms. Sperm viability: ≥ 58% are viable. WBCs: 2-5/HPF.",
+            rubric:
+              "Correct values for at least 6 of the listed parameters (volume, pH, count, concentration, motility, morphology).",
+            explanation:
+              "These WHO reference values define the lower limits of normal semen parameters used to classify male factor infertility.",
+            tags: ["infertility", "semen analysis"],
+          },
+          {
+            id: "wq-9",
+            question: "Treatment of Tubal factor infertility:",
+            modelAnswer:
+              "Prophylactic: by avoidance of the causes especially infection. Medical: by fibrinolytic drugs as colchicine, hydro-tubation OR short-wave therapy. Surgical: usually it is the main line of treatment, and mostly microsurgical procedures via laparoscope. ART: assisted reproductive technology 'best & commonly used now'.",
+            rubric:
+              "Prophylactic, medical, surgical, and ART lines of treatment.",
+            explanation:
+              "As with other tubal pathology, ART now generally surpasses tubal surgery as first-line treatment given higher success rates.",
+            tags: ["infertility", "tubal factor"],
+          },
+          {
+            id: "wq-10",
+            question: "Indications of using ovulatory drugs:",
+            modelAnswer:
+              "Infertility due to anovulation. Post-pill amenorrhea. PCOS. Unexplained infertility (to ↑↑ number of available ova). Luteal phase defect (LPD). Controlled ovarian hyperstimulation in ART.",
+            rubric: "At least 4 indications.",
+            explanation:
+              "Ovulatory drugs are used both to correct anovulation and to increase oocyte yield in ART cycles.",
+            tags: ["infertility", "ovulatory drugs"],
+          },
+          {
+            id: "wq-11",
+            question:
+              "Pre-requisites for treatment with ovulatory drugs in infertility cases:",
+            modelAnswer:
+              "Documentation of anovulation. Confirmation of patency of fallopian tubes. Investigations for other factors of infertility. Ensure good male factor. Confirmation of adequate endogenous estrogen level. Prepare couples psychological for prolonged therapy & possibility of failure.",
+            rubric: "At least 4 pre-requisites.",
+            explanation:
+              "Ovulation induction should not be started until other infertility factors (tubal, male) have been excluded, to avoid wasted treatment cycles.",
+            tags: ["infertility", "ovulatory drugs"],
+          },
+          {
+            id: "wq-12",
+            question: "Basic investigations for evaluating infertile couple:",
+            modelAnswer:
+              "Semen analysis 'Male factor'. Midluteal serum progesterone → to asses ovulation 'Ovarian factor'. HSG → for tubes & uterus 'Tubal factor'. Hormonal assay: testosterone - estrogen - progesterone - LH - FSH. Falloposcopy / Laparoscopy.",
+            rubric:
+              "Five basic investigations with the factor each one assesses.",
+            explanation:
+              "These investigations systematically assess the male, ovarian, and tubal/uterine factors of infertility.",
+            tags: ["infertility", "investigations"],
+          },
+          {
+            id: "wq-13",
+            question:
+              "Role of laparoscopy in treatment of Tubal factor infertility:",
+            modelAnswer: "",
+            rubric:
+              "Diagnostic uses (dye test, adhesion/endometriosis assessment) and therapeutic uses (salpingolysis, ovarian drilling, ablation, ART support).",
+            explanation:
+              "Laparoscopy serves both diagnostic and therapeutic roles in tubal factor infertility, often in the same procedure ('see and treat').",
+            tags: ["infertility", "laparoscopy"],
+            children: [
+              {
+                id: "A",
+                label: "Diagnostic:",
+                question: "Diagnostic:",
+                modelAnswer:
+                  "Tubal patency by injecting methylene blue dye through the cx, if passed from the tubal fimbriae, it means patent tubes. PID and peritubal adhesion. Pelvic endometriosis. Associated ovarian factor (e.g., P.C.O.S).",
+              },
+              {
+                id: "B",
+                label: "Therapeutic:",
+                question: "Therapeutic:",
+                modelAnswer:
+                  "Salpingolysis and neosalpingostomy. Laparoscopic ovarian drilling for PCOS. Bipolar or Laser vaporization of endometriotic nodules. Help in assisted reproductive technology.",
+              },
+            ],
+          },
+          {
+            id: "wq-14",
+            question: "TTT of cervical factor infertility:",
+            modelAnswer:
+              "Treatment of the cause i.e., treatment of infection, surgical removal of fibroid, etc. In immunological infertility: condoms for 6 months; immunosuppressive drugs e.g., corticosteroids; ART e.g., A.I.H., IVF and embryo transfer... etc.",
+            rubric:
+              "Treating underlying cause; specific management of immunological infertility (condoms, immunosuppressants, ART).",
+            explanation:
+              "Cervical factor infertility is often immunological (anti-sperm antibodies in cervical mucus), hence the role of barrier methods to reduce antigen exposure before attempting conception.",
+            tags: ["infertility", "cervical factor"],
+          },
+          {
+            id: "wq-15",
+            question:
+              "Complications of In vitro fertilization and embryo transfer:",
+            modelAnswer:
+              "Ovarian hyperstimulation syndrome. Complication of oocyte retrieval as trauma, hge, infection. High failure rate. High incidence of abortion, ectopic pregnancy. More liability for twin pregnancy, pre-term labor, OR congenital anomalies. High cost and highly experienced personnel need.",
+            rubric: "At least 4 complications of IVF-ET.",
+            explanation:
+              "Multiple pregnancy remains one of the most clinically significant complications of IVF, driving the move toward single embryo transfer policies.",
+            tags: ["infertility", "ivf"],
+          },
+          {
+            id: "wq-16",
+            question: "Definition of unexplained infertility?",
+            modelAnswer:
+              "Infertile couple whose standard investigations are normal & whose infertility duration is > 2 years.",
+            rubric: "Normal standard workup; duration >2 years.",
+            explanation:
+              "Unexplained infertility is a diagnosis of exclusion after a complete standard infertility workup.",
+            tags: ["infertility", "unexplained"],
+          },
+          {
+            id: "wq-17",
+            question: "Possible causes of unexplained infertility?",
+            modelAnswer:
+              "A. Abnormal folliculogenesis. B. Mild tubal disease. C. Subtle endometriosis. D. Immunological infertility: Due to presence of Abs in male or female. In male: Anti-sperm Abs (in blood or semen). In female: a) Anti-sperm Abs (usually in cervical mucus or vaginal secretions). b) Anti-zona pellucida Abs. E. Occult infection: Chlamydia, mycoplasma or TB. F. Psychological factor.",
+            rubric:
+              "At least 4 of the listed possible causes, including immunological causes in both partners.",
+            explanation:
+              "Unexplained infertility likely represents a heterogeneous group of subtle, currently undetectable abnormalities including occult immunological or infective factors.",
+            tags: ["infertility", "unexplained"],
+          },
+          {
+            id: "wq-18",
+            question:
+              "Enumerate 4 complications of assisted reproductive technology:",
+            modelAnswer:
+              "OHSS. Complications of transvaginal oocytes retrieval (hge, infection). Multifetal pregnancy - Preterm labor. Financial & psychological impact on repeated failed trails.",
+            rubric: "Four complications.",
+            explanation:
+              "These mirror the general complications of ART listed under IVF-ET.",
+            tags: ["infertility", "art"],
+          },
+          {
+            id: "wq-19",
+            question:
+              "Regarding unexplained infertility, Mention Three lines of treatment:",
+            modelAnswer:
+              "Induction of ovulation. IUI - ART (as a means of treatment of unexplained infertility, increasing the number of available ova). ICSI (as a means of treatment of unexplained infertility, by-passing unknown defects).",
+            rubric:
+              "Three treatment lines: ovulation induction, IUI/ART, ICSI.",
+            explanation:
+              "Treatment of unexplained infertility is largely empirical, escalating from ovulation induction to assisted techniques that bypass unidentified defects.",
+            tags: ["infertility", "unexplained"],
+          },
+          {
+            id: "wq-20",
+            question: "Define three diagnostic tools for tubal patency:",
+            modelAnswer:
+              "Laparoscopy. Sonohysterosalpingography. Tubal insufflation (Rubin's test) - Kymography (Sharman's test). Falloposcopy.",
+            rubric:
+              "Three to four diagnostic tools for assessing tubal patency.",
+            explanation:
+              "Laparoscopy with dye test remains the gold standard for assessing tubal patency.",
+            tags: ["infertility", "tubal patency"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

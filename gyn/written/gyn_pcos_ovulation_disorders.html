@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_pcos_ovulation_disorders",
+          title: "PCOs & Ovulation Disorders",
+          description:
+            "Written exam questions on polycystic ovary syndrome and ovulation disorders (7 questions).",
+          icon: "⚪",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Regarding polycystic ovarian syndrome.",
+            modelAnswer: "",
+            rubric:
+              "A: common and possible long-term metabolic, oncologic, and psychological sequels. B: treatment lines for menstrual disturbance, infertility, hyperandrogenism, and obesity.",
+            explanation:
+              "PCOS management is tailored to the patient's main complaint (menstrual irregularity, infertility, hyperandrogenism, or obesity) and requires long-term surveillance for metabolic and oncological sequelae.",
+            tags: ["pcos"],
+            children: [
+              {
+                id: "A",
+                label: "A) What are its sequels?",
+                question: "What are its sequels?",
+                modelAnswer:
+                  "Common long-term sequels: Type 2 DM (NIDDM) due to glucose intolerance & hyperinsulinemia; dyslipidemia; endometrial hyperplasia & carcinoma due to hyperestrogenic state. Possible long-term sequels: metabolic - obesity, metabolic syndrome, gall bladder diseases; HTN & arterial diseases; depression & anxiety & loss of self-esteem; epilepsy; pregnancy complications - gestational DM and gestational HTN, PET; recurrent abortion due to CL dysfunction; ovarian cancer; cancer breast.",
+              },
+              {
+                id: "B",
+                label: "B) What are the treatment options of this syndrome?",
+                question: "What are the treatment options of this syndrome?",
+                modelAnswer:
+                  "Menstrual disturbances: cyclic gestagen therapy to induce withdrawal bleeding; COCs can be used for a limited time in cases seeking contraception. Infertility: weight reduction (at least 5-10%) - the first line in obese or overweight patients; clomiphene citrate for 6-12 months, the standard treatment for induction of ovulation; gonadotropin therapy (HMG or FSH) with clomiphene citrate resistance or failure; laparoscopic ovarian drilling; insulin reducing agents (Metformin) in patients with glucose intolerance; assisted reproductive technology (ART) if the above methods failed. Hyperandrogenism: as in hirsutism. Obesity: weight reduction and insulin reducing agents.",
+              },
+            ],
+          },
+          {
+            id: "wq-2",
+            question: "Definition of PCOs:",
+            modelAnswer:
+              "Oligo-ovulation or anovulation. Clinical & biochemical signs of hyper-androgenism. PCO morphology on ultrasound.",
+            rubric:
+              "Three diagnostic criteria: ovulatory dysfunction, hyperandrogenism, and PCO morphology on ultrasound (2 of 3 needed for diagnosis).",
+            explanation:
+              "This reflects the Rotterdam criteria, where any two of the three features are sufficient for diagnosis.",
+            tags: ["pcos", "definition"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "In a young obese woman diagnosed as polycystic ovary syndrome looking for conception, mention 4 drugs which could be used for ovulation Induction:",
+            modelAnswer:
+              "Clomiphene citrate. Gonadotropnie (HMG). Pulsatile GnRh. Tomoxifen.",
+            rubric: "Four correctly named ovulation induction drugs.",
+            explanation:
+              "Clomiphene citrate remains first-line, while gonadotropins and pulsatile GnRH are used for clomiphene-resistant cases.",
+            tags: ["pcos", "ovulation induction"],
+          },
+          {
+            id: "wq-4",
+            question: "Mention 6 investigations to document ovulation:",
+            modelAnswer:
+              "Hormonal essay Midluteal serum: progesterone >10 ng/ml: ovulation e good CL. Serial TVS (folliculometry): gradual increase in size of one follicle to reach 18-25 mm (dominant follicle). BBT chart: biphasic chart. Premenstrual endometrial biopsy: secretory endometrium - ovulation; proliferative endometrium - anovulation. Cervical mucus study (cyclic changes in cervical mucus). Vaginal cytology: before ovulation (estrogenic pattern) - superficial cells; after ovulation (progestational pattern) - intermediate cells are the most common cells found.",
+            rubric:
+              "Six investigations: mid-luteal progesterone, serial TVS/folliculometry, BBT chart, premenstrual endometrial biopsy, cervical mucus study, vaginal cytology.",
+            explanation:
+              "Mid-luteal serum progesterone >10 ng/ml is the most commonly used surrogate marker confirming ovulation in clinical practice.",
+            tags: ["pcos", "ovulation", "investigations"],
+          },
+          {
+            id: "wq-5",
+            question:
+              "List 3 diagnostic criteria of polycystic ovarian syndrome:",
+            modelAnswer:
+              "Ultrasound polycystic ovary = necklace appearance = multiple small follicles 2-8 mm in periphery of the ovary. Anovulation, Oligomenorrhea. Hyperandrogenemia.",
+            rubric:
+              "Three Rotterdam-type criteria with the ultrasound 'necklace' description.",
+            explanation:
+              "These three criteria mirror the Rotterdam diagnostic criteria for PCOS.",
+            tags: ["pcos", "diagnosis"],
+          },
+          {
+            id: "wq-6",
+            question:
+              "A woman supposed to have ovulation is based on the following:",
+            modelAnswer: "",
+            rubric:
+              "History points (pregnancy/regular menses); investigations (folliculometry, progesterone assay, secretory endometrial biopsy).",
+            explanation:
+              "A reliable history of regular cycles or previous pregnancy is a strong clinical indicator of ovulation, supplemented by confirmatory investigations.",
+            tags: ["pcos", "ovulation"],
+            children: [
+              {
+                id: "A",
+                label: "Hx:",
+                question: "Hx:",
+                modelAnswer: "Pregnancy & Regular mensuration.",
+              },
+              {
+                id: "B",
+                label: "Investigations:",
+                question: "Investigations:",
+                modelAnswer:
+                  "TVS & Transvaginal folliculometry. Mid luteal progesterone assay. Secretory changes in the PMEB.",
+              },
+            ],
+          },
+          {
+            id: "wq-7",
+            question:
+              "List 3 diagnostic criteria of polycystic ovarian syndrome:",
+            modelAnswer:
+              "Clinical → Hirsutism, amenorrhea, obesity, infertility. TVS → Multiple subcapsular follicles. Laparoscope → polycystic ovary. Hormonal assay → ↑ LH/FSH ratio → ↑ Androgens.",
+            rubric:
+              "Clinical, ultrasound and hormonal diagnostic criteria (and laparoscopic appearance).",
+            explanation:
+              "While ultrasound is now the main imaging criterion, laparoscopic visualization of polycystic ovaries was historically also diagnostic.",
+            tags: ["pcos", "diagnosis"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

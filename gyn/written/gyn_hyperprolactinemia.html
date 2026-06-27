@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_hyperprolactinemia",
+          title: "Hyperprolactinemia",
+          description:
+            "Written exam questions on hyperprolactinemia (6 questions).",
+          icon: "🥛",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Enumerate 4 pathological causes of hyperprolactinemia:",
+            modelAnswer:
+              "Pituitary adenoma. Amenorrhea-galactorrhea syndromes: Empty sella syndrome. 1ry hypothyroidism. Hyper estrogenic states. Chronic renal failure.",
+            rubric: "Four pathological causes.",
+            explanation:
+              "Hyperprolactinemia can result from pituitary pathology, hypothalamic-pituitary stalk syndromes, hypothyroidism (via TRH stimulation), or reduced clearance in renal failure.",
+            tags: ["hyperprolactinemia"],
+          },
+          {
+            id: "wq-2",
+            question: "Enumerate 3 common causes of hyperprolactinemia:",
+            modelAnswer:
+              "Pituitary adenoma. COCs. Pregnancy - lactation - sleep - stress - intercourse.",
+            rubric: "Three common causes including physiological causes.",
+            explanation:
+              "Physiological causes (pregnancy, lactation, sleep, stress, intercourse) must be excluded before considering pathological causes.",
+            tags: ["hyperprolactinemia"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "Regarding hyperprolactinemia, state two causes and two clinical effects:",
+            modelAnswer: "",
+            rubric:
+              "Two causes; two clinical effects (galactorrhea, amenorrhea/infertility, recurrent abortion).",
+            explanation:
+              "Hyperprolactinemia suppresses GnRH pulsatility leading to hypogonadotropic hypogonadism, manifesting as amenorrhea, infertility and recurrent pregnancy loss.",
+            tags: ["hyperprolactinemia"],
+            children: [
+              {
+                id: "A",
+                label: "Causes:",
+                question: "Causes:",
+                modelAnswer:
+                  "Pregnancy - Lactation - Sleep - Intercourse. Pituitary adenoma.",
+              },
+              {
+                id: "B",
+                label: "Clinical effects:",
+                question: "Clinical effects:",
+                modelAnswer:
+                  "Galactorrhea. Amenorrhea + infertility. Recurrent abortion.",
+              },
+            ],
+          },
+          {
+            id: "wq-4",
+            question: "TTT of hyperprolactinemia?",
+            modelAnswer: "",
+            rubric:
+              "Dopamine agonists as first-line medical treatment; surgery/radiotherapy reserved for adenomas not responding to medical treatment.",
+            explanation:
+              "Dopamine agonists are first-line therapy for prolactinoma because they both lower prolactin and shrink tumour size.",
+            tags: ["hyperprolactinemia", "treatment"],
+            children: [
+              {
+                id: "A",
+                label: "Medical treatment:",
+                question: "Medical treatment:",
+                modelAnswer:
+                  "Dopamine agonist e.g., Bromocriptine [Parlodel] OR Cabergoline.",
+              },
+              {
+                id: "B",
+                label: "Surgical treatment and radiotherapy:",
+                question: "Surgical treatment and radiotherapy:",
+                modelAnswer: "Used in micro and macroadenoma.",
+              },
+            ],
+          },
+          {
+            id: "wq-5",
+            question: "Symptoms of hyperprolactinemia:",
+            modelAnswer:
+              "The patient may complain of galactorrhea, amenorrhea. OR history-suggesting AE: headache, blurring of vision with pituitary tumors etc.",
+            rubric:
+              "Galactorrhea and amenorrhea as main complaints; mass-effect symptoms (headache, visual disturbance) when due to adenoma.",
+            explanation:
+              "Mass-effect symptoms suggest a macroadenoma compressing the optic chiasm or surrounding structures.",
+            tags: ["hyperprolactinemia", "symptoms"],
+          },
+          {
+            id: "wq-6",
+            question: "Investigations for hyperprolactinemia:",
+            modelAnswer:
+              "Serum prolactin, TSH OR Brain CT and MRI to exclude adenoma: if prolactin level is >50 ng/ml.",
+            rubric:
+              "Serum prolactin and TSH as initial tests; imaging (CT/MRI) when prolactin markedly elevated.",
+            explanation:
+              "TSH is checked to exclude primary hypothyroidism as a secondary cause, while imaging is reserved for levels suggestive of an adenoma.",
+            tags: ["hyperprolactinemia", "investigations"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

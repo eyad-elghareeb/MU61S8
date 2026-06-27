@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_oncology_collections",
+          title: "Oncology Collections",
+          description:
+            "Written exam questions reviewing stage-specific treatment across gynecologic oncology (1 multi-part question).",
+          icon: "📚",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Define the primary treatment of the following:",
+            modelAnswer: "",
+            rubric:
+              "Correct primary treatment matched to each named stage/scenario across endometrial, cervical, ovarian, choriocarcinoma and vulval cancer.",
+            explanation:
+              "This collection reviews stage-specific primary treatment, illustrating how management escalates from surgery alone in early disease to combined modality treatment (surgery, chemotherapy, radiotherapy) in advanced disease.",
+            tags: ["oncology", "staging", "treatment"],
+            children: [
+              {
+                id: "1",
+                label: "1) Carcinoma of the body stage I:",
+                question: "Carcinoma of the body stage I:",
+                modelAnswer:
+                  "Surgery: TAH & BSO (the standard 1ry treatment for all cases). Adjuvant therapy: Vaginal cuff irradiation or Whole pelvic irradiation.",
+              },
+              {
+                id: "2",
+                label: "2) Endometrial endocarcinoma stage (1aG1):",
+                question: "Endometrial endocarcinoma stage (1aG1):",
+                modelAnswer:
+                  "Surgery: TAH & BSO (the standard 1ry treatment for all cases). Adjuvant therapy: Vaginal cuff irradiation or Whole pelvic irradiation.",
+              },
+              {
+                id: "3",
+                label: "3) Cervical carcinoma stage 2b:",
+                question: "Cervical carcinoma stage 2b:",
+                modelAnswer:
+                  "Radiotherapy ± palliative surgery ± chemotherapy.",
+              },
+              {
+                id: "4",
+                label: "4) Carcinoma of the cervix stage III:",
+                question: "Carcinoma of the cervix stage III:",
+                modelAnswer:
+                  "Radiotherapy ± palliative surgery ± chemotherapy.",
+              },
+              {
+                id: "5",
+                label: "5) Carcinoma of the ovary stage II:",
+                question: "Carcinoma of the ovary stage II:",
+                modelAnswer:
+                  "II a: TAH & BSO + postoperative combination chemotherapy ± radiotherapy. OR II b, c: Radical oophorectomy + postoperative combination chemotherapy ± radiotherapy.",
+              },
+              {
+                id: "6",
+                label: "6) Stage 1 choriocarcinoma:",
+                question: "Stage 1 choriocarcinoma:",
+                modelAnswer:
+                  "Fertility desired: 1. Single agent chemotherapy (cures > 90% of patients). 2. Combination chemotherapy. 3. Local uterine resection. Fertility not desired: 4. Hysterectomy + single agent chemotherapy. 5. Hysterectomy alone in placental site tumor.",
+              },
+              {
+                id: "7",
+                label: "7) Stage 2 choriocarcinoma:",
+                question: "Stage 2 choriocarcinoma:",
+                modelAnswer:
+                  "For 1ry (uterine disease): 1. Chemotherapy: a) Low risk cases: Single agent chemotherapy. b) High risk cases: Combination chemotherapy. 2. Hysterectomy: May be required in complicated cases (perforation, Hge or infection) or to ↓↓ tumor bulk. For 2ry: Vagina: 1. Local resection. 2. Embolization of internal iliac artery. Lung: 1. Combination chemotherapy. 2. Surgery (lobectomy).",
+              },
+              {
+                id: "8",
+                label: "8) Choriocarcinoma:",
+                question: "Choriocarcinoma:",
+                modelAnswer:
+                  "Chemotherapy (either single agent - or combined chemo).",
+              },
+              {
+                id: "9",
+                label: "9) Stage 1a carcinoma of vulva:",
+                question: "Stage 1a carcinoma of vulva:",
+                modelAnswer:
+                  "Modified radical vulvectomy + bilateral groin dissection.",
+              },
+              {
+                id: "10",
+                label: "10) Carcinoma of the Vulva stage II: (T3)",
+                question: "Carcinoma of the Vulva stage II: (T3)",
+                modelAnswer:
+                  "Surgery (Modified radical vulvectomy + bilateral groin dissection) ± radiotherapy ± chemotherapy.",
+              },
+              {
+                id: "11",
+                label: "11) Vulval carcinoma:",
+                question: "Vulval carcinoma:",
+                modelAnswer:
+                  'Surgical TTT (Wide local excision for unifocal tm - Modified radical vulvectomy "commonly done now").',
+              },
+            ],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_puberty",
+          title: "Puberty",
+          description: "Written exam questions on puberty (5 questions).",
+          icon: "🌼",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Enumerate 5 physical changes at puberty:",
+            modelAnswer:
+              "Thelarche (breast development) - first visible sign. Adrenarche (adrenal gland maturation with production of androgens). Growth spurt (earliest sign of puberty). Menarche (first menstrual flow). Development of genital organs. Appearance of other secondary sex characters (high pitched voice).",
+            rubric:
+              "At least 5 of: thelarche, adrenarche, growth spurt, menarche, genital organ development, secondary sex characters; correct identification of thelarche as first visible sign.",
+            explanation:
+              "Thelarche is typically the first visible sign of puberty, followed by adrenarche, growth spurt, and finally menarche.",
+            tags: ["puberty", "physiology"],
+          },
+          {
+            id: "wq-2",
+            question: "Definition of puberty:",
+            modelAnswer:
+              "It is the period of life in which the female is changed from childhood to adulthood, associated with endocrinological, developmental & psychological changes.",
+            rubric:
+              "Definition mentioning transition from childhood to adulthood and endocrinological/developmental/psychological changes.",
+            explanation:
+              "Puberty is a multi-system transition, not merely a hormonal event.",
+            tags: ["puberty", "definition"],
+          },
+          {
+            id: "wq-3",
+            question: "Enumerate 3 Causes of precocious puberty:",
+            modelAnswer:
+              "Idiopathic or constitutional: commonest cause. Organic brain lesions (congenital): hydrocephalus. Peripheral (false): estrogen-secreting ovarian tumors, estrogen therapy.",
+            rubric:
+              "Three categories: idiopathic/constitutional, organic brain lesion, peripheral (false) precocious puberty with an example.",
+            explanation:
+              "True precocious puberty involves premature activation of the hypothalamic-pituitary-gonadal axis, whereas peripheral (false) precocious puberty is independent of this axis.",
+            tags: ["puberty", "precocious puberty"],
+          },
+          {
+            id: "wq-4",
+            question: "Enumerate causes of heterosexual precocious puberty:",
+            modelAnswer:
+              "Caused by increased androgen as in: virilizing ovarian tumor; virilizing adrenal tumor; congenital adrenal hyperplasia; exogenous androgen.",
+            rubric:
+              "Four causes of androgen excess leading to heterosexual precocious puberty.",
+            explanation:
+              "Heterosexual precocious puberty refers to development of secondary sexual characteristics of the opposite sex, here due to androgen excess in a female.",
+            tags: ["puberty", "precocious puberty"],
+          },
+          {
+            id: "wq-5",
+            question: "Enumerate 3 Causes of delayed puberty:",
+            modelAnswer:
+              "Gonadal dysgenesis (most common): Turner syndrome; ovarian failure. Other causes: pan-hypopituitarism, hypothalamic failure; hypogonadism or agonadism; auto-immune diseases; psychological stress, depression.",
+            rubric:
+              "Gonadal dysgenesis as most common cause; at least 2 other causes (pituitary/hypothalamic failure, autoimmune disease, psychological stress).",
+            explanation:
+              "Gonadal dysgenesis (e.g. Turner syndrome) is the leading cause of delayed puberty due to failure of ovarian hormone production.",
+            tags: ["puberty", "delayed puberty"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

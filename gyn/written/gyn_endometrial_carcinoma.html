@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_endometrial_carcinoma",
+          title: "Endometrial Carcinoma",
+          description:
+            "Written exam questions on endometrial carcinoma (5 questions).",
+          icon: "🩸",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Outline the pathology of endometrial carcinoma:",
+            modelAnswer:
+              "Naked eye: Site: Endometrial carcinoma is either focal or diffuse lining the endometrium. Shape: It appears as pale friable and necrotic sessile or pedunculated mass. Size: It is either limited to the endometrium or invading the myometrium and serosa. Microscopic examination: Endometrial adenocarcinoma (80%): is the usual type. Adenoacanthoma (15%); adenocarcinoma and benign squamous element. Pure squamous cell carcinoma. Mucinous carcinoma. Clear cell carcinoma. Papillary serous carcinoma. Undifferentiated carcinoma. Mixed carcinoma.",
+            rubric:
+              "Naked eye description (site, shape, size) and at least 4 microscopic types with relative frequency of adenocarcinoma.",
+            explanation:
+              "Endometrioid adenocarcinoma is the most common histological subtype, accounting for around 80% of cases.",
+            tags: ["endometrial carcinoma", "pathology"],
+          },
+          {
+            id: "wq-2",
+            question:
+              "Mention 3 factors that could reduce the incidence of endometrial carcinoma:",
+            modelAnswer:
+              "Multiparity. Late menarche & early menopause. COCs or gestagens. Cigarette smoking.",
+            rubric: "Three protective factors.",
+            explanation:
+              "These factors reduce cumulative unopposed estrogen exposure, which is the principal driver of endometrioid-type endometrial carcinoma.",
+            tags: ["endometrial carcinoma", "risk reduction"],
+          },
+          {
+            id: "wq-3",
+            question:
+              'Define 3 major risk factors of endometrial carcinoma "endometroid type":',
+            modelAnswer:
+              'Age: The median age is 60 years (75% of cases). Parity and race: More common in nulls, white races and high classes. SES. Chronic unopposed estrogen stimulation: from either endogenous or exogenous sources. Tamoxifen therapy: following breast carcinoma. Corpus cancer triad: endometrial cancer is more with "D.M + hypertension + obesity". Previous pelvic irradiation: risk for sarcoma and not carcinoma. Genetic and family history: of cancer breast, ovary or colon "Lynch II syndrome". Pre-malignant lesion: mainly endometrial hyperplasia especially with atypia. Endometrial metaplasia: common with senile endometritis and chronic pyometra. Urban resistance.',
+            rubric:
+              "At least three major risk factors with the 'corpus cancer triad' specifically identified.",
+            explanation:
+              "The 'corpus cancer triad' of diabetes, hypertension and obesity reflects the metabolic/hyperestrogenic state that predisposes to endometrioid endometrial cancer.",
+            tags: ["endometrial carcinoma", "risk factors"],
+          },
+          {
+            id: "wq-4",
+            question:
+              'Outline surgical staging "FIGO" of endometrial carcinoma:',
+            modelAnswer:
+              "Stage I: Confined to uterine corpus and ovary. IA: Disease limited to the endometrium OR non-aggressive histological type, with < 50% myometrial involvement, no focal LVSI, or good disease prognosis. IB: Non-aggressive histological type with > 50% myometrial invasion, and no focal LVSI. IC: Aggressive histological subtype limited to a polyp or confined to endometrium. Stage II: Invasion of cervical stroma with no extrauterine extension, or substantial LVSI, or aggressive histological type with any myometrial invasion. IIA: Non-aggressive histological type with invasion of cervical stroma. IIB: Non-aggressive histological type with substantial LVSI. IIC: Aggressive histological subtype with any myometrial involvement. Stage III: Local and/or regional metastasis of any histological subtype. IIIA: Invasion of uterine serosa, adnexa, or both. IIIB: Metastasis or direct spread to the vaginal canal and/or parametria or pelvic peritoneum. IIIC: Metastasis to pelvic and/or para-aortic lymph nodes. Stage IV: Spread to the bladder mucosa and/or intestinal mucosa and/or distant metastasis. IVA: Spread to the bladder mucosa and/or intestinal mucosa. IVB: Abdominal peritoneal metastasis beyond the pelvic peritoneum. IVC: Distant metastasis, included metastasis to any extra-abdominal or intra-abdominal lymph nodes superior to the renal vessels, lungs, liver, brain, or bone.",
+            rubric:
+              "Correct stage groupings I-IV with substages, emphasizing myometrial invasion depth, cervical involvement, and metastatic spread.",
+            explanation:
+              "FIGO staging for endometrial carcinoma was revised to incorporate histological aggressiveness and lymphovascular space invasion (LVSI) alongside the traditional anatomical extent of disease.",
+            tags: ["endometrial carcinoma", "figo staging"],
+          },
+          {
+            id: "wq-5",
+            question:
+              "Fulfill the items for a low risk of endometrial carcinoma & its treatment option according to the table:",
+            modelAnswer: "",
+            rubric:
+              "Correct myometrial invasion criterion for stage 1a; correct histopathological description; correct grading thresholds (G1-G3); correct treatment (TAH+BSO).",
+            explanation:
+              "Histological grading is based on the proportion of non-glandular (solid) tumour, which correlates with prognosis and the need for adjuvant therapy.",
+            tags: ["endometrial carcinoma", "staging", "treatment"],
+            children: [
+              {
+                id: "A",
+                label: "Myometrial invasion:",
+                question: "Myometrial invasion (Stage 1a):",
+                modelAnswer: "Limited to endometrium or < ½ myometrium.",
+              },
+              {
+                id: "B",
+                label: "Histopathology:",
+                question: "Histopathology (Stage 1a):",
+                modelAnswer:
+                  'Endometrium adenocarcinoma "Localized fungating cauliflower or diffuse cheesy material".',
+              },
+              {
+                id: "C",
+                label: "Histopathological grading:",
+                question: "Histopathological grading (Stage 1a):",
+                modelAnswer:
+                  "G1 = Well differentiated: '<5% of cells are NON glandular solid mass'. G2 = Moderately differentiated: '6-50% of cells are NON glandular solid mass'. G3 = Poorly differentiated: '>50% of cells are NON glandular solid mass'.",
+              },
+              {
+                id: "D",
+                label: "Treatment option:",
+                question: "Treatment option (Stage 1a):",
+                modelAnswer:
+                  "TAH + BSO. Total abdominal hysterectomy + Bilateral salpingio oophorectomy.",
+              },
+            ],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

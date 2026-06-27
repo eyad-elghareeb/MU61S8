@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_ovarian_tumors",
+          title: "Ovarian Tumors",
+          description:
+            "Written exam questions on ovarian tumors (12 questions).",
+          icon: "⚪",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "What are the complications of ovarian tumors?",
+            modelAnswer:
+              "Torsion. Rupture. Hemorrhage. Infection. Impaction \"incarceration\". Intestinal Obstruction. Malignant change in some benign ovarian tumors. Metastasis of malignant one. Meig's & psudo Meig's syndrome. Pregnancy complications: Abortion, preterm labor, obstructed labor. Pressure symptoms: Dysuria, urine retention, dyschazia, dyspepsia, dyspnea if huge reaching the diaphragm, Intestinal obstruction. Degeneration.",
+            rubric: "At least 6 of the listed complications.",
+            explanation:
+              "Torsion and rupture are the acute surgical emergencies, while malignant transformation and metastasis are the most serious long-term complications.",
+            tags: ["ovarian tumors", "complications"],
+          },
+          {
+            id: "wq-2",
+            question:
+              "Mention 6 prognostic factors of malignant ovarian tumor.",
+            modelAnswer:
+              "Age: Younger women have better prognosis. Tumor factors: Histological type (clear cell carcinoma has worse prognosis). Stage: Most important factor. Ascites. Tumor characters: Diploid tumors have longer survival rates than aneuploid ones. Tumor residual.",
+            rubric:
+              "Six prognostic factors including stage as the most important.",
+            explanation:
+              "FIGO stage at diagnosis remains the single most important prognostic factor in ovarian cancer.",
+            tags: ["ovarian tumors", "prognosis"],
+          },
+          {
+            id: "wq-3",
+            question: "As regards ovarian tumors:",
+            modelAnswer: "",
+            rubric:
+              "At least three named functioning ovarian tumors; correct description of FIGO stage IB.",
+            explanation:
+              "FIGO stage IB specifically requires bilateral ovarian involvement with intact capsules and negative peritoneal washings, distinguishing it from IA (unilateral) and IC (capsule rupture/positive washings).",
+            tags: ["ovarian tumors", "figo staging"],
+            children: [
+              {
+                id: "A",
+                label: "Name 3 of the functioning ovarian tumors:",
+                question: "Name 3 of the functioning ovarian tumors:",
+                modelAnswer:
+                  "Follicular cyst. Granulosa lutein (luteinized) cysts. Theca-lute in cyst. Corpus luteum cyst. Corpus albicans cyst. Corpus hemorrhagicum cyst.",
+              },
+              {
+                id: "B",
+                label:
+                  "According to FIGO staging criteria for cancer of the ovary, stage IB denotes to:",
+                question:
+                  "According to FIGO staging criteria for cancer of the ovary, stage IB denotes to:",
+                modelAnswer:
+                  "Tumor involves both ovaries, capsule intact, no tumor on surface, negative washings.",
+              },
+            ],
+          },
+          {
+            id: "wq-4",
+            question: "Regarding torsion ovarian tumor, mention:",
+            modelAnswer: "",
+            rubric:
+              "Predisposing factors (size, pedicle length, precipitating activity); clinical presentation (acute abdomen, tender mass); treatment depending on ovarian viability.",
+            explanation:
+              "Conservative cystectomy with detorsion is increasingly preferred over salpingo-oophorectomy when the ovary remains viable, particularly in young women wishing to preserve fertility.",
+            tags: ["ovarian tumors", "torsion"],
+            children: [
+              {
+                id: "A",
+                label: "Predisposing factors:",
+                question: "Predisposing factors:",
+                modelAnswer:
+                  "Usually occurs in small to moderate sized tumors with a long pedicle (as dermoid cyst). Precipitated by straining during defecation, labor or sexual intercourse.",
+              },
+              {
+                id: "B",
+                label: "Clinical presentation:",
+                question: "Clinical presentation:",
+                modelAnswer: "Acute abdomen. Tender lower abdomen mass.",
+              },
+              {
+                id: "C",
+                label: "Treatment:",
+                question: "Treatment:",
+                modelAnswer:
+                  "Immediate laparotomy, then: If the ovary looks gangrenous » Salpingoophorectomy. If the ovary looks health » Cystectomy & conserving viable ovarian tissue.",
+              },
+            ],
+          },
+          {
+            id: "wq-5",
+            question: "Regarding Dermoid cyst of the ovary, outline:",
+            modelAnswer: "",
+            rubric:
+              "Four complications; treatment emphasizing complete cystectomy and examination of the contralateral ovary.",
+            explanation:
+              "Bilateral dermoid cysts occur in around 10-15% of cases, making examination of the contralateral ovary essential.",
+            tags: ["ovarian tumors", "dermoid cyst"],
+            children: [
+              {
+                id: "A",
+                label: "4 Complications:",
+                question: "4 Complications:",
+                modelAnswer:
+                  "1. Torsion. 2. Rupture: Leading to chemical peritonitis. 3. Malignant transformation (2%): Epidermoid carcinoma. 4. Secondary infection.",
+              },
+              {
+                id: "B",
+                label: "Treatment:",
+                question: "Treatment:",
+                modelAnswer:
+                  "Cystectomy (complete removal is essential to avoid recurrence from part of wall). Careful examination of other ovary (usually by TVS) & bisection may be required if deeply seated dermoid is suspected.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question:
+              "Suggest four clinical signs for malignant ovarian tumors:",
+            modelAnswer:
+              "General: In benign cases → nothing OR effects of hormones. In malignant cases → malignant cachexia, loss of weight, pallor, anemia, effect of hormones, enlarged supraclavicular L. nodes. Abdominal: Diffuse abdominal enlargement. In Benign cases → benign criteria. In malignant cases → malignant criteria and in addition: 1. Sister Josef nodules. 2. Dilated veins. 3. Abnormal pigmentation on the abdominal wall. 4. Presence of ascites. 5. Hepatomegally, omental cakes, intestinal obstruction.... etc. Local: There may be normal tissues OR Benign OR malignant criteria.",
+            rubric:
+              "General, abdominal and local signs each distinguishing benign from malignant features, with at least 2 specific malignant signs (Sister Mary Joseph nodule, ascites, etc.).",
+            explanation:
+              "A Sister Mary Joseph nodule (periumbilical metastatic nodule) is a classic, though late, sign of intra-abdominal malignancy including ovarian cancer.",
+            tags: ["ovarian tumors", "malignancy signs"],
+          },
+          {
+            id: "wq-7",
+            question: "Enumerate 3 US features suggestive of ovarian mg:",
+            modelAnswer:
+              "Bilaterality. Ascites. Multicularity. Enlarged para-aortic or pelvic LN. Papillation. Parenchymal liver mets. Heterogenous echogenicity.",
+            rubric:
+              "At least three ultrasound features suggestive of malignancy.",
+            explanation:
+              "Papillary projections, multilocularity, and bilaterality are key ultrasound features used in malignancy risk-scoring systems for ovarian masses.",
+            tags: ["ovarian tumors", "ultrasound"],
+          },
+          {
+            id: "wq-8",
+            question:
+              "Regarding rupture of a neoplastic ovarian cyst - comment on the following:",
+            modelAnswer: "",
+            rubric:
+              "Two predisposing factors; four consequences depending on cyst content; treatment by immediate laparotomy.",
+            explanation:
+              "Pseudomyxoma peritonei, classically associated with rupture of a mucinous cystadenoma/cystadenocarcinoma, is a distinctive and serious consequence due to mucin accumulation throughout the peritoneal cavity.",
+            tags: ["ovarian tumors", "rupture"],
+            children: [
+              {
+                id: "A",
+                label: "Two predisposing factors:",
+                question: "Two predisposing factors:",
+                modelAnswer: "Torsion or hemorrhage or external trauma.",
+              },
+              {
+                id: "B",
+                label: "Four consequences of rupture:",
+                question: "Four consequences of rupture:",
+                modelAnswer:
+                  "According the content of the tumor there may be: a) Septic peritonitis if contain pus. b) Chemical peritonitis, with sebaceous secretion in dermoid cyst. c) Ascetic like fluid if serous tumors. d) Psudomyxoma peritonii with mucinous tumors.",
+              },
+              {
+                id: "C",
+                label: "Treatment:",
+                question: "Treatment:",
+                modelAnswer: "Immediate laparotomy.",
+              },
+            ],
+          },
+          {
+            id: "wq-9",
+            question:
+              "Suggest three complications for mucinous cystadenoma of the ovary:",
+            modelAnswer:
+              "Rupture >> Pseudomyxoma peritonii. Torsion of pedicle. Hge - Infection.",
+            rubric: "Three complications including pseudomyxoma peritonei.",
+            explanation:
+              "Mucinous cystadenomas can reach very large sizes and are particularly prone to these complications given their bulk and pedicle length.",
+            tags: ["ovarian tumors", "mucinous cystadenoma"],
+          },
+          {
+            id: "wq-10",
+            question:
+              "Suggest four features for Krukenberg tumor of the ovary:",
+            modelAnswer:
+              "1ry tumor from (stomach, colon, breast). 2ry tumor in BOTH ovaries. Method of spread: Transcelomic spread. Bad prognosis (bcz lesion NOT DISCOVERED until 1ry dz is advanced).",
+            rubric:
+              "Primary site; bilaterality; transcoelomic spread mechanism; poor prognosis rationale.",
+            explanation:
+              "Krukenberg tumours are bilateral ovarian metastases, classically from a primary gastric signet-ring cell carcinoma, spreading via the transcoelomic route.",
+            tags: ["ovarian tumors", "krukenberg tumor"],
+          },
+          {
+            id: "wq-11",
+            question:
+              "Enumerate 5 pathological types of epithelial ovarian tumors:",
+            modelAnswer: "",
+            rubric:
+              "At least 5 benign epithelial subtypes; recognition of the borderline category; named malignant types.",
+            explanation:
+              "Epithelial tumours are classified along a spectrum from benign through borderline (low malignant potential) to frankly malignant, mirroring the spectrum seen in each histological subtype.",
+            tags: ["ovarian tumors", "epithelial tumors", "classification"],
+            children: [
+              {
+                id: "A",
+                label: "A) Benign:",
+                question: "Benign:",
+                modelAnswer:
+                  "1. Serous. 2. Mucinous. 3. Endometrioid tumors. 4. Brenner tumor. 5. Mesonephroid tumors. 6. Mixed benign group. 7. Unclassified and undifferentiated group.",
+              },
+              {
+                id: "B",
+                label: "B) Borderline (of low malignant potential):",
+                question: "Borderline (of low malignant potential):",
+                modelAnswer:
+                  "Borderline tumors of any of the above epithelial subtypes, showing atypia without frank invasion.",
+              },
+              {
+                id: "C",
+                label: "C) Malignant types:",
+                question: "Malignant types e.g.:",
+                modelAnswer:
+                  "Serous cystadenocarcinoma. Mucinous cystadenocarcinoma.... etc.",
+              },
+            ],
+          },
+          {
+            id: "wq-12",
+            question:
+              "State five features for suggesting malignancy of ovarian tumors:",
+            modelAnswer: "",
+            rubric:
+              "Five features distributed across symptoms, signs and laparotomy findings.",
+            explanation:
+              "A combination of clinical, radiological and intraoperative findings is used to assess the likelihood of malignancy before definitive histology is available.",
+            tags: ["ovarian tumors", "malignancy features"],
+            children: [
+              {
+                id: "A",
+                label: "A) Symptoms:",
+                question: "Symptoms:",
+                modelAnswer:
+                  "Old age > 50y. Rapidly growing tumors. Dull aching continuous pain. Back Pain. Malignant cachexia and symptoms of metastasis.",
+              },
+              {
+                id: "B",
+                label: "B) Signs:",
+                question: "Signs:",
+                modelAnswer:
+                  "Bilaterality. Solidity. Fixation. Presence of ascites. Unilateral edema OR varicosities. Presence of metastases, as evidenced by: Left supra-clavicular lymph nodes (Virchow nodes). Omental mass. Nodules in the Douglas pouch. Masses OR nodules in and around the umbilicus. Palpable Para- aortic lymph nodes.",
+              },
+              {
+                id: "C",
+                label: "C) On laparotomy:",
+                question: "On laparotomy:",
+                modelAnswer:
+                  "Weak friable tissues. Hemorrhagic ascites OR +ve peritoneal wash. Bilaterality, solidity, fixity of the tumor.... etc. Presence of exophytic growth on the capsule or its infiltration by the tumor.",
+              },
+            ],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

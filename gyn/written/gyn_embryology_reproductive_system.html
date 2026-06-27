@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_embryology_reproductive_system",
+          title: "Embryology of the Reproductive System",
+          description:
+            "Written exam questions on female reproductive embryology (11 questions).",
+          icon: "👶",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Five congenital anomalies of ovaries:",
+            modelAnswer:
+              "Aplasia. Hypoplasia. Savage syndrome. Pure Turner's syndrome (45 X0). Mosaic Turner's syndrome. Testicular feminization syndrome (androgen insensitivity syndrome). Hermaphrodite.",
+            rubric:
+              "At least five correctly named congenital ovarian anomalies.",
+            explanation:
+              "These anomalies range from absent/underdeveloped ovaries to disorders of sex development affecting gonadal function.",
+            tags: ["embryology", "ovary"],
+          },
+          {
+            id: "wq-2",
+            question: "Enumerate 6 Congenital anomalies of the uterus:",
+            modelAnswer:
+              "Agenesis/hypoplasia: the commonest form is Mullerian agenesis. Uterus didelphys. Bicornuate uterus. Septate uterus. Arcuate uterus: uterus with a slight depression at the fundus. Diethylstilbestrol (DES)-related anomalies.",
+            rubric:
+              "Six named uterine congenital anomalies, with Mullerian agenesis identified as the commonest form of agenesis/hypoplasia.",
+            explanation:
+              "These Mullerian duct anomalies result from defective fusion or canalization of the paramesonephric ducts and are associated with infertility and obstetric complications.",
+            tags: ["embryology", "uterus"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "Summarize the embryological development of the following structures:",
+            modelAnswer: "",
+            rubric:
+              "Correct embryological origin of the uterus (fused Mullerian ducts) and lower vagina (urogenital sinus vaginal plate).",
+            explanation:
+              "The dual embryological origin of the vagina (Mullerian duct for upper part, urogenital sinus for lower part) explains the classification of vaginal congenital anomalies.",
+            tags: ["embryology", "uterus", "vagina"],
+            children: [
+              {
+                id: "A",
+                label: "Uterus:",
+                question: "Uterus:",
+                modelAnswer:
+                  "From fused middle parts of both Mullerian ducts + surrounding mesenchyma.",
+              },
+              {
+                id: "B",
+                label: "Lower part of vagina:",
+                question: "Lower part of vagina:",
+                modelAnswer: "From the vaginal plate of the urogenital sinus.",
+              },
+            ],
+          },
+          {
+            id: "wq-4",
+            question:
+              "Regarding congenital anomalies of the uterus, State: 4 types, 2 Obs complications:",
+            modelAnswer:
+              "4 types: agenesis; unicornuate uterus; uterus didelphus; bicornuate uterus. 2 obstetric complications: ectopic pregnancy; preterm labor; recurrent abortion.",
+            rubric:
+              "Four correctly named types; at least two obstetric complications.",
+            explanation:
+              "Uterine anomalies predispose to adverse obstetric outcomes due to reduced uterine cavity volume and abnormal vascularity.",
+            tags: ["embryology", "uterus"],
+          },
+          {
+            id: "wq-5",
+            question: "Summarize the embryological development of the ovary:",
+            modelAnswer: "",
+            rubric:
+              "Correct origin of primordial follicle (yolk sac endoderm) and ovarian stroma (genital ridge).",
+            explanation:
+              "Primordial germ cells migrate from the yolk sac to the genital ridge, which forms the supporting ovarian stroma.",
+            tags: ["embryology", "ovary"],
+            children: [
+              {
+                id: "A",
+                label: "Primordial follicle:",
+                question: "Primordial follicle:",
+                modelAnswer: "From endodermal cells of the yolk sac.",
+              },
+              {
+                id: "B",
+                label: "Ovarian stroma:",
+                question: "Ovarian stroma:",
+                modelAnswer: "From the genital ridge.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question:
+              "Summarize the embryological development of the following structures:",
+            modelAnswer: "",
+            rubric:
+              "Correct origin of fallopian tube (unfused upper Mullerian ducts) and lower vagina (urogenital sinus).",
+            explanation:
+              "Unlike the uterus, the fallopian tubes develop from the unfused cranial portions of the paired Mullerian ducts.",
+            tags: ["embryology", "fallopian tube", "vagina"],
+            children: [
+              {
+                id: "A",
+                label: "Fallopian tube:",
+                question: "Fallopian tube:",
+                modelAnswer:
+                  "From the non-fused upper parts of the Mullerian ducts.",
+              },
+              {
+                id: "B",
+                label: "Lower part of vagina:",
+                question: "Lower part of vagina:",
+                modelAnswer: "From the vaginal plate of the urogenital sinus.",
+              },
+            ],
+          },
+          {
+            id: "wq-7",
+            question: "Concise the embryological development of ovary concise:",
+            modelAnswer: "",
+            rubric:
+              "Genital ridge forming stroma; germ cells arising in the yolk sac and migrating along the dorsal mesentery.",
+            explanation:
+              "This is a concise restatement of ovarian embryogenesis, emphasizing the separate origins of stroma and germ cells.",
+            tags: ["embryology", "ovary"],
+            children: [
+              {
+                id: "A",
+                label: "Genital ridge =",
+                question: "Genital ridge =",
+                modelAnswer: "Forms the ovarian stroma.",
+              },
+              {
+                id: "B",
+                label: "Germ cells =",
+                question: "Germ cells =",
+                modelAnswer:
+                  "Appear among endodermal cells of the yolk sac & migrate along the dorsal mesentery to the genital ridge.",
+              },
+            ],
+          },
+          {
+            id: "wq-8",
+            question: "Identify 3 types of uterine duplication:",
+            modelAnswer:
+              "Uterus didelphys: class III. Bicornuate uterus: class IV (second commonest duplication anomaly). Septate uterus: class V (commonest duplication anomaly).",
+            rubric:
+              "Three types correctly matched to their class and relative frequency.",
+            explanation:
+              "Septate uterus is the most common Mullerian duplication anomaly and is associated with the highest rate of reproductive loss.",
+            tags: ["embryology", "uterus"],
+          },
+          {
+            id: "wq-9",
+            question:
+              "Concise the embryological development of the vagina according to the following:",
+            modelAnswer: "",
+            rubric:
+              "Correct origin for upper vagina (Mullerian duct) and lower vagina (urogenital sinus).",
+            explanation:
+              "This dual origin explains why vaginal atresia/agenesis can selectively affect the upper or lower vagina.",
+            tags: ["embryology", "vagina"],
+            children: [
+              {
+                id: "A",
+                label: "Upper vagina:",
+                question: "Upper vagina:",
+                modelAnswer: "Derived from the Mullerian duct.",
+              },
+              {
+                id: "B",
+                label: "Lower vagina:",
+                question: "Lower vagina:",
+                modelAnswer: "Derived from the urogenital sinus.",
+              },
+            ],
+          },
+          {
+            id: "wq-10",
+            question: "Discuss Turner Syndrome:",
+            modelAnswer:
+              "Pure Turner syndrome - Genotype: 45 XO. Phenotype: female. Gonads: streak gonads. Etiology: germ cells migrate to the genital ridge but undergo degeneration before birth. Clinical picture: delayed puberty, primary amenorrhea & primary infertility. Other characters: short stature, webbed neck, shield-shaped chest with widely spaced nipples, coarctation of aorta & mental retardation (10%). Mosaic Turner syndrome - Genotype: 45 X0/46 XX. Phenotype: female. Gonads: ovaries. Etiology: degeneration of some germ cells. Clinical picture: premature ovarian failure.",
+            rubric:
+              "Correct genotype, phenotype, gonads, etiology and clinical picture for both pure and mosaic Turner syndrome; named additional features of pure Turner syndrome.",
+            explanation:
+              "Mosaic Turner syndrome has a milder phenotype than pure Turner syndrome because some cell lines retain a normal 46XX karyotype, allowing partial ovarian function.",
+            tags: ["embryology", "turner syndrome"],
+          },
+          {
+            id: "wq-11",
+            question:
+              "Suggest 3 diagnostic tools for congenital uterine anomalies:",
+            modelAnswer:
+              "Ultrasound (US). Hysterosalpingography (HSG). Hysteroscope.",
+            rubric: "Three correctly named diagnostic tools.",
+            explanation:
+              "Combined hysteroscopy and laparoscopy (or 3D ultrasound/MRI) is often needed to fully differentiate septate from bicornuate uterus.",
+            tags: ["embryology", "uterus", "diagnosis"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

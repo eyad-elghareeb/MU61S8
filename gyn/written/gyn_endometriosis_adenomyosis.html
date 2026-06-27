@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_endometriosis_adenomyosis",
+          title: "Endometriosis & Adenomyosis",
+          description:
+            "Written exam questions on endometriosis and adenomyosis (5 questions).",
+          icon: "🩷",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Mention 2 medical lines used for TTT of endometriosis:",
+            modelAnswer:
+              "Analgesics (NSAIDs) as pain killers and being anti-PGs. Hormonal Therapy (Ovarian suppression) by any of the following: A. In pseudo-pregnancy state: 1. Combined oral contraceptive pills. 2. Gestagens only. B. In Pseudo-menopause: 1. Danazol. 2. GnRH analogues (agonists). 3. Oral GnRH antagonist.",
+            rubric:
+              "NSAIDs as one line; hormonal ovarian suppression (pseudo-pregnancy or pseudo-menopause regimens) as the second line.",
+            explanation:
+              "Hormonal suppression aims to induce amenorrhea, either by mimicking pregnancy (COCs/progestogens) or menopause (Danazol/GnRH analogues), to reduce ectopic endometrial stimulation.",
+            tags: ["endometriosis", "treatment"],
+          },
+          {
+            id: "wq-2",
+            question: "Mention 4 clinical presentation for endometriosis:",
+            modelAnswer:
+              "Asymptomatic and accidentally discovered. Pelvic pain. Infertility. Dys- group: Dysmenorrhea (crescendo type). Dyspareunia. Dysuria, frequency, urgency and cyclic hematuria with bladder endometriosis. Dyschazia, hematochezia and partial bowel obstruction with GIT affection. Menstrual disturbances: As menorrhagia or polymenorrhagia.",
+            rubric:
+              "At least 4 clinical presentations including the 'dys-group' symptoms.",
+            explanation:
+              "The crescendo-type dysmenorrhea (worsening with each cycle) is a classic feature distinguishing endometriosis-related pain from primary dysmenorrhea.",
+            tags: ["endometriosis", "symptoms"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "Regarding adenomyosis, mention: Two Uterine signs, Two sonographic features by transvaginal ultrasound, Two lines of treatment:",
+            modelAnswer:
+              "Two Uterine signs: 1. Uterus is symmetrically or asymmetrically enlarged usually BUT < 10 weeks. 2. Uterus is tender on bimanual examination. Two sonographic features by transvaginal ultrasound: 1. Myometrial cysts. 2. Sub endometrial nodules. 3. Sub endometrial linear striations. 4. Asymmetric myometrial thickening. 5. Poor definition of the endometrial/myometrial border. Two lines of treatment: 1. Medical TTT (NSAIDs, COCs). 2. Surgical TTT (Hysterectomy is the definitive TTT).",
+            rubric:
+              "Two uterine signs; two sonographic features; medical and surgical treatment lines.",
+            explanation:
+              "Hysterectomy is the only truly definitive treatment for adenomyosis, since medical therapy provides only symptomatic relief.",
+            tags: ["adenomyosis"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "Refer to the dx and treatment of adenomyosis under the following headings:",
+            modelAnswer:
+              'The main symptoms: AUB-A: (Abnormal uterine bleeding - adenomyosis) "Menorrhagia". 2ry dysmenorrhea. Pelvic discomfort. The main pelvic examination finding: Tender enlarged uterus (usually < 10 wks). Two diagnostic tools: TVS "US" - MRI. Define the main surgical treatment option: Hysterectomy.',
+            rubric:
+              "Main symptoms (menorrhagia, secondary dysmenorrhea); examination finding; two diagnostic tools; surgical treatment.",
+            explanation:
+              "MRI offers higher diagnostic accuracy than ultrasound for adenomyosis but is reserved for equivocal cases due to cost.",
+            tags: ["adenomyosis"],
+          },
+          {
+            id: "wq-5",
+            question:
+              "Mention 4 theories that could explain the etiology of endometriosis:",
+            modelAnswer:
+              "Implantation (transplantation). Celomic metaplasia. Vascular - lymphatic. Genetic factor. Immunologic factor.",
+            rubric: "Four theories correctly named.",
+            explanation:
+              "Sampson's implantation theory (retrograde menstruation) remains the most widely accepted explanation for pelvic endometriosis.",
+            tags: ["endometriosis", "etiology"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

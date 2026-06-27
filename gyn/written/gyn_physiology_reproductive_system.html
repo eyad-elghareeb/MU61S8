@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_physiology_reproductive_system",
+          title: "Physiology of the Reproductive System",
+          description:
+            "Written exam questions on female reproductive physiology (4 questions).",
+          icon: "🧪",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Mention stages of ovarian follicle development?",
+            modelAnswer:
+              "Primordial follicles. Preantral follicles. Antral follicles. Preovulatory follicle (mature Graafian follicle).",
+            rubric: "Four stages in correct sequence.",
+            explanation:
+              "Follicular development progresses through these stages under the influence of FSH and LH, culminating in ovulation of the dominant Graafian follicle.",
+            tags: ["physiology", "ovary", "follicle"],
+          },
+          {
+            id: "wq-2",
+            question:
+              "Regarding Estrogen: Comment on: Chemical nature, Types & sources of natural estrogen, Action on the uterus, 2 Clinical uses:",
+            modelAnswer:
+              "Chemical nature: steroid hormone (18 carbons). Types & sources of natural estrogen - E1 (estrone): from the adrenal cortex (small amounts) and from peripheral conversion of androgen to estrogen in adipose tissue; E2 (estradiol): from the ovary (follicles & corpus luteum); E3 (estriol): from the placenta; E4 (estetrol): from the fetus. Action on the uterus: proliferation and hyperplasia of the endometrium and myometrium, responsible for the proliferative phase of the menstrual cycle. 2 clinical uses: given in cases of gonadal failure to maintain secondary sex characters; treatment of DUB (certain indications).",
+            rubric:
+              "18-carbon steroid nature; four types of natural estrogen with their sources; endometrial/myometrial proliferative action; two clinical uses.",
+            explanation:
+              "Estrogen's proliferative action on the endometrium underlies its role in the menstrual cycle and in hormone replacement/DUB treatment.",
+            tags: ["physiology", "estrogen"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "In a table format compare between Follicle stimulation hormones (FSH) and Luteinizing hormone (LH):",
+            modelAnswer:
+              "Chemical nature: both FSH and LH are glycoprotein hormones. Source: both are secreted by basophils of the anterior pituitary. Receptors: FSH receptors are present on granulosa cells; LH receptors are present on theca cells at all stages of the ovarian cycle and on granulosa cells in the mature follicle under the effect of FSH & estrogen. Half-life: FSH 3-4 hours; LH 20 minutes. Actions - FSH: growth, ripening and maturation of ovarian follicles; stimulation of formation of LH receptors; acts on granulosa cells to stimulate secretion of estrogen; in combination with LH causes ovulation. LH: stimulation of ripening and complete maturation of follicles; the LH surge is responsible for rupture of the mature Graafian follicle (ovulation); luteinization of the granulosa and theca cells of the corpus luteum; stimulation of the corpus luteum to release progesterone and, to a lesser extent, estrogen; completion of the first meiotic division in the oocyte. Clinical uses - FSH: treatment of hypogonadotropic amenorrhea; treatment of anovulation induction of ovulation; to improve quality of follicles in cases of LPD; controlled ovarian hyperstimulation in ART.",
+            rubric:
+              "Correct comparison across chemical nature, source, receptors, half-life, actions and clinical uses for both hormones.",
+            explanation:
+              "FSH and LH act synergistically on the ovarian follicle; understanding their distinct half-lives and receptor distribution explains the physiological basis of ovulation induction protocols.",
+            tags: ["physiology", "FSH", "LH"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "Referring to mature graafian follicle comment on: Diameter, Structure, Function, Fate:",
+            modelAnswer:
+              "Diameter: 18-24 mm. Structure: oocyte; follicular cavity (antrum); perivitelline space (surrounds the oocyte); granulosa cell layer; zona pellucida (surrounds the perivitelline space); theca interna cell layer; corona radiata; theca externa cell layer; cumulus oophorus (group of granulosa cells attaching the corona radiata to the wall of the follicle). Function: production of estrogen. Fate: ovulation.",
+            rubric:
+              "Correct diameter range; at least 6 structural components; function (estrogen production); fate (ovulation).",
+            explanation:
+              "The mature Graafian follicle is the structure that ruptures at ovulation under the LH surge, releasing the secondary oocyte.",
+            tags: ["physiology", "follicle", "ovulation"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_urinary_incontinence",
+          title: "Urinary Incontinence",
+          description:
+            "Written exam questions on urinary incontinence (6 questions).",
+          icon: "🚻",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Mention 4 types of incontinence of urine.",
+            modelAnswer:
+              "Stress incontinence. '50%'. Urge incontinence. '25%'. Mixed incontinence. '25%': Stress + urge. Overflow incontinence: Neurogenic or automatic bladder. Fistulae: Vescio-vaginal, ureterovaginal. Urethral diverticulum. Functional: e.g. Fracture lower limbs. Reversible causes: Certain drugs.",
+            rubric:
+              "At least 4 types with approximate prevalence where given (stress, urge, mixed, overflow).",
+            explanation:
+              "Stress incontinence is the most common type and is due to loss of urethral support, whereas urge incontinence reflects detrusor overactivity.",
+            tags: ["urinary incontinence", "classification"],
+          },
+          {
+            id: "wq-2",
+            question:
+              "In a table format compare between Stress Incontinence and Urge Incontinence:",
+            modelAnswer:
+              "Definition: Stress incontinence - involuntary escape of urine on coughing, sneezing, effort or exertion; Urge incontinence - strong desire to micturate accompanied by involuntary escape of urine once patient feels desire to micturate. Etiology: Stress incontinence - urethral hypermobility or ISD; Urge incontinence - detrusor instability or hyperreflexia. Stress test: Stress incontinence +ve; Urge incontinence -ve. Uroflowmetry: Stress incontinence normal; Urge incontinence abnormal. UPP: Stress incontinence abnormal; Urge incontinence normal.",
+            rubric:
+              "Correct definition, etiology, and results of stress test/uroflowmetry/UPP for each type.",
+            explanation:
+              "These tests help differentiate the two types, which is essential since their treatments differ substantially (surgery for stress vs anticholinergics/bladder training for urge).",
+            tags: [
+              "urinary incontinence",
+              "stress incontinence",
+              "urge incontinence",
+            ],
+          },
+          {
+            id: "wq-3",
+            question: "Definition of Urinary Incontinence:",
+            modelAnswer:
+              "It is a condition in which involuntary loss of urine is a social or hygienic problem and is objectively demonstrable i.e. 'The complaint of any involuntary leakage of urine'.",
+            rubric:
+              "Definition emphasizing involuntary leakage as a social/hygienic problem, objectively demonstrable.",
+            explanation:
+              "This is the standard ICS-type definition of urinary incontinence.",
+            tags: ["urinary incontinence", "definition"],
+          },
+          {
+            id: "wq-4",
+            question: "Types of Stress Urinary incontinence (SUI):",
+            modelAnswer:
+              "Type 1: Incontinence due to loss of posterior urethro-vesical angle alone. Type 2: Incontinence due to loss of posterior urethro-vesical angle + urethral hypermobility. Type 3: Incontinence due to ISD (intrinsic sphincteric deficiency).",
+            rubric: "Three types correctly described.",
+            explanation:
+              "Type 3 (ISD) generally responds poorly to standard retropubic suspension procedures and often requires sling or bulking agent procedures.",
+            tags: ["urinary incontinence", "sui classification"],
+          },
+          {
+            id: "wq-5",
+            question:
+              "Outline the management of Stress Urinary incontinence (SUI):",
+            modelAnswer: "",
+            rubric:
+              "Non-surgical options (lifestyle, pelvic floor training, medication, devices) and surgical options (bulking agents, suspensions, slings).",
+            explanation:
+              "Conservative measures are first-line, with surgical options such as mid-urethral slings reserved for cases failing conservative treatment.",
+            tags: ["urinary incontinence", "treatment"],
+            children: [
+              {
+                id: "A",
+                label: "A) Non-Surgical Management of SUI:",
+                question: "Non-Surgical Management of SUI:",
+                modelAnswer:
+                  "Lifestyle interventions. Pelvic floor muscle training. Medications. Devices.",
+              },
+              {
+                id: "B",
+                label: "B) Surgical Management of SUI:",
+                question: "Surgical Management of SUI:",
+                modelAnswer:
+                  "Use of injectable bulking agents. Laparoscopic suspensions. Mid-urethral slings. Pubovaginal slings. Open retropubic suspensions.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question: "Medications used for Stress Urinary incontinence (SUI):",
+            modelAnswer:
+              "Estrogen. Alpha-adrenoreceptor agonist. Serotonin & norepinephrine reuptake inhibitors.",
+            rubric: "Three drug classes used in SUI.",
+            explanation:
+              "Duloxetine (a serotonin-norepinephrine reuptake inhibitor) is the best-studied pharmacological option for SUI, although surgery remains more effective overall.",
+            tags: ["urinary incontinence", "treatment"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

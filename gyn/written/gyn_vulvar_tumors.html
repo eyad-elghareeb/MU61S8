@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_vulvar_tumors",
+          title: "Vulvar Tumors",
+          description:
+            "Written exam questions on vulvar neoplasia (5 questions).",
+          icon: "🩸",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question:
+              "Etiology and risk factors of Vulvar intra-epithelial neoplasia:",
+            modelAnswer:
+              "HPV infection. History of other genital tract dysplasia or malignancy. Smoking. Immune suppression.",
+            rubric: "Four risk factors.",
+            explanation:
+              "HPV infection, smoking and immunosuppression are shared risk factors with cervical neoplasia, reflecting a similar underlying carcinogenic pathway.",
+            tags: ["vulvar tumors", "vin"],
+          },
+          {
+            id: "wq-2",
+            question: "TTT of Vulvar intra-epithelial neoplasia:",
+            modelAnswer: "",
+            rubric:
+              "Prophylactic measures and active treatment options (laser ablation, skinning vulvectomy, wide local excision).",
+            explanation:
+              "Treatment choice for VIN balances cosmetic/functional preservation against complete excision of dysplastic tissue, with age influencing the threshold for more extensive surgery.",
+            tags: ["vulvar tumors", "vin", "treatment"],
+            children: [
+              {
+                id: "A",
+                label: "Prophylaxis:",
+                question: "Prophylaxis:",
+                modelAnswer:
+                  "By avoidance of the predisposing factors and proper treatment of infection.",
+              },
+              {
+                id: "B",
+                label: "Active:",
+                question: "Active:",
+                modelAnswer:
+                  "Laser ablation, Skinning vulvectomy, OR Wide local excision in patients > 45 years.",
+              },
+            ],
+          },
+          {
+            id: "wq-3",
+            question: "Local signs of Carcinoma of vulva:",
+            modelAnswer:
+              "Pictures of etiology can be detected, and in addition to: Malignant ulcer: with raised everted edges, necrotic floor and indurate base. Kissing ulcer: involving both sides of the labia. Vulval mass: nodule, or cauliflower mass, with evidence of local invasion. Degree of extension of the tumor and staging can be assessed.",
+            rubric:
+              "Description of malignant ulcer characteristics; kissing ulcer; vulval mass features.",
+            explanation:
+              "A 'kissing ulcer' affecting both labia is a characteristic feature of advanced vulval carcinoma due to direct spread across the midline.",
+            tags: ["vulvar tumors", "carcinoma"],
+          },
+          {
+            id: "wq-4",
+            question: "Etiology and risk factors of Carcinoma of vulva:",
+            modelAnswer:
+              "Local lesions in the genital tract and chronic vulval irritation e.g.: Human papilloma virus and herpes simplex virus infection. Vulval condylomas of syphilis and other granulomatous venereal disease. Prior genital-tract neoplasia (cervix or vagina). Vulval dystrophies and chronic pruritus vulvae. Vulval carcinoma in situ. Vulval Paget's disease. Exposure to radiation or use of epilators, deodorants and synthetic underwear. Chronic medical illnesses: DM, HTN, obesity, and immune-suppression. Personal/lifestyle factors: Cigarette smoking and multiple sexual partners.",
+            rubric:
+              "Local genital tract lesions/HPV; chronic medical illnesses; personal/lifestyle factors.",
+            explanation:
+              "As with cervical cancer, HPV infection and chronic vulval irritation/dystrophy are central to vulval carcinogenesis.",
+            tags: ["vulvar tumors", "carcinoma", "risk factors"],
+          },
+          {
+            id: "wq-5",
+            question: "Investigations for Carcinoma of vulva:",
+            modelAnswer:
+              "1. Laboratory. 2. Radiology: 1. Chest X-ray and bone survey. 2. Computed tomography (CT). 3. Magnetic resonance imaging (MRI). 4. Barium enema. 3. Endoscopes: 1. Colposcopy. 2. Cystoscopy and proctoscopy. 4. Biopsy.",
+            rubric:
+              "Laboratory, radiological (at least 2 modalities), endoscopic and histological (biopsy) investigations.",
+            explanation:
+              "Biopsy remains essential for definitive diagnosis, while imaging and endoscopy assess local extension and distant spread for staging.",
+            tags: ["vulvar tumors", "investigations"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

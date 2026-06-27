@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_fibroid",
+          title: "Fibroid",
+          description:
+            "Written exam questions on uterine fibroids (8 questions).",
+          icon: "●",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Regarding sub mucosal fibroid.",
+            modelAnswer: "",
+            rubric:
+              "Symptoms and signs of submucous fibroid; conservative medical and surgical treatment options.",
+            explanation:
+              "Submucous fibroids characteristically present with abnormal uterine bleeding due to their endometrial cavity location, distinct from subserous fibroids.",
+            tags: ["fibroid"],
+            children: [
+              {
+                id: "A",
+                label: "A) What are the clinical presentations?",
+                question: "What are the clinical presentations?",
+                modelAnswer:
+                  "Symptoms: Asymptomatic. Irregular intermenstrual bleeding (IMB). Pain. Infertility (as it interferes with implantation). Dys group: 'dysuria, dyschazia, dysparuenia, dysmenorrhea, and discharge'. Mass. Signs: General: Pallor. Abdominal examination: a large fibroid forms a pelvi-abdominal mass. Local and pelvic examination: uterus is symmetrically enlarged and firm in consistency.",
+              },
+              {
+                id: "B",
+                label: "B) Describe conservative treatments.",
+                question: "Describe conservative treatments.",
+                modelAnswer:
+                  "Conservative Medical TTT: 1. GnRH analogues for 6-9 months OR 2. Progestogens for 6-9 months. Conservative Surgical TTT: Myomectomy or Polypectomy.",
+              },
+            ],
+          },
+          {
+            id: "wq-2",
+            question:
+              'As regards treatment of uterine fibroids, mention 3 criteria to justify "No treatment":',
+            modelAnswer:
+              "No symptoms = No treatment except in; Large myoma > 12 weeks as it is liable to degeneration. Rapidly growing myoma due to suspicion of malignancy. Pedunculated sub-serous myoma as it is liable to torsion. Sub-mucous myoma in a nullipara to avoid infertility or abortion. Large interstitial cervical fibroid to avoid ureteric compression.",
+            rubric:
+              "Three exceptions where treatment is indicated despite absence of symptoms (size >12 weeks, rapid growth, pedunculated subserous risk of torsion, etc.).",
+            explanation:
+              "The general rule is that asymptomatic fibroids do not need treatment, but certain features (large size, rapid growth, pedunculation, location) mandate intervention regardless of symptoms.",
+            tags: ["fibroid", "treatment"],
+          },
+          {
+            id: "wq-3",
+            question: "Enumerate 4 indications for hysterectomy in fibroid.",
+            modelAnswer:
+              "Patients > 40 years or completing their family size. Large number of fibroids so that after myomectomy useless uterus is left. Suspicion of malignancy. Fibroid in supravaginal portion of cervix.",
+            rubric: "Four correctly named indications.",
+            explanation:
+              "Hysterectomy is preferred over myomectomy when fertility preservation is not a priority or when myomectomy would leave an unsatisfactory uterus.",
+            tags: ["fibroid", "hysterectomy"],
+          },
+          {
+            id: "wq-4",
+            question: "Mention 4 complications of fibroid:",
+            modelAnswer:
+              "Torsion of pedunculated subserous fibroid. Rupture of surface vein on subserous fibroid. Impaction. Other Pathological Changes (Degenerative - Vascular - Malignant - Infection). Complications during pregnancy (e.g, Abortion - Red degeneration). Complications during labor (e.g, Pre-term labor, Uterine inertia OR obstructed labor).",
+            rubric: "Four complications correctly named.",
+            explanation:
+              "Fibroid complications range from acute events (torsion, rupture) to obstetric complications when fibroids coexist with pregnancy.",
+            tags: ["fibroid", "complications"],
+          },
+          {
+            id: "wq-5",
+            question:
+              "Regarding uterine myoma, identify: Two degenerative changes, Two indications for hysterectomy:",
+            modelAnswer:
+              "Two degenerative changes: 1. Hyaline degeneration (Commonest). 2. Necrosis - Atrophy. Two indications for hysterectomy: 1. Pt > 40 years. 2. Large numbers of fibroids - Suspicion of malignancy.",
+            rubric:
+              "Two degenerative changes and two indications for hysterectomy.",
+            explanation:
+              "Hyaline degeneration is the commonest degenerative change in fibroids, generally asymptomatic and discovered incidentally.",
+            tags: ["fibroid", "pathology"],
+          },
+          {
+            id: "wq-6",
+            question: "Regarding myomectomy, Enumerate:",
+            modelAnswer: "",
+            rubric:
+              "Indications, complications, and contraindications of myomectomy each correctly named (at least 2 each).",
+            explanation:
+              "Myomectomy is fertility-preserving but carries risks of bleeding, adhesions, and uterine scar rupture in a future pregnancy.",
+            tags: ["fibroid", "myomectomy"],
+            children: [
+              {
+                id: "A",
+                label: "Two indications:",
+                question: "Two indications:",
+                modelAnswer:
+                  "Young patient < 40 years desiring pregnancy. Small sized uncomplicated fibroid.",
+              },
+              {
+                id: "B",
+                label: "Two complications:",
+                question: "Two complications:",
+                modelAnswer:
+                  "Higher mortality due to higher risk of bleeding. Pelvic adhesions especially with a posterior wall uterine incision. Rupture of the uterine scar in subsequent pregnancy. Asherman's syndrome. Recurrent fibroid.",
+              },
+              {
+                id: "C",
+                label: "Two contraindications:",
+                question: "Two contraindications:",
+                modelAnswer:
+                  "Suspicious malignancy. Useless uterus left 'large number of fibroids'. Supravaginal cervical fibroid. Pyosalpinx (Bilateral). Increased age (>40 years).",
+              },
+            ],
+          },
+          {
+            id: "wq-7",
+            question:
+              "Regarding uterine fibroids, mention the following: Four secondary changes of uterine fibroid, Four effects of fibroid on pregnancy and labor:",
+            modelAnswer:
+              "Four secondary changes of uterine fibroid: 1. Degenerative changes: Atrophy - Necrosis - Hyaline degeneration -Cystic degeneration - Fatty degeneration -Calcification - Red degeneration. 2. Vascular changes: Congestion - Edema - Lymphangiectasis or telangiectasis. 3. Malignant changes: Leiomyosarcoma. 4. Infection. Four effects of fibroid on pregnancy and labor - During pregnancy: Abortion if sub-mucous fibroid OR ectopic pregnancy if cornual fibroid. Incarcerated retroverted gravid uterus if posterior wall fibroid. Malpresentations, non-engagement. Red degeneration. Rarely accidental hemorrhage. During labor & puerperium: Pre-term labor. Uterine inertia OR obstructed labor. Rarely, acute uterine inversion in sub-mucous fundal fibroid. Postpartum hemorrhage. Puerperal infection & sub-involution of the uterus.",
+            rubric:
+              "Four categories of secondary change; effects during pregnancy and during labor/puerperium.",
+            explanation:
+              "Red degeneration is a classic complication of fibroids during pregnancy, caused by haemorrhagic infarction due to outgrowing of blood supply.",
+            tags: ["fibroid", "pregnancy"],
+          },
+          {
+            id: "wq-8",
+            question:
+              "Refer to the dx & treatment of submucous myoma under the following headings:",
+            modelAnswer:
+              'The main symptom: AUB "Irregular intermenstrual bleeding (IMB)". The main pelvic examination: Symmetrically enlarged uterus. Three diagnostic tools: US - HSG - Hysteroscope. Surgical treatment options: Hysteroscopic resection. Abdominal myomectomy. Hysterectomy.',
+            rubric:
+              "Main symptom (IMB); main examination finding; three diagnostic tools; three surgical options.",
+            explanation:
+              "Hysteroscopic resection is increasingly the preferred minimally invasive option for submucous fibroids amenable to this approach.",
+            tags: ["fibroid", "submucous myoma"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

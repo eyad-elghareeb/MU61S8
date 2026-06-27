@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_infections",
+          title: "Infections",
+          description:
+            "Written exam questions on genital tract infections (11 questions).",
+          icon: "🦠",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Regarding chronic cervicitis:",
+            modelAnswer: "",
+            rubric:
+              "At least 6 clinico-pathological types; two named surgical treatments matched to indication.",
+            explanation:
+              "Trachelorrhaphy repairs the laceration causing ectropion, while conization/amputation addresses an elongated hypertrophic cervix.",
+            tags: ["infections", "cervicitis"],
+            children: [
+              {
+                id: "A",
+                label:
+                  "A) Enumerate clinico-pathological types of chronic cervicitis.",
+                question:
+                  "Enumerate clinico-pathological types of chronic cervicitis.",
+                modelAnswer:
+                  "Mucopurulent endocervicitis. Chronic endocervicitis. Chronic hypertrophic cervicitis with barrel shaped cervix. Cervical ectopy (erosion). Cervical ectropion (bilateral cervical laceration è eversion of cervical lips). Mucous polyp. Nabothian follicle or cyst formation. Chronic specific cervicitis.",
+              },
+              {
+                id: "B",
+                label: "B) Mention surgical treatment of chronic cervicitis.",
+                question: "Mention surgical treatment of chronic cervicitis.",
+                modelAnswer:
+                  "Trachelorraphy: in ectropion. Conization OR amputation: in elongated hypertrophic cervicitis.",
+              },
+            ],
+          },
+          {
+            id: "wq-2",
+            question:
+              "What are the complications of acute pelvic inflammatory diseases?",
+            modelAnswer:
+              "Chronic pelvic pain. Infertility. Ectopic pregnancy. Parametritis, peritonitis & pelvic thrombophlebitis. Hydrosalpinx & pyosalpinx. Tubo-ovarian abscess. Fitz Hugh Curtis syndrome: acute PID + perihepatitis. Mortality: 5-10% in ruptured tubo-ovarian abscess.",
+            rubric: "At least 5 listed complications.",
+            explanation:
+              "Tubal damage from PID is the leading preventable cause of tubal factor infertility and ectopic pregnancy.",
+            tags: ["infections", "pid"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "Enumerate 4 Normal Barriers protecting against genital infection.",
+            modelAnswer:
+              "Vulva: Closed introitus. Vagina: Vaginal epithelium is stratified squamous (resistant to organismal invasion). Cervix: Narrow cervical canal. Upper genital tract: Monthly shedding of endometrium.",
+            rubric: "Four anatomical/physiological barrier mechanisms.",
+            explanation:
+              "These barriers explain why ascending genital infection is normally limited, and why their disruption (e.g. instrumentation) increases infection risk.",
+            tags: ["infections", "barriers"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "Perihepatic adhesions (Fitz - Hugh - Curtis syndrome) is a complication of pelvic inflammatory disease, suggest:",
+            modelAnswer: "",
+            rubric:
+              "Laparoscopy as the diagnostic method with characteristic adhesions; the two main causative organisms.",
+            explanation:
+              "Fitz-Hugh-Curtis syndrome results from spread of PID-causing organisms to the liver capsule, producing right upper quadrant pain that can mimic cholecystitis.",
+            tags: ["infections", "fitz-hugh-curtis"],
+            children: [
+              {
+                id: "A",
+                label: "A) Diagnostic method:",
+                question: "Diagnostic method:",
+                modelAnswer:
+                  "Laparoscopy (adhesions between dome of the liver and diaphragm).",
+              },
+              {
+                id: "B",
+                label: "B) 2 possible causative organisms:",
+                question: "2 possible causative organisms:",
+                modelAnswer: "Neisseria gonorrhea & Chlamydia trachomatis.",
+              },
+            ],
+          },
+          {
+            id: "wq-5",
+            question: "Regarding pelvic inflammatory disease, mention:",
+            modelAnswer: "",
+            rubric:
+              "Two most common organisms with relative frequencies; at least 4 risk factors.",
+            explanation:
+              "Chlamydia trachomatis, although the commonest STD, causes a more indolent presentation than gonorrhea but carries similar long-term tubal damage risk.",
+            tags: ["infections", "pid"],
+            children: [
+              {
+                id: "A",
+                label: "A) The 2 most common organisms:",
+                question: "The 2 most common organisms:",
+                modelAnswer:
+                  "Neisseria gonorrhea: 2/3 of cases (commonest). Chlamydia trachomatis: 20% of cases (the commonest STD).",
+              },
+              {
+                id: "B",
+                label: "B) Possible risk factors:",
+                question: "Possible risk factors:",
+                modelAnswer:
+                  "Age: Incidence of acute PID decrease with increase age. STDs: There is strong correlation (è) exposure to STDs & PID. Procedures: IUCD insertion, endometrial curettage, HSG & hysteroscopy. Contraception (IUCD increase the risk - barrier method and OCs decreased the risk). Past hx of acute PID.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question:
+              "Mention Pathological types of Chronic pelvic inflammatory disease:",
+            modelAnswer:
+              "Endometritis. Salpingo-oophoritis. Parametritis. Peritonitis. Pelvic thrombophlebitis.",
+            rubric: "Five named pathological types.",
+            explanation:
+              "Chronic PID can affect any or all of the pelvic structures, explaining the diversity of chronic pelvic pain presentations.",
+            tags: ["infections", "pid"],
+          },
+          {
+            id: "wq-7",
+            question:
+              "Regarding vaginal candidiasis - comment of the following:",
+            modelAnswer: "",
+            rubric:
+              "Mode of infection; at least 3 predisposing factors; most common symptom; three investigations.",
+            explanation:
+              "Candida is a normal commensal that becomes pathogenic when local defences are altered, hence the importance of identifying predisposing factors.",
+            tags: ["infections", "candidiasis"],
+            children: [
+              {
+                id: "A",
+                label: "A) Mode of infection:",
+                question: "Mode of infection:",
+                modelAnswer:
+                  "Flourishes in acidic media under certain predisposing factor (organism is commensal on skin - gut - vagina - under nails).",
+              },
+              {
+                id: "B",
+                label: "B) Three predisposing factors:",
+                question: "Three predisposing factors:",
+                modelAnswer:
+                  "DM - HIV. Pregnancy - COCs. Prolonged antibiotic therapy. Tight underwear. Chemical (shower gel - soaps). Corticosteroids.",
+              },
+              {
+                id: "C",
+                label: "C) Most common symptom:",
+                question: "Most common symptom:",
+                modelAnswer:
+                  "Pruritus vulvae (Itching and scratching sensation on the vulva).",
+              },
+              {
+                id: "D",
+                label: "D) Three investigations:",
+                question: "Three investigations:",
+                modelAnswer:
+                  "Vaginal PH < 4.5. Microscopic exam with KOH adding (Pseudohyphae). Stained film by methylene blue. Culture on Nickerson media.",
+              },
+            ],
+          },
+          {
+            id: "wq-8",
+            question:
+              "As regard bacterial vaginosis, comment on the following:",
+            modelAnswer: "",
+            rubric:
+              "Causative organism shift; clinical presentation including high asymptomatic rate; diagnostic procedures (pH, clue cells, whiff test); treatment options.",
+            explanation:
+              "The 'fishy odor' whiff test and clue cells are classic diagnostic features distinguishing bacterial vaginosis from candidiasis and trichomoniasis.",
+            tags: ["infections", "bacterial vaginosis"],
+            children: [
+              {
+                id: "A",
+                label: "A) Causative organism",
+                question: "Causative organism",
+                modelAnswer:
+                  "Alternation of normal flora; Decrease lactobacilli; Increase Gardnerella & anaerobes.",
+              },
+              {
+                id: "B",
+                label: "B) Clinical presentation",
+                question: "Clinical presentation",
+                modelAnswer:
+                  "Asymptomatic in 50%. Vaginal Discharge (thin excessive greyish frothy malodorous discharge). Pruritus.",
+              },
+              {
+                id: "C",
+                label: "C) Diagnostic procedures",
+                question: "Diagnostic procedures",
+                modelAnswer:
+                  "Vaginal pH > 5. Clue cells (on microscopic fresh drop examination after adding KOH). Whiff test: Discharge + 10% KOH → fishy odor. Culture on specific media (blood agar).",
+              },
+              {
+                id: "D",
+                label: "D) Treatment",
+                question: "Treatment",
+                modelAnswer:
+                  "A. Sexual partner should be treated if infection is recurrent. B. Intravaginal preparations: 1. Clindamycin cream. 2. Metronidazole once daily for 5 days. C. Acidification of vagina.",
+              },
+            ],
+          },
+          {
+            id: "wq-9",
+            question: "Mention 4 causes for physiological leucorrhea:",
+            modelAnswer:
+              "95% due to: Candidal vaginitis. Trichomonas V. Bacterial vaginosis. Cervicitis: mainly gonorrhea. Other causes: Foreign bodies. Viral. Chlamydial infections.",
+            rubric:
+              "Four main causes accounting for 95% of cases, plus awareness of other causes.",
+            explanation:
+              "Despite the term 'physiological', most leucorrhea in clinical practice is due to an underlying infective cause that should be actively excluded.",
+            tags: ["infections", "leucorrhea"],
+          },
+          {
+            id: "wq-10",
+            question:
+              "As regard vaginal candidiasis, comment on the following:",
+            modelAnswer: "",
+            rubric:
+              "Causative organisms with percentages; symptoms and signs; pH and microscopic diagnostic findings; treatment by general correction, alkalinization and antifungals.",
+            explanation:
+              "Candida albicans accounts for 90% of vaginal candidiasis cases, with the remainder caused by non-albicans species which may be more treatment-resistant.",
+            tags: ["infections", "candidiasis"],
+            children: [
+              {
+                id: "A",
+                label: "A) Causative organism",
+                question: "Causative organism",
+                modelAnswer:
+                  "Candida albicans (90% of cases). C. tropicalis & C. glabrata (10% of cases).",
+              },
+              {
+                id: "B",
+                label: "B) Clinical presentation",
+                question: "Clinical presentation",
+                modelAnswer:
+                  "Symptoms: 1. Itching & scratching sensation on the vulva. 2. Burning sensation in the vagina. 3. Discharge: is thick, scanty, white, curd-like, adherent. 4. Dyspareunia and dysuria. Signs: 1. Vulvitis: redness, oedema, itching marks. 2. Vaginitis: red, tender vagina with adherent plaques. 3. Characteristic discharge.",
+              },
+              {
+                id: "C",
+                label: "C) Diagnostic procedures",
+                question: "Diagnostic procedures",
+                modelAnswer:
+                  "Vaginal pH < 4.5. Fresh drop examination with 10% KOH » shows G+ve spores and long pseudo-hyphae. Culture on specific media » Nickerson media 'or sabourauds's media'. And stained by Methylene blue.",
+              },
+              {
+                id: "D",
+                label: "D) Treatment",
+                question: "Treatment",
+                modelAnswer:
+                  "A. Correction of general condition. B. Alkalinization of the vagina. C. Antifungal preparations as by: 1. Local vaginal suppositories or intravaginal creams: e.g., clotrimazole, miconazole & tioconazole preparations. 2. Oral antifungal treatment: e.g., Fluconazole; and Ketoconazole.",
+              },
+            ],
+          },
+          {
+            id: "wq-11",
+            question: "List the criteria for diagnosis of Acute PID:",
+            modelAnswer:
+              "A. Minimum (major) criteria: Lower abdominal pain. Lower tenderness ± rebound. Tender cervical motion. Adnexal tenderness (unilateral or bilateral). B. Routine (minor) criteria: Oral temperature > 38.3°C. Abnormal cervical or vaginal discharge. ↑↑ Leukocytic count, CRP & ESR. Positive cervical culture for N. gonorrhea or C. trachomatis. Fluid in Douglas pouch or pelvic abscess. C. Sure criteria: Histopathological evidence of endometritis in endometrial biopsy. Tubo-ovarian abscess on ultrasound or other radiological tests. Laparoscopic abnormalities consistent with PID (gold standard for diagnosis).",
+            rubric:
+              "All three criteria categories (minimum/major, routine/minor, sure) with correct examples; recognition of laparoscopy as gold standard.",
+            explanation:
+              "Diagnosis of acute PID is largely clinical (based on minimum criteria) since laparoscopy, although the gold standard, is not routinely performed.",
+            tags: ["infections", "pid", "diagnosis"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

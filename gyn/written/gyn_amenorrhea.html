@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_amenorrhea",
+          title: "Amenorrhea",
+          description: "Written exam questions on amenorrhea (12 questions).",
+          icon: "📅",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Regarding Mullerian agenesis, comment on the following:",
+            modelAnswer:
+              "Karyotype: 46 XX. Gonads: normal ovaries. Clinical picture: tubes, uterus, upper 4/5 of vagina are absent; breast present; sexual hair present; urologic & skeletal abnormalities present.",
+            rubric:
+              "Correct karyotype; normal ovaries; absent Mullerian structures (tubes, uterus, upper vagina); presence of secondary sexual characters; associated renal/skeletal anomalies.",
+            explanation:
+              "Mullerian agenesis (Mayer-Rokitansky-Küster-Hauser syndrome) presents with primary amenorrhea despite normal secondary sexual development, since ovarian function is normal.",
+            tags: ["amenorrhea", "mullerian agenesis"],
+          },
+          {
+            id: "wq-2",
+            question:
+              'Regarding Androgen insensitivity syndrome "testicular feminization syndrome":',
+            modelAnswer:
+              "Karyotype: 46 XY. Phenotype: female. Gonads: testes (mostly inguinal); tubes, uterus, upper part 4/5 of vagina are absent. Breast: present. Sexual hair: absent. Serum testosterone: male level. DD: Mullerian agenesis.",
+            rubric:
+              "Karyotype/phenotype discordance; testes location; absent Mullerian derivatives; presence of breast development but absent sexual hair; male-level testosterone; differential diagnosis.",
+            explanation:
+              "Androgen insensitivity results from defective androgen receptors; testosterone is aromatized to estrogen producing breast development, but androgen-dependent sexual hair fails to develop.",
+            tags: ["amenorrhea", "androgen insensitivity"],
+          },
+          {
+            id: "wq-3",
+            question: "Enumerate 4 Causes of postpartum amenorrhea:",
+            modelAnswer:
+              "Another pregnancy. Lactation. Sheehan's syndrome. Intrauterine synechiae.",
+            rubric: "Four correctly named causes.",
+            explanation:
+              "Sheehan's syndrome (postpartum pituitary necrosis) and Asherman's-type intrauterine synechiae are important pathological causes to exclude beyond the physiological causes of pregnancy/lactation.",
+            tags: ["amenorrhea", "postpartum"],
+          },
+          {
+            id: "wq-4",
+            question: "Enumerate 3 congenital causes of ovarian amenorrhea:",
+            modelAnswer:
+              "Gonadal agenesis. Gonadal dysgenesis: pure Turner syndrome; mixed gonadal dysgenesis. Resistant ovary (Savage syndrome). Multiple X syndrome (super female // 47 XXX-48 XXXX-49 XXXXX): primary amenorrhea, hypogonadism, mental retardation.",
+            rubric:
+              "At least three congenital ovarian causes with brief description.",
+            explanation:
+              "These congenital causes reflect chromosomal or developmental abnormalities of the ovary itself, producing hypergonadotropic (ovarian) amenorrhea.",
+            tags: ["amenorrhea", "ovarian causes"],
+          },
+          {
+            id: "wq-5",
+            question:
+              "Regarding cryptomenorrhea, state the following: Definition, Two possible causes:",
+            modelAnswer:
+              "Definition: endometrial shedding occurs but there is no menstrual flow due to outflow tract obstruction. Two possible causes: imperforate hymen (commonest); vaginal aplasia; cervical stenosis.",
+            rubric:
+              "Definition emphasizing normal shedding with obstructed outflow; at least two causes.",
+            explanation:
+              "Cryptomenorrhea must be distinguished from true amenorrhea since menstruation is actually occurring but cannot escape.",
+            tags: ["amenorrhea", "cryptomenorrhea"],
+          },
+          {
+            id: "wq-6",
+            question: "Regarding cryptomenorrhea, mention:",
+            modelAnswer:
+              "2 congenital causes: imperforate hymen; vaginal aplasia or atresia; cervical aplasia with functioning uterus; complete transverse vaginal septum. 2 acquired causes: vaginal gynatresia; cervical stenosis; cervical obstruction. 2 clinical presentations: amenorrhea; cyclic lower abdominal pain; symptoms of PMS may be present. 2 treatments: imperforate hymen (under GA, complete asepsis & antibiotics, cruciate or crescent incision is done followed by trimming of edges); transverse vaginal septum (surgical excision).",
+            rubric:
+              "Congenital and acquired causes; clinical presentation; treatment options for imperforate hymen and transverse septum.",
+            explanation:
+              "Treatment of cryptomenorrhea is directed at relieving the outflow obstruction surgically.",
+            tags: ["amenorrhea", "cryptomenorrhea"],
+          },
+          {
+            id: "wq-7",
+            question: "TTT of Aschermann's syndrome:",
+            modelAnswer: "",
+            rubric:
+              "Prophylaxis by cause avoidance; medical and surgical components of active treatment including hysteroscopic adhesiolysis, IUD insertion and estrogen therapy.",
+            explanation:
+              "Asherman's syndrome (intrauterine adhesions) is treated by hysteroscopic lysis of adhesions followed by measures to prevent re-adhesion and promote endometrial regeneration.",
+            tags: ["amenorrhea", "asherman syndrome"],
+            children: [
+              {
+                id: "A",
+                label: "Prophylactic:",
+                question: "Prophylactic:",
+                modelAnswer: "By avoidance of the causes.",
+              },
+              {
+                id: "B",
+                label: "Active treatment:",
+                question: "Active treatment:",
+                modelAnswer:
+                  "Medical: by fibrolytic agents and antibiotics. Surgical: cutting the adhesion via hysteroscopy; insertion of an IUD for 2 cycles to prevent re-adhesion; estrogen for 3-4 weeks to help epithelialization of the endometrium.",
+              },
+            ],
+          },
+          {
+            id: "wq-8",
+            question:
+              "State 2 causes and 2 investigations for the diagnosis of Aschermann's syndrome:",
+            modelAnswer:
+              "Causes: post inflammatory (TB - Bilharzias); post-operative (after myomectomy or CS); after endometrial curettage. Investigations: HCG: multiple filing defects; hysteroscopy; uterine sounding is difficult.",
+            rubric:
+              "Two causes; two investigations including HSG findings and hysteroscopy.",
+            explanation:
+              "HSG showing multiple filling defects and difficulty in uterine sounding are characteristic features pointing to intrauterine adhesions, confirmed by hysteroscopy.",
+            tags: ["amenorrhea", "asherman syndrome"],
+          },
+          {
+            id: "wq-9",
+            question: "Mention 2 uterine causes for secondary amenorrhea:",
+            modelAnswer:
+              "Hysterectomy. Endometrial ablation. Postpartum infection. Ascherman syndrome.",
+            rubric: "At least two correct uterine causes.",
+            explanation:
+              "Uterine causes of secondary amenorrhea result from loss or destruction of the functional endometrium.",
+            tags: ["amenorrhea", "secondary amenorrhea"],
+          },
+          {
+            id: "wq-10",
+            question: "Enumerate uterine causes eugonadotrophic amenorrhea:",
+            modelAnswer:
+              "Congenital: Mullerian duct agenesis, hypoplasia, or congenital Asherman syndrome. Traumatic: Asherman's syndrome (intrauterine adhesions). Inflammatory: due to destruction of the basal layer or presence of adhesion. Post irradiation. Dysfunction: end organ resistance due to endometrial receptor defect.",
+            rubric:
+              "At least 4 of the listed categories (congenital, traumatic, inflammatory, post-irradiation, dysfunctional).",
+            explanation:
+              "Eugonadotrophic amenorrhea implies normal gonadotropin levels with the defect at the level of the uterus/endometrium itself.",
+            tags: ["amenorrhea", "uterine causes"],
+          },
+          {
+            id: "wq-11",
+            question: "Enumerate causes of amenorrhea with galactorrhea:",
+            modelAnswer:
+              "Lactation. Drugs causing hyperprolactinemia. Empty sella syndrome. Chiari-Frommel syndrome. Ahumada-Del Castillo syndrome. Prolactinoma (Forbes-Albright syndrome).",
+            rubric: "At least 4 listed causes.",
+            explanation:
+              "All of these causes share a common mechanism of hyperprolactinemia suppressing GnRH pulsatility.",
+            tags: ["amenorrhea", "galactorrhea"],
+          },
+          {
+            id: "wq-12",
+            question: "Enumerate causes of amenorrhea with hirsutism:",
+            modelAnswer:
+              "PCOS. Androgen secreting ovarian or adrenal tumors. Drugs causing hyperandrogenism.",
+            rubric: "At least these three categories of causes.",
+            explanation:
+              "Amenorrhea with hirsutism points toward a hyperandrogenic state, most commonly PCOS.",
+            tags: ["amenorrhea", "hirsutism"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

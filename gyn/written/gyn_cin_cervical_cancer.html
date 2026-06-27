@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_cin_cervical_cancer",
+          title: "CIN & Cervical Cancer",
+          description:
+            "Written exam questions on cervical intraepithelial neoplasia and cervical cancer (7 questions).",
+          icon: "🩸",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Describe the natural history of cervical carcinoma.",
+            modelAnswer:
+              "Natural history of CIN according to degree: CIN1: Regress 60%, Persist 30%, Progress 10%. CIN2: Regress 40%, Persist 40%, Progress 20%. CIN3: Regress 33%, Persist 55%, Progress >12% invasive cancer.",
+            rubric:
+              "Correct percentages for regression, persistence and progression for CIN1, CIN2, and CIN3.",
+            explanation:
+              "The progressively increasing risk of invasive progression from CIN1 to CIN3 underlies the rationale for closer surveillance/treatment of higher-grade lesions.",
+            tags: ["cin", "cervical cancer"],
+          },
+          {
+            id: "wq-2",
+            question: "Enumerate 4 risk factors for invasive cancer cervix.",
+            modelAnswer:
+              "Age: Median age at diagnosis is 45-50 years (usually in HPV infected females); Increased risk at 80 years or more. Race: Low socioeconomic class (due to early marriage, high parity, black race). Parity: More in high parity and rare in nulls. STD: HPV types 16 and 18 and other infections 'mentioned before with CIN'. Other risk factors include: Smoking. Other STDs: herpes genitalis, HIV, chlamydial infection. Immune deficiency. Use of hormonal contraception. CIN: up to 30% of CIN-3 can develop to cancer in about 10-15 years. Genetic and familial tendency.",
+            rubric:
+              "At least four risk factors (age, race/socioeconomic class, parity, STD/HPV) with awareness of additional contributing factors.",
+            explanation:
+              "HPV types 16 and 18 are the principal oncogenic types responsible for the majority of cervical cancers worldwide.",
+            tags: ["cervical cancer", "risk factors"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "Define 3 major risk factors of cervical intraepithelial neoplasia:",
+            modelAnswer:
+              "Sexually transmitted diseases: Infections with high risk are HPV types 16 and 18 'rarely 45, 56, 31, 33, 35'. Age: young; 25-35 years (sexually active). Smoking, alcoholics and drug abuse. Prolonged hormonal contraception with HPV infection. Immune-suppression and AIDS.",
+            rubric:
+              "Three major risk factors, including HPV typing and age group.",
+            explanation:
+              "High-risk HPV infection in a young, sexually active population is the principal driver of CIN development.",
+            tags: ["cin", "risk factors"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "A 33 years old woman has Pap smear showing moderately severity dysplasia:",
+            modelAnswer: "",
+            rubric:
+              "Colposcopic guided biopsy as the next step; two treatment modality categories (ablative and excisional) with examples.",
+            explanation:
+              "An abnormal Pap smear is followed by colposcopy with biopsy to histologically confirm the grade before deciding between ablative or excisional treatment.",
+            tags: ["cin", "diagnosis", "treatment"],
+            children: [
+              {
+                id: "A",
+                label: "A) What is the next step?",
+                question: "What is the next step?",
+                modelAnswer: "Coloscopic guided biopsy.",
+              },
+              {
+                id: "B",
+                label: "B) State 2 treatment modalities:",
+                question: "State 2 treatment modalities:",
+                modelAnswer:
+                  "Ablative procedures (Laser - Diatheramy). Excisional (LEEP - Laser).",
+              },
+            ],
+          },
+          {
+            id: "wq-5",
+            question:
+              "Name the routine sequential steps for CIN diagnosis. OR Mention 4 screening methods for cancer cervix.",
+            modelAnswer:
+              "Cervical cytology by Ayer's spatula OR cyto-brush: The obtained specimen is stained with Pap stain. Visual inspection with Acetic Acid \"VIA test\". Schiller's iodine test. Colposcopy and Colposcopic guided biopsy. Endocervical curettage.",
+            rubric:
+              "At least 4 screening/diagnostic methods in logical sequence (cytology, VIA/Schiller's test, colposcopy with biopsy).",
+            explanation:
+              "Cervical cytology remains the primary screening tool, with colposcopic biopsy reserved for confirmation of abnormal results.",
+            tags: ["cin", "screening"],
+          },
+          {
+            id: "wq-6",
+            question: "Mention 2 normal colpocsopic finding:",
+            modelAnswer:
+              "Original squamous epithelium covering ectocervix. Columnar epithelium lining cervical canal. Typical transformation zone (Squamo-columnar junction).",
+            rubric: "At least two normal colposcopic findings.",
+            explanation:
+              "The squamocolumnar junction (transformation zone) is the area most susceptible to dysplastic change and is the key area examined at colposcopy.",
+            tags: ["cin", "colposcopy"],
+          },
+          {
+            id: "wq-7",
+            question: "Mention 2 abnormal colpocsopic findings:",
+            modelAnswer:
+              "Abnormal vascular patterns: a) Punctuation & mosaicism. b) Looped, branching or corkscrew vessels. ↑↑ color tone: Due to ↑↑ vascularity, epithelial necrosis & keratin production. Acetowhite areas: After application of 3-5% acetic acid for 1-2 minutes.",
+            rubric:
+              "At least two abnormal colposcopic findings (vascular pattern, color tone, acetowhite areas).",
+            explanation:
+              "Acetowhitening and abnormal vascular patterns are the key colposcopic clues directing biopsy site selection.",
+            tags: ["cin", "colposcopy"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

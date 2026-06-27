@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_differential_diagnosis_collections",
+          title: "Differential Diagnosis (DD) & Collections",
+          description:
+            "Written exam questions on gynecological differential diagnosis (11 questions).",
+          icon: "🔍",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Mention 3 causes of nodule in Douglas pouch:",
+            modelAnswer:
+              "Endometriosis Nodules. TB Nodules. Malignant nodules.",
+            rubric: "Three causes.",
+            explanation:
+              "A nodule in the Douglas pouch should always raise suspicion of endometriosis, TB, or malignant deposits.",
+            tags: ["dd", "douglas pouch"],
+          },
+          {
+            id: "wq-2",
+            question: "Enumerate 4 vaginal cystic swellings:",
+            modelAnswer:
+              "Congenital cysts (Gartner cyst - Mullerian cyst). Epidermoid (implantation dermoid) cyst. Hymenal cyst. Endometriotic cyst. Vaginitis emphysematosa (colpitis cystica). Pseudocysts.",
+            rubric:
+              "At least 4 general vaginal cystic swelling types; wall-specific classification (anterior vs posterior).",
+            explanation:
+              "Anterior wall swellings are dominated by urethral/paraurethral pathology, while posterior wall swellings are typically prolapse-related (rectocele/enterocele).",
+            tags: ["dd", "vaginal swellings"],
+            children: [
+              {
+                id: "A",
+                label: "Anterior vaginal wall:",
+                question: "Swellings appearing in the anterior vaginal wall:",
+                modelAnswer:
+                  "Prolapse (cystocele & urethrocele). Cysts of Skene's tubules. Urethral diverticulum.",
+              },
+              {
+                id: "B",
+                label: "Posterior vaginal wall:",
+                question: "Swellings appearing in the posterior vaginal wall:",
+                modelAnswer: "Prolapse (rectocele & enterocele).",
+              },
+            ],
+          },
+          {
+            id: "wq-3",
+            question: "Mention 3 causes for deep dyspareunia:",
+            modelAnswer:
+              "Inadequate vaginal lengthening & lubrication 2ry to inadequate sexual arousal. Fixed RVF uterus. Chronic PID. Pelvic mass. Irritable bowel syndrome.",
+            rubric: "Three causes.",
+            explanation:
+              "Deep dyspareunia localizes pain to pelvic structures, distinguishing it from superficial dyspareunia which is usually vulvovaginal in origin.",
+            tags: ["dd", "dyspareunia"],
+          },
+          {
+            id: "wq-4",
+            question: "Mention 4 causes of cervical enlargement:",
+            modelAnswer:
+              "Congenital hypertrophy or elongation of portiovaginalis (false prolapse). Cervical congestion (pregnancy & prolapse). Chronic cervicitis (specific & nonspecific). Cervical abortion & cervical ectopic pregnancy. Cervical endometriosis. Polyps (cervical polyps or corporeal polyps passing through cervix). Cervical tumors: Benign (as fibroid) or malignant (as carcinoma).",
+            rubric: "Four causes of cervical enlargement.",
+            explanation:
+              "Differentiating benign causes (congestion, cervicitis, polyps) from malignant cervical enlargement is the key clinical task.",
+            tags: ["dd", "cervical enlargement"],
+          },
+          {
+            id: "wq-5",
+            question: "Enumerate four causes of Vulval ulcer:",
+            modelAnswer:
+              "Traumatic (infected wound & chemical ulcers). Inflammatory (STDs & TB & bilharzia). Neoplastic (malignant ulcer). Behcet disease.",
+            rubric: "Four causes.",
+            explanation:
+              "Sexually transmitted infections are the most common infective cause of genital ulceration and must be distinguished from malignant ulceration.",
+            tags: ["dd", "vulval ulcer"],
+          },
+          {
+            id: "wq-6",
+            question: "Mention 4 causes for barrel shaped cervix:",
+            modelAnswer:
+              "Chronic hypertrophic cervicitis. Interstitial myoma. Endocervical carcinoma. Hematocervix. Cervical abortion. Cervical ectopic pregnancy.",
+            rubric: "Four causes.",
+            explanation:
+              "A barrel-shaped cervix results from diffuse enlargement, requiring exclusion of malignancy (endocervical carcinoma) as a key differential.",
+            tags: ["dd", "cervix"],
+          },
+          {
+            id: "wq-7",
+            question: "Enumerate 5 causes for symmetrically enlarged uterus:",
+            modelAnswer:
+              "Early pregnancy - Normal pregnancy. Submucous fibroid. Metropathia hemorrhagica. Subinvolution of uterus. Hematometra - Pyometra. Choriocarcinoma.",
+            rubric: "Five causes.",
+            explanation:
+              "Pregnancy must always be the first consideration when assessing a symmetrically enlarged uterus in a reproductive-age woman.",
+            tags: ["dd", "uterine enlargement"],
+          },
+          {
+            id: "wq-8",
+            question: "Enumerate four causes of mass felt in Douglas pouch:",
+            modelAnswer: "",
+            rubric:
+              "Genital and extragenital causes of a Douglas pouch mass, with at least 2 examples each.",
+            explanation:
+              "Bimanual and rectal examination help differentiate genital from extragenital masses occupying the Douglas pouch.",
+            tags: ["dd", "douglas pouch mass"],
+            children: [
+              {
+                id: "A",
+                label: "A) Genital:",
+                question: "Genital:",
+                modelAnswer:
+                  "Tubal (hydrosopnix - pyosalpinx). Uterine (RVF - post. wall uterine fibroid). Ovarian (prolapse of ovary - Non neoplastic swelling).",
+              },
+              {
+                id: "B",
+                label: "B) Extra Genital:",
+                question: "Extra Genital:",
+                modelAnswer:
+                  "Douglas pouch (pelvic hemaocele - pelvic abscess). Rectal (Impacted fecal matter & cancer rectum). Retroperitoneal (sarcoma - lymphoma - lipoma - pelvic kidney).",
+              },
+            ],
+          },
+          {
+            id: "wq-9",
+            question: "Mention 3 Gynecological causes of low backache:",
+            modelAnswer:
+              'Endometriosis "Commonest". Adenomyosis. Genital prolapse. Pelvic congestion. Pelvic adhesions. Pelvic tumors.',
+            rubric:
+              "Three causes with endometriosis identified as the commonest.",
+            explanation:
+              "Endometriosis is the most common gynaecological cause of chronic low backache associated with pelvic pain.",
+            tags: ["dd", "low backache"],
+          },
+          {
+            id: "wq-10",
+            question:
+              "Enumerate 4 causes of white lesions of the vulva (vulvar leukoplakia):",
+            modelAnswer:
+              "Vulval dystrophies. Paget's disease. Chonyloma lata. Skin lesion (psoriasis & leukoderma). General disease (DM & uremia). Local disease (inflammation). Idiopathic.",
+            rubric: "Four causes.",
+            explanation:
+              "Vulval white lesions encompass a spectrum from benign dystrophies to premalignant/malignant conditions such as Paget's disease, mandating biopsy when suspicious.",
+            tags: ["dd", "vulval leukoplakia"],
+          },
+          {
+            id: "wq-11",
+            question: "Mention 2 causes of hematoslpinx:",
+            modelAnswer: "Cryptomenorrhea. Tubal ectopic pregnancy.",
+            rubric: "Two causes.",
+            explanation:
+              "This repeats the same two principal causes of hematosalpinx noted earlier under reproductive anatomy.",
+            tags: ["dd", "hematosalpinx"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

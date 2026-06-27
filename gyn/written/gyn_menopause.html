@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_menopause",
+          title: "Menopause",
+          description:
+            "Written exam questions on menopause and hormone replacement therapy (4 questions).",
+          icon: "🍂",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question:
+              "Menopause is not the end but a start of a new life. Discuss:",
+            modelAnswer: "",
+            rubric:
+              "A: direction of change for FSH, LH, androgens, estrogen, progesterone, LH/FSH ratio. B: at least 4 clinical presentation categories. C: two major health hazards. D: at least 4 non-hormonal treatment lines.",
+            explanation:
+              "Menopause results from ovarian failure leading to loss of negative feedback (raised FSH/LH) and estrogen deficiency, producing vasomotor, psychological, and long-term cardiovascular/skeletal effects.",
+            tags: ["menopause", "endocrine"],
+            children: [
+              {
+                id: "A",
+                label: "A)",
+                question:
+                  "What are the hormonal changes associated with menopause?",
+                modelAnswer:
+                  "FSH: increased (>40 IU). LH: increased, 3 folds. Androgens: decreased. Estrogen (mainly E1): decreased. Progesterone: decreased. LH/FSH ratio: decreased.",
+              },
+              {
+                id: "B",
+                label: "B)",
+                question:
+                  "Enumerate clinical presentations of menopausal syndrome?",
+                modelAnswer:
+                  "Psychological: anxiety, depression, irritability, insomnia, inability to concentrate, sense of end of life. Vasomotor instability and hot flushes (most characteristic feature): vasodilation after vasoconstriction leading to hot flushes in the neck and chest, resulting in sweating. Osteoporosis: with more liability for fractures; hot flushes and osteoporosis are considered major symptoms. Cardio-vascular: palpitation, chest pains, increased incidence of hypertension and IHD. GIT: decreased appetite, distension, dyspepsia & constipation. Genital: dyspareunia due to senile vaginitis, more genital displacements.",
+              },
+              {
+                id: "C",
+                label: "C)",
+                question: "Major health hazards?",
+                modelAnswer: "Osteoporosis. Cardiovascular diseases.",
+              },
+              {
+                id: "D",
+                label: "D)",
+                question:
+                  "Enumerate non hormonal treatments of menopausal syndrome.",
+                modelAnswer:
+                  "General lines: reassurance & explanation (menopause is change of life and not the end of life); good diet & high tonics; regular exercise. Sedatives & tranquilizers. Psychotherapy. Vitamins & minerals supplementation (especially Ca++ & vitamin D supplementation for high-risk groups to develop osteoporosis). β-blockers (to control hot flushes). Prevention & treatment of osteoporosis & cardiovascular diseases.",
+              },
+            ],
+          },
+          {
+            id: "wq-2",
+            question:
+              "Contraindications of estrogen replacement therapy in post-menopausal women:",
+            modelAnswer:
+              "Undiagnosed abnormal uterine bleeding. Family history of endometrial carcinoma. Past or present history of cancer breast or family history of cancer breast. Hyperbilirubinemia, liver diseases and gall stones. Uncontrolled D.M, HTN and IHD.",
+            rubric: "At least 4 of the listed contraindications.",
+            explanation:
+              "These contraindications relate to estrogen's effects on hormone-sensitive tumours, hepatic metabolism, and thromboembolic/cardiovascular risk.",
+            tags: ["menopause", "HRT"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "Complications of estrogen replacement therapy in post-menopausal women:",
+            modelAnswer:
+              "Carcinogenicity (decreased with the new regimens). Defective liver metabolism. Nausea & vomiting. Abnormal uterine bleeding. Increased risk of thromboembolic diseases. Those with fibroids, endometriosis or severe migraine.",
+            rubric: "At least 4 listed complications.",
+            explanation:
+              "Unopposed estrogen carries endometrial cancer risk, hence its combination with cyclic progesterone in women with an intact uterus.",
+            tags: ["menopause", "HRT"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "How to decrease risk of estrogen replacement therapy in post-menopausal women:",
+            modelAnswer:
+              "Give the smallest dose of estrogen that minimizes symptoms. Add cyclic progesterone. Avoid long term use of estrogen. Use alternatives: Selective estrogen receptor modulators (SERMs), Tibolone or Phytoestrogen.",
+            rubric:
+              "Four strategies: lowest effective dose, cyclic progesterone, avoiding long-term use, and alternatives (SERMs/Tibolone/Phytoestrogen).",
+            explanation:
+              "These measures aim to balance symptom relief against the carcinogenic and thromboembolic risks of unopposed/prolonged estrogen therapy.",
+            tags: ["menopause", "HRT"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 /* MU61 Quiz — generated precache manifest for all quiz and hub pages.
    CACHE_VERSION is content-hashed by scripts/sync_quiz_assets.py so new files activate automatically. */
-const CACHE_VERSION = 'mu61-quiz-d290b1dd02cc';
+const CACHE_VERSION = 'mu61-quiz-d881e59ad289';
 const CACHE_NAME = 'mu61-cache-' + CACHE_VERSION;
 
 const GOOGLE_FONT_CSS =
@@ -113,6 +113,35 @@ var PRECACHE_REL_PATHS = [
   'gyn/past-years/by-lecture/l13-infertility.html',
   'gyn/past-years/index.html',
   'gyn/past-years/past-years-question-bank.html',
+  'gyn/written/gyn_abnormal_uterine_bleeding.html',
+  'gyn/written/gyn_amenorrhea.html',
+  'gyn/written/gyn_anatomy_reproductive_system.html',
+  'gyn/written/gyn_choriocarcinoma.html',
+  'gyn/written/gyn_cin_cervical_cancer.html',
+  'gyn/written/gyn_differential_diagnosis_collections.html',
+  'gyn/written/gyn_dysmenorrhea_pms.html',
+  'gyn/written/gyn_embryology_reproductive_system.html',
+  'gyn/written/gyn_endometrial_carcinoma.html',
+  'gyn/written/gyn_endometrial_hyperplasia.html',
+  'gyn/written/gyn_endometriosis_adenomyosis.html',
+  'gyn/written/gyn_female_genital_mutilation.html',
+  'gyn/written/gyn_fibroid.html',
+  'gyn/written/gyn_genital_displacements_prolapse.html',
+  'gyn/written/gyn_genital_fistula.html',
+  'gyn/written/gyn_hyperandrogenemia_hirsutism.html',
+  'gyn/written/gyn_hyperprolactinemia.html',
+  'gyn/written/gyn_infections.html',
+  'gyn/written/gyn_infertility.html',
+  'gyn/written/gyn_menopause.html',
+  'gyn/written/gyn_oncology_collections.html',
+  'gyn/written/gyn_operative_gynecology.html',
+  'gyn/written/gyn_ovarian_tumors.html',
+  'gyn/written/gyn_pcos_ovulation_disorders.html',
+  'gyn/written/gyn_physiology_reproductive_system.html',
+  'gyn/written/gyn_puberty.html',
+  'gyn/written/gyn_urinary_incontinence.html',
+  'gyn/written/gyn_vulvar_tumors.html',
+  'gyn/written/index.html',
   'med/dr.-maf/cardio/index.html',
   'med/dr.-maf/cardio/l1-ihd.html',
   'med/dr.-maf/cardio/l4-htn.html',

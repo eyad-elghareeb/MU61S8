@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_endometrial_hyperplasia",
+          title: "Endometrial Hyperplasia",
+          description:
+            "Written exam questions on endometrial hyperplasia (3 questions).",
+          icon: "🩸",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question:
+              "Over growth of the endometrium may represent a potential risk.",
+            modelAnswer: "",
+            rubric:
+              "Four risk factors; clinical presentation categories; histopathology as best diagnostic tool; treatment stratified by atypia status and age group.",
+            explanation:
+              "Treatment is stratified mainly by the presence of cytological atypia, since atypical hyperplasia carries a much higher malignant potential and often warrants hysterectomy, especially in older women.",
+            tags: ["endometrial hyperplasia"],
+            children: [
+              {
+                id: "A",
+                label: "A) Enumerate risk factors of endometrial hyperplasia?",
+                question: "Enumerate risk factors of endometrial hyperplasia?",
+                modelAnswer:
+                  "Increased body mass index (BMI); with excessive peripheral conversion of androgens in adipose tissue to estrogen. Anovulation associated with the perimenopause or polycystic ovary syndrome (PCOS). Estrogen-secreting ovarian tumors, e.g. granulosa cell tumors (with up to 40% prevalence of endometrial hyperplasia). Drug-induced endometrial stimulation, e.g. the use of systemic ERT or long-term tamoxifen.",
+              },
+              {
+                id: "B",
+                label:
+                  "B) What are the clinical presentations of that problem?",
+                question:
+                  "What are the clinical presentations of that problem?",
+                modelAnswer:
+                  "History of etiology (hyper estrogenic status). Asymptomatic and accidentally discovered on screening for endometrial carcinoma. Bleeding (AUB-M): The most common presentation. Symptoms of the etiology e.g., picture of PCOS... etc. The uterus may be normal, atrophied, or enlarged and may be ovarian swelling or tumors.",
+              },
+              {
+                id: "C",
+                label: "C) Best diagnostic tool?",
+                question: "Best diagnostic tool?",
+                modelAnswer: "Histopathology: by endometrial curettage.",
+              },
+              {
+                id: "D",
+                label: "D) Enumerate lines of treatment.",
+                question: "Enumerate lines of treatment.",
+                modelAnswer:
+                  "EH without atypia (reproductive age): Progestins: 10-20 mg oral daily for 6 continuous months OR LNG-IUS [Mirena] for 5 years; with Follow-up endometrial biopsy every 6-12 months. EH without atypia (pre/post-menopausal age): Progestins: as before for 6 months; Hysterectomy, if no response on progestin. EH with atypia (reproductive age): LNG-IUS or high dose progestin, with Follow-up endometrial biopsy every 3-6 months; Hysterectomy, if no regression by hormonal treatment or if completed her family. EH with atypia (pre/post-menopausal age): Hysterectomy.",
+              },
+            ],
+          },
+          {
+            id: "wq-2",
+            question:
+              "Enumerate the histopathological types and malignant potentials of endometrial hyperplasia?",
+            modelAnswer:
+              "Hyperplasia without atypia » Risk for endometrial cancer < 5% over 20 years. Atypical hyperplasia » Risk for endometrial cancer = 28% over 20 years.",
+            rubric:
+              "Two histopathological types with correct approximate malignancy risk percentages.",
+            explanation:
+              "The presence of atypia dramatically raises the long-term risk of progression to endometrial carcinoma, justifying more aggressive management.",
+            tags: ["endometrial hyperplasia", "malignant potential"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "Suggest management of endometrial hyperplasia in premenopausal woman guided by the following heading: Histopathology, Name a standard hormonal assay, Identify 2 options for surgical interventions:",
+            modelAnswer:
+              "Histopathology: by endometrial curettage. Name a standard hormonal assay: Progesterone (gestation therapy). Identify 2 options for surgical interventions: 1. Endometrial ablation for menopausal women without atypia. 2. Hysterectomy for fertile women with cell atypia.",
+            rubric:
+              "Histopathology by curettage; progesterone as the standard hormonal assay; two surgical options matched to indication.",
+            explanation:
+              "Surgical intervention choice depends on both the presence of atypia and the woman's fertility wishes/menopausal status.",
+            tags: ["endometrial hyperplasia", "treatment"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

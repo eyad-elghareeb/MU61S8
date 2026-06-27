@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){var t=localStorage.getItem('quiz-theme')||'dark';var s=document.createElement('style');
+s.textContent='html,body{background:'+(t==='light'?'#f3f0eb':'#0d1117')+';color:'+(t==='light'?'#1c1917':'#e6edf3')+';margin:0;padding:0;overflow:hidden;height:100%}';
+document.head.appendChild(s)})();
+</script>
+<title>MU61 Quiz - Gynecology Written</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index-engine.css">
+<meta name="description" content="MU61 Written Assessments. Test your knowledge with written/essay questions.">
+<meta property="og:title" content="MU61 Written Assessments — Gynecology">
+<meta property="og:description" content="MU61 Written Assessments. Test your knowledge with written/essay questions.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MU61 Written Assessments — Gynecology">
+<meta name="twitter:description" content="MU61 Written Assessments. Test your knowledge with written/essay questions.">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../favicon.svg">
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html" class="icon-btn back-btn" title="Back to Gynecology">←</a>
+    <div class="topbar-title">MU61 Quiz - Gynecology Written</div>
+    <button class="icon-btn btn-tracker" onclick="openTrackerDashboard()" title="Question Tracker">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg>
+    <span class="tracker-badge" id="tracker-badge-count"></span>
+  </button>
+  <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Select your <span>Gynecology Written</span></h1>
+      <p>Practice written/essay questions across gynecology topics. Answer freely, then check against model answers.</p>
+    </header>
+
+    <div class="quiz-grid" id="quiz-grid">
+    </div>
+
+    <div class="footer-note">
+      Made By: <a href="https://github.com/eyad-elghareeb/QuizTool" target="_blank" rel="noopener noreferrer">QuizTool</a>
+    </div>
+  </div>
+
+<script>
+const QUIZZES = [
+  {
+    uid: "gyn_abnormal_uterine_bleeding",
+    title: "Abnormal Uterine Bleeding (AUB)",
+    description: "Written exam questions on abnormal uterine bleeding (12 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "18 Questions"],
+    url: "gyn_abnormal_uterine_bleeding.html"
+  },
+  {
+    uid: "gyn_amenorrhea",
+    title: "Amenorrhea",
+    description: "Written exam questions on amenorrhea (12 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "14 Questions"],
+    url: "gyn_amenorrhea.html"
+  },
+  {
+    uid: "gyn_anatomy_reproductive_system",
+    title: "Anatomy Of The Reproductive System",
+    description: "Written exam questions on female reproductive anatomy (18 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "20 Questions"],
+    url: "gyn_anatomy_reproductive_system.html"
+  },
+  {
+    uid: "gyn_choriocarcinoma",
+    title: "Choriocarcinoma",
+    description: "Written exam questions on choriocarcinoma (5 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "14 Questions"],
+    url: "gyn_choriocarcinoma.html"
+  },
+  {
+    uid: "gyn_cin_cervical_cancer",
+    title: "CIN & Cervical Cancer",
+    description: "Written exam questions on cervical intraepithelial neoplasia and cervical cancer (7 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "9 Questions"],
+    url: "gyn_cin_cervical_cancer.html"
+  },
+  {
+    uid: "gyn_differential_diagnosis_collections",
+    title: "Differential Diagnosis (DD) & Collections",
+    description: "Written exam questions on gynecological differential diagnosis (11 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "15 Questions"],
+    url: "gyn_differential_diagnosis_collections.html"
+  },
+  {
+    uid: "gyn_dysmenorrhea_pms",
+    title: "Dysmenorrhea & PMS",
+    description: "Written exam questions on dysmenorrhea and premenstrual syndrome (8 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "11 Questions"],
+    url: "gyn_dysmenorrhea_pms.html"
+  },
+  {
+    uid: "gyn_embryology_reproductive_system",
+    title: "Embryology Of The Reproductive System",
+    description: "Written exam questions on female reproductive embryology (11 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "21 Questions"],
+    url: "gyn_embryology_reproductive_system.html"
+  },
+  {
+    uid: "gyn_endometrial_carcinoma",
+    title: "Endometrial Carcinoma",
+    description: "Written exam questions on endometrial carcinoma (5 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "9 Questions"],
+    url: "gyn_endometrial_carcinoma.html"
+  },
+  {
+    uid: "gyn_endometrial_hyperplasia",
+    title: "Endometrial Hyperplasia",
+    description: "Written exam questions on endometrial hyperplasia (3 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "7 Questions"],
+    url: "gyn_endometrial_hyperplasia.html"
+  },
+  {
+    uid: "gyn_endometriosis_adenomyosis",
+    title: "Endometriosis & Adenomyosis",
+    description: "Written exam questions on endometriosis and adenomyosis (5 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "5 Questions"],
+    url: "gyn_endometriosis_adenomyosis.html"
+  },
+  {
+    uid: "gyn_female_genital_mutilation",
+    title: "Female Genital Mutilation (FGM)",
+    description: "Written exam questions on female genital mutilation (4 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "6 Questions"],
+    url: "gyn_female_genital_mutilation.html"
+  },
+  {
+    uid: "gyn_fibroid",
+    title: "Fibroid",
+    description: "Written exam questions on uterine fibroids (8 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "13 Questions"],
+    url: "gyn_fibroid.html"
+  },
+  {
+    uid: "gyn_genital_displacements_prolapse",
+    title: "Genital Displacements (Prolapse)",
+    description: "Written exam questions on uterovaginal prolapse (18 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "34 Questions"],
+    url: "gyn_genital_displacements_prolapse.html"
+  },
+  {
+    uid: "gyn_genital_fistula",
+    title: "Genital Fistula",
+    description: "Written exam questions on urogenital fistula (6 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "11 Questions"],
+    url: "gyn_genital_fistula.html"
+  },
+  {
+    uid: "gyn_hyperandrogenemia_hirsutism",
+    title: "Hyperandrogenemia & Hirsutism",
+    description: "Written exam questions on hyperandrogenemia and hirsutism (6 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "8 Questions"],
+    url: "gyn_hyperandrogenemia_hirsutism.html"
+  },
+  {
+    uid: "gyn_hyperprolactinemia",
+    title: "Hyperprolactinemia",
+    description: "Written exam questions on hyperprolactinemia (6 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "10 Questions"],
+    url: "gyn_hyperprolactinemia.html"
+  },
+  {
+    uid: "gyn_infections",
+    title: "Infections",
+    description: "Written exam questions on genital tract infections (11 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "29 Questions"],
+    url: "gyn_infections.html"
+  },
+  {
+    uid: "gyn_infertility",
+    title: "Infertility",
+    description: "Written exam questions on infertility (20 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "29 Questions"],
+    url: "gyn_infertility.html"
+  },
+  {
+    uid: "gyn_menopause",
+    title: "Menopause",
+    description: "Written exam questions on menopause and hormone replacement therapy (4 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "8 Questions"],
+    url: "gyn_menopause.html"
+  },
+  {
+    uid: "gyn_oncology_collections",
+    title: "Oncology Collections",
+    description: "Written exam questions reviewing stage-specific treatment across gynecologic oncology (1 multi-part question).",
+    icon: "🩸",
+    tags: ["Quiz", "12 Questions"],
+    url: "gyn_oncology_collections.html"
+  },
+  {
+    uid: "gyn_operative_gynecology",
+    title: "Operative Gynecology",
+    description: "Written exam questions on operative/endoscopic gynecology (2 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "2 Questions"],
+    url: "gyn_operative_gynecology.html"
+  },
+  {
+    uid: "gyn_ovarian_tumors",
+    title: "Ovarian Tumors",
+    description: "Written exam questions on ovarian tumors (12 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "28 Questions"],
+    url: "gyn_ovarian_tumors.html"
+  },
+  {
+    uid: "gyn_pcos_ovulation_disorders",
+    title: "PCOS & Ovulation Disorders",
+    description: "Written exam questions on polycystic ovary syndrome and ovulation disorders (7 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "11 Questions"],
+    url: "gyn_pcos_ovulation_disorders.html"
+  },
+  {
+    uid: "gyn_physiology_reproductive_system",
+    title: "Physiology Of The Reproductive System",
+    description: "Written exam questions on female reproductive physiology (4 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "4 Questions"],
+    url: "gyn_physiology_reproductive_system.html"
+  },
+  {
+    uid: "gyn_puberty",
+    title: "Puberty",
+    description: "Written exam questions on puberty (5 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "5 Questions"],
+    url: "gyn_puberty.html"
+  },
+  {
+    uid: "gyn_urinary_incontinence",
+    title: "Urinary Incontinence",
+    description: "Written exam questions on urinary incontinence (6 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "8 Questions"],
+    url: "gyn_urinary_incontinence.html"
+  },
+  {
+    uid: "gyn_vulvar_tumors",
+    title: "Vulvar Tumors",
+    description: "Written exam questions on vulvar neoplasia (5 questions).",
+    icon: "🩸",
+    tags: ["Quiz", "7 Questions"],
+    url: "gyn_vulvar_tumors.html"
+  }
+];
+</script>
+
+<script src="../../index-engine.js"></script>
+<script>
+(function(){var s=localStorage.getItem('quiz-theme');if(s)document.documentElement.setAttribute('data-theme',s);if(window.__updateThemeIcon)window.__updateThemeIcon();if(window.renderQuizzes)window.renderQuizzes();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('../../sw.js').catch(function () {});
+  });
+}
+</script>
+
+</body>
+</html>

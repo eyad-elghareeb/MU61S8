@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_genital_displacements_prolapse",
+          title: "Genital Displacements (Prolapse)",
+          description:
+            "Written exam questions on uterovaginal prolapse (18 questions).",
+          icon: "🩺",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question:
+              "For a case of prolapse in a postmenopausal patient, Name the operation of choice for surgical correction of each pathology:",
+            modelAnswer:
+              "Cystocele: Anterior colporrhaphy. Rectocele: Posterior colpoperineorrhaphy. Cystorectocele: Classical repair. Cystorectocele & 3rd degree uterine descent: Sexually active - Vaginal hysterectomy + repair of pelvic floor; Sexually inactive - Le Fort's operation.",
+            rubric:
+              "Correct operation matched to each of the four pathologies, with the sexual-activity-dependent choice for advanced prolapse.",
+            explanation:
+              "The choice between vaginal hysterectomy and Le Fort's (colpocleisis) operation for advanced prolapse depends mainly on whether the patient wishes to remain sexually active.",
+            tags: ["prolapse", "surgery"],
+          },
+          {
+            id: "wq-2",
+            question: "Regarding Fothergill's (Manchester) operation, mention:",
+            modelAnswer: "",
+            rubric:
+              "Indication specific to childbearing age with cervical elongation; six-step technique; two long-term complications.",
+            explanation:
+              "Fothergill's operation preserves the uterus and is therefore suitable for women still desiring fertility, unlike vaginal hysterectomy.",
+            tags: ["prolapse", "fothergill operation"],
+            children: [
+              {
+                id: "A",
+                label: "Indication:",
+                question: "Indication:",
+                modelAnswer:
+                  "Cystocele è 2nd or 3rd degree uterine descent associated with supravaginal elongation of cervix in women in childbearing period.",
+              },
+              {
+                id: "B",
+                label: "Technique:",
+                question: "Technique:",
+                modelAnswer:
+                  "a. Dilatation of the cervix (to Hegar 12): to facilitate covering raw area left after amputation of cervix by mucosa. b. Curettage: was done in original Fothergill's operation. c. Anterior colporrhaphy. d. Amputation of elongated cervix. e. Shortening of Mackenrodt's ligaments. f. Posterior colpoperineorrhaphy.",
+              },
+              {
+                id: "C",
+                label: "2 Long term complications:",
+                question: "2 Long term complications:",
+                modelAnswer:
+                  "a. Cervical stenosis - infertility, cervical dystocia & dysmenorrhea. b. Cervical incompetence - recurrent abortion & preterm labor.",
+              },
+            ],
+          },
+          {
+            id: "wq-3",
+            question:
+              "A case of procidentia 3rd degree uterine descent in a postmenopausal woman, identify:",
+            modelAnswer: "",
+            rubric:
+              "Operation choice based on sexual activity; two operative/early postoperative complications.",
+            explanation:
+              "This mirrors the general principle that the choice of operation for advanced prolapse is guided by the patient's desire for continued sexual activity.",
+            tags: ["prolapse", "surgery"],
+            children: [
+              {
+                id: "A",
+                label: "A) The preferred surgical operation:",
+                question: "The preferred surgical operation:",
+                modelAnswer:
+                  "Sexually inactive: Le Fort's operation. Sexually active: Vaginal hysterectomy + repair of pelvic floor.",
+              },
+              {
+                id: "B",
+                label: "B) Two possible operative complications:",
+                question: "Two possible operative complications:",
+                modelAnswer:
+                  "Hge -Shock - Injury to Bladder, Rectum (operative comp.). Genital infection - DVT (early postop. comp.).",
+              },
+            ],
+          },
+          {
+            id: "wq-4",
+            question:
+              "A case of cystorectocele with 2nd degree uterine descent & supravaginal elongation of the cervix in reproductive age, identify:",
+            modelAnswer: "",
+            rubric:
+              "Correct operation (Fothergill's) and at least two complications.",
+            explanation:
+              "Fothergill's operation is uterus-conserving, making it the procedure of choice in a reproductive-age woman wishing to retain fertility.",
+            tags: ["prolapse", "fothergill operation"],
+            children: [
+              {
+                id: "A",
+                label: "A) The preferred surgical operation:",
+                question: "The preferred surgical operation:",
+                modelAnswer: "Fothergill's (Manchester) operation.",
+              },
+              {
+                id: "B",
+                label: "B) Two complications of that operation:",
+                question: "Two complications of that operation:",
+                modelAnswer:
+                  "1. Cervical stenosis → infertility, cervical dystocia & dysmenorrhea. 2. Cervical incompetence → recurrent abortion & preterm labor. 3. Recurrent prolapse. 4. Enterocele formation.",
+              },
+            ],
+          },
+          {
+            id: "wq-5",
+            question: "Describe the different degrees of uterine prolapse:",
+            modelAnswer: "",
+            rubric:
+              "Five stages (0-4) of the old classification based on cervical os position relative to ischial spine/introitus; five stages (0-IV) of the new classification based on distance from the hymen.",
+            explanation:
+              "The newer classification (similar to POP-Q) uses precise measurement from the hymen rather than the older bearing-down assessment relative to the ischial spine.",
+            tags: ["prolapse", "classification"],
+            children: [
+              {
+                id: "A",
+                label: "A) Old classification:",
+                question:
+                  "Old classification (considering the uterine prolapse mainly on bearing down):",
+                modelAnswer:
+                  "Stage 0: No prolapse, the cervical os at or above level of ischial spine. Stage 1: The cervical os below the level of ischial spine but still inside the vagina. Stage 2: The cervical os is at the level of the vaginal introitus. Stage 3: The cervix is outside the vaginal introitus but the uterus still in the vagina. Stage 4: (Complete procidentia) The whole uterus & the cervix are palpated outside the vaginal introitus.",
+              },
+              {
+                id: "B",
+                label: "B) New classification:",
+                question:
+                  "New classification (once the measurements are taken, the patients are assigned to the corresponding stage):",
+                modelAnswer:
+                  "Stage 0: No prolapse during straining. Stage I: Most distal portion of prolapse is > 1cm above level of hymen. Stage II: The most distal part of prolapse is <1cm proximal to or distal to the plane of hymen. Stage III: The most distal portion of the prolapse protrudes more than 1 cm below the hymen but not all of the vagina has prolapsed. Stage IV: Complete vaginal eversion is essential.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question: "Common Types of Displacements:",
+            modelAnswer:
+              "The uterus is not central in the pelvis: Dextro-position (dextrorotation if deviated to the right); Levo-position (levorotation if deviated to left); Ante-position (shifted anteriorly); Retro-position (shifted posteriorly). Prolapse: vertical downward descent of the genital organs below the anatomical level. RVF: loss of ante-version flexion and shifted to the back. Inversion: turning of the uterus from upside down.",
+            rubric:
+              "Four types: dextro/levo-position, ante/retro-position, prolapse, RVF, inversion, each correctly defined.",
+            explanation:
+              "These displacements describe abnormal uterine position distinct from true prolapse, which specifically denotes downward descent.",
+            tags: ["prolapse", "uterine displacement"],
+          },
+          {
+            id: "wq-7",
+            question: "Describe the different degrees of perineal tears:",
+            modelAnswer:
+              "Incomplete perineal tear - 1st degree: posterior vaginal wall. 2nd degree: posterior vaginal wall, fourchette, perineal skin. Complete perineal tear - 3rd degree: posterior vaginal wall, fourchette, perineal skin, muscles of perineal body. 4th degree: posterior vaginal wall, fourchette, perineal skin, muscles of perineal body, anal sphincter, mucosa of rectum or anal canal.",
+            rubric:
+              "Correct distinction between incomplete (1st-2nd degree) and complete (3rd-4th degree) tears with structures involved at each degree.",
+            explanation:
+              "A complete tear, by definition, involves disruption of the anal sphincter, distinguishing it from an incomplete tear.",
+            tags: ["prolapse", "perineal tear"],
+          },
+          {
+            id: "wq-8",
+            question: "Predisposing factors of Pelvic organ prolapse (POP):",
+            modelAnswer:
+              "Congenital causes: In virgin or nulliparous. Associated è: a) Hernia, piles or visceroptosis. b) Spina bifida (occult or manifest). c) Congenital RVF uterus. d) Short vagina. Acquired causes: Pregnancy: ↓ Softening of fascial support (by progesterone & cortisol). ↓ Heavy weight of uterus. Childbirth trauma (badly managed labor): ↓ Repeated unspaced pregnancies. ↓ Oversized baby. ↓ Straining in 1st stage of labor. ↓ Prolonged 2nd stage of labor. Menopausal atrophy: ↓ Pelvic ligaments lose their tone. Surgical trauma.",
+            rubric:
+              "Congenital and acquired (pregnancy, childbirth trauma, menopausal atrophy, surgical trauma) categories of predisposing factors.",
+            explanation:
+              "Prolapse results from a combination of congenital weakness and acquired connective tissue/muscular damage, most importantly from childbirth trauma.",
+            tags: ["prolapse", "predisposing factors"],
+          },
+          {
+            id: "wq-9",
+            question: "Direct symptoms of Pelvic organ prolapse (POP):",
+            modelAnswer:
+              "A sensation of vaginal bulge. Heaviness or a visible protrusion at or beyond the introitus. Lower abdominal or back pain, or a dragging discomfort relieved by lying or sitting.",
+            rubric:
+              "Vaginal bulge sensation; visible protrusion; dragging discomfort relieved by rest.",
+            explanation:
+              "These direct symptoms relate mechanically to the descending pelvic organs and characteristically worsen with standing and improve with lying down.",
+            tags: ["prolapse", "symptoms"],
+          },
+          {
+            id: "wq-10",
+            question: "Precipitating factors of Pelvic organ prolapse (POP):",
+            modelAnswer:
+              "↑↑ Intra-abdominal pressure: Chronic cough. Chronic constipation. Straining. Lifting heavy objects. Abdominal tumors. Ascites. ↑↑ weight of uterus: By small fibroid & subinvoluted uterus.",
+            rubric:
+              "Causes of raised intra-abdominal pressure and increased uterine weight.",
+            explanation:
+              "These precipitating factors act on an already weakened pelvic support to bring about clinically apparent prolapse.",
+            tags: ["prolapse", "precipitating factors"],
+          },
+          {
+            id: "wq-11",
+            question: "Indirect symptoms of Pelvic organ prolapse (POP):",
+            modelAnswer:
+              "Difficulty in urination or defecation (obstructive defecation). Sensations of incomplete emptying of bladder or rectum. Patients may have to support or reduce the prolapse with their fingers to be able to void or evacuate stool completely (i.e. digitation). Urinary or fecal incontinence may also be present. Sexual dysfunction due to introital laxity. Bleeding from abrasion of the prolapsed part.",
+            rubric:
+              "At least 4 indirect symptoms relating to bladder, bowel, sexual, or bleeding effects.",
+            explanation:
+              "Indirect symptoms reflect the secondary effects of prolapse on bladder, bowel and sexual function rather than the bulge itself.",
+            tags: ["prolapse", "symptoms"],
+          },
+          {
+            id: "wq-12",
+            question:
+              "Discuss special tests for differentiation rectocele & enterocele:",
+            modelAnswer: "",
+            rubric:
+              "PR finding; Malpas test technique and finding; speculum withdrawal localization.",
+            explanation:
+              "These bedside tests rely on the anatomical fact that an enterocele lies between the rectal and vaginal examining fingers, whereas a rectocele does not.",
+            tags: ["prolapse", "rectocele", "enterocele"],
+            children: [
+              {
+                id: "A",
+                label: "PR:",
+                question: "PR:",
+                modelAnswer: "Finger enters the mass in rectocele only.",
+              },
+              {
+                id: "B",
+                label: "Combined PV & PR (Malpas test):",
+                question: "Combined PV & PR (Malpas test):",
+                modelAnswer:
+                  "Put middle finger in rectum & index finger in vagina & ask patient to cough → mass will be felt between the examining fingers in enterocele only.",
+              },
+              {
+                id: "C",
+                label: "Speculum withdrawal:",
+                question: "Speculum withdrawal:",
+                modelAnswer:
+                  "If mass in upper ⅓: Enterocele. If mass in lower ⅓: Rectocele.",
+              },
+            ],
+          },
+          {
+            id: "wq-13",
+            question: "Indications for Pessary treatment:",
+            modelAnswer: "",
+            rubric:
+              "Temporary indications (pregnancy, puerperium/lactation) and permanent indications (unfit for surgery, refusal of surgery).",
+            explanation:
+              "Pessaries provide non-surgical management for prolapse either as a temporary measure pending resolution (pregnancy/puerperium) or as a definitive option when surgery is contraindicated or declined.",
+            tags: ["prolapse", "pessary"],
+            children: [
+              {
+                id: "A",
+                label: "A) Temporary indications:",
+                question: "Temporary indications:",
+                modelAnswer:
+                  "Uterine prolapse in early pregnancy (uterus supports itself above pelvic brim after 14 weeks). Uterine prolapse during puerperium or lactation.",
+              },
+              {
+                id: "B",
+                label: "B) Permanent indications:",
+                question: "Permanent indications:",
+                modelAnswer:
+                  "Patients unfit for surgery (HTN, DM, chest disease, heart disease & old debilitated woman). Patients refusing surgery.",
+              },
+            ],
+          },
+          {
+            id: "wq-14",
+            question: "Principles of Pop Surgery:",
+            modelAnswer:
+              "R: Remove/reduce the vaginal bulge. Restore the ligament/tissue supports to the apex, anterior and posterior vagina. Replace associated organs in their correct positions. Retain sufficient vaginal length and width to allow intercourse. Restore the perineal body. C: Correct or prevent urinary incontinence. Correct or prevent fecal incontinence. Correct obstructed defecation.",
+            rubric:
+              "The 'R' principles (remove, restore, replace, retain, restore perineal body) and the 'C' principles (correct urinary/fecal incontinence and obstructed defecation).",
+            explanation:
+              "This mnemonic framework (R and C) summarizes the comprehensive goals of pelvic organ prolapse surgery beyond simply repairing the bulge.",
+            tags: ["prolapse", "surgery principles"],
+          },
+          {
+            id: "wq-15",
+            question: "TTT of retroversion flexion (RVF):",
+            modelAnswer:
+              "No treatment: in asymptomatic RVF. Pessary: in mobile RVF by Hodge-Smith pessary. Surgical treatment: for the pathology present and correction of the uterine position.",
+            rubric:
+              "Three options depending on symptoms/mobility: observation, pessary, surgery.",
+            explanation:
+              "Asymptomatic, mobile retroversion is a normal anatomical variant in many women and does not require treatment.",
+            tags: ["prolapse", "retroversion"],
+          },
+          {
+            id: "wq-16",
+            question:
+              "Classification of Uterine inversions acc to extent of inversion?",
+            modelAnswer:
+              "1st degree: Incomplete - Fundus within the endometrial cavity. 2nd degree: Complete - Fundus protrudes through the cervical os. 3rd degree: Prolapsed - Fundus protrudes to or beyond introitus. 4th degree: Total - Both the uterus & vagina are inverted.",
+            rubric: "Four degrees of inversion correctly matched to extent.",
+            explanation:
+              "Uterine inversion is a rare but life-threatening obstetric emergency most often related to mismanagement of the third stage of labor.",
+            tags: ["prolapse", "uterine inversion"],
+          },
+          {
+            id: "wq-17",
+            question: "Signs and symptoms of Uterine inversions?",
+            modelAnswer:
+              "Mild to severe vaginal bleeding. Mild to severe lower abdominal pain. A smooth, round mass protruding from the cervix or vagina. Urinary retention.",
+            rubric: "At least 3 signs/symptoms.",
+            explanation:
+              "Uterine inversion classically presents with haemorrhage, pain, and a palpable mass, and can rapidly progress to shock.",
+            tags: ["prolapse", "uterine inversion"],
+          },
+          {
+            id: "wq-18",
+            question: "Signs and symptoms of Uterine inversions? Management:",
+            modelAnswer: "",
+            rubric:
+              "Non-surgical option for frail patients; named surgical abdominal and vaginal procedures.",
+            explanation:
+              "Manual or instrumental repositioning is attempted first; surgical correction is reserved for cases where this fails or in chronic inversion.",
+            tags: ["prolapse", "uterine inversion"],
+            children: [
+              {
+                id: "A",
+                label: "A) Non-surgical:",
+                question: "Non-surgical:",
+                modelAnswer:
+                  "Napier repositor for frail women; contraindicated for surgery.",
+              },
+              {
+                id: "B",
+                label: "B) Surgical:",
+                question: "Surgical:",
+                modelAnswer:
+                  "Abdominal procedures (Huntington & Haultain procedures). Vaginal procedures: (Spinelli's and Kustner's techniques). Involve replacing the uterine fundus through the anterior and posterior transections respectively.",
+              },
+            ],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

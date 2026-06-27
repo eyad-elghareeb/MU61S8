@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_abnormal_uterine_bleeding",
+          title: "Abnormal Uterine Bleeding (AUB)",
+          description:
+            "Written exam questions on abnormal uterine bleeding (12 questions).",
+          icon: "🩸",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question:
+              "Mention 4 causes of Pelvi-abdominal mass that may be associated with vaginal bleeding:",
+            modelAnswer:
+              "Pregnancy complications. Fibroid. Malignant tumors of body of uterus (some advanced cases). Twisted ovarian tumors (some cases).",
+            rubric: "Four correctly named causes.",
+            explanation:
+              "A pelvi-abdominal mass with vaginal bleeding raises concern for both benign (fibroid, pregnancy) and malignant causes that must be differentiated.",
+            tags: ["aub"],
+          },
+          {
+            id: "wq-2",
+            question:
+              "Enumerate medical non hormonal therapy for a case of dysfunctional uterine bleeding:",
+            modelAnswer:
+              "PG synthetase inhibitors. Antifibrinolytics. Diosmin. Ethamsylate.",
+            rubric: "Four non-hormonal medical agents.",
+            explanation:
+              "These agents act by reducing prostaglandin-mediated vasodilation or by improving capillary fragility/fibrinolysis, without altering the hormonal axis.",
+            tags: ["aub", "treatment"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "In a case of postmenopausal bleeding, Mention 4 possible histopathological endometrial pattern:",
+            modelAnswer:
+              "Endometrial hyperplasia. Endometrial carcinoma. Atrophic endometrium. Specific endometritis (as TB endometritis).",
+            rubric: "Four endometrial histopathological patterns.",
+            explanation:
+              "Atrophic endometrium is actually the most common finding in postmenopausal bleeding, but carcinoma and hyperplasia must always be excluded.",
+            tags: ["aub", "postmenopausal bleeding"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "Suggest three investigations for postmenopausal bleeding:",
+            modelAnswer:
+              "CBC. TAS, TVS (Show endometrial - uterine - Adnexal - pelvic lesions). Endometrial aspiration & biopsy (show histology of endometrium or cavity lesion).",
+            rubric:
+              "Three investigations: CBC, ultrasound, endometrial aspiration/biopsy.",
+            explanation:
+              "Endometrial biopsy is the definitive investigation to exclude malignancy in postmenopausal bleeding.",
+            tags: ["aub", "postmenopausal bleeding"],
+          },
+          {
+            id: "wq-5",
+            question:
+              "A 35 years old lady refereed to the gynae unit with contact (post coital bleeding), mention:",
+            modelAnswer: "",
+            rubric:
+              "At least two causes and two relevant investigations for postcoital bleeding.",
+            explanation:
+              "Postcoital bleeding in a woman of this age must always raise suspicion of cervical malignancy until proven otherwise.",
+            tags: ["aub", "postcoital bleeding"],
+            children: [
+              {
+                id: "A",
+                label: "2 possible causes:",
+                question: "2 possible causes:",
+                modelAnswer:
+                  "Early Cancer cervix. Necrotic cervical Polyps. Cervical ulcer. Vaginal ulcer. Vaginal adenosis.",
+              },
+              {
+                id: "B",
+                label: "2 investigations:",
+                question: "2 investigations:",
+                modelAnswer:
+                  "Cervical biopsy. Colposcopy. Ultrasound. CT. MRI.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question:
+              "Suggest four investigations for menorrhagia in child bearing period:",
+            modelAnswer:
+              "CBC. TVS - TAS. Endometrial Biopsy. Hysteroscopy - Laparoscopy.",
+            rubric: "Four investigations.",
+            explanation:
+              "This panel screens for anaemia, structural pelvic pathology, and endometrial causes of menorrhagia.",
+            tags: ["aub", "menorrhagia"],
+          },
+          {
+            id: "wq-7",
+            question:
+              "Define four possible causes for menorrhagia in childbearing period:",
+            modelAnswer:
+              "Fibroid (intramural-subserous). Adenomyosis. Endometriosis. Dysfunctional menorrhagia. Copper Medicated IUCD.",
+            rubric: "Four causes correctly named.",
+            explanation:
+              "Structural lesions (fibroid, adenomyosis, endometriosis), dysfunctional causes, and copper IUCD are the principal causes of menorrhagia in this age group.",
+            tags: ["aub", "menorrhagia"],
+          },
+          {
+            id: "wq-8",
+            question:
+              "Define 3 possible causes for perimenopausal metrorrhagia:",
+            modelAnswer:
+              "DUB (metropathia hemorrhagica). IUD. General cause of bleeding. Cancer Endometrium or Cx. Prolapse.",
+            rubric: "Three correct causes.",
+            explanation:
+              "Perimenopausal metrorrhagia warrants exclusion of malignancy in addition to dysfunctional causes.",
+            tags: ["aub", "perimenopausal bleeding"],
+          },
+          {
+            id: "wq-9",
+            question:
+              "Modern FIGO-Classification System For uterine bleeding in mid reproductive years?",
+            modelAnswer:
+              "PALM: Polyps; Adenomyosis; Leiomyoma; Malignancy (or hyperplasia). COIEN: Coagulopathy; Ovarian (ovulatory dysfunction); Endometrial; Iatrogenic; Not otherwise specified.",
+            rubric: "Correct naming of all 9 categories under PALM-COEIN.",
+            explanation:
+              "The PALM-COEIN system separates structural (PALM) from non-structural (COEIN) causes of abnormal uterine bleeding.",
+            tags: ["aub", "figo classification"],
+          },
+          {
+            id: "wq-10",
+            question: "Define 3 possible causes for premenopausal metrorrhagia",
+            modelAnswer: "DUB. IUD. General cause of bleeding.",
+            rubric: "Three causes of premenopausal metrorrhagia.",
+            explanation:
+              "Premenopausal metrorrhagia is most often dysfunctional but local causes such as IUD must be excluded.",
+            tags: ["aub", "premenopausal bleeding"],
+          },
+          {
+            id: "wq-11",
+            question: "Laboratory testing for patients with AUB:",
+            modelAnswer: "",
+            rubric:
+              "Initial tests; hemostasis screen; von Willebrand workup; additional tests (TSH, iron studies, liver function, chlamydia).",
+            explanation:
+              "A bleeding disorder workup is essential in adolescents and women with heavy menstrual bleeding unresponsive to standard treatment.",
+            tags: ["aub", "investigations"],
+            children: [
+              {
+                id: "A",
+                label: "Initial tests:",
+                question: "Initial tests:",
+                modelAnswer:
+                  "Complete blood count, blood type & cross match, pregnancy test.",
+              },
+              {
+                id: "B",
+                label:
+                  "Initial laboratory evaluation for disorders of hemostasis:",
+                question:
+                  "Initial laboratory evaluation for disorders of hemostasis:",
+                modelAnswer: "PTT, PT, APTT, Fibrinogen.",
+              },
+              {
+                id: "C",
+                label: "Initial testing for von Willebrand's disease:",
+                question: "Initial testing for von Willebrand's disease:",
+                modelAnswer:
+                  "Von Willebrand factor antigen, factor VIII, Ristocetin cofactor assay.",
+              },
+              {
+                id: "D",
+                label: "Other tests to consider:",
+                question: "Other tests to consider:",
+                modelAnswer:
+                  "TSH, serum iron, total iron binding capacity, ferritin, liver function, and chlamydia trachomatis.",
+              },
+            ],
+          },
+          {
+            id: "wq-12",
+            question:
+              "Suggest 3 histopathological pattens after D&C for postmenopausal bleeding:",
+            modelAnswer:
+              "Endometrial Hyperplasia. Endometrial carcinoma. Atrophic endometrium.",
+            rubric: "Three histopathological patterns.",
+            explanation:
+              "These mirror the same three principal patterns seen on biopsy in postmenopausal bleeding.",
+            tags: ["aub", "postmenopausal bleeding"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

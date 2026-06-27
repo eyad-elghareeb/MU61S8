@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_choriocarcinoma",
+          title: "Choriocarcinoma",
+          description:
+            "Written exam questions on choriocarcinoma (5 questions).",
+          icon: "🤰",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Etiology and risk factors of choriocarcinoma:",
+            modelAnswer:
+              "Maternal age > 35 years. Parity: Vesicular mole is common in patients with low parity. Choriocarcinoma is common in multipara. Diet: common in rice eating and spicy cooking population. Genetic: common association with trisomy 16. Past history of molar pregnancy.",
+            rubric:
+              "At least 4 risk factors including maternal age and past molar pregnancy.",
+            explanation:
+              "A prior history of hydatidiform mole is the single most important risk factor for subsequent choriocarcinoma.",
+            tags: ["choriocarcinoma", "risk factors"],
+          },
+          {
+            id: "wq-2",
+            question: "FIGO staging of chorocarcinoma:",
+            modelAnswer:
+              "Stage I: Tumor confined to the uterus. Stage II: Genital extension (vagina and pelvic organs). Stage III: The disease affects the lungs with or without genital metastasis. Stage IV: Distant metastasis affecting other organs.",
+            rubric: "Four stages correctly described by anatomical extent.",
+            explanation:
+              "The lungs are the most common site of distant metastasis in gestational trophoblastic neoplasia, explaining their specific mention in stage III.",
+            tags: ["choriocarcinoma", "figo staging"],
+          },
+          {
+            id: "wq-3",
+            question: "Investigations for choriocarcinoma:",
+            modelAnswer: "",
+            rubric:
+              "Laboratory tests including serum and CSF HCG; radiological investigations including the classic 'cannon ball' chest X-ray appearance; tissue diagnosis by curettage/biopsy.",
+            explanation:
+              "The 'cannon ball' appearance on chest X-ray reflects haematogenous pulmonary metastases, a hallmark finding in choriocarcinoma.",
+            tags: ["choriocarcinoma", "investigations"],
+            children: [
+              {
+                id: "A",
+                label: "1. Laboratory:",
+                question: "Laboratory:",
+                modelAnswer: "CBC, RFT, LVT, serum HCG, CSF level of HCG.",
+              },
+              {
+                id: "B",
+                label: "2. Radiology:",
+                question: "Radiology:",
+                modelAnswer:
+                  "Chest X-ray (Canon ball appearance), bone survey, isotope scan. Ultrasonography to diagnose any uterine mass and ovarian cysts. CT scan and MRI on liver, brain... etc.",
+              },
+              {
+                id: "C",
+                label: "3. Endometrial curettage and biopsy:",
+                question: "Endometrial curettage and biopsy:",
+                modelAnswer:
+                  "Used to obtain tissue for histological confirmation of choriocarcinoma.",
+              },
+            ],
+          },
+          {
+            id: "wq-4",
+            question: "Prevention of chorocarcinoma:",
+            modelAnswer:
+              "Proper treatment and follow up of every case of vesicular mole. Prophylactic chemotherapy after vesicular mole in high-risk cases.",
+            rubric:
+              "Follow-up of molar pregnancy and prophylactic chemotherapy in high-risk cases.",
+            explanation:
+              "Regular HCG follow-up after molar pregnancy allows early detection of malignant transformation, while prophylactic chemotherapy is reserved for high-risk cases.",
+            tags: ["choriocarcinoma", "prevention"],
+          },
+          {
+            id: "wq-5",
+            question: "Symptoms of chorocarcinoma:",
+            modelAnswer: "",
+            rubric:
+              "Antecedent pregnancy history; bleeding pattern; pain; cachexia; metastatic complications; palpable mass.",
+            explanation:
+              "Choriocarcinoma can follow any type of antecedent pregnancy (mole, abortion, term, or ectopic), and its highly vascular, metastatic nature explains the varied systemic complications.",
+            tags: ["choriocarcinoma", "symptoms"],
+            children: [
+              {
+                id: "A",
+                label: "1. History of:",
+                question: "History of:",
+                modelAnswer:
+                  "Vesicular mole, abortion, full term pregnancy or ectopic pregnancy.",
+              },
+              {
+                id: "B",
+                label: "2. Bleeding:",
+                question: "Bleeding:",
+                modelAnswer: "Which is excessive irregular vaginal bleeding.",
+              },
+              {
+                id: "C",
+                label: "3. Pain:",
+                question: "Pain:",
+                modelAnswer: "With uterine distension or perforation.",
+              },
+              {
+                id: "D",
+                label: "4. Cachexia:",
+                question: "Cachexia:",
+                modelAnswer: "With recurrent blood loss, anorexia and fever.",
+              },
+              {
+                id: "E",
+                label: "5. Complications:",
+                question: "Complications e.g.:",
+                modelAnswer:
+                  "Fever due to infection. Hemoptysis with lung metastasis or jaundice with liver metastasis. Hyperemesis, hypertension, thyrotoxicosis and increased intracranial tension.",
+              },
+              {
+                id: "F",
+                label: "6. Mass:",
+                question: "Mass:",
+                modelAnswer:
+                  "May be felt as a vaginal or abdominal mass, particularly in advanced cases.",
+              },
+            ],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

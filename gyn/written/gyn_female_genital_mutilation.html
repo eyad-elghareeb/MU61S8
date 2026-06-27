@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_female_genital_mutilation",
+          title: "Female Genital Mutilation (FGM)",
+          description:
+            "Written exam questions on female genital mutilation (4 questions).",
+          icon: "⚠️",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question:
+              "List 3 complications of female circumcision/female genital mutilation:",
+            modelAnswer: "",
+            rubric:
+              "At least 4 immediate complications and at least 4 long-term complications, including at least one from each major system (urinary, vaginal, menstrual, sexual, obstetric, psychological).",
+            explanation:
+              "FGM causes both acute surgical complications and long-lasting physical and psychological harm, reflecting why it is recognized as a human rights violation by WHO.",
+            tags: ["fgm", "complications"],
+            children: [
+              {
+                id: "A",
+                label: "A) Immediate:",
+                question: "Immediate complications of FGM can include:",
+                modelAnswer:
+                  "Severe pain. Excessive bleeding (hemorrhage). Genital tissue swelling. Fever. Infections e.g., tetanus. Urinary problems. Wound healing problems. Injury to surrounding genital tissue. Shock. Death.",
+              },
+              {
+                id: "B",
+                label: "B) Remote (late):",
+                question: "Long-term complications can include:",
+                modelAnswer:
+                  "Urinary problems (painful urination, urinary tract infections). Vaginal problems (discharge, itching, bacterial vaginosis and other infections). Menstrual problems (painful menstruations, difficulty in passing menstrual blood, etc.). Scar tissue and keloid. Sexual problems (pain during intercourse, decreased satisfaction, etc.). Increased risk of childbirth complications (difficult delivery, excessive bleeding, caesarean section, need to resuscitate the baby, etc.) and newborn deaths. Need for later surgeries: women with type 3 might require de-infibulation (opening the infibulated scar to allow for sexual intercourse and childbirth). Psychological problems (depression, anxiety, post-traumatic stress disorder, low self-esteem, etc.).",
+              },
+            ],
+          },
+          {
+            id: "wq-2",
+            question: "Definition of Female Genital Mutilation?",
+            modelAnswer:
+              "Procedures involving partial or total removal of female external genital organs for cultural or any other non-medical reasons.",
+            rubric:
+              "Definition mentioning partial/total removal of external genitalia for non-medical reasons.",
+            explanation:
+              "The WHO definition specifically excludes any medical justification, emphasizing the cultural/non-therapeutic nature of the procedure.",
+            tags: ["fgm", "definition"],
+          },
+          {
+            id: "wq-3",
+            question:
+              "Enumerate late complications of Female Genital Mutilation?",
+            modelAnswer:
+              "Urinary problems: painful urination, urinary tract infections. Vaginal problems: discharge, itching, bacterial vaginosis and other infections. Menstrual problems: painful menstruations, difficulty in passing menstrual blood, etc. Scar tissue and keloid. Sexual problems: pain during intercourse, decreased satisfaction, etc. Increased risk of childbirth complications: difficult delivery, excessive bleeding, caesarean section, need to resuscitate the baby, etc. And newborn deaths. Need for later surgeries: women with type 3 might require de-infibulation (opening the infibulated scar to allow for sexual intercourse and childbirth). Psychological problems: depression, anxiety, post-traumatic stress disorder, low self-esteem, etc.",
+            rubric:
+              "At least 5 of the listed long-term complications across different body systems.",
+            explanation:
+              "This elaborates on the long-term complications listed in the main exam question, reflecting their importance across multiple body systems.",
+            tags: ["fgm", "complications"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "Enumerate immediate complications of Female Genital Mutilation?",
+            modelAnswer:
+              "Severe pain. Excessive bleeding (hemorrhage). Genital tissue swelling. Fever. Infections e.g., tetanus. Urinary problems. Wound healing problems. Injury to surrounding genital tissue. Shock. Death.",
+            rubric: "At least 5 immediate complications.",
+            explanation:
+              "These immediate complications arise directly from the trauma of the procedure, often performed without anaesthesia or sterile conditions.",
+            tags: ["fgm", "complications"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

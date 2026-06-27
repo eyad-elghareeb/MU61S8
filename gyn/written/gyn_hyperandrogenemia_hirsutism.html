@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_hyperandrogenemia_hirsutism",
+          title: "Hyperandrogenemia & Hirsutism",
+          description:
+            "Written exam questions on hyperandrogenemia and hirsutism (6 questions).",
+          icon: "🪴",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "Enumerate 3 effects of excess androgen in adult female:",
+            modelAnswer:
+              "Hirsutism: commonest symptom. Acne & oiliness of skin: earliest symptom. Alopecia. Menstrual disturbances. ↑↑ libido. Virilization: severest form of hyperandrogenism in adult female which means development of masculine characters passing in 2 stages: Defeminization: atrophy of breast & internal genitalia & loss of female body contour. Masculinization: hirsutism, male type baldness (mostly vertical but may be temporal also), harsh voice, ↑↑ muscle mass & clitoromegaly.",
+            rubric:
+              "At least 3 effects with identification of commonest (hirsutism) and earliest (acne/oiliness) symptoms; description of virilization in its two stages.",
+            explanation:
+              "Virilization represents the most severe degree of androgen excess and signals the need to exclude an androgen-secreting tumour.",
+            tags: ["hirsutism", "androgen excess"],
+          },
+          {
+            id: "wq-2",
+            question: "Medical TTT of hirsutism:",
+            modelAnswer:
+              "Suppression of androgen production: a) COCs. b) MPA. c) GnRH agonists. d) Corticosteroids. 5α-reductase inhibitors: Finasteride & spironolactone. Androgen receptor blockers: a) Cyproterone acetate. b) Flutamide. c) Spironolactone. d) Cimetidine.",
+            rubric:
+              "Three mechanisms of medical treatment: suppression of androgen production, 5-alpha reductase inhibition, and androgen receptor blockade, with named drugs for each.",
+            explanation:
+              "Combination therapy is often used since suppressing production and blocking receptor action act synergistically.",
+            tags: ["hirsutism", "treatment"],
+          },
+          {
+            id: "wq-3",
+            question: "Define hirsutism & Hypertricosis:",
+            modelAnswer:
+              "Hirsutism: excessive growth of androgen dependent terminal hair on androgen dependent midline areas of female skin. Hypertricosis: growth of androgen independent hair on non-sexual areas of female skin.",
+            rubric:
+              "Correct distinction between androgen-dependent (hirsutism) and androgen-independent (hypertrichosis) hair growth, with site specification.",
+            explanation:
+              "Distinguishing hirsutism from hypertrichosis is important since only the former points to an underlying endocrine disturbance.",
+            tags: ["hirsutism", "definition"],
+          },
+          {
+            id: "wq-4",
+            question: "Etiology of hirsutism:",
+            modelAnswer:
+              "Idiopathic or familial: due to hypersensitivity of hair follicle to normally circulating androgens. Androgen Excess: Causes of androgen excess in adult female e.g., a) PCOS. b) Danazol.",
+            rubric:
+              "Idiopathic/familial cause and androgen excess causes with examples.",
+            explanation:
+              "Idiopathic hirsutism is a diagnosis of exclusion after ruling out hormonal causes of androgen excess.",
+            tags: ["hirsutism", "etiology"],
+          },
+          {
+            id: "wq-5",
+            question: "Investigations for a case with hirsutism:",
+            modelAnswer: "",
+            rubric:
+              "Hormonal assay panel (testosterone, DHEAS, androstenedione) and additional cause-directed investigations (17-OHP, imaging).",
+            explanation:
+              "The degree of testosterone elevation helps localize the cause, while DHEAS and androstenedione help differentiate adrenal from ovarian sources.",
+            tags: ["hirsutism", "investigations"],
+            children: [
+              {
+                id: "A",
+                label: "A) Hormonal assay:",
+                question: "Hormonal assay:",
+                modelAnswer:
+                  "a) Serum testosterone: 1. Normal: idiopathic or familial hirsutism. 2. Moderate elevation: usually in functional causes (as PCOS). 3. Marked elevation: usually in androgen secreting tumors. b) Serum DHEAS: it is indicator for adrenal androgenic activity. c) Serum androstenedione: ↑ levels suggest ovarian disease.",
+              },
+              {
+                id: "B",
+                label: "B) Investigations to detect the cause:",
+                question: "Investigations to detect the cause:",
+                modelAnswer:
+                  "a) Serum 17-hydroxyprogesterone & urinary 17-ketosteroids: High levels diagnose CAH. b) Imaging: To diagnose ovarian or adrenal tumors. c) Other investigations: According to the suspected cause.",
+              },
+            ],
+          },
+          {
+            id: "wq-6",
+            question: "Enumerate Causes of androgen excess in adult female:",
+            modelAnswer:
+              "Ovarian causes: a) PCOS. b) Ovarian stromal hyperplasia. c) Androgen secreting ovarian tumors. d) Luteoma of pregnancy. Adrenal causes: a) CAH (late type). b) Cushing syndrome. c) Androgen secreting adrenal tumors. Drugs: a) Androgens. b) Danazol. c) Corticosteroids. d) Gestagens (specially C19 derivatives). e) Drugs causing hyperprolactinemia. Other causes: a) Hyperprolactinemia. b) Acromegaly. c) Hypothyroidism. d) Obesity (due to ↓↓ SHBG). e) Hyperinsulinemia.",
+            rubric:
+              "Four categories of causes (ovarian, adrenal, drug-induced, other) with at least 2 examples per category.",
+            explanation:
+              "A systematic approach (ovarian, adrenal, drug, other endocrine) is essential when working up androgen excess.",
+            tags: ["hirsutism", "androgen excess"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>

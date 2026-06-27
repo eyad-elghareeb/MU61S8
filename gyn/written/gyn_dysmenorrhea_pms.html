@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("quiz-theme") || "dark";
+        var s = document.createElement("style");
+        s.textContent =
+          "html,body{background:" +
+          (t === "light" ? "#f3f0eb" : "#0d1117") +
+          ";color:" +
+          (t === "light" ? "#1c1917" : "#e6edf3") +
+          ";margin:0;padding:0;overflow:hidden;height:100%}";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <title>Written Assessment</title>
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="../../favicon.svg" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("../../sw.js").catch(function () {});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      /* ────────────────────────────────────────────────────────────────   WRITTEN ASSESSMENT DATA  — only edit below this line   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_CONFIG_START] */ const WRITTEN_CONFIG =
+        {
+          uid: "gyn_dysmenorrhea_pms",
+          title: "Dysmenorrhea & PMS",
+          description:
+            "Written exam questions on dysmenorrhea and premenstrual syndrome (8 questions).",
+          icon: "🩸",
+        };
+      /* [WRITTEN_CONFIG_END] */ /* ─────────────────────────────────────────────────────────────────   WRITTEN_QUESTIONS ARRAY   Format for each question:   {     id: "unique-question-id",     question: "Your question text",     modelAnswer: "Expected/Model Answer text",     rubric: "Optional grading rubric points for AI context",     explanation: "Why this answer is structured this way / extra background",     tags: ["tag1", "tag2"],     children: [           // Optional sub-questions (for multi-part questions)       {         id: "A",         label: "A)",         question: "Sub-question text?",         modelAnswer: "Answer for this sub-question"       }     ]   }   ──────────────────────────────────────────────────────────────────*/ /* [WRITTEN_QUESTIONS_START] */ const WRITTEN_QUESTIONS =
+        [
+          {
+            id: "wq-1",
+            question: "TTT of 1ry (Spasmodic) Dysmenorrhea:",
+            modelAnswer: "",
+            rubric:
+              "General measures; medical lines (nonspecific antispasmodics vs specific NSAIDs/COCs); surgical lines for resistant cases.",
+            explanation:
+              "Primary dysmenorrhea is due to excess prostaglandin production causing uterine hypercontractility, hence the efficacy of NSAIDs and COCs; surgery is reserved for resistant cases.",
+            tags: ["dysmenorrhea"],
+            children: [
+              {
+                id: "A",
+                label: "General lines:",
+                question: "General lines:",
+                modelAnswer:
+                  "Health education, psychotherapy, reassurance, exercise.",
+              },
+              {
+                id: "B",
+                label: "Medical lines:",
+                question: "Medical lines:",
+                modelAnswer:
+                  "Nonspecific: as antispasmodics. Specific: as NSAIDs (Mefenamic acid, indomethacin) OR COCs.",
+              },
+              {
+                id: "C",
+                label: "Surgical lines:",
+                question: "Surgical lines (rarely needed):",
+                modelAnswer:
+                  "Acupuncture techniques. Dilatation of the cervix up to no.14 Hegar's dilator. Presacral neurectomy. Laparoscopic uterosacral nerve ablation (LUNA).",
+              },
+            ],
+          },
+          {
+            id: "wq-2",
+            question: "Definition of dysmenorrhea:",
+            modelAnswer:
+              "It is painful menstruation that interferes with the patient's daily activity.",
+            rubric:
+              "Definition mentioning pain with menstruation and interference with daily activity.",
+            explanation:
+              "This functional definition distinguishes clinically significant dysmenorrhea from mild physiological cramping.",
+            tags: ["dysmenorrhea", "definition"],
+          },
+          {
+            id: "wq-3",
+            question: "Types of dysmenorrhea?",
+            modelAnswer:
+              "Primary dysmenorrhea. Secondary dysmenorrhea. Special types. Premenstrual tension syndrome.",
+            rubric: "Four categories named.",
+            explanation:
+              "Primary dysmenorrhea occurs without pelvic pathology, while secondary dysmenorrhea results from an underlying pelvic lesion.",
+            tags: ["dysmenorrhea", "classification"],
+          },
+          {
+            id: "wq-4",
+            question:
+              "Regarding Premenstrual syndrome, outline: Definition, Symptoms:",
+            modelAnswer:
+              "Definition: a syndrome characterized by distressing cyclic physical, psychological & behavioral symptoms that occur in the late luteal phase of the menstrual cycle & improve markedly by the onset of menstrual flow. Symptoms: physical symptoms - headache, facial & peripheral edema; psychological symptoms - tension & irritability; behavioral symptoms - suicidal tendency & suicidal attempts, criminal behavior.",
+            rubric:
+              "Correct timing (late luteal phase, relieved by menses); three symptom categories (physical, psychological, behavioral) with examples.",
+            explanation:
+              "PMS symptoms are cyclical and time-locked to the luteal phase, distinguishing it from other psychiatric conditions.",
+            tags: ["pms"],
+          },
+          {
+            id: "wq-5",
+            question: "Enumerate Symptoms of pelvic congestion:",
+            modelAnswer:
+              "Dull aching pain, low backache. Dyspareunia, dysmenorrhea. Menorrhagia & leukorrhea.",
+            rubric: "At least 3 symptoms.",
+            explanation:
+              "Pelvic congestion syndrome results from venous engorgement of the pelvic veins.",
+            tags: ["pelvic congestion"],
+          },
+          {
+            id: "wq-6",
+            question: "Enumerate Causes of pelvic congestion:",
+            modelAnswer:
+              "Prolonged use of IUD. Pelvic endometriosis and adenomyosis. Chronic PID. Chronic constipation. Uterine fibroids. Displacements.",
+            rubric: "At least 4 causes.",
+            explanation:
+              "These causes share a mechanism of impaired pelvic venous return or chronic pelvic inflammation.",
+            tags: ["pelvic congestion"],
+          },
+          {
+            id: "wq-7",
+            question: "Membranous dysmenorrhea etiology & TTT:",
+            modelAnswer:
+              "Etiology: increased level or sensitivity to progesterone leading to a thick secretory endometrium that is shed as a cast, leading to severe pain. Treatment: dilatation and curettage, analgesics and antispasmodics.",
+            rubric:
+              "Mechanism (progesterone effect causing cast-like shedding); treatment options.",
+            explanation:
+              "Membranous dysmenorrhea is a rare special type in which the endometrium is shed in one piece (a 'cast') rather than fragmenting normally.",
+            tags: ["dysmenorrhea", "membranous"],
+          },
+          {
+            id: "wq-8",
+            question: "Enumerate Symptoms of premenstrual tension syndrome:",
+            modelAnswer:
+              "Physical symptoms: facial and peripheral edema due to salt and water retention; breast tension; abdominal distension, bloating, or weight gain; headache. Psychological symptoms: depression, anxiety, irritability; sleep disturbances, lack of concentration; craving certain types of food. Behavioral symptoms: suicidal attempts and criminal behavior.",
+            rubric:
+              "Physical, psychological and behavioral symptom categories each with at least 2 examples.",
+            explanation:
+              "This overlaps with PMS, reflecting that premenstrual tension syndrome is essentially synonymous with severe PMS.",
+            tags: ["pms"],
+          },
+        ]; /* [WRITTEN_QUESTIONS_END] */
+    </script>
+    <script>
+      /* Engine loader — computes correct relative path for any folder depth */ (function () {
+        window.__WRITTEN_ENGINE_BASE = "../".repeat(
+          Math.max(0, location.pathname.split("/").filter(Boolean).length - 2),
+        );
+        window.__WRITTEN_ENGINE_VERSION = "2026-06-01-ai-fallback-ui";
+        document.write(
+          "<scr" +
+            'ipt src="' +
+            window.__WRITTEN_ENGINE_BASE +
+            "written-engine.js?v=" +
+            window.__WRITTEN_ENGINE_VERSION +
+            '"><\/scr' +
+            "ipt>",
+        );
+      })();
+    </script>
+  </body>
+</html>
